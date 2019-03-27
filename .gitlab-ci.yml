@@ -16,6 +16,7 @@ publish:
   variables:
     NPM_AUTH_KEY: $CI_JOB_TOKEN
   script:
+    - env
     - npm version $CI_COMMIT_REF_NAME && npm publish
   only:
     refs:
