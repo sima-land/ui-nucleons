@@ -1,9 +1,9 @@
 {
   "name": "@SL/ui-nucleons",
-  "version": "0.0.1",
   "publishConfig": {
-    "@SL:registry": "https://gitlab.sima-land.ru/api/v4/projects/625/packages/npm/"
+    "@SL:registry":"https://gitlab.sima-land.ru/api/v4/projects/625/packages/npm/"
   },
+  "version": "0.0.0",
   "repository": "ssh://git@gitlab.sima-land.ru:7888/SL/ui-nucleons.git",
   "author": "www.sima-land.ru team",
   "license": "MIT",
