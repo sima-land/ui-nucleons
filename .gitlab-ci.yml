@@ -2,7 +2,7 @@ stages:
  - test
 
 test:
-  stage:test
+  stage: test
   image: mhart/alpine-node:8
   script:
     - echo 1
