@@ -13,8 +13,9 @@ test:
 publish:
   stage: publish
   image: mhart/alpine-node:8
+  before_script:
+    - echo //gitlab.sima-land.ru/api/v4/projects/625/packages/npm/:_authToken=${NPM_AUTH_TOKEN} > .npmrc
   script:
-    - env
     - npm version $CI_COMMIT_REF_NAME && npm publish
   only:
     refs:
