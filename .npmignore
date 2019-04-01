@@ -1,3 +1,5 @@
 .gitlab-ci.yml
 *.md
 styleguide.config.js
+.storybook
+src/stories
