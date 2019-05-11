@@ -244,10 +244,5 @@
         "jest/prefer-to-have-length": "warn",
         "jest/valid-expect": "error",
         "import/newline-after-import": ["error", { "count": 1 }]
-    },
-    "globals": {
-        "BUILD_VERSION": true,
-        "ASSETS_VERSION": true,
-        "oko": true
     }
 }
