@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> renders button correctly 1`] = `
+<Button
+  className="test-class"
+  cssParams={
+    Object {
+      "color": "white",
+      "shape": "rounded",
+    }
+  }
+>
+  <button
+    className="button test-class button_rounded button_white"
+  >
+    Кнопка
+  </button>
+</Button>
+`;

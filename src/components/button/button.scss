@@ -1,0 +1,92 @@
+@import "../variables";
+
+.button {
+    display: inline-block;
+    font: inherit;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    outline: none;
+    text-align: center;
+    border: 0;
+    padding: 0.6em 1em;
+    text-decoration: none;
+    line-height: 1;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.button_white,
+.button_white:link,
+.button_white:visited {
+    background: linear-gradient(to bottom,#fff,#f8f8f8);
+    border-bottom-color: transparent;
+}
+
+.button_blue,
+.button_blue:link,
+.button_blue:visited {
+    color: #fff;
+    background: #1f84db;
+    border-bottom-color: transparent;
+}
+
+.button_square {
+    border-radius: $radiusSquare;
+}
+
+.button_circle {
+    border-radius: $radiusCircle;
+    padding: 0;
+}
+
+.button_pill {
+    border-radius: $radiusPill;
+}
+
+.button_rounded {
+    border-radius: $radiusRounded;
+}
+
+.withShadow {
+    box-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+
+.button_white:hover,
+.button_blue:hover {
+    background: #fb3a2f;
+    color: #fff;
+}
+
+.button_clean,
+.button_clean:link,
+.button_clean:visited {
+    background-color: transparent;
+    border: 1px solid rgba(0,0,0,.3);
+    color: #000;
+    font-weight: 400;
+}
+
+.button_clean_focused,
+.button_clean_focused:link,
+.button_clean_focused:visited {
+    border-color: #000;
+}
+
+.button_clean:hover {
+    border-color: #000;
+    color: #000;
+}
+
+.button_close {
+    padding-right: 28px;
+}
+
+.button_close:after {
+    content: '×';
+    display: block;
+    font-size: 19px;
+    position: absolute;
+    right: 12px;
+    top: 4px;
+}
