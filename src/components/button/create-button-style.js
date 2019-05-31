@@ -6,13 +6,13 @@ const BUTTON_COLORS = ['clean', 'white', 'blue'];
 const BUTTON_SHAPES = ['square', 'rounded', 'pill', 'circle'];
 
 /**
- * Создание классов для кнопки
- * @param {string} color Цвет
- * @param {string} shape Форма
- * @param {boolean} withShadow Тень
- * @param {boolean} isFocused Фокус
- * @param {string} className Пользовательские классы
- * @return {string} Классы
+ * Создание классов для кнопки.
+ * @param {string} color Цвет.
+ * @param {string} shape Форма.
+ * @param {boolean} withShadow Тень.
+ * @param {boolean} isFocused Фокус.
+ * @param {string} className Пользовательские классы.
+ * @return {string} Классы.
  */
 const createButtonStyle = ({ color, shape, withShadow, isFocused, className }) => {
   color = BUTTON_COLORS.includes(color) ? color : 'clean';
