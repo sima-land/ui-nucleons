@@ -11,7 +11,7 @@ module.exports = {
         src: 'url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i&display=swap&subset=cyrillic")',
       },
       '@global body': {
-        fontFamily: '"Open Sans", Arial, sans-serif',
+        fontFamily: '"Open Sans", sans-serif',
         fontSize: 14,
       },
     },

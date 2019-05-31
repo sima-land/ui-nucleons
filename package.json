@@ -63,13 +63,14 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "lint": "eslint --cache src/ --ext .js,.jsx",
+    "stylelint": "stylelint src/ .scss",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
     "storybook": "start-storybook -p 9009"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint",
+      "pre-commit": "yarn lint && yarn stylelint",
       "pre-push": "yarn coverage"
     }
   }
