@@ -19,7 +19,7 @@ const ICON_COLORS = ['white', 'dark-gray', 'dark-blue', 'gray'];
  * @param {Object} props.params Остальные параметры.
  * @return {React.Element} Svg-icon.
  */
-const Icon = ({ iconName, icon, size, color, inline, className, ...params }) => {
+const Icon = ({ iconName, icon, size = 36, color, inline, className, ...params }) => {
   const iconClasses = cx(
     'icon', {
       [`icon-${color}`]: color && ICON_COLORS.includes(color),
