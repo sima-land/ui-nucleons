@@ -1,0 +1,27 @@
+@import '../variables';
+
+.icon {
+  fill: currentColor;
+  stroke-width: 0;
+  vertical-align: middle;
+}
+
+.icon-block {
+  display: block;
+}
+
+.icon-gray {
+  color: $gray;
+}
+
+.icon-dark-gray {
+  color: $darkGray;
+}
+
+.icon-white {
+  color: $white;
+}
+
+.icon-dark-blue {
+  color: $darkBlue;
+}

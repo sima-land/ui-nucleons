@@ -12,6 +12,7 @@
     "node": ">=10.15.3"
   },
   "dependencies": {
+    "babel-plugin-inline-react-svg": "^1.1.0",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
