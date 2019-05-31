@@ -1,0 +1,10 @@
+@import "../variables";
+
+.phone,
+.phone:link,
+.phone:visited {
+  color: $black;
+  font-size: 14px;
+  text-decoration: none;
+  border-bottom-color: transparent;
+}

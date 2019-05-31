@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Phone /> phone should have correct href and text 1`] = `
+<span
+  className="phone"
+>
+  8(343)777-777
+</span>
+`;

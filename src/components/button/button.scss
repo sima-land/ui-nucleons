@@ -1,0 +1,92 @@
+@import "../variables";
+
+.button {
+  display: inline-block;
+  font: inherit;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+  text-align: center;
+  border: 0;
+  padding: .6em 1em;
+  text-decoration: none;
+  line-height: 1;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.button-white,
+.button-white:link,
+.button-white:visited {
+  background: linear-gradient(to bottom, $white, $whiteGradient);
+  border-bottom-color: transparent;
+}
+
+.button-blue,
+.button-blue:link,
+.button-blue:visited {
+  color: $white;
+  background: $blue;
+  border-bottom-color: transparent;
+}
+
+.button-square {
+  border-radius: $radiusSquare;
+}
+
+.button-circle {
+  border-radius: $radiusCircle;
+  padding: 0;
+}
+
+.button-pill {
+  border-radius: $radiusPill;
+}
+
+.button-rounded {
+  border-radius: $radiusRounded;
+}
+
+.with-shadow {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+}
+
+.button-white:hover,
+.button-blue:hover {
+  background: $red;
+  color: $white;
+}
+
+.button-clean,
+.button-clean:link,
+.button-clean:visited {
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, .3);
+  color: $black;
+  font-weight: 400;
+}
+
+.button-clean-focused,
+.button-clean-focused:link,
+.button-clean-focused:visited {
+  border-color: $black;
+}
+
+.button-clean:hover {
+  border-color: $black;
+  color: $black;
+}
+
+.button-close {
+  padding-right: 28px;
+}
+
+.button-close::after {
+  content: '×';
+  display: block;
+  font-size: 19px;
+  position: absolute;
+  right: 12px;
+  top: 4px;
+}
