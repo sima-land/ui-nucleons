@@ -11,7 +11,7 @@ exports[`<Button /> renders button correctly 1`] = `
   }
 >
   <button
-    className="button test-class button_rounded button_white"
+    className="button test-class button-rounded button-white"
   >
     Кнопка
   </button>

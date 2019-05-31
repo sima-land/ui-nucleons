@@ -7,20 +7,21 @@ const BUTTON_SHAPES = ['square', 'rounded', 'pill', 'circle'];
 
 /**
  * Создание классов для кнопки.
- * @param {string} color Цвет.
- * @param {string} shape Форма.
- * @param {boolean} withShadow Тень.
- * @param {boolean} isFocused Фокус.
- * @param {string} className Пользовательские классы.
+ * @param {Object} props Параметры функции.
+ * @param {string} props.color Цвет.
+ * @param {string} props.shape Форма.
+ * @param {boolean} props.withShadow Тень.
+ * @param {boolean} props.isFocused Фокус.
+ * @param {string} props.className Пользовательские классы.
  * @return {string} Классы.
  */
 const createButtonStyle = ({ color, shape, withShadow, isFocused, className }) => {
   color = BUTTON_COLORS.includes(color) ? color : 'clean';
   shape = BUTTON_SHAPES.includes(shape) ? shape : 'pill';
 
-  return cx('button', className, `button_${shape}`, `button_${color}`, {
-    button_clean_focused: color === 'clean' && isFocused,
-    withShadow,
+  return cx('button', className, `button-${shape}`, `button-${color}`, {
+    'button-clean-focused': color === 'clean' && isFocused,
+    'with-shadow': withShadow,
   });
 };
 
