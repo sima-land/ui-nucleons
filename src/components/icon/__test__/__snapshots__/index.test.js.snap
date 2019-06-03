@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Icon /> Icon renders correctly with icon prop 1`] = `
+<Icon
+  className="test"
+  color="dark-gray"
+  icon={[Function]}
+  onClick={[Function]}
+  size={20}
+>
+  <svgIcon
+    className="icon icon-dark-gray icon-block test"
+    height={20}
+    onClick={[Function]}
+    viewBox="0 0 36 36"
+    width={20}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <svg
+      className="icon icon-dark-gray icon-block test"
+      height={20}
+      onClick={[Function]}
+      viewBox="0 0 36 36"
+      width={20}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M28 10h-1V2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8H2a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2v8a1 1 0 0 0 1 1v3a2 2 0 0 0 4 0v-3h16v3a2 2 0 0 0 4 0v-3a1 1 0 0 0 1-1v-8a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2zm-8-8h5v5h-5V2zm-9 0h8v5h-8V2zM5 2h5v5H5V2zm0 7h20v8H5V9zm-4 8v-5a1 1 0 0 1 1-1h1v7H2a1 1 0 0 1-1-1zm25 9H4v-8h22v8zm3-9a1 1 0 0 1-1 1h-1v-7h1a1 1 0 0 1 1 1v5z"
+      />
+      <path
+        d="M10 21h10v1H10zm1 2h8v1h-8zm11.5-2a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5zm0 2a.5.5 0 1 1 .5-.5.5.5 0 0 1-.5.5zm-15-2A1.5 1.5 0 1 0 9 22.5 1.5 1.5 0 0 0 7.5 21zm0 2a.5.5 0 1 1 .5-.5.5.5 0 0 1-.5.5z"
+      />
+    </svg>
+  </svgIcon>
+</Icon>
+`;
+
+exports[`<Icon /> Icon renders correctly with image-cap 1`] = `
+<Icon
+  className="test"
+  color="dark-gray"
+  onClick={[Function]}
+  size={20}
+>
+  <imageCap
+    className="icon icon-dark-gray icon-block test"
+    height={20}
+    onClick={[Function]}
+    viewBox="0 0 36 36"
+    width={20}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <svg
+      className="icon icon-dark-gray icon-block test"
+      height={20}
+      onClick={[Function]}
+      viewBox="0 0 36 36"
+      width={20}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M25.763 24.085a14.645 14.645 0 0 0 3.22-9.017A14.492 14.492 0 1 0 14.492 29.56a13.735 13.735 0 0 0 9.017-3.22l9.178 9.177a1.554 1.554 0 0 0 2.254 0 1.554 1.554 0 0 0 0-2.254zm-11.271 2.254a11.271 11.271 0 1 1 11.27-11.271 11.199 11.199 0 0 1-11.27 11.271z"
+      />
+    </svg>
+  </imageCap>
+</Icon>
+`;
