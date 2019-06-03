@@ -27,7 +27,7 @@ const Icon = ({ iconName, icon, size, color, inline, className, ...params }) => 
     },
     className
   );
-  let Image = icons['image-cap'];
+  let Image = icons.imageCap;
   if (iconName && icons[iconName]) {
     Image = icons[iconName];
   } else if (icon) {
@@ -58,9 +58,8 @@ Icon.propTypes = {
   size: Type.number,
   /**
    *  Цвет иконки. если передается - применяется этот цвет, если нет, то цвет наследуется от color родителя
-   *  Допустимые значения ['white' | 'darkGray' | 'darkBlue' | 'gray']
    */
-  color: Type.string,
+  color: Type.oneOf(['white', 'dark-gray', 'dark-blue', 'gray']),
   /**
    * display: inline если иконка должна быть встроена в текст
    */

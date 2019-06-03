@@ -1,4 +1,4 @@
-import Icon from '../icon';
+import Icon from '../';
 import React from 'react';
 import { mount } from 'enzyme';
 import svgIcon from '../icons/bus.svg';
@@ -21,7 +21,7 @@ describe('<Icon />', () => {
   it('Icon renders correctly with image-cap', () => {
     const clickMock = jest.fn;
     const icon = mount(<Icon iconName='1122' color='dark-blue' size={20} className='test' onClick={clickMock}/>);
-    expect(icon.find('ImageCap')).toHaveLength(1);
+    expect(icon.find('imageCap')).toHaveLength(1);
     expect(icon).toMatchSnapshot();
   });
 });

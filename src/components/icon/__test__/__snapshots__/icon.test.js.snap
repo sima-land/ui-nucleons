@@ -43,7 +43,7 @@ exports[`<Icon /> Icon renders correctly with iconName prop 1`] = `
   onClick={[Function]}
   size={20}
 >
-  <Clock
+  <clock
     className="icon icon-dark-gray icon-block test"
     height={20}
     onClick={[Function]}
@@ -63,7 +63,7 @@ exports[`<Icon /> Icon renders correctly with iconName prop 1`] = `
         d="M28.921 18.026c0-.755-.604-1.367-1.35-1.367h-8.257V8.414a1.373 1.373 0 0 0-2.744 0v9.607c0 .758.615 1.372 1.372 1.372h9.63c.745 0 1.35-.612 1.35-1.367m4.12-.008c0 8.34-6.76 15.1-15.097 15.1-8.338 0-15.097-6.76-15.097-15.1s6.759-15.1 15.097-15.1 15.097 6.76 15.097 15.1m2.741 0c0-9.852-7.986-17.839-17.838-17.839S.106 8.165.106 18.017s7.987 17.839 17.839 17.839c9.852 0 17.838-7.987 17.838-17.839"
       />
     </svg>
-  </Clock>
+  </clock>
 </Icon>
 `;
 
@@ -75,7 +75,7 @@ exports[`<Icon /> Icon renders correctly with image-cap 1`] = `
   onClick={[Function]}
   size={20}
 >
-  <ImageCap
+  <imageCap
     className="icon icon-dark-blue icon-block test"
     height={20}
     onClick={[Function]}
@@ -95,6 +95,6 @@ exports[`<Icon /> Icon renders correctly with image-cap 1`] = `
         d="M25.763 24.085a14.645 14.645 0 0 0 3.22-9.017A14.492 14.492 0 1 0 14.492 29.56a13.735 13.735 0 0 0 9.017-3.22l9.178 9.177a1.554 1.554 0 0 0 2.254 0 1.554 1.554 0 0 0 0-2.254zm-11.271 2.254a11.271 11.271 0 1 1 11.27-11.271 11.199 11.199 0 0 1-11.27 11.271z"
       />
     </svg>
-  </ImageCap>
+  </imageCap>
 </Icon>
 `;

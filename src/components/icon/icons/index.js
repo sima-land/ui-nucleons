@@ -1,37 +1,37 @@
-import ArrowDown from './arrow-down.svg';
-import ArrowLeft from './arrow-left.svg';
-import ArrowRight from './arrow-right.svg';
-import ArrowUp from './arrow-up.svg';
-import Bus from './bus.svg';
-import Cart from './cart.svg';
-import Clock from './clock.svg';
-import ClockFace from './clock-face.svg';
-import Cross from './cross.svg';
-import Dolphin from './dolphin.svg';
-import External from './external.svg';
-import Heart from './heart.svg';
-import Mail from './mail.svg';
-import Refresh from './refresh.svg';
-import Search from './search.svg';
-import User from './user.svg';
-import ImageCap from './image-cap.svg';
+import arrowDown from './arrow-down.svg';
+import arrowLeft from './arrow-left.svg';
+import arrowRight from './arrow-right.svg';
+import arrowUp from './arrow-up.svg';
+import bus from './bus.svg';
+import cart from './cart.svg';
+import clock from './clock.svg';
+import clockFace from './clock-face.svg';
+import cross from './cross.svg';
+import dolphin from './dolphin.svg';
+import external from './external.svg';
+import heart from './heart.svg';
+import imageCap from './image-cap.svg';
+import mail from './mail.svg';
+import refresh from './refresh.svg';
+import search from './search.svg';
+import user from './user.svg';
 
 export default {
-  'arrow-left': ArrowLeft,
-  'arrow-down': ArrowDown,
-  'arrow-right': ArrowRight,
-  'arrow-up': ArrowUp,
-  'clock-face': ClockFace,
-  bus: Bus,
-  dolphin: Dolphin,
-  refresh: Refresh,
-  cart: Cart,
-  clock: Clock,
-  heart: Heart,
-  external: External,
-  mail: Mail,
-  search: Search,
-  user: User,
-  cross: Cross,
-  'image-cap': ImageCap,
+  arrowDown,
+  arrowLeft,
+  arrowRight,
+  arrowUp,
+  clockFace,
+  bus,
+  dolphin,
+  refresh,
+  cart,
+  clock,
+  heart,
+  external,
+  mail,
+  search,
+  user,
+  cross,
+  imageCap,
 };
