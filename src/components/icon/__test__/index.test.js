@@ -1,7 +1,7 @@
 import Icon from '../';
 import React from 'react';
 import { mount } from 'enzyme';
-import svgIcon from '../icons/bus.svg';
+import svgIcon from '../../icons/bus.svg';
 
 describe('<Icon />', () => {
   it('Icon renders correctly with image-cap', () => {

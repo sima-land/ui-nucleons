@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames/bind';
-import imageCap from './icons/image-cap.svg';
+import imageCap from '../icons/image-cap.svg';
 import styles from './icon.scss';
 import Type from 'prop-types';
 
@@ -60,9 +60,9 @@ Icon.propTypes = {
    */
   className: Type.string,
   /**
-   * Остальные параметры
+   * Обработчик клика на иконке
    */
-  params: Type.object,
+  onClick: Type.func,
 };
 
 export default Icon;
