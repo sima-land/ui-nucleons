@@ -60,9 +60,9 @@ Icon.propTypes = {
    */
   className: Type.string,
   /**
-   * Остальные параметры
+   * Обработчик клика на иконке
    */
-  params: Type.object,
+  onClick: Type.func,
 };
 
 export default Icon;
