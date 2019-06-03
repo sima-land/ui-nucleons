@@ -35,15 +35,14 @@ exports[`<Icon /> Icon renders correctly with icon prop 1`] = `
 </Icon>
 `;
 
-exports[`<Icon /> Icon renders correctly with iconName prop 1`] = `
+exports[`<Icon /> Icon renders correctly with image-cap 1`] = `
 <Icon
   className="test"
   color="dark-gray"
-  iconName="clock"
   onClick={[Function]}
   size={20}
 >
-  <clock
+  <imageCap
     className="icon icon-dark-gray icon-block test"
     height={20}
     onClick={[Function]}
@@ -53,38 +52,6 @@ exports[`<Icon /> Icon renders correctly with iconName prop 1`] = `
   >
     <svg
       className="icon icon-dark-gray icon-block test"
-      height={20}
-      onClick={[Function]}
-      viewBox="0 0 36 36"
-      width={20}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M28.921 18.026c0-.755-.604-1.367-1.35-1.367h-8.257V8.414a1.373 1.373 0 0 0-2.744 0v9.607c0 .758.615 1.372 1.372 1.372h9.63c.745 0 1.35-.612 1.35-1.367m4.12-.008c0 8.34-6.76 15.1-15.097 15.1-8.338 0-15.097-6.76-15.097-15.1s6.759-15.1 15.097-15.1 15.097 6.76 15.097 15.1m2.741 0c0-9.852-7.986-17.839-17.838-17.839S.106 8.165.106 18.017s7.987 17.839 17.839 17.839c9.852 0 17.838-7.987 17.838-17.839"
-      />
-    </svg>
-  </clock>
-</Icon>
-`;
-
-exports[`<Icon /> Icon renders correctly with image-cap 1`] = `
-<Icon
-  className="test"
-  color="dark-blue"
-  iconName="1122"
-  onClick={[Function]}
-  size={20}
->
-  <imageCap
-    className="icon icon-dark-blue icon-block test"
-    height={20}
-    onClick={[Function]}
-    viewBox="0 0 36 36"
-    width={20}
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <svg
-      className="icon icon-dark-blue icon-block test"
       height={20}
       onClick={[Function]}
       viewBox="0 0 36 36"

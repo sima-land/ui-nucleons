@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames/bind';
-import icons from './icons';
+import imageCap from './icons/image-cap.svg';
 import styles from './icon.scss';
 import Type from 'prop-types';
 
@@ -10,7 +10,6 @@ const ICON_COLORS = ['white', 'dark-gray', 'dark-blue', 'gray'];
 /**
  * SVG Иконка.
  * @param {Object} props Свойства Компонента.
- * @param {string} props.iconName Название иконки.
  * @param {string} props.icon Импортированная иконка.
  * @param {string} props.color Если передается - применяется этот цвет, если нет, то цвет наследуется от color родителя.
  * @param {number} props.size Размеры иконки.
@@ -19,7 +18,7 @@ const ICON_COLORS = ['white', 'dark-gray', 'dark-blue', 'gray'];
  * @param {Object} props.params Остальные параметры.
  * @return {React.Element} Svg-icon.
  */
-const Icon = ({ iconName, icon, size, color, inline, className, ...params }) => {
+const Icon = ({ icon, size, color, inline, className, ...params }) => {
   const iconClasses = cx(
     'icon', {
       [`icon-${color}`]: color && ICON_COLORS.includes(color),
@@ -27,12 +26,7 @@ const Icon = ({ iconName, icon, size, color, inline, className, ...params }) => 
     },
     className
   );
-  let Image = icons.imageCap;
-  if (iconName && icons[iconName]) {
-    Image = icons[iconName];
-  } else if (icon) {
-    Image = icon;
-  }
+  const Image = typeof icon === 'function' ? icon : imageCap;
   return (
     <Image width={size}
       height={size}
@@ -44,10 +38,6 @@ const Icon = ({ iconName, icon, size, color, inline, className, ...params }) => 
 };
 
 Icon.propTypes = {
-  /**
-   * Название иконки из папки icons
-   */
-  iconName: Type.string,
   /**
    * SVG импортированный в компонент
    */
