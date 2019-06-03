@@ -1,16 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Icon from '../icon';
-
-const props = {
-  iconName: 'clock',
-  size: '40',
-  color: 'dark-blue',
-};
+import Icon from '../';
+import heart from '../../icons/heart.svg';
 
 storiesOf('Icon', module)
   .add('default icon', () => <Icon/>)
-  .add('clock icon', () => <Icon {...props}/>)
   .add('icon with text', () => (
     <p
       style={{
@@ -18,7 +12,7 @@ storiesOf('Icon', module)
         fontSize: 20,
       }}
     >
-      We <Icon {...{ iconName: 'heart' }}/> frontend!
+      We <Icon icon={heart}/> frontend!
     </p>
   ));
 
