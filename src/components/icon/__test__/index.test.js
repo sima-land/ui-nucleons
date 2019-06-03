@@ -17,7 +17,7 @@ describe('<Icon />', () => {
     const clickMock = jest.fn;
     const icon = mount(<Icon icon={svgIcon} color='dark-gray' className='test' onClick={clickMock}/>);
     expect(icon.find('svgIcon')).toHaveLength(1);
-    expect(icon.find('svgIcon').prop('height')).toBe(36);
+    expect(icon.find('svgIcon').prop('height')).toBe('33');
     expect(icon).toMatchSnapshot();
   });
 });
