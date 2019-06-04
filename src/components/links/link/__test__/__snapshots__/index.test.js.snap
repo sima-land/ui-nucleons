@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Link /> calls helpers and renders correctly with external 1`] = `
+<a
+  className="link link-block"
+  href="/cabinet/"
+  target="_blank"
+>
+  <span
+    className="link-text link-white link-external"
+  >
+    TestLink
+  </span>
+  <span
+    className="icon-external external-white"
+  >
+    <Icon
+      icon={[Function]}
+      inline={true}
+      size={16}
+    />
+  </span>
+</a>
+`;
+
+exports[`<Link /> calls helpers with right params and renders correctly without external 1`] = `
+<a
+  className="testClass link link-relative"
+  href="/cart/?sort=price#test_anchor"
+  target="_self"
+>
+  <span
+    className="link-text link-white link-underlined link-underlined-solid"
+  >
+    TestLink
+  </span>
+</a>
+`;

@@ -1,0 +1,120 @@
+@import "../variables";
+
+.link,
+.link:link,
+.link:visited,
+.link:hover,
+.link:active {
+  color: inherit;
+  text-decoration: none;
+  font-weight: inherit;
+  cursor: pointer;
+  border-bottom-color: transparent;
+  &.link-block {
+    display: block;
+  }
+  &.link-relative {
+    position: relative;
+  }
+}
+
+.link-underlined-solid {
+  border-bottom: $underlineSolid;
+}
+
+.link-underlined-dashed {
+  border-bottom: $underlineDashed;
+}
+
+.link-can-be-hovered:hover {
+  .link-text {
+    color: $red;
+  }
+  .link-underlined {
+    border-bottom-color: $underlineRedHoveredLink;
+  }
+  .link-white {
+    &.link-text {
+      color: $whiteHoveredLink;
+    }
+    &.link-underlined {
+      border-bottom-color: $underlineWhiteHoveredLink;
+    }
+  }
+  .icon-external {
+    color: $red;
+    &.external-white {
+      color: $white;
+    }
+  }
+}
+
+.link-blue {
+  color: $blue;
+  &.link-underlined {
+    border-bottom-color: $underlineBlueLink;
+  }
+}
+
+.link-black {
+  color: $black;
+  &.link-underlined {
+    border-bottom-color: $underlineBlackLink;
+  }
+}
+
+.link-gray {
+  color: $gray;
+  &.link-underlined {
+    border-bottom-color: $underlineGrayLink;
+  }
+}
+
+.link-red {
+  color: $red;
+  &.link-underlined {
+    border-bottom-color: $underlineRedLink;
+  }
+}
+
+.link-white {
+  color: $white;
+  &.link-underlined {
+    border-bottom-color: $underlineWhiteLink;
+  }
+}
+
+.link-dark-blue {
+  color: $veryDarkBlue;
+  &.link-underlined {
+    border-bottom-color: $underlineBlueLink;
+  }
+
+}
+
+.icon-arrow {
+  display: inline-block;
+  margin-left: 4px;
+  vertical-align: top;
+}
+
+.link-external {
+  margin-left: 2px;
+  margin-right: 23px;
+}
+
+.icon-external {
+  display: inline-block;
+  margin-left: -20px;
+  margin-top: -2px;
+  vertical-align: top;
+  &.external-blue {
+    color: $blueIcon;
+  }
+  &.external-black {
+    color: $black;
+  }
+  &.external-white {
+    color: $white;
+  }
+}

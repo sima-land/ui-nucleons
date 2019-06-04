@@ -15,6 +15,16 @@ $darkBlue: #32457d; /* цвет стрелочки в выборе города/
 $veryDarkBlue: #002b41; /* цвет текста ссылок меню каталога */
 $red: #fb3a2f; /* цвет текста при наведении на ссылки меню каталога */
 
+/** Цвета для ссылок (наведение/подчеркивание) **/
+$whiteHoveredLink: #ffdab2;
+$underlineBlueLink: rgba(31, 132, 219, .3);
+$underlineBlackLink: rgba(0, 0, 0, .1);
+$underlineGrayLink: rgba(102, 102, 102, .3);
+$underlineRedLink: rgba(251, 58, 47, .3);
+$underlineRedHoveredLink: rgba(223, 74, 84, .3);
+$underlineWhiteLink: rgba(255, 255, 255, .3);
+$underlineWhiteHoveredLink: rgba(255, 218, 178, .3);
+
 /** Радиусы границ **/
 
 $radiusSquare: 0;
