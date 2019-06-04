@@ -6,22 +6,21 @@ exports[`<Icon /> Icon renders correctly with icon prop 1`] = `
   color="dark-gray"
   icon={[Function]}
   onClick={[Function]}
-  size={20}
 >
   <svgIcon
     className="icon icon-dark-gray icon-block test"
-    height={20}
+    height="33"
     onClick={[Function]}
     viewBox="0 0 36 36"
-    width={20}
+    width="30"
     xmlns="http://www.w3.org/2000/svg"
   >
     <svg
       className="icon icon-dark-gray icon-block test"
-      height={20}
+      height="33"
       onClick={[Function]}
       viewBox="0 0 36 36"
-      width={20}
+      width="30"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
