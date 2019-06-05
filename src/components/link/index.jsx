@@ -26,7 +26,7 @@ export const LINK_TARGETS = ['_blank', '_self'];
  * @param {boolean} [props.pseudo] Псевдоссылка.
  * @param {boolean} [props.disableHoverEffect] Не реагировать при наведении на компонент.
  * @param {boolean} [props.external=false] Является ли ссылкой на внешний ресурс.
- * @param {boolean} [props.withIcon=false] Является ли ссылкой на внешний ресурс.
+ * @param {boolean} [props.withIcon=false] С иконкой.
  * @param {Object} params Остальные параметры.
  * @param {Function} [props.onClick] Функция, вызываемая при клике.
  * @param {Function} [props.onMouseEnter] Функция, вызываемая при наведении.
