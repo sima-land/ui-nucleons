@@ -2,7 +2,7 @@
 
 exports[`<Link /> calls helpers and renders correctly with external 1`] = `
 <a
-  className="link link-block"
+  className="link"
   href="/cabinet/"
   target="_blank"
 >
@@ -25,7 +25,7 @@ exports[`<Link /> calls helpers and renders correctly with external 1`] = `
 
 exports[`<Link /> calls helpers and renders correctly with pseudo 1`] = `
 <a
-  className="link link-can-be-hovered link-block"
+  className="link link-can-be-hovered"
 >
   <span
     className="link-text link-black link-underlined link-underlined-dashed"

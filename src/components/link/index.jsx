@@ -24,10 +24,9 @@ export const LINK_TARGETS = ['_blank', '_self'];
  * @param {string} [props.color='blue'] Цвет.
  * @param {boolean} [props.underlined] Подчеркивание.
  * @param {boolean} [props.pseudo] Псевдоссылка.
- * @param {boolean} [props.inline] Свойство inline.
  * @param {boolean} [props.disableHoverEffect] Не реагировать при наведении на компонент.
  * @param {boolean} [props.external=false] Является ли ссылкой на внешний ресурс.
- * @param {boolean} [props.withIcon=external] Является ли ссылкой на внешний ресурс.
+ * @param {boolean} [props.withIcon=false] Является ли ссылкой на внешний ресурс.
  * @param {Object} params Остальные параметры.
  * @param {Function} [props.onClick] Функция, вызываемая при клике.
  * @param {Function} [props.onMouseEnter] Функция, вызываемая при наведении.
@@ -45,7 +44,6 @@ const Link = ({
   color = 'blue',
   underlined,
   pseudo,
-  inline,
   disableHoverEffect,
   external = false,
   withIcon = external,
@@ -60,7 +58,7 @@ const Link = ({
   }
 
   const underlineType = pseudo ? 'dashed' : 'solid';
-  const linkClasses = createLinkStyle({ className, disableHoverEffect, inline });
+  const linkClasses = createLinkStyle({ className, disableHoverEffect });
   const textClasses = createLinkTextStyle({ color, underlineType: underlined && underlineType, external });
   const externalClasses = createExternalStyle(color);
   return (
@@ -120,10 +118,6 @@ Link.propTypes = {
    * Псевдо-ссылка.
    */
   pseudo: Type.bool,
-  /**
-   * Свойство inline.
-   */
-  inline: Type.bool,
   /**
    * Не реагировать при наведении на компонент.
    */

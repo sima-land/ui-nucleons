@@ -3,8 +3,8 @@ import { createLinkStyle, createLinkTextStyle, createExternalStyle } from '../cr
 describe('Link helpers', () => {
   it('createLinkStyle returns correct link classes', () => {
     let linkClasses = createLinkStyle({});
-    expect(linkClasses).toEqual('link link-can-be-hovered link-block');
-    linkClasses = createLinkStyle({ className: 'test-class', disableHoverEffect: true, inline: true });
+    expect(linkClasses).toEqual('link link-can-be-hovered');
+    linkClasses = createLinkStyle({ className: 'test-class', disableHoverEffect: true });
     expect(linkClasses).toEqual('test-class link');
   });
   it('createLinkTextStyle returns correct text classes', () => {

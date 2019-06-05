@@ -29,7 +29,6 @@ LINK_COLORS.map(color => (
             color={color}
             underlined
             pseudo
-            inline
         >
             Ссылка
         </Link>
@@ -45,7 +44,6 @@ LINK_COLORS.map(color => (
         <Link
             color={color}
             external
-            inline
         >
             Ссылка
         </Link>
@@ -61,7 +59,6 @@ LINK_COLORS.map(color => (
         <Link
             color={color}
             disableHoverEffect
-            inline
         >
             Ссылка
         </Link>

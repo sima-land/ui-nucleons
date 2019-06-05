@@ -10,14 +10,12 @@ export const LINK_UNDERLINE_TYPES = ['solid', 'dashed'];
  * Создание стилей ссылки/псевдо-ссылки.
  * @param {string} [className=''] Пользовательские классы.
  * @param {boolean} [disableHoverEffect=false] Не реагировать при наведении.
- * @param {boolean} [inline=false] Свойство inline.
  * @return {string} Строка с классами для ссылки/псевдо-ссылки.
  */
-export const createLinkStyle = ({ className = '', disableHoverEffect = false, inline = false }) =>
+export const createLinkStyle = ({ className = '', disableHoverEffect = false }) =>
   cx(className, {
     link: true,
     'link-can-be-hovered': !disableHoverEffect,
-    'link-block': !inline,
   });
 
 /**

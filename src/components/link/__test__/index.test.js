@@ -24,7 +24,6 @@ describe('<Link />', () => {
         anchor='test_anchor'
         color='white'
         underlined
-        inline
         relative
         disableHoverEffect
       >
@@ -35,7 +34,6 @@ describe('<Link />', () => {
     expect(styleHelpers.createLinkStyle).toHaveBeenCalledWith({
       className: 'testClass',
       disableHoverEffect: true,
-      inline: true,
     });
     expect(styleHelpers.createLinkTextStyle).toHaveBeenCalledTimes(1);
     expect(styleHelpers.createLinkTextStyle).toHaveBeenCalledWith({
