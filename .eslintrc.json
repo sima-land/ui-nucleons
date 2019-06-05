@@ -277,6 +277,10 @@
       "error",
       "tag-aligned"
     ],
+    "react/jsx-space-before-closing": [
+      "error",
+      "always"
+    ],
     "react/prop-types": "error",
     "eol-last": [
       "error",

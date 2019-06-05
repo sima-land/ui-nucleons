@@ -9,3 +9,15 @@
 * ```yarn styleguide``` - запуск styleguide
 * ```yarn styleguide:build``` - сборка компонентов в build/styleguide для публикации
 * ```yarn storybook``` - запуск storybook
+
+### Структура библиотеки
+
+src/components/ - директория со всеми компонентами библиотеки
+
+* link/ - директория с компонентом
+    * `__stories__/`
+        * index.stories.js - описание компонента для storybook
+    * `__test__/`
+        * index.test.js - тесты на компонент
+    * index.jsx - компонент Link
+    * readme.md - описание компонента для styleguide

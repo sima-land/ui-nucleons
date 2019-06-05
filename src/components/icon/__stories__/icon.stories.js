@@ -11,7 +11,7 @@ const props = {
 };
 
 storiesOf('Icon', module)
-  .add('default icon', () => <Icon/>)
+  .add('default icon', () => <Icon />)
   .add('ordinary icon', () => <Icon {...props} />)
   .add('icon in text', () => (
     <p
@@ -20,7 +20,7 @@ storiesOf('Icon', module)
         fontSize: 20,
       }}
     >
-      We <Icon icon={heart} inline/> frontend!
+      We <Icon icon={heart} inline /> frontend!
     </p>
   ));
 
