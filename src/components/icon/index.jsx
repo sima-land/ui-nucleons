@@ -5,10 +5,10 @@ import styles from './icon.scss';
 import Type from 'prop-types';
 
 const cx = classnames.bind(styles);
-const ICON_COLORS = ['white', 'dark-gray', 'dark-blue', 'gray'];
+export const ICON_COLORS = ['white', 'dark-gray', 'dark-blue', 'gray'];
 
 /**
- * SVG Иконка.
+ * Компонент SVG-Иконки.
  * @param {Object} props Свойства Компонента.
  * @param {string} props.icon Импортированная иконка.
  * @param {string} props.color Если передается - применяется этот цвет, если нет, то цвет наследуется от color родителя.
@@ -23,7 +23,7 @@ const Icon = ({ icon, size, color, inline, className, ...params }) => {
   const iconClasses = cx(
     'icon', {
       [`icon-${color}`]: color && ICON_COLORS.includes(color),
-      [styles['icon-block']]: !inline,
+      ['icon-block']: !inline,
     },
     className
   );

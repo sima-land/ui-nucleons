@@ -13,19 +13,6 @@ module.exports = {
   plugins: [
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-proposal-object-rest-spread',
-    [
-      'inline-react-svg',
-      {
-        svgo: {
-          plugins: [{
-            removeAttrs: {
-              attrs: '(data-name)',
-            },
-          }, {
-            cleanupIDs: true,
-          }],
-        },
-      },
-    ],
+    'inline-react-svg',
   ],
 };
