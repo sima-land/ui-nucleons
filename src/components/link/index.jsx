@@ -72,7 +72,7 @@ const Link = ({
       <span className={textClasses}>{children}</span>
       {withIcon && (
         <span className={externalClasses}>
-          <Icon icon={externalIcon} size={16} inline/>
+          <Icon icon={externalIcon} size={16} inline />
         </span>
       )}
     </a>
