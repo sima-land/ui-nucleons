@@ -50,7 +50,7 @@ const Link = ({
   ...params
 }) => {
   let linkParams = params;
-  if (!pseudo) {
+  if (!pseudo && url) {
     const defaultTarget = external ? '_blank' : '_self';
     target = target && LINK_TARGETS.includes(target) ? target : defaultTarget;
     const href = buildURL({ url, urlParams, anchor, external });
@@ -59,7 +59,11 @@ const Link = ({
 
   const underlineType = pseudo ? 'dashed' : 'solid';
   const linkClasses = createLinkStyle({ className, disableHoverEffect });
-  const textClasses = createLinkTextStyle({ color, underlineType: underlined && underlineType, external });
+  const textClasses = createLinkTextStyle({
+    color,
+    underlineType: underlined && underlineType,
+    external: withIcon,
+  });
   const externalClasses = createExternalStyle(color);
   return (
     <a
