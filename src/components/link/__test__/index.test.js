@@ -1,15 +1,18 @@
 import Link from '../';
 import { shallow } from 'enzyme';
 import React from 'react';
-import * as styleHelpers from '../../create-link-style';
-import * as urlHelper from '../../../helpers/build-url';
+import * as styleHelpers from '../create-link-style';
+import * as urlHelper from '../../helpers/build-url';
 
 describe('<Link />', () => {
-  it('calls helpers with right params and renders correctly without external', () => {
+  beforeEach(() => {
+    jest.restoreAllMocks();
     jest.spyOn(urlHelper, 'buildURL');
     jest.spyOn(styleHelpers, 'createLinkStyle');
     jest.spyOn(styleHelpers, 'createLinkTextStyle');
     jest.spyOn(styleHelpers, 'createExternalStyle');
+  });
+  it('calls helpers with right params and renders correctly without external', () => {
     const params = {
       sort: 'price',
     };
@@ -33,11 +36,11 @@ describe('<Link />', () => {
       className: 'testClass',
       disableHoverEffect: true,
       inline: true,
-      relative: true,
     });
     expect(styleHelpers.createLinkTextStyle).toHaveBeenCalledTimes(1);
     expect(styleHelpers.createLinkTextStyle).toHaveBeenCalledWith({
       color: 'white',
+      external: false,
       underlineType: 'solid',
     });
     expect(styleHelpers.createExternalStyle).toHaveBeenCalledTimes(1);
@@ -45,21 +48,35 @@ describe('<Link />', () => {
     expect(urlHelper.buildURL).toHaveBeenCalledTimes(1);
     expect(urlHelper.buildURL).toHaveBeenCalledWith({
       anchor: 'test_anchor',
-      external: undefined,
+      external: false,
       url: '/cart/',
       urlParams: params,
     });
     expect(link).toMatchSnapshot();
   });
-  it('calls helpers and renders correctly with external', () => {
-    jest.spyOn(urlHelper, 'buildURL');
-    jest.spyOn(styleHelpers, 'createLinkStyle');
-    jest.spyOn(styleHelpers, 'createLinkTextStyle');
-    jest.spyOn(styleHelpers, 'createExternalStyle');
+  it('calls helpers and renders correctly with pseudo', () => {
     const params = {
-      currentCurrency: {
-        name: 'USD',
-      },
+      sort: 'price',
+    };
+    const link = shallow(
+      <Link
+        url='/auth/'
+        urlParams={params}
+        color='black'
+        pseudo
+        underlined
+      >
+        TestLink
+      </Link>
+    );
+    expect(styleHelpers.createLinkStyle).toHaveBeenCalledTimes(1);
+    expect(styleHelpers.createLinkTextStyle).toHaveBeenCalledTimes(1);
+    expect(styleHelpers.createExternalStyle).toHaveBeenCalledTimes(1);
+    expect(urlHelper.buildURL).toHaveBeenCalledTimes(0);
+    expect(link).toMatchSnapshot();
+  });
+  it('calls helpers and renders correctly with external', () => {
+    const params = {
       sort: 'price',
     };
     const link = shallow(
@@ -73,10 +90,10 @@ describe('<Link />', () => {
         TestLink
       </Link>
     );
-    expect(styleHelpers.createLinkStyle).toHaveBeenCalledTimes(2);
-    expect(styleHelpers.createLinkTextStyle).toHaveBeenCalledTimes(2);
-    expect(styleHelpers.createExternalStyle).toHaveBeenCalledTimes(2);
-    expect(urlHelper.buildURL).toHaveBeenCalledTimes(2);
+    expect(styleHelpers.createLinkStyle).toHaveBeenCalledTimes(1);
+    expect(styleHelpers.createLinkTextStyle).toHaveBeenCalledTimes(1);
+    expect(styleHelpers.createExternalStyle).toHaveBeenCalledTimes(1);
+    expect(urlHelper.buildURL).toHaveBeenCalledTimes(1);
     expect(link).toMatchSnapshot();
   });
   it('calls functions onClick, onMouseEnter, onMouseLeave', () => {

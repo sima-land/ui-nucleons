@@ -13,7 +13,7 @@ export const buildGetParameter = (url, param) => {
 /**
  * Добавляет get-параметры.
  * @param {string} url Url.
- * @param {Object} urlParams Пользовательские параметры для формирования URL-а.
+ * @param {Object} [urlParams={}] Пользовательские параметры для формирования URL-а.
  * @return {string} Ссылка с get-параметрами.
  */
 export const addGetParameters = (url, urlParams = {}) => {
@@ -33,10 +33,10 @@ export const addGetParameters = (url, urlParams = {}) => {
 
 /**
  * Формирует URL с параметрами пользователя.
- * @param {string} url Исходный URL.
- * @param {Object} urlParams Пользовательские параметры для формирования URL-а.
- * @param {boolean} external Является ли ссылкой на внешний ресурс.
- * @param {string} anchor Якорь.
+ * @param {string} [url=''] Исходный URL.
+ * @param {Object} [urlParams={}] Пользовательские параметры для формирования URL-а.
+ * @param {boolean} [external=false] Является ли ссылкой на внешний ресурс.
+ * @param {string} [anchor=''] Якорь.
  * @return {string} Ссылка с параметрами или пустая строка.
  */
 export const buildURL = ({ url = '', urlParams = {}, external = false, anchor = '' } = {}) => {

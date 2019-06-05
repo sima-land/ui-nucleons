@@ -13,9 +13,6 @@
   &.link-block {
     display: block;
   }
-  &.link-relative {
-    position: relative;
-  }
 }
 
 .link-underlined-solid {
@@ -90,12 +87,6 @@
     border-bottom-color: $underlineBlueLink;
   }
 
-}
-
-.icon-arrow {
-  display: inline-block;
-  margin-left: 4px;
-  vertical-align: top;
 }
 
 .link-external {

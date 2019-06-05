@@ -4,8 +4,8 @@ describe('Link helpers', () => {
   it('createLinkStyle returns correct link classes', () => {
     let linkClasses = createLinkStyle({});
     expect(linkClasses).toEqual('link link-can-be-hovered link-block');
-    linkClasses = createLinkStyle({ className: 'test-class', disableHoverEffect: true, inline: true, relative: true });
-    expect(linkClasses).toEqual('test-class link link-relative');
+    linkClasses = createLinkStyle({ className: 'test-class', disableHoverEffect: true, inline: true });
+    expect(linkClasses).toEqual('test-class link');
   });
   it('createLinkTextStyle returns correct text classes', () => {
     let textClasses = createLinkTextStyle({});
