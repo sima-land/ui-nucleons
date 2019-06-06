@@ -20,7 +20,7 @@ export const LINK_TARGETS = ['_blank', '_self'];
  * @param {Object} [props.urlParams] Пользовательские параметры.
  * @param {string} [props.anchor] Якорь.
  * @param {string} [props.target] В новую или текущую вкладку откроется ссылка.
- * @param {Function} [props.saveRef] Функция для сохранения текущего Url-a.
+ * @param {Function} [props.saveRef] Функция для сохранения ссылки на HTMLElement.
  * @param {string} [props.color='blue'] Цвет.
  * @param {boolean} [props.underlined] Подчеркивание.
  * @param {boolean} [props.pseudo] Псевдоссылка.
@@ -107,7 +107,7 @@ Link.propTypes = {
    */
   target: Type.oneOf(['_blank', '_self']),
   /**
-   * Функция для сохранения текущего Url-a.
+   * Функция для сохранения ссылки на HTMLElement.
    */
   saveRef: Type.func,
   /**
