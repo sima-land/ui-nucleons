@@ -93,19 +93,19 @@ describe('renderButton', () => {
   const buttonParams = { className: 'test', disabled: true },
     children = 'Кнопка';
   let button;
-  it('render properly with type link', () => {
+  it('returns correct element with type link', () => {
     button = renderButton({ type: 'link', buttonParams, children });
     expect(button).toMatchSnapshot();
   });
-  it('render properly with type container', () => {
+  it('returns correct element with type container', () => {
     button = renderButton({ type: 'container', buttonParams, children });
     expect(button).toMatchSnapshot();
   });
-  it('render properly with type button', () => {
+  it('returns correct element with type button', () => {
     button = renderButton({ type: 'button', buttonParams, children });
     expect(button).toMatchSnapshot();
   });
-  it('render properly with wrong params', () => {
+  it('returns correct element with wrong params', () => {
     button = renderButton({ buttonParams, children });
     expect(button).toMatchSnapshot();
     button = renderButton({ type: 'wrong', children });

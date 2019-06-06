@@ -9,7 +9,7 @@ exports[`<Button /> renders properly 1`] = `
 </button>
 `;
 
-exports[`renderButton render properly with type button 1`] = `
+exports[`renderButton returns correct element with type button 1`] = `
 <button
   className="test"
   disabled={true}
@@ -18,7 +18,7 @@ exports[`renderButton render properly with type button 1`] = `
 </button>
 `;
 
-exports[`renderButton render properly with type container 1`] = `
+exports[`renderButton returns correct element with type container 1`] = `
 <div
   className="test"
   disabled={true}
@@ -28,7 +28,7 @@ exports[`renderButton render properly with type container 1`] = `
 </div>
 `;
 
-exports[`renderButton render properly with type link 1`] = `
+exports[`renderButton returns correct element with type link 1`] = `
 <a
   className="test"
   disabled={true}
@@ -37,7 +37,7 @@ exports[`renderButton render properly with type link 1`] = `
 </a>
 `;
 
-exports[`renderButton render properly with wrong params 1`] = `
+exports[`renderButton returns correct element with wrong params 1`] = `
 <button
   className="test"
   disabled={true}
@@ -46,10 +46,10 @@ exports[`renderButton render properly with wrong params 1`] = `
 </button>
 `;
 
-exports[`renderButton render properly with wrong params 2`] = `
+exports[`renderButton returns correct element with wrong params 2`] = `
 <button>
   Кнопка
 </button>
 `;
 
-exports[`renderButton render properly with wrong params 3`] = `<button />`;
+exports[`renderButton returns correct element with wrong params 3`] = `<button />`;
