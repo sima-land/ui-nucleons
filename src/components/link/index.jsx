@@ -18,7 +18,6 @@ export const LINK_TARGETS = ['_blank', '_self'];
  * @param {string} [props.className] Пользовательские классы.
  * @param {string} [props.url] Исходный URL.
  * @param {Object} [props.urlParams] Пользовательские параметры.
- * @param {string} [props.anchor] Якорь.
  * @param {string} [props.target] В новую или текущую вкладку откроется ссылка.
  * @param {Function} [props.saveRef] Функция для сохранения ссылки на HTMLElement.
  * @param {string} [props.color='blue'] Цвет.
@@ -38,7 +37,6 @@ const Link = ({
   className,
   url,
   urlParams,
-  anchor,
   target,
   saveRef,
   color = 'blue',
@@ -53,7 +51,7 @@ const Link = ({
   if (!pseudo && url) {
     const defaultTarget = external ? '_blank' : '_self';
     target = target && LINK_TARGETS.includes(target) ? target : defaultTarget;
-    const href = buildURL({ url, urlParams, anchor, external });
+    const href = buildURL({ url, urlParams, external });
     linkParams = { ...params, href, target };
   }
 
@@ -98,10 +96,6 @@ Link.propTypes = {
    * Пользовательские параметры.
    */
   urlParams: Type.object,
-  /**
-   * Якорь.
-   */
-  anchor: Type.string,
   /**
    * В новую или текущую вкладку откроется ссылка.
    */

@@ -38,7 +38,7 @@ exports[`<Link /> calls helpers and renders correctly with pseudo 1`] = `
 exports[`<Link /> calls helpers with right params and renders correctly without external 1`] = `
 <a
   className="testClass link"
-  href="/cart/?sort=price#test_anchor"
+  href="/cart/?sort=price#test"
   relative={true}
   target="_self"
 >

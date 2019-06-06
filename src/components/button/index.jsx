@@ -38,7 +38,6 @@ export const renderButton = ({ type, buttonParams = {}, children }) => {
  * @param {boolean} [props.isDisabled] Отключена.
  * @param {string} [props.url] Исходный URL.
  * @param {Object} [props.urlParams] Пользовательские параметры.
- * @param {string} [props.anchor] Якорь.
  * @param {Function} [props.saveRef] Функция для сохранения ссылки на HTMLElement.
  * @param {string} [props.type='button'] Тип компонента.
  * @param {Object} params Остальные параметры.
@@ -57,7 +56,6 @@ const Button = ({
   isDisabled = false,
   url,
   urlParams,
-  anchor,
   saveRef,
   type = 'button',
   ...params
@@ -65,7 +63,7 @@ const Button = ({
   const buttonClasses = createButtonStyle({ className, color, shape, withShadow, isFocused });
   let buttonParams = { ...params, className: buttonClasses, ref: saveRef, disabled: isDisabled };
   if (url) {
-    const href = buildURL({ url, urlParams, anchor });
+    const href = buildURL({ url, urlParams });
     buttonParams = {
       ...buttonParams,
       href,
@@ -111,10 +109,6 @@ Button.propTypes = {
    * Пользовательские параметры.
    */
   urlParams: Type.object,
-  /**
-   * Якорь.
-   */
-  anchor: Type.string,
   /**
    * Функция для сохранения ссылки на HTMLElement.
    */

@@ -41,8 +41,8 @@ describe('<Button />', () => {
         url='www.test.com'
         urlParams={{
           sort: 'date',
+          hash: 'something',
         }}
-        anchor='something'
         className='test'
         color='blue'
         shape='circle'
@@ -55,8 +55,7 @@ describe('<Button />', () => {
     expect(urlHelper.buildURL).toHaveBeenCalledTimes(1);
     expect(urlHelper.buildURL).toHaveBeenCalledWith({
       url: 'www.test.com',
-      urlParams: { sort: 'date' },
-      anchor: 'something',
+      urlParams: { sort: 'date', hash: 'something' },
     });
     expect(styleHelper.createButtonStyle).toHaveBeenCalledTimes(1);
     expect(styleHelper.createButtonStyle).toHaveBeenCalledWith({

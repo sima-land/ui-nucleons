@@ -13,11 +13,11 @@ export const buildGetParameter = (url, param) => {
 /**
  * Добавляет get-параметры.
  * @param {string} url Url.
- * @param {Object} [urlParams={}] Пользовательские параметры для формирования URL-а.
+ * @param {Object} [getParams={}] Пользовательские параметры для формирования URL-а.
  * @return {string} Ссылка с get-параметрами.
  */
-export const addGetParameters = (url, urlParams = {}) => {
-  const { sort, perPage, viewtype } = urlParams;
+export const addGetParameters = (url, getParams = {}) => {
+  const { sort, perPage, viewtype } = getParams;
   // Если идем на страницу поиска, или сортировка уже присутствует в урле, то опустим сортировку
   if (sort && USER_DEFAULT_PARAMS.sort !== sort && !url.includes('/search/?q=') && !url.includes('sort=')) {
     url += buildGetParameter(url, `sort=${sort}`);
@@ -36,10 +36,10 @@ export const addGetParameters = (url, urlParams = {}) => {
  * @param {string} [url=''] Исходный URL.
  * @param {Object} [urlParams={}] Пользовательские параметры для формирования URL-а.
  * @param {boolean} [external=false] Является ли ссылкой на внешний ресурс.
- * @param {string} [anchor=''] Якорь.
  * @return {string} Ссылка с параметрами или пустая строка.
  */
-export const buildURL = ({ url = '', urlParams = {}, external = false, anchor = '' } = {}) => {
+export const buildURL = ({ url = '', urlParams = {}, external = false } = {}) => {
+  const { hash, ...getParams } = urlParams || {};
   let result = '';
   if (typeof url === 'string' && url.length) {
     let linkHref = url;
@@ -50,10 +50,10 @@ export const buildURL = ({ url = '', urlParams = {}, external = false, anchor = 
       } else if (url.indexOf('sima-land.ru') > -1) {
         linkHref = `https://www.${url.substring(url.indexOf('sima-land.ru'))}`;
       }
-      linkHref = addGetParameters(linkHref, urlParams);
+      linkHref = addGetParameters(linkHref, getParams);
     }
-    if (typeof anchor === 'string' && anchor.length) {
-      linkHref = `${linkHref}#${anchor}`;
+    if (typeof hash === 'string' && hash.length) {
+      linkHref = `${linkHref}#${hash}`;
     }
     result = linkHref;
   }
