@@ -29,7 +29,7 @@ exports[`<Price /> renders correctly 2`] = `
     className={null}
     dangerouslySetInnerHTML={
       Object {
-        "__html": " undefined",
+        "__html": " USD",
       }
     }
   />
@@ -51,7 +51,7 @@ exports[`<Price /> renders correctly 3`] = `
     className={null}
     dangerouslySetInnerHTML={
       Object {
-        "__html": " undefined",
+        "__html": " USD",
       }
     }
   />

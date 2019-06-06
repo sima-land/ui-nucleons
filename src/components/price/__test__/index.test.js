@@ -15,13 +15,13 @@ describe('<Price />', () => {
   it('renders correctly', () => {
     price = shallow(<Price {...props} />);
     expect(price).toMatchSnapshot();
-    props = { value: 100, currency: 'USD' };
+    props = { value: 100, currencySign: 'USD' };
     price = shallow(<Price {...props} />);
     expect(price).toMatchSnapshot();
-    props = { value: 100, currency: 'USD', withFractionalPart: true, boldIntegerPart: true, fractionalAtTop: true };
+    props = { value: 100, currencySign: 'USD', withFractionalPart: true, boldIntegerPart: true, fractionalAtTop: true };
     price = shallow(<Price {...props} />);
     expect(price).toMatchSnapshot();
-    props = { value: 100, className: 'test', currency: 'RUB' };
+    props = { value: 100, className: 'test', currencySign: 'RUB' };
     price = shallow(<Price {...props} />);
     expect(price.prop('className')).toEqual('price test');
   });

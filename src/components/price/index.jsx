@@ -1,5 +1,6 @@
 import React from 'react';
-import { formatNumber, makeBoldSubstring } from '../helpers/utils';
+import { makeBoldSubstring } from '../helpers/make-bold-substring';
+import { formatNumber } from '../helpers/format-number';
 import Type from 'prop-types';
 import './price.scss';
 import classnames from 'classnames';
@@ -9,7 +10,7 @@ import classnames from 'classnames';
  * @param {Object} props Параметры компонента.
  * @param {string} [props.className] Название класса.
  * @param {string} [props.currencySign] Валюта пользователя.
- * @param {number} [props.value] Цена.
+ * @param {number} props.value Цена.
  * @param {boolean} [props.withFractionalPart] Указать дробную часть.
  * @param {boolean} [props.beforePrice] Отобразить знак валюты перед ценой.
  * @param {boolean} [props.fractionalAtTop] Отображать дробную часть сверху.
@@ -37,12 +38,14 @@ const Price = ({
   } else {
     priceView = <span>{`${integer}`}</span>;
   }
-  const sign = (
-    <span
-      className={currencySign === 'RUB' ? 'sign' : null}
-      dangerouslySetInnerHTML={{ __html: beforePrice ? `${currencySign}\u00A0` : `\u00A0${currencySign}` }}
-    />
-  );
+  const sign = currencySign
+    ? (
+      <span
+        className={currencySign === 'RUB' ? 'sign' : null}
+        dangerouslySetInnerHTML={{ __html: beforePrice ? `${currencySign}\u00A0` : `\u00A0${currencySign}` }}
+      />
+    )
+    : null;
   const priceClass = classnames('price', className);
   return (
     <span className={priceClass}>

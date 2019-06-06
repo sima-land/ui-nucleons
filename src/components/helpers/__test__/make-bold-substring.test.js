@@ -1,13 +1,7 @@
-import {
-  getSample,
-  parseToString,
-  makeBoldSubstring,
-  formatNumber,
-} from '../utils';
-
-let result;
+import { getSample, parseToString, makeBoldSubstring } from '../make-bold-substring';
 
 describe('test makeBoldSubstring', () => {
+  let result;
   const test1 = [
     {
       isBold: false,
@@ -51,17 +45,6 @@ describe('test makeBoldSubstring', () => {
     expect(result).toEqual('i have bold substring');
     result = makeBoldSubstring('i have bold substring', '');
     expect(result).toEqual('i have bold substring');
-  });
-});
-
-describe('test formatNumber', () => {
-  it('formatNumber() works properly', () => {
-    result = formatNumber(100.55, ' ');
-    expect(result).toEqual(['100', '55']);
-    result = formatNumber(123456789.34475484);
-    expect(result).toEqual(['123 456 789', '34']);
-    result = formatNumber(123456789.34475484, '.');
-    expect(result).toEqual(['123.456.789', '34']);
   });
 });
 
