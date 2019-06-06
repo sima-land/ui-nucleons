@@ -1,0 +1,10 @@
+@import '../variables';
+
+.price {
+  white-space: nowrap;
+}
+
+.sign {
+  font-family: $rubCurrencySign;
+  margin-left: .1em;
+}
