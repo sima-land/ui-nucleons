@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeBoldSubstring } from '../helpers/make-bold-substring';
 import { formatNumber } from '../helpers/format-number';
 import Type from 'prop-types';
 import './price.scss';
@@ -13,7 +12,7 @@ import classnames from 'classnames';
  * @param {number} props.value Цена.
  * @param {boolean} [props.withFractionalPart] Указать дробную часть.
  * @param {boolean} [props.beforePrice] Отобразить знак валюты перед ценой.
- * @param {boolean} [props.fractionalAtTop] Отображать дробную часть сверху.
+ * @param {boolean} [props.fractionalInSuper] Отображать дробную часть сверху.
  * @param {boolean} [props.boldIntegerPart] Отображать целую часть цены жирным начертанием.
  * @return {ReactElement} Цена товара с указанием знака валюты.
  */
@@ -23,29 +22,25 @@ const Price = ({
   value,
   withFractionalPart,
   beforePrice,
-  fractionalAtTop,
+  fractionalInSuper,
   boldIntegerPart,
 }) => {
   const price = formatNumber(value, ' ');
-  const integer = boldIntegerPart ? makeBoldSubstring(price[0], price[0]) : price[0];
+  const integer = boldIntegerPart ? <b>{price[0]}</b> : price[0];
   let priceView;
   if (withFractionalPart) {
-    if (fractionalAtTop) {
-      priceView = <span dangerouslySetInnerHTML={{ __html: `<span>${integer}<sup>${price[1]}</sup></span>` }} />;
-    } else {
-      priceView = <span>{`${integer}.${price[1]}`}</span>;
-    }
+    priceView
+      = fractionalInSuper
+        ? <span>{integer}<sup>{price[1]}</sup></span>
+        : <span>{integer}.{price[1]}</span>;
   } else {
-    priceView = <span>{`${integer}`}</span>;
+    priceView = <span>{integer}</span>;
   }
-  const sign = currencySign
-    ? (
-      <span
-        className={currencySign === 'RUB' ? 'sign' : null}
-        dangerouslySetInnerHTML={{ __html: beforePrice ? `${currencySign}\u00A0` : `\u00A0${currencySign}` }}
-      />
-    )
-    : null;
+  const sign = currencySign && (
+    <span className={currencySign === 'RUB' ? 'sign' : null}>
+      {beforePrice ? `${currencySign}\u00A0` : `\u00A0${currencySign}`}
+    </span>
+  );
   const priceClass = classnames('price', className);
   return (
     <span className={priceClass}>
@@ -80,7 +75,7 @@ Price.propTypes = {
   /**
    * Указывать дробную часть цены сверху (в <sup></sup>)
    */
-  fractionalAtTop: Type.bool,
+  fractionalInSuper: Type.bool,
   /**
    * Выделять жирным шрифтом целую часть цены
    */

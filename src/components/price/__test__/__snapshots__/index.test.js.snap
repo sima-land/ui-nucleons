@@ -6,14 +6,13 @@ exports[`<Price /> renders correctly 1`] = `
 >
   <span
     className="sign"
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "RUB ",
-      }
-    }
-  />
+  >
+    RUB 
+  </span>
   <span>
-    100.58
+    100
+    .
+    58
   </span>
 </span>
 `;
@@ -27,12 +26,9 @@ exports[`<Price /> renders correctly 2`] = `
   </span>
   <span
     className={null}
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": " USD",
-      }
-    }
-  />
+  >
+     USD
+  </span>
 </span>
 `;
 
@@ -40,20 +36,17 @@ exports[`<Price /> renders correctly 3`] = `
 <span
   className="price"
 >
-  <span
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "<span><b>100</b><sup>00</sup></span>",
-      }
-    }
-  />
+  <span>
+    <b>
+      100
+    </b>
+    .
+    00
+  </span>
   <span
     className={null}
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": " USD",
-      }
-    }
-  />
+  >
+     USD
+  </span>
 </span>
 `;
