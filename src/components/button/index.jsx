@@ -4,14 +4,14 @@ import Type from 'prop-types';
 
 /**
  * Отрисовка компонента Button.
- * @param {string} [type] Тип компонента.
+ * @param {string} [appearance] Тип представления компонента.
  * @param {Object} [buttonParams] Параметры компонента.
  * @param {*} [children] Содержимое.
  * @return {ReactElement} Компонент кнопки.
  */
-export const renderButton = ({ type, buttonParams = {}, children }) => {
+export const renderButton = ({ appearance, buttonParams = {}, children }) => {
   let result;
-  switch (type) {
+  switch (appearance) {
     case 'link':
       result = <a {...buttonParams}>{children}</a>;
       break;
@@ -35,7 +35,7 @@ export const renderButton = ({ type, buttonParams = {}, children }) => {
  * @param {boolean} [props.isFocused=false] В фокусе.
  * @param {boolean} [props.isDisabled] Отключена.
  * @param {Function} [props.saveRef] Функция для сохранения ссылки на HTMLElement.
- * @param {string} [props.type='button'] Тип компонента.
+ * @param {string} [props.appearance='button'] Тип представления компонента.
  * @param {...*} restProps Остальные параметры.
  * @param {string} [props.href] Ссылка.
  * @param {Function} [props.onClick] Функция, вызываемая при клике.
@@ -52,7 +52,7 @@ const Button = ({
   isFocused = false,
   isDisabled = false,
   saveRef,
-  type = 'button',
+  appearance = 'button',
   ...restProps
 }) => {
   const buttonClasses = createButtonStyle({ className, color, shape, withShadow, isFocused });
@@ -62,7 +62,7 @@ const Button = ({
     ref: saveRef,
     disabled: isDisabled,
   };
-  return renderButton({ type, buttonParams, children });
+  return renderButton({ appearance, buttonParams, children });
 };
 
 Button.propTypes = {
@@ -101,7 +101,7 @@ Button.propTypes = {
   /**
    * Тип компонента.
    */
-  type: Type.oneOf(['link', 'container', 'button']),
+  appearance: Type.oneOf(['link', 'container', 'button']),
   /**
    * Ссылка.
    */
