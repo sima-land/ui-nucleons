@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> renders properly 1`] = `
+<button
+  className="button button-pill button-clean"
+  disabled={false}
+>
+  Кнопка
+</button>
+`;
+
+exports[`renderButton returns correct element with type button 1`] = `
+<button
+  className="test"
+  disabled={true}
+>
+  Кнопка
+</button>
+`;
+
+exports[`renderButton returns correct element with type container 1`] = `
+<div
+  className="test"
+  disabled={true}
+  role="button"
+>
+  Кнопка
+</div>
+`;
+
+exports[`renderButton returns correct element with type link 1`] = `
+<a
+  className="test"
+  disabled={true}
+>
+  Кнопка
+</a>
+`;
+
+exports[`renderButton returns correct element with wrong params 1`] = `
+<button
+  className="test"
+  disabled={true}
+>
+  Кнопка
+</button>
+`;
+
+exports[`renderButton returns correct element with wrong params 2`] = `
+<button>
+  Кнопка
+</button>
+`;
+
+exports[`renderButton returns correct element with wrong params 3`] = `<button />`;

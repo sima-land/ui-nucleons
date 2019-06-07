@@ -65,7 +65,7 @@ describe('buildURL', () => {
     expect(result).toEqual('http://any-site.ru/any/path/');
     result = buildURL({
       url: 'http://any-site.ru/any/',
-      anchor: 'test',
+      urlParams: { hash: 'test' },
       external: true,
     });
     expect(result).toEqual('http://any-site.ru/any/#test');
@@ -78,7 +78,7 @@ describe('buildURL', () => {
     expect(result).toEqual('https://www.sima-land.ru/any/path/?sort=price&viewtype=xxl');
     result = buildURL({
       url: 'https://something.sima-land.ru/any/path/',
-      anchor: 'test',
+      urlParams: { hash: 'test' },
     });
     expect(result).toEqual('https://something.sima-land.ru/any/path/#test');
     result = buildURL({

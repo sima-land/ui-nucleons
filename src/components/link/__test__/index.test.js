@@ -20,8 +20,7 @@ describe('<Link />', () => {
       <Link
         className='testClass'
         url='/cart/'
-        urlParams={params}
-        anchor='test_anchor'
+        urlParams={{ ...params, hash: 'test' }}
         color='white'
         underlined
         relative
@@ -45,10 +44,9 @@ describe('<Link />', () => {
     expect(styleHelpers.createExternalStyle).toHaveBeenCalledWith('white');
     expect(urlHelper.buildURL).toHaveBeenCalledTimes(1);
     expect(urlHelper.buildURL).toHaveBeenCalledWith({
-      anchor: 'test_anchor',
       external: false,
       url: '/cart/',
-      urlParams: params,
+      urlParams: { ...params, hash: 'test' },
     });
     expect(link).toMatchSnapshot();
   });

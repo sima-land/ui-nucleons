@@ -18,16 +18,15 @@ export const LINK_TARGETS = ['_blank', '_self'];
  * @param {string} [props.className] Пользовательские классы.
  * @param {string} [props.url] Исходный URL.
  * @param {Object} [props.urlParams] Пользовательские параметры.
- * @param {string} [props.anchor] Якорь.
  * @param {string} [props.target] В новую или текущую вкладку откроется ссылка.
- * @param {Function} [props.saveRef] Функция для сохранения текущего Url-a.
+ * @param {Function} [props.saveRef] Функция для сохранения ссылки на HTMLElement.
  * @param {string} [props.color='blue'] Цвет.
  * @param {boolean} [props.underlined] Подчеркивание.
  * @param {boolean} [props.pseudo] Псевдоссылка.
  * @param {boolean} [props.disableHoverEffect] Не реагировать при наведении на компонент.
  * @param {boolean} [props.external=false] Является ли ссылкой на внешний ресурс.
  * @param {boolean} [props.withIcon=false] С иконкой.
- * @param {Object} params Остальные параметры.
+ * @param {...*} restProps Остальные параметры.
  * @param {Function} [props.onClick] Функция, вызываемая при клике.
  * @param {Function} [props.onMouseEnter] Функция, вызываемая при наведении.
  * @param {Function} [props.onMouseLeave] Функция, вызываемая при покидании области кнопки.
@@ -38,7 +37,6 @@ const Link = ({
   className,
   url,
   urlParams,
-  anchor,
   target,
   saveRef,
   color = 'blue',
@@ -47,14 +45,13 @@ const Link = ({
   disableHoverEffect,
   external = false,
   withIcon = external,
-  ...params
+  ...restProps
 }) => {
-  let linkParams = params;
+  const linkParams = restProps;
   if (!pseudo && url) {
     const defaultTarget = external ? '_blank' : '_self';
-    target = target && LINK_TARGETS.includes(target) ? target : defaultTarget;
-    const href = buildURL({ url, urlParams, anchor, external });
-    linkParams = { ...params, href, target };
+    linkParams.target = target && LINK_TARGETS.includes(target) ? target : defaultTarget;
+    linkParams.href = buildURL({ url, urlParams, external });
   }
 
   const underlineType = pseudo ? 'dashed' : 'solid';
@@ -99,15 +96,11 @@ Link.propTypes = {
    */
   urlParams: Type.object,
   /**
-   * Якорь.
-   */
-  anchor: Type.string,
-  /**
    * В новую или текущую вкладку откроется ссылка.
    */
   target: Type.oneOf(['_blank', '_self']),
   /**
-   * Функция для сохранения текущего Url-a.
+   * Функция для сохранения ссылки на HTMLElement.
    */
   saveRef: Type.func,
   /**

@@ -15,11 +15,11 @@ export const ICON_COLORS = ['white', 'dark-gray', 'dark-blue', 'gray'];
  * @param {number} props.size Размеры иконки.
  * @param {boolean} props.inline Если элемент должен выглядеть как встроенный.
  * @param {string} props.className Название класса.
- * @param {Object} params Остальные параметры.
+ * @param {...*} restProps Остальные параметры.
  * @param {Function} props.onClick Обработчик клика на иконке.
  * @return {React.Element} Svg-icon.
  */
-const Icon = ({ icon, size, color, inline, className, ...params }) => {
+const Icon = ({ icon, size, color, inline, className, ...restProps }) => {
   const iconClasses = cx(
     'icon', {
       [`icon-${color}`]: color && ICON_COLORS.includes(color),
@@ -33,7 +33,7 @@ const Icon = ({ icon, size, color, inline, className, ...params }) => {
       height={size}
       className={iconClasses}
       viewBox='0 0 36 36'
-      {...params}
+      {...restProps}
     />
   );
 };
