@@ -6,8 +6,7 @@
  */
 export const formatNumber = (value, separator) => {
   separator = String(separator) === separator ? separator : ' ';
-  const string = String(value).toLowerCase(),
-    number = Number(string);
+  const number = Number(value);
   let result = [];
   if (!isNaN(number) && isFinite(number)) {
     const decimals = number < 0.01 && number > 0 ? 4 : 2;

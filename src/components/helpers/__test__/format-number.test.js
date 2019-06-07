@@ -10,5 +10,9 @@ describe('test formatNumber', () => {
     number = formatNumber(123456789.34475484, '.');
     expect(number).toEqual(['123.456.789', '34']);
   });
+  it('formatNumber() works properly if gets NaN', () => {
+    number = formatNumber('test', ' ');
+    expect(number).toEqual([]);
+  });
 });
 
