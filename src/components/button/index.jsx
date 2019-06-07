@@ -19,7 +19,6 @@ export const renderButton = ({ type, buttonParams = {}, children }) => {
     case 'container':
       result = <div {...buttonParams} role='button'>{children}</div>;
       break;
-    case 'button':
     default:
       result = <button {...buttonParams}>{children}</button>;
   }
@@ -40,7 +39,7 @@ export const renderButton = ({ type, buttonParams = {}, children }) => {
  * @param {Object} [props.urlParams] Пользовательские параметры.
  * @param {Function} [props.saveRef] Функция для сохранения ссылки на HTMLElement.
  * @param {string} [props.type='button'] Тип компонента.
- * @param {Object} params Остальные параметры.
+ * @param {...*} restProps Остальные параметры.
  * @param {Function} [props.onClick] Функция, вызываемая при клике.
  * @param {Function} [props.onMouseEnter] Функция, вызываемая при наведении.
  * @param {Function} [props.onMouseLeave] Функция, вызываемая при покидании области кнопки.
@@ -58,17 +57,16 @@ const Button = ({
   urlParams,
   saveRef,
   type = 'button',
-  ...params
+  ...restProps
 }) => {
   const buttonClasses = createButtonStyle({ className, color, shape, withShadow, isFocused });
-  let buttonParams = { ...params, className: buttonClasses, ref: saveRef, disabled: isDisabled };
-  if (url) {
-    const href = buildURL({ url, urlParams });
-    buttonParams = {
-      ...buttonParams,
-      href,
-    };
-  }
+  const buttonParams = {
+    ...restProps,
+    className: buttonClasses,
+    ref: saveRef,
+    disabled: isDisabled,
+    href: url && buildURL({ url, urlParams }),
+  };
   return renderButton({ type, buttonParams, children });
 };
 

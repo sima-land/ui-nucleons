@@ -26,7 +26,7 @@ export const LINK_TARGETS = ['_blank', '_self'];
  * @param {boolean} [props.disableHoverEffect] Не реагировать при наведении на компонент.
  * @param {boolean} [props.external=false] Является ли ссылкой на внешний ресурс.
  * @param {boolean} [props.withIcon=false] С иконкой.
- * @param {Object} params Остальные параметры.
+ * @param {...*} restProps Остальные параметры.
  * @param {Function} [props.onClick] Функция, вызываемая при клике.
  * @param {Function} [props.onMouseEnter] Функция, вызываемая при наведении.
  * @param {Function} [props.onMouseLeave] Функция, вызываемая при покидании области кнопки.
@@ -45,14 +45,13 @@ const Link = ({
   disableHoverEffect,
   external = false,
   withIcon = external,
-  ...params
+  ...restProps
 }) => {
-  let linkParams = params;
+  const linkParams = restProps;
   if (!pseudo && url) {
     const defaultTarget = external ? '_blank' : '_self';
-    target = target && LINK_TARGETS.includes(target) ? target : defaultTarget;
-    const href = buildURL({ url, urlParams, external });
-    linkParams = { ...params, href, target };
+    linkParams.target = target && LINK_TARGETS.includes(target) ? target : defaultTarget;
+    linkParams.href = buildURL({ url, urlParams, external });
   }
 
   const underlineType = pseudo ? 'dashed' : 'solid';
