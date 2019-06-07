@@ -2,13 +2,13 @@ import React from 'react';
 import { formatNumber } from '../helpers/format-number';
 import Type from 'prop-types';
 import './price.scss';
-import classnames from 'classnames';
+import classNames from 'classnames';
 
 /**
  * Цена товара с указанием знака валюты.
  * @param {Object} props Параметры компонента.
  * @param {string} [props.className] Название класса.
- * @param {string} [props.currencySign] Валюта пользователя.
+ * @param {string} [props.currencyGrapheme] Графема валюты пользователя.
  * @param {number} props.value Цена.
  * @param {boolean} [props.withFractionalPart] Указать дробную часть.
  * @param {boolean} [props.beforePrice] Отобразить знак валюты перед ценой.
@@ -18,34 +18,27 @@ import classnames from 'classnames';
  */
 const Price = ({
   className,
-  currencySign,
+  currencyGrapheme,
   value,
   withFractionalPart,
   beforePrice,
   fractionalInSuper,
   boldIntegerPart,
 }) => {
-  const price = formatNumber(value, ' ');
+  const price = formatNumber(value);
   const integer = boldIntegerPart ? <b>{price[0]}</b> : price[0];
-  let priceView;
-  if (withFractionalPart) {
-    priceView
-      = fractionalInSuper
-        ? <span>{integer}<sup>{price[1]}</sup></span>
-        : <span>{integer}.{price[1]}</span>;
-  } else {
-    priceView = <span>{integer}</span>;
-  }
-  const sign = currencySign && (
-    <span className={currencySign === 'RUB' ? 'sign' : null}>
-      {beforePrice ? `${currencySign}\u00A0` : `\u00A0${currencySign}`}
+  const sign = currencyGrapheme && (
+    <span className='grapheme'>
+      {beforePrice ? `${currencyGrapheme}\u00A0` : `\u00A0${currencyGrapheme}`}
     </span>
   );
-  const priceClass = classnames('price', className);
   return (
-    <span className={priceClass}>
+    <span className={classNames('price', className)}>
       {beforePrice && sign}
-      {priceView}
+      {integer}
+      {withFractionalPart && (
+        fractionalInSuper ? <sup>{price[1]}</sup> : `.${price[1]}`
+      )}
       {!beforePrice && sign}
     </span>
   );
@@ -57,9 +50,9 @@ Price.propTypes = {
    */
   className: Type.string,
   /**
-   * Валюта пользователя
+   * Графема валюты пользователя
    */
-  currencySign: Type.string,
+  currencyGrapheme: Type.string,
   /**
    * Цена
    */

@@ -4,16 +4,8 @@ exports[`<Price /> renders correctly 1`] = `
 <span
   className="price"
 >
-  <span
-    className="sign"
-  >
-    RUB 
-  </span>
-  <span>
-    100
-    .
-    58
-  </span>
+  100
+  .58
 </span>
 `;
 
@@ -21,13 +13,11 @@ exports[`<Price /> renders correctly 2`] = `
 <span
   className="price"
 >
-  <span>
-    100
-  </span>
+  100
   <span
-    className={null}
+    className="grapheme"
   >
-     USD
+     $
   </span>
 </span>
 `;
@@ -36,17 +26,14 @@ exports[`<Price /> renders correctly 3`] = `
 <span
   className="price"
 >
-  <span>
-    <b>
-      100
-    </b>
-    .
-    00
-  </span>
+  <b>
+    100
+  </b>
+  .00
   <span
-    className={null}
+    className="grapheme"
   >
-     USD
+     €
   </span>
 </span>
 `;
