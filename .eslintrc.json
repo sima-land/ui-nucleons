@@ -232,7 +232,8 @@
           "Symbol": "symbol",
           "object": "Object",
           "array": "Array",
-          "function": "Function"
+          "function": "Function",
+          "Children": "children"
         },
         "requireReturn": false,
         "requireReturnType": true,
