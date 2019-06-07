@@ -1,10 +1,10 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Index from '../index';
+import NoIndex from '../index';
 
 describe('<NoIndex', () => {
   it('should renders correctly', () => {
-    const elem = mount(<Index>test<p>test2</p></Index>);
+    const elem = mount(<NoIndex>test<p>test2</p></NoIndex>);
     expect(elem.find('p').text()).toBe('test2');
     expect(elem).toMatchSnapshot();
   });

@@ -7,7 +7,7 @@ import Type from 'prop-types';
  * @param {children} props.children Содержимое.
  * @return {ReactElement} Неиндексируемый контент.
  */
-const Index = ({ children }) => (
+const NoIndex = ({ children }) => (
   <React.Fragment>
     <span dangerouslySetInnerHTML={{ __html: '<!--noindex-->' }} />
     {children}
@@ -15,11 +15,11 @@ const Index = ({ children }) => (
   </React.Fragment>
 );
 
-Index.propTypes = {
+NoIndex.propTypes = {
   /**
 	* Содержимое.
 	*/
   children: Type.any,
 };
 
-export default Index;
+export default NoIndex;
