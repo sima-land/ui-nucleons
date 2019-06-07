@@ -232,7 +232,7 @@
           "Symbol": "symbol",
           "object": "Object",
           "array": "Array",
-          "function": "Function",
+          "function": "Function"
         },
         "requireReturn": false,
         "requireReturnType": true,
