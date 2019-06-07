@@ -5,10 +5,11 @@ exports[`<Icon /> Icon renders correctly with icon prop 1`] = `
   className="test"
   color="dark-gray"
   icon={[Function]}
+  inline={true}
   onClick={[Function]}
 >
   <svgIcon
-    className="icon icon-dark-gray icon-block test"
+    className="icon icon-dark-gray test"
     height="33"
     onClick={[Function]}
     viewBox="0 0 36 36"
@@ -16,7 +17,7 @@ exports[`<Icon /> Icon renders correctly with icon prop 1`] = `
     xmlns="http://www.w3.org/2000/svg"
   >
     <svg
-      className="icon icon-dark-gray icon-block test"
+      className="icon icon-dark-gray test"
       height="33"
       onClick={[Function]}
       viewBox="0 0 36 36"

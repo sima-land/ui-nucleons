@@ -1,7 +1,7 @@
 module.exports = {
   title: 'UINuclions',
   components: 'src/components/**/*.jsx',
-  propsParser: (filePath) => require('library-utils/react-doc')(filePath),
+  propsParser: filePath => require('library-utils/react-doc')(filePath),
   serverPort: 8080,
   styleguideDir: require('path').resolve(__dirname, 'styleguide'),
   styles: {
@@ -13,6 +13,16 @@ module.exports = {
       '@global body': {
         fontFamily: '"Open Sans", sans-serif',
         fontSize: 14,
+      },
+      sidebar: {
+        backgroundColor: '#c4c2de',
+        borderColor: '#8084c5',
+      },
+    },
+    Playground: {
+      preview: {
+        backgroundColor: '#c4c2de',
+        borderColor: '#8084c5',
       },
     },
   },
