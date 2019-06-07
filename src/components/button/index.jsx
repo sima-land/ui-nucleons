@@ -95,14 +95,6 @@ Button.propTypes = {
    */
   isDisabled: Type.bool,
   /**
-   * Исходный URL.
-   */
-  url: Type.string,
-  /**
-   * Пользовательские параметры.
-   */
-  urlParams: Type.object,
-  /**
    * Функция для сохранения ссылки на HTMLElement.
    */
   saveRef: Type.func,
@@ -110,6 +102,10 @@ Button.propTypes = {
    * Тип компонента.
    */
   type: Type.oneOf(['link', 'container', 'button']),
+  /**
+   * Ссылка.
+   */
+  href: Type.string,
   /**
    * Функция, вызываемая при клике
    */
