@@ -233,7 +233,6 @@
           "object": "Object",
           "array": "Array",
           "function": "Function",
-          "Children": "children"
         },
         "requireReturn": false,
         "requireReturnType": true,
