@@ -1,12 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Button /> renders properly 1`] = `
-<button
-  className="button button-pill button-clean"
-  disabled={false}
->
-  Кнопка
-</button>
+<Fragment>
+  <button
+    className="button button-pill button-clean"
+    disabled={false}
+  >
+    Кнопка
+  </button>
+</Fragment>
 `;
 
 exports[`renderButton returns correct element with appearance button 1`] = `

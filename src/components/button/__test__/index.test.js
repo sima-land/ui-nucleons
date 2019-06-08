@@ -58,6 +58,7 @@ describe('<Button />', () => {
       onMouseLeaveFunc = jest.fn();
     button = shallow(
       <Button
+        className='test-action'
         onClick={onClickFunc}
         onMouseEnter={onMouseEnterFunc}
         onMouseLeave={onMouseLeaveFunc}
@@ -65,11 +66,12 @@ describe('<Button />', () => {
         Кнопка
       </Button>
     );
-    button.simulate('click');
+    const element = button.find('.test-action');
+    element.simulate('click');
     expect(onClickFunc).toHaveBeenCalledTimes(1);
-    button.simulate('mouseEnter');
+    element.simulate('mouseEnter');
     expect(onMouseEnterFunc).toHaveBeenCalledTimes(1);
-    button.simulate('mouseLeave');
+    element.simulate('mouseLeave');
     expect(onMouseLeaveFunc).toHaveBeenCalledTimes(1);
   });
 });
