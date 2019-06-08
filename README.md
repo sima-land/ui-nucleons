@@ -16,7 +16,7 @@ src/components/ - директория со всеми компонентами 
 
 * link/ - директория с компонентом
     * `__stories__/`
-        * index.stories.js - описание компонента для storybook
+        * link.stories.js - описание компонента для storybook
     * `__test__/`
         * index.test.js - тесты на компонент
     * index.jsx - компонент Link
