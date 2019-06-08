@@ -1,18 +1,17 @@
 import * as React from 'react';
 import { createButtonStyle } from './create-button-style';
-import { buildURL } from '../helpers/build-url';
 import Type from 'prop-types';
 
 /**
  * Отрисовка компонента Button.
- * @param {string} [type] Тип компонента.
+ * @param {string} [appearance] Тип представления компонента.
  * @param {Object} [buttonParams] Параметры компонента.
  * @param {*} [children] Содержимое.
  * @return {ReactElement} Компонент кнопки.
  */
-export const renderButton = ({ type, buttonParams = {}, children }) => {
+export const renderButton = ({ appearance, buttonParams = {}, children }) => {
   let result;
-  switch (type) {
+  switch (appearance) {
     case 'link':
       result = <a {...buttonParams}>{children}</a>;
       break;
@@ -35,11 +34,10 @@ export const renderButton = ({ type, buttonParams = {}, children }) => {
  * @param {boolean} [props.withShadow=false] С тенью.
  * @param {boolean} [props.isFocused=false] В фокусе.
  * @param {boolean} [props.isDisabled] Отключена.
- * @param {string} [props.url] Исходный URL.
- * @param {Object} [props.urlParams] Пользовательские параметры.
  * @param {Function} [props.saveRef] Функция для сохранения ссылки на HTMLElement.
- * @param {string} [props.type='button'] Тип компонента.
+ * @param {string} [props.appearance='button'] Тип представления компонента.
  * @param {...*} restProps Остальные параметры.
+ * @param {string} [props.href] Ссылка.
  * @param {Function} [props.onClick] Функция, вызываемая при клике.
  * @param {Function} [props.onMouseEnter] Функция, вызываемая при наведении.
  * @param {Function} [props.onMouseLeave] Функция, вызываемая при покидании области кнопки.
@@ -53,10 +51,8 @@ const Button = ({
   withShadow = false,
   isFocused = false,
   isDisabled = false,
-  url,
-  urlParams,
   saveRef,
-  type = 'button',
+  appearance = 'button',
   ...restProps
 }) => {
   const buttonClasses = createButtonStyle({ className, color, shape, withShadow, isFocused });
@@ -65,9 +61,8 @@ const Button = ({
     className: buttonClasses,
     ref: saveRef,
     disabled: isDisabled,
-    href: url && buildURL({ url, urlParams }),
   };
-  return renderButton({ type, buttonParams, children });
+  return renderButton({ appearance, buttonParams, children });
 };
 
 Button.propTypes = {
@@ -100,21 +95,17 @@ Button.propTypes = {
    */
   isDisabled: Type.bool,
   /**
-   * Исходный URL.
-   */
-  url: Type.string,
-  /**
-   * Пользовательские параметры.
-   */
-  urlParams: Type.object,
-  /**
    * Функция для сохранения ссылки на HTMLElement.
    */
   saveRef: Type.func,
   /**
    * Тип компонента.
    */
-  type: Type.oneOf(['link', 'container', 'button']),
+  appearance: Type.oneOf(['link', 'container', 'button']),
+  /**
+   * Ссылка.
+   */
+  href: Type.string,
   /**
    * Функция, вызываемая при клике
    */

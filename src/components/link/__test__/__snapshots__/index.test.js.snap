@@ -26,6 +26,7 @@ exports[`<Link /> calls helpers and renders correctly with external 1`] = `
 exports[`<Link /> calls helpers and renders correctly with pseudo 1`] = `
 <a
   className="link link-can-be-hovered"
+  href="/auth/"
 >
   <span
     className="link-text link-black link-underlined link-underlined-dashed"
@@ -38,7 +39,7 @@ exports[`<Link /> calls helpers and renders correctly with pseudo 1`] = `
 exports[`<Link /> calls helpers with right params and renders correctly without external 1`] = `
 <a
   className="testClass link"
-  href="/cart/?sort=price#test"
+  href="/cart/"
   relative={true}
   target="_self"
 >

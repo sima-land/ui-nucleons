@@ -4,7 +4,6 @@ import {
   createLinkTextStyle,
   createExternalStyle,
 } from './create-link-style';
-import { buildURL } from '../helpers/build-url';
 import Type from 'prop-types';
 import Icon from '../icon';
 import externalIcon from '../icons/external.svg';
@@ -16,8 +15,6 @@ export const LINK_TARGETS = ['_blank', '_self'];
  * @param {Object} props Свойства компонента.
  * @param {*} props.children Содержимое компонента.
  * @param {string} [props.className] Пользовательские классы.
- * @param {string} [props.url] Исходный URL.
- * @param {Object} [props.urlParams] Пользовательские параметры.
  * @param {string} [props.target] В новую или текущую вкладку откроется ссылка.
  * @param {Function} [props.saveRef] Функция для сохранения ссылки на HTMLElement.
  * @param {string} [props.color='blue'] Цвет.
@@ -27,6 +24,7 @@ export const LINK_TARGETS = ['_blank', '_self'];
  * @param {boolean} [props.external=false] Является ли ссылкой на внешний ресурс.
  * @param {boolean} [props.withIcon=false] С иконкой.
  * @param {...*} restProps Остальные параметры.
+ * @param {string} [props.href] Ссылка.
  * @param {Function} [props.onClick] Функция, вызываемая при клике.
  * @param {Function} [props.onMouseEnter] Функция, вызываемая при наведении.
  * @param {Function} [props.onMouseLeave] Функция, вызываемая при покидании области кнопки.
@@ -35,8 +33,6 @@ export const LINK_TARGETS = ['_blank', '_self'];
 const Link = ({
   children,
   className,
-  url,
-  urlParams,
   target,
   saveRef,
   color = 'blue',
@@ -48,10 +44,9 @@ const Link = ({
   ...restProps
 }) => {
   const linkParams = restProps;
-  if (!pseudo && url) {
+  if (!pseudo) {
     const defaultTarget = external ? '_blank' : '_self';
     linkParams.target = target && LINK_TARGETS.includes(target) ? target : defaultTarget;
-    linkParams.href = buildURL({ url, urlParams, external });
   }
 
   const underlineType = pseudo ? 'dashed' : 'solid';
@@ -88,14 +83,6 @@ Link.propTypes = {
    */
   className: Type.string,
   /**
-   * Исходный URL.
-   */
-  url: Type.string,
-  /**
-   * Пользовательские параметры.
-   */
-  urlParams: Type.object,
-  /**
    * В новую или текущую вкладку откроется ссылка.
    */
   target: Type.oneOf(['_blank', '_self']),
@@ -127,6 +114,10 @@ Link.propTypes = {
    *  C иконкой.
    */
   withIcon: Type.bool,
+  /**
+   * Ссылка.
+   */
+  href: Type.string,
   /**
    * Функция, вызываемая при клике.
    */

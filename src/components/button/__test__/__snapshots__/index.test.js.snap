@@ -9,7 +9,7 @@ exports[`<Button /> renders properly 1`] = `
 </button>
 `;
 
-exports[`renderButton returns correct element with type button 1`] = `
+exports[`renderButton returns correct element with appearance button 1`] = `
 <button
   className="test"
   disabled={true}
@@ -18,7 +18,7 @@ exports[`renderButton returns correct element with type button 1`] = `
 </button>
 `;
 
-exports[`renderButton returns correct element with type container 1`] = `
+exports[`renderButton returns correct element with appearance container 1`] = `
 <div
   className="test"
   disabled={true}
@@ -28,7 +28,7 @@ exports[`renderButton returns correct element with type container 1`] = `
 </div>
 `;
 
-exports[`renderButton returns correct element with type link 1`] = `
+exports[`renderButton returns correct element with appearance link 1`] = `
 <a
   className="test"
   disabled={true}

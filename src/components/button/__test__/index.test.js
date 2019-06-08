@@ -1,21 +1,19 @@
 import React from 'react';
 import Button, { renderButton } from '../';
 import * as styleHelper from '../create-button-style';
-import * as urlHelper from '../../helpers/build-url';
 import { shallow } from 'enzyme';
 
 describe('<Button />', () => {
   let button;
   beforeEach(() => {
     jest.restoreAllMocks();
-    jest.spyOn(urlHelper, 'buildURL');
     jest.spyOn(styleHelper, 'createButtonStyle');
   });
   it('renders properly', () => {
     button = shallow(<Button>Кнопка</Button>);
     expect(button).toMatchSnapshot();
   });
-  it('calls createButtonStyle and does not call buildURL without url', () => {
+  it('calls createButtonStyle with correct params', () => {
     button = shallow(
       <Button
         className='test-class'
@@ -25,7 +23,6 @@ describe('<Button />', () => {
         Кнопка
       </Button>
     );
-    expect(urlHelper.buildURL).toHaveBeenCalledTimes(0);
     expect(styleHelper.createButtonStyle).toHaveBeenCalledTimes(1);
     expect(styleHelper.createButtonStyle).toHaveBeenCalledWith({
       className: 'test-class',
@@ -34,15 +31,9 @@ describe('<Button />', () => {
       withShadow: false,
       isFocused: false,
     });
-  });
-  it('calls createButtonStyle and buildURL with url', () => {
     button = shallow(
       <Button
-        url='www.test.com'
-        urlParams={{
-          sort: 'date',
-          hash: 'something',
-        }}
+        href='www.test.com'
         className='test'
         color='blue'
         shape='circle'
@@ -52,13 +43,8 @@ describe('<Button />', () => {
         Кнопка
       </Button>
     );
-    expect(urlHelper.buildURL).toHaveBeenCalledTimes(1);
-    expect(urlHelper.buildURL).toHaveBeenCalledWith({
-      url: 'www.test.com',
-      urlParams: { sort: 'date', hash: 'something' },
-    });
-    expect(styleHelper.createButtonStyle).toHaveBeenCalledTimes(1);
-    expect(styleHelper.createButtonStyle).toHaveBeenCalledWith({
+    expect(styleHelper.createButtonStyle).toHaveBeenCalledTimes(2);
+    expect(styleHelper.createButtonStyle.mock.calls[1][0]).toEqual({
       className: 'test',
       color: 'blue',
       shape: 'circle',
@@ -92,22 +78,22 @@ describe('renderButton', () => {
   const buttonParams = { className: 'test', disabled: true },
     children = 'Кнопка';
   let button;
-  it('returns correct element with type link', () => {
-    button = renderButton({ type: 'link', buttonParams, children });
+  it('returns correct element with appearance link', () => {
+    button = renderButton({ appearance: 'link', buttonParams, children });
     expect(button).toMatchSnapshot();
   });
-  it('returns correct element with type container', () => {
-    button = renderButton({ type: 'container', buttonParams, children });
+  it('returns correct element with appearance container', () => {
+    button = renderButton({ appearance: 'container', buttonParams, children });
     expect(button).toMatchSnapshot();
   });
-  it('returns correct element with type button', () => {
-    button = renderButton({ type: 'button', buttonParams, children });
+  it('returns correct element with appearance button', () => {
+    button = renderButton({ appearance: 'button', buttonParams, children });
     expect(button).toMatchSnapshot();
   });
   it('returns correct element with wrong params', () => {
     button = renderButton({ buttonParams, children });
     expect(button).toMatchSnapshot();
-    button = renderButton({ type: 'wrong', children });
+    button = renderButton({ appearance: 'wrong', children });
     expect(button).toMatchSnapshot();
     button = renderButton({});
     expect(button).toMatchSnapshot();

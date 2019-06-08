@@ -2,25 +2,19 @@ import Link from '../';
 import { shallow } from 'enzyme';
 import React from 'react';
 import * as styleHelpers from '../create-link-style';
-import * as urlHelper from '../../helpers/build-url';
 
 describe('<Link />', () => {
   beforeEach(() => {
     jest.restoreAllMocks();
-    jest.spyOn(urlHelper, 'buildURL');
     jest.spyOn(styleHelpers, 'createLinkStyle');
     jest.spyOn(styleHelpers, 'createLinkTextStyle');
     jest.spyOn(styleHelpers, 'createExternalStyle');
   });
   it('calls helpers with right params and renders correctly without external', () => {
-    const params = {
-      sort: 'price',
-    };
     const link = shallow(
       <Link
         className='testClass'
-        url='/cart/'
-        urlParams={{ ...params, hash: 'test' }}
+        href='/cart/'
         color='white'
         underlined
         relative
@@ -42,22 +36,12 @@ describe('<Link />', () => {
     });
     expect(styleHelpers.createExternalStyle).toHaveBeenCalledTimes(1);
     expect(styleHelpers.createExternalStyle).toHaveBeenCalledWith('white');
-    expect(urlHelper.buildURL).toHaveBeenCalledTimes(1);
-    expect(urlHelper.buildURL).toHaveBeenCalledWith({
-      external: false,
-      url: '/cart/',
-      urlParams: { ...params, hash: 'test' },
-    });
     expect(link).toMatchSnapshot();
   });
   it('calls helpers and renders correctly with pseudo', () => {
-    const params = {
-      sort: 'price',
-    };
     const link = shallow(
       <Link
-        url='/auth/'
-        urlParams={params}
+        href='/auth/'
         color='black'
         pseudo
         underlined
@@ -66,19 +50,24 @@ describe('<Link />', () => {
       </Link>
     );
     expect(styleHelpers.createLinkStyle).toHaveBeenCalledTimes(1);
+    expect(styleHelpers.createLinkStyle).toHaveBeenCalledWith({
+      className: undefined,
+      disableHoverEffect: undefined,
+    });
     expect(styleHelpers.createLinkTextStyle).toHaveBeenCalledTimes(1);
+    expect(styleHelpers.createLinkTextStyle).toHaveBeenCalledWith({
+      color: 'black',
+      external: false,
+      underlineType: 'dashed',
+    });
     expect(styleHelpers.createExternalStyle).toHaveBeenCalledTimes(1);
-    expect(urlHelper.buildURL).toHaveBeenCalledTimes(0);
+    expect(styleHelpers.createExternalStyle).toHaveBeenCalledWith('black');
     expect(link).toMatchSnapshot();
   });
   it('calls helpers and renders correctly with external', () => {
-    const params = {
-      sort: 'price',
-    };
     const link = shallow(
       <Link
-        url='/cabinet/'
-        urlParams={params}
+        href='/cabinet/'
         color='white'
         external
         disableHoverEffect
@@ -87,9 +76,18 @@ describe('<Link />', () => {
       </Link>
     );
     expect(styleHelpers.createLinkStyle).toHaveBeenCalledTimes(1);
+    expect(styleHelpers.createLinkStyle).toHaveBeenCalledWith({
+      className: undefined,
+      disableHoverEffect: true,
+    });
     expect(styleHelpers.createLinkTextStyle).toHaveBeenCalledTimes(1);
+    expect(styleHelpers.createLinkTextStyle).toHaveBeenCalledWith({
+      color: 'white',
+      external: true,
+      underlineType: undefined,
+    });
     expect(styleHelpers.createExternalStyle).toHaveBeenCalledTimes(1);
-    expect(urlHelper.buildURL).toHaveBeenCalledTimes(1);
+    expect(styleHelpers.createExternalStyle).toHaveBeenCalledWith('white');
     expect(link).toMatchSnapshot();
   });
   it('calls functions onClick, onMouseEnter, onMouseLeave', () => {
