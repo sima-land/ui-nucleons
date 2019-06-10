@@ -277,9 +277,14 @@
       "error",
       "tag-aligned"
     ],
-    "react/jsx-space-before-closing": [
+    "react/jsx-tag-spacing": [
       "error",
-      "always"
+      {
+        "closingSlash": "never",
+        "beforeSelfClosing": "always",
+        "afterOpening": "never",
+        "beforeClosing": "never"
+      }
     ],
     "react/prop-types": "error",
     "eol-last": [

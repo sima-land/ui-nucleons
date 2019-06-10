@@ -4,7 +4,6 @@ import {
   createLinkTextStyle,
   createExternalStyle,
 } from './create-link-style';
-import { buildURL } from '../helpers/build-url';
 import Type from 'prop-types';
 import Icon from '../icon';
 import externalIcon from '../icons/external.svg';
@@ -16,18 +15,16 @@ export const LINK_TARGETS = ['_blank', '_self'];
  * @param {Object} props Свойства компонента.
  * @param {*} props.children Содержимое компонента.
  * @param {string} [props.className] Пользовательские классы.
- * @param {string} [props.url] Исходный URL.
- * @param {Object} [props.urlParams] Пользовательские параметры.
- * @param {string} [props.anchor] Якорь.
  * @param {string} [props.target] В новую или текущую вкладку откроется ссылка.
- * @param {Function} [props.saveRef] Функция для сохранения текущего Url-a.
+ * @param {Function} [props.saveRef] Функция для сохранения ссылки на HTMLElement.
  * @param {string} [props.color='blue'] Цвет.
  * @param {boolean} [props.underlined] Подчеркивание.
  * @param {boolean} [props.pseudo] Псевдоссылка.
  * @param {boolean} [props.disableHoverEffect] Не реагировать при наведении на компонент.
  * @param {boolean} [props.external=false] Является ли ссылкой на внешний ресурс.
  * @param {boolean} [props.withIcon=false] С иконкой.
- * @param {Object} params Остальные параметры.
+ * @param {...*} restProps Остальные параметры.
+ * @param {string} [props.href] Ссылка.
  * @param {Function} [props.onClick] Функция, вызываемая при клике.
  * @param {Function} [props.onMouseEnter] Функция, вызываемая при наведении.
  * @param {Function} [props.onMouseLeave] Функция, вызываемая при покидании области кнопки.
@@ -36,9 +33,6 @@ export const LINK_TARGETS = ['_blank', '_self'];
 const Link = ({
   children,
   className,
-  url,
-  urlParams,
-  anchor,
   target,
   saveRef,
   color = 'blue',
@@ -47,14 +41,12 @@ const Link = ({
   disableHoverEffect,
   external = false,
   withIcon = external,
-  ...params
+  ...restProps
 }) => {
-  let linkParams = params;
-  if (!pseudo && url) {
+  const linkParams = restProps;
+  if (!pseudo) {
     const defaultTarget = external ? '_blank' : '_self';
-    target = target && LINK_TARGETS.includes(target) ? target : defaultTarget;
-    const href = buildURL({ url, urlParams, anchor, external });
-    linkParams = { ...params, href, target };
+    linkParams.target = target && LINK_TARGETS.includes(target) ? target : defaultTarget;
   }
 
   const underlineType = pseudo ? 'dashed' : 'solid';
@@ -91,23 +83,11 @@ Link.propTypes = {
    */
   className: Type.string,
   /**
-   * Исходный URL.
-   */
-  url: Type.string,
-  /**
-   * Пользовательские параметры.
-   */
-  urlParams: Type.object,
-  /**
-   * Якорь.
-   */
-  anchor: Type.string,
-  /**
    * В новую или текущую вкладку откроется ссылка.
    */
   target: Type.oneOf(['_blank', '_self']),
   /**
-   * Функция для сохранения текущего Url-a.
+   * Функция для сохранения ссылки на HTMLElement.
    */
   saveRef: Type.func,
   /**
@@ -134,6 +114,10 @@ Link.propTypes = {
    *  C иконкой.
    */
   withIcon: Type.bool,
+  /**
+   * Ссылка.
+   */
+  href: Type.string,
   /**
    * Функция, вызываемая при клике.
    */
