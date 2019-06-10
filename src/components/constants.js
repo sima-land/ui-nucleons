@@ -6,4 +6,5 @@ export const USER_DEFAULT_PARAMS = {
   'per-page': 20,
   viewtype: 'list',
 };
+export const graphemes = ['₽', '€', '$', '₴', 'Br'];
 
