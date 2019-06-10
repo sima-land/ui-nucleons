@@ -20,17 +20,17 @@
   background-color: $white;
   display: inline-block;
   cursor: pointer;
-  border: 1px dashed #afb8bb;
+  border: 1px dashed $silvery;
   padding: 4px 10px 5px;
   border-radius: 5px;
 }
 
 .tab-selected {
   color: $white;
-  background-color: $gray2;
+  background-color: $silvery;
   display: inline-block;
   font-weight: 700;
-  border: 1px dashed #afb8bb;
+  border: 1px dashed $silvery;
   padding: 4px 9px 5px;
   border-radius: 5px;
 }
