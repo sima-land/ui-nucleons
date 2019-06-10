@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import NoIndex from '../index';
+import NoIndex from '../';
 
 storiesOf('NoIndex', module)
   .add('No indexing text', () => (
