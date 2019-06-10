@@ -41,7 +41,7 @@ exports[`<Link /> calls helpers with right params and renders correctly without 
   className="testClass link"
   href="/cart/"
   relative={true}
-  target="_self"
+  target="_blank"
 >
   <span
     className="link-text link-white link-underlined link-underlined-solid"
