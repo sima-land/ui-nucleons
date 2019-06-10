@@ -25,7 +25,7 @@
     initialState = {
         selected: 2
     },
-    renderItem = item => `tab ${item.id}: ${item.name}`
+    renderItem = item => `tab ${item.id}: ${item.name}`,
     onSelect = item => setState({ selected: item.id }),
     isSelected = item => item.id === state.selected;
   
