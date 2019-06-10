@@ -16,6 +16,7 @@ describe('<Link />', () => {
         className='testClass'
         href='/cart/'
         color='white'
+        target='_blank'
         underlined
         relative
         disableHoverEffect

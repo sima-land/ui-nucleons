@@ -67,3 +67,9 @@ exports[`<TabsGroup /> renders correctly with customClasses 1`] = `
   </li>
 </ul>
 `;
+
+exports[`<TabsGroup /> renders correctly without params 1`] = `
+<ul
+  className="tabs-list"
+/>
+`;

@@ -13,6 +13,12 @@ describe('<TabsGroup />', () => {
     renderItemMock = jest.fn(item => (<span>{item}</span>)),
     isSelectedItemMock = jest.fn(item => item === 'item 2');
 
+  it('renders correctly without params', () => {
+    selectableTabs = shallow(
+      <Tabs />
+    );
+    expect(selectableTabs).toMatchSnapshot();
+  });
   it('calls renderItem, isSelectedItem and onSelect properly', () => {
     const onSelectItemMock = jest.fn();
     selectableTabs = shallow(
