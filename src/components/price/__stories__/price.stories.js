@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Price from '../';
+import { graphemes } from '../../constants';
 
-const graphemes = ['₽', '€', '$', '₴', 'Br'];
 const margin = {
   marginRight: '15px',
 };
