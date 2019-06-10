@@ -127,94 +127,11 @@ storiesOf('Link', module)
       </div>
     </div>
   ))
-  .add('with urls', () => (
+  .add('with href and target', () => (
     <div>
       <Link
         underlined
-        url='https://www.sima-land.ru/prazdniki/'
-        style={marginRight}
-      >
-        Full Sima Url
-      </Link>
-      <Link
-        underlined
-        url='sima-land.ru/igrushki/'
-        style={marginRight}
-      >
-        Short Sima Url
-      </Link>
-      <Link
-        underlined
-        url='https://storybook.js.org/'
-      >
-        Other Url
-      </Link>
-    </div>
-  ))
-  .add('with urlParams', () => (
-    <div>
-      <Link
-        underlined
-        urlParams={{
-          sort: 'date',
-          perPage: 11,
-          viewtype: 'cards',
-        }}
-        style={marginRight}
-      >
-        Without url
-      </Link>
-      <Link
-        underlined
-        url='https://www.sima-land.ru/prazdniki/'
-        urlParams={{
-          sort: 'date',
-          perPage: 11,
-          viewtype: 'cards',
-        }}
-        style={marginRight}
-      >
-        Sima with get-params
-      </Link>
-      <Link
-        underlined
-        external
-        withIcon={false}
-        url='https://storybook.js.org/'
-        urlParams={{
-          sort: 'date',
-          perPage: 11,
-          viewtype: 'cards',
-        }}
-      >
-        External without get-params
-      </Link>
-    </div>
-  ))
-  .add('with anchor', () => (
-    <div>
-      <Link
-        underlined
-        anchor='test'
-        style={marginRight}
-      >
-        Link without url
-      </Link>
-      <Link
-        underlined
-        url='https://www.sima-land.ru/prazdniki/'
-        anchor='test'
-        style={marginRight}
-      >
-        Link with anchor
-      </Link>
-    </div>
-  ))
-  .add('with target', () => (
-    <div>
-      <Link
-        underlined
-        url='https://www.sima-land.ru/prazdniki/'
+        href='https://www.sima-land.ru/prazdniki/'
         target='_parent'
         style={marginRight}
       >
@@ -224,7 +141,7 @@ storiesOf('Link', module)
         underlined
         external
         withIcon={false}
-        url='https://www.sima-land.ru/prazdniki/'
+        href='https://www.sima-land.ru/prazdniki/'
         target='_parent'
         style={marginRight}
       >
@@ -232,7 +149,7 @@ storiesOf('Link', module)
       </Link>
       <Link
         underlined
-        url='https://www.sima-land.ru/prazdniki/'
+        href='https://www.sima-land.ru/prazdniki/'
         target='_blank'
         style={marginRight}
       >
@@ -240,7 +157,7 @@ storiesOf('Link', module)
       </Link>
       <Link
         underlined
-        url='https://www.sima-land.ru/prazdniki/'
+        href='https://www.sima-land.ru/prazdniki/'
         target='_self'
         style={marginRight}
       >

@@ -9,7 +9,7 @@
 ```jsx
 import { LINK_COLORS } from './create-link-style';
 LINK_COLORS.map(color => (
-    <span style={{marginRight: '15px'}}>
+    <span style={{marginRight: '15px'}} key={color}>
         <Link
             color={color}
             underlined
@@ -24,7 +24,7 @@ LINK_COLORS.map(color => (
 ```jsx
 import { LINK_COLORS } from './create-link-style';
 LINK_COLORS.map(color => (
-    <span style={{marginRight: '15px'}}>
+    <span style={{marginRight: '15px'}} key={color}>
         <Link
             color={color}
             underlined
@@ -40,7 +40,7 @@ LINK_COLORS.map(color => (
 ```jsx
 import { LINK_COLORS } from './create-link-style';
 LINK_COLORS.map(color => (
-    <span style={{marginRight: '15px'}}>
+    <span style={{marginRight: '15px'}} key={color}>
         <Link
             color={color}
             external
@@ -55,7 +55,7 @@ LINK_COLORS.map(color => (
 ```jsx
 import { LINK_COLORS } from './create-link-style';
 LINK_COLORS.map(color => (
-    <span style={{marginRight: '15px'}}>
+    <span style={{marginRight: '15px'}} key={color}>
         <Link
             color={color}
             disableHoverEffect

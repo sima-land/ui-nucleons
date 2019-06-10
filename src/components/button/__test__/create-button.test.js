@@ -1,4 +1,4 @@
-import createButtonStyle from '../create-button-style';
+import { createButtonStyle } from '../create-button-style';
 
 describe('createButtonStyle', () => {
   it('returns right classes with correct data', () => {
