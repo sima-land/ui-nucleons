@@ -62,7 +62,11 @@ const Button = ({
     ref: saveRef,
     disabled: isDisabled,
   };
-  return renderButton({ appearance, buttonParams, children });
+  return (
+    <React.Fragment>
+      {renderButton({ appearance, buttonParams, children })}
+    </React.Fragment>
+  );
 };
 
 Button.propTypes = {
@@ -107,15 +111,15 @@ Button.propTypes = {
    */
   href: Type.string,
   /**
-   * Функция, вызываемая при клике
+   * Функция, вызываемая при клике.
    */
   onClick: Type.func,
   /**
-   * Функция, вызываемая при наведении
+   * Функция, вызываемая при наведении.
    */
   onMouseEnter: Type.func,
   /**
-   * Функция, вызываемая при покидании области кнопки
+   * Функция, вызываемая при покидании области кнопки.
    */
   onMouseLeave: Type.func,
 };

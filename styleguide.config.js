@@ -1,7 +1,39 @@
+const reactDoc = require('react-docgen');
+
 module.exports = {
   title: 'UINuclions',
   components: 'src/components/**/*.jsx',
-  propsParser: filePath => require('library-utils/react-doc')(filePath),
+  resolver: reactDoc.resolver.findAllComponentDefinitions,
+  propsParser: (filePath, source, resolver, handlers) =>
+    reactDoc.parse(source, resolver, handlers),
+  handlers: componentPath =>
+    reactDoc.defaultHandlers.concat(
+      (documentation, path) => {
+        // Calculate a display name for components based upon the declared class name.
+        if (
+          path.value.type === 'ClassDeclaration'
+          && path.value.id.type === 'Identifier'
+        ) {
+          documentation.set('displayName', path.value.id.name);
+
+          // Calculate the key required to find the component in the module exports
+          if (
+            path.parentPath.value.type === 'ExportNamedDeclaration'
+          ) {
+            documentation.set('path', path.value.id.name);
+          }
+        }
+        // The component is the default export
+        if (
+          path.parentPath.value.type === 'ExportDefaultDeclaration'
+        ) {
+          documentation.set('path', 'default');
+        }
+      },
+      require('react-docgen-displayname-handler').createDisplayNameHandler(
+        componentPath
+      )
+    ),
   serverPort: 8080,
   styleguideDir: require('path').resolve(__dirname, 'styleguide'),
   styles: {

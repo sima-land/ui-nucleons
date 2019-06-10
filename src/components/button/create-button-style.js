@@ -2,8 +2,8 @@ import classnames from 'classnames/bind';
 import styles from './button.scss';
 
 const cx = classnames.bind(styles);
-const BUTTON_COLORS = ['clean', 'white', 'blue'];
-const BUTTON_SHAPES = ['square', 'rounded', 'pill', 'circle'];
+export const BUTTON_COLORS = ['clean', 'white', 'blue'];
+export const BUTTON_SHAPES = ['square', 'rounded', 'pill', 'circle'];
 
 /**
  * Создание классов для кнопки.
