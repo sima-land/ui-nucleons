@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<NoIndex should renders correctly 1`] = `
-<Index>
+<NoIndex>
   <span
     dangerouslySetInnerHTML={
       Object {
@@ -20,5 +20,5 @@ exports[`<NoIndex should renders correctly 1`] = `
       }
     }
   />
-</Index>
+</NoIndex>
 `;
