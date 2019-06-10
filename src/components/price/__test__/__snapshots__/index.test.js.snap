@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Price /> renders correctly 1`] = `
+<span
+  className="price"
+>
+  100
+  .58
+</span>
+`;
+
+exports[`<Price /> renders correctly 2`] = `
+<span
+  className="price"
+>
+  100
+  <span
+    className="grapheme"
+  >
+     $
+  </span>
+</span>
+`;
+
+exports[`<Price /> renders correctly 3`] = `
+<span
+  className="price"
+>
+  <b>
+    100
+  </b>
+  .00
+  <span
+    className="grapheme"
+  >
+     €
+  </span>
+</span>
+`;
