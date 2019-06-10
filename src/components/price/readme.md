@@ -1,0 +1,67 @@
+Отображение цены с разными графемами валют
+```jsx
+import { graphemes } from '../constants';
+    graphemes.map(grapheme => 
+        <span style={{ marginRight: '15px' }}>
+            <Price value='1234.56' currencyGrapheme={grapheme} />
+        </span>
+    )
+```
+
+Отображение цены с дробной частью
+```jsx
+import { graphemes } from '../constants';
+    graphemes.map(grapheme => 
+        <span style={{ marginRight: '15px' }}>
+            <Price value='1234.56' currencyGrapheme={grapheme} withFractionalPart />
+        </span>
+    )
+```
+
+Отображение цены с дробной частью вверху
+```jsx
+import { graphemes } from '../constants';
+    graphemes.map(grapheme => 
+        <span style={{ marginRight: '15px' }}>
+            <Price
+                value='1234.56' 
+                currencyGrapheme={grapheme}
+                withFractionalPart
+                fractionalInSuper
+            />
+        </span>
+    )
+```
+
+Отображение цены с дробной частью вверху и выделенной жирным начертанием целой частью
+```jsx
+import { graphemes } from '../constants';
+    graphemes.map(grapheme => 
+        <span style={{ marginRight: '15px' }}>
+            <Price
+                value='1234.56'
+                currencyGrapheme={grapheme}
+                withFractionalPart
+                fractionalInSuper
+                boldIntegerPart
+            />
+        </span>
+    )
+```
+
+Отображение с разными графемами перед значением цены
+```jsx
+import { graphemes } from '../constants';
+    graphemes.map(grapheme => 
+        <span style={{ marginRight: '15px' }}>
+            <Price
+                value='1234.56'
+                currencyGrapheme={grapheme}
+                withFractionalPart
+                fractionalInSuper
+                boldIntegerPart
+                beforePrice
+            />
+        </span>
+    )
+```
