@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<TabsGroup /> renders correctly 1`] = `
+exports[`<Tabs /> renders correctly 1`] = `
 <ul
   className="tabs-list"
 >
@@ -34,7 +34,7 @@ exports[`<TabsGroup /> renders correctly 1`] = `
 </ul>
 `;
 
-exports[`<TabsGroup /> renders correctly with customClasses 1`] = `
+exports[`<Tabs /> renders correctly with customClasses 1`] = `
 <ul
   className="test-items-list tabs-list"
 >
@@ -68,7 +68,7 @@ exports[`<TabsGroup /> renders correctly with customClasses 1`] = `
 </ul>
 `;
 
-exports[`<TabsGroup /> renders correctly without params 1`] = `
+exports[`<Tabs /> renders correctly without params 1`] = `
 <ul
   className="tabs-list"
 />
