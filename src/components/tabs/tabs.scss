@@ -1,0 +1,36 @@
+@import "../variables";
+
+.tabs-list {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  line-height: 22px;
+  li {
+    margin: 0;
+    &::before {
+      content: none;
+    }
+  }
+}
+
+.tab-item {
+  background-color: $white;
+  display: inline-block;
+  cursor: pointer;
+  border: 1px dashed #afb8bb;
+  padding: 4px 10px 5px;
+  border-radius: 5px;
+}
+
+.tab-selected {
+  color: $white;
+  background-color: $gray2;
+  display: inline-block;
+  font-weight: 700;
+  border: 1px dashed #afb8bb;
+  padding: 4px 9px 5px;
+  border-radius: 5px;
+}
