@@ -2,6 +2,7 @@ import React from 'react';
 import composeClasses from '../helpers/compose-classes';
 import classnames from 'classnames/bind';
 import styles from './tabs.scss';
+import isFunction from 'lodash.isfunction';
 import Type from 'prop-types';
 
 const cx = classnames.bind(styles);
@@ -42,10 +43,14 @@ const Tabs = ({
       {Array.isArray(items) && items.map((item, index) => (
         <li
           key={index}
-          onClick={() => onSelectItem(item)}
-          className={isSelectedItem(item) ? selectedItemClasses : itemClasses}
+          onClick={() => isFunction(onSelectItem) && onSelectItem(item)}
+          className={
+            isFunction(isSelectedItem) && isSelectedItem(item)
+              ? selectedItemClasses
+              : itemClasses
+          }
         >
-          {renderItem(item)}
+          {isFunction(renderItem) && renderItem(item)}
         </li>
       ))}
     </ul>
