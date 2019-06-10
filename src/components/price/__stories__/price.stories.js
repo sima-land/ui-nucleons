@@ -33,4 +33,3 @@ storiesOf('Price', module)
         <Price value='1234.56' currencyGrapheme={grapheme} withFractionalPart boldIntegerPart fractionalInSuper />
       </span>
     )));
-
