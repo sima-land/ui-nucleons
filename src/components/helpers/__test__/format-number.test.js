@@ -13,8 +13,6 @@ describe('test formatNumber', () => {
   it('formatNumber() works properly if gets NaN', () => {
     number = formatNumber('test', ' ');
     expect(number).toEqual([]);
-    number = formatNumber(0.001);
-    expect(number).toEqual(['0', '0010']);
   });
 });
 
