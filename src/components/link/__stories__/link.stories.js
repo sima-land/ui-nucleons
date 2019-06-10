@@ -23,6 +23,7 @@ storiesOf('Link', module)
         {LINK_COLORS.map(color => (
           <span
             style={marginRight}
+            key={color}
           >
             <Link color={color}>Ссылка</Link>
           </span>
@@ -32,6 +33,7 @@ storiesOf('Link', module)
         {LINK_COLORS.map(color => (
           <span
             style={marginRight}
+            key={color}
           >
             <Link color={color}>Ссылка</Link>
           </span>
@@ -45,6 +47,7 @@ storiesOf('Link', module)
         {LINK_COLORS.map(color => (
           <span
             style={marginRight}
+            key={color}
           >
             <Link color={color} underlined>Ссылка</Link>
           </span>
@@ -54,6 +57,7 @@ storiesOf('Link', module)
         {LINK_COLORS.map(color => (
           <span
             style={marginRight}
+            key={color}
           >
             <Link color={color} underlined>Ссылка</Link>
           </span>
@@ -67,6 +71,7 @@ storiesOf('Link', module)
         {LINK_COLORS.map(color => (
           <span
             style={marginRight}
+            key={color}
           >
             <Link color={color} underlined pseudo>Ссылка</Link>
           </span>
@@ -76,6 +81,7 @@ storiesOf('Link', module)
         {LINK_COLORS.map(color => (
           <span
             style={marginRight}
+            key={color}
           >
             <Link color={color} underlined pseudo>Ссылка</Link>
           </span>
@@ -89,6 +95,7 @@ storiesOf('Link', module)
         {LINK_COLORS.map(color => (
           <span
             style={marginRight}
+            key={color}
           >
             <Link color={color} external>Ссылка</Link>
           </span>
@@ -98,6 +105,7 @@ storiesOf('Link', module)
         {LINK_COLORS.map(color => (
           <span
             style={marginRight}
+            key={color}
           >
             <Link color={color} external>Ссылка</Link>
           </span>
@@ -111,6 +119,7 @@ storiesOf('Link', module)
         {LINK_COLORS.map(color => (
           <span
             style={marginRight}
+            key={color}
           >
             <Link color={color} disableHoverEffect>Ссылка</Link>
           </span>
@@ -120,6 +129,7 @@ storiesOf('Link', module)
         {LINK_COLORS.map(color => (
           <span
             style={marginRight}
+            key={color}
           >
             <Link color={color} disableHoverEffect>Ссылка</Link>
           </span>
@@ -132,20 +142,18 @@ storiesOf('Link', module)
       <Link
         underlined
         href='https://www.sima-land.ru/prazdniki/'
-        target='_parent'
         style={marginRight}
       >
-        Link with not allowed target
+        Link without target
       </Link>
       <Link
         underlined
         external
         withIcon={false}
         href='https://www.sima-land.ru/prazdniki/'
-        target='_parent'
         style={marginRight}
       >
-        External link with not allowed target
+        External link without target
       </Link>
       <Link
         underlined
