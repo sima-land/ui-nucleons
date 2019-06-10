@@ -16,9 +16,9 @@ const NoIndex = ({ children }) => (
 );
 
 NoIndex.propTypes = {
-  /**
-	* Содержимое.
-	*/
+/**
+ * Содержимое.
+ */
   children: Type.any,
 };
 
