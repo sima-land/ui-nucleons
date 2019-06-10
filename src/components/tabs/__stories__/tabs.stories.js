@@ -50,7 +50,7 @@ class SelectableTabs extends React.Component {
 
 /**
  * Табы c кастомным рендерингом.
- * @param {string} item Элемент таба.
+ * @param {Object} item Элемент таба.
  * @return {ReactElement} Компонент.
  */
 class CustomTabs extends React.Component {
