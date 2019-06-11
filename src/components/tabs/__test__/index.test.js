@@ -3,7 +3,7 @@ import Tabs from '../';
 import { shallow } from 'enzyme';
 
 
-describe('<TabsGroup />', () => {
+describe('<Tabs />', () => {
   let selectableTabs;
   const items = [
       'item 1',
