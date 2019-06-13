@@ -6,9 +6,9 @@ import Type from 'prop-types';
 /**
  * Попап. Базовый вид.
  * @param {Object} props Свойства компонента.
- * @param {*} props.children Дочерние элементы.
- * @param {string} props.additionalClass Дополнительный класс попапа.
- * @param {Function} props.saveRef Функция сохранения ссылки на HTML элемент.
+ * @param {*} [props.children] Дочерние элементы.
+ * @param {string} [props.additionalClass] Дополнительный класс попапа.
+ * @param {Function} [props.saveRef] Функция сохранения ссылки на HTML элемент.
  * @return {ReactElement} Попап со скругленными углами, белым фоном и тенью.
  */
 const Popup = ({ children, additionalClass, saveRef }) => (
@@ -18,8 +18,17 @@ const Popup = ({ children, additionalClass, saveRef }) => (
 );
 
 Popup.propTypes = {
+  /**
+   * Дочерние элементы попапа
+   */
   children: Type.any,
+  /**
+   * Дополнительный класс
+   */
   additionalClass: Type.string,
+  /**
+   * Функция сохранение ссылки на HTML элемент
+   */
   saveRef: Type.func,
 };
 
