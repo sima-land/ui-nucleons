@@ -1,4 +1,4 @@
-import Phone from '../phone';
+import Phone from '../';
 import { shallow } from 'enzyme';
 import React from 'react';
 
