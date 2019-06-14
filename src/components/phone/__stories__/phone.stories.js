@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Phone from '../phone';
+import Phone from '../';
 
 
 storiesOf('Phone', module)
