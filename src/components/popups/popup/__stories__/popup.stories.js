@@ -10,7 +10,7 @@ const childPadding = {
   padding: '20px',
 };
 
-storiesOf('Popup', module)
+storiesOf('Popups/Popup', module)
   .add('default appearance', () => (
     <div style={popupWidth}>
       <Popup>
