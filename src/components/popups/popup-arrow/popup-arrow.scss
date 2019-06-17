@@ -1,0 +1,60 @@
+@import '../../variables';
+
+.base {
+  position: absolute;
+  top: -10px;
+  border-width: 10px;
+  border-style: solid;
+  z-index: 2;
+}
+
+.top {
+  border-top: 0;
+}
+
+.bottom {
+  border-bottom: 0;
+}
+
+.white {
+  border-color: $white;
+  border-right-color: $transparent;
+  border-left-color: $transparent;
+}
+
+.blue {
+  border-color: $blue;
+  border-right-color: $transparent;
+  border-left-color: $transparent;
+}
+
+.dark-blue {
+  border-color: $darkBlue;
+  border-right-color: $transparent;
+  border-left-color: $transparent;
+}
+
+.dark-blue2 {
+  border-color: $darkBlue2;
+  border-right-color: $transparent;
+  border-left-color: $transparent;
+}
+
+.shadow::before {
+  position: absolute;
+  left: -7px;
+  width: 15px;
+  height: 15px;
+  content: '';
+  transform: rotate(225deg);
+}
+
+.shadow-top::before {
+  top: 4px;
+  box-shadow: 2px 2px 2px $veryLightShadow;
+}
+
+.shadow-bottom::before {
+  bottom: 4px;
+  box-shadow: -2px -2px 2px $veryLightShadow;
+}

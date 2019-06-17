@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PositioningPopup /> renders correctly 1`] = `
+<div
+  className="popup-wrap hidden"
+  style={
+    Object {
+      "left": 0,
+      "top": "100%",
+    }
+  }
+>
+  <PopupArrow />
+  <Popup />
+</div>
+`;
+
+exports[`<PositioningPopup /> renders correctly 2`] = `
+<div
+  className="popup-wrap visible"
+  style={
+    Object {
+      "left": 0,
+      "top": "100%",
+    }
+  }
+>
+  <Popup />
+</div>
+`;
+
+exports[`<PositioningPopup /> renders correctly 3`] = `
+<div
+  className="popup-wrap visible"
+  style={
+    Object {
+      "left": 0,
+      "top": "100%",
+    }
+  }
+>
+  <PopupArrow />
+  <Popup
+    className="animation"
+  />
+</div>
+`;
