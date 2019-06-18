@@ -19,7 +19,7 @@ const MIN_POSITIONING_MARGIN = 20;
  */
 export const defaultArrowProps = {
   direction: 'top',
-  className: styles['arrow-base'],
+  className: 'arrow-base',
   shadow: true,
   color: 'white',
   position: {},
@@ -110,7 +110,7 @@ class PositioningPopup extends Component {
       : 0;
     const popupPosition = this.getPopupPosition(bounds, popupWidth);
     const arrowProps = hasOpener && this.getArrowProps(bounds, popupPosition);
-    const popupClass = bindClassNames(className, styles['popup-wrap'], isOpen ? styles.visible : styles.hidden);
+    const popupClass = bindClassNames(className, 'popup-wrap', isOpen ? 'visible' : 'hidden');
     return (
       <div ref={ref => this.popup = ref}
         onMouseOut={onMouseOut}

@@ -18,10 +18,10 @@ export const createArrowStyles = ({ direction, className, shadow, color } = {}) 
   const col = COLORS.includes(color) ? color : 'white';
   const direct = DIRECTION.includes(direction) ? direction : 'top';
   return bindClassNames(
-    styles.base,
-    styles[col],
+    'base',
+    [col],
     className,
-    styles[direct],
-    shadow && classNames(styles.shadow, styles[`shadow-${direct}`])
+    [direct],
+    shadow && classNames('shadow', `shadow-${direct}`)
   );
 };
