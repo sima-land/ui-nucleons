@@ -37,7 +37,7 @@ describe('<PositioningPopup />', () => {
     let arrowProps = popup.instance().getArrowProps({}, {});
     expect(arrowProps).toEqual({ ...defaultArrowProps, ...{ position: arrowPosition } });
     popup.instance().popup = {};
-    popup.instance().popup.getBoundingClientRect = jest.fn(() => ({ width: 200 }));
+    popup.instance().popup.offsetWidth = 200;
     popup.setProps({ arrowProps: {} });
     const bounds = { left: 5, width: 200 };
     const popupPosition = { left: '50px' };

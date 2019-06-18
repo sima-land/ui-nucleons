@@ -103,10 +103,10 @@ class PositioningPopup extends Component {
       onMouseOver,
     } = this.props;
     const hasOpener = isBrowser() && opener instanceof HTMLElement;
-    const bounds = hasOpener ? opener.getBoundingClientRect() : {};
-    const popupRect = this.popup && this.popup.getBoundingClientRect();
-    const popupWidth = popupRect && popupRect.width
-      ? Math.floor(popupRect.width)
+    const bounds = hasOpener ? { width: opener.offsetWidth, left: opener.offsetLeft } : {};
+    const popupLocation = this.popup && { width: this.popup.offsetWidth, left: this.popup.offsetLeft };
+    const popupWidth = popupLocation && popupLocation.width
+      ? Math.floor(popupLocation.width)
       : 0;
     const popupPosition = this.getPopupPosition(bounds, popupWidth);
     const arrowProps = hasOpener && this.getArrowProps(bounds, popupPosition);
