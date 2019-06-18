@@ -21,7 +21,7 @@ describe('<PositioningPopup />', () => {
 
   it('method getPopupPosition return correct values', () => {
     popup = mount(<PositioningPopup withArrow isOpen opener={document.createElement('div')} />);
-    popup.setProps({ bodyWidth: 500 });
+    popup.setProps({ parentWidth: 500 });
     let popupPosition = popup.instance().getPopupPosition({ left: 10 }, 20);
     expect(popupPosition).toEqual({ left: '20px', top: '100%' });
     popupPosition = popup.instance().getPopupPosition({ left: 500 }, 200);

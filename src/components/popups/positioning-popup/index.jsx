@@ -29,7 +29,7 @@ export const defaultArrowProps = {
  * @param {Object} props Параметры обьекта.
  * @param {*} [props.children] Дочерние элементы.
  * @param {boolean} [props.withArrow] Добавить стрелку сверху.
- * @param {number} props.bodyWidth Ширина body.
+ * @param {number} props.parentWidth Ширина родительского контейнера.
  * @param {Object} [arrowProps] Свойства стрелки.
  * @param {string} [arrowProps.direction='top'] Направление стрелки.
  * @param {string} [arrowProps.className='arrow-base'] Класс для стрелки.
@@ -55,12 +55,12 @@ class PositioningPopup extends Component {
       top: '100%',
       left: 0,
     };
-    const { bodyWidth } = this.props;
-    if (openerCoords && popupWidth && popupWidth !== bodyWidth) {
+    const { parentWidth } = this.props;
+    if (openerCoords && popupWidth && popupWidth !== parentWidth) {
       const rightPopupCorner = openerCoords.left + popupWidth;
       const left
-        = rightPopupCorner > bodyWidth
-          ? bodyWidth - popupWidth - MIN_POSITIONING_MARGIN
+        = rightPopupCorner > parentWidth
+          ? parentWidth - popupWidth - MIN_POSITIONING_MARGIN
           : openerCoords.left;
       coords.left = left < MIN_POSITIONING_MARGIN ? `${MIN_POSITIONING_MARGIN}px` : `${left}px`;
     }
@@ -178,9 +178,9 @@ PositioningPopup.propTypes = {
    */
   basePopupClass: Type.string,
   /**
-   * Ширина body.
+   * Ширина родительского контейнера.
    */
-  bodyWidth: Type.number,
+  parentWidth: Type.number,
   /**
    * Обработчик покидания курсором области попапа.
    */
