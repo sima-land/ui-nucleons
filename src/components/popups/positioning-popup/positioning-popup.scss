@@ -1,0 +1,22 @@
+.popup-wrap {
+  position: absolute;
+}
+
+.arrow-base {
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  z-index: 101;
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+  z-index: 100;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  z-index: -1;
+}

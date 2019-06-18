@@ -12,6 +12,7 @@
     "node": ">=10.15.3"
   },
   "dependencies": {
+    "lodash.isempty": "^4.4.0",
     "lodash.isfunction": "^3.0.9",
     "prop-types": "^15.7.2"
   },
