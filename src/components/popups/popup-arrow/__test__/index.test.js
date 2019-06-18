@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import PopupArrow from '../popup-arrow';
+import PopupArrow from '../';
 
 let arrow;
 

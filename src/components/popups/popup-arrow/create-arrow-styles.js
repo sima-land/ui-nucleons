@@ -9,11 +9,11 @@ const bindClassNames = classNames.bind(styles);
  * @param {'top'|'bottom'} [props.direction] Направление стрелки.
  * @param {string} [props.className] Дополнительный класс.
  * @param {boolean} [props.shadow] Отображать тень.
- * @param {'white' | 'blue' | 'dark-blue' | 'dark-blue2' } [props.color] Цвет.
+ * @param {'white' | 'blue' | 'dark-blue' | 'deep-blue' } [props.color] Цвет.
  * @return {Object} Стили стрелки.
  */
 export const createArrowStyles = ({ direction, className, shadow, color } = {}) => {
-  const COLORS = ['white', 'blue', 'dark-blue', 'dark-blue2'];
+  const COLORS = ['white', 'blue', 'dark-blue', 'deep-blue'];
   const DIRECTION = ['top', 'bottom'];
   const col = COLORS.includes(color) ? color : 'white';
   const direct = DIRECTION.includes(direction) ? direction : 'top';

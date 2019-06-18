@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Popup from '../popup/';
 import classNames from 'classnames/bind';
-import PopupArrow from '../popup-arrow/popup-arrow';
+import PopupArrow from '../popup-arrow/';
 import isBrowser from '../../helpers/is-browser';
 import isEmpty from 'lodash.isempty';
 import styles from './positioning-popup.scss';
@@ -31,16 +31,15 @@ export const defaultArrowProps = {
  * @param {boolean} [props.withArrow] Добавить стрелку сверху.
  * @param {number} props.bodyWidth Ширина body.
  * @param {Object} [arrowProps] Свойства стрелки.
- * @param {string} [arrowProps.direction] Направление стрелки.
- * @param {string} [arrowProps.className] Класс для стрелки.
- * @param {boolean} [arrowProps.shadow] Наличие тени у стрелки.
- * @param {string} [arrowProps.color] Цвет стрелки.
- * @param {Object} [arrowProps.position] Координаты стрелки.
+ * @param {string} [arrowProps.direction='top'] Направление стрелки.
+ * @param {string} [arrowProps.className='arrow-base'] Класс для стрелки.
+ * @param {boolean} [arrowProps.shadow=true] Наличие тени у стрелки.
+ * @param {string} [arrowProps.color='white'] Цвет стрелки.
+ * @param {Object} [arrowProps.position={}] Координаты стрелки.
  * @param {string} [props.className] Дополнительный класс для попапа.
  * @param {boolean} [props.isOpen] Открыт ли попап.
  * @param {HTMLElement} props.opener Открывающий элемент.
  * @param {string} [props.basePopupClass] Класс для стилизации базового попапа.
- * @param {number} props.bodyWidth Ширина body.
  * @param {Function} [props.onMouseOut] Обработчик покидания курсором области попапа.
  * @param {Function} [props.onMouseOver] Обработчик наведения курсора мыши на попап.
  */
@@ -56,13 +55,14 @@ class PositioningPopup extends Component {
       top: '100%',
       left: 0,
     };
-    if (openerCoords && popupWidth && popupWidth !== this.props.bodyWidth) {
+    const { bodyWidth } = this.props;
+    if (openerCoords && popupWidth && popupWidth !== bodyWidth) {
+      const rightPopupCorner = openerCoords.left + popupWidth;
       const left
-        = openerCoords.left + popupWidth > this.props.bodyWidth
-          ? this.props.bodyWidth - popupWidth - MIN_POSITIONING_MARGIN
+        = rightPopupCorner > bodyWidth
+          ? bodyWidth - popupWidth - MIN_POSITIONING_MARGIN
           : openerCoords.left;
-      coords.left = left < MIN_POSITIONING_MARGIN ? MIN_POSITIONING_MARGIN : left;
-      coords.left = `${coords.left}px`;
+      coords.left = left < MIN_POSITIONING_MARGIN ? `${MIN_POSITIONING_MARGIN}px` : `${left}px`;
     }
     return coords;
   };
@@ -80,8 +80,9 @@ class PositioningPopup extends Component {
       arrowProps[prop] = arrowProps[prop] ? arrowProps[prop] : defaultArrowProps[prop];
     });
     if (isEmpty(arrowProps.position)) {
+      const leftPopupCoordinate = String(popupPosition.left).match(/\d*/g)[0];
       arrowProps.position = {
-        left: `${(bounds.left + (0.5 * bounds.width) - String(popupPosition.left).match(/\d*/g)[0]) - 10}px`,
+        left: `${(bounds.left + (0.5 * bounds.width) - leftPopupCoordinate) - 10}px`,
       };
     }
     return arrowProps;
@@ -154,7 +155,7 @@ PositioningPopup.propTypes = {
     /**
      * Цвет
      */
-    color: Type.string,
+    color: Type.oneOf(['white', 'blue', 'dark-blue', 'deep-blue']),
     /**
      * Координаты
      */
