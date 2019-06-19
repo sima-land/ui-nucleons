@@ -23,9 +23,12 @@ describe('<PositioningPopup />', () => {
     popup = mount(<PositioningPopup withArrow isOpen opener={document.createElement('div')} />);
     popup.setProps({ parentWidth: 500 });
     let popupPosition = popup.instance().getPopupPosition({ left: 10 }, 20);
-    expect(popupPosition).toEqual({ left: '20px', top: '100%' });
+    expect(popupPosition).toEqual({ left: '20px', top: '100%', width: 20 });
     popupPosition = popup.instance().getPopupPosition({ left: 500 }, 200);
-    expect(popupPosition).toEqual({ left: '280px', top: '100%' });
+    expect(popupPosition).toEqual({ left: '280px', top: '100%', width: 200 });
+    popup.setProps({ positioningMargin: 0 });
+    popupPosition = popup.instance().getPopupPosition({ left: 0 }, 100);
+    expect(popupPosition).toEqual({ left: '0px', top: '100%', width: 100 });
   });
 
   it('method getArrowProps return correct values', () => {
@@ -42,8 +45,10 @@ describe('<PositioningPopup />', () => {
     const bounds = { left: 5, width: 200 };
     const popupPosition = { left: '50px' };
     arrowProps = popup.instance().getArrowProps(bounds, popupPosition);
-    const position = { position: { left: '45px' } };
-    expect(arrowProps).toEqual({ ...defaultArrowProps, ...position });
+    expect(arrowProps).toEqual({ ...defaultArrowProps, ...{ position: { left: '45px' } } });
     expect(Object.keys(arrowProps)).toEqual(Object.keys(defaultArrowProps));
+    popup.setProps({ arrowProps: {} });
+    arrowProps = popup.instance().getArrowProps({ left: 100, width: 20 }, { left: '50px', width: 40 });
+    expect(arrowProps).toEqual({ ...defaultArrowProps, ...{ position: { left: '15px' } } });
   });
 });

@@ -3,6 +3,8 @@ import styles from './popup-arrow.scss';
 
 const bindClassNames = classNames.bind(styles);
 
+export const COLORS = ['white', 'blue', 'dark-blue', 'deep-blue'];
+export const DIRECTION = ['top', 'bottom'];
 /**
  * Формирование стилей стрелки.
  * @param {Object} props Свойства компонента.
@@ -13,8 +15,6 @@ const bindClassNames = classNames.bind(styles);
  * @return {Object} Стили стрелки.
  */
 export const createArrowStyles = ({ direction, className, shadow, color } = {}) => {
-  const COLORS = ['white', 'blue', 'dark-blue', 'deep-blue'];
-  const DIRECTION = ['top', 'bottom'];
   const col = COLORS.includes(color) ? color : 'white';
   const direct = DIRECTION.includes(direction) ? direction : 'top';
   return bindClassNames(

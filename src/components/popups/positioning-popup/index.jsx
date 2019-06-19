@@ -9,12 +9,22 @@ import Type from 'prop-types';
 
 const bindClassNames = classNames.bind(styles);
 /**
- * Минимальный отступ от края контейнера
+ * Минимальный отступ от края контейнера.
  * @type {number}
  */
-const MIN_POSITIONING_MARGIN = 20;
+const DEFAULT_POSITIONING_MARGIN = 20;
 /**
- * Props стрелки по-умолчанию
+ * Половина ширины стрелки.
+ * @type {number}
+ */
+const ARROW_WIDTH = 20;
+/**
+ * Минимальный отступ стрелки от края попапа.
+ * @type {number}
+ */
+const ARROW_MARGIN = 5;
+/**
+ * Props стрелки по-умолчанию.
  * @type {Object}
  */
 export const defaultArrowProps = {
@@ -30,6 +40,7 @@ export const defaultArrowProps = {
  * @param {*} [props.children] Дочерние элементы.
  * @param {boolean} [props.withArrow] Добавить стрелку сверху.
  * @param {number} props.parentWidth Ширина родительского контейнера.
+ * @param {number} [props.positioningMargin=20] Значение отступа от края границы.
  * @param {Object} [arrowProps] Свойства стрелки.
  * @param {string} [arrowProps.direction='top'] Направление стрелки.
  * @param {string} [arrowProps.className='arrow-base'] Класс для стрелки.
@@ -55,14 +66,16 @@ class PositioningPopup extends Component {
       top: '100%',
       left: 0,
     };
-    const { parentWidth } = this.props;
+    const { parentWidth, positioningMargin } = this.props;
+    const edgeMargin = positioningMargin || positioningMargin === 0 ? positioningMargin : DEFAULT_POSITIONING_MARGIN;
     if (openerCoords && popupWidth && popupWidth !== parentWidth) {
       const rightPopupCorner = openerCoords.left + popupWidth;
       const left
         = rightPopupCorner > parentWidth
-          ? parentWidth - popupWidth - MIN_POSITIONING_MARGIN
+          ? parentWidth - popupWidth - edgeMargin
           : openerCoords.left;
-      coords.left = left < MIN_POSITIONING_MARGIN ? `${MIN_POSITIONING_MARGIN}px` : `${left}px`;
+      coords.left = left < edgeMargin ? `${edgeMargin}px` : `${left}px`;
+      coords.width = popupWidth;
     }
     return coords;
   };
@@ -80,9 +93,15 @@ class PositioningPopup extends Component {
       arrowProps[prop] = arrowProps[prop] ? arrowProps[prop] : defaultArrowProps[prop];
     });
     if (isEmpty(arrowProps.position)) {
-      const leftPopupCoordinate = String(popupPosition.left).match(/\d*/g)[0];
+      const openerCenterLeft = bounds.left + (0.5 * bounds.width);
+      const popupLeft = Number(String(popupPosition.left).match(/\d*/g)[0]);
+      const popupRight = popupLeft + popupPosition.width;
+      const arrowLeft = openerCenterLeft - (0.5 * ARROW_WIDTH);
+      const arrowRight = openerCenterLeft + (0.5 * ARROW_WIDTH);
+      const arrowLeftOffsetPopup = arrowLeft - popupLeft;
+      const left = arrowLeft < popupLeft ? ARROW_MARGIN : arrowLeftOffsetPopup;
       arrowProps.position = {
-        left: `${(bounds.left + (0.5 * bounds.width) - leftPopupCoordinate) - 10}px`,
+        left: `${arrowRight > popupRight ? popupPosition.width - ARROW_MARGIN - ARROW_WIDTH : left}px`,
       };
     }
     return arrowProps;
@@ -181,6 +200,10 @@ PositioningPopup.propTypes = {
    * Ширина родительского контейнера.
    */
   parentWidth: Type.number,
+  /**
+   * Значение отступа от края родительского контенера.
+   */
+  positioningMargin: Type.number,
   /**
    * Обработчик покидания курсором области попапа.
    */
