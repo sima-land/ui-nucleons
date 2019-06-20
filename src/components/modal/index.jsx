@@ -14,7 +14,7 @@ const DEFAULT_CLASSES = {
  * Компонент модального окна.
  * @param {Object} props Свойства компонента.
  * @param {*} props.children Содержимое компонента.
- * @param {Function} [props.onClose] Функция, вызываемая при закрытии попапа.
+ * @param {Function} props.onClose Функция, вызываемая при закрытии модального окна.
  * @param {boolean} [props.withCloseButton] С закрывающей кнопкой.
  * @param {Object} [props.customClasses] Пользовательские классы.
  * @param {string} [customClasses.overlay] Классы затемнения.
@@ -44,7 +44,7 @@ Modal.propTypes = {
    */
   children: Type.any,
   /**
-   * Функция, вызываемая при закрытии попапа.
+   * Функция, вызываемая при закрытии модального окна.
    */
   onClose: Type.func,
   /**
