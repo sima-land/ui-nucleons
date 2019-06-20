@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Modal /> renders correct with close button and customClasses 1`] = `
+<div
+  className="test-overlay overlay"
+  onClick={[Function]}
+>
+  <Popup
+    className="test-modal modal"
+  >
+    <div
+      className="test-close close"
+    >
+      ×
+    </div>
+    Test modal content
+  </Popup>
+</div>
+`;
+
+exports[`<Modal /> renders correct without close button and customClasses 1`] = `
+<div
+  className="overlay"
+  onClick={[Function]}
+>
+  <Popup
+    className="modal"
+  >
+    Test modal content
+  </Popup>
+</div>
+`;
