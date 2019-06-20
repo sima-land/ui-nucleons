@@ -1,0 +1,54 @@
+@import '../variables';
+
+.rating {
+  width: 118px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: center;
+  .inner-star {
+    fill: $transparent;
+  }
+  .outside-star {
+    fill: $transparent;
+  }
+  .bottom-of-star {
+    fill: $transparent;
+  }
+}
+
+.empty-star {
+  .outside-star {
+    fill: $grayStar;
+  }
+}
+
+.half-star {
+  .outside-star {
+    fill: $grayStar;
+  }
+  .bottom-of-star {
+    fill: $orangeStar;
+  }
+}
+
+.full-star {
+  .inner-star {
+    fill: $orangeStar;
+  }
+  .outside-star {
+    fill: $orangeStar;
+  }
+}
+
+.rating-can-be-hovered {
+  .rating-star:hover,
+  .rating-star:hover ~ .rating-star {
+    .inner-star {
+      fill: $grayStar;
+    }
+    .outside-star {
+      fill: $grayStar;
+    }
+  }
+}

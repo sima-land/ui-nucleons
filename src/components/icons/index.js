@@ -14,6 +14,7 @@ import imageCap from './image-cap.svg';
 import mail from './mail.svg';
 import refresh from './refresh.svg';
 import search from './search.svg';
+import star from './star.svg';
 import user from './user.svg';
 
 export {
@@ -33,5 +34,6 @@ export {
   mail,
   refresh,
   search,
+  star,
   user,
 };
