@@ -1,0 +1,33 @@
+@import '../variables';
+
+.overlay {
+  background: $modalOverlay;
+  position: fixed;
+  z-index: 102;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  right: 0;
+  top: 0;
+}
+
+.modal {
+  font-family: $fontBase;
+  background-color: $white;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 9px;
+  font-size: 18px;
+  font-weight: 700;
+  color: $silvery;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: $red;
+}
