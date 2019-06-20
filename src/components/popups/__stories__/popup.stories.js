@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Popup from '../';
+import Popup from '../popup';
 
 const popupWidth = {
   width: '400px',
