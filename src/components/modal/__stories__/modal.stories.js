@@ -9,8 +9,7 @@ const childPadding = {
 };
 
 /**
- * Табы c кастомным рендерингом.
- * @param {Object} item Элемент таба.
+ * Компонент для демонстрации работы модального окна.
  */
 class ModalDemo extends React.Component {
   state = {
