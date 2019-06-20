@@ -48,14 +48,14 @@ const headers = style => (
 storiesOf('Button', module)
   .add('shapes and colors', () => (
     <div>
-      {[allGray, all].map(fon => (
-        <div style={fon}>
-          {BUTTON_SHAPES.filter(shape => shape !== 'circle').map(shape => (
-            <div>
+      {[allGray, all].map((fon, index) => (
+        <div style={fon} key={index}>
+          {BUTTON_SHAPES.filter(shape => shape !== 'circle').map((shape, index) => (
+            <div key={10 + index}>
               <h2>Форма {shape}</h2>
               {headers(flexStyle)}
-              {BUTTON_COLORS.map(color => (
-                <div style={flexStyle}>
+              {BUTTON_COLORS.map((color, index) => (
+                <div style={flexStyle} key={20 + index}>
                   <Button shape={shape} color={color}>Кнопка</Button>
                   <Button shape={shape} color={color} withShadow>Кнопка</Button>
                   <Button shape={shape} color={color} isFocused>Кнопка</Button>
@@ -67,8 +67,8 @@ storiesOf('Button', module)
           <div>
             <h2>Форма circle</h2>
             {headers(circleFlexStyle)}
-            {BUTTON_COLORS.map(color => (
-              <div style={circleFlexStyle}>
+            {BUTTON_COLORS.map((color, index) => (
+              <div style={circleFlexStyle} key={30 + index}>
                 <Button shape='circle' color={color}>
                   <Icon icon={heart} color='dark-gray' />
                 </Button>
