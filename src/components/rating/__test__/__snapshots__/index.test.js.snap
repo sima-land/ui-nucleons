@@ -1,0 +1,158 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Rating /> renders correctly with custom classes 1`] = `
+<div
+  className="test-rating rating test-hovered rating-can-be-hovered"
+>
+  <Icon
+    className="test-star rating-star test-empty empty-star"
+    icon={[Function]}
+    inline={true}
+    key="5"
+    onClick={[Function]}
+    size={16}
+  />
+  <Icon
+    className="test-star rating-star test-empty empty-star"
+    icon={[Function]}
+    inline={true}
+    key="4"
+    onClick={[Function]}
+    size={16}
+  />
+  <Icon
+    className="test-star rating-star test-empty empty-star"
+    icon={[Function]}
+    inline={true}
+    key="3"
+    onClick={[Function]}
+    size={16}
+  />
+  <Icon
+    className="test-star rating-star test-half half-star"
+    icon={[Function]}
+    inline={true}
+    key="2"
+    onClick={[Function]}
+    size={16}
+  />
+  <Icon
+    className="test-star rating-star test-full full-star"
+    icon={[Function]}
+    inline={true}
+    key="1"
+    onClick={[Function]}
+    size={16}
+  />
+</div>
+`;
+
+exports[`<Rating /> renders correctly with settings 1`] = `
+<div
+  className="rating rating-can-be-hovered"
+>
+  <Icon
+    className="rating-star empty-star"
+    icon={[Function]}
+    inline={true}
+    key="7"
+    onClick={[Function]}
+    size={7}
+  />
+  <Icon
+    className="rating-star empty-star"
+    icon={[Function]}
+    inline={true}
+    key="6"
+    onClick={[Function]}
+    size={7}
+  />
+  <Icon
+    className="rating-star empty-star"
+    icon={[Function]}
+    inline={true}
+    key="5"
+    onClick={[Function]}
+    size={7}
+  />
+  <Icon
+    className="rating-star empty-star"
+    icon={[Function]}
+    inline={true}
+    key="4"
+    onClick={[Function]}
+    size={7}
+  />
+  <Icon
+    className="rating-star half-star"
+    icon={[Function]}
+    inline={true}
+    key="3"
+    onClick={[Function]}
+    size={15}
+  />
+  <Icon
+    className="rating-star full-star"
+    icon={[Function]}
+    inline={true}
+    key="2"
+    onClick={[Function]}
+    size={7}
+  />
+  <Icon
+    className="rating-star full-star"
+    icon={[Function]}
+    inline={true}
+    key="1"
+    onClick={[Function]}
+    size={7}
+  />
+</div>
+`;
+
+exports[`<Rating /> renders correctly without params 1`] = `
+<div
+  className="rating"
+>
+  <Icon
+    className="rating-star empty-star"
+    icon={[Function]}
+    inline={true}
+    key="5"
+    onClick={[Function]}
+    size={16}
+  />
+  <Icon
+    className="rating-star empty-star"
+    icon={[Function]}
+    inline={true}
+    key="4"
+    onClick={[Function]}
+    size={16}
+  />
+  <Icon
+    className="rating-star empty-star"
+    icon={[Function]}
+    inline={true}
+    key="3"
+    onClick={[Function]}
+    size={16}
+  />
+  <Icon
+    className="rating-star empty-star"
+    icon={[Function]}
+    inline={true}
+    key="2"
+    onClick={[Function]}
+    size={16}
+  />
+  <Icon
+    className="rating-star empty-star"
+    icon={[Function]}
+    inline={true}
+    key="1"
+    onClick={[Function]}
+    size={16}
+  />
+</div>
+`;
