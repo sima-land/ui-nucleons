@@ -2,4 +2,9 @@
 *.md
 styleguide.config.js
 .storybook
-src/stories
+__stories__
+.docker
+styleguide
+.dockerignore
+Dockerfile
+styleguide.k8s.yaml
