@@ -1,18 +1,75 @@
 stages:
   - test
+  - build
+  - dockerize
   - publish
 
 test:
   stage: test
-  image: mhart/alpine-node:8
+  image: node:10.15.3-alpine
+  cache:
+    paths:
+      - node_modules
+  before_script:
+    - yarn install
   script:
-    - echo 1
+    - yarn test
   tags:
     - sl-frontend
 
-publish:
+build-styleguide:
+  stage: build
+  image: node:10.15.3-alpine
+  cache:
+    paths:
+      - node_modules
+  before_script:
+    - yarn install
+  script:
+    - yarn styleguide:build
+  artifacts:
+    paths:
+      - styleguide
+    expire_in: 1 hrs
+  only:
+    refs:
+      - tags
+  tags:
+    - sl-frontend
+
+dockerize-styleguide:
+  stage: dockerize
+  image: docker:stable
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  only:
+    refs:
+      - tags
+  tags:
+    - sl-frontend
+
+publish-styleguide:
   stage: publish
-  image: mhart/alpine-node:8
+  image: registry.sima-land.ru:5043/k8s-deploy:latest
+  before_script:
+    - export DOMAIN_NAME=`echo $CI_ENVIRONMENT_URL | awk -F "[/:]" '{print $4}'`
+    - export DEPLOY_DATE=`date +"%Y-%m-%d_%H-%M-%S"`
+  script:
+    - envsubst < styleguide.k8s.yaml | kubectl apply -f -
+  only:
+    refs:
+      - tags
+  tags:
+    - sl-frontend
+  environment:
+    name: ui-nucleons-office
+
+publish-package:
+  stage: publish
+  image: node:10.15.3-alpine
   before_script:
     - echo //gitlab.sima-land.ru/api/v4/projects/625/packages/npm/:_authToken=${NPM_AUTH_TOKEN} > .npmrc
   script:
