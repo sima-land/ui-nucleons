@@ -72,8 +72,9 @@ publish-package:
   image: node:10.15.3-alpine
   before_script:
     - echo //gitlab.sima-land.ru/api/v4/projects/625/packages/npm/:_authToken=${NPM_AUTH_TOKEN} > .npmrc
+    - yarn build
   script:
-    - npm version $CI_COMMIT_REF_NAME && npm publish
+    - npm version $CI_COMMIT_REF_NAME && npm publish build
   only:
     refs:
       - tags
