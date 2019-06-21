@@ -1,0 +1,60 @@
+$blue-story: #0445e4;
+$light-blue-story: #42cbf9;
+$gray-story: #999;
+$dark-story: #333;
+
+.doc-rating {
+  margin: 5px;
+  width: 200px;
+}
+
+.doc-empty-star {
+  .outside-star {
+    fill: $blue-story;
+  }
+}
+
+.doc-half-star {
+  .outside-star {
+    fill: $blue-story;
+  }
+  .bottom-of-star {
+    fill: $light-blue-story;
+  }
+
+}
+
+.doc-full-star {
+  .inner-star {
+    fill: $light-blue-story;
+  }
+  .outside-star {
+    fill: $blue-story;
+  }
+
+}
+
+.doc-rating-can-be-hovered {
+  .doc-rating-star:hover {
+    .inner-star {
+      fill: $dark-story;
+    }
+    .outside-star {
+      fill: $dark-story;
+    }
+    .bottom-of-star {
+      fill: $dark-story;
+    }
+  }
+  .doc-rating-star:hover ~ .rating-star {
+    .inner-star {
+      fill: $gray-story;
+    }
+    .outside-star {
+      fill: $gray-story;
+    }
+    .bottom-of-star {
+      fill: $gray-story;
+    }
+  }
+}
