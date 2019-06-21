@@ -1,7 +1,7 @@
 import React from 'react';
 import { formatNumber } from '../helpers/format-number';
 import Type from 'prop-types';
-import './price.scss';
+import styles from './price.scss';
 import classNames from 'classnames';
 
 /**
@@ -28,12 +28,12 @@ const Price = ({
   const price = formatNumber(value);
   const integer = boldIntegerPart ? <b>{price[0]}</b> : price[0];
   const sign = currencyGrapheme && (
-    <span className='grapheme'>
+    <span className={styles.grapheme}>
       {beforePrice ? `${currencyGrapheme}\u00A0` : `\u00A0${currencyGrapheme}`}
     </span>
   );
   return (
-    <span className={classNames('price', className)}>
+    <span className={classNames(styles.price, className)}>
       {beforePrice && sign}
       {integer}
       {withFractionalPart && (
