@@ -4,7 +4,7 @@ describe('createArrowStyles return correct classes', () => {
   let classes;
   it('should return correct default classes', () => {
     classes = createArrowStyles();
-    expect(classes).toEqual('base white top');
+    expect(classes).toEqual('base white top shadow-top');
   });
   it('should return correct classes if gets available attributes values', () => {
     classes = createArrowStyles({ direction: 'bottom', color: 'blue', className: 'test', shadow: true });

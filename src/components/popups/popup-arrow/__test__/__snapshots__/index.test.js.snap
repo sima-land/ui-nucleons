@@ -2,7 +2,7 @@
 
 exports[`<PopupArrow /> renders correctly 1`] = `
 <span
-  className="base white top"
+  className="base white top shadow-top"
   style={Object {}}
 />
 `;
@@ -16,7 +16,7 @@ exports[`<PopupArrow /> renders correctly 2`] = `
 
 exports[`<PopupArrow /> renders correctly 3`] = `
 <span
-  className="base dark-blue test-class top"
+  className="base dark-blue test-class top shadow-top"
   style={Object {}}
 />
 `;
