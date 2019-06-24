@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент GridRow should match snapshot with custom props 1`] = `
+<section
+  className="container test gutter-s content-center"
+>
+  <div>
+    Колонка 1
+  </div>
+</section>
+`;
+
+exports[`Компонент GridRow should match snapshot with defaults 1`] = `
+<div
+  className="container gutter-l content-undefined"
+/>
+`;
