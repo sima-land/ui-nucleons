@@ -1,5 +1,5 @@
 import React from 'react';
-import './popup.scss';
+import styles from './popup.scss';
 import classNames from 'classnames';
 import Type from 'prop-types';
 
@@ -12,7 +12,7 @@ import Type from 'prop-types';
  * @return {ReactElement} Попап со скругленными углами, белым фоном и тенью.
  */
 const Popup = ({ children, additionalClass, saveRef }) => (
-  <div ref={saveRef} className={classNames('popup', additionalClass)}>
+  <div ref={saveRef} className={classNames(styles.popup, additionalClass)}>
     {children}
   </div>
 );

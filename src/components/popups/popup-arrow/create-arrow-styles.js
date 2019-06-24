@@ -22,6 +22,6 @@ export const createArrowStyles = ({ direction, className, shadow, color } = {}) 
     [col],
     className,
     [direct],
-    shadow && classNames('shadow', `shadow-${direct}`)
+    shadow && 'shadow', `shadow-${direct}`
   );
 };
