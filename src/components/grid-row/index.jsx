@@ -1,5 +1,4 @@
 import React from 'react';
-import range from 'lodash.range';
 import styles from './grid-row.scss';
 import classNames from 'classnames';
 import Type from 'prop-types';
@@ -10,16 +9,16 @@ import Type from 'prop-types';
  * @param {string} [props.tag=div] HTML-tag.
  * @param {string} [props.externalClass] Дополнительный класс стилизации.
  * @param {string} [props.gutter=l] Размер отступов между строками.
- * @param {number} [props.columns=3] Количество колонок от 1 до 12.
  * @param {string} [props.alignment=stretch] Выравнивание строк внутри flex-контейнера.
+ * @param {Object} [props.children] Содержимое строки. Элементы <GridCol />.
  * @return {ReactElement} Строка сетки.
  */
 const GridRow = ({
   tag,
   externalClass,
   gutter = 'l',
-  columns = 3,
   alignment,
+  children,
 }) => {
   const Tag = tag && typeof tag === 'string' ? tag : 'div';
   return (
@@ -30,17 +29,7 @@ const GridRow = ({
       styles[`content-${alignment}`]
     )}
     >
-      {range(0, columns, 1).map(number => (
-        // Пока заглушка. Отдельной задачей будет реализован компонент колонки
-        <div
-          key={number}
-          style={{
-            backgroundColor: '#1f84db',
-            width: '100%',
-            height: '30px',
-          }}
-        />
-      ))}
+      {children}
     </Tag>
   );
 };
@@ -59,13 +48,13 @@ GridRow.propTypes = {
    */
   gutter: Type.oneOf(['s', 'm', 'l', 'zero']),
   /**
-   * Количество колонок от 1 до 12.
-   */
-  columns: Type.number,
-  /**
    * Выравнивание строк внутри flex-контейнера.
    */
   alignment: Type.oneOf(['start', 'end', 'between', 'around', 'center']),
+  /**
+   * Содержимое строки. Элементы <GridCol />.
+   */
+  children: Type.object,
 };
 
 export default GridRow;

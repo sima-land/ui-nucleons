@@ -4,62 +4,14 @@ exports[`Компонент GridRow should match snapshot with custom props 1`] 
 <section
   className="container test gutter-s content-center"
 >
-  <div
-    key="0"
-    style={
-      Object {
-        "backgroundColor": "#1f84db",
-        "height": "30px",
-        "width": "100%",
-      }
-    }
-  />
-  <div
-    key="1"
-    style={
-      Object {
-        "backgroundColor": "#1f84db",
-        "height": "30px",
-        "width": "100%",
-      }
-    }
-  />
+  <div>
+    Колонка 1
+  </div>
 </section>
 `;
 
 exports[`Компонент GridRow should match snapshot with defaults 1`] = `
 <div
   className="container gutter-l content-undefined"
->
-  <div
-    key="0"
-    style={
-      Object {
-        "backgroundColor": "#1f84db",
-        "height": "30px",
-        "width": "100%",
-      }
-    }
-  />
-  <div
-    key="1"
-    style={
-      Object {
-        "backgroundColor": "#1f84db",
-        "height": "30px",
-        "width": "100%",
-      }
-    }
-  />
-  <div
-    key="2"
-    style={
-      Object {
-        "backgroundColor": "#1f84db",
-        "height": "30px",
-        "width": "100%",
-      }
-    }
-  />
-</div>
+/>
 `;
