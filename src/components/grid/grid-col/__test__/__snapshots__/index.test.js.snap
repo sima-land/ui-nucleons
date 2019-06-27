@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент GridCol should match snapshot with custom props 1`] = `
+<section
+  className="col test items-stretch justify-center col-gutter-s width-6"
+>
+  Колонка 1
+</section>
+`;
+
+exports[`Компонент GridCol should match snapshot with defaults 1`] = `
+<div
+  className="col items-stretch justify-start col-gutter-l width-auto"
+/>
+`;
