@@ -40,6 +40,7 @@
       {
         "ignoreAtRules": [
           "for",
+          "each",
           "if",
           "include",
           "mixin",
