@@ -2,16 +2,26 @@
 
 exports[`Компонент GridRow should match snapshot with custom props 1`] = `
 <section
-  className="container test gutter-s content-center"
+  className="row test items-stretch justify-center row-gutter-s"
 >
-  <div>
+  <GridCol
+    tag="section"
+    width={6}
+  >
     Колонка 1
-  </div>
+  </GridCol>
+  <GridCol
+    tag="p"
+    width={4}
+  >
+    Колонка 2
+  </GridCol>
+  &gt;
 </section>
 `;
 
 exports[`Компонент GridRow should match snapshot with defaults 1`] = `
 <div
-  className="container gutter-l content-undefined"
+  className="row items-stretch justify-start row-gutter-l"
 />
 `;

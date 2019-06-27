@@ -46,3 +46,23 @@ $radiusRounded: 5px;
 $underlineSolid: 1px solid transparent;
 $underlineDashed: 1px dashed transparent;
 
+/** Брейкпоинты для сетки */
+$break-points: (
+  1600px: 1408px,
+  1440px: 1192px,
+  1280px: 1144px,
+  960px: 840px,
+  840px: 720px,
+  720px: 656px,
+  600px: 568px,
+  320px: 288px,
+);
+
+/** Выравнивания для сетки */
+$alignments: (
+  'start': flex-start,
+  'end': flex-end,
+  'center': center,
+  'between': space-between,
+  'around': space-around,
+);
