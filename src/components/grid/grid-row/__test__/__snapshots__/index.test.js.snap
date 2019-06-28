@@ -1,8 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Компонент GridRow should match snapshot with custom props 1`] = `
-<section
-  className="row test items-stretch justify-center row-gutter-s"
+exports[`Компонент GridRow should match snapshot with defaults 1`] = `
+<GridEntity
+  createClasses={[Function]}
+/>
+`;
+
+exports[`Компонент GridRow should renders correctly with custom props 1`] = `
+<GridEntity
+  createClasses={[Function]}
+  externalClass="test"
+  gutter="s"
+  justify="center"
+  tag="section"
 >
   <GridCol
     tag="section"
@@ -17,11 +27,5 @@ exports[`Компонент GridRow should match snapshot with custom props 1`] 
     Колонка 2
   </GridCol>
   &gt;
-</section>
-`;
-
-exports[`Компонент GridRow should match snapshot with defaults 1`] = `
-<div
-  className="row items-stretch justify-start row-gutter-l"
-/>
+</GridEntity>
 `;
