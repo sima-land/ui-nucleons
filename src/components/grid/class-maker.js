@@ -2,7 +2,7 @@ import styles from './grid.scss';
 import classNames from 'classnames';
 
 /**
- * Функция создания классов контенера сетки.
+ * Функция создания классов контейнера сетки.
  * @param {string} [externalClass] Пользовательский класс.
  * @param {'start'|'end'|'center'|'around'|'between'} [justify] Горизонтальное выравнивание.
  * @param {'zero'|'s'|'m'|'l'} [gutter] Вертикальный отступ снизу.

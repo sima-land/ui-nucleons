@@ -2,9 +2,9 @@ import React from 'react';
 import Type from 'prop-types';
 
 /**
- * Элемент сетки с необходимиыми классами.
+ * Элемент сетки с необходимыми классами.
  * @param {Function} createClasses Функция вычисления классов.
- * @return {Function} Функция, формирующая элемент сетки с необходимиыми классами.
+ * @return {Function} Функция, формирующая элемент сетки с необходимыми классами.
  */
 export default createClasses => {
   /**

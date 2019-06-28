@@ -1,0 +1,26 @@
+.column {
+  background-color: #1f84db;
+  height: 25px;
+}
+
+.row {
+  padding: 5px;
+  border: 1px dashed;
+}
+
+.title {
+  text-align: center;
+  font-size: 20px;
+}
+
+.title:not(:first-child) {
+  margin-top: 60px;
+}
+
+.content {
+  width: 200px;
+  background-color: #afb8bb;
+  padding: 8px;
+  border: 1px dashed;
+}
+
