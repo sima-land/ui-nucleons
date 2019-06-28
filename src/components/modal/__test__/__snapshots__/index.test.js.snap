@@ -6,13 +6,13 @@ exports[`<Modal /> renders correct with close button and customClasses 1`] = `
   onClick={[Function]}
 >
   <Popup
-    className="test-modal modal"
+    additionalClass="test-modal modal"
   >
-    <div
+    <Icon
       className="test-close close"
-    >
-      ×
-    </div>
+      icon={[Function]}
+      size={8}
+    />
     Test modal content
   </Popup>
 </div>
@@ -24,7 +24,7 @@ exports[`<Modal /> renders correct without close button and customClasses 1`] = 
   onClick={[Function]}
 >
   <Popup
-    className="modal"
+    additionalClass="modal"
   >
     Test modal content
   </Popup>
