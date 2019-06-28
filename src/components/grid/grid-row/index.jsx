@@ -40,7 +40,7 @@ GridRow.propTypes = {
   /**
    * Выравнивание по вертикальной оси.
    */
-  alignItems: Type.oneOf(['start', 'between', 'around', 'center', 'end']),
+  alignItems: Type.oneOf(['start', 'center', 'end']),
   /**
    * Разрешить перенос контента на новую строку.
    */

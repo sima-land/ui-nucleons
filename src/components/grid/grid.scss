@@ -13,7 +13,7 @@
     $item-width: (1600px - (11 * 32)) / 12;
     $width: $item-width * $i + (32 * ($i - 1));
     .width-#{$i} {
-      flex: 0 0 $width;
+      flex: 0 1 $width;
       max-width: $width;
     }
   }
@@ -27,7 +27,7 @@
       @for $i from 1 through $columns {
         $width: $item-width * $i + ($margin * ($i - 1));
         .width-#{$i} {
-          flex: 0 0 $width;
+          flex: 0 1 $width;
           max-width: $width;
         }
       }
