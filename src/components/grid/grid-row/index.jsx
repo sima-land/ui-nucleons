@@ -1,6 +1,7 @@
 import Type from 'prop-types';
+import React from 'react';
 import { makeRowClasses } from '../class-maker';
-import createGridEntity from '../create-grid-entity';
+import GridEntity from '../grid-entity/';
 
 /**
  * Строка сетки.
@@ -14,7 +15,7 @@ import createGridEntity from '../create-grid-entity';
  * @param {string} [props.alignItems] Выравнивание по вертикальной оси.
  * @return {ReactComponent} Строка сетки.
  */
-const GridRow = props => createGridEntity(makeRowClasses)(props);
+const GridRow = props => <GridEntity createClasses={makeRowClasses} {...props} />;
 
 GridRow.propTypes = {
   /**

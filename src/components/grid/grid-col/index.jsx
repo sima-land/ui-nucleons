@@ -1,6 +1,7 @@
 import Type from 'prop-types';
+import React from 'react';
 import { makeColClasses } from '../class-maker';
-import createGridEntity from '../create-grid-entity';
+import GridEntity from '../grid-entity/';
 
 /**
  * Колонка сетки.
@@ -15,7 +16,7 @@ import createGridEntity from '../create-grid-entity';
  * @param {string} [props.alignItems] Выравнивание по вертикальной оси.
  * @return {ReactComponent} Колонка сетки.
  */
-const GridCol = props => createGridEntity(makeColClasses)(props);
+const GridCol = props => <GridEntity createClasses={makeColClasses} {...props} />;
 
 GridCol.propTypes = {
   /**
@@ -46,7 +47,7 @@ GridCol.propTypes = {
   /**
    * Выравнивание по вертикальной оси.
    */
-  alignItems: Type.oneOf(['start', 'between', 'around', 'center', 'end']),
+  alignItems: Type.oneOf(['start', 'center', 'end']),
   /**
    * Разрешить перенос контента на новую строку.
    */

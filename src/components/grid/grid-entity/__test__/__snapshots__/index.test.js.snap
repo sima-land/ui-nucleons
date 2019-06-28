@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GridEntity/> should renders correctly with props 1`] = `
+<article
+  className="test classes"
+>
+  <div>
+    children
+  </div>
+</article>
+`;
+
+exports[`<GridEntity/> should renders correctly without props 1`] = `
+<div
+  className={null}
+/>
+`;
