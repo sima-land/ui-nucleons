@@ -50,6 +50,6 @@ storiesOf('Modal', module)
     <ModalDemo />
   ))
   .add('with close cross', () => (
-    <ModalDemo withCloseButton />
+    <ModalDemo closeButtonSize={8} />
   ));
 

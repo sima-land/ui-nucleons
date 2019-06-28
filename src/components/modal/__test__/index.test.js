@@ -11,8 +11,7 @@ describe('<Modal />', () => {
   it('renders correct with close button and customClasses', () => {
     modal = shallow(
       <Modal
-        withOverlay
-        withCloseButton
+        closeButtonSize={8}
         customClasses={{
           overlay: 'test-overlay',
           modal: 'test-modal',
@@ -28,20 +27,19 @@ describe('<Modal />', () => {
     const onCloseMock = jest.fn();
     modal = shallow(
       <Modal
-        withOverlay
-        withCloseButton
+        closeButtonSize={8}
         onClose={onCloseMock}
       >
         Test modal content
       </Modal>
     );
-    modal.find('.overlay').simulate('click', { target: 'testTarget', currentTarget: 'anotherTarget' });
+    modal.find({ className: 'overlay' }).simulate('click', { target: 'testTarget', currentTarget: 'anotherTarget' });
     expect(onCloseMock).toHaveBeenCalledTimes(0);
-    modal.find('.overlay').simulate('click', { target: 'testTarget', currentTarget: 'testTarget' });
+    modal.find({ className: 'overlay' }).simulate('click', { target: 'testTarget', currentTarget: 'testTarget' });
     expect(onCloseMock).toHaveBeenCalledTimes(1);
-    modal.find('.close').simulate('click');
+    modal.find({ className: 'close' }).simulate('click');
     expect(onCloseMock).toHaveBeenCalledTimes(2);
-    modal.find('.modal').simulate('click');
+    modal.find({ additionalClass: 'modal' }).simulate('click');
     expect(onCloseMock).toHaveBeenCalledTimes(2);
   });
 });

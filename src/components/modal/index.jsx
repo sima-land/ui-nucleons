@@ -1,13 +1,15 @@
 import React from 'react';
-import './modal.scss';
+import styles from './modal.scss';
 import Popup from '../popups/popup/';
+import Icon from '../icon/';
+import { cross } from '../icons';
 import composeClasses from '../helpers/compose-classes';
 import Type from 'prop-types';
 
 const DEFAULT_CLASSES = {
-  overlay: 'overlay',
-  modal: 'modal',
-  close: 'close',
+  overlay: styles.overlay,
+  modal: styles.modal,
+  close: styles.close,
 };
 
 /**
@@ -15,23 +17,24 @@ const DEFAULT_CLASSES = {
  * @param {Object} props Свойства компонента.
  * @param {*} props.children Содержимое компонента.
  * @param {Function} props.onClose Функция, вызываемая при закрытии модального окна.
- * @param {boolean} [props.withCloseButton] С закрывающей кнопкой.
+ * @param {number} [props.closeButtonSize] Размер закрывающей кнопки. Указыввается если нужна кнопка.
  * @param {Object} [props.customClasses] Пользовательские классы.
  * @param {string} [customClasses.overlay] Классы затемнения.
  * @param {string} [customClasses.modal] Классы модального окна.
  * @param {string} [customClasses.close] Классы закрывающей кнопки.
- * @return {ReactElement} Компонент модального окна.
+ * @return {ReactComponent} Компонент модального окна.
  */
-const Modal = ({ children, onClose, withCloseButton, customClasses = {} }) => {
+const Modal = ({ children, onClose, closeButtonSize, customClasses = {} }) => {
   const newClasses = composeClasses({ defaultClasses: DEFAULT_CLASSES, customClasses });
   const { overlay: overlayClasses, modal: modalClasses, close: closeClasses } = newClasses;
+  const buttonSize = typeof closeButtonSize === 'number' && closeButtonSize;
   return (
     <div
       className={overlayClasses}
       onClick={event => typeof onClose === 'function' && event.target === event.currentTarget && onClose()}
     >
-      <Popup className={modalClasses}>
-        {withCloseButton && <div className={closeClasses} onClick={onClose}>×</div>}
+      <Popup additionalClass={modalClasses}>
+        {closeButtonSize && <Icon size={buttonSize} icon={cross} className={closeClasses} onClick={onClose} />}
         {children}
       </Popup>
     </div>
@@ -48,9 +51,9 @@ Modal.propTypes = {
    */
   onClose: Type.func,
   /**
-   * С закрывающей кнопкой.
+   * Размер закрывающей кнопки. Указыввается если нужна кнопка.
    */
-  withCloseButton: Type.bool,
+  closeButtonSize: Type.number,
   /**
    * Пользовательские классы.
    */
