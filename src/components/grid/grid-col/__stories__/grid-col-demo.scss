@@ -1,0 +1,28 @@
+.column {
+  background-color: #1f84db;
+  min-height: 25px;
+  border: 1px dashed;
+}
+
+.title {
+  text-align: center;
+  font-size: 20px;
+}
+
+.title:not(:first-child) {
+  margin-top: 60px;
+}
+
+.content {
+  width: 200px;
+  background-color: #afb8bb;
+  padding: 8px;
+  border: 1px solid #002b41;
+}
+
+.high-column {
+  height: 220px;
+  background-color: #1f84db;
+  border: 1px dashed;
+}
+
