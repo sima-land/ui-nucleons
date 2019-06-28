@@ -37,7 +37,7 @@
             <Modal
                 onClose={onClose}
                 customClasses={{ overlay: 'modal-center' }}
-                withCloseButton
+                closeButtonSize={8}
             >
                 <p style={{ padding: '20px' }}>This is modal with close button</p>
             </Modal>
