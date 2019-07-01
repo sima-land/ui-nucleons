@@ -10,12 +10,12 @@ import composeClasses from '../helpers/compose-classes';
 
 const cx = classNames.bind(styles);
 const DEFAULT_CLASSES = {
-  rating: 'rating',
-  hoveredRating: 'rating-can-be-hovered',
-  star: 'rating-star',
-  emptyStar: 'empty-star',
-  halfStar: 'half-star',
-  fullStar: 'full-star',
+  rating: styles.rating,
+  hoveredRating: styles['rating-can-be-hovered'],
+  star: styles['rating-star'],
+  emptyStar: styles['empty-star'],
+  halfStar: styles['half-star'],
+  fullStar: styles['full-star'],
 };
 
 /**

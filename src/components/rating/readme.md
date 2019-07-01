@@ -46,17 +46,17 @@
 ```
 Рейтинг с hover-ом и пользовательскими классами:
 ```jsx
-    import '!style-loader!css-loader!sass-loader!./__stories__/rating.scss';
+    import styles from './__stories__/rating.scss';
     <div style={{ background: '#fff', padding: '15px'}}>
       <Rating
           value={2}
           customClasses={{
-            rating: 'doc-rating',
-            hoveredRating: 'doc-rating-can-be-hovered',
-            star: 'doc-rating-star',
-            emptyStar: 'doc-empty-star',
-            halfStar: 'doc-half-star',
-            fullStar: 'doc-full-star',
+            rating: styles['doc-rating'],
+            hoveredRating: styles['doc-rating-can-be-hovered'],
+            star: styles['doc-rating-star'],
+            emptyStar: styles['doc-empty-star'],
+            halfStar: styles['doc-half-star'],
+            fullStar: styles['doc-full-star'],
           }}
           withBig
           withHover
