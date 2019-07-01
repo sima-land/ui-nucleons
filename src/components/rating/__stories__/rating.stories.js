@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Rating from '../';
 import range from 'lodash.range';
-import '!style-loader!css-loader!sass-loader!./rating.scss';
+import styles from './rating.scss';
 
 const style = {
     display: 'flex',
@@ -114,12 +114,12 @@ storiesOf('Rating', module)
       <Rating
         value={1.5}
         customClasses={{
-          rating: 'doc-rating',
-          hoveredRating: 'doc-rating-can-be-hovered',
-          star: 'doc-rating-star',
-          emptyStar: 'doc-empty-star',
-          halfStar: 'doc-half-star',
-          fullStar: 'doc-full-star',
+          rating: styles['doc-rating'],
+          hoveredRating: styles['doc-rating-can-be-hovered'],
+          star: styles['doc-rating-star'],
+          emptyStar: styles['doc-empty-star'],
+          halfStar: styles['doc-half-star'],
+          fullStar: styles['doc-full-star'],
         }}
         withBig
         withHover
