@@ -6,6 +6,7 @@ import bus from './bus.svg';
 import cart from './cart.svg';
 import clock from './clock.svg';
 import clockFace from './clock-face.svg';
+import close from './close.svg';
 import cross from './cross.svg';
 import dolphin from './dolphin.svg';
 import external from './external.svg';
@@ -26,6 +27,7 @@ export {
   cart,
   clock,
   clockFace,
+  close,
   cross,
   dolphin,
   external,
