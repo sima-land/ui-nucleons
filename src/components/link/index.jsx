@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import {
   createLinkStyle,
   createLinkTextStyle,
@@ -16,7 +16,7 @@ export const LINK_TARGETS = ['_blank', '_self'];
  * @param {*} props.children Содержимое компонента.
  * @param {string} [props.className] Пользовательские классы.
  * @param {string} [props.target] В новую или текущую вкладку откроется ссылка.
- * @param {Function} [props.saveRef] Функция для сохранения ссылки на HTMLElement.
+ * @param {Object} ref Реф для DOM-элемента ссылки.
  * @param {string} [props.color='blue'] Цвет.
  * @param {boolean} [props.underlined] Подчеркивание.
  * @param {boolean} [props.pseudo] Псевдоссылка.
@@ -30,11 +30,10 @@ export const LINK_TARGETS = ['_blank', '_self'];
  * @param {Function} [props.onMouseLeave] Функция, вызываемая при покидании области кнопки.
  * @return {ReactElement} Компонент ссылки.
  */
-const Link = ({
+const Link = forwardRef(({
   children,
   className,
   target,
-  saveRef,
   color = 'blue',
   underlined,
   pseudo,
@@ -42,7 +41,7 @@ const Link = ({
   external = false,
   withIcon = external,
   ...restProps
-}) => {
+}, ref) => {
   const linkParams = restProps;
   if (!pseudo) {
     const defaultTarget = external ? '_blank' : '_self';
@@ -60,7 +59,7 @@ const Link = ({
   return (
     <a
       {...linkParams}
-      ref={saveRef}
+      ref={ref}
       className={linkClasses}
     >
       <span className={textClasses}>{children}</span>
@@ -71,7 +70,9 @@ const Link = ({
       )}
     </a>
   );
-};
+});
+
+Link.displayName = 'Link';
 
 Link.propTypes = {
   /**
@@ -86,10 +87,6 @@ Link.propTypes = {
    * В новую или текущую вкладку откроется ссылка.
    */
   target: Type.oneOf(['_blank', '_self']),
-  /**
-   * Функция для сохранения ссылки на HTMLElement.
-   */
-  saveRef: Type.func,
   /**
    * Цвет.
    */
@@ -130,8 +127,13 @@ Link.propTypes = {
    * Функция, вызываемая при покидании области кнопки.
    */
   onMouseLeave: Type.func,
+  /**
+   * Реф для DOM-элемента ссылки
+   */
+  ref: Type.oneOfType([
+    Type.func,
+    Type.shape({ current: Type.instanceOf(Element) }),
+  ]),
 };
 
 export default Link;
-
-
