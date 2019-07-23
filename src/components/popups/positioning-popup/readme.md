@@ -6,6 +6,7 @@ import PositioningPopupDemo from '../__stories__/positioning-popup-demo';
         <p style={{
             padding: '20px',
             margin: 0,
+            width: '200px',
         }}
         >
             I am positioning popup. I am very smart.
@@ -24,6 +25,7 @@ import PositioningPopupDemo from '../__stories__/positioning-popup-demo';
         <p style={{
             padding: '20px',
             margin: 0,
+            width: '200px',
         }}
         >
             I am positioning popup. I am very smart.

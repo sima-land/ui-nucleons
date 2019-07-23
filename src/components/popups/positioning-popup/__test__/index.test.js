@@ -162,7 +162,7 @@ describe('<PositioningPopup />', () => {
         popupWidth: 500,
       });
 
-      expect(thirdPopupPosition).toEqual({ left: 512, top: '100%' });
+      expect(thirdPopupPosition).toEqual({ left: 500, top: '100%' });
     });
   });
 
