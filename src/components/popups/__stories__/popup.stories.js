@@ -18,4 +18,3 @@ storiesOf('Popups/Popup', module)
       </Popup>
     </div>
   ));
-
