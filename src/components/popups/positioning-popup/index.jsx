@@ -109,7 +109,7 @@ class PositioningPopup extends Component {
     let correctPosition = left;
 
     // Выравниваем, если выходит за левую часть вьюпорта
-    if (correctPosition < 0) {
+    if (correctPosition < -parentLeft) {
       correctPosition = -parentLeft;
       correctPosition += edgeMargin;
     }
@@ -164,6 +164,14 @@ class PositioningPopup extends Component {
       popupWidth,
       edgeMargin,
       left: coords.left,
+    });
+
+
+    coords.left = this.correctHorizontalPosition({
+      popupWidth,
+      edgeMargin,
+      left: coords.left,
+      openerLeft,
     });
 
     return coords;
