@@ -1,47 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<PositioningPopup /> renders correctly 1`] = `
-<div
-  className="popup-wrap hidden"
-  style={
-    Object {
-      "left": 0,
-      "top": "100%",
-    }
-  }
+exports[`<PositioningPopup /> check props renders correctly with arrow 1`] = `
+<PositioningPopup
+  withArrow={true}
 >
-  <PopupArrow />
-  <Popup />
-</div>
+  <div
+    className="popup-wrap hidden"
+    style={
+      Object {
+        "left": 20,
+        "top": "100%",
+      }
+    }
+  >
+    <PopupArrow>
+      <span
+        className="base white top shadow-top"
+        style={Object {}}
+      />
+    </PopupArrow>
+    <Popup>
+      <div
+        className="popup"
+      />
+    </Popup>
+  </div>
+</PositioningPopup>
 `;
 
-exports[`<PositioningPopup /> renders correctly 2`] = `
-<div
-  className="popup-wrap visible"
-  style={
-    Object {
-      "left": 0,
-      "top": "100%",
+exports[`<PositioningPopup /> check props renders correctly without props 1`] = `
+<PositioningPopup>
+  <div
+    className="popup-wrap hidden"
+    style={
+      Object {
+        "left": 20,
+        "top": "100%",
+      }
     }
-  }
->
-  <Popup />
-</div>
-`;
-
-exports[`<PositioningPopup /> renders correctly 3`] = `
-<div
-  className="popup-wrap visible"
-  style={
-    Object {
-      "left": 0,
-      "top": "100%",
-    }
-  }
->
-  <PopupArrow />
-  <Popup
-    className="animation"
-  />
-</div>
+  >
+    <Popup>
+      <div
+        className="popup"
+      />
+    </Popup>
+  </div>
+</PositioningPopup>
 `;

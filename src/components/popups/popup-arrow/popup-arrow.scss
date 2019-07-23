@@ -2,7 +2,6 @@
 
 .base {
   position: absolute;
-  top: -10px;
   border-width: 10px;
   border-style: solid;
   z-index: 2;
@@ -10,10 +9,12 @@
 
 .top {
   border-top: 0;
+  top: -10px;
 }
 
 .bottom {
   border-bottom: 0;
+  bottom: -10px;
 }
 
 .white {

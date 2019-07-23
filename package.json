@@ -12,8 +12,8 @@
     "node": ">=10.15.3"
   },
   "dependencies": {
-    "lodash.isempty": "^4.4.0",
     "lodash.isfunction": "^3.0.9",
+    "lodash.isnumber": "^3.0.3",
     "lodash.range": "^3.2.0",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2"

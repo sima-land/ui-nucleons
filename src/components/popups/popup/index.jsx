@@ -21,11 +21,11 @@ Popup.displayName = 'Popup';
 
 Popup.propTypes = {
   /**
-   * Дочерние элементы попапа
+   * Дочерние элементы попапа.
    */
   children: Type.any,
   /**
-   * Дополнительный класс
+   * Дополнительный класс.
    */
   additionalClass: Type.string,
   /**
@@ -38,3 +38,4 @@ Popup.propTypes = {
 };
 
 export default Popup;
+
