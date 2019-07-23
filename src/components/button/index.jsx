@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { forwardRef } from 'react';
 import { createButtonStyle } from './create-button-style';
 import Type from 'prop-types';
 
@@ -34,16 +34,16 @@ export const renderButton = ({ appearance, buttonParams = {}, children }) => {
  * @param {boolean} [props.withShadow=false] С тенью.
  * @param {boolean} [props.isFocused=false] В фокусе.
  * @param {boolean} [props.isDisabled] Отключена.
- * @param {Function} [props.saveRef] Функция для сохранения ссылки на HTMLElement.
  * @param {string} [props.appearance='button'] Тип представления компонента.
  * @param {...*} restProps Остальные параметры.
  * @param {string} [props.href] Ссылка.
  * @param {Function} [props.onClick] Функция, вызываемая при клике.
  * @param {Function} [props.onMouseEnter] Функция, вызываемая при наведении.
  * @param {Function} [props.onMouseLeave] Функция, вызываемая при покидании области кнопки.
+ * @param {Object} ref Реф для DOM-элемента кнопки.
  * @return {ReactElement} Компонент кнопки.
  */
-const Button = ({
+const Button = forwardRef(({
   children,
   className,
   color = 'clean',
@@ -51,23 +51,22 @@ const Button = ({
   withShadow = false,
   isFocused = false,
   isDisabled = false,
-  saveRef,
   appearance = 'button',
   ...restProps
-}) => {
+}, ref) => {
   const buttonClasses = createButtonStyle({ className, color, shape, withShadow, isFocused });
   const buttonParams = {
-    ...restProps,
+    ref,
     className: buttonClasses,
-    ref: saveRef,
     disabled: isDisabled,
+    ...restProps,
   };
   return (
     <React.Fragment>
       {renderButton({ appearance, buttonParams, children })}
     </React.Fragment>
   );
-};
+});
 
 Button.propTypes = {
   /**
@@ -99,10 +98,6 @@ Button.propTypes = {
    */
   isDisabled: Type.bool,
   /**
-   * Функция для сохранения ссылки на HTMLElement.
-   */
-  saveRef: Type.func,
-  /**
    * Тип компонента.
    */
   appearance: Type.oneOf(['link', 'container', 'button']),
@@ -122,6 +117,14 @@ Button.propTypes = {
    * Функция, вызываемая при покидании области кнопки.
    */
   onMouseLeave: Type.func,
+  /**
+   * Реф для DOM-элемента кнопки.
+   */
+  ref: Type.oneOfType([
+    Type.func,
+    Type.shape({ current: Type.instanceOf(Element) }),
+  ]),
 };
 
+Button.displayName = 'Button';
 export default Button;

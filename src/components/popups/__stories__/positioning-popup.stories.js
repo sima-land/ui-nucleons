@@ -5,6 +5,7 @@ import PositioningPopupDemo from './positioning-popup-demo';
 const childStyles = {
   padding: '20px',
   margin: 0,
+  width: 200,
 };
 
 storiesOf('Popups/PositioningPopup', module)
