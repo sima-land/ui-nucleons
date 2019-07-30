@@ -127,13 +127,6 @@ Link.propTypes = {
    * Функция, вызываемая при покидании области кнопки.
    */
   onMouseLeave: Type.func,
-  /**
-   * Реф для DOM-элемента ссылки
-   */
-  ref: Type.oneOfType([
-    Type.func,
-    Type.shape({ current: Type.instanceOf(Element) }),
-  ]),
 };
 
 export default Link;

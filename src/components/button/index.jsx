@@ -117,13 +117,6 @@ Button.propTypes = {
    * Функция, вызываемая при покидании области кнопки.
    */
   onMouseLeave: Type.func,
-  /**
-   * Реф для DOM-элемента кнопки.
-   */
-  ref: Type.oneOfType([
-    Type.func,
-    Type.shape({ current: Type.instanceOf(Element) }),
-  ]),
 };
 
 Button.displayName = 'Button';

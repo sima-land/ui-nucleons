@@ -28,13 +28,6 @@ Popup.propTypes = {
    * Дополнительный класс.
    */
   additionalClass: Type.string,
-  /**
-   * Реф для DOM-элемента попапа
-   */
-  ref: Type.oneOfType([
-    Type.func,
-    Type.shape({ current: Type.instanceOf(Element) }),
-  ]),
 };
 
 export default Popup;
