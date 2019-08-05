@@ -27,9 +27,19 @@ describe('<Price />', () => {
     };
     price = shallow(<Price {...props} />);
     expect(price).toMatchSnapshot();
-    props = { value: 100, className: 'test', currencyGrapheme: '₽' };
+    props = {
+      value: 100,
+      className: 'test',
+      currencyGrapheme: '₽',
+      currencyGraphemeClass: 'currency-class',
+      fractionalClass: 'fractional-class',
+      withFractionalPart: true,
+      fractionalInSuper: true,
+    };
     price = shallow(<Price {...props} />);
     expect(price.prop('className')).toEqual('price test');
+    expect(price.find('span').at(1).prop('className')).toEqual('grapheme currency-class');
+    expect(price.find('sup').prop('className')).toEqual('fractional-class');
   });
 
   it('should render currency grapheme with non-breaking space at correct place', () => {
