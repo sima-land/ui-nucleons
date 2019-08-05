@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<PositioningPopup /> check props renders correctly with arrow 1`] = `
+exports[`<PositioningPopup /> renders correctly with arrow 1`] = `
 <PositioningPopup
   withArrow={true}
 >
   <div
-    className="popup-wrap hidden"
+    className="popup-wrap"
     style={
       Object {
         "left": 20,
@@ -13,10 +13,24 @@ exports[`<PositioningPopup /> check props renders correctly with arrow 1`] = `
       }
     }
   >
-    <PopupArrow>
+    <PopupArrow
+      className="arrow-base"
+      color="white"
+      direction="top"
+      position={
+        Object {
+          "left": 5,
+        }
+      }
+      shadow={true}
+    >
       <span
-        className="base white top shadow-top"
-        style={Object {}}
+        className="base white arrow-base top shadow shadow-top"
+        style={
+          Object {
+            "left": 5,
+          }
+        }
       />
     </PopupArrow>
     <Popup>
@@ -28,10 +42,10 @@ exports[`<PositioningPopup /> check props renders correctly with arrow 1`] = `
 </PositioningPopup>
 `;
 
-exports[`<PositioningPopup /> check props renders correctly without props 1`] = `
+exports[`<PositioningPopup /> renders correctly without props 1`] = `
 <PositioningPopup>
   <div
-    className="popup-wrap hidden"
+    className="popup-wrap"
     style={
       Object {
         "left": 20,
