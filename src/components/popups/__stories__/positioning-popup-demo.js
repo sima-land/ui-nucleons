@@ -52,6 +52,12 @@ const demoData = [
       { horizontalPosition: 'center', verticalPosition: 'top' },
     ],
   },
+  {
+    popups: [
+      { horizontalPosition: 'left', verticalPosition: 'top' },
+      { horizontalPosition: 'right', verticalPosition: 'top' },
+    ],
+  },
 ];
 
 /**
@@ -77,14 +83,6 @@ class PositioningPopupDemo extends Component {
         this.popupRefs[`popup${indexPopup}in${indexWrapper}`] = createRef();
       });
     });
-  }
-
-  /**
-   * Получаем ширину body.
-   */
-  componentDidMount () {
-    this.parentWidth = this.wrapperRef.current.getBoundingClientRect().width;
-    this.parentLeft = this.wrapperRef.current.getBoundingClientRect().left;
   }
 
   /**
@@ -129,18 +127,20 @@ class PositioningPopupDemo extends Component {
           ref={this.popupRefs[refName]}
           children='Hover me'
         />
-        <PositioningPopup
-          opener={this.popupRefs[refName]}
-          isOpen={this.state[propInState]}
-          withArrow
-          parentWidth={this.parentWidth}
-          parentLeft={this.parentLeft}
-          positioningMargin={this.props.positioningMargin}
-          verticalPosition={verticalPosition}
-          horizontalPosition={horizontalPosition}
-        >
-          {this.props.children}
-        </PositioningPopup>
+        {this.state[propInState] && (
+          <PositioningPopup
+            opener={this.popupRefs[refName]}
+            isOpen={this.state[propInState]}
+            wrapper={this.wrapperRef}
+            withArrow
+            parent={this.wrapperRef}
+            positioningMargin={this.props.positioningMargin}
+            verticalPosition={verticalPosition}
+            horizontalPosition={horizontalPosition}
+          >
+            {this.props.children}
+          </PositioningPopup>
+        )}
       </React.Fragment>
     );
   }
