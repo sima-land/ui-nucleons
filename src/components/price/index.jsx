@@ -4,8 +4,6 @@ import Type from 'prop-types';
 import styles from './price.scss';
 import classNames from 'classnames';
 
-const cx = classNames.bind(styles);
-
 /**
  * Цена товара с указанием знака валюты.
  * @param {Object} props Параметры компонента.
@@ -18,6 +16,7 @@ const cx = classNames.bind(styles);
  * @param {boolean} [props.beforePrice] Отобразить знак валюты перед ценой.
  * @param {boolean} [props.fractionalInSuper] Отображать дробную часть сверху.
  * @param {boolean} [props.boldIntegerPart] Отображать целую часть цены жирным начертанием.
+ * @param {boolean} [props.old] Отображать цену "старой" - серой и зачеркнутой.
  * @return {ReactElement} Цена товара с указанием знака валюты.
  */
 const Price = ({
@@ -30,16 +29,17 @@ const Price = ({
   boldIntegerPart,
   currencyGraphemeClass,
   fractionalClass,
+  old,
 }) => {
   const price = formatNumber(value);
   const integer = boldIntegerPart ? <b>{price[0]}</b> : price[0];
   const sign = currencyGrapheme && (
-    <span className={cx(styles.grapheme, currencyGraphemeClass)}>
+    <span className={classNames(styles.grapheme, currencyGraphemeClass)}>
       {beforePrice ? `${currencyGrapheme}\u00A0` : `\u00A0${currencyGrapheme}`}
     </span>
   );
   return (
-    <span className={cx('price', className)}>
+    <span className={classNames(styles.price, className, old && styles['old-price'])}>
       {beforePrice && sign}
       {integer}
       {withFractionalPart && (
@@ -87,6 +87,10 @@ Price.propTypes = {
    * Выделять жирным шрифтом целую часть цены.
    */
   boldIntegerPart: Type.bool,
+  /**
+   * Отображать цену "старой" - серой и зачеркнутой.
+   */
+  old: Type.bool,
 };
 
 export default Price;

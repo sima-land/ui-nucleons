@@ -65,3 +65,20 @@ import { graphemes } from '../constants';
         </span>
     )
 ```
+
+Отображение старой цены с разными графемами
+```jsx
+import { graphemes } from '../constants';
+    graphemes.map((grapheme, index) => 
+        <span style={{ marginRight: '15px' }} key={index*5}>
+            <Price
+                old
+                value={1234.56}
+                currencyGrapheme={grapheme}
+                withFractionalPart
+                fractionalInSuper
+                boldIntegerPart
+            />
+        </span>
+    )
+```
