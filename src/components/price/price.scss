@@ -7,3 +7,19 @@
 .grapheme {
   font-size: 12px;
 }
+
+.old-price {
+  position: relative;
+  font-size: 13px;
+  color: $gray;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 1px;
+    background-color: $red;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%) rotate(-20deg);
+  }
+}

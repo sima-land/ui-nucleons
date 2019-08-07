@@ -32,4 +32,10 @@ storiesOf('Price', module)
       <span key={index * 4} style={margin}>
         <Price value={1234.56} currencyGrapheme={grapheme} withFractionalPart boldIntegerPart fractionalInSuper />
       </span>
+    )))
+  .add('old price appearance', () =>
+    graphemes.map((grapheme, index) => (
+      <span key={index} style={margin}>
+        <Price value={1234.56} currencyGrapheme={grapheme} old boldIntegerPart />
+      </span>
     )));

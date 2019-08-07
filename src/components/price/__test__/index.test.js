@@ -59,4 +59,12 @@ describe('<Price />', () => {
     price.setProps({ fractionalInSuper: false });
     expect(price.find('sup')).toHaveLength(0);
   });
+
+  it('should render with old price correctly', () => {
+    props = { value: 100, currencyGrapheme: '₽', withFractionalPart: true };
+    price = shallow(<Price {...props} />);
+    expect(price.find('.old-price')).toHaveLength(0);
+    price.setProps({ old: true });
+    expect(price.find('.old-price')).toHaveLength(1);
+  });
 });
