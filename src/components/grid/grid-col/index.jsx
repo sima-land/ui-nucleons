@@ -8,12 +8,9 @@ import GridEntity from '../grid-entity/';
  * @param {Object} props Свойства компонента.
  * @param {string} [props.tag=div] HTML-tag.
  * @param {string} [props.externalClass] Дополнительный класс стилизации.
- * @param {string} [props.gutter=l] Размер отступов.
  * @param {*} [props.children] Содержимое.
- * @param {string} [props.justify] Выравнивание по горизонтальной оси.
- * @param {number|'auto'} [props.width=auto] Ширину скольки колонок должна занять колонка.
- * @param {boolean} [props.wrap] Разрешить перенос контента на новую строку.
- * @param {string} [props.alignItems] Выравнивание по вертикальной оси.
+ * @param {number} [props.desktop='auto'] Ширину скольких колонок должна занять колонка на десктопной версии.
+ * @param {number} [props.mobile='auto'] Ширину скольких колонок должна занять колонка в мобильной версии.
  * @return {ReactComponent} Колонка сетки.
  */
 const GridCol = props => <GridEntity createClasses={makeColClasses} {...props} />;
@@ -28,30 +25,19 @@ GridCol.propTypes = {
    */
   externalClass: Type.string,
   /**
-   * Размер отступов.
-   */
-  gutter: Type.oneOf(['s', 'm', 'l', 'zero']),
-  /**
    * Содержимое.
    */
   children: Type.any,
   /**
-   * Ширину скольки колонок должна занять колонка.
+   * Ширину скольких колонок должна занять колонка в десктопной версии.
    * auto - Элементы делят пространство поровну.
    */
-  width: Type.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  desktop: Type.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
-   * Выравнивание по горизонтальной оси.
+   * Ширину скольких колонок должна занять колонка в мобильной версии.
+   * auto - Элементы делят пространство поровну.
    */
-  justify: Type.oneOf(['start', 'between', 'around', 'center', 'end']),
-  /**
-   * Выравнивание по вертикальной оси.
-   */
-  alignItems: Type.oneOf(['start', 'center', 'end']),
-  /**
-   * Разрешить перенос контента на новую строку.
-   */
-  wrap: Type.bool,
+  mobile: Type.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8]),
 };
 
 export default GridCol;

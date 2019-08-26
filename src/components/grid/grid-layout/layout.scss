@@ -1,0 +1,23 @@
+@import '../../variables';
+
+/* Максимальная ширина блока по брейкпоинтам */
+$layoutWidth: (
+  $largeDesktopBreakpoint 1408px,
+  $mediumDesktopBreakpoint 1240px,
+  $smallDesktopBreakpoint 1144px,
+  $extraSmallDesktopBreakpoint calc(100% - 136px),
+  $extraLargeMobileBreakpoint calc(100% - 120px),
+  $mediumMobileBreakpoint calc(100% - 64px),
+  $smallMobileBreakpoint calc(100% - 32px),
+);
+
+.layout {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1600px;
+  @each $breakpoint, $width in $layoutWidth {
+    @media (max-width: $breakpoint) {
+      max-width: $width;
+    }
+  }
+}
