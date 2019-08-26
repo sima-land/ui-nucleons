@@ -1,28 +1,24 @@
-.column {
-  background-color: #1f84db;
-  min-height: 25px;
-  border: 1px dashed;
+.container-with-border {
+  width: 90%;
+  margin: 0 auto;
+  border: 1px dashed #999;
+  overflow: hidden;
 }
 
 .title {
   text-align: center;
   font-size: 20px;
+  &:not(:first-child) {
+    margin-top: 60px;
+  }
 }
 
-.title:not(:first-child) {
-  margin-top: 60px;
+.col-with-top-margin {
+  margin-top: 8px;
 }
 
-.content {
-  width: 200px;
-  background-color: #afb8bb;
+.content-blue {
+  background-color: #8de;
   padding: 8px;
-  border: 1px solid #002b41;
+  border: 1px dashed #08a;
 }
-
-.high-column {
-  height: 220px;
-  background-color: #1f84db;
-  border: 1px dashed;
-}
-

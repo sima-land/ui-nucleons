@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GridLayout, GridRow, GridCol renders correctly 1`] = `
+<GridLayout>
+  <div
+    className="layout"
+  >
+    <GridRow>
+      <GridEntity
+        createClasses={[Function]}
+      >
+        <div
+          className="row items-stretch justify-start with-gutters"
+        >
+          <GridCol
+            desktop={3}
+          >
+            <GridEntity
+              createClasses={[Function]}
+              desktop={3}
+            >
+              <div
+                className="col lg-3-12 md-auto-8"
+              >
+                column 1
+              </div>
+            </GridEntity>
+          </GridCol>
+          <GridCol
+            desktop={5}
+          >
+            <GridEntity
+              createClasses={[Function]}
+              desktop={5}
+            >
+              <div
+                className="col lg-5-12 md-auto-8"
+              >
+                column 2
+              </div>
+            </GridEntity>
+          </GridCol>
+        </div>
+      </GridEntity>
+    </GridRow>
+    <GridRow>
+      <GridEntity
+        createClasses={[Function]}
+      >
+        <div
+          className="row items-stretch justify-start with-gutters"
+        >
+          <GridCol
+            desktop={5}
+          >
+            <GridEntity
+              createClasses={[Function]}
+              desktop={5}
+            >
+              <div
+                className="col lg-5-12 md-auto-8"
+              >
+                column 3
+              </div>
+            </GridEntity>
+          </GridCol>
+        </div>
+      </GridEntity>
+    </GridRow>
+  </div>
+</GridLayout>
+`;

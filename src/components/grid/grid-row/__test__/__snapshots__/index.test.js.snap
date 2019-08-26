@@ -1,31 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Компонент GridRow should match snapshot with defaults 1`] = `
-<GridEntity
-  createClasses={[Function]}
-/>
-`;
-
 exports[`Компонент GridRow should renders correctly with custom props 1`] = `
-<GridEntity
-  createClasses={[Function]}
+<GridRow
+  alignItems="end"
   externalClass="test"
-  gutter="s"
   justify="center"
   tag="section"
+  withoutGutters={true}
+  wrap={true}
 >
-  <GridCol
+  <GridEntity
+    alignItems="end"
+    createClasses={[Function]}
+    externalClass="test"
+    justify="center"
     tag="section"
-    width={6}
+    withoutGutters={true}
+    wrap={true}
   >
-    Колонка 1
-  </GridCol>
-  <GridCol
-    tag="p"
-    width={4}
+    <section
+      className="row wrap items-end justify-center test"
+    >
+      <GridCol
+        desktop={9}
+        tag="section"
+      >
+        <GridEntity
+          createClasses={[Function]}
+          desktop={9}
+          tag="section"
+        >
+          <section
+            className="col lg-9-12 md-auto-8"
+          >
+            Колонка 1
+          </section>
+        </GridEntity>
+      </GridCol>
+      <GridCol
+        desktop={3}
+        tag="p"
+      >
+        <GridEntity
+          createClasses={[Function]}
+          desktop={3}
+          tag="p"
+        >
+          <p
+            className="col lg-3-12 md-auto-8"
+          >
+            Колонка 2
+          </p>
+        </GridEntity>
+      </GridCol>
+      &gt;
+    </section>
+  </GridEntity>
+</GridRow>
+`;
+
+exports[`Компонент GridRow should renders correctly without props 1`] = `
+<GridRow>
+  <GridEntity
+    createClasses={[Function]}
   >
-    Колонка 2
-  </GridCol>
-  &gt;
-</GridEntity>
+    <div
+      className="row items-stretch justify-start with-gutters"
+    />
+  </GridEntity>
+</GridRow>
 `;

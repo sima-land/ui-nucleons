@@ -1,20 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Компонент GridCol should match snapshot with defaults 1`] = `
-<GridEntity
-  createClasses={[Function]}
-/>
+exports[`Компонент GridCol should renders correctly with custom props 1`] = `
+<GridCol
+  desktop={5}
+  externalClass="test"
+  mobile={7}
+  tag="section"
+>
+  <GridEntity
+    createClasses={[Function]}
+    desktop={5}
+    externalClass="test"
+    mobile={7}
+    tag="section"
+  >
+    <section
+      className="col lg-5-12 md-7-8 test"
+    >
+      Колонка 1
+    </section>
+  </GridEntity>
+</GridCol>
 `;
 
-exports[`Компонент GridCol should renders correctly with custom props 1`] = `
-<GridEntity
-  createClasses={[Function]}
-  externalClass="test"
-  gutter="s"
-  justify="center"
-  tag="section"
-  width={6}
->
-  Колонка 1
-</GridEntity>
+exports[`Компонент GridCol should renders correctly without props 1`] = `
+<GridCol>
+  <GridEntity
+    createClasses={[Function]}
+  >
+    <div
+      className="col lg-auto-12 md-auto-8"
+    />
+  </GridEntity>
+</GridCol>
 `;

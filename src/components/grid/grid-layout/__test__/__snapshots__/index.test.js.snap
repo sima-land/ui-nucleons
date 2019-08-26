@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GridLayout/> should renders correctly without props 1`] = `
+<div
+  className="layout"
+>
+  <div
+    className="test-content"
+  >
+    123
+  </div>
+</div>
+`;

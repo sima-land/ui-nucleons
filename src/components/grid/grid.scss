@@ -1,134 +1,94 @@
 @import '../variables';
 
-.row {
-  display: flex;
-  max-width: 1600px;
-  margin: 0 auto;
-  box-sizing: border-box;
-  .width-auto {
-    flex: 1 1 0;
-    max-width: 100%;
-  }
-  @for $i from 1 through 12 {
-    $item-width: (1600px - (11 * 32)) / 12;
-    $width: $item-width * $i + (32 * ($i - 1));
-    .width-#{$i} {
-      flex: 0 1 $width;
-      max-width: $width;
+/* Выравнивания по горизонтали */
+$justifies: (
+  'start': flex-start,
+  'end': flex-end,
+  'center': center,
+  'between': space-between,
+  'around': space-around,
+);
+
+/** Выравнивания по вертикали*/
+$alignments: (
+  'start': flex-start,
+  'end': flex-end,
+  'center': center,
+  'stretch': stretch,
+  'baseline': baseline,
+);
+
+/* Параметры для создания отступов между колонками
+ * Правило для медиа-запроса| Брейкпоинт | Половина размера отступа между колонками
+ */
+$gutters: (
+  'min-width' $extraLargeMobileBreakpoint + 1px 16px,
+  'max-width' $extraLargeMobileBreakpoint 12px,
+  'max-width' $mediumMobileBreakpoint 8px,
+);
+
+/* Миксин для создания отступов между колонками */
+@mixin create-gutters {
+  @each $rule, $breakpoint, $gutter in $gutters {
+    @media ($rule: $breakpoint) {
+      margin-right: -$gutter;
+      margin-left: -$gutter;
+      .col {
+        padding: 0 $gutter;
+      }
     }
   }
-  @each $max-width, $row-width in $break-points {
-    @media (max-width: $max-width) {
-      max-width: $row-width;
+}
+/* Параметры для вычисления ширины колонок
+ * Правило для медиа-запроса| Брейкпоинт | Префикс для названия класса | Количество колонок
+ */
+$columns: (
+  'min-width' $extraLargeMobileBreakpoint + 1px  'lg' 12,
+  'max-width' $extraLargeMobileBreakpoint  'md' 8,
+);
 
-      $margin: if($max-width > 960, 32px, if($max-width > 720, 24px, 16px));
-      $columns: if($max-width > 840, 12, if($max-width > 600, 8, 4));
-      $item-width: ($row-width - (($columns - 1) * $margin)) / $columns;
-      @for $i from 1 through $columns {
-        $width: $item-width * $i + ($margin * ($i - 1));
-        .width-#{$i} {
+
+/* Миксин для создания классов с шириной колонок */
+@mixin create-columns-width {
+  @each $rule, $breakpoint, $sizeName, $columnCount in $columns {
+    @media ($rule: $breakpoint) {
+      &.#{$sizeName}-auto-#{$columnCount} {
+        flex: 1 1 0;
+        max-width: 100%;
+      }
+      @for $key from 1 through $columnCount {
+        $width: 100%  / $columnCount * $key;
+        &.#{$sizeName}-#{$key}-#{$columnCount} {
           flex: 0 1 $width;
           max-width: $width;
         }
       }
     }
   }
-  &-gutter-l {
-    margin: 0 auto 32px;
-    @media (max-width: 960px) {
-      margin-bottom: 24px;
-    }
-    @media (max-width: 720px) {
-      margin-bottom: 16px;
-    }
-  }
-  &-gutter-m {
-    margin: 0 auto 16px;
-    @media (max-width: 960px) {
-      margin-bottom: 12px;
-    }
-    @media (max-width: 720px) {
-      margin-bottom: 8px;
-    }
-  }
-  &-gutter-s {
-    margin: 0 auto 8px;
-    @media (max-width: 960px) {
-      margin-bottom: 6px;
-    }
-    @media (max-width: 720px) {
-      margin-bottom: 4px;
-    }
-  }
-  &-gutter-zero {
-    margin: 0 auto;
-  }
 }
 
-.col {
+.row {
+  width: auto;
   display: flex;
-  box-sizing: border-box;
-  overflow: hidden;
-  &-gutter-l {
-    + .col {
-      margin-left: 32px;
-      @media (max-width: 960px) {
-        margin-left: 24px;
-      }
-      @media (max-width: 720px) {
-        margin-left: 16px;
-      }
+  flex-direction: row;
+  .col {
+    box-sizing: border-box;
+    @include create-columns-width;
+  }
+  &.with-gutters {
+    @include create-gutters;
+  }
+  &.wrap {
+    flex-wrap: wrap;
+  }
+  @each $key, $value in $justifies {
+    &.justify-#{$key} {
+      justify-content: $value;
     }
   }
-  &-gutter-m {
-    + .col {
-      margin-left: 16px;
-      @media (max-width: 960px) {
-        margin-left: 12px;
-      }
-      @media (max-width: 720px) {
-        margin-left: 8px;
-      }
-    }
-  }
-  &-gutter-s {
-    + .col {
-      margin-left: 8px;
-      @media (max-width: 960px) {
-        margin-left: 6px;
-      }
-      @media (max-width: 720px) {
-        margin-left: 4px;
-      }
-    }
-  }
-  &-gutter-zero {
-    + .col {
-      margin-left: 0;
-      @media (max-width: 960px) {
-        margin-left: 0;
-      }
-      @media (max-width: 720px) {
-        margin-left: 0;
-      }
+  @each $key, $value in $alignments {
+    &.items-#{$key} {
+      align-items: $value;
     }
   }
 }
-
-.wrap {
-  flex-wrap: wrap;
-}
-
-@each $key, $value in $alignments {
-  .justify-#{$key} {
-    justify-content: $value;
-  }
-  .items-#{$key} {
-    align-items: $value;
-  }
-}
-
-.items-stretch {
-  align-items: stretch;
-}
-
