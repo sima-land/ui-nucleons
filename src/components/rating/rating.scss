@@ -1,4 +1,7 @@
 @import '../variables';
+$inner-star: "path:first-child";
+$outside-star: "path:nth-child(2)";
+$bottom-of-star: "path:nth-child(3)";
 
 .rating {
   width: 118px;
@@ -6,37 +9,37 @@
   flex-direction: row-reverse;
   justify-content: space-around;
   align-items: center;
-  .inner-star {
+  #{$inner-star} {
     fill: $transparent;
   }
-  .outside-star {
+  #{$outside-star} {
     fill: $transparent;
   }
-  .bottom-of-star {
+  #{$bottom-of-star} {
     fill: $transparent;
   }
 }
 
 .empty-star {
-  .outside-star {
+  #{$outside-star} {
     fill: $grayStar;
   }
 }
 
 .half-star {
-  .outside-star {
+  #{$outside-star} {
     fill: $grayStar;
   }
-  .bottom-of-star {
+  #{$bottom-of-star} {
     fill: $orangeStar;
   }
 }
 
 .full-star {
-  .inner-star {
+  #{$inner-star} {
     fill: $orangeStar;
   }
-  .outside-star {
+  #{$outside-star} {
     fill: $orangeStar;
   }
 }
@@ -44,13 +47,13 @@
 .rating-can-be-hovered {
   .rating-star:hover,
   .rating-star:hover ~ .rating-star {
-    .inner-star {
+    #{$inner-star} {
       fill: $grayStar;
     }
-    .outside-star {
+    #{$outside-star} {
       fill: $grayStar;
     }
-    .bottom-of-star {
+    #{$bottom-of-star} {
       fill: $grayStar;
     }
   }
