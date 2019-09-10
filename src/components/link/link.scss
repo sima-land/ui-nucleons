@@ -12,6 +12,10 @@
   border-bottom-color: transparent;
 }
 
+.link-underlined {
+  padding-bottom: 1px;
+}
+
 .link-underlined-solid {
   border-bottom: $underlineSolid;
 }
@@ -81,7 +85,7 @@
 .link-dark-blue {
   color: $veryDarkBlue;
   &.link-underlined {
-    border-bottom-color: $underlineBlueLink;
+    border-bottom-color: $underlineDarkBlueLink;
   }
 
 }
