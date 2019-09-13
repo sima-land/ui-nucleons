@@ -8,7 +8,7 @@ describe('<Price />', () => {
   let props = {
     value: 100.578,
     currencySign: 'RUB',
-    beforePrice: true,
+    graphemeBeforePrice: true,
     withFractionalPart: true,
   };
 
@@ -43,12 +43,12 @@ describe('<Price />', () => {
   });
 
   it('should render currency grapheme with non-breaking space at correct place', () => {
-    props = { value: 100, className: 'test', currencyGrapheme: '₽', beforePrice: true };
+    props = { value: 100, className: 'test', currencyGrapheme: '₽', graphemeBeforePrice: true };
     price = shallow(<Price {...props} />);
     const grapheme = price.find({ className: 'grapheme' });
     expect(grapheme).toHaveLength(1);
     expect(grapheme.text()).toEqual('₽\u00A0');
-    price.setProps({ beforePrice: false });
+    price.setProps({ graphemeBeforePrice: false });
     expect(price.find({ className: 'grapheme' }).text()).toEqual('\u00A0₽');
   });
 

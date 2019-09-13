@@ -12,8 +12,8 @@ import classNames from 'classnames';
  * @param {string} [props.fractionalClass] Класс/стили дробной части валюты.
  * @param {string} [props.currencyGrapheme] Графема валюты пользователя.
  * @param {number} props.value Цена.
- * @param {boolean} [props.withFractionalPart] Указать дробную часть.
- * @param {boolean} [props.beforePrice] Отобразить знак валюты перед ценой.
+ * @param {boolean|'auto'} [props.withFractionalPart='auto'] Указать дробную часть.
+ * @param {boolean} [props.graphemeBeforePrice] Отобразить знак валюты перед ценой.
  * @param {boolean} [props.fractionalInSuper] Отображать дробную часть сверху.
  * @param {boolean} [props.boldIntegerPart] Отображать целую часть цены жирным начертанием.
  * @param {boolean} [props.old] Отображать цену "старой" - серой и зачеркнутой.
@@ -23,8 +23,8 @@ const Price = ({
   className,
   currencyGrapheme,
   value,
-  withFractionalPart,
-  beforePrice,
+  withFractionalPart = 'auto',
+  graphemeBeforePrice,
   fractionalInSuper,
   boldIntegerPart,
   currencyGraphemeClass,
@@ -33,19 +33,20 @@ const Price = ({
 }) => {
   const price = formatNumber(value);
   const integer = boldIntegerPart ? <b>{price[0]}</b> : price[0];
+  const fractionalPart = price[1];
   const sign = currencyGrapheme && (
     <span className={classNames(styles.grapheme, currencyGraphemeClass)}>
-      {beforePrice ? `${currencyGrapheme}\u00A0` : `\u00A0${currencyGrapheme}`}
+      {graphemeBeforePrice ? `${currencyGrapheme}\u00A0` : `\u00A0${currencyGrapheme}`}
     </span>
   );
   return (
     <span className={classNames(styles.price, className, old && styles['old-price'])}>
-      {beforePrice && sign}
+      {graphemeBeforePrice && sign}
       {integer}
-      {withFractionalPart && (
-        fractionalInSuper ? <sup className={fractionalClass}>{price[1]}</sup> : `.${price[1]}`
+      {((withFractionalPart === true) || (withFractionalPart === 'auto' && fractionalPart > 0)) && (
+        fractionalInSuper ? <sup className={fractionalClass}>{fractionalPart}</sup> : `.${fractionalPart}`
       )}
-      {!beforePrice && sign}
+      {!graphemeBeforePrice && sign}
     </span>
   );
 };
@@ -74,11 +75,11 @@ Price.propTypes = {
   /**
    * Указывать ли дробную часть
    */
-  withFractionalPart: Type.bool,
+  withFractionalPart: Type.oneOf([true, false, 'auto']),
   /**
    * Указывать знак валюты перед ценой.
    */
-  beforePrice: Type.bool,
+  graphemeBeforePrice: Type.bool,
   /**
    * Указывать дробную часть цены сверху (в <sup></sup>).
    */

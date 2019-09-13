@@ -12,7 +12,7 @@ storiesOf('Price', module)
   .add('with grapheme before price and bold value', () =>
     graphemes.map((grapheme, index) => (
       <span key={index} style={margin}>
-        <Price value={1234.56} currencyGrapheme={grapheme} beforePrice boldIntegerPart />
+        <Price value={1234.56} currencyGrapheme={grapheme} graphemeBeforePrice boldIntegerPart />
       </span>
     )))
   .add('with fractional part', () =>
