@@ -2,11 +2,11 @@
 
 /* Максимальная ширина блока по брейкпоинтам */
 $layoutWidth: (
-  $largeDesktopBreakpoint 1408px,
-  $mediumDesktopBreakpoint 1240px,
-  $smallDesktopBreakpoint 1144px,
+  $mediumDesktopBreakpoint 1408px,
+  $smallDesktopBreakpoint 1240px,
   $extraSmallDesktopBreakpoint calc(100% - 136px),
-  $extraLargeMobileBreakpoint calc(100% - 120px),
+  $extraLargeMobileBreakpoint 840px,
+  $largeMobileBreakpoint 720px,
   $mediumMobileBreakpoint calc(100% - 64px),
   $smallMobileBreakpoint calc(100% - 32px),
 );
