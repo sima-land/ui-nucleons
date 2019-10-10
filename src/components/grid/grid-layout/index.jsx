@@ -9,17 +9,25 @@ const cx = classNames.bind(styles);
  * Обертка для общего контейнера.
  * @param {Object} props Свойства компонента.
  * @param {*} props.children Содержимое компонента.
+ * @param {string} [props.containerTag='div'] Имя элемента-контейнера.
+ * @param {Object} [props.containerProps] Свойства контейнера.
  * @return {ReactElement} Компонент-обертка.
  */
-const GridLayout = ({ tag: Tag = 'div', children, containerProps }) => {
-  const { className: containerClassName } = containerProps || {};
+const GridLayout = ({
+  containerTag: Container = 'div',
+  containerProps,
+  children,
+}) => {
+  const { className } = containerProps || {};
+
   return (
-    <Tag
-      {...containerProps}
-      className={cx('layout', containerClassName)}
-    >
-      {children}
-    </Tag>
+    <div className={cx('layout-wrapper')}>
+      <Container
+        {...containerProps}
+        className={cx('layout', className)}
+        children={children}
+      />
+    </div>
   );
 };
 
@@ -27,8 +35,16 @@ GridLayout.propTypes = {
   /**
    * Содержимое компонента.
    */
-  tag: Type.string,
   children: Type.any,
+
+  /**
+   * HTML-tag контейнера.
+   */
+  containerTag: Type.string,
+
+  /**
+   * Свойства контейнера.
+   */
   containerProps: Type.object,
 };
 

@@ -1,23 +1,57 @@
-@import '../../variables';
+.layout-wrapper {
+  padding: 0 16px;
+  box-sizing: border-box;
+  .layout {
+    width: auto;
+    max-width: 1600px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
 
-/* Максимальная ширина блока по брейкпоинтам */
-$layoutWidth: (
-  $mediumDesktopBreakpoint 1408px,
-  $smallDesktopBreakpoint 1240px,
-  $extraSmallDesktopBreakpoint calc(100% - 136px),
-  $extraLargeMobileBreakpoint 840px,
-  $largeMobileBreakpoint 720px,
-  $mediumMobileBreakpoint calc(100% - 64px),
-  $smallMobileBreakpoint calc(100% - 32px),
-);
-
-.layout {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1600px;
-  @each $breakpoint, $width in $layoutWidth {
-    @media (max-width: $breakpoint) {
-      max-width: $width;
+  // 1441-1600
+  @media (max-width: 1600px) {
+    padding: 0 16px;
+    .layout {
+      max-width: 1408px;
     }
+  }
+
+  // 1281-1440
+  @media (max-width: 1440px) {
+    padding: 0 16px;
+    .layout {
+      max-width: 1240px;
+    }
+  }
+
+  // 961-1280
+  @media (max-width: 1280px) {
+    padding: 0 68px;
+  }
+
+  // 841-960
+  @media (max-width: 960px) {
+    padding: 0 16px;
+    .layout {
+      max-width: 840px;
+    }
+  }
+
+  // 721-840
+  @media (max-width: 840px) {
+    padding: 0 16px;
+    .layout {
+      max-width: 720px;
+    }
+  }
+
+  // 601-720
+  @media (max-width: 720px) {
+    padding: 0 32px;
+  }
+
+  // 600-
+  @media (max-width: 600px) {
+    padding: 0 16px;
   }
 }
