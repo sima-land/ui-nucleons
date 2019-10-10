@@ -1,26 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<GridLayout/> should renders correctly with props 1`] = `
-<section
-  className="layout section-class"
-  name="some-name"
+exports[`<GridLayout /> should renders correctly with props 1`] = `
+<div
+  className="layout-wrapper"
 >
-  <div
-    className="test"
+  <section
+    className="layout section-class"
+    name="some-name"
   >
-    some content
-  </div>
-</section>
+    <div
+      className="test"
+    >
+      some content
+    </div>
+  </section>
+</div>
 `;
 
-exports[`<GridLayout/> should renders correctly without props 1`] = `
+exports[`<GridLayout /> should renders correctly without props 1`] = `
 <div
-  className="layout"
+  className="layout-wrapper"
 >
   <div
-    className="test-content"
+    className="layout"
   >
-    123
+    <div
+      className="test-content"
+    >
+      123
+    </div>
   </div>
 </div>
 `;
