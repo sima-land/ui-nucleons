@@ -3,8 +3,8 @@ import Icon from '../icon';
 import star from '../icons/star.svg';
 import styles from './rating.scss';
 import Type from 'prop-types';
-import isFunction from 'lodash.isfunction';
-import range from 'lodash.range';
+import isFunction from 'lodash/isFunction';
+import range from 'lodash/range';
 import classNames from 'classnames/bind';
 import composeClasses from '../helpers/compose-classes';
 

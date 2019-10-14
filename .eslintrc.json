@@ -3,7 +3,8 @@
     "react",
     "jest",
     "import",
-    "jsdoc"
+    "jsdoc",
+    "lodash"
   ],
   "env": {
     "browser": true,
@@ -313,6 +314,10 @@
     "jsdoc/valid-types": [
       "error",
       "always"
+    ],
+    "lodash/import-scope": [
+      "error",
+      "method"
     ]
   }
 }

@@ -1,6 +1,6 @@
 import moment from 'moment';
 import 'moment/locale/ru.js';
-import isFunction from 'lodash.isfunction';
+import isFunction from 'lodash/isFunction';
 
 /**
  * Создает функцию для форматирования даты.
