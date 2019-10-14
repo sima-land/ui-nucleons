@@ -1,6 +1,6 @@
 import Popup from '../popup/';
 import Type from 'prop-types';
-import isNumber from 'lodash.isnumber';
+import isNumber from 'lodash/isNumber';
 import classNames from 'classnames/bind';
 import PopupArrow from '../popup-arrow/';
 import styles from './positioning-popup.scss';

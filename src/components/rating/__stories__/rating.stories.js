@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Rating from '../';
-import range from 'lodash.range';
+import range from 'lodash/range';
 import styles from './rating.scss';
 
 const style = {

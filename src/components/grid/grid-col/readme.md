@@ -2,7 +2,7 @@
 ```jsx
     import GridCol from './';
     import GridRow from '../grid-row';
-    import range from 'lodash.range';
+    import range from 'lodash/range';
     import { justifies } from './__stories__/grid-col.stories';
     import '!style-loader!css-loader!sass-loader!./__stories__/grid-col-demo.scss';
     <div className='container-with-border'>

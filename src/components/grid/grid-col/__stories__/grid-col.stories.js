@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import GridCol from '../';
 import GridRow from '../../grid-row';
 import styles from './grid-col-demo.scss';
-import range from 'lodash.range';
+import range from 'lodash/range';
 
 storiesOf('Grid/GridCol', module)
   .add('with different columns desktop and mobile value', () => (
