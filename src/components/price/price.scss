@@ -8,6 +8,12 @@
   font-size: 12px;
 }
 
+.invisible-dot {
+  display: inline-block;
+  opacity: 0;
+  width: 0;
+}
+
 .old-price {
   position: relative;
   font-size: 13px;
