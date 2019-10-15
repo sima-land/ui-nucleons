@@ -37,3 +37,26 @@ exports[`<Price /> renders correctly 3`] = `
   </span>
 </span>
 `;
+
+exports[`<Price /> renders correctly 4`] = `
+<span
+  className="price test"
+>
+  100
+  <span
+    className="invisible-dot"
+  >
+    .
+  </span>
+  <sup
+    className="fractional-class"
+  >
+    00
+  </sup>
+  <span
+    className="grapheme currency-class"
+  >
+     ₽
+  </span>
+</span>
+`;

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { formatNumber } from '../helpers/format-number';
-import Type from 'prop-types';
-import styles from './price.scss';
-import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import classes from './price.scss';
+import classnames from 'classnames/bind';
+
+const cx = classnames.bind(classes);
 
 /**
  * Цена товара с указанием знака валюты.
@@ -23,7 +25,7 @@ const Price = ({
   className,
   currencyGrapheme,
   value,
-  withFractionalPart = 'auto',
+  withFractionalPart: withFraction = 'auto',
   graphemeBeforePrice,
   fractionalInSuper,
   boldIntegerPart,
@@ -31,20 +33,38 @@ const Price = ({
   fractionalClass,
   old,
 }) => {
-  const price = formatNumber(value);
-  const integer = boldIntegerPart ? <b>{price[0]}</b> : price[0];
-  const fractionalPart = price[1];
-  const sign = currencyGrapheme && (
-    <span className={classNames(styles.grapheme, currencyGraphemeClass)}>
-      {graphemeBeforePrice ? `${currencyGrapheme}\u00A0` : `\u00A0${currencyGrapheme}`}
+  const [integer, fraction] = formatNumber(value);
+  const needFraction = withFraction === true || (withFraction === 'auto' && fraction > 0);
+
+  const integerView = boldIntegerPart
+    ? <b>{integer}</b>
+    : integer;
+
+  const sign = Boolean(currencyGrapheme) && (
+    <span className={cx('grapheme', currencyGraphemeClass)}>
+      {
+        graphemeBeforePrice
+          ? `${currencyGrapheme}\u00A0`
+          : `\u00A0${currencyGrapheme}`
+      }
     </span>
   );
+
   return (
-    <span className={classNames(styles.price, className, old && styles['old-price'])}>
+    <span className={cx('price', className, old && 'old-price')}>
       {graphemeBeforePrice && sign}
-      {integer}
-      {((withFractionalPart === true) || (withFractionalPart === 'auto' && fractionalPart > 0)) && (
-        fractionalInSuper ? <sup className={fractionalClass}>{fractionalPart}</sup> : `.${fractionalPart}`
+      {integerView}
+      {needFraction && (
+        fractionalInSuper
+          ? (
+            <Fragment>
+              <span className={cx('invisible-dot')}>.</span>
+              <sup className={fractionalClass}>
+                {fraction}
+              </sup>
+            </Fragment>
+          )
+          : `.${fraction}`
       )}
       {!graphemeBeforePrice && sign}
     </span>
@@ -55,43 +75,52 @@ Price.propTypes = {
   /**
    * Класс/стили цены знака валюты.
    */
-  currencyGraphemeClass: Type.string,
+  currencyGraphemeClass: PropTypes.string,
+
   /**
    * Класс/стили цены дробной части.
    */
-  fractionalClass: Type.string,
+  fractionalClass: PropTypes.string,
+
   /**
    * Класс/стили цены валюты.
    */
-  className: Type.string,
+  className: PropTypes.string,
+
   /**
    * Графема валюты пользователя.
    */
-  currencyGrapheme: Type.string,
+  currencyGrapheme: PropTypes.string,
+
   /**
    * Цена
    */
-  value: Type.number,
+  value: PropTypes.number,
+
   /**
    * Указывать ли дробную часть
    */
-  withFractionalPart: Type.oneOf([true, false, 'auto']),
+  withFractionalPart: PropTypes.oneOf([true, false, 'auto']),
+
   /**
    * Указывать знак валюты перед ценой.
    */
-  graphemeBeforePrice: Type.bool,
+  graphemeBeforePrice: PropTypes.bool,
+
   /**
    * Указывать дробную часть цены сверху (в <sup></sup>).
    */
-  fractionalInSuper: Type.bool,
+  fractionalInSuper: PropTypes.bool,
+
   /**
    * Выделять жирным шрифтом целую часть цены.
    */
-  boldIntegerPart: Type.bool,
+  boldIntegerPart: PropTypes.bool,
+
   /**
    * Отображать цену "старой" - серой и зачеркнутой.
    */
-  old: Type.bool,
+  old: PropTypes.bool,
 };
 
 export default Price;
