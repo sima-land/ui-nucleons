@@ -1,0 +1,69 @@
+@import '../variables';
+
+.italic {
+  font-style: italic;
+}
+
+$aligns: (
+  left,
+  right,
+  center,
+  justify
+);
+
+@each $align in $aligns {
+  .align-#{$align} {
+    text-align: $align;
+  }
+}
+
+$sizes: (
+  12,
+  14,
+  16,
+  20,
+  24,
+  32,
+  48,
+  64,
+  80,
+);
+
+@each $size in $sizes {
+  .size-#{$size} {
+    font-size: #{$size}px;
+  }
+}
+
+@each $size in $sizes {
+  .line-height-#{$size} {
+    line-height: #{$size}px;
+  }
+}
+
+$colors: (
+  black: #000,
+  gray24: #c2c2c2,
+  gray38: #9e9e9e,
+  red: #fb3a2f,
+);
+
+@each $key, $color in $colors {
+  .color-#{$key} {
+    color: $color;
+  }
+}
+
+$weights: (
+  300,
+  400,
+  600,
+  700,
+  800,
+);
+
+@each $weight in $weights {
+  .weight-#{$weight} {
+    font-weight: $weight;
+  }
+}

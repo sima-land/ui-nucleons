@@ -16,14 +16,17 @@ import { graphemes } from '../constants';
 
 const testAlignItems = [
   <Box
+    key={20}
     margin={1}
     dangerouslySetInlineStyle={{ __style: { minWidth: 10, minHeight: 20, background: '#323232' } }}
   />,
   <Box
+    key={40}
     margin={1}
     dangerouslySetInlineStyle={{ __style: { minWidth: 10, minHeight: 40, background: '#323232' } }}
   />,
   <Box
+    key={60}
     margin={1}
     dangerouslySetInlineStyle={{ __style: { minWidth: 10, minHeight: 60, background: '#323232' } }}
   />,
