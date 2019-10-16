@@ -3,6 +3,10 @@
   "plugins": [
     "stylelint-scss"
   ],
+  "ignoreFiles": [
+    "**/*.js",
+    "**/*.jsx"
+  ],
   "rules": {
     "indentation": 2,
     "selector-max-id":3,

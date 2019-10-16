@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Text /> should match snapshot 1`] = `
+<span
+  className="size-24 line-height-32 color-red weight-600"
+>
+  Test red text
+</span>
+`;
