@@ -8,7 +8,7 @@ exports[`<PositioningPopup /> renders correctly with arrow 1`] = `
     className="popup-wrap"
     style={
       Object {
-        "left": 20,
+        "left": -120,
         "top": "100%",
       }
     }
@@ -19,7 +19,7 @@ exports[`<PositioningPopup /> renders correctly with arrow 1`] = `
       direction="top"
       position={
         Object {
-          "left": 5,
+          "left": 75,
         }
       }
       shadow={true}
@@ -28,7 +28,7 @@ exports[`<PositioningPopup /> renders correctly with arrow 1`] = `
         className="base white arrow-base top shadow shadow-top"
         style={
           Object {
-            "left": 5,
+            "left": 75,
           }
         }
       />
@@ -48,7 +48,7 @@ exports[`<PositioningPopup /> renders correctly without props 1`] = `
     className="popup-wrap"
     style={
       Object {
-        "left": 20,
+        "left": -120,
         "top": "100%",
       }
     }
