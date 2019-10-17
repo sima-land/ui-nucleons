@@ -1,13 +1,13 @@
 import Popup from '../popup/';
 import Type from 'prop-types';
 import isNumber from 'lodash/isNumber';
-import classNames from 'classnames/bind';
+import classnames from 'classnames/bind';
 import PopupArrow from '../popup-arrow/';
-import styles from './positioning-popup.scss';
+import classes from './positioning-popup.scss';
 import isBrowser from '../../helpers/is-browser';
 import React, { Component, createRef } from 'react';
 
-const bindClassNames = classNames.bind(styles);
+const cx = classnames.bind(classes);
 
 /**
  * Минимальный отступ от края контейнера.
@@ -70,7 +70,7 @@ class PositioningPopup extends Component {
    * Выполняется перед монтированием компонента
    * Определяет координаты родителя и опенера.
    */
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     const { parent, opener } = this.props;
     let parentCoords = {};
     let openerCoords = {};
@@ -105,7 +105,6 @@ class PositioningPopup extends Component {
       this.setState({
         popupWidth: this.popupRef.current.getBoundingClientRect().width,
       });
-      this.forceUpdate();
     }
   }
 
@@ -121,29 +120,38 @@ class PositioningPopup extends Component {
 
   /**
    * Корректирует отступ у попапа.
-   * @param {number} left Отступ от левого края.
-   * @param {number} edgeMargin Минимальный отступ от края.
+   * @param {Object} data Данные о позиции.
+   * @param {number} data.left Отступ от левого края.
+   * @param {number} data.edgeMargin Минимальный отступ от края.
    * @return {number} Откорректированный отступ.
    */
   correctHorizontalPosition ({ left, edgeMargin }) {
-    const { popupWidth } = this.state;
+    const { current: opener } = this.props.opener || {};
+    const { current: parent } = this.props.parent || {};
+    const { current: popup } = this.popupRef;
     let correctPosition = left;
 
-    // Выравниваем, если выходит за левую часть вьюпорта
-    if (correctPosition < -this.parentLeft) {
-      correctPosition = -this.parentLeft;
-      correctPosition += edgeMargin;
-    }
+    if (opener && parent && popup) {
+      const { width: popupWidth } = popup.getBoundingClientRect();
+      const { left: openerLeft } = opener.getBoundingClientRect();
+      const { left: parentLeft } = parent.getBoundingClientRect();
 
-    // Выравниваем, если выходит за правую часть вьюпорта
-    const windowWidth = isBrowser() ? window.innerWidth : 0;
-    const sideIndentParent = Math.abs(this.parentWidth - left - popupWidth);
-    const sideIndentViewport = Math.abs(windowWidth - left - popupWidth);
-    const sideIndent = (sideIndentViewport - sideIndentParent) / 2;
-    if (sideIndent <= 0) {
-      correctPosition -= sideIndentParent;
-      correctPosition += Math.abs(sideIndent);
-      correctPosition -= edgeMargin;
+      // Выравниваем, если выходит за левую часть вьюпорта
+      const excessiveLeftIndentation = Math.ceil(openerLeft - Math.abs(correctPosition));
+      if (excessiveLeftIndentation < 0) {
+        correctPosition += Math.abs(excessiveLeftIndentation);
+        correctPosition += edgeMargin;
+      }
+
+      // Выравниваем, если выходит за правую часть вьюпорта
+      const windowWidth = isBrowser() ? Math.ceil(document.body.clientWidth) : 0;
+      const popupRight = Math.ceil(parentLeft + correctPosition + popupWidth);
+      const excessiveRightIndentation = windowWidth - popupRight;
+
+      if (excessiveRightIndentation < 0) {
+        correctPosition -= Math.abs(excessiveRightIndentation);
+        correctPosition -= edgeMargin;
+      }
     }
 
     return correctPosition;
@@ -250,7 +258,7 @@ class PositioningPopup extends Component {
     } = this.props;
     const popupPosition = this.getPopupPosition();
     const arrowProps = this.getArrowProps({ ...popupPosition });
-    const popupClass = bindClassNames(
+    const popupClass = cx(
       className,
       'popup-wrap',
       this.state.popupWidth === 0 && 'hidden'

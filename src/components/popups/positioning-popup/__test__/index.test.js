@@ -5,15 +5,19 @@ import isBrowser from '../../../helpers/is-browser';
 import PositioningPopup, { defaultArrowProps } from '../';
 
 /**
- * Создает иммитацию рефа.
+ * Создает имитацию рефа.
  * @param {number} width Ширина.
  * @param {number} left Отступ слева.
- * @return {Object} Иммитация рефа.
+ * @return {Object} Имитация рефа.
  */
 const createFakeRef = (width, left) => ({
   current: {
     offsetWidth: width,
     offsetLeft: left,
+    getBoundingClientRect: () => ({
+      width,
+      left,
+    }),
   },
 });
 
@@ -23,6 +27,9 @@ describe('<PositioningPopup />', () => {
   Element.prototype.getBoundingClientRect = jest.fn(() => ({
     width: 100,
   }));
+
+  jest.spyOn(global.document.body, 'clientWidth', 'get')
+    .mockImplementation(() => 1024);
 
   it('renders correctly without props', () => {
     isBrowser.mockImplementation(() => true);
@@ -113,28 +120,28 @@ describe('<PositioningPopup />', () => {
       popup.setProps({ positioningMargin: 30 });
       const popupPosition = instance.getPopupPosition();
 
-      expect(popupPosition).toEqual({ left: 80, top: '100%' });
+      expect(popupPosition).toEqual({ left: 140, top: '100%' });
     });
 
     it('when vertical position is top', () => {
       popup.setProps({ verticalPosition: 'top' });
       const popupPosition = instance.getPopupPosition();
 
-      expect(popupPosition).toEqual({ left: 70, bottom: '100%' });
+      expect(popupPosition).toEqual({ left: 110, bottom: '100%' });
     });
 
     it('when vertical position is bottom', () => {
       popup.setProps({ verticalPosition: 'bottom' });
       const popupPosition = instance.getPopupPosition();
 
-      expect(popupPosition).toEqual({ left: 70, top: '100%' });
+      expect(popupPosition).toEqual({ left: 110, top: '100%' });
     });
 
     it('when horizontal position is auto', () => {
       popup.setProps({ horizontalPosition: 'auto' });
       const popupPosition = instance.getPopupPosition();
 
-      expect(popupPosition).toEqual({ left: 70, top: '100%' });
+      expect(popupPosition).toEqual({ left: 110, top: '100%' });
 
       popup = mount(
         <PositioningPopup
@@ -174,7 +181,7 @@ describe('<PositioningPopup />', () => {
       popup.setProps({ horizontalPosition: 'right' });
       const popupPosition = instance.getPopupPosition();
 
-      expect(popupPosition).toEqual({ left: 70, top: '100%' });
+      expect(popupPosition).toEqual({ left: 110, top: '100%' });
 
       popup = mount(
         <PositioningPopup
@@ -188,7 +195,7 @@ describe('<PositioningPopup />', () => {
       instance = popup.instance();
       const otherPopupPosition = instance.getPopupPosition();
 
-      expect(otherPopupPosition).toEqual({ left: 912, top: '100%' });
+      expect(otherPopupPosition).toEqual({ left: 924, top: '100%' });
     });
 
     it('when horizontal position is center', () => {
@@ -227,7 +234,7 @@ describe('<PositioningPopup />', () => {
         popupWidth: 500,
       });
 
-      expect(thirdPopupPosition).toEqual({ left: 912, top: '100%' });
+      expect(thirdPopupPosition).toEqual({ left: 924, top: '100%' });
     });
   });
 
@@ -263,7 +270,7 @@ describe('<PositioningPopup />', () => {
       expect(arrowProps).toEqual({
         ...testArrowProps,
         direction: 'top',
-        position: { left: 20 },
+        position: { left: 5 },
       });
 
       const otherTestArrowProps = {
@@ -278,7 +285,7 @@ describe('<PositioningPopup />', () => {
       expect(otherArrowProps).toEqual({
         ...otherTestArrowProps,
         direction: 'top',
-        position: { left: 20 },
+        position: { left: 5 },
       });
     });
 
@@ -286,7 +293,7 @@ describe('<PositioningPopup />', () => {
       const arrowProps = instance.getArrowProps(data);
       expect(arrowProps).toEqual({
         ...defaultArrowProps,
-        position: { left: 20 },
+        position: { left: 5 },
       });
     });
 
@@ -297,7 +304,7 @@ describe('<PositioningPopup />', () => {
       expect(arrowProps).toEqual({
         ...defaultArrowProps,
         direction: 'bottom',
-        position: { left: 20 },
+        position: { left: 5 },
       });
     });
 
@@ -308,7 +315,7 @@ describe('<PositioningPopup />', () => {
       expect(arrowProps).toEqual({
         ...defaultArrowProps,
         direction: 'top',
-        position: { left: 20 },
+        position: { left: 5 },
       });
     });
 
@@ -317,7 +324,7 @@ describe('<PositioningPopup />', () => {
       const arrowProps = instance.getArrowProps(data);
       expect(arrowProps).toEqual({
         ...defaultArrowProps,
-        position: { left: 20 },
+        position: { left: 5 },
       });
 
       popup = mount(
@@ -344,7 +351,7 @@ describe('<PositioningPopup />', () => {
       const arrowProps = instance.getArrowProps(data);
       expect(arrowProps).toEqual({
         ...defaultArrowProps,
-        position: { left: 20 },
+        position: { left: 5 },
       });
 
       popup = mount(
@@ -371,7 +378,7 @@ describe('<PositioningPopup />', () => {
       const arrowProps = instance.getArrowProps(data);
       expect(arrowProps).toEqual({
         ...defaultArrowProps,
-        position: { left: 20 },
+        position: { left: 5 },
       });
 
       popup = mount(
@@ -389,7 +396,7 @@ describe('<PositioningPopup />', () => {
       });
       expect(otherArrowProps).toEqual({
         ...defaultArrowProps,
-        position: { left: 53 },
+        position: { left: 41 },
       });
     });
 
@@ -398,7 +405,7 @@ describe('<PositioningPopup />', () => {
       const arrowProps = instance.getArrowProps(data);
       expect(arrowProps).toEqual({
         ...defaultArrowProps,
-        position: { left: 20 },
+        position: { left: 5 },
       });
 
       popup = mount(
@@ -416,7 +423,7 @@ describe('<PositioningPopup />', () => {
       });
       expect(otherArrowProps).toEqual({
         ...defaultArrowProps,
-        position: { left: 53 },
+        position: { left: 41 },
       });
     });
   });

@@ -206,7 +206,8 @@
       "error",
       {
         "properties": "never",
-        "ignoreDestructuring": false
+        "ignoreDestructuring": false,
+        "allow": ["^UNSAFE_"]
       }
     ],
     "prefer-const": "error",
