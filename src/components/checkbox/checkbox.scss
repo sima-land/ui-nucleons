@@ -1,0 +1,53 @@
+$unchecked: "g:nth-child(1)";
+$checked: "g:nth-child(2)";
+$disabled: "g:nth-child(3)";
+$disabledChecked: "g:nth-child(4)";
+
+.checkbox-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  .checkbox-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.checkbox-icon {
+  rect {
+    stroke-width: 1;
+  }
+  #{$checked},
+  #{$unchecked},
+  #{$disabled},
+  #{$disabledChecked} {
+    display: none;
+  }
+  &.checked:not(.disabled) {
+    #{$checked} {
+      display: block;
+    }
+  }
+  &.disabled:not(.checked) {
+    #{$disabled} {
+      display: block;
+    }
+  }
+  &:not(.checked):not(.disabled) {
+    #{$unchecked} {
+      display: block;
+    }
+  }
+  &.checked.disabled {
+    #{$disabledChecked} {
+      display: block;
+    }
+  }
+}

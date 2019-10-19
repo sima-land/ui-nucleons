@@ -306,11 +306,11 @@ PositioningPopup.propTypes = {
      */
     shadow: Type.bool,
     /**
-     * Цвет
+     * Цвет.
      */
     color: Type.oneOf(['white', 'blue', 'dark-blue', 'deep-blue']),
     /**
-     * Координаты
+     * Координаты.
      */
     position: Type.object,
   }),

@@ -28,8 +28,10 @@ const Icon = ({ icon, size, color, inline, className, ...restProps }) => {
     className
   );
   const Image = typeof icon === 'function' ? icon : imageCap;
+
   return (
-    <Image width={size}
+    <Image
+      width={size}
       height={size}
       className={iconClasses}
       viewBox='0 0 36 36'
@@ -40,27 +42,27 @@ const Icon = ({ icon, size, color, inline, className, ...restProps }) => {
 
 Icon.propTypes = {
   /**
-   * SVG импортированный в компонент
+   * SVG импортированный в компонент.
    */
   icon: Type.func,
   /**
-   * Размер иконки
+   * Размер иконки.
    */
   size: Type.number,
   /**
-   *  Цвет иконки. если передается - применяется этот цвет, если нет, то цвет наследуется от color родителя
+   * Цвет иконки. Если передается - применяется этот цвет, если нет, то цвет наследуется от color родителя.
    */
   color: Type.oneOf(['white', 'dark-gray', 'dark-blue', 'gray']),
   /**
-   * display: inline если иконка должна быть встроена в текст
+   * Устанавливает display: inline если иконка должна быть встроена в текст.
    */
   inline: Type.bool,
   /**
-   * Название css-класса, который нужно добавить к классам компонента
+   * Название css-класса, который нужно добавить к классам компонента.
    */
   className: Type.string,
   /**
-   * Обработчик клика на иконке
+   * Обработчик клика на иконке.
    */
   onClick: Type.func,
 };
