@@ -47,14 +47,13 @@ module.exports = {
         fontSize: 14,
       },
       sidebar: {
-        backgroundColor: '#c4c2de',
-        borderColor: '#8084c5',
+        backgroundColor: '#fff',
       },
     },
     Playground: {
       preview: {
-        backgroundColor: '#c4c2de',
-        borderColor: '#8084c5',
+        backgroundColor: '#eee',
+        borderColor: '#ddd',
       },
     },
   },
@@ -71,8 +70,9 @@ module.exports = {
           use: ['style-loader', {
             loader: 'css-loader',
             options: {
-              modules: true,
-              localIdentName: '[name]__[local]',
+              modules: {
+                localIdentName: '[name]__[local]',
+              },
             },
           }, 'sass-loader'],
         },

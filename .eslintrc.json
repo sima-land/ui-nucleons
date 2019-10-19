@@ -304,18 +304,17 @@
         "count": 1
       }
     ],
-    "jsdoc/require-param": [
-      "error",
-      "always"
-    ],
+    "jsdoc/require-param": "error",
     "jsdoc/require-description-complete-sentence": [
       "error",
-      "always"
+      {
+        "tags": [
+          "typedef",
+          "property"
+        ]
+      }
     ],
-    "jsdoc/valid-types": [
-      "error",
-      "always"
-    ],
+    "jsdoc/valid-types": "error",
     "lodash/import-scope": [
       "error",
       "method"

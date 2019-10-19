@@ -93,12 +93,12 @@ Price.propTypes = {
   currencyGrapheme: PropTypes.string,
 
   /**
-   * Цена
+   * Цена.
    */
   value: PropTypes.number,
 
   /**
-   * Указывать ли дробную часть
+   * Указывать ли дробную часть.
    */
   withFractionalPart: PropTypes.oneOf([true, false, 'auto']),
 
