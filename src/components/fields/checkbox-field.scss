@@ -1,0 +1,36 @@
+@import '../variables';
+
+.checkbox-container {
+  font-size: 14px;
+  display: inline-flex;
+  flex-direction: row;
+  vertical-align: baseline;
+  line-height: 20px;
+  .checkbox-row {
+    display: block;
+    .content-wrapper {
+      margin-top: 2px;
+    }
+  }
+  .text-row {
+    margin-left: 8px;
+    display: block;
+  }
+  .content-wrapper {
+    display: block;
+    + .content-wrapper {
+      margin-top: 8px;
+    }
+    &.label {
+      cursor: pointer;
+    }
+    &.error {
+      color: $red;
+      font-size: 12px;
+    }
+    &.info {
+      color: #ccc;
+      font-size: 12px;
+    }
+  }
+}
