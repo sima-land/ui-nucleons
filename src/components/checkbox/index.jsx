@@ -1,4 +1,4 @@
-import React, { useState, forwardRef } from 'react';
+import React, { useState, forwardRef, useEffect } from 'react';
 import CheckboxIcon from '../icons/checkbox.svg';
 import classnames from 'classnames/bind';
 import PropTypes from 'prop-types';
@@ -21,6 +21,8 @@ const Checkbox = forwardRef(({
   ...restProps
 }, ref) => {
   const [isChecked, toggleCheck] = useState(checked);
+
+  useEffect(() => toggleCheck(checked), [checked]);
 
   return (
     <span className={cx('checkbox-wrapper')}>
