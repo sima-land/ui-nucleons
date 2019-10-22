@@ -14,6 +14,9 @@
   line-height: 1;
   overflow: hidden;
   vertical-align: top;
+  &::-moz-focus-inner {
+    border: none;
+  }
 }
 
 .button-white,
