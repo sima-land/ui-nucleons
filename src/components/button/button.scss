@@ -19,6 +19,10 @@
   }
 }
 
+.button:disabled {
+  opacity: .48;
+}
+
 .button-white,
 .button-white:link,
 .button-white:visited {
@@ -55,8 +59,8 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
 }
 
-.button-white:hover,
-.button-blue:hover {
+.button-white:hover:not(:disabled),
+.button-blue:hover:not(:disabled) {
   background: $red;
   color: $white;
 }
@@ -76,7 +80,7 @@
   border-color: $black;
 }
 
-.button-clean:hover {
+.button-clean:hover:not(:disabled) {
   border-color: $black;
   color: $black;
 }
