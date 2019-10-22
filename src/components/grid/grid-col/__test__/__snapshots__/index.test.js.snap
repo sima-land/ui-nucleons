@@ -15,7 +15,7 @@ exports[`Компонент GridCol should renders correctly with custom props 1
     tag="section"
   >
     <section
-      className="col lg-5-12 md-7-8 test"
+      className="col col-lg-width-5 col-md-width-7 test"
     >
       Колонка 1
     </section>
@@ -29,7 +29,7 @@ exports[`Компонент GridCol should renders correctly without props 1`] =
     createClasses={[Function]}
   >
     <div
-      className="col lg-auto-12 md-auto-8"
+      className="col col-lg-width-auto col-md-width-auto"
     />
   </GridEntity>
 </GridCol>
