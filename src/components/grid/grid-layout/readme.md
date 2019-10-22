@@ -30,3 +30,35 @@
         </GridRow>
     </GridLayout>
 ```
+С разными настройками:
+```jsx
+    import '!style-loader!css-loader!sass-loader!./__stories__/grid-layout-demo.scss';
+    import GridCol from '../grid-col';
+    import GridRow from '../grid-row';
+    <div>
+    <GridLayout
+        containerProps={{ className: 'dotted' }}
+        smPadding='lg'
+        xsPadding='lg'
+        xxsPadding='lg'
+        xxxsPadding='lg'
+        smMaxWidth='md'
+        xsMaxWidth='md'
+        xxsMaxWidth='md'
+        xxxsMaxWidth='md'
+    >
+        <div className='content-green'>Settings for desktop</div>
+    </GridLayout>
+    <br />
+    <GridLayout
+        containerProps={{ className: 'dotted' }}
+        mdPadding='sm'
+        xxlMaxWidth='sm'
+        xlMaxWidth='sm'
+        lgMaxWidth='sm'
+        mdMaxWidth='sm'
+    >
+        <div className='content-green'>Settings for mobile</div>
+    </GridLayout>
+    </div>
+```

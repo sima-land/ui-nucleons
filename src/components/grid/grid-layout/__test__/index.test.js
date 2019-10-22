@@ -30,4 +30,54 @@ describe('<GridLayout />', () => {
     expect(wrapper.find('.test')).toHaveLength(1);
     expect(wrapper).toMatchSnapshot();
   });
+  it('should set correct classes with custom padding and maxWidth props', () => {
+    const wrapper = shallow(
+      <GridLayout
+        xxlPadding='sm'
+        xlPadding='sm'
+        lgPadding='sm'
+        mdPadding='sm'
+        smPadding='sm'
+        xsPadding='sm'
+        xxsPadding='sm'
+        xxxsPadding='sm'
+        xxlMaxWidth='sm'
+        xlMaxWidth='sm'
+        lgMaxWidth='sm'
+        mdMaxWidth='sm'
+        smMaxWidth='sm'
+        xsMaxWidth='sm'
+        xxsMaxWidth='sm'
+        xxxsMaxWidth='sm'
+      >
+        <div className='test'>some content</div>
+      </GridLayout>
+    );
+    expect(wrapper.find('.layout-wrapper').prop('className')).toEqual(
+      [
+        'layout-wrapper',
+        'layout-xxl-padding-sm',
+        'layout-xl-padding-sm',
+        'layout-lg-padding-sm',
+        'layout-md-padding-sm',
+        'layout-sm-padding-sm',
+        'layout-xs-padding-sm',
+        'layout-xxs-padding-sm',
+        'layout-xxxs-padding-sm',
+      ].join(' ')
+    );
+    expect(wrapper.find('.layout').prop('className')).toEqual(
+      [
+        'layout',
+        'layout-xxl-width-sm',
+        'layout-xl-width-sm',
+        'layout-lg-width-sm',
+        'layout-md-width-sm',
+        'layout-sm-width-sm',
+        'layout-xs-width-sm',
+        'layout-xxs-width-sm',
+        'layout-xxxs-width-sm',
+      ].join(' ')
+    );
+  });
 });

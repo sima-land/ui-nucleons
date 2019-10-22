@@ -3,17 +3,17 @@
 exports[`GridLayout, GridRow, GridCol renders correctly 1`] = `
 <GridLayout>
   <div
-    className="layout-wrapper"
+    className="layout-wrapper layout-xxl-padding-sm layout-xl-padding-sm layout-lg-padding-sm layout-md-padding-lg layout-sm-padding-sm layout-xs-padding-sm layout-xxs-padding-md layout-xxxs-padding-sm"
   >
     <div
-      className="layout"
+      className="layout layout-xxl-width-xl layout-xl-width-lg layout-lg-width-md layout-md-width-md layout-sm-width-sm layout-xs-width-xs layout-xxs-width-xs layout-xxxs-width-xs"
     >
       <GridRow>
         <GridEntity
           createClasses={[Function]}
         >
           <div
-            className="row items-stretch justify-start with-gutters"
+            className="row items-stretch justify-start with-gutters row-lg-columns-count-12 row-md-columns-count-8 row-lg-columns-gutters-lg row-md-columns-gutters-md row-sm-columns-gutters-sm"
           >
             <GridCol
               desktop={3}
@@ -23,7 +23,7 @@ exports[`GridLayout, GridRow, GridCol renders correctly 1`] = `
                 desktop={3}
               >
                 <div
-                  className="col lg-3-12 md-auto-8"
+                  className="col col-lg-width-3 col-md-width-auto"
                 >
                   column 1
                 </div>
@@ -37,7 +37,7 @@ exports[`GridLayout, GridRow, GridCol renders correctly 1`] = `
                 desktop={5}
               >
                 <div
-                  className="col lg-5-12 md-auto-8"
+                  className="col col-lg-width-5 col-md-width-auto"
                 >
                   column 2
                 </div>
@@ -51,7 +51,7 @@ exports[`GridLayout, GridRow, GridCol renders correctly 1`] = `
           createClasses={[Function]}
         >
           <div
-            className="row items-stretch justify-start with-gutters"
+            className="row items-stretch justify-start with-gutters row-lg-columns-count-12 row-md-columns-count-8 row-lg-columns-gutters-lg row-md-columns-gutters-md row-sm-columns-gutters-sm"
           >
             <GridCol
               desktop={5}
@@ -61,7 +61,7 @@ exports[`GridLayout, GridRow, GridCol renders correctly 1`] = `
                 desktop={5}
               >
                 <div
-                  className="col lg-5-12 md-auto-8"
+                  className="col col-lg-width-5 col-md-width-auto"
                 >
                   column 3
                 </div>

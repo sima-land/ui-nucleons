@@ -1,3 +1,165 @@
+С кастомными настройками:
+```jsx
+    import GridCol from '../grid-col/';
+    import range from 'lodash/range';
+    import '!style-loader!css-loader!sass-loader!./__stories__/grid-row-demo.scss';
+    <div className='container-with-border'>
+      <p className='title'>Сетка на 12 колонок для десктопной версии</p>
+      <GridRow
+        mdColumns={12}
+        mdGutters='lg'
+        smGutters='lg'
+      >
+        {range(0, 12).map(number => (
+          <GridCol
+            key={number}
+            externalClass='col-with-top-margin'
+            desktop={1}
+            mobile={1}
+          >
+            <div className='content-blue'>1</div>
+          </GridCol>
+        ))}
+      </GridRow>
+      <GridRow
+        mdColumns={12}
+        mdGutters='lg'
+        smGutters='lg'
+      >
+        {range(0, 6).map(number => (
+          <GridCol
+            key={number}
+            externalClass='col-with-top-margin'
+            desktop={2}
+            mobile={2}
+          >
+            <div className='content-blue'>2</div>
+          </GridCol>
+        ))}
+      </GridRow>
+      <GridRow
+        mdColumns={12}
+        mdGutters='lg'
+        smGutters='lg'
+      >
+        {range(0, 4).map(number => (
+          <GridCol
+            key={number}
+            externalClass='col-with-top-margin'
+            desktop={3}
+            mobile={3}
+          >
+            <div className='content-blue'>3</div>
+          </GridCol>
+        ))}
+      </GridRow>
+      <GridRow
+        mdColumns={12}
+        mdGutters='lg'
+        smGutters='lg'
+      >
+        {range(0, 3).map(number => (
+          <GridCol
+            key={number}
+            externalClass='col-with-top-margin'
+            desktop={4}
+            mobile={4}
+          >
+            <div className='content-blue'>4</div>
+          </GridCol>
+        ))}
+      </GridRow>
+      <GridRow
+        mdColumns={12}
+        mdGutters='lg'
+        smGutters='lg'
+      >
+        {range(0, 2).map(number => (
+          <GridCol
+            key={number}
+            externalClass='col-with-top-margin'
+            desktop={6}
+            mobile={6}
+          >
+            <div className='content-blue'>6</div>
+          </GridCol>
+        ))}
+      </GridRow>
+      <GridRow
+        mdColumns={12}
+        mdGutters='lg'
+        smGutters='lg'
+      >
+        <GridCol
+          externalClass='col-with-top-margin'
+          desktop={12}
+          mobile={12}
+        >
+          <div className='content-blue'>12</div>
+        </GridCol>
+      </GridRow>
+      <p className='title'>Сетка на 8 колонок для мобильной версии</p>
+            <GridRow
+              lgColumns={8}
+              lgGutters='md'
+            >
+              {range(0, 8).map(number => (
+                <GridCol
+                  key={number}
+                  externalClass='col-with-top-margin'
+                  mobile={1}
+                  desktop={1}
+                >
+                  <div className='content-blue'>1</div>
+                </GridCol>
+              ))}
+            </GridRow>
+            <GridRow
+              lgColumns={8}
+              lgGutters='md'
+            >
+              {range(0, 4).map(number => (
+                <GridCol
+                  key={number}
+                  externalClass='col-with-top-margin'
+                  mobile={2}
+                  desktop={2}
+                >
+                  <div className='content-blue'>2</div>
+                </GridCol>
+              ))}
+            </GridRow>
+            <GridRow
+              lgColumns={8}
+              lgGutters='md'
+            >
+              {range(0, 2).map(number => (
+                <GridCol
+                  key={number}
+                  externalClass='col-with-top-margin'
+                  mobile={4}
+                  desktop={4}
+                >
+                  <div className='content-blue'>4</div>
+                </GridCol>
+              ))}
+            </GridRow>
+            <GridRow
+              lgColumns={8}
+              lgGutters='md'
+            >
+              <GridCol
+                externalClass='col-with-top-margin'
+                mobile={8}
+                desktop={8}
+              >
+                <div className='content-blue'>8</div>
+              </GridCol>
+            </GridRow>
+    </div>
+```
+
+
 Строки с разным выравниванием по горизонтали:
 ```jsx
     import GridCol from '../grid-col/';

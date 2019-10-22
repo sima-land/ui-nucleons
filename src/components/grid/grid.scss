@@ -19,46 +19,45 @@ $alignments: (
 );
 
 /* Параметры для создания отступов между колонками
- * Правило для медиа-запроса| Брейкпоинт | Половина размера отступа между колонками
+ * Размер | Половина размера отступа между колонками
  */
 $gutters: (
-  'min-width' $extraLargeMobileBreakpoint + 1px 16px,
-  'max-width' $extraLargeMobileBreakpoint 12px,
-  'max-width' $mediumMobileBreakpoint 8px,
+  lg: 16px,
+  md: 12px,
+  sm: 8px,
 );
 
-/* Миксин для создания отступов между колонками */
-@mixin create-gutters {
-  @each $rule, $breakpoint, $gutter in $gutters {
-    @media ($rule: $breakpoint) {
-      margin-right: -$gutter;
-      margin-left: -$gutter;
+/* Количество колонок */
+$columnsCount: (8, 12);
+
+/* Миксин для создания отступов между колонками в строке.
+ * $name - наименование размера экрана ('lg', 'md', 'sm').
+ */
+@mixin create-gutters ($name) {
+  @each $key, $value in $gutters {
+    &.row-#{$name}-columns-gutters-#{$key} {
+      margin-right: -$value;
+      margin-left: -$value;
       .col {
-        padding: 0 $gutter;
+        padding: 0 $value;
       }
     }
   }
 }
-/* Параметры для вычисления ширины колонок
- * Правило для медиа-запроса| Брейкпоинт | Префикс для названия класса | Количество колонок
+
+/* Миксин для расчета ширины колонок.
+ * $name - наименование размера экрана ('lg', 'md').
  */
-$columns: (
-  'min-width' $extraLargeMobileBreakpoint + 1px  'lg' 12,
-  'max-width' $extraLargeMobileBreakpoint  'md' 8,
-);
-
-
-/* Миксин для создания классов с шириной колонок */
-@mixin create-columns-width {
-  @each $rule, $breakpoint, $sizeName, $columnCount in $columns {
-    @media ($rule: $breakpoint) {
-      &.#{$sizeName}-auto-#{$columnCount} {
+@mixin create-columns ($name) {
+  @each $count in $columnsCount {
+    &.row-#{$name}-columns-count-#{$count} {
+      .col-#{$name}-width-auto {
         flex: 1 1 0;
         max-width: 100%;
       }
-      @for $key from 1 through $columnCount {
-        $width: 100%  / $columnCount * $key;
-        &.#{$sizeName}-#{$key}-#{$columnCount} {
+      @for $key from 1 through $count {
+        $width: (100%  / $count) * $key;
+        .col-#{$name}-width-#{$key} {
           flex: 0 1 $width;
           max-width: $width;
         }
@@ -73,10 +72,19 @@ $columns: (
   flex-direction: row;
   .col {
     box-sizing: border-box;
-    @include create-columns-width;
   }
   &.with-gutters {
-    @include create-gutters;
+    @include create-gutters('lg');
+    @media (max-width: 960px) {
+      @include create-gutters('md');
+    }
+    @media (max-width: 720px) {
+      @include create-gutters('sm');
+    }
+  }
+  @include create-columns('lg');
+  @media (max-width: 960px) {
+    @include create-columns('md');
   }
   &.wrap {
     flex-wrap: wrap;

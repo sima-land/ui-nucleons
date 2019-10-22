@@ -1,57 +1,71 @@
+$paddings: (
+  sm: 16px,
+  md: 32px,
+  lg: 68px,
+);
+
+$maxWidths: (
+  xl: 1600px,
+  lg: 1408px,
+  md: 1240px,
+  sm: 840px,
+  xs: 720px,
+);
+
+@mixin layoutSize ($name) {
+  @each $key, $value in $paddings {
+    &.layout-#{$name}-padding-#{$key} {
+      padding: 0 $value;
+    }
+  }
+  @each $key, $value in $maxWidths {
+    .layout-#{$name}-width-#{$key} {
+      max-width: $value;
+    }
+  }
+}
+
 .layout-wrapper {
-  padding: 0 16px;
   box-sizing: border-box;
+  @include layoutSize('xxl');
   .layout {
     width: auto;
-    max-width: 1600px;
     margin: 0 auto;
     box-sizing: border-box;
   }
 
   // 1441-1600
   @media (max-width: 1600px) {
-    padding: 0 16px;
-    .layout {
-      max-width: 1408px;
-    }
+    @include layoutSize('xl');
   }
 
   // 1281-1440
   @media (max-width: 1440px) {
-    padding: 0 16px;
-    .layout {
-      max-width: 1240px;
-    }
+    @include layoutSize('lg');
   }
 
   // 961-1280
   @media (max-width: 1280px) {
-    padding: 0 68px;
+    @include layoutSize('md');
   }
 
   // 841-960
   @media (max-width: 960px) {
-    padding: 0 16px;
-    .layout {
-      max-width: 840px;
-    }
+    @include layoutSize('sm');
   }
 
   // 721-840
   @media (max-width: 840px) {
-    padding: 0 16px;
-    .layout {
-      max-width: 720px;
-    }
+    @include layoutSize('xs');
   }
 
   // 601-720
   @media (max-width: 720px) {
-    padding: 0 32px;
+    @include layoutSize('xxs');
   }
 
   // 600-
   @media (max-width: 600px) {
-    padding: 0 16px;
+    @include layoutSize('xxxs');
   }
 }

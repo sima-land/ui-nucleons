@@ -3,11 +3,168 @@ import { storiesOf } from '@storybook/react';
 import GridCol from '../../grid-col';
 import GridRow from '../';
 import styles from './grid-row-demo.scss';
+import range from 'lodash/range';
 
 export const justifies = ['start', 'between', 'around', 'center', 'end'];
 export const alignments = ['start', 'center', 'end', 'stretch', 'baseline'];
 
 storiesOf('Grid/GridRow', module)
+  .add('with custom settings', () => (
+    <div className={styles['container-with-border']}>
+      <p className={styles.title}>Сетка на 12 колонок для десктопной версии</p>
+      <GridRow
+        mdColumns={12}
+        mdGutters='lg'
+        smGutters='lg'
+      >
+        {range(0, 12).map(number => (
+          <GridCol
+            key={number}
+            externalClass={styles['col-with-top-margin']}
+            desktop={1}
+            mobile={1}
+          >
+            <div className={styles['content-blue']}>1</div>
+          </GridCol>
+        ))}
+      </GridRow>
+      <GridRow
+        mdColumns={12}
+        mdGutters='lg'
+        smGutters='lg'
+      >
+        {range(0, 6).map(number => (
+          <GridCol
+            key={number}
+            externalClass={styles['col-with-top-margin']}
+            desktop={2}
+            mobile={2}
+          >
+            <div className={styles['content-blue']}>2</div>
+          </GridCol>
+        ))}
+      </GridRow>
+      <GridRow
+        mdColumns={12}
+        mdGutters='lg'
+        smGutters='lg'
+      >
+        {range(0, 4).map(number => (
+          <GridCol
+            key={number}
+            externalClass={styles['col-with-top-margin']}
+            desktop={3}
+            mobile={3}
+          >
+            <div className={styles['content-blue']}>3</div>
+          </GridCol>
+        ))}
+      </GridRow>
+      <GridRow
+        mdColumns={12}
+        mdGutters='lg'
+        smGutters='lg'
+      >
+        {range(0, 3).map(number => (
+          <GridCol
+            key={number}
+            externalClass={styles['col-with-top-margin']}
+            desktop={4}
+            mobile={4}
+          >
+            <div className={styles['content-blue']}>4</div>
+          </GridCol>
+        ))}
+      </GridRow>
+      <GridRow
+        mdColumns={12}
+        mdGutters='lg'
+        smGutters='lg'
+      >
+        {range(0, 2).map(number => (
+          <GridCol
+            key={number}
+            externalClass={styles['col-with-top-margin']}
+            desktop={6}
+            mobile={6}
+          >
+            <div className={styles['content-blue']}>6</div>
+          </GridCol>
+        ))}
+      </GridRow>
+      <GridRow
+        mdColumns={12}
+        mdGutters='lg'
+        smGutters='lg'
+      >
+        <GridCol
+          externalClass={styles['col-with-top-margin']}
+          desktop={12}
+          mobile={12}
+        >
+          <div className={styles['content-blue']}>12</div>
+        </GridCol>
+      </GridRow>
+      <p className={styles.title}>Сетка на 8 колонок для мобильной версии</p>
+      <GridRow
+        lgColumns={8}
+        lgGutters='md'
+      >
+        {range(0, 8).map(number => (
+          <GridCol
+            key={number}
+            externalClass={styles['col-with-top-margin']}
+            mobile={1}
+            desktop={1}
+          >
+            <div className={styles['content-blue']}>1</div>
+          </GridCol>
+        ))}
+      </GridRow>
+      <GridRow
+        lgColumns={8}
+        lgGutters='md'
+      >
+        {range(0, 4).map(number => (
+          <GridCol
+            key={number}
+            externalClass={styles['col-with-top-margin']}
+            mobile={2}
+            desktop={2}
+          >
+            <div className={styles['content-blue']}>2</div>
+          </GridCol>
+        ))}
+      </GridRow>
+      <GridRow
+        lgColumns={8}
+        lgGutters='md'
+      >
+        {range(0, 2).map(number => (
+          <GridCol
+            key={number}
+            externalClass={styles['col-with-top-margin']}
+            mobile={4}
+            desktop={4}
+          >
+            <div className={styles['content-blue']}>4</div>
+          </GridCol>
+        ))}
+      </GridRow>
+      <GridRow
+        lgColumns={8}
+        lgGutters='md'
+      >
+        <GridCol
+          externalClass={styles['col-with-top-margin']}
+          mobile={8}
+          desktop={8}
+        >
+          <div className={styles['content-blue']}>8</div>
+        </GridCol>
+      </GridRow>
+    </div>
+  ))
   .add('with different justify', () => (
     <div className={styles['container-with-border']}>
       {justifies.map(justify => (
