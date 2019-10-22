@@ -1,5 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { render } from 'react-dom';
+import { act } from 'react-dom/test-utils';
 import Checkbox from '../checkbox-field';
 import CheckboxField from '../checkbox-field';
 import classes from '../checkbox-field.scss';
@@ -59,5 +61,32 @@ describe('<CheckboxField />', () => {
     expect(spy).toHaveBeenCalledTimes(0);
     wrapper.find(Checkbox).find('input').simulate('change');
     expect(spy).toHaveBeenCalledTimes(1);
+  });
+  it('should fire "change" event on label click', () => {
+    const container = document.createElement('div');
+    const spy = jest.fn();
+
+    document.body.appendChild(container);
+
+    act(() => {
+      render(<CheckboxField onChange={spy} />, container);
+    });
+
+    expect(spy).toHaveBeenCalledTimes(0);
+    container.querySelector('label').dispatchEvent(new Event('click'));
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+  it('should match snapshot', () => {
+    const wrapper = mount(
+      <CheckboxField
+        label='Test label'
+        error='Test error'
+        info='Test info'
+        checked
+        disabled
+        onChange={() => {}}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
   });
 });
