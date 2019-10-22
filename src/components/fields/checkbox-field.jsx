@@ -32,9 +32,9 @@ export const CheckboxField = forwardRef(({
   useEffect(() => toggleCheck(checked), [checked]);
 
   return (
-    <span className={cx('checkbox-container')}>
-      <span className={cx('checkbox-row')}>
-        <span className={cx('content-wrapper')}>
+    <span className={cx('container')}>
+      <label className={cx('row')}>
+        <span className={cx('checkbox-column')}>
           <Checkbox
             {...restProps}
             ref={ref}
@@ -46,28 +46,27 @@ export const CheckboxField = forwardRef(({
             type='checkbox'
           />
         </span>
-      </span>
-      <span className={cx('text-row')}>
-        {Boolean(label) && (
-          <span
-            className={cx('content-wrapper', 'label')}
-            children={label}
-            onClick={() => toggleCheck(!isChecked)}
-          />
-        )}
-        {Boolean(error) && (
-          <span
-            className={cx('content-wrapper', 'error')}
-            children={error}
-          />
-        )}
-        {Boolean(info) && (
-          <span
-            className={cx('content-wrapper', 'info')}
-            children={info}
-          />
-        )}
-      </span>
+        <span className={cx('label-column')}>
+          {Boolean(label) && (
+            <span
+              className={cx('content-wrapper', 'label')}
+              children={label}
+            />
+          )}
+        </span>
+      </label>
+      {Boolean(error) && (
+        <span
+          className={cx('content-wrapper', 'error')}
+          children={error}
+        />
+      )}
+      {Boolean(info) && (
+        <span
+          className={cx('content-wrapper', 'info')}
+          children={info}
+        />
+      )}
     </span>
   );
 });

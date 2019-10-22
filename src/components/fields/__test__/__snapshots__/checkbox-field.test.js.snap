@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CheckboxField /> should match snapshot 1`] = `
+<ForwardRef
+  checked={true}
+  disabled={true}
+  error="Test error"
+  info="Test info"
+  label="Test label"
+  onChange={[Function]}
+>
+  <span
+    className="container"
+  >
+    <label
+      className="row"
+    >
+      <span
+        className="checkbox-column"
+      >
+        <ForwardRef
+          checked={true}
+          disabled={true}
+          onChange={[Function]}
+          type="checkbox"
+        >
+          <span
+            className="checkbox-wrapper"
+          >
+            <input
+              checked={true}
+              className="checkbox-input"
+              disabled={true}
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <CheckboxIcon
+              className="checkbox-icon checked disabled"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <svg
+                className="checkbox-icon checked disabled"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g>
+                  <rect
+                    fill="#fff"
+                    height="11"
+                    rx="1.5"
+                    stroke="#757575"
+                    width="11"
+                    x="2.5"
+                    y="2.5"
+                  />
+                </g>
+                <g>
+                  <rect
+                    fill="#1F84DB"
+                    height="12"
+                    rx="2"
+                    width="12"
+                    x="2"
+                    y="2"
+                  />
+                  <path
+                    d="M5 8l2 2.5L11 5"
+                    fill="none"
+                    stroke="#fff"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </g>
+                <g>
+                  <rect
+                    fill="#EBEBEB"
+                    height="11"
+                    opacity=".48"
+                    rx="1.5"
+                    stroke="#757575"
+                    width="11"
+                    x="2.5"
+                    y="2.5"
+                  />
+                </g>
+                <g
+                  opacity=".48"
+                >
+                  <rect
+                    fill="#757575"
+                    height="12"
+                    rx="2"
+                    width="12"
+                    x="2"
+                    y="2"
+                  />
+                  <path
+                    d="M5 8l2 2.5L11 5"
+                    fill="none"
+                    stroke="#fff"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </g>
+              </svg>
+            </CheckboxIcon>
+          </span>
+        </ForwardRef>
+      </span>
+      <span
+        className="label-column"
+      >
+        <span
+          className="content-wrapper label"
+        >
+          Test label
+        </span>
+      </span>
+    </label>
+    <span
+      className="content-wrapper error"
+    >
+      Test error
+    </span>
+    <span
+      className="content-wrapper info"
+    >
+      Test info
+    </span>
+  </span>
+</ForwardRef>
+`;
