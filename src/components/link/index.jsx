@@ -90,7 +90,7 @@ Link.propTypes = {
   /**
    * Цвет.
    */
-  color: Type.oneOf(['black', 'dark-blue', 'blue', 'red', 'gray', 'white']),
+  color: Type.oneOf(['black', 'dark-blue', 'blue', 'red', 'gray', 'white', 'light-gray']),
   /**
    * Подчеркивание.
    */

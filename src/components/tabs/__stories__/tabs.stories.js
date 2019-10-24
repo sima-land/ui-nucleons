@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Tabs from '../';
 
-const items = ['tab 1', 'tab 2', 'tab 3'],
+const items = ['Tab 1', 'Tab 2', 'Tab 3'],
   customItems = [
     { id: 1, name: 'first' },
     { id: 2, name: 'second' },
@@ -10,7 +10,6 @@ const items = ['tab 1', 'tab 2', 'tab 3'],
   ],
   style = {
     padding: '15px 25px',
-    width: '300px',
   },
   grayStyle = {
     ...style,
@@ -22,7 +21,6 @@ const items = ['tab 1', 'tab 2', 'tab 3'],
   },
   tabHeaderStyle = {
     borderBottom: '1px solid #e8b6cf',
-    width: '100%',
   };
 
 /**
@@ -32,7 +30,7 @@ const items = ['tab 1', 'tab 2', 'tab 3'],
  */
 class SelectableTabs extends React.Component {
   state = {
-    selected: 'tab 1',
+    selected: 'Tab 1',
   };
   isSelectedItem = item => item === this.state.selected;
   onSelectItem = item => this.setState({ selected: item });
