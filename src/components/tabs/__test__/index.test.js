@@ -39,7 +39,7 @@ describe('<Tabs />', () => {
     expect(isSelectedItemMock.mock.calls[1][0]).toEqual(items[1]);
     expect(isSelectedItemMock.mock.calls[2][0]).toEqual(items[2]);
 
-    selectableTabs.find('.tab-item').at(1).simulate('click');
+    selectableTabs.find('.tab-item').at(2).simulate('click');
     expect(onSelectItemMock).toHaveBeenCalledTimes(1);
     expect(onSelectItemMock).toHaveBeenCalledWith('item 3');
   });

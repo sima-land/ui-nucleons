@@ -9,7 +9,7 @@ const cx = classnames.bind(styles);
 const DEFAULT_CLASSES = {
   itemsList: cx('tabs-list'),
   item: cx('tab-item'),
-  selectedItem: cx('tab-selected'),
+  selectedItem: cx('tab-item', 'tab-selected'),
 };
 
 /**
