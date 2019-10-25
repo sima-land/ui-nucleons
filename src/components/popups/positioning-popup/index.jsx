@@ -272,7 +272,7 @@ class PositioningPopup extends Component {
         style={popupPosition}
       >
         {withArrow && <PopupArrow {...arrowProps} />}
-        <Popup className={basePopupClass}>
+        <Popup additionalClass={basePopupClass}>
           {children}
         </Popup>
       </div>
