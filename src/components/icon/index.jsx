@@ -21,7 +21,8 @@ export const ICON_COLORS = ['white', 'dark-gray', 'dark-blue', 'gray'];
  */
 const Icon = ({ icon, size, color, inline, className, ...restProps }) => {
   const iconClasses = cx(
-    'icon', {
+    'icon',
+    {
       [`icon-${color}`]: color && ICON_COLORS.includes(color),
       ['icon-block']: !inline,
     },
