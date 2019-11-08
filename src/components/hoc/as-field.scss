@@ -1,0 +1,21 @@
+@import '../variables';
+
+.field-wrapper {
+  .label {
+    margin-bottom: 8px;
+  }
+  .row + .row {
+    display: block;
+    margin-top: 8px;
+  }
+  .error,
+  .info {
+    font-size: 13px;
+  }
+  .error {
+    color: $red;
+  }
+  .info {
+    color: #a3a3a3;
+  }
+}

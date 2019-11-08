@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`asField HOC should match snapshot 1`] = `
+<div
+  className="field-wrapper"
+>
+  <div
+    className="row"
+  >
+    <TestComponent />
+  </div>
+</div>
+`;
