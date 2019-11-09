@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Textarea /> should renders correctly with props 1`] = `
+<ForwardRef
+  failed={true}
+  onChange={[MockFunction]}
+  value="Test value"
+>
+  <textarea
+    className="textarea failed resizeable"
+    onChange={[MockFunction]}
+    onInput={[Function]}
+    value="Test value"
+  />
+</ForwardRef>
+`;

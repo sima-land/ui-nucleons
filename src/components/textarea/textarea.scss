@@ -1,0 +1,18 @@
+.textarea {
+  composes: field from '../input/fields.scss';
+  outline: 0;
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 16px;
+  line-height: 24px;
+  vertical-align: top;
+  &.full-width {
+    width: 100%;
+  }
+  &:not(.resizeable) {
+    resize: none;
+  }
+  &.auto-fit-height {
+    overflow-y: hidden;
+  }
+}
