@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styles from './modal.scss';
 import Popup from '../popups/popup/';
 import Icon from '../icon/';
 import { cross } from '../icons';
 import composeClasses from '../helpers/compose-classes';
 import Type from 'prop-types';
+import isFunction from 'lodash/isFunction';
 
 const DEFAULT_CLASSES = {
   overlay: styles.overlay,
@@ -28,10 +29,33 @@ const Modal = ({ children, onClose, closeButtonSize, customClasses = {} }) => {
   const newClasses = composeClasses({ defaultClasses: DEFAULT_CLASSES, customClasses });
   const { overlay: overlayClasses, modal: modalClasses, close: closeClasses } = newClasses;
   const buttonSize = typeof closeButtonSize === 'number' && closeButtonSize;
+
+  const previousTarget = useRef();
+
+  /**
+   * Обработчик нажатия кнопки мыши.
+   * @param {Object} event Объект события.
+   */
+  const handleMouseDown = ({ button, target }) => {
+    if (button === 0) { previousTarget.current = target; }
+  };
+
+  /**
+   * Обработчик отпускания кнопки мыши.
+   * @param {Object} event Объект события.
+   */
+  const handleMouseUp = ({ target, currentTarget, button }) => {
+    isFunction(onClose)
+    && button === 0
+    && target === currentTarget
+    && currentTarget === previousTarget.current
+    && onClose();
+  };
   return (
     <div
       className={overlayClasses}
-      onClick={event => typeof onClose === 'function' && event.target === event.currentTarget && onClose()}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
     >
       <Popup additionalClass={modalClasses}>
         {closeButtonSize && <Icon size={buttonSize} icon={cross} className={closeClasses} onClick={onClose} />}
