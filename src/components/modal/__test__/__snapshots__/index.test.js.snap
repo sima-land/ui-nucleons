@@ -3,7 +3,8 @@
 exports[`<Modal /> renders correct with close button and customClasses 1`] = `
 <div
   className="test-overlay overlay"
-  onClick={[Function]}
+  onMouseDown={[Function]}
+  onMouseUp={[Function]}
 >
   <Popup
     additionalClass="test-modal modal"
@@ -21,7 +22,8 @@ exports[`<Modal /> renders correct with close button and customClasses 1`] = `
 exports[`<Modal /> renders correct without close button and customClasses 1`] = `
 <div
   className="overlay"
-  onClick={[Function]}
+  onMouseDown={[Function]}
+  onMouseUp={[Function]}
 >
   <Popup
     additionalClass="modal"

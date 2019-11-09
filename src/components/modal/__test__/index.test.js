@@ -33,9 +33,23 @@ describe('<Modal />', () => {
         Test modal content
       </Modal>
     );
-    modal.find({ className: 'overlay' }).simulate('click', { target: 'testTarget', currentTarget: 'anotherTarget' });
+    modal.find({ className: 'overlay' }).simulate('mouseDown', { button: 0, target: 'anotherTarget' });
+    modal
+      .find({ className: 'overlay' })
+      .simulate('mouseUp', { button: 0, target: 'testTarget', currentTarget: 'anotherTarget' });
     expect(onCloseMock).toHaveBeenCalledTimes(0);
-    modal.find({ className: 'overlay' }).simulate('click', { target: 'testTarget', currentTarget: 'testTarget' });
+    modal
+      .find({ className: 'overlay' })
+      .simulate('mouseUp', { button: 0, target: 'testTarget', currentTarget: 'testTarget' });
+    expect(onCloseMock).toHaveBeenCalledTimes(0);
+    modal.find({ className: 'overlay' }).simulate('mouseDown', { button: 0, target: 'testTarget' });
+    modal
+      .find({ className: 'overlay' })
+      .simulate('mouseUp', { button: 0, target: 'testTarget', currentTarget: 'anotherTarget' });
+    expect(onCloseMock).toHaveBeenCalledTimes(0);
+    modal
+      .find({ className: 'overlay' })
+      .simulate('mouseUp', { button: 0, target: 'testTarget', currentTarget: 'testTarget' });
     expect(onCloseMock).toHaveBeenCalledTimes(1);
     modal.find({ className: 'close' }).simulate('click');
     expect(onCloseMock).toHaveBeenCalledTimes(2);
