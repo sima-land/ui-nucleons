@@ -146,6 +146,9 @@ Input.propTypes = {
     withEndAdornment: PropTypes.string,
   }),
 
+  /**
+   * Нужно ли фокусироваться на поле сразу после монтирования.
+   */
   autoFocus: PropTypes.bool,
 
   /**

@@ -114,6 +114,49 @@ describe('<Textarea />', () => {
     });
     expect(spy).toHaveBeenCalledTimes(2); // + call after first render
   });
+  it('should handle "onFocus" prop', () => {
+    const spy = jest.fn();
+    const wrapper = mount(
+      <Textarea
+        onFocus={spy}
+      />
+    );
+
+    expect(spy).toHaveBeenCalledTimes(0);
+    wrapper.find('textarea').simulate('focus');
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+  it('should handle "onBlur" prop', () => {
+    const spy = jest.fn();
+    const wrapper = mount(
+      <Textarea
+        onBlur={spy}
+      />
+    );
+
+    expect(spy).toHaveBeenCalledTimes(0);
+    wrapper.find('textarea').simulate('focus');
+    wrapper.find('textarea').simulate('blur');
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+  it('should handle "focus" event', () => {
+    const spy = jest.fn();
+    const container = document.createElement('div');
+    document.body.append(container);
+
+    act(() => {
+      render(
+        <Textarea onFocus={spy} />,
+        container
+      );
+    });
+
+    expect(spy).toHaveBeenCalledTimes(0);
+    act(() => {
+      container.querySelector('textarea').focus();
+    });
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
   it('should renders correctly with props', () => {
     const spy = jest.fn();
     const wrapper = mount(

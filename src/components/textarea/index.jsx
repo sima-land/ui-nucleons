@@ -1,4 +1,5 @@
 import React, {
+  useState,
   useEffect,
   useRef,
   forwardRef,
@@ -19,7 +20,10 @@ const cx = classnames.bind(textareaClasses);
  * @param {boolean} [props.failed] Нужно ли показывать поле как ошибочно заполненное.
  * @param {boolean} [props.resizeable=true] Можно ли изменять размер поля.
  * @param {boolean} [props.fullWidth] Нужно ли растягивать поле на всю ширину родителя.
+ * @param {boolean} [props.autoFocus] Нужно ли фокусироваться на поле сразу после монтирования.
  * @param {boolean} [props.autoFitHeight] Нужно ли автоматически подгонять высоту под содержимое.
+ * @param {Function} [props.onBlur] Сработает при фокусировке на поле.
+ * @param {Function} [props.onFocus] Сработает при расфокусировке на поле.
  * @return {ReactElement} Компонент текстовой области.
  */
 const Textarea = forwardRef(({
@@ -28,10 +32,14 @@ const Textarea = forwardRef(({
   className,
   resizeable = true,
   fullWidth,
+  autoFocus,
   autoFitHeight,
   onInput,
+  onFocus,
+  onBlur,
   ...restProps
 }, ref) => {
+  const [focused, setFocused] = useState(autoFocus);
   const textareaRef = useRef();
 
   useImperativeHandle(ref, () => textareaRef.current);
@@ -46,12 +54,22 @@ const Textarea = forwardRef(({
       ref={textareaRef}
       className={cx(
         'textarea',
+        fieldClasses.field,
         failed && fieldClasses.failed,
+        focused && fieldClasses.focused,
         resizeable && 'resizeable',
         fullWidth && 'full-width',
         autoFitHeight && 'auto-fit-height',
         className
       )}
+      onFocus={event => {
+        setFocused(true);
+        isFunction(onFocus) && onFocus(event);
+      }}
+      onBlur={event => {
+        setFocused(false);
+        isFunction(onBlur) && onBlur(event);
+      }}
       onInput={event => {
         autoFitHeight && fitElementHeight(event);
         isFunction(onInput) && onInput(event);
@@ -64,6 +82,7 @@ const Textarea = forwardRef(({
 /**
  * Перехватив событие, подгонит высоту поля под содержимое.
  * @param {Event} event Событие.
+ * @param {HTMLElement} event.target Поле.
  */
 export const fitElementHeight = ({ target }) => {
   target.style.height = 'auto';
@@ -112,6 +131,21 @@ Textarea.propTypes = {
    * Обработчик события "input".
    */
   onInput: PropTypes.func,
+
+  /**
+   * Нужно ли фокусироваться на поле сразу после монтирования.
+   */
+  autoFocus: PropTypes.bool,
+
+  /**
+   * Сработает при фокусировке на поле.
+   */
+  onFocus: PropTypes.func,
+
+  /**
+   * Сработает при расфокусировке на поле.
+   */
+  onBlur: PropTypes.func,
 };
 
 export default Textarea;
