@@ -111,4 +111,27 @@ describe('<Link />', () => {
     link.simulate('mouseLeave');
     expect(onMouseLeaveFunc).toHaveBeenCalledTimes(1);
   });
+
+  it('render correctly with children and html props', () => {
+    const link = shallow(
+      <Link
+        disableIndexing={true}
+      >
+        TestLink
+      </Link>
+    );
+    expect(link.find('span').prop('dangerouslySetInnerHTML')).toBeDefined();
+    expect(link.find('span').prop('children')).not.toBeDefined();
+  });
+
+  it('render correctly without noIndexContent props', () => {
+    const link = shallow(
+      <Link>
+        TestLink
+      </Link>
+    );
+    expect(link.find('span').text()).toEqual('TestLink');
+    expect(link.find('span').prop('dangerouslySetInnerHTML')).not.toBeDefined();
+    expect(link.find('span').prop('children')).toBeDefined();
+  });
 });
