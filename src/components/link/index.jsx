@@ -7,12 +7,23 @@ import {
 import Type from 'prop-types';
 import Icon from '../icon';
 import externalIcon from '../icons/external.svg';
+import { getNoIndex } from '../helpers/get-no-index';
 
 export const LINK_TARGETS = ['_blank', '_self'];
 
 /**
+ * Возвращает объект с контентом.
+ * @param {boolean} disableIndexing Флаг запрета индексации.
+ * @param {*} children Содержимое линка.
+ * @return {Object} Объект с нужным пропом для вывода контента.
+ */
+export const getContent = (disableIndexing, children) =>
+  disableIndexing ? { dangerouslySetInnerHTML: getNoIndex(children) } : { children };
+
+/**
  * Компонент ссылки.
  * @param {Object} props Свойства компонента.
+ * @param {boolean} props.disableIndexing=false Запрет индексации названия ссылки поисковиками.
  * @param {*} props.children Содержимое компонента.
  * @param {string} [props.className] Пользовательские классы.
  * @param {string} [props.target] В новую или текущую вкладку откроется ссылка.
@@ -31,6 +42,7 @@ export const LINK_TARGETS = ['_blank', '_self'];
  * @return {ReactElement} Компонент ссылки.
  */
 const Link = forwardRef(({
+  disableIndexing = false,
   children,
   className,
   target,
@@ -62,7 +74,7 @@ const Link = forwardRef(({
       ref={ref}
       className={linkClasses}
     >
-      <span className={textClasses}>{children}</span>
+      <span className={textClasses} {...getContent(disableIndexing, children)} />
       {withIcon && (
         <span className={externalClasses}>
           <Icon icon={externalIcon} size={16} inline />
@@ -75,6 +87,10 @@ const Link = forwardRef(({
 Link.displayName = 'Link';
 
 Link.propTypes = {
+  /**
+   * Запрет индексации контента.
+   */
+  disableIndexing: Type.bool,
   /**
    * Содержимое компонента.
    */
