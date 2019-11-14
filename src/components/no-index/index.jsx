@@ -1,5 +1,6 @@
 import React from 'react';
 import Type from 'prop-types';
+import NoIndexMark from '../no-index-mark';
 
 /**
  * Компонент отображает неиндексируемый контент.
@@ -9,9 +10,9 @@ import Type from 'prop-types';
  */
 const NoIndex = ({ children }) => (
   <React.Fragment>
-    <span dangerouslySetInnerHTML={{ __html: '<!--noindex-->' }} />
+    <NoIndexMark />
     {children}
-    <span dangerouslySetInnerHTML={{ __html: '<!--/noindex-->' }} />
+    <NoIndexMark closing />
   </React.Fragment>
 );
 

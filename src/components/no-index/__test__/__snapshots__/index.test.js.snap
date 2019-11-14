@@ -2,23 +2,29 @@
 
 exports[`<NoIndex should renders correctly 1`] = `
 <NoIndex>
-  <span
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "<!--noindex-->",
+  <NoIndexMark>
+    <span
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<!--noindex-->",
+        }
       }
-    }
-  />
+    />
+  </NoIndexMark>
   test
   <p>
     test2
   </p>
-  <span
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "<!--/noindex-->",
+  <NoIndexMark
+    closing={true}
+  >
+    <span
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<!--/noindex-->",
+        }
       }
-    }
-  />
+    />
+  </NoIndexMark>
 </NoIndex>
 `;

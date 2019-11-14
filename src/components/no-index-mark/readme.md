@@ -1,6 +1,6 @@
 Неиндексируемый контент
 ```jsx
-<NoIndex>
+<NoIndexMark />
     Неиндексируемый контент
-</NoIndex>
+<NoIndexMark closing />
 ```
