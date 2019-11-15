@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withGlobalListeners should match snapshot 1`] = `
+<withGlobalListeners(TestSpan)>
+  <TestSpan
+    addGlobalListener={[Function]}
+  >
+    <span>
+      Тестовый компонент
+    </span>
+  </TestSpan>
+</withGlobalListeners(TestSpan)>
+`;
