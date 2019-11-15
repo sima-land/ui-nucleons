@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Gallery /> should render with items and controls 1`] = `
-<withGlobalListeners(Gallery)
+exports[`<BaseGallery /> should render with items and controls 1`] = `
+<withGlobalListeners(BaseGallery)
   controlContainer={
     Object {
       "$$typeof": Symbol(react.forward_ref),
@@ -35,7 +35,7 @@ exports[`<Gallery /> should render with items and controls 1`] = `
   }
   needShowControls="always"
 >
-  <Gallery
+  <BaseGallery
     addGlobalListener={[Function]}
     controlContainer={
       Object {
@@ -142,13 +142,13 @@ exports[`<Gallery /> should render with items and controls 1`] = `
         onClick={[Function]}
       />
     </Button>
-  </Gallery>
-</withGlobalListeners(Gallery)>
+  </BaseGallery>
+</withGlobalListeners(BaseGallery)>
 `;
 
-exports[`<Gallery /> should render without props 1`] = `
-<withGlobalListeners(Gallery)>
-  <Gallery
+exports[`<BaseGallery /> should render without props 1`] = `
+<withGlobalListeners(BaseGallery)>
+  <BaseGallery
     addGlobalListener={[Function]}
   >
     <div
@@ -164,6 +164,6 @@ exports[`<Gallery /> should render without props 1`] = `
         }
       />
     </div>
-  </Gallery>
-</withGlobalListeners(Gallery)>
+  </BaseGallery>
+</withGlobalListeners(BaseGallery)>
 `;

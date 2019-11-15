@@ -3,8 +3,8 @@ import isFunction from 'lodash/isFunction';
 import isInteger from 'lodash/isInteger';
 import noop from 'lodash/noop';
 import classNames from 'classnames/bind';
-import classes from './gallery.scss';
-import withGlobalListeners from '../hoc/with-global-listeners';
+import classes from './base-gallery.scss';
+import withGlobalListeners from '../../hoc/with-global-listeners';
 import PropTypes from 'prop-types';
 
 const cx = classNames.bind(classes);
@@ -25,7 +25,7 @@ const cx = classNames.bind(classes);
  * @param {Object} [props.itemsWrapperProps] Свойства обертки для item-ов с overflow: hidden.
  * @param {Object} [props.itemsContainerProps] Свойства контейнера со списком item-ов.
  */
-export class Gallery extends Component {
+export class BaseGallery extends Component {
   state = {
     position: 0,
     withAnimation: true,
@@ -259,9 +259,9 @@ export class Gallery extends Component {
   }
 }
 
-export default withGlobalListeners(Gallery);
+export default withGlobalListeners(BaseGallery);
 
-Gallery.propTypes = {
+BaseGallery.propTypes = {
   /**
    * Список элементов галереи.
    */
