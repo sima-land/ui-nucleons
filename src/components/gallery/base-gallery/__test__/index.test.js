@@ -1,10 +1,10 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme/build';
-import Gallery, { Gallery as PureGallery } from '../gallery';
-import Button from '../../button';
+import BaseGallery, { BaseGallery as PureGallery } from '../index';
+import Button from '../../../button';
 import isFunction from 'lodash/isFunction';
 
-describe('<Gallery />', () => {
+describe('<BaseGallery />', () => {
   const items = ['test 1', 'test 2', 'test 3', 'test 4', 'test 5'];
   const defaultState = {
     position: 0,
@@ -14,7 +14,7 @@ describe('<Gallery />', () => {
   let gallery;
   let instance;
   it('should render without props', () => {
-    gallery = mount(<Gallery />);
+    gallery = mount(<BaseGallery />);
     expect(gallery).toMatchSnapshot();
   });
   it('should render with items and controls', () => {
@@ -27,7 +27,7 @@ describe('<Gallery />', () => {
       children: <img src={item} alt={item} />,
     });
     gallery = mount(
-      <Gallery
+      <BaseGallery
         items={items}
         getItemProps={getItemProps}
         needShowControls='always'

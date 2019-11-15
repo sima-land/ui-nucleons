@@ -1,0 +1,384 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<StyledGallery /> should render with custom props 1`] = `
+<StyledGallery
+  direction="vertical"
+  galleryContainerProps={
+    Object {
+      "className": "test-gallery",
+    }
+  }
+  items={
+    Array [
+      "test 1",
+      "test 2",
+      "test 3",
+      "test 4",
+      "test 5",
+    ]
+  }
+  needShowControls="always"
+  slideBy={2}
+  slideStepSize={78}
+>
+  <div
+    className="vertical-gallery-container test-gallery"
+  >
+    <withGlobalListeners(BaseGallery)
+      controlContainer={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "displayName": "Button",
+          "propTypes": Object {
+            "appearance": [Function],
+            "children": [Function],
+            "className": [Function],
+            "color": [Function],
+            "href": [Function],
+            "isDisabled": [Function],
+            "isFocused": [Function],
+            "onClick": [Function],
+            "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
+            "shape": [Function],
+            "withShadow": [Function],
+          },
+          "render": [Function],
+        }
+      }
+      direction="vertical"
+      getControlProps={[Function]}
+      items={
+        Array [
+          "test 1",
+          "test 2",
+          "test 3",
+          "test 4",
+          "test 5",
+        ]
+      }
+      needListenResize={true}
+      needShowControls="always"
+      slideBy={2}
+      slideStepSize={78}
+    >
+      <BaseGallery
+        addGlobalListener={[Function]}
+        controlContainer={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Button",
+            "propTypes": Object {
+              "appearance": [Function],
+              "children": [Function],
+              "className": [Function],
+              "color": [Function],
+              "href": [Function],
+              "isDisabled": [Function],
+              "isFocused": [Function],
+              "onClick": [Function],
+              "onMouseEnter": [Function],
+              "onMouseLeave": [Function],
+              "shape": [Function],
+              "withShadow": [Function],
+            },
+            "render": [Function],
+          }
+        }
+        direction="vertical"
+        getControlProps={[Function]}
+        items={
+          Array [
+            "test 1",
+            "test 2",
+            "test 3",
+            "test 4",
+            "test 5",
+          ]
+        }
+        needListenResize={true}
+        needShowControls="always"
+        slideBy={2}
+        slideStepSize={78}
+      >
+        <Button
+          aria-label="Промотать назад"
+          className="button disabled arrow-up"
+          isDisabled={true}
+          onClick={[Function]}
+          shape="circle"
+          type="button"
+          withShadow={true}
+        >
+          <button
+            aria-label="Промотать назад"
+            className="button button disabled arrow-up button-circle button-clean with-shadow"
+            disabled={true}
+            onClick={[Function]}
+            type="button"
+          >
+            <Icon
+              icon={[Function]}
+              size={10}
+            >
+              <arrowUp
+                className="icon icon-block"
+                height={10}
+                viewBox="0 0 36 36"
+                width={10}
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <svg
+                  className="icon icon-block"
+                  height={10}
+                  viewBox="0 0 36 36"
+                  width={10}
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M18.03 6.855a2.563 2.657 0 0 0-1.807.783L.846 23.578a2.564 2.658 0 0 0 3.626 3.76l13.57-14.067 13.57 14.067a2.564 2.658 0 0 0 3.627-3.76L19.862 7.639a2.563 2.657 0 0 0-1.832-.783z"
+                  />
+                </svg>
+              </arrowUp>
+            </Icon>
+          </button>
+        </Button>
+        <div
+          className="items-wrapper"
+        >
+          <div
+            className="items-column-container"
+            style={
+              Object {
+                "transform": "translateY(0px)",
+                "transition": "all .3s ease 0s",
+              }
+            }
+          >
+            <div
+              key="0"
+            />
+            <div
+              key="1"
+            />
+            <div
+              key="2"
+            />
+            <div
+              key="3"
+            />
+            <div
+              key="4"
+            />
+          </div>
+        </div>
+        <Button
+          aria-label="Промотать вперед"
+          className="button disabled arrow-down"
+          isDisabled={true}
+          onClick={[Function]}
+          shape="circle"
+          type="button"
+          withShadow={true}
+        >
+          <button
+            aria-label="Промотать вперед"
+            className="button button disabled arrow-down button-circle button-clean with-shadow"
+            disabled={true}
+            onClick={[Function]}
+            type="button"
+          >
+            <Icon
+              icon={[Function]}
+              size={10}
+            >
+              <arrowDown
+                className="icon icon-block"
+                height={10}
+                viewBox="0 0 36 36"
+                width={10}
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <svg
+                  className="icon icon-block"
+                  height={10}
+                  viewBox="0 0 36 36"
+                  width={10}
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M18.03 28.116a2.563 2.657 0 0 1-1.807-.783L.846 11.393a2.564 2.658 0 0 1 3.626-3.76l13.57 14.068 13.57-14.068a2.564 2.658 0 0 1 3.627 3.76l-15.377 15.94a2.563 2.657 0 0 1-1.832.783z"
+                  />
+                </svg>
+              </arrowDown>
+            </Icon>
+          </button>
+        </Button>
+      </BaseGallery>
+    </withGlobalListeners(BaseGallery)>
+  </div>
+</StyledGallery>
+`;
+
+exports[`<StyledGallery /> should render without props 1`] = `
+<StyledGallery>
+  <div
+    className="gallery-container"
+  >
+    <withGlobalListeners(BaseGallery)
+      controlContainer={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "displayName": "Button",
+          "propTypes": Object {
+            "appearance": [Function],
+            "children": [Function],
+            "className": [Function],
+            "color": [Function],
+            "href": [Function],
+            "isDisabled": [Function],
+            "isFocused": [Function],
+            "onClick": [Function],
+            "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
+            "shape": [Function],
+            "withShadow": [Function],
+          },
+          "render": [Function],
+        }
+      }
+      direction="horizontal"
+      getControlProps={[Function]}
+      needListenResize={true}
+    >
+      <BaseGallery
+        addGlobalListener={[Function]}
+        controlContainer={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Button",
+            "propTypes": Object {
+              "appearance": [Function],
+              "children": [Function],
+              "className": [Function],
+              "color": [Function],
+              "href": [Function],
+              "isDisabled": [Function],
+              "isFocused": [Function],
+              "onClick": [Function],
+              "onMouseEnter": [Function],
+              "onMouseLeave": [Function],
+              "shape": [Function],
+              "withShadow": [Function],
+            },
+            "render": [Function],
+          }
+        }
+        direction="horizontal"
+        getControlProps={[Function]}
+        needListenResize={true}
+      >
+        <div
+          className="items-wrapper"
+        >
+          <div
+            className="items-container"
+            style={
+              Object {
+                "transform": "translateX(0px)",
+                "transition": "all .3s ease 0s",
+              }
+            }
+          />
+        </div>
+      </BaseGallery>
+    </withGlobalListeners(BaseGallery)>
+  </div>
+</StyledGallery>
+`;
+
+exports[`getControlProps default 1`] = `
+<Button
+  aria-label="Промотать вперед"
+  className="button"
+  isDisabled={false}
+  shape="circle"
+  type="button"
+  withShadow={true}
+>
+  <button
+    aria-label="Промотать вперед"
+    className="button button button-circle button-clean with-shadow"
+    disabled={false}
+    type="button"
+  >
+    <Icon
+      icon={[Function]}
+      size={10}
+    >
+      <arrowUp
+        className="icon icon-block"
+        height={10}
+        viewBox="0 0 36 36"
+        width={10}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <svg
+          className="icon icon-block"
+          height={10}
+          viewBox="0 0 36 36"
+          width={10}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18.03 6.855a2.563 2.657 0 0 0-1.807.783L.846 23.578a2.564 2.658 0 0 0 3.626 3.76l13.57-14.067 13.57 14.067a2.564 2.658 0 0 0 3.627-3.76L19.862 7.639a2.563 2.657 0 0 0-1.832-.783z"
+          />
+        </svg>
+      </arrowUp>
+    </Icon>
+  </button>
+</Button>
+`;
+
+exports[`getControlProps with params 1`] = `
+<Button
+  aria-label="Промотать назад"
+  className="button disabled test-right-class"
+  isDisabled={true}
+  shape="circle"
+  type="button"
+  withShadow={true}
+>
+  <button
+    aria-label="Промотать назад"
+    className="button button disabled test-right-class button-circle button-clean with-shadow"
+    disabled={true}
+    type="button"
+  >
+    <Icon
+      icon={[Function]}
+      size={10}
+    >
+      <arrowRight
+        className="icon icon-block"
+        height={10}
+        viewBox="0 0 36 36"
+        width={10}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <svg
+          className="icon icon-block"
+          height={10}
+          viewBox="0 0 36 36"
+          width={10}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10.076 36.028c.855 0 1.711-.33 2.356-.99l16.829-17.024L12.432.991a3.299 3.299 0 0 0-4.713 0 3.398 3.398 0 0 0 0 4.774l12.1 12.25-12.1 12.249a3.398 3.398 0 0 0 0 4.774c.645.66 1.5.99 2.357.99"
+          />
+        </svg>
+      </arrowRight>
+    </Icon>
+  </button>
+</Button>
+`;

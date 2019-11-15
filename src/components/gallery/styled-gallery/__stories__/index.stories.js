@@ -1,19 +1,18 @@
 import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
-import Gallery from '../gallery';
-import { items } from '../items';
+import StyledGallery from '../index';
+import { items } from '../../items';
 
-storiesOf('Gallery', module)
-  .add('Horizontal base gallery', () => (
+storiesOf('Gallery/StyledGallery', module)
+  .add('Horizontal gallery', () => (
     <Fragment>
       <h3>Horizontal gallery</h3>
       <div style={{ maxWidth: '60%', margin: '0 auto' }}>
-        <Gallery
+        <StyledGallery
+          slideStepSize={64}
+          direction='horizontal'
           items={items}
           itemContainer='img'
-          controlContainer='button'
-          getControlProps={type => ({ children: type === 'forward' ? 'вперед' : 'назад' })}
-          needListenResize
           getItemProps={item => ({
             ...item,
             onLoad: () => { window.dispatchEvent(new Event('resize')); },
@@ -22,17 +21,15 @@ storiesOf('Gallery', module)
       </div>
     </Fragment>
   ))
-  .add('Vertical base gallery', () => (
+  .add('Vertical gallery', () => (
     <Fragment>
       <h3>Vertical gallery</h3>
-      <Gallery
+      <StyledGallery
         itemsContainerProps={{
           style: { height: '80vh', width: '140px' },
         }}
+        slideStepSize={64}
         direction='vertical'
-        controlContainer='button'
-        getControlProps={type => ({ children: type === 'forward' ? 'вперед' : 'назад' })}
-        needListenResize
         items={items}
         itemContainer='img'
         getItemProps={item => ({
