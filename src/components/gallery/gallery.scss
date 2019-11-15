@@ -1,0 +1,12 @@
+.items-wrapper {
+  overflow: hidden;
+}
+
+.items-container {
+  display: flex;
+}
+
+.items-column-container {
+  display: flex;
+  flex-direction: column;
+}
