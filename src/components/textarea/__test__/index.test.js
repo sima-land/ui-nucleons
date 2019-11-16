@@ -139,6 +139,18 @@ describe('<Textarea />', () => {
     wrapper.find('textarea').simulate('blur');
     expect(spy).toHaveBeenCalledTimes(1);
   });
+  it('should handle "onInput" prop', () => {
+    const spy = jest.fn();
+    const wrapper = mount(
+      <Textarea
+        onInput={spy}
+      />
+    );
+
+    expect(spy).toHaveBeenCalledTimes(0);
+    wrapper.find('textarea').simulate('input');
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
   it('should handle "focus" event', () => {
     const spy = jest.fn();
     const container = document.createElement('div');

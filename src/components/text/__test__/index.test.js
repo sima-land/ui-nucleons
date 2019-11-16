@@ -86,6 +86,21 @@ describe('<Text />', () => {
     wrapper.setProps({ weight: 'invalid' });
     expect(wrapper.find('span').prop('className')).not.toContain('weight-invalid');
   });
+  it('should handle "align" prop', () => {
+    const wrapper = shallow(
+      <Text />
+    );
+    const validValues = [
+      'center',
+      'left',
+      'right',
+      'justify',
+    ];
+    validValues.forEach(value => {
+      wrapper.setProps({ align: value });
+      expect(wrapper.find('span').prop('className')).toContain(`align-${value}`);
+    });
+  });
   it('should handle "italic" prop', () => {
     const wrapper = shallow(
       <Text />
