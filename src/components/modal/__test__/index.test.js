@@ -38,6 +38,11 @@ describe('<Modal />', () => {
       .find({ className: 'overlay' })
       .simulate('mouseUp', { button: 0, target: 'testTarget', currentTarget: 'anotherTarget' });
     expect(onCloseMock).toHaveBeenCalledTimes(0);
+    modal.find({ className: 'overlay' }).simulate('mouseDown', { button: 1, target: 'anotherTarget' });
+    modal
+      .find({ className: 'overlay' })
+      .simulate('mouseUp', { button: 1, target: 'testTarget', currentTarget: 'anotherTarget' });
+    expect(onCloseMock).toHaveBeenCalledTimes(0);
     modal
       .find({ className: 'overlay' })
       .simulate('mouseUp', { button: 0, target: 'testTarget', currentTarget: 'testTarget' });

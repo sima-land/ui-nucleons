@@ -127,6 +127,14 @@ describe('<Box />', () => {
     wrapper.setProps({ flex: 'invalid' });
     expect(wrapper.find('div').prop('className')).not.toContain('flex-invalid');
   });
+  it('should handle "wrap" prop', () => {
+    const wrapper = shallow(
+      <Box />
+    );
+    expect(wrapper.find('div').prop('className')).not.toContain('flex-wrap');
+    wrapper.setProps({ wrap: true });
+    expect(wrapper.find('div').prop('className')).toContain('flex-wrap');
+  });
   it('should handle "direction" prop', () => {
     const wrapper = shallow(
       <Box />

@@ -63,6 +63,22 @@ describe('<PositioningPopup />', () => {
     expect(instance.parentLeft).toEqual(50);
   });
 
+  it('counts correctly opener without isBrowser()', () => {
+    isBrowser.mockImplementation(() => false);
+    const popup = mount(
+      <PositioningPopup
+        parent={createFakeRef(1000, 50)}
+        opener={createFakeRef(100, 200)}
+      />
+    );
+    const instance = popup.instance();
+
+    expect(instance.openerWidth).toEqual(100);
+    expect(instance.openerLeft).toEqual(200);
+    expect(instance.parentWidth).toEqual(1000);
+    expect(instance.parentLeft).toEqual(50);
+  });
+
   it('counts correctly popup position', () => {
     isBrowser.mockImplementation(() => true);
     const popup = mount(
