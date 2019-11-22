@@ -3,9 +3,9 @@ import { storiesOf } from '@storybook/react';
 import Box from '../index';
 
 const testJustifyItems = [
-  <Box padding={4} margin={4} dangerouslySetInlineStyle={{ __style: { background: 'red' } }}>First</Box>,
-  <Box padding={4} margin={4} dangerouslySetInlineStyle={{ __style: { background: 'green' } }}>Second</Box>,
-  <Box padding={4} margin={4} dangerouslySetInlineStyle={{ __style: { background: 'blue' } }}>Third</Box>,
+  <Box padding={4} margin={4} key={1} dangerouslySetInlineStyle={{ __style: { background: 'red' } }}>First</Box>,
+  <Box padding={4} margin={4} key={2} dangerouslySetInlineStyle={{ __style: { background: 'green' } }}>Second</Box>,
+  <Box padding={4} margin={4} key={3} dangerouslySetInlineStyle={{ __style: { background: 'blue' } }}>Third</Box>,
 ];
 
 const testAlignItems = [
