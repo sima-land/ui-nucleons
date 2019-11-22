@@ -1,10 +1,33 @@
-import React from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
 import { storiesOf } from '@storybook/react';
 import Text, { SIZES, COLORS, WEIGHTS, ALIGNS } from '../index';
+import cutTextContent from '../../helpers/cut-text-content';
+import isElement from 'lodash/isElement';
+
+/**
+ * Обрезает текст до заданной высоты.
+ * @return {ReactElement} Обрезанный текст с добавлением многоточия.
+ */
+const CutTextContent = () => {
+  const textRef = useRef(null);
+  useLayoutEffect(() => {
+    const { current: element } = textRef;
+    isElement(element) && cutTextContent(element, 50);
+  }, []);
+  return (
+    <div ref={textRef} style={{ width: '300px' }}>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid deserunt earum nam rem. Consectetur,
+      dignissimos dolore dolores eos esse itaque iusto nemo optio quaerat quo ratione reprehenderit voluptatem
+      voluptates?
+    </div>
+  );};
+
 
 storiesOf('Text', module)
-  .add('without props', () => (
-    <Text>Text without props is just a span</Text>
+  .add('with cutTextContent helper', () => (
+    <Text>
+      <CutTextContent />
+    </Text>
   ))
   .add('"size" prop variations', () => [...SIZES].map(
     size => (
