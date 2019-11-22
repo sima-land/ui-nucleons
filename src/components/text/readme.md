@@ -1,3 +1,28 @@
+Обрезанный текст с подставлением многоточия
+```jsx
+import React, { useRef, useLayoutEffect } from 'react';
+import isElement from 'lodash/isElement';
+import cutTextContent from '../helpers/cut-text-content';
+
+const CutTextContent = () => {
+  const textRef = useRef(null);
+  useLayoutEffect(() => {
+    const { current: element } = textRef;
+    isElement(element) && cutTextContent(element, 50);
+  }, []);
+  return (
+    <div ref={textRef} style={{ width: '300px' }}>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid deserunt earum nam rem. Consectetur,
+      dignissimos dolore dolores eos esse itaque iusto nemo optio quaerat quo ratione reprehenderit voluptatem
+      voluptates?
+    </div>
+);};
+
+  <Text>
+    <CutTextContent />
+  </Text>
+```
+
 Варианты размеров
 ```jsx
 import { SIZES } from '../text/';
