@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NavButton /> should handle "vertical" and "type" props 1`] = `
+<NavButton
+  type="forward"
+  vertical={false}
+>
+  <button
+    aria-label="вперед"
+    className="carousel-control forward"
+    disabled={false}
+    type="button"
+  >
+    <Icon
+      icon={[Function]}
+      role="presentation"
+      size={10}
+    >
+      <arrowRight
+        className="icon icon-block"
+        height={10}
+        role="presentation"
+        viewBox="0 0 36 36"
+        width={10}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <svg
+          className="icon icon-block"
+          height={10}
+          role="presentation"
+          viewBox="0 0 36 36"
+          width={10}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10.076 36.028c.855 0 1.711-.33 2.356-.99l16.829-17.024L12.432.991a3.299 3.299 0 0 0-4.713 0 3.398 3.398 0 0 0 0 4.774l12.1 12.25-12.1 12.249a3.398 3.398 0 0 0 0 4.774c.645.66 1.5.99 2.357.99"
+          />
+        </svg>
+      </arrowRight>
+    </Icon>
+  </button>
+</NavButton>
+`;
+
+exports[`<NavButton /> should handle "vertical" and "type" props 2`] = `
+<NavButton
+  type="backward"
+  vertical={false}
+>
+  <button
+    aria-label="назад"
+    className="carousel-control backward"
+    disabled={false}
+    type="button"
+  >
+    <Icon
+      icon={[Function]}
+      role="presentation"
+      size={10}
+    >
+      <arrowLeft
+        className="icon icon-block"
+        height={10}
+        role="presentation"
+        viewBox="0 0 36 36"
+        width={10}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <svg
+          className="icon icon-block"
+          height={10}
+          role="presentation"
+          viewBox="0 0 36 36"
+          width={10}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 18L22.815.99a3.296 3.296 0 0 1 4.71 0 3.395 3.395 0 0 1 0 4.77L15.435 18l12.09 12.24a3.395 3.395 0 0 1 0 4.77 3.296 3.296 0 0 1-4.71 0L6 18z"
+          />
+        </svg>
+      </arrowLeft>
+    </Icon>
+  </button>
+</NavButton>
+`;
+
+exports[`<NavButton /> should handle "vertical" and "type" props 3`] = `
+<NavButton
+  type="forward"
+  vertical={true}
+>
+  <button
+    aria-label="вперед"
+    className="carousel-control vertical forward"
+    disabled={false}
+    type="button"
+  >
+    <Icon
+      icon={[Function]}
+      role="presentation"
+      size={10}
+    >
+      <arrowDown
+        className="icon icon-block"
+        height={10}
+        role="presentation"
+        viewBox="0 0 36 36"
+        width={10}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <svg
+          className="icon icon-block"
+          height={10}
+          role="presentation"
+          viewBox="0 0 36 36"
+          width={10}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18.03 28.116a2.563 2.657 0 0 1-1.807-.783L.846 11.393a2.564 2.658 0 0 1 3.626-3.76l13.57 14.068 13.57-14.068a2.564 2.658 0 0 1 3.627 3.76l-15.377 15.94a2.563 2.657 0 0 1-1.832.783z"
+          />
+        </svg>
+      </arrowDown>
+    </Icon>
+  </button>
+</NavButton>
+`;
+
+exports[`<NavButton /> should handle "vertical" and "type" props 4`] = `
+<NavButton
+  type="backward"
+  vertical={true}
+>
+  <button
+    aria-label="назад"
+    className="carousel-control vertical backward"
+    disabled={false}
+    type="button"
+  >
+    <Icon
+      icon={[Function]}
+      role="presentation"
+      size={10}
+    >
+      <arrowUp
+        className="icon icon-block"
+        height={10}
+        role="presentation"
+        viewBox="0 0 36 36"
+        width={10}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <svg
+          className="icon icon-block"
+          height={10}
+          role="presentation"
+          viewBox="0 0 36 36"
+          width={10}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18.03 6.855a2.563 2.657 0 0 0-1.807.783L.846 23.578a2.564 2.658 0 0 0 3.626 3.76l13.57-14.067 13.57 14.067a2.564 2.658 0 0 0 3.627-3.76L19.862 7.639a2.563 2.657 0 0 0-1.832-.783z"
+          />
+        </svg>
+      </arrowUp>
+    </Icon>
+  </button>
+</NavButton>
+`;
