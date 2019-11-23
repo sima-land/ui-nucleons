@@ -1,0 +1,44 @@
+@import '../variables';
+
+.carousel-control {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background-color: #fff;
+  color: #ccc;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba($black, .1), 0 2px 3px rgba($black, .3);
+  transform: translate(-50%, -50%);
+  &:not(:disabled):hover {
+    color: $blueIcon;
+    cursor: pointer;
+  }
+  &:disabled {
+    opacity: .4;
+    color: $gray;
+  }
+  &:not(.vertical) {
+    top: 50%;
+    &.backward {
+      left: 0;
+    }
+    &.forward {
+      left: 100%;
+    }
+  }
+  &.vertical {
+    left: 50%;
+    &.backward {
+      top: 0;
+    }
+    &.forward {
+      top: 100%;
+    }
+  }
+}
