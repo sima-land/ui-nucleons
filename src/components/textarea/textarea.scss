@@ -5,6 +5,7 @@
   font-size: 16px;
   line-height: 24px;
   vertical-align: top;
+  -webkit-appearance: none; // для того, чтобы в Safari на iOS не пропадал box-shadow
   &.full-width {
     width: 100%;
   }
