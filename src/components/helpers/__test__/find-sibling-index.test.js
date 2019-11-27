@@ -76,4 +76,26 @@ describe('findSiblingIndex()', () => {
       isSuitable: sibling => sibling.tagName === 'ASIDE',
     })).toBe(2);
   });
+  it('should handle "props.defaultResult" and "props.startIndex"', () => {
+    const div = document.createElement('div');
+    const sibling1 = document.createElement('header');
+    const sibling2 = document.createElement('aside');
+    const sibling3 = document.createElement('section');
+    const sibling4 = document.createElement('footer');
+    document.body.append(
+      div,
+      sibling1,
+      sibling2,
+      sibling3,
+      sibling4,
+    );
+
+    expect(findSiblingIndex({
+      target: div,
+      startIndex: 4,
+      increment: -1,
+      defaultResult: NaN,
+      isSuitable: sibling => sibling.tagName === 'SPAN',
+    })).toBe(NaN);
+  });
 });

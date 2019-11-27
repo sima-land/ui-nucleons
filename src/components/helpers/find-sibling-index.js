@@ -7,6 +7,7 @@ import identity from 'lodash/identity';
  * @param {Element} props.target Элемент для которого нужно найти родственный элемент.
  * @param {number} [props.startIndex=0] Индекс элемента с которого нужно начать поиск.
  * @param {number} [props.increment=1] Значение инкремента.
+ * @param {number} [props.defaultResult=-1] Резуьтат в случае если ни один элемент не прошел проверку.
  * @param {Function} [props.isSuitable] Должна определить удовлетворяет ли элемент условию.
  * @param {Function} [props.needBreakLoop] Должна определить нужно ли останавливать цикл.
  * @return {Element} Родственный элемент.
@@ -15,10 +16,11 @@ const findSiblingIndex = ({
   target,
   startIndex = 0,
   increment = +1,
+  defaultResult = -1,
   isSuitable,
   needBreakLoop = identity,
 } = {}) => {
-  let result = -1;
+  let result = defaultResult;
 
   if (
     target
@@ -26,7 +28,6 @@ const findSiblingIndex = ({
     && isFunction(isSuitable)
   ) {
     const { children } = target.parentElement;
-    result = startIndex;
 
     for (let i = startIndex; i >= 0 && i < children.length; i += increment) {
       const sibling = children[i];
