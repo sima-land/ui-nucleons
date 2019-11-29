@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { createRef, PureComponent } from 'react';
 import withGlobalListeners from '../hoc/with-global-listeners';
 import isFunction from 'lodash/isFunction';
 import isNumber from 'lodash/isNumber';
@@ -10,7 +10,7 @@ import classes from './draggable.scss';
 
 const cx = classnames.bind(classes);
 
-const eventNames = {
+const EVENT_NAMES = {
   move: ['mousemove', 'touchmove'],
   moveEnd: ['mouseup', 'touchend', 'touchcancel'],
 };
@@ -40,110 +40,143 @@ const getEventClientPos = event => {
  * @param {number} y Координата Y.
  * @return {{ offset: { x: number, y: number } }} Событие.
  */
-const DragEvent = (x, y) => ({ offset: { x, y } });
+const DraggableEvent = (x, y) => ({ offset: { x, y } });
+
+/**
+ * Возвращает строку значения CSS-свойства "transition".
+ * @param {number} [duration=0] Длительность перехода в миллисекундах.
+ * @param {string} [property='transform'] Имя свойства.
+ * @param {string} [easing='ease-out'] Функция плавности.
+ * @return {string} Значение CSS-свойства "transition".
+ */
+const getTransitionStyle = (
+  duration,
+  property = 'transform',
+  easing = 'ease-out'
+) => `${property} ${isNumber(duration) ? duration : 0}ms ${easing}`;
+
+/**
+ * Возвращает строку значения CSS-свойства с трансформацией смещения.
+ * @param {number} x Смещение по оси абсцисс в пикселях.
+ * @param {number} y Смещение по оси ординат в пикселях.
+ * @return {string} Значение CSS-свойства с трансформацией смещения.
+ */
+const getTranslateStyle = (x, y) => `translate(${x}px, ${y}px)`;
 
 /**
  * Компонент области, которую можно прокручивать перетаскиванием.
  */
-export class Draggable extends Component {
+export class Draggable extends PureComponent {
   /**
    * Конструктор компонента области, которую можно прокручивать перетаскиванием.
    * @param {Object} props Свойства.
    */
   constructor (props) {
-    const { offsetX, offsetY } = props;
-
     super(props);
 
-    this.state = {
-      offsetX: isNumber(offsetX) ? offsetX : 0,
-      offsetY: isNumber(offsetY) ? offsetY : 0,
-      isCaptured: false,
-    };
-    this.clientPosition = {
-      x: 0,
-      y: 0,
-    };
+    this.isCaptured = false;
+    this.hasTransition = false;
+    this.currentOffset = { x: 0, y: 0 };
+    this.clientPosition = { x: 0, y: 0 };
     this.draggableRef = createRef();
     this.startCapture = this.startCapture.bind(this);
   }
 
   /**
-   * Выполняет подписку на все необходимые глобальные события.
-   * Сохраняет функции для отписки.
+   * Запускает инициализацию обработки глобальных событий.
+   * Запускает передачу управления родительскому компоненту.
    */
   componentDidMount () {
+    this.initGlobalListeners();
+    this.passControl();
+  }
+
+  /**
+   * Инициализирует обработчики глобальных событий.
+   */
+  initGlobalListeners () {
     const { addGlobalListener } = this.props;
-    const listen = curry(addGlobalListener, 2);
+    const listen = curry(addGlobalListener);
     const moveHandler = this.handleMove.bind(this);
     const moveEndHandler = this.handleMoveEnd.bind(this);
 
     this.unsubscribers = [
-      ...eventNames.move.map(listen(__, moveHandler)),
-      ...eventNames.moveEnd.map(listen(__, moveEndHandler)),
+      ...EVENT_NAMES.move.map(listen(__, moveHandler)),
+      ...EVENT_NAMES.moveEnd.map(listen(__, moveEndHandler)),
     ];
   }
 
   /**
-   * При обновлении свойств данных смещения сохраняет их в состоянии.
-   * @inheritdoc
+   * Передает управление родительскому компоненту через "initControl".
    */
-  componentDidUpdate (prevProps) {
-    const { offsetX: prevOffsetX, offsetY: prevOffsetY } = prevProps;
-    const { offsetX, offsetY } = this.props;
+  passControl () {
+    const { initControl } = this.props;
 
-    if (prevOffsetX !== offsetX || prevOffsetY !== offsetY) {
-      this.setState({
-        offsetX,
-        offsetY,
-      });
+    isFunction(initControl) && initControl({
+      setOffset: this.setOffset.bind(this),
+      toggleTransition: this.toggleTransition.bind(this),
+    });
+  }
+
+  /**
+   * Выполняет отписку от глобальных событий.
+   */
+  componentWillUnmount () {
+    this.unsubscribers.forEach(unsubscribe => unsubscribe());
+  }
+
+  /**
+   * Сохраняет данные захвата по событию клика/прикосновения.
+   * @param {MouseEvent|TouchEvent} event Событие передвижения.
+   */
+  startCapture (event) {
+    const { x, y } = this.currentOffset;
+    const { active = true, onDragStart } = this.props;
+
+    if (active) {
+      this.toggleCaptured(true);
+      this.saveClientPosition(event);
+
+      isFunction(onDragStart) && onDragStart(DraggableEvent(x, y));
     }
   }
 
   /**
-   * Выполняет отписку на все необходимые глобальные события.
-   */
-  componentWillUnmount () {
-    this.unsubscribers.forEach(
-      unsubscribe => unsubscribe()
-    );
-  }
-
-  /**
-   * Обновляет смещение контента по touch- или mouse-событию движения.
-   * Вызывает соответствующий callback.
-   * @param {Event} event Touch- или mouse-событие.
+   * Обновляет смещение и все данные при необходимости.
+   * @param {MouseEvent|TouchEvent} event Событие передвижения.
    */
   handleMove (event) {
     const { axis, onDrag } = this.props;
 
-    if (this.state.isCaptured) {
-      const { dx, dy } = this.getMouseDelta(event);
-      const offsetX = this.state.offsetX - (axis !== 'y' ? dx : 0);
-      const offsetY = this.state.offsetY - (axis !== 'x' ? dy : 0);
+    if (this.isCaptured) {
+      const { x, y } = this.currentOffset;
+      const { dx, dy } = this.getClientDelta(event);
+      const offsetX = x - (axis !== 'y' ? dx : 0);
+      const offsetY = y - (axis !== 'x' ? dy : 0);
 
       // предотвращаем выделение при зажатой кнопке мыши
       !isTouchEvent(event) && event.preventDefault();
 
-      isFunction(onDrag) && onDrag(DragEvent(offsetX, offsetY));
+      isFunction(onDrag) && onDrag(DraggableEvent(offsetX, offsetY));
 
-      this.setState({ offsetX, offsetY });
       this.saveClientPosition(event);
+      this.setOffset(offsetX, offsetY);
     }
   }
 
   /**
-   * Обновляет смещение контента по touch- или mouse-событию завершения движения.
+   * Отключает захват движения.
+   * Запускает соответствующий callback.
    */
   handleMoveEnd () {
-    const { isCaptured, offsetX, offsetY } = this.state;
+    const { x, y } = this.currentOffset;
     const { onDragEnd } = this.props;
 
-    if (isCaptured && isFunction(onDragEnd)) {
-      onDragEnd(DragEvent(offsetX, offsetY));
+    if (this.isCaptured && isFunction(onDragEnd)) {
+      onDragEnd(DraggableEvent(x, y));
     }
 
-    this.setIsCaptured(false);
+    this.toggleCaptured(false);
   }
 
   /**
@@ -151,8 +184,9 @@ export class Draggable extends Component {
    * @param {Event} event Touch- или mouse-событие.
    * @return {{ dx: number, dy: number }} Разница.
    */
-  getMouseDelta (event) {
+  getClientDelta (event) {
     const eventPos = getEventClientPos(event);
+
     return {
       dx: this.clientPosition.x - eventPos.x,
       dy: this.clientPosition.y - eventPos.y,
@@ -160,34 +194,16 @@ export class Draggable extends Component {
   }
 
   /**
-   * Запускает захват по touch- или mouse-событию.
-   * @param {Event} event Touch- или mouse-событие.
+   * Переключает состояние активности захвата движения.
+   * @param {boolean} active  Активен ли захват движения.
    */
-  startCapture (event) {
-    const { offsetX, offsetY } = this.state;
-    const { active = true, onDragStart } = this.props;
-
-    if (active) {
-      this.setIsCaptured(true);
-      this.saveClientPosition(event);
-
-      isFunction(onDragStart) && onDragStart(
-        DragEvent(offsetX, offsetY)
-      );
-    }
+  toggleCaptured (active) {
+    this.isCaptured = Boolean(active);
   }
 
   /**
-   * Устанавливает в состоянии флаг isCaptured.
-   * @param {boolean} isCaptured Активен ли захват.
-   */
-  setIsCaptured (isCaptured) {
-    this.setState({ isCaptured: Boolean(isCaptured) });
-  }
-
-  /**
-   * Сохраняет позицию из touch- или mouse-события.
-   * @param {Event} event Touch- или mouse-событие.
+   * Сохраняет данные позиции на экземпляре.
+   * @param {MouseEvent|TouchEvent} event Событие.
    */
   saveClientPosition (event) {
     const eventPos = getEventClientPos(event);
@@ -197,20 +213,48 @@ export class Draggable extends Component {
   }
 
   /**
+   * Переключает состояние плавного перехода через CSS-свойство "transition".
+   * @param {boolean} active Нужен ли плавный переход.
+   */
+  toggleTransition (active) {
+    const { transitionDuration: duration = 320 } = this.props;
+    const { current: draggableEl } = this.draggableRef;
+
+    if (this.hasTransition !== Boolean(active)) {
+      this.hasTransition = Boolean(active);
+
+      draggableEl.style.transition = active
+        ? getTransitionStyle(duration)
+        : null;
+    }
+  }
+
+  /**
+   * Устанавливает смещение через CSS-свойство transform.
+   * Сохраняет данные смещения на экземпляре.
+   * @param {number} x Смещение по оси абсцисс.
+   * @param {number} y Смещение по оси ординат.
+   */
+  setOffset (x, y) {
+    const { current: draggableEl } = this.draggableRef;
+
+    this.currentOffset.x = x || 0;
+    this.currentOffset.y = y || 0;
+
+    draggableEl.style.transform = getTranslateStyle(x, y);
+  }
+
+  /**
    * Возвращает компонент.
    * @inheritdoc
    */
   render () {
     const {
-      offsetX,
-      offsetY,
-      isCaptured,
-    } = this.state;
-    const {
       children,
       containerProps = {},
-      transitionDuration: duration,
+      transitionDuration: duration = 320,
     } = this.props;
+    const { x, y } = this.currentOffset;
 
     return (
       <div
@@ -224,13 +268,13 @@ export class Draggable extends Component {
       >
         <div
           ref={this.draggableRef}
-          className={cx('draggable')}
           style={{
-            transform: `translate(${offsetX}px, ${offsetY}px)`,
-            transition: !isCaptured && isNumber(duration)
-              ? `transform ${duration}ms ease-out`
+            transform: getTranslateStyle(x, y),
+            transition: this.hasTransition
+              ? getTransitionStyle(duration)
               : null,
           }}
+          className={cx('draggable')}
           children={children}
         />
       </div>
@@ -239,16 +283,6 @@ export class Draggable extends Component {
 }
 
 Draggable.propTypes = {
-  /**
-   * Смещение по оси абсцисс.
-   */
-  offsetX: PropTypes.number,
-
-  /**
-   * Смещение по оси ординат.
-   */
-  offsetY: PropTypes.number,
-
   /**
    * Ось, по которой можно смещать контент.
    */
@@ -293,6 +327,11 @@ Draggable.propTypes = {
    * Длительность плавного перехода при изменении offsetX/offsetY.
    */
   transitionDuration: PropTypes.number,
+
+  /**
+   * Получит интерфейс управления областью.
+   */
+  initControl: PropTypes.func,
 };
 
 export default withGlobalListeners(Draggable);

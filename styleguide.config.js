@@ -1,8 +1,12 @@
 const reactDoc = require('react-docgen');
 
 module.exports = {
-  title: 'UINuclions',
+  title: 'UINucleons',
   components: 'src/components/**/*.jsx',
+  ignore: [
+    'src/components/carousel/draggable.jsx',
+    'src/components/carousel/nav-button.jsx',
+  ],
   resolver: reactDoc.resolver.findAllComponentDefinitions,
   propsParser: (filePath, source, resolver, handlers) =>
     reactDoc.parse(source, resolver, handlers),
