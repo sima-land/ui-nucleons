@@ -57,11 +57,15 @@ const getTransitionStyle = (
 
 /**
  * Возвращает строку значения CSS-свойства с трансформацией смещения.
+ *
+ * Использовать только "translate3d" для смещения.
+ * @see https://stackoverflow.com/a/22312917
+ *
  * @param {number} x Смещение по оси абсцисс в пикселях.
  * @param {number} y Смещение по оси ординат в пикселях.
  * @return {string} Значение CSS-свойства с трансформацией смещения.
  */
-const getTranslateStyle = (x, y) => `translate(${x}px, ${y}px)`;
+const getTranslateStyle = (x, y) => `translate3d(${x}px, ${y}px, 0px)`;
 
 /**
  * Компонент области, которую можно прокручивать перетаскиванием.
