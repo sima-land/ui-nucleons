@@ -174,7 +174,7 @@ describe('<Draggable />', () => {
 
     expect(
       wrapper.getDOMNode().querySelector(`.${classes.draggable}`).style.transform
-    ).toBe('translate(65px, 0px)');
+    ).toBe('translate3d(65px, 0px, 0px)');
 
     // change axis
     wrapper.setProps({ axis: 'y' });
@@ -186,7 +186,7 @@ describe('<Draggable />', () => {
 
     expect(
       wrapper.getDOMNode().querySelector(`.${classes.draggable}`).style.transform
-    ).toBe('translate(65px, 181px)');
+    ).toBe('translate3d(65px, 181px, 0px)');
   });
   it('should passControl to "initControl" prop', () => {
     let testControl = null;
