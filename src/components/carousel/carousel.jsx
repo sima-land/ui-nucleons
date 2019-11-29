@@ -54,10 +54,7 @@ export class Carousel extends Component {
    * @param {Object} props Свойства.
    */
   constructor (props) {
-    const {
-      items,
-      targetIndex = 0,
-    } = props;
+    const { items, targetIndex = 0 } = props;
 
     super(props);
 
@@ -66,22 +63,19 @@ export class Carousel extends Component {
         ? targetIndex
         : 0,
       currentOffset: 0,
-      withTransition: false,
       isAllItemsVisible: false,
     };
     this.dragStartOffset = { x: 0, y: 0 };
 
-    this.wrapperRef = createRef(); // для определения viewport'а галереи
+    this.wrapperRef = createRef(); // для определения viewport'а карусели
     this.containerRef = createRef(); // для определения размеров списка элементов
-    this.prevButtonRef = createRef();
-    this.nextButtonRef = createRef();
 
     this.moveBackward = this.moveBackward.bind(this);
     this.moveForward = this.moveForward.bind(this);
     this.onDragEnd = this.onDragEnd.bind(this);
     this.onDragStart = this.onDragStart.bind(this);
     this.renderItem = this.renderItem.bind(this);
-    this.saveOffset = this.saveOffset.bind(this);
+    this.initDragControl = this.initDragControl.bind(this);
   }
 
   /**
@@ -120,13 +114,13 @@ export class Carousel extends Component {
     this.offWindowResize = addGlobalListener(
       'resize',
       () => {
-        this.toggleTransition(false);
+        this.toggleDragTransition(false);
         this.scrollToItem();
         this.updateItemsVisibility();
       }
     );
 
-    this.scrollToItem();
+    this.scrollToItem(undefined, false);
     this.updateItemsVisibility();
   }
 
@@ -141,7 +135,7 @@ export class Carousel extends Component {
 
     if (targetIndex !== prevTargetIndex) {
       this.setCurrentIndex(targetIndex);
-      this.toggleTransition(true);
+      this.toggleDragTransition(true);
     }
 
     this.updateItemsVisibility();
@@ -173,7 +167,7 @@ export class Carousel extends Component {
     const { step = 3, items } = this.props;
     const newIndex = currentIndex + step;
 
-    this.toggleTransition(true);
+    this.toggleDragTransition(true);
     this.setCurrentIndex(
       newIndex < size(items)
         ? newIndex
@@ -205,7 +199,7 @@ export class Carousel extends Component {
       needBreakLoop: passed => !passed,
     });
 
-    this.toggleTransition(true);
+    this.toggleDragTransition(true);
     this.setCurrentIndex(
       newIndex !== -1 && newIndex - step >= 0
         ? newIndex - step
@@ -214,13 +208,12 @@ export class Carousel extends Component {
   }
 
   /**
-   * Обновляет позицию карусели при захвате мышкой.
+   * Сохраняет смещение элементов карусели при захвате мышкой.
    * @param {Object} dragEvent Нестандартное событие из компонента Draggable.
    */
   onDragStart (dragEvent) {
-    this.saveOffset(dragEvent);
     this.saveDragStartOffset(dragEvent);
-    this.toggleTransition(true);
+    this.toggleDragTransition(false);
   }
 
   /**
@@ -228,17 +221,16 @@ export class Carousel extends Component {
    * @param {Object} dragEvent Нестандартное событие из компонента Draggable.
    * @param {Object} dragEvent.offset Смещение.
    */
-  onDragEnd ({ offset }) {
-    const { dragStartOffset } = this;
+  onDragEnd ({ offset: endOffset }) {
+    const { dragStartOffset: startOffset } = this;
     const { currentIndex } = this.state;
 
-
-    if (!isEqual(dragStartOffset, offset)) {
+    if (!isEqual(startOffset, endOffset)) {
       const { current: containerEl } = this.containerRef;
       const { vertical, items } = this.props;
       const backward = vertical
-        ? dragStartOffset.y < offset.y
-        : dragStartOffset.x < offset.x;
+        ? startOffset.y < endOffset.y
+        : startOffset.x < endOffset.x;
       const edgeIndex = backward ? 0 : maxIndexOf(items);
 
       // ищем элемент, который находится за пределами левой/верхней границы viewport'а относительно текущего
@@ -257,7 +249,10 @@ export class Carousel extends Component {
       });
 
       this.setCurrentIndex(newIndex !== -1 ? newIndex : edgeIndex);
+      this.toggleDragTransition(true);
     }
+
+    this.updateItemsVisibility();
   }
 
   /**
@@ -289,13 +284,19 @@ export class Carousel extends Component {
   /**
    * Прокручивает галерею к заданному элементу по индексу.
    * @param {number} [targetIndex=this.state.currentIndex] Индекс.
+   * @param {boolean} [needTransition=true] Нужна ли плавная анимация прокрутки.
    */
-  scrollToItem (targetIndex = this.state.currentIndex) {
+  scrollToItem (
+    targetIndex = this.state.currentIndex,
+    needTransition = true
+  ) {
     const { vertical } = this.props;
     const { current: containerEl } = this.containerRef;
     const targetItemEl = containerEl.children[targetIndex];
 
     if (targetItemEl) {
+      this.toggleDragTransition(needTransition);
+
       if (this.isAllItemsVisible()) {
         this.setCurrentOffset(0);
       } else {
@@ -385,17 +386,7 @@ export class Carousel extends Component {
   }
 
   /**
-   * Сохраняет в состоянии смещение карусели из события.
-   * @param {Object} dragEvent Нестандартное событие из компонента Draggable.
-   * @param {Object} dragEvent.offset Смещение.
-   */
-  saveOffset ({ offset }) {
-    const { vertical } = this.props;
-    this.setCurrentOffset(offset[vertical ? 'y' : 'x']);
-  }
-
-  /**
-   * Сохраняет смещение карусели из события на момент старта перетаскивания мышью.
+   * Сохраняет смещение карусели из события при старте захвата.
    * @param {Object} dragEvent Нестандартное событие из компонента Draggable.
    * @param {Object} dragEvent.offset Смещение.
    */
@@ -408,19 +399,14 @@ export class Carousel extends Component {
    * @param {Object} newOffset Смещение.
    */
   setCurrentOffset (newOffset) {
-    this.setState({ currentOffset: newOffset || 0 });
-  }
+    const { vertical } = this.props;
 
-  /**
-   * Переключает состояние плавности прокрутки.
-   * @param {*} withTransition Нужна ли плавность.
-   */
-  toggleTransition (withTransition) {
-    if (Boolean(withTransition) !== this.state.withTransition) {
-      this.setState({
-        withTransition: Boolean(withTransition),
-      });
-    }
+    this.setDragOffset(
+      !vertical ? newOffset : 0,
+      vertical ? newOffset : 0
+    );
+
+    this.setState({ currentOffset: newOffset });
   }
 
   /**
@@ -430,11 +416,18 @@ export class Carousel extends Component {
    * @return {ReactElement} Элемент карусели.
    */
   renderItem (item, index) {
-    const {
-      renderItem = Carousel.defaultRenderItem,
-    } = this.props;
+    const { renderItem = Carousel.defaultRenderItem } = this.props;
 
     return renderItem(item, index);
+  }
+
+  /**
+   * Получает управление от Draggable.
+   * @param {Object} control Функции управления.
+   */
+  initDragControl ({ setOffset, toggleTransition }) {
+    this.toggleDragTransition = toggleTransition;
+    this.setDragOffset = setOffset;
   }
 
   /**
@@ -442,18 +435,14 @@ export class Carousel extends Component {
    * @inheritDoc.
    */
   render () {
-    const {
-      currentOffset,
-      withTransition,
-      isAllItemsVisible,
-    } = this.state;
+    const { currentOffset, isAllItemsVisible } = this.state;
     const {
       items,
       draggable = 'auto',
       vertical,
       containerProps = {},
       withControls = 'auto',
-      renderNavButton = Carousel.defaultRenderControl,
+      renderControl = Carousel.defaultRenderControl,
     } = this.props;
     const canDrag = (isAuto(draggable) && !isAllItemsVisible) || draggable === true;
     const needShowControls = (isAuto(withControls) && !isAllItemsVisible) || withControls === true;
@@ -469,15 +458,12 @@ export class Carousel extends Component {
         <Draggable
           active={canDrag}
           axis={vertical ? 'y' : 'x'}
-          offsetX={!vertical ? currentOffset : 0}
-          offsetY={vertical ? currentOffset : 0}
-          transitionDuration={withTransition ? 320 : undefined}
+          transitionDuration={320}
           containerProps={{
             ref: this.wrapperRef,
             className: cx('full-size'),
           }}
           onDragStart={this.onDragStart}
-          onDrag={this.saveOffset}
           onDragEnd={this.onDragEnd}
           children={(
             <div
@@ -489,16 +475,17 @@ export class Carousel extends Component {
               children={map(items, this.renderItem)}
             />
           )}
+          initControl={this.initDragControl}
         />
         {needShowControls && (
           <Fragment>
-            {renderNavButton({
+            {renderControl({
               type: 'backward',
               onUse: this.moveBackward,
               canUse: currentOffset < 0,
               vertical,
             })}
-            {renderNavButton({
+            {renderControl({
               type: 'forward',
               onUse: this.moveForward,
               canUse: currentOffset > this.defineMinOffset(),
@@ -552,7 +539,7 @@ Carousel.propTypes = {
   /**
    * Определяет, как вывести кнопку прокрутки. По умолчанию выведет стандартную кнопку.
    */
-  renderNavButton: PropTypes.func,
+  renderControl: PropTypes.func,
 
   /**
    * Свойства элемента контейнера. По умолчанию пустой объект.

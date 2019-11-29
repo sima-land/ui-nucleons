@@ -12,65 +12,49 @@ describe('<Draggable />', () => {
     expect(wrapper.find(`.${classes['draggable-container']}`)).toHaveLength(1);
   });
   it('should init listeners after mount', () => {
-    const testUnsubscribe = jest.fn();
-    const testInstance = {
-      props: {
-        addGlobalListener: jest.fn(
-          (eventName, handler) => () => testUnsubscribe(eventName, handler),
-        ),
-      },
-      handleMove: {
-        bind: jest.fn(() => testInstance.handleMove),
-      },
-      handleMoveEnd: {
-        bind: jest.fn(() => testInstance.handleMoveEnd),
-      },
-    };
+    const testAddGlobalListener = jest.fn(
+      (eventName, callback) => () => ({ eventName, callback })
+    );
 
-    expect(testInstance.props.addGlobalListener).toHaveBeenCalledTimes(0);
+    expect(testAddGlobalListener).toHaveBeenCalledTimes(0);
 
-    PureDraggable.prototype.componentDidMount.call(testInstance);
+    const wrapper = mount(
+      <PureDraggable addGlobalListener={testAddGlobalListener} />
+    );
+
+    const testInstance = wrapper.instance();
+
+
+    testInstance.handleMove = testInstance.handleMove.bind(testInstance);
+    testInstance.handleMoveEnd = testInstance.handleMoveEnd.bind(testInstance);
+    jest.spyOn(testInstance.handleMove, 'bind').mockImplementation(() => testInstance.handleMove);
+    jest.spyOn(testInstance.handleMoveEnd, 'bind').mockImplementation(() => testInstance.handleMoveEnd);
+
+    testAddGlobalListener.mockClear();
+    expect(testAddGlobalListener).toHaveBeenCalledTimes(0);
+
+    testInstance.componentDidMount();
+    expect(testAddGlobalListener).toHaveBeenCalledTimes(5);
 
     // should bind self methods
     expect(testInstance.handleMove.bind).toHaveBeenCalledTimes(1);
     expect(testInstance.handleMoveEnd.bind).toHaveBeenCalledTimes(1);
 
     // should call "addGlobalListener" prop with event names and handlers
-    expect(testInstance.props.addGlobalListener).toHaveBeenCalledTimes(5);
-    expect(testInstance.props.addGlobalListener.mock.calls[0][0]).toBe('mousemove');
-    expect(testInstance.props.addGlobalListener.mock.calls[1][0]).toBe('touchmove');
-    expect(testInstance.props.addGlobalListener.mock.calls[2][0]).toBe('mouseup');
-    expect(testInstance.props.addGlobalListener.mock.calls[3][0]).toBe('touchend');
-    expect(testInstance.props.addGlobalListener.mock.calls[4][0]).toBe('touchcancel');
-    expect(testInstance.props.addGlobalListener.mock.calls[0][1]).toBe(testInstance.handleMove);
-    expect(testInstance.props.addGlobalListener.mock.calls[1][1]).toBe(testInstance.handleMove);
-    expect(testInstance.props.addGlobalListener.mock.calls[2][1]).toBe(testInstance.handleMoveEnd);
-    expect(testInstance.props.addGlobalListener.mock.calls[3][1]).toBe(testInstance.handleMoveEnd);
-    expect(testInstance.props.addGlobalListener.mock.calls[4][1]).toBe(testInstance.handleMoveEnd);
+    expect(testAddGlobalListener.mock.calls[0][0]).toBe('mousemove');
+    expect(testAddGlobalListener.mock.calls[1][0]).toBe('touchmove');
+    expect(testAddGlobalListener.mock.calls[2][0]).toBe('mouseup');
+    expect(testAddGlobalListener.mock.calls[3][0]).toBe('touchend');
+    expect(testAddGlobalListener.mock.calls[4][0]).toBe('touchcancel');
+    expect(testAddGlobalListener.mock.calls[0][1]).toBe(testInstance.handleMove);
+    expect(testAddGlobalListener.mock.calls[1][1]).toBe(testInstance.handleMove);
+    expect(testAddGlobalListener.mock.calls[2][1]).toBe(testInstance.handleMoveEnd);
+    expect(testAddGlobalListener.mock.calls[3][1]).toBe(testInstance.handleMoveEnd);
+    expect(testAddGlobalListener.mock.calls[4][1]).toBe(testInstance.handleMoveEnd);
 
     // should create this.unsubscribers
     expect(Array.isArray(testInstance.unsubscribers)).toBe(true);
     expect(testInstance.unsubscribers.every(isFunction)).toBe(true);
-  });
-  it('should update state when offset props changed', () => {
-    const wrapper = mount(
-      <Draggable
-        offsetX={123}
-        offsetY={234}
-      />
-    );
-
-    expect(wrapper.find(`.${classes.draggable}`).prop('style').transform).toBe('translate(123px, 234px)');
-    expect(wrapper.find(PureDraggable).state().offsetX).toBe(123);
-    expect(wrapper.find(PureDraggable).state().offsetY).toBe(234);
-
-    wrapper.setProps({ offsetX: 123, offsetY: 234 });
-    expect(wrapper.find(PureDraggable).state().offsetX).toBe(123);
-    expect(wrapper.find(PureDraggable).state().offsetY).toBe(234);
-
-    wrapper.setProps({ offsetX: 345, offsetY: 456 });
-    expect(wrapper.find(PureDraggable).state().offsetX).toBe(345);
-    expect(wrapper.find(PureDraggable).state().offsetY).toBe(456);
   });
   it('should call unsubscribers on unmount', () => {
     const testInstance = {
@@ -161,14 +145,6 @@ describe('<Draggable />', () => {
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy.mock.calls[0][0]).toEqual({ offset: { x: 0, y: 0 } });
   });
-  it('should add transition only when not is captured', () => {
-    const wrapper = mount(
-      <Draggable transitionDuration={450} />
-    );
-    expect(wrapper.find(`.${classes.draggable}`).prop('style').transition).toBe('transform 450ms ease-out');
-    wrapper.find(`.${classes['draggable-container']}`).simulate('mousedown', { clientX: 0, clientY: 0 });
-    expect(wrapper.find(`.${classes.draggable}`).prop('style').transition).toBe(null);
-  });
   it('should handle "containerProps" prop', () => {
     const wrapper = mount(
       <Draggable containerProps={{ className: 'test-container', style: { width: 300, height: 300 } }} />
@@ -196,8 +172,9 @@ describe('<Draggable />', () => {
       touches: [{ clientX: 65, clientY: 54 }],
     }));
 
-    expect(wrapper.find(PureDraggable).state().offsetX).toBe(65);
-    expect(wrapper.find(PureDraggable).state().offsetY).toBe(0);
+    expect(
+      wrapper.getDOMNode().querySelector(`.${classes.draggable}`).style.transform
+    ).toBe('translate(65px, 0px)');
 
     // change axis
     wrapper.setProps({ axis: 'y' });
@@ -207,7 +184,63 @@ describe('<Draggable />', () => {
       touches: [{ clientX: 124, clientY: 235 }],
     }));
 
-    expect(wrapper.find(PureDraggable).state().offsetX).toBe(65);
-    expect(wrapper.find(PureDraggable).state().offsetY).toBe(181);
+    expect(
+      wrapper.getDOMNode().querySelector(`.${classes.draggable}`).style.transform
+    ).toBe('translate(65px, 181px)');
+  });
+  it('should passControl to "initControl" prop', () => {
+    let testControl = null;
+    const initControlSpy = jest.fn(control => {
+      testControl = control;
+    });
+    const wrapper = mount(
+      <Draggable initControl={initControlSpy} transitionDuration={500} />
+    );
+
+    expect(initControlSpy).toHaveBeenCalledTimes(1);
+
+    expect(
+      wrapper.getDOMNode().querySelector(`.${classes.draggable}`).style.transition
+    ).toBe('');
+    testControl.toggleTransition(true);
+    expect(
+      wrapper.getDOMNode().querySelector(`.${classes.draggable}`).style.transition
+    ).toBe('transform 500ms ease-out');
+    testControl.toggleTransition(false);
+    expect(
+      wrapper.getDOMNode().querySelector(`.${classes.draggable}`).style.transition
+    ).toBe('');
+  });
+  it('should toggle transition properly', () => {
+    const wrapper = mount(
+      <Draggable transitionDuration={1200} />
+    );
+
+    wrapper.find(PureDraggable).instance().toggleTransition(true);
+    expect(
+      wrapper.find(PureDraggable).getDOMNode().querySelector(`.${classes.draggable}`).style.transition
+    ).toBe('transform 1200ms ease-out');
+    wrapper.find(PureDraggable).instance().toggleTransition(false);
+    expect(
+      wrapper.find(PureDraggable).getDOMNode().querySelector(`.${classes.draggable}`).style.transition
+    ).toBe('');
+
+    wrapper.setProps({ transitionDuration: undefined });
+    expect(
+      wrapper.find(PureDraggable).getDOMNode().querySelector(`.${classes.draggable}`).style.transition
+    ).toBe('');
+    wrapper.find(PureDraggable).instance().toggleTransition(true);
+    expect(
+      wrapper.find(PureDraggable).getDOMNode().querySelector(`.${classes.draggable}`).style.transition
+    ).toBe('transform 320ms ease-out');
+
+    wrapper.setProps({ transitionDuration: null });
+    expect(
+      wrapper.find(PureDraggable).getDOMNode().querySelector(`.${classes.draggable}`).style.transition
+    ).toBe('transform 0ms ease-out');
+    wrapper.find(PureDraggable).instance().toggleTransition(true);
+    expect(
+      wrapper.find(PureDraggable).getDOMNode().querySelector(`.${classes.draggable}`).style.transition
+    ).toBe('transform 0ms ease-out');
   });
 });

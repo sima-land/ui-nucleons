@@ -73,57 +73,60 @@ describe('<Carousel />', () => {
 
   it('should init global "resize" event listener after mount', () => {
     let handler;
-    const testInstance = {
-      props: {
-        addGlobalListener: jest.fn((eventName, newHandler) => {
-          handler = newHandler;
-        }),
-      },
-      toggleTransition: jest.fn(),
-      scrollToItem: jest.fn(),
-      updateItemsVisibility: jest.fn(),
-    };
-    expect(testInstance.props.addGlobalListener).toHaveBeenCalledTimes(0);
-    PureCarousel.prototype.componentDidMount.call(testInstance);
+    const testAddGlobalListener = jest.fn((eventName, eventHandler) => {
+      handler = eventHandler;
+      () => ({ eventName, eventHandler });
+    });
+    const wrapper = mount(
+      <PureCarousel addGlobalListener={testAddGlobalListener} />
+    );
 
-    expect(testInstance.scrollToItem).toHaveBeenCalledTimes(1);
-    expect(testInstance.updateItemsVisibility).toHaveBeenCalledTimes(1);
-    expect(testInstance.props.addGlobalListener).toHaveBeenCalledTimes(1);
+    testAddGlobalListener.mockClear();
 
-    handler({ testEvent: true });
+    expect(testAddGlobalListener).toHaveBeenCalledTimes(0);
 
-    expect(testInstance.toggleTransition).toHaveBeenCalledTimes(1);
-    expect(testInstance.toggleTransition).toHaveBeenCalledWith(false);
-    expect(testInstance.scrollToItem).toHaveBeenCalledTimes(2);
-    expect(testInstance.updateItemsVisibility).toHaveBeenCalledTimes(2);
+    wrapper.find(PureCarousel).instance().componentDidMount();
+    expect(testAddGlobalListener).toHaveBeenCalledTimes(1);
+    expect(testAddGlobalListener).toHaveBeenCalledWith('resize', handler);
+
+    jest.spyOn(wrapper.find(PureCarousel).instance(), 'toggleDragTransition');
+    jest.spyOn(wrapper.find(PureCarousel).instance(), 'scrollToItem');
+    jest.spyOn(wrapper.find(PureCarousel).instance(), 'updateItemsVisibility');
+
+    handler();
+
+    expect(wrapper.find(PureCarousel).instance().toggleDragTransition).toHaveBeenCalledTimes(1);
+    expect(wrapper.find(PureCarousel).instance().toggleDragTransition).toHaveBeenCalledWith(false);
+    expect(wrapper.find(PureCarousel).instance().scrollToItem).toHaveBeenCalledTimes(1);
+    expect(wrapper.find(PureCarousel).instance().updateItemsVisibility).toHaveBeenCalledTimes(1);
   });
 
   it('should update current index in state on "targetIndex" prop change', () => {
-    const testInstance = {
-      props: {
-        targetIndex: 12,
-        addGlobalListener: jest.fn(),
-      },
-      scrollToItem: jest.fn(),
-      toggleTransition: jest.fn(),
-      setCurrentIndex: jest.fn(),
-      updateItemsVisibility: jest.fn(),
-    };
+    const wrapper = mount(
+      <Carousel targetIndex={0} />
+    );
+    const testInstance = wrapper.find(PureCarousel).instance();
+
+    jest.spyOn(testInstance, 'setCurrentIndex');
+    jest.spyOn(testInstance, 'toggleDragTransition');
+    jest.spyOn(testInstance, 'updateItemsVisibility');
+
     expect(testInstance.setCurrentIndex).toHaveBeenCalledTimes(0);
-    expect(testInstance.toggleTransition).toHaveBeenCalledTimes(0);
+    expect(testInstance.toggleDragTransition).toHaveBeenCalledTimes(0);
     expect(testInstance.updateItemsVisibility).toHaveBeenCalledTimes(0);
 
-    PureCarousel.prototype.componentDidUpdate.call(testInstance, { targetIndex: 0 });
-    expect(testInstance.setCurrentIndex).toHaveBeenCalledTimes(1);
-    expect(testInstance.setCurrentIndex).toHaveBeenCalledWith(12);
-    expect(testInstance.toggleTransition).toHaveBeenCalledTimes(1);
-    expect(testInstance.toggleTransition).toHaveBeenCalledWith(true);
+    // not changed
+    wrapper.setProps({ targetIndex: 0 });
+    expect(testInstance.setCurrentIndex).toHaveBeenCalledTimes(0);
+    expect(testInstance.toggleDragTransition).toHaveBeenCalledTimes(0);
     expect(testInstance.updateItemsVisibility).toHaveBeenCalledTimes(1);
 
-    PureCarousel.prototype.componentDidUpdate.call(testInstance, { targetIndex: 12 });
+    wrapper.setProps({ targetIndex: 12 });
     expect(testInstance.setCurrentIndex).toHaveBeenCalledTimes(1);
-    expect(testInstance.toggleTransition).toHaveBeenCalledTimes(1);
-    expect(testInstance.updateItemsVisibility).toHaveBeenCalledTimes(2);
+    expect(testInstance.setCurrentIndex).toHaveBeenCalledWith(12);
+    expect(testInstance.toggleDragTransition).toHaveBeenCalledTimes(1);
+    expect(testInstance.toggleDragTransition).toHaveBeenCalledWith(true);
+    expect(testInstance.updateItemsVisibility).toHaveBeenCalledTimes(3);
   });
 
   it('should unsubscribe from "resize" event before unmount', () => {
@@ -186,45 +189,14 @@ describe('<Carousel />', () => {
     const wrapper = mount(
       <Carousel />
     );
-    jest.spyOn(wrapper.find(PureCarousel).instance(), 'saveOffset');
     jest.spyOn(wrapper.find(PureCarousel).instance(), 'saveDragStartOffset');
-    jest.spyOn(wrapper.find(PureCarousel).instance(), 'toggleTransition');
+    jest.spyOn(wrapper.find(PureCarousel).instance(), 'toggleDragTransition');
 
-    expect(wrapper.find(PureCarousel).instance().saveOffset).toHaveBeenCalledTimes(0);
     expect(wrapper.find(PureCarousel).instance().saveDragStartOffset).toHaveBeenCalledTimes(0);
-    expect(wrapper.find(PureCarousel).instance().toggleTransition).toHaveBeenCalledTimes(0);
-    wrapper.find(PureCarousel).instance().onDragStart({ offset: { x: 3, y: 5 } });
-    expect(wrapper.find(PureCarousel).instance().saveOffset).toHaveBeenCalledTimes(1);
+    expect(wrapper.find(PureCarousel).instance().toggleDragTransition).toHaveBeenCalledTimes(0);
+    wrapper.find(Draggable).prop('onDragStart')({ offset: { x: 3, y: 5 } });
     expect(wrapper.find(PureCarousel).instance().saveDragStartOffset).toHaveBeenCalledTimes(1);
-    expect(wrapper.find(PureCarousel).instance().toggleTransition).toHaveBeenCalledTimes(1);
-  });
-
-  it('toggleTransition() should works properly', () => {
-    const wrapper = mount(
-      <Carousel />
-    );
-
-    wrapper.find(PureCarousel).instance().toggleTransition(1);
-    expect(wrapper.find(PureCarousel).state().withTransition).toBe(true);
-
-    wrapper.find(PureCarousel).instance().toggleTransition(null);
-    expect(wrapper.find(PureCarousel).state().withTransition).toBe(false);
-
-    wrapper.find(PureCarousel).instance().toggleTransition(undefined);
-    expect(wrapper.find(PureCarousel).state().withTransition).toBe(false);
-  });
-
-  it('saveOffset() should works properly', () => {
-    const wrapper = mount(
-      <Carousel />
-    );
-
-    wrapper.find(PureCarousel).instance().saveOffset({ offset: { x: 10, y: 20 } });
-    expect(wrapper.find(PureCarousel).state().currentOffset).toEqual(10);
-
-    wrapper.setProps({ vertical: true });
-    wrapper.find(PureCarousel).instance().saveOffset({ offset: { x: 30, y: 40 } });
-    expect(wrapper.find(PureCarousel).state().currentOffset).toBe(40);
+    expect(wrapper.find(PureCarousel).instance().toggleDragTransition).toHaveBeenCalledTimes(1);
   });
 
   it('moveForward() should works properly', () => {
@@ -250,22 +222,28 @@ describe('<Carousel />', () => {
     wrapper.setProps({ targetIndex: 0 });
 
     wrapper.find(NavButton).at(1).find('button').simulate('click');
-    expect(wrapper.find(PureCarousel).state().withTransition).toBe(true);
     expect(wrapper.find(PureCarousel).state().currentIndex).toBe(3);
+
     wrapper.find(NavButton).at(1).find('button').simulate('click');
     expect(wrapper.find(PureCarousel).state().currentIndex).toBe(6);
+
     wrapper.find(NavButton).at(1).find('button').simulate('click');
     expect(wrapper.find(PureCarousel).state().currentIndex).toBe(9);
+
     wrapper.find(NavButton).at(1).find('button').simulate('click');
     expect(wrapper.find(PureCarousel).state().currentIndex).toBe(12);
+
     wrapper.find(NavButton).at(1).find('button').simulate('click');
     expect(wrapper.find(PureCarousel).state().currentIndex).toBe(15);
+
     wrapper.find(NavButton).at(1).find('button').simulate('click');
     expect(wrapper.find(PureCarousel).state().currentIndex).toBe(16);
+
     wrapper.find(NavButton).at(1).find('button').simulate('click');
     expect(wrapper.find(PureCarousel).state().currentIndex).toBe(16);
 
     wrapper.setProps({ items: undefined });
+
     wrapper.find(NavButton).at(1).find('button').simulate('click');
     expect(wrapper.find(PureCarousel).state().currentIndex).toBe(0);
   });
