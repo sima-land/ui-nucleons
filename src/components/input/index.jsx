@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useState, useMemo } from 'react';
 import classnames from 'classnames/bind';
 import classes from './fields.scss';
 import PropTypes from 'prop-types';
@@ -35,15 +35,17 @@ const defaultClasses = Object.freeze({
  * @param {Object} props Свойства компонента.
  * @param {string} [props.type='text'] Значение атрибута "type".
  * @param {Object} [props.classes] CSS-классы.
+ * @param {Function} [props.computeClasses] Получив набор css-классов по умолчанию должна вернуть новый набор.
  * @param {boolean} [props.failed] Нужно ли показывать поле как ошибочное.
  * @param {*} [props.startAdornment] Иконка перед текстом.
  * @param {*} [props.endAdornment] Иконка после текста.
  * @param {Object} ref Реф.
  * @return {ReactElement} Компонент текстового поля.
  */
-const Input = forwardRef(({
+const Input = forwardRef(function Input ({
   type = 'text',
   classes,
+  computeClasses,
   failed,
   autoFocus,
   onFocus,
@@ -51,16 +53,17 @@ const Input = forwardRef(({
   startAdornment,
   endAdornment,
   ...restProps
-}, ref) => {
+}, ref) {
   const [focused, setFocused] = useState(autoFocus);
 
   const inputType = availableTypes.includes(type)
     ? type
     : 'text';
-  const readyClasses = {
-    ...defaultClasses,
-    ...classes,
-  };
+
+  const readyClasses = useMemo(() => isFunction(computeClasses)
+    ? computeClasses(defaultClasses)
+    : { ...defaultClasses, ...classes },
+  [classes, computeClasses]);
 
   return (
     <span
@@ -145,6 +148,11 @@ Input.propTypes = {
     withStartAdornment: PropTypes.string,
     withEndAdornment: PropTypes.string,
   }),
+
+  /**
+   * Получив набор css-классов по умолчанию должна вернуть новый набор.
+   */
+  computeClasses: PropTypes.func,
 
   /**
    * Нужно ли фокусироваться на поле сразу после монтирования.
