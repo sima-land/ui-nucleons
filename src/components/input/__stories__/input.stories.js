@@ -4,6 +4,7 @@ import Input from '../index';
 import Icon from '../../icon/';
 import searchIcon from '../../icons/search.svg';
 import crossIcon from '../../icons/cross.svg';
+import classnames from 'classnames';
 import classes from './custom-styles.scss';
 
 storiesOf('Input', module)
@@ -92,6 +93,30 @@ storiesOf('Input', module)
           type='password'
           placeholder='Password'
           startAdornment='🔒'
+        />
+      </div>
+    </Fragment>
+  ))
+  .add('Extended styles', () => (
+    <Fragment>
+      <h3>With custom styles</h3>
+      <div>
+        <Input
+          computeClasses={defaults => ({
+            ...defaults,
+            permanent: classnames(defaults.permanent, classes['extended-permanent']),
+          })}
+          type='text'
+          placeholder='Login or email'
+        />
+        <div style={{ marginTop: 10 }} />
+        <Input
+          computeClasses={defaults => ({
+            ...defaults,
+            permanent: classnames(defaults.permanent, classes['extended-permanent']),
+          })}
+          type='password'
+          placeholder='Password'
         />
       </div>
     </Fragment>

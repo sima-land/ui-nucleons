@@ -140,6 +140,18 @@ describe('<Input />', () => {
     container.querySelector(`span.${classes['input-wrapper']}`).click();
     expect(spy).toHaveBeenCalledTimes(1);
   });
+  it('should handle "computeClasses" prop', () => {
+    const wrapper = mount(
+      <Input
+        computeClasses={defaults => ({
+          ...defaults,
+          input: `${defaults.input} test-extended-input`,
+        })}
+      />
+    );
+
+    expect(wrapper.find('input').prop('className')).toContain('test-extended-input');
+  });
   it('should match snapshot', () => {
     const wrapper = mount(
       <Input
