@@ -942,6 +942,21 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@dev-dep/linters@^1.0.1":
+  version "1.0.1"
+  resolved "https://gitlab.sima-land.ru/api/v4/projects/919/packages/npm/@dev-dep/linters/-/@dev-dep/linters-1.0.1.tgz#84eb54631cb9828a922a98b1635a9077c6802b7e"
+  integrity sha1-hOtUYxy5goqSKpixY1qQd8aAK34=
+  dependencies:
+    babel-eslint "^10.0.3"
+    eslint "^6.6.0"
+    eslint-plugin-import "^2.18.2"
+    eslint-plugin-jest "^23.0.3"
+    eslint-plugin-jsdoc "^17.1.1"
+    eslint-plugin-react "^7.16.0"
+    stylelint "^11.1.1"
+    stylelint-config-sass-guidelines "^6.1.0"
+    stylelint-scss "^3.12.1"
+
 "@emotion/cache@^10.0.17":
   version "10.0.19"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-10.0.19.tgz#d258d94d9c707dcadaf1558def968b86bb87ad71"
