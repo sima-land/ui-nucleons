@@ -10,4 +10,3 @@ storiesOf('Grid/GridEntity', module)
       And returns component with tag and classes, formatted by function from createClasses.
     </GridEntity>
   ));
-

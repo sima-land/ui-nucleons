@@ -23,4 +23,3 @@ export const formatNumber = (value, separator) => {
   }
   return result;
 };
-

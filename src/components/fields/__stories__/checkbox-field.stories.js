@@ -40,4 +40,3 @@ storiesOf('CheckboxField', module)
       </div>
     </Fragment>
   ));
-

@@ -17,4 +17,3 @@ describe('test formatNumber', () => {
     expect(number).toEqual(['0', '0010']);
   });
 });
-

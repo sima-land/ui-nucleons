@@ -23,4 +23,3 @@ storiesOf('Icon', module)
       We <Icon icon={heart} inline /> frontend!
     </p>
   ));
-

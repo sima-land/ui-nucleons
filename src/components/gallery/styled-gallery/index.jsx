@@ -84,6 +84,7 @@ StyledGallery.propTypes = {
    * Направление галереи.
    */
   direction: PropTypes.oneOf(['vertical', 'horizontal']),
+
   /**
    * Элемент-контейнер галереи.
    */
@@ -92,6 +93,7 @@ StyledGallery.propTypes = {
     PropTypes.string,
     PropTypes.func,
   ]),
+
   /**
    * Свойства контейнера галереи.
    */

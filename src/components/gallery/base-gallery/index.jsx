@@ -266,6 +266,7 @@ BaseGallery.propTypes = {
    * Список элементов галереи.
    */
   items: PropTypes.array,
+
   /**
    * Направление галереи.
    */

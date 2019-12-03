@@ -60,4 +60,3 @@ storiesOf('BaseWidget', module)
       </BaseWidget>
     </Fragment>
   ));
-

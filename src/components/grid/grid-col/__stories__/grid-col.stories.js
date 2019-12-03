@@ -88,4 +88,3 @@ storiesOf('Grid/GridCol', module)
       </GridRow>
     </div>
   ));
-

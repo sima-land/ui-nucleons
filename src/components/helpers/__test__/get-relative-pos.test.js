@@ -27,4 +27,3 @@ describe('getRelativePos()', () => {
     expect(getRelativePos(target, otherElement)).toEqual({ x: 77, y: 124 });
   });
 });
-

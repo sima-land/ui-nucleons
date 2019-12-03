@@ -7,4 +7,3 @@ export const USER_DEFAULT_PARAMS = {
   viewtype: 'list',
 };
 export const graphemes = ['₽', '€', '$', '₴', 'Br'];
-
