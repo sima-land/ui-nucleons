@@ -24,10 +24,12 @@ GridEntity.propTypes = {
    * HTML-tag.
    */
   tag: Type.string,
+
   /**
    * Содержимое.
    */
   children: Type.any,
+
   /**
    * Функция формирования классов.
    */
@@ -35,4 +37,3 @@ GridEntity.propTypes = {
 };
 
 export default GridEntity;
-

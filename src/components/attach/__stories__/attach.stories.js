@@ -62,4 +62,3 @@ storiesOf('Attach', module)
       />
     </Fragment>
   ));
-

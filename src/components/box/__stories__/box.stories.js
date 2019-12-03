@@ -154,4 +154,3 @@ storiesOf('Box', module)
       </Box>
     </Fragment>
   ));
-

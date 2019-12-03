@@ -24,7 +24,6 @@ describe('<Draggable />', () => {
 
     const testInstance = wrapper.instance();
 
-
     testInstance.handleMove = testInstance.handleMove.bind(testInstance);
     testInstance.handleMoveEnd = testInstance.handleMoveEnd.bind(testInstance);
     jest.spyOn(testInstance.handleMove, 'bind').mockImplementation(() => testInstance.handleMove);

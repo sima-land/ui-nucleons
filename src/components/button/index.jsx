@@ -73,46 +73,57 @@ Button.propTypes = {
    * Содержимое компонента.
    */
   children: Type.any,
+
   /**
    * Пользовательские классы.
    */
   className: Type.string,
+
   /**
    * Цвет.
    */
   color: Type.oneOf(['clean', 'white', 'blue']),
+
   /**
    * Форма.
    */
   shape: Type.oneOf(['square', 'rounded', 'pill', 'circle']),
+
   /**
    * С тенью.
    */
   withShadow: Type.bool,
+
   /**
    * В фокусе.
    */
   isFocused: Type.bool,
+
   /**
    * Отключена ли кнопка.
    */
   isDisabled: Type.bool,
+
   /**
    * Тип компонента.
    */
   appearance: Type.oneOf(['link', 'container', 'button']),
+
   /**
    * Ссылка.
    */
   href: Type.string,
+
   /**
    * Функция, вызываемая при клике.
    */
   onClick: Type.func,
+
   /**
    * Функция, вызываемая при наведении.
    */
   onMouseEnter: Type.func,
+
   /**
    * Функция, вызываемая при покидании области кнопки.
    */

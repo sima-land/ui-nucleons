@@ -5,6 +5,7 @@ const bindClassNames = classNames.bind(styles);
 
 export const COLORS = ['white', 'blue', 'dark-blue', 'deep-blue'];
 export const DIRECTION = ['top', 'bottom'];
+
 /**
  * Формирование стилей стрелки.
  * @param {Object} props Свойства компонента.

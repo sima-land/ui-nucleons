@@ -7,29 +7,29 @@ import Icon from '../../icon';
 import { heart } from '../../icons';
 
 const all = {
-    display: 'inline-block',
-    border: '1px solid',
-    padding: '15px',
-    marginRight: '20px',
-  },
-  allGray = {
-    ...all,
-    background: '#d1d2d6',
-  },
-  flexStyle = {
-    display: 'flex',
-    width: '450px',
-    justifyContent: 'space-around',
-    padding: '15px 5px',
-  },
-  circleFlexStyle = {
-    ...flexStyle,
-    width: '350px',
-  },
-  width = {
-    width: '75px',
-    padding: '5px 0',
-  };
+  display: 'inline-block',
+  border: '1px solid',
+  padding: '15px',
+  marginRight: '20px',
+};
+const allGray = {
+  ...all,
+  background: '#d1d2d6',
+};
+const flexStyle = {
+  display: 'flex',
+  width: '450px',
+  justifyContent: 'space-around',
+  padding: '15px 5px',
+};
+const circleFlexStyle = {
+  ...flexStyle,
+  width: '350px',
+};
+const width = {
+  width: '75px',
+  padding: '5px 0',
+};
 
 /**
  * Заголовки.
