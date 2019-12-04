@@ -31,4 +31,3 @@ storiesOf('Textarea', module)
       />
     </Fragment>
   ));
-

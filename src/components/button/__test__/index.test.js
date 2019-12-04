@@ -53,9 +53,9 @@ describe('<Button />', () => {
     });
   });
   it('calls functions onClick, onMouseEnter, onMouseLeave', () => {
-    const onClickFunc = jest.fn(),
-      onMouseEnterFunc = jest.fn(),
-      onMouseLeaveFunc = jest.fn();
+    const onClickFunc = jest.fn();
+    const onMouseEnterFunc = jest.fn();
+    const onMouseLeaveFunc = jest.fn();
     button = shallow(
       <Button
         className='test-action'
@@ -77,8 +77,8 @@ describe('<Button />', () => {
 });
 
 describe('renderButton', () => {
-  const buttonParams = { className: 'test', disabled: true },
-    children = 'Кнопка';
+  const buttonParams = { className: 'test', disabled: true };
+  const children = 'Кнопка';
   let button;
   it('returns correct element with appearance link', () => {
     button = renderButton({ appearance: 'link', buttonParams, children });

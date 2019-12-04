@@ -55,4 +55,3 @@ storiesOf('withInViewportObserver', module)
       <SomeComponent />
     </div>
   ));
-

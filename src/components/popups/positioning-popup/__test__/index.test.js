@@ -118,7 +118,8 @@ describe('<PositioningPopup />', () => {
   });
 
   describe('check method getPopupPosition return correct values', () => {
-    let popup, instance;
+    let popup;
+    let instance;
 
     beforeEach(() => {
       isBrowser.mockImplementation(() => true);
@@ -255,7 +256,9 @@ describe('<PositioningPopup />', () => {
   });
 
   describe('check method getArrowProps return correct values', () => {
-    let popup, instance, data;
+    let popup;
+    let instance;
+    let data;
 
     beforeEach(() => {
       isBrowser.mockImplementation(() => true);

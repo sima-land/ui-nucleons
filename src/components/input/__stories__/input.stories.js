@@ -121,4 +121,3 @@ storiesOf('Input', module)
       </div>
     </Fragment>
   ));
-

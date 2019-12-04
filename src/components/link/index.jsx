@@ -91,54 +91,67 @@ Link.propTypes = {
    * Запрет индексации контента.
    */
   disableIndexing: Type.bool,
+
   /**
    * Содержимое компонента.
    */
   children: Type.any,
+
   /**
    * Пользовательские классы.
    */
   className: Type.string,
+
   /**
    * В новую или текущую вкладку откроется ссылка.
    */
   target: Type.oneOf(['_blank', '_self']),
+
   /**
    * Цвет.
    */
   color: Type.oneOf(['black', 'dark-blue', 'blue', 'red', 'gray', 'white', 'light-gray']),
+
   /**
    * Подчеркивание.
    */
   underlined: Type.bool,
+
   /**
    * Псевдо-ссылка.
    */
   pseudo: Type.bool,
+
   /**
    * Не реагировать при наведении на компонент.
    */
   disableHoverEffect: Type.bool,
+
   /**
    * Является ли ссылкой на внешний ресурс.
    */
   external: Type.bool,
+
   /**
    *  C иконкой.
    */
   withIcon: Type.bool,
+
   /**
    * Ссылка.
    */
   href: Type.string,
+
   /**
    * Функция, вызываемая при клике.
    */
   onClick: Type.func,
+
   /**
    * Функция, вызываемая при наведении.
    */
   onMouseEnter: Type.func,
+
   /**
    * Функция, вызываемая при покидании области кнопки.
    */

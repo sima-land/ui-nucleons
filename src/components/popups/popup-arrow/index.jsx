@@ -17,18 +17,22 @@ PopupArrow.propTypes = {
    * Направление стрелки.
    */
   direction: Type.oneOf(['top', 'bottom']),
+
   /**
    * Дополнительный класс.
    */
   className: Type.string,
+
   /**
    * Отображать тень.
    */
   shadow: Type.bool,
+
   /**
    * Цвет.
    */
   color: Type.oneOf(['white', 'blue', 'dark-blue', 'deep-blue']),
+
   /**
    * Координаты позиционирования.
    */

@@ -22,7 +22,7 @@ const ObservableList = initialItems => {
      * @inheritdoc
      */
     * [Symbol.iterator] () {
-      yield * items;
+      yield *items;
     },
 
     /**

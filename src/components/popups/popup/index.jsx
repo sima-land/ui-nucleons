@@ -24,6 +24,7 @@ Popup.propTypes = {
    * Дочерние элементы попапа.
    */
   children: Type.any,
+
   /**
    * Дополнительный класс.
    */
@@ -31,4 +32,3 @@ Popup.propTypes = {
 };
 
 export default Popup;
-
