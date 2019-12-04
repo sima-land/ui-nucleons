@@ -22,7 +22,6 @@ const CutTextContent = () => {
     </div>
   );};
 
-
 storiesOf('Text', module)
   .add('with cutTextContent helper', () => (
     <Text>

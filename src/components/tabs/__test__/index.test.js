@@ -2,16 +2,15 @@ import React from 'react';
 import Tabs from '../';
 import { shallow } from 'enzyme';
 
-
 describe('<Tabs />', () => {
   let selectableTabs;
   const items = [
-      'item 1',
-      'item 2',
-      'item 3',
-    ],
-    renderItemMock = jest.fn(item => (<span>{item}</span>)),
-    isSelectedItemMock = jest.fn(item => item === 'item 2');
+    'item 1',
+    'item 2',
+    'item 3',
+  ];
+  const renderItemMock = jest.fn(item => (<span>{item}</span>));
+  const isSelectedItemMock = jest.fn(item => item === 'item 2');
 
   it('renders correctly without params', () => {
     selectableTabs = shallow(

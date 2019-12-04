@@ -30,26 +30,32 @@ GridRow.propTypes = {
    * HTML-tag.
    */
   tag: Type.string,
+
   /**
    * Дополнительный класс стилизации.
    */
   externalClass: Type.string,
+
   /**
    * Содержимое.
    */
   children: Type.any,
+
   /**
    * Выравнивание по горизонтальной оси.
    */
   justify: Type.oneOf(['start', 'between', 'around', 'center', 'end']),
+
   /**
    * Выравнивание по вертикальной оси.
    */
   alignItems: Type.oneOf(['start', 'center', 'end', 'stretch', 'baseline']),
+
   /**
    * Разрешить перенос контента на новую строку.
    */
   wrap: Type.bool,
+
   /**
    * Без отступов между колонками.
    */

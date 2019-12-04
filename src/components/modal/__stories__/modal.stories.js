@@ -25,6 +25,7 @@ class ModalDemo extends React.Component {
       isOpen: true,
     });
   };
+
   /**
    * Отрисовка компонента.
    * @return {ReactElement} Компонент.
@@ -52,4 +53,3 @@ storiesOf('Modal', module)
   .add('with close cross', () => (
     <ModalDemo closeButtonSize={8} />
   ));
-

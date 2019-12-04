@@ -92,9 +92,9 @@ describe('<Link />', () => {
     expect(link).toMatchSnapshot();
   });
   it('calls functions onClick, onMouseEnter, onMouseLeave', () => {
-    const onClickFunc = jest.fn(),
-      onMouseEnterFunc = jest.fn(),
-      onMouseLeaveFunc = jest.fn();
+    const onClickFunc = jest.fn();
+    const onMouseEnterFunc = jest.fn();
+    const onMouseLeaveFunc = jest.fn();
     const link = shallow(
       <Link
         onClick={onClickFunc}
@@ -115,7 +115,7 @@ describe('<Link />', () => {
   it('render correctly with children and html props', () => {
     const link = shallow(
       <Link
-        disableIndexing={true}
+        disableIndexing
       >
         TestLink
       </Link>

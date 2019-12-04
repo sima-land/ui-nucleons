@@ -5,17 +5,18 @@ import range from 'lodash/range';
 import styles from './rating.scss';
 
 const style = {
-    display: 'flex',
-  },
-  container = {
-    padding: '15px',
-  },
-  grayContainer = {
-    ...container,
-    background: '#ddd',
-  };
+  display: 'flex',
+};
+const container = {
+  padding: '15px',
+};
+const grayContainer = {
+  ...container,
+  background: '#ddd',
+};
 
 const values = range(0, 5, 0.5);
+
 /**
  * Компонент рейтинга с выбором.
  * @return {ReactElement} Компонент.

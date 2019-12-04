@@ -23,4 +23,3 @@ storiesOf('Popups/PositioningPopup', module)
       </p>
     </PositioningPopupDemo>
   ));
-

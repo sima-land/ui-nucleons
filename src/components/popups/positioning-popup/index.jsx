@@ -285,10 +285,12 @@ PositioningPopup.propTypes = {
    * Дочерние элементы.
    */
   children: Type.any,
+
   /**
    * Добавить стрелку сверху.
    */
   withArrow: Type.bool,
+
   /**
    * Свойства стрелки.
    */
@@ -297,27 +299,33 @@ PositioningPopup.propTypes = {
      * Направление.
      */
     direction: Type.string,
+
     /**
      * Класс.
      */
     className: Type.string,
+
     /**
      * Наличие тени.
      */
     shadow: Type.bool,
+
     /**
      * Цвет.
      */
     color: Type.oneOf(['white', 'blue', 'dark-blue', 'deep-blue']),
+
     /**
      * Координаты.
      */
     position: Type.object,
   }),
+
   /**
    * Дополнительный класс для попапа.
    */
   className: Type.string,
+
   /**
    * Реф открывающего элемента.
    */
@@ -325,6 +333,7 @@ PositioningPopup.propTypes = {
     Type.func,
     Type.shape({ current: Type.object }),
   ]),
+
   /**
    * Реф родительского элемента.
    */
@@ -332,26 +341,32 @@ PositioningPopup.propTypes = {
     Type.func,
     Type.shape({ current: Type.object }),
   ]),
+
   /**
    * Класс для стилизации базового попапа.
    */
   basePopupClass: Type.string,
+
   /**
    * Значение отступа от края родительского контейнера.
    */
   positioningMargin: Type.number,
+
   /**
    * Позиция попапа по вертикали.
    */
   verticalPosition: Type.oneOf(['top', 'bottom']),
+
   /**
    * Позиция попапа по горизонтали.
    */
   horizontalPosition: Type.oneOf(['auto', 'left', 'center', 'right']),
+
   /**
    * Обработчик покидания курсором области попапа.
    */
   onMouseOut: Type.func,
+
   /**
    * Обработчик наведения курсора мыши на попап.
    */

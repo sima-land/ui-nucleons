@@ -44,4 +44,3 @@ storiesOf('Popups/PopupArrow', module)
       </div>
     </div>
   ));
-
