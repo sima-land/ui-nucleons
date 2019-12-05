@@ -20,6 +20,7 @@ const defineProp = (object, key, value) => {
 
 /**
  * Подменяет значения, отвечающие за определение позиции и размера элементов карусели.
+ * @param {Object} props Свойства компонента.
  * @param {Element} props.containerEl Контейнер элементов карусели.
  * @param {string} props.itemsSelector Селектор элементов карусели.
  * @param {boolean} props.vertical Вертикальная ли карусель.

@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { render } from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import Checkbox from '../checkbox-field';
+import Checkbox from '../../checkbox/';
 import CheckboxField from '../checkbox-field';
 import classes from '../checkbox-field.scss';
 
@@ -49,6 +49,7 @@ describe('<CheckboxField />', () => {
     );
     expect(wrapper.find(Checkbox).prop('checked')).toBe(true);
     wrapper.setProps({ checked: false });
+    wrapper.update();
     expect(wrapper.find(Checkbox).prop('checked')).toBe(false);
   });
   it('should handle "onChange" prop', () => {

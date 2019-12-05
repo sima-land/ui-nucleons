@@ -12,6 +12,7 @@ const testAlignItems = [
   <Box
     padding={4}
     margin={4}
+    key={1}
     dangerouslySetInlineStyle={{ __style: { minHeight: 50, background: 'red' } }}
   >
     First
@@ -19,6 +20,7 @@ const testAlignItems = [
   <Box
     padding={4}
     margin={4}
+    key={2}
     dangerouslySetInlineStyle={{ __style: { minHeight: 100, background: 'green' } }}
   >
     Second
@@ -26,6 +28,7 @@ const testAlignItems = [
   <Box
     padding={4}
     margin={4}
+    key={3}
     dangerouslySetInlineStyle={{ __style: { minHeight: 150, background: 'blue' } }}
   >
     Third
@@ -66,7 +69,7 @@ const getTestFlexPropBox = flex => (
 storiesOf('Box', module)
   .add('Box without props', () => (
     <Box>
-      Box without props is just a "div"
+      Box without props is just a &quot;div&quot;
     </Box>
   ))
   .add('Margins and paddings', () => (
