@@ -22,11 +22,11 @@ export const createButtonStyle = ({
   withShadow = false,
   isFocused = false,
 }) => {
-  color = BUTTON_COLORS.includes(color) ? color : 'clean';
-  shape = BUTTON_SHAPES.includes(shape) ? shape : 'pill';
+  const allowedColor = BUTTON_COLORS.includes(color) ? color : 'clean';
+  const allowedShape = BUTTON_SHAPES.includes(shape) ? shape : 'pill';
 
-  return cx('button', className, `button-${shape}`, `button-${color}`, {
-    'button-clean-focused': color === 'clean' && isFocused,
+  return cx('button', className, `button-${allowedShape}`, `button-${allowedColor}`, {
+    'button-clean-focused': allowedColor === 'clean' && isFocused,
     'with-shadow': withShadow,
   });
 };

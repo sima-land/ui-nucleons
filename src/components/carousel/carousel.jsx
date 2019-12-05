@@ -32,7 +32,7 @@ const maxIndexOf = list => {
 /**
  * Проверяет, находится ли элемент правее левой границы заданной зоны.
  * @param {Element} target Проверяемый элемент.
- * @param {DOMRect|ClientRect} viewport Зона проверки.
+ * @param {DOMRect} viewport Зона проверки.
  * @return {boolean} Находится ли элемент правее левой границы заданной зоны.
  */
 const isMoreRight = (target, viewport) => target && boundsOf(target).left >= viewport.left;
@@ -40,7 +40,7 @@ const isMoreRight = (target, viewport) => target && boundsOf(target).left >= vie
 /**
  * Проверяет, находится ли элемент ниже верхней границы заданной зоны.
  * @param {Element} target Проверяемый элемент.
- * @param {DOMRect|ClientRect} viewport Зона проверки.
+ * @param {DOMRect} viewport Зона проверки.
  * @return {boolean} Находится ли элемент ниже верхней границы заданной зоны.
  */
 const isMoreBottom = (target, viewport) => target && boundsOf(target).top >= viewport.top;
@@ -379,7 +379,7 @@ export class Carousel extends Component {
 
   /**
    * Возвращает данные прямоугольной области видимости карусели.
-   * @return {DOMRect|ClientRect} Данные прямоугольной области видимости карусели.
+   * @return {DOMRect} Данные прямоугольной области видимости карусели.
    */
   getViewport () {
     return boundsOf(this.wrapperRef.current);
@@ -432,7 +432,7 @@ export class Carousel extends Component {
 
   /**
    * Возвращает компонент.
-   * @inheritDoc.
+   * @inheritDoc
    */
   render () {
     const { currentOffset, isAllItemsVisible } = this.state;
