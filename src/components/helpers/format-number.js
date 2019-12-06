@@ -5,7 +5,7 @@
  * @return {Array} Массив строк с целой и дробной отоформатированными частями числа.
  */
 export const formatNumber = (value, separator) => {
-  separator = String(separator) === separator ? separator : ' ';
+  const pureSeparator = String(separator) === separator ? separator : ' ';
   const number = Number(value);
   let result = [];
   if (!isNaN(number) && isFinite(number)) {
@@ -19,7 +19,7 @@ export const formatNumber = (value, separator) => {
     while (array.length) {
       separated.unshift(array.splice(-3).join('')); // вытаскиваем последние три цифры и объединяем в строку
     }
-    result[0] = separated.join(separator); // подменяем целую часть на целую разделённую
+    result[0] = separated.join(pureSeparator); // подменяем целую часть на целую разделённую
   }
   return result;
 };

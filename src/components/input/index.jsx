@@ -1,10 +1,10 @@
 import React, { forwardRef, useState, useMemo } from 'react';
 import classnames from 'classnames/bind';
-import classes from './fields.scss';
+import styles from './fields.scss';
 import PropTypes from 'prop-types';
 import isFunction from 'lodash/isFunction';
 
-const cx = classnames.bind(classes);
+const cx = classnames.bind(styles);
 
 /**
  * Список поддерживаемых значений атрибута "type".

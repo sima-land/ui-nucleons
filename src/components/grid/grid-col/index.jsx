@@ -11,7 +11,7 @@ import GridEntity from '../grid-entity/';
  * @param {*} [props.children] Содержимое.
  * @param {number} [props.desktop='auto'] Ширину скольких колонок должна занять колонка на десктопной версии.
  * @param {number} [props.mobile='auto'] Ширину скольких колонок должна занять колонка в мобильной версии.
- * @return {ReactComponent} Колонка сетки.
+ * @return {ReactElement} Колонка сетки.
  */
 const GridCol = props => <GridEntity createClasses={makeColClasses} {...props} />;
 

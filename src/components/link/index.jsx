@@ -133,7 +133,7 @@ Link.propTypes = {
   external: Type.bool,
 
   /**
-   *  C иконкой.
+   * C иконкой.
    */
   withIcon: Type.bool,
 

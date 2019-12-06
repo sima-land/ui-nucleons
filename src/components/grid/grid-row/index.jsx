@@ -21,7 +21,7 @@ export const COLUMNS_GUTTERS = ['lg', 'md', 'sm'];
  * @param {'lg'|'md'|'sm'} [props.lgGutters='lg'] Размер отступов между столбцами при экране > 960px.
  * @param {'lg'|'md'|'sm'} [props.mdGutters='md'] Размер отступов между столбцами при экране 721-960px.
  * @param {'lg'|'md'|'sm'} [props.smGutters='sm'] Размер отступов между столбцами при экране <= 720px.
- * @return {ReactComponent} Строка сетки.
+ * @return {ReactElement} Строка сетки.
  */
 const GridRow = props => <GridEntity createClasses={makeRowClasses} {...props} />;
 

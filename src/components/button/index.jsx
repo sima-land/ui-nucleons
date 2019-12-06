@@ -4,9 +4,10 @@ import Type from 'prop-types';
 
 /**
  * Отрисовка компонента Button.
- * @param {string} [appearance] Тип представления компонента.
- * @param {Object} [buttonParams] Параметры компонента.
- * @param {*} [children] Содержимое.
+ * @param {Object} props Свойства компонента.
+ * @param {string} [props.appearance] Тип представления компонента.
+ * @param {Object} [props.buttonParams] Параметры компонента.
+ * @param {*} [props.children] Содержимое.
  * @return {ReactElement} Компонент кнопки.
  */
 export const renderButton = ({ appearance, buttonParams = {}, children }) => {
