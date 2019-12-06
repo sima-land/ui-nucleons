@@ -15,7 +15,6 @@ export const ICON_COLORS = ['white', 'dark-gray', 'dark-blue', 'gray'];
  * @param {number} props.size Размеры иконки.
  * @param {boolean} props.inline Если элемент должен выглядеть как встроенный.
  * @param {string} props.className Название класса.
- * @param {...*} restProps Остальные параметры.
  * @param {Function} props.onClick Обработчик клика на иконке.
  * @return {React.Element} Svg-icon.
  */

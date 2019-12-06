@@ -9,10 +9,10 @@ import isFunction from 'lodash/isFunction';
 import withPrevent from '../helpers/with-prevent';
 import clipIcon from '../icons/clip.svg';
 import classnames from 'classnames/bind';
-import classes from './attach.scss';
+import styles from './attach.scss';
 import PropTypes from 'prop-types';
 
-const cx = classnames.bind(classes);
+const cx = classnames.bind(styles);
 
 const defaultClasses = Object.freeze({
   permanent: cx('attach-container'),

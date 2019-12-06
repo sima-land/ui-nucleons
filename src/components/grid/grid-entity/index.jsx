@@ -6,9 +6,8 @@ import Type from 'prop-types';
  * @param {Object} props Свойства компонента.
  * @param {string} [props.tag=div] HTML-tag.
  * @param {*} [props.children] Содержимое.
- * @param {*} [props.createClasses] Функция формирования классов.
- * @param {...*} restProps Остальные свойства.
- * @return {ReactComponent} Вспомогательный компонент для выведения элемента сетки.
+ * @param {Function} [props.createClasses] Функция формирования классов.
+ * @return {ReactElement} Вспомогательный компонент для выведения элемента сетки.
  */
 const GridEntity = ({ tag, children, createClasses, ...restProps }) => {
   const Tag = tag && typeof tag === 'string' ? tag : 'div';
