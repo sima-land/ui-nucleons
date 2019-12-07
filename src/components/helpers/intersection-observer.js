@@ -33,20 +33,20 @@ export const addObserve = ({ observer, registry }, target, onIntersection) => {
 /**
  * Пробрасывает контейнер с экземпляром обсервера в функцию для подписки.
  * @param {Object} observerContainer Контейнер с обсервером и списком подписантов.
- * @param {Function} addObserve Функция подписки компонента на обсервер.
+ * @param {Function} addObserveFunc Функция подписки компонента на обсервер.
  * @return {Function} Функция подиски на обсервер.
  */
-export const wrapAddObserve = (observerContainer, addObserve) =>
-  (target, onIntersection) => addObserve(observerContainer, target, onIntersection);
+export const wrapAddObserve = (observerContainer, addObserveFunc) =>
+  (target, onIntersection) => addObserveFunc(observerContainer, target, onIntersection);
 
 /**
  * Пробрасывает контейнер с экземпляром обсервера в обработчик события обсервера.
  * @param {Object} observerContainer Контейнер с обсервером и списком подписантов.
- * @param {Function} observerHandle Обработчик, в который нужно добавить контейнер.
+ * @param {Function} observerHandleFunc Обработчик, в который нужно добавить контейнер.
  * @return {Function} Функция обработчик события обсервера.
  */
-export const wrapObserverHandle = (observerContainer, observerHandle) =>
-  entries => observerHandle(observerContainer, entries);
+export const wrapObserverHandle = (observerContainer, observerHandleFunc) =>
+  entries => observerHandleFunc(observerContainer, entries);
 
 /**
  * Создает экземпляр IntersectionObserver и возвращает функцию подписки на него.

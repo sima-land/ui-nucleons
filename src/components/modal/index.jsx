@@ -20,10 +20,10 @@ const DEFAULT_CLASSES = {
  * @param {Function} props.onClose Функция, вызываемая при закрытии модального окна.
  * @param {number} [props.closeButtonSize] Размер закрывающей кнопки. Указыввается если нужна кнопка.
  * @param {Object} [props.customClasses] Пользовательские классы.
- * @param {string} [customClasses.overlay] Классы затемнения.
- * @param {string} [customClasses.modal] Классы модального окна.
- * @param {string} [customClasses.close] Классы закрывающей кнопки.
- * @return {ReactComponent} Компонент модального окна.
+ * @param {string} [props.customClasses.overlay] Классы затемнения.
+ * @param {string} [props.customClasses.modal] Классы модального окна.
+ * @param {string} [props.customClasses.close] Классы закрывающей кнопки.
+ * @return {ReactElement} Компонент модального окна.
  */
 const Modal = ({ children, onClose, closeButtonSize, customClasses = {} }) => {
   const newClasses = composeClasses({ defaultClasses: DEFAULT_CLASSES, customClasses });

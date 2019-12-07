@@ -107,11 +107,12 @@ class PositioningPopupDemo extends Component {
 
   /**
    * Рисует попап с кнопкой-открывашкой.
-   * @param {string} propInState Название свойства в стейте.
-   * @param {string} refName Название ссылки на элемент.
-   * @param {string} key Ключ.
-   * @param {string} verticalPosition Положение стрелки.
-   * @param {boolean} isCentered Отцентрирован ли попап.
+   * @param {Object} params Входные параметры.
+   * @param {string} params.propInState Название свойства в стейте.
+   * @param {string} params.refName Название ссылки на элемент.
+   * @param {string} params.key Ключ.
+   * @param {string} params.verticalPosition Положение стрелки.
+   * @param {boolean} params.isCentered Отцентрирован ли попап.
    * @return {ReactElement} Попап с кнопкой-открывашкой.
    */
   renderExample ({ propInState, refName, key, verticalPosition, horizontalPosition = 'auto' }) {
