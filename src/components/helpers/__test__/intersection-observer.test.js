@@ -104,13 +104,13 @@ describe('wrapAddObserve()', () => {
   });
 
   it ('run addObserve into wrapAddObserve', () => {
-    const addObserve = jest.fn();
+    const addObserver = jest.fn();
     const observerContainer = {
       observer: {},
       registry: new Map(),
     };
-    wrapAddObserve(observerContainer, addObserve)();
-    expect(addObserve).toBeCalledTimes(1);
+    wrapAddObserve(observerContainer, addObserver)();
+    expect(addObserver).toBeCalledTimes(1);
   });
 });
 

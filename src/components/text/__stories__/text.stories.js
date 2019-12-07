@@ -29,8 +29,8 @@ storiesOf('Text', module)
     </Text>
   ))
   .add('"size" prop variations', () => [...SIZES].map(
-    size => (
-      <div>
+    (size, index) => (
+      <div key={index}>
         <Text size={size}>
           Text with size {size} px
         </Text>
@@ -38,17 +38,17 @@ storiesOf('Text', module)
     )
   ))
   .add('"color" prop variations', () => [...COLORS].map(
-    color => (
-      <div>
+    (color, index) => (
+      <div key={index}>
         <Text size={16} color={color}>
-          Text with color "{color}"
+          Text with color &quot;{color}&quot;
         </Text>
       </div>
     )
   ))
   .add('"weight" prop variations', () => [...WEIGHTS].map(
-    weight => (
-      <div>
+    (weight, index) => (
+      <div key={index}>
         <Text size={16} weight={weight}>
           Text with weight {weight}
         </Text>
@@ -56,8 +56,8 @@ storiesOf('Text', module)
     )
   ))
   .add('"align" prop variations', () => [...ALIGNS].map(
-    align => (
-      <div style={{ maxWidth: 320 }}>
+    (align, index) => (
+      <div key={index} style={{ maxWidth: 320 }}>
         <h3>Text with align {align}</h3>
         <Text element='div' size={16} align={align}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit.

@@ -5,7 +5,7 @@ import NoIndexMark from '../no-index-mark';
 /**
  * Компонент отображает неиндексируемый контент.
  * @param {Object} props Свойства компонента.
- * @param {children} props.children Содержимое.
+ * @param {*} props.children Содержимое.
  * @return {ReactElement} Неиндексируемый контент.
  */
 const NoIndex = ({ children }) => (

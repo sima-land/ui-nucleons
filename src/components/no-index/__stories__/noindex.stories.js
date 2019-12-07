@@ -5,8 +5,8 @@ import NoIndex from '../';
 storiesOf('NoIndex', module)
   .add('No indexing text', () => (
     <p>
-      <NoIndex>"Кто б ни были входящие сюда,<br />
-          Оставьте здесь надежду навсегда!"<br />
+      <NoIndex>&quot;Кто б ни были входящие сюда,<br />
+          Оставьте здесь надежду навсегда!&quot;<br />
           Написано над адскими вратами<br />
           Зловещими и черными чертами
       </NoIndex>

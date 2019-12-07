@@ -70,7 +70,7 @@ class PositioningPopup extends Component {
    * Выполняется перед монтированием компонента
    * Определяет координаты родителя и опенера.
    */
-  UNSAFE_componentWillMount () {
+  UNSAFE_componentWillMount () { // eslint-disable-line camelcase
     const { parent, opener } = this.props;
     let parentCoords = {};
     let openerCoords = {};

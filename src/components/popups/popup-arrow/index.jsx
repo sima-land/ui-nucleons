@@ -6,7 +6,6 @@ import { createArrowStyles } from './create-arrow-styles';
  * Стрелка-треугольник.
  * @param {Object} props Свойства компонента.
  * @param {Object} [props.position] Координаты позиционирования.
- * @param {...*} [restProps] Остальные свойства.
  * @return {ReactElement} Стрелка-треугольник.
  */
 const PopupArrow = ({ position = {}, ...restProps }) =>
