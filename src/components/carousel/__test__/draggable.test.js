@@ -2,9 +2,35 @@ import React from 'react';
 import { mount } from 'enzyme';
 import isFunction from 'lodash/isFunction';
 import Draggable, { Draggable as PureDraggable } from '../draggable';
+import DraggableEvent from '../helpers/draggable-event';
 import classes from './draggable.scss';
 
+/**
+ * Возвращает поддельное событие мыши.
+ * @param {number} [clientX=0] Значение свойства clientX.
+ * @param {number} [clientY=0] Значение свойства clientY.
+ * @param {number} [button=0] Значение свойства button.
+ * @return {Object} Поддельное событие.
+ */
+const makeMouseEvent = (clientX = 0, clientY = 0, button = 0) => ({ clientX, clientY, button });
+
+/**
+ * Возвращает поддельное touch-событие.
+ * @param {number} [clientX=0] Значение свойства clientX первого объекта из списка touches.
+ * @param {number} [clientY=0] Значение свойства clientY первого объекта из списка touches.
+ * @return {Object} Поддельное событие.
+ */
+const makeTouchEvent = (clientX = 0, clientY = 0) => ({ touches: [{ clientX, clientY }] });
+
 describe('<Draggable />', () => {
+  let initialGetSelection;
+  beforeAll(() => {
+    initialGetSelection = window.getSelection;
+    window.getSelection = jest.fn(() => ({ removeAllRanges: jest.fn() }));
+  });
+  afterAll(() => {
+    window.getSelection = initialGetSelection;
+  });
   it('should render without props', () => {
     const wrapper = mount(
       <Draggable />
@@ -86,20 +112,20 @@ describe('<Draggable />', () => {
         onDragStart={spy}
       />
     );
-    wrapper.find(`.${classes['draggable-container']}`).simulate('mousedown', { clientX: 0, clientY: 0 });
-    wrapper.find(`.${classes['draggable-container']}`).simulate('touchstart', { clientX: 0, clientY: 0 });
+    wrapper.find(`.${classes['draggable-container']}`).simulate('mousedown', makeMouseEvent());
+    wrapper.find(`.${classes['draggable-container']}`).simulate('touchstart', makeTouchEvent());
     expect(spy).toHaveBeenCalledTimes(0);
 
     wrapper.setProps({ active: true });
-    wrapper.find(`.${classes['draggable-container']}`).simulate('mousedown', { clientX: 0, clientY: 0 });
+    wrapper.find(`.${classes['draggable-container']}`).simulate('mousedown', makeMouseEvent());
     expect(spy).toHaveBeenCalledTimes(1);
-    wrapper.find(`.${classes['draggable-container']}`).simulate('touchstart', { clientX: 0, clientY: 0 });
+    wrapper.find(`.${classes['draggable-container']}`).simulate('touchstart', makeTouchEvent());
     expect(spy).toHaveBeenCalledTimes(2);
 
     wrapper.setProps({ active: undefined });
-    wrapper.find(`.${classes['draggable-container']}`).simulate('mousedown', { clientX: 0, clientY: 0 });
+    wrapper.find(`.${classes['draggable-container']}`).simulate('mousedown', makeMouseEvent());
     expect(spy).toHaveBeenCalledTimes(3);
-    wrapper.find(`.${classes['draggable-container']}`).simulate('touchstart', { clientX: 0, clientY: 0 });
+    wrapper.find(`.${classes['draggable-container']}`).simulate('touchstart', makeTouchEvent());
     expect(spy).toHaveBeenCalledTimes(4);
   });
   it('should call "onDrag" prop on window "mousemove/touchmove" only after "mousedown" on container', () => {
@@ -115,16 +141,22 @@ describe('<Draggable />', () => {
     expect(spy).toHaveBeenCalledTimes(0);
 
     // start capture
-    wrapper.find(`.${classes['draggable-container']}`).simulate('mousedown', { clientX: 0, clientY: 0 });
+    wrapper.find(`.${classes['draggable-container']}`).simulate('mousedown', makeMouseEvent());
 
     // check calls
-    window.dispatchEvent(new MouseEvent('mousemove', { clientX: 12, clientY: 23 }));
+    window.dispatchEvent(new MouseEvent('mousemove', makeMouseEvent(12, 23)));
     expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy.mock.calls[0][0]).toEqual({ offset: { x: 12, y: 23 } });
+    expect(spy.mock.calls[0][0]).toEqual(new DraggableEvent({
+      offset: { x: 0, y: 0 },
+      client: { x: 12, y: 23 },
+    }));
 
-    window.dispatchEvent(new TouchEvent('touchmove', { touches: [{ clientX: 40, clientY: 50 }] }));
+    window.dispatchEvent(new TouchEvent('touchmove', makeTouchEvent(40, 50)));
     expect(spy).toHaveBeenCalledTimes(2);
-    expect(spy.mock.calls[1][0]).toEqual({ offset: { x: 40, y: 50 } });
+    expect(spy.mock.calls[1][0]).toEqual(new DraggableEvent({
+      offset: { x: 12, y: 23 },
+      client: { x: 40, y: 50 },
+    }));
   });
   it('should call "onDragEnd" prop on window "mousemove/touchmove" only after "mousedown" on container', () => {
     const spy = jest.fn();
@@ -133,16 +165,20 @@ describe('<Draggable />', () => {
       <Draggable onDragEnd={spy} />
     );
 
-    window.dispatchEvent(new MouseEvent('mouseup', { clientX: 12, clientY: 23 }));
+    window.dispatchEvent(new MouseEvent('mouseup', makeMouseEvent(12, 23)));
     expect(spy).toHaveBeenCalledTimes(0);
 
     // start capture
-    wrapper.find(containerSelector).simulate('touchstart', { touches: [{ clientX: 0, clientY: 0 }] });
+    wrapper.find(containerSelector).simulate('touchstart', makeTouchEvent());
     expect(spy).toHaveBeenCalledTimes(0);
 
-    window.dispatchEvent(new MouseEvent('mouseup'));
+    window.dispatchEvent(new MouseEvent('mousemove', makeMouseEvent(10, 20)));
+    window.dispatchEvent(new MouseEvent('mouseup', makeMouseEvent(10, 20)));
     expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy.mock.calls[0][0]).toEqual({ offset: { x: 0, y: 0 } });
+    expect(spy.mock.calls[0][0]).toEqual(new DraggableEvent({
+      offset: { x: 10, y: 20 },
+      client: { x: 10, y: 20 },
+    }));
   });
   it('should handle "containerProps" prop', () => {
     const wrapper = mount(
@@ -162,14 +198,10 @@ describe('<Draggable />', () => {
     );
 
     // start capture
-    wrapper.find(`.${classes['draggable-container']}`).simulate('touchstart', {
-      touches: [{ clientX: 0, clientY: 0 }],
-    });
+    wrapper.find(`.${classes['draggable-container']}`).simulate('touchstart', makeTouchEvent());
 
     // simulate touchmove
-    window.dispatchEvent(new TouchEvent('touchmove', {
-      touches: [{ clientX: 65, clientY: 54 }],
-    }));
+    window.dispatchEvent(new TouchEvent('touchmove', makeTouchEvent(65, 54)));
 
     expect(
       wrapper.getDOMNode().querySelector(`.${classes.draggable}`).style.transform
@@ -179,9 +211,7 @@ describe('<Draggable />', () => {
     wrapper.setProps({ axis: 'y' });
 
     // simulate touchmove
-    window.dispatchEvent(new TouchEvent('touchmove', {
-      touches: [{ clientX: 124, clientY: 235 }],
-    }));
+    window.dispatchEvent(new TouchEvent('touchmove', makeTouchEvent(124, 235)));
 
     expect(
       wrapper.getDOMNode().querySelector(`.${classes.draggable}`).style.transform
@@ -241,5 +271,48 @@ describe('<Draggable />', () => {
     expect(
       wrapper.find(PureDraggable).getDOMNode().querySelector(`.${classes.draggable}`).style.transition
     ).toBe('transform 0ms ease-out');
+  });
+  it('should not apply offset if draggable event is prevented', () => {
+    const spy = jest.fn(draggableEvent => draggableEvent.preventDefault());
+    const wrapper = mount(
+      <Draggable onDrag={spy} />
+    );
+
+    // check initial offset
+    expect(wrapper.find(`.${classes.draggable}`).getDOMNode().style.transform).toBe('translate3d(0px, 0px, 0px)');
+
+    // simulate drag (mouse down + move)
+    wrapper.find(`.${classes['draggable-container']}`).simulate('mousedown', makeMouseEvent(0, 0));
+    window.dispatchEvent(new Event('mousemove', makeMouseEvent(90, 210)));
+
+    expect(wrapper.find(`.${classes.draggable}`).getDOMNode().style.transform).toBe('translate3d(0px, 0px, 0px)');
+  });
+  it('should prevent click after move', () => {
+    const wrapper = mount(
+      <Draggable />
+    );
+    const draggableContainer = wrapper.find(`.${classes['draggable-container']}`);
+    let testClickEvent;
+
+    // simulate click start (without move)
+    draggableContainer.simulate('mousedown', makeMouseEvent(0, 0));
+
+    // check click handle
+    testClickEvent = new Event('click');
+    jest.spyOn(testClickEvent, 'preventDefault');
+    expect(testClickEvent.preventDefault).toHaveBeenCalledTimes(0);
+    draggableContainer.prop('onClick')(testClickEvent);
+    expect(testClickEvent.preventDefault).toHaveBeenCalledTimes(0);
+
+    // simulate drag (mouse down + move)
+    draggableContainer.simulate('mousedown', makeMouseEvent(0, 0));
+    window.dispatchEvent(new Event('mousemove', makeMouseEvent(10, 20)));
+
+    // check click handle
+    testClickEvent = new Event('click');
+    jest.spyOn(testClickEvent, 'preventDefault');
+    expect(testClickEvent.preventDefault).toHaveBeenCalledTimes(0);
+    draggableContainer.prop('onClick')(testClickEvent);
+    expect(testClickEvent.preventDefault).toHaveBeenCalledTimes(1);
   });
 });

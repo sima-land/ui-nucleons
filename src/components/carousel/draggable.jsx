@@ -1,9 +1,14 @@
 import React, { createRef, PureComponent } from 'react';
 import withGlobalListeners from '../hoc/with-global-listeners';
+import __ from 'lodash/fp/placeholder';
+import curry from 'lodash/fp/curry';
+import eq from 'lodash/fp/eq';
 import isFunction from 'lodash/isFunction';
 import isNumber from 'lodash/isNumber';
-import curry from 'lodash/fp/curry';
-import __ from 'lodash/fp/placeholder';
+import pipe from 'lodash/fp/pipe';
+import prop from 'lodash/fp/prop';
+import Point from '../helpers/point';
+import DraggableEvent from './helpers/draggable-event';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
 import classes from './draggable.scss';
@@ -16,6 +21,12 @@ const EVENT_NAMES = {
 };
 
 /**
+ * Проверяет, является ли событие событием нажатия основной кнопки мыши.
+ * @type {function (Event): boolean}
+ */
+const isMainMouseButton = pipe(prop('button'), eq(0));
+
+/**
  * Проверяет, является ли переданное событие touch-событием.
  * @param {Event} event Событие.
  * @return {boolean} Является ли переданное событие touch-событием.
@@ -25,22 +36,14 @@ const isTouchEvent = event => Boolean(event && event.touches);
 /**
  * Берет данные позиции из события.
  * @param {Event} event Touch- или Mouse-событие.
- * @return {{ x: number, y: number }} Данные позиции.
+ * @return {import('../helpers/point').Point} Данные позиции.
  */
 const getEventClientPos = event => {
   const source = isTouchEvent(event) ? event.touches[0] : event;
   const { clientX: x, clientY: y } = source;
 
-  return { x, y };
+  return Point(x, y);
 };
-
-/**
- * Создает событие перемещения по координатам смещения.
- * @param {number} x Координата X.
- * @param {number} y Координата Y.
- * @return {{ offset: { x: number, y: number } }} Событие.
- */
-const DraggableEvent = (x, y) => ({ offset: { x, y } });
 
 /**
  * Возвращает строку значения CSS-свойства "transition".
@@ -80,9 +83,11 @@ export class Draggable extends PureComponent {
 
     this.isCaptured = false;
     this.hasTransition = false;
-    this.currentOffset = { x: 0, y: 0 };
-    this.clientPosition = { x: 0, y: 0 };
+    this.needPreventClick = false;
+    this.currentOffset = Point();
+    this.clientPosition = Point();
     this.draggableRef = createRef();
+    this.handleClick = this.handleClick.bind(this);
     this.startCapture = this.startCapture.bind(this);
   }
 
@@ -136,12 +141,21 @@ export class Draggable extends PureComponent {
   startCapture (event) {
     const { x, y } = this.currentOffset;
     const { active = true, onDragStart } = this.props;
+    const isTouch = isTouchEvent(event);
 
-    if (active) {
+    if (active && (isMainMouseButton(event) || isTouch)) {
       this.toggleCaptured(true);
       this.saveClientPosition(event);
 
-      isFunction(onDragStart) && onDragStart(DraggableEvent(x, y));
+      if (!isTouch) {
+        event.preventDefault();
+        window.getSelection().removeAllRanges();
+      }
+
+      isFunction(onDragStart) && onDragStart(new DraggableEvent({
+        offset: Point(x, y),
+        client: getEventClientPos(event),
+      }));
     }
   }
 
@@ -157,30 +171,58 @@ export class Draggable extends PureComponent {
       const { dx, dy } = this.getClientDelta(event);
       const offsetX = x - (axis !== 'y' ? dx : 0);
       const offsetY = y - (axis !== 'x' ? dy : 0);
+      const customEvent = new DraggableEvent({
+        offset: Point(x, y),
+        client: getEventClientPos(event),
+      });
 
-      // предотвращаем выделение при зажатой кнопке мыши
-      !isTouchEvent(event) && event.preventDefault();
+      this.togglePreventClickNeed(true);
 
-      isFunction(onDrag) && onDrag(DraggableEvent(offsetX, offsetY));
+      // prevent selection
+      if (!isTouchEvent(event)) {
+        event.preventDefault();
+        window.getSelection().removeAllRanges();
+      }
 
-      this.saveClientPosition(event);
-      this.setOffset(offsetX, offsetY);
+      isFunction(onDrag) && onDrag(customEvent);
+
+      if (!customEvent.prevented) {
+        this.saveClientPosition(event);
+        this.setOffset(offsetX, offsetY);
+      }
     }
   }
 
   /**
    * Отключает захват движения.
    * Запускает соответствующий callback.
+   * @param {MouseEvent|TouchEvent} event Событие окончания захвата.
    */
-  handleMoveEnd () {
+  handleMoveEnd (event) {
+    const { x: clientX, y: clientY } = this.clientPosition;
     const { x, y } = this.currentOffset;
     const { onDragEnd } = this.props;
 
     if (this.isCaptured && isFunction(onDragEnd)) {
-      onDragEnd(DraggableEvent(x, y));
+      !isTouchEvent(event) && event.preventDefault();
+      onDragEnd(new DraggableEvent({
+        offset: Point(x, y),
+        client: Point(clientX, clientY),
+      }));
     }
 
     this.toggleCaptured(false);
+  }
+
+  /**
+   * Предотвращает клик если было произведено смещение мышью.
+   * @param {MouseEvent} event Событие окончания захвата.
+   */
+  handleClick (event) {
+    if (this.needPreventClick) {
+      event.preventDefault();
+      this.togglePreventClickNeed(false);
+    }
   }
 
   /**
@@ -206,17 +248,6 @@ export class Draggable extends PureComponent {
   }
 
   /**
-   * Сохраняет данные позиции на экземпляре.
-   * @param {MouseEvent|TouchEvent} event Событие.
-   */
-  saveClientPosition (event) {
-    const eventPos = getEventClientPos(event);
-
-    this.clientPosition.x = eventPos.x;
-    this.clientPosition.y = eventPos.y;
-  }
-
-  /**
    * Переключает состояние плавного перехода через CSS-свойство "transition".
    * @param {boolean} active Нужен ли плавный переход.
    */
@@ -231,6 +262,25 @@ export class Draggable extends PureComponent {
         ? getTransitionStyle(duration)
         : null;
     }
+  }
+
+  /**
+   * Сохраняет данные позиции на экземпляре.
+   * @param {MouseEvent|TouchEvent} event Событие.
+   */
+  saveClientPosition (event) {
+    const eventPos = getEventClientPos(event);
+
+    this.clientPosition.x = eventPos.x;
+    this.clientPosition.y = eventPos.y;
+  }
+
+  /**
+   * Переключает состояние необходимости предотвратить клик.
+   * @param {boolean} needPrevent Активен ли захват движения.
+   */
+  togglePreventClickNeed (needPrevent) {
+    this.needPreventClick = Boolean(needPrevent);
   }
 
   /**
@@ -267,6 +317,7 @@ export class Draggable extends PureComponent {
           'draggable-container',
           containerProps.className
         )}
+        onClick={this.handleClick}
         onMouseDown={this.startCapture}
         onTouchStart={this.startCapture}
       >
