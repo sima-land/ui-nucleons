@@ -74,7 +74,7 @@ publish-package:
     paths:
       - node_modules
   before_script:
-    - echo //gitlab.sima-land.ru/api/v4/projects/${CI_PROJECT_ID}>/packages/npm/:_authToken=${CI_JOB_TOKEN} > .npmrc
+    - echo //gitlab.sima-land.ru/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN} > .npmrc
     - npm version $CI_COMMIT_REF_NAME
     - yarn build
   script:
