@@ -8,7 +8,6 @@ exports[`<NavButton /> should handle "vertical" and "type" props 1`] = `
   <button
     aria-label="вперед"
     className="carousel-control forward"
-    disabled={false}
     type="button"
   >
     <Icon
@@ -50,7 +49,6 @@ exports[`<NavButton /> should handle "vertical" and "type" props 2`] = `
   <button
     aria-label="назад"
     className="carousel-control backward"
-    disabled={false}
     type="button"
   >
     <Icon
@@ -92,7 +90,6 @@ exports[`<NavButton /> should handle "vertical" and "type" props 3`] = `
   <button
     aria-label="вперед"
     className="carousel-control vertical forward"
-    disabled={false}
     type="button"
   >
     <Icon
@@ -134,7 +131,6 @@ exports[`<NavButton /> should handle "vertical" and "type" props 4`] = `
   <button
     aria-label="назад"
     className="carousel-control vertical backward"
-    disabled={false}
     type="button"
   >
     <Icon

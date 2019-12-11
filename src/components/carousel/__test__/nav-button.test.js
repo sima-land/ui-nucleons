@@ -9,28 +9,28 @@ describe('<NavButton />', () => {
     );
     expect(wrapper.find('button')).toHaveLength(1);
   });
-  it('should handle "onUse" prop', () => {
+  it('should handle "onClick" prop', () => {
     const spy = jest.fn();
     const wrapper = mount(
       <NavButton
-        onUse={spy}
+        onClick={spy}
       />
     );
     expect(wrapper.find('button').prop('onClick')).toBe(spy);
   });
-  it('should handle "canUse" prop', () => {
+  it('should handle "disabled" prop', () => {
     const wrapper = mount(
       <NavButton
-        canUse
+        disabled={false}
       />
     );
     expect(wrapper.find('button').prop('disabled')).toBe(false);
 
-    wrapper.setProps({ canUse: false });
+    wrapper.setProps({ disabled: true });
     expect(wrapper.find('button').prop('disabled')).toBe(true);
 
-    wrapper.setProps({ canUse: undefined });
-    expect(wrapper.find('button').prop('disabled')).toBe(false);
+    wrapper.setProps({ disabled: undefined });
+    expect(wrapper.find('button').prop('disabled')).toBe(undefined);
   });
 
   it('should handle "vertical" and "type" props', () => {

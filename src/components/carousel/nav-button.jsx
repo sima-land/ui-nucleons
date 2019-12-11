@@ -15,15 +15,15 @@ const cx = classnames.bind(classes);
  * @param {Object} props Свойства.
  * @param {'forward'|'backward'} props.type Тип прокрутки.
  * @param {boolean} props.vertical Прокручивает ли кнопка карусель по вертикали.
- * @param {boolean} props.canUse Активна ли кнопка.
- * @param {Function} props.onUse Сработает при нажатии.
+ * @param {boolean} props.disabled Отключена ли кнопка.
+ * @param {Function} props.onClick Сработает при нажатии.
  * @return {ReactElement} Кнопка управления каруселью.
  */
 export const NavButton = ({
   type,
   vertical,
-  canUse = true,
-  onUse,
+  disabled,
+  onClick,
 }) => (
   <button
     type='button'
@@ -32,7 +32,7 @@ export const NavButton = ({
       vertical && 'vertical',
       type,
     ])}
-    onClick={onUse}
+    onClick={onClick}
     aria-label={type === 'backward' ? 'назад' : 'вперед'}
     children={(
       <Icon
@@ -41,7 +41,7 @@ export const NavButton = ({
         icon={getIcon({ type, vertical })}
       />
     )}
-    disabled={!canUse}
+    disabled={disabled}
   />
 );
 
