@@ -64,6 +64,85 @@ storiesOf('Carousel', module)
       <Carousel
         infinite={false}
         items={testItems}
+        withControls={false}
+        renderItem={(item, index) => (
+          <div
+            key={index}
+            className={cx('test-carousel-item')}
+            style={{ backgroundImage: `url(${item.src})` }}
+          />
+        )}
+        containerProps={{
+          className: classes['test-carousel'],
+        }}
+      />
+
+      <h3>Autoplay + infinite</h3>
+      <Carousel
+        draggable={false}
+        autoplay
+        autoplayTimeout={1000}
+        items={testItems}
+        withControls={false}
+        renderItem={(item, index) => (
+          <div
+            key={index}
+            className={cx('test-carousel-item')}
+            style={{ backgroundImage: `url(${item.src})` }}
+          />
+        )}
+        containerProps={{
+          className: classes['test-carousel'],
+        }}
+      />
+
+      <h3>Autoplay + infinite + draggable</h3>
+      <Carousel
+        draggable
+        autoplay
+        autoplayTimeout={1000}
+        items={testItems}
+        withControls={false}
+        renderItem={(item, index) => (
+          <div
+            key={index}
+            className={cx('test-carousel-item')}
+            style={{ backgroundImage: `url(${item.src})` }}
+          />
+        )}
+        containerProps={{
+          className: classes['test-carousel'],
+        }}
+      />
+      <h3>Autoplay + infinite + draggable + pause on hover</h3>
+      <Carousel
+        draggable
+        autoplay
+        autoplayTimeout={1000}
+        autoplayHoverPause
+        items={testItems}
+        withControls={false}
+        renderItem={(item, index) => (
+          <div
+            key={index}
+            className={cx('test-carousel-item')}
+            style={{ backgroundImage: `url(${item.src})` }}
+          />
+        )}
+        containerProps={{
+          className: classes['test-carousel'],
+        }}
+      />
+
+      <h3>Autoplay + finite + draggable + pause on hover</h3>
+      <Carousel
+        draggable
+        autoplay
+        autoplayTimeout={1000}
+        autoplayHoverPause
+        infinite={false}
+        items={[...testItems, ...testItems, ...testItems]}
+        withControls={false}
         renderItem={(item, index) => (
           <div
             key={index}

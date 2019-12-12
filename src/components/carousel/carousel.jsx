@@ -7,6 +7,7 @@ import isEqual from 'lodash/isEqual';
 import size from 'lodash/size';
 import boundsOf from '../helpers/bounds-of';
 import Point from '../helpers/point';
+import maxIndexOf from '../helpers/max-index-of';
 import getRelativePos from '../helpers/get-relative-pos';
 import findChildElement from '../helpers/find-child-element';
 import withGlobalListeners from '../hoc/with-global-listeners';
@@ -17,16 +18,6 @@ import classes from './carousel.scss';
 const CLONE_FACTOR = 3;
 const cx = classnames.bind(classes);
 const isAuto = eq('auto');
-
-/**
- * Возвращает максимальный индекс списка.
- * @param {Array} list Список.
- * @return {number} Максимальный индекс.
- */
-const maxIndexOf = list => {
-  const listSize = size(list);
-  return listSize > 0 ? listSize - 1 : 0;
-};
 
 /**
  * Компонент карусели.
@@ -42,7 +33,7 @@ export class Carousel extends Component {
     super(props);
 
     // state & data
-    this.infinite = infinite;
+    this.infinite = Boolean(infinite);
     this.dragStartClient = Point();
     this.dragStartOffset = Point();
     this.currentIndex = inRange(targetIndex, size(items))
@@ -61,8 +52,8 @@ export class Carousel extends Component {
     this.initDragControl = this.initDragControl.bind(this);
     this.moveBackward = this.moveBackward.bind(this);
     this.moveForward = this.moveForward.bind(this);
-    this.onDrag = this.onDrag.bind(this);
     this.onDragEnd = this.onDragEnd.bind(this);
+    this.onDragMove = this.onDragMove.bind(this);
     this.onDragStart = this.onDragStart.bind(this);
   }
 
@@ -74,9 +65,7 @@ export class Carousel extends Component {
    */
   static defaultRenderItem (item, index) {
     return (
-      <div key={index}>
-        {String(item)}
-      </div>
+      <div key={index}>{String(item)}</div>
     );
   }
 
@@ -97,6 +86,9 @@ export class Carousel extends Component {
 
   /**
    * Возвращает функцию для поиска наиболее отдаленного элемента карусели от стартовой границы viewport'а.
+   * @param {Object} data Данные.
+   * @param {DOMRect} data.viewport Область видимости галереи.
+   * @param {boolean} data.vertical Показывает, что прокрутка выполняется по вертикали.
    * @return {Function} Функция для поиска наиболее отдаленного элемента.
    */
   static makeFurthestSiblingChecker ({
@@ -110,6 +102,10 @@ export class Carousel extends Component {
 
   /**
    * Возвращает функцию для поиска наиболее близкого элемента карусели к viewport'у.
+   * @param {Object} data Данные.
+   * @param {DOMRect} data.viewport Область видимости галереи.
+   * @param {boolean} data.vertical Показывает, что прокрутка выполняется по вертикали.
+   * @param {boolean} data.backward Показывает, что прокрутка выполняется к началу списка.
    * @return {Function} Функция для поиска наиболее близкого элемента.
    */
   static makeNearestSiblingChecker ({
@@ -131,7 +127,7 @@ export class Carousel extends Component {
    * Обновляет информацию о состоянии отображения элементов.
    */
   componentDidMount () {
-    const { addGlobalListener } = this.props;
+    const { autoplay, addGlobalListener } = this.props;
 
     this.offWindowResize = addGlobalListener('resize', () => {
       this.toggleDragTransition(false);
@@ -139,6 +135,8 @@ export class Carousel extends Component {
       this.updateItemsVisibility();
       this.toggleDragTransition(true);
     });
+
+    autoplay && this.enableAutoplay();
 
     this.scrollToItem(undefined, { needTransition: false });
     this.updateItemsVisibility();
@@ -150,12 +148,21 @@ export class Carousel extends Component {
    * @param {Object} prevProps Предыдущие свойства.
    */
   componentDidUpdate (prevProps) {
-    const { targetIndex } = this.props;
-    const { targetIndex: prevTargetIndex } = prevProps;
+    const { autoplay, targetIndex } = this.props;
+    const {
+      autoplay: prevAutoplay,
+      targetIndex: prevTargetIndex,
+    } = prevProps;
 
     if (targetIndex !== prevTargetIndex) {
       this.setCurrentIndex(targetIndex);
       this.toggleDragTransition(true);
+    }
+
+    if (!autoplay !== !prevAutoplay) {
+      autoplay
+        ? this.enableAutoplay()
+        : this.disableAutoplay();
     }
 
     this.updateItemsVisibility();
@@ -163,9 +170,50 @@ export class Carousel extends Component {
 
   /**
    * Выполняет отписку от глобального события "resize".
+   * Отключает таймер автоматической прокрутки.
    */
   componentWillUnmount () {
     this.offWindowResize();
+    this.disableAutoplay();
+  }
+
+  /**
+   * Включает автоматическую прокрутку.
+   */
+  enableAutoplay () {
+    const { autoplayTimeout = 3000 } = this.props;
+
+    this.toggleAutoMove(true);
+    this.timerId = setInterval(() => {
+      this.canAutoMove && this.moveForward();
+    }, autoplayTimeout);
+  }
+
+  /**
+   * Отключает автоматическую прокрутку.
+   */
+  disableAutoplay () {
+    this.timerId && clearInterval(this.timerId);
+  }
+
+  /**
+   * Переключает флаг возможности автоматической прокрутки.
+   * @param {boolean} canAutoMove Флаг возможности автоматической прокрутки.
+   */
+  toggleAutoMove (canAutoMove) {
+    this.canAutoMove = Boolean(canAutoMove);
+  }
+
+  /**
+   * Определяет, можно ли перетаскивать карусель.
+   * @return {boolean} Можно ли перетаскивать карусель?
+   */
+  canDrag () {
+    const { isAllItemsVisible } = this.state;
+    const { draggable = 'auto' } = this.props;
+    const autoDraggable = isAuto(draggable);
+
+    return (autoDraggable && !isAllItemsVisible) || draggable === true;
   }
 
   /**
@@ -290,6 +338,7 @@ export class Carousel extends Component {
    * @param {import('./helpers/draggable-event').DraggableEvent} dragEvent Событие.
    */
   onDragStart (dragEvent) {
+    this.toggleAutoMove(false);
     this.saveDragStartData(dragEvent);
     this.toggleDragTransition(false);
   }
@@ -298,7 +347,7 @@ export class Carousel extends Component {
    * При необходимости запускает корректировку смещения.
    * @param {import('./helpers/draggable-event').DraggableEvent} dragEvent Событие.
    */
-  onDrag (dragEvent) {
+  onDragMove (dragEvent) {
     this.infinite && this.correctInfiniteOffset(dragEvent);
   }
 
@@ -350,7 +399,8 @@ export class Carousel extends Component {
       const firstNotCloneItem = containerEl.children[index];
 
       if (firstNotCloneItem) {
-        result = boundsOf(firstNotCloneItem)[vertical ? 'top' : 'left'];
+        const sideKey = vertical ? 'top' : 'left';
+        result = boundsOf(firstNotCloneItem)[sideKey];
       }
     }
 
@@ -391,6 +441,10 @@ export class Carousel extends Component {
 
       this.setCurrentIndex(newIndex !== -1 ? newIndex : edgeIndex);
       this.toggleDragTransition(true);
+    }
+
+    if (this.props.autoplay && this.canDrag()) {
+      this.toggleAutoMove(true);
     }
 
     this.updateItemsVisibility();
@@ -561,11 +615,12 @@ export class Carousel extends Component {
 
   /**
    * Получает управление от Draggable.
-   * @param {Object} control Функции управления.
+   * @param {Object} draggableInterface Функции управления и доступа к данным о состоянии Draggable.
    */
-  initDragControl ({ setOffset, toggleTransition }) {
+  initDragControl ({ isGrabbed, setOffset, toggleTransition }) {
     this.toggleDragTransition = toggleTransition;
     this.setDragOffset = setOffset;
+    this.isGrabbed = isGrabbed;
   }
 
   /**
@@ -575,14 +630,13 @@ export class Carousel extends Component {
   render () {
     const { currentOffset, isAllItemsVisible } = this.state;
     const {
-      draggable = 'auto',
+      autoplayHoverPause,
       vertical,
       containerProps = {},
       viewportElementProps = {},
       withControls = 'auto',
       renderControl = Carousel.defaultRenderControl,
     } = this.props;
-    const canDrag = (isAuto(draggable) && !isAllItemsVisible) || draggable === true;
     const needShowControls = (isAuto(withControls) && !isAllItemsVisible) || withControls === true;
 
     return (
@@ -592,9 +646,19 @@ export class Carousel extends Component {
           'carousel-wrapper',
           containerProps.className
         )}
+        onMouseEnter={() => {
+          if (autoplayHoverPause) {
+            this.toggleAutoMove(false);
+          }
+        }}
+        onMouseLeave={() => {
+          if (autoplayHoverPause && !this.isGrabbed()) {
+            this.toggleAutoMove(true);
+          }
+        }}
       >
         <Draggable
-          active={canDrag}
+          active={this.canDrag()}
           axis={vertical ? 'y' : 'x'}
           transitionDuration={320}
           containerProps={{
@@ -605,8 +669,9 @@ export class Carousel extends Component {
               viewportElementProps.className
             ),
           }}
+          initControl={this.initDragControl}
           onDragStart={this.onDragStart}
-          onDrag={this.onDrag}
+          onDragMove={this.onDragMove}
           onDragEnd={this.onDragEnd}
           children={(
             <div
@@ -618,7 +683,6 @@ export class Carousel extends Component {
               children={this.renderItems()}
             />
           )}
-          initControl={this.initDragControl}
         />
         {needShowControls && (
           <Fragment>
@@ -641,20 +705,19 @@ export class Carousel extends Component {
   }
 
   /**
-   * Выводит список элементов карусели.
+   * Выводит список элементов карусели учетом необходимости клонирования.
    * @return {Array<ReactElement>} Список элементов карусели.
    */
   renderItems () {
     const { isAllItemsVisible } = this.state;
     const { items, renderItem = Carousel.defaultRenderItem } = this.props;
-
+    const realItemsCount = size(items);
     const needClone = this.infinite && !isAllItemsVisible;
-    const limit = size(items) * (needClone ? CLONE_FACTOR : 1);
-    const partSize = needClone ? Math.round(limit / CLONE_FACTOR) : limit;
+    const loopLimit = realItemsCount * (needClone ? CLONE_FACTOR : 1);
     const result = [];
 
-    for (let realIndex = 0; realIndex < limit; realIndex++) {
-      const index = realIndex % partSize;
+    for (let realIndex = 0; realIndex < loopLimit; realIndex++) {
+      const index = realIndex % realItemsCount;
       result.push(renderItem(items[index], realIndex));
     }
 
