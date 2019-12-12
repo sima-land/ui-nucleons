@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './link.scss';
 
 const cx = classNames.bind(styles);
-export const LINK_COLORS = ['black', 'dark-blue', 'blue', 'red', 'gray', 'white', 'light-gray'];
+export const LINK_COLORS = ['black', 'dark-blue', 'blue', 'red', 'gray', 'white', 'light-gray', 'dark-gray'];
 export const EXTERNAL_COLORS = ['blue', 'white', 'black'];
 export const LINK_UNDERLINE_TYPES = ['solid', 'dashed'];
 

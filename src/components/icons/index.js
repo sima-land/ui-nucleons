@@ -14,6 +14,7 @@ import heart from './heart.svg';
 import imageCap from './image-cap.svg';
 import mail from './mail.svg';
 import refresh from './refresh.svg';
+import squareArrowDown from './square-arrow-down.svg';
 import search from './search.svg';
 import star from './star.svg';
 import user from './user.svg';
@@ -35,6 +36,7 @@ export {
   imageCap,
   mail,
   refresh,
+  squareArrowDown,
   search,
   star,
   user,
