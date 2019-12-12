@@ -128,10 +128,10 @@ describe('<Draggable />', () => {
     wrapper.find(`.${classes['draggable-container']}`).simulate('touchstart', makeTouchEvent());
     expect(spy).toHaveBeenCalledTimes(4);
   });
-  it('should call "onDrag" prop on window "mousemove/touchmove" only after "mousedown" on container', () => {
+  it('should call "onDragMove" prop on window "mousemove/touchmove" only after "mousedown" on container', () => {
     const spy = jest.fn();
     const wrapper = mount(
-      <Draggable onDrag={spy} />
+      <Draggable onDragMove={spy} />
     );
     expect(spy).toHaveBeenCalledTimes(0);
 
@@ -227,6 +227,9 @@ describe('<Draggable />', () => {
     );
 
     expect(initControlSpy).toHaveBeenCalledTimes(1);
+    expect(isFunction(initControlSpy.mock.calls[0][0].isGrabbed)).toBe(true);
+    expect(isFunction(initControlSpy.mock.calls[0][0].setOffset)).toBe(true);
+    expect(isFunction(initControlSpy.mock.calls[0][0].toggleTransition)).toBe(true);
 
     expect(
       wrapper.getDOMNode().querySelector(`.${classes.draggable}`).style.transition
@@ -314,5 +317,52 @@ describe('<Draggable />', () => {
     expect(testClickEvent.preventDefault).toHaveBeenCalledTimes(0);
     draggableContainer.prop('onClick')(testClickEvent);
     expect(testClickEvent.preventDefault).toHaveBeenCalledTimes(1);
+  });
+  it('handleMove should not apply new offset if custom event was prevented', () => {
+    const spy = jest.fn(draggableEvent => draggableEvent.preventDefault());
+    const wrapper = mount(
+      <Draggable onDragMove={spy} />
+    );
+
+    expect(spy).toHaveBeenCalledTimes(0);
+    wrapper.find(PureDraggable).instance().startCapture(new MouseEvent('mousedown', { clientX: 10, clientY: 20 }));
+
+    jest.spyOn(wrapper.find(PureDraggable).instance(), 'saveClientPosition');
+    jest.spyOn(wrapper.find(PureDraggable).instance(), 'setOffset');
+    wrapper.find(PureDraggable).instance().handleMove(new MouseEvent('mousemove', { clientX: 12, clientY: 23 }));
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(wrapper.find(PureDraggable).instance().saveClientPosition).toHaveBeenCalledTimes(0);
+    expect(wrapper.find(PureDraggable).instance().setOffset).toHaveBeenCalledTimes(0);
+  });
+  it('handleMove should apply new offset if custom event was not prevented', () => {
+    const spy = jest.fn();
+    const wrapper = mount(
+      <Draggable onDragMove={spy} />
+    );
+
+    expect(spy).toHaveBeenCalledTimes(0);
+    wrapper.find(PureDraggable).instance().startCapture(new MouseEvent('mousedown', { clientX: 10, clientY: 20 }));
+
+    jest.spyOn(wrapper.find(PureDraggable).instance(), 'saveClientPosition');
+    jest.spyOn(wrapper.find(PureDraggable).instance(), 'setOffset');
+    wrapper.find(PureDraggable).instance().handleMove(new MouseEvent('mousemove', { clientX: 12, clientY: 23 }));
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(wrapper.find(PureDraggable).instance().saveClientPosition).toHaveBeenCalledTimes(1);
+    expect(wrapper.find(PureDraggable).instance().setOffset).toHaveBeenCalledTimes(1);
+  });
+  it('should pass object with "isGrabbed" method to "initControl" prop', () => {
+    const spy = jest.fn();
+
+    const wrapper = mount(
+      <Draggable initControl={spy} />
+    );
+
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(isFunction(spy.mock.calls[0][0].isGrabbed)).toBe(true);
+
+    wrapper.find(PureDraggable).instance().toggleGrabbed(true);
+    expect(spy.mock.calls[0][0].isGrabbed()).toBe(true);
+    wrapper.find(PureDraggable).instance().toggleGrabbed(false);
+    expect(spy.mock.calls[0][0].isGrabbed()).toBe(false);
   });
 });

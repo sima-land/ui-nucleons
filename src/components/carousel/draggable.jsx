@@ -2,14 +2,12 @@ import React, { createRef, PureComponent } from 'react';
 import withGlobalListeners from '../hoc/with-global-listeners';
 import __ from 'lodash/fp/placeholder';
 import curry from 'lodash/fp/curry';
-import eq from 'lodash/fp/eq';
 import isFunction from 'lodash/isFunction';
-import isNumber from 'lodash/isNumber';
-import pipe from 'lodash/fp/pipe';
-import prop from 'lodash/fp/prop';
 import Point from '../helpers/point';
 import DraggableEvent from './helpers/draggable-event';
 import PropTypes from 'prop-types';
+import { getTransitionStyle, getTranslateStyle } from '../helpers/styles';
+import { isMainMouseButton, isTouchEvent, getEventClientPos } from '../helpers/events';
 import classnames from 'classnames/bind';
 import classes from './draggable.scss';
 
@@ -19,56 +17,6 @@ const EVENT_NAMES = {
   move: ['mousemove', 'touchmove'],
   moveEnd: ['mouseup', 'touchend', 'touchcancel'],
 };
-
-/**
- * Проверяет, является ли событие событием нажатия основной кнопки мыши.
- * @type {function (Event): boolean}
- */
-const isMainMouseButton = pipe(prop('button'), eq(0));
-
-/**
- * Проверяет, является ли переданное событие touch-событием.
- * @param {Event} event Событие.
- * @return {boolean} Является ли переданное событие touch-событием.
- */
-const isTouchEvent = event => Boolean(event && event.touches);
-
-/**
- * Берет данные позиции из события.
- * @param {Event} event Touch- или Mouse-событие.
- * @return {import('../helpers/point').Point} Данные позиции.
- */
-const getEventClientPos = event => {
-  const source = isTouchEvent(event) ? event.touches[0] : event;
-  const { clientX: x, clientY: y } = source;
-
-  return Point(x, y);
-};
-
-/**
- * Возвращает строку значения CSS-свойства "transition".
- * @param {number} [duration=0] Длительность перехода в миллисекундах.
- * @param {string} [property='transform'] Имя свойства.
- * @param {string} [easing='ease-out'] Функция плавности.
- * @return {string} Значение CSS-свойства "transition".
- */
-const getTransitionStyle = (
-  duration,
-  property = 'transform',
-  easing = 'ease-out'
-) => `${property} ${isNumber(duration) ? duration : 0}ms ${easing}`;
-
-/**
- * Возвращает строку значения CSS-свойства с трансформацией смещения.
- *
- * Использовать только "translate3d" для смещения.
- * @see https://stackoverflow.com/a/22312917
- *
- * @param {number} x Смещение по оси абсцисс в пикселях.
- * @param {number} y Смещение по оси ординат в пикселях.
- * @return {string} Значение CSS-свойства с трансформацией смещения.
- */
-const getTranslateStyle = (x, y) => `translate3d(${x}px, ${y}px, 0px)`;
 
 /**
  * Компонент области, которую можно прокручивать перетаскиванием.
@@ -81,7 +29,7 @@ export class Draggable extends PureComponent {
   constructor (props) {
     super(props);
 
-    this.isCaptured = false;
+    this.isGrabbed = false;
     this.hasTransition = false;
     this.needPreventClick = false;
     this.currentOffset = Point();
@@ -122,6 +70,7 @@ export class Draggable extends PureComponent {
     const { initControl } = this.props;
 
     isFunction(initControl) && initControl({
+      isGrabbed: () => this.isGrabbed,
       setOffset: this.setOffset.bind(this),
       toggleTransition: this.toggleTransition.bind(this),
     });
@@ -144,7 +93,7 @@ export class Draggable extends PureComponent {
     const isTouch = isTouchEvent(event);
 
     if (active && (isMainMouseButton(event) || isTouch)) {
-      this.toggleCaptured(true);
+      this.toggleGrabbed(true);
       this.saveClientPosition(event);
 
       if (!isTouch) {
@@ -164,9 +113,9 @@ export class Draggable extends PureComponent {
    * @param {MouseEvent|TouchEvent} event Событие передвижения.
    */
   handleMove (event) {
-    const { axis, onDrag } = this.props;
+    const { axis, onDragMove } = this.props;
 
-    if (this.isCaptured) {
+    if (this.isGrabbed) {
       const { x, y } = this.currentOffset;
       const { dx, dy } = this.getClientDelta(event);
       const offsetX = x - (axis !== 'y' ? dx : 0);
@@ -184,7 +133,7 @@ export class Draggable extends PureComponent {
         window.getSelection().removeAllRanges();
       }
 
-      isFunction(onDrag) && onDrag(customEvent);
+      isFunction(onDragMove) && onDragMove(customEvent);
 
       if (!customEvent.prevented) {
         this.saveClientPosition(event);
@@ -203,7 +152,7 @@ export class Draggable extends PureComponent {
     const { x, y } = this.currentOffset;
     const { onDragEnd } = this.props;
 
-    if (this.isCaptured && isFunction(onDragEnd)) {
+    if (this.isGrabbed && isFunction(onDragEnd)) {
       !isTouchEvent(event) && event.preventDefault();
       onDragEnd(new DraggableEvent({
         offset: Point(x, y),
@@ -211,7 +160,7 @@ export class Draggable extends PureComponent {
       }));
     }
 
-    this.toggleCaptured(false);
+    this.toggleGrabbed(false);
   }
 
   /**
@@ -241,10 +190,10 @@ export class Draggable extends PureComponent {
 
   /**
    * Переключает состояние активности захвата движения.
-   * @param {boolean} active  Активен ли захват движения.
+   * @param {boolean} active Активен ли захват движения.
    */
-  toggleCaptured (active) {
-    this.isCaptured = Boolean(active);
+  toggleGrabbed (active) {
+    this.isGrabbed = Boolean(active);
   }
 
   /**
@@ -259,7 +208,7 @@ export class Draggable extends PureComponent {
       this.hasTransition = Boolean(active);
 
       draggableEl.style.transition = active
-        ? getTransitionStyle(duration)
+        ? getTransitionStyle(duration, 'transform')
         : null;
     }
   }
@@ -326,7 +275,7 @@ export class Draggable extends PureComponent {
           style={{
             transform: getTranslateStyle(x, y),
             transition: this.hasTransition
-              ? getTransitionStyle(duration)
+              ? getTransitionStyle(duration, 'transform')
               : null,
           }}
           className={cx('draggable')}

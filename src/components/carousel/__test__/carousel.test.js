@@ -55,6 +55,137 @@ const placeItems = ({
   });
 };
 
+describe('<Carousel />', () => {
+  it('should enable autoplay on mount', () => {
+    const wrapper = mount(
+      <Carousel autoplay />
+    );
+    const instance = wrapper.find(PureCarousel).instance();
+
+    jest.spyOn(instance, 'enableAutoplay');
+
+    expect(instance.enableAutoplay).toHaveBeenCalledTimes(0);
+    instance.componentDidMount();
+    expect(instance.enableAutoplay).toHaveBeenCalledTimes(1);
+
+    wrapper.setProps({ autoplay: false });
+    expect(instance.enableAutoplay).toHaveBeenCalledTimes(1);
+    instance.componentDidMount();
+    expect(instance.enableAutoplay).toHaveBeenCalledTimes(1);
+  });
+
+  it('should toggle autoplay on update', () => {
+    const wrapper = mount(
+      <Carousel />
+    );
+    const instance = wrapper.find(PureCarousel).instance();
+
+    jest.spyOn(instance, 'enableAutoplay');
+    jest.spyOn(instance, 'disableAutoplay');
+
+    expect(instance.enableAutoplay).toHaveBeenCalledTimes(0);
+    expect(instance.disableAutoplay).toHaveBeenCalledTimes(0);
+
+    wrapper.setProps({ autoplay: true });
+    expect(instance.enableAutoplay).toHaveBeenCalledTimes(1);
+    expect(instance.disableAutoplay).toHaveBeenCalledTimes(0);
+
+    wrapper.setProps({ autoplay: false });
+    expect(instance.enableAutoplay).toHaveBeenCalledTimes(1);
+    expect(instance.disableAutoplay).toHaveBeenCalledTimes(1);
+  });
+
+  it('should enable auto move on drag end', () => {
+    const wrapper = mount(
+      <Carousel autoplay />
+    );
+    const instance = wrapper.find(PureCarousel).instance();
+
+    jest.spyOn(instance, 'canDrag').mockImplementation(() => true);
+    jest.spyOn(instance, 'toggleAutoMove');
+
+    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(0);
+    instance.onDragEnd(new DraggableEvent({ offset: Point(), client: Point() }));
+    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(1);
+  });
+
+  it('should disable auto move on mouse enter', () => {
+    const wrapper = mount(
+      <Carousel autoplay autoplayHoverPause />
+    );
+    const instance = wrapper.find(PureCarousel).instance();
+
+    jest.spyOn(instance, 'toggleAutoMove');
+
+    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(0);
+    wrapper.find(`.${classes['carousel-wrapper']}`).simulate('mouseenter');
+    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(1);
+    expect(instance.toggleAutoMove).toHaveBeenCalledWith(false);
+  });
+
+  it('should not disable auto move on mouse enter', () => {
+    const wrapper = mount(
+      <Carousel autoplay autoplayHoverPause={false} />
+    );
+    const instance = wrapper.find(PureCarousel).instance();
+
+    jest.spyOn(instance, 'toggleAutoMove');
+
+    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(0);
+    wrapper.find(`.${classes['carousel-wrapper']}`).simulate('mouseenter');
+    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(0);
+  });
+
+  it('should enable auto move on mouse leave', () => {
+    const wrapper = mount(
+      <Carousel autoplay autoplayHoverPause />
+    );
+    const instance = wrapper.find(PureCarousel).instance();
+
+    // simulate drag start
+    wrapper.find(PureDraggable).prop('onDragStart')(new DraggableEvent({ offset: Point(), client: Point() }));
+
+    jest.spyOn(instance, 'toggleAutoMove');
+    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(0);
+
+    // simulate mouse leave
+    wrapper.find(`.${classes['carousel-wrapper']}`).simulate('mouseleave');
+    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(1);
+    expect(instance.toggleAutoMove).toHaveBeenCalledWith(true);
+  });
+
+  it('should not enable auto move on mouse leave', () => {
+    const wrapper = mount(
+      <Carousel autoplay autoplayHoverPause={false} />
+    );
+    const instance = wrapper.find(PureCarousel).instance();
+
+    // simulate drag start
+    wrapper.find(PureDraggable).prop('onDragStart')(new DraggableEvent({ offset: Point(), client: Point() }));
+
+    jest.spyOn(instance, 'toggleAutoMove');
+    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(0);
+
+    // simulate mouse leave
+    wrapper.find(`.${classes['carousel-wrapper']}`).simulate('mouseleave');
+    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(0);
+  });
+
+  it('should register timer by setInterval', () => {
+    jest.useFakeTimers();
+
+    const wrapper = mount(
+      <Carousel autoplay autoplayTimeout={1000} />
+    );
+    const instance = wrapper.find(PureCarousel).instance();
+    jest.spyOn(instance, 'moveForward');
+
+    expect(instance.moveForward).toHaveBeenCalledTimes(0);
+    jest.advanceTimersByTime(1200);
+    expect(instance.moveForward).toHaveBeenCalledTimes(1);
+  });
+});
+
 describe('Carousel: finite mode', () => {
   beforeEach(() => {
     jest.resetAllMocks();
@@ -1019,7 +1150,7 @@ describe('Carousel: infinite mode', () => {
       offset: Point(0, 0),
       client: Point(0, 0),
     }));
-    wrapper.find(Draggable).prop('onDrag')(new DraggableEvent({
+    wrapper.find(Draggable).prop('onDragMove')(new DraggableEvent({
       offset: Point(dragOffset, 0),
       client: Point(dragOffset, 0),
     }));
@@ -1086,7 +1217,7 @@ describe('Carousel: infinite mode', () => {
 
     // подменяю результат потому что в jest + jsdom + enzyme все подменяется на ходу
     jest.spyOn(wrapper.find(PureCarousel).instance(), 'findRealItemsStartBound').mockImplementation(() => 90000);
-    wrapper.find(Draggable).prop('onDrag')(new DraggableEvent({
+    wrapper.find(Draggable).prop('onDragMove')(new DraggableEvent({
       offset: Point(dragOffset, 0),
       client: Point(dragOffset, 0),
     }));
@@ -1153,7 +1284,7 @@ describe('Carousel: infinite mode', () => {
 
     // подменяю результат потому что в jest + jsdom + enzyme все подменяется на ходу
     jest.spyOn(wrapper.find(PureCarousel).instance(), 'findRealItemsStartBound').mockImplementation(() => -90000);
-    wrapper.find(Draggable).prop('onDrag')(new DraggableEvent({
+    wrapper.find(Draggable).prop('onDragMove')(new DraggableEvent({
       offset: Point(0, dragOffset),
       client: Point(0, dragOffset),
     }));
