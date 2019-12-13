@@ -12,14 +12,16 @@ storiesOf('Carousel', module)
     <div style={{ padding: 20 }}>
       <h2>Horizontal</h2>
 
-      <h3>With controls; draggable; infinite; slide by 3</h3>
+      <h3>With controls; draggable; infinite; slide by 3; start from 4</h3>
       <Carousel
-        items={testItems}
+        targetIndex={3}
+        items={testItems.map((item, index) => ({ ...item, index: index + 1 }))}
         renderItem={(item, index) => (
           <div
             key={index}
             className={cx('test-carousel-item')}
             style={{ backgroundImage: `url(${item.src})` }}
+            children={item.index}
           />
         )}
         containerProps={{

@@ -184,6 +184,30 @@ describe('<Carousel />', () => {
     jest.advanceTimersByTime(1200);
     expect(instance.moveForward).toHaveBeenCalledTimes(1);
   });
+
+  it('scrollToItem should use defaults correctly', () => {
+    const spy = jest.fn();
+    const wrapper = mount(
+      <Carousel
+        items={[1, 2, 3]}
+      />
+    );
+    const instance = wrapper.find(PureCarousel).instance();
+
+    jest.spyOn(instance, 'toggleDragTransition');
+    Object.defineProperty(instance, 'currentIndex', {
+      get: () => {
+        spy();
+        return 0;
+      },
+    });
+    expect(spy).toHaveBeenCalledTimes(0);
+    expect(instance.toggleDragTransition).toHaveBeenCalledTimes(0);
+
+    instance.scrollToItem();
+    expect(instance.toggleDragTransition).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
 });
 
 describe('Carousel: finite mode', () => {
