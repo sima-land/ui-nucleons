@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ModifierButton /> should match snapshot 1`] = `
+<div
+  className="modifier-button"
+  onClick={[Function]}
+  role="button"
+>
+  <div
+    className="content test-class"
+    title="Test content"
+  >
+    <span
+      className="text"
+    >
+      Test content
+    </span>
+  </div>
+</div>
+`;

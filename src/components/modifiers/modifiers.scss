@@ -1,0 +1,123 @@
+@import "../variables";
+
+$modifierGutter: 4px;
+$modifierMinSize: 48px;
+$modifierGroupMaxHeight: ($modifierMinSize * 2) + ($modifierGutter * 4);
+@mixin modifier-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  display: block;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 6px;
+  text-align: center;
+  line-height: 18px;
+  color: $white;
+  border-radius: 10px;
+  background-color: $blue;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.modifiers-title {
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0 0 16px;
+}
+
+.modifiers-link {
+  display: inline-block;
+  margin: 16px 0;
+}
+
+.modifiers-group {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -$modifierGutter;
+  overflow: hidden;
+  > .modifier-button {
+    margin: $modifierGutter;
+  }
+  &.height-limited {
+    max-height: $modifierGroupMaxHeight;
+  }
+  .modifier-button {
+    &.not-display {
+      display: none;
+    }
+    &.invisible {
+      opacity: 0;
+      height: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .content.show-all-button {
+      width: $modifierMinSize;
+      color: $blue;
+      border-color: $blue;
+      flex-direction: column;
+    }
+  }
+}
+
+.modifier-button {
+  composes: reset from '../reset.scss';
+  height: $modifierMinSize;
+  min-width: $modifierMinSize;
+  position: relative;
+  text-align: center;
+  font-size: 14px;
+  background-color: $white;
+  &.square {
+    width: $modifierMinSize;
+  }
+  .markdown {
+    @include modifier-count;
+    color: $hoki;
+    background-color: $white;
+    box-shadow: 0 1px 4px 0 rgba(96, 125, 139, .75);
+  }
+  .count {
+    @include modifier-count;
+    &.markdown {
+      color: $white;
+      background-color: $hoki;
+    }
+  }
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+    border: 1px solid $lightGray;
+    &:hover {
+      box-shadow: 0 0 0 1px $lightGray;
+      cursor: pointer;
+    }
+    &.selected {
+      border-color: $blue;
+      box-shadow: 0 0 0 1px $blue;
+      &:hover {
+        cursor: default;
+      }
+      &.markdown-content {
+        border-color: $hoki;
+        box-shadow: 0 0 0 1px $hoki;
+      }
+    }
+    .text {
+      display: block;
+      padding: 0 20px;
+      line-height: 1;
+    }
+    .image {
+      display: block;
+      width: auto;
+      height: 100%;
+    }
+  }
+}
