@@ -131,15 +131,18 @@ export class Carousel extends Component {
 
     this.offWindowResize = addGlobalListener('resize', () => {
       this.toggleDragTransition(false);
-      this.scrollToItem(undefined, { needTransition: false });
+      this.scrollToItem({ needTransition: false });
       this.updateItemsVisibility();
       this.toggleDragTransition(true);
     });
 
-    autoplay && this.enableAutoplay();
+    this.toggleMounted(true);
+    this.forceUpdate(() => {
+      this.scrollToItem({ needTransition: false });
+      this.updateItemsVisibility();
+    });
 
-    this.scrollToItem(undefined, { needTransition: false });
-    this.updateItemsVisibility();
+    autoplay && this.enableAutoplay();
   }
 
   /**
@@ -175,6 +178,7 @@ export class Carousel extends Component {
   componentWillUnmount () {
     this.offWindowResize();
     this.disableAutoplay();
+    this.toggleMounted(true);
   }
 
   /**
@@ -202,6 +206,14 @@ export class Carousel extends Component {
    */
   toggleAutoMove (canAutoMove) {
     this.canAutoMove = Boolean(canAutoMove);
+  }
+
+  /**
+   * Переключает флаг, определяющий, что компонент смонтирован.
+   * @param {boolean} mounted Флаг.
+   */
+  toggleMounted (mounted) {
+    this.mounted = Boolean(mounted);
   }
 
   /**
@@ -473,18 +485,19 @@ export class Carousel extends Component {
    */
   setCurrentIndex (newIndex, { withScroll = true, needTransition = true } = {}) {
     this.currentIndex = newIndex;
-    withScroll && this.scrollToItem(newIndex, { needTransition });
+    withScroll && this.scrollToItem({ targetIndex: newIndex, needTransition });
   }
 
   /**
    * Прокручивает галерею к заданному элементу по индексу.
-   * @param {number} [targetIndex=this.state.currentIndex] Индекс.
-   * @param {boolean} [needTransition=true] Нужна ли плавная анимация прокрутки.
+   * @param {Object} options Свойства.
+   * @param {number} [options.targetIndex=this.state.currentIndex] Индекс.
+   * @param {boolean} [options.needTransition=true] Нужна ли плавная анимация прокрутки.
    */
-  scrollToItem (
+  scrollToItem ({
     targetIndex = this.currentIndex,
-    { needTransition = true } = {}
-  ) {
+    needTransition = true,
+  } = {}) {
     const { current: containerEl } = this.containerRef;
     const targetItemEl = containerEl.children[targetIndex];
 
@@ -712,7 +725,7 @@ export class Carousel extends Component {
     const { isAllItemsVisible } = this.state;
     const { items, renderItem = Carousel.defaultRenderItem } = this.props;
     const realItemsCount = size(items);
-    const needClone = this.infinite && !isAllItemsVisible;
+    const needClone = this.infinite && this.mounted && !isAllItemsVisible;
     const loopLimit = realItemsCount * (needClone ? CLONE_FACTOR : 1);
     const result = [];
 
