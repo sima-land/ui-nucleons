@@ -1,0 +1,179 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Breadcrumbs /> should match snapshot 1`] = `
+<withGlobalListeners(Breadcrumbs)
+  items={
+    Array [
+      Object {
+        "name": "First",
+      },
+      Object {
+        "name": "Second",
+      },
+      Object {
+        "items": Array [
+          Object {
+            "name": "third child 1",
+          },
+          Object {
+            "name": "third child 2",
+          },
+          Object {
+            "name": "third child 3",
+          },
+        ],
+        "name": "Third",
+      },
+    ]
+  }
+>
+  <Breadcrumbs
+    addGlobalListener={[Function]}
+    items={
+      Array [
+        Object {
+          "name": "First",
+        },
+        Object {
+          "name": "Second",
+        },
+        Object {
+          "items": Array [
+            Object {
+              "name": "third child 1",
+            },
+            Object {
+              "name": "third child 2",
+            },
+            Object {
+              "name": "third child 3",
+            },
+          ],
+          "name": "Third",
+        },
+      ]
+    }
+  >
+    <ul
+      className="breadcrumbs"
+    >
+      <li
+        key="0"
+      >
+        <Link
+          color="dark-gray"
+        >
+          <a
+            className="link link-can-be-hovered"
+            target="_self"
+          >
+            <span
+              className="link-text link-dark-gray"
+            >
+              First
+            </span>
+          </a>
+        </Link>
+      </li>
+      <li
+        key="1"
+      >
+        <Link
+          color="dark-gray"
+        >
+          <a
+            className="link link-can-be-hovered"
+            target="_self"
+          >
+            <span
+              className="link-text link-dark-gray"
+            >
+              Second
+            </span>
+          </a>
+        </Link>
+      </li>
+      <li
+        key="2"
+      >
+        <Link
+          color="dark-gray"
+        >
+          <a
+            className="link link-can-be-hovered"
+            target="_self"
+          >
+            <span
+              className="link-text link-dark-gray"
+            >
+              Third
+            </span>
+          </a>
+        </Link>
+        <span>
+          <Icon
+            className="toggle-icon"
+            icon={[Function]}
+            inline={true}
+            onClick={[Function]}
+            size={14}
+          >
+            <squareArrowDown
+              className="icon toggle-icon"
+              height={14}
+              onClick={[Function]}
+              viewBox="0 0 36 36"
+              width={14}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <svg
+                className="icon toggle-icon"
+                height={14}
+                onClick={[Function]}
+                viewBox="0 0 36 36"
+                width={14}
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clipRule="evenodd"
+                  d="M4.667 4.667h26.666v26.666H4.667V4.667zM2 4.667A2.667 2.667 0 0 1 4.667 2h26.666A2.667 2.667 0 0 1 34 4.667v26.666A2.667 2.667 0 0 1 31.333 34H4.667A2.667 2.667 0 0 1 2 31.333V4.667zm9.012 8.465a1.333 1.333 0 0 0-2.024 1.736l8 9.333a1.334 1.334 0 0 0 2.024 0l8-9.333a1.333 1.333 0 1 0-2.024-1.736L18 21.284l-6.988-8.152z"
+                  fillRule="evenodd"
+                />
+              </svg>
+            </squareArrowDown>
+          </Icon>
+        </span>
+        <CSSTransition
+          classNames={
+            Object {
+              "enter": "fade-enter",
+              "enterActive": "fade-enter-active",
+              "exit": "fade-exit",
+              "exitActive": "fade-exit-active",
+            }
+          }
+          in={false}
+          timeout={200}
+          unmountOnExit={true}
+        >
+          <Transition
+            appear={false}
+            enter={true}
+            exit={true}
+            in={false}
+            mountOnEnter={false}
+            onEnter={[Function]}
+            onEntered={[Function]}
+            onEntering={[Function]}
+            onExit={[Function]}
+            onExited={[Function]}
+            onExiting={[Function]}
+            timeout={200}
+            unmountOnExit={true}
+          />
+        </CSSTransition>
+      </li>
+    </ul>
+  </Breadcrumbs>
+</withGlobalListeners(Breadcrumbs)>
+`;
