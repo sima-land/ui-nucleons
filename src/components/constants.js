@@ -7,3 +7,13 @@ export const USER_DEFAULT_PARAMS = {
   viewtype: 'list',
 };
 export const graphemes = ['₽', '€', '$', '₴', 'Br'];
+
+/**
+ * Набор типов содержимого модификатора.
+ * @type {Object}
+ */
+export const MODIFIERS_TYPES = Object.freeze({
+  text: 'text',
+  image: 'image',
+  color: 'color',
+});

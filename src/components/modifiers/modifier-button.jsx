@@ -2,24 +2,15 @@ import React, { forwardRef } from 'react';
 import isNumber from 'lodash/isNumber';
 import classes from './modifiers.scss';
 import classnames from 'classnames/bind';
+import { MODIFIERS_TYPES } from '../constants';
 
 const cx = classnames.bind(classes);
-
-/**
- * Набор типов содержимого модификатора.
- * @type {Object}
- */
-const TYPES = Object.freeze({
-  text: 'text',
-  image: 'image',
-  color: 'color',
-});
 
 /**
  * Массив доступных типов содержимого модификатора.
  * @type {Array<string>}
  */
-const availableTypes = Object.values(TYPES);
+const availableTypes = Object.values(MODIFIERS_TYPES);
 
 /**
  * Возвращает компонент модификатора.
@@ -54,7 +45,7 @@ const ModifierButton = forwardRef(({
       className={cx(
         'modifier-button',
         wrapperClassName,
-        { square: readyType !== TYPES.text }
+        { square: readyType !== MODIFIERS_TYPES.text }
       )}
       onClick={onClick}
       role={onClick ? 'button' : null}
@@ -78,12 +69,12 @@ const ModifierButton = forwardRef(({
         style={color ? { backgroundColor: color } : undefined}
         title={content}
       >
-        {readyType === TYPES.text && (
+        {readyType === MODIFIERS_TYPES.text && (
           <span className={cx('text')}>
             {String(content || '')}
           </span>
         )}
-        {readyType === TYPES.image && (
+        {readyType === MODIFIERS_TYPES.image && (
           <img alt={content} src={image} className={cx('image')} />
         )}
       </div>

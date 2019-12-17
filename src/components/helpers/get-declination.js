@@ -13,22 +13,3 @@ export default function getDeclination (number, titles) {
 
   return titles[index];
 }
-
-/**
- * Возвращает нужное склонение из переданного объекта валюты.
- * @param {number} number Число, используемое для склонения.
- * @param {Object} unit Объект с данными об единице измерения.
- * @return {string} Слово в нужном склонении.
- */
-export function getDeclinationByUnit (number, unit) {
-  const {
-    name: one,
-    name_for_few: few,
-    name_for_many: many,
-  } = unit || {};
-  const result = few && many
-    ? getDeclination(number, [one, few, many])
-    : one;
-
-  return result || '';
-}
