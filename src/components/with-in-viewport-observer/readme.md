@@ -4,12 +4,12 @@
 
 ```
 const PureSomeComponent = ({
-  addObserve,
+  addToObserve,
 }) => {
   const divRef = React.useRef();
 
   React.useEffect(() => {
-    addObserve(divRef.current, () => {
+    addToObserve(divRef.current, () => {
       console.log('Элемент появился в зоне видимости');
     });
   }, [divRef]);
@@ -37,7 +37,13 @@ const PureSomeComponent = ({
 };
 
 // В проектах нужно использовать withInViewportObserver
-const SomeComponent = WithInViewportObserver(PureSomeComponent);
+const SomeComponent = WithInViewportObserver(
+    PureSomeComponent,
+    {
+        rootMargin: '50px 0px 50px 0px',
+    },
+    'addToObserve'
+);
 
 <SomeComponent />
 ```
