@@ -96,11 +96,17 @@ describe('addObserve()', () => {
 
 describe('wrapAddObserve()', () => {
   it ('run addObserve when component subscribe on IntersectionObserver ', () => {
-    const addObserver = jest.fn();
-    const hoc = makeInViewportObserverHOC(addObserver);
+    const add = jest.fn();
+    const observersList = [
+      {
+        add,
+        options: {},
+      },
+    ];
+    const hoc = makeInViewportObserverHOC(observersList);
     const TestComponent = hoc(TestProductPreviewsWidget);
     mount(<TestComponent />);
-    expect(addObserver).toBeCalledTimes(1);
+    expect(add).toBeCalledTimes(1);
   });
 
   it ('run addObserve into wrapAddObserve', () => {

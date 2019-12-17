@@ -1,13 +1,40 @@
 import React from 'react';
+import isEqual from 'lodash/isEqual';
 import getDisplayName from '../helpers/get-display-name';
 import initAddObserve from '../helpers/intersection-observer';
 
 /**
+ * @typedef {Object} ObserverData Объект данных объявленного Intersection Observer.
+ * @param {Object} option Опции с которыми был объявлен Intersection Observer.
+ * @param {Function} add Функция подписки на IntersectionObserver.
+ */
+
+/**
  * Создает компонент высшего порядка совершающий подписку на появление в области видимости.
- * @param {Function} addObserve Функция подписки на Intersection Observer.
+ * @param {Array<ObserverData>} observersDataList Массив с данными объявленных Intersection Observer.
  * @return {Function} Функция, создающая компонент высшего порядка.
  */
-export const makeInViewportObserverHOC = addObserve => Component => {
+export const makeInViewportObserverHOC = observersDataList => (Component, options = {}, propName = 'addObserve') => {
+  let addObserve;
+
+  observersDataList.forEach(({ add, options: observeOptions }) => {
+    if (isEqual(observeOptions, options)) {
+      addObserve = add;
+    }
+  });
+
+  if (!addObserve) {
+    addObserve = initAddObserve(options);
+    observersDataList.push({
+      options,
+      add: addObserve,
+    });
+  }
+
+  const additionalProps = {
+    [propName]: addObserve,
+  };
+
   /**
    * Компонент-обертка.
    * @param {Object} props Свойства для оборачиваемого компонента.
@@ -15,7 +42,7 @@ export const makeInViewportObserverHOC = addObserve => Component => {
    */
   const InViewportObserverHOC = props => (
     <Component
-      addObserve={addObserve}
+      {...additionalProps}
       {...props}
     />
   );
@@ -24,6 +51,7 @@ export const makeInViewportObserverHOC = addObserve => Component => {
   return InViewportObserverHOC;
 };
 
-const withInViewportObserver = makeInViewportObserverHOC(initAddObserve());
+const observersList = [];
+const withInViewportObserver = makeInViewportObserverHOC(observersList);
 
 export default withInViewportObserver;
