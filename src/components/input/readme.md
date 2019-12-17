@@ -2,6 +2,7 @@
 ```jsx
 import Icon from '../icon';
 import icons from '../icons/';
+import withInputMask from '../hoc/with-input-mask';
 
 <React.Fragment>
   <h3>Just text input with placeholder</h3>
@@ -59,6 +60,14 @@ import icons from '../icons/';
       type='number'
       endAdornment='Kg'
       placeholder='Your weight'
+    />
+  </div>
+
+  {MaskedPhoneInput = withInputMask(Input, '+_ (___) ___-__-__')}
+  <h3>With phone (numbers) mask</h3>
+  <div>
+    <MaskedPhoneInput
+      value='7'
     />
   </div>
 </React.Fragment>

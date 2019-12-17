@@ -6,6 +6,7 @@ import searchIcon from '../../icons/search.svg';
 import crossIcon from '../../icons/cross.svg';
 import classnames from 'classnames';
 import classes from './custom-styles.scss';
+import withInputMask from '../../hoc/with-input-mask';
 
 storiesOf('Input', module)
   .add('Variants', () => (
@@ -120,4 +121,31 @@ storiesOf('Input', module)
         />
       </div>
     </Fragment>
-  ));
+  ))
+  .add('With mask', () => {
+    const MaskedPhoneInput = withInputMask(Input, '+_ (___) ___-__-__');
+    const MaskedDateInput = withInputMask(Input, '__/ __ / ____', /[0-9_]/g);
+    const MaskedNameInput = withInputMask(Input, '______________', /[A-Za-z_]/g);
+    return (
+      <Fragment>
+        <h3>Phone (numbers) mask</h3>
+        <div>
+          <MaskedPhoneInput
+            value='7'
+          />
+        </div>
+        <h3>Date (numbers) mask</h3>
+        <div>
+          <MaskedDateInput
+            value='__ __ 2019'
+          />
+        </div>
+        <h3>String mask</h3>
+        <div>
+          <MaskedNameInput
+            value=''
+          />
+        </div>
+      </Fragment>
+    );
+  });
