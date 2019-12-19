@@ -10,6 +10,7 @@ import { useApplyMemo, useOnMount } from '../hooks/';
 import classnames from 'classnames/bind';
 import styles from './breadcrumbs.scss';
 import isFunction from 'lodash/isFunction';
+import Type from 'prop-types';
 
 const cx = classnames.bind(styles);
 const defaultGetName = prop('name');
@@ -25,7 +26,7 @@ const defaultIsActiveItem = prop('isActive');
  * @param {Function} [props.getItemURL] Должна вернуть URL элемента списка (по умолчанию свойство "url").
  * @param {Function} [props.getItemSiblings] Должна вернуть список дочерних ссылок (по умолчанию свойство "items").
  * @param {Function} [props.isActiveItem] Должна вернуть true если элемент представляет активный раздел.
- * @param {Function} props.onOpenBreadcrumbs Функция, вызываемая при открытии списка дочерних ссылок.
+ * @param {Function} props.onOpenBreadcrumbs Функция, вызываемая при открытии списка соседних элементов.
  * @return {ReactElement} Компонент "хлебных крошек".
  */
 const Breadcrumbs = ({
@@ -166,6 +167,45 @@ export const createMountHandler = ([
 
   // отписываемся при размонтировании
   return removeListener;
+};
+
+Breadcrumbs.propTypes = {
+
+  /**
+   * Элементы хлебных крошек.
+   */
+  items: Type.arrayOf(Type.object),
+
+  /**
+   * Функция, возвращающая поле в переданной коллекции, соответсвующее имени крошки.
+   */
+  getItemName: Type.func,
+
+  /**
+   * Функция, возвращающая поле в переданной коллекции, соответсвующее URL крошки.
+   */
+  getItemURL: Type.func,
+
+  /**
+   * Функция, возвращающая поле в переданной коллекции, соответсвующее коллекции смежных элементов крошки.
+   */
+  getItemSiblings: Type.func,
+
+  /**
+   * Функция, возвращающая флаг активности крошки
+   * (активная крошка не будет кликабельной и не приведет к перезагрузке страницы).
+   */
+  isActiveItem: Type.func,
+
+  /**
+   * Глобальный обработчик событий.
+   */
+  addGlobalListener: Type.func,
+
+  /**
+   * Функция, вызываемая при открытии попапа смежных элементов.
+   */
+  onOpenBreadcrumbs: Type.func,
 };
 
 export default withGlobalListeners(Breadcrumbs);
