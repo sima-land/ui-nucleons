@@ -1,0 +1,65 @@
+/* Containers */
+.range-wrapper-base {
+  max-width: 240px;
+}
+
+.range-wrapper-styled {
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.range-container-base {
+  position: relative;
+}
+
+.range-container-styled {
+  height: 16px;
+  box-sizing: border-box;
+}
+
+.disabled {
+  opacity: .5;
+}
+
+/* Thumbs */
+.thumb-base {
+  position: absolute;
+  display: block;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.thumb-styled {
+  border: 0;
+  padding: 0;
+  outline: 0;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 3px 10px rgba(51, 51, 51, .2);
+  box-sizing: border-box;
+}
+
+/* Tracks */
+.track-base {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.available-base {
+  left: 0;
+  right: 0;
+}
+
+.available-styled {
+  height: 4px;
+  border-radius: 2px;
+  background: #ebebeb;
+}
+
+.selected-styled {
+  height: 4px;
+  background: #1f84db;
+}
