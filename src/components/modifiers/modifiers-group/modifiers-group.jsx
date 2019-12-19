@@ -2,10 +2,11 @@ import React, { Component, createRef } from 'react';
 import isFunction from 'lodash/isFunction';
 import debounce from 'lodash/debounce';
 import prop from 'lodash/fp/prop';
-import ModifierButton from './modifier-button';
-import withGlobalListeners from '../hoc/with-global-listeners';
-import classes from './modifiers.scss';
+import ModifierButton from '../modifier-button/modifier-button';
+import withGlobalListeners from '../../hoc/with-global-listeners';
+import classes from '../modifiers.scss';
 import classnames from 'classnames/bind';
+import Type from 'prop-types';
 
 const cx = classnames.bind(classes);
 
@@ -225,5 +226,63 @@ export class ModifiersGroup extends Component {
     );
   }
 }
+
+ModifiersGroup.propTypes = {
+
+  /**
+   * Список модификаторов.
+   */
+  items: Type.arrayOf(Type.object),
+
+  /**
+   * Функция сменяющая модификатор, получит сам модификатор.
+   */
+  onSelectItem: Type.func,
+
+  /**
+   * Возвращает тип модификатора ("text" или "image", по умолчанию "text").
+   */
+  getItemType: Type.func,
+
+  /**
+   * Возвращает число с количеством модификатора (по умолчанию свойство "count").
+   */
+  getItemCount: Type.func,
+
+  /**
+   * Возвращает цвет модификатора (по умолчанию свойство "color").
+   */
+  getItemColor: Type.func,
+
+  /**
+   * Возвращает содержимое модификатора (по умолчанию свойство "content").
+   */
+  getItemContent: Type.func,
+
+  /**
+   * Показывает, выбран ли модификатор (по умолчанию свойство "selected").
+   */
+  isSelectedItem: Type.func,
+
+  /**
+   * Возвращает URL изображения модификатора (по умолчанию свойство "image").
+   */
+  getItemImage: Type.func,
+
+  /**
+   * Возвращает функцию смены модификатора.
+   */
+  getSelectItem: Type.func,
+
+  /**
+   * Имеет ли товар уценку.
+   */
+  isMarkdown: Type.func,
+
+  /**
+   * Глобальный обработчик событий.
+   */
+  addGlobalListener: Type.func,
+};
 
 export default withGlobalListeners(ModifiersGroup);

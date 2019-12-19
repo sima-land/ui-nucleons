@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import ModifierButton from '../modifier-button';
-import classes from '../modifiers.scss';
+import classes from '../../modifiers.scss';
 
 describe('<ModifierButton />', () => {
   it('should render without props', () => {

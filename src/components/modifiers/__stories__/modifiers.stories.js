@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import ModifiersWidget from '../modifiers-widget';
+import { action } from '@storybook/addon-actions';
+import ModifiersWidget from '../modifiers-widget/modifiers-widget';
 import items from './items';
-import noop from 'lodash/noop';
 
 storiesOf('Modifiers', module)
   .add('Варианты', () => (
@@ -11,21 +11,21 @@ storiesOf('Modifiers', module)
       <ModifiersWidget
         title='Варианты'
         items={items.imgItems}
-        onSelectItem={noop}
+        onSelectItem={action('item selected')}
       />
       <br />
       <h3>Тип &quot;image&quot;, отметки о количестве в корзине и уценке:</h3>
       <ModifiersWidget
         title='Варианты'
         items={items.imgItemsWithMark}
-        onSelectItem={noop}
+        onSelectItem={action('item selected')}
       />
       <br />
       <h3>Тип &quot;text&quot;, с ссылкой на таблицу размеров:</h3>
       <ModifiersWidget
         title='Размер / рост'
         items={items.textItems}
-        onSelectItem={noop}
+        onSelectItem={action('item selected')}
         sizesTableUrl='test/url'
       />
       <br />
@@ -33,7 +33,7 @@ storiesOf('Modifiers', module)
       <ModifiersWidget
         title='Цвет'
         items={items.colorItems}
-        onSelectItem={noop}
+        onSelectItem={action('item selected')}
       />
       <br />
       <h3>Тип &quot;image&quot;, в узком блоке:</h3>
@@ -41,7 +41,7 @@ storiesOf('Modifiers', module)
         <ModifiersWidget
           title='Варианты'
           items={items.imgItems.concat(items.imgItemsWithMark)}
-          onSelectItem={noop}
+          onSelectItem={action('item selected')}
         />
       </div>
     </>
