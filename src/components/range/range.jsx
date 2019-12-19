@@ -421,6 +421,16 @@ Range.propTypes = {
    * Свойства элементов-кнопок. По умолчанию содержит класс со стандартной стилизацией.
    */
   thumbProps: PropTypes.object,
+
+  /**
+   * Сработает при отпускании ползунка если значение изменилось.
+   */
+  onChange: PropTypes.func,
+
+  /**
+   * Сработает при перетаскивании ползунка.
+   */
+  onSlide: PropTypes.func,
 };
 
 export default withGlobalListeners(Range);
