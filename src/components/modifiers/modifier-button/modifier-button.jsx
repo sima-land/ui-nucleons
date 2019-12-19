@@ -1,8 +1,9 @@
 import React, { forwardRef } from 'react';
 import isNumber from 'lodash/isNumber';
-import classes from './modifiers.scss';
+import classes from '../modifiers.scss';
 import classnames from 'classnames/bind';
-import { MODIFIERS_TYPES } from '../constants';
+import { MODIFIERS_TYPES } from '../../constants';
+import Type from 'prop-types';
 
 const cx = classnames.bind(classes);
 
@@ -17,15 +18,17 @@ const availableTypes = Object.values(MODIFIERS_TYPES);
  * @param {Object} props Свойства компонента.
  * @param {number|null} [props.count=null] Количество компонента.
  * @param {string} props.content Содержимое модификатора.
+ * @param {string} [props.image] URL изображения модификатора.
  * @param {'text'|'image'} [props.type='text'] Тип содержимого модификатора.
  * @param {boolean} [props.selected] Выбран ли модификатор.
  * @param {string} props.color Цвет модификатора.
  * @param {string} [props.className] Дополнительный CSS-класс.
  * @param {Function} [props.onClick] Сработает при клике на модификатор.
  * @param {boolean} [props.isMarkdown] Имеет ли товар уценку.
+ * @param {Object} ref Реф.
  * @return {ReactElement} Компонент модификатора.
  */
-const ModifierButton = forwardRef(({
+const ModifierButton = ({
   count = null,
   content,
   selected,
@@ -80,7 +83,62 @@ const ModifierButton = forwardRef(({
       </div>
     </div>
   );
-});
+};
 
-ModifierButton.displayName = 'ModifierButton';
-export default ModifierButton;
+ModifierButton.propTypes = {
+
+  /**
+   * Количество компонента.
+   */
+  count: Type.number,
+
+  /**
+   * Содержимое модификатора.
+   */
+  content: Type.string,
+
+  /**
+   * Выбран ли модификатор.
+   */
+  selected: Type.bool,
+
+  /**
+   * Цвет модификатора.
+   */
+  color: Type.string,
+
+  /**
+   * URL изображения модификатора.
+   */
+  image: Type.string,
+
+  /**
+   * Тип содержимого модификатора.
+   */
+  type: Type.oneOf(['text', 'color', 'image']),
+
+  /**
+   * Дополнительный CSS-класс.
+   */
+  className: Type.string,
+
+  /**
+   * Дополнительный CSS-класс обертки.
+   */
+  wrapperClassName: Type.string,
+
+  /**
+   * Сработает при клике на модификатор.
+   */
+  onClick: Type.func,
+
+  /**
+   * Имеет ли товар уценку.
+   */
+  isMarkdown: Type.bool,
+};
+
+const ModifierButtonForwardRef = forwardRef(ModifierButton);
+ModifierButtonForwardRef.displayName = 'ModifierButton';
+
+export default ModifierButtonForwardRef;

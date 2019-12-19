@@ -1,11 +1,12 @@
 import React from 'react';
-import getDeclination from '../helpers/get-declination';
-import ModifiersGroup from './modifiers-group';
+import getDeclination from '../../helpers/get-declination';
+import ModifiersGroup from '../modifiers-group/modifiers-group';
 import prop from 'lodash/fp/prop';
-import Link from '../link';
+import Link from '../../link';
 import classNames from 'classnames/bind';
-import styles from './modifiers.scss';
+import styles from '../modifiers.scss';
 import isFunction from 'lodash/isFunction';
+import Type from 'prop-types';
 
 const cx = classNames.bind(styles);
 
@@ -55,5 +56,29 @@ const ModifiersWidget = ({ title, items, sizesTableUrl, onSelectItem }) => (
     )}
   </div>
 );
+
+ModifiersWidget.propTypes = {
+
+  /**
+   * Название сущности модификатора.
+   */
+
+  title: Type.string,
+
+  /**
+   * Данные модификатора товара.
+   */
+  items: Type.arrayOf(Type.object),
+
+  /**
+   * Url таблицы размеров.
+   */
+  sizesTableUrl: Type.string,
+
+  /**
+   * Обработчик клика по модификатору.
+   */
+  onSelectItem: Type.func,
+};
 
 export default ModifiersWidget;

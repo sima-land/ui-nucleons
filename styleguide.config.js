@@ -27,6 +27,7 @@ module.exports = {
             documentation.set('path', path.value.id.name);
           }
         }
+
         // The component is the default export
         if (
           path.parentPath.value.type === 'ExportDefaultDeclaration'

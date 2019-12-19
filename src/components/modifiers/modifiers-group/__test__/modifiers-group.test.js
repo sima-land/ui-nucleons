@@ -5,8 +5,8 @@ import ModifiersGroup, {
   defaultOnSelectItem,
   createHiddenNodeIndexFinder,
 } from '../modifiers-group';
-import ModifierButton from '../modifier-button';
-import classes from '../modifiers.scss';
+import ModifierButton from '../../modifier-button/modifier-button';
+import classes from '../../modifiers.scss';
 import prop from 'lodash/fp/prop';
 import isFunction from 'lodash/isFunction';
 
