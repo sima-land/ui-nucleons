@@ -429,6 +429,11 @@ Range.propTypes = {
    * Сработает при перетаскивании ползунка.
    */
   onSlide: PropTypes.func,
+
+  /**
+   * Глобальный обработчик событий.
+   */
+  addGlobalListener: PropTypes.func,
 };
 
 export default withGlobalListeners(Range);

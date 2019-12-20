@@ -57,14 +57,14 @@ NavButton.propTypes = {
   vertical: PropTypes.bool,
 
   /**
-   * Активна ли кнопка.
+   * Отключена ли кнопка.
    */
-  canUse: PropTypes.bool,
+  disabled: PropTypes.bool,
 
   /**
    * Сработает при нажатии.
    */
-  onUse: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 /**

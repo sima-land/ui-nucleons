@@ -305,7 +305,7 @@ Draggable.propTypes = {
   /**
    * Сработает при перемещении контента.
    */
-  onDrag: PropTypes.func,
+  onDragMove: PropTypes.func,
 
   /**
    * Сработает при завершении захвата контента мышью или пальцем.
