@@ -801,6 +801,21 @@ Carousel.propTypes = {
    * Должна выполнить подписку на глобальное событие и вернуть функцию отписки.
    */
   addGlobalListener: PropTypes.func,
+
+  /**
+   * Время переключения между слайдами.
+   */
+  autoplayTimeout: PropTypes.number,
+
+  /**
+   * Прекращать ли смену слайдов, если наведен указатель.
+   */
+  autoplayHoverPause: PropTypes.bool,
+
+  /**
+   * Флаг автоматической прокрутки карусели.
+   */
+  autoplay: PropTypes.bool,
 };
 
 export default withGlobalListeners(Carousel);
