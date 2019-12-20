@@ -28,7 +28,7 @@ const availableTypes = Object.values(MODIFIERS_TYPES);
  * @param {Object} ref Реф.
  * @return {ReactElement} Компонент модификатора.
  */
-const ModifierButton = ({
+const ModifierButton = forwardRef(({
   count = null,
   content,
   selected,
@@ -83,7 +83,7 @@ const ModifierButton = ({
       </div>
     </div>
   );
-};
+});
 
 ModifierButton.propTypes = {
 
@@ -138,7 +138,5 @@ ModifierButton.propTypes = {
   isMarkdown: Type.bool,
 };
 
-const ModifierButtonForwardRef = forwardRef(ModifierButton);
-ModifierButtonForwardRef.displayName = 'ModifierButton';
-
-export default ModifierButtonForwardRef;
+ModifierButton.displayName = 'ModifierButton';
+export default ModifierButton;

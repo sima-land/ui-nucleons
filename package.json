@@ -54,7 +54,7 @@
     "jest": "^24.8.0",
     "node-sass": "^4.12.0",
     "react": "^16.8.5",
-    "react-docgen": "^4.1.1",
+    "react-docgen": "^5.0.0",
     "react-docgen-displayname-handler": "^2.1.1",
     "react-dom": "^16.8.5",
     "react-styleguidist": "^9.0.5",
