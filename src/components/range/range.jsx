@@ -52,7 +52,6 @@ export class Range extends Component {
     const readyFinish = this.constrainValue(finishValue);
 
     this.containerRef = createRef();
-    this.trackRef = createRef();
     this.rangeRef = createRef();
     this.startThumbRef = createRef();
     this.finishThumbRef = createRef();
@@ -181,7 +180,7 @@ export class Range extends Component {
       const { min, max } = this.props;
       const thumbEl = this.activeThumbElement;
       const [start, end] = this.activeBounds;
-      const { left, right } = boundsOf(this.trackRef.current);
+      const { left, right } = boundsOf(this.containerRef.current);
 
       const wrappedX = Math.max(start, Math.min(getEventClientPos(event).x, end));
       const fraction = getFraction(left, right, wrappedX);
@@ -261,8 +260,8 @@ export class Range extends Component {
       ? this.startThumbRef.current
       : this.finishThumbRef.current;
     this.activeBounds = isStartActive
-      ? [boundsOf(this.trackRef.current).left, finishX]
-      : [startX, boundsOf(this.trackRef.current).right];
+      ? [boundsOf(this.containerRef.current).left, finishX]
+      : [startX, boundsOf(this.containerRef.current).right];
   }
 
   /**
@@ -311,41 +310,40 @@ export class Range extends Component {
         {...wrapperProps}
         className={cx(
           'range-wrapper-base',
+          disabled && 'disabled',
           wrapperProps.className
         )}
       >
+        <div
+          {...trackProps}
+          className={cx(
+            'track-base',
+            'available-base',
+            trackProps.className
+          )}
+        />
+        <div
+          {...rangeProps}
+          ref={this.rangeRef}
+          className={cx(
+            'track-base',
+            'selected-base',
+            rangeProps.className
+          )}
+          style={{
+            ...rangeProps.style,
+            left: `${start}%`,
+            width: `${finish - start}%`,
+          }}
+        />
         <div
           {...containerProps}
           ref={this.containerRef}
           className={cx(
             'range-container-base',
-            disabled && 'disabled',
             containerProps.className
           )}
         >
-          <div
-            {...trackProps}
-            ref={this.trackRef}
-            className={cx(
-              'track-base',
-              'available-base',
-              trackProps.className
-            )}
-          />
-          <div
-            {...rangeProps}
-            ref={this.rangeRef}
-            className={cx(
-              'track-base',
-              'selected-base',
-              rangeProps.className
-            )}
-            style={{
-              ...rangeProps.style,
-              left: `${start}%`,
-              width: `${finish - start}%`,
-            }}
-          />
           <button
             {...thumbProps}
             type='button'

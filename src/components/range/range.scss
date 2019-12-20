@@ -1,10 +1,14 @@
+$thumbSize: 16px;
+$trackHeight: 4px;
+
 /* Containers */
 .range-wrapper-base {
+  position: relative;
   max-width: 240px;
 }
 
 .range-wrapper-styled {
-  padding: 0 8px;
+  padding: 0 ($thumbSize / 2);
   box-sizing: border-box;
 }
 
@@ -13,7 +17,7 @@
 }
 
 .range-container-styled {
-  height: 16px;
+  height: $thumbSize;
   box-sizing: border-box;
 }
 
@@ -33,8 +37,8 @@
   border: 0;
   padding: 0;
   outline: 0;
-  width: 16px;
-  height: 16px;
+  width: $thumbSize;
+  height: $thumbSize;
   background: #fff;
   border-radius: 50%;
   box-shadow: 0 3px 10px rgba(51, 51, 51, .2);
@@ -54,12 +58,13 @@
 }
 
 .available-styled {
-  height: 4px;
-  border-radius: 2px;
+  height: $trackHeight;
+  border-radius: $trackHeight / 2;
   background: #ebebeb;
 }
 
 .selected-styled {
-  height: 4px;
+  height: $trackHeight;
+  border-radius: $trackHeight / 2;
   background: #1f84db;
 }
