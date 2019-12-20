@@ -106,18 +106,22 @@ storiesOf('Input', module)
           computeClasses={defaults => ({
             ...defaults,
             permanent: classnames(defaults.permanent, classes['extended-permanent']),
+            startAdornment: classnames(defaults.startAdornment, classes['custom-start-adornment']),
           })}
           type='text'
           placeholder='Login or email'
+          startAdornment='👤'
         />
         <div style={{ marginTop: 10 }} />
         <Input
           computeClasses={defaults => ({
             ...defaults,
             permanent: classnames(defaults.permanent, classes['extended-permanent']),
+            startAdornment: classnames(defaults.startAdornment, classes['custom-start-adornment']),
           })}
           type='password'
           placeholder='Password'
+          startAdornment='🔒'
         />
       </div>
     </Fragment>
