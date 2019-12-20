@@ -23,6 +23,8 @@ const availableTypes = Object.freeze([
  */
 const defaultClasses = Object.freeze({
   input: cx('input'),
+  startAdornment: cx('adornment-container', 'start'),
+  endAdornment: cx('adornment-container', 'end'),
   permanent: cx('input-wrapper', 'field'),
   failed: cx('failed'),
   focused: cx('focused'),
@@ -83,7 +85,7 @@ const Input = forwardRef(function Input ({
       ])}
     >
       {Boolean(startAdornment) && (
-        <span className={cx('adornment-container', 'start')}>
+        <span className={readyClasses.startAdornment}>
           {startAdornment}
         </span>
       )}
@@ -103,7 +105,7 @@ const Input = forwardRef(function Input ({
         type={inputType}
       />
       {Boolean(endAdornment) && (
-        <span className={cx('adornment-container', 'end')}>
+        <span className={readyClasses.endAdornment}>
           {endAdornment}
         </span>
       )}
