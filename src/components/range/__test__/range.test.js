@@ -75,7 +75,7 @@ describe('<Range />', () => {
     );
     const instance = wrapper.find(PureRange).instance();
 
-    expect(wrapper.find(`.${classes['range-container-base']}`).prop('className')).toContain(classes.disabled);
+    expect(wrapper.find(`.${classes['range-wrapper-base']}`).prop('className')).toContain(classes.disabled);
 
     jest.spyOn(instance, 'toggleGrabbed');
     expect(instance.toggleGrabbed).toHaveBeenCalledTimes(0);

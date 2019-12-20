@@ -105,8 +105,7 @@ storiesOf('Range', module)
         step={10}
         wrapperProps={{
           style: {
-            padding: '4px 14px',
-            background: '#ccc',
+            padding: '4px 10px',
             height: 28,
             boxSizing: 'border-box',
           },
