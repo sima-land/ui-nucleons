@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Layout /> should renders correctly with props 1`] = `
+<div
+  className="layout-wrapper layout-xxl-padding-sm layout-xl-padding-sm layout-lg-padding-sm layout-md-padding-sm layout-sm-padding-sm layout-xs-padding-sm layout-xxs-padding-sm layout-xxxs-padding-sm"
+>
+  <section
+    className="layout layout-xxl-width-xl layout-xl-width-xl layout-lg-width-xl layout-md-width-xl layout-sm-width-xl layout-xs-width-xl layout-xxs-width-xl layout-xxxs-width-xl section-class"
+    name="some-name"
+  >
+    some content
+  </section>
+</div>
+`;
+
+exports[`<Layout /> should renders correctly without props 1`] = `
+<div
+  className="layout-wrapper layout-xxl-padding-sm layout-xl-padding-sm layout-lg-padding-sm layout-md-padding-sm layout-sm-padding-sm layout-xs-padding-sm layout-xxs-padding-sm layout-xxxs-padding-sm"
+>
+  <div
+    className="layout layout-xxl-width-xl layout-xl-width-xl layout-lg-width-xl layout-md-width-xl layout-sm-width-xl layout-xs-width-xl layout-xxs-width-xl layout-xxxs-width-xl"
+  >
+    123
+  </div>
+</div>
+`;
