@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import Checkbox from '../index';
+import classes from '../checkbox.scss';
 
 describe('<Checkbox />', () => {
   it('should render without props', () => {
@@ -41,5 +42,13 @@ describe('<Checkbox />', () => {
     );
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.find('.checkbox-container.error')).toHaveLength(0);
+  });
+  it('should pass "className" prop', () => {
+    const wrapper = shallow(
+      <Checkbox
+        className='test-class-name'
+      />
+    );
+    expect(wrapper.find(`.${classes['checkbox-wrapper']}`).prop('className')).toContain('test-class-name');
   });
 });

@@ -13,11 +13,13 @@ const cx = classnames.bind(classes);
  * @param {boolean} props.checked Отмечена ли галочка.
  * @param {boolean} props.disabled Отключена ли галочка.
  * @param {Function} props.onChange Сработает при смене состояния.
+ * @param {string} props.className CSS-класс.
  */
 const Checkbox = forwardRef(({
   checked = false,
   disabled,
   onChange,
+  className,
   ...restProps
 }, ref) => {
   const [isChecked, toggleCheck] = useState(checked);
@@ -25,7 +27,7 @@ const Checkbox = forwardRef(({
   useEffect(() => toggleCheck(checked), [checked]);
 
   return (
-    <span className={cx('checkbox-wrapper')}>
+    <span className={cx('checkbox-wrapper', className)}>
       <input
         {...restProps}
         ref={ref}
@@ -64,6 +66,11 @@ Checkbox.propTypes = {
    * Сработает при смене состояния.
    */
   onChange: PropTypes.func,
+
+  /**
+   * CSS-класс.
+   */
+  className: PropTypes.string,
 };
 
 export default Checkbox;
