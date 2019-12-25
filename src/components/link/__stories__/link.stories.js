@@ -89,30 +89,6 @@ storiesOf('Link', module)
       </div>
     </div>
   ))
-  .add('with external icon', () => (
-    <div>
-      <div style={grayBackground}>
-        {LINK_COLORS.map(color => (
-          <span
-            style={marginRight}
-            key={color}
-          >
-            <Link color={color} external>Ссылка</Link>
-          </span>
-        ))}
-      </div>
-      <div style={padding}>
-        {LINK_COLORS.map(color => (
-          <span
-            style={marginRight}
-            key={color}
-          >
-            <Link color={color} external>Ссылка</Link>
-          </span>
-        ))}
-      </div>
-    </div>
-  ))
   .add('with disable hover', () => (
     <div>
       <div style={grayBackground}>
@@ -149,7 +125,6 @@ storiesOf('Link', module)
       <Link
         underlined
         external
-        withIcon={false}
         href='https://www.sima-land.ru/prazdniki/'
         style={marginRight}
       >

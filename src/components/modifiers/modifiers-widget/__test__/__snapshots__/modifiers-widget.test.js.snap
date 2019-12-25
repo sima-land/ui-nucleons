@@ -98,18 +98,13 @@ exports[`<ModifiersWidget /> should renders correctly with prop 1`] = `
       external={true}
       href="sima-land.ru"
       underlined={true}
-      withIcon={false}
     >
       <a
-        className="modifiers-link link link-can-be-hovered"
+        className="modifiers-link link link-blue link-can-be-hovered link-underlined link-underlined-solid"
         href="sima-land.ru"
         target="_blank"
       >
-        <span
-          className="link-text link-blue link-underlined link-underlined-solid"
-        >
-          Таблица размеров
-        </span>
+        Таблица размеров
       </a>
     </Link>
   </div>
