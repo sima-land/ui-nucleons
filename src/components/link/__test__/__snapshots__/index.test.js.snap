@@ -2,51 +2,30 @@
 
 exports[`<Link /> calls helpers and renders correctly with external 1`] = `
 <a
-  className="link"
+  className="link link-white"
   href="/cabinet/"
   target="_blank"
 >
-  <span
-    className="link-text link-white link-external"
-  >
-    TestLink
-  </span>
-  <span
-    className="icon-external external-white"
-  >
-    <Icon
-      icon={[Function]}
-      inline={true}
-      size={16}
-    />
-  </span>
+  TestLink
 </a>
 `;
 
 exports[`<Link /> calls helpers and renders correctly with pseudo 1`] = `
 <a
-  className="link link-can-be-hovered"
+  className="link link-black link-can-be-hovered link-underlined link-underlined-dashed"
   href="/auth/"
 >
-  <span
-    className="link-text link-black link-underlined link-underlined-dashed"
-  >
-    TestLink
-  </span>
+  TestLink
 </a>
 `;
 
 exports[`<Link /> calls helpers with right params and renders correctly without external 1`] = `
 <a
-  className="testClass link"
+  className="testClass link link-white link-underlined link-underlined-solid"
   href="/cart/"
   relative={true}
   target="_blank"
 >
-  <span
-    className="link-text link-white link-underlined link-underlined-solid"
-  >
-    TestLink
-  </span>
+  TestLink
 </a>
 `;

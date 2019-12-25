@@ -1,12 +1,8 @@
 import React, { forwardRef } from 'react';
 import {
   createLinkStyle,
-  createLinkTextStyle,
-  createExternalStyle,
 } from './create-link-style';
 import Type from 'prop-types';
-import Icon from '../icon';
-import externalIcon from '../icons/external.svg';
 import { getNoIndex } from '../helpers/get-no-index';
 
 export const LINK_TARGETS = ['_blank', '_self'];
@@ -23,7 +19,7 @@ export const getContent = (disableIndexing, children) =>
 /**
  * Компонент ссылки.
  * @param {Object} props Свойства компонента.
- * @param {boolean} props.disableIndexing=false Запрет индексации названия ссылки поисковиками.
+ * @param {boolean} [props.disableIndexing=false] Запрет индексации названия ссылки поисковиками.
  * @param {*} props.children Содержимое компонента.
  * @param {string} [props.className] Пользовательские классы.
  * @param {string} [props.target] В новую или текущую вкладку откроется ссылка.
@@ -33,7 +29,6 @@ export const getContent = (disableIndexing, children) =>
  * @param {boolean} [props.pseudo] Псевдоссылка.
  * @param {boolean} [props.disableHoverEffect] Не реагировать при наведении на компонент.
  * @param {boolean} [props.external=false] Является ли ссылкой на внешний ресурс.
- * @param {boolean} [props.withIcon=false] С иконкой.
  * @param {...*} restProps Остальные параметры.
  * @param {string} [props.href] Ссылка.
  * @param {Function} [props.onClick] Функция, вызываемая при клике.
@@ -51,7 +46,6 @@ const Link = forwardRef(({
   pseudo,
   disableHoverEffect,
   external = false,
-  withIcon = external,
   ...restProps
 }, ref) => {
   const linkParams = restProps;
@@ -61,26 +55,19 @@ const Link = forwardRef(({
   }
 
   const underlineType = pseudo ? 'dashed' : 'solid';
-  const linkClasses = createLinkStyle({ className, disableHoverEffect });
-  const textClasses = createLinkTextStyle({
+  const linkClasses = createLinkStyle({
+    className,
+    disableHoverEffect,
     color,
     underlineType: underlined && underlineType,
-    external: withIcon,
   });
-  const externalClasses = createExternalStyle(color);
   return (
     <a
       {...linkParams}
       ref={ref}
       className={linkClasses}
-    >
-      <span className={textClasses} {...getContent(disableIndexing, children)} />
-      {withIcon && (
-        <span className={externalClasses}>
-          <Icon icon={externalIcon} size={16} inline />
-        </span>
-      )}
-    </a>
+      {...getContent(disableIndexing, children)}
+    />
   );
 });
 
@@ -131,11 +118,6 @@ Link.propTypes = {
    * Является ли ссылкой на внешний ресурс.
    */
   external: Type.bool,
-
-  /**
-   * C иконкой.
-   */
-  withIcon: Type.bool,
 
   /**
    * Ссылка.

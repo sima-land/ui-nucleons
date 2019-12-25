@@ -139,7 +139,7 @@ describe('<Breadcrumbs />', () => {
     expect(wrapper.find('li').at(0).find(Link).prop('color')).toBe('dark-gray');
     expect(wrapper.find('li').at(0).find(Link).prop('href')).toBe('href');
     expect(wrapper.find('li').at(0).find(Link).prop('underlined')).toBeFalsy();
-    expect(wrapper.find('li').at(1).find('span').text()).toContain('Active');
+    expect(wrapper.find('li').at(1).text()).toContain('Active');
 
     wrapper.find(Icon).simulate('click');
 
@@ -147,7 +147,7 @@ describe('<Breadcrumbs />', () => {
     expect(wrapper.find(`.${styles['sibling-item']}`).at(0).find(Link).prop('href')).toBe('href');
     expect(wrapper.find(`.${styles['sibling-item']}`).at(0).find(Link).prop('underlined')).toBeFalsy();
 
-    expect(wrapper.find(`.${styles['sibling-item']}`).at(1).find('span').text()).toContain('Active');
+    expect(wrapper.find(`.${styles['sibling-item']}`).at(1).text()).toContain('Active');
 
     expect(wrapper.find(`.${styles['sibling-item']}`).at(2).find(Link).prop('color')).toBe('dark-gray');
     expect(wrapper.find(`.${styles['sibling-item']}`).at(2).find(Link).prop('href')).toBeUndefined();

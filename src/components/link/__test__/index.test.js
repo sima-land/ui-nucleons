@@ -7,8 +7,6 @@ describe('<Link />', () => {
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.spyOn(styleHelpers, 'createLinkStyle');
-    jest.spyOn(styleHelpers, 'createLinkTextStyle');
-    jest.spyOn(styleHelpers, 'createExternalStyle');
   });
   it('calls helpers with right params and renders correctly without external', () => {
     const link = shallow(
@@ -28,15 +26,9 @@ describe('<Link />', () => {
     expect(styleHelpers.createLinkStyle).toHaveBeenCalledWith({
       className: 'testClass',
       disableHoverEffect: true,
-    });
-    expect(styleHelpers.createLinkTextStyle).toHaveBeenCalledTimes(1);
-    expect(styleHelpers.createLinkTextStyle).toHaveBeenCalledWith({
       color: 'white',
-      external: false,
       underlineType: 'solid',
     });
-    expect(styleHelpers.createExternalStyle).toHaveBeenCalledTimes(1);
-    expect(styleHelpers.createExternalStyle).toHaveBeenCalledWith('white');
     expect(link).toMatchSnapshot();
   });
   it('calls helpers and renders correctly with pseudo', () => {
@@ -54,15 +46,9 @@ describe('<Link />', () => {
     expect(styleHelpers.createLinkStyle).toHaveBeenCalledWith({
       className: undefined,
       disableHoverEffect: undefined,
-    });
-    expect(styleHelpers.createLinkTextStyle).toHaveBeenCalledTimes(1);
-    expect(styleHelpers.createLinkTextStyle).toHaveBeenCalledWith({
       color: 'black',
-      external: false,
       underlineType: 'dashed',
     });
-    expect(styleHelpers.createExternalStyle).toHaveBeenCalledTimes(1);
-    expect(styleHelpers.createExternalStyle).toHaveBeenCalledWith('black');
     expect(link).toMatchSnapshot();
   });
   it('calls helpers and renders correctly with external', () => {
@@ -80,15 +66,8 @@ describe('<Link />', () => {
     expect(styleHelpers.createLinkStyle).toHaveBeenCalledWith({
       className: undefined,
       disableHoverEffect: true,
-    });
-    expect(styleHelpers.createLinkTextStyle).toHaveBeenCalledTimes(1);
-    expect(styleHelpers.createLinkTextStyle).toHaveBeenCalledWith({
       color: 'white',
-      external: true,
-      underlineType: undefined,
     });
-    expect(styleHelpers.createExternalStyle).toHaveBeenCalledTimes(1);
-    expect(styleHelpers.createExternalStyle).toHaveBeenCalledWith('white');
     expect(link).toMatchSnapshot();
   });
   it('calls functions onClick, onMouseEnter, onMouseLeave', () => {
@@ -120,8 +99,8 @@ describe('<Link />', () => {
         TestLink
       </Link>
     );
-    expect(link.find('span').prop('dangerouslySetInnerHTML')).toBeDefined();
-    expect(link.find('span').prop('children')).not.toBeDefined();
+    expect(link.prop('dangerouslySetInnerHTML')).toBeDefined();
+    expect(link.prop('children')).not.toBeDefined();
   });
 
   it('render correctly without noIndexContent props', () => {
@@ -130,8 +109,8 @@ describe('<Link />', () => {
         TestLink
       </Link>
     );
-    expect(link.find('span').text()).toEqual('TestLink');
-    expect(link.find('span').prop('dangerouslySetInnerHTML')).not.toBeDefined();
-    expect(link.find('span').prop('children')).toBeDefined();
+    expect(link.text()).toEqual('TestLink');
+    expect(link.prop('dangerouslySetInnerHTML')).not.toBeDefined();
+    expect(link.prop('children')).toBeDefined();
   });
 });
