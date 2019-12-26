@@ -1,5 +1,6 @@
 import isEqual from 'lodash/isEqual';
-import { useEffect, useRef, useMemo } from 'react';
+import { useEffect, useRef, useMemo, useState } from 'react';
+import { isTouchDevice } from '../helpers/is-touch-device';
 
 /**
  * Вызывает переданную функцию при монтировании компонента.
@@ -23,4 +24,18 @@ export const useApplyMemo = (computeValue, dependencies) => {
   }
 
   return useMemo(memoContainer.current, dependencies);
+};
+
+/**
+ * При монтировании проверяет, поддерживает ли устройство touch события.
+ * @return {boolean} True - если поддерживает, false - если нет.
+ */
+export const useIsTouchDevice = () => {
+  const [isTouch, setTouch] = useState(false);
+
+  useOnMount(() => {
+    setTouch(isTouchDevice());
+  });
+
+  return isTouch;
 };

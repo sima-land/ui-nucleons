@@ -4,7 +4,17 @@ import { act } from 'react-dom/test-utils';
 import {
   useOnMount,
   useApplyMemo,
+  useIsTouchDevice,
 } from '../index';
+
+jest.mock('../../helpers/is-touch-device', () => {
+  const original = jest.requireActual('../../helpers/is-touch-device');
+  return {
+    ...original,
+    __esModule: true,
+    isTouchDevice: jest.fn(() => true),
+  };
+});
 
 describe('useOnMount()', () => {
   let container;
@@ -97,5 +107,39 @@ describe('useApplyMemo()', () => {
     });
     expect(spy).toHaveBeenCalledTimes(2);
     expect(spy).toHaveBeenCalledWith([true]);
+  });
+});
+
+describe('useIsTouchDevice', () => {
+  let container;
+
+  beforeEach(() => {
+    container = document.createElement('div');
+    document.body.appendChild(container);
+  });
+
+  afterEach(() => {
+    document.body.removeChild(container);
+    container = null;
+  });
+
+  /**
+   * Тестовый компонент.
+   * @return {ReactElement} Блок.
+   */
+  const TestComponent = () => {
+    const touch = useIsTouchDevice();
+    return (
+      touch && (
+        <span>Visible on touch</span>
+      )
+    );
+  };
+
+  it('should works with touch', () => {
+    act(() => {
+      ReactDOM.render(<TestComponent />, container);
+    });
+    expect(container.querySelector('span').textContent).toBe('Visible on touch');
   });
 });

@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Amount /> should match snapshot 1`] = `
+<ForwardRef
+  alwaysShowCross={false}
+  onAdd={[Function]}
+  onChange={[Function]}
+  onClear={[Function]}
+  onSubtract={[Function]}
+  value={123}
+  withControls={true}
+>
+  <div
+    className="amount-container"
+  >
+    <div
+      className="amount-wrapper"
+    >
+      <div
+        className="field-wrapper"
+      >
+        <span
+          aria-label="Удалить единицу товара"
+          className="button subtract-button"
+          onClick={[Function]}
+          role="button"
+        >
+          −
+        </span>
+        <input
+          alwaysShowCross={false}
+          className="amount-field"
+          onChange={[Function]}
+          type="text"
+          value={123}
+        />
+        <span
+          aria-label="Добавить единицу товара"
+          className="button add-button"
+          onClick={[Function]}
+          role="button"
+        >
+          +
+        </span>
+      </div>
+      <div
+        className="clear-icon-wrapper hidden"
+      >
+        <span
+          title="Удалить товар из корзины"
+        >
+          <Icon
+            aria-label="Удалить товар из корзины"
+            className="clear-icon"
+            icon={[Function]}
+            onClick={[Function]}
+            role="button"
+            size={16}
+          >
+            <cross
+              aria-label="Удалить товар из корзины"
+              className="icon icon-block clear-icon"
+              height={16}
+              onClick={[Function]}
+              role="button"
+              viewBox="0 0 36 36"
+              width={16}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <svg
+                aria-label="Удалить товар из корзины"
+                className="icon icon-block clear-icon"
+                height={16}
+                onClick={[Function]}
+                role="button"
+                viewBox="0 0 36 36"
+                width={16}
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M22.878 17.996l12.089 12.09c1.377 1.377 1.377 3.5 0 4.877-.636.636-1.59 1.062-2.44 1.062-.848 0-1.803-.423-2.438-1.062L18 22.874 5.911 34.964c-.635.635-1.59 1.06-2.439 1.06-.848 0-1.803-.422-2.439-1.06-1.377-1.378-1.377-3.501 0-4.879l12.089-12.089L1.033 5.911c-1.377-1.38-1.377-3.5 0-4.878 1.378-1.377 3.5-1.377 4.878 0L18 13.122 30.089 1.033c1.377-1.377 3.5-1.377 4.878 0 1.377 1.378 1.377 3.5 0 4.878z"
+                />
+              </svg>
+            </cross>
+          </Icon>
+        </span>
+      </div>
+    </div>
+  </div>
+</ForwardRef>
+`;
