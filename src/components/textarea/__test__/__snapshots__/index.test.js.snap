@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Textarea /> should renders correctly with props 1`] = `
-<ForwardRef
+<Textarea
   failed={true}
   onChange={[MockFunction]}
   value="Test value"
@@ -14,5 +14,5 @@ exports[`<Textarea /> should renders correctly with props 1`] = `
     onInput={[Function]}
     value="Test value"
   />
-</ForwardRef>
+</Textarea>
 `;

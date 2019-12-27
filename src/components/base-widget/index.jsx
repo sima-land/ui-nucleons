@@ -17,7 +17,7 @@ import Type from 'prop-types';
  * @param {Object} [props.footerContainerProps] Свойства элемента-контейнера "подвала".
  * @return {ReactElement} Базовый компонент виджета.
  */
-const BaseWidget = forwardRef(({
+const BaseWidget = forwardRef(function BaseWidget ({
   container: Container = 'section',
   containerProps,
   header,
@@ -29,29 +29,31 @@ const BaseWidget = forwardRef(({
   footer,
   footerContainer: Footer = 'footer',
   footerContainerProps,
-}, ref) => (
-  <Container
-    {...containerProps}
-    ref={ref}
-  >
-    {Boolean(header) && (
-      <Header
-        {...headerContainerProps}
-        children={header}
+}, ref) {
+  return (
+    <Container
+      {...containerProps}
+      ref={ref}
+    >
+      {Boolean(header) && (
+        <Header
+          {...headerContainerProps}
+          children={header}
+        />
+      )}
+      <Content
+        {...childrenContainerProps}
+        children={children}
       />
-    )}
-    <Content
-      {...childrenContainerProps}
-      children={children}
-    />
-    {Boolean(footer) && (
-      <Footer
-        {...footerContainerProps}
-        children={footer}
-      />
-    )}
-  </Container>
-));
+      {Boolean(footer) && (
+        <Footer
+          {...footerContainerProps}
+          children={footer}
+        />
+      )}
+    </Container>
+  );
+});
 
 BaseWidget.propTypes = {
   /**

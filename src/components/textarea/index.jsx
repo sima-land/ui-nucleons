@@ -26,7 +26,7 @@ const cx = classnames.bind(textareaClasses);
  * @param {Function} [props.onFocus] Сработает при расфокусировке на поле.
  * @return {ReactElement} Компонент текстовой области.
  */
-const Textarea = forwardRef(({
+const Textarea = forwardRef(function Textarea ({
   value,
   failed,
   className,
@@ -38,7 +38,7 @@ const Textarea = forwardRef(({
   onFocus,
   onBlur,
   ...restProps
-}, ref) => {
+}, ref) {
   const [focused, setFocused] = useState(autoFocus);
   const textareaRef = useRef();
 
@@ -148,4 +148,5 @@ Textarea.propTypes = {
   onBlur: PropTypes.func,
 };
 
+Textarea.displayName = 'Textarea';
 export default Textarea;

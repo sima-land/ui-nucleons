@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<CheckboxField /> should match snapshot 1`] = `
-<ForwardRef
+<CheckboxField
   checked={true}
   disabled={true}
   error="Test error"
@@ -18,7 +18,7 @@ exports[`<CheckboxField /> should match snapshot 1`] = `
       <span
         className="checkbox-column"
       >
-        <ForwardRef
+        <Checkbox
           checked={true}
           disabled={true}
           onChange={[Function]}
@@ -110,7 +110,7 @@ exports[`<CheckboxField /> should match snapshot 1`] = `
               </svg>
             </CheckboxIcon>
           </span>
-        </ForwardRef>
+        </Checkbox>
       </span>
       <span
         className="label-column"
@@ -133,5 +133,5 @@ exports[`<CheckboxField /> should match snapshot 1`] = `
       Test info
     </span>
   </span>
-</ForwardRef>
+</CheckboxField>
 `;

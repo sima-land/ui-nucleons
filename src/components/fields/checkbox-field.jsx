@@ -19,14 +19,14 @@ const cx = classnames.bind(classes);
  * @param {Object} ref Реф.
  * @return {ReactElement} Компонент поля галочки.
  */
-export const CheckboxField = forwardRef(({
+export const CheckboxField = forwardRef(function CheckboxField ({
   label,
   error,
   info,
   checked = false,
   onChange,
   ...restProps
-}, ref) => {
+}, ref) {
   const [isChecked, toggleCheck] = useState(checked);
 
   useEffect(() => toggleCheck(checked), [checked]);
@@ -98,4 +98,5 @@ CheckboxField.propTypes = {
   onChange: PropTypes.func,
 };
 
+CheckboxField.displayName = 'CheckboxField';
 export default CheckboxField;

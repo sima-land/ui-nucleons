@@ -36,7 +36,7 @@ export const getContent = (disableIndexing, children) =>
  * @param {Function} [props.onMouseLeave] Функция, вызываемая при покидании области кнопки.
  * @return {ReactElement} Компонент ссылки.
  */
-const Link = forwardRef(({
+const Link = forwardRef(function Link ({
   disableIndexing = false,
   children,
   className,
@@ -47,7 +47,7 @@ const Link = forwardRef(({
   disableHoverEffect,
   external = false,
   ...restProps
-}, ref) => {
+}, ref) {
   const linkParams = restProps;
   if (!pseudo) {
     const defaultTarget = external ? '_blank' : '_self';
@@ -70,8 +70,6 @@ const Link = forwardRef(({
     />
   );
 });
-
-Link.displayName = 'Link';
 
 Link.propTypes = {
   /**
@@ -140,4 +138,5 @@ Link.propTypes = {
   onMouseLeave: Type.func,
 };
 
+Link.displayName = 'Link';
 export default Link;

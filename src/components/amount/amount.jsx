@@ -21,7 +21,7 @@ const cx = classnames.bind(classes);
  * @param {Function} ref Объект для сохранения ссылки на DOM-элемент поля.
  * @return {ReactElement} Компонент поля количества товара.
  */
-const Amount = forwardRef(({
+const Amount = forwardRef(function Amount ({
   withControls = true,
   withPlus = withControls,
   withMinus = withControls,
@@ -31,7 +31,7 @@ const Amount = forwardRef(({
   onClear,
   inputClassName,
   ...inputProps
-}, ref) => {
+}, ref) {
   const isTouchDevice = useIsTouchDevice();
 
   return (
@@ -124,4 +124,5 @@ Amount.propTypes = {
   inputClassName: PropTypes.object,
 };
 
+Amount.displayName = 'Amount';
 export default Amount;
