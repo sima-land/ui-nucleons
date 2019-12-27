@@ -44,7 +44,7 @@ export const renderButton = ({ appearance, buttonParams = {}, children }) => {
  * @param {Object} ref Реф для DOM-элемента кнопки.
  * @return {ReactElement} Компонент кнопки.
  */
-const Button = forwardRef(({
+const Button = forwardRef(function Button ({
   children,
   className,
   color = 'clean',
@@ -54,7 +54,7 @@ const Button = forwardRef(({
   isDisabled = false,
   appearance = 'button',
   ...restProps
-}, ref) => {
+}, ref) {
   const buttonClasses = createButtonStyle({ className, color, shape, withShadow, isFocused });
   const buttonParams = {
     ref,

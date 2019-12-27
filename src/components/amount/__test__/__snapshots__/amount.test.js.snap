@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Amount /> should match snapshot 1`] = `
-<ForwardRef
+<Amount
   alwaysShowCross={false}
   onAdd={[Function]}
   onChange={[Function]}
@@ -87,5 +87,5 @@ exports[`<Amount /> should match snapshot 1`] = `
       </div>
     </div>
   </div>
-</ForwardRef>
+</Amount>
 `;

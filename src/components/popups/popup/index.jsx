@@ -11,13 +11,13 @@ import Type from 'prop-types';
  * @param {Object} ref Реф для DOM-элемента попапа.
  * @return {ReactElement} Попап со скругленными углами, белым фоном и тенью.
  */
-const Popup = forwardRef(({ children, additionalClass }, ref) => (
-  <div ref={ref} className={classNames(styles.popup, additionalClass)}>
-    {children}
-  </div>
-));
-
-Popup.displayName = 'Popup';
+const Popup = forwardRef(function Popup ({ children, additionalClass }, ref) {
+  return (
+    <div ref={ref} className={classNames(styles.popup, additionalClass)}>
+      {children}
+    </div>
+  );
+});
 
 Popup.propTypes = {
   /**
@@ -31,4 +31,5 @@ Popup.propTypes = {
   additionalClass: Type.string,
 };
 
+Popup.displayName = 'Popup';
 export default Popup;

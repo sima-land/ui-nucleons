@@ -28,7 +28,7 @@ const availableTypes = Object.values(MODIFIERS_TYPES);
  * @param {Object} ref Реф.
  * @return {ReactElement} Компонент модификатора.
  */
-const ModifierButton = forwardRef(({
+const ModifierButton = forwardRef(function ModifierButton ({
   count = null,
   content,
   selected,
@@ -39,7 +39,7 @@ const ModifierButton = forwardRef(({
   wrapperClassName = '',
   onClick,
   isMarkdown,
-}, ref) => {
+}, ref) {
   const readyType = availableTypes.includes(type) ? type : 'text';
 
   return (

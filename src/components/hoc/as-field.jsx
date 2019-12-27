@@ -26,7 +26,7 @@ const asField = (Component, options) => {
     passProps = identity,
   } = options || {};
 
-  const Field = forwardRef((props, ref) => {
+  const Field = forwardRef(function Field (props, ref) {
     const {
       container: Container = 'div',
       label,

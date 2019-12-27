@@ -15,13 +15,13 @@ const cx = classnames.bind(classes);
  * @param {Function} props.onChange Сработает при смене состояния.
  * @param {string} props.className CSS-класс.
  */
-const Checkbox = forwardRef(({
+const Checkbox = forwardRef(function Checkbox ({
   checked = false,
   disabled,
   onChange,
   className,
   ...restProps
-}, ref) => {
+}, ref) {
   const [isChecked, toggleCheck] = useState(checked);
 
   useEffect(() => toggleCheck(checked), [checked]);
@@ -73,4 +73,5 @@ Checkbox.propTypes = {
   className: PropTypes.string,
 };
 
+Checkbox.displayName = 'Checkbox';
 export default Checkbox;
