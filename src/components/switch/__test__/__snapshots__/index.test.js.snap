@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Switch /> should handle "computeClasses" prop 1`] = `
+<Switch
+  computeClasses={[Function]}
+>
+  <span
+    className="root-base test-root"
+  >
+    <span
+      className="test-track track"
+    />
+    <span
+      className="test-circle"
+    />
+    <input
+      checked={false}
+      className="input"
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </span>
+</Switch>
+`;
+
+exports[`<Switch /> should work without props 1`] = `
+<Switch>
+  <span
+    className="root-base root"
+  >
+    <span
+      className="track"
+    />
+    <span
+      className="circle"
+    />
+    <input
+      checked={false}
+      className="input"
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </span>
+</Switch>
+`;
