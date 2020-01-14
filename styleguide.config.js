@@ -4,6 +4,9 @@ module.exports = {
   title: 'UINucleons',
   components: 'src/components/**/*.jsx',
   ignore: [
+    'src/components/pagination/base-pagination.jsx',
+    'src/components/pagination/page-button.jsx',
+    'src/components/pagination/page-select-form.jsx',
     'src/components/carousel/draggable.jsx',
     'src/components/carousel/nav-button.jsx',
   ],

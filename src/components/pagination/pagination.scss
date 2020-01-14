@@ -1,0 +1,50 @@
+.base-pagination-wrapper {
+  .page-button + .page-button {
+    margin-left: 8px;
+  }
+}
+
+.page-select-form {
+  font-size: 12px;
+  .page-input-wrapper {
+    margin-left: 8px;
+    max-width: 56px;
+    .page-input {
+      text-align: center;
+      font-size: 16px;
+    }
+  }
+  .submit-button {
+    margin-left: 8px;
+  }
+  .cancel-button {
+    margin-left: 32px;
+  }
+}
+
+.page-button {
+  display: inline-block;
+  height: 40px;
+  min-width: 40px;
+  background: #fff;
+  box-sizing: border-box;
+  border: 1px solid #ded9d9;
+  border-radius: 20px;
+  font-size: 16px;
+  outline: 0;
+  padding: 0 8px;
+  &:disabled {
+    color: #ded9d9;
+    opacity: .5;
+  }
+  &:not(.selected):not(:disabled):hover {
+    border-color: #000;
+    cursor: pointer;
+  }
+  &.selected {
+    background: #f2f3ea;
+    font-weight: bold;
+    box-shadow: inset 0 -1px 1px rgba(0, 0, 0, .15);
+    cursor: default;
+  }
+}
