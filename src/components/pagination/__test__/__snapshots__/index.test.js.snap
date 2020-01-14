@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Pagination /> should render without props 1`] = `
+<Pagination>
+  <BasePagination
+    onButtonClick={[Function]}
+  >
+    <div
+      className="base-pagination-wrapper"
+    />
+  </BasePagination>
+</Pagination>
+`;
