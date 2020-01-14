@@ -4,15 +4,8 @@ import Rating from '../';
 import range from 'lodash/range';
 import styles from './rating.scss';
 
-const style = {
-  display: 'flex',
-};
 const container = {
   padding: '15px',
-};
-const grayContainer = {
-  ...container,
-  background: '#ddd',
 };
 
 const values = range(0, 5, 0.5);
@@ -37,27 +30,15 @@ class SelectableRating extends React.Component {
 
 storiesOf('Rating', module)
   .add('default', () => (
-    <div style={style}>
-      <div style={container}>
-        {values.map(value => (
-          <div key={value}>
-            <Rating
-              value={value}
-            />
-          </div>
-        ))
-        }
-      </div>
-      <div style={grayContainer}>
-        {values.map(value => (
-          <div key={value}>
-            <Rating
-              value={value}
-            />
-          </div>
-        ))
-        }
-      </div>
+    <div style={container}>
+      {values.map(value => (
+        <div key={value}>
+          <Rating
+            value={value}
+          />
+        </div>
+      ))
+      }
     </div>
   ))
   .add('with big star', () => (

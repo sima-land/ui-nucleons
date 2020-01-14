@@ -5,7 +5,10 @@ $dark-story: #333;
 
 .doc-rating {
   margin: 5px;
-  width: 200px;
+}
+
+.doc-rating .doc-rating-star {
+  padding: 0 10px;
 }
 
 .doc-empty-star {
