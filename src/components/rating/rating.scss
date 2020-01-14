@@ -1,60 +1,70 @@
 @import '../variables';
-$inner-star: "path:first-child";
-$outside-star: "path:nth-child(2)";
-$bottom-of-star: "path:nth-child(3)";
+$background: "path:first-child";
+$half: "path:nth-child(2)";
 
 .rating {
-  width: 118px;
-  display: flex;
+  display: inline-flex;
   flex-direction: row-reverse;
-  justify-content: space-around;
   align-items: center;
-  #{$inner-star} {
-    fill: $transparent;
+  #{$background} {
+    fill: $lightGray;
   }
-  #{$outside-star} {
-    fill: $transparent;
+  #{$half} {
+    fill: $lightGray;
   }
-  #{$bottom-of-star} {
-    fill: $transparent;
+}
+
+.rating-star {
+  padding: 0 2px;
+  &:first-child {
+    padding-left: 0;
+  }
+  &:last-child {
+    padding-right: 0;
   }
 }
 
 .empty-star {
-  #{$outside-star} {
-    fill: $grayStar;
+  #{$half} {
+    fill: $lightGray;
   }
 }
 
 .half-star {
-  #{$outside-star} {
-    fill: $grayStar;
+  #{$background} {
+    fill: $lightGray;
   }
-  #{$bottom-of-star} {
+  #{$half} {
     fill: $orangeStar;
   }
 }
 
 .full-star {
-  #{$inner-star} {
+  #{$background} {
     fill: $orangeStar;
   }
-  #{$outside-star} {
+  #{$half} {
     fill: $orangeStar;
   }
 }
 
 .rating-can-be-hovered {
+  &:hover .rating-star {
+    cursor: pointer;
+    #{$background} {
+      fill: $lightGray;
+    }
+    #{$half} {
+      fill: $lightGray;
+    }
+  }
   .rating-star:hover,
   .rating-star:hover ~ .rating-star {
-    #{$inner-star} {
-      fill: $grayStar;
+    #{$background} {
+      fill: $orangeStar;
     }
-    #{$outside-star} {
-      fill: $grayStar;
-    }
-    #{$bottom-of-star} {
-      fill: $grayStar;
+    #{$half} {
+      fill: $orangeStar;
     }
   }
 }
