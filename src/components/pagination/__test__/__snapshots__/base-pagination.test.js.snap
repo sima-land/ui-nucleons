@@ -1,0 +1,320 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BasePagination /> should handle "onButtonClick" prop 1`] = `
+<BasePagination
+  current={3}
+  onButtonClick={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          2,
+        ],
+        Array [
+          1,
+        ],
+        Array [
+          2,
+        ],
+        Array [
+          100,
+        ],
+        Array [
+          4,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  total={100}
+>
+  <div
+    className="base-pagination-wrapper"
+  >
+    <PageButton
+      aria-label="Назад"
+      onClick={[Function]}
+    >
+      <button
+        aria-label="Назад"
+        className="page-button"
+        onClick={[Function]}
+      >
+        ←
+      </button>
+    </PageButton>
+    <PageButton
+      key="0"
+      onClick={[Function]}
+      selected={false}
+    >
+      <button
+        className="page-button"
+        onClick={[Function]}
+      >
+        1
+      </button>
+    </PageButton>
+    <PageButton
+      key="1"
+      onClick={[Function]}
+      selected={false}
+    >
+      <button
+        className="page-button"
+        onClick={[Function]}
+      >
+        2
+      </button>
+    </PageButton>
+    <PageButton
+      key="2"
+      onClick={[Function]}
+      selected={true}
+    >
+      <button
+        className="page-button selected"
+        onClick={[Function]}
+      >
+        3
+      </button>
+    </PageButton>
+    <PageButton
+      key="3"
+      onClick={[Function]}
+      selected={false}
+    >
+      <button
+        className="page-button"
+        onClick={[Function]}
+      >
+        4
+      </button>
+    </PageButton>
+    <PageButton
+      key="4"
+      onClick={[Function]}
+      selected={false}
+    >
+      <button
+        className="page-button"
+        onClick={[Function]}
+      >
+        5
+      </button>
+    </PageButton>
+    <PageButton
+      key="5"
+      onClick={[Function]}
+      selected={false}
+    >
+      <button
+        className="page-button"
+        onClick={[Function]}
+      >
+        6
+      </button>
+    </PageButton>
+    <PageButton
+      aria-label="Выбрать страницу"
+      key="6"
+      onClick={[Function]}
+      selected={false}
+    >
+      <button
+        aria-label="Выбрать страницу"
+        className="page-button"
+        onClick={[Function]}
+      >
+        ...
+      </button>
+    </PageButton>
+    <PageButton
+      key="7"
+      onClick={[Function]}
+      selected={false}
+    >
+      <button
+        className="page-button"
+        onClick={[Function]}
+      >
+        100
+      </button>
+    </PageButton>
+    <PageButton
+      aria-label="Вперед"
+      onClick={[Function]}
+    >
+      <button
+        aria-label="Вперед"
+        className="page-button"
+        onClick={[Function]}
+      >
+        →
+      </button>
+    </PageButton>
+  </div>
+</BasePagination>
+`;
+
+exports[`<BasePagination /> should handle "total" and "current" props 1`] = `
+<BasePagination
+  current={2}
+  total={100}
+>
+  <div
+    className="base-pagination-wrapper"
+  >
+    <PageButton
+      aria-label="Назад"
+      onClick={[Function]}
+    >
+      <button
+        aria-label="Назад"
+        className="page-button"
+        onClick={[Function]}
+      >
+        ←
+      </button>
+    </PageButton>
+    <PageButton
+      key="0"
+      onClick={[Function]}
+      selected={false}
+    >
+      <button
+        className="page-button"
+        onClick={[Function]}
+      >
+        1
+      </button>
+    </PageButton>
+    <PageButton
+      key="1"
+      onClick={[Function]}
+      selected={true}
+    >
+      <button
+        className="page-button selected"
+        onClick={[Function]}
+      >
+        2
+      </button>
+    </PageButton>
+    <PageButton
+      key="2"
+      onClick={[Function]}
+      selected={false}
+    >
+      <button
+        className="page-button"
+        onClick={[Function]}
+      >
+        3
+      </button>
+    </PageButton>
+    <PageButton
+      key="3"
+      onClick={[Function]}
+      selected={false}
+    >
+      <button
+        className="page-button"
+        onClick={[Function]}
+      >
+        4
+      </button>
+    </PageButton>
+    <PageButton
+      key="4"
+      onClick={[Function]}
+      selected={false}
+    >
+      <button
+        className="page-button"
+        onClick={[Function]}
+      >
+        5
+      </button>
+    </PageButton>
+    <PageButton
+      key="5"
+      onClick={[Function]}
+      selected={false}
+    >
+      <button
+        className="page-button"
+        onClick={[Function]}
+      >
+        6
+      </button>
+    </PageButton>
+    <PageButton
+      aria-label="Выбрать страницу"
+      key="6"
+      onClick={[Function]}
+      selected={false}
+    >
+      <button
+        aria-label="Выбрать страницу"
+        className="page-button"
+        onClick={[Function]}
+      >
+        ...
+      </button>
+    </PageButton>
+    <PageButton
+      key="7"
+      onClick={[Function]}
+      selected={false}
+    >
+      <button
+        className="page-button"
+        onClick={[Function]}
+      >
+        100
+      </button>
+    </PageButton>
+    <PageButton
+      aria-label="Вперед"
+      onClick={[Function]}
+    >
+      <button
+        aria-label="Вперед"
+        className="page-button"
+        onClick={[Function]}
+      >
+        →
+      </button>
+    </PageButton>
+  </div>
+</BasePagination>
+`;
+
+exports[`<BasePagination /> should render without props 1`] = `
+<BasePagination>
+  <div
+    className="base-pagination-wrapper"
+  />
+</BasePagination>
+`;
