@@ -41,7 +41,7 @@ const Price = ({
     : integer;
 
   const sign = Boolean(currencyGrapheme) && (
-    <span className={cx('grapheme', currencyGraphemeClass)}>
+    <span className={currencyGraphemeClass}>
       {
         graphemeBeforePrice
           ? `${currencyGrapheme}\u00A0`
