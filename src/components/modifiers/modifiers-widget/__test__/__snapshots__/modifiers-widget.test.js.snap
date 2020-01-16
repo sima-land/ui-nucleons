@@ -97,10 +97,9 @@ exports[`<ModifiersWidget /> should renders correctly with prop 1`] = `
       className="modifiers-link"
       external={true}
       href="sima-land.ru"
-      underlined={true}
     >
       <a
-        className="modifiers-link link link-blue link-can-be-hovered link-underlined link-underlined-solid"
+        className="modifiers-link link link-blue link-can-be-hovered"
         href="sima-land.ru"
         target="_blank"
       >

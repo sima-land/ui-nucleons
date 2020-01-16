@@ -49,7 +49,6 @@ const ModifiersWidget = ({ title, items, sizesTableUrl, onSelectItem }) => (
       <Link
         href={sizesTableUrl}
         className={cx('modifiers-link')}
-        underlined
         external
       >Таблица размеров</Link>
     )}
