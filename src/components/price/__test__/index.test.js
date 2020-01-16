@@ -39,7 +39,8 @@ describe('<Price />', () => {
     };
     price = shallow(<Price {...props} />);
     expect(price.prop('className')).toEqual('price test');
-    expect(price.find(`span.${classes.grapheme}`).prop('className')).toEqual('grapheme currency-class');
+    expect(price.find('.currency-class')).toHaveLength(1);
+    expect(price.find('.currency-class').text()).toEqual(' ₽');
     expect(price.find('sup').prop('className')).toEqual('fractional-class');
     expect(price).toMatchSnapshot();
   });
@@ -47,11 +48,9 @@ describe('<Price />', () => {
   it('should render currency grapheme with non-breaking space at correct place', () => {
     props = { value: 100, className: 'test', currencyGrapheme: '₽', graphemeBeforePrice: true };
     price = shallow(<Price {...props} />);
-    const grapheme = price.find({ className: 'grapheme' });
-    expect(grapheme).toHaveLength(1);
-    expect(grapheme.text()).toEqual('₽\u00A0');
+    expect(price.text()).toEqual('₽\u00A0100');
     price.setProps({ graphemeBeforePrice: false });
-    expect(price.find({ className: 'grapheme' }).text()).toEqual('\u00A0₽');
+    expect(price.text()).toEqual('100\u00A0₽');
   });
 
   it('should render fractal part correctly', () => {

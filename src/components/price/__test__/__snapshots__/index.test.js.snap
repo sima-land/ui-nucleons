@@ -14,9 +14,7 @@ exports[`<Price /> renders correctly 2`] = `
   className="price"
 >
   100
-  <span
-    className="grapheme"
-  >
+  <span>
      $
   </span>
 </span>
@@ -30,9 +28,7 @@ exports[`<Price /> renders correctly 3`] = `
     100
   </b>
   .00
-  <span
-    className="grapheme"
-  >
+  <span>
      €
   </span>
 </span>
@@ -54,7 +50,7 @@ exports[`<Price /> renders correctly 4`] = `
     00
   </sup>
   <span
-    className="grapheme currency-class"
+    className="currency-class"
   >
      ₽
   </span>
