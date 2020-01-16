@@ -46,7 +46,7 @@
 ```
 Рейтинг с hover-ом и пользовательскими классами:
 ```jsx
-    import styles from './__stories__/rating.scss';
+    import styles from './__stories__/custom-rating.scss';
     <div style={{ background: '#fff', padding: '15px'}}>
       <Rating
           value={2}

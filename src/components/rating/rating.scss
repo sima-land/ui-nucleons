@@ -1,9 +1,10 @@
 @import '../variables';
-$background: "path:first-child";
-$half: "path:nth-child(2)";
+$background: 'path:first-child';
+$half: 'path:nth-child(2)';
 
 .rating {
-  display: inline-flex;
+  display: flex;
+  justify-content: flex-end;
   flex-direction: row-reverse;
   align-items: center;
   #{$background} {
@@ -15,12 +16,13 @@ $half: "path:nth-child(2)";
 }
 
 .rating-star {
+  box-sizing: content-box;
   padding: 0 2px;
   &:first-child {
-    padding-left: 0;
+    padding-right: 0;
   }
   &:last-child {
-    padding-right: 0;
+    padding-left: 0;
   }
 }
 

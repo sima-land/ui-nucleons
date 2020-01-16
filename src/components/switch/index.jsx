@@ -96,10 +96,10 @@ Switch.propTypes = {
   /**
    * Ref внутреннего элемента input.
    */
-  inputRef: PropTypes.oneOf(
+  inputRef: PropTypes.oneOfType([
     PropTypes.func,
-    PropTypes.object
-  ),
+    PropTypes.object,
+  ]),
 
   /**
    * Свойства внутреннего элемента input.

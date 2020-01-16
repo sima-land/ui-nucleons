@@ -12,51 +12,46 @@ $dark-story: #333;
 }
 
 .doc-empty-star {
-  .outside-star {
-    fill: $blue-story;
+  path:first-child {
+    fill: $light-blue-story;
+  }
+  path:nth-child(2) {
+    fill: $light-blue-story;
   }
 }
 
 .doc-half-star {
-  .outside-star {
-    fill: $blue-story;
-  }
-  .bottom-of-star {
+  path:first-child {
     fill: $light-blue-story;
   }
-
+  path:nth-child(2) {
+    fill: $blue-story;
+  }
 }
 
 .doc-full-star {
-  .inner-star {
-    fill: $light-blue-story;
-  }
-  .outside-star {
+  path:first-child {
     fill: $blue-story;
   }
-
+  path:nth-child(2) {
+    fill: $blue-story;
+  }
 }
 
 .doc-rating-can-be-hovered {
   .doc-rating-star:hover {
-    .inner-star {
+    path:first-child {
       fill: $dark-story;
     }
-    .outside-star {
-      fill: $dark-story;
-    }
-    .bottom-of-star {
+    path:nth-child(2) {
       fill: $dark-story;
     }
   }
-  .doc-rating-star:hover ~ .rating-star {
-    .inner-star {
+  .doc-rating-star:hover ~ .doc-rating-star {
+    path:first-child {
       fill: $gray-story;
     }
-    .outside-star {
-      fill: $gray-story;
-    }
-    .bottom-of-star {
+    path:nth-child(2) {
       fill: $gray-story;
     }
   }
