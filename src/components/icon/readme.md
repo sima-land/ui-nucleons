@@ -7,7 +7,7 @@
 ```jsx
 import icons from '../icons';
 Object.keys(icons).map(icon => 
-    <Icon style={{ marginRight: '10px' }} key={icon} inline icon={icons[icon]}/>
+    <Icon style={{ marginRight: '10px' }} key={icon} inline icon={icons[icon]} size={36} />
 )
 
 ``` 
