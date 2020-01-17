@@ -1,0 +1,40 @@
+@import "../variables";
+
+.wrap {
+  display: inline-flex;
+  align-items: center;
+  &:not(.touch):hover .icon-fill,
+  &:not(.touch):hover .icon-no-fill {
+    fill: $red;
+    stroke: none;
+  }
+  &:not(.touch):hover .text {
+    border-bottom: 1px dashed rgba($red, .2);
+  }
+  &.touch:hover > span {
+    color: $black;
+    border-bottom-color: $underlineBlackLink;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+.text {
+  border-bottom: 1px dashed rgba($silvery, .2);
+  margin-left: 2px;
+}
+
+.icon-fill {
+  fill: $silvery;
+  stroke: none;
+}
+
+.icon-no-fill {
+  fill: none;
+  stroke-width: 1px;
+  stroke: $black;
+}
+
+.active {
+  fill: $red;
+  stroke: none;
+}
