@@ -5,7 +5,7 @@ import styles from './icon.scss';
 import Type from 'prop-types';
 
 const cx = classnames.bind(styles);
-export const ICON_COLORS = ['white', 'dark-gray', 'dark-blue', 'gray'];
+export const ICON_COLORS = ['white', 'dark-gray', 'dark-blue', 'gray', 'gray12', 'gray38'];
 
 /**
  * Компонент SVG-Иконки.
@@ -54,7 +54,7 @@ Icon.propTypes = {
   /**
    * Цвет иконки. Если передается - применяется этот цвет, если нет, то цвет наследуется от color родителя.
    */
-  color: Type.oneOf(['white', 'dark-gray', 'dark-blue', 'gray']),
+  color: Type.oneOf(['white', 'dark-gray', 'dark-blue', 'gray', 'gray12', 'gray38']),
 
   /**
    * Устанавливает display: inline если иконка должна быть встроена в текст.
