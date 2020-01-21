@@ -7,6 +7,8 @@ import crossIcon from '../../icons/cross.svg';
 import classnames from 'classnames';
 import classes from './custom-styles.scss';
 import withInputMask from '../../hoc/with-input-mask';
+import { SmallSize } from '../presets/small';
+import { MediumSize } from '../presets/medium';
 
 storiesOf('Input', module)
   .add('Variants', () => (
@@ -152,4 +154,76 @@ storiesOf('Input', module)
         </div>
       </Fragment>
     );
-  });
+  })
+  .add('preset: small size', () => (
+    <Fragment>
+      <h3>Just input</h3>
+      <Input {...SmallSize()} defaultValue='Hello, World!' />
+
+      <h3>Input with start adornment</h3>
+      <Input
+        {...SmallSize()}
+        defaultValue='Hello, World!'
+        startAdornment={(
+          <Icon icon={searchIcon} size={16} style={{ padding: 8 }} />
+        )}
+      />
+
+      <h3>Input with end adornment</h3>
+      <Input
+        {...SmallSize()}
+        defaultValue='Hello, World!'
+        endAdornment={(
+          <Icon icon={crossIcon} size={10} style={{ padding: 8 }} color='gray38' />
+        )}
+      />
+
+      <h3>Input with adornments</h3>
+      <Input
+        {...SmallSize()}
+        defaultValue='Hello, World!'
+        startAdornment={(
+          <Icon icon={searchIcon} size={16} style={{ padding: 8 }} />
+        )}
+        endAdornment={(
+          <Icon icon={crossIcon} size={10} style={{ padding: 8 }} color='gray38' />
+        )}
+      />
+    </Fragment>
+  ))
+  .add('preset: medium size', () => (
+    <Fragment>
+      <h3>Just input</h3>
+      <Input {...MediumSize()} defaultValue='Hello, World!' />
+
+      <h3>Input with start adornment</h3>
+      <Input
+        {...MediumSize()}
+        defaultValue='Hello, World!'
+        startAdornment={(
+          <Icon icon={searchIcon} size={16} style={{ padding: 16 }} />
+        )}
+      />
+
+      <h3>Input with end adornment</h3>
+      <Input
+        {...MediumSize()}
+        defaultValue='Hello, World!'
+        endAdornment={(
+          <Icon icon={crossIcon} size={10} style={{ padding: 16 }} color='gray38' />
+        )}
+      />
+
+      <h3>Input with adornments</h3>
+      <Input
+        {...MediumSize()}
+        defaultValue='Hello, World!'
+        startAdornment={(
+          <Icon icon={searchIcon} size={16} style={{ padding: 16 }} />
+        )}
+        endAdornment={(
+          <Icon icon={crossIcon} size={10} style={{ padding: 16 }} color='gray38' />
+        )}
+      />
+    </Fragment>
+  ));
