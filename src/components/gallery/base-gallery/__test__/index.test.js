@@ -89,7 +89,7 @@ describe('<BaseGallery />', () => {
      */
     const getControlProps = jest.fn((type, disabled) => ({
       children: type,
-      isDisabled: disabled,
+      disabled,
       onClick: type === 'forward' ? onNextClick : onPrevClick,
     }));
     gallery = mount(
