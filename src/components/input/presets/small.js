@@ -8,7 +8,7 @@ const DEFAULT_CLASSES = {
 };
 
 /**
- * Возвращает свойства для стилизации Input по макетам "medium".
+ * Возвращает свойства для стилизации Input по макетам "small".
  * @param {Object} options Опции.
  * @param {Object} options.classes Пользовательские классы.
  * @return {Object} Свойства для стилизации Input.
@@ -17,7 +17,7 @@ export const SmallSize = ({
   classes: customClasses = DEFAULT_CLASSES,
 } = {}) => ({
   computeClasses: () => ({
-    input: cx('input-reset'),
+    input: cx('input-reset', customClasses.input),
     startAdornment: cx('adornment-container', 'adornment-start'),
     endAdornment: cx('adornment-container', 'adornment-end'),
     permanent: cx('root', customClasses.root),
