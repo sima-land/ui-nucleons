@@ -33,7 +33,7 @@ describe('<StyledGallery />', () => {
     expect(galleryContainer).toHaveLength(1);
     expect(galleryContainer.hasClass('test-gallery')).toBeTruthy();
     expect(gallery.find(BaseGallery)).toHaveLength(1);
-    expect(gallery.find(Button)).toHaveLength(2);
+    expect(gallery.find('button')).toHaveLength(2);
     expect(gallery).toMatchSnapshot();
   });
   it('should render without errors if wrong props value', () => {

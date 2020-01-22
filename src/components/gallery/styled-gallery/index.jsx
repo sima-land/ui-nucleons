@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from './styled-gallery.scss';
 import classNames from 'classnames/bind';
-import Button from '../../button';
 import Icon from '../../icon';
 import arrowUp from '../../icons/arrow-up.svg';
 import arrowLeft from '../../icons/arrow-left.svg';
@@ -27,10 +26,8 @@ export const getControlProps = (type = 'forward', disabled = false, arrows = {})
   return {
     type: 'button',
     className: cx('button', disabled && 'disabled', buttonClass),
-    shape: 'circle',
-    withShadow: true,
     children: <Icon icon={icon || arrowUp} size={10} />,
-    isDisabled: disabled,
+    disabled,
     'aria-label': `Промотать ${direction}`,
   };
 };
@@ -68,7 +65,7 @@ export const StyledGallery = ({
     >
       <BaseGallery
         direction={direction}
-        controlContainer={Button}
+        controlContainer='button'
         getControlProps={(type, disabled) => getControlProps(type, disabled, arrows)}
         needListenResize
         {...galleryProps}
