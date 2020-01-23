@@ -1,99 +1,92 @@
-@import "../variables";
+@import '../colors';
 
-.button {
-  display: inline-block;
+// новые стили по макетам дизайн системы
+.button-base {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  border-radius: 4px;
   font: inherit;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 700;
-  outline: none;
-  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  box-sizing: border-box;
   border: 0;
-  padding: .6em 1em;
+  outline: 0;
   text-decoration: none;
-  line-height: 1;
   overflow: hidden;
-  vertical-align: top;
-  &::-moz-focus-inner {
-    border: none;
+  &:disabled {
+    color: map-get($colors, 'gray24');
+    background-color: map-get($colors, 'gray8');
   }
 }
 
-.button:disabled {
-  opacity: .48;
+// small
+.button-small {
+  padding: 0 8px;
+  min-width: 40px;
+  height: 40px;
 }
 
-.button-white,
-.button-white:link,
-.button-white:visited {
-  background: linear-gradient(to bottom, $white, $whiteGradient);
-  border-bottom-color: transparent;
+.text-button-small {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-.button-blue,
-.button-blue:link,
-.button-blue:visited {
-  color: $white;
-  background: $blue;
-  border-bottom-color: transparent;
+.button-small-with-start-icon {
+  padding-left: 12px;
+  padding-right: 20px;
 }
 
-.button-square {
-  border-radius: $radiusSquare;
+.button-small-with-end-icon {
+  padding-left: 20px;
+  padding-right: 12px;
 }
 
-.button-circle {
-  border-radius: $radiusCircle;
-  padding: 10px;
+// medium
+.button-medium {
+  padding: 0 12px;
+  min-width: 48px;
+  height: 48px;
 }
 
-.button-pill {
-  border-radius: $radiusPill;
+.text-button-medium {
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
-.button-rounded {
-  border-radius: $radiusRounded;
+.button-medium-with-start-icon {
+  padding-right: 24px;
 }
 
-.with-shadow {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+.button-medium-with-end-icon {
+  padding-left: 24px;
 }
 
-.button-white:hover:not(:disabled),
-.button-blue:hover:not(:disabled) {
-  background: $red;
-  color: $white;
+.icon-start {
+  margin: 0 12px 0 0;
 }
 
-.button-clean,
-.button-clean:link,
-.button-clean:visited {
-  background-color: transparent;
-  border: 1px solid rgba(0, 0, 0, .3);
-  color: $black;
-  font-weight: 400;
+.icon-end {
+  margin: 0 0 0 12px;
 }
 
-.button-clean-focused,
-.button-clean-focused:link,
-.button-clean-focused:visited {
-  border-color: $black;
+// action types
+.button-primary {
+  background-color: map-get($colors, 'brand-blue');
+  color: #fff;
+  &:hover:not(:disabled) {
+    cursor: pointer;
+    background-color: #1b74c1;
+  }
 }
 
-.button-clean:hover:not(:disabled) {
-  border-color: $black;
-  color: $black;
-}
-
-.button-close {
-  padding-right: 28px;
-}
-
-.button-close::after {
-  content: '×';
-  display: block;
-  font-size: 19px;
-  position: absolute;
-  right: 12px;
-  top: 4px;
+.button-secondary {
+  background-color: map-get($colors, 'gray8');
+  color: map-get($colors, 'gray87');
+  &:hover:not(:disabled) {
+    cursor: pointer;
+    background-color: map-get($colors, 'gray12');
+  }
 }

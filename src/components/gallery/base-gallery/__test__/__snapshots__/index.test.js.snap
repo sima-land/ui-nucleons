@@ -5,20 +5,15 @@ exports[`<BaseGallery /> should render with items and controls 1`] = `
   controlContainer={
     Object {
       "$$typeof": Symbol(react.forward_ref),
-      "displayName": "Button",
       "propTypes": Object {
+        "actionType": [Function],
         "appearance": [Function],
         "children": [Function],
         "className": [Function],
-        "color": [Function],
-        "href": [Function],
-        "isDisabled": [Function],
-        "isFocused": [Function],
-        "onClick": [Function],
-        "onMouseEnter": [Function],
-        "onMouseLeave": [Function],
-        "shape": [Function],
-        "withShadow": [Function],
+        "disabled": [Function],
+        "icon": [Function],
+        "iconPosition": [Function],
+        "size": [Function],
       },
       "render": [Function],
     }
@@ -40,20 +35,15 @@ exports[`<BaseGallery /> should render with items and controls 1`] = `
     controlContainer={
       Object {
         "$$typeof": Symbol(react.forward_ref),
-        "displayName": "Button",
         "propTypes": Object {
+          "actionType": [Function],
           "appearance": [Function],
           "children": [Function],
           "className": [Function],
-          "color": [Function],
-          "href": [Function],
-          "isDisabled": [Function],
-          "isFocused": [Function],
-          "onClick": [Function],
-          "onMouseEnter": [Function],
-          "onMouseLeave": [Function],
-          "shape": [Function],
-          "withShadow": [Function],
+          "disabled": [Function],
+          "icon": [Function],
+          "iconPosition": [Function],
+          "size": [Function],
         },
         "render": [Function],
       }
@@ -70,15 +60,14 @@ exports[`<BaseGallery /> should render with items and controls 1`] = `
     }
     needShowControls="always"
   >
-    <Button
+    <ForwardRef(Button)
       onClick={[Function]}
     >
       <button
-        className="button button-pill button-clean"
-        disabled={false}
+        className="button-base button-primary button-medium"
         onClick={[Function]}
       />
-    </Button>
+    </ForwardRef(Button)>
     <div
       className="items-wrapper"
     >
@@ -133,15 +122,14 @@ exports[`<BaseGallery /> should render with items and controls 1`] = `
         </div>
       </div>
     </div>
-    <Button
+    <ForwardRef(Button)
       onClick={[Function]}
     >
       <button
-        className="button button-pill button-clean"
-        disabled={false}
+        className="button-base button-primary button-medium"
         onClick={[Function]}
       />
-    </Button>
+    </ForwardRef(Button)>
   </BaseGallery>
 </withGlobalListeners(BaseGallery)>
 `;

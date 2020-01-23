@@ -15,12 +15,12 @@ exports[`<PageSelectForm /> should render without props 1`] = `
       value=""
     >
       <span
-        className="input-wrapper field page-input-wrapper focused"
+        className="root page-input-wrapper root-focused"
         onClick={[Function]}
       >
         <input
           autoFocus={true}
-          className="input page-input"
+          className="input-reset page-input"
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
@@ -31,19 +31,20 @@ exports[`<PageSelectForm /> should render without props 1`] = `
         />
       </span>
     </ForwardRef(Input)>
-    <Button
+    <ForwardRef(Button)
       className="submit-button"
       color="blue"
       onClick={[Function]}
+      size="small"
     >
       <button
-        className="button submit-button button-pill button-blue"
-        disabled={false}
+        className="submit-button button-base button-primary button-small text-button-small"
+        color="blue"
         onClick={[Function]}
       >
         ОК
       </button>
-    </Button>
+    </ForwardRef(Button)>
     <Link
       className="cancel-button"
       color="black"
