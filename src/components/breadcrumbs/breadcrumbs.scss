@@ -1,11 +1,13 @@
 @import '../variables';
 
-//Ширина контейнера разделителя крошек
-$gapWidth: 2.5em;
+//Ширина контейнеров разделителя крошек
+$leftGapWidth: 1em;
+$rightGapWidth: 1.5em;
 
 .breadcrumbs {
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   margin: 0;
   padding: 0;
   border: 0;
@@ -18,15 +20,20 @@ $gapWidth: 2.5em;
   > li {
     position: relative;
     white-space: nowrap;
+    margin-bottom: 8px;
     &:not(:first-child)::before {
       content: '/';
       display: inline-block;
-      width: $gapWidth;
-      text-align: center;
+      width: $rightGapWidth;
+    }
+    &:not(:last-child)::after {
+      content: '';
+      display: inline-block;
+      width: $leftGapWidth;
     }
     &:first-child {
       .popup {
-        left: -$gapWidth;
+        left: -$leftGapWidth;
       }
     }
     .active {
@@ -39,7 +46,7 @@ $gapWidth: 2.5em;
     padding: 1em;
     position: absolute;
     top: -1em;
-    left: $gapWidth - 1em;
+    left: $rightGapWidth - 1em;
     z-index: 2;
     .disabled {
       color: #ccc;

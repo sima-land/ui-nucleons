@@ -6,7 +6,7 @@ import items from '../items';
 
 storiesOf('Breadcrumbs', module)
   .add('Breadcrumbs', () => (
-    <div style={{ padding: '20px 0 0' }}>
+    <div style={{ padding: '20px 0 0', width: '500px' }}>
       <Breadcrumbs
         items={items}
         onOpenBreadcrumbs={action('popup was opened')}
