@@ -1,128 +1,165 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import Icon from '../icon';
-import cross from '../icons/cross.svg';
+import Input from '../input';
+import plusIcon from '../icons/amount-plus.svg';
+import minusIcon from '../icons/amount-minus.svg';
+import { SmallSize as InputSmallSize } from '../input/presets/small';
+import { MediumSize as InputMediumSize } from '../input/presets/medium';
+import always from 'lodash/fp/always';
+import cond from 'lodash/cond';
+import eq from 'lodash/fp/eq';
+import T from 'lodash/stubTrue';
+import isFunction from 'lodash/isFunction';
 import classnames from 'classnames/bind';
 import classes from './amount.scss';
-import { useIsTouchDevice } from '../hooks';
 import PropTypes from 'prop-types';
 
 const cx = classnames.bind(classes);
 
+const DEFAULT_CLASSES = {
+  root: cx('medium-width'),
+  input: cx('centered-text'),
+};
+
+const DEFAULT_PROPS = {
+  // eslint-disable-next-line react/prop-types
+  renderPlus: ({ size, disabled, onClick }) => (
+    <Icon
+      color={disabled ? 'gray12' : 'gray38'}
+      size={16}
+      icon={plusIcon}
+      onClick={disabled ? undefined : onClick}
+      className={cx(
+        'button',
+        size === 'medium' && 'padding-right-16',
+        !disabled && 'cursor-pointer'
+      )}
+      role='button'
+      aria-label='Удалить единицу товара'
+    />
+  ),
+
+  // eslint-disable-next-line react/prop-types
+  renderMinus: ({ size, disabled, onClick }) => (
+    <Icon
+      color={disabled ? 'gray12' : 'gray38'}
+      size={16}
+      icon={minusIcon}
+      onClick={disabled ? undefined : onClick}
+      className={cx(
+        'button',
+        size === 'medium' && 'padding-left-16',
+        !disabled && 'cursor-pointer'
+      )}
+      role='button'
+      aria-label='Добавить единицу товара'
+    />
+  ),
+};
+
+const getDefaultClassesBySize = cond([
+  [eq('small'), always({ ...DEFAULT_CLASSES, root: cx('small-width') })],
+  [T, always(DEFAULT_CLASSES)],
+]);
+
 /**
- * Возвращает компонент поля количества товара.
- * @param {Object} props Свойства компонента. Также поддерживаются все свойства input кроме className и type.
- * @param {boolean} [props.withControls=true] Нужно ли выводить кнопки управления.
- * @param {boolean} [props.withPlus=withControls] Нужно ли выводить кнопку "+".
- * @param {boolean} [props.withMinus=withControls] Нужно ли выводить кнопку "-".
- * @param {boolean} [props.withCross=withControls] Нужно ли выводить кнопку-крестик.
- * @param {Function} [props.onAdd] Сработает при нажатии кнопки "+".
- * @param {Function} [props.onSubtract] Сработает при нажатии кнопки "-".
- * @param {Function} [props.onClear] Сработает при нажатии на крестик.
- * @param {Function} ref Объект для сохранения ссылки на DOM-элемент поля.
- * @return {ReactElement} Компонент поля количества товара.
+ * Возвращает компонент поля количества.
+ * @param {Object} props Свойства. Поддерживаются свойства компонента Input.
+ * @param {'small'|'medium'} [props.size='medium'] Размер поля.
+ * @param {boolean} [props.disabled] Отключено ли поле.
+ * @param {Function} [props.onSubtract] Сработает при уменьшении.
+ * @param {Function} [props.onAdd] Сработает при увеличении.
+ * @param {function({ size, disabled, onClick }): ReactElement} [props.renderPlus] Вернёт кнопку "+".
+ * @param {function({ size, disabled, onClick }): ReactElement} [props.renderMinus] Вернёт кнопку "-".
+ * @param {boolean} [props.canAdd] Определит, можно ли добавить.
+ * @param {boolean} [props.canSubtract] Определит, можно ли уменьшить.
+ * @param {Object} [props.computeClasses] Должна вернуть классы получив стандартные.
+ * @return {ReactElement} Компонент поля количества.
  */
-const Amount = forwardRef(function Amount ({
-  withControls = true,
-  withPlus = withControls,
-  withMinus = withControls,
-  withCross = withControls,
+const Amount = ({
+  size = 'medium',
+  disabled,
   onAdd,
   onSubtract,
-  onClear,
-  inputClassName,
+  canAdd = true,
+  canSubtract = true,
+  renderPlus = DEFAULT_PROPS.renderPlus,
+  renderMinus = DEFAULT_PROPS.renderMinus,
+  computeClasses,
   ...inputProps
-}, ref) {
-  const isTouchDevice = useIsTouchDevice();
+}) => {
+  const defaultClasses = getDefaultClassesBySize(size);
+  const readyClasses = isFunction(computeClasses)
+    ? computeClasses(defaultClasses)
+    : defaultClasses;
+  const inputPreset = size === 'small'
+    ? InputSmallSize({ classes: readyClasses })
+    : InputMediumSize({ classes: readyClasses });
 
   return (
-    <div className={cx('amount-container')}>
-      <div className={cx('amount-wrapper')}>
-        <div className={cx('field-wrapper')}>
-          {Boolean(withMinus) && (
-            <span
-              className={cx('button', 'subtract-button')}
-              onClick={onSubtract}
-              role='button'
-              aria-label='Удалить единицу товара'
-              children='−'
-            />
-          )}
-          <input
-            {...inputProps}
-            ref={ref}
-            type='text'
-            className={cx('amount-field', inputClassName)}
-          />
-          {Boolean(withPlus) && (
-            <span
-              className={cx('button', 'add-button')}
-              onClick={onAdd}
-              role='button'
-              aria-label='Добавить единицу товара'
-              children='+'
-            />
-          )}
-        </div>
-        {Boolean(withCross) && (
-          <div className={cx('clear-icon-wrapper', { hidden: !isTouchDevice })}>
-            <span title='Удалить товар из корзины'>
-              <Icon
-                className={cx('clear-icon')}
-                role='button'
-                aria-label='Удалить товар из корзины'
-                icon={cross}
-                size={16}
-                onClick={onClear}
-              />
-            </span>
-          </div>
-        )}
-      </div>
-    </div>
+    <Input
+      {...inputPreset}
+      {...inputProps}
+      disabled={disabled}
+      startAdornment={renderMinus({
+        size,
+        disabled: !canSubtract,
+        onClick: onSubtract,
+      })}
+      endAdornment={renderPlus({
+        size,
+        disabled: !canAdd,
+        onClick: onAdd,
+      })}
+    />
   );
-});
+};
 
 Amount.propTypes = {
   /**
-   * Нужно ли выводить кнопки управления.
+   * Размер поля.
    */
-  withControls: PropTypes.bool,
+  size: PropTypes.oneOf(['small', 'medium']),
 
   /**
-   * Нужно ли выводить кнопку "+".
+   * Отключено ли поле.
    */
-  withPlus: PropTypes.bool,
+  disabled: PropTypes.bool,
 
   /**
-   * Нужно ли выводить кнопку "-".
-   */
-  withMinus: PropTypes.bool,
-
-  /**
-   * Нужно ли выводить кнопку-крестик.
-   */
-  withCross: PropTypes.bool,
-
-  /**
-   * Сработает при нажатии кнопки "+".
-   */
-  onAdd: PropTypes.func,
-
-  /**
-   * Сработает при нажатии кнопки "-".
+   * Сработает при уменьшении.
    */
   onSubtract: PropTypes.func,
 
   /**
-   * Сработает при нажатии на крестик.
+   * Сработает при вводе.
    */
-  onClear: PropTypes.func,
+  onAdd: PropTypes.func,
 
   /**
-   * Объект для сохранения ссылки на DOM-элемент поля.
+   * Должна вернуть кнопку "+".
    */
-  inputClassName: PropTypes.object,
+  renderPlus: PropTypes.func,
+
+  /**
+   * Должна вернуть кнопку "-".
+   */
+  renderMinus: PropTypes.func,
+
+  /**
+   * Определит, можно ли добавить.
+   */
+  canAdd: PropTypes.bool,
+
+  /**
+   * Определит, можно ли уменьшить.
+   */
+  canSubtract: PropTypes.bool,
+
+  /**
+   * Должна вернуть классы получив стандартные.
+   */
+  computeClasses: PropTypes.func,
 };
 
-Amount.displayName = 'Amount';
 export default Amount;
