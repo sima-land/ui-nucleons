@@ -1,57 +1,96 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Button /> renders properly 1`] = `
-<Fragment>
-  <button
-    className="button button-pill button-clean"
-    disabled={false}
-  >
-    Кнопка
-  </button>
-</Fragment>
-`;
-
-exports[`renderButton returns correct element with appearance button 1`] = `
+exports[`<Button /> should handle "icon" and "iconPosition" props 1`] = `
 <button
-  className="test"
-  disabled={true}
+  className="button-base button-primary button-medium button-medium-with-start-icon"
 >
-  Кнопка
+  <Icon
+    className="icon icon-start"
+    icon={[Function]}
+    size={24}
+  />
+  Икать
 </button>
 `;
 
-exports[`renderButton returns correct element with appearance container 1`] = `
-<div
-  className="test"
-  disabled={true}
-  role="button"
->
-  Кнопка
-</div>
-`;
-
-exports[`renderButton returns correct element with appearance link 1`] = `
-<a
-  className="test"
-  disabled={true}
->
-  Кнопка
-</a>
-`;
-
-exports[`renderButton returns correct element with wrong params 1`] = `
+exports[`<Button /> should handle "icon" and "iconPosition" props 2`] = `
 <button
-  className="test"
-  disabled={true}
+  className="button-base button-primary button-medium button-medium-with-end-icon"
+>
+  Икать
+  <Icon
+    className="icon icon-end"
+    icon={[Function]}
+    size={24}
+  />
+</button>
+`;
+
+exports[`<Button /> should handle "icon" and "iconPosition" props 3`] = `
+<button
+  className="button-base button-primary button-medium button-medium-with-start-icon"
+>
+  <Icon
+    className="icon icon-start"
+    icon={[Function]}
+    size={24}
+  />
+  Икать
+</button>
+`;
+
+exports[`<Button /> should handle "size" prop 1`] = `
+<button
+  className="button-base button-primary button-small text-button-small"
+>
+  Отмена
+</button>
+`;
+
+exports[`<Button /> should handle "size" prop 2`] = `
+<button
+  className="button-base button-primary button-medium text-button-medium"
+>
+  Отмена
+</button>
+`;
+
+exports[`<Button /> should render icon button 1`] = `
+<button
+  className="button-base button-primary button-medium"
+>
+  <Icon
+    className="icon icon-"
+    icon={[Function]}
+    size={24}
+  />
+</button>
+`;
+
+exports[`<Button /> should render icon button 2`] = `
+<button
+  className="button-base button-primary button-medium"
+>
+  <Icon
+    className="icon icon-"
+    icon={[Function]}
+    size={24}
+  />
+</button>
+`;
+
+exports[`<Button /> should render secondary button 1`] = `
+<button
+  className="button-base button-secondary button-medium text-button-medium"
+>
+  Отмена
+</button>
+`;
+
+exports[`<Button /> should renders without props 1`] = `
+<button
+  className="button-base button-primary button-medium text-button-medium"
 >
   Кнопка
 </button>
 `;
-
-exports[`renderButton returns correct element with wrong params 2`] = `
-<button>
-  Кнопка
-</button>
-`;
-
-exports[`renderButton returns correct element with wrong params 3`] = `<button />`;

@@ -198,7 +198,7 @@ exports[`<StyledGallery /> should render without props 1`] = `
 `;
 
 exports[`getControlProps default 1`] = `
-<Button
+<ForwardRef(Button)
   aria-label="Промотать вперед"
   className="button"
   disabled={false}
@@ -206,7 +206,7 @@ exports[`getControlProps default 1`] = `
 >
   <button
     aria-label="Промотать вперед"
-    className="button button button-pill button-clean"
+    className="button button-base button-primary button-medium text-button-medium"
     disabled={false}
     type="button"
   >
@@ -235,11 +235,11 @@ exports[`getControlProps default 1`] = `
       </arrowUp>
     </Icon>
   </button>
-</Button>
+</ForwardRef(Button)>
 `;
 
 exports[`getControlProps with params 1`] = `
-<Button
+<ForwardRef(Button)
   aria-label="Промотать назад"
   className="button disabled test-right-class"
   disabled={true}
@@ -247,7 +247,7 @@ exports[`getControlProps with params 1`] = `
 >
   <button
     aria-label="Промотать назад"
-    className="button button disabled test-right-class button-pill button-clean"
+    className="button disabled test-right-class button-base button-primary button-medium text-button-medium"
     disabled={true}
     type="button"
   >
@@ -276,5 +276,5 @@ exports[`getControlProps with params 1`] = `
       </arrowRight>
     </Icon>
   </button>
-</Button>
+</ForwardRef(Button)>
 `;

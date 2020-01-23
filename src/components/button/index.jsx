@@ -1,135 +1,159 @@
-import React, { forwardRef } from 'react';
-import { createButtonStyle } from './create-button-style';
-import Type from 'prop-types';
+import React, { Fragment, forwardRef } from 'react';
+import Icon from '../icon';
+import classnames from 'classnames/bind';
+import classes from './button.scss';
+import PropTypes from 'prop-types';
+import always from 'lodash/fp/always';
+import cond from 'lodash/fp/cond';
+import eq from 'lodash/fp/eq';
+import T from 'lodash/stubTrue';
+
+const cx = classnames.bind(classes);
 
 /**
- * Отрисовка компонента Button.
- * @param {Object} props Свойства компонента.
- * @param {string} [props.appearance] Тип представления компонента.
- * @param {Object} [props.buttonParams] Параметры компонента.
+ * Возвращает компонент кнопки.
+ * @param {Object} props Свойства.
  * @param {*} [props.children] Содержимое.
- * @return {ReactElement} Компонент кнопки.
- */
-export const renderButton = ({ appearance, buttonParams = {}, children }) => {
-  let result;
-  switch (appearance) {
-    case 'link':
-      result = <a {...buttonParams}>{children}</a>;
-      break;
-    case 'container':
-      result = <div {...buttonParams} role='button'>{children}</div>;
-      break;
-    default:
-      result = <button {...buttonParams}>{children}</button>;
-  }
-  return result;
-};
-
-/**
- * Компонент кнопки.
- * @param {Object} props Свойства компонента.
- * @param {*} props.children Содержимое.
- * @param {string} [props.className] Пользовательские классы.
- * @param {string} [props.color='clean'] Цвет.
- * @param {string} [props.shape='pill'] Форма.
- * @param {boolean} [props.withShadow=false] С тенью.
- * @param {boolean} [props.isFocused=false] В фокусе.
- * @param {boolean} [props.isDisabled] Отключена.
- * @param {string} [props.appearance='button'] Тип представления компонента.
- * @param {...*} restProps Остальные параметры.
- * @param {string} [props.href] Ссылка.
- * @param {Function} [props.onClick] Функция, вызываемая при клике.
- * @param {Function} [props.onMouseEnter] Функция, вызываемая при наведении.
- * @param {Function} [props.onMouseLeave] Функция, вызываемая при покидании области кнопки.
- * @param {Object} ref Реф для DOM-элемента кнопки.
+ * @param {string} [props.className] CSS-класс.
+ * @param {boolean} [props.disabled] Отключена ли кнопка.
+ * @param {'primary'|'secondary'} [props.actionType='primary'] Определяет внешний вид кнопки.
+ * @param {'button'|'container'|'link'} [props.appearance='button'] Определяет тип корневого элемента.
+ * @param {'small'|'medium'} [props.size='medium'] Определяет размер.
+ * @param {*} [props.icon] Иконка.
+ * @param {'start'|'end'} [props.iconPosition='start'] Положение иконки.
  * @return {ReactElement} Компонент кнопки.
  */
 const Button = forwardRef(function Button ({
   children,
   className,
-  color = 'clean',
-  shape = 'pill',
-  withShadow = false,
-  isFocused = false,
-  isDisabled = false,
+  disabled,
+  actionType = 'primary',
   appearance = 'button',
+  size = 'medium',
+  icon,
+  iconPosition = 'start',
   ...restProps
 }, ref) {
-  const buttonClasses = createButtonStyle({ className, color, shape, withShadow, isFocused });
-  const buttonParams = {
-    ref,
-    className: buttonClasses,
-    disabled: isDisabled,
-    ...restProps,
-  };
+  const readyClassName = computeClassName({
+    className,
+    size,
+    actionType,
+    withIcon: Boolean(icon),
+    withContent: Boolean(children) && children !== 0,
+    iconPosition,
+  });
+  const [Element, moreProps] = resolveAppearance(appearance);
+
   return (
-    <React.Fragment>
-      {renderButton({ appearance, buttonParams, children })}
-    </React.Fragment>
+    <Element
+      {...restProps}
+      {...moreProps}
+      ref={ref}
+      disabled={disabled}
+      className={readyClassName}
+      children={(
+        <Fragment>
+          {icon && iconPosition === 'start' && (
+            <Icon
+              size={24}
+              icon={icon}
+              className={cx('icon', `icon-${children ? 'start' : ''}`)}
+            />
+          )}
+          {children}
+          {icon && iconPosition === 'end' && (
+            <Icon
+              size={24}
+              icon={icon}
+              className={cx('icon', `icon-${children ? 'end' : ''}`)}
+            />
+          )}
+        </Fragment>
+      )}
+    />
   );
 });
 
+/**
+ * Возвращает строку с классами для стилизации кнопки.
+ * @param {Object} props Опции.
+ * @param {'primary'|'secondary'} [props.actionType='primary'] Определяет внешний вид кнопки.
+ * @param {'small'|'medium'} [props.size='medium'] Определяет размер.
+ * @param {'start'|'end'} [props.iconPosition='start'] Положение иконки.
+ * @param {boolean} props.withIcon Показывать ли иконку.
+ * @param {boolean} props.withContent Есть ли контент.
+ * @param {string} [props.className] Дополнительный класс.
+ * @return {string} Строка с классами.
+ */
+export const computeClassName = ({
+  size = 'medium',
+  actionType = 'primary',
+  iconPosition = 'start',
+  withIcon,
+  withContent,
+  className,
+}) => cx([
+  className,
+  'button-base',
+  actionType === 'secondary' ? 'button-secondary' : 'button-primary',
+  size === 'small' && 'button-small',
+  size === 'medium' && 'button-medium',
+  withContent && !withIcon && `text-button-${size}`,
+  withContent && withIcon && `button-${size}-with-${iconPosition}-icon`,
+]);
+
+/**
+ * Возвращает кортеж с именем элемента и свойствами компонента по ключу.
+ * @param {'button'|'link'|'container'} [appearance='button'] Ключ.
+ * @return {[string, Object|null]} Кортеж с именем элемента и свойствами.
+ */
+export const resolveAppearance = cond([
+  [eq('link'), always(['a', null])],
+  [eq('container'), always(['div', { role: 'button' }])],
+  [T, always(['button', null])],
+]);
+
 Button.propTypes = {
   /**
-   * Содержимое компонента.
+   * Содержимое.
    */
-  children: Type.any,
+  children: PropTypes.any,
 
   /**
-   * Пользовательские классы.
+   * CSS-класс.
    */
-  className: Type.string,
-
-  /**
-   * Цвет.
-   */
-  color: Type.oneOf(['clean', 'white', 'blue']),
-
-  /**
-   * Форма.
-   */
-  shape: Type.oneOf(['square', 'rounded', 'pill', 'circle']),
-
-  /**
-   * С тенью.
-   */
-  withShadow: Type.bool,
-
-  /**
-   * В фокусе.
-   */
-  isFocused: Type.bool,
+  className: PropTypes.string,
 
   /**
    * Отключена ли кнопка.
    */
-  isDisabled: Type.bool,
+  disabled: PropTypes.bool,
 
   /**
-   * Тип компонента.
+   * Определяет внешний вид кнопки.
    */
-  appearance: Type.oneOf(['link', 'container', 'button']),
+  actionType: PropTypes.oneOf(['primary', 'secondary']),
 
   /**
-   * Ссылка.
+   * Определяет тип корневого элемента.
    */
-  href: Type.string,
+  appearance: PropTypes.oneOf(['link', 'container', 'button']),
 
   /**
-   * Функция, вызываемая при клике.
+   * Определяет размер.
    */
-  onClick: Type.func,
+  size: PropTypes.oneOf(['small', 'medium']),
 
   /**
-   * Функция, вызываемая при наведении.
+   * Иконка.
    */
-  onMouseEnter: Type.func,
+  icon: PropTypes.any,
 
   /**
-   * Функция, вызываемая при покидании области кнопки.
+   * Положение иконки.
    */
-  onMouseLeave: Type.func,
+  iconPosition: PropTypes.oneOf(['start', 'end']),
+
 };
 
-Button.displayName = 'Button';
 export default Button;
