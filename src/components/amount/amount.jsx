@@ -21,42 +21,6 @@ const DEFAULT_CLASSES = {
   input: cx('centered-text'),
 };
 
-const DEFAULT_PROPS = {
-  // eslint-disable-next-line react/prop-types
-  renderPlus: ({ size, disabled, onClick }) => (
-    <Icon
-      color={disabled ? 'gray12' : 'gray38'}
-      size={16}
-      icon={plusIcon}
-      onClick={disabled ? undefined : onClick}
-      className={cx(
-        'button',
-        size === 'medium' && 'padding-right-16',
-        !disabled && 'cursor-pointer'
-      )}
-      role='button'
-      aria-label='Добавить единицу товара'
-    />
-  ),
-
-  // eslint-disable-next-line react/prop-types
-  renderMinus: ({ size, disabled, onClick }) => (
-    <Icon
-      color={disabled ? 'gray12' : 'gray38'}
-      size={16}
-      icon={minusIcon}
-      onClick={disabled ? undefined : onClick}
-      className={cx(
-        'button',
-        size === 'medium' && 'padding-left-16',
-        !disabled && 'cursor-pointer'
-      )}
-      role='button'
-      aria-label='Удалить единицу товара'
-    />
-  ),
-};
-
 const getDefaultClassesBySize = cond([
   [eq('small'), always({ ...DEFAULT_CLASSES, root: cx('small-width') })],
   [T, always(DEFAULT_CLASSES)],
@@ -160,6 +124,42 @@ Amount.propTypes = {
    * Должна вернуть классы получив стандартные.
    */
   computeClasses: PropTypes.func,
+};
+
+const DEFAULT_PROPS = {
+  // eslint-disable-next-line react/prop-types
+  renderPlus: ({ size, disabled, onClick }) => (
+    <Icon
+      color={disabled ? 'gray12' : 'gray38'}
+      size={16}
+      icon={plusIcon}
+      onClick={disabled ? undefined : onClick}
+      className={cx(
+        'button',
+        size === 'medium' && 'padding-right-16',
+        !disabled && 'cursor-pointer'
+      )}
+      role='button'
+      aria-label='Добавить единицу товара'
+    />
+  ),
+
+  // eslint-disable-next-line react/prop-types
+  renderMinus: ({ size, disabled, onClick }) => (
+    <Icon
+      color={disabled ? 'gray12' : 'gray38'}
+      size={16}
+      icon={minusIcon}
+      onClick={disabled ? undefined : onClick}
+      className={cx(
+        'button',
+        size === 'medium' && 'padding-left-16',
+        !disabled && 'cursor-pointer'
+      )}
+      role='button'
+      aria-label='Удалить единицу товара'
+    />
+  ),
 };
 
 export default Amount;
