@@ -8,7 +8,7 @@ exports[`<Amount /> should handle "computeClasses" prop 1`] = `
     computeClasses={[Function]}
     endAdornment={
       <Icon
-        aria-label="Удалить единицу товара"
+        aria-label="Добавить единицу товара"
         className="button padding-right-16 cursor-pointer"
         color="gray38"
         icon={[Function]}
@@ -18,7 +18,7 @@ exports[`<Amount /> should handle "computeClasses" prop 1`] = `
     }
     startAdornment={
       <Icon
-        aria-label="Добавить единицу товара"
+        aria-label="Удалить единицу товара"
         className="button padding-left-16 cursor-pointer"
         color="gray38"
         icon={[Function]}
@@ -35,7 +35,7 @@ exports[`<Amount /> should handle "computeClasses" prop 1`] = `
         className="adornment-container adornment-start"
       >
         <Icon
-          aria-label="Добавить единицу товара"
+          aria-label="Удалить единицу товара"
           className="button padding-left-16 cursor-pointer"
           color="gray38"
           icon={[Function]}
@@ -43,7 +43,7 @@ exports[`<Amount /> should handle "computeClasses" prop 1`] = `
           size={16}
         >
           <minusIcon
-            aria-label="Добавить единицу товара"
+            aria-label="Удалить единицу товара"
             className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
             height={16}
             role="button"
@@ -52,7 +52,7 @@ exports[`<Amount /> should handle "computeClasses" prop 1`] = `
             xmlns="http://www.w3.org/2000/svg"
           >
             <svg
-              aria-label="Добавить единицу товара"
+              aria-label="Удалить единицу товара"
               className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
               height={16}
               role="button"
@@ -77,7 +77,7 @@ exports[`<Amount /> should handle "computeClasses" prop 1`] = `
         className="adornment-container adornment-end"
       >
         <Icon
-          aria-label="Удалить единицу товара"
+          aria-label="Добавить единицу товара"
           className="button padding-right-16 cursor-pointer"
           color="gray38"
           icon={[Function]}
@@ -85,7 +85,7 @@ exports[`<Amount /> should handle "computeClasses" prop 1`] = `
           size={16}
         >
           <plusIcon
-            aria-label="Удалить единицу товара"
+            aria-label="Добавить единицу товара"
             className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
             height={16}
             role="button"
@@ -94,7 +94,7 @@ exports[`<Amount /> should handle "computeClasses" prop 1`] = `
             xmlns="http://www.w3.org/2000/svg"
           >
             <svg
-              aria-label="Удалить единицу товара"
+              aria-label="Добавить единицу товара"
               className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
               height={16}
               role="button"
@@ -123,7 +123,7 @@ exports[`<Amount /> should handle "onAdd/onSubtract/canAdd/canSubtract" props 1`
     computeClasses={[Function]}
     endAdornment={
       <Icon
-        aria-label="Удалить единицу товара"
+        aria-label="Добавить единицу товара"
         className="button padding-right-16 cursor-pointer"
         color="gray38"
         icon={[Function]}
@@ -134,7 +134,7 @@ exports[`<Amount /> should handle "onAdd/onSubtract/canAdd/canSubtract" props 1`
     }
     startAdornment={
       <Icon
-        aria-label="Добавить единицу товара"
+        aria-label="Удалить единицу товара"
         className="button padding-left-16 cursor-pointer"
         color="gray38"
         icon={[Function]}
@@ -152,7 +152,7 @@ exports[`<Amount /> should handle "onAdd/onSubtract/canAdd/canSubtract" props 1`
         className="adornment-container adornment-start"
       >
         <Icon
-          aria-label="Добавить единицу товара"
+          aria-label="Удалить единицу товара"
           className="button padding-left-16 cursor-pointer"
           color="gray38"
           icon={[Function]}
@@ -161,7 +161,7 @@ exports[`<Amount /> should handle "onAdd/onSubtract/canAdd/canSubtract" props 1`
           size={16}
         >
           <minusIcon
-            aria-label="Добавить единицу товара"
+            aria-label="Удалить единицу товара"
             className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
             height={16}
             onClick={[MockFunction]}
@@ -171,7 +171,7 @@ exports[`<Amount /> should handle "onAdd/onSubtract/canAdd/canSubtract" props 1`
             xmlns="http://www.w3.org/2000/svg"
           >
             <svg
-              aria-label="Добавить единицу товара"
+              aria-label="Удалить единицу товара"
               className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
               height={16}
               onClick={[MockFunction]}
@@ -197,7 +197,7 @@ exports[`<Amount /> should handle "onAdd/onSubtract/canAdd/canSubtract" props 1`
         className="adornment-container adornment-end"
       >
         <Icon
-          aria-label="Удалить единицу товара"
+          aria-label="Добавить единицу товара"
           className="button padding-right-16 cursor-pointer"
           color="gray38"
           icon={[Function]}
@@ -206,7 +206,7 @@ exports[`<Amount /> should handle "onAdd/onSubtract/canAdd/canSubtract" props 1`
           size={16}
         >
           <plusIcon
-            aria-label="Удалить единицу товара"
+            aria-label="Добавить единицу товара"
             className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
             height={16}
             onClick={[MockFunction]}
@@ -216,7 +216,7 @@ exports[`<Amount /> should handle "onAdd/onSubtract/canAdd/canSubtract" props 1`
             xmlns="http://www.w3.org/2000/svg"
           >
             <svg
-              aria-label="Удалить единицу товара"
+              aria-label="Добавить единицу товара"
               className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
               height={16}
               onClick={[MockFunction]}
@@ -243,7 +243,7 @@ exports[`<Amount /> should handle "size" prop 1`] = `
     computeClasses={[Function]}
     endAdornment={
       <Icon
-        aria-label="Удалить единицу товара"
+        aria-label="Добавить единицу товара"
         className="button padding-right-16 cursor-pointer"
         color="gray38"
         icon={[Function]}
@@ -253,7 +253,7 @@ exports[`<Amount /> should handle "size" prop 1`] = `
     }
     startAdornment={
       <Icon
-        aria-label="Добавить единицу товара"
+        aria-label="Удалить единицу товара"
         className="button padding-left-16 cursor-pointer"
         color="gray38"
         icon={[Function]}
@@ -270,7 +270,7 @@ exports[`<Amount /> should handle "size" prop 1`] = `
         className="adornment-container adornment-start"
       >
         <Icon
-          aria-label="Добавить единицу товара"
+          aria-label="Удалить единицу товара"
           className="button padding-left-16 cursor-pointer"
           color="gray38"
           icon={[Function]}
@@ -278,7 +278,7 @@ exports[`<Amount /> should handle "size" prop 1`] = `
           size={16}
         >
           <minusIcon
-            aria-label="Добавить единицу товара"
+            aria-label="Удалить единицу товара"
             className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
             height={16}
             role="button"
@@ -287,7 +287,7 @@ exports[`<Amount /> should handle "size" prop 1`] = `
             xmlns="http://www.w3.org/2000/svg"
           >
             <svg
-              aria-label="Добавить единицу товара"
+              aria-label="Удалить единицу товара"
               className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
               height={16}
               role="button"
@@ -312,7 +312,7 @@ exports[`<Amount /> should handle "size" prop 1`] = `
         className="adornment-container adornment-end"
       >
         <Icon
-          aria-label="Удалить единицу товара"
+          aria-label="Добавить единицу товара"
           className="button padding-right-16 cursor-pointer"
           color="gray38"
           icon={[Function]}
@@ -320,7 +320,7 @@ exports[`<Amount /> should handle "size" prop 1`] = `
           size={16}
         >
           <plusIcon
-            aria-label="Удалить единицу товара"
+            aria-label="Добавить единицу товара"
             className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
             height={16}
             role="button"
@@ -329,7 +329,7 @@ exports[`<Amount /> should handle "size" prop 1`] = `
             xmlns="http://www.w3.org/2000/svg"
           >
             <svg
-              aria-label="Удалить единицу товара"
+              aria-label="Добавить единицу товара"
               className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
               height={16}
               role="button"
@@ -357,7 +357,7 @@ exports[`<Amount /> should handle "size" prop 2`] = `
     computeClasses={[Function]}
     endAdornment={
       <Icon
-        aria-label="Удалить единицу товара"
+        aria-label="Добавить единицу товара"
         className="button padding-right-16 cursor-pointer"
         color="gray38"
         icon={[Function]}
@@ -367,7 +367,7 @@ exports[`<Amount /> should handle "size" prop 2`] = `
     }
     startAdornment={
       <Icon
-        aria-label="Добавить единицу товара"
+        aria-label="Удалить единицу товара"
         className="button padding-left-16 cursor-pointer"
         color="gray38"
         icon={[Function]}
@@ -384,7 +384,7 @@ exports[`<Amount /> should handle "size" prop 2`] = `
         className="adornment-container adornment-start"
       >
         <Icon
-          aria-label="Добавить единицу товара"
+          aria-label="Удалить единицу товара"
           className="button padding-left-16 cursor-pointer"
           color="gray38"
           icon={[Function]}
@@ -392,7 +392,7 @@ exports[`<Amount /> should handle "size" prop 2`] = `
           size={16}
         >
           <minusIcon
-            aria-label="Добавить единицу товара"
+            aria-label="Удалить единицу товара"
             className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
             height={16}
             role="button"
@@ -401,7 +401,7 @@ exports[`<Amount /> should handle "size" prop 2`] = `
             xmlns="http://www.w3.org/2000/svg"
           >
             <svg
-              aria-label="Добавить единицу товара"
+              aria-label="Удалить единицу товара"
               className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
               height={16}
               role="button"
@@ -426,7 +426,7 @@ exports[`<Amount /> should handle "size" prop 2`] = `
         className="adornment-container adornment-end"
       >
         <Icon
-          aria-label="Удалить единицу товара"
+          aria-label="Добавить единицу товара"
           className="button padding-right-16 cursor-pointer"
           color="gray38"
           icon={[Function]}
@@ -434,7 +434,7 @@ exports[`<Amount /> should handle "size" prop 2`] = `
           size={16}
         >
           <plusIcon
-            aria-label="Удалить единицу товара"
+            aria-label="Добавить единицу товара"
             className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
             height={16}
             role="button"
@@ -443,7 +443,7 @@ exports[`<Amount /> should handle "size" prop 2`] = `
             xmlns="http://www.w3.org/2000/svg"
           >
             <svg
-              aria-label="Удалить единицу товара"
+              aria-label="Добавить единицу товара"
               className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
               height={16}
               role="button"
@@ -471,7 +471,7 @@ exports[`<Amount /> should handle "size" prop 3`] = `
     computeClasses={[Function]}
     endAdornment={
       <Icon
-        aria-label="Удалить единицу товара"
+        aria-label="Добавить единицу товара"
         className="button cursor-pointer"
         color="gray38"
         icon={[Function]}
@@ -481,7 +481,7 @@ exports[`<Amount /> should handle "size" prop 3`] = `
     }
     startAdornment={
       <Icon
-        aria-label="Добавить единицу товара"
+        aria-label="Удалить единицу товара"
         className="button cursor-pointer"
         color="gray38"
         icon={[Function]}
@@ -498,7 +498,7 @@ exports[`<Amount /> should handle "size" prop 3`] = `
         className="adornment-container adornment-start"
       >
         <Icon
-          aria-label="Добавить единицу товара"
+          aria-label="Удалить единицу товара"
           className="button cursor-pointer"
           color="gray38"
           icon={[Function]}
@@ -506,7 +506,7 @@ exports[`<Amount /> should handle "size" prop 3`] = `
           size={16}
         >
           <minusIcon
-            aria-label="Добавить единицу товара"
+            aria-label="Удалить единицу товара"
             className="icon icon-gray38 icon-block button cursor-pointer"
             height={16}
             role="button"
@@ -515,7 +515,7 @@ exports[`<Amount /> should handle "size" prop 3`] = `
             xmlns="http://www.w3.org/2000/svg"
           >
             <svg
-              aria-label="Добавить единицу товара"
+              aria-label="Удалить единицу товара"
               className="icon icon-gray38 icon-block button cursor-pointer"
               height={16}
               role="button"
@@ -540,7 +540,7 @@ exports[`<Amount /> should handle "size" prop 3`] = `
         className="adornment-container adornment-end"
       >
         <Icon
-          aria-label="Удалить единицу товара"
+          aria-label="Добавить единицу товара"
           className="button cursor-pointer"
           color="gray38"
           icon={[Function]}
@@ -548,7 +548,7 @@ exports[`<Amount /> should handle "size" prop 3`] = `
           size={16}
         >
           <plusIcon
-            aria-label="Удалить единицу товара"
+            aria-label="Добавить единицу товара"
             className="icon icon-gray38 icon-block button cursor-pointer"
             height={16}
             role="button"
@@ -557,7 +557,7 @@ exports[`<Amount /> should handle "size" prop 3`] = `
             xmlns="http://www.w3.org/2000/svg"
           >
             <svg
-              aria-label="Удалить единицу товара"
+              aria-label="Добавить единицу товара"
               className="icon icon-gray38 icon-block button cursor-pointer"
               height={16}
               role="button"
@@ -591,7 +591,7 @@ exports[`<Amount /> should handle Input props 1`] = `
     disabled={true}
     endAdornment={
       <Icon
-        aria-label="Удалить единицу товара"
+        aria-label="Добавить единицу товара"
         className="button padding-right-16 cursor-pointer"
         color="gray38"
         icon={[Function]}
@@ -604,7 +604,7 @@ exports[`<Amount /> should handle Input props 1`] = `
     onKeyDown={[MockFunction]}
     startAdornment={
       <Icon
-        aria-label="Добавить единицу товара"
+        aria-label="Удалить единицу товара"
         className="button padding-left-16 cursor-pointer"
         color="gray38"
         icon={[Function]}
@@ -621,7 +621,7 @@ exports[`<Amount /> should handle Input props 1`] = `
         className="adornment-container adornment-start"
       >
         <Icon
-          aria-label="Добавить единицу товара"
+          aria-label="Удалить единицу товара"
           className="button padding-left-16 cursor-pointer"
           color="gray38"
           icon={[Function]}
@@ -629,7 +629,7 @@ exports[`<Amount /> should handle Input props 1`] = `
           size={16}
         >
           <minusIcon
-            aria-label="Добавить единицу товара"
+            aria-label="Удалить единицу товара"
             className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
             height={16}
             role="button"
@@ -638,7 +638,7 @@ exports[`<Amount /> should handle Input props 1`] = `
             xmlns="http://www.w3.org/2000/svg"
           >
             <svg
-              aria-label="Добавить единицу товара"
+              aria-label="Удалить единицу товара"
               className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
               height={16}
               role="button"
@@ -667,7 +667,7 @@ exports[`<Amount /> should handle Input props 1`] = `
         className="adornment-container adornment-end"
       >
         <Icon
-          aria-label="Удалить единицу товара"
+          aria-label="Добавить единицу товара"
           className="button padding-right-16 cursor-pointer"
           color="gray38"
           icon={[Function]}
@@ -675,7 +675,7 @@ exports[`<Amount /> should handle Input props 1`] = `
           size={16}
         >
           <plusIcon
-            aria-label="Удалить единицу товара"
+            aria-label="Добавить единицу товара"
             className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
             height={16}
             role="button"
@@ -684,7 +684,7 @@ exports[`<Amount /> should handle Input props 1`] = `
             xmlns="http://www.w3.org/2000/svg"
           >
             <svg
-              aria-label="Удалить единицу товара"
+              aria-label="Добавить единицу товара"
               className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
               height={16}
               role="button"
@@ -710,7 +710,7 @@ exports[`<Amount /> should render without props 1`] = `
     computeClasses={[Function]}
     endAdornment={
       <Icon
-        aria-label="Удалить единицу товара"
+        aria-label="Добавить единицу товара"
         className="button padding-right-16 cursor-pointer"
         color="gray38"
         icon={[Function]}
@@ -720,7 +720,7 @@ exports[`<Amount /> should render without props 1`] = `
     }
     startAdornment={
       <Icon
-        aria-label="Добавить единицу товара"
+        aria-label="Удалить единицу товара"
         className="button padding-left-16 cursor-pointer"
         color="gray38"
         icon={[Function]}
@@ -737,7 +737,7 @@ exports[`<Amount /> should render without props 1`] = `
         className="adornment-container adornment-start"
       >
         <Icon
-          aria-label="Добавить единицу товара"
+          aria-label="Удалить единицу товара"
           className="button padding-left-16 cursor-pointer"
           color="gray38"
           icon={[Function]}
@@ -745,7 +745,7 @@ exports[`<Amount /> should render without props 1`] = `
           size={16}
         >
           <minusIcon
-            aria-label="Добавить единицу товара"
+            aria-label="Удалить единицу товара"
             className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
             height={16}
             role="button"
@@ -754,7 +754,7 @@ exports[`<Amount /> should render without props 1`] = `
             xmlns="http://www.w3.org/2000/svg"
           >
             <svg
-              aria-label="Добавить единицу товара"
+              aria-label="Удалить единицу товара"
               className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
               height={16}
               role="button"
@@ -779,7 +779,7 @@ exports[`<Amount /> should render without props 1`] = `
         className="adornment-container adornment-end"
       >
         <Icon
-          aria-label="Удалить единицу товара"
+          aria-label="Добавить единицу товара"
           className="button padding-right-16 cursor-pointer"
           color="gray38"
           icon={[Function]}
@@ -787,7 +787,7 @@ exports[`<Amount /> should render without props 1`] = `
           size={16}
         >
           <plusIcon
-            aria-label="Удалить единицу товара"
+            aria-label="Добавить единицу товара"
             className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
             height={16}
             role="button"
@@ -796,7 +796,7 @@ exports[`<Amount /> should render without props 1`] = `
             xmlns="http://www.w3.org/2000/svg"
           >
             <svg
-              aria-label="Удалить единицу товара"
+              aria-label="Добавить единицу товара"
               className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
               height={16}
               role="button"
