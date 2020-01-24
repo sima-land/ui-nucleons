@@ -37,6 +37,7 @@ storiesOf('Amount', module)
         <h3>From 10 to 50</h3>
         <Amount
           value={value}
+          size='small'
           onChange={({ target }) => {
             setValue(target.value.replace(/\D/g, '').slice(0, 5));
           }}
