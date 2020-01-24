@@ -35,7 +35,7 @@ const DEFAULT_PROPS = {
         !disabled && 'cursor-pointer'
       )}
       role='button'
-      aria-label='Удалить единицу товара'
+      aria-label='Добавить единицу товара'
     />
   ),
 
@@ -52,7 +52,7 @@ const DEFAULT_PROPS = {
         !disabled && 'cursor-pointer'
       )}
       role='button'
-      aria-label='Добавить единицу товара'
+      aria-label='Удалить единицу товара'
     />
   ),
 };
