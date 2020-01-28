@@ -10,6 +10,7 @@ import classnames from 'classnames/bind';
 import fieldClasses from '../input/fields.scss';
 import textareaClasses from './textarea.scss';
 import PropTypes from 'prop-types';
+import { fitElementHeight } from '../helpers/fit-element-height';
 
 const cx = classnames.bind(textareaClasses);
 
@@ -45,7 +46,7 @@ const Textarea = forwardRef(function Textarea ({
   useImperativeHandle(ref, () => textareaRef.current);
 
   useEffect(() => {
-    fitElementHeight({ target: textareaRef.current });
+    autoFitHeight && fitElementHeight({ target: textareaRef.current });
   }, [textareaRef.current]);
 
   return (
@@ -78,23 +79,6 @@ const Textarea = forwardRef(function Textarea ({
     />
   );
 });
-
-/**
- * Перехватив событие, подгонит высоту поля под содержимое.
- * @param {Event} event Событие.
- * @param {HTMLElement} event.target Поле.
- */
-export const fitElementHeight = ({ target }) => {
-  target.style.height = 'auto';
-
-  // актуальные значения после установки "auto" (в начало функции не переносить)
-  const {
-    scrollHeight,
-    offsetHeight,
-    clientHeight,
-  } = target;
-  target.style.height = `${scrollHeight + offsetHeight - clientHeight}px`;
-};
 
 Textarea.propTypes = {
   /**
@@ -149,4 +133,5 @@ Textarea.propTypes = {
 };
 
 Textarea.displayName = 'Textarea';
+
 export default Textarea;
