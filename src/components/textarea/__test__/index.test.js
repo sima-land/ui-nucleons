@@ -2,11 +2,25 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { render } from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import Textarea, { fitElementHeight } from '../index';
+import Textarea from '../index';
+import { fitElementHeight } from '../../helpers/fit-element-height';
 import inputClasses from '../../input/fields.scss';
 import textareaClasses from '../textarea.scss';
 
+jest.mock('../../helpers/fit-element-height', () => {
+  const original = jest.requireActual('../../helpers/fit-element-height');
+
+  return {
+    ...original,
+    __esModule: true,
+    fitElementHeight: jest.fn(original.fitElementHeight),
+  };
+});
+
 describe('<Textarea />', () => {
+  beforeEach(() => {
+    fitElementHeight.mockClear();
+  });
   it('should render without props', () => {
     const wrapper = mount(<Textarea />);
     expect(wrapper.find('textarea')).toHaveLength(1);
@@ -25,6 +39,20 @@ describe('<Textarea />', () => {
     expect(spy).toHaveBeenCalledTimes(0);
     wrapper.find('textarea').simulate('change');
     expect(spy).toHaveBeenCalledTimes(1);
+  });
+  it('should call "fitElementHeight" after mount only when "autoFitHeight" prop is truthy', () => {
+    fitElementHeight.mockClear();
+
+    expect(fitElementHeight).toHaveBeenCalledTimes(0);
+
+    mount(
+      <Textarea
+        autoFitHeight
+        value='Test value'
+      />
+    );
+
+    expect(fitElementHeight).toHaveBeenCalledTimes(1);
   });
   it('should handle "failed" prop', () => {
     const wrapper = mount(
@@ -179,35 +207,5 @@ describe('<Textarea />', () => {
       />
     );
     expect(wrapper).toMatchSnapshot();
-  });
-});
-
-describe('fitElementHeight()', () => {
-  it('should set style.height', () => {
-    const spy = jest.fn();
-    const fakeTarget = {
-      scrollHeight: 234,
-      offsetHeight: 12,
-      clientHeight: 23,
-      style: {
-        /**
-         * Тестовый сеттер.
-         * @param {*} value Значение.
-         */
-        set height (value) {
-          spy(value);
-          if (value === 'auto') {
-            fakeTarget.scrollHeight = 123;
-          }
-        },
-      },
-    };
-    const fakeEvent = { target: fakeTarget };
-
-    fitElementHeight(fakeEvent);
-
-    expect(spy).toHaveBeenCalledTimes(2);
-    expect(spy.mock.calls[0][0]).toBe('auto');
-    expect(spy.mock.calls[1][0]).toBe('112px'); // 112 = 123 + 12 - 23
   });
 });
