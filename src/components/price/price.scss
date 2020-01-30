@@ -24,3 +24,8 @@
     transform: translate(-50%, -1px);
   }
 }
+
+sup {
+  line-height: 0;
+  vertical-align: super;
+}
