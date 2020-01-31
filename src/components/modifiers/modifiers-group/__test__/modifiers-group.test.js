@@ -19,6 +19,7 @@ jest.mock('../modifiers-group', () => {
     createHiddenNodeIndexFinder: jest.fn(original.createHiddenNodeIndexFinder),
   };
 });
+
 describe('<ModifiersGroup />', () => {
   /**
    * Возвращает тестовый список данных модификаторов.
@@ -484,6 +485,30 @@ describe('<ModifiersGroup />', () => {
       />
     );
     expect(wrapper).toMatchSnapshot();
+  });
+  it('should show all modifiers, if pass prop needShowAll', () => {
+    const component = mount(
+      <PureModifiersGroup
+        items={getTestItems()}
+        needShowAll
+      />
+    );
+    component.setState({ lastVisibleChildIndex: 3 });
+    expect(component.find(ModifierButton).filter('.show-all-button')).toHaveLength(0);
+    expect(component.find(ModifierButton).children().filter('.not-display')).toHaveLength(0);
+  });
+  it('should call onClickShowAll if it is a function', function () {
+    const spy = jest.fn();
+    const component = shallow(
+      <PureModifiersGroup
+        items={getTestItems()}
+        onClickShowAll={spy}
+      />
+    );
+    component.setState({ lastVisibleChildIndex: 3 });
+    expect(spy).not.toBeCalled();
+    component.find(ModifierButton).last().simulate('click');
+    expect(spy).toBeCalledTimes(1);
   });
 });
 
