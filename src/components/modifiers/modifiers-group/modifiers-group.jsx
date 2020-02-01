@@ -59,12 +59,14 @@ export const defaultOnSelectItem = (onSelectItem, item) =>
  * @param {Function} [props.isSelectedItem] Показывает, выбран ли модификатор (по умолчанию свойство "selected").
  * @param {Function} [props.onSelectItem] Будет вызвана при выборе модификатора, получит сам модификатор.
  * @param {Function} [props.getItemImage] Возвращает URL изображения модификатора (по умолчанию свойство "image").
+ * @param {boolean} [props.needShowAll] Флаг необходимости отображения всех модификаторов.
+ * @param {Function} [props.onClickShowAll] Сработает при нажатии на кнопку отображения всех модификаторов.
  * @param {Function} [props.isMarkdown] Имеет ли товар уценку.
  */
 export class ModifiersGroup extends Component {
   state = {
     // нажата ли кнопка показа всех модификаторов
-    needShowAll: false,
+    needShowAll: this.props.needShowAll || false,
 
     // есть ли дочерние узлы контейнера, которые скрыты из за ограничения его высоты
     hasHiddenNodes: true,
@@ -166,6 +168,15 @@ export class ModifiersGroup extends Component {
   };
 
   /**
+   * Обработчик нажатия на кнопку отображения всех модификаторов.
+   */
+  handleShowAllClick = () => {
+    this.setState({ needShowAll: true });
+    const { onClickShowAll } = this.props;
+    isFunction(onClickShowAll) && onClickShowAll();
+  };
+
+  /**
    * Возвращает компонент.
    * @inheritdoc
    */
@@ -219,7 +230,7 @@ export class ModifiersGroup extends Component {
             content={`+${items.length - lastVisibleChildIndex}`}
             className={cx('show-all-button')}
             wrapperClassName={cx(lastVisibleChildIndex === null && 'invisible')}
-            onClick={() => this.setState({ needShowAll: true })}
+            onClick={this.handleShowAllClick}
           />
         )}
       </div>
@@ -283,6 +294,16 @@ ModifiersGroup.propTypes = {
    * Глобальный обработчик событий.
    */
   addGlobalListener: Type.func,
+
+  /**
+   * Флаг необходимости отображения всех модификаторов.
+   */
+  needShowAll: Type.bool,
+
+  /**
+   * Сработает при нажатии на кнопку отображения всех модификаторов.
+   */
+  onClickShowAll: Type.func,
 };
 
 export default withGlobalListeners(ModifiersGroup);
