@@ -13,6 +13,8 @@
 .old-price {
   color: #9e9e9e;
   position: relative;
+  vertical-align: middle;
+  display: inline-block;
   &::after {
     content: '';
     position: absolute;
