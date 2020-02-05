@@ -329,12 +329,21 @@ describe('Carousel: finite mode', () => {
       right: 100,
       bottom: 20,
     }));
-    defineProp(containerEl, 'scrollWidth', 500);
-    defineProp(containerEl, 'scrollHeight', 20);
+    jest.spyOn(containerEl.firstElementChild, 'getBoundingClientRect').mockImplementation(() => ({
+      left: 0,
+    }));
+    jest.spyOn(containerEl.children[7], 'getBoundingClientRect').mockImplementation(() => ({
+      right: 200,
+    }));
     expect(wrapper.find(PureCarousel).instance().isAllItemsVisible()).toBe(false);
 
     // horizontal & all visible
-    defineProp(containerEl, 'scrollWidth', 100);
+    jest.spyOn(containerEl.firstElementChild, 'getBoundingClientRect').mockImplementation(() => ({
+      left: 0,
+    }));
+    jest.spyOn(containerEl.children[7], 'getBoundingClientRect').mockImplementation(() => ({
+      right: 80,
+    }));
     expect(wrapper.find(PureCarousel).instance().isAllItemsVisible()).toBe(true);
 
     // vertical & not all visible
@@ -347,12 +356,21 @@ describe('Carousel: finite mode', () => {
       right: 40,
       bottom: 200,
     }));
-    defineProp(containerEl, 'scrollWidth', 40);
-    defineProp(containerEl, 'scrollHeight', 400);
+    jest.spyOn(containerEl.firstElementChild, 'getBoundingClientRect').mockImplementation(() => ({
+      top: 0,
+    }));
+    jest.spyOn(containerEl.children[7], 'getBoundingClientRect').mockImplementation(() => ({
+      bottom: 240,
+    }));
     expect(wrapper.find(PureCarousel).instance().isAllItemsVisible()).toBe(false);
 
     // vertical & all visible
-    defineProp(containerEl, 'scrollHeight', 200);
+    jest.spyOn(containerEl.firstElementChild, 'getBoundingClientRect').mockImplementation(() => ({
+      top: 0,
+    }));
+    jest.spyOn(containerEl.children[7], 'getBoundingClientRect').mockImplementation(() => ({
+      bottom: 80,
+    }));
     expect(wrapper.find(PureCarousel).instance().isAllItemsVisible()).toBe(true);
   });
 
@@ -1324,12 +1342,12 @@ describe('Carousel: infinite mode', () => {
     it('should return NaN', () => {
       expect(PureCarousel.prototype.findRealItemsStartBound.call({
         infinite: false,
-        containerRef: { current: null },
+        listElement: null,
       })).toEqual(NaN);
       expect(PureCarousel.prototype.findRealItemsStartBound.call({
         infinite: false,
         props: { vertical: false, items: [] },
-        containerRef: { current: { children: [] } },
+        listElement: { children: [] },
       })).toEqual(NaN);
     });
 
@@ -1337,7 +1355,7 @@ describe('Carousel: infinite mode', () => {
       expect(PureCarousel.prototype.findRealItemsStartBound.call({
         infinite: false,
         props: { vertical: false, items: [1] },
-        containerRef: { current: { children: [{ getBoundingClientRect: () => ({ top: 12, left: 23 }) }] } },
+        listElement: { children: [{ getBoundingClientRect: () => ({ top: 12, left: 23 }) }] },
       })).toEqual(23);
     });
 
@@ -1345,7 +1363,7 @@ describe('Carousel: infinite mode', () => {
       expect(PureCarousel.prototype.findRealItemsStartBound.call({
         infinite: false,
         props: { vertical: true, items: [1] },
-        containerRef: { current: { children: [{ getBoundingClientRect: () => ({ top: 12, left: 23 }) }] } },
+        listElement: { children: [{ getBoundingClientRect: () => ({ top: 12, left: 23 }) }] },
       })).toEqual(12);
     });
 
@@ -1353,37 +1371,45 @@ describe('Carousel: infinite mode', () => {
       expect(PureCarousel.prototype.findRealItemsStartBound.call({
         infinite: true,
         props: { vertical: true, items: [1] },
-        containerRef: {
-          current: {
-            children: [
-              { getBoundingClientRect: () => ({ top: 12, left: 23 }) },
-              { getBoundingClientRect: () => ({ top: 34, left: 45 }) },
-              { getBoundingClientRect: () => ({ top: 56, left: 67 }) },
-            ],
-          },
+        listElement: {
+          children: [
+            { getBoundingClientRect: () => ({ top: 12, left: 23 }) },
+            { getBoundingClientRect: () => ({ top: 34, left: 45 }) },
+            { getBoundingClientRect: () => ({ top: 56, left: 67 }) },
+          ],
         },
       })).toEqual(34);
     });
   });
 
-  describe('getListSize', () => {
-    it('should return NaN', () => {
-      expect(PureCarousel.prototype.getListSize.call({
+  describe('getRealItemsSize', () => {
+    it('should return 0', () => {
+      expect(PureCarousel.prototype.getRealItemsSize.call({
         props: { vertical: false },
-        containerRef: { current: null },
-      })).toBe(NaN);
+        listElement: null,
+      })).toBe(0);
     });
-    it('should return container element scrollWidth', () => {
-      expect(PureCarousel.prototype.getListSize.call({
-        props: { vertical: false },
-        containerRef: { current: { scrollWidth: 123, scrollHeight: 234 } },
-      })).toBe(123);
+    it('should return result by container children bounds', () => {
+      expect(PureCarousel.prototype.getRealItemsSize.call({
+        props: { items: [1, 2], vertical: false },
+        listElement: {
+          children: [
+            { getBoundingClientRect: () => ({ left: 23 }) },
+            { getBoundingClientRect: () => ({ right: 45 }) },
+          ],
+        },
+      })).toBe(22);
     });
-    it('should return container element scrollHeight', () => {
-      expect(PureCarousel.prototype.getListSize.call({
-        props: { vertical: true },
-        containerRef: { current: { scrollWidth: 123, scrollHeight: 234 } },
-      })).toBe(234);
+    it('should return result by container children bounds (vertical)', () => {
+      expect(PureCarousel.prototype.getRealItemsSize.call({
+        props: { items: [1, 2], vertical: true },
+        listElement: {
+          children: [
+            { getBoundingClientRect: () => ({ top: 11 }) },
+            { getBoundingClientRect: () => ({ bottom: 44 }) },
+          ],
+        },
+      })).toBe(33);
     });
   });
 
@@ -1391,13 +1417,13 @@ describe('Carousel: infinite mode', () => {
     it('should work without second argument', () => {
       expect(() => PureCarousel.prototype.scrollToItem.call({
         props: { vertical: false },
-        containerRef: { current: { children: [] } },
+        listElement: { children: [] },
       }, 0)).not.toThrow();
     });
     it('should work without second argument prop needTransition', () => {
       expect(() => PureCarousel.prototype.scrollToItem.call({
         props: { vertical: false },
-        containerRef: { current: { children: [] } },
+        listElement: { children: [] },
       }, 0, {})).not.toThrow();
     });
   });

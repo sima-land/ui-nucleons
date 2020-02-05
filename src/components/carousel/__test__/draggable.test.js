@@ -217,19 +217,19 @@ describe('<Draggable />', () => {
       wrapper.getDOMNode().querySelector(`.${classes.draggable}`).style.transform
     ).toBe('translate3d(65px, 181px, 0px)');
   });
-  it('should passControl to "initControl" prop', () => {
+  it('should passControl to "takeControl" prop', () => {
     let testControl = null;
-    const initControlSpy = jest.fn(control => {
+    const takeControlSpy = jest.fn(control => {
       testControl = control;
     });
     const wrapper = mount(
-      <Draggable initControl={initControlSpy} transitionDuration={500} />
+      <Draggable takeControl={takeControlSpy} transitionDuration={500} />
     );
 
-    expect(initControlSpy).toHaveBeenCalledTimes(1);
-    expect(isFunction(initControlSpy.mock.calls[0][0].isGrabbed)).toBe(true);
-    expect(isFunction(initControlSpy.mock.calls[0][0].setOffset)).toBe(true);
-    expect(isFunction(initControlSpy.mock.calls[0][0].toggleTransition)).toBe(true);
+    expect(takeControlSpy).toHaveBeenCalledTimes(1);
+    expect(isFunction(takeControlSpy.mock.calls[0][0].isGrabbed)).toBe(true);
+    expect(isFunction(takeControlSpy.mock.calls[0][0].setOffset)).toBe(true);
+    expect(isFunction(takeControlSpy.mock.calls[0][0].toggleTransition)).toBe(true);
 
     expect(
       wrapper.getDOMNode().querySelector(`.${classes.draggable}`).style.transition
@@ -350,11 +350,11 @@ describe('<Draggable />', () => {
     expect(wrapper.find(PureDraggable).instance().saveClientPosition).toHaveBeenCalledTimes(1);
     expect(wrapper.find(PureDraggable).instance().setOffset).toHaveBeenCalledTimes(1);
   });
-  it('should pass object with "isGrabbed" method to "initControl" prop', () => {
+  it('should pass object with "isGrabbed" method to "takeControl" prop', () => {
     const spy = jest.fn();
 
     const wrapper = mount(
-      <Draggable initControl={spy} />
+      <Draggable takeControl={spy} />
     );
 
     expect(spy).toHaveBeenCalledTimes(1);

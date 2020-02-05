@@ -64,12 +64,12 @@ export class Draggable extends PureComponent {
   }
 
   /**
-   * Передает управление родительскому компоненту через "initControl".
+   * Передает управление родительскому компоненту через "takeControl".
    */
   passControl () {
-    const { initControl } = this.props;
+    const { takeControl } = this.props;
 
-    isFunction(initControl) && initControl({
+    isFunction(takeControl) && takeControl({
       isGrabbed: () => this.isGrabbed,
       setOffset: this.setOffset.bind(this),
       toggleTransition: this.toggleTransition.bind(this),
@@ -335,7 +335,7 @@ Draggable.propTypes = {
   /**
    * Получит интерфейс управления областью.
    */
-  initControl: PropTypes.func,
+  takeControl: PropTypes.func,
 };
 
 export default withGlobalListeners(Draggable);
