@@ -49,7 +49,7 @@ export class Carousel extends Component {
     this.wrapperRef = createRef(); // для определения viewport'а карусели
 
     // bound methods
-    this.initDragControl = this.initDragControl.bind(this);
+    this.takeDragControl = this.takeDragControl.bind(this);
     this.moveBackward = this.moveBackward.bind(this);
     this.moveForward = this.moveForward.bind(this);
     this.onDragEnd = this.onDragEnd.bind(this);
@@ -122,6 +122,14 @@ export class Carousel extends Component {
   }
 
   /**
+   * Геттер элемента списка.
+   * @return {HTMLElement|undefined} Элемент списка.
+   */
+  get listElement () {
+    return this.containerRef.current;
+  }
+
+  /**
    * Выполняет подписку на глобальное событие "resize".
    * Запускает прокрутку до текущего элемента.
    * Обновляет информацию о состоянии отображения элементов.
@@ -178,7 +186,7 @@ export class Carousel extends Component {
   componentWillUnmount () {
     this.offWindowResize();
     this.disableAutoplay();
-    this.toggleMounted(true);
+    this.toggleMounted(false);
   }
 
   /**
@@ -256,14 +264,13 @@ export class Carousel extends Component {
    */
   moveForwardFinite (step) {
     const { currentIndex } = this;
-    const { current: containerEl } = this.containerRef;
     const newIndex = currentIndex + step;
 
     this.toggleDragTransition(true);
     this.setCurrentIndex(
-      newIndex < size(containerEl.children)
+      newIndex < size(this.listElement.children)
         ? newIndex
-        : maxIndexOf(containerEl.children)
+        : maxIndexOf(this.listElement.children)
     );
   }
 
@@ -285,10 +292,9 @@ export class Carousel extends Component {
   moveBackwardFinite (step) {
     const { currentIndex } = this;
     const { vertical } = this.props;
-    const { current: containerEl } = this.containerRef;
 
     const newIndex = findChildElement({
-      target: containerEl,
+      target: this.listElement,
       startIndex: currentIndex,
       defaultResult: currentIndex,
       increment: -1,
@@ -320,13 +326,12 @@ export class Carousel extends Component {
     const { currentIndex } = this;
     const { currentOffset } = this.state;
     const { items, vertical } = this.props;
-    const { current: containerEl } = this.containerRef;
-    const itemsCount = size(items);
+    const realItemsCount = size(items);
 
-    if ((forward && currentIndex >= itemsCount) || (!forward && currentIndex < itemsCount)) {
-      const itemsSize = containerEl[vertical ? 'scrollHeight' : 'scrollWidth'] / CLONE_FACTOR;
+    if ((forward && currentIndex >= realItemsCount) || (!forward && currentIndex < realItemsCount)) {
+      const itemsSize = this.listElement[vertical ? 'scrollHeight' : 'scrollWidth'] / CLONE_FACTOR;
       const newOffset = currentOffset + (forward ? itemsSize : -itemsSize);
-      const newIndex = currentIndex + (forward ? -itemsCount : itemsCount);
+      const newIndex = currentIndex + (forward ? -realItemsCount : realItemsCount);
 
       this.setCurrentOffset(newOffset, { withStateUpdate: false });
 
@@ -370,17 +375,16 @@ export class Carousel extends Component {
   correctInfiniteOffset (dragEvent) {
     const { vertical } = this.props;
     const { offset, client } = dragEvent;
-    const { current: containerEl } = this.containerRef;
     const { dragStartClient } = this;
     const { forward, backward } = this.defineDirection(dragStartClient, client);
     const viewport = this.getViewport();
 
     const offsetValue = offset[vertical ? 'y' : 'x'];
-    const lastItem = containerEl.lastElementChild;
+    const lastItem = this.listElement.lastElementChild;
     const lastItemStartBound = boundsOf(lastItem)[vertical ? 'top' : 'left'];
     const viewportStartBound = viewport[vertical ? 'top' : 'left'];
     const viewportEndBound = viewport[vertical ? 'bottom' : 'right'];
-    const itemsSize = containerEl[vertical ? 'scrollHeight' : 'scrollWidth'] / CLONE_FACTOR;
+    const itemsSize = this.listElement[vertical ? 'scrollHeight' : 'scrollWidth'] / CLONE_FACTOR;
 
     if (forward && lastItemStartBound < viewportEndBound) {
       const newOffset = offsetValue + itemsSize;
@@ -402,17 +406,15 @@ export class Carousel extends Component {
    * @return {number} Начальную граница.
    */
   findRealItemsStartBound () {
-    const { current: containerEl } = this.containerRef;
     let result = NaN;
 
-    if (containerEl) {
+    if (this.listElement) {
       const { vertical, items } = this.props;
       const index = this.infinite ? size(items) : 0;
-      const firstNotCloneItem = containerEl.children[index];
+      const firstNotCloneItem = this.listElement.children[index];
 
       if (firstNotCloneItem) {
-        const sideKey = vertical ? 'top' : 'left';
-        result = boundsOf(firstNotCloneItem)[sideKey];
+        result = boundsOf(firstNotCloneItem)[vertical ? 'top' : 'left'];
       }
     }
 
@@ -430,15 +432,14 @@ export class Carousel extends Component {
     } = this;
 
     if (!isEqual(startOffset, endOffset)) {
-      const { current: containerEl } = this.containerRef;
       const { vertical } = this.props;
       const { backward } = this.defineDirection(startClient, endClient);
-      const lastIndex = maxIndexOf(containerEl.children);
+      const lastIndex = maxIndexOf(this.listElement.children);
       const edgeIndex = backward ? 0 : lastIndex;
 
       // ищем элемент, который находится ближе всего к начальной границе viewport'а
       const newIndex = findChildElement({
-        target: containerEl,
+        target: this.listElement,
         startIndex: backward ? lastIndex : 0,
         increment: backward ? -1 : +1,
         isSuitable: Carousel.makeNearestSiblingChecker({
@@ -498,8 +499,7 @@ export class Carousel extends Component {
     targetIndex = this.currentIndex,
     needTransition = true,
   } = {}) {
-    const { current: containerEl } = this.containerRef;
-    const targetItemEl = containerEl.children[targetIndex];
+    const targetItemEl = this.listElement.children[targetIndex];
 
     if (targetItemEl) {
       this.toggleDragTransition(needTransition);
@@ -514,8 +514,8 @@ export class Carousel extends Component {
           ? viewport.bottom
           : viewport.right;
         const nextItemsEndBound = vertical
-          ? viewport.top + containerEl.scrollHeight - targetItemPos.y
-          : viewport.left + containerEl.scrollWidth - targetItemPos.x;
+          ? viewport.top + this.listElement.scrollHeight - targetItemPos.y
+          : viewport.left + this.listElement.scrollWidth - targetItemPos.x;
 
         if (nextItemsEndBound >= viewportEndBound) {
           const itemBound = vertical
@@ -524,8 +524,8 @@ export class Carousel extends Component {
           this.setCurrentOffset(-itemBound);
         } else {
           const maxItemsEndBound = vertical
-            ? viewport.top + containerEl.scrollHeight
-            : viewport.left + containerEl.scrollWidth;
+            ? viewport.top + this.listElement.scrollHeight
+            : viewport.left + this.listElement.scrollWidth;
           this.setCurrentOffset(viewportEndBound - maxItemsEndBound);
         }
       }
@@ -537,10 +537,10 @@ export class Carousel extends Component {
    * @return {boolean} Видны ли все элементы галереи.
    */
   isAllItemsVisible () {
-    const listSize = this.getListSize();
+    const realItemsSize = this.getRealItemsSize();
     const viewportSize = this.getViewportSize();
 
-    return Math.round(viewportSize) >= listSize;
+    return Math.round(viewportSize) >= realItemsSize;
   }
 
   /**
@@ -549,17 +549,16 @@ export class Carousel extends Component {
    */
   defineMinOffset () {
     const { vertical } = this.props;
-    const { current: containerEl } = this.containerRef;
     let minOffset = NaN;
 
-    if (containerEl) {
+    if (this.listElement) {
       const viewport = this.getViewport();
       const viewportEndBound = vertical
         ? viewport.bottom
         : viewport.right;
       const maxItemsEndBound = vertical
-        ? viewport.top + containerEl.scrollHeight
-        : viewport.left + containerEl.scrollWidth;
+        ? viewport.top + this.listElement.scrollHeight
+        : viewport.left + this.listElement.scrollWidth;
       minOffset = viewportEndBound - maxItemsEndBound;
     }
 
@@ -570,16 +569,23 @@ export class Carousel extends Component {
    * Возвращает длину/ширину списка элементов (в зависимости от ориентации карусели).
    * @return {number} Длина/ширина списка элементов.
    */
-  getListSize () {
-    const { vertical } = this.props;
-    const { current: containerEl } = this.containerRef;
-    const sizeKey = vertical
-      ? 'scrollHeight'
-      : 'scrollWidth';
+  getRealItemsSize () {
+    let result = 0;
 
-    return containerEl
-      ? containerEl[sizeKey]
-      : NaN;
+    if (this.listElement) {
+      const { items, vertical } = this.props;
+      const firstChild = this.listElement.children[0];
+      const lastChild = this.listElement.children[size(items) - 1];
+
+      if (firstChild && lastChild) {
+        const startBound = boundsOf(firstChild)[vertical ? 'top' : 'left'];
+        const endBound = boundsOf(lastChild)[vertical ? 'bottom' : 'right'];
+
+        result = endBound - startBound;
+      }
+    }
+
+    return result;
   }
 
   /**
@@ -630,7 +636,7 @@ export class Carousel extends Component {
    * Получает управление от Draggable.
    * @param {Object} draggableInterface Функции управления и доступа к данным о состоянии Draggable.
    */
-  initDragControl ({ isGrabbed, setOffset, toggleTransition }) {
+  takeDragControl ({ isGrabbed, setOffset, toggleTransition }) {
     this.toggleDragTransition = toggleTransition;
     this.setDragOffset = setOffset;
     this.isGrabbed = isGrabbed;
@@ -643,6 +649,7 @@ export class Carousel extends Component {
   render () {
     const { currentOffset, isAllItemsVisible } = this.state;
     const {
+      autoplay,
       autoplayHoverPause,
       vertical,
       containerProps = {},
@@ -660,12 +667,12 @@ export class Carousel extends Component {
           containerProps.className
         )}
         onMouseEnter={() => {
-          if (autoplayHoverPause) {
+          if (autoplay && autoplayHoverPause) {
             this.toggleAutoMove(false);
           }
         }}
         onMouseLeave={() => {
-          if (autoplayHoverPause && !this.isGrabbed()) {
+          if (autoplay && autoplayHoverPause && !this.isGrabbed()) {
             this.toggleAutoMove(true);
           }
         }}
@@ -682,7 +689,7 @@ export class Carousel extends Component {
               viewportElementProps.className
             ),
           }}
-          initControl={this.initDragControl}
+          takeControl={this.takeDragControl}
           onDragStart={this.onDragStart}
           onDragMove={this.onDragMove}
           onDragEnd={this.onDragEnd}
