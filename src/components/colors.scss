@@ -1,3 +1,6 @@
+$black: #000;
+$white: #fff;
+
 // brand
 $brand-dark-blue: #002b41;
 $brand-deep-blue: #f5f9fc;
@@ -46,6 +49,8 @@ $additional-green: #00c853;
 $additional-teal: #09ab8b;
 
 $colors: (
+  'black': $black,
+  'white': $white,
   'brand-dark-blue': $brand-dark-blue,
   'brand-deep-blue': $brand-deep-blue,
   'brand-blue': $brand-blue,

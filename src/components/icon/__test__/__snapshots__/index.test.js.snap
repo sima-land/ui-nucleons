@@ -1,25 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Icon /> Icon renders correctly with icon prop 1`] = `
+exports[`<Icon /> should renders correctly with icon prop 1`] = `
 <Icon
   className="test"
-  color="dark-gray"
+  color="brand-blue"
   icon={[Function]}
   inline={true}
-  onClick={[Function]}
+  onClick={[MockFunction]}
 >
   <svgIcon
-    className="icon icon-dark-gray test"
+    className="icon color__brand-blue test"
     height="33"
-    onClick={[Function]}
+    onClick={[MockFunction]}
     viewBox="0 0 36 36"
     width="30"
     xmlns="http://www.w3.org/2000/svg"
   >
     <svg
-      className="icon icon-dark-gray test"
+      className="icon color__brand-blue test"
       height="33"
-      onClick={[Function]}
+      onClick={[MockFunction]}
       viewBox="0 0 36 36"
       width="30"
       xmlns="http://www.w3.org/2000/svg"
@@ -35,25 +35,25 @@ exports[`<Icon /> Icon renders correctly with icon prop 1`] = `
 </Icon>
 `;
 
-exports[`<Icon /> Icon renders correctly with image-cap 1`] = `
+exports[`<Icon /> should renders correctly with image-cap 1`] = `
 <Icon
   className="test"
-  color="dark-gray"
-  onClick={[Function]}
+  color="brand-blue"
+  onClick={[MockFunction]}
   size={20}
 >
   <imageCap
-    className="icon icon-dark-gray icon-block test"
+    className="icon icon-block color__brand-blue test"
     height={20}
-    onClick={[Function]}
+    onClick={[MockFunction]}
     viewBox="0 0 36 36"
     width={20}
     xmlns="http://www.w3.org/2000/svg"
   >
     <svg
-      className="icon icon-dark-gray icon-block test"
+      className="icon icon-block color__brand-blue test"
       height={20}
-      onClick={[Function]}
+      onClick={[MockFunction]}
       viewBox="0 0 36 36"
       width={20}
       xmlns="http://www.w3.org/2000/svg"

@@ -44,7 +44,7 @@ exports[`<Amount /> should handle "computeClasses" prop 1`] = `
         >
           <minusIcon
             aria-label="Удалить единицу товара"
-            className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
+            className="icon icon-block color__gray38 button padding-left-16 cursor-pointer"
             height={16}
             role="button"
             viewBox="0 0 36 36"
@@ -53,7 +53,7 @@ exports[`<Amount /> should handle "computeClasses" prop 1`] = `
           >
             <svg
               aria-label="Удалить единицу товара"
-              className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
+              className="icon icon-block color__gray38 button padding-left-16 cursor-pointer"
               height={16}
               role="button"
               viewBox="0 0 36 36"
@@ -86,7 +86,7 @@ exports[`<Amount /> should handle "computeClasses" prop 1`] = `
         >
           <plusIcon
             aria-label="Добавить единицу товара"
-            className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
+            className="icon icon-block color__gray38 button padding-right-16 cursor-pointer"
             height={16}
             role="button"
             viewBox="0 0 36 36"
@@ -95,7 +95,7 @@ exports[`<Amount /> should handle "computeClasses" prop 1`] = `
           >
             <svg
               aria-label="Добавить единицу товара"
-              className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
+              className="icon icon-block color__gray38 button padding-right-16 cursor-pointer"
               height={16}
               role="button"
               viewBox="0 0 36 36"
@@ -162,7 +162,7 @@ exports[`<Amount /> should handle "onAdd/onSubtract/canAdd/canSubtract" props 1`
         >
           <minusIcon
             aria-label="Удалить единицу товара"
-            className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
+            className="icon icon-block color__gray38 button padding-left-16 cursor-pointer"
             height={16}
             onClick={[MockFunction]}
             role="button"
@@ -172,7 +172,7 @@ exports[`<Amount /> should handle "onAdd/onSubtract/canAdd/canSubtract" props 1`
           >
             <svg
               aria-label="Удалить единицу товара"
-              className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
+              className="icon icon-block color__gray38 button padding-left-16 cursor-pointer"
               height={16}
               onClick={[MockFunction]}
               role="button"
@@ -207,7 +207,7 @@ exports[`<Amount /> should handle "onAdd/onSubtract/canAdd/canSubtract" props 1`
         >
           <plusIcon
             aria-label="Добавить единицу товара"
-            className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
+            className="icon icon-block color__gray38 button padding-right-16 cursor-pointer"
             height={16}
             onClick={[MockFunction]}
             role="button"
@@ -217,7 +217,7 @@ exports[`<Amount /> should handle "onAdd/onSubtract/canAdd/canSubtract" props 1`
           >
             <svg
               aria-label="Добавить единицу товара"
-              className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
+              className="icon icon-block color__gray38 button padding-right-16 cursor-pointer"
               height={16}
               onClick={[MockFunction]}
               role="button"
@@ -279,7 +279,7 @@ exports[`<Amount /> should handle "size" prop 1`] = `
         >
           <minusIcon
             aria-label="Удалить единицу товара"
-            className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
+            className="icon icon-block color__gray38 button padding-left-16 cursor-pointer"
             height={16}
             role="button"
             viewBox="0 0 36 36"
@@ -288,7 +288,7 @@ exports[`<Amount /> should handle "size" prop 1`] = `
           >
             <svg
               aria-label="Удалить единицу товара"
-              className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
+              className="icon icon-block color__gray38 button padding-left-16 cursor-pointer"
               height={16}
               role="button"
               viewBox="0 0 36 36"
@@ -321,7 +321,7 @@ exports[`<Amount /> should handle "size" prop 1`] = `
         >
           <plusIcon
             aria-label="Добавить единицу товара"
-            className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
+            className="icon icon-block color__gray38 button padding-right-16 cursor-pointer"
             height={16}
             role="button"
             viewBox="0 0 36 36"
@@ -330,7 +330,7 @@ exports[`<Amount /> should handle "size" prop 1`] = `
           >
             <svg
               aria-label="Добавить единицу товара"
-              className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
+              className="icon icon-block color__gray38 button padding-right-16 cursor-pointer"
               height={16}
               role="button"
               viewBox="0 0 36 36"
@@ -393,7 +393,7 @@ exports[`<Amount /> should handle "size" prop 2`] = `
         >
           <minusIcon
             aria-label="Удалить единицу товара"
-            className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
+            className="icon icon-block color__gray38 button padding-left-16 cursor-pointer"
             height={16}
             role="button"
             viewBox="0 0 36 36"
@@ -402,7 +402,7 @@ exports[`<Amount /> should handle "size" prop 2`] = `
           >
             <svg
               aria-label="Удалить единицу товара"
-              className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
+              className="icon icon-block color__gray38 button padding-left-16 cursor-pointer"
               height={16}
               role="button"
               viewBox="0 0 36 36"
@@ -435,7 +435,7 @@ exports[`<Amount /> should handle "size" prop 2`] = `
         >
           <plusIcon
             aria-label="Добавить единицу товара"
-            className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
+            className="icon icon-block color__gray38 button padding-right-16 cursor-pointer"
             height={16}
             role="button"
             viewBox="0 0 36 36"
@@ -444,7 +444,7 @@ exports[`<Amount /> should handle "size" prop 2`] = `
           >
             <svg
               aria-label="Добавить единицу товара"
-              className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
+              className="icon icon-block color__gray38 button padding-right-16 cursor-pointer"
               height={16}
               role="button"
               viewBox="0 0 36 36"
@@ -507,7 +507,7 @@ exports[`<Amount /> should handle "size" prop 3`] = `
         >
           <minusIcon
             aria-label="Удалить единицу товара"
-            className="icon icon-gray38 icon-block button cursor-pointer"
+            className="icon icon-block color__gray38 button cursor-pointer"
             height={16}
             role="button"
             viewBox="0 0 36 36"
@@ -516,7 +516,7 @@ exports[`<Amount /> should handle "size" prop 3`] = `
           >
             <svg
               aria-label="Удалить единицу товара"
-              className="icon icon-gray38 icon-block button cursor-pointer"
+              className="icon icon-block color__gray38 button cursor-pointer"
               height={16}
               role="button"
               viewBox="0 0 36 36"
@@ -549,7 +549,7 @@ exports[`<Amount /> should handle "size" prop 3`] = `
         >
           <plusIcon
             aria-label="Добавить единицу товара"
-            className="icon icon-gray38 icon-block button cursor-pointer"
+            className="icon icon-block color__gray38 button cursor-pointer"
             height={16}
             role="button"
             viewBox="0 0 36 36"
@@ -558,7 +558,7 @@ exports[`<Amount /> should handle "size" prop 3`] = `
           >
             <svg
               aria-label="Добавить единицу товара"
-              className="icon icon-gray38 icon-block button cursor-pointer"
+              className="icon icon-block color__gray38 button cursor-pointer"
               height={16}
               role="button"
               viewBox="0 0 36 36"
@@ -630,7 +630,7 @@ exports[`<Amount /> should handle Input props 1`] = `
         >
           <minusIcon
             aria-label="Удалить единицу товара"
-            className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
+            className="icon icon-block color__gray38 button padding-left-16 cursor-pointer"
             height={16}
             role="button"
             viewBox="0 0 36 36"
@@ -639,7 +639,7 @@ exports[`<Amount /> should handle Input props 1`] = `
           >
             <svg
               aria-label="Удалить единицу товара"
-              className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
+              className="icon icon-block color__gray38 button padding-left-16 cursor-pointer"
               height={16}
               role="button"
               viewBox="0 0 36 36"
@@ -676,7 +676,7 @@ exports[`<Amount /> should handle Input props 1`] = `
         >
           <plusIcon
             aria-label="Добавить единицу товара"
-            className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
+            className="icon icon-block color__gray38 button padding-right-16 cursor-pointer"
             height={16}
             role="button"
             viewBox="0 0 36 36"
@@ -685,7 +685,7 @@ exports[`<Amount /> should handle Input props 1`] = `
           >
             <svg
               aria-label="Добавить единицу товара"
-              className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
+              className="icon icon-block color__gray38 button padding-right-16 cursor-pointer"
               height={16}
               role="button"
               viewBox="0 0 36 36"
@@ -746,7 +746,7 @@ exports[`<Amount /> should render without props 1`] = `
         >
           <minusIcon
             aria-label="Удалить единицу товара"
-            className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
+            className="icon icon-block color__gray38 button padding-left-16 cursor-pointer"
             height={16}
             role="button"
             viewBox="0 0 36 36"
@@ -755,7 +755,7 @@ exports[`<Amount /> should render without props 1`] = `
           >
             <svg
               aria-label="Удалить единицу товара"
-              className="icon icon-gray38 icon-block button padding-left-16 cursor-pointer"
+              className="icon icon-block color__gray38 button padding-left-16 cursor-pointer"
               height={16}
               role="button"
               viewBox="0 0 36 36"
@@ -788,7 +788,7 @@ exports[`<Amount /> should render without props 1`] = `
         >
           <plusIcon
             aria-label="Добавить единицу товара"
-            className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
+            className="icon icon-block color__gray38 button padding-right-16 cursor-pointer"
             height={16}
             role="button"
             viewBox="0 0 36 36"
@@ -797,7 +797,7 @@ exports[`<Amount /> should render without props 1`] = `
           >
             <svg
               aria-label="Добавить единицу товара"
-              className="icon icon-gray38 icon-block button padding-right-16 cursor-pointer"
+              className="icon icon-block color__gray38 button padding-right-16 cursor-pointer"
               height={16}
               role="button"
               viewBox="0 0 36 36"

@@ -22,6 +22,9 @@ export const MODIFIERS_TYPES = Object.freeze({
  * Цвета дизайн системы.
  */
 export const COLORS = new Map(Object.entries({
+  black: '#000',
+  white: '#fff',
+
   // brand
   'brand-dark-blue': '#002b41',
   'brand-deep-blue': '#f5f9fc',
