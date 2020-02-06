@@ -1,29 +1,40 @@
 Иконка-заглушка:
 ```jsx
-    <Icon/>
+<Icon />
 ```
 
 Все иконки библиотеки:
 ```jsx
 import icons from '../icons';
-Object.keys(icons).map(icon => 
-    <Icon style={{ marginRight: '10px' }} key={icon} inline icon={icons[icon]} size={36} />
-)
 
-``` 
+Object.keys(icons).map(icon =>
+  <Icon
+    style={{ marginRight: 10 }}
+    key={icon}
+    inline
+    icon={icons[icon]}
+    size={36}
+  />
+);
+```
 
 Иконки во всех доступных цветах разных размеров:
-```jsx 
+```jsx
 import { clock } from '../icons';
-import { ICON_COLORS } from './';
-ICON_COLORS.map((color, index) =>
-    <Icon
-        key={color}
+import { COLORS } from '../constants';
+
+<React.Fragment>
+  {Array.from(COLORS.keys()).map((colorKey, index) => (
+    <div key={colorKey} style={{ marginBottom: 16 }}>
+      <Icon
         inline
-        style={{ marginRight: '10px' }}
-        color={color}
-        size={50-5*index}
+        size={24}
         icon={clock}
-    />
-)
-``` 
+        color={colorKey}
+        style={{ marginRight: 8 }}
+      />
+      {colorKey}
+    </div>
+  ))}
+</React.Fragment>
+```

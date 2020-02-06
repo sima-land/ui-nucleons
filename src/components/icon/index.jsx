@@ -1,30 +1,29 @@
 import React from 'react';
 import classnames from 'classnames/bind';
 import imageCap from '../icons/image-cap.svg';
-import styles from './icon.scss';
+import classes from './icon.scss';
 import Type from 'prop-types';
+import { colorClass } from '../styling/colors';
+import { COLORS } from '../constants';
 
-const cx = classnames.bind(styles);
-export const ICON_COLORS = ['white', 'dark-gray', 'dark-blue', 'gray', 'gray12', 'gray38'];
+const cx = classnames.bind(classes);
 
 /**
  * Компонент SVG-Иконки.
- * @param {Object} props Свойства Компонента.
+ * @param {Object} props Свойства.
  * @param {string} props.icon Импортированная иконка.
  * @param {string} props.color Если передается - применяется этот цвет, если нет, то цвет наследуется от color родителя.
  * @param {number} props.size Размеры иконки.
  * @param {boolean} props.inline Если элемент должен выглядеть как встроенный.
  * @param {string} props.className Название класса.
  * @param {Function} props.onClick Обработчик клика на иконке.
- * @return {React.Element} Svg-icon.
+ * @return {ReactElement} Компонент SVG-Иконки.
  */
 const Icon = ({ icon, size, color, inline, className, ...restProps }) => {
   const iconClasses = cx(
     'icon',
-    {
-      [`icon-${color}`]: color && ICON_COLORS.includes(color),
-      ['icon-block']: !inline,
-    },
+    !inline && 'icon-block',
+    colorClass(color),
     className
   );
   const Image = typeof icon === 'function' ? icon : imageCap;
@@ -54,7 +53,7 @@ Icon.propTypes = {
   /**
    * Цвет иконки. Если передается - применяется этот цвет, если нет, то цвет наследуется от color родителя.
    */
-  color: Type.oneOf(['white', 'dark-gray', 'dark-blue', 'gray', 'gray12', 'gray38']),
+  color: Type.oneOf(...COLORS.keys()),
 
   /**
    * Устанавливает display: inline если иконка должна быть встроена в текст.

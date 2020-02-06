@@ -1,0 +1,7 @@
+@import '../colors';
+
+@each $key, $color in $colors {
+  .color__#{$key} {
+    color: $color;
+  }
+}

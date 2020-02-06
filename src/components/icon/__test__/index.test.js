@@ -4,18 +4,35 @@ import { mount } from 'enzyme';
 import svgIcon from '../../icons/bus.svg';
 
 describe('<Icon />', () => {
-  it('Icon renders correctly with image-cap', () => {
-    const clickMock = jest.fn;
-    const icon = mount(<Icon color='dark-gray' size={20} className='test' onClick={clickMock} />);
+  it('should renders correctly with image-cap', () => {
+    const spy = jest.fn();
+    const icon = mount(
+      <Icon
+        color='brand-blue'
+        size={20}
+        className='test'
+        onClick={spy}
+      />
+    );
+
     expect(icon.find('svg')).toHaveLength(1);
-    expect(icon.find('svg').prop('className')).toBe('icon icon-dark-gray icon-block test');
-    expect(icon.find('svg').prop('onClick')).toHaveLength(1);
+    expect(icon.find('svg').prop('className')).toBe('icon icon-block color__brand-blue test');
+    expect(icon.find('svg').prop('onClick')).toBe(spy);
     expect(icon.find('imageCap')).toHaveLength(1);
     expect(icon).toMatchSnapshot();
   });
-  it('Icon renders correctly with icon prop', () => {
-    const clickMock = jest.fn;
-    const icon = mount(<Icon icon={svgIcon} color='dark-gray' className='test' inline onClick={clickMock} />);
+  it('should renders correctly with icon prop', () => {
+    const spy = jest.fn();
+    const icon = mount(
+      <Icon
+        icon={svgIcon}
+        color='brand-blue'
+        className='test'
+        inline
+        onClick={spy}
+      />
+    );
+
     expect(icon.find('svgIcon')).toHaveLength(1);
     expect(icon.find('svgIcon').prop('height')).toBe('33');
     expect(icon).toMatchSnapshot();

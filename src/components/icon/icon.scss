@@ -1,5 +1,4 @@
 @import '../variables';
-@import '../colors';
 
 .icon {
   fill: currentColor;
@@ -9,28 +8,4 @@
 
 .icon-block {
   display: block;
-}
-
-.icon-gray {
-  color: $gray;
-}
-
-.icon-dark-gray {
-  color: $darkGray;
-}
-
-.icon-white {
-  color: #fff;
-}
-
-.icon-dark-blue {
-  color: $darkBlue;
-}
-
-.icon-gray12 {
-  color: map-get($colors, 'gray12');
-}
-
-.icon-gray38 {
-  color: map-get($colors, 'gray38');
 }
