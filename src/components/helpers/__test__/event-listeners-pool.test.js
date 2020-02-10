@@ -97,4 +97,31 @@ describe('EventListenersPool()', () => {
     expect(div.addEventListener).toHaveBeenCalledTimes(1);
     expect(div.removeEventListener).toHaveBeenCalledTimes(1);
   });
+  it('should not call handler if it is added during the call process', () => {
+    const div = document.createElement('div');
+    const pool = EventListenersPool(div, 'click');
+
+    const listener1 = jest.fn();
+    const listener2 = jest.fn(() => pool.add(listener3));
+    const listener3 = jest.fn();
+
+    expect(listener1).toHaveBeenCalledTimes(0);
+    expect(listener2).toHaveBeenCalledTimes(0);
+    expect(listener3).toHaveBeenCalledTimes(0);
+
+    pool.add(listener1);
+    pool.add(listener2);
+
+    div.dispatchEvent(new MouseEvent('click'));
+
+    expect(listener1).toHaveBeenCalledTimes(1);
+    expect(listener2).toHaveBeenCalledTimes(1);
+    expect(listener3).toHaveBeenCalledTimes(0);
+
+    div.dispatchEvent(new MouseEvent('click'));
+
+    expect(listener1).toHaveBeenCalledTimes(2);
+    expect(listener2).toHaveBeenCalledTimes(2);
+    expect(listener3).toHaveBeenCalledTimes(1);
+  });
 });

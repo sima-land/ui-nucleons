@@ -31,7 +31,10 @@ const EventListenersPool = (target, eventName) => {
    * @param {Event} event Объект события.
    */
   const callListeners = event => {
-    for (const listener of listeners) {
+    // предотвращаем вызов обработчиков, которые будут добавлены в процессе выполнения существующих
+    const currentListeners = [...listeners];
+
+    for (const listener of currentListeners) {
       listener(event);
     }
   };
