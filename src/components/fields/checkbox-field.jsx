@@ -98,5 +98,4 @@ CheckboxField.propTypes = {
   onChange: PropTypes.func,
 };
 
-CheckboxField.displayName = 'CheckboxField';
 export default CheckboxField;

@@ -38,9 +38,9 @@ Array.from(SIZES).map(size => (
 
 Варианты цветов
 ```jsx
-import { COLORS } from '../text/';
+import { COLORS } from '../constants';
 
-Array.from(COLORS).map(color => (
+Array.from(COLORS.keys()).map(color => (
   <div key={color}>
     <Text size={16} color={color}>
       Text with color {color}

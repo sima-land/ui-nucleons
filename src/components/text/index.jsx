@@ -2,6 +2,8 @@ import React, { memo } from 'react';
 import classnames from 'classnames/bind';
 import classes from './text.scss';
 import PropTypes from 'prop-types';
+import { colorClass } from '../styling/colors';
+import { COLORS } from '../constants';
 
 const cx = classnames.bind(classes);
 
@@ -11,16 +13,6 @@ const cx = classnames.bind(classes);
 export const SIZES = new Set(
   [12, 14, 16, 20, 24, 32, 48, 64, 80]
 );
-
-/**
- * Возможные значения свойства "color".
- */
-export const COLORS = new Set([
-  'red',
-  'gray24',
-  'gray38',
-  'black',
-]);
 
 /**
  * Возможные значения свойства "weight".
@@ -51,7 +43,7 @@ export const ALIGNS = new Set([
  * @param {'left'|'center'|'right'|'justify'} [props.align] Направление.
  * @param {12|14|16|20|24|32|48|64|80} [props.size] Размер.
  * @param {12|14|16|20|24|32|48|64|80} [props.lineHeight] Межстрочный интервал.
- * @param {'red'|'gray'|'gray24'|'gray38'|'black'} [props.color='black'] Цвет.
+ * @param {string} [props.color] Ключ цвета из дизайн системы.
  * @param {300|400|600|700|800} [props.weight=400] Начертание.
  * @param {boolean} [props.italic] Нужно ли выводить текст наклонным.
  * @return {ReactElement} Элемент текста.
@@ -72,7 +64,7 @@ const Text = ({
     className={cx([
       SIZES.has(size) && `size-${size}`,
       SIZES.has(lineHeight) && `line-height-${lineHeight}`,
-      COLORS.has(color) && `color-${color}`,
+      colorClass(color),
       WEIGHTS.has(weight) && `weight-${weight}`,
       ALIGNS.has(align) && `align-${align}`,
       italic && 'italic',
@@ -105,7 +97,7 @@ Text.propTypes = {
   /**
    * Имя цвета в дизайн-системе.
    */
-  color: PropTypes.oneOf(['red', 'gray24', 'gray38', 'black']),
+  color: PropTypes.oneOf([...COLORS.keys()]),
 
   /**
    * Начертание.

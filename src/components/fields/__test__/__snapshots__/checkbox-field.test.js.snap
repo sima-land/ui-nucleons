@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<CheckboxField /> should match snapshot 1`] = `
-<CheckboxField
+<ForwardRef(CheckboxField)
   checked={true}
   disabled={true}
   error="Test error"
@@ -133,5 +133,5 @@ exports[`<CheckboxField /> should match snapshot 1`] = `
       Test info
     </span>
   </span>
-</CheckboxField>
+</ForwardRef(CheckboxField)>
 `;
