@@ -3,9 +3,8 @@ import Price from '../index';
 import classes from '../price.scss';
 import { shallow } from 'enzyme';
 
-let price;
-
 describe('<Price />', () => {
+  let price;
   let props = {
     value: 100.578,
     currencySign: 'RUB',
@@ -76,5 +75,12 @@ describe('<Price />', () => {
     expect(price.find('.old-price')).toHaveLength(0);
     price.setProps({ old: true });
     expect(price.find('.old-price')).toHaveLength(1);
+  });
+
+  it('should render correctly with custom fractionalSign', () => {
+    price = shallow(<Price value={4523.74} fractionalSign='-' />);
+    expect(price.text()).toEqual('4 523-74');
+    price = shallow(<Price value={4523.74} fractionalSign=',' />);
+    expect(price.text()).toEqual('4 523,74');
   });
 });

@@ -17,6 +17,7 @@ const cx = classnames.bind(classes);
  * @param {boolean|'auto'} [props.withFractionalPart='auto'] Указать дробную часть.
  * @param {boolean} [props.graphemeBeforePrice] Отобразить знак валюты перед ценой.
  * @param {boolean} [props.fractionalInSuper] Отображать дробную часть сверху.
+ * @param {string} [props.fractionalSign='.'] Знак отделения копеек от цены.
  * @param {boolean} [props.boldIntegerPart] Отображать целую часть цены жирным начертанием.
  * @param {boolean} [props.old] Отображать цену "старой" - серой и зачеркнутой.
  * @return {ReactElement} Цена товара с указанием знака валюты.
@@ -28,6 +29,7 @@ const Price = ({
   withFractionalPart: withFraction = 'auto',
   graphemeBeforePrice,
   fractionalInSuper,
+  fractionalSign = '.',
   boldIntegerPart,
   currencyGraphemeClass,
   fractionalClass,
@@ -64,7 +66,7 @@ const Price = ({
               </sup>
             </Fragment>
           )
-          : `.${fraction}`
+          : `${fractionalSign}${fraction}`
       )}
       {!graphemeBeforePrice && sign}
     </span>
@@ -111,6 +113,11 @@ Price.propTypes = {
    * Указывать дробную часть цены сверху (в <sup></sup>).
    */
   fractionalInSuper: PropTypes.bool,
+
+  /**
+   * Знак отделения копеек от цены.
+   */
+  fractionalSign: PropTypes.string,
 
   /**
    * Выделять жирным шрифтом целую часть цены.

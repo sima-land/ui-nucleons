@@ -6,6 +6,7 @@ import arrowRight from './arrow-right.svg';
 import arrowUp from './arrow-up.svg';
 import bus from './bus.svg';
 import cart from './cart.svg';
+import checkMark from './check-mark.svg';
 import clock from './clock.svg';
 import clockFace from './clock-face.svg';
 import close from './close.svg';
@@ -30,6 +31,7 @@ export {
   arrowUp,
   bus,
   cart,
+  checkMark,
   clock,
   clockFace,
   close,

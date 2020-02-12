@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ModifiersList should renders correctly with correct props 1`] = `
+<ModifiersList
+  currencyGrapheme="$"
+  items={
+    Array [
+      Object {
+        "name": "testModifier - 1",
+        "price": 123,
+        "type": "text",
+      },
+      Object {
+        "name": "testModifier - 2",
+        "price": 233,
+        "type": "text",
+      },
+    ]
+  }
+>
+  <div>
+    <ModifierItem
+      currencyGrapheme="$"
+      key="0"
+      name="testModifier - 1"
+      price={123}
+      type="text"
+    >
+      <div
+        className="wrapper"
+      >
+        <div
+          className="info"
+        >
+          <span
+            className="name"
+          >
+            testModifier - 1
+          </span>
+          <Price
+            className="price"
+            currencyGrapheme="$"
+            fractionalSign=","
+            value={123}
+          >
+            <span
+              className="price price"
+            >
+              123
+              <span>
+                 $
+              </span>
+            </span>
+          </Price>
+        </div>
+        <div
+          className="icon-wrapper"
+        />
+      </div>
+    </ModifierItem>
+    <ModifierItem
+      currencyGrapheme="$"
+      key="1"
+      name="testModifier - 2"
+      price={233}
+      type="text"
+    >
+      <div
+        className="wrapper"
+      >
+        <div
+          className="info"
+        >
+          <span
+            className="name"
+          >
+            testModifier - 2
+          </span>
+          <Price
+            className="price"
+            currencyGrapheme="$"
+            fractionalSign=","
+            value={233}
+          >
+            <span
+              className="price price"
+            >
+              233
+              <span>
+                 $
+              </span>
+            </span>
+          </Price>
+        </div>
+        <div
+          className="icon-wrapper"
+        />
+      </div>
+    </ModifierItem>
+  </div>
+</ModifiersList>
+`;
+
+exports[`<ModifiersList should renders correctly without props 1`] = `
+<ModifiersList>
+  <div />
+</ModifiersList>
+`;
