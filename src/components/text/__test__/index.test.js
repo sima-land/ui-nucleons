@@ -2,6 +2,7 @@ import React from 'react';
 import Text from '../index';
 import classes from '../text.scss';
 import { shallow } from 'enzyme';
+import { COLORS } from '../../constants';
 
 describe('<Text />', () => {
   it('should render without props', () => {
@@ -55,15 +56,10 @@ describe('<Text />', () => {
     const wrapper = shallow(
       <Text />
     );
-    const validValues = [
-      'red',
-      'gray24',
-      'gray38',
-      'black',
-    ];
+    const validValues = [...COLORS.keys()];
     validValues.forEach(value => {
       wrapper.setProps({ color: value });
-      expect(wrapper.find('span').prop('className')).toContain(`color-${value}`);
+      expect(wrapper.find('span').prop('className')).toContain(`color__${value}`);
     });
     wrapper.setProps({ size: 'invalid' });
     expect(wrapper.find('span').prop('className')).not.toContain('size-invalid');

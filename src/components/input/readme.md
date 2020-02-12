@@ -25,7 +25,7 @@ import withInputMask from '../hoc/with-input-mask';
       startAdornment={(
         <Icon
           icon={icons.search}
-          color='gray'
+          color='gray38'
           size={19}
         />
       )}
@@ -39,14 +39,14 @@ import withInputMask from '../hoc/with-input-mask';
       startAdornment={(
         <Icon
           icon={icons.search}
-          color='gray'
+          color='gray38'
           size={19}
         />
       )}
       endAdornment={(
         <Icon
           icon={icons.cross}
-          color='gray'
+          color='gray38'
           size={10}
         />
       )}

@@ -1,8 +1,9 @@
 import React, { useRef, useLayoutEffect } from 'react';
 import { storiesOf } from '@storybook/react';
-import Text, { SIZES, COLORS, WEIGHTS, ALIGNS } from '../index';
+import Text, { SIZES, WEIGHTS, ALIGNS } from '../index';
 import cutTextContent from '../../helpers/cut-text-content';
 import isElement from 'lodash/isElement';
+import { COLORS } from '../../constants';
 
 /**
  * Обрезает текст до заданной высоты.
@@ -37,11 +38,11 @@ storiesOf('Text', module)
       </div>
     )
   ))
-  .add('"color" prop variations', () => [...COLORS].map(
+  .add('"color" prop variations', () => [...COLORS.keys()].map(
     (color, index) => (
       <div key={index}>
-        <Text size={16} color={color}>
-          Text with color &quot;{color}&quot;
+        <Text size={16} color={color} weight={800}>
+          {color}
         </Text>
       </div>
     )

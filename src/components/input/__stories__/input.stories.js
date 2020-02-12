@@ -33,7 +33,7 @@ storiesOf('Input', module)
           startAdornment={(
             <Icon
               icon={searchIcon}
-              color='gray'
+              color='gray38'
               size={19}
             />
           )}
@@ -47,14 +47,14 @@ storiesOf('Input', module)
           startAdornment={(
             <Icon
               icon={searchIcon}
-              color='gray'
+              color='gray38'
               size={19}
             />
           )}
           endAdornment={(
             <Icon
               icon={crossIcon}
-              color='gray'
+              color='gray38'
               size={10}
             />
           )}
