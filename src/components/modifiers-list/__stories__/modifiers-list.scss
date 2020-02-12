@@ -1,0 +1,14 @@
+.list {
+  border: 1px solid #00599d;
+  width: 320px;
+  + .list {
+    margin-top: 20px;
+  }
+}
+
+.title {
+  font-size: 20px;
+  line-height: 44px;
+  text-align: center;
+  border-bottom: 1px solid #00599d;
+}
