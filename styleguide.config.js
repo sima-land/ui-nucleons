@@ -2,13 +2,86 @@ const reactDoc = require('react-docgen');
 
 module.exports = {
   title: 'UINucleons',
-  components: 'src/components/**/*.jsx',
-  ignore: [
-    'src/components/pagination/base-pagination.jsx',
-    'src/components/pagination/page-button.jsx',
-    'src/components/pagination/page-select-form.jsx',
-    'src/components/carousel/draggable.jsx',
-    'src/components/carousel/nav-button.jsx',
+  pagePerSection: true,
+  sections: [
+    {
+      name: 'Base',
+      components: [
+        'src/components/box/*.jsx',
+        'src/components/button/*.jsx',
+        'src/components/icon/*.jsx',
+        'src/components/link/*.jsx',
+        'src/components/no-index/*.jsx',
+        'src/components/no-index-mark/*.jsx',
+        'src/components/text/*.jsx',
+      ],
+    },
+    {
+      name: 'Fields',
+      components: [
+        'src/components/attach/*.jsx',
+        'src/components/checkbox/*.jsx',
+        'src/components/fields/*.jsx',
+        'src/components/input/*.jsx',
+        'src/components/textarea/*.jsx',
+      ],
+    },
+    {
+      name: 'Grid',
+      components: ['src/components/grid/**/*.jsx'],
+    },
+    {
+      name: 'Modifiers',
+      sections: [
+        {
+          name: 'asList',
+          components: ['src/components/modifiers-list/**/*.jsx'],
+        },
+        {
+          name: 'asButtons',
+          components: ['src/components/modifiers/**/*.jsx'],
+        },
+      ],
+      sectionDepth: 1,
+    },
+    {
+      name: 'Popups',
+      components: ['src/components/popups/**/*.jsx'],
+    },
+    {
+      name: 'Other',
+      components: () => ['src/components/**/*.jsx'],
+      ignore: [
+        /* Компоненты в базовой секции */
+        'src/components/box/*.jsx',
+        'src/components/button/*.jsx',
+        'src/components/icon/*.jsx',
+        'src/components/link/*.jsx',
+        'src/components/no-index/*.jsx',
+        'src/components/no-index-mark/*.jsx',
+        'src/components/text/*.jsx',
+
+        /* Компоненты в секции полей */
+        'src/components/attach/*.jsx',
+        'src/components/checkbox/*.jsx',
+        'src/components/fields/*.jsx',
+        'src/components/input/*.jsx',
+        'src/components/textarea/*.jsx',
+
+        /* Другие, уже выведенные секции */
+        'src/components/modifiers-list/**/*.jsx',
+        'src/components/modifiers/**/*.jsx',
+        'src/components/popups/**/*.jsx',
+        'src/components/grid/**/*.jsx',
+
+        /* Ненужные для отображения компоненты */
+        'src/components/pagination/base-pagination.jsx',
+        'src/components/pagination/page-button.jsx',
+        'src/components/pagination/page-select-form.jsx',
+        'src/components/carousel/draggable.jsx',
+        'src/components/carousel/nav-button.jsx',
+      ],
+    },
   ],
   resolver: reactDoc.resolver.findAllComponentDefinitions,
   propsParser: (filePath, source, resolver, handlers) =>
