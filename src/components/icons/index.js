@@ -20,6 +20,7 @@ import refresh from './refresh.svg';
 import search from './search.svg';
 import squareArrowDown from './square-arrow-down.svg';
 import star from './star.svg';
+import statement from './statement.svg';
 import user from './user.svg';
 
 export {
@@ -45,5 +46,6 @@ export {
   search,
   squareArrowDown,
   star,
+  statement,
   user,
 };

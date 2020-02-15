@@ -29,4 +29,36 @@ storiesOf('ModifiersList', module)
         />
       </div>
     </Fragment>
+  ))
+  .add('with sizesTableUrl', () => (
+    <div className={classes.list}>
+      <div className={classes.title}>С таблицей размеров</div>
+      <ModifiersList
+        items={[...items.withPhoto, ...items.withColor]}
+        currencyGrapheme='₽'
+        sizesTableUrl='/'
+      />
+    </div>
+  ))
+  .add('with custom props', () => (
+    <Fragment>
+      <div className={classes.list}>
+        <div className={classes.title}>Обертка</div>
+        <ModifiersList
+          items={[...items.withPhoto, ...items.withColor]}
+          currencyGrapheme='₽'
+          sizesTableUrl='/'
+          wrapperProps={{ className: classes.scrollable }}
+        />
+      </div>
+      <div className={classes.list}>
+        <div className={classes.title}>Контейнер</div>
+        <ModifiersList
+          items={[...items.withPhoto, ...items.withColor]}
+          currencyGrapheme='₽'
+          sizesTableUrl='/'
+          itemsContainerProps={{ className: classes.scrollable }}
+        />
+      </div>
+    </Fragment>
   ));
