@@ -1,0 +1,20 @@
+@import '../colors';
+
+.sizes-table-wrapper {
+  box-shadow: inset 0 -1px 0 $gray12;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.sizes-table-icon {
+  margin-left: 8px;
+  padding-bottom: 4px;
+}
+
+.sizes-table-link {
+  display: inline-block;
+  vertical-align: middle;
+  height: 24px;
+}
+
