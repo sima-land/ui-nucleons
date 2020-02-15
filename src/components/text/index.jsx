@@ -46,6 +46,7 @@ export const ALIGNS = new Set([
  * @param {string} [props.color] Ключ цвета из дизайн системы.
  * @param {300|400|600|700|800} [props.weight=400] Начертание.
  * @param {boolean} [props.italic] Нужно ли выводить текст наклонным.
+ * @param {boolean} [props.truncate] Нужно ли обрезать текст многоточием в одну строку.
  * @return {ReactElement} Элемент текста.
  */
 const Text = ({
@@ -59,6 +60,7 @@ const Text = ({
   color,
   weight,
   italic,
+  truncate,
 }) => (
   <Container
     className={cx([
@@ -68,6 +70,7 @@ const Text = ({
       WEIGHTS.has(weight) && `weight-${weight}`,
       ALIGNS.has(align) && `align-${align}`,
       italic && 'italic',
+      truncate && 'truncate',
     ])}
     children={children}
   />
@@ -113,6 +116,11 @@ Text.propTypes = {
    * Содержимое.
    */
   children: PropTypes.any,
+
+  /**
+   * Нужно ли обрезать текст многоточием в одну строку.
+   */
+  truncate: PropTypes.bool,
 };
 
 export default memo(Text);

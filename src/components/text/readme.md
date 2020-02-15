@@ -1,6 +1,25 @@
+Базовое использование
+```jsx
+<div style={{ maxWidth: 400 }}>
+  <h3>Просто текст</h3>
+  <Text>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid deserunt earum nam rem. Consectetur,
+    dignissimos dolore dolores eos esse itaque iusto nemo optio quaerat quo ratione reprehenderit voluptatem
+    voluptates?
+  </Text>
+
+  <h3>Обрезание многоточием в одну строку</h3>
+  <Text element='div' truncate>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid deserunt earum nam rem. Consectetur,
+    dignissimos dolore dolores eos esse itaque iusto nemo optio quaerat quo ratione reprehenderit voluptatem
+    voluptates?
+  </Text>
+</div>
+```
+
 Обрезанный текст с подставлением многоточия
 ```jsx
-import React, { useRef, useLayoutEffect } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import isElement from 'lodash/isElement';
 import cutTextContent from '../helpers/cut-text-content';
 
