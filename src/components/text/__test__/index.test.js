@@ -117,4 +117,14 @@ describe('<Text />', () => {
     );
     expect(wrapper).toMatchSnapshot();
   });
+  it('should handle "truncate" prop', () => {
+    const wrapper = shallow(
+      <Text
+        truncate
+      />
+    );
+    expect(wrapper.find('span').prop('className')).toContain('truncate');
+    wrapper.setProps({ truncate: false });
+    expect(wrapper.find('span').prop('className')).not.toContain('truncate');
+  });
 });

@@ -24,6 +24,19 @@ const CutTextContent = () => {
   );};
 
 storiesOf('Text', module)
+  .add('Base usage', () => (
+    <div style={{ maxWidth: 320 }}>
+      <h3>Just text</h3>
+      <Text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi laboriosam sed veritatis.
+      </Text>
+
+      <h3>Truncated text</h3>
+      <Text element='div' truncate>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi laboriosam sed veritatis.
+      </Text>
+    </div>
+  ))
   .add('with cutTextContent helper', () => (
     <Text>
       <CutTextContent />
