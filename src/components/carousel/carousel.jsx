@@ -5,6 +5,7 @@ import eq from 'lodash/fp/eq';
 import inRange from 'lodash/inRange';
 import isEqual from 'lodash/isEqual';
 import size from 'lodash/size';
+import isFunction from 'lodash/isFunction';
 import boundsOf from '../helpers/bounds-of';
 import Point from '../helpers/point';
 import maxIndexOf from '../helpers/max-index-of';
@@ -135,7 +136,7 @@ export class Carousel extends Component {
    * Обновляет информацию о состоянии отображения элементов.
    */
   componentDidMount () {
-    const { autoplay, addGlobalListener } = this.props;
+    const { autoplay, addGlobalListener, onReady } = this.props;
 
     this.offWindowResize = addGlobalListener('resize', () => {
       this.toggleDragTransition(false);
@@ -151,6 +152,7 @@ export class Carousel extends Component {
     });
 
     autoplay && this.enableAutoplay();
+    isFunction(onReady) && onReady(this.currentIndex);
   }
 
   /**
@@ -485,8 +487,10 @@ export class Carousel extends Component {
    * @param {boolean} options.needTransition Нужна ли анимация при прокрутке.
    */
   setCurrentIndex (newIndex, { withScroll = true, needTransition = true } = {}) {
+    const { onChangeTargetIndex } = this.props;
     this.currentIndex = newIndex;
     withScroll && this.scrollToItem({ targetIndex: newIndex, needTransition });
+    isFunction(onChangeTargetIndex) && onChangeTargetIndex(this.currentIndex);
   }
 
   /**
@@ -823,6 +827,16 @@ Carousel.propTypes = {
    * Флаг автоматической прокрутки карусели.
    */
   autoplay: PropTypes.bool,
+
+  /**
+   * Будет вызвана после монтирования компонента.
+   */
+  onReady: PropTypes.func,
+
+  /**
+   * Будет вызвана после смены слайда.
+   */
+  onChangeTargetIndex: PropTypes.func,
 };
 
 export default withGlobalListeners(Carousel);
