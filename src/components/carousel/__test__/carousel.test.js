@@ -208,6 +208,32 @@ describe('<Carousel />', () => {
     expect(instance.toggleDragTransition).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledTimes(1);
   });
+
+  it('onReady should pass currentIndex when component did mounted', () => {
+    const spy = jest.fn();
+    mount(
+      <Carousel
+        items={[1, 2, 3]}
+        targetIndex={2}
+        onReady={spy}
+      />
+    );
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(2);
+  });
+
+  it('onChangeTargetIndex should pass currentIndex when set new index', () => {
+    const spy = jest.fn();
+    const wrapper = mount(
+      <Carousel
+        items={[1, 2, 3]}
+        onChangeTargetIndex={spy}
+      />
+    );
+    wrapper.find(PureCarousel).instance().setCurrentIndex(3);
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(3);
+  });
 });
 
 describe('Carousel: finite mode', () => {
