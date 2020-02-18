@@ -217,16 +217,32 @@ describe('<Range />', () => {
     expect(instance.fireEvent).toHaveBeenCalledTimes(1);
   });
 
-  it('constrainValue() should return value properly', () => {
-    const wrapper = mount(
-      <Range min={2.5} max={200.1} step={1} />
-    );
-    const instance = wrapper.find(PureRange).instance();
+  describe('constrainValue()', () => {
+    it('should return value properly, INT step', () => {
+      const wrapper = mount(
+        <Range min={2.5} max={200.1} step={1} />
+      );
+      const instance = wrapper.find(PureRange).instance();
 
-    // эти значения идентичны тем, которые выдает <input type="range" />
-    expect(instance.constrainValue(10)).toBe(10.5);
-    expect(instance.constrainValue(1)).toBe(2.5);
-    expect(instance.constrainValue(81 * 2.5)).toBe(199.5);
+      // эти значения идентичны тем, которые выдает <input type="range" />
+      expect(instance.constrainValue(10)).toBe(10.5);
+      expect(instance.constrainValue(1)).toBe(2.5);
+      expect(instance.constrainValue(81 * 2.5)).toBe(199.5);
+    });
+    it('should return value properly, FLOAT step', () => {
+      const wrapper = mount(
+        <Range min={1} max={5} step={0.1} />
+      );
+      const instance = wrapper.find(PureRange).instance();
+
+      expect(instance.constrainValue(0.5)).toBe(1);
+      expect(instance.constrainValue(1.04)).toBe(1);
+      expect(instance.constrainValue(1.05)).toBe(1.1);
+      expect(instance.constrainValue(1.1)).toBe(1.1);
+      expect(instance.constrainValue(3.023)).toBe(3);
+      expect(instance.constrainValue(5.1)).toBe(5);
+      expect(instance.constrainValue(6)).toBe(5);
+    });
   });
 
   it('updateValues() should set start thumb value on drag start', () => {
