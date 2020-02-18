@@ -7,9 +7,12 @@ import createContainer from '../helpers/create-container';
 import { getEventClientPos } from '../helpers/events';
 import centerOf from '../helpers/center-of';
 import on from '../helpers/on';
+import { getFractionDepth } from '../helpers/get-fraction-depth';
 import classnames from 'classnames/bind';
 import classes from './range.scss';
 import PropTypes from 'prop-types';
+import isInteger from 'lodash/isInteger';
+import clamp from 'lodash/clamp';
 
 const cx = classnames.bind(classes);
 
@@ -160,10 +163,19 @@ export class Range extends Component {
    */
   constrainValue (value) {
     const { min, max, step = 0.1 } = this.props;
-    let result = Math.max(min, Math.min(value || 0, max));
-
+    let result = clamp(value, min, max);
     result -= min;
-    result = Math.round(result / step) * step;
+    if (isInteger(step)) {
+      result = Math.round(result / step) * step;
+    } else {
+      const stepFractionDepth = getFractionDepth(step);
+      const capacityByDepth = Math.pow(10, stepFractionDepth);
+
+      const intStep = step * capacityByDepth;
+      const coefficient = intStep * capacityByDepth;
+
+      result = Math.round(result * coefficient) / coefficient;
+    }
     result += min;
 
     if (result > max) { result -= step; }
