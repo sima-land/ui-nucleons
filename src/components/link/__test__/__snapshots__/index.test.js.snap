@@ -11,12 +11,12 @@ exports[`<Link /> calls helpers and renders correctly with external 1`] = `
 `;
 
 exports[`<Link /> calls helpers and renders correctly with pseudo 1`] = `
-<a
+<span
   className="link link-black link-can-be-hovered link-underlined link-underlined-dashed"
   href="/auth/"
 >
   TestLink
-</a>
+</span>
 `;
 
 exports[`<Link /> calls helpers with right params and renders correctly without external 1`] = `
