@@ -41,7 +41,7 @@ describe('Attach', () => {
     expect(inputEl.click).toHaveBeenCalledTimes(0);
 
     act(() => {
-      Simulate.click(container.querySelector('a'));
+      Simulate.click(container.querySelector('.attach-label > span'));
     });
     expect(inputEl.click).toHaveBeenCalledTimes(1);
   });

@@ -51,11 +51,11 @@ exports[`<PageSelectForm /> should render without props 1`] = `
       pseudo={true}
       underlined={true}
     >
-      <a
+      <span
         className="cancel-button link link-black link-can-be-hovered link-underlined link-underlined-dashed"
       >
         Отмена
-      </a>
+      </span>
     </Link>
   </div>
 </PageSelectForm>

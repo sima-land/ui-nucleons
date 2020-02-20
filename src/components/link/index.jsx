@@ -61,8 +61,9 @@ const Link = forwardRef(function Link ({
     color,
     underlineType: underlined && underlineType,
   });
+  const Component = pseudo ? 'span' : 'a';
   return (
-    <a
+    <Component
       {...linkParams}
       ref={ref}
       className={linkClasses}
