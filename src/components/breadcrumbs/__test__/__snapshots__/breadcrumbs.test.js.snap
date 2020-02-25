@@ -63,12 +63,12 @@ exports[`<Breadcrumbs /> should match snapshot 1`] = `
         <Link
           color="dark-gray"
         >
-          <a
+          <span
             className="link link-dark-gray link-can-be-hovered"
             target="_self"
           >
             First
-          </a>
+          </span>
         </Link>
       </li>
       <li
@@ -77,12 +77,12 @@ exports[`<Breadcrumbs /> should match snapshot 1`] = `
         <Link
           color="dark-gray"
         >
-          <a
+          <span
             className="link link-dark-gray link-can-be-hovered"
             target="_self"
           >
             Second
-          </a>
+          </span>
         </Link>
       </li>
       <li
@@ -91,12 +91,12 @@ exports[`<Breadcrumbs /> should match snapshot 1`] = `
         <Link
           color="dark-gray"
         >
-          <a
+          <span
             className="link link-dark-gray link-can-be-hovered"
             target="_self"
           >
             Third
-          </a>
+          </span>
         </Link>
         <span>
           <Icon

@@ -44,6 +44,7 @@ const Link = forwardRef(function Link ({
   color = 'blue',
   underlined,
   pseudo,
+  href,
   disableHoverEffect,
   external = false,
   ...restProps
@@ -61,11 +62,12 @@ const Link = forwardRef(function Link ({
     color,
     underlineType: underlined && underlineType,
   });
-  const Component = pseudo ? 'span' : 'a';
+  const Component = pseudo || !href ? 'span' : 'a';
   return (
     <Component
       {...linkParams}
       ref={ref}
+      href={href}
       className={linkClasses}
       {...getContent(disableIndexing, children)}
     />

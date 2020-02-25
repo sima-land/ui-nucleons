@@ -113,4 +113,26 @@ describe('<Link />', () => {
     expect(link.prop('dangerouslySetInnerHTML')).not.toBeDefined();
     expect(link.prop('children')).toBeDefined();
   });
+
+  it('render teg span if there sign pseudo', () => {
+    const link = shallow(
+      <Link pseudo>TestLink</Link>
+    );
+    expect(link.find('span')).toHaveLength(1);
+    expect(link.find('a')).toHaveLength(0);
+  });
+  it('render teg span if not href', () => {
+    const link = shallow(
+      <Link>TestLink</Link>
+    );
+    expect(link.find('span')).toHaveLength(1);
+    expect(link.find('a')).toHaveLength(0);
+  });
+  it('render teg a if there href and not sign pseudo ', () => {
+    const link = shallow(
+      <Link href='test'>TestLink</Link>
+    );
+    expect(link.find('span')).toHaveLength(0);
+    expect(link.find('a')).toHaveLength(1);
+  });
 });
