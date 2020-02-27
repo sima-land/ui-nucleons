@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import classnames from 'classnames/bind';
 import classes from './text.scss';
 import PropTypes from 'prop-types';
-import { colorClass } from '../styling/colors';
+import { color as getColorClass } from '../styling/colors';
 import { COLORS } from '../constants';
 
 const cx = classnames.bind(classes);
@@ -66,7 +66,7 @@ const Text = ({
     className={cx([
       SIZES.has(size) && `size-${size}`,
       SIZES.has(lineHeight) && `line-height-${lineHeight}`,
-      colorClass(color),
+      getColorClass(color),
       WEIGHTS.has(weight) && `weight-${weight}`,
       ALIGNS.has(align) && `align-${align}`,
       italic && 'italic',
