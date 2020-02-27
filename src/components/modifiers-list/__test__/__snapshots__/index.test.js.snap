@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ModifiersList should pass custom props to correct blocks 1`] = `
+exports[`<ModifiersList /> should pass custom props to correct blocks 1`] = `
 <div
   className="wrapper-test-class"
   id={4}
@@ -29,12 +29,14 @@ exports[`<ModifiersList should pass custom props to correct blocks 1`] = `
     <ModifierItem
       key="0"
       name="testModifier - 1"
+      onClick={[Function]}
       price={123}
       type="text"
     />
     <ModifierItem
       key="1"
       name="testModifier - 2"
+      onClick={[Function]}
       price={233}
       type="text"
     />
@@ -42,7 +44,7 @@ exports[`<ModifiersList should pass custom props to correct blocks 1`] = `
 </div>
 `;
 
-exports[`<ModifiersList should render correct with sizesTableUrl 1`] = `
+exports[`<ModifiersList /> should render correct with sizesTableUrl 1`] = `
 <ModifiersList
   sizesTableUrl="test.ru/123"
 >
@@ -100,13 +102,14 @@ exports[`<ModifiersList should render correct with sizesTableUrl 1`] = `
 </ModifiersList>
 `;
 
-exports[`<ModifiersList should renders correctly with correct props 1`] = `
+exports[`<ModifiersList /> should renders correctly with correct props 1`] = `
 <div>
   <div>
     <ModifierItem
       currencyGrapheme="$"
       key="0"
       name="testModifier - 1"
+      onClick={[Function]}
       price={123}
       type="text"
     />
@@ -114,6 +117,7 @@ exports[`<ModifiersList should renders correctly with correct props 1`] = `
       currencyGrapheme="$"
       key="1"
       name="testModifier - 2"
+      onClick={[Function]}
       price={233}
       type="text"
     />
@@ -121,4 +125,4 @@ exports[`<ModifiersList should renders correctly with correct props 1`] = `
 </div>
 `;
 
-exports[`<ModifiersList should renders correctly without props 1`] = `<div />`;
+exports[`<ModifiersList /> should renders correctly without props 1`] = `<div />`;

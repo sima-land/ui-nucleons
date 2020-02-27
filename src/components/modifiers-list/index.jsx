@@ -1,5 +1,6 @@
 import React from 'react';
 import Type from 'prop-types';
+import isFunction from 'lodash/isFunction';
 import ModifierItem from './modifier-item/';
 import Link from '../link';
 import Icon from '../icon';
@@ -17,9 +18,17 @@ const cx = classnames.bind(classes);
  * @param {string} props.sizesTableUrl Url таблицы размеров.
  * @param {Object} props.wrapperProps Свойства блока-обертки.
  * @param {Object} props.itemsContainerProps Свойства блока-обертки списка модификаторов.
+ * @param {Function} props.onItemClick Обработчик клика на модификатор.
  * @return {ReactElement} Компонент списка модификаторов.
  */
-const ModifiersList = ({ items, currencyGrapheme, sizesTableUrl, wrapperProps, itemsContainerProps }) => (
+const ModifiersList = ({
+  items,
+  currencyGrapheme,
+  sizesTableUrl,
+  wrapperProps,
+  itemsContainerProps,
+  onItemClick,
+}) => (
   <div {...wrapperProps}>
     {sizesTableUrl && (
       <div className={cx('sizes-table-wrapper')}>
@@ -44,6 +53,7 @@ const ModifiersList = ({ items, currencyGrapheme, sizesTableUrl, wrapperProps, i
         {items.map((item, index) => (
           <ModifierItem
             key={index}
+            onClick={() => isFunction(onItemClick) && onItemClick(item)}
             {...item}
             currencyGrapheme={currencyGrapheme}
           />
@@ -79,6 +89,11 @@ ModifiersList.propTypes = {
    * Свойства блока-обертки списка модификаторов.
    */
   itemsContainerProps: Type.object,
+
+  /**
+   * Обработчик клика на модификатор.
+   */
+  onItemClick: Type.func,
 };
 
 export default ModifiersList;

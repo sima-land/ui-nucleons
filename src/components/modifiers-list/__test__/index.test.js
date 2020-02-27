@@ -1,11 +1,12 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import omit from 'lodash/omit';
 import ModifiersList from '../';
 import ModifierItem from '../modifier-item';
 import Link from '../../link';
 import Icon from '../../icon';
 
-describe('<ModifiersList', () => {
+describe('<ModifiersList />', () => {
   const items = [
     { name: 'testModifier - 1', type: 'text', price: 123 },
     { name: 'testModifier - 2', type: 'text', price: 233 },
@@ -25,11 +26,17 @@ describe('<ModifiersList', () => {
       />
     );
     expect(wrapper.find(ModifierItem)).toHaveLength(2);
-    expect(wrapper.find(ModifierItem).at(0).props()).toEqual({
+    expect(omit(
+      wrapper.find(ModifierItem).at(0).props(),
+      ['onClick']
+    )).toEqual({
       ...items[0],
       currencyGrapheme: '$',
     });
-    expect(wrapper.find(ModifierItem).at(1).props()).toEqual({
+    expect(omit(
+      wrapper.find(ModifierItem).at(1).props(),
+      ['onClick']
+    )).toEqual({
       ...items[1],
       currencyGrapheme: '$',
     });
@@ -70,5 +77,23 @@ describe('<ModifiersList', () => {
     expect(itemsContainerElement.find(Link)).toHaveLength(0);
     expect(itemsContainerElement.find(ModifierItem)).toHaveLength(2);
     expect(wrapper).toMatchSnapshot();
+  });
+  it('should call onClickItem correctly on click ModifierItem', () => {
+    const onItemClickFn = jest.fn();
+    const wrapper = mount(
+      <ModifiersList
+        items={items}
+        onItemClick={onItemClickFn}
+      />
+    );
+
+    expect(onItemClickFn).not.toHaveBeenCalled();
+    wrapper.find(ModifierItem).at(1).simulate('click');
+    expect(onItemClickFn).toHaveBeenCalledTimes(1);
+    expect(onItemClickFn).toHaveBeenCalledWith(items[1]);
+
+    wrapper.find(ModifierItem).at(0).simulate('click');
+    expect(onItemClickFn).toHaveBeenCalledTimes(2);
+    expect(onItemClickFn).toHaveBeenNthCalledWith(2, items[0]);
   });
 });
