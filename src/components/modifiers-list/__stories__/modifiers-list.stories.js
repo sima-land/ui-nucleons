@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react';
 import ModifiersList from '../';
 import classes from './modifiers-list.scss';
@@ -58,6 +59,19 @@ storiesOf('ModifiersList', module)
           currencyGrapheme='₽'
           sizesTableUrl='/'
           itemsContainerProps={{ className: classes.scrollable }}
+        />
+      </div>
+    </Fragment>
+  ))
+  .add('with onItemClick', () => (
+    <Fragment>
+      <div className={classes.list}>
+        <div className={classes.title}>onItemClick</div>
+        <ModifiersList
+          items={[...items.withPhoto, ...items.withColor]}
+          currencyGrapheme='₽'
+          wrapperProps={{ className: classes.scrollable }}
+          onItemClick={action('onClick')}
         />
       </div>
     </Fragment>
