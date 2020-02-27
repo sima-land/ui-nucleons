@@ -4,4 +4,7 @@
   .color__#{$key} {
     color: $color;
   }
+  .background-color__#{$key} {
+    background-color: $color;
+  }
 }

@@ -3,7 +3,7 @@ import classnames from 'classnames/bind';
 import imageCap from '../icons/image-cap.svg';
 import classes from './icon.scss';
 import Type from 'prop-types';
-import { colorClass } from '../styling/colors';
+import { color as getColorClass } from '../styling/colors';
 import { COLORS } from '../constants';
 
 const cx = classnames.bind(classes);
@@ -23,7 +23,7 @@ const Icon = ({ icon, size, color, inline, className, ...restProps }) => {
   const iconClasses = cx(
     'icon',
     !inline && 'icon-block',
-    colorClass(color),
+    getColorClass(color),
     className
   );
   const Image = typeof icon === 'function' ? icon : imageCap;

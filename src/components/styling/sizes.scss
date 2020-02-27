@@ -1,0 +1,19 @@
+$step: 4px;
+
+$directions: 'top', 'right', 'bottom', 'left';
+
+// диапазон на основе стилей проектов
+@for $index from -8 through 32 {
+  @each $direction in $directions {
+    .margin-#{$direction}__#{$index} {
+      margin-#{$direction}: $step * $index;
+    }
+
+    // внутренние отступы могут быть только положительными
+    @if $index >= 0 {
+      .padding-#{$direction}__#{$index} {
+        padding-#{$direction}: $step * $index;
+      }
+    }
+  }
+}
