@@ -35,6 +35,28 @@ const testAlignItems = [
   </Box>,
 ];
 
+const testMarginPropsList = [
+  { margin: 2 },
+  { marginX: 2 },
+  { marginY: 2 },
+  { marginTop: 2 },
+  { marginBottom: 2 },
+  { marginLeft: 2 },
+  { marginRight: 2 },
+  { margin: 2, marginRight: 8 },
+];
+
+const testPaddingPropsList = [
+  { padding: 2 },
+  { paddingX: 2 },
+  { paddingY: 2 },
+  { paddingTop: 2 },
+  { paddingBottom: 2 },
+  { paddingLeft: 2 },
+  { paddingRight: 2 },
+  { padding: 2, paddingLeft: 8 },
+];
+
 /**
  * Возвращает тестовый компонент для проверки свойства "alignItems".
  * @param {string} alignItems Значение свойства.
@@ -73,9 +95,31 @@ storiesOf('Box', module)
     </Box>
   ))
   .add('Margins and paddings', () => (
-    <Box margin={4} padding={4}>
-      Test box with margins = 4 and paddings = 4
-    </Box>
+    <div style={{ width: 320 }}>
+      <h2>Margin</h2>
+      {testMarginPropsList.map((marginProps, index) => (
+        <Fragment key={index}>
+          <Box display='flex' color='additional-amber'>
+            <Box flex='grow' color='brand-sky' padding={2} {...marginProps}>
+              {JSON.stringify(marginProps, null, 2)}
+            </Box>
+          </Box>
+          <div style={{ height: 32 }} />
+        </Fragment>
+      ))}
+
+      <h2>Padding</h2>
+      {testPaddingPropsList.map((paddingProps, index) => (
+        <Fragment key={index}>
+          <Box display='flex' color='service-success' {...paddingProps}>
+            <Box flex='grow' color='brand-sky' padding={2}>
+              {JSON.stringify(paddingProps, null, 2)}
+            </Box>
+          </Box>
+          <div style={{ height: 32 }} />
+        </Fragment>
+      ))}
+    </div>
   ))
   .add('"justifyContent" prop variations', () => (
     <Fragment>

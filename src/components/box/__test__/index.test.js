@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Box from '../index';
-import classes from '../box.scss';
+import { bgColor } from '../../styling/colors';
 
 describe('<Box />', () => {
   it('should render without props', () => {
@@ -37,11 +37,9 @@ describe('<Box />', () => {
         marginLeft={5}
       />
     );
-    expect(wrapper.find('div').prop('className')).toContain(classes.margin__1);
-    expect(wrapper.find('div').prop('className')).toContain(classes['margin-top__2']);
-    expect(wrapper.find('div').prop('className')).toContain(classes['margin-right__3']);
-    expect(wrapper.find('div').prop('className')).toContain(classes['margin-bottom__4']);
-    expect(wrapper.find('div').prop('className')).toContain(classes['margin-left__5']);
+    expect(wrapper.find('div').prop('className')).toBe(
+      'margin-top__2 margin-right__3 margin-bottom__4 margin-left__5'
+    );
 
     wrapper.setProps({
       margin: null,
@@ -52,13 +50,22 @@ describe('<Box />', () => {
       marginX: -6,
       marginY: -7,
     });
-    expect(wrapper.find('div').prop('className')).not.toContain(classes.margin__1);
-    expect(wrapper.find('div').prop('className')).not.toContain(classes['margin-top__2']);
-    expect(wrapper.find('div').prop('className')).not.toContain(classes['margin-right__3']);
-    expect(wrapper.find('div').prop('className')).not.toContain(classes['margin-bottom__4']);
-    expect(wrapper.find('div').prop('className')).not.toContain(classes['margin-left__5']);
-    expect(wrapper.find('div').prop('className')).toContain(classes['margin-x__-6']);
-    expect(wrapper.find('div').prop('className')).toContain(classes['margin-y__-7']);
+    expect(wrapper.find('div').prop('className')).toBe(
+      'margin-left__-6 margin-right__-6 margin-top__-7 margin-bottom__-7'
+    );
+
+    wrapper.setProps({
+      margin: 8,
+      marginTop: undefined,
+      marginRight: undefined,
+      marginBottom: undefined,
+      marginLeft: undefined,
+      marginX: undefined,
+      marginY: undefined,
+    });
+    expect(wrapper.find('div').prop('className')).toBe(
+      'margin-top__8 margin-bottom__8 margin-left__8 margin-right__8'
+    );
   });
   it('should handle "padding*" props', () => {
     const wrapper = shallow(
@@ -70,11 +77,9 @@ describe('<Box />', () => {
         paddingLeft={5}
       />
     );
-    expect(wrapper.find('div').prop('className')).toContain(classes.padding__1);
-    expect(wrapper.find('div').prop('className')).toContain(classes['padding-top__2']);
-    expect(wrapper.find('div').prop('className')).toContain(classes['padding-right__3']);
-    expect(wrapper.find('div').prop('className')).toContain(classes['padding-bottom__4']);
-    expect(wrapper.find('div').prop('className')).toContain(classes['padding-left__5']);
+    expect(wrapper.find('div').prop('className')).toBe(
+      'padding-top__2 padding-right__3 padding-bottom__4 padding-left__5'
+    );
 
     wrapper.setProps({
       padding: null,
@@ -85,13 +90,33 @@ describe('<Box />', () => {
       paddingX: -6,
       paddingY: -7,
     });
-    expect(wrapper.find('div').prop('className')).not.toContain(classes.padding__1);
-    expect(wrapper.find('div').prop('className')).not.toContain(classes['padding-top__2']);
-    expect(wrapper.find('div').prop('className')).not.toContain(classes['padding-right__3']);
-    expect(wrapper.find('div').prop('className')).not.toContain(classes['padding-bottom__4']);
-    expect(wrapper.find('div').prop('className')).not.toContain(classes['padding-left__5']);
-    expect(wrapper.find('div').prop('className')).toContain(classes['padding-x__-6']);
-    expect(wrapper.find('div').prop('className')).toContain(classes['padding-y__-7']);
+    expect(wrapper.find('div').prop('className')).toBe('');
+
+    wrapper.setProps({
+      padding: null,
+      paddingTop: null,
+      paddingRight: null,
+      paddingBottom: null,
+      paddingLeft: null,
+      paddingX: 3,
+      paddingY: 2,
+    });
+    expect(wrapper.find('div').prop('className')).toBe(
+      'padding-left__3 padding-right__3 padding-top__2 padding-bottom__2'
+    );
+
+    wrapper.setProps({
+      padding: 8,
+      paddingTop: undefined,
+      paddingRight: undefined,
+      paddingBottom: undefined,
+      paddingLeft: undefined,
+      paddingX: undefined,
+      paddingY: undefined,
+    });
+    expect(wrapper.find('div').prop('className')).toBe(
+      'padding-top__8 padding-bottom__8 padding-left__8 padding-right__8'
+    );
   });
   it('should handle "display" prop', () => {
     const wrapper = shallow(
@@ -185,5 +210,12 @@ describe('<Box />', () => {
     });
     wrapper.setProps({ justifyContent: 'invalid' });
     expect(wrapper.find('div').prop('className')).not.toContain('justify-content-invalid');
+  });
+  it('should handle "color" prop', () => {
+    const wrapper = shallow(
+      <Box color='service-error' />
+    );
+
+    expect(wrapper.find('div').prop('className')).toContain(bgColor('service-error'));
   });
 });

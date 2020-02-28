@@ -2,7 +2,7 @@ $step: 4px;
 
 $directions: 'top', 'right', 'bottom', 'left';
 
-// диапазон на основе стилей проектов
+// диапазон отступов на основе стилей проектов
 @for $index from -8 through 32 {
   @each $direction in $directions {
     .margin-#{$direction}__#{$index} {
