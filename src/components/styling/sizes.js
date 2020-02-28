@@ -12,13 +12,13 @@ import classnames from 'classnames/bind';
 
 import classes from './sizes.scss';
 
-const isStep = allPass([
+export const isMargin = allPass([
   Number.isInteger,
   gte(__, -8),
   lte(__, 32),
 ]);
 
-const isPositiveStep = allPass([
+export const isPadding = allPass([
   Number.isInteger,
   gte(__, 0),
   lte(__, 32),
@@ -39,18 +39,18 @@ const ClassGetter = (checker, prefix) => cond([
   [T, always(null)],
 ]);
 
-export const marginTop = ClassGetter(isStep, 'margin-top__');
+export const marginTop = ClassGetter(isMargin, 'margin-top__');
 
-export const marginRight = ClassGetter(isStep, 'margin-right__');
+export const marginRight = ClassGetter(isMargin, 'margin-right__');
 
-export const marginBottom = ClassGetter(isStep, 'margin-bottom__');
+export const marginBottom = ClassGetter(isMargin, 'margin-bottom__');
 
-export const marginLeft = ClassGetter(isStep, 'margin-left__');
+export const marginLeft = ClassGetter(isMargin, 'margin-left__');
 
-export const paddingTop = ClassGetter(isPositiveStep, 'padding-top__');
+export const paddingTop = ClassGetter(isPadding, 'padding-top__');
 
-export const paddingRight = ClassGetter(isPositiveStep, 'padding-right__');
+export const paddingRight = ClassGetter(isPadding, 'padding-right__');
 
-export const paddingBottom = ClassGetter(isPositiveStep, 'padding-bottom__');
+export const paddingBottom = ClassGetter(isPadding, 'padding-bottom__');
 
-export const paddingLeft = ClassGetter(isPositiveStep, 'padding-left__');
+export const paddingLeft = ClassGetter(isPadding, 'padding-left__');

@@ -1,7 +1,3 @@
-$step: 4px;
-
-$directions: 'top', 'right', 'bottom', 'left';
-
 $axis: (
   x: ('right', 'left'),
   y: ('top', 'bottom'),
@@ -79,46 +75,5 @@ $justifyContentValues: (
 @each $key, $value in $justifyContentValues {
   .justify-content-#{$key} {
     justify-content: $value;
-  }
-}
-
-@for $index from -12 through 12 {
-  .margin__#{$index} {
-    margin: $step * $index;
-  }
-
-  // внутренние отступы могут быть только положительными
-  @if $index >= 0 {
-    .padding__#{$index} {
-      padding: $step * $index;
-    }
-  }
-  @each $direction in $directions {
-    .margin-#{$direction}__#{$index} {
-      margin-#{$direction}: $step * $index;
-    }
-
-    // внутренние отступы могут быть только положительными
-    @if $index >= 0 {
-      .padding-#{$direction}__#{$index} {
-        padding-#{$direction}: $step * $index;
-      }
-    }
-  }
-  @each $axle, $directions in $axis {
-    .margin-#{$axle}__#{$index} {
-      @each $direction in $directions {
-        margin-#{$direction}: $step * $index;
-      }
-    }
-
-    // внутренние отступы могут быть только положительными
-    @if $index >= 0 {
-      .padding-#{$axle}__#{$index} {
-        @each $direction in $directions {
-          padding-#{$direction}: $step * $index;
-        }
-      }
-    }
   }
 }
