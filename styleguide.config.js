@@ -24,6 +24,7 @@ module.exports = {
         'src/components/fields/*.jsx',
         'src/components/input/*.jsx',
         'src/components/textarea/*.jsx',
+        'src/components/text-field/index.jsx',
       ],
     },
     {
