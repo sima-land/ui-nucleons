@@ -1,0 +1,139 @@
+@import '../colors';
+
+.reset {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+  font: inherit;
+}
+
+.text-field-root {
+  display: inline-block;
+}
+
+.input-block {
+  display: flex;
+  min-width: 160px;
+  max-width: 100%;
+  padding: 0 12px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  &.variant-desktop {
+    background-color: #fff;
+    border: 1px solid map-get($colors, 'gray12');
+    border-radius: 4px;
+    &.disabled {
+      border-color: map-get($colors, 'gray12');
+      background-color: map-get($colors, 'gray2');
+    }
+    &.focused:not(.disabled) {
+      border-color: map-get($colors, 'brand-blue');
+    }
+    &.disabled {
+      border-color: map-get($colors, 'gray12');
+    }
+    &.size-xs {
+      font-size: 14px;
+      height: 32px;
+    }
+    &.size-s {
+      height: 40px;
+    }
+    &.size-m {
+      height: 48px;
+    }
+    &.size-l {
+      height: 56px;
+      padding: 0 16px;
+    }
+  }
+  &.variant-mobile {
+    align-items: stretch;
+    height: 48px;
+    padding: 0;
+    border: 0;
+    box-shadow: inset 0 -1px map-get($colors, 'gray12');
+    &.focused:not(.disabled) {
+      box-shadow: inset 0 -1px map-get($colors, 'brand-blue');
+    }
+  }
+
+  // чтобы startAdornment/endAdornment подхватили цвет
+  color: map-get($colors, 'gray87');
+  &.disabled {
+    color: map-get($colors, 'gray24');
+  }
+}
+
+.label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 12px;
+  width: 100%;
+  line-height: 16px;
+  transition: transform .2s ease, font-size .2s ease, top .2s ease;
+  transform-origin: left bottom;
+  white-space: nowrap;
+  overflow: hidden;
+  color: map-get($colors, 'gray38');
+  &.disabled {
+    color: map-get($colors, 'gray24');
+  }
+  &.as-placeholder {
+    top: calc(50% - 8px);
+    font-size: 16px;
+    &.failed {
+      color: map-get($colors, 'service-error');
+    }
+  }
+  &.variant-mobile.focused {
+    color: map-get($colors, 'brand-blue');
+  }
+}
+
+.base-input {
+  font-size: 16px;
+  line-height: 24px;
+  color: map-get($colors, 'gray87');
+  background-color: transparent;
+  width: 0;
+  flex-grow: 1;
+  &::placeholder {
+    opacity: 1;
+    color: map-get($colors, 'gray38');
+  }
+  &.size-small {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  &.failed:not(:disabled) {
+    color: map-get($colors, 'service-error');
+    &::placeholder {
+      color: map-get($colors, 'service-error');
+    }
+  }
+  &.disabled {
+    color: map-get($colors, 'gray24');
+    &::placeholder {
+      color: map-get($colors, 'gray24');
+    }
+  }
+}
+
+.caption {
+  font-size: 12px;
+  line-height: 16px;
+  color: map-get($colors, 'gray38');
+  &.disabled {
+    color: map-get($colors, 'gray24');
+  }
+  &.failed {
+    color: map-get($colors, 'service-error');
+  }
+}

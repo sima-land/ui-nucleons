@@ -1,0 +1,684 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextField /> should handle "caption" prop 1`] = `
+<ForwardRef(TextField)
+  caption={
+    <span>
+      Hello 
+      <b>
+        World
+      </b>
+      !
+    </span>
+  }
+>
+  <div
+    className="text-field-root"
+  >
+    <div
+      className="reset input-block size-l variant-desktop"
+      onClick={[Function]}
+    >
+      <Box
+        dangerouslySetInlineStyle={
+          Object {
+            "__style": Object {
+              "position": "relative",
+            },
+          }
+        }
+        direction="column"
+        display="flex"
+        flex="grow"
+      >
+        <div
+          className="display-flex flex-grow direction-column"
+          style={
+            Object {
+              "position": "relative",
+            }
+          }
+        >
+          <Box
+            display="flex"
+          >
+            <div
+              className="display-flex"
+            >
+              <ForwardRef(BaseInput)
+                className="__base-input__"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                size="l"
+              >
+                <input
+                  className="__base-input__ reset base-input size-l"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                />
+              </ForwardRef(BaseInput)>
+            </div>
+          </Box>
+        </div>
+      </Box>
+    </div>
+    <div
+      className="caption margin-top__2"
+    >
+      <span>
+        Hello 
+        <b>
+          World
+        </b>
+        !
+      </span>
+    </div>
+  </div>
+</ForwardRef(TextField)>
+`;
+
+exports[`<TextField /> should handle "caption" prop 2`] = `
+<ForwardRef(TextField)
+  caption={
+    <span>
+      Hello 
+      <b>
+        World
+      </b>
+      !
+    </span>
+  }
+  disabled={true}
+  failed={true}
+  variant="mobile"
+>
+  <div
+    className="text-field-root"
+  >
+    <div
+      className="reset input-block size-l variant-mobile disabled"
+      onClick={[Function]}
+    >
+      <Box
+        dangerouslySetInlineStyle={
+          Object {
+            "__style": Object {
+              "position": "relative",
+            },
+          }
+        }
+        direction="column"
+        display="flex"
+        flex="grow"
+        justifyContent="center"
+      >
+        <div
+          className="display-flex flex-grow direction-column justify-content-center"
+          style={
+            Object {
+              "position": "relative",
+            }
+          }
+        >
+          <Box
+            display="flex"
+          >
+            <div
+              className="display-flex"
+            >
+              <ForwardRef(BaseInput)
+                className="__base-input__"
+                disabled={true}
+                failed={true}
+                onBlur={[Function]}
+                onFocus={[Function]}
+                size="l"
+              >
+                <input
+                  className="__base-input__ reset base-input failed disabled size-l"
+                  disabled={true}
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                />
+              </ForwardRef(BaseInput)>
+            </div>
+          </Box>
+        </div>
+      </Box>
+    </div>
+    <div
+      className="caption margin-top__1 disabled failed"
+    >
+      <span>
+        Hello 
+        <b>
+          World
+        </b>
+        !
+      </span>
+    </div>
+  </div>
+</ForwardRef(TextField)>
+`;
+
+exports[`<TextField /> should handle "disabled" prop 1`] = `
+<ForwardRef(TextField)
+  disabled={true}
+>
+  <div
+    className="text-field-root"
+  >
+    <div
+      className="reset input-block size-l variant-desktop disabled"
+      onClick={[Function]}
+    >
+      <Box
+        dangerouslySetInlineStyle={
+          Object {
+            "__style": Object {
+              "position": "relative",
+            },
+          }
+        }
+        direction="column"
+        display="flex"
+        flex="grow"
+      >
+        <div
+          className="display-flex flex-grow direction-column"
+          style={
+            Object {
+              "position": "relative",
+            }
+          }
+        >
+          <Box
+            display="flex"
+          >
+            <div
+              className="display-flex"
+            >
+              <ForwardRef(BaseInput)
+                className="__base-input__"
+                disabled={true}
+                onBlur={[Function]}
+                onFocus={[Function]}
+                size="l"
+              >
+                <input
+                  className="__base-input__ reset base-input disabled size-l"
+                  disabled={true}
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                />
+              </ForwardRef(BaseInput)>
+            </div>
+          </Box>
+        </div>
+      </Box>
+    </div>
+  </div>
+</ForwardRef(TextField)>
+`;
+
+exports[`<TextField /> should handle "label" prop 1`] = `
+<ForwardRef(TextField)
+  label="The best label in our world!"
+>
+  <div
+    className="text-field-root"
+  >
+    <div
+      className="reset input-block size-l variant-desktop"
+      onClick={[Function]}
+    >
+      <Box
+        dangerouslySetInlineStyle={
+          Object {
+            "__style": Object {
+              "position": "relative",
+            },
+          }
+        }
+        direction="column"
+        display="flex"
+        flex="grow"
+      >
+        <div
+          className="display-flex flex-grow direction-column"
+          style={
+            Object {
+              "position": "relative",
+            }
+          }
+        >
+          <Label
+            asPlaceholder={true}
+            variant="desktop"
+          >
+            <label
+              className="label as-placeholder variant-desktop"
+            >
+              The best label in our world!
+            </label>
+          </Label>
+          <Box
+            display="flex"
+            paddingTop={4}
+          >
+            <div
+              className="display-flex padding-top__4"
+            >
+              <ForwardRef(BaseInput)
+                className="__base-input__"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                placeholder={null}
+                size="l"
+              >
+                <input
+                  className="__base-input__ reset base-input size-l"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  placeholder={null}
+                />
+              </ForwardRef(BaseInput)>
+            </div>
+          </Box>
+        </div>
+      </Box>
+    </div>
+  </div>
+</ForwardRef(TextField)>
+`;
+
+exports[`<TextField /> should handle "label" prop 2`] = `
+<ForwardRef(TextField)
+  disabled={true}
+  failed={true}
+  label="The best label in our world!"
+  variant="mobile"
+>
+  <div
+    className="text-field-root"
+  >
+    <div
+      className="reset input-block size-l variant-mobile disabled"
+      onClick={[Function]}
+    >
+      <Box
+        dangerouslySetInlineStyle={
+          Object {
+            "__style": Object {
+              "position": "relative",
+            },
+          }
+        }
+        direction="column"
+        display="flex"
+        flex="grow"
+      >
+        <div
+          className="display-flex flex-grow direction-column"
+          style={
+            Object {
+              "position": "relative",
+            }
+          }
+        >
+          <Label
+            asPlaceholder={true}
+            disabled={true}
+            failed={true}
+            variant="mobile"
+          >
+            <label
+              className="label as-placeholder disabled failed variant-mobile"
+            >
+              The best label in our world!
+            </label>
+          </Label>
+          <Box
+            display="flex"
+            paddingTop={4}
+          >
+            <div
+              className="display-flex padding-top__4"
+            >
+              <ForwardRef(BaseInput)
+                className="__base-input__"
+                disabled={true}
+                failed={true}
+                onBlur={[Function]}
+                onFocus={[Function]}
+                placeholder={null}
+                size="l"
+              >
+                <input
+                  className="__base-input__ reset base-input failed disabled size-l"
+                  disabled={true}
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  placeholder={null}
+                />
+              </ForwardRef(BaseInput)>
+            </div>
+          </Box>
+        </div>
+      </Box>
+    </div>
+  </div>
+</ForwardRef(TextField)>
+`;
+
+exports[`<TextField /> should handle "variant" prop 1`] = `
+<ForwardRef(TextField)
+  variant="desktop"
+>
+  <div
+    className="text-field-root"
+  >
+    <div
+      className="reset input-block size-l variant-desktop"
+      onClick={[Function]}
+    >
+      <Box
+        dangerouslySetInlineStyle={
+          Object {
+            "__style": Object {
+              "position": "relative",
+            },
+          }
+        }
+        direction="column"
+        display="flex"
+        flex="grow"
+      >
+        <div
+          className="display-flex flex-grow direction-column"
+          style={
+            Object {
+              "position": "relative",
+            }
+          }
+        >
+          <Box
+            display="flex"
+          >
+            <div
+              className="display-flex"
+            >
+              <ForwardRef(BaseInput)
+                className="__base-input__"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                size="l"
+              >
+                <input
+                  className="__base-input__ reset base-input size-l"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                />
+              </ForwardRef(BaseInput)>
+            </div>
+          </Box>
+        </div>
+      </Box>
+    </div>
+  </div>
+</ForwardRef(TextField)>
+`;
+
+exports[`<TextField /> should handle "variant" prop 2`] = `
+<ForwardRef(TextField)
+  variant="mobile"
+>
+  <div
+    className="text-field-root"
+  >
+    <div
+      className="reset input-block size-l variant-mobile"
+      onClick={[Function]}
+    >
+      <Box
+        dangerouslySetInlineStyle={
+          Object {
+            "__style": Object {
+              "position": "relative",
+            },
+          }
+        }
+        direction="column"
+        display="flex"
+        flex="grow"
+        justifyContent="center"
+      >
+        <div
+          className="display-flex flex-grow direction-column justify-content-center"
+          style={
+            Object {
+              "position": "relative",
+            }
+          }
+        >
+          <Box
+            display="flex"
+          >
+            <div
+              className="display-flex"
+            >
+              <ForwardRef(BaseInput)
+                className="__base-input__"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                size="l"
+              >
+                <input
+                  className="__base-input__ reset base-input size-l"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                />
+              </ForwardRef(BaseInput)>
+            </div>
+          </Box>
+        </div>
+      </Box>
+    </div>
+  </div>
+</ForwardRef(TextField)>
+`;
+
+exports[`<TextField /> should handle adornment props 1`] = `
+<ForwardRef(TextField)
+  startAdornment="Name: "
+>
+  <div
+    className="text-field-root"
+  >
+    <div
+      className="reset input-block size-l variant-desktop"
+      onClick={[Function]}
+    >
+      <Box
+        alignItems="center"
+        display="flex"
+        marginRight={4}
+      >
+        <div
+          className="display-flex align-items-center margin-right__4"
+        >
+          Name: 
+        </div>
+      </Box>
+      <Box
+        dangerouslySetInlineStyle={
+          Object {
+            "__style": Object {
+              "position": "relative",
+            },
+          }
+        }
+        direction="column"
+        display="flex"
+        flex="grow"
+      >
+        <div
+          className="display-flex flex-grow direction-column"
+          style={
+            Object {
+              "position": "relative",
+            }
+          }
+        >
+          <Box
+            display="flex"
+          >
+            <div
+              className="display-flex"
+            >
+              <ForwardRef(BaseInput)
+                className="__base-input__"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                size="l"
+              >
+                <input
+                  className="__base-input__ reset base-input size-l"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                />
+              </ForwardRef(BaseInput)>
+            </div>
+          </Box>
+        </div>
+      </Box>
+    </div>
+  </div>
+</ForwardRef(TextField)>
+`;
+
+exports[`<TextField /> should handle adornment props 2`] = `
+<ForwardRef(TextField)
+  endAdornment="Kg"
+  startAdornment={null}
+>
+  <div
+    className="text-field-root"
+  >
+    <div
+      className="reset input-block size-l variant-desktop"
+      onClick={[Function]}
+    >
+      <Box
+        dangerouslySetInlineStyle={
+          Object {
+            "__style": Object {
+              "position": "relative",
+            },
+          }
+        }
+        direction="column"
+        display="flex"
+        flex="grow"
+      >
+        <div
+          className="display-flex flex-grow direction-column"
+          style={
+            Object {
+              "position": "relative",
+            }
+          }
+        >
+          <Box
+            display="flex"
+          >
+            <div
+              className="display-flex"
+            >
+              <ForwardRef(BaseInput)
+                className="__base-input__"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                size="l"
+              >
+                <input
+                  className="__base-input__ reset base-input size-l"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                />
+              </ForwardRef(BaseInput)>
+            </div>
+          </Box>
+        </div>
+      </Box>
+      <Box
+        alignItems="center"
+        display="flex"
+        marginLeft={4}
+      >
+        <div
+          className="display-flex align-items-center margin-left__4"
+        >
+          Kg
+        </div>
+      </Box>
+    </div>
+  </div>
+</ForwardRef(TextField)>
+`;
+
+exports[`<TextField /> should render without props 1`] = `
+<ForwardRef(TextField)>
+  <div
+    className="text-field-root"
+  >
+    <div
+      className="reset input-block size-l variant-desktop"
+      onClick={[Function]}
+    >
+      <Box
+        dangerouslySetInlineStyle={
+          Object {
+            "__style": Object {
+              "position": "relative",
+            },
+          }
+        }
+        direction="column"
+        display="flex"
+        flex="grow"
+      >
+        <div
+          className="display-flex flex-grow direction-column"
+          style={
+            Object {
+              "position": "relative",
+            }
+          }
+        >
+          <Box
+            display="flex"
+          >
+            <div
+              className="display-flex"
+            >
+              <ForwardRef(BaseInput)
+                className="__base-input__"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                size="l"
+              >
+                <input
+                  className="__base-input__ reset base-input size-l"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                />
+              </ForwardRef(BaseInput)>
+            </div>
+          </Box>
+        </div>
+      </Box>
+    </div>
+  </div>
+</ForwardRef(TextField)>
+`;
