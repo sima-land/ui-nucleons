@@ -50,10 +50,9 @@ const Link = forwardRef(function Link ({
   ...restProps
 }, ref) {
   const linkParams = restProps;
-  if (!pseudo) {
-    const defaultTarget = external ? '_blank' : '_self';
-    linkParams.target = target && LINK_TARGETS.includes(target) ? target : defaultTarget;
-  }
+  const isLink = !pseudo && href;
+  const defaultTarget = external ? '_blank' : '_self';
+  const currentTarget = target && LINK_TARGETS.includes(target) ? target : defaultTarget;
 
   const underlineType = pseudo ? 'dashed' : 'solid';
   const linkClasses = createLinkStyle({
@@ -62,10 +61,11 @@ const Link = forwardRef(function Link ({
     color,
     underlineType: underlined && underlineType,
   });
-  const Component = pseudo || !href ? 'span' : 'a';
+  const Component = isLink ? 'a' : 'span';
   return (
     <Component
       {...linkParams}
+      target={isLink ? currentTarget : undefined}
       ref={ref}
       href={href}
       className={linkClasses}
