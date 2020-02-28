@@ -119,6 +119,7 @@ describe('<Link />', () => {
       <Link pseudo>TestLink</Link>
     );
     expect(link.find('span')).toHaveLength(1);
+    expect(link.find('span').prop('target')).toBeUndefined();
     expect(link.find('a')).toHaveLength(0);
   });
   it('render teg span if not href', () => {
@@ -126,6 +127,7 @@ describe('<Link />', () => {
       <Link>TestLink</Link>
     );
     expect(link.find('span')).toHaveLength(1);
+    expect(link.find('span').prop('target')).toBeUndefined();
     expect(link.find('a')).toHaveLength(0);
   });
   it('render teg a if there href and not sign pseudo ', () => {
@@ -134,5 +136,6 @@ describe('<Link />', () => {
     );
     expect(link.find('span')).toHaveLength(0);
     expect(link.find('a')).toHaveLength(1);
+    expect(link.find('a').prop('target')).toEqual('_self');
   });
 });
