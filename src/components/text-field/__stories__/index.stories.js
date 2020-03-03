@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
 import TextField from '../index';
 import Icon from '../../icon';
+import { BaseInput } from '../base-input';
 
 const stateProps = {
   default: {},
@@ -93,6 +94,52 @@ storiesOf('TextField', module)
             />
           </div>
         ))}
+      </div>
+    </Fragment>
+  ))
+  .add('Multiline', () => (
+    <Fragment>
+      <h2>Desktop</h2>
+      <TextField
+        multiline
+        label='Label'
+        caption='Caption'
+        placeholder='Placeholder'
+      />
+      <div style={{ height: 32 }} />
+      <TextField
+        multiline
+        caption='Caption'
+        placeholder='Placeholder'
+      />
+
+      <h2>Mobile</h2>
+      <TextField
+        multiline
+        label='Label'
+        caption='Caption'
+        placeholder='Placeholder'
+        variant='mobile'
+      />
+      <div style={{ height: 32 }} />
+      <TextField
+        multiline
+        caption='Caption'
+        placeholder='Placeholder'
+        variant='mobile'
+      />
+    </Fragment>
+  ))
+  .add('service: BaseInput', () => (
+    <Fragment>
+      <div style={{ border: '1px solid #000', display: 'flex', width: 200 }}>
+        <BaseInput defaultValue='Text' />
+      </div>
+
+      <div style={{ height: 32 }} />
+
+      <div style={{ border: '1px solid #000', display: 'flex', width: 200 }}>
+        <BaseInput defaultValue='Text' multiline />
       </div>
     </Fragment>
   ));
