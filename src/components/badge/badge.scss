@@ -1,0 +1,53 @@
+@import "../variables";
+
+$badgeColor: $black !default;
+$badgeBackground: $white !default;
+$badgeFill: $black !default;
+$badgeTimeColor: $white !default;
+
+.container {
+  font-size: 12px;
+  line-height: 16px;
+  position: relative;
+  display: inline-block;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
+  &:not(.container-icon) {
+    color: $badgeColor;
+    fill: $badgeFill;
+    background: $badgeBackground;
+    padding: 0 4px;
+    border-radius: 2px;
+  }
+}
+
+.link {
+  color: inherit;
+  border-bottom: none;
+  text-decoration: none;
+  &:hover {
+    opacity: .7;
+    color: inherit;
+  }
+}
+
+.content {
+  line-height: 20px;
+  vertical-align: middle;
+  display: inline !important;
+  align-items: center;
+  img {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  * + * {
+    margin-left: 4px;
+  }
+  time {
+    color: $badgeTimeColor;
+  }
+}
