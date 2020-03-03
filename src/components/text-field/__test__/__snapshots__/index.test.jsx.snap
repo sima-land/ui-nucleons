@@ -19,48 +19,27 @@ exports[`<TextField /> should handle "caption" prop 1`] = `
       className="reset input-block size-l variant-desktop"
       onClick={[Function]}
     >
-      <Box
-        dangerouslySetInlineStyle={
-          Object {
-            "__style": Object {
-              "position": "relative",
-            },
-          }
-        }
-        direction="column"
-        display="flex"
-        flex="grow"
+      <div
+        className="main-column"
       >
         <div
-          className="display-flex flex-grow direction-column"
-          style={
-            Object {
-              "position": "relative",
-            }
-          }
+          className="input-wrapper"
         >
-          <Box
-            display="flex"
+          <ForwardRef(BaseInput)
+            className="__base-input__"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            size="l"
           >
-            <div
-              className="display-flex"
-            >
-              <ForwardRef(BaseInput)
-                className="__base-input__"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                size="l"
-              >
-                <input
-                  className="__base-input__ reset base-input size-l"
-                  onBlur={[Function]}
-                  onFocus={[Function]}
-                />
-              </ForwardRef(BaseInput)>
-            </div>
-          </Box>
+            <input
+              className="__base-input__ reset base-input size-l"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onInput={[Function]}
+            />
+          </ForwardRef(BaseInput)>
         </div>
-      </Box>
+      </div>
     </div>
     <div
       className="caption margin-top__2"
@@ -99,52 +78,30 @@ exports[`<TextField /> should handle "caption" prop 2`] = `
       className="reset input-block size-l variant-mobile disabled"
       onClick={[Function]}
     >
-      <Box
-        dangerouslySetInlineStyle={
-          Object {
-            "__style": Object {
-              "position": "relative",
-            },
-          }
-        }
-        direction="column"
-        display="flex"
-        flex="grow"
-        justifyContent="center"
+      <div
+        className="main-column"
       >
         <div
-          className="display-flex flex-grow direction-column justify-content-center"
-          style={
-            Object {
-              "position": "relative",
-            }
-          }
+          className="input-wrapper"
         >
-          <Box
-            display="flex"
+          <ForwardRef(BaseInput)
+            className="__base-input__"
+            disabled={true}
+            failed={true}
+            onBlur={[Function]}
+            onFocus={[Function]}
+            size="l"
           >
-            <div
-              className="display-flex"
-            >
-              <ForwardRef(BaseInput)
-                className="__base-input__"
-                disabled={true}
-                failed={true}
-                onBlur={[Function]}
-                onFocus={[Function]}
-                size="l"
-              >
-                <input
-                  className="__base-input__ reset base-input failed disabled size-l"
-                  disabled={true}
-                  onBlur={[Function]}
-                  onFocus={[Function]}
-                />
-              </ForwardRef(BaseInput)>
-            </div>
-          </Box>
+            <input
+              className="__base-input__ reset base-input failed disabled size-l"
+              disabled={true}
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onInput={[Function]}
+            />
+          </ForwardRef(BaseInput)>
         </div>
-      </Box>
+      </div>
     </div>
     <div
       className="caption margin-top__1 disabled failed"
@@ -172,50 +129,29 @@ exports[`<TextField /> should handle "disabled" prop 1`] = `
       className="reset input-block size-l variant-desktop disabled"
       onClick={[Function]}
     >
-      <Box
-        dangerouslySetInlineStyle={
-          Object {
-            "__style": Object {
-              "position": "relative",
-            },
-          }
-        }
-        direction="column"
-        display="flex"
-        flex="grow"
+      <div
+        className="main-column"
       >
         <div
-          className="display-flex flex-grow direction-column"
-          style={
-            Object {
-              "position": "relative",
-            }
-          }
+          className="input-wrapper"
         >
-          <Box
-            display="flex"
+          <ForwardRef(BaseInput)
+            className="__base-input__"
+            disabled={true}
+            onBlur={[Function]}
+            onFocus={[Function]}
+            size="l"
           >
-            <div
-              className="display-flex"
-            >
-              <ForwardRef(BaseInput)
-                className="__base-input__"
-                disabled={true}
-                onBlur={[Function]}
-                onFocus={[Function]}
-                size="l"
-              >
-                <input
-                  className="__base-input__ reset base-input disabled size-l"
-                  disabled={true}
-                  onBlur={[Function]}
-                  onFocus={[Function]}
-                />
-              </ForwardRef(BaseInput)>
-            </div>
-          </Box>
+            <input
+              className="__base-input__ reset base-input disabled size-l"
+              disabled={true}
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onInput={[Function]}
+            />
+          </ForwardRef(BaseInput)>
         </div>
-      </Box>
+      </div>
     </div>
   </div>
 </ForwardRef(TextField)>
@@ -229,64 +165,42 @@ exports[`<TextField /> should handle "label" prop 1`] = `
     className="text-field-root"
   >
     <div
-      className="reset input-block size-l variant-desktop"
+      className="reset input-block size-l variant-desktop with-label"
       onClick={[Function]}
     >
-      <Box
-        dangerouslySetInlineStyle={
-          Object {
-            "__style": Object {
-              "position": "relative",
-            },
-          }
-        }
-        direction="column"
-        display="flex"
-        flex="grow"
+      <div
+        className="main-column"
       >
-        <div
-          className="display-flex flex-grow direction-column"
-          style={
-            Object {
-              "position": "relative",
-            }
-          }
+        <Label
+          asPlaceholder={true}
+          variant="desktop"
         >
-          <Label
-            asPlaceholder={true}
-            variant="desktop"
+          <label
+            className="label as-placeholder variant-desktop"
           >
-            <label
-              className="label as-placeholder variant-desktop"
-            >
-              The best label in our world!
-            </label>
-          </Label>
-          <Box
-            display="flex"
-            paddingTop={4}
+            The best label in our world!
+          </label>
+        </Label>
+        <div
+          className="input-wrapper"
+        >
+          <ForwardRef(BaseInput)
+            className="__base-input__"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            placeholder={null}
+            size="l"
           >
-            <div
-              className="display-flex padding-top__4"
-            >
-              <ForwardRef(BaseInput)
-                className="__base-input__"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                placeholder={null}
-                size="l"
-              >
-                <input
-                  className="__base-input__ reset base-input size-l"
-                  onBlur={[Function]}
-                  onFocus={[Function]}
-                  placeholder={null}
-                />
-              </ForwardRef(BaseInput)>
-            </div>
-          </Box>
+            <input
+              className="__base-input__ reset base-input size-l"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onInput={[Function]}
+              placeholder={null}
+            />
+          </ForwardRef(BaseInput)>
         </div>
-      </Box>
+      </div>
     </div>
   </div>
 </ForwardRef(TextField)>
@@ -303,69 +217,94 @@ exports[`<TextField /> should handle "label" prop 2`] = `
     className="text-field-root"
   >
     <div
-      className="reset input-block size-l variant-mobile disabled"
+      className="reset input-block size-l variant-mobile disabled with-label"
       onClick={[Function]}
     >
-      <Box
-        dangerouslySetInlineStyle={
-          Object {
-            "__style": Object {
-              "position": "relative",
-            },
-          }
-        }
-        direction="column"
-        display="flex"
-        flex="grow"
+      <div
+        className="main-column"
       >
-        <div
-          className="display-flex flex-grow direction-column"
-          style={
-            Object {
-              "position": "relative",
-            }
-          }
+        <Label
+          asPlaceholder={true}
+          disabled={true}
+          failed={true}
+          variant="mobile"
         >
-          <Label
-            asPlaceholder={true}
+          <label
+            className="label as-placeholder disabled failed variant-mobile"
+          >
+            The best label in our world!
+          </label>
+        </Label>
+        <div
+          className="input-wrapper"
+        >
+          <ForwardRef(BaseInput)
+            className="__base-input__"
             disabled={true}
             failed={true}
-            variant="mobile"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            placeholder={null}
+            size="l"
           >
-            <label
-              className="label as-placeholder disabled failed variant-mobile"
-            >
-              The best label in our world!
-            </label>
-          </Label>
-          <Box
-            display="flex"
-            paddingTop={4}
-          >
-            <div
-              className="display-flex padding-top__4"
-            >
-              <ForwardRef(BaseInput)
-                className="__base-input__"
-                disabled={true}
-                failed={true}
-                onBlur={[Function]}
-                onFocus={[Function]}
-                placeholder={null}
-                size="l"
-              >
-                <input
-                  className="__base-input__ reset base-input failed disabled size-l"
-                  disabled={true}
-                  onBlur={[Function]}
-                  onFocus={[Function]}
-                  placeholder={null}
-                />
-              </ForwardRef(BaseInput)>
-            </div>
-          </Box>
+            <input
+              className="__base-input__ reset base-input failed disabled size-l"
+              disabled={true}
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onInput={[Function]}
+              placeholder={null}
+            />
+          </ForwardRef(BaseInput)>
         </div>
-      </Box>
+      </div>
+    </div>
+  </div>
+</ForwardRef(TextField)>
+`;
+
+exports[`<TextField /> should handle "multiline" prop 1`] = `
+<ForwardRef(TextField)
+  baseInputProps={
+    Object {
+      "rows": 3,
+    }
+  }
+  multiline={true}
+  onInput={[MockFunction]}
+>
+  <div
+    className="text-field-root"
+  >
+    <div
+      className="reset input-block size-l variant-desktop multiline"
+      onClick={[Function]}
+    >
+      <div
+        className="main-column"
+      >
+        <div
+          className="input-wrapper"
+        >
+          <ForwardRef(BaseInput)
+            className="__base-input__"
+            multiline={true}
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onInput={[MockFunction]}
+            rows={3}
+            size="l"
+          >
+            <textarea
+              className="__base-input__ reset base-input multiline size-l"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onInput={[Function]}
+              rows={3}
+            />
+          </ForwardRef(BaseInput)>
+        </div>
+      </div>
     </div>
   </div>
 </ForwardRef(TextField)>
@@ -382,48 +321,27 @@ exports[`<TextField /> should handle "variant" prop 1`] = `
       className="reset input-block size-l variant-desktop"
       onClick={[Function]}
     >
-      <Box
-        dangerouslySetInlineStyle={
-          Object {
-            "__style": Object {
-              "position": "relative",
-            },
-          }
-        }
-        direction="column"
-        display="flex"
-        flex="grow"
+      <div
+        className="main-column"
       >
         <div
-          className="display-flex flex-grow direction-column"
-          style={
-            Object {
-              "position": "relative",
-            }
-          }
+          className="input-wrapper"
         >
-          <Box
-            display="flex"
+          <ForwardRef(BaseInput)
+            className="__base-input__"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            size="l"
           >
-            <div
-              className="display-flex"
-            >
-              <ForwardRef(BaseInput)
-                className="__base-input__"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                size="l"
-              >
-                <input
-                  className="__base-input__ reset base-input size-l"
-                  onBlur={[Function]}
-                  onFocus={[Function]}
-                />
-              </ForwardRef(BaseInput)>
-            </div>
-          </Box>
+            <input
+              className="__base-input__ reset base-input size-l"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onInput={[Function]}
+            />
+          </ForwardRef(BaseInput)>
         </div>
-      </Box>
+      </div>
     </div>
   </div>
 </ForwardRef(TextField)>
@@ -440,49 +358,27 @@ exports[`<TextField /> should handle "variant" prop 2`] = `
       className="reset input-block size-l variant-mobile"
       onClick={[Function]}
     >
-      <Box
-        dangerouslySetInlineStyle={
-          Object {
-            "__style": Object {
-              "position": "relative",
-            },
-          }
-        }
-        direction="column"
-        display="flex"
-        flex="grow"
-        justifyContent="center"
+      <div
+        className="main-column"
       >
         <div
-          className="display-flex flex-grow direction-column justify-content-center"
-          style={
-            Object {
-              "position": "relative",
-            }
-          }
+          className="input-wrapper"
         >
-          <Box
-            display="flex"
+          <ForwardRef(BaseInput)
+            className="__base-input__"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            size="l"
           >
-            <div
-              className="display-flex"
-            >
-              <ForwardRef(BaseInput)
-                className="__base-input__"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                size="l"
-              >
-                <input
-                  className="__base-input__ reset base-input size-l"
-                  onBlur={[Function]}
-                  onFocus={[Function]}
-                />
-              </ForwardRef(BaseInput)>
-            </div>
-          </Box>
+            <input
+              className="__base-input__ reset base-input size-l"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onInput={[Function]}
+            />
+          </ForwardRef(BaseInput)>
         </div>
-      </Box>
+      </div>
     </div>
   </div>
 </ForwardRef(TextField)>
@@ -510,48 +406,27 @@ exports[`<TextField /> should handle adornment props 1`] = `
           Name: 
         </div>
       </Box>
-      <Box
-        dangerouslySetInlineStyle={
-          Object {
-            "__style": Object {
-              "position": "relative",
-            },
-          }
-        }
-        direction="column"
-        display="flex"
-        flex="grow"
+      <div
+        className="main-column"
       >
         <div
-          className="display-flex flex-grow direction-column"
-          style={
-            Object {
-              "position": "relative",
-            }
-          }
+          className="input-wrapper"
         >
-          <Box
-            display="flex"
+          <ForwardRef(BaseInput)
+            className="__base-input__"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            size="l"
           >
-            <div
-              className="display-flex"
-            >
-              <ForwardRef(BaseInput)
-                className="__base-input__"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                size="l"
-              >
-                <input
-                  className="__base-input__ reset base-input size-l"
-                  onBlur={[Function]}
-                  onFocus={[Function]}
-                />
-              </ForwardRef(BaseInput)>
-            </div>
-          </Box>
+            <input
+              className="__base-input__ reset base-input size-l"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onInput={[Function]}
+            />
+          </ForwardRef(BaseInput)>
         </div>
-      </Box>
+      </div>
     </div>
   </div>
 </ForwardRef(TextField)>
@@ -569,48 +444,27 @@ exports[`<TextField /> should handle adornment props 2`] = `
       className="reset input-block size-l variant-desktop"
       onClick={[Function]}
     >
-      <Box
-        dangerouslySetInlineStyle={
-          Object {
-            "__style": Object {
-              "position": "relative",
-            },
-          }
-        }
-        direction="column"
-        display="flex"
-        flex="grow"
+      <div
+        className="main-column"
       >
         <div
-          className="display-flex flex-grow direction-column"
-          style={
-            Object {
-              "position": "relative",
-            }
-          }
+          className="input-wrapper"
         >
-          <Box
-            display="flex"
+          <ForwardRef(BaseInput)
+            className="__base-input__"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            size="l"
           >
-            <div
-              className="display-flex"
-            >
-              <ForwardRef(BaseInput)
-                className="__base-input__"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                size="l"
-              >
-                <input
-                  className="__base-input__ reset base-input size-l"
-                  onBlur={[Function]}
-                  onFocus={[Function]}
-                />
-              </ForwardRef(BaseInput)>
-            </div>
-          </Box>
+            <input
+              className="__base-input__ reset base-input size-l"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onInput={[Function]}
+            />
+          </ForwardRef(BaseInput)>
         </div>
-      </Box>
+      </div>
       <Box
         alignItems="center"
         display="flex"
@@ -636,48 +490,27 @@ exports[`<TextField /> should render without props 1`] = `
       className="reset input-block size-l variant-desktop"
       onClick={[Function]}
     >
-      <Box
-        dangerouslySetInlineStyle={
-          Object {
-            "__style": Object {
-              "position": "relative",
-            },
-          }
-        }
-        direction="column"
-        display="flex"
-        flex="grow"
+      <div
+        className="main-column"
       >
         <div
-          className="display-flex flex-grow direction-column"
-          style={
-            Object {
-              "position": "relative",
-            }
-          }
+          className="input-wrapper"
         >
-          <Box
-            display="flex"
+          <ForwardRef(BaseInput)
+            className="__base-input__"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            size="l"
           >
-            <div
-              className="display-flex"
-            >
-              <ForwardRef(BaseInput)
-                className="__base-input__"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                size="l"
-              >
-                <input
-                  className="__base-input__ reset base-input size-l"
-                  onBlur={[Function]}
-                  onFocus={[Function]}
-                />
-              </ForwardRef(BaseInput)>
-            </div>
-          </Box>
+            <input
+              className="__base-input__ reset base-input size-l"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onInput={[Function]}
+            />
+          </ForwardRef(BaseInput)>
         </div>
-      </Box>
+      </div>
     </div>
   </div>
 </ForwardRef(TextField)>

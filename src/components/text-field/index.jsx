@@ -21,15 +21,18 @@ const serviceClass = '__base-input__';
  * @param {boolean} [props.failed] Показывать ли поле как ошибочное.
  * @param {string} [props.label] Ярлык.
  * @param {Function} [props.onBlur] Сработает при потере фокуса.
- * @param {Function} props.onChange Сработает при изменении значения.
- * @param {Function} props.onFocus Сработает при фокусировке.
+ * @param {Function} [props.onChange] Сработает при изменении значения.
+ * @param {Function} [props.onFocus] Сработает при фокусировке.
+ * @param {Function} [props.onInput] Сработает при событии "input".
  * @param {string} [props.placeholder] Placeholder.
  * @param {boolean} [props.readOnly] Значение атрибута "readonly".
  * @param {'xs'|'s'|'l'} [props.size='l'] Размеры поля для variant = "desktop".
  * @param {*} [props.startAdornment] Дополнительная верстка до текста.
  * @param {string} [props.value] Значение.
  * @param {'desktop'|'mobile'} [props.variant='desktop'] Вариант отображения.
+ * @param {boolean} [props.multiline] Нужно ли выводить textarea вместо input.
  * @param {Object} [props.baseInputProps] Свойства BaseInput.
+ * @param {string} [props.className] Класс корневого компонента.
  * @return {ReactElement} Компонент текстового поля.
  */
 const TextField = forwardRef(function TextField ({
@@ -44,13 +47,16 @@ const TextField = forwardRef(function TextField ({
   onBlur,
   onChange,
   onFocus,
+  onInput,
   placeholder,
   readOnly,
   size = 'l',
   startAdornment,
   value,
   variant = 'desktop',
+  multiline,
   baseInputProps = {},
+  className,
 }, ref) {
   const [hasValue, toggleHasValue] = useState(Boolean(value || defaultValue));
   const [focused, toggleFocused] = useState(autoFocus);
@@ -62,7 +68,7 @@ const TextField = forwardRef(function TextField ({
   const labelAsPlaceholder = !(focused || hasValue);
 
   return (
-    <div className={cx('text-field-root', classes.root)}>
+    <div className={cx('text-field-root', className, classes.root)}>
 
       {/* field row */}
       <div
@@ -73,10 +79,12 @@ const TextField = forwardRef(function TextField ({
           variant && `variant-${variant}`,
           focused && 'focused',
           disabled && 'disabled',
+          multiline && 'multiline',
+          withLabel && 'with-label',
         )}
         onClick={({ currentTarget }) => {
           // поиск по сервисному классу чтобы не подменять ref, приходящий извне
-          const input = currentTarget.querySelector(`input.${serviceClass}`);
+          const input = currentTarget.querySelector(`.${serviceClass}`);
 
           input
             && !disabled
@@ -85,20 +93,14 @@ const TextField = forwardRef(function TextField ({
         }}
       >
         {/* start adornment column */}
-        {Boolean(startAdornment) && (
+        {!multiline && Boolean(startAdornment) && (
           <Box display='flex' alignItems='center' marginRight={4}>
             {startAdornment}
           </Box>
         )}
 
         {/* input & label column */}
-        <Box
-          flex='grow'
-          display='flex'
-          direction='column'
-          justifyContent={isMobile && !label ? 'center' : undefined}
-          dangerouslySetInlineStyle={{ __style: { position: 'relative' } }}
-        >
+        <div className={cx('main-column')}>
           {withLabel && (
             <Label
               disabled={disabled}
@@ -109,9 +111,10 @@ const TextField = forwardRef(function TextField ({
               children={label}
             />
           )}
-          <Box display='flex' paddingTop={withLabel ? 4 : undefined}>
+          <div className={cx('input-wrapper')}>
             <BaseInput
               {...baseInputProps}
+              multiline={multiline}
               ref={ref}
               placeholder={withLabel && labelAsPlaceholder
                 ? null
@@ -135,13 +138,14 @@ const TextField = forwardRef(function TextField ({
                 toggleHasValue(Boolean(event.target.value));
                 toggleFocused(false);
               }}
+              onInput={onInput}
               onChange={onChange}
             />
-          </Box>
-        </Box>
+          </div>
+        </div>
 
         {/* end adornment column */}
-        {Boolean(endAdornment) && (
+        {!multiline && Boolean(endAdornment) && (
           <Box display='flex' alignItems='center' marginLeft={4}>
             {endAdornment}
           </Box>
@@ -221,6 +225,11 @@ TextField.propTypes = {
   onFocus: PropTypes.func,
 
   /**
+   * Сработает при событии "input".
+   */
+  onInput: PropTypes.func,
+
+  /**
    * Placeholder.
    */
   placeholder: PropTypes.string,
@@ -251,9 +260,19 @@ TextField.propTypes = {
   variant: PropTypes.oneOf(['desktop', 'mobile']),
 
   /**
+   * Нужно ли выводить textarea вместо input.
+   */
+  multiline: PropTypes.bool,
+
+  /**
    * Свойства BaseInput.
    */
   baseInputProps: PropTypes.object,
+
+  /**
+   * Класс корневого компонента.
+   */
+  className: PropTypes.string,
 };
 
 export default TextField;

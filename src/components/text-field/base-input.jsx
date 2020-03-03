@@ -1,6 +1,8 @@
 import React, { forwardRef } from 'react';
 import { cx } from './classes';
 import PropTypes from 'prop-types';
+import { fitElementHeight } from '../helpers/fit-element-height';
+import isFunction from 'lodash/isFunction';
 
 /**
  * Компонент поля ввода.
@@ -9,6 +11,9 @@ import PropTypes from 'prop-types';
  * @param {boolean} [props.failed] Ошибочно ли введено значение.
  * @param {boolean} [props.disabled] Отключено ли поле.
  * @param {string} [props.className] CSS-класс.
+ * @param {Function} [props.onInput] Сработает при событии input.
+ * @param {boolean} [props.multiline] Нужно ли выводить textarea вместо input.
+ * @param {number|string} [props.rows] Значение атрибута rows для textarea.
  * @return {ReactElement} Компонент поля ввода.
  */
 export const BaseInput = forwardRef(function BaseInput ({
@@ -16,11 +21,17 @@ export const BaseInput = forwardRef(function BaseInput ({
   failed,
   disabled,
   className,
+  onInput,
+  multiline,
+  rows = 1,
   ...props
 }, ref) {
+  const Element = multiline ? 'textarea' : 'input';
+
   return (
-    <input
+    <Element
       {...props}
+      rows={multiline ? rows : undefined}
       ref={ref}
       disabled={disabled}
       className={cx([
@@ -29,8 +40,13 @@ export const BaseInput = forwardRef(function BaseInput ({
         'base-input',
         failed && 'failed',
         disabled && 'disabled',
+        multiline && 'multiline',
         size && `size-${size}`,
       ])}
+      onInput={event => {
+        multiline && fitElementHeight(event);
+        isFunction(onInput) && onInput(event);
+      }}
     />
   );
 });
@@ -55,4 +71,19 @@ BaseInput.propTypes = {
    * CSS-класс.
    */
   className: PropTypes.string,
+
+  /**
+   * Сработает при событии input.
+   */
+  onInput: PropTypes.func,
+
+  /**
+   * Нужно ли выводить textarea вместо input.
+   */
+  multiline: PropTypes.bool,
+
+  /**
+   * Значение атрибута rows для textarea.
+   */
+  rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };

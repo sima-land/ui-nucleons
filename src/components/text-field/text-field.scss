@@ -23,6 +23,13 @@
   justify-content: center;
   flex-wrap: nowrap;
   overflow: hidden;
+  &.with-label {
+    .input-wrapper {
+      padding-top: 16px;
+    }
+  }
+
+  // variant: desktop
   &.variant-desktop {
     background-color: #fff;
     border: 1px solid map-get($colors, 'gray12');
@@ -37,29 +44,55 @@
     &.disabled {
       border-color: map-get($colors, 'gray12');
     }
-    &.size-xs {
-      font-size: 14px;
-      height: 32px;
+    &:not(.multiline) {
+      &.size-xs {
+        font-size: 14px;
+        height: 32px;
+      }
+      &.size-s {
+        height: 40px;
+      }
+      &.size-m {
+        height: 48px;
+      }
+      &.size-l {
+        height: 56px;
+        padding: 0 16px;
+      }
     }
-    &.size-s {
-      height: 40px;
-    }
-    &.size-m {
-      height: 48px;
-    }
-    &.size-l {
-      height: 56px;
-      padding: 0 16px;
+    &.multiline {
+      align-items: flex-start;
+      min-height: 128px;
+      padding: 14px 16px; // 14px с учетом обводки
+      &.with-label {
+        padding: 7px 16px; // 7px с учетом обводки
+      }
     }
   }
+
+  // variant: mobile
   &.variant-mobile {
-    align-items: stretch;
-    height: 48px;
     padding: 0;
     border: 0;
     box-shadow: inset 0 -1px map-get($colors, 'gray12');
     &.focused:not(.disabled) {
       box-shadow: inset 0 -1px map-get($colors, 'brand-blue');
+    }
+    &:not(.multiline) {
+      height: 48px;
+      .main-column {
+        justify-content: center;
+      }
+    }
+    &.multiline {
+      height: auto;
+      min-height: 48px;
+      .main-column {
+        padding-bottom: 8px;
+      }
+      &:not(.with-label) .main-column {
+        padding-top: 8px;
+      }
     }
   }
 
@@ -68,6 +101,18 @@
   &.disabled {
     color: map-get($colors, 'gray24');
   }
+}
+
+.main-column {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.input-wrapper {
+  display: flex;
 }
 
 .label {
@@ -108,7 +153,7 @@
     opacity: 1;
     color: map-get($colors, 'gray38');
   }
-  &.size-small {
+  &.size-xs {
     font-size: 14px;
     line-height: 20px;
   }
@@ -123,6 +168,9 @@
     &::placeholder {
       color: map-get($colors, 'gray24');
     }
+  }
+  &.multiline {
+    resize: none;
   }
 }
 

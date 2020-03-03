@@ -3,6 +3,17 @@ import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import TextField from '../index';
 import { BaseInput } from '../base-input';
+import { fitElementHeight } from '../../helpers/fit-element-height';
+
+jest.mock('../../helpers/fit-element-height', () => {
+  const original = jest.requireActual('../../helpers/fit-element-height');
+
+  return {
+    ...original,
+    __esModule: true,
+    fitElementHeight: jest.fn(original.fitElementHeight),
+  };
+});
 
 describe('<TextField />', () => {
   it('should render without props', () => {
@@ -122,5 +133,28 @@ describe('<TextField />', () => {
     });
 
     expect(wrapper.find(BaseInput).getDOMNode().focus).toHaveBeenCalledTimes(1);
+  });
+  it('should handle "multiline" prop', () => {
+    const spy = jest.fn();
+
+    const wrapper = mount(
+      <TextField
+        multiline
+        onInput={spy}
+        baseInputProps={{ rows: 3 }}
+      />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+
+    expect(spy).toHaveBeenCalledTimes(0);
+    expect(fitElementHeight).toHaveBeenCalledTimes(0);
+
+    act(() => {
+      wrapper.find('textarea').simulate('input');
+    });
+
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(fitElementHeight).toHaveBeenCalledTimes(1);
   });
 });
