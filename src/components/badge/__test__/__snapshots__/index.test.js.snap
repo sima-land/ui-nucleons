@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Badge /> with bgColor renders correctly 1`] = `
+<span
+  className="container"
+  style={
+    Object {
+      "backgroundColor": "blue",
+      "color": "#fff",
+      "fill": "#fff",
+    }
+  }
+>
+  <span
+    className="content"
+  />
+</span>
+`;
+
+exports[`<Badge /> with containerProps renders correctly 1`] = `
+<span
+  className="container testClassName"
+  style={
+    Object {
+      "backgroundColor": "#000",
+      "color": "#fff",
+      "fill": "#fff",
+      "margin": 10,
+    }
+  }
+>
+  <span
+    className="content"
+  />
+</span>
+`;
+
+exports[`<Badge /> with link renders correctly 1`] = `
+<span
+  className="container"
+  style={
+    Object {
+      "backgroundColor": "#000",
+      "color": "#fff",
+      "fill": "#fff",
+    }
+  }
+>
+  <span
+    className="content"
+  >
+    <a
+      className="link"
+      href="/test"
+    />
+  </span>
+</span>
+`;
+
+exports[`<Badge /> with strokeColor renders correctly 1`] = `
+<span
+  className="container"
+  style={
+    Object {
+      "backgroundColor": "#000",
+      "color": "#fff",
+      "fill": "green",
+    }
+  }
+>
+  <span
+    className="content"
+  />
+</span>
+`;
+
+exports[`<Badge /> with textColor renders correctly 1`] = `
+<span
+  className="container"
+  style={
+    Object {
+      "backgroundColor": "#000",
+      "color": "red",
+      "fill": "#fff",
+    }
+  }
+>
+  <span
+    className="content"
+  />
+</span>
+`;
+
+exports[`<Badge /> with title renders correctly 1`] = `
+<span
+  className="container"
+  style={
+    Object {
+      "backgroundColor": "#000",
+      "color": "#fff",
+      "fill": "#fff",
+    }
+  }
+  title="Test"
+>
+  <span
+    className="content"
+  />
+</span>
+`;
+
+exports[`<Badge /> without props renders correctly 1`] = `
+<span
+  className="container"
+  style={
+    Object {
+      "backgroundColor": "#000",
+      "color": "#fff",
+      "fill": "#fff",
+    }
+  }
+>
+  <span
+    className="content"
+  />
+</span>
+`;
