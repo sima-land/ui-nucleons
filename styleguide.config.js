@@ -14,6 +14,7 @@ module.exports = {
         'src/components/no-index/*.jsx',
         'src/components/no-index-mark/*.jsx',
         'src/components/text/*.jsx',
+        'src/components/layer/*.js',
       ],
     },
     {
