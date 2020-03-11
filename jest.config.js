@@ -11,6 +11,7 @@ module.exports = {
   coveragePathIgnorePatterns: [
     'jest.setup.js',
   ],
+  clearMocks: true,
   coverageThreshold: {
     global: {
       branches: 100,

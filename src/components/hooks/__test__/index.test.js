@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import {
   useOnMount,
   useApplyMemo,
   useIsTouchDevice,
+  useInfiniteScroll,
 } from '../index';
 
 jest.mock('../../helpers/is-touch-device', () => {
@@ -14,6 +15,87 @@ jest.mock('../../helpers/is-touch-device', () => {
     __esModule: true,
     isTouchDevice: jest.fn(() => true),
   };
+});
+
+describe('useInfiniteScroll()', () => {
+  let container;
+
+  beforeEach(() => {
+    container = document.createElement('div');
+    document.body.appendChild(container);
+  });
+
+  afterEach(() => {
+    document.body.removeChild(container);
+    container = null;
+  });
+
+  /**
+   * Тестовый компонент.
+   * @param {Object} props Свойства.
+   * @return {ReactElement} Блок.
+   */
+  const TestComponent = ({
+    withList = true,
+    onFullScroll,
+  }) => {
+    const listRef = useRef();
+
+    useInfiniteScroll(listRef, {
+      onFullScroll,
+    });
+
+    return withList && (
+      <ul className='test-list' ref={listRef}>
+        Test list
+      </ul>
+    );
+  };
+
+  it('should works properly', () => {
+    const spy = jest.fn();
+
+    act(() => {
+      ReactDOM.render(<TestComponent onFullScroll={spy} />, container);
+    });
+
+    const listEl = container.querySelector('.test-list');
+    expect(spy).toHaveBeenCalledTimes(0);
+
+    // with full scroll
+    Object.defineProperty(listEl, 'scrollTop', { value: 200, configurable: true });
+    Object.defineProperty(listEl, 'clientHeight', { value: 100, configurable: true });
+    Object.defineProperty(listEl, 'scrollHeight', { value: 100, configurable: true });
+    listEl.dispatchEvent(new Event('scroll'));
+    expect(spy).toHaveBeenCalledTimes(1);
+
+    // with not full scroll
+    Object.defineProperty(listEl, 'scrollTop', { value: 200, configurable: true });
+    Object.defineProperty(listEl, 'clientHeight', { value: 100, configurable: true });
+    Object.defineProperty(listEl, 'scrollHeight', { value: 400, configurable: true });
+    listEl.dispatchEvent(new Event('scroll'));
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should works without ref.current', () => {
+    jest.spyOn(HTMLUListElement.prototype, 'addEventListener');
+    HTMLUListElement.prototype.addEventListener.mockClear();
+
+    act(() => {
+      ReactDOM.render(<TestComponent withList={false} />, container);
+    });
+    expect(HTMLUListElement.prototype.addEventListener).toHaveBeenCalledTimes(0);
+  });
+
+  it('should works with ref.current', () => {
+    jest.spyOn(HTMLUListElement.prototype, 'addEventListener');
+    HTMLUListElement.prototype.addEventListener.mockClear();
+
+    act(() => {
+      ReactDOM.render(<TestComponent withList />, container);
+    });
+    expect(HTMLUListElement.prototype.addEventListener).toHaveBeenCalledTimes(1);
+  });
 });
 
 describe('useOnMount()', () => {
