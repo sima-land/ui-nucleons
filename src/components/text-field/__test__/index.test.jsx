@@ -147,6 +147,8 @@ describe('<TextField />', () => {
 
     expect(wrapper).toMatchSnapshot();
 
+    fitElementHeight.mockClear();
+
     expect(spy).toHaveBeenCalledTimes(0);
     expect(fitElementHeight).toHaveBeenCalledTimes(0);
 

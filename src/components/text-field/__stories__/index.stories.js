@@ -12,6 +12,13 @@ const stateProps = {
 
 const desktopSizes = ['xs', 's', 'l'];
 
+const longValue = [
+  'Lorem ipsum dolor sit amet consectetur,',
+  'adipisicing elit. Distinctio maxime at tempora',
+  'adipisci placeat odio omnis laudantium cumque.',
+  'Omnis, accusamus?',
+].join(' \n');
+
 storiesOf('TextField', module)
   .add('Default', () => (
     <Fragment>
@@ -101,6 +108,7 @@ storiesOf('TextField', module)
     <Fragment>
       <h2>Desktop</h2>
       <TextField
+        defaultValue={longValue}
         multiline
         label='Label'
         caption='Caption'
@@ -108,6 +116,7 @@ storiesOf('TextField', module)
       />
       <div style={{ height: 32 }} />
       <TextField
+        defaultValue={longValue}
         multiline
         caption='Caption'
         placeholder='Placeholder'
@@ -115,6 +124,7 @@ storiesOf('TextField', module)
 
       <h2>Mobile</h2>
       <TextField
+        defaultValue={longValue}
         multiline
         label='Label'
         caption='Caption'
@@ -123,6 +133,7 @@ storiesOf('TextField', module)
       />
       <div style={{ height: 32 }} />
       <TextField
+        defaultValue={longValue}
         multiline
         caption='Caption'
         placeholder='Placeholder'
