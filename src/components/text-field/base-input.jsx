@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { useRef, useEffect, useImperativeHandle, forwardRef } from 'react';
 import { cx } from './classes';
 import PropTypes from 'prop-types';
 import { fitElementHeight } from '../helpers/fit-element-height';
@@ -27,12 +27,21 @@ export const BaseInput = forwardRef(function BaseInput ({
   ...props
 }, ref) {
   const Element = multiline ? 'textarea' : 'input';
+  const inputRef = useRef();
+
+  useImperativeHandle(ref, () => inputRef.current);
+
+  useEffect(() => {
+    multiline && inputRef.current && fitElementHeight({
+      target: inputRef.current,
+    });
+  }, []);
 
   return (
     <Element
       {...props}
       rows={multiline ? rows : undefined}
-      ref={ref}
+      ref={inputRef}
       disabled={disabled}
       className={cx([
         className,
