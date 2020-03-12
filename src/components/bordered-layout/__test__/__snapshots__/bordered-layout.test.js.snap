@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BoBorderedLayoutrder /> with props 1`] = `
+<div
+  className="base outer "
+>
+  <MobileLayout>
+    <div
+      className="base inner "
+    />
+  </MobileLayout>
+</div>
+`;
+
+exports[`<BoBorderedLayoutrder /> without props 1`] = `
+<div
+  className="base outer disable-border-top disable-border-bottom"
+>
+  <MobileLayout>
+    <div
+      className="base inner disable-border-top disable-border-bottom"
+    />
+  </MobileLayout>
+</div>
+`;

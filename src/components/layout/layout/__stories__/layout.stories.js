@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
 import styles from './layout-demo.scss';
-import Layout from '../';
+import Layout from '../index';
 
 storiesOf('Layout', module)
   .add('with content', () => (
@@ -21,25 +21,6 @@ storiesOf('Layout', module)
       >
         <div className={styles['content-green']}>
           Layout with desktop and mobile settings
-        </div>
-      </Layout>
-      <Layout
-        mdPadding='lg'
-        xlMaxWidth='lg'
-        lgMaxWidth='md'
-      >
-        <div className={styles['content-green']}>
-          Layout with desktop settings
-        </div>
-      </Layout>
-      <Layout
-        xxlMaxWidth='sm'
-        xsMaxWidth='xs'
-        xxsPadding='md'
-        xxxsPadding='sm'
-      >
-        <div className={styles['content-green']}>
-          Layout with mobile settings
         </div>
       </Layout>
     </Fragment>

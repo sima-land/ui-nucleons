@@ -1,0 +1,26 @@
+@import '../colors';
+
+.outer {
+  @media (max-width: 720px) {
+    border-top: 1px solid $gray12;
+    border-bottom: 1px solid $gray12;
+  }
+}
+
+.inner {
+  @media (min-width: 721px) {
+    border-top: 1px solid $gray12;
+    border-bottom: 1px solid $gray12;
+  }
+}
+
+.base {
+  margin-bottom: -1px;
+  &.disable-border-top {
+    border-top: 0;
+  }
+  &.disable-border-bottom {
+    border-bottom: 0;
+    margin-bottom: 0;
+  }
+}
