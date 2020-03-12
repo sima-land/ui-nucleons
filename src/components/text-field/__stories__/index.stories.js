@@ -19,6 +19,8 @@ const longValue = [
   'Omnis, accusamus?',
 ].join(' \n');
 
+const testValues = ['test', 123, '', [], null, undefined, false, true, {}];
+
 storiesOf('TextField', module)
   .add('Default', () => (
     <Fragment>
@@ -141,6 +143,15 @@ storiesOf('TextField', module)
       />
     </Fragment>
   ))
+  .add('Different values', () => testValues.map((testValue, index) => (
+    <Fragment key={index}>
+      <h3>Value: {String(testValue) || JSON.stringify(testValue)}</h3>
+      <TextField
+        label='Label'
+        defaultValue={testValue}
+      />
+    </Fragment>
+  )))
   .add('service: BaseInput', () => (
     <Fragment>
       <div style={{ border: '1px solid #000', display: 'flex', width: 200 }}>

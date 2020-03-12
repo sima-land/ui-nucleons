@@ -4,6 +4,7 @@ import { act } from 'react-dom/test-utils';
 import TextField from '../index';
 import { BaseInput } from '../base-input';
 import { fitElementHeight } from '../../helpers/fit-element-height';
+import { Label } from '../label';
 
 jest.mock('../../helpers/fit-element-height', () => {
   const original = jest.requireActual('../../helpers/fit-element-height');
@@ -158,5 +159,23 @@ describe('<TextField />', () => {
 
     expect(spy).toHaveBeenCalledTimes(1);
     expect(fitElementHeight).toHaveBeenCalledTimes(1);
+  });
+
+  it('should handle invalid types of "value" prop', () => {
+    ['', [], null, undefined].forEach(testValue => {
+      const wrapper = mount(
+        <TextField label='Label' value={testValue} />
+      );
+
+      expect(wrapper.find(Label).prop('asPlaceholder')).toBe(true);
+    });
+
+    ['text', false, true, 123, {}].forEach(testValue => {
+      const wrapper = mount(
+        <TextField label='Label' value={testValue} />
+      );
+
+      expect(wrapper.find(Label).prop('asPlaceholder')).toBe(false);
+    });
   });
 });

@@ -1,5 +1,6 @@
 import React, { useState, forwardRef } from 'react';
 import isFunction from 'lodash/isFunction';
+import isNil from 'lodash/isNil';
 import Box from '../box';
 import * as Sizes from '../styling/sizes';
 import { cx } from './classes';
@@ -8,6 +9,13 @@ import { BaseInput } from './base-input';
 import PropTypes from 'prop-types';
 
 const serviceClass = '__base-input__';
+
+/**
+ * Вернет true если переданное значение будет выведено при установке в input.
+ * @param {*} value Значение.
+ * @return {boolean} Будет ли выведено значение.
+ */
+const isVisibleValue = value => !isNil(value) && `${value}` !== '';
 
 /**
  * Компонент текстового поля.
@@ -58,7 +66,10 @@ const TextField = forwardRef(function TextField ({
   baseInputProps = {},
   className,
 }, ref) {
-  const [hasValue, toggleHasValue] = useState(Boolean(value || defaultValue));
+  const [hasValue, toggleHasValue] = useState(
+    isVisibleValue(value)
+    || isVisibleValue(defaultValue)
+  );
   const [focused, toggleFocused] = useState(autoFocus);
 
   const isDesktop = variant === 'desktop';
