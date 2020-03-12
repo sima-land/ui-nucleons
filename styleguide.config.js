@@ -26,6 +26,7 @@ module.exports = {
         'src/components/input/*.jsx',
         'src/components/textarea/*.jsx',
         'src/components/text-field/index.jsx',
+        'src/components/switch/index.jsx',
       ],
     },
     {
@@ -82,6 +83,8 @@ module.exports = {
         'src/components/pagination/page-select-form.jsx',
         'src/components/carousel/draggable.jsx',
         'src/components/carousel/nav-button.jsx',
+        'src/components/text-field/*',
+        'src/components/switch/*',
       ],
     },
   ],

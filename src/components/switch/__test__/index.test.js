@@ -16,14 +16,7 @@ describe('<Switch />', () => {
       <Switch defaultChecked />
     );
 
-    expect(wrapper.find('input').prop('checked')).toBe(true);
-
-    act(() => {
-      wrapper.find('input').prop('onChange')({ target: { checked: false } });
-    });
-    wrapper.update();
-
-    expect(wrapper.find('input').prop('checked')).toBe(false);
+    expect(wrapper.find('input').prop('defaultChecked')).toBe(true);
   });
   it('should handle "checked" prop', () => {
     const wrapper = mount(
@@ -66,20 +59,5 @@ describe('<Switch />', () => {
     });
 
     expect(testRef.current).toBe(container.querySelector('input'));
-  });
-  it('should handle "computeClasses" prop', () => {
-    const wrapper = mount(
-      <Switch
-        computeClasses={defaults => ({
-          root: 'test-root',
-          rootChecked: 'test-root-checked',
-          track: ['test-track', defaults.track].join(' '),
-          trackChecked: 'test-track-checked',
-          circle: 'test-circle',
-          circleChecked: 'test-circle-checked',
-        })}
-      />
-    );
-    expect(wrapper).toMatchSnapshot();
   });
 });
