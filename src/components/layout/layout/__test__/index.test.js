@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme/build';
-import Layout from '../';
+import Layout from '../index';
 
 describe('<Layout />', () => {
   it('should renders correctly without props', () => {
