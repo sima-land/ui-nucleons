@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TouchSlider /> should handle props 1`] = `
+<TouchSlider
+  layoutProps={
+    Object {
+      "xsMaxWidth": "sm",
+      "xxsPadding": "sm",
+    }
+  }
+>
+  <MobileLayout
+    xsMaxWidth="sm"
+    xxsPadding="sm"
+  >
+    <Layout
+      xsMaxWidth="sm"
+      xxlMaxWidth="sm"
+      xxsPadding="sm"
+      xxxsPadding="sm"
+    >
+      <div
+        className="layout-wrapper layout-xxl-padding-sm layout-xl-padding-sm layout-lg-padding-sm layout-md-padding-sm layout-sm-padding-sm layout-xs-padding-sm layout-xxs-padding-sm layout-xxxs-padding-sm"
+      >
+        <div
+          className="layout layout-xxl-width-sm layout-xl-width-sm layout-lg-width-sm layout-md-width-sm layout-sm-width-sm layout-xs-width-sm layout-xxs-width-sm layout-xxxs-width-sm"
+        >
+          <div
+            className="wrapper invisible-scroll"
+          >
+            <div
+              className="inner"
+            >
+              <div>
+                Foo
+              </div>
+              <div>
+                Baz
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Layout>
+  </MobileLayout>
+</TouchSlider>
+`;
+
+exports[`<TouchSlider /> should render without props 1`] = `
+<TouchSlider>
+  <MobileLayout>
+    <Layout
+      xsMaxWidth="xs"
+      xxlMaxWidth="sm"
+      xxsPadding="md"
+      xxxsPadding="sm"
+    >
+      <div
+        className="layout-wrapper layout-xxl-padding-sm layout-xl-padding-sm layout-lg-padding-sm layout-md-padding-sm layout-sm-padding-sm layout-xs-padding-sm layout-xxs-padding-md layout-xxxs-padding-sm"
+      >
+        <div
+          className="layout layout-xxl-width-sm layout-xl-width-sm layout-lg-width-sm layout-md-width-sm layout-sm-width-sm layout-xs-width-xs layout-xxs-width-xs layout-xxxs-width-xs"
+        >
+          <div
+            className="wrapper invisible-scroll"
+          >
+            <div
+              className="inner"
+            />
+          </div>
+        </div>
+      </div>
+    </Layout>
+  </MobileLayout>
+</TouchSlider>
+`;
