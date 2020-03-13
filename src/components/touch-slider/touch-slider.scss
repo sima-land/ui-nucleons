@@ -1,0 +1,17 @@
+.wrapper {
+  display: flex;
+  overflow: hidden;
+  overflow-x: auto;
+  .inner {
+    display: flex;
+  }
+}
+
+.invisible-scroll {
+  scrollbar-width: none; // Firefox
+  overflow: -moz-scrollbars-none; // old Firefox
+  -ms-overflow-style: none; // IE, old Edge
+  &::-webkit-scrollbar {
+    display: none; // Chrome, Safari, Opera
+  }
+}
