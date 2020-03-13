@@ -84,3 +84,20 @@ publish-package:
       - tags
   tags:
     - sl-frontend
+
+badge_release:
+  stage: publish
+  image: python:3.6
+  before_script:
+    - pip install anybadge
+  script:
+    - anybadge -l "release" -v "$CI_COMMIT_TAG" -f release-version.svg -c green
+  artifacts:
+    paths:
+      - release-version.svg
+    expire_in: 4 weeks
+  only:
+    refs:
+      - tags
+  tags:
+    - sl-frontend
