@@ -75,14 +75,18 @@
     padding: 0;
     border: 0;
     box-shadow: inset 0 -1px map-get($colors, 'gray12');
+    .main-column {
+      height: 100%;
+      justify-content: center;
+    }
+    &.with-label .main-column {
+      justify-content: flex-start;
+    }
     &.focused:not(.disabled) {
       box-shadow: inset 0 -1px map-get($colors, 'brand-blue');
     }
     &:not(.multiline) {
       height: 48px;
-      .main-column {
-        justify-content: center;
-      }
     }
     &.multiline {
       height: auto;

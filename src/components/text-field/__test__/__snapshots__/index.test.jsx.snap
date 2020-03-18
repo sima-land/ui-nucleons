@@ -26,13 +26,13 @@ exports[`<TextField /> should handle "caption" prop 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="__base-input__"
+            className=""
             onBlur={[Function]}
             onFocus={[Function]}
             size="l"
           >
             <input
-              className="__base-input__ reset base-input size-l"
+              className="reset base-input size-l"
               onBlur={[Function]}
               onFocus={[Function]}
               onInput={[Function]}
@@ -85,7 +85,7 @@ exports[`<TextField /> should handle "caption" prop 2`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="__base-input__"
+            className=""
             disabled={true}
             failed={true}
             onBlur={[Function]}
@@ -93,7 +93,7 @@ exports[`<TextField /> should handle "caption" prop 2`] = `
             size="l"
           >
             <input
-              className="__base-input__ reset base-input failed disabled size-l"
+              className="reset base-input failed disabled size-l"
               disabled={true}
               onBlur={[Function]}
               onFocus={[Function]}
@@ -136,14 +136,14 @@ exports[`<TextField /> should handle "disabled" prop 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="__base-input__"
+            className=""
             disabled={true}
             onBlur={[Function]}
             onFocus={[Function]}
             size="l"
           >
             <input
-              className="__base-input__ reset base-input disabled size-l"
+              className="reset base-input disabled size-l"
               disabled={true}
               onBlur={[Function]}
               onFocus={[Function]}
@@ -185,14 +185,14 @@ exports[`<TextField /> should handle "label" prop 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="__base-input__"
+            className=""
             onBlur={[Function]}
             onFocus={[Function]}
             placeholder={null}
             size="l"
           >
             <input
-              className="__base-input__ reset base-input size-l"
+              className="reset base-input size-l"
               onBlur={[Function]}
               onFocus={[Function]}
               onInput={[Function]}
@@ -239,7 +239,7 @@ exports[`<TextField /> should handle "label" prop 2`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="__base-input__"
+            className=""
             disabled={true}
             failed={true}
             onBlur={[Function]}
@@ -248,7 +248,7 @@ exports[`<TextField /> should handle "label" prop 2`] = `
             size="l"
           >
             <input
-              className="__base-input__ reset base-input failed disabled size-l"
+              className="reset base-input failed disabled size-l"
               disabled={true}
               onBlur={[Function]}
               onFocus={[Function]}
@@ -287,7 +287,7 @@ exports[`<TextField /> should handle "multiline" prop 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="__base-input__"
+            className=""
             multiline={true}
             onBlur={[Function]}
             onFocus={[Function]}
@@ -296,7 +296,7 @@ exports[`<TextField /> should handle "multiline" prop 1`] = `
             size="l"
           >
             <textarea
-              className="__base-input__ reset base-input multiline size-l"
+              className="reset base-input multiline size-l"
               onBlur={[Function]}
               onFocus={[Function]}
               onInput={[Function]}
@@ -328,13 +328,13 @@ exports[`<TextField /> should handle "variant" prop 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="__base-input__"
+            className=""
             onBlur={[Function]}
             onFocus={[Function]}
             size="l"
           >
             <input
-              className="__base-input__ reset base-input size-l"
+              className="reset base-input size-l"
               onBlur={[Function]}
               onFocus={[Function]}
               onInput={[Function]}
@@ -365,13 +365,13 @@ exports[`<TextField /> should handle "variant" prop 2`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="__base-input__"
+            className=""
             onBlur={[Function]}
             onFocus={[Function]}
             size="l"
           >
             <input
-              className="__base-input__ reset base-input size-l"
+              className="reset base-input size-l"
               onBlur={[Function]}
               onFocus={[Function]}
               onInput={[Function]}
@@ -413,13 +413,13 @@ exports[`<TextField /> should handle adornment props 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="__base-input__"
+            className=""
             onBlur={[Function]}
             onFocus={[Function]}
             size="l"
           >
             <input
-              className="__base-input__ reset base-input size-l"
+              className="reset base-input size-l"
               onBlur={[Function]}
               onFocus={[Function]}
               onInput={[Function]}
@@ -451,13 +451,13 @@ exports[`<TextField /> should handle adornment props 2`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="__base-input__"
+            className=""
             onBlur={[Function]}
             onFocus={[Function]}
             size="l"
           >
             <input
-              className="__base-input__ reset base-input size-l"
+              className="reset base-input size-l"
               onBlur={[Function]}
               onFocus={[Function]}
               onInput={[Function]}
@@ -497,13 +497,13 @@ exports[`<TextField /> should render without props 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="__base-input__"
+            className=""
             onBlur={[Function]}
             onFocus={[Function]}
             size="l"
           >
             <input
-              className="__base-input__ reset base-input size-l"
+              className="reset base-input size-l"
               onBlur={[Function]}
               onFocus={[Function]}
               onInput={[Function]}
