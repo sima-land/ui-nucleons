@@ -1,4 +1,4 @@
-import React, { useState, forwardRef } from 'react';
+import React, { useState, forwardRef, useImperativeHandle, useRef } from 'react';
 import isFunction from 'lodash/isFunction';
 import isNil from 'lodash/isNil';
 import Box from '../box';
@@ -7,8 +7,6 @@ import { cx } from './classes';
 import { Label } from './label';
 import { BaseInput } from './base-input';
 import PropTypes from 'prop-types';
-
-const serviceClass = '__base-input__';
 
 /**
  * Вернет true если переданное значение будет выведено при установке в input.
@@ -71,12 +69,15 @@ const TextField = forwardRef(function TextField ({
     || isVisibleValue(defaultValue)
   );
   const [focused, toggleFocused] = useState(autoFocus);
+  const baseInputRef = useRef();
 
   const isDesktop = variant === 'desktop';
   const isMobile = variant === 'mobile';
   const isLargeDesktop = isDesktop && size === 'l';
   const withLabel = (isLargeDesktop || isMobile) && Boolean(label);
   const labelAsPlaceholder = !(focused || hasValue);
+
+  useImperativeHandle(ref, () => baseInputRef.current);
 
   return (
     <div className={cx('text-field-root', className, classes.root)}>
@@ -93,9 +94,8 @@ const TextField = forwardRef(function TextField ({
           multiline && 'multiline',
           withLabel && 'with-label',
         )}
-        onClick={({ currentTarget }) => {
-          // поиск по сервисному классу чтобы не подменять ref, приходящий извне
-          const input = currentTarget.querySelector(`.${serviceClass}`);
+        onClick={() => {
+          const { current: input } = baseInputRef;
 
           input
             && !disabled
@@ -126,13 +126,13 @@ const TextField = forwardRef(function TextField ({
             <BaseInput
               {...baseInputProps}
               multiline={multiline}
-              ref={ref}
+              ref={baseInputRef}
               placeholder={withLabel && labelAsPlaceholder
                 ? null
                 : placeholder
               }
               autoFocus={autoFocus}
-              className={cx(serviceClass, classes.baseInput)}
+              className={cx(classes.baseInput)}
               defaultValue={defaultValue}
               value={value}
               size={size}
