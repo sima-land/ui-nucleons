@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useImperativeHandle, useRef } from 'react';
+import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
 import isFunction from 'lodash/isFunction';
 import isNil from 'lodash/isNil';
 import Box from '../box';
@@ -78,6 +78,8 @@ const TextField = forwardRef(function TextField ({
   const labelAsPlaceholder = !(focused || hasValue);
 
   useImperativeHandle(ref, () => baseInputRef.current);
+
+  useEffect(() => toggleHasValue(baseInputRef.current.value));
 
   return (
     <div className={cx('text-field-root', className, classes.root)}>
