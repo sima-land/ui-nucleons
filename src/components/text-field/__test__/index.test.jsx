@@ -178,4 +178,14 @@ describe('<TextField />', () => {
       expect(wrapper.find(Label).prop('asPlaceholder')).toBe(false);
     });
   });
+  it('should handle ref prop', () => {
+    const fakeRef = jest.fn();
+
+    mount(
+      <TextField ref={fakeRef} />
+    );
+
+    expect(fakeRef).toHaveBeenCalled();
+    expect(fakeRef.mock.calls[0][0].nodeName).toBe('INPUT');
+  });
 });

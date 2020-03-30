@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import TextField from '../index';
 import Icon from '../../icon';
@@ -152,6 +152,20 @@ storiesOf('TextField', module)
       />
     </Fragment>
   )))
+  .add('service: Value prop change', () => {
+    const [value, setValue] = useState('');
+
+    return (
+      <Fragment>
+        <button onClick={() => setValue('Some text')}>Fill value</button>
+        <button onClick={() => setValue('')}>Clear value</button>
+
+        <div style={{ height: 32 }} />
+
+        <TextField label='Test label' value={value} onChange={event => setValue(event.target.value)} />
+      </Fragment>
+    );
+  })
   .add('service: BaseInput', () => (
     <Fragment>
       <div style={{ border: '1px solid #000', display: 'flex', width: 200 }}>
