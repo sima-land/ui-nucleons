@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import Text from '../text';
-import Icon from '../icon';
 import Layer from '../layer';
-import classnames from 'classnames/bind';
 import isFunction from 'lodash/isFunction';
+import { ScreenLayout } from './screen-layout';
+import { cx } from './common';
+import LoadingOverlay from '../loading-overlay';
 import { useInfiniteScroll } from '../hooks';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import PropTypes from 'prop-types';
-
-import arrowLeft from '../icons/full-left-arrow.svg';
-import crossIcon from '../icons/cross-big.svg';
-import classes from './screen.scss';
-
-const cx = classnames.bind(classes);
 
 /**
  * Экран.
@@ -26,6 +20,8 @@ const cx = classnames.bind(classes);
  * @param {boolean} [props.withCloseButton=true] Нужно ли выводить закрывающий крест.
  * @param {*} [props.children] Содержимое.
  * @param {*} [props.footer] Содержимое подвала.
+ * @param {boolean} [props.loading=false] Нужно ли выводить вместо содержимого состояние загрузки.
+ * @param {Object} [props.loadingOverlayProps={}] Свойства компонента LoadingOverlay.
  * @return {ReactElement} Экран.
  */
 const Screen = ({
@@ -38,6 +34,8 @@ const Screen = ({
   withCloseButton = true,
   children,
   footer,
+  loading = false,
+  loadingOverlayProps = {},
 }) => {
   const [rootElement, setRootElement] = useState(null);
   const [contentElement, setContentElement] = useState(null);
@@ -55,65 +53,33 @@ const Screen = ({
   return (
     <Layer>
       <div ref={setRootElement} className={cx('screen', 'full-width')}>
-        <div className={cx('header', 'full-width')}>
-          {Boolean(withBackButton) && (
-            <Icon
-              size={24}
-              icon={arrowLeft}
-              className={cx('button', 'button-back')}
-              onClick={() => {
-                isFunction(onBack) && onBack({
-                  rootElement,
-                  contentElement,
-                });
-              }}
-              aria-label='Вернуться назад'
-              role='button'
-            />
-          )}
-          <Text
-            truncate
-            size={16}
-            lineHeight={24}
-            weight={600}
-            color='gray87'
-            children={title}
-          />
-          {Boolean(subtitle) && (
-            <Text
-              truncate
-              size={12}
-              lineHeight={12}
-              color='gray38'
-              children={subtitle}
-            />
-          )}
-          {Boolean(withCloseButton) && (
-            <Icon
-              size={24}
-              icon={crossIcon}
-              className={cx('button', 'button-close')}
-              onClick={() => {
-                isFunction(onClose) && onClose({
-                  rootElement,
-                  contentElement,
-                });
-              }}
-              aria-label={`Закрыть ${title}`}
-              role='button'
-            />
-          )}
-        </div>
-        <div
-          ref={setContentElement}
-          className={cx('content', 'full-width')}
-          children={children}
-        />
-        {Boolean(footer) && (
-          <div className={cx('footer', 'full-width')}>
-            {footer}
-          </div>
-        )}
+        {
+          loading
+            ? <LoadingOverlay {...loadingOverlayProps} />
+            : (
+              <ScreenLayout
+                title={title}
+                subtitle={subtitle}
+                withBackButton={withBackButton}
+                withCloseButton={withCloseButton}
+                childrenRef={setContentElement}
+                children={children}
+                footer={footer}
+                onBack={() => {
+                  isFunction(onBack) && onBack({
+                    rootElement,
+                    contentElement,
+                  });
+                }}
+                onClose={() => {
+                  isFunction(onClose) && onClose({
+                    rootElement,
+                    contentElement,
+                  });
+                }}
+              />
+            )
+        }
       </div>
     </Layer>
   );
@@ -164,6 +130,16 @@ Screen.propTypes = {
    * Содержимое подвала.
    */
   footer: PropTypes.any,
+
+  /**
+   * Нужно ли выводить вместо содержимого состояние загрузки.
+   */
+  loading: PropTypes.bool,
+
+  /**
+   * Свойства компонента LoadingOverlay.
+   */
+  loadingOverlayProps: PropTypes.object,
 };
 
 export default Screen;
