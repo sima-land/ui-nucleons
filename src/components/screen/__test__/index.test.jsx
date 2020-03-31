@@ -85,4 +85,15 @@ describe('<Screen />', () => {
       threshold: 320,
     });
   });
+
+  it('should handle "loading/loadingOverlayProps" props', () => {
+    const wrapper = mount(
+      <Screen
+        loading
+        loadingOverlayProps={{ spinnerProps: { size: 'medium' } }}
+      />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
 });

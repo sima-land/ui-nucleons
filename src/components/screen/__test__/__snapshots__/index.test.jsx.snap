@@ -1,5 +1,114 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Screen /> should handle "loading/loadingOverlayProps" props 1`] = `
+<Screen
+  loading={true}
+  loadingOverlayProps={
+    Object {
+      "spinnerProps": Object {
+        "size": "medium",
+      },
+    }
+  }
+>
+  <Layer>
+    <Portal
+      containerInfo={
+        <div>
+          <div
+            class="screen full-width"
+          >
+            <div
+              class="loading-overlay fill"
+            >
+              <div>
+                <svg
+                  class="icon icon-block icon"
+                  height="48"
+                  viewBox="0 0 36 36"
+                  width="48"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M18 35c9.389 0 17-7.611 17-17S27.389 1 18 1 1 8.611 1 18s7.611 17 17 17z"
+                    stroke="#F2F2F2"
+                    stroke-miterlimit="10"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M10.59 2.788a16.764 16.764 0 0 1 9.95-1.613 16.82 16.82 0 0 1 8.63 3.973 17.014 17.014 0 0 1 5.139 8.036 17.12 17.12 0 0 1 .021 9.558 17.014 17.014 0 0 1-5.102 8.06 16.82 16.82 0 0 1-8.612 4.012c-3.193.48-6.455.027-9.4-1.304A16.91 16.91 0 0 1 4 27.303"
+                    stroke="#1F84DB"
+                    stroke-miterlimit="10"
+                    stroke-width="2"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <div
+        className="screen full-width"
+      >
+        <LoadingOverlay
+          spinnerProps={
+            Object {
+              "size": "medium",
+            }
+          }
+        >
+          <div
+            className="loading-overlay fill"
+          >
+            <Spinner
+              size="medium"
+            >
+              <div>
+                <Icon
+                  className="icon"
+                  icon={[Function]}
+                  size={48}
+                >
+                  <spinnerIcon
+                    className="icon icon-block icon"
+                    height={48}
+                    viewBox="0 0 36 36"
+                    width={48}
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <svg
+                      className="icon icon-block icon"
+                      height={48}
+                      viewBox="0 0 36 36"
+                      width={48}
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M18 35c9.389 0 17-7.611 17-17S27.389 1 18 1 1 8.611 1 18s7.611 17 17 17z"
+                        stroke="#F2F2F2"
+                        strokeMiterlimit="10"
+                        strokeWidth="2"
+                      />
+                      <path
+                        d="M10.59 2.788a16.764 16.764 0 0 1 9.95-1.613 16.82 16.82 0 0 1 8.63 3.973 17.014 17.014 0 0 1 5.139 8.036 17.12 17.12 0 0 1 .021 9.558 17.014 17.014 0 0 1-5.102 8.06 16.82 16.82 0 0 1-8.612 4.012c-3.193.48-6.455.027-9.4-1.304A16.91 16.91 0 0 1 4 27.303"
+                        stroke="#1F84DB"
+                        strokeMiterlimit="10"
+                        strokeWidth="2"
+                      />
+                    </svg>
+                  </spinnerIcon>
+                </Icon>
+              </div>
+            </Spinner>
+          </div>
+        </LoadingOverlay>
+      </div>
+    </Portal>
+  </Layer>
+</Screen>
+`;
+
 exports[`<Screen /> should handle props 1`] = `
 <Screen
   footer="Test footer"
@@ -76,28 +185,28 @@ exports[`<Screen /> should handle props 1`] = `
       <div
         className="screen full-width"
       >
-        <div
-          className="header full-width"
+        <ScreenLayout
+          childrenRef={[Function]}
+          footer="Test footer"
+          onBack={[Function]}
+          onClose={[Function]}
+          subtitle="Test subtitle"
+          title="Test title"
+          withBackButton={true}
+          withCloseButton={true}
         >
-          <Icon
-            aria-label="Вернуться назад"
-            className="button button-back"
-            icon={[Function]}
-            onClick={[Function]}
-            role="button"
-            size={24}
+          <div
+            className="header full-width"
           >
-            <arrowLeft
+            <Icon
               aria-label="Вернуться назад"
-              className="icon icon-block button button-back"
-              height={24}
+              className="button button-back"
+              icon={[Function]}
               onClick={[Function]}
               role="button"
-              viewBox="0 0 36 36"
-              width={24}
-              xmlns="http://www.w3.org/2000/svg"
+              size={24}
             >
-              <svg
+              <arrowLeft
                 aria-label="Вернуться назад"
                 className="icon icon-block button button-back"
                 height={24}
@@ -107,56 +216,56 @@ exports[`<Screen /> should handle props 1`] = `
                 width={24}
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path
-                  d="M8.121 19.5l7.941 7.938c.583.585.583 1.539 0 2.125a1.511 1.511 0 0 1-2.125 0l-10.5-10.5a1.511 1.511 0 0 1 0-2.125l10.5-10.5a1.511 1.511 0 0 1 2.126 0c.582.585.582 1.539 0 2.125L8.12 16.5H31.5a1.5 1.5 0 0 1 0 3zm0 0"
-                />
-              </svg>
-            </arrowLeft>
-          </Icon>
-          <Memo(Text)
-            color="gray87"
-            lineHeight={24}
-            size={16}
-            truncate={true}
-            weight={600}
-          >
-            <span
-              className="size-16 line-height-24 color__gray87 weight-600 truncate"
+                <svg
+                  aria-label="Вернуться назад"
+                  className="icon icon-block button button-back"
+                  height={24}
+                  onClick={[Function]}
+                  role="button"
+                  viewBox="0 0 36 36"
+                  width={24}
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8.121 19.5l7.941 7.938c.583.585.583 1.539 0 2.125a1.511 1.511 0 0 1-2.125 0l-10.5-10.5a1.511 1.511 0 0 1 0-2.125l10.5-10.5a1.511 1.511 0 0 1 2.126 0c.582.585.582 1.539 0 2.125L8.12 16.5H31.5a1.5 1.5 0 0 1 0 3zm0 0"
+                  />
+                </svg>
+              </arrowLeft>
+            </Icon>
+            <Memo(Text)
+              color="gray87"
+              lineHeight={24}
+              size={16}
+              truncate={true}
+              weight={600}
             >
-              Test title
-            </span>
-          </Memo(Text)>
-          <Memo(Text)
-            color="gray38"
-            lineHeight={12}
-            size={12}
-            truncate={true}
-          >
-            <span
-              className="size-12 line-height-12 color__gray38 truncate"
+              <span
+                className="size-16 line-height-24 color__gray87 weight-600 truncate"
+              >
+                Test title
+              </span>
+            </Memo(Text)>
+            <Memo(Text)
+              color="gray38"
+              lineHeight={12}
+              size={12}
+              truncate={true}
             >
-              Test subtitle
-            </span>
-          </Memo(Text)>
-          <Icon
-            aria-label="Закрыть Test title"
-            className="button button-close"
-            icon={[Function]}
-            onClick={[Function]}
-            role="button"
-            size={24}
-          >
-            <crossIcon
+              <span
+                className="size-12 line-height-12 color__gray38 truncate"
+              >
+                Test subtitle
+              </span>
+            </Memo(Text)>
+            <Icon
               aria-label="Закрыть Test title"
-              className="icon icon-block button button-close"
-              height={24}
+              className="button button-close"
+              icon={[Function]}
               onClick={[Function]}
               role="button"
-              viewBox="0 0 36 36"
-              width={24}
-              xmlns="http://www.w3.org/2000/svg"
+              size={24}
             >
-              <svg
+              <crossIcon
                 aria-label="Закрыть Test title"
                 className="icon icon-block button button-close"
                 height={24}
@@ -166,25 +275,36 @@ exports[`<Screen /> should handle props 1`] = `
                 width={24}
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path
-                  clipRule="evenodd"
-                  d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
-                  fillRule="evenodd"
-                />
-              </svg>
-            </crossIcon>
-          </Icon>
-        </div>
-        <div
-          className="content full-width"
-        >
-          Test content
-        </div>
-        <div
-          className="footer full-width"
-        >
-          Test footer
-        </div>
+                <svg
+                  aria-label="Закрыть Test title"
+                  className="icon icon-block button button-close"
+                  height={24}
+                  onClick={[Function]}
+                  role="button"
+                  viewBox="0 0 36 36"
+                  width={24}
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
+                    fillRule="evenodd"
+                  />
+                </svg>
+              </crossIcon>
+            </Icon>
+          </div>
+          <div
+            className="content full-width"
+          >
+            Test content
+          </div>
+          <div
+            className="footer full-width"
+          >
+            Test footer
+          </div>
+        </ScreenLayout>
       </div>
     </Portal>
   </Layer>
@@ -232,39 +352,35 @@ exports[`<Screen /> should render without props 1`] = `
       <div
         className="screen full-width"
       >
-        <div
-          className="header full-width"
+        <ScreenLayout
+          childrenRef={[Function]}
+          onBack={[Function]}
+          onClose={[Function]}
+          withCloseButton={true}
         >
-          <Memo(Text)
-            color="gray87"
-            lineHeight={24}
-            size={16}
-            truncate={true}
-            weight={600}
+          <div
+            className="header full-width"
           >
-            <span
-              className="size-16 line-height-24 color__gray87 weight-600 truncate"
-            />
-          </Memo(Text)>
-          <Icon
-            aria-label="Закрыть undefined"
-            className="button button-close"
-            icon={[Function]}
-            onClick={[Function]}
-            role="button"
-            size={24}
-          >
-            <crossIcon
+            <Memo(Text)
+              color="gray87"
+              lineHeight={24}
+              size={16}
+              truncate={true}
+              weight={600}
+            >
+              <span
+                className="size-16 line-height-24 color__gray87 weight-600 truncate"
+              />
+            </Memo(Text)>
+            <Icon
               aria-label="Закрыть undefined"
-              className="icon icon-block button button-close"
-              height={24}
+              className="button button-close"
+              icon={[Function]}
               onClick={[Function]}
               role="button"
-              viewBox="0 0 36 36"
-              width={24}
-              xmlns="http://www.w3.org/2000/svg"
+              size={24}
             >
-              <svg
+              <crossIcon
                 aria-label="Закрыть undefined"
                 className="icon icon-block button button-close"
                 height={24}
@@ -274,18 +390,29 @@ exports[`<Screen /> should render without props 1`] = `
                 width={24}
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path
-                  clipRule="evenodd"
-                  d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
-                  fillRule="evenodd"
-                />
-              </svg>
-            </crossIcon>
-          </Icon>
-        </div>
-        <div
-          className="content full-width"
-        />
+                <svg
+                  aria-label="Закрыть undefined"
+                  className="icon icon-block button button-close"
+                  height={24}
+                  onClick={[Function]}
+                  role="button"
+                  viewBox="0 0 36 36"
+                  width={24}
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
+                    fillRule="evenodd"
+                  />
+                </svg>
+              </crossIcon>
+            </Icon>
+          </div>
+          <div
+            className="content full-width"
+          />
+        </ScreenLayout>
       </div>
     </Portal>
   </Layer>

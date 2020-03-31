@@ -18,4 +18,7 @@ storiesOf('Screen', module)
     >
       <Box padding={4}>Hello, world!</Box>
     </Screen>
+  ))
+  .add('Loading state', () => (
+    <Screen loading />
   ));
