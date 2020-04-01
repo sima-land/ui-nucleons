@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Layer from '../layer';
 import isFunction from 'lodash/isFunction';
 import { ScreenLayout } from './screen-layout';
 import { cx } from './common';
 import LoadingOverlay from '../loading-overlay';
-import { useInfiniteScroll } from '../hooks';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import PropTypes from 'prop-types';
 
@@ -16,7 +15,9 @@ import PropTypes from 'prop-types';
  * @param {Function} [props.onBack] Сработает при клике на кнопку "назад".
  * @param {Function} [props.onClose] Сработает при кнопке на крест.
  * @param {Function} [props.onFullScroll] Сработает при полной прокрутке контента.
- * @param {boolean} [props.withBackButton] Нужно ли выводить кнопку "назад".
+ * @param {Function} [props.fullScrollThreshold=320] Отступ от нижней границы для срабатывания onFullScroll.
+ * @param {boolean} [props.withHeader=true] Нужно ли выводить кнопку "назад".
+ * @param {boolean} [props.withBackButton=false] Нужно ли выводить кнопку "назад".
  * @param {boolean} [props.withCloseButton=true] Нужно ли выводить закрывающий крест.
  * @param {*} [props.children] Содержимое.
  * @param {*} [props.footer] Содержимое подвала.
@@ -30,29 +31,26 @@ const Screen = ({
   onBack,
   onClose,
   onFullScroll,
-  withBackButton,
+  withHeader = true,
+  withBackButton = false,
   withCloseButton = true,
   children,
   footer,
   loading = false,
   loadingOverlayProps = {},
+  fullScrollThreshold = 320,
 }) => {
-  const [rootElement, setRootElement] = useState(null);
-  const [contentElement, setContentElement] = useState(null);
+  const rootRef = useRef();
 
-  useEffect(() => {
-    rootElement && disableBodyScroll(rootElement);
-    return () => rootElement && enableBodyScroll(rootElement);
-  }, [rootElement]);
-
-  useInfiniteScroll({ current: contentElement }, {
-    threshold: 320,
-    onFullScroll,
-  });
+  // включаем прокрутку body при размонтировании
+  useEffect(() => () => enableBodyScroll(rootRef.current), []);
 
   return (
     <Layer>
-      <div ref={setRootElement} className={cx('screen', 'full-width')}>
+      <div
+        ref={createTakeRootElement(rootRef)}
+        className={cx('screen', 'full-width')}
+      >
         {
           loading
             ? <LoadingOverlay {...loadingOverlayProps} />
@@ -60,29 +58,49 @@ const Screen = ({
               <ScreenLayout
                 title={title}
                 subtitle={subtitle}
+                withHeader={withHeader}
                 withBackButton={withBackButton}
                 withCloseButton={withCloseButton}
-                childrenRef={setContentElement}
                 children={children}
                 footer={footer}
-                onBack={() => {
+                onBack={({ contentElement }) => {
                   isFunction(onBack) && onBack({
-                    rootElement,
+                    rootElement: rootRef.current,
                     contentElement,
                   });
                 }}
-                onClose={() => {
+                onClose={({ contentElement }) => {
                   isFunction(onClose) && onClose({
-                    rootElement,
+                    rootElement: rootRef.current,
                     contentElement,
                   });
                 }}
+                onFullScroll={onFullScroll}
+                fullScrollThreshold={fullScrollThreshold}
               />
             )
         }
       </div>
     </Layer>
   );
+};
+
+/**
+ * Возвращает функцию, которая, получив элемент, записывает его в ref и отключает прокрутку.
+ * @param {Object} ref Ref-контейнер.
+ * @return {Function} Функция, которая, получив элемент, записывает его в ref и отключает прокрутку.
+ */
+export const createTakeRootElement = ref => element => {
+  if (element && element !== ref.current) {
+    // если элемент изменился - включаем прокрутку для старого
+    ref.current && enableBodyScroll(ref.current);
+
+    // сохраняем новый элемент
+    ref.current = element;
+
+    // отключаем прокрутку для нового элемента
+    disableBodyScroll(element);
+  }
 };
 
 Screen.propTypes = {
@@ -110,6 +128,16 @@ Screen.propTypes = {
    * Сработает при полной прокрутке контента.
    */
   onFullScroll: PropTypes.func,
+
+  /**
+   * Отступ от нижней границы для срабатывания onFullScroll.
+   */
+  fullScrollThreshold: PropTypes.number,
+
+  /**
+   * Нужно ли выводить шапку с заголовком и кнопками.
+   */
+  withHeader: PropTypes.bool,
 
   /**
    * Нужно ли выводить кнопку "назад".
