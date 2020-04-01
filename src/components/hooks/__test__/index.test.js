@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import ReactDOM from 'react-dom';
+import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import {
   useOnMount,
@@ -95,6 +96,23 @@ describe('useInfiniteScroll()', () => {
       ReactDOM.render(<TestComponent withList />, container);
     });
     expect(HTMLUListElement.prototype.addEventListener).toHaveBeenCalledTimes(1);
+  });
+
+  it('should unsubscribe on unmount', () => {
+    const wrapper = mount(
+      <TestComponent />
+    );
+
+    let listElement;
+
+    act(() => {
+      listElement = wrapper.find('.test-list').getDOMNode();
+      jest.spyOn(listElement, 'removeEventListener');
+    });
+
+    wrapper.unmount();
+
+    expect(listElement.removeEventListener).toHaveBeenCalledTimes(1);
   });
 });
 

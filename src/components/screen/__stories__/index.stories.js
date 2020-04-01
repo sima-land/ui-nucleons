@@ -1,22 +1,50 @@
-import React from 'react';
+import React, { Fragment, useState } from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import Screen from '../index';
 import Button from '../../button';
 import Box from '../../box';
 
 storiesOf('Screen', module)
-  .add('Base usage', () => (
-    <Screen
-      title='Title'
-      subtitle='And subtitle here...'
-      withBackButton
-      footer={(
-        <Box padding={4}>
-          <Button style={{ width: '100%' }}>Footer button</Button>
-        </Box>
-      )}
-    >
-      <Box padding={4}>Hello, world!</Box>
+  .add('Basic usage', () => {
+    const [count, setCount] = useState(0);
+
+    return (
+      <Fragment>
+        <p>Counter: {count}</p>
+
+        <Screen
+          title='Title'
+          subtitle='And subtitle here...'
+          withBackButton
+          onBack={action('Screen: back button clicked')}
+          onClose={action('Screen: close button clicked')}
+          onFullScroll={action('Screen: fully scrolled')}
+          footer={(
+            <Box padding={4}>
+              <Button
+                onClick={() => (
+                  setCount(count + 1),
+                  action('Screen: close button clicked')()
+                )}
+                style={{ width: '100%' }}
+                children='Footer button'
+              />
+            </Box>
+          )}
+        >
+          {Array(100).fill(0).map((zero, index) => (
+            <Box key={index} padding={4}>Hello, world! [{index + 1}]</Box>
+          ))}
+        </Screen>
+      </Fragment>
+    );
+  })
+  .add('No header/footer', () => (
+    <Screen withHeader={false}>
+      {Array(100).fill(0).map((zero, index) => (
+        <Box key={index} padding={4}>There is no header! [{index + 1}]</Box>
+      ))}
     </Screen>
   ))
   .add('Loading state', () => (

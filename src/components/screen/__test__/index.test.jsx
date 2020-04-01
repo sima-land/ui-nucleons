@@ -1,9 +1,10 @@
 import React from 'react';
 import Icon from '../../icon';
 import { mount } from 'enzyme';
-import Screen from '../index';
+import { act } from 'react-dom/test-utils';
+import Screen, { createTakeRootElement } from '../index';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import { useInfiniteScroll } from '../../hooks';
+import { ScreenLayout } from '../screen-layout';
 
 jest.mock('body-scroll-lock', () => {
   const original = jest.requireActual('body-scroll-lock');
@@ -13,16 +14,6 @@ jest.mock('body-scroll-lock', () => {
     __esModule: true,
     disableBodyScroll: jest.fn(original.disableBodyScroll),
     enableBodyScroll: jest.fn(original.enableBodyScroll),
-  };
-});
-
-jest.mock('../../hooks', () => {
-  const original = jest.requireActual('../../hooks');
-
-  return {
-    ...original,
-    __esModule: true,
-    useInfiniteScroll: jest.fn(original.useInfiniteScroll),
   };
 });
 
@@ -73,17 +64,20 @@ describe('<Screen />', () => {
 
   it('should handle "onFullScroll" prop', () => {
     const spyScroll = jest.fn();
-    expect(useInfiniteScroll).toHaveBeenCalledTimes(0);
-    mount(
+
+    const wrapper = mount(
       <Screen
         onFullScroll={spyScroll}
       />
     );
-    expect(useInfiniteScroll).toHaveBeenCalledTimes(2);
-    expect(useInfiniteScroll.mock.calls[0][1]).toEqual({
-      onFullScroll: spyScroll,
-      threshold: 320,
+
+    expect(spyScroll).toHaveBeenCalledTimes(0);
+
+    act(() => {
+      wrapper.find(ScreenLayout).find('.content').getDOMNode().dispatchEvent(new Event('scroll'));
     });
+
+    expect(spyScroll).toHaveBeenCalledTimes(1);
   });
 
   it('should handle "loading/loadingOverlayProps" props', () => {
@@ -95,5 +89,39 @@ describe('<Screen />', () => {
     );
 
     expect(wrapper).toMatchSnapshot();
+  });
+});
+
+describe('createTakeRootElement()', () => {
+  it('result should save element to ref and disable body scroll', () => {
+    const elementRef = { current: null };
+    const fakeElement = document.createElement('div');
+
+    const takeRootElement = createTakeRootElement(elementRef);
+
+    expect(elementRef.current).toBe(null);
+    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
+    expect(disableBodyScroll).toHaveBeenCalledTimes(0);
+
+    takeRootElement(fakeElement);
+
+    expect(elementRef.current).toBe(fakeElement);
+    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
+    expect(disableBodyScroll).toHaveBeenCalledTimes(1);
+  });
+  it('result should enable body scroll', () => {
+    const elementRef = { current: { old: true } };
+    const fakeElement = document.createElement('div');
+
+    const takeRootElement = createTakeRootElement(elementRef);
+
+    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
+    expect(disableBodyScroll).toHaveBeenCalledTimes(0);
+
+    takeRootElement(fakeElement);
+
+    expect(elementRef.current).toBe(fakeElement);
+    expect(enableBodyScroll).toHaveBeenCalledTimes(1);
+    expect(disableBodyScroll).toHaveBeenCalledTimes(1);
   });
 });
