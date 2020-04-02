@@ -1,15 +1,21 @@
 /**
  * Выполняет подписку на событие целевого объекта.
  * @param {EventTarget} target Целевой объект.
- * @param {string} eventName Имя события.
- * @param {Function} handler Обработчик.
- * @param {string} options Опции.
+ * @param {string} eventNames Имена событий через пробел.
+ * @param {Function} callback Функция обратного вызова.
+ * @param {*} [options] Опции подписки.
  * @return {Function} Функция отписки.
  */
-const on = (target, eventName, handler, options) => {
-  target.addEventListener(eventName, handler, options);
+const on = (target, eventNames, callback, options) => {
+  const eventNamesList = eventNames.split(' ');
 
-  return () => target.removeEventListener(eventName, handler, options);
+  eventNamesList.forEach(eventName => {
+    target.addEventListener(eventName, callback, options);
+  });
+
+  return () => void eventNamesList.forEach(eventName => {
+    target.removeEventListener(eventName, callback, options);
+  });
 };
 
 export default on;
