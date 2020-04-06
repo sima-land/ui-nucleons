@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useEffect } from 'react';
+import React, { Fragment, useRef, useEffect, useImperativeHandle } from 'react';
 import Text from '../text';
 import Icon from '../icon';
 import { cx } from './common';
@@ -33,12 +33,15 @@ export const ScreenLayout = ({
   withBackButton,
   withCloseButton,
   children,
+  childrenRef,
   footer,
   onFullScroll,
   fullScrollThreshold,
 }) => {
   const contentRef = useRef();
   const unsubscribeRef = useRef();
+
+  useImperativeHandle(childrenRef, () => contentRef.current);
 
   // отписываемся от события "scroll"
   useEffect(() => () => unsubscribeRef.current && unsubscribeRef.current());

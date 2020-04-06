@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from '../../icon';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
-import Screen, { createTakeRootElement } from '../index';
+import Screen, { createTakeScrollableElement } from '../index';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { ScreenLayout } from '../screen-layout';
 
@@ -92,12 +92,12 @@ describe('<Screen />', () => {
   });
 });
 
-describe('createTakeRootElement()', () => {
+describe('createTakeScrollableElement()', () => {
   it('result should save element to ref and disable body scroll', () => {
     const elementRef = { current: null };
     const fakeElement = document.createElement('div');
 
-    const takeRootElement = createTakeRootElement(elementRef);
+    const takeRootElement = createTakeScrollableElement(elementRef);
 
     expect(elementRef.current).toBe(null);
     expect(enableBodyScroll).toHaveBeenCalledTimes(0);
@@ -113,7 +113,7 @@ describe('createTakeRootElement()', () => {
     const elementRef = { current: { old: true } };
     const fakeElement = document.createElement('div');
 
-    const takeRootElement = createTakeRootElement(elementRef);
+    const takeRootElement = createTakeScrollableElement(elementRef);
 
     expect(enableBodyScroll).toHaveBeenCalledTimes(0);
     expect(disableBodyScroll).toHaveBeenCalledTimes(0);
