@@ -186,6 +186,7 @@ exports[`<Screen /> should handle props 1`] = `
         className="screen full-width"
       >
         <ScreenLayout
+          childrenRef={[Function]}
           footer="Test footer"
           fullScrollThreshold={320}
           onBack={[Function]}
@@ -354,6 +355,7 @@ exports[`<Screen /> should render without props 1`] = `
         className="screen full-width"
       >
         <ScreenLayout
+          childrenRef={[Function]}
           fullScrollThreshold={320}
           onBack={[Function]}
           onClose={[Function]}

@@ -41,14 +41,15 @@ const Screen = ({
   fullScrollThreshold = 320,
 }) => {
   const rootRef = useRef();
+  const contentRef = useRef();
 
   // включаем прокрутку body при размонтировании
-  useEffect(() => () => enableBodyScroll(rootRef.current), []);
+  useEffect(() => () => enableBodyScroll(contentRef.current), []);
 
   return (
     <Layer>
       <div
-        ref={createTakeRootElement(rootRef)}
+        ref={rootRef}
         className={cx('screen', 'full-width')}
       >
         {
@@ -62,6 +63,7 @@ const Screen = ({
                 withBackButton={withBackButton}
                 withCloseButton={withCloseButton}
                 children={children}
+                childrenRef={createTakeScrollableElement(contentRef)}
                 footer={footer}
                 onBack={({ contentElement }) => {
                   isFunction(onBack) && onBack({
@@ -90,7 +92,7 @@ const Screen = ({
  * @param {Object} ref Ref-контейнер.
  * @return {Function} Функция, которая, получив элемент, записывает его в ref и отключает прокрутку.
  */
-export const createTakeRootElement = ref => element => {
+export const createTakeScrollableElement = ref => element => {
   if (element && element !== ref.current) {
     // если элемент изменился - включаем прокрутку для старого
     ref.current && enableBodyScroll(ref.current);
