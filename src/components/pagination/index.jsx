@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import isFunction from 'lodash/isFunction';
 import { BasePagination } from './base-pagination';
-import { PageSelectForm } from './page-select-form';
 import PropTypes from 'prop-types';
 
 /**
@@ -17,31 +16,19 @@ const Pagination = ({
   current,
   onChange,
 }) => {
-  const [isForm, toggleForm] = useState(false);
   const hasChangeHandler = isFunction(onChange);
 
-  return isForm
-    ? (
-      <PageSelectForm
-        min={1}
-        max={total}
-        onSubmit={({ value }) => {
-          toggleForm(false);
-          value && hasChangeHandler && onChange({ value });
-        }}
-        onClose={() => toggleForm(false)}
-      />
-    ) : (
-      <BasePagination
-        total={total}
-        current={current}
-        onButtonClick={content => {
-          Number.isFinite(content)
-            ? hasChangeHandler && onChange({ value: content })
-            : toggleForm(true);
-        }}
-      />
-    );
+  return (
+    <BasePagination
+      total={total}
+      current={current}
+      onButtonClick={content => {
+        Number.isFinite(content)
+          && hasChangeHandler
+          && onChange({ value: content });
+      }}
+    />
+  );
 };
 
 Pagination.propTypes = {
