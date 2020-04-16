@@ -1,0 +1,232 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Pagination /> should handle "onChange" prop 1`] = `
+<Pagination
+  current={23}
+  onChange={[MockFunction]}
+  total={123}
+>
+  <BasePagination
+    current={23}
+    onButtonClick={[Function]}
+    total={123}
+  >
+    <div
+      className="base-pagination-wrapper"
+    >
+      <PageButton
+        aria-label="Назад"
+        className="margin-right__2"
+        onClick={[Function]}
+        rounded="all"
+      >
+        <button
+          aria-label="Назад"
+          className="page-button rounds-all margin-right__2"
+          onClick={[Function]}
+        >
+          <Icon
+            icon={[Function]}
+            inline={true}
+            size={16}
+          >
+            <leftIcon
+              className="icon"
+              height={16}
+              viewBox="0 0 36 36"
+              width={16}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <svg
+                className="icon"
+                height={16}
+                viewBox="0 0 36 36"
+                width={16}
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clipRule="evenodd"
+                  d="M21.732 7.307a2.25 2.25 0 0 1 .211 3.175L15.365 18l6.578 7.518a2.25 2.25 0 1 1-3.386 2.964l-7.875-9a2.25 2.25 0 0 1 0-2.964l7.875-9a2.25 2.25 0 0 1 3.175-.211z"
+                  fillRule="evenodd"
+                />
+              </svg>
+            </leftIcon>
+          </Icon>
+        </button>
+      </PageButton>
+      <PageButton
+        aria-label="Перейти на страницу 1"
+        key="0"
+        onClick={[Function]}
+        rounded="left"
+        selected={false}
+      >
+        <button
+          aria-label="Перейти на страницу 1"
+          className="page-button rounds-left"
+          onClick={[Function]}
+        >
+          1
+        </button>
+      </PageButton>
+      <PageButton
+        aria-label="Перейти на страницу 21"
+        key="1"
+        onClick={[Function]}
+        rounded="none"
+        selected={false}
+      >
+        <button
+          aria-label="Перейти на страницу 21"
+          className="page-button"
+          onClick={[Function]}
+        >
+          ...
+        </button>
+      </PageButton>
+      <PageButton
+        aria-label="Перейти на страницу 22"
+        key="2"
+        onClick={[Function]}
+        rounded="none"
+        selected={false}
+      >
+        <button
+          aria-label="Перейти на страницу 22"
+          className="page-button"
+          onClick={[Function]}
+        >
+          22
+        </button>
+      </PageButton>
+      <PageButton
+        aria-label="Перейти на страницу 23"
+        key="3"
+        onClick={[Function]}
+        rounded="none"
+        selected={true}
+      >
+        <button
+          aria-label="Перейти на страницу 23"
+          className="page-button selected"
+          onClick={[Function]}
+        >
+          23
+        </button>
+      </PageButton>
+      <PageButton
+        aria-label="Перейти на страницу 24"
+        key="4"
+        onClick={[Function]}
+        rounded="none"
+        selected={false}
+      >
+        <button
+          aria-label="Перейти на страницу 24"
+          className="page-button"
+          onClick={[Function]}
+        >
+          24
+        </button>
+      </PageButton>
+      <PageButton
+        aria-label="Перейти на страницу 25"
+        key="5"
+        onClick={[Function]}
+        rounded="none"
+        selected={false}
+      >
+        <button
+          aria-label="Перейти на страницу 25"
+          className="page-button"
+          onClick={[Function]}
+        >
+          25
+        </button>
+      </PageButton>
+      <PageButton
+        aria-label="Перейти на страницу 26"
+        key="6"
+        onClick={[Function]}
+        rounded="none"
+        selected={false}
+      >
+        <button
+          aria-label="Перейти на страницу 26"
+          className="page-button"
+          onClick={[Function]}
+        >
+          ...
+        </button>
+      </PageButton>
+      <PageButton
+        aria-label="Перейти на страницу 123"
+        key="7"
+        onClick={[Function]}
+        rounded="right"
+        selected={false}
+      >
+        <button
+          aria-label="Перейти на страницу 123"
+          className="page-button rounds-right"
+          onClick={[Function]}
+        >
+          123
+        </button>
+      </PageButton>
+      <PageButton
+        aria-label="Вперед"
+        className="margin-left__2"
+        onClick={[Function]}
+        rounded="all"
+      >
+        <button
+          aria-label="Вперед"
+          className="page-button rounds-all margin-left__2"
+          onClick={[Function]}
+        >
+          <Icon
+            icon={[Function]}
+            inline={true}
+            size={16}
+          >
+            <rightIcon
+              className="icon"
+              height={16}
+              viewBox="0 0 36 36"
+              width={16}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <svg
+                className="icon"
+                height={16}
+                viewBox="0 0 36 36"
+                width={16}
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clipRule="evenodd"
+                  d="M14.268 28.693a2.25 2.25 0 0 1-.211-3.175L20.635 18l-6.578-7.518a2.25 2.25 0 0 1 3.386-2.964l7.875 9a2.25 2.25 0 0 1 0 2.964l-7.875 9a2.25 2.25 0 0 1-3.175.211z"
+                  fillRule="evenodd"
+                />
+              </svg>
+            </rightIcon>
+          </Icon>
+        </button>
+      </PageButton>
+    </div>
+  </BasePagination>
+</Pagination>
+`;
+
+exports[`<Pagination /> should render without props 1`] = `
+<Pagination>
+  <BasePagination
+    onButtonClick={[Function]}
+  >
+    <div
+      className="base-pagination-wrapper"
+    />
+  </BasePagination>
+</Pagination>
+`;

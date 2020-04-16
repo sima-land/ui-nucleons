@@ -12,6 +12,7 @@ describe('<BasePagination />', () => {
 
     expect(wrapper).toMatchSnapshot();
   });
+
   it('should handle "total" and "current" props', () => {
     const wrapper = mount(
       <BasePagination
@@ -40,6 +41,7 @@ describe('<BasePagination />', () => {
 
     expect(wrapper).toMatchSnapshot();
   });
+
   it('should handle "onButtonClick" prop', () => {
     const spy = jest.fn();
     const wrapper = mount(
@@ -67,17 +69,24 @@ describe('<BasePagination />', () => {
     expect(spy).toHaveBeenCalledTimes(3);
     expect(spy.mock.calls[2][0]).toBe(2);
 
-    // last number
-    expect(wrapper.find(PageButton).at(8).prop('children')).toBe(100);
-    wrapper.find(PageButton).at(8).prop('onClick')();
+    // ellipsis
+    expect(wrapper.find(PageButton).at(6).prop('children')).toBe('...');
+    wrapper.find(PageButton).at(6).prop('onClick')();
     expect(spy).toHaveBeenCalledTimes(4);
-    expect(spy.mock.calls[3][0]).toBe(100);
+    expect(spy.mock.calls[3][0]).toBe(6);
+
+    // last number
+    expect(wrapper.find(PageButton).at(7).prop('children')).toBe(100);
+    wrapper.find(PageButton).at(7).prop('onClick')();
+    expect(spy).toHaveBeenCalledTimes(5);
+    expect(spy.mock.calls[4][0]).toBe(100);
 
     // arrow next
-    expect(wrapper.find(PageButton).at(9).prop('children')).toBe(BUTTON_CONTENTS.next);
-    wrapper.find(PageButton).at(9).prop('onClick')();
-    expect(spy).toHaveBeenCalledTimes(5);
-    expect(spy.mock.calls[4][0]).toBe(4);
+    expect(wrapper.find(PageButton).at(8).prop('children')).toBe(BUTTON_CONTENTS.next);
+    wrapper.find(PageButton).at(8).prop('onClick')();
+    expect(spy).toHaveBeenCalledTimes(6);
+    expect(spy.mock.calls[5][0]).toBe(4);
+
     expect(wrapper).toMatchSnapshot();
   });
 });

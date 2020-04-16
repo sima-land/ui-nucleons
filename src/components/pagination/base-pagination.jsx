@@ -1,17 +1,33 @@
 import React from 'react';
+import Icon from '../icon';
 import { PageButton } from './page-button';
-import { getPageButtons } from './utils';
+import { getPageButtons, cx } from './utils';
+import allPass from 'lodash/fp/allPass';
+import always from 'lodash/fp/always';
+import cond from 'lodash/fp/cond';
 import eq from 'lodash/fp/eq';
 import has from 'lodash/has';
 import isFunction from 'lodash/isFunction';
+import noop from 'lodash/fp/noop';
+import prop from 'lodash/fp/prop';
+import propEq from 'lodash/fp/propEq';
+import T from 'lodash/fp/T';
+import { marginRight, marginLeft } from '../styling/sizes';
 import PropTypes from 'prop-types';
-import classnames from 'classnames/bind';
-import classes from './pagination.scss';
 
-const cx = classnames.bind(classes);
+import leftIcon from '../icons/stroke-arrow-left.svg';
+import rightIcon from '../icons/stroke-arrow-right.svg';
 
 const DEFAULTS = Object.freeze({
-  renderButton: (props, index) => <PageButton key={index} {...props} />,
+  // eslint-disable-next-line react/prop-types
+  renderButton: ({ type, isFirst, isLast, ...restProps }, index) => (
+    <PageButton
+      key={index}
+      rounded={resolveRounded({ type, isFirst, isLast })}
+      className={getClassByType(type)}
+      {...restProps}
+    />
+  ),
   needPrevButton: ({ current }) => current > 1,
   needNextButton: ({ current, total }) => current < total,
   calculateButtons: getPageButtons,
@@ -24,8 +40,8 @@ export const BUTTON_TYPES = Object.freeze({
 });
 
 export const BUTTON_CONTENTS = Object.freeze({
-  prev: '←',
-  next: '→',
+  prev: <Icon inline size={16} icon={leftIcon} />,
+  next: <Icon inline size={16} icon={rightIcon} />,
   more: '...',
 });
 
@@ -63,27 +79,49 @@ export const BasePagination = ({
     <div className={cx('base-pagination-wrapper')}>
       {needPrevButton({ current, total }) && renderButton({
         'aria-label': 'Назад',
+        type: BUTTON_TYPES.prev,
         children: BUTTON_CONTENTS.prev,
         onClick: () => hasHandler && onButtonClick(current - 1),
       })}
-      {pageButtons.map((content, index) => renderButton({
-        'aria-label': content === BUTTON_TYPES.more
-          ? 'Выбрать страницу'
+
+      {pageButtons.map(({ content, value }, index) => renderButton({
+        type: content === BUTTON_TYPES.more
+          ? BUTTON_TYPES.more
           : undefined,
+        isFirst: index === 0,
+        isLast: index === pageButtons.length - 1,
         children: has(BUTTON_CONTENTS, content)
           ? BUTTON_CONTENTS[content]
           : content,
         selected: isButtonSelected(content),
-        onClick: () => hasHandler && onButtonClick(content),
+        'aria-label': `Перейти на страницу ${value}`,
+        onClick: () => hasHandler && onButtonClick(value),
       }, index))}
+
       {needNextButton({ current, total }) && renderButton({
         'aria-label': 'Вперед',
+        type: BUTTON_TYPES.next,
         children: BUTTON_CONTENTS.next,
         onClick: () => hasHandler && onButtonClick(current + 1),
       })}
     </div>
   );
 };
+
+const resolveRounded = cond([
+  [propEq('type', BUTTON_TYPES.prev), always('all')],
+  [propEq('type', BUTTON_TYPES.next), always('all')],
+  [allPass([prop('isFirst'), prop('isLast')]), always('all')],
+  [prop('isFirst'), always('left')],
+  [prop('isLast'), always('right')],
+  [T, always('none')],
+]);
+
+const getClassByType = cond([
+  [eq(BUTTON_TYPES.prev), always(marginRight(2))],
+  [eq(BUTTON_TYPES.next), always(marginLeft(2))],
+  [T, noop],
+]);
 
 BasePagination.propTypes = {
   /**
