@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useEffect, useImperativeHandle } from 'react';
+import React, { Fragment, useRef, useImperativeHandle } from 'react';
 import Text from '../text';
 import Icon from '../icon';
 import { cx } from './common';
@@ -42,9 +42,6 @@ export const ScreenLayout = ({
   const unsubscribeRef = useRef();
 
   useImperativeHandle(childrenRef, () => contentRef.current);
-
-  // отписываемся от события "scroll"
-  useEffect(() => () => unsubscribeRef.current && unsubscribeRef.current());
 
   return (
     <Fragment>
@@ -128,7 +125,12 @@ export const createTakeContentRef = ({
   onFullScroll,
   fullScrollThreshold: threshold = 0,
 }) => element => {
-  if (element && element !== elementRef.current) {
+  if (!element) {
+    elementRef.current = null;
+
+    // если ранее были подписаны - отписываемся
+    unsubscribeRef.current && unsubscribeRef.current();
+  } else if (element !== elementRef.current) {
     // сохраняем ссылку для последующей отправки в onClose/onBack
     elementRef.current = element;
 
