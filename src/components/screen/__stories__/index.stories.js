@@ -49,4 +49,37 @@ storiesOf('Screen', module)
   ))
   .add('Loading state', () => (
     <Screen loading />
-  ));
+  ))
+  .add('full scroll after loading', () => {
+    const [isReady, setIsReady] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <Fragment>
+        <button
+          onClick={() => {
+            setIsOpen(true);
+            setTimeout(() => setIsReady(true), 1000);
+          }}
+          children='Open'
+        />
+
+        {isOpen && (
+          <Screen
+            loading={!isReady}
+            title='Title'
+            subtitle='And subtitle here...'
+            onClose={() => {
+              setIsReady(false);
+              setIsOpen(false);
+            }}
+            onFullScroll={action('Screen: fully scrolled')}
+          >
+            {Array(100).fill(0).map((zero, index) => (
+              <Box key={index} padding={4}>Hello, world! [{index + 1}]</Box>
+            ))}
+          </Screen>
+        )}
+      </Fragment>
+    );
+  });

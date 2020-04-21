@@ -62,4 +62,31 @@ describe('createTakeContentRef()', () => {
 
     expect(onFullScroll).toHaveBeenCalledTimes(1);
   });
+
+  it('should not resubscribe on second call wit same ref', () => {
+    const onFullScroll = jest.fn();
+    const elementRef = { current: {} };
+    const oldUnsubscribe = jest.fn();
+    const unsubscribeRef = { current: oldUnsubscribe };
+    const element = document.createElement('div');
+
+    const takeContentRef = createTakeContentRef({
+      elementRef,
+      unsubscribeRef,
+      onFullScroll,
+    });
+
+    // first
+    takeContentRef(element);
+
+    const firstUnsubscribe = unsubscribeRef.current;
+
+    expect(elementRef.current).toBe(element);
+
+    // second
+    takeContentRef(element);
+
+    expect(elementRef.current).toBe(element);
+    expect(unsubscribeRef.current).toBe(firstUnsubscribe);
+  });
 });
