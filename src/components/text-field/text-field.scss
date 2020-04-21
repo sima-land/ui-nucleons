@@ -9,6 +9,12 @@
   font: inherit;
 }
 
+// В селекторе указан input потому что в основном проекте пристуствуют стили,
+// которые переопределяют отступы для input. Иначе не хватает специфичности.
+input.reset {
+  padding: 0;
+}
+
 .text-field-root {
   display: inline-block;
 }
