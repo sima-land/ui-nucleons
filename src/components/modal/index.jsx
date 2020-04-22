@@ -18,7 +18,7 @@ const DEFAULT_CLASSES = {
  * @param {Object} props Свойства компонента.
  * @param {*} props.children Содержимое компонента.
  * @param {Function} props.onClose Функция, вызываемая при закрытии модального окна.
- * @param {number} [props.closeButtonSize] Размер закрывающей кнопки. Указыввается если нужна кнопка.
+ * @param {number} [props.closeButtonSize] Размер закрывающей кнопки. Указывается если нужна кнопка.
  * @param {Object} [props.customClasses] Пользовательские классы.
  * @param {string} [props.customClasses.overlay] Классы затемнения.
  * @param {string} [props.customClasses.modal] Классы модального окна.
@@ -28,16 +28,15 @@ const DEFAULT_CLASSES = {
 const Modal = ({ children, onClose, closeButtonSize, customClasses = {} }) => {
   const newClasses = composeClasses({ defaultClasses: DEFAULT_CLASSES, customClasses });
   const { overlay: overlayClasses, modal: modalClasses, close: closeClasses } = newClasses;
-  const buttonSize = typeof closeButtonSize === 'number' && closeButtonSize;
 
-  const previousTarget = useRef();
+  const mouseDownTarget = useRef();
 
   /**
    * Обработчик нажатия кнопки мыши.
    * @param {Object} event Объект события.
    */
   const handleMouseDown = ({ button, target }) => {
-    if (button === 0) { previousTarget.current = target; }
+    if (button === 0) { mouseDownTarget.current = target; }
   };
 
   /**
@@ -48,9 +47,10 @@ const Modal = ({ children, onClose, closeButtonSize, customClasses = {} }) => {
     isFunction(onClose)
     && button === 0
     && target === currentTarget
-    && currentTarget === previousTarget.current
+    && currentTarget === mouseDownTarget.current
     && onClose();
   };
+
   return (
     <div
       className={overlayClasses}
@@ -58,7 +58,14 @@ const Modal = ({ children, onClose, closeButtonSize, customClasses = {} }) => {
       onMouseUp={handleMouseUp}
     >
       <Popup additionalClass={modalClasses}>
-        {closeButtonSize && <Icon size={buttonSize} icon={cross} className={closeClasses} onClick={onClose} />}
+        {Number.isFinite(closeButtonSize) && (
+          <Icon
+            size={closeButtonSize}
+            icon={cross}
+            className={closeClasses}
+            onClick={onClose}
+          />
+        )}
         {children}
       </Popup>
     </div>
@@ -77,7 +84,7 @@ Modal.propTypes = {
   onClose: Type.func,
 
   /**
-   * Размер закрывающей кнопки. Указыввается если нужна кнопка.
+   * Размер закрывающей кнопки. Указывается если нужна кнопка.
    */
   closeButtonSize: Type.number,
 
