@@ -1,0 +1,109 @@
+@import '../colors';
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  overflow: hidden;
+  box-sizing: border-box;
+  .main-section {
+    display: flex;
+    width: 0;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    flex-shrink: 1;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  .title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .subtitle {
+    font-size: 12px;
+    line-height: 16px;
+    color: $gray38;
+  }
+  .icon-button {
+    + .icon-button {
+      margin-left: 24px;
+    }
+  }
+  &.size-s {
+    height: 56px;
+    .main-section {
+      margin: 0 16px;
+    }
+    .icon-button {
+      &:first-child {
+        margin-left: 16px;
+      }
+      &:last-child {
+        margin-right: 16px;
+      }
+    }
+  }
+  &.size-m {
+    height: 64px;
+    .main-section {
+      margin: 0 24px;
+    }
+    .icon-button {
+      &:first-child {
+        margin-left: 24px;
+      }
+      &:last-child {
+        margin-right: 24px;
+      }
+    }
+  }
+  &.size-l {
+    height: 80px;
+    .main-section {
+      margin: 0 40px;
+    }
+    .title {
+      font-size: 20px;
+      line-height: 28px;
+    }
+    .icon-button {
+      &:first-child {
+        margin-left: 40px;
+      }
+      &:last-child {
+        margin-right: 40px;
+      }
+    }
+  }
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  width: 24px;
+  height: 24px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.icon-stub {
+  width: 24px;
+  height: 24px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}

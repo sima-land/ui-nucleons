@@ -1,0 +1,593 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TopBar /> should handle "size" prop 1`] = `
+<TopBar
+  size="s"
+  subtitle="Modal subtitle"
+  title="Modal title"
+>
+  <div
+    className="modal-header size-s"
+  >
+    <div
+      className="main-section"
+    >
+      <div
+        className="title ellipsis"
+      >
+        Modal title
+      </div>
+      <div
+        className="subtitle ellipsis"
+      >
+        Modal subtitle
+      </div>
+    </div>
+  </div>
+</TopBar>
+`;
+
+exports[`<TopBar /> should handle "size" prop 2`] = `
+<TopBar
+  size="m"
+  subtitle="Modal subtitle"
+  title="Modal title"
+>
+  <div
+    className="modal-header size-m"
+  >
+    <div
+      className="main-section"
+    >
+      <div
+        className="title ellipsis"
+      >
+        Modal title
+      </div>
+      <div
+        className="subtitle ellipsis"
+      >
+        Modal subtitle
+      </div>
+    </div>
+  </div>
+</TopBar>
+`;
+
+exports[`<TopBar /> should handle "size" prop 3`] = `
+<TopBar
+  size="l"
+  subtitle="Modal subtitle"
+  title="Modal title"
+>
+  <div
+    className="modal-header size-l"
+  >
+    <div
+      className="main-section"
+    >
+      <div
+        className="title ellipsis"
+      >
+        Modal title
+      </div>
+      <div
+        className="subtitle ellipsis"
+      >
+        Modal subtitle
+      </div>
+    </div>
+  </div>
+</TopBar>
+`;
+
+exports[`<TopBar /> should render without props 1`] = `
+<TopBar>
+  <div
+    className="modal-header size-m"
+  >
+    <div
+      className="main-section"
+    >
+      <div
+        className="title ellipsis"
+      />
+    </div>
+  </div>
+</TopBar>
+`;
+
+exports[`<TopBar /> should renders with all icons 1`] = `
+<TopBar
+  endIcon={
+    <Icon
+      icon={[Function]}
+      size={24}
+    />
+  }
+  endSecondaryIcon={
+    <Icon
+      icon={[Function]}
+      size={24}
+    />
+  }
+  startIcon={
+    <Icon
+      icon={[Function]}
+      size={24}
+    />
+  }
+  startSecondaryIcon={
+    <Icon
+      icon={[Function]}
+      size={24}
+    />
+  }
+>
+  <div
+    className="modal-header size-m"
+  >
+    <IconButton>
+      <button
+        className="icon-button"
+      >
+        <Icon
+          icon={[Function]}
+          size={24}
+        >
+          <leftIcon
+            className="icon icon-block"
+            height={24}
+            viewBox="0 0 36 36"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <svg
+              className="icon icon-block"
+              height={24}
+              viewBox="0 0 36 36"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.121 19.5l7.941 7.938c.583.585.583 1.539 0 2.125a1.511 1.511 0 0 1-2.125 0l-10.5-10.5a1.511 1.511 0 0 1 0-2.125l10.5-10.5a1.511 1.511 0 0 1 2.126 0c.582.585.582 1.539 0 2.125L8.12 16.5H31.5a1.5 1.5 0 0 1 0 3zm0 0"
+              />
+            </svg>
+          </leftIcon>
+        </Icon>
+      </button>
+    </IconButton>
+    <IconButton>
+      <button
+        className="icon-button"
+      >
+        <Icon
+          icon={[Function]}
+          size={24}
+        >
+          <capIcon
+            className="icon icon-block"
+            height={24}
+            viewBox="0 0 36 36"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <svg
+              className="icon icon-block"
+              height={24}
+              viewBox="0 0 36 36"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M25.763 24.085a14.645 14.645 0 0 0 3.22-9.017A14.492 14.492 0 1 0 14.492 29.56a13.735 13.735 0 0 0 9.017-3.22l9.178 9.177a1.554 1.554 0 0 0 2.254 0 1.554 1.554 0 0 0 0-2.254zm-11.271 2.254a11.271 11.271 0 1 1 11.27-11.271 11.199 11.199 0 0 1-11.27 11.271z"
+              />
+            </svg>
+          </capIcon>
+        </Icon>
+      </button>
+    </IconButton>
+    <div
+      className="main-section"
+    >
+      <div
+        className="title ellipsis"
+      />
+    </div>
+    <IconButton>
+      <button
+        className="icon-button"
+      >
+        <Icon
+          icon={[Function]}
+          size={24}
+        >
+          <capIcon
+            className="icon icon-block"
+            height={24}
+            viewBox="0 0 36 36"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <svg
+              className="icon icon-block"
+              height={24}
+              viewBox="0 0 36 36"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M25.763 24.085a14.645 14.645 0 0 0 3.22-9.017A14.492 14.492 0 1 0 14.492 29.56a13.735 13.735 0 0 0 9.017-3.22l9.178 9.177a1.554 1.554 0 0 0 2.254 0 1.554 1.554 0 0 0 0-2.254zm-11.271 2.254a11.271 11.271 0 1 1 11.27-11.271 11.199 11.199 0 0 1-11.27 11.271z"
+              />
+            </svg>
+          </capIcon>
+        </Icon>
+      </button>
+    </IconButton>
+    <IconButton>
+      <button
+        className="icon-button"
+      >
+        <Icon
+          icon={[Function]}
+          size={24}
+        >
+          <crossIcon
+            className="icon icon-block"
+            height={24}
+            viewBox="0 0 36 36"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <svg
+              className="icon icon-block"
+              height={24}
+              viewBox="0 0 36 36"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clipRule="evenodd"
+                d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </crossIcon>
+        </Icon>
+      </button>
+    </IconButton>
+  </div>
+</TopBar>
+`;
+
+exports[`<TopBar /> should renders with end icon 1`] = `
+<TopBar
+  endIcon={
+    <Icon
+      icon={[Function]}
+      size={24}
+    />
+  }
+>
+  <div
+    className="modal-header size-m"
+  >
+    <div
+      className="icon-button"
+    />
+    <div
+      className="main-section"
+    >
+      <div
+        className="title ellipsis"
+      />
+    </div>
+    <IconButton>
+      <button
+        className="icon-button"
+      >
+        <Icon
+          icon={[Function]}
+          size={24}
+        >
+          <crossIcon
+            className="icon icon-block"
+            height={24}
+            viewBox="0 0 36 36"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <svg
+              className="icon icon-block"
+              height={24}
+              viewBox="0 0 36 36"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clipRule="evenodd"
+                d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </crossIcon>
+        </Icon>
+      </button>
+    </IconButton>
+  </div>
+</TopBar>
+`;
+
+exports[`<TopBar /> should renders with end icons 1`] = `
+<TopBar
+  endIcon={
+    <Icon
+      icon={[Function]}
+      size={24}
+    />
+  }
+  endSecondaryIcon={
+    <Icon
+      icon={[Function]}
+      size={24}
+    />
+  }
+>
+  <div
+    className="modal-header size-m"
+  >
+    <div
+      className="icon-button"
+    />
+    <div
+      className="icon-button"
+    />
+    <div
+      className="main-section"
+    >
+      <div
+        className="title ellipsis"
+      />
+    </div>
+    <IconButton>
+      <button
+        className="icon-button"
+      >
+        <Icon
+          icon={[Function]}
+          size={24}
+        >
+          <capIcon
+            className="icon icon-block"
+            height={24}
+            viewBox="0 0 36 36"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <svg
+              className="icon icon-block"
+              height={24}
+              viewBox="0 0 36 36"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M25.763 24.085a14.645 14.645 0 0 0 3.22-9.017A14.492 14.492 0 1 0 14.492 29.56a13.735 13.735 0 0 0 9.017-3.22l9.178 9.177a1.554 1.554 0 0 0 2.254 0 1.554 1.554 0 0 0 0-2.254zm-11.271 2.254a11.271 11.271 0 1 1 11.27-11.271 11.199 11.199 0 0 1-11.27 11.271z"
+              />
+            </svg>
+          </capIcon>
+        </Icon>
+      </button>
+    </IconButton>
+    <IconButton>
+      <button
+        className="icon-button"
+      >
+        <Icon
+          icon={[Function]}
+          size={24}
+        >
+          <crossIcon
+            className="icon icon-block"
+            height={24}
+            viewBox="0 0 36 36"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <svg
+              className="icon icon-block"
+              height={24}
+              viewBox="0 0 36 36"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clipRule="evenodd"
+                d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </crossIcon>
+        </Icon>
+      </button>
+    </IconButton>
+  </div>
+</TopBar>
+`;
+
+exports[`<TopBar /> should renders with start icon 1`] = `
+<TopBar
+  startIcon={
+    <Icon
+      icon={[Function]}
+      size={24}
+    />
+  }
+>
+  <div
+    className="modal-header size-m"
+  >
+    <IconButton>
+      <button
+        className="icon-button"
+      >
+        <Icon
+          icon={[Function]}
+          size={24}
+        >
+          <leftIcon
+            className="icon icon-block"
+            height={24}
+            viewBox="0 0 36 36"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <svg
+              className="icon icon-block"
+              height={24}
+              viewBox="0 0 36 36"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.121 19.5l7.941 7.938c.583.585.583 1.539 0 2.125a1.511 1.511 0 0 1-2.125 0l-10.5-10.5a1.511 1.511 0 0 1 0-2.125l10.5-10.5a1.511 1.511 0 0 1 2.126 0c.582.585.582 1.539 0 2.125L8.12 16.5H31.5a1.5 1.5 0 0 1 0 3zm0 0"
+              />
+            </svg>
+          </leftIcon>
+        </Icon>
+      </button>
+    </IconButton>
+    <div
+      className="main-section"
+    >
+      <div
+        className="title ellipsis"
+      />
+    </div>
+    <div
+      className="icon-button"
+    />
+  </div>
+</TopBar>
+`;
+
+exports[`<TopBar /> should renders with start icons 1`] = `
+<TopBar
+  startIcon={
+    <Icon
+      icon={[Function]}
+      size={24}
+    />
+  }
+  startSecondaryIcon={
+    <Icon
+      icon={[Function]}
+      size={24}
+    />
+  }
+>
+  <div
+    className="modal-header size-m"
+  >
+    <IconButton>
+      <button
+        className="icon-button"
+      >
+        <Icon
+          icon={[Function]}
+          size={24}
+        >
+          <leftIcon
+            className="icon icon-block"
+            height={24}
+            viewBox="0 0 36 36"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <svg
+              className="icon icon-block"
+              height={24}
+              viewBox="0 0 36 36"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.121 19.5l7.941 7.938c.583.585.583 1.539 0 2.125a1.511 1.511 0 0 1-2.125 0l-10.5-10.5a1.511 1.511 0 0 1 0-2.125l10.5-10.5a1.511 1.511 0 0 1 2.126 0c.582.585.582 1.539 0 2.125L8.12 16.5H31.5a1.5 1.5 0 0 1 0 3zm0 0"
+              />
+            </svg>
+          </leftIcon>
+        </Icon>
+      </button>
+    </IconButton>
+    <IconButton>
+      <button
+        className="icon-button"
+      >
+        <Icon
+          icon={[Function]}
+          size={24}
+        >
+          <capIcon
+            className="icon icon-block"
+            height={24}
+            viewBox="0 0 36 36"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <svg
+              className="icon icon-block"
+              height={24}
+              viewBox="0 0 36 36"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M25.763 24.085a14.645 14.645 0 0 0 3.22-9.017A14.492 14.492 0 1 0 14.492 29.56a13.735 13.735 0 0 0 9.017-3.22l9.178 9.177a1.554 1.554 0 0 0 2.254 0 1.554 1.554 0 0 0 0-2.254zm-11.271 2.254a11.271 11.271 0 1 1 11.27-11.271 11.199 11.199 0 0 1-11.27 11.271z"
+              />
+            </svg>
+          </capIcon>
+        </Icon>
+      </button>
+    </IconButton>
+    <div
+      className="main-section"
+    >
+      <div
+        className="title ellipsis"
+      />
+    </div>
+    <div
+      className="icon-button"
+    />
+    <div
+      className="icon-button"
+    />
+  </div>
+</TopBar>
+`;
+
+exports[`<TopBar /> should renders with title and subtitle 1`] = `
+<TopBar
+  subtitle="Modal subtitle"
+  title="Modal title"
+>
+  <div
+    className="modal-header size-m"
+  >
+    <div
+      className="main-section"
+    >
+      <div
+        className="title ellipsis"
+      >
+        Modal title
+      </div>
+      <div
+        className="subtitle ellipsis"
+      >
+        Modal subtitle
+      </div>
+    </div>
+  </div>
+</TopBar>
+`;

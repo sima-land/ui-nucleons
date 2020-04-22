@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import styles from './popup.scss';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import Type from 'prop-types';
 
 /**
@@ -13,7 +13,7 @@ import Type from 'prop-types';
  */
 const Popup = forwardRef(function Popup ({ children, additionalClass }, ref) {
   return (
-    <div ref={ref} className={classNames(styles.popup, additionalClass)}>
+    <div ref={ref} className={classnames(styles.popup, additionalClass)}>
       {children}
     </div>
   );
@@ -32,4 +32,5 @@ Popup.propTypes = {
 };
 
 Popup.displayName = 'Popup';
+
 export default Popup;
