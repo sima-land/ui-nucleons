@@ -20,6 +20,7 @@ export const SIZES = new Set(
 export const WEIGHTS = new Set([
   300,
   400,
+  500,
   600,
   700,
   800,
@@ -44,7 +45,7 @@ export const ALIGNS = new Set([
  * @param {12|14|16|20|24|32|48|64|80} [props.size] Размер.
  * @param {12|14|16|20|24|32|48|64|80} [props.lineHeight] Межстрочный интервал.
  * @param {string} [props.color] Ключ цвета из дизайн системы.
- * @param {300|400|600|700|800} [props.weight=400] Начертание.
+ * @param {300|400|500|600|700|800} [props.weight=400] Начертание.
  * @param {boolean} [props.italic] Нужно ли выводить текст наклонным.
  * @param {boolean} [props.truncate] Нужно ли обрезать текст многоточием в одну строку.
  * @return {ReactElement} Элемент текста.
@@ -105,7 +106,7 @@ Text.propTypes = {
   /**
    * Начертание.
    */
-  weight: PropTypes.oneOf([300, 400, 600, 700, 800]),
+  weight: PropTypes.oneOf([300, 400, 500, 600, 700, 800]),
 
   /**
    * Нужно ли выводить текст наклонным.
