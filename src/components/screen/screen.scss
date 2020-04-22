@@ -9,6 +9,7 @@
   box-sizing: border-box;
   background-color: #fff;
   outline: 100px solid #fff;
+  z-index: 300; // Для интеграции с монолитом.
   .header {
     flex-grow: 0;
     flex-shrink: 0;
