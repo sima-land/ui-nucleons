@@ -64,7 +64,7 @@ storiesOf('Text', module)
     (weight, index) => (
       <div key={index}>
         <Text size={16} weight={weight}>
-          Text with weight {weight}
+          Текст с насыщеностью начертания: {weight}
         </Text>
       </div>
     )

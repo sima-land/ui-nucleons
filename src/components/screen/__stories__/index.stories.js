@@ -14,7 +14,7 @@ storiesOf('Screen', module)
         <p>Counter: {count}</p>
 
         <Screen
-          title='Title'
+          title='Заголовок'
           subtitle='And subtitle here...'
           withBackButton
           onBack={action('Screen: back button clicked')}

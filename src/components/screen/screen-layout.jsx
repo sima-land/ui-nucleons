@@ -63,7 +63,7 @@ export const ScreenLayout = ({
             truncate
             size={16}
             lineHeight={24}
-            weight={600}
+            weight={500}
             color='gray87'
             children={title}
           />

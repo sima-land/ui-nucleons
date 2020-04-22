@@ -143,7 +143,7 @@ exports[`<Screen /> should handle props 1`] = `
                 />
               </svg>
               <span
-                class="size-16 line-height-24 color__gray87 weight-600 truncate"
+                class="size-16 line-height-24 color__gray87 weight-500 truncate"
               >
                 Test title
               </span>
@@ -239,10 +239,10 @@ exports[`<Screen /> should handle props 1`] = `
               lineHeight={24}
               size={16}
               truncate={true}
-              weight={600}
+              weight={500}
             >
               <span
-                className="size-16 line-height-24 color__gray87 weight-600 truncate"
+                className="size-16 line-height-24 color__gray87 weight-500 truncate"
               >
                 Test title
               </span>
@@ -326,7 +326,7 @@ exports[`<Screen /> should render without props 1`] = `
               class="header full-width"
             >
               <span
-                class="size-16 line-height-24 color__gray87 weight-600 truncate"
+                class="size-16 line-height-24 color__gray87 weight-500 truncate"
               />
               <svg
                 aria-label="Закрыть undefined"
@@ -371,10 +371,10 @@ exports[`<Screen /> should render without props 1`] = `
               lineHeight={24}
               size={16}
               truncate={true}
-              weight={600}
+              weight={500}
             >
               <span
-                className="size-16 line-height-24 color__gray87 weight-600 truncate"
+                className="size-16 line-height-24 color__gray87 weight-500 truncate"
               />
             </Memo(Text)>
             <Icon
