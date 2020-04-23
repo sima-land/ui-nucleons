@@ -2,15 +2,15 @@
 
 exports[`<Modal /> renders correct with close button and customClasses 1`] = `
 <div
-  className="test-overlay overlay"
+  className="test-overlay overlay-default"
   onMouseDown={[Function]}
   onMouseUp={[Function]}
 >
   <Popup
-    additionalClass="test-modal modal"
+    additionalClass="test-modal modal-default"
   >
     <Icon
-      className="test-close close"
+      className="test-close close-default"
       icon={[Function]}
       size={8}
     />
@@ -21,14 +21,200 @@ exports[`<Modal /> renders correct with close button and customClasses 1`] = `
 
 exports[`<Modal /> renders correct without close button and customClasses 1`] = `
 <div
-  className="overlay"
+  className="overlay-default"
   onMouseDown={[Function]}
   onMouseUp={[Function]}
 >
   <Popup
-    additionalClass="modal"
+    additionalClass="modal-default"
   >
     Test modal content
   </Popup>
 </div>
+`;
+
+exports[`<Modal /> should handle extended props 1`] = `
+<Modal
+  extended={true}
+  footer={
+    <button>
+      Hello
+    </button>
+  }
+  onClose={[MockFunction]}
+  subtitle="Subtitle"
+  title="Title"
+  topBarProps={
+    Object {
+      "size": "m",
+    }
+  }
+  withCloseButton={true}
+  withDivideFooter={true}
+  withDivideTopBar={true}
+>
+  <div
+    className="overlay-extended"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+  >
+    <Popup
+      additionalClass="modal-extended"
+    >
+      <div
+        className="popup modal-extended"
+      >
+        <TopBar
+          className="header divided"
+          endIcon={
+            <Icon
+              className="cursor-pointer"
+              icon={[Function]}
+              onClick={[MockFunction]}
+              size={24}
+            />
+          }
+          size="m"
+          subtitle="Subtitle"
+          title="Title"
+        >
+          <div
+            className="modal-header size-m header divided"
+          >
+            <div
+              className="icon-button"
+            />
+            <div
+              className="main-section"
+            >
+              <div
+                className="title ellipsis"
+              >
+                Title
+              </div>
+              <div
+                className="subtitle ellipsis"
+              >
+                Subtitle
+              </div>
+            </div>
+            <IconButton>
+              <button
+                className="icon-button"
+              >
+                <Icon
+                  className="cursor-pointer"
+                  icon={[Function]}
+                  onClick={[MockFunction]}
+                  size={24}
+                >
+                  <bigCrossIcon
+                    className="icon icon-block cursor-pointer"
+                    height={24}
+                    onClick={[MockFunction]}
+                    viewBox="0 0 36 36"
+                    width={24}
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <svg
+                      className="icon icon-block cursor-pointer"
+                      height={24}
+                      onClick={[MockFunction]}
+                      viewBox="0 0 36 36"
+                      width={24}
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clipRule="evenodd"
+                        d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
+                        fillRule="evenodd"
+                      />
+                    </svg>
+                  </bigCrossIcon>
+                </Icon>
+              </button>
+            </IconButton>
+          </div>
+        </TopBar>
+        <div
+          className="footer divided"
+        >
+          <button>
+            Hello
+          </button>
+        </div>
+      </div>
+    </Popup>
+  </div>
+</Modal>
+`;
+
+exports[`<Modal /> should handle extended props 2`] = `
+<Modal
+  extended={true}
+  footer={
+    <button>
+      Hello
+    </button>
+  }
+  onClose={[MockFunction]}
+  subtitle="Subtitle"
+  title="Title"
+  topBarProps={
+    Object {
+      "size": "m",
+    }
+  }
+  withCloseButton={false}
+  withDivideFooter={true}
+  withDivideTopBar={true}
+>
+  <div
+    className="overlay-extended"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+  >
+    <Popup
+      additionalClass="modal-extended"
+    >
+      <div
+        className="popup modal-extended"
+      >
+        <TopBar
+          className="header divided"
+          endIcon={null}
+          size="m"
+          subtitle="Subtitle"
+          title="Title"
+        >
+          <div
+            className="modal-header size-m header divided"
+          >
+            <div
+              className="main-section"
+            >
+              <div
+                className="title ellipsis"
+              >
+                Title
+              </div>
+              <div
+                className="subtitle ellipsis"
+              >
+                Subtitle
+              </div>
+            </div>
+          </div>
+        </TopBar>
+        <div
+          className="footer divided"
+        >
+          <button>
+            Hello
+          </button>
+        </div>
+      </div>
+    </Popup>
+  </div>
+</Modal>
 `;

@@ -1,6 +1,7 @@
 @import '../variables';
+@import '../colors';
 
-.overlay {
+.overlay-default {
   background: $modalOverlay;
   overflow: auto;
   position: fixed;
@@ -12,13 +13,13 @@
   top: 0;
 }
 
-.modal {
+.modal-default {
   background-color: $white;
   margin: auto;
   flex-shrink: 0;
 }
 
-.close {
+.close-default {
   position: absolute;
   top: 9px;
   right: 9px;
@@ -26,6 +27,45 @@
   cursor: pointer;
 }
 
-.close:hover {
+.close-default:hover {
   color: $red;
+}
+
+// extended
+.overlay-extended {
+  background: rgba(0, 0, 0, .24);
+  overflow: auto;
+  position: fixed;
+  z-index: 102;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  right: 0;
+  top: 0;
+}
+
+.modal-extended {
+  background-color: #fff;
+  margin: auto;
+  flex-shrink: 0;
+  box-shadow: none;
+}
+
+.header {
+  border-radius: 8px 8px 0 0;
+  &.divided {
+    border-bottom: 1px solid $gray12;
+  }
+}
+
+.footer {
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+  &.divided {
+    border-top: 1px solid $gray12;
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

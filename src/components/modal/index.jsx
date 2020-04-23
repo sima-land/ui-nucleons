@@ -1,21 +1,40 @@
-import React, { useRef } from 'react';
-import styles from './modal.scss';
-import Popup from '../popups/popup/';
-import Icon from '../icon/';
-import { cross } from '../icons';
+import React from 'react';
+import Popup from '../popups/popup';
+import Icon from '../icon';
+import TopBar from '../top-bar';
 import composeClasses from '../helpers/compose-classes';
-import Type from 'prop-types';
-import isFunction from 'lodash/isFunction';
+import { useCloseHandler } from './utils';
+import classnames from 'classnames/bind';
+import PropTypes from 'prop-types';
 
-const DEFAULT_CLASSES = {
-  overlay: styles.overlay,
-  modal: styles.modal,
-  close: styles.close,
+import styles from './modal.scss';
+import crossIcon from '../icons/cross.svg';
+import bigCrossIcon from '../icons/cross-big.svg';
+
+const cx = classnames.bind(styles);
+
+const CLASSES_PRESETS = {
+  default: {
+    overlay: cx('overlay-default'),
+    modal: cx('modal-default'),
+    close: cx('close-default'),
+  },
+  extended: {
+    overlay: cx('overlay-extended'),
+    modal: cx('modal-extended'),
+  },
 };
 
 /**
  * Компонент модального окна.
  * @param {Object} props Свойства компонента.
+ * @param {boolean} [props.extended=false] Нужно ли выводить новый дизайн модального окна.
+ * @param {string} [props.title] Заголовок (только при extended=true).
+ * @param {string} [props.subtitle] Подзаголовок (только при extended=true).
+ * @param {Object} [props.topBarProps] Свойства TopBar (только при extended=true).
+ * @param {boolean} [props.withDivideTopBar=false] Нужно ли отделять TopBar чертой (только при extended=true).
+ * @param {boolean} [props.withDivideFooter=true] Нужно ли отделять footer чертой (только при extended=true).
+ * @param {*} [props.footer] Содержимое футера (только при extended=true).
  * @param {*} props.children Содержимое компонента.
  * @param {Function} props.onClose Функция, вызываемая при закрытии модального окна.
  * @param {number} [props.closeButtonSize] Размер закрывающей кнопки. Указывается если нужна кнопка.
@@ -23,50 +42,65 @@ const DEFAULT_CLASSES = {
  * @param {string} [props.customClasses.overlay] Классы затемнения.
  * @param {string} [props.customClasses.modal] Классы модального окна.
  * @param {string} [props.customClasses.close] Классы закрывающей кнопки.
+ * @param {boolean} [props.withCloseButton=Number.isFinite(closeButtonSize)] Нужно ли выводить крестик.
  * @return {ReactElement} Компонент модального окна.
  */
-const Modal = ({ children, onClose, closeButtonSize, customClasses = {} }) => {
-  const newClasses = composeClasses({ defaultClasses: DEFAULT_CLASSES, customClasses });
-  const { overlay: overlayClasses, modal: modalClasses, close: closeClasses } = newClasses;
-
-  const mouseDownTarget = useRef();
-
-  /**
-   * Обработчик нажатия кнопки мыши.
-   * @param {Object} event Объект события.
-   */
-  const handleMouseDown = ({ button, target }) => {
-    if (button === 0) { mouseDownTarget.current = target; }
-  };
-
-  /**
-   * Обработчик отпускания кнопки мыши.
-   * @param {Object} event Объект события.
-   */
-  const handleMouseUp = ({ target, currentTarget, button }) => {
-    isFunction(onClose)
-    && button === 0
-    && target === currentTarget
-    && currentTarget === mouseDownTarget.current
-    && onClose();
-  };
+const Modal = ({
+  extended = false,
+  title,
+  subtitle,
+  topBarProps = {},
+  withDivideTopBar = false,
+  withDivideFooter = true,
+  footer,
+  children,
+  onClose,
+  closeButtonSize,
+  withCloseButton = Number.isFinite(closeButtonSize),
+  customClasses = {},
+}) => {
+  const readyClasses = composeClasses({
+    defaultClasses: CLASSES_PRESETS[extended ? 'extended' : 'default'],
+    customClasses,
+  });
 
   return (
-    <div
-      className={overlayClasses}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-    >
-      <Popup additionalClass={modalClasses}>
-        {Number.isFinite(closeButtonSize) && (
+    <div {...useCloseHandler(onClose)} className={readyClasses.overlay}>
+      <Popup additionalClass={readyClasses.modal}>
+        {Boolean(extended) && (
+          <TopBar
+            className={cx('header', withDivideTopBar && 'divided')}
+            title={title}
+            subtitle={subtitle}
+            endIcon={
+              withCloseButton
+                ? (
+                  <Icon
+                    icon={bigCrossIcon}
+                    size={24}
+                    onClick={onClose}
+                    className={cx('cursor-pointer')}
+                  />
+                )
+                : null
+            }
+            {...topBarProps}
+          />
+        )}
+        {!extended && Boolean(withCloseButton) && (
           <Icon
             size={closeButtonSize}
-            icon={cross}
-            className={closeClasses}
+            icon={crossIcon}
+            className={readyClasses.close}
             onClick={onClose}
           />
         )}
         {children}
+        {Boolean(extended && footer) && (
+          <div className={cx('footer', withDivideFooter && 'divided')}>
+            {footer}
+          </div>
+        )}
       </Popup>
     </div>
   );
@@ -74,39 +108,79 @@ const Modal = ({ children, onClose, closeButtonSize, customClasses = {} }) => {
 
 Modal.propTypes = {
   /**
+   * Нужно ли выводить новый дизайн модального окна.
+   */
+  extended: PropTypes.bool,
+
+  /**
+   * Заголовок (только при extended=true).
+   */
+  title: PropTypes.string,
+
+  /**
+   * Подзаголовок (только при extended=true).
+   */
+  subtitle: PropTypes.string,
+
+  /**
+   * Свойства TopBar (только при extended=true).
+   */
+  topBarProps: PropTypes.object,
+
+  /**
+   * Нужно ли отделять TopBar чертой (только при extended=true).
+   */
+  withDivideTopBar: PropTypes.bool,
+
+  /**
+   * Нужно ли отделять footer чертой (только при extended=true).
+   */
+  withDivideFooter: PropTypes.bool,
+
+  /**
+   * Содержимое футера (только при extended=true).
+   */
+  footer: PropTypes.any,
+
+  /**
    * Содержимое компонента.
    */
-  children: Type.any,
+  children: PropTypes.any,
 
   /**
    * Функция, вызываемая при закрытии модального окна.
    */
-  onClose: Type.func,
+  onClose: PropTypes.func,
 
   /**
    * Размер закрывающей кнопки. Указывается если нужна кнопка.
    */
-  closeButtonSize: Type.number,
+  closeButtonSize: PropTypes.number,
 
   /**
    * Пользовательские классы.
    */
-  customClasses: Type.shape({
+  customClasses: PropTypes.shape({
     /**
      * Классы затемнения.
      */
-    overlay: Type.string,
+    overlay: PropTypes.string,
 
     /**
      * Классы модального окна.
      */
-    modal: Type.string,
+    modal: PropTypes.string,
 
     /**
      * Классы закрывающей кнопки.
      */
-    close: Type.string,
+    close: PropTypes.string,
   }),
+
+  /**
+   * Нужно ли выводить крестик.
+   */
+  withCloseButton: PropTypes.bool,
 };
 
 export default Modal;
