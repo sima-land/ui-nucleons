@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Clean.Button /> should handle props 1`] = `
+<CleanButton
+  href="https://site.com"
+  size="s"
+>
+  <a
+    className="clean-button size-s"
+    href="https://site.com"
+  >
+    Go to site
+  </a>
+</CleanButton>
+`;
+
+exports[`<Clean.Button /> should handle props 2`] = `
+<CleanButton
+  asLink={true}
+  href={null}
+  size="s"
+>
+  <a
+    className="clean-button size-s"
+    href={null}
+  >
+    Go to site
+  </a>
+</CleanButton>
+`;
+
+exports[`<Clean.Button /> should render without props 1`] = `
+<CleanButton>
+  <button
+    className="clean-button size-m"
+  />
+</CleanButton>
+`;
+
+exports[`<Clean.Group /> should handle props 1`] = `
+<CleanGroup
+  size="s"
+>
+  <div
+    className="clean-group"
+  >
+    <CleanButton
+      key=".0"
+      size="s"
+    >
+      <button
+        className="clean-button size-s"
+      >
+        Foo
+      </button>
+    </CleanButton>
+    <CleanButton
+      key=".1"
+      size="s"
+    >
+      <button
+        className="clean-button size-s"
+      >
+        Bar
+      </button>
+    </CleanButton>
+    <CleanButton
+      href="https://www.abc.xyz"
+      key=".2"
+      size="s"
+    >
+      <a
+        className="clean-button size-s"
+        href="https://www.abc.xyz"
+      >
+        XYZ
+      </a>
+    </CleanButton>
+    <button
+      key=".3"
+    >
+      Just button
+    </button>
+  </div>
+</CleanGroup>
+`;
+
+exports[`<Clean.Group /> should render without props 1`] = `
+<CleanGroup>
+  <div
+    className="clean-group"
+  />
+</CleanGroup>
+`;
