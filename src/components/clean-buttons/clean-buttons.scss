@@ -1,0 +1,47 @@
+@import '../colors';
+
+.clean-button,
+a.clean-button,
+button.clean-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  color: $brand-blue;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration: none;
+  background: transparent;
+  overflow: hidden;
+  box-sizing: border-box;
+  cursor: pointer;
+  &:visited {
+    color: $brand-blue;
+  }
+  &.size-s {
+    height: 56px;
+  }
+  &.size-m {
+    height: 64px;
+  }
+}
+
+.clean-group {
+  display: flex;
+  background: #fff;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  .clean-button {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    + .clean-button {
+      border-left: 1px solid $gray12;
+    }
+  }
+}
