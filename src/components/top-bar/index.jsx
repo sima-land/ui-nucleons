@@ -16,6 +16,7 @@ const cx = classnames.bind(classes);
  * @param {*} [props.endIcon] Конечная иконка.
  * @param {*} [props.startSecondaryIcon] Дополнительная начальная иконка (ближе к центру).
  * @param {*} [props.endSecondaryIcon] Дополнительная конечная иконка (ближе к центру).
+ * @param {*} [props.className] CSS-класс корневого элемента.
  * @return {ReactElement} Компонент шапки модальных окон/экранов.
  */
 const TopBar = ({
@@ -26,12 +27,13 @@ const TopBar = ({
   endIcon,
   startSecondaryIcon,
   endSecondaryIcon,
+  className,
 }) => {
   const stub = startIcon || endIcon ? iconStub : null;
   const secondaryStub = startSecondaryIcon || endSecondaryIcon ? iconStub : null;
 
   return (
-    <div className={cx('modal-header', `size-${size}`)}>
+    <div className={cx('modal-header', `size-${size}`, className)}>
       {startIcon ? <IconButton children={startIcon} /> : stub}
       {startSecondaryIcon ? <IconButton children={startSecondaryIcon} /> : secondaryStub}
 
@@ -85,6 +87,11 @@ TopBar.propTypes = {
    * Дополнительная конечная иконка (ближе к центру).
    */
   endSecondaryIcon: PropTypes.any,
+
+  /**
+   * CSS-класс корневого элемента.
+   */
+  className: PropTypes.string,
 };
 
 /**
