@@ -33,6 +33,19 @@ const defaultAdornment = (
 );
 
 /**
+ * Возвращает обработчик, вызывающий preventDefault/stopPropagation до основного обработчика и очищающий value после.
+ * @param {Function} next Основной обработчик.
+ * @return {Function} Новый обработчик.
+ */
+export const defaultMiddleware = next => withPrevent(event => {
+  next(event);
+
+  // очищаем список выбранных файлов, чтобы файл можно было выбрать повторно
+  // один и тот же файл можно выбирать несколько раз
+  event.target.value = '';
+});
+
+/**
  * Возвращает компонент поля выбора файлов.
  * @param {Object} props Свойства.
  * @param {Function} props.renderLabel Получив объект со свойством triggerInput должна вернуть текст ярлыка.
@@ -42,6 +55,7 @@ const defaultAdornment = (
  * @param {string} props.id Идентификатор элемента поля.
  * @param {string} props.name Имя элемента поля.
  * @param {boolean} props.multiple Можно ли выбирать несколько файлов.
+ * @param {boolean} [props.changeMiddleware=defaultMiddleware] Промежуточный слой обработки события "change".
  * @return {ReactElement} Компонент поля выбора файлов.
  */
 const Attach = ({
@@ -52,6 +66,7 @@ const Attach = ({
   id,
   name,
   multiple = true,
+  changeMiddleware = defaultMiddleware,
 }) => {
   const inputRef = useRef();
   const [isDragActive, setDragActive] = useState(false);
@@ -91,10 +106,9 @@ const Attach = ({
         multiple={multiple}
         type='file'
         className={cx('attach-input')}
-        onChange={withPrevent(event => {
-          isFunction(onSelect) && onSelect(
-            event.target.files
-          );
+        onChange={changeMiddleware(event => {
+          isFunction(onSelect)
+            && onSelect(event.target.files);
         })}
       />
     </div>
@@ -139,6 +153,11 @@ Attach.propTypes = {
    * Можно ли выбирать несколько файлов.
    */
   multiple: PropTypes.bool,
+
+  /**
+   * Промежуточный слой обработки события "change".
+   */
+  changeMiddleware: PropTypes.func,
 };
 
 /**
