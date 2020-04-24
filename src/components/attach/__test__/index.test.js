@@ -160,4 +160,53 @@ describe('Attach', () => {
     expect(fakeEvent.stopPropagation).toHaveBeenCalledTimes(1);
     expect(spy.mock.calls[0][0]).toBe(fakeEvent.target.files);
   });
+
+  it('should reset input.value on change', () => {
+    const wrapper = mount(
+      <Attach />
+    );
+
+    const handler = wrapper
+      .find('input')
+      .filterWhere(el => el.prop('type') === 'file')
+      .prop('onChange');
+
+    const fakeEvent = {
+      target: { value: 'test-file.jpg' },
+      preventDefault: jest.fn(),
+      stopPropagation: jest.fn(),
+    };
+
+    handler(fakeEvent);
+
+    expect(fakeEvent.target.value).toBe('');
+  });
+
+  it('should handle "changeMiddleware" prop', () => {
+    const spy = jest.fn();
+
+    const wrapper = mount(
+      <Attach
+        onChange={spy}
+        changeMiddleware={() => () => {}}
+      />
+    );
+
+    const handler = wrapper
+      .find('input')
+      .filterWhere(el => el.prop('type') === 'file')
+      .prop('onChange');
+
+    const fakeEvent = {
+      target: { value: 'test-file.jpg' },
+      preventDefault: jest.fn(),
+      stopPropagation: jest.fn(),
+    };
+
+    expect(spy).toHaveBeenCalledTimes(0);
+
+    handler(fakeEvent);
+
+    expect(spy).toHaveBeenCalledTimes(0);
+  });
 });
