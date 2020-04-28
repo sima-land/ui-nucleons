@@ -8,6 +8,7 @@ Box это умный блок, который довольно много зн�
 Если этой функциональности не хватает - нужно использовать div.
 
 Указание отступов
+
 ```jsx
 const testMarginPropsList = [
   { margin: 2 },
@@ -59,6 +60,7 @@ const testPaddingPropsList = [
 ```
 
 Работа с flex-содержимым
+
 ```jsx
 import { graphemes } from '../constants';
 
@@ -111,5 +113,4 @@ const getTestBoxes = ({ alignItems, justifyContent }) => (
     ]}
   </Box>
 </React.Fragment>
-
 ```

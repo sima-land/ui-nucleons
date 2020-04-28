@@ -3,15 +3,15 @@
 import Button from '../button';
 import '!style-loader!css-loader!sass-loader!./__stories__/modal-storybook.scss';
 
-const initialState = { isOpen: false };
-const showModal = () => setState({ isOpen: true });
-const onClose = () => setState({ isOpen: false });
+const [isModalOpen, toggleModal] = React.useState(false);
+const showModal = () => toggleModal(true);
+const onClose = () => toggleModal(false);
 
 <div style={{ width: '400px', position: 'relative' }}>
   <Button onClick={showModal}>
       Click me
   </Button>
-  {state.isOpen && (
+  {isModalOpen && (
     <Modal onClose={onClose} customClasses={{ overlay: 'modal-center' }}>
       <p style={{ padding: '20px' }}>This is base modal appearance</p>
     </Modal>
@@ -24,15 +24,15 @@ const onClose = () => setState({ isOpen: false });
 import Button from '../button';
 import '!style-loader!css-loader!sass-loader!./__stories__/modal-storybook.scss';
 
-const initialState = { isOpen: false };
-const showModal = () => setState({ isOpen: true });
-const onClose = () => setState({ isOpen: false });
+const [isModalOpen, toggleModal] = React.useState(false);
+const showModal = () => toggleModal(true);
+const onClose = () => toggleModal(false);
 
 <div style={{ width: '400px', position: 'relative' }}>
   <Button onClick={showModal}>
       Click me
   </Button>
-  {state.isOpen && (
+  {isModalOpen && (
     <Modal
       onClose={onClose}
       customClasses={{ overlay: 'modal-center' }}
@@ -50,16 +50,16 @@ import Button from '../button';
 import Clean from '../clean-buttons';
 import '!style-loader!css-loader!sass-loader!./__stories__/modal-storybook.scss';
 
-const initialState = { isOpen: false };
-const showModal = () => setState({ isOpen: true });
-const onClose = () => setState({ isOpen: false });
+const [isModalOpen, toggleModal] = React.useState(false);
+const showModal = () => toggleModal(true);
+const onClose = () => toggleModal(false);
 
 <div style={{ width: 400, position: 'relative' }}>
   <Button onClick={showModal}>
     Open modal
   </Button>
 
-  {state.isOpen && (
+  {isModalOpen && (
     <Modal
       extended
       title='Extended modal'

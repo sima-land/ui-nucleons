@@ -3,6 +3,10 @@ const reactDoc = require('react-docgen');
 module.exports = {
   title: 'UINucleons',
   pagePerSection: true,
+  ignore: [
+    'src/components/**/__stories__/**/*',
+    'src/components/**/__test__/**/*',
+  ],
   sections: [
     {
       name: 'Base',
@@ -20,6 +24,7 @@ module.exports = {
     {
       name: 'Fields',
       components: [
+        'src/components/amount/*.jsx',
         'src/components/attach/*.jsx',
         'src/components/checkbox/*.jsx',
         'src/components/fields/*.jsx',
@@ -53,7 +58,7 @@ module.exports = {
     },
     {
       name: 'Other',
-      components: () => ['src/components/**/*.jsx'],
+      components: ['src/components/**/*.jsx'],
       ignore: [
         /* Компоненты в базовой секции */
         'src/components/box/*.jsx',
@@ -65,6 +70,7 @@ module.exports = {
         'src/components/text/*.jsx',
 
         /* Компоненты в секции полей */
+        'src/components/amount/*.jsx',
         'src/components/attach/*.jsx',
         'src/components/checkbox/*.jsx',
         'src/components/fields/*.jsx',
@@ -89,8 +95,7 @@ module.exports = {
     },
   ],
   resolver: reactDoc.resolver.findAllComponentDefinitions,
-  propsParser: (filePath, source, resolver, handlers) =>
-    reactDoc.parse(source, resolver, handlers),
+  propsParser: (filePath, source, resolver, handlers) => reactDoc.parse(source, resolver, handlers),
   handlers: componentPath =>
     reactDoc.defaultHandlers.concat(
       (documentation, path) => {

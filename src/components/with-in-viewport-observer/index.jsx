@@ -48,10 +48,12 @@ export const makeInViewportObserverHOC = observersDataList => (Component, option
   );
 
   InViewportObserverHOC.displayName = `withInViewportObserver(${getDisplayName(Component)})`;
+
   return InViewportObserverHOC;
 };
 
 const observersList = [];
+
 const withInViewportObserver = makeInViewportObserverHOC(observersList);
 
 export default withInViewportObserver;

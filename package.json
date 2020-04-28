@@ -60,7 +60,7 @@
     "react-docgen": "^5.0.0",
     "react-docgen-displayname-handler": "^2.1.1",
     "react-dom": "^16.8.5",
-    "react-styleguidist": "^9.0.5",
+    "react-styleguidist": "^11.0.5",
     "sass-loader": "^7.1.0",
     "stylelint": "^10.0.1",
     "stylelint-config-sass-guidelines": "^6.0.0",
@@ -83,8 +83,12 @@
     "storybook": "start-storybook -p 9009"
   },
   "lint-staged": {
-    "src/**/*.scss": ["stylelint"],
-    "*.{js,jsx}": ["eslint"]
+    "src/**/*.scss": [
+      "stylelint"
+    ],
+    "src/**/*.{js,jsx}": [
+      "eslint"
+    ]
   },
   "husky": {
     "hooks": {
