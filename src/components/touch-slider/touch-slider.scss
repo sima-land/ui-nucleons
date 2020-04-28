@@ -2,6 +2,7 @@
   display: flex;
   overflow: hidden;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   .inner {
     display: flex;
   }
