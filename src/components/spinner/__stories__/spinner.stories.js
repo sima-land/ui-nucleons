@@ -7,6 +7,7 @@ storiesOf('Spinner', module)
     const withMargin = {
       margin: '0 0 30px 10px',
     };
+
     return (
       <>
         <div style={withMargin}>
@@ -18,8 +19,8 @@ storiesOf('Spinner', module)
           <Spinner size='medium' />
         </div>
         <div style={withMargin}>
-          <h3>size=&apos;big&apos;</h3>
-          <Spinner size='big' />
+          <h3>size=&apos;large&apos;</h3>
+          <Spinner size='large' />
         </div>
       </>
     );
