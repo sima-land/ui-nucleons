@@ -1,6 +1,56 @@
-.icon {
-  fill: none;
-  animation: rotate 3s linear infinite;
+$pi: 3.141592653589793;
+$sizes: (small: 20, medium: 48, large: 80);
+
+.spinner {
+  .circle {
+    fill: none;
+    stroke: #1f84db;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+  @each $sizeKey, $size in $sizes {
+    $diameter: $size - 2;
+    $perimeter: $diameter * $pi;
+    &.size-#{$sizeKey} {
+      width: #{$diameter}px;
+      height: #{$diameter}px;
+      .circle {
+        animation: dash-#{$sizeKey} 600ms linear infinite;
+      }
+      @keyframes dash-#{$sizeKey} {
+        0% {
+          stroke-dasharray: $perimeter * .125, $perimeter * .875;
+          stroke-dashoffset: $perimeter * .25;
+        }
+        50% {
+          stroke-dasharray: $perimeter / 2, $perimeter / 2;
+        }
+        100% {
+          stroke-dasharray: $perimeter * .125, $perimeter * .875;
+          stroke-dashoffset: -$perimeter + ($perimeter * .25);
+        }
+      }
+    }
+  }
+}
+
+// fallback (в IE не поддерживается CSS-анимация SVG)
+@media all and (-ms-high-contrast: none) {
+  @each $sizeKey, $size in $sizes {
+    $diameter: $size - 2;
+    $perimeter: $diameter * $pi;
+
+    // IE11 only
+    *::-ms-backdrop,
+    .spinner {
+      animation: rotate 2s linear infinite;
+    }
+    *::-ms-backdrop,
+    .spinner.size-#{$sizeKey} .circle {
+      stroke-dasharray: $perimeter * .75, $perimeter * .25;
+      stroke-dashoffset: $perimeter * .25;
+    }
+  }
 }
 
 @keyframes rotate {

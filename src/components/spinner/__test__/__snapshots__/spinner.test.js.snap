@@ -3,40 +3,121 @@
 exports[`<Spinner /> should render component 1`] = `
 <Spinner>
   <div>
-    <Icon
-      className="icon"
-      icon={[Function]}
-      size={48}
+    <svg
+      className="spinner size-medium"
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <spinnerIcon
-        className="icon icon-block icon"
-        height={48}
-        viewBox="0 0 36 36"
-        width={48}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <svg
-          className="icon icon-block icon"
-          height={48}
-          viewBox="0 0 36 36"
-          width={48}
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M18 35c9.389 0 17-7.611 17-17S27.389 1 18 1 1 8.611 1 18s7.611 17 17 17z"
-            stroke="#F2F2F2"
-            strokeMiterlimit="10"
-            strokeWidth="2"
-          />
-          <path
-            d="M10.59 2.788a16.764 16.764 0 0 1 9.95-1.613 16.82 16.82 0 0 1 8.63 3.973 17.014 17.014 0 0 1 5.139 8.036 17.12 17.12 0 0 1 .021 9.558 17.014 17.014 0 0 1-5.102 8.06 16.82 16.82 0 0 1-8.612 4.012c-3.193.48-6.455.027-9.4-1.304A16.91 16.91 0 0 1 4 27.303"
-            stroke="#1F84DB"
-            strokeMiterlimit="10"
-            strokeWidth="2"
-          />
-        </svg>
-      </spinnerIcon>
-    </Icon>
+      <circle
+        className="circle"
+        cx={24}
+        cy={24}
+        r={23}
+      />
+    </svg>
+  </div>
+</Spinner>
+`;
+
+exports[`<Spinner /> should render component with different sizes 1`] = `
+<Spinner>
+  <div>
+    <svg
+      className="spinner size-medium"
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        className="circle"
+        cx={24}
+        cy={24}
+        r={23}
+      />
+    </svg>
+  </div>
+</Spinner>
+`;
+
+exports[`<Spinner /> should render component with different sizes 2`] = `
+<Spinner
+  size="small"
+>
+  <div>
+    <svg
+      className="spinner size-small"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        className="circle"
+        cx={10}
+        cy={10}
+        r={9}
+      />
+    </svg>
+  </div>
+</Spinner>
+`;
+
+exports[`<Spinner /> should render component with different sizes 3`] = `
+<Spinner
+  size="medium"
+>
+  <div>
+    <svg
+      className="spinner size-medium"
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        className="circle"
+        cx={24}
+        cy={24}
+        r={23}
+      />
+    </svg>
+  </div>
+</Spinner>
+`;
+
+exports[`<Spinner /> should render component with different sizes 4`] = `
+<Spinner
+  size="large"
+>
+  <div>
+    <svg
+      className="spinner size-large"
+      viewBox="0 0 80 80"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        className="circle"
+        cx={40}
+        cy={40}
+        r={39}
+      />
+    </svg>
+  </div>
+</Spinner>
+`;
+
+exports[`<Spinner /> should render component with different sizes 5`] = `
+<Spinner
+  size="test"
+>
+  <div>
+    <svg
+      className="spinner size-medium"
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        className="circle"
+        cx={24}
+        cy={24}
+        r={23}
+      />
+    </svg>
   </div>
 </Spinner>
 `;

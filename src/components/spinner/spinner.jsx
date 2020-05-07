@@ -1,52 +1,66 @@
 import React from 'react';
-import classes from './spinner.scss';
+import has from 'lodash/has';
 import classnames from 'classnames/bind';
-import spinnerIcon from '../icons/spinner.svg';
-import Icon from '../icon';
-import Type from 'prop-types';
+import PropTypes from 'prop-types';
+
+import classes from './spinner.scss';
 
 const cx = classnames.bind(classes);
 
-/**
- * Размеры иконок.
- * @type {Object}
- */
-export const SIZES = Object.freeze({
+export const DIAMETERS = Object.freeze({
   small: 20,
   medium: 48,
-  big: 80,
+  large: 80,
 });
 
 /**
  * Компонент спиннера.
  * @param {Object} props Свойства компонента.
- * @param {'small'|'medium'|'big'} props.size Размер спиннера.
- * @param {string} props.className Дополнительный класс.
+ * @param {'small'|'medium'|'large'} props.size Размер.
+ * @param {string} props.className CSS-класс элемента-обертки.
+ * @param {Object} props.style Стили элемента-обертки.
  * @return {ReactElement} Компонент.
  */
-const Spinner = ({
+export const Spinner = ({
   size = 'medium',
   className,
-}) => (
-  <div className={className}>
-    <Icon
-      icon={spinnerIcon}
-      size={SIZES[size] || SIZES.medium}
-      className={cx('icon')}
-    />
-  </div>
-);
+  style,
+}) => {
+  const readySize = has(DIAMETERS, size) ? size : 'medium';
+  const diameter = DIAMETERS[readySize];
+  const radius = diameter / 2;
+
+  return (
+    <div className={className} style={style}>
+      <svg
+        className={cx('spinner', `size-${readySize}`)}
+        viewBox={`0 0 ${diameter} ${diameter}`}
+        xmlns='http://www.w3.org/2000/svg'
+      >
+        <circle
+          className={cx('circle')}
+          cx={radius}
+          cy={radius}
+          r={radius - 1} // учет обводки
+        />
+      </svg>
+    </div>
+  );
+};
 
 Spinner.propTypes = {
   /**
-   * Размер спиннера.
+   * Размер.
    */
-  size: Type.string,
+  size: PropTypes.string,
 
   /**
-   * Дополнительный класс.
+   * CSS-класс элемента-обертки.
    */
-  className: Type.string,
-};
+  className: PropTypes.string,
 
-export default Spinner;
+  /**
+   * Стили элемента-обертки.
+   */
+  style: PropTypes.object,
+};
