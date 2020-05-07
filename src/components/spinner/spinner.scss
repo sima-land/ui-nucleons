@@ -1,5 +1,6 @@
 $pi: 3.141592653589793;
 $sizes: (small: 20, medium: 48, large: 80);
+$durations: (small: 600ms, medium: 750ms, large: 950ms);
 
 .spinner {
   .circle {
@@ -15,7 +16,7 @@ $sizes: (small: 20, medium: 48, large: 80);
       width: #{$diameter}px;
       height: #{$diameter}px;
       .circle {
-        animation: dash-#{$sizeKey} 600ms linear infinite;
+        animation: dash-#{$sizeKey} map-get($durations, $sizeKey) linear infinite;
       }
       @keyframes dash-#{$sizeKey} {
         0% {
