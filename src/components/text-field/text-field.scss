@@ -129,8 +129,8 @@ input.reset {
   position: absolute;
   top: 0;
   left: 0;
-  font-size: 12px;
   width: 100%;
+  font-size: 12px;
   line-height: 16px;
   transition: transform .2s ease, font-size .2s ease, top .2s ease;
   transform-origin: left bottom;
@@ -141,8 +141,9 @@ input.reset {
     color: map-get($colors, 'gray24');
   }
   &.as-placeholder {
-    top: calc(50% - 8px);
+    top: calc(50% - 12px);
     font-size: 16px;
+    line-height: 24px;
     &.failed {
       color: map-get($colors, 'service-error');
     }
