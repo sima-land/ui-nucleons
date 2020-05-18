@@ -2,6 +2,7 @@ import isEqual from 'lodash/isEqual';
 import { useEffect, useRef, useMemo, useState } from 'react';
 import { isTouchDevice } from '../helpers/is-touch-device';
 import isFunction from 'lodash/isFunction';
+import on from '../helpers/on';
 
 /**
  * Вызывает переданную функцию при монтировании компонента.
@@ -56,11 +57,7 @@ export const useInfiniteScroll = (ref, {
   const { current: element } = ref;
 
   if (element) {
-    /**
-     * Перехватив событие "scroll", вызовет onFullScroll при необходимости.
-     * @param {Event} event Событие.
-     */
-    const checkScroll = event => {
+    return on(element, 'scroll', event => {
       const {
         scrollTop,
         clientHeight,
@@ -72,13 +69,6 @@ export const useInfiniteScroll = (ref, {
       if (isFullyScrolled && isFunction(onFullScroll)) {
         onFullScroll(event);
       }
-    };
-
-    element.addEventListener('scroll', checkScroll);
-
-    return () => element.removeEventListener(
-      'scroll',
-      checkScroll
-    );
+    });
   }
 }, [ref.current, threshold, onFullScroll]);
