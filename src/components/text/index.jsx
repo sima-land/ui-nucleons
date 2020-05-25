@@ -11,7 +11,7 @@ const cx = classnames.bind(classes);
  * Возможные значение свойства "size".
  */
 export const SIZES = new Set(
-  [12, 14, 16, 20, 24, 32, 48, 64, 80]
+  [12, 14, 16, 20, 24, 28, 32, 48, 64, 80]
 );
 
 /**
@@ -42,8 +42,8 @@ export const ALIGNS = new Set([
  * @param {string} [props.element='span'] Элемент, который будет использован как обертка.
  * @param {*} [props.children] Содержимое.
  * @param {'left'|'center'|'right'|'justify'} [props.align] Направление.
- * @param {12|14|16|20|24|32|48|64|80} [props.size] Размер.
- * @param {12|14|16|20|24|32|48|64|80} [props.lineHeight] Межстрочный интервал.
+ * @param {12|14|16|20|24|28|32|48|64|80} [props.size] Размер.
+ * @param {12|14|16|20|24|28|32|48|64|80} [props.lineHeight] Межстрочный интервал.
  * @param {string} [props.color] Ключ цвета из дизайн системы.
  * @param {300|400|500|600|700|800} [props.weight=400] Начертание.
  * @param {boolean} [props.italic] Нужно ли выводить текст наклонным.
@@ -91,12 +91,12 @@ Text.propTypes = {
   /**
    * Размер в пикселях.
    */
-  size: PropTypes.oneOf([12, 14, 16, 20, 24, 32, 48, 64, 80]),
+  size: PropTypes.oneOf([12, 14, 16, 20, 24, 28, 32, 48, 64, 80]),
 
   /**
    * Межстрочный интервал в пикселях.
    */
-  lineHeight: PropTypes.oneOf([12, 14, 16, 20, 24, 32, 48, 64, 80]),
+  lineHeight: PropTypes.oneOf([12, 14, 16, 20, 24, 28, 32, 48, 64, 80]),
 
   /**
    * Имя цвета в дизайн-системе.

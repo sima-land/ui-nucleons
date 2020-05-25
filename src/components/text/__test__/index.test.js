@@ -32,7 +32,7 @@ describe('<Text />', () => {
     const wrapper = shallow(
       <Text />
     );
-    const validValues = [12, 14, 16, 20, 24, 32, 48, 64, 80];
+    const validValues = [12, 14, 16, 20, 24, 28, 32, 48, 64, 80];
     validValues.forEach(value => {
       wrapper.setProps({ size: value });
       expect(wrapper.find('span').prop('className')).toContain(`size-${value}`);
