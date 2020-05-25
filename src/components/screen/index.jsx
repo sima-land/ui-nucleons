@@ -44,7 +44,7 @@ const Screen = ({
   const contentRef = useRef();
 
   // включаем прокрутку body при размонтировании
-  useEffect(() => () => enableBodyScroll(contentRef.current), []);
+  useEffect(() => () => contentRef.current && enableBodyScroll(contentRef.current), []);
 
   return (
     <Layer>

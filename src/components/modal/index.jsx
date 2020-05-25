@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
 import Popup from '../popups/popup';
 import Icon from '../icon';
 import TopBar from '../top-bar';
@@ -59,13 +60,27 @@ const Modal = ({
   withCloseButton = Number.isFinite(closeButtonSize),
   customClasses = {},
 }) => {
+  const rootRef = useRef();
+
   const readyClasses = composeClasses({
     defaultClasses: CLASSES_PRESETS[extended ? 'extended' : 'default'],
     customClasses,
   });
 
+  useEffect(() => {
+    extended
+      && rootRef.current
+      && disableBodyScroll(rootRef.current);
+
+    return () => {
+      extended
+        && rootRef.current
+        && enableBodyScroll(rootRef.current);
+    };
+  }, [extended]);
+
   return (
-    <div {...useCloseHandler(onClose)} className={readyClasses.overlay}>
+    <div ref={rootRef} {...useCloseHandler(onClose)} className={readyClasses.overlay}>
       <Popup additionalClass={readyClasses.modal}>
         {Boolean(extended) && (
           <TopBar
