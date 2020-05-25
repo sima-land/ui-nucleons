@@ -27,6 +27,10 @@ const ModalDemo = modalProps => {
           {...modalProps}
         />
       )}
+
+      {[...Array(100).keys()].map(index => (
+        <p key={index}>A lot of text for check body scroll [{index}]</p>
+      ))}
     </Fragment>
   );
 };
