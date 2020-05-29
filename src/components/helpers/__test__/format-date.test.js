@@ -1,4 +1,5 @@
-import formatDate, { createDateFormatter } from '../format-date';
+import { formatDate, createDateFormatter } from '../format-date';
+import isValid from 'date-fns/isValid';
 
 describe('formatDate()', () => {
   it('returns empty string if have been passed wrong params', () => {
@@ -9,30 +10,57 @@ describe('formatDate()', () => {
     date = formatDate('2019-15-03');
     expect(date).toBe('');
   });
+
   it('returns correct date with default formats', () => {
     const date = formatDate('2014-02-03');
     expect(date).toBe('03 февраля 2014');
   });
 });
 
-describe('createDateFormatter', () => {
+describe('createDateFormatter()', () => {
   it('works with default format', () => {
     const date = createDateFormatter()('2019-01-03');
     expect(date).toBe('03 января 2019');
   });
+
   it('returns correct date with custom formats', () => {
-    let date = createDateFormatter('YYYY-DD-MM', 'Do MMMM')('2014-02-03');
-    expect(date).toBe('2-го марта');
-    date = createDateFormatter('YYYY-MM-DD', 'Do MMMM')('2014-02-03');
-    expect(date).toBe('3-го февраля');
-    date = createDateFormatter('YYYY-MM-DD', 'dddd: D MMM')('2014-02-03');
-    expect(date).toBe('понедельник: 3 февр.');
+    let date = createDateFormatter({
+      formatFrom: 'yyyy-dd-MM',
+      formatTo: 'do MMMM',
+    })('2014-02-03');
+    expect(date).toBe('2-е марта');
+
+    date = createDateFormatter({
+      formatFrom: 'yyyy-MM-dd',
+      formatTo: 'do MMMM',
+    })('2014-02-03');
+    expect(date).toBe('3-е февраля');
+
+    date = createDateFormatter({
+      formatFrom: 'yyyy-MM-dd',
+      formatTo: 'EEEE: d MMM',
+    })('2014-02-03');
+    expect(date).toBe('понедельник: 3 фев.');
   });
+
   it('should handle function as second argument', () => {
-    const spy = jest.fn(moment => moment.isValid() && 'DD.MM');
-    const date = createDateFormatter('YYYY-MM-DD', spy)('2014-02-03');
+    const spy = jest.fn(date => isValid(date) && 'dd.MM');
+    const date = createDateFormatter({
+      formatFrom: 'yyyy-MM-dd',
+      formatTo: spy,
+    })('2014-02-03');
+
     expect(date).toBe('03.02');
     expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy.mock.calls[0][0].format('YYYY.MM.DD')).toBe('2014.02.03');
+  });
+
+  it('should handle multiple formats', () => {
+    const formatter = createDateFormatter({
+      formatFrom: ['yyyy/MM/dd', 'dd.MM.yyyy'],
+      formatTo: 'dd MM yyyy',
+    });
+
+    expect(formatter('2003/02/21')).toBe('21 02 2003');
+    expect(formatter('21.02.2003')).toBe('21 02 2003');
   });
 });
