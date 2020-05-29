@@ -1,32 +1,39 @@
-import moment from 'moment';
-import 'moment/locale/ru';
+import format from 'date-fns/format';
+import parse from 'date-fns/parse';
+import isEqual from 'date-fns/isEqual';
+import isValid from 'date-fns/isValid';
+import getMonth from 'date-fns/getMonth';
+import ruLocale from 'date-fns/locale/ru';
+
+const inputFormat = ['yyyy-MM-dd'];
+const formatOptions = { locale: ruLocale };
 
 /**
  * Формирует интервал дат.
  * @param {string} startDate Начальная дата.
  * @param {string} endDate Конечная дата.
- * @return {Object} Объект с данными сформированного интервала.
+ * @return {{ date: string, isInterval: boolean }} Объект с данными сформированного интервала.
  */
 const getDateIntervalData = (startDate, endDate) => {
-  const timeFormat = ['YYYY-MM-DD'];
-  const start = moment(startDate, timeFormat);
-  const end = moment(endDate, timeFormat);
-  let result = {};
-  if (start.isValid() && end.isValid() && start.valueOf() !== end.valueOf()) {
-    const startFormattedDate = start.month() === end.month()
-      ? start.format('D')
-      : start.format('D MMMM');
-    result = {
-      date: `${startFormattedDate} - ${end.format('D MMMM')}`,
-      isInterval: true,
-    };
-  } else if (start.isValid()) {
-    result = {
-      date: start.format('D MMMM'),
-      isInterval: false,
-    };
+  const start = parse(startDate, inputFormat, new Date());
+  const end = parse(endDate, inputFormat, new Date());
+
+  let date;
+  let isInterval;
+
+  if (isValid(start) && isValid(end) && !isEqual(start, end)) {
+    const startFormattedDate = getMonth(start) === getMonth(end)
+      ? format(start, 'd', formatOptions)
+      : format(start, 'd MMMM', formatOptions);
+
+    date = `${startFormattedDate} - ${format(end, 'd MMMM', formatOptions)}`;
+    isInterval = true;
+  } else if (isValid(start)) {
+    date = format(start, 'd MMMM', formatOptions);
+    isInterval = false;
   }
-  return result;
+
+  return { date, isInterval };
 };
 
 export default getDateIntervalData;
