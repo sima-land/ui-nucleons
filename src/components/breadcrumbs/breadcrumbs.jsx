@@ -163,10 +163,24 @@ export const createMountHandler = ([
       togglePopup(false);
     }
   };
-  const removeListener = addGlobalListener('click', checkPopupClose);
+
+  /**
+   * Закрывает popup при нажатии на Escape.
+   * @param {SyntheticEvent} event Событие нажатия на клавиатуру.
+   */
+  const checkEscape = ({ code, keyCode }) => {
+    if (code === 'Escape' || keyCode === 27) {
+      togglePopup(false);
+    }
+  };
+  const removeClickListener = addGlobalListener('click', checkPopupClose);
+  const removeKeydownListener = addGlobalListener('keydown', checkEscape);
 
   // отписываемся при размонтировании
-  return removeListener;
+  return () => {
+    removeClickListener();
+    removeKeydownListener();
+  };
 };
 
 Breadcrumbs.propTypes = {

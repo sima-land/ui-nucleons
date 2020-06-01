@@ -171,22 +171,31 @@ describe('<Breadcrumbs />', () => {
 
     const unmountHandler = mountHandler();
     expect(togglePopup).toHaveBeenCalledTimes(0);
-    expect(addGlobalListener).toHaveBeenCalledTimes(1);
+    expect(addGlobalListener).toHaveBeenCalledTimes(2);
     expect(addGlobalListener.mock.calls[0][0]).toBe('click');
     const clickHandler = addGlobalListener.mock.calls[0][1];
+    const keyboardHandler = addGlobalListener.mock.calls[1][1];
 
     clickHandler({ target: document.createElement('span') });
     expect(togglePopup).toHaveBeenCalledTimes(1);
-    expect(addGlobalListener).toHaveBeenCalledTimes(1);
+    expect(addGlobalListener).toHaveBeenCalledTimes(2);
 
     clickHandler({ target: openerNodeContainer.current });
     expect(togglePopup).toHaveBeenCalledTimes(1);
-    expect(addGlobalListener).toHaveBeenCalledTimes(1);
+    expect(addGlobalListener).toHaveBeenCalledTimes(2);
+
+    keyboardHandler({ code: 'Enter' });
+    expect(togglePopup).toHaveBeenCalledTimes(1);
+    expect(addGlobalListener).toHaveBeenCalledTimes(2);
+
+    keyboardHandler({ code: 'Escape' });
+    expect(togglePopup).toHaveBeenCalledTimes(2);
+    expect(addGlobalListener).toHaveBeenCalledTimes(2);
 
     expect(removeGlobalListener).toHaveBeenCalledTimes(0);
     unmountHandler();
-    expect(togglePopup).toHaveBeenCalledTimes(1);
-    expect(addGlobalListener).toHaveBeenCalledTimes(1);
-    expect(removeGlobalListener).toHaveBeenCalledTimes(1);
+    expect(togglePopup).toHaveBeenCalledTimes(2);
+    expect(addGlobalListener).toHaveBeenCalledTimes(2);
+    expect(removeGlobalListener).toHaveBeenCalledTimes(2);
   });
 });
