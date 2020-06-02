@@ -99,37 +99,55 @@ exports[`<TopBar /> should render without props 1`] = `
 
 exports[`<TopBar /> should renders with all icons 1`] = `
 <TopBar
-  endIcon={
-    <Icon
-      icon={[Function]}
-      size={24}
-    />
-  }
-  endSecondaryIcon={
-    <Icon
-      icon={[Function]}
-      size={24}
-    />
-  }
-  startIcon={
-    <Icon
-      icon={[Function]}
-      size={24}
-    />
-  }
-  startSecondaryIcon={
-    <Icon
-      icon={[Function]}
-      size={24}
-    />
+  buttonsProps={
+    Object {
+      "end": Object {
+        "icon": <Icon
+          icon={[Function]}
+          size={24}
+        />,
+        "onClick": [Function],
+      },
+      "endSecondary": Object {
+        "icon": <Icon
+          icon={[Function]}
+          size={24}
+        />,
+        "onClick": [Function],
+      },
+      "start": Object {
+        "icon": <Icon
+          icon={[Function]}
+          size={24}
+        />,
+        "onClick": [Function],
+      },
+      "startSecondary": Object {
+        "icon": <Icon
+          icon={[Function]}
+          size={24}
+        />,
+        "onClick": [Function],
+      },
+    }
   }
 >
   <div
     className="modal-header size-m"
   >
-    <IconButton>
+    <IconButton
+      icon={
+        <Icon
+          icon={[Function]}
+          size={24}
+        />
+      }
+      onClick={[Function]}
+    >
       <button
         className="icon-button"
+        onClick={[Function]}
+        type="button"
       >
         <Icon
           icon={[Function]}
@@ -157,9 +175,19 @@ exports[`<TopBar /> should renders with all icons 1`] = `
         </Icon>
       </button>
     </IconButton>
-    <IconButton>
+    <IconButton
+      icon={
+        <Icon
+          icon={[Function]}
+          size={24}
+        />
+      }
+      onClick={[Function]}
+    >
       <button
         className="icon-button"
+        onClick={[Function]}
+        type="button"
       >
         <Icon
           icon={[Function]}
@@ -194,9 +222,19 @@ exports[`<TopBar /> should renders with all icons 1`] = `
         className="title ellipsis"
       />
     </div>
-    <IconButton>
+    <IconButton
+      icon={
+        <Icon
+          icon={[Function]}
+          size={24}
+        />
+      }
+      onClick={[Function]}
+    >
       <button
         className="icon-button"
+        onClick={[Function]}
+        type="button"
       >
         <Icon
           icon={[Function]}
@@ -224,9 +262,19 @@ exports[`<TopBar /> should renders with all icons 1`] = `
         </Icon>
       </button>
     </IconButton>
-    <IconButton>
+    <IconButton
+      icon={
+        <Icon
+          icon={[Function]}
+          size={24}
+        />
+      }
+      onClick={[Function]}
+    >
       <button
         className="icon-button"
+        onClick={[Function]}
+        type="button"
       >
         <Icon
           icon={[Function]}
@@ -262,11 +310,16 @@ exports[`<TopBar /> should renders with all icons 1`] = `
 
 exports[`<TopBar /> should renders with end icon 1`] = `
 <TopBar
-  endIcon={
-    <Icon
-      icon={[Function]}
-      size={24}
-    />
+  buttonsProps={
+    Object {
+      "end": Object {
+        "icon": <Icon
+          icon={[Function]}
+          size={24}
+        />,
+        "onClick": [Function],
+      },
+    }
   }
 >
   <div
@@ -282,9 +335,19 @@ exports[`<TopBar /> should renders with end icon 1`] = `
         className="title ellipsis"
       />
     </div>
-    <IconButton>
+    <IconButton
+      icon={
+        <Icon
+          icon={[Function]}
+          size={24}
+        />
+      }
+      onClick={[Function]}
+    >
       <button
         className="icon-button"
+        onClick={[Function]}
+        type="button"
       >
         <Icon
           icon={[Function]}
@@ -320,17 +383,23 @@ exports[`<TopBar /> should renders with end icon 1`] = `
 
 exports[`<TopBar /> should renders with end icons 1`] = `
 <TopBar
-  endIcon={
-    <Icon
-      icon={[Function]}
-      size={24}
-    />
-  }
-  endSecondaryIcon={
-    <Icon
-      icon={[Function]}
-      size={24}
-    />
+  buttonsProps={
+    Object {
+      "end": Object {
+        "icon": <Icon
+          icon={[Function]}
+          size={24}
+        />,
+        "onClick": [Function],
+      },
+      "endSecondary": Object {
+        "icon": <Icon
+          icon={[Function]}
+          size={24}
+        />,
+        "onClick": [Function],
+      },
+    }
   }
 >
   <div
@@ -349,9 +418,19 @@ exports[`<TopBar /> should renders with end icons 1`] = `
         className="title ellipsis"
       />
     </div>
-    <IconButton>
+    <IconButton
+      icon={
+        <Icon
+          icon={[Function]}
+          size={24}
+        />
+      }
+      onClick={[Function]}
+    >
       <button
         className="icon-button"
+        onClick={[Function]}
+        type="button"
       >
         <Icon
           icon={[Function]}
@@ -379,9 +458,19 @@ exports[`<TopBar /> should renders with end icons 1`] = `
         </Icon>
       </button>
     </IconButton>
-    <IconButton>
+    <IconButton
+      icon={
+        <Icon
+          icon={[Function]}
+          size={24}
+        />
+      }
+      onClick={[Function]}
+    >
       <button
         className="icon-button"
+        onClick={[Function]}
+        type="button"
       >
         <Icon
           icon={[Function]}
@@ -417,19 +506,34 @@ exports[`<TopBar /> should renders with end icons 1`] = `
 
 exports[`<TopBar /> should renders with start icon 1`] = `
 <TopBar
-  startIcon={
-    <Icon
-      icon={[Function]}
-      size={24}
-    />
+  buttonsProps={
+    Object {
+      "start": Object {
+        "icon": <Icon
+          icon={[Function]}
+          size={24}
+        />,
+        "onClick": [Function],
+      },
+    }
   }
 >
   <div
     className="modal-header size-m"
   >
-    <IconButton>
+    <IconButton
+      icon={
+        <Icon
+          icon={[Function]}
+          size={24}
+        />
+      }
+      onClick={[Function]}
+    >
       <button
         className="icon-button"
+        onClick={[Function]}
+        type="button"
       >
         <Icon
           icon={[Function]}
@@ -473,25 +577,41 @@ exports[`<TopBar /> should renders with start icon 1`] = `
 
 exports[`<TopBar /> should renders with start icons 1`] = `
 <TopBar
-  startIcon={
-    <Icon
-      icon={[Function]}
-      size={24}
-    />
-  }
-  startSecondaryIcon={
-    <Icon
-      icon={[Function]}
-      size={24}
-    />
+  buttonsProps={
+    Object {
+      "start": Object {
+        "icon": <Icon
+          icon={[Function]}
+          size={24}
+        />,
+        "onClick": [Function],
+      },
+      "startSecondary": Object {
+        "icon": <Icon
+          icon={[Function]}
+          size={24}
+        />,
+        "onClick": [Function],
+      },
+    }
   }
 >
   <div
     className="modal-header size-m"
   >
-    <IconButton>
+    <IconButton
+      icon={
+        <Icon
+          icon={[Function]}
+          size={24}
+        />
+      }
+      onClick={[Function]}
+    >
       <button
         className="icon-button"
+        onClick={[Function]}
+        type="button"
       >
         <Icon
           icon={[Function]}
@@ -519,9 +639,19 @@ exports[`<TopBar /> should renders with start icons 1`] = `
         </Icon>
       </button>
     </IconButton>
-    <IconButton>
+    <IconButton
+      icon={
+        <Icon
+          icon={[Function]}
+          size={24}
+        />
+      }
+      onClick={[Function]}
+    >
       <button
         className="icon-button"
+        onClick={[Function]}
+        type="button"
       >
         <Icon
           icon={[Function]}

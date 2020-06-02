@@ -87,18 +87,20 @@ const Modal = ({
             className={cx('header', withDivideTopBar && 'divided')}
             title={title}
             subtitle={subtitle}
-            endIcon={
-              withCloseButton
-                ? (
-                  <Icon
-                    icon={bigCrossIcon}
-                    size={24}
-                    onClick={onClose}
-                    className={cx('cursor-pointer')}
-                  />
-                )
-                : null
-            }
+            buttonsProps={{
+              end: {
+                onClick: onClose,
+                icon: withCloseButton
+                  ? (
+                    <Icon
+                      icon={bigCrossIcon}
+                      size={24}
+                      className={cx('cursor-pointer')}
+                    />
+                  )
+                  : null,
+              },
+            }}
             {...topBarProps}
           />
         )}

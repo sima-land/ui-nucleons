@@ -65,15 +65,19 @@ exports[`<Modal /> should handle extended props 1`] = `
         className="popup modal-extended"
       >
         <TopBar
-          className="header divided"
-          endIcon={
-            <Icon
-              className="cursor-pointer"
-              icon={[Function]}
-              onClick={[MockFunction]}
-              size={24}
-            />
+          buttonsProps={
+            Object {
+              "end": Object {
+                "icon": <Icon
+                  className="cursor-pointer"
+                  icon={[Function]}
+                  size={24}
+                />,
+                "onClick": [MockFunction],
+              },
+            }
           }
+          className="header divided"
           size="m"
           subtitle="Subtitle"
           title="Title"
@@ -98,20 +102,29 @@ exports[`<Modal /> should handle extended props 1`] = `
                 Subtitle
               </div>
             </div>
-            <IconButton>
+            <IconButton
+              icon={
+                <Icon
+                  className="cursor-pointer"
+                  icon={[Function]}
+                  size={24}
+                />
+              }
+              onClick={[MockFunction]}
+            >
               <button
                 className="icon-button"
+                onClick={[MockFunction]}
+                type="button"
               >
                 <Icon
                   className="cursor-pointer"
                   icon={[Function]}
-                  onClick={[MockFunction]}
                   size={24}
                 >
                   <bigCrossIcon
                     className="icon icon-block cursor-pointer"
                     height={24}
-                    onClick={[MockFunction]}
                     viewBox="0 0 36 36"
                     width={24}
                     xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +132,6 @@ exports[`<Modal /> should handle extended props 1`] = `
                     <svg
                       className="icon icon-block cursor-pointer"
                       height={24}
-                      onClick={[MockFunction]}
                       viewBox="0 0 36 36"
                       width={24}
                       xmlns="http://www.w3.org/2000/svg"
@@ -181,8 +193,15 @@ exports[`<Modal /> should handle extended props 2`] = `
         className="popup modal-extended"
       >
         <TopBar
+          buttonsProps={
+            Object {
+              "end": Object {
+                "icon": null,
+                "onClick": [MockFunction],
+              },
+            }
+          }
           className="header divided"
-          endIcon={null}
           size="m"
           subtitle="Subtitle"
           title="Title"
@@ -190,6 +209,9 @@ exports[`<Modal /> should handle extended props 2`] = `
           <div
             className="modal-header size-m header divided"
           >
+            <div
+              className="icon-button"
+            />
             <div
               className="main-section"
             >
@@ -204,6 +226,16 @@ exports[`<Modal /> should handle extended props 2`] = `
                 Subtitle
               </div>
             </div>
+            <IconButton
+              icon={null}
+              onClick={[MockFunction]}
+            >
+              <button
+                className="icon-button"
+                onClick={[MockFunction]}
+                type="button"
+              />
+            </IconButton>
           </div>
         </TopBar>
         <div
