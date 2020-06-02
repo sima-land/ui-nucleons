@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames/bind';
 import PropTypes from 'prop-types';
+import has from 'lodash/has';
 
 import classes from './top-bar.scss';
 
@@ -12,10 +13,11 @@ const cx = classnames.bind(classes);
  * @param {'s'|'m'|'l'} [props.size='m'] Размер.
  * @param {string} props.title Заголовок.
  * @param {string} [props.subtitle] Подзаголовок.
- * @param {*} [props.startIcon] Начальная иконка.
- * @param {*} [props.endIcon] Конечная иконка.
- * @param {*} [props.startSecondaryIcon] Дополнительная начальная иконка (ближе к центру).
- * @param {*} [props.endSecondaryIcon] Дополнительная конечная иконка (ближе к центру).
+ * @param {Object} [props.buttonsProps] Свойства кнопок.
+ * @param {Object} [props.buttonsProps.start] Свойства начальной кнопки.
+ * @param {Object} [props.buttonsProps.startSecondary] Свойства дополнительной начальной кнопки (ближе к центру).
+ * @param {Object} [props.buttonsProps.end] Свойства конечной кнопки.
+ * @param {Object} [props.buttonsProps.endSecondary] Свойства дополнительной конечной кнопки (ближе к центру).
  * @param {*} [props.className] CSS-класс корневого элемента.
  * @return {ReactElement} Компонент шапки модальных окон/экранов.
  */
@@ -23,19 +25,26 @@ const TopBar = ({
   size = 'm',
   title,
   subtitle,
-  startIcon,
-  endIcon,
-  startSecondaryIcon,
-  endSecondaryIcon,
+  buttonsProps: {
+    start,
+    startSecondary,
+    end,
+    endSecondary,
+  } = {},
   className,
 }) => {
-  const stub = startIcon || endIcon ? iconStub : null;
-  const secondaryStub = startSecondaryIcon || endSecondaryIcon ? iconStub : null;
+  const hasStart = has(start, 'icon');
+  const hasStartSecondary = has(startSecondary, 'icon');
+  const hasEnd = has(end, 'icon');
+  const hasEndSecondary = has(endSecondary, 'icon');
+
+  const stub = hasStart || hasEnd ? iconStub : null;
+  const secondaryStub = hasStartSecondary || hasEndSecondary ? iconStub : null;
 
   return (
     <div className={cx('modal-header', `size-${size}`, className)}>
-      {startIcon ? <IconButton children={startIcon} /> : stub}
-      {startSecondaryIcon ? <IconButton children={startSecondaryIcon} /> : secondaryStub}
+      {hasStart ? <IconButton {...start} /> : stub}
+      {hasStartSecondary ? <IconButton {...startSecondary} /> : secondaryStub}
 
       <div className={cx('main-section')}>
         <div className={cx('title', 'ellipsis')}>{title}</div>
@@ -46,8 +55,8 @@ const TopBar = ({
         )}
       </div>
 
-      {endSecondaryIcon ? <IconButton children={endSecondaryIcon} /> : secondaryStub}
-      {endIcon ? <IconButton children={endIcon} /> : stub}
+      {hasEndSecondary ? <IconButton {...endSecondary} /> : secondaryStub}
+      {hasEnd ? <IconButton {...end} /> : stub}
     </div>
   );
 };
@@ -69,24 +78,38 @@ TopBar.propTypes = {
   subtitle: PropTypes.string,
 
   /**
-   * Начальная иконка.
+   * Свойства кнопок.
    */
-  startIcon: PropTypes.any,
+  buttonsProps: PropTypes.shape({
 
-  /**
-   * Конечная иконка.
-   */
-  endIcon: PropTypes.any,
+    /**
+     * Свойства начальной кнопки.
+     */
+    start: PropTypes.shape({
+      icon: PropTypes.any,
+    }),
 
-  /**
-   * Дополнительная начальная иконка (ближе к центру).
-   */
-  startSecondaryIcon: PropTypes.any,
+    /**
+     * Свойства дополнительной начальной кнопки (ближе к центру).
+     */
+    startSecondary: PropTypes.shape({
+      icon: PropTypes.any,
+    }),
 
-  /**
-   * Дополнительная конечная иконка (ближе к центру).
-   */
-  endSecondaryIcon: PropTypes.any,
+    /**
+     * Свойства конечной кнопки.
+     */
+    end: PropTypes.shape({
+      icon: PropTypes.any,
+    }),
+
+    /**
+     * Свойства дополнительной конечной кнопки (ближе к центру).
+     */
+    endSecondary: PropTypes.shape({
+      icon: PropTypes.any,
+    }),
+  }),
 
   /**
    * CSS-класс корневого элемента.
@@ -97,20 +120,20 @@ TopBar.propTypes = {
 /**
  * Компонент кнопки-иконки.
  * @param {Object} props Свойства. Поддерживаются свойства button.
- * @param {Object} props.children Содержимое.
+ * @param {Object} props.icon Иконка.
  * @return {ReactElement} Компонент кнопки-иконки.
  */
-export const IconButton = ({ children, ...props }) => (
-  <button {...props} className={cx('icon-button')}>
-    {children}
+export const IconButton = ({ icon, ...buttonProps }) => (
+  <button {...buttonProps} type='button' className={cx('icon-button')}>
+    {icon}
   </button>
 );
 
 IconButton.propTypes = {
   /**
-   * Содержимое.
+   * Иконка.
    */
-  children: PropTypes.any,
+  icon: PropTypes.any,
 };
 
 const iconStub = (

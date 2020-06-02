@@ -15,8 +15,16 @@ import { search, close } from '../icons';
   <TopBar
     title='Заголовок'
     subtitle='Подзаголовок'
-    startIcon={<Icon size={24} icon={search} />}
-    endIcon={<Icon size={24} icon={close} />}
+    buttonsProps={{
+      start: {
+        icon: <Icon size={24} icon={search} />,
+        onClick: () => console.log('Click to the start icon'),
+      },
+      end: {
+        icon: <Icon size={24} icon={close} />,
+        onClick: () => console.log('Click to the end icon'),
+      },
+    }}
   />
 </React.Fragment>
 ```
