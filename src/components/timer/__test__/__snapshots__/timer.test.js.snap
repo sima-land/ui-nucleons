@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Timer should handle "calculate" prop 1`] = `
+<Timer
+  calculate={[Function]}
+  endTime="2020-01-01 22:00"
+>
+  <time>
+    2020-01-01 22:00
+  </time>
+</Timer>
+`;

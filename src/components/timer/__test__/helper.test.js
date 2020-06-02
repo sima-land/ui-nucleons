@@ -1,42 +1,32 @@
 import { getTimeDurationToNow } from '../helper';
-import moment from 'moment';
+import addMonths from 'date-fns/addMonths';
+import subMonths from 'date-fns/subMonths';
+import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
+
+jest.mock('date-fns/formatDistanceToNowStrict', () => ({
+  __esModule: true,
+  default: jest.fn(() => '2'),
+}));
 
 jest.useFakeTimers();
-
-jest.mock('moment', () => {
-  const original = jest.requireActual('moment');
-  const momentMock = jest.fn((endTime = 10) => endTime);
-  momentMock.formatSpy = jest.fn((duration, format = 'format') => `${duration} ${format}`);
-  momentMock.duration = jest.fn(duration => ({
-    format: momentMock.formatSpy.bind(null, duration),
-  }));
-  return {
-    ...original,
-    __esModule: true,
-    default: momentMock,
-  };
-});
-
-jest.mock('moment-duration-format', () => jest.fn());
 
 beforeEach(() => {
   jest.clearAllMocks();
 });
 
 describe('getTimeDurationToNow', () => {
-  it('should returns default result', () => {
-    const result = getTimeDurationToNow();
-    expect(moment).toHaveBeenCalledTimes(2);
-    expect(moment.duration).toHaveBeenCalledTimes(1);
-    expect(moment.formatSpy).toHaveBeenCalledTimes(1);
-    expect(result).toEqual('0 format');
+  it('should return formatted time', () => {
+    const targetDate = addMonths(new Date(), 11);
+    const result = getTimeDurationToNow(targetDate.toISOString());
+
+    expect(result).toEqual('2:02:02:02');
+    expect(formatDistanceToNowStrict).toHaveBeenCalledTimes(4);
   });
 
-  it('should returns properly result', () => {
-    const result = getTimeDurationToNow(50, 'custom format');
-    expect(moment).toHaveBeenCalledTimes(2);
-    expect(moment.duration).toHaveBeenCalledTimes(1);
-    expect(moment.formatSpy).toHaveBeenCalledTimes(1);
-    expect(result).toEqual('40 custom format');
+  it('should return zero time', () => {
+    const targetDate = subMonths(new Date(), 10);
+    const result = getTimeDurationToNow(targetDate.toISOString());
+
+    expect(result).toEqual('0:00:00:00');
   });
 });

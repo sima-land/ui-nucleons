@@ -11,7 +11,6 @@ storiesOf('Timer', module)
       <h3>Custom timer</h3>
       <Timer
         endTime='2021-01-01'
-        format='D д., h:m:s'
         timeProps={{
           className: 'timer',
           style: {
