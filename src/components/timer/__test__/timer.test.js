@@ -3,6 +3,7 @@ import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import React from 'react';
 import Timer from '../index';
+import identity from 'lodash/identity';
 import { getTimeDurationToNow } from '../helper';
 
 jest.useFakeTimers();
@@ -38,16 +39,18 @@ describe('Timer', () => {
         background: '#eee',
       },
     };
+
     const wrapper = mount(
       <Timer
         endTime='2020-03-08'
-        format='D д., hh:mm:ss'
         timeProps={testStyle}
       />
     );
+
     expect(wrapper.find('time').at(0).prop('className')).toBe('timer');
     expect(wrapper.find('time').at(0).prop('style')).toEqual(testStyle.style);
   });
+
   it('should change time by timeout', () => {
     const container = document.createElement('div');
     document.body.appendChild(container);
@@ -74,5 +77,16 @@ describe('Timer', () => {
       unmountComponentAtNode(container);
     });
     expect(clearInterval).toHaveBeenCalledTimes(1);
+  });
+
+  it('should handle "calculate" prop', () => {
+    const wrapper = mount(
+      <Timer
+        endTime='2020-01-01 22:00'
+        calculate={identity}
+      />
+    );
+
+    expect(wrapper).toMatchSnapshot();
   });
 });

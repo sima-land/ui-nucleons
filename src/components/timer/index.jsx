@@ -5,25 +5,26 @@ import { getTimeDurationToNow } from './helper';
 /**
  * Возвращает таймер с временем между событием и текущим временем.
  * @param {Object} props Свойства компонента.
- * @param {string} [props.endTime] Дата и время события.
- * @param {string} [props.format] Шаблон для возврата даты.
- * @param {number} [props.timeout] Частота обновления таймера в мс.
+ * @param {string} props.endTime Дата и время события.
+ * @param {string} [props.calculate] Должна рассчитать новое значение времени для последующего вывода.
+ * @param {number} [props.timeout] Частота обновления таймера в миллисекундах.
  * @param {Object} [props.timeProps] Свойства для HTML элемента таймера.
  * @return {ReactElement} Таймер.
  */
-export const Timer = ({
+const Timer = ({
   endTime,
-  format = 'd:hh:mm:ss',
+  calculate = getTimeDurationToNow,
   timeout = 1000,
-  timeProps = {},
+  timeProps,
 }) => {
-  const [time, setTime] = useState(getTimeDurationToNow(endTime, format));
+  const [time, setTime] = useState(calculate(endTime));
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setTime(getTimeDurationToNow(endTime, format));
+    const timerId = setInterval(() => {
+      setTime(calculate(endTime));
     }, timeout);
-    return () => clearInterval(intervalId);
+
+    return () => clearInterval(timerId);
   }, []);
 
   return (
@@ -33,8 +34,6 @@ export const Timer = ({
   );
 };
 
-export default Timer;
-
 Timer.propTypes = {
   /**
    * Дата и время события.
@@ -42,9 +41,9 @@ Timer.propTypes = {
   endTime: PropTypes.string,
 
   /**
-   * Шаблон для возврата даты.
+   * Должна рассчитать новое значение времени для последующего вывода.
    */
-  format: PropTypes.string,
+  calculate: PropTypes.func,
 
   /**
    * Частота обновления таймера в мс.
@@ -56,3 +55,5 @@ Timer.propTypes = {
    */
   timeProps: PropTypes.object,
 };
+
+export default Timer;

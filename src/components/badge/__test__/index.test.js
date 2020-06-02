@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Badge, { renderField } from '../index';
 import { badges } from '../__stories__/items';
-import { Timer } from '../../timer';
+import Timer from '../../timer';
 
 describe('<Badge />', () => {
   describe('without props', () => {
