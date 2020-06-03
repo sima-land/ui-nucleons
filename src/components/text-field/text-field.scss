@@ -9,7 +9,7 @@
   font: inherit;
 }
 
-// В селекторе указан input потому что в основном проекте пристуствуют стили,
+// В селекторе указан input потому что в основном проекте присутствуют стили,
 // которые переопределяют отступы для input. Иначе не хватает специфичности.
 input.reset {
   padding: 0;
@@ -160,6 +160,11 @@ input.reset {
   background-color: transparent;
   width: 0;
   flex-grow: 1;
+  &::-ms-clear { // отключаем системный крестик в IE
+    display: none;
+    height: 0;
+    width: 0;
+  }
   &::placeholder {
     opacity: 1;
     color: map-get($colors, 'gray38');
