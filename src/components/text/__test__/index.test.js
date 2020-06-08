@@ -127,4 +127,14 @@ describe('<Text />', () => {
     wrapper.setProps({ truncate: false });
     expect(wrapper.find('span').prop('className')).not.toContain('truncate');
   });
+  it('should handle "nowrap" prop', () => {
+    const wrapper = shallow(
+      <Text
+        nowrap
+      />
+    );
+    expect(wrapper.find('span').prop('className')).toContain('nowrap');
+    wrapper.setProps({ nowrap: false });
+    expect(wrapper.find('span').prop('className')).not.toContain('nowrap');
+  });
 });
