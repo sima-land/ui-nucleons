@@ -26,7 +26,7 @@ const getDateIntervalData = (startDate, endDate) => {
       ? format(start, 'd', formatOptions)
       : format(start, 'd MMMM', formatOptions);
 
-    date = `${startFormattedDate} - ${format(end, 'd MMMM', formatOptions)}`;
+    date = `${startFormattedDate} – ${format(end, 'd MMMM', formatOptions)}`;
     isInterval = true;
   } else if (isValid(start)) {
     date = format(start, 'd MMMM', formatOptions);

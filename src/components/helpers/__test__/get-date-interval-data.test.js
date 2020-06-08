@@ -6,12 +6,12 @@ describe('test getDateIntervalData', () => {
   it('getDateIntervalData() returns object with interval date', () => {
     result = getDateIntervalData('2018-03-03', '2018-04-02');
     expect(result).toEqual({
-      date: '3 марта - 2 апреля',
+      date: '3 марта – 2 апреля',
       isInterval: true,
     });
     result = getDateIntervalData('2018-03-03', '2018-03-12');
     expect(result).toEqual({
-      date: '3 - 12 марта',
+      date: '3 – 12 марта',
       isInterval: true,
     });
   });
