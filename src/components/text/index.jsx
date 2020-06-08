@@ -48,6 +48,7 @@ export const ALIGNS = new Set([
  * @param {300|400|500|600|700|800} [props.weight=400] Начертание.
  * @param {boolean} [props.italic] Нужно ли выводить текст наклонным.
  * @param {boolean} [props.truncate] Нужно ли обрезать текст многоточием в одну строку.
+ * @param {boolean} [props.nowrap] Нужно ли добавить стиль "white-space: nowrap".
  * @return {ReactElement} Элемент текста.
  */
 const Text = ({
@@ -62,6 +63,7 @@ const Text = ({
   weight,
   italic,
   truncate,
+  nowrap,
 }) => (
   <Container
     className={cx([
@@ -71,6 +73,7 @@ const Text = ({
       WEIGHTS.has(weight) && `weight-${weight}`,
       ALIGNS.has(align) && `align-${align}`,
       italic && 'italic',
+      nowrap && 'nowrap',
       truncate && 'truncate',
     ])}
     children={children}
@@ -122,6 +125,11 @@ Text.propTypes = {
    * Нужно ли обрезать текст многоточием в одну строку.
    */
   truncate: PropTypes.bool,
+
+  /**
+   * Нужно ли добавить стиль "white-space: nowrap".
+   */
+  nowrap: PropTypes.bool,
 };
 
 export default memo(Text);

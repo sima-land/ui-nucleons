@@ -35,6 +35,13 @@ storiesOf('Text', module)
       <Text element='div' truncate>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi laboriosam sed veritatis.
       </Text>
+
+      <h3>nowrap: true</h3>
+      <div style={{ width: 200, border: '1px solid #f00' }}>
+        <Text nowrap>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi laboriosam sed veritatis.
+        </Text>
+      </div>
     </div>
   ))
   .add('with cutTextContent helper', () => (
