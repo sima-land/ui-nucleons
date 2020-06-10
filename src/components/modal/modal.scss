@@ -68,4 +68,11 @@
 
 .cursor-pointer {
   cursor: pointer;
+  transition: transform .1s cubic-bezier(0, 0, .58, 1);
+  &:hover {
+    transform: scale(1.1);
+  }
+  &:active {
+    transform: none;
+  }
 }
