@@ -35,6 +35,8 @@ export const Spinner = ({
       <svg
         className={cx('spinner', `size-${readySize}`)}
         viewBox={`0 0 ${diameter} ${diameter}`}
+        width={diameter}
+        height={diameter}
         xmlns='http://www.w3.org/2000/svg'
       >
         <circle
