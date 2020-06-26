@@ -11,7 +11,9 @@ exports[`<LoadingOverlay /> should handle "fill" prop 1`] = `
       <div>
         <svg
           className="spinner size-medium"
+          height={48}
           viewBox="0 0 48 48"
+          width={48}
           xmlns="http://www.w3.org/2000/svg"
         >
           <circle
@@ -55,7 +57,9 @@ exports[`<LoadingOverlay /> should handle props 1`] = `
       <div>
         <svg
           className="spinner size-small"
+          height={20}
           viewBox="0 0 20 20"
+          width={20}
           xmlns="http://www.w3.org/2000/svg"
         >
           <circle
@@ -80,7 +84,9 @@ exports[`<LoadingOverlay /> should renders without props 1`] = `
       <div>
         <svg
           className="spinner size-medium"
+          height={48}
           viewBox="0 0 48 48"
+          width={48}
           xmlns="http://www.w3.org/2000/svg"
         >
           <circle
