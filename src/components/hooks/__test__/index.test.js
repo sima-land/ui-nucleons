@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import {
@@ -7,6 +7,7 @@ import {
   useApplyMemo,
   useIsTouchDevice,
   useInfiniteScroll,
+  useOutsideClick,
 } from '../index';
 
 jest.mock('../../helpers/is-touch-device', () => {
@@ -36,10 +37,7 @@ describe('useInfiniteScroll()', () => {
    * @param {Object} props Свойства.
    * @return {ReactElement} Блок.
    */
-  const TestComponent = ({
-    withList = true,
-    onFullScroll,
-  }) => {
+  const TestComponent = ({ withList = true, onFullScroll }) => { // eslint-disable-line react/prop-types
     const listRef = useRef();
 
     useInfiniteScroll(listRef, {
@@ -57,7 +55,7 @@ describe('useInfiniteScroll()', () => {
     const spy = jest.fn();
 
     act(() => {
-      ReactDOM.render(<TestComponent onFullScroll={spy} />, container);
+      render(<TestComponent onFullScroll={spy} />, container);
     });
 
     const listEl = container.querySelector('.test-list');
@@ -83,7 +81,7 @@ describe('useInfiniteScroll()', () => {
     HTMLUListElement.prototype.addEventListener.mockClear();
 
     act(() => {
-      ReactDOM.render(<TestComponent withList={false} />, container);
+      render(<TestComponent withList={false} />, container);
     });
     expect(HTMLUListElement.prototype.addEventListener).toHaveBeenCalledTimes(0);
   });
@@ -93,7 +91,7 @@ describe('useInfiniteScroll()', () => {
     HTMLUListElement.prototype.addEventListener.mockClear();
 
     act(() => {
-      ReactDOM.render(<TestComponent withList />, container);
+      render(<TestComponent withList />, container);
     });
     expect(HTMLUListElement.prototype.addEventListener).toHaveBeenCalledTimes(1);
   });
@@ -152,7 +150,7 @@ describe('useOnMount()', () => {
     expect(spy).toHaveBeenCalledTimes(0);
 
     act(() => {
-      ReactDOM.render(<TestComponent />, container);
+      render(<TestComponent />, container);
     });
     expect(spy).toHaveBeenCalledTimes(1);
 
@@ -197,7 +195,7 @@ describe('useApplyMemo()', () => {
       );
     };
     act(() => {
-      ReactDOM.render(<TestComponent />, container);
+      render(<TestComponent />, container);
     });
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith([false]);
@@ -238,8 +236,52 @@ describe('useIsTouchDevice', () => {
 
   it('should works with touch', () => {
     act(() => {
-      ReactDOM.render(<TestComponent />, container);
+      render(<TestComponent />, container);
     });
     expect(container.querySelector('span').textContent).toBe('Visible on touch');
+  });
+});
+
+describe('useOutsideClick', () => {
+  /**
+   * Тестовый компонент.
+   * @return {ReactElement} Блок.
+   */
+  const TestComponent = ({ callback }) => { // eslint-disable-line react/prop-types
+    const ref = useRef();
+
+    useOutsideClick(ref, callback);
+
+    return (
+      <div ref={ref} />
+    );
+  };
+
+  let container;
+
+  beforeEach(() => {
+    container = document.createElement('div');
+    document.body.appendChild(container);
+  });
+
+  afterEach(() => {
+    document.body.removeChild(container);
+    container = null;
+  });
+
+  it('should works', () => {
+    const spy = jest.fn();
+
+    act(() => {
+      render(<TestComponent callback={spy} />, container);
+    });
+
+    expect(spy).toHaveBeenCalledTimes(0);
+
+    act(() => {
+      document.body.dispatchEvent(new MouseEvent('click'));
+    });
+
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 });

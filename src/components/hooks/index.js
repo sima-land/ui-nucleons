@@ -72,3 +72,25 @@ export const useInfiniteScroll = (ref, {
     });
   }
 }, [ref.current, threshold, onFullScroll]);
+
+/**
+ * Запускает переданный обработчик при клике вне элемента.
+ * @param {Object} elementRef Ref элемента, клик вне которого нужно обработать.
+ * @param {Function} callback Сработает при клике вне элемента.
+ */
+export const useOutsideClick = (elementRef, callback) => {
+  const callbackRef = useRef(callback);
+
+  callbackRef.current = callback;
+
+  useEffect(() => on(document.body, 'click', event => {
+    const { current: element } = elementRef;
+    const { current: handleClick } = callbackRef;
+
+    element
+      && element !== event.target
+      && !element.contains(event.target)
+      && isFunction(handleClick)
+      && handleClick(event);
+  }), []);
+};

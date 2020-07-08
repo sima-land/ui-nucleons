@@ -1,0 +1,50 @@
+@import '../colors';
+
+
+.tooltip {
+  position: absolute;
+  max-width: 400px;
+  max-height: 536px;
+  padding: 40px 8px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: $gray4;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .1), 0 0 4px rgba(0, 0, 0, .04);
+  border-radius: 4px;
+}
+
+.tooltip-cross {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+}
+
+.tooltip-content {
+  padding: 0 32px;
+  max-height: 456px; // 536 (по макетам) - 80 (отступы)
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  // base scrollbar styling for Gecko
+  scrollbar-color: #e0e0e0 transparent;
+  scrollbar-width: thin;
+
+  // base scrollbar styling for IE
+  scrollbar-face-color: #e0e0e0;
+  scrollbar-track-color: #fafafa;
+
+  // scrollbar styling for Webkit/Blink
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    width: 4px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+  }
+}
+
+.inline-block {
+  display: inline-block;
+}
