@@ -21,11 +21,13 @@ exports[`Tooltip should handle "inline" prop 1`] = `
     <Icon
       className="tooltip-cross"
       icon={[Function]}
+      onClick={[Function]}
       size={16}
     >
       <crossIcon
         className="icon icon-block tooltip-cross"
         height={16}
+        onClick={[Function]}
         viewBox="0 0 36 36"
         width={16}
         xmlns="http://www.w3.org/2000/svg"
@@ -33,6 +35,7 @@ exports[`Tooltip should handle "inline" prop 1`] = `
         <svg
           className="icon icon-block tooltip-cross"
           height={16}
+          onClick={[Function]}
           viewBox="0 0 36 36"
           width={16}
           xmlns="http://www.w3.org/2000/svg"
@@ -72,11 +75,13 @@ exports[`Tooltip should renders 1`] = `
     <Icon
       className="tooltip-cross"
       icon={[Function]}
+      onClick={[Function]}
       size={16}
     >
       <crossIcon
         className="icon icon-block tooltip-cross"
         height={16}
+        onClick={[Function]}
         viewBox="0 0 36 36"
         width={16}
         xmlns="http://www.w3.org/2000/svg"
@@ -84,6 +89,7 @@ exports[`Tooltip should renders 1`] = `
         <svg
           className="icon icon-block tooltip-cross"
           height={16}
+          onClick={[Function]}
           viewBox="0 0 36 36"
           width={16}
           xmlns="http://www.w3.org/2000/svg"

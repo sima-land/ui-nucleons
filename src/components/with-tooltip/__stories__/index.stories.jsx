@@ -18,19 +18,47 @@ const longText = [
 ].join(' ').repeat(2);
 
 storiesOf('WithTooltip', module)
+  .add('Dismiss handle', () => (
+    <div style={{ display: 'flex', height: 320, alignItems: 'center', justifyContent: 'space-between' }}>
+      <DismissTest />
+      <DismissTest />
+      <DismissTest />
+      <DismissTest />
+    </div>
+  ))
   .add('Large available area, small tooltip content', () => (
-    <TestArea tooltipChildren={shortText} />
+    <PositioningTest tooltipChildren={shortText} />
   ))
   .add('Large available area, large tooltip content', () => (
-    <TestArea tooltipChildren={longText} />
+    <PositioningTest tooltipChildren={longText} />
   ));
+
+/**
+ * Демонстрационный компонент.
+ * @return {ReactElement} Демонстрационный компонент.
+ */
+const DismissTest = () => {
+  const [shown, setShown] = useState(false);
+
+  return (
+    <WithTooltip
+      shown={shown}
+      tooltipChildren='Hello, world!'
+      onDismiss={(event, { byHolder }) => !byHolder && setShown(false)}
+    >
+      <Link pseudo onClick={() => setShown(!shown)}>
+        [Toggle tooltip]
+      </Link>
+    </WithTooltip>
+  );
+};
 
 /**
  * Демонстрационный компонент.
  * @param {Object} props Свойства.
  * @return {ReactElement} Демонстрационный компонент.
  */
-function TestArea ({ tooltipChildren, containerProps }) { // eslint-disable-line react/prop-types
+function PositioningTest ({ tooltipChildren, containerProps }) { // eslint-disable-line react/prop-types
   const movedRef = useRef(false);
   const capturedRef = useRef(false);
   const captureOffsetRef = useRef({ x: 0, y: 0 });

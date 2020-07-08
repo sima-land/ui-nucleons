@@ -279,7 +279,7 @@ describe('useOutsideClick', () => {
     expect(spy).toHaveBeenCalledTimes(0);
 
     act(() => {
-      document.body.dispatchEvent(new MouseEvent('click'));
+      document.documentElement.dispatchEvent(new MouseEvent('click'));
     });
 
     expect(spy).toHaveBeenCalledTimes(1);
