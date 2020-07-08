@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tooltip should handle "inline" prop 1`] = `
+<Tooltip
+  holderRef={
+    Object {
+      "current": <div />,
+    }
+  }
+  inline={true}
+>
+  <span
+    className="tooltip"
+    style={
+      Object {
+        "opacity": 0,
+        "visibility": "hidden",
+      }
+    }
+  >
+    <Icon
+      className="tooltip-cross"
+      icon={[Function]}
+      size={16}
+    >
+      <crossIcon
+        className="icon icon-block tooltip-cross"
+        height={16}
+        viewBox="0 0 36 36"
+        width={16}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <svg
+          className="icon icon-block tooltip-cross"
+          height={16}
+          viewBox="0 0 36 36"
+          width={16}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M28.59 10.591a2.25 2.25 0 1 0-3.182-3.182L18 14.818 10.59 7.409a2.25 2.25 0 1 0-3.182 3.182L14.818 18l-7.41 7.409a2.25 2.25 0 0 0 3.182 3.182L18 21.182l7.408 7.409a2.25 2.25 0 0 0 3.182-3.182L21.181 18l7.41-7.409z"
+          />
+        </svg>
+      </crossIcon>
+    </Icon>
+    <div
+      className="tooltip-content"
+    >
+      Test tooltip
+    </div>
+  </span>
+</Tooltip>
+`;
+
+exports[`Tooltip should renders 1`] = `
+<Tooltip
+  holderRef={
+    Object {
+      "current": <div />,
+    }
+  }
+>
+  <div
+    className="tooltip"
+    style={
+      Object {
+        "opacity": 0,
+        "visibility": "hidden",
+      }
+    }
+  >
+    <Icon
+      className="tooltip-cross"
+      icon={[Function]}
+      size={16}
+    >
+      <crossIcon
+        className="icon icon-block tooltip-cross"
+        height={16}
+        viewBox="0 0 36 36"
+        width={16}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <svg
+          className="icon icon-block tooltip-cross"
+          height={16}
+          viewBox="0 0 36 36"
+          width={16}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M28.59 10.591a2.25 2.25 0 1 0-3.182-3.182L18 14.818 10.59 7.409a2.25 2.25 0 1 0-3.182 3.182L14.818 18l-7.41 7.409a2.25 2.25 0 0 0 3.182 3.182L18 21.182l7.408 7.409a2.25 2.25 0 0 0 3.182-3.182L21.181 18l7.41-7.409z"
+          />
+        </svg>
+      </crossIcon>
+    </Icon>
+    <div
+      className="tooltip-content"
+    >
+      Test tooltip
+    </div>
+  </div>
+</Tooltip>
+`;
+
+exports[`WithTooltip should renders without props 1`] = `
+<WithTooltip>
+  <div
+    className="inline-block"
+  />
+</WithTooltip>
+`;
