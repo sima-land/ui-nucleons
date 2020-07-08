@@ -83,7 +83,7 @@ export const useOutsideClick = (elementRef, callback) => {
 
   callbackRef.current = callback;
 
-  useEffect(() => on(document.body, 'click', event => {
+  useEffect(() => on(document.documentElement, 'click', event => {
     const { current: element } = elementRef;
     const { current: handleClick } = callbackRef;
 

@@ -1,10 +1,30 @@
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 import WithTooltip, { Tooltip } from '../index';
+import Icon from '../../icon';
+import { placeTooltip } from '../utils';
+
+jest.mock('../utils', () => {
+  const original = jest.requireActual('../utils');
+
+  return {
+    ...original,
+    __esModule: true,
+    placeTooltip: jest.fn(original.placeTooltip),
+  };
+});
 
 describe('WithTooltip', () => {
+  let wrapper;
+
+  afterEach(() => {
+    // enzyme не выполняет unmount после завершения it() - выполняем вручную (иначе ломаются тесты)
+    wrapper && wrapper.unmount();
+  });
+
   it('should renders without props', () => {
-    const wrapper = mount(
+    wrapper = mount(
       <WithTooltip />
     );
 
@@ -12,7 +32,7 @@ describe('WithTooltip', () => {
   });
 
   it('should handle "inline" prop', () => {
-    const wrapper = mount(
+    wrapper = mount(
       <WithTooltip shown inline />
     );
 
@@ -20,7 +40,7 @@ describe('WithTooltip', () => {
   });
 
   it('should handle "holderElement" prop', () => {
-    const wrapper = mount(
+    wrapper = mount(
       <WithTooltip holderElement='aside' />
     );
 
@@ -28,7 +48,7 @@ describe('WithTooltip', () => {
   });
 
   it('should handle "holderProps" prop', () => {
-    const wrapper = mount(
+    wrapper = mount(
       <WithTooltip holderElement='aside' holderProps={{ id: 'test-block' }} />
     );
 
@@ -36,7 +56,7 @@ describe('WithTooltip', () => {
   });
 
   it('should handle "shown" prop', () => {
-    const wrapper = mount(
+    wrapper = mount(
       <WithTooltip shown />
     );
 
@@ -47,7 +67,7 @@ describe('WithTooltip', () => {
   });
 
   it('should handle "tooltipChildren" prop', () => {
-    const wrapper = mount(
+    wrapper = mount(
       <WithTooltip shown tooltipChildren='Hello, world!' />
     );
 
@@ -57,7 +77,7 @@ describe('WithTooltip', () => {
   it('should handle "onDismiss" prop', () => {
     const spy = jest.fn();
 
-    const wrapper = mount(
+    wrapper = mount(
       <WithTooltip shown onDismiss={spy} />
     );
 
@@ -66,8 +86,19 @@ describe('WithTooltip', () => {
 });
 
 describe('Tooltip', () => {
+  let wrapper;
+
+  afterEach(() => {
+    // enzyme не выполняет unmount после завершения it() - выполняем вручную (иначе ломаются тесты)
+    wrapper && wrapper.unmount();
+  });
+
+  beforeEach(() => {
+    placeTooltip.mockClear();
+  });
+
   it('should renders', () => {
-    const wrapper = mount(
+    wrapper = mount(
       <Tooltip
         holderRef={{ current: document.createElement('div') }}
         children='Test tooltip'
@@ -78,7 +109,7 @@ describe('Tooltip', () => {
   });
 
   it('should handle "inline" prop', () => {
-    const wrapper = mount(
+    wrapper = mount(
       <Tooltip
         holderRef={{ current: document.createElement('div') }}
         children='Test tooltip'
@@ -87,5 +118,76 @@ describe('Tooltip', () => {
     );
 
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should handle outside click', () => {
+    const spy = jest.fn();
+
+    wrapper = mount(
+      <Tooltip
+        holderRef={{ current: document.createElement('div') }}
+        children='Test tooltip'
+        inline
+        onDismiss={spy}
+      />
+    );
+
+    expect(spy).toHaveBeenCalledTimes(0);
+
+    const testEvent = new MouseEvent('click');
+
+    act(() => {
+      document.documentElement.dispatchEvent(testEvent);
+    });
+    wrapper.update();
+
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy.mock.calls[0][0]).toBe(testEvent);
+    expect(spy.mock.calls[0][1]).toEqual({ byHolder: false });
+  });
+
+  it('should handle window "resize" event', () => {
+    jest.useFakeTimers();
+
+    wrapper = mount(
+      <Tooltip
+        holderRef={{ current: document.createElement('div') }}
+        children='Test tooltip'
+      />
+    );
+
+    expect(placeTooltip).toHaveBeenCalledTimes(1);
+
+    act(() => {
+      window.dispatchEvent(new Event('resize'));
+    });
+
+    expect(placeTooltip).toHaveBeenCalledTimes(1);
+
+    jest.runAllTimers();
+
+    expect(placeTooltip).toHaveBeenCalledTimes(2);
+  });
+
+  it('should call "onDismiss" on cross click', () => {
+    const spy = jest.fn();
+
+    wrapper = mount(
+      <Tooltip
+        holderRef={{ current: document.createElement('div') }}
+        children='Test tooltip'
+        inline
+        onDismiss={spy}
+      />
+    );
+
+    expect(spy).toHaveBeenCalledTimes(0);
+
+    act(() => {
+      wrapper.find(Icon).simulate('click');
+    });
+    wrapper.update();
+
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 });
