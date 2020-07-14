@@ -15,6 +15,7 @@
   }
   &.selected {
     cursor: auto;
+    pointer-events: none;
   }
 }
 
