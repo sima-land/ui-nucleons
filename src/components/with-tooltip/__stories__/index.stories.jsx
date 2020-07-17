@@ -4,6 +4,7 @@ import on from '../../helpers/on';
 import Link from '../../link';
 import WithTooltip from '../index';
 import boundsOf from '../../helpers/bounds-of';
+import classes from './index.scss';
 
 const shortText = 'Это ось задних колёс.';
 
@@ -23,7 +24,6 @@ storiesOf('WithTooltip', module)
       <DismissTest />
       <DismissTest />
       <DismissTest />
-      <DismissTest />
     </div>
   ))
   .add('Large available area, small tooltip content', () => (
@@ -31,7 +31,47 @@ storiesOf('WithTooltip', module)
   ))
   .add('Large available area, large tooltip content', () => (
     <PositioningTest tooltipChildren={longText} />
+  ))
+  .add('In scrollable parent', () => (
+    <div style={{ position: 'relative', marginTop: 20, height: 1200 }}>
+      <div className={classes['fake-side-page']}>
+        <div className={classes['fake-side-page-inner']}>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi, vel.</p>
+
+          <ReadyTooltip />
+          {' '}
+          {Array(260).fill(0).map((zero, index) => `${index + 1}`).join(', ')}
+
+          <div style={{ textAlign: 'right' }}>
+            <ReadyTooltip />
+          </div>
+
+          {Array(240).fill(0).map((zero, index) => `${index + 1}`).join(', ')}
+          {' '}
+          <ReadyTooltip />
+        </div>
+      </div>
+    </div>
   ));
+
+/**
+ * Демонстрационный компонент.
+ * @return {ReactElement} Демонстрационный компонент.
+ */
+const ReadyTooltip = () => {
+  const [shown, setShown] = useState(false);
+
+  return (
+    <WithTooltip
+      shown={shown}
+      onDismiss={() => setShown(false)}
+      children={(
+        <Link onClick={() => setShown(true)}>Hello, world!</Link>
+      )}
+      tooltipChildren='Open tooltip'
+    />
+  );
+};
 
 /**
  * Демонстрационный компонент.
@@ -59,54 +99,8 @@ const DismissTest = () => {
  * @return {ReactElement} Демонстрационный компонент.
  */
 function PositioningTest ({ tooltipChildren, containerProps }) { // eslint-disable-line react/prop-types
-  const movedRef = useRef(false);
-  const capturedRef = useRef(false);
-  const captureOffsetRef = useRef({ x: 0, y: 0 });
-
-  const wrapperRef = useRef();
-  const textareaRef = useRef();
-
   const [shown, setShown] = useState(false);
-  const [, setCount] = useState(0);
-
-  useEffect(() => {
-    const offDown = on(window, 'mousedown', event => {
-      if (
-        event.target !== textareaRef.current
-        && (
-          event.target === wrapperRef.current
-          || wrapperRef.current.contains(event.target)
-        )
-      ) {
-        event.preventDefault();
-        captureOffsetRef.current.x = boundsOf(wrapperRef.current).left - event.clientX;
-        captureOffsetRef.current.y = boundsOf(wrapperRef.current).top - event.clientY;
-        capturedRef.current = true;
-      }
-    }, { capture: true });
-
-    const offMove = on(window, 'mousemove', ({ clientX, clientY }) => {
-      if (capturedRef.current) {
-        const { current: captureOffset } = captureOffsetRef;
-
-        movedRef.current = true;
-        wrapperRef.current.style.top = `${pageYOffset + clientY + captureOffset.y}px`;
-        wrapperRef.current.style.left = `${pageXOffset + clientX + captureOffset.x}px`;
-        setCount(Math.random()); // для пересчета позиции
-      }
-    });
-
-    const offUp = on(window, 'mouseup', () => {
-      capturedRef.current = false;
-      setCount(Math.random()); // для пересчета позиции
-    });
-
-    return () => {
-      offDown();
-      offMove();
-      offUp();
-    };
-  }, []);
+  const { draggableRef, movedRef } = useDraggable();
 
   return (
     <div
@@ -117,7 +111,7 @@ function PositioningTest ({ tooltipChildren, containerProps }) { // eslint-disab
       }}
       {...containerProps}
     >
-      <div ref={wrapperRef} style={{ position: 'absolute' }}>
+      <div ref={draggableRef} style={{ position: 'absolute' }}>
         <WithTooltip
           shown={shown}
           tooltipChildren={tooltipChildren}
@@ -136,3 +130,54 @@ function PositioningTest ({ tooltipChildren, containerProps }) { // eslint-disab
     </div>
   );
 }
+
+/**
+ * Хук для перетаскиваемых элементов.
+ * @return {Object} Рефы.
+ */
+const useDraggable = () => {
+  const movedRef = useRef(false);
+  const capturedRef = useRef(false);
+  const captureOffsetRef = useRef({ x: 0, y: 0 });
+
+  const draggableRef = useRef();
+  const [, setCount] = useState(0);
+
+  useEffect(() => {
+    const offDown = on(window, 'mousedown', event => {
+      if (
+        event.target === draggableRef.current
+        || draggableRef.current.contains(event.target)
+      ) {
+        event.preventDefault();
+        captureOffsetRef.current.x = boundsOf(draggableRef.current).left - event.clientX;
+        captureOffsetRef.current.y = boundsOf(draggableRef.current).top - event.clientY;
+        capturedRef.current = true;
+      }
+    }, { capture: true });
+
+    const offMove = on(window, 'mousemove', ({ clientX, clientY }) => {
+      if (capturedRef.current) {
+        const { current: captureOffset } = captureOffsetRef;
+
+        movedRef.current = true;
+        draggableRef.current.style.top = `${pageYOffset + clientY + captureOffset.y}px`;
+        draggableRef.current.style.left = `${pageXOffset + clientX + captureOffset.x}px`;
+        setCount(Math.random()); // для пересчета позиции
+      }
+    });
+
+    const offUp = on(window, 'mouseup', () => {
+      capturedRef.current = false;
+      setCount(Math.random()); // для пересчета позиции
+    });
+
+    return () => {
+      offDown();
+      offMove();
+      offUp();
+    };
+  }, []);
+
+  return { draggableRef, movedRef };
+};

@@ -9,6 +9,7 @@ import classes from './with-tooltip.scss';
 import crossIcon from '../icons/stroked-cross.svg';
 import { isFunction, debounce } from 'lodash';
 import on from '../helpers/on';
+import { getScrollParent } from '../helpers/get-scroll-parent';
 
 const cx = classnames.bind(classes);
 
@@ -53,7 +54,7 @@ const WithTooltip = ({
         * https://github.com/facebook/react/issues/11387
         */}
       {shown && (
-        <Layer>
+        <Layer defineRoot={() => getScrollParent(holderRef.current)}>
           <Tooltip
             onDismiss={onDismiss}
             children={tooltipChildren}
@@ -113,6 +114,12 @@ export const Tooltip = ({
     window,
     'resize',
     debounce(() => placeTooltip(tooltipRef.current, holderRef.current), 200)
+  ), []);
+
+  useEffect(() => on(
+    window,
+    'scroll',
+    () => placeTooltip(tooltipRef.current, holderRef.current)
   ), []);
 
   return (
