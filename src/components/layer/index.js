@@ -10,31 +10,35 @@ class Layer extends Component {
    * Конструктор.
    * @param {Object} props Свойства.
    * @param {*} props.children Содержимое слоя.
+   * @param {*} props.defineRoot Должна вернуть элемент в который через портал будет выведено содержимое слоя.
    */
   constructor (props) {
     super(props);
 
     this.state = { mounted: false };
-
-    this.element = hasDocumentBody() && document.createElement('div');
   }
 
   /**
-   * Добавляет свой элемент в конец document.body.
+   * Добавляет свой элемент в конец заданного родителя.
    */
   componentDidMount () {
-    hasDocumentBody() && (
-      document.body.appendChild(this.element),
+    const { defineRoot = () => document.body } = this.props;
+
+    this.element = document.createElement('div');
+    this.rootElement = defineRoot();
+
+    this.rootElement && (
+      this.rootElement.appendChild(this.element),
       this.setState({ mounted: true })
     );
   }
 
   /**
-   * Удаляет свой элемент из document.body.
+   * Удаляет свой элемент из заданного родителя.
    */
   componentWillUnmount () {
-    hasDocumentBody() && (
-      document.body.removeChild(this.element),
+    this.rootElement && (
+      this.rootElement.removeChild(this.element),
       this.setState({ mounted: false })
     );
   }
@@ -53,12 +57,11 @@ Layer.propTypes = {
    * Содержимое слоя.
    */
   children: PropTypes.any,
-};
 
-/**
- * Определяет, существует ли document.body.
- * @return {boolean} Существует ли document.body.
- */
-const hasDocumentBody = () => typeof document !== 'undefined' && Boolean(document.body);
+  /**
+   * Должна вернуть элемент в который через портал будет выведено содержимое слоя.
+   */
+  defineRoot: PropTypes.func,
+};
 
 export default Layer;

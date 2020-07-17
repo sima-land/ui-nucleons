@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { mount } from 'enzyme';
+import { render } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import Layer from '../index';
+
+/* eslint-disable react/prop-types */
 
 describe('<Layer />', () => {
   /**
@@ -9,14 +12,18 @@ describe('<Layer />', () => {
    * @param {Object} props Свойства.
    * @return {ReactElement} Компонент.
    */
-  const TestComponent = ({ layerContent }) => { // eslint-disable-line react/prop-types
-    const [withLayer, toggleLayer] = useState(false);
+  const TestComponent = ({
+    defaultWithLayer = false,
+    layerContent,
+    layerProps,
+  }) => {
+    const [withLayer, toggleLayer] = useState(defaultWithLayer);
 
     return (
       <div className='test-app'>
         <button onClick={() => toggleLayer(!withLayer)}>Toggle layer</button>
         {withLayer && (
-          <Layer>
+          <Layer {...layerProps}>
             {layerContent}
           </Layer>
         )}
@@ -51,5 +58,34 @@ describe('<Layer />', () => {
     wrapper.update();
 
     expect(document.body.contains(newLastElement)).toBe(false);
+  });
+
+  it('should handle "defineRoot" prop', () => {
+    const container = document.createElement('div');
+    const otherContainer = document.createElement('div');
+
+    document.body.append(container, otherContainer);
+
+    expect(otherContainer.children).toHaveLength(0);
+
+    act(() => {
+      render(
+        <TestComponent
+          defaultWithLayer
+          layerContent={(
+            <h2 className='test-title'>New layer</h2>
+          )}
+          layerProps={{
+            defineRoot: () => otherContainer,
+          }}
+        />,
+        container
+      );
+    });
+
+    expect(otherContainer.children).toHaveLength(1);
+
+    container.remove();
+    otherContainer.remove();
   });
 });
