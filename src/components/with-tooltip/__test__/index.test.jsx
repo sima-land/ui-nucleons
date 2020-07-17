@@ -169,6 +169,23 @@ describe('Tooltip', () => {
     expect(placeTooltip).toHaveBeenCalledTimes(2);
   });
 
+  it('should handle window "scroll" event', () => {
+    wrapper = mount(
+      <Tooltip
+        holderRef={{ current: document.createElement('div') }}
+        children='Test tooltip'
+      />
+    );
+
+    expect(placeTooltip).toHaveBeenCalledTimes(1);
+
+    act(() => {
+      window.dispatchEvent(new Event('scroll'));
+    });
+
+    expect(placeTooltip).toHaveBeenCalledTimes(2);
+  });
+
   it('should call "onDismiss" on cross click', () => {
     const spy = jest.fn();
 
