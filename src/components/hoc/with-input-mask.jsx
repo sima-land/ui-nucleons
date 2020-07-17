@@ -27,7 +27,7 @@ export const getNewMaskedObject = (
   const cleanValue = clearValue(value, validator);
 
   let newCaretPosition = carret.prev;
-  let newValue = '';
+  let newValue;
   if (isInserting) {
     newCaretPosition = getNextEditablePosition(carret.prev, validator);
 
@@ -183,10 +183,10 @@ const withInputMask = (
 
     const inputRef = useRef();
     const { current: carret } = useRef({ prev: 0, actual: 0 });
-    let { current: value } = useRef(getMaskedValue(clearValue(pureValue, validator), validator));
+    const valueRef = useRef(getMaskedValue(clearValue(pureValue, validator), validator));
 
     useEffect(() => {
-      inputRef.current.value = value;
+      inputRef.current.value = valueRef.current;
     }, []);
 
     /**
@@ -199,20 +199,19 @@ const withInputMask = (
 
       const newValue = getNewMaskedObject(
         e.target.value,
-        value,
+        valueRef.current,
         validator,
         carret
       );
       carret.actual = newValue.newCaretPosition;
-      value = newValue.maskedValue;
+      valueRef.current = newValue.maskedValue;
 
       const input = inputRef.current;
       if (input) {
-        input.value = value;
+        input.value = valueRef.current;
         input.setSelectionRange(carret.actual, carret.actual);
       }
-
-      e.target.value = value;
+      e.target.value = valueRef.current;
       isFunction(pureOnChange) && pureOnChange(e);
     };
 
