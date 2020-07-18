@@ -48,7 +48,7 @@ const ModifierItem = ({
     )}
     {Boolean(type === MODIFIERS_TYPES.color && color) && (
       <div
-        className={cx('adornment')}
+        className={cx('adornment', 'color')}
         style={{ backgroundColor: color }}
       />
     )}
