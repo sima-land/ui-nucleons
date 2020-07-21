@@ -2,12 +2,7 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import Pagination from '../index';
 
-/**
- * Тестовая секция.
- * @param {{ total: number }} props Свойства.
- * @return {ReactElement} Тестовая секция.
- */
-const TestSection = ({ total = 100 }) => { // eslint-disable-line react/prop-types
+const TestSection = ({ total = 100 }) => {
   const [currentPage, setPage] = useState(1);
 
   return (

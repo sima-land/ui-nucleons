@@ -7,11 +7,6 @@ import Layer from '../index';
 /* eslint-disable react/prop-types */
 
 describe('<Layer />', () => {
-  /**
-   * Тестовый компонент.
-   * @param {Object} props Свойства.
-   * @return {ReactElement} Компонент.
-   */
   const TestComponent = ({
     defaultWithLayer = false,
     layerContent,

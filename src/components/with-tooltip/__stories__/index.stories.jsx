@@ -54,10 +54,6 @@ storiesOf('WithTooltip', module)
     </div>
   ));
 
-/**
- * Демонстрационный компонент.
- * @return {ReactElement} Демонстрационный компонент.
- */
 const ReadyTooltip = () => {
   const [shown, setShown] = useState(false);
 
@@ -73,10 +69,6 @@ const ReadyTooltip = () => {
   );
 };
 
-/**
- * Демонстрационный компонент.
- * @return {ReactElement} Демонстрационный компонент.
- */
 const DismissTest = () => {
   const [shown, setShown] = useState(false);
 
@@ -93,12 +85,7 @@ const DismissTest = () => {
   );
 };
 
-/**
- * Демонстрационный компонент.
- * @param {Object} props Свойства.
- * @return {ReactElement} Демонстрационный компонент.
- */
-function PositioningTest ({ tooltipChildren, containerProps }) { // eslint-disable-line react/prop-types
+function PositioningTest ({ tooltipChildren, containerProps }) {
   const [shown, setShown] = useState(false);
   const { draggableRef, movedRef } = useDraggable();
 
@@ -131,10 +118,6 @@ function PositioningTest ({ tooltipChildren, containerProps }) { // eslint-disab
   );
 }
 
-/**
- * Хук для перетаскиваемых элементов.
- * @return {Object} Рефы.
- */
 const useDraggable = () => {
   const movedRef = useRef(false);
   const capturedRef = useRef(false);
@@ -161,8 +144,8 @@ const useDraggable = () => {
         const { current: captureOffset } = captureOffsetRef;
 
         movedRef.current = true;
-        draggableRef.current.style.top = `${pageYOffset + clientY + captureOffset.y}px`;
-        draggableRef.current.style.left = `${pageXOffset + clientX + captureOffset.x}px`;
+        draggableRef.current.style.top = `${window.pageYOffset + clientY + captureOffset.y}px`;
+        draggableRef.current.style.left = `${window.pageXOffset + clientX + captureOffset.x}px`;
         setCount(Math.random()); // для пересчета позиции
       }
     });

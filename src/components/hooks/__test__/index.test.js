@@ -32,12 +32,7 @@ describe('useInfiniteScroll()', () => {
     container = null;
   });
 
-  /**
-   * Тестовый компонент.
-   * @param {Object} props Свойства.
-   * @return {ReactElement} Блок.
-   */
-  const TestComponent = ({ withList = true, onFullScroll }) => { // eslint-disable-line react/prop-types
+  const TestComponent = ({ withList = true, onFullScroll }) => {
     const listRef = useRef();
 
     useInfiniteScroll(listRef, {
@@ -130,10 +125,6 @@ describe('useOnMount()', () => {
   it('should call effect only on mount', () => {
     const spy = jest.fn();
 
-    /**
-     * Тестовый компонент.
-     * @return {ReactElement} Блок.
-     */
     const TestComponent = () => {
       const [isOpen, setIsOpen] = useState(false);
       useOnMount(spy);
@@ -177,10 +168,6 @@ describe('useApplyMemo()', () => {
   it('should call function with dependencies', () => {
     const spy = jest.fn();
 
-    /**
-     * Тестовый компонент.
-     * @return {ReactElement} Блок.
-     */
     const TestComponent = () => {
       const [isOpen, setIsOpen] = useState(false);
       useApplyMemo(spy, [isOpen]);
@@ -221,10 +208,6 @@ describe('useIsTouchDevice', () => {
     container = null;
   });
 
-  /**
-   * Тестовый компонент.
-   * @return {ReactElement} Блок.
-   */
   const TestComponent = () => {
     const touch = useIsTouchDevice();
     return (
@@ -243,11 +226,7 @@ describe('useIsTouchDevice', () => {
 });
 
 describe('useOutsideClick', () => {
-  /**
-   * Тестовый компонент.
-   * @return {ReactElement} Блок.
-   */
-  const TestComponent = ({ callback }) => { // eslint-disable-line react/prop-types
+  const TestComponent = ({ callback }) => {
     const ref = useRef();
 
     useOutsideClick(ref, callback);

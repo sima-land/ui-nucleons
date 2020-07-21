@@ -894,12 +894,13 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@dev-dep/linters@^1.0.1":
-  version "1.0.1"
-  resolved "https://gitlab.sima-land.ru/api/v4/projects/919/packages/npm/@dev-dep/linters/-/@dev-dep/linters-1.0.1.tgz#84eb54631cb9828a922a98b1635a9077c6802b7e"
-  integrity sha1-hOtUYxy5goqSKpixY1qQd8aAK34=
+"@dev-dep/linters@^1.0.3":
+  version "1.0.3"
+  resolved "https://gitlab.sima-land.ru/api/v4/projects/919/packages/npm/@dev-dep/linters/-/@dev-dep/linters-1.0.3.tgz#37f4d3f07a3a0e853cb5edc8bb094edb9d2db89f"
+  integrity sha1-N/TT8Ho6DoU8te3IuwlO250tuJ8=
   dependencies:
     babel-eslint "^10.0.3"
+    confusing-browser-globals "^1.0.9"
     eslint "^6.6.0"
     eslint-plugin-import "^2.18.2"
     eslint-plugin-jest "^23.0.3"
@@ -4016,6 +4017,11 @@ concat-stream@^1.5.0, concat-stream@^1.6.0:
     inherits "^2.0.3"
     readable-stream "^2.2.2"
     typedarray "^0.0.6"
+
+confusing-browser-globals@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/confusing-browser-globals/-/confusing-browser-globals-1.0.9.tgz#72bc13b483c0276801681871d4898516f8f54fdd"
+  integrity sha512-KbS1Y0jMtyPgIxjO7ZzMAuUpAKMt1SzCL9fsrKsX6b0zJPTaT0SiSPmewwVZg9UAO83HVIlEhZF84LIjZ0lmAw==
 
 connect-history-api-fallback@^1.6.0:
   version "1.6.0"

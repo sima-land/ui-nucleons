@@ -7,12 +7,6 @@ import NavButton from '../nav-button';
 import classes from '../carousel.scss';
 import Point from '../../helpers/point';
 
-/**
- * Определяет свойство на объекте.
- * @param {Object} object Объект.
- * @param {Object} key Ключ.
- * @param {Object} value Значение.
- */
 const defineProp = (object, key, value) => {
   Object.defineProperty(object, key, {
     value,

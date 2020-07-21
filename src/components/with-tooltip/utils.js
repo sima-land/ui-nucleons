@@ -186,7 +186,7 @@ export const getInnerRect = element => {
 export const getOriginCorrection = element => {
   const offsetParent = findOffsetParent(element);
   const scrollParent = getScrollParent(element);
-  const correction = { x: pageXOffset, y: pageYOffset };
+  const correction = { x: window.pageXOffset, y: window.pageYOffset };
 
   if (offsetParent) {
     const parentRect = boundsOf(offsetParent);

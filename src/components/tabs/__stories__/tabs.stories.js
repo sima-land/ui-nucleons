@@ -23,11 +23,6 @@ const tabHeaderStyle = {
   borderBottom: '1px solid #e8b6cf',
 };
 
-/**
- * Выбираемые Табы.
- * @param {string} item Элемент таба.
- * @return {ReactElement} Компонент.
- */
 class SelectableTabs extends React.Component {
   state = {
     selected: 'Tab 1',
@@ -35,10 +30,6 @@ class SelectableTabs extends React.Component {
   isSelectedItem = item => item === this.state.selected;
   onSelectItem = item => this.setState({ selected: item });
 
-  /**
-   * Отрисовка компонента.
-   * @return {ReactElement} Компонент.
-   */
   render () {
     return (
       <Tabs items={items} isSelectedItem={this.isSelectedItem} onSelectItem={this.onSelectItem} />
@@ -46,11 +37,6 @@ class SelectableTabs extends React.Component {
   }
 }
 
-/**
- * Табы c кастомным рендерингом.
- * @param {Object} item Элемент таба.
- * @return {ReactElement} Компонент.
- */
 class CustomTabs extends React.Component {
   state = {
     selected: 3,
@@ -64,10 +50,6 @@ class CustomTabs extends React.Component {
   isSelectedItem = item => item.id === this.state.selected;
   onSelectItem = item => this.setState({ selected: item.id });
 
-  /**
-   * Отрисовка компонента.
-   * @return {ReactElement} Компонент.
-   */
   render () {
     return (
       <Tabs

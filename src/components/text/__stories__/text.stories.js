@@ -5,10 +5,6 @@ import cutTextContent from '../../helpers/cut-text-content';
 import isElement from 'lodash/isElement';
 import { COLORS } from '../../constants';
 
-/**
- * Обрезает текст до заданной высоты.
- * @return {ReactElement} Обрезанный текст с добавлением многоточия.
- */
 const CutTextContent = () => {
   const textRef = useRef(null);
   useLayoutEffect(() => {

@@ -7,11 +7,6 @@ import {
   placeTooltip,
 } from '../utils';
 
-/**
- * Создает поддельный элемент.
- * @param {Object} rect Прямоугольник.
- * @return {Object} Поддельный элемент.
- */
 const FakeElement = ({
   top = 0,
   left = 0,
@@ -91,7 +86,7 @@ describe('CanPlace', () => {
 });
 
 describe('PlaceOffset', () => {
-  const realOffset = { x: window.pageXOffset, y: pageYOffset };
+  const realOffset = { x: window.pageXOffset, y: window.pageYOffset };
 
   const actualDescriptor = {
     ...Object.getOwnPropertyDescriptor(window, 'getComputedStyle'),
@@ -208,7 +203,7 @@ describe('Correct', () => {
 
   const realOffset = {
     x: window.pageXOffset,
-    y: pageYOffset,
+    y: window.pageYOffset,
   };
 
   afterEach(() => {
@@ -318,7 +313,7 @@ describe('placeTooltip', () => {
 });
 
 describe('getOriginCorrection', () => {
-  const realOffset = { x: window.pageXOffset, y: pageYOffset };
+  const realOffset = { x: window.pageXOffset, y: window.pageYOffset };
 
   const actualDescriptor = {
     ...Object.getOwnPropertyDescriptor(window, 'getComputedStyle'),

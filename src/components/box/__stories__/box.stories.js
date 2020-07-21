@@ -57,11 +57,6 @@ const testPaddingPropsList = [
   { padding: 2, paddingLeft: 8 },
 ];
 
-/**
- * Возвращает тестовый компонент для проверки свойства "alignItems".
- * @param {string} alignItems Значение свойства.
- * @return {ReactElement} Тестовый компонент.
- */
 const getTestAlignItemsBox = alignItems => (
   <Box
     padding={2}
@@ -72,11 +67,6 @@ const getTestAlignItemsBox = alignItems => (
   />
 );
 
-/**
- * Возвращает тестовый компонент для проверки свойства "flex".
- * @param {string} flex Значение свойства.
- * @return {ReactElement} Тестовый компонент.
- */
 const getTestFlexPropBox = flex => (
   <Box
     margin={4}

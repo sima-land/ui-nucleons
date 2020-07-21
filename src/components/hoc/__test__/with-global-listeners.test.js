@@ -3,10 +3,6 @@ import withGlobalListeners from '../with-global-listeners';
 import { mount } from 'enzyme';
 
 describe('withGlobalListeners', () => {
-  /**
-   * Обычный компонент для тестирования компонента высшего порядка.
-   * @return {ReactElement} Компонент.
-   */
   const TestSpan = () => <span>Тестовый компонент</span>;
 
   it('should match snapshot', () => {
