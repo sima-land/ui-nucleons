@@ -1,4 +1,5 @@
 import React from 'react';
+import { render } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 import WithTooltip, { Tooltip } from '../index';
@@ -88,9 +89,23 @@ describe('WithTooltip', () => {
 describe('Tooltip', () => {
   let wrapper;
 
+  const actualDescriptor = {
+    ...Object.getOwnPropertyDescriptor(window, 'getComputedStyle'),
+  };
+
+  beforeAll(() => {
+    Object.defineProperty(window, 'getComputedStyle', {
+      value: el => el.__fakeStyles || actualDescriptor.value(el),
+    });
+  });
+
+  afterAll(() => {
+    Object.defineProperty(window, 'getComputedStyle', actualDescriptor);
+  });
+
   afterEach(() => {
     // enzyme не выполняет unmount после завершения it() - выполняем вручную (иначе ломаются тесты)
-    wrapper && wrapper.unmount();
+    wrapper && wrapper.length > 0 && wrapper.unmount();
   });
 
   beforeEach(() => {
@@ -206,5 +221,32 @@ describe('Tooltip', () => {
     wrapper.update();
 
     expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should handle "scroll" event of custom scroll parent', () => {
+    const container = document.createElement('div');
+    container.__fakeStyles = { overflow: 'auto' };
+
+    document.body.append(container);
+
+    act(() => {
+      render(
+        <Tooltip
+          holderRef={{ current: document.createElement('div') }}
+          children='Test tooltip'
+        />,
+        container
+      );
+    });
+
+    expect(placeTooltip).toHaveBeenCalledTimes(1);
+
+    act(() => {
+      container.dispatchEvent(new Event('scroll'));
+    });
+
+    expect(placeTooltip).toHaveBeenCalledTimes(2);
+
+    container.remove();
   });
 });

@@ -1,15 +1,16 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import Icon from '../icon';
 import Layer from '../layer';
 import { placeTooltip } from './utils';
 import classnames from 'classnames/bind';
 import { useOutsideClick } from '../hooks';
 import PropTypes from 'prop-types';
-import classes from './with-tooltip.scss';
-import crossIcon from '../icons/stroked-cross.svg';
 import { isFunction, debounce } from 'lodash';
 import on from '../helpers/on';
 import { getScrollParent } from '../helpers/get-scroll-parent';
+
+import classes from './with-tooltip.scss';
+import crossIcon from '../icons/stroked-cross.svg';
 
 const cx = classnames.bind(classes);
 
@@ -98,6 +99,24 @@ export const Tooltip = ({
 }) => {
   const Container = inline ? 'span' : 'div';
   const tooltipRef = useRef();
+  const place = useCallback(() => placeTooltip(tooltipRef.current, holderRef.current), []);
+
+  useEffect(place);
+
+  useEffect(() => {
+    const offList = [
+      on(window, 'scroll', place),
+      on(window, 'resize', debounce(place, 200)),
+    ];
+
+    const scrollParent = getScrollParent(tooltipRef.current);
+
+    scrollParent !== document.body
+      && scrollParent !== document.documentElement
+      && offList.push(on(scrollParent, 'scroll', place));
+
+    return () => offList.forEach(off => off());
+  }, []);
 
   useOutsideClick(tooltipRef, event => {
     const { current: holderEl } = holderRef;
@@ -107,20 +126,6 @@ export const Tooltip = ({
         || (holderEl && holderEl.contains(event.target)),
     });
   });
-
-  useEffect(() => placeTooltip(tooltipRef.current, holderRef.current));
-
-  useEffect(() => on(
-    window,
-    'resize',
-    debounce(() => placeTooltip(tooltipRef.current, holderRef.current), 200)
-  ), []);
-
-  useEffect(() => on(
-    window,
-    'scroll',
-    () => placeTooltip(tooltipRef.current, holderRef.current)
-  ), []);
 
   return (
     <Container

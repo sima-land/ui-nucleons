@@ -1,4 +1,11 @@
-import { CanPlace, Place, Correct, placeTooltip, asPx, getOriginCorrection } from '../utils';
+import {
+  CanPlace,
+  CorrectOffset,
+  getInnerRect,
+  getOriginCorrection,
+  PlaceOffset,
+  placeTooltip,
+} from '../utils';
 
 /**
  * Создает поддельный элемент.
@@ -83,7 +90,7 @@ describe('CanPlace', () => {
   });
 });
 
-describe('Place', () => {
+describe('PlaceOffset', () => {
   const realOffset = { x: window.pageXOffset, y: pageYOffset };
 
   const actualDescriptor = {
@@ -108,7 +115,7 @@ describe('Place', () => {
   it('reset', () => {
     const fakeElement = { style: {} };
 
-    Place.reset(fakeElement);
+    PlaceOffset.reset(fakeElement);
 
     expect(fakeElement.style).toStrictEqual({
       top: null,
@@ -127,9 +134,9 @@ describe('Place', () => {
     tooltipEl.offsetParent = { __fakeStyles: { position: 'static' } };
     document.documentElement.__fakeStyles = { position: 'static' };
 
-    Place.onRight(tooltipEl, holderEl);
+    const result = PlaceOffset.onRight(tooltipEl, holderEl);
 
-    expect(tooltipEl.style.left).toEqual('328px');
+    expect(result).toEqual(328);
   });
 
   it('onLeft', () => {
@@ -141,9 +148,9 @@ describe('Place', () => {
     tooltipEl.offsetParent = { __fakeStyles: { position: 'static' } };
     document.documentElement.__fakeStyles = { position: 'static' };
 
-    Place.onLeft(tooltipEl, holderEl);
+    const result = PlaceOffset.onLeft(tooltipEl, holderEl);
 
-    expect(tooltipEl.style.left).toEqual('432px');
+    expect(result).toEqual(432);
   });
 
   it('onBottom', () => {
@@ -155,9 +162,9 @@ describe('Place', () => {
     tooltipEl.offsetParent = { __fakeStyles: { position: 'static' } };
     document.documentElement.__fakeStyles = { position: 'static' };
 
-    Place.onBottom(tooltipEl, holderEl);
+    const result = PlaceOffset.onBottom(tooltipEl, holderEl);
 
-    expect(tooltipEl.style.top).toEqual('138px');
+    expect(result).toEqual(138);
   });
 
   it('onTop', () => {
@@ -169,9 +176,9 @@ describe('Place', () => {
     tooltipEl.offsetParent = { __fakeStyles: { position: 'static' } };
     document.documentElement.__fakeStyles = { position: 'static' };
 
-    Place.onBottom(tooltipEl, holderEl);
+    const result = PlaceOffset.onBottom(tooltipEl, holderEl);
 
-    expect(tooltipEl.style.top).toEqual('528px');
+    expect(result).toEqual(528);
   });
 });
 
@@ -218,9 +225,9 @@ describe('Correct', () => {
     tooltipEl.offsetParent = { __fakeStyles: { position: 'static' } };
     document.documentElement.__fakeStyles = { position: 'static' };
 
-    Correct.vertically(tooltipEl, holderEl, testArea);
+    let result = CorrectOffset.vertically(tooltipEl, holderEl, testArea);
 
-    expect(tooltipEl.style.top).toEqual('380px');
+    expect(result).toEqual(380);
 
     // second case
     holderEl = FakeElement({ top: 980, bottom: 990 });
@@ -228,17 +235,17 @@ describe('Correct', () => {
 
     window.pageYOffset = 0;
 
-    Correct.vertically(tooltipEl, holderEl, testArea);
+    result = CorrectOffset.vertically(tooltipEl, holderEl, testArea);
 
-    expect(tooltipEl.style.top).toEqual('790px');
+    expect(result).toEqual(790);
 
     // third case
     holderEl = FakeElement({ top: 10, bottom: 990 });
     tooltipEl = FakeElement({ height: 1000 });
 
-    Correct.vertically(tooltipEl, holderEl, testArea);
+    result = CorrectOffset.vertically(tooltipEl, holderEl, testArea);
 
-    expect(tooltipEl.style.top).toEqual('16px');
+    expect(result).toEqual(16);
   });
 
   it('horizontally', () => {
@@ -247,9 +254,9 @@ describe('Correct', () => {
     tooltipEl.offsetParent = { __fakeStyles: { position: 'static' } };
     document.documentElement.__fakeStyles = { position: 'static' };
 
-    Correct.horizontally(tooltipEl, testArea);
+    const result = CorrectOffset.horizontally(tooltipEl, testArea);
 
-    expect(tooltipEl.style.left).toEqual('984px');
+    expect(result).toEqual(984);
   });
 });
 
@@ -271,8 +278,7 @@ describe('placeTooltip', () => {
 
     placeTooltip(tooltipEl, holderEl);
 
-    expect(tooltipEl.style.top).toEqual('890px');
-    expect(tooltipEl.style.left).toEqual('28px');
+    expect(tooltipEl.style.transform).toEqual('translate3d(28px, 890px, 0)');
   });
 
   it('should place on left', () => {
@@ -281,8 +287,7 @@ describe('placeTooltip', () => {
 
     placeTooltip(tooltipEl, holderEl);
 
-    expect(tooltipEl.style.top).toEqual('890px');
-    expect(tooltipEl.style.left).toEqual('872px');
+    expect(tooltipEl.style.transform).toEqual('translate3d(872px, 890px, 0)');
   });
 
   it('should place on bottom', () => {
@@ -291,8 +296,7 @@ describe('placeTooltip', () => {
 
     placeTooltip(tooltipEl, holderEl);
 
-    expect(tooltipEl.style.top).toEqual('28px');
-    expect(tooltipEl.style.left).toEqual('884px');
+    expect(tooltipEl.style.transform).toEqual('translate3d(884px, 28px, 0)');
   });
 
   it('should place on top', () => {
@@ -301,8 +305,7 @@ describe('placeTooltip', () => {
 
     placeTooltip(tooltipEl, holderEl);
 
-    expect(tooltipEl.style.top).toEqual('872px');
-    expect(tooltipEl.style.left).toEqual('884px');
+    expect(tooltipEl.style.transform).toEqual('translate3d(884px, 872px, 0)');
   });
 
   it('should do nothing when tooltip or holder is not defined', () => {
@@ -311,17 +314,6 @@ describe('placeTooltip', () => {
 
     placeTooltip(null, holderEl);
     placeTooltip(tooltipEl, null);
-  });
-});
-
-describe('asPx', () => {
-  it('should works properly', () => {
-    expect(asPx(null)).toBe('0px');
-    expect(asPx(undefined)).toBe('0px');
-    expect(asPx(false)).toBe('0px');
-    expect(asPx('1')).toBe('0px');
-    expect(asPx(1)).toBe('1px');
-    expect(asPx(112.2)).toBe('112.2px');
   });
 });
 
@@ -384,5 +376,32 @@ describe('getOriginCorrection', () => {
     window.pageYOffset = 230;
 
     expect(getOriginCorrection(testDiv)).toEqual({ x: 70, y: 60 });
+  });
+});
+
+describe('getInnerRect', () => {
+  it('should correct when scrollWidth/scrollHeight greater than bounds', () => {
+    const testDiv = FakeElement({
+      left: 10,
+      width: 100,
+      right: 110,
+      top: 10,
+      height: 100,
+      bottom: 110,
+    });
+
+    testDiv.scrollLeft = 20;
+    testDiv.scrollWidth = 200;
+    testDiv.scrollTop = 20;
+    testDiv.scrollHeight = 200;
+
+    expect(getInnerRect(testDiv)).toEqual({
+      bottom: 190,
+      height: 200,
+      left: -10,
+      right: 190,
+      top: -10,
+      width: 200,
+    });
   });
 });
