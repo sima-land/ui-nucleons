@@ -6,11 +6,6 @@ import Clean from '../../clean-buttons';
 import TopBar from '../../top-bar';
 import '!style-loader!css-loader!sass-loader!./modal-storybook.scss';
 
-/**
- * Компонент для демонстрации работы модального окна.
- * @param {Object} modalProps Свойства для Modal.
- * @return {ReactElement} Компонент для демонстрации работы модального окна.
- */
 const ModalDemo = modalProps => {
   const [isModalOpen, toggleModal] = useState(false);
 

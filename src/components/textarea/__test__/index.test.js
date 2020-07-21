@@ -127,10 +127,6 @@ describe('<Textarea />', () => {
     Object.defineProperty(textareaEl, 'style', {
       configurable: true,
       value: {
-        /**
-         * Тестовый сеттер.
-         * @param {*} value Значение.
-         */
         set height (value) {
           spy(value);
         },

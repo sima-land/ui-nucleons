@@ -4,12 +4,6 @@ import PopupArrow from '../../popup-arrow';
 import isBrowser from '../../../helpers/is-browser';
 import PositioningPopup, { defaultArrowProps } from '../';
 
-/**
- * Создает имитацию рефа.
- * @param {number} width Ширина.
- * @param {number} left Отступ слева.
- * @return {Object} Имитация рефа.
- */
 const createFakeRef = (width, left) => ({
   current: {
     offsetWidth: width,

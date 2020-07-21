@@ -10,19 +10,11 @@ const container = {
 
 const values = range(0, 5, 0.5);
 
-/**
- * Компонент рейтинга с выбором.
- * @return {ReactElement} Компонент.
- */
 class SelectableRating extends React.Component {
   state = {
     rating: 2,
   };
 
-  /**
-   * Возвращает компонент рейтинга.
-   * @return {ReactElement} Компонент.
-   */
   render () {
     return <Rating value={this.state.rating} onStarClick={count => this.setState({ rating: count })} withHover />;
   }

@@ -13,10 +13,6 @@ jest.mock('../../helpers/intersection-observer', () => {
 });
 
 describe('withInViewportObserver', () => {
-  /**
-   * Обычный компонент для тестирования компонента высшего порядка.
-   * @return {ReactElement} Компонент.
-   */
   const TestSpan = () => <span>Тестовый компонент</span>;
 
   it('shouldn`t create excess observers instances', () => {

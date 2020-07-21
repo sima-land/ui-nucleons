@@ -18,11 +18,6 @@ describe('<BaseGallery />', () => {
     expect(gallery).toMatchSnapshot();
   });
   it('should render with items and controls', () => {
-    /**
-     * Функция для получения свойств item-а.
-     * @param {string} item Item.
-     * @return {Object} Свойства.
-     */
     const getItemProps = item => ({
       children: <img src={item} alt={item} />,
     });
@@ -81,12 +76,6 @@ describe('<BaseGallery />', () => {
     const onPrevClick = jest.fn();
     const onNextClick = jest.fn();
 
-    /**
-     * Функция для получения свойств элементов управления.
-     * @param {string} type Тип.
-     * @param {boolean} disabled Недоступна.
-     * @return {Object} Свойства.
-     */
     const getControlProps = jest.fn((type, disabled) => ({
       children: type,
       disabled,

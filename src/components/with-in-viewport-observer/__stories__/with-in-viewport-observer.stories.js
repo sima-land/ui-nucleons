@@ -1,14 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { storiesOf } from '@storybook/react';
 import withInViewportObserver from '../';
-import PropTypes from 'prop-types';
 
-/**
- * Тестовый компонент.
- * @param {Object} props Свойства компонента.
- * @param {Function} props.addObserve Функция подписки на Intersection Observer.
- * @return {ReactElement} Компонент.
- */
 const PureSomeComponent = ({
   addObserve,
 }) => {
@@ -41,9 +34,6 @@ const PureSomeComponent = ({
       </div>
     </div>
   );
-};
-PureSomeComponent.propTypes = {
-  addObserve: PropTypes.func,
 };
 
 const SomeComponent = withInViewportObserver(PureSomeComponent);

@@ -4,11 +4,8 @@ import asField from '../as-field';
 import styles from '../as-field.scss';
 
 describe('asField HOC', () => {
-  /**
-   * Тестовый компонент.
-   * @return {ReactElement} Блок.
-   */
   const TestComponent = () => <div>Test</div>;
+
   it('should return component with correct displayName', () => {
     const TestComponentAsField = asField(TestComponent);
     TestComponent.displayName = 'TestComponent';

@@ -21,10 +21,6 @@ jest.mock('../modifiers-group', () => {
 });
 
 describe('<ModifiersGroup />', () => {
-  /**
-   * Возвращает тестовый список данных модификаторов.
-   * @return {Array} Список данных модификаторов.
-   */
   const getTestItems = () => [
     { content: 'Test 1' },
     { content: 'Test 2' },

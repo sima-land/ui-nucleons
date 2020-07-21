@@ -20,18 +20,9 @@ describe('cutTextContent', () => {
     const testSpan = document.createElement('span');
     let testTextContent = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, quis!';
     Object.defineProperty(testSpan, 'textContent', {
-      /**
-       * Возвращает тестовый контент.
-       * @return {string} Тестовый контент.
-       */
       get () {
         return testTextContent;
       },
-
-      /**
-       * Изменяет тестовый контент.
-       * @param {string} value Тестовый контент.
-       */
       set (value) {
         testTextContent = value;
         Object.defineProperty(testSpan, 'clientHeight', {

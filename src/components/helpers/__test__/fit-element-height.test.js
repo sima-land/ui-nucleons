@@ -8,10 +8,6 @@ describe('fitElementHeight()', () => {
       offsetHeight: 12,
       clientHeight: 23,
       style: {
-        /**
-         * Тестовый сеттер.
-         * @param {*} value Значение.
-         */
         set height (value) {
           spy(value);
           if (value === 'auto') {

@@ -11,26 +11,14 @@ import isFunction from 'lodash/isFunction';
 import { makeInViewportObserverHOC } from '../../with-in-viewport-observer';
 import PropTypes from 'prop-types';
 
-/**
- * Тестовый компонент с вызовом addObserve.
- * @return {ReactElement} Компонент.
- */
 class TestProductPreviewsWidget extends React.Component {
   widgetRef = React.createRef();
 
-  /**
-   * Выполняется сразу после монтирования.
-   * Подписка элемента на IntersectionObserver.
-   */
   componentDidMount () {
     isFunction(this.props.addObserve)
     && this.props.addObserve(this.widgetRef.current, this.props.onIntersection);
   }
 
-  /**
-   * Возвращает компонент.
-   * @return {ReactElement} Компонент.
-   */
   render () {
     return (
       <div ref={this.widgetRef}>content</div>
