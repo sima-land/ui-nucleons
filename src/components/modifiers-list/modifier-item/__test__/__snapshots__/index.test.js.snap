@@ -5,7 +5,7 @@ exports[`<ModifierItem should render correctly color modifier 1`] = `
   className="wrapper"
 >
   <div
-    className="adornment"
+    className="adornment color"
     style={
       Object {
         "backgroundColor": "#451289",
