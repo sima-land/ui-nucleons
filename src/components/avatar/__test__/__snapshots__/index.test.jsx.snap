@@ -1,0 +1,344 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Avatar /> should handle props 1`] = `
+<Avatar
+  bgStyle={
+    Object {
+      "opacity": 0.4,
+    }
+  }
+  clipStyle={
+    Object {
+      "clipPath": "url(#fake-id)",
+    }
+  }
+  color="brand-blue"
+  iconProps={
+    Object {
+      "size": 16,
+    }
+  }
+  imageUrl="www.images.com"
+  size={40}
+  textColor="white"
+  textProps={
+    Object {
+      "className": "text-class",
+    }
+  }
+  title="Hello World"
+>
+  <span
+    className="avatar"
+    style={
+      Object {
+        "height": 40,
+        "width": 40,
+      }
+    }
+  >
+    <svg
+      className="super-ellipse"
+    >
+      <rect
+        height={40}
+        style={
+          Object {
+            "clipPath": "url(#fake-id)",
+            "fill": "#1f84db",
+            "opacity": 0.4,
+          }
+        }
+        width={40}
+        x={0}
+        y={0}
+      />
+    </svg>
+    <span
+      className="content"
+    >
+      <span
+        className="text-class"
+        role="presentation"
+      >
+        HW
+      </span>
+    </span>
+  </span>
+</Avatar>
+`;
+
+exports[`<Avatar /> should handle props 2`] = `
+<Avatar
+  bgStyle={
+    Object {
+      "opacity": 0.4,
+    }
+  }
+  clipStyle={
+    Object {
+      "clipPath": "url(#fake-id)",
+    }
+  }
+  color="brand-blue"
+  iconProps={
+    Object {
+      "size": 16,
+    }
+  }
+  imageUrl="www.images.com"
+  monogram="WH"
+  size={40}
+  textColor="white"
+  textProps={
+    Object {
+      "className": "text-class",
+    }
+  }
+  title="Hello World"
+>
+  <span
+    className="avatar"
+    style={
+      Object {
+        "height": 40,
+        "width": 40,
+      }
+    }
+  >
+    <svg
+      className="super-ellipse"
+    >
+      <rect
+        height={40}
+        style={
+          Object {
+            "clipPath": "url(#fake-id)",
+            "fill": "#1f84db",
+            "opacity": 0.4,
+          }
+        }
+        width={40}
+        x={0}
+        y={0}
+      />
+    </svg>
+    <span
+      className="content"
+    >
+      <span
+        className="text-class"
+        role="presentation"
+      >
+        WH
+      </span>
+    </span>
+  </span>
+</Avatar>
+`;
+
+exports[`<Avatar /> should handle props 3`] = `
+<Avatar
+  bgStyle={
+    Object {
+      "opacity": 0.4,
+    }
+  }
+  clipStyle={
+    Object {
+      "clipPath": "url(#fake-id)",
+    }
+  }
+  color="#f0f"
+  iconProps={
+    Object {
+      "size": 16,
+    }
+  }
+  imageUrl="www.images.com"
+  monogram="WH"
+  size={40}
+  textColor="white"
+  textProps={
+    Object {
+      "className": "text-class",
+    }
+  }
+  title="Hello World"
+>
+  <span
+    className="avatar"
+    style={
+      Object {
+        "height": 40,
+        "width": 40,
+      }
+    }
+  >
+    <svg
+      className="super-ellipse"
+    >
+      <rect
+        height={40}
+        style={
+          Object {
+            "clipPath": "url(#fake-id)",
+            "fill": "#f0f",
+            "opacity": 0.4,
+          }
+        }
+        width={40}
+        x={0}
+        y={0}
+      />
+    </svg>
+    <span
+      className="content"
+    >
+      <span
+        className="text-class"
+        role="presentation"
+      >
+        WH
+      </span>
+    </span>
+  </span>
+</Avatar>
+`;
+
+exports[`<Avatar /> should render image after it loaded 1`] = `
+<Avatar
+  imageUrl="https://test-cdn/"
+  monogram="JD"
+  title="John Doe"
+>
+  <span
+    className="avatar"
+    style={
+      Object {
+        "height": 80,
+        "width": 80,
+      }
+    }
+  >
+    <svg
+      className="super-ellipse"
+    >
+      <rect
+        height={80}
+        style={
+          Object {
+            "fill": "#f5f5f5",
+          }
+        }
+        width={80}
+        x={0}
+        y={0}
+      />
+    </svg>
+    <span
+      className="content"
+    >
+      <span
+        className="title truncate color__gray87"
+        role="presentation"
+      >
+        JD
+      </span>
+    </span>
+  </span>
+</Avatar>
+`;
+
+exports[`<Avatar /> should render image after it loaded 2`] = `
+<Avatar
+  imageUrl="https://test-cdn/"
+  monogram="JD"
+  title="John Doe"
+>
+  <span
+    className="avatar"
+    style={
+      Object {
+        "height": 80,
+        "width": 80,
+      }
+    }
+  >
+    <svg
+      className="super-ellipse"
+    >
+      <image
+        href="https://test-cdn/"
+      />
+    </svg>
+  </span>
+</Avatar>
+`;
+
+exports[`<Avatar /> should renders without props 1`] = `
+<Avatar>
+  <span
+    className="avatar"
+    style={
+      Object {
+        "height": 80,
+        "width": 80,
+      }
+    }
+  >
+    <svg
+      className="super-ellipse"
+    >
+      <rect
+        height={80}
+        style={
+          Object {
+            "fill": "#f5f5f5",
+          }
+        }
+        width={80}
+        x={0}
+        y={0}
+      />
+    </svg>
+    <span
+      className="content"
+    >
+      <Icon
+        aria-hidden={true}
+        color="gray38"
+        icon={[Function]}
+        size={32}
+      >
+        <userPureSvg
+          aria-hidden={true}
+          className="icon icon-block color__gray38"
+          height={32}
+          viewBox="0 0 36 36"
+          width={32}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <svg
+            aria-hidden={true}
+            className="icon icon-block color__gray38"
+            height={32}
+            viewBox="0 0 36 36"
+            width={32}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clipRule="evenodd"
+              d="M11.479 10.268C10.619 6.132 13.776 2.25 18 2.25c4.224 0 7.382 3.882 6.521 8.018l-.607 2.921a6.04 6.04 0 0 1-11.829 0l-.607-2.921z"
+              fillRule="evenodd"
+            />
+            <path
+              d="M31.5 33.75h-27c-1.243 0-2.273-1.017-2.043-2.238C3.75 24.671 10.875 20.25 18 20.25s14.25 4.42 15.543 11.262c.23 1.221-.8 2.238-2.043 2.238z"
+            />
+          </svg>
+        </userPureSvg>
+      </Icon>
+    </span>
+  </span>
+</Avatar>
+`;
