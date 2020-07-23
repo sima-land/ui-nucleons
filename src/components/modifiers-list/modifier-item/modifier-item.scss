@@ -9,11 +9,8 @@
   &:not(:last-child) {
     box-shadow: inset 0 -1px 0 $gray12;
   }
-  &:hover,
   &.selected {
     background: $gray4;
-  }
-  &.selected {
     cursor: auto;
     pointer-events: none;
   }
