@@ -1,19 +1,19 @@
 <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
   <g>
-    <rect x="2.5" y="2.5" width="11" height="11" rx="1.5" fill="white" stroke="#757575" stroke-width="1" />
+    <rect x="0.5" y="0.5" width="15" height="15" rx="1.5" fill="white" stroke="#9E9E9E" stroke-width="1"/>
+   </g>
+
+  <g>
+    <rect width="16" height="16" rx="2" fill="#1F84DB"/>
+    <path d="M10.8 5.21967L6.4 9.18934L5.36569 8.21967C5.05327 7.92678 4.54673 7.92678 4.23431 8.21967C3.9219 8.51256 3.9219 8.98744 4.23431 9.28033L5.83431 10.7803C6.14673 11.0732 6.65327 11.0732 6.96569 10.7803L11.7657 6.28033C12.0781 5.98744 12.0781 5.51256 11.7657 5.21967C11.4533 4.92678 11.1124 4.92678 10.8 5.21967Z" fill="white"/>
   </g>
 
   <g>
-    <rect x="2" y="2" width="12" height="12" rx="2" fill="#1F84DB" />
-    <path d="M5 8L7 10.5L11 5" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-  </g>
-
-  <g>
-    <rect opacity=".48" x="2.5" y="2.5" width="11" height="11" rx="1.5" fill="#EBEBEB" stroke="#757575" />
+    <rect x="0.5" y="0.5" width="15" height="15" rx="1.5" fill="#F5F5F5" stroke="#C2C2C2"/>
   </g>
 
   <g opacity=".48">
-    <rect x="2" y="2" width="12" height="12" rx="2" fill="#757575" />
-    <path d="M5 8L7 10.5L11 5" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <rect width="16" height="16" rx="2" fill="#757575"/>
+    <path d="M10.8 5.21967L6.4 9.18934L5.36569 8.21967C5.05327 7.92678 4.54673 7.92678 4.23431 8.21967C3.9219 8.51256 3.9219 8.98744 4.23431 9.28033L5.83431 10.7803C6.14673 11.0732 6.65327 11.0732 6.96569 10.7803L11.7657 6.28033C12.0781 5.98744 12.0781 5.51256 11.7657 5.21967C11.4533 4.92678 11.1124 4.92678 10.8 5.21967Z" fill="white"/>
   </g>
 </svg>
