@@ -86,6 +86,7 @@ describe('<TextField />', () => {
       onBlur: jest.fn(),
       onChange: jest.fn(),
       onFocus: jest.fn(),
+      onClick: jest.fn(),
     };
 
     const wrapper = mount(
@@ -103,6 +104,7 @@ describe('<TextField />', () => {
       wrapper.find(BaseInput).simulate('focus');
     });
 
+    expect(callbacks.onClick).toHaveBeenCalledTimes(0);
     expect(callbacks.onBlur).toHaveBeenCalledTimes(0);
     expect(callbacks.onChange).toHaveBeenCalledTimes(0);
     expect(callbacks.onFocus).toHaveBeenCalledTimes(1);
@@ -111,6 +113,7 @@ describe('<TextField />', () => {
       wrapper.find(BaseInput).simulate('blur');
     });
 
+    expect(callbacks.onClick).toHaveBeenCalledTimes(0);
     expect(callbacks.onBlur).toHaveBeenCalledTimes(1);
     expect(callbacks.onChange).toHaveBeenCalledTimes(0);
     expect(callbacks.onFocus).toHaveBeenCalledTimes(1);
@@ -119,6 +122,7 @@ describe('<TextField />', () => {
       wrapper.find(BaseInput).simulate('change');
     });
 
+    expect(callbacks.onClick).toHaveBeenCalledTimes(0);
     expect(callbacks.onBlur).toHaveBeenCalledTimes(1);
     expect(callbacks.onChange).toHaveBeenCalledTimes(1);
     expect(callbacks.onFocus).toHaveBeenCalledTimes(1);
@@ -134,6 +138,10 @@ describe('<TextField />', () => {
     });
 
     expect(wrapper.find(BaseInput).getDOMNode().focus).toHaveBeenCalledTimes(1);
+    expect(callbacks.onClick).toHaveBeenCalledTimes(1);
+    expect(callbacks.onBlur).toHaveBeenCalledTimes(1);
+    expect(callbacks.onChange).toHaveBeenCalledTimes(1);
+    expect(callbacks.onFocus).toHaveBeenCalledTimes(1);
   });
   it('should handle "multiline" prop', () => {
     const spy = jest.fn();

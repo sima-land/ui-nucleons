@@ -26,6 +26,7 @@ const isVisibleValue = value => !isNil(value) && `${value}` !== '';
  * @param {*} [props.endAdornment] Дополнительная верстка после текста.
  * @param {boolean} [props.failed] Показывать ли поле как ошибочное.
  * @param {string} [props.label] Ярлык.
+ * @param {Function} [props.onClick] Сработает при клике.
  * @param {Function} [props.onBlur] Сработает при потере фокуса.
  * @param {Function} [props.onChange] Сработает при изменении значения.
  * @param {Function} [props.onFocus] Сработает при фокусировке.
@@ -50,6 +51,7 @@ const TextField = forwardRef(function TextField ({
   endAdornment,
   failed,
   label,
+  onClick,
   onBlur,
   onChange,
   onFocus,
@@ -96,9 +98,9 @@ const TextField = forwardRef(function TextField ({
           multiline && 'multiline',
           withLabel && 'with-label',
         )}
-        onClick={() => {
+        onClick={event => {
           const { current: input } = baseInputRef;
-
+          isFunction(onClick) && onClick(event);
           input
             && !disabled
             && input !== document.activeElement
@@ -221,6 +223,11 @@ TextField.propTypes = {
    * Ярлык.
    */
   label: PropTypes.string,
+
+  /**
+   * Сработает при клике.
+   */
+  onClick: PropTypes.func,
 
   /**
    * Сработает при потере фокуса.
