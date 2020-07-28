@@ -58,7 +58,7 @@ exports[`<Avatar /> should handle props 1`] = `
       className="content"
     >
       <span
-        className="text-class"
+        className="title truncate color__white text-class"
         role="presentation"
       >
         HW
@@ -127,7 +127,7 @@ exports[`<Avatar /> should handle props 2`] = `
       className="content"
     >
       <span
-        className="text-class"
+        className="title truncate color__white text-class"
         role="presentation"
       >
         WH
@@ -196,7 +196,7 @@ exports[`<Avatar /> should handle props 3`] = `
       className="content"
     >
       <span
-        className="text-class"
+        className="title truncate color__white text-class"
         role="presentation"
       >
         WH

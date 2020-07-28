@@ -2,6 +2,7 @@ import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 import Avatar from '../index';
+import { color } from '../../styling/colors';
 
 describe('<Avatar />', () => {
   let originalImage;
@@ -55,6 +56,20 @@ describe('<Avatar />', () => {
     wrapper.setProps({ color: '#f0f' });
 
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should handle textProps with textColor properly', () => {
+    const wrapper = mount(
+      <Avatar
+        title='Test title'
+        textColor='white'
+        textProps={{ className: 'text-class' }}
+      />
+    );
+
+    expect(wrapper.find('.title').prop('className')).toContain('truncate');
+    expect(wrapper.find('.title').prop('className')).toContain('text-class');
+    expect(wrapper.find('.title').prop('className')).toContain(color('white'));
   });
 
   it('should render image after it loaded', () => {
