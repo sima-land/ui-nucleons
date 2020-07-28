@@ -151,6 +151,28 @@ export const getPreviousEditablePosition = (position, validator) =>
     : getPreviousEditablePosition(position - 1, validator);
 
 /**
+ * Устанавливает курсор в нужное место.
+ * @param {Object} inputRef Ref поля ввода.
+ * @param {Object} valueRef Ref значения.
+ * @param {Object} caret Данные каретки.
+ * @param {Event} [event] Событие.
+ */
+export const setSelection = (inputRef, valueRef, caret, event) => {
+  const { current: input } = inputRef;
+  if (input) {
+    const { current: value } = valueRef;
+    input.value = value;
+    let caretPosition = value.indexOf('_');
+    const clickPosition = event && getCaretPosition(event);
+    if (clickPosition >= 0 && (caretPosition < 0 || clickPosition < caretPosition)) {
+      caretPosition = clickPosition;
+    }
+    caret.actual = caretPosition;
+    input.setSelectionRange(caretPosition, caretPosition);
+  }
+};
+
+/**
  * Возвращает компонент высшего порядка.
  * @param {ReactElement} Component Оборачиваемый компонент.
  * @param {string} mask Маска.
@@ -179,6 +201,7 @@ const withInputMask = (
       onClick: pureOnClick,
       onKeyUp: pureOnKeyUp,
       onMouseOut: pureOnMouseOut,
+      onFocus: pureOnFocus,
     } = props;
 
     const inputRef = useRef();
@@ -226,11 +249,20 @@ const withInputMask = (
 
     /**
      * Обработчик клика по полю. Запоминает позицию каретки и вызывает проброшенный onClick.
-     * @param {MouseEvent} e Mouse event.
+     * @param {MouseEvent} event Mouse event.
      */
-    const onClick = e => {
-      carret.actual = getCaretPosition(e);
-      isFunction(pureOnClick) && pureOnClick(e);
+    const onClick = event => {
+      isFunction(pureOnClick) && pureOnClick(event);
+      setSelection(inputRef, valueRef, carret, event);
+    };
+
+    /**
+     * Срабатывает при фокусировке.
+     * @param {FocusEvent} event Событие фокусировки.
+     */
+    const onFocus = event => {
+      isFunction(pureOnFocus) && pureOnFocus(event);
+      setTimeout(() => setSelection(inputRef, valueRef, carret), 0);
     };
 
     /**
@@ -250,6 +282,7 @@ const withInputMask = (
         onKeyUp={onKeyUp}
         onClick={onClick}
         onChange={onChange}
+        onFocus={onFocus}
         onMouseOut={onMouseOut}
       />
     );
@@ -282,6 +315,11 @@ const MaskedInputPropTypes = {
    * Обработчик клика по полю.
    */
   onClick: PropTypes.func,
+
+  /**
+   * Сработает при фокусировке.
+   */
+  onFocus: PropTypes.func,
 
   /**
    * Обработчик выхода мыши из поля.

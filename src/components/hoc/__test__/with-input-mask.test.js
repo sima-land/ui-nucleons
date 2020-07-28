@@ -8,6 +8,7 @@ import withInputMask, {
   isEditablePosition,
   isFilledField,
   getMaskedValue,
+  setSelection,
 } from '../with-input-mask';
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
@@ -280,11 +281,44 @@ describe('getPreviousEditablePosition', () => {
   });
 });
 
+describe('setSelection()', () => {
+  const setSelectionRange = jest.fn();
+  const inputRef = {
+    current: {
+      setSelectionRange,
+    },
+  };
+  const valueRef = {
+    current: '+7 (___) ___-__-__',
+  };
+  it('set correct selection without event', () => {
+    const caret = {};
+    setSelection(inputRef, valueRef, caret);
+    expect(setSelectionRange).toHaveBeenCalledTimes(1);
+    expect(setSelectionRange).toHaveBeenCalledWith(4, 4);
+  });
+  it('set correct selection with click position less than first caret position', () => {
+    const caret = {};
+    const event = { target: { selectionStart: 2 } };
+    setSelection(inputRef, valueRef, caret, event);
+    expect(setSelectionRange).toHaveBeenCalledTimes(1);
+    expect(setSelectionRange).toHaveBeenCalledWith(2, 2);
+  });
+  it('set correct selection with click position more than first caret position', () => {
+    const caret = {};
+    const event = { target: { selectionStart: 10 } };
+    setSelection(inputRef, valueRef, caret, event);
+    expect(setSelectionRange).toHaveBeenCalledTimes(1);
+    expect(setSelectionRange).toHaveBeenCalledWith(4, 4);
+  });
+});
+
 describe('withInputMask', () => {
   const onKeyUp = jest.fn();
   const onClick = jest.fn();
   const onChange = jest.fn();
   const onMouseOut = jest.fn();
+  const onFocus = jest.fn();
   it('should works properly without props', () => {
     const MaskedPhoneInput = withInputMask(Input);
     const wrapper = shallow(<MaskedPhoneInput />);
@@ -305,17 +339,30 @@ describe('withInputMask', () => {
         onKeyUp={onKeyUp}
         onChange={onChange}
         onMouseOut={onMouseOut}
+        onFocus={onFocus}
       />
     );
     const input = wrapper.find(Input).at(0);
+
+    expect(onClick).not.toHaveBeenCalled();
     input.simulate('click', event);
     expect(onClick).toHaveBeenCalledTimes(1);
+
+    expect(onChange).not.toHaveBeenCalled();
     input.simulate('change', event);
     expect(onChange).toHaveBeenCalledTimes(1);
+
+    expect(onKeyUp).not.toHaveBeenCalled();
     input.simulate('keyUp', event);
     expect(onKeyUp).toHaveBeenCalledTimes(1);
+
+    expect(onMouseOut).not.toHaveBeenCalled();
     input.simulate('mouseOut', event);
     expect(onMouseOut).toHaveBeenCalledTimes(1);
+
+    expect(onFocus).not.toHaveBeenCalled();
+    input.simulate('focus', event);
+    expect(onFocus).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -333,6 +380,8 @@ describe('MaskedPhoneInput', () => {
   });
 
   it('should works properly', () => {
+    jest.useFakeTimers();
+
     const MaskedPhoneInput = withInputMask(Input, '+_ (___) ___-__-__');
     act(() => {
       render(<MaskedPhoneInput />, container);
@@ -357,5 +406,21 @@ describe('MaskedPhoneInput', () => {
       });
     });
     expect(input.value).toBe('+7 (912) ___-__-__');
+
+    act(() => {
+      TestUtils.Simulate.click(input);
+      TestUtils.Simulate.change(input, {
+        target: {
+          selectionStart: 5,
+          value: '+7 9551581588',
+        },
+      });
+    });
+    expect(input.value).toBe('+7 (955) 158-15-88');
+
+    act(() => {
+      TestUtils.Simulate.focus(input);
+      jest.runAllTimers();
+    });
   });
 });
