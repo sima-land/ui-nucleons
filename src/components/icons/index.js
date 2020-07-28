@@ -15,6 +15,7 @@ import dolphin from './dolphin.svg';
 import external from './external.svg';
 import heart from './heart.svg';
 import imageCap from './image-cap.svg';
+import information from './information.svg';
 import mail from './mail.svg';
 import refresh from './refresh.svg';
 import search from './search.svg';
@@ -41,6 +42,7 @@ export {
   external,
   heart,
   imageCap,
+  information,
   mail,
   refresh,
   search,
