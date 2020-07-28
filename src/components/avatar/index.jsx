@@ -69,14 +69,14 @@ const Avatar = ({
         <span className={cx('content')}>
           {monogram ? (
             <span
+              role='presentation'
+              {...textProps}
               className={cx(
                 'title',
                 'truncate',
                 color(textColor),
                 textProps.className
               )}
-              role='presentation'
-              {...textProps}
               children={monogram}
             />
           ) : (
