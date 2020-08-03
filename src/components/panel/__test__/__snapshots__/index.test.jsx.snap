@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Panel /> should handle props 1`] = `
+<Panel
+  className="test-class"
+  color="white"
+  contentColor="service-error"
+  icon={[Function]}
+  inline={true}
+>
+  <div
+    className="panel inline background-color__white test-class"
+  >
+    <Icon
+      aria-hidden="true"
+      className="icon"
+      color="service-error"
+      height={20}
+      icon={[Function]}
+      width={16}
+    >
+      <infoSVG
+        aria-hidden="true"
+        className="icon icon-block color__service-error icon"
+        height={20}
+        viewBox="0 0 36 36"
+        width={16}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <svg
+          aria-hidden="true"
+          className="icon icon-block color__service-error icon"
+          height={20}
+          viewBox="0 0 36 36"
+          width={16}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18 16a2 2 0 0 1 2 2v6a2 2 0 1 1-4 0v-6a2 2 0 0 1 2-2zM18 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
+          />
+          <path
+            clipRule="evenodd"
+            d="M2 18C2 9.163 9.163 2 18 2s16 7.163 16 16-7.163 16-16 16S2 26.837 2 18zM18 6C11.373 6 6 11.373 6 18s5.373 12 12 12 12-5.373 12-12S24.627 6 18 6z"
+            fillRule="evenodd"
+          />
+        </svg>
+      </infoSVG>
+    </Icon>
+    <div
+      className="content color__service-error"
+    >
+      Hello, world!
+    </div>
+  </div>
+</Panel>
+`;
+
+exports[`<Panel /> should handle props 2`] = `
+<Panel
+  className="test-class"
+  color="white"
+  contentColor="service-error"
+  html="Lorem <i>ipsum</i> <b>dolor</b> sit."
+  icon={[Function]}
+  inline={true}
+>
+  <div
+    className="panel inline background-color__white test-class"
+  >
+    <Icon
+      aria-hidden="true"
+      className="icon"
+      color="service-error"
+      height={20}
+      icon={[Function]}
+      width={16}
+    >
+      <infoSVG
+        aria-hidden="true"
+        className="icon icon-block color__service-error icon"
+        height={20}
+        viewBox="0 0 36 36"
+        width={16}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <svg
+          aria-hidden="true"
+          className="icon icon-block color__service-error icon"
+          height={20}
+          viewBox="0 0 36 36"
+          width={16}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18 16a2 2 0 0 1 2 2v6a2 2 0 1 1-4 0v-6a2 2 0 0 1 2-2zM18 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
+          />
+          <path
+            clipRule="evenodd"
+            d="M2 18C2 9.163 9.163 2 18 2s16 7.163 16 16-7.163 16-16 16S2 26.837 2 18zM18 6C11.373 6 6 11.373 6 18s5.373 12 12 12 12-5.373 12-12S24.627 6 18 6z"
+            fillRule="evenodd"
+          />
+        </svg>
+      </infoSVG>
+    </Icon>
+    <div
+      className="content color__service-error"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Lorem <i>ipsum</i> <b>dolor</b> sit.",
+        }
+      }
+    />
+  </div>
+</Panel>
+`;
+
+exports[`<Panel /> should renders without props 1`] = `
+<Panel>
+  <div
+    className="panel background-color__gray4"
+  >
+    <div
+      className="content color__gray87"
+    />
+  </div>
+</Panel>
+`;
