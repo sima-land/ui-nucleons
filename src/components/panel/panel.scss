@@ -1,0 +1,31 @@
+@import '../colors';
+
+.panel {
+  display: flex;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-sizing: border-box;
+  &.inline {
+    display: inline-flex;
+  }
+}
+
+.icon {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.icon + .content {
+  margin-left: 16px;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
