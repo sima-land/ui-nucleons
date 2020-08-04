@@ -13,7 +13,7 @@ const cx = classnames.bind(classes);
  * @param {string} props.color Наименование цвета панели.
  * @param {string} props.contentColor Наименование цвета содержимого.
  * @param {boolean} [props.inline=false] Нужно ли стилизовать как inline-элемент.
- * @param {ReactElement} props.icon Компонент иконки.
+ * @param {import('react').ComponentType} props.icon Компонент иконки.
  * @param {string} props.className CSS-класс корневого элемента.
  * @param {*} [props.children] Содержимое.
  * @param {string} [props.html] Содержимое в виде строки с html-версткой.
@@ -78,7 +78,7 @@ Panel.propTypes = {
   /**
    * Компонент иконки.
    */
-  icon: PropTypes.element,
+  icon: PropTypes.elementType,
 
   /**
    * CSS-класс корневого элемента.
