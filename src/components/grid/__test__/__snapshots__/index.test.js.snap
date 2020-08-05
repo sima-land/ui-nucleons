@@ -3,10 +3,10 @@
 exports[`GridLayout, GridRow, GridCol renders correctly 1`] = `
 <GridLayout>
   <div
-    className="layout-wrapper layout-xxl-padding-sm layout-xl-padding-sm layout-lg-padding-sm layout-md-padding-lg layout-sm-padding-sm layout-xs-padding-sm layout-xxs-padding-md layout-xxxs-padding-sm"
+    className="grid-layout-wrapper layout-xxl-padding-sm layout-xl-padding-sm layout-lg-padding-sm layout-md-padding-lg layout-sm-padding-sm layout-xs-padding-sm layout-xxs-padding-md layout-xxxs-padding-sm"
   >
     <div
-      className="layout layout-xxl-width-xl layout-xl-width-lg layout-lg-width-md layout-md-width-md layout-sm-width-sm layout-xs-width-xs layout-xxs-width-xs layout-xxxs-width-xs"
+      className="grid-layout layout-xxl-width-xl layout-xl-width-lg layout-lg-width-md layout-md-width-md layout-sm-width-sm layout-xs-width-xs layout-xxs-width-xs layout-xxxs-width-xs"
     >
       <GridRow>
         <GridEntity

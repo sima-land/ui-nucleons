@@ -13,7 +13,7 @@ storiesOf('Layout', module)
         mdPadding='lg'
         smPadding='sm'
         xxsPadding='md'
-        xxxsPadding='sm'
+        xxxsPadding='none'
         xlMaxWidth='lg'
         lgMaxWidth='md'
         smMaxWidth='sm'
@@ -21,6 +21,20 @@ storiesOf('Layout', module)
       >
         <div className={styles['content-green']}>
           Layout with desktop and mobile settings
+        </div>
+      </Layout>
+      <Layout
+        xxlPadding='none'
+        xlPadding='none'
+        lgPadding='none'
+        mdPadding='none'
+        smPadding='none'
+        xsPadding='none'
+        xxsPadding='none'
+        xxxsPadding='none'
+      >
+        <div className={styles['content-green']}>
+          No paddings
         </div>
       </Layout>
     </Fragment>

@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const PADDINGS = ['sm', 'md', 'lg'];
+const PADDINGS = ['none', 'sm', 'md', 'lg'];
 const MAX_WIDTHS = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 /**

@@ -9,7 +9,7 @@ module.exports = async ({ config }) => {
         loader: 'css-loader',
         options: {
           modules: {
-            localIdentName: '[name]__[local]',
+            localIdentName: '[path][name]__[local]',
           },
         },
       },
