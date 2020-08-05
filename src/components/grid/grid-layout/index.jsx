@@ -60,7 +60,7 @@ const GridLayout = ({
   return (
     <div className={
       cx(
-        'layout-wrapper',
+        'grid-layout-wrapper',
         isPadding(xxlPadding) && `layout-xxl-padding-${xxlPadding}`,
         isPadding(xlPadding) && `layout-xl-padding-${xlPadding}`,
         isPadding(lgPadding) && `layout-lg-padding-${lgPadding}`,
@@ -75,7 +75,7 @@ const GridLayout = ({
         {...containerProps}
         className={
           cx(
-            'layout',
+            'grid-layout',
             isMaxWidth(xxlMaxWidth) && `layout-xxl-width-${xxlMaxWidth}`,
             isMaxWidth(xlMaxWidth) && `layout-xl-width-${xlMaxWidth}`,
             isMaxWidth(lgMaxWidth) && `layout-lg-width-${lgMaxWidth}`,

@@ -9,7 +9,7 @@ describe('<GridLayout />', () => {
         <div className='test-content'>123</div>
       </GridLayout>
     );
-    expect(wrapper.find('.layout')).toHaveLength(1);
+    expect(wrapper.find('.grid-layout')).toHaveLength(1);
     expect(wrapper.find('.test-content')).toHaveLength(1);
     expect(wrapper).toMatchSnapshot();
   });
@@ -25,7 +25,7 @@ describe('<GridLayout />', () => {
         <div className='test'>some content</div>
       </GridLayout>
     );
-    expect(wrapper.find('section.layout')).toHaveLength(1);
+    expect(wrapper.find('section.grid-layout')).toHaveLength(1);
     expect(wrapper.find('section.section-class')).toHaveLength(1);
     expect(wrapper.find('.test')).toHaveLength(1);
     expect(wrapper).toMatchSnapshot();
@@ -53,9 +53,9 @@ describe('<GridLayout />', () => {
         <div className='test'>some content</div>
       </GridLayout>
     );
-    expect(wrapper.find('.layout-wrapper').prop('className')).toEqual(
+    expect(wrapper.find('.grid-layout-wrapper').prop('className')).toEqual(
       [
-        'layout-wrapper',
+        'grid-layout-wrapper',
         'layout-xxl-padding-sm',
         'layout-xl-padding-sm',
         'layout-lg-padding-sm',
@@ -66,9 +66,9 @@ describe('<GridLayout />', () => {
         'layout-xxxs-padding-sm',
       ].join(' ')
     );
-    expect(wrapper.find('.layout').prop('className')).toEqual(
+    expect(wrapper.find('.grid-layout').prop('className')).toEqual(
       [
-        'layout',
+        'grid-layout',
         'layout-xxl-width-sm',
         'layout-xl-width-sm',
         'layout-lg-width-sm',

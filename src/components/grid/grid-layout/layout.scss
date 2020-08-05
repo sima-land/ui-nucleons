@@ -25,10 +25,10 @@ $maxWidths: (
   }
 }
 
-.layout-wrapper {
+.grid-layout-wrapper {
   box-sizing: border-box;
   @include layoutSize('xxl');
-  .layout {
+  .grid-layout {
     width: auto;
     margin: 0 auto;
     box-sizing: border-box;
