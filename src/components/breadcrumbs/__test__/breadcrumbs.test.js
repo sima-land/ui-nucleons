@@ -48,18 +48,17 @@ describe('<Breadcrumbs />', () => {
   it('should render open icon for items with children', () => {
     jest.useFakeTimers();
     const spy = jest.fn();
+    const breadcrumb = {
+      name: 'First',
+      items: [
+        { name: 'First child' },
+        { name: 'Second child' },
+        { name: 'Third child' },
+      ],
+    };
     const wrapper = mount(
       <Breadcrumbs
-        items={[
-          {
-            name: 'First',
-            items: [
-              { name: 'First child' },
-              { name: 'Second child' },
-              { name: 'Third child' },
-            ],
-          },
-        ]}
+        items={[breadcrumb]}
         onOpenBreadcrumbs={spy}
       />
     );
@@ -72,6 +71,7 @@ describe('<Breadcrumbs />', () => {
 
     wrapper.find(Icon).at(1).simulate('click');
     expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(breadcrumb);
     jest.advanceTimersByTime(1000);
     expect(wrapper.find(CSSTransition).prop('in')).toBe(false);
     wrapper.find(Icon).at(1).simulate('click');

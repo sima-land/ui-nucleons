@@ -19,6 +19,13 @@ const defaultGetItemSiblings = prop('items');
 const defaultIsActiveItem = prop('isActive');
 
 /**
+ * Есть ли соседние категории.
+ * @param {Array} siblings Соседние категории.
+ * @return {boolean} Есть ли соседние категории.
+ */
+const defaultGetHasSiblings = siblings => Array.isArray(siblings) && siblings.length > 0;
+
+/**
  * Возвращает компонент "хлебных крошек".
  * @param {Object} props Свойства компонента.
  * @param {Array} props.items Список "Хлебных крошек".
@@ -26,6 +33,7 @@ const defaultIsActiveItem = prop('isActive');
  * @param {Function} [props.getItemURL] Должна вернуть URL элемента списка (по умолчанию свойство "url").
  * @param {Function} [props.getItemSiblings] Должна вернуть список дочерних ссылок (по умолчанию свойство "items").
  * @param {Function} [props.isActiveItem] Должна вернуть true если элемент представляет активный раздел.
+ * @param {Function} [props.getHasSiblings] Должна вернуть true если имеются соседние категории.
  * @param {Function} props.onOpenBreadcrumbs Функция, вызываемая при открытии списка соседних элементов.
  * @return {ReactElement} Компонент "хлебных крошек".
  */
@@ -35,6 +43,7 @@ const Breadcrumbs = ({
   getItemURL = defaultGetItemURL,
   getItemSiblings = defaultGetItemSiblings,
   isActiveItem = defaultIsActiveItem,
+  getHasSiblings = defaultGetHasSiblings,
   addGlobalListener,
   onOpenBreadcrumbs,
 }) => (
@@ -44,7 +53,7 @@ const Breadcrumbs = ({
       const popupNodeContainer = useRef();
       const openerNodeContainer = useRef();
       const siblings = getItemSiblings(breadcrumb);
-      const hasSiblings = Array.isArray(siblings) && siblings.length > 0;
+      const hasSiblings = getHasSiblings(siblings);
       const name = getItemName(breadcrumb);
       const breadcrumbName = isActiveItem(breadcrumb) ? (
         <span className={cx('active')}>{name}</span>
@@ -75,7 +84,7 @@ const Breadcrumbs = ({
                 className={cx('toggle-icon')}
                 onClick={() => {
                   togglePopup(true);
-                  isFunction(onOpenBreadcrumbs) && onOpenBreadcrumbs();
+                  isFunction(onOpenBreadcrumbs) && onOpenBreadcrumbs(breadcrumb);
                 }}
               />
             </span>
@@ -220,6 +229,11 @@ Breadcrumbs.propTypes = {
    * Функция, вызываемая при открытии попапа смежных элементов.
    */
   onOpenBreadcrumbs: Type.func,
+
+  /**
+   * Функция, возвращающая флаг имеются ли соседние категории.
+   */
+  getHasSiblings: Type.func,
 };
 
 export default withGlobalListeners(Breadcrumbs);
