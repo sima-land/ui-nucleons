@@ -14,7 +14,6 @@ exports[`Tooltip should handle "inline" prop 1`] = `
     style={
       Object {
         "opacity": 0,
-        "visibility": "hidden",
       }
     }
   >
@@ -68,7 +67,6 @@ exports[`Tooltip should renders 1`] = `
     style={
       Object {
         "opacity": 0,
-        "visibility": "hidden",
       }
     }
   >
