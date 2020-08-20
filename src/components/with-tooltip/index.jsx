@@ -132,7 +132,6 @@ export const Tooltip = ({
       ref={tooltipRef}
       style={{
         opacity: 0,
-        visibility: 'hidden',
       }}
       className={cx('tooltip', className)}
     >

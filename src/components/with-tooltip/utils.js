@@ -148,7 +148,6 @@ export const placeTooltip = (tooltipEl, holderEl) => {
     }
 
     tooltipEl.style.opacity = null;
-    tooltipEl.style.visibility = null;
 
     // вместо top/left/bottom/right используем translate3d, т.к. его расчет использует графический ускоритель
     tooltipEl.style.transform = `translate3d(${offset.x}px, ${offset.y}px, 0)`;
