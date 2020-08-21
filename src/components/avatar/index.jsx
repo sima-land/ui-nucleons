@@ -46,6 +46,7 @@ const Avatar = ({
       <svg className={cx('super-ellipse')}>
         {needShowImage ? (
           <image
+            preserveAspectRatio='xMidYMid slice' // для обрезания не квадратных изображений (aka cover)
             href={imageUrl}
             style={clipStyle} // вешаем clipPath именно на сам image для работы в IE11
           />
