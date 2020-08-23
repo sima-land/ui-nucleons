@@ -8,7 +8,7 @@ describe('getMonogram()', () => {
     expect(getMonogram('John Doe')).toEqual('JD');
     expect(getMonogram('John')).toEqual('J');
     expect(getMonogram('John ')).toEqual('J');
-    expect(getMonogram('Hello World Foo Bar Baz')).toEqual('HWFBB');
+    expect(getMonogram('Hello World Foo Bar Baz')).toEqual('HW');
     expect(getMonogram('Лорд Командующий')).toEqual('ЛК');
     expect(getMonogram('лорд командующий')).toEqual('ЛК');
     expect(getMonogram('')).toEqual('');
@@ -28,6 +28,7 @@ describe('useImageLoad()', () => {
     global.Image = class FakeImage {
       constructor () {
         setTimeout(() => {
+          global[Symbol.for('test-image')] = this;
           this.onload && this.onload();
         }, 500);
       }
@@ -74,5 +75,21 @@ describe('useImageLoad()', () => {
 
     expect(wrapper.find('img')).toHaveLength(1);
     expect(wrapper.find('span')).toHaveLength(0);
+  });
+
+  it('should remove onload handler on umount', () => {
+    const wrapper = mount(
+      <TestComponent url='www.image.com/over9000' />
+    );
+
+    expect(typeof global[Symbol.for('test-image')].onload).toBe('function');
+
+    wrapper.unmount();
+
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    expect(global[Symbol.for('test-image')].onload).toBe(null);
   });
 });

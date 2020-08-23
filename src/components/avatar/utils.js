@@ -7,7 +7,7 @@ import { isString } from 'lodash';
  * @return {string} Монограмма.
  */
 const getMonogram = string => isString(string)
-  ? (string.match(/(^|\s)[\wА-Яа-я]/g) || []).join('').replace(/\s+/g, '').toUpperCase()
+  ? (string.match(/(^|\s)[\wА-Яа-я]/g) || []).slice(0, 2).join('').replace(/\s+/g, '').toUpperCase()
   : '';
 
 /**
@@ -28,6 +28,8 @@ const useImageLoad = imageURL => {
       };
 
       image.src = imageURL;
+
+      return () => image.onload = null;
     }
   }, [imageURL]);
 

@@ -270,6 +270,7 @@ exports[`<Avatar /> should render image after it loaded 2`] = `
     >
       <image
         href="https://test-cdn/"
+        preserveAspectRatio="xMidYMid slice"
       />
     </svg>
   </span>
