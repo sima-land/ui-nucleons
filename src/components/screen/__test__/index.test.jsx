@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from '../../icon';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
-import Screen, { createTakeScrollableElement } from '../index';
+import Screen, { takeScrollableElement, setRefValue } from '../index';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { ScreenLayout } from '../screen-layout';
 
@@ -97,13 +97,7 @@ describe('createTakeScrollableElement()', () => {
     const elementRef = { current: null };
     const fakeElement = document.createElement('div');
 
-    const takeRootElement = createTakeScrollableElement(elementRef);
-
-    expect(elementRef.current).toBe(null);
-    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
-    expect(disableBodyScroll).toHaveBeenCalledTimes(0);
-
-    takeRootElement(fakeElement);
+    takeScrollableElement(elementRef, fakeElement);
 
     expect(elementRef.current).toBe(fakeElement);
     expect(enableBodyScroll).toHaveBeenCalledTimes(0);
@@ -113,15 +107,29 @@ describe('createTakeScrollableElement()', () => {
     const elementRef = { current: { old: true } };
     const fakeElement = document.createElement('div');
 
-    const takeRootElement = createTakeScrollableElement(elementRef);
-
-    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
-    expect(disableBodyScroll).toHaveBeenCalledTimes(0);
-
-    takeRootElement(fakeElement);
+    takeScrollableElement(elementRef, fakeElement);
 
     expect(elementRef.current).toBe(fakeElement);
     expect(enableBodyScroll).toHaveBeenCalledTimes(1);
     expect(disableBodyScroll).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('setRefElement()', () => {
+  it('should call ref function with element', () => {
+    const elementRef = jest.fn();
+    const fakeElement = document.createElement('div');
+
+    setRefValue(elementRef, fakeElement);
+
+    expect(elementRef).toHaveBeenCalledWith(fakeElement);
+  });
+  it('should ref current element', () => {
+    const elementRef = { current: null };
+    const fakeElement = document.createElement('div');
+
+    setRefValue(elementRef, fakeElement);
+
+    expect(elementRef.current).toBe(fakeElement);
   });
 });

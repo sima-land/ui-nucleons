@@ -23,6 +23,7 @@ import PropTypes from 'prop-types';
  * @param {*} [props.footer] Содержимое подвала.
  * @param {boolean} [props.loading=false] Нужно ли выводить вместо содержимого состояние загрузки.
  * @param {Object} [props.loadingOverlayProps={}] Свойства компонента LoadingOverlay.
+ * @param {Object} [props.contentRef] Реф контента.
  * @return {ReactElement} Экран.
  */
 const Screen = ({
@@ -39,12 +40,13 @@ const Screen = ({
   loading = false,
   loadingOverlayProps = {},
   fullScrollThreshold = 320,
+  contentRef,
 }) => {
   const rootRef = useRef();
-  const contentRef = useRef();
+  const innerContentRef = useRef();
 
   // включаем прокрутку body при размонтировании
-  useEffect(() => () => contentRef.current && enableBodyScroll(contentRef.current), []);
+  useEffect(() => () => innerContentRef.current && enableBodyScroll(innerContentRef.current), []);
 
   return (
     <Layer>
@@ -63,7 +65,10 @@ const Screen = ({
                 withBackButton={withBackButton}
                 withCloseButton={withCloseButton}
                 children={children}
-                childrenRef={createTakeScrollableElement(contentRef)}
+                childrenRef={element => {
+                  setRefValue(contentRef, element);
+                  takeScrollableElement(innerContentRef, element);
+                }}
                 footer={footer}
                 onBack={({ contentElement }) => {
                   isFunction(onBack) && onBack({
@@ -88,11 +93,24 @@ const Screen = ({
 };
 
 /**
- * Возвращает функцию, которая, получив элемент, записывает его в ref и отключает прокрутку.
- * @param {Object} ref Ref-контейнер.
- * @return {Function} Функция, которая, получив элемент, записывает его в ref и отключает прокрутку.
+ * Записывает переданное значение в ref контента.
+ * @param {Object|Function} ref Ref-контейнер.
+ * @param {*} value Значение для записи.
  */
-export const createTakeScrollableElement = ref => element => {
+export const setRefValue = (ref, value) => {
+  if (isFunction(ref)) {
+    ref(value);
+  } else if (ref) {
+    ref.current = value;
+  }
+};
+
+/**
+ * Записывает полученный элемент в ref и отключает прокрутку.
+ * @param {Object} ref Ref-контейнер.
+ * @param {HTMLElement} element Элемент для записи.
+ */
+export const takeScrollableElement = (ref, element) => {
   if (element && element !== ref.current) {
     // если элемент изменился - включаем прокрутку для старого
     ref.current && enableBodyScroll(ref.current);
@@ -170,6 +188,15 @@ Screen.propTypes = {
    * Свойства компонента LoadingOverlay.
    */
   loadingOverlayProps: PropTypes.object,
+
+  /**
+   * Реф контента.
+   */
+  contentRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
+
 };
 
 export default Screen;
