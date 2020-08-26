@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InputMask /> should match snapshot with props 1`] = `
+<ForwardRef(InputMask)
+  mask="+890 (***) ** ** *"
+  maskSign="*"
+  value="89058635"
+>
+  <input
+    onBlur={[Function]}
+    onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyUp={[Function]}
+    value="+890 (586) 35 ** *"
+  />
+</ForwardRef(InputMask)>
+`;
+
+exports[`<InputMask /> should match snapshot without props 1`] = `
+<ForwardRef(InputMask)>
+  <input
+    onBlur={[Function]}
+    onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyUp={[Function]}
+    value=""
+  />
+</ForwardRef(InputMask)>
+`;

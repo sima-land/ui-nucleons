@@ -31,6 +31,7 @@ const isVisibleValue = value => !isNil(value) && `${value}` !== '';
  * @param {Function} [props.onChange] Сработает при изменении значения.
  * @param {Function} [props.onFocus] Сработает при фокусировке.
  * @param {Function} [props.onInput] Сработает при событии "input".
+ * @param {Function} [props.onKeyUp] Сработает при событии "keyUp".
  * @param {string} [props.placeholder] Placeholder.
  * @param {boolean} [props.readOnly] Значение атрибута "readonly".
  * @param {'xs'|'s'|'l'} [props.size='l'] Размеры поля для variant = "desktop".
@@ -56,6 +57,7 @@ const TextField = forwardRef(function TextField ({
   onChange,
   onFocus,
   onInput,
+  onKeyUp,
   placeholder,
   readOnly,
   size = 'l',
@@ -155,6 +157,7 @@ const TextField = forwardRef(function TextField ({
               }}
               onInput={onInput}
               onChange={onChange}
+              onKeyUp={onKeyUp}
             />
           </div>
         </div>
@@ -248,6 +251,11 @@ TextField.propTypes = {
    * Сработает при событии "input".
    */
   onInput: PropTypes.func,
+
+  /**
+   * Сработает при нажатии клавишу.
+   */
+  onKeyUp: PropTypes.func,
 
   /**
    * Placeholder.
