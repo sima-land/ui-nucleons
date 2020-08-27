@@ -69,9 +69,13 @@ const InputMask = forwardRef(function InputMask ({
       }}
       onClick={event => {
         isFunction(onClick) && onClick(event);
-        !value && setValue(prepareValue({ value, mask, maskSign, pattern }));
+        let correctValue = value;
+        if (!correctValue) {
+          correctValue = prepareValue({ value, mask, maskSign, pattern });
+          setValue(correctValue);
+        }
         setSelection(validateCursorPosition({
-          value,
+          value: correctValue,
           mask,
           maskSign,
           position: event.target.selectionStart,
@@ -84,9 +88,13 @@ const InputMask = forwardRef(function InputMask ({
       }}
       onFocus={event => {
         isFunction(onFocus) && onFocus(event);
-        !value && setValue(prepareValue({ value, mask, maskSign, pattern }));
-        const firstValueCaret = value.indexOf(maskSign);
-        setSelection(firstValueCaret >= 0 ? firstValueCaret : value.length);
+        let correctValue = value;
+        if (!correctValue) {
+          correctValue = prepareValue({ value, mask, maskSign, pattern });
+          setValue(correctValue);
+        }
+        const firstValueCaret = correctValue.indexOf(maskSign);
+        setSelection(firstValueCaret >= 0 ? firstValueCaret : correctValue.length);
         setUpdateCursor(Date.now());
       }}
       onBlur={event => {
