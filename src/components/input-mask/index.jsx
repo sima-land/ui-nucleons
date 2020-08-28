@@ -46,8 +46,10 @@ const InputMask = forwardRef(function InputMask ({
   }, [defaultValue, mask, alwaysShowMask]);
 
   useLayoutEffect(() => {
-    const input = inputRef.current;
-    input && selection >= 0 && input.setSelectionRange(selection, selection);
+    if (updateCursor) {
+      const input = inputRef.current;
+      input && selection >= 0 && input.setSelectionRange(selection, selection);
+    }
   }, [updateCursor]);
 
   return (
