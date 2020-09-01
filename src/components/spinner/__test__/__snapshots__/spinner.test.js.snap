@@ -11,7 +11,74 @@ exports[`<Spinner /> should render component 1`] = `
       xmlns="http://www.w3.org/2000/svg"
     >
       <circle
-        className="circle"
+        className="circle stroke__brand-blue"
+        cx={24}
+        cy={24}
+        r={23}
+      />
+    </svg>
+  </div>
+</Spinner>
+`;
+
+exports[`<Spinner /> should render component with different colors 1`] = `
+<Spinner>
+  <div>
+    <svg
+      className="spinner size-medium"
+      height={48}
+      viewBox="0 0 48 48"
+      width={48}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        className="circle stroke__brand-blue"
+        cx={24}
+        cy={24}
+        r={23}
+      />
+    </svg>
+  </div>
+</Spinner>
+`;
+
+exports[`<Spinner /> should render component with different colors 2`] = `
+<Spinner
+  color="white"
+>
+  <div>
+    <svg
+      className="spinner size-medium"
+      height={48}
+      viewBox="0 0 48 48"
+      width={48}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        className="circle stroke__white"
+        cx={24}
+        cy={24}
+        r={23}
+      />
+    </svg>
+  </div>
+</Spinner>
+`;
+
+exports[`<Spinner /> should render component with different colors 3`] = `
+<Spinner
+  color="black"
+>
+  <div>
+    <svg
+      className="spinner size-medium"
+      height={48}
+      viewBox="0 0 48 48"
+      width={48}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        className="circle stroke__brand-blue"
         cx={24}
         cy={24}
         r={23}
@@ -32,7 +99,7 @@ exports[`<Spinner /> should render component with different sizes 1`] = `
       xmlns="http://www.w3.org/2000/svg"
     >
       <circle
-        className="circle"
+        className="circle stroke__brand-blue"
         cx={24}
         cy={24}
         r={23}
@@ -55,7 +122,7 @@ exports[`<Spinner /> should render component with different sizes 2`] = `
       xmlns="http://www.w3.org/2000/svg"
     >
       <circle
-        className="circle"
+        className="circle stroke__brand-blue"
         cx={10}
         cy={10}
         r={9}
@@ -78,7 +145,7 @@ exports[`<Spinner /> should render component with different sizes 3`] = `
       xmlns="http://www.w3.org/2000/svg"
     >
       <circle
-        className="circle"
+        className="circle stroke__brand-blue"
         cx={24}
         cy={24}
         r={23}
@@ -101,7 +168,7 @@ exports[`<Spinner /> should render component with different sizes 4`] = `
       xmlns="http://www.w3.org/2000/svg"
     >
       <circle
-        className="circle"
+        className="circle stroke__brand-blue"
         cx={40}
         cy={40}
         r={39}
@@ -124,7 +191,7 @@ exports[`<Spinner /> should render component with different sizes 5`] = `
       xmlns="http://www.w3.org/2000/svg"
     >
       <circle
-        className="circle"
+        className="circle stroke__brand-blue"
         cx={24}
         cy={24}
         r={23}
