@@ -2,13 +2,12 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Spinner from '../';
 
-storiesOf('Spinner', module)
-  .add('sizes', () => {
-    const withMargin = {
-      margin: '0 0 30px 10px',
-    };
+const withMargin = {
+  margin: '0 0 30px 10px',
+};
 
-    return (
+storiesOf('Spinner', module)
+  .add('sizes', () => (
       <>
         <div style={withMargin}>
           <h3>size=&apos;small&apos;</h3>
@@ -23,5 +22,12 @@ storiesOf('Spinner', module)
           <Spinner size='large' />
         </div>
       </>
-    );
-  });
+  ))
+  .add('colors', () => (
+      <>
+        <div style={{ ...withMargin, background: '#1f84db', padding: '4px 12px' }}>
+          <h3>color=&apos;white&apos;</h3>
+          <Spinner color='white' />
+        </div>
+      </>
+  ));

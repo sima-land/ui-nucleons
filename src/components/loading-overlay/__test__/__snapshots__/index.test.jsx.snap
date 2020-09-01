@@ -17,7 +17,7 @@ exports[`<LoadingOverlay /> should handle "fill" prop 1`] = `
           xmlns="http://www.w3.org/2000/svg"
         >
           <circle
-            className="circle"
+            className="circle stroke__brand-blue"
             cx={24}
             cy={24}
             r={23}
@@ -63,7 +63,7 @@ exports[`<LoadingOverlay /> should handle props 1`] = `
           xmlns="http://www.w3.org/2000/svg"
         >
           <circle
-            className="circle"
+            className="circle stroke__brand-blue"
             cx={10}
             cy={10}
             r={9}
@@ -90,7 +90,7 @@ exports[`<LoadingOverlay /> should renders without props 1`] = `
           xmlns="http://www.w3.org/2000/svg"
         >
           <circle
-            className="circle"
+            className="circle stroke__brand-blue"
             cx={24}
             cy={24}
             r={23}

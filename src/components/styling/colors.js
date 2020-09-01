@@ -36,3 +36,17 @@ export const bgColor = cond([
   )],
   [T, always(null)],
 ]);
+
+/**
+ * Получая название цвета, возвращает имя CSS-класса, добавляющего CSS-правило stroke со значением цвета.
+ * @param {string} colorKey Название цвета.
+ * @return {string|null} CSS-класс.
+ */
+export const stroke = cond([
+  [COLORS.has.bind(COLORS), pipe(
+    concat('stroke__'),
+    join(''),
+    classnames.bind(classes)
+  )],
+  [T, always(null)],
+]);

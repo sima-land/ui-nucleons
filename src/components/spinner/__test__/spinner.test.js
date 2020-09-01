@@ -35,4 +35,21 @@ describe('<Spinner />', () => {
     expect(component.find('svg').hasClass('size-medium')).toBe(true);
     expect(component).toMatchSnapshot();
   });
+
+  it('should render component with different colors', () => {
+    const component = mount(
+      <Spinner />
+    );
+
+    expect(component.find('circle').hasClass('stroke__brand-blue')).toBe(true);
+    expect(component).toMatchSnapshot();
+
+    component.setProps({ color: 'white' });
+    expect(component.find('circle').hasClass('stroke__white')).toBe(true);
+    expect(component).toMatchSnapshot();
+
+    component.setProps({ color: 'black' });
+    expect(component.find('circle').hasClass('stroke__brand-blue')).toBe(true);
+    expect(component).toMatchSnapshot();
+  });
 });

@@ -30,7 +30,7 @@ exports[`<Screen /> should handle "loading/loadingOverlayProps" props 1`] = `
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <circle
-                    class="circle"
+                    class="circle stroke__brand-blue"
                     cx="24"
                     cy="24"
                     r="23"
@@ -67,7 +67,7 @@ exports[`<Screen /> should handle "loading/loadingOverlayProps" props 1`] = `
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <circle
-                    className="circle"
+                    className="circle stroke__brand-blue"
                     cx={24}
                     cy={24}
                     r={23}
