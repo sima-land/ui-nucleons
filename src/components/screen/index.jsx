@@ -24,6 +24,7 @@ import PropTypes from 'prop-types';
  * @param {boolean} [props.loading=false] Нужно ли выводить вместо содержимого состояние загрузки.
  * @param {Object} [props.loadingOverlayProps={}] Свойства компонента LoadingOverlay.
  * @param {Object} [props.contentRef] Реф контента.
+ * @param {boolean} [props.withLayer=true] Нужно ли выводить Layer.
  * @return {ReactElement} Экран.
  */
 const Screen = ({
@@ -41,7 +42,9 @@ const Screen = ({
   loadingOverlayProps = {},
   fullScrollThreshold = 320,
   contentRef,
+  withLayer = true,
 }) => {
+  const Wrapper = withLayer ? Layer : React.Fragment;
   const rootRef = useRef();
   const innerContentRef = useRef();
 
@@ -49,7 +52,7 @@ const Screen = ({
   useEffect(() => () => innerContentRef.current && enableBodyScroll(innerContentRef.current), []);
 
   return (
-    <Layer>
+    <Wrapper>
       <div
         ref={rootRef}
         className={cx('screen', 'full-width')}
@@ -88,7 +91,7 @@ const Screen = ({
             )
         }
       </div>
-    </Layer>
+    </Wrapper>
   );
 };
 
@@ -197,6 +200,10 @@ Screen.propTypes = {
     PropTypes.shape({ current: PropTypes.any }),
   ]),
 
+  /**
+   * Нужно ли выводить Layer.
+   */
+  withLayer: PropTypes.bool,
 };
 
 export default Screen;
