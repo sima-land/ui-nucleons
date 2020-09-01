@@ -5,6 +5,7 @@ import { act } from 'react-dom/test-utils';
 import Screen, { takeScrollableElement, setRefValue } from '../index';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { ScreenLayout } from '../screen-layout';
+import Layer from '../../layer';
 
 jest.mock('body-scroll-lock', () => {
   const original = jest.requireActual('body-scroll-lock');
@@ -131,5 +132,20 @@ describe('setRefElement()', () => {
     setRefValue(elementRef, fakeElement);
 
     expect(elementRef.current).toBe(fakeElement);
+  });
+
+  it('should render Layer', () => {
+    const wrapper = mount(
+      <Screen />
+    );
+    expect(wrapper.find(Layer)).toHaveLength(1);
+  });
+
+  it('should not render Layer', () => {
+    const wrapper = mount(
+      <Screen withLayer={false} />
+    );
+
+    expect(wrapper.find(Layer)).toHaveLength(0);
   });
 });
