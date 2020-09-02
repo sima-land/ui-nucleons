@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
 import Popup from '../popups/popup';
 import Icon from '../icon';
@@ -30,6 +30,8 @@ const CLASSES_PRESETS = {
  * Компонент модального окна.
  * @param {Object} props Свойства компонента.
  * @param {boolean} [props.extended=false] Нужно ли выводить новый дизайн модального окна.
+ * @param {boolean} [props.withScrollDisable] Нужно ли блокировать прокрутку body при показе.
+ * @param {Object} [props.scrollDisableOptions] Опции для disableBodyScroll.
  * @param {string} [props.title] Заголовок (только при extended=true).
  * @param {string} [props.subtitle] Подзаголовок (только при extended=true).
  * @param {Object} [props.topBarProps] Свойства TopBar (только при extended=true).
@@ -48,6 +50,8 @@ const CLASSES_PRESETS = {
  */
 const Modal = ({
   extended = false,
+  withScrollDisable = extended,
+  scrollDisableOptions = { reserveScrollBarGap: true },
   title,
   subtitle,
   topBarProps = {},
@@ -67,17 +71,17 @@ const Modal = ({
     customClasses,
   });
 
-  useEffect(() => {
-    extended
+  useLayoutEffect(() => {
+    withScrollDisable
       && rootRef.current
-      && disableBodyScroll(rootRef.current);
+      && disableBodyScroll(rootRef.current, scrollDisableOptions);
 
     return () => {
-      extended
+      withScrollDisable
         && rootRef.current
         && enableBodyScroll(rootRef.current);
     };
-  }, [extended]);
+  }, [withScrollDisable]);
 
   return (
     <div ref={rootRef} {...useCloseHandler(onClose)} className={readyClasses.overlay}>
@@ -128,6 +132,16 @@ Modal.propTypes = {
    * Нужно ли выводить новый дизайн модального окна.
    */
   extended: PropTypes.bool,
+
+  /**
+   * Нужно ли блокировать прокрутку body при показе.
+   */
+  withScrollDisable: PropTypes.bool,
+
+  /**
+   * Опции для disableBodyScroll.
+   */
+  scrollDisableOptions: PropTypes.object,
 
   /**
    * Заголовок (только при extended=true).
