@@ -116,4 +116,22 @@ describe('<Modal />', () => {
     expect(disableBodyScroll).toHaveBeenCalledTimes(1);
     expect(enableBodyScroll).toHaveBeenCalledTimes(1);
   });
+
+  it('should handle "withScrollDisable" and "scrollDisableOptions" options', () => {
+    const wrapper = mount(
+      <Modal
+        extended
+        withScrollDisable
+        scrollDisableOptions={{}}
+      />
+    );
+
+    expect(disableBodyScroll).toHaveBeenCalledTimes(1);
+    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
+
+    wrapper.unmount();
+
+    expect(disableBodyScroll).toHaveBeenCalledTimes(1);
+    expect(enableBodyScroll).toHaveBeenCalledTimes(1);
+  });
 });
