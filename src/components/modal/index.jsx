@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
 import Popup from '../popups/popup';
 import Icon from '../icon';
@@ -71,7 +71,7 @@ const Modal = ({
     customClasses,
   });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     withScrollDisable
       && rootRef.current
       && disableBodyScroll(rootRef.current, scrollDisableOptions);
