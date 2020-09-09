@@ -41,11 +41,11 @@ exports[`<Avatar /> should handle props 1`] = `
       className="super-ellipse"
     >
       <rect
+        fill="#1f84db"
         height={40}
         style={
           Object {
             "clipPath": "url(#fake-id)",
-            "fill": "#1f84db",
             "opacity": 0.4,
           }
         }
@@ -110,11 +110,11 @@ exports[`<Avatar /> should handle props 2`] = `
       className="super-ellipse"
     >
       <rect
+        fill="#1f84db"
         height={40}
         style={
           Object {
             "clipPath": "url(#fake-id)",
-            "fill": "#1f84db",
             "opacity": 0.4,
           }
         }
@@ -179,11 +179,11 @@ exports[`<Avatar /> should handle props 3`] = `
       className="super-ellipse"
     >
       <rect
+        fill="#f0f"
         height={40}
         style={
           Object {
             "clipPath": "url(#fake-id)",
-            "fill": "#f0f",
             "opacity": 0.4,
           }
         }
@@ -225,12 +225,9 @@ exports[`<Avatar /> should render image after it loaded 1`] = `
       className="super-ellipse"
     >
       <rect
+        fill="#f5f5f5"
         height={80}
-        style={
-          Object {
-            "fill": "#f5f5f5",
-          }
-        }
+        style={Object {}}
         width={80}
         x={0}
         y={0}
@@ -272,6 +269,13 @@ exports[`<Avatar /> should render image after it loaded 2`] = `
         href="https://test-cdn/"
         preserveAspectRatio="xMidYMid slice"
       />
+      <rect
+        fill="rgba(0, 0, 0, .04)"
+        height={80}
+        width={80}
+        x={0}
+        y={0}
+      />
     </svg>
   </span>
 </Avatar>
@@ -292,12 +296,9 @@ exports[`<Avatar /> should renders without props 1`] = `
       className="super-ellipse"
     >
       <rect
+        fill="#f5f5f5"
         height={80}
-        style={
-          Object {
-            "fill": "#f5f5f5",
-          }
-        }
+        style={Object {}}
         width={80}
         x={0}
         y={0}

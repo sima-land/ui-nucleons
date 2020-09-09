@@ -45,24 +45,36 @@ const Avatar = ({
       {/* IE11 поддерживает CSS-свойство clip-path только для SVG-элементов, рисуем SVG */}
       <svg className={cx('super-ellipse')}>
         {needShowImage ? (
-          <image
-            preserveAspectRatio='xMidYMid slice' // для обрезания не квадратных изображений (aka cover)
-            href={imageUrl}
-            style={clipStyle} // вешаем clipPath именно на сам image для работы в IE11
-          />
+          <>
+            <image
+              preserveAspectRatio='xMidYMid slice' // для обрезания не квадратных изображений (aka cover)
+              href={imageUrl}
+              style={clipStyle} // вешаем clipPath именно на сам image для работы в IE11
+            />
+            <rect
+              x={0}
+              y={0}
+              fill='rgba(0, 0, 0, .04)'
+              style={clipStyle} // вешаем clipPath именно на сам rect для работы в IE11
+
+              // для работы в IE11 width/height должны быть указаны как атрибуты
+              width={size}
+              height={size}
+            />
+          </>
         ) : (
           <rect
             x={0}
             y={0}
+            fill={COLORS.has(bgColor) ? COLORS.get(bgColor) : bgColor}
+            style={{
+              ...bgStyle,
+              ...clipStyle, // вешаем clipPath именно на сам rect для работы в IE11
+            }}
 
             // для работы в IE11 width/height должны быть указаны как атрибуты
             width={size}
             height={size}
-            style={{
-              fill: COLORS.has(bgColor) ? COLORS.get(bgColor) : bgColor,
-              ...bgStyle,
-              ...clipStyle, // вешаем clipPath именно на сам rect для работы в IE11
-            }}
           />
         )}
       </svg>
