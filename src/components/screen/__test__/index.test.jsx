@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '../../icon';
+import NavBar from '../../nav-bar';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import Screen, { takeScrollableElement, setRefValue } from '../index';
@@ -51,16 +51,34 @@ describe('<Screen />', () => {
     expect(disableBodyScroll).toHaveBeenCalledTimes(1);
 
     expect(spy).toHaveBeenCalledTimes(0);
-    wrapper.find(Icon).filterWhere(el => el.prop('className').includes('button-back')).prop('onClick')();
+    wrapper.find(NavBar).prop('buttons').start.onClick();
     expect(spy).toHaveBeenCalledTimes(1);
 
     expect(otherSpy).toHaveBeenCalledTimes(0);
-    wrapper.find(Icon).filterWhere(el => el.prop('className').includes('button-close')).prop('onClick')();
+    wrapper.find(NavBar).prop('buttons').end.onClick();
     expect(otherSpy).toHaveBeenCalledTimes(1);
 
     expect(enableBodyScroll).toHaveBeenCalledTimes(0);
     wrapper.unmount();
     expect(enableBodyScroll).toHaveBeenCalledTimes(1);
+  });
+
+  it('should renders without close button', () => {
+    const wrapper = mount(
+      <Screen
+        title='Test title'
+        subtitle='Test subtitle'
+        onClose={undefined}
+        withCloseButton={false}
+        navBarProps={{
+          buttons: {
+            end: { text: 'cross replacer' },
+          },
+        }}
+      />
+    );
+
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('should handle "onFullScroll" prop', () => {

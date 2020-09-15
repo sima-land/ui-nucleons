@@ -25,6 +25,7 @@ import PropTypes from 'prop-types';
  * @param {Object} [props.loadingOverlayProps={}] Свойства компонента LoadingOverlay.
  * @param {Object} [props.contentRef] Реф контента.
  * @param {boolean} [props.withLayer=true] Нужно ли выводить Layer.
+ * @param {boolean} [props.navBarProps] Свойства компонента NavBar.
  * @return {ReactElement} Экран.
  */
 const Screen = ({
@@ -43,6 +44,7 @@ const Screen = ({
   fullScrollThreshold = 320,
   contentRef,
   withLayer = true,
+  navBarProps,
 }) => {
   const Wrapper = withLayer ? Layer : React.Fragment;
   const rootRef = useRef();
@@ -87,6 +89,7 @@ const Screen = ({
                 }}
                 onFullScroll={onFullScroll}
                 fullScrollThreshold={fullScrollThreshold}
+                navBarProps={navBarProps}
               />
             )
         }
@@ -204,6 +207,11 @@ Screen.propTypes = {
    * Нужно ли выводить Layer.
    */
   withLayer: PropTypes.bool,
+
+  /**
+   * Свойства компонента NavBar.
+   */
+  navBarProps: PropTypes.object,
 };
 
 export default Screen;

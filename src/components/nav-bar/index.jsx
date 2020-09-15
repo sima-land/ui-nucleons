@@ -168,7 +168,7 @@ export const NavButton = ({
   >
     {
       icon && !stub
-        ? <Icon size={24} color='gray87' icon={icon} />
+        ? <Icon size={24} color='gray87' icon={icon} aria-hidden='true' />
         : text
     }
   </button>
