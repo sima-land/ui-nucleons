@@ -1,0 +1,92 @@
+@import '../colors';
+
+.nav-bar {
+  background: #fff;
+  box-sizing: border-box;
+  display: flex;
+  height: 56px;
+  justify-content: center;
+  width: 100%;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  &:first-child {
+    padding: 0 16px;
+  }
+}
+
+.title {
+  color: $gray87;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.subtitle {
+  color: $gray38;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: -4px;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.button-groups {
+  display: flex;
+  flex-direction: column;
+  &.end {
+    align-items: flex-end;
+    text-align: right;
+    .group {
+      justify-content: flex-end;
+    }
+  }
+  .group {
+    display: flex;
+    width: 100%;
+  }
+}
+
+.button {
+  background: transparent;
+  border: 0;
+  box-sizing: border-box;
+  color: $brand-blue;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  height: 56px;
+  line-height: 20px;
+  margin: 0;
+  outline: 0;
+  padding: 0 16px;
+  text-align: inherit;
+  width: 100%;
+  &.icon {
+    width: 56px;
+    &.shift-left {
+      padding-right: 16px;
+      padding-left: 12px;
+      width: 52px;
+    }
+    &.shift-right {
+      padding-right: 12px;
+      padding-left: 16px;
+      width: 52px;
+    }
+  }
+  &.stub {
+    height: 0;
+    overflow: hidden;
+  }
+}

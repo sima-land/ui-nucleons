@@ -11,8 +11,10 @@ import clock from './clock.svg';
 import clockFace from './clock-face.svg';
 import close from './close.svg';
 import cross from './cross.svg';
+import crossBig from './cross-big.svg';
 import dolphin from './dolphin.svg';
 import external from './external.svg';
+import fullLeftArrow from './full-left-arrow.svg';
 import heart from './heart.svg';
 import imageCap from './image-cap.svg';
 import information from './information.svg';
@@ -38,8 +40,10 @@ export {
   clockFace,
   close,
   cross,
+  crossBig,
   dolphin,
   external,
+  fullLeftArrow,
   heart,
   imageCap,
   information,
