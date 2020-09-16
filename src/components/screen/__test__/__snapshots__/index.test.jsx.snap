@@ -101,46 +101,92 @@ exports[`<Screen /> should handle props 1`] = `
             class="screen full-width"
           >
             <div
-              class="header full-width"
+              class="nav-bar inner-border-bottom"
             >
-              <svg
-                aria-label="Вернуться назад"
-                class="icon icon-block button button-back"
-                height="24"
-                role="button"
-                viewBox="0 0 36 36"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
+              <div
+                class="button-groups"
               >
-                <path
-                  d="M8.121 19.5l7.941 7.938c.583.585.583 1.539 0 2.125a1.511 1.511 0 0 1-2.125 0l-10.5-10.5a1.511 1.511 0 0 1 0-2.125l10.5-10.5a1.511 1.511 0 0 1 2.126 0c.582.585.582 1.539 0 2.125L8.12 16.5H31.5a1.5 1.5 0 0 1 0 3zm0 0"
-                />
-              </svg>
-              <span
-                class="size-16 line-height-24 color__gray87 weight-500 truncate"
+                <div
+                  class="group"
+                >
+                  <button
+                    aria-label="Вернуться назад"
+                    class="button icon"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="icon icon-block color__gray87"
+                      height="24"
+                      viewBox="0 0 36 36"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8.121 19.5l7.941 7.938c.583.585.583 1.539 0 2.125a1.511 1.511 0 0 1-2.125 0l-10.5-10.5a1.511 1.511 0 0 1 0-2.125l10.5-10.5a1.511 1.511 0 0 1 2.126 0c.582.585.582 1.539 0 2.125L8.12 16.5H31.5a1.5 1.5 0 0 1 0 3zm0 0"
+                      />
+                    </svg>
+                  </button>
+                </div>
+                <div
+                  class="group"
+                >
+                  <button
+                    aria-hidden="true"
+                    aria-label="Закрыть Test title"
+                    class="button icon stub"
+                  />
+                </div>
+              </div>
+              <div
+                class="main"
               >
-                Test title
-              </span>
-              <span
-                class="size-12 line-height-12 color__gray38 truncate"
+                <div
+                  class="title truncate"
+                >
+                  Test title
+                </div>
+                <div
+                  class="subtitle truncate"
+                >
+                  Test subtitle
+                </div>
+              </div>
+              <div
+                class="button-groups end"
               >
-                Test subtitle
-              </span>
-              <svg
-                aria-label="Закрыть Test title"
-                class="icon icon-block button button-close"
-                height="24"
-                role="button"
-                viewBox="0 0 36 36"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                <div
+                  class="group"
+                >
+                  <button
+                    aria-label="Закрыть Test title"
+                    class="button icon"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="icon icon-block color__gray87"
+                      height="24"
+                      viewBox="0 0 36 36"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                </div>
+                <div
+                  class="group"
+                >
+                  <button
+                    aria-hidden="true"
+                    aria-label="Вернуться назад"
+                    class="button icon stub"
+                  />
+                </div>
+              </div>
             </div>
             <div
               class="content full-width"
@@ -171,105 +217,180 @@ exports[`<Screen /> should handle props 1`] = `
           withCloseButton={true}
           withHeader={true}
         >
-          <div
-            className="header full-width"
+          <NavBar
+            buttons={
+              Object {
+                "end": Object {
+                  "aria-label": "Закрыть Test title",
+                  "icon": [Function],
+                  "onClick": [Function],
+                },
+                "start": Object {
+                  "aria-label": "Вернуться назад",
+                  "icon": [Function],
+                  "onClick": [Function],
+                },
+              }
+            }
+            className="inner-border-bottom"
+            subtitle="Test subtitle"
+            title="Test title"
           >
-            <Icon
-              aria-label="Вернуться назад"
-              className="button button-back"
-              icon={[Function]}
-              onClick={[Function]}
-              role="button"
-              size={24}
+            <div
+              className="nav-bar inner-border-bottom"
             >
-              <arrowLeft
-                aria-label="Вернуться назад"
-                className="icon icon-block button button-back"
-                height={24}
-                onClick={[Function]}
-                role="button"
-                viewBox="0 0 36 36"
-                width={24}
-                xmlns="http://www.w3.org/2000/svg"
+              <div
+                className="button-groups"
               >
-                <svg
-                  aria-label="Вернуться назад"
-                  className="icon icon-block button button-back"
-                  height={24}
-                  onClick={[Function]}
-                  role="button"
-                  viewBox="0 0 36 36"
-                  width={24}
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="group"
                 >
-                  <path
-                    d="M8.121 19.5l7.941 7.938c.583.585.583 1.539 0 2.125a1.511 1.511 0 0 1-2.125 0l-10.5-10.5a1.511 1.511 0 0 1 0-2.125l10.5-10.5a1.511 1.511 0 0 1 2.126 0c.582.585.582 1.539 0 2.125L8.12 16.5H31.5a1.5 1.5 0 0 1 0 3zm0 0"
-                  />
-                </svg>
-              </arrowLeft>
-            </Icon>
-            <Memo(Text)
-              color="gray87"
-              lineHeight={24}
-              size={16}
-              truncate={true}
-              weight={500}
-            >
-              <span
-                className="size-16 line-height-24 color__gray87 weight-500 truncate"
-              >
-                Test title
-              </span>
-            </Memo(Text)>
-            <Memo(Text)
-              color="gray38"
-              lineHeight={12}
-              size={12}
-              truncate={true}
-            >
-              <span
-                className="size-12 line-height-12 color__gray38 truncate"
-              >
-                Test subtitle
-              </span>
-            </Memo(Text)>
-            <Icon
-              aria-label="Закрыть Test title"
-              className="button button-close"
-              icon={[Function]}
-              onClick={[Function]}
-              role="button"
-              size={24}
-            >
-              <crossIcon
-                aria-label="Закрыть Test title"
-                className="icon icon-block button button-close"
-                height={24}
-                onClick={[Function]}
-                role="button"
-                viewBox="0 0 36 36"
-                width={24}
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <svg
-                  aria-label="Закрыть Test title"
-                  className="icon icon-block button button-close"
-                  height={24}
-                  onClick={[Function]}
-                  role="button"
-                  viewBox="0 0 36 36"
-                  width={24}
-                  xmlns="http://www.w3.org/2000/svg"
+                  <NavButton
+                    aria-label="Вернуться назад"
+                    icon={[Function]}
+                    onClick={[Function]}
+                    shift={false}
+                  >
+                    <button
+                      aria-label="Вернуться назад"
+                      className="button icon"
+                      onClick={[Function]}
+                    >
+                      <Icon
+                        aria-hidden="true"
+                        color="gray87"
+                        icon={[Function]}
+                        size={24}
+                      >
+                        <arrowLeft
+                          aria-hidden="true"
+                          className="icon icon-block color__gray87"
+                          height={24}
+                          viewBox="0 0 36 36"
+                          width={24}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            className="icon icon-block color__gray87"
+                            height={24}
+                            viewBox="0 0 36 36"
+                            width={24}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M8.121 19.5l7.941 7.938c.583.585.583 1.539 0 2.125a1.511 1.511 0 0 1-2.125 0l-10.5-10.5a1.511 1.511 0 0 1 0-2.125l10.5-10.5a1.511 1.511 0 0 1 2.126 0c.582.585.582 1.539 0 2.125L8.12 16.5H31.5a1.5 1.5 0 0 1 0 3zm0 0"
+                            />
+                          </svg>
+                        </arrowLeft>
+                      </Icon>
+                    </button>
+                  </NavButton>
+                </div>
+                <div
+                  className="group"
                 >
-                  <path
-                    clipRule="evenodd"
-                    d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-              </crossIcon>
-            </Icon>
-          </div>
+                  <NavButton
+                    aria-label="Закрыть Test title"
+                    icon={[Function]}
+                    onClick={[Function]}
+                    shift={false}
+                    stub={true}
+                  >
+                    <button
+                      aria-hidden="true"
+                      aria-label="Закрыть Test title"
+                      className="button icon stub"
+                      onClick={[Function]}
+                    />
+                  </NavButton>
+                </div>
+              </div>
+              <div
+                className="main"
+              >
+                <div
+                  className="title truncate"
+                >
+                  Test title
+                </div>
+                <div
+                  className="subtitle truncate"
+                >
+                  Test subtitle
+                </div>
+              </div>
+              <div
+                className="button-groups end"
+              >
+                <div
+                  className="group"
+                >
+                  <NavButton
+                    aria-label="Закрыть Test title"
+                    icon={[Function]}
+                    onClick={[Function]}
+                    shift={false}
+                  >
+                    <button
+                      aria-label="Закрыть Test title"
+                      className="button icon"
+                      onClick={[Function]}
+                    >
+                      <Icon
+                        aria-hidden="true"
+                        color="gray87"
+                        icon={[Function]}
+                        size={24}
+                      >
+                        <crossIcon
+                          aria-hidden="true"
+                          className="icon icon-block color__gray87"
+                          height={24}
+                          viewBox="0 0 36 36"
+                          width={24}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            className="icon icon-block color__gray87"
+                            height={24}
+                            viewBox="0 0 36 36"
+                            width={24}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              clipRule="evenodd"
+                              d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
+                              fillRule="evenodd"
+                            />
+                          </svg>
+                        </crossIcon>
+                      </Icon>
+                    </button>
+                  </NavButton>
+                </div>
+                <div
+                  className="group"
+                >
+                  <NavButton
+                    aria-label="Вернуться назад"
+                    icon={[Function]}
+                    onClick={[Function]}
+                    shift={false}
+                    stub={true}
+                  >
+                    <button
+                      aria-hidden="true"
+                      aria-label="Вернуться назад"
+                      className="button icon stub"
+                      onClick={[Function]}
+                    />
+                  </NavButton>
+                </div>
+              </div>
+            </div>
+          </NavBar>
           <div
             className="content full-width"
           >
@@ -297,26 +418,51 @@ exports[`<Screen /> should render without props 1`] = `
             class="screen full-width"
           >
             <div
-              class="header full-width"
+              class="nav-bar inner-border-bottom"
             >
-              <span
-                class="size-16 line-height-24 color__gray87 weight-500 truncate"
-              />
-              <svg
-                aria-label="Закрыть undefined"
-                class="icon icon-block button button-close"
-                height="24"
-                role="button"
-                viewBox="0 0 36 36"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
+              <div
+                class="button-groups"
               >
-                <path
-                  clip-rule="evenodd"
-                  d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                <div
+                  class="group"
+                >
+                  <button
+                    aria-hidden="true"
+                    aria-label="Закрыть undefined"
+                    class="button icon stub"
+                  />
+                </div>
+              </div>
+              <div
+                class="main"
+              />
+              <div
+                class="button-groups end"
+              >
+                <div
+                  class="group"
+                >
+                  <button
+                    aria-label="Закрыть undefined"
+                    class="button icon"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="icon icon-block color__gray87"
+                      height="24"
+                      viewBox="0 0 36 36"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
             <div
               class="content full-width"
@@ -337,57 +483,277 @@ exports[`<Screen /> should render without props 1`] = `
           withCloseButton={true}
           withHeader={true}
         >
-          <div
-            className="header full-width"
+          <NavBar
+            buttons={
+              Object {
+                "end": Object {
+                  "aria-label": "Закрыть undefined",
+                  "icon": [Function],
+                  "onClick": [Function],
+                },
+                "start": undefined,
+              }
+            }
+            className="inner-border-bottom"
           >
-            <Memo(Text)
-              color="gray87"
-              lineHeight={24}
-              size={16}
-              truncate={true}
-              weight={500}
+            <div
+              className="nav-bar inner-border-bottom"
             >
-              <span
-                className="size-16 line-height-24 color__gray87 weight-500 truncate"
-              />
-            </Memo(Text)>
-            <Icon
-              aria-label="Закрыть undefined"
-              className="button button-close"
-              icon={[Function]}
-              onClick={[Function]}
-              role="button"
-              size={24}
-            >
-              <crossIcon
-                aria-label="Закрыть undefined"
-                className="icon icon-block button button-close"
-                height={24}
-                onClick={[Function]}
-                role="button"
-                viewBox="0 0 36 36"
-                width={24}
-                xmlns="http://www.w3.org/2000/svg"
+              <div
+                className="button-groups"
               >
-                <svg
-                  aria-label="Закрыть undefined"
-                  className="icon icon-block button button-close"
-                  height={24}
-                  onClick={[Function]}
-                  role="button"
-                  viewBox="0 0 36 36"
-                  width={24}
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="group"
                 >
-                  <path
-                    clipRule="evenodd"
-                    d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-              </crossIcon>
-            </Icon>
+                  <NavButton
+                    aria-label="Закрыть undefined"
+                    icon={[Function]}
+                    onClick={[Function]}
+                    shift={false}
+                    stub={true}
+                  >
+                    <button
+                      aria-hidden="true"
+                      aria-label="Закрыть undefined"
+                      className="button icon stub"
+                      onClick={[Function]}
+                    />
+                  </NavButton>
+                </div>
+              </div>
+              <div
+                className="main"
+              />
+              <div
+                className="button-groups end"
+              >
+                <div
+                  className="group"
+                >
+                  <NavButton
+                    aria-label="Закрыть undefined"
+                    icon={[Function]}
+                    onClick={[Function]}
+                    shift={false}
+                  >
+                    <button
+                      aria-label="Закрыть undefined"
+                      className="button icon"
+                      onClick={[Function]}
+                    >
+                      <Icon
+                        aria-hidden="true"
+                        color="gray87"
+                        icon={[Function]}
+                        size={24}
+                      >
+                        <crossIcon
+                          aria-hidden="true"
+                          className="icon icon-block color__gray87"
+                          height={24}
+                          viewBox="0 0 36 36"
+                          width={24}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            className="icon icon-block color__gray87"
+                            height={24}
+                            viewBox="0 0 36 36"
+                            width={24}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              clipRule="evenodd"
+                              d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
+                              fillRule="evenodd"
+                            />
+                          </svg>
+                        </crossIcon>
+                      </Icon>
+                    </button>
+                  </NavButton>
+                </div>
+              </div>
+            </div>
+          </NavBar>
+          <div
+            className="content full-width"
+          />
+        </ScreenLayout>
+      </div>
+    </Portal>
+  </Layer>
+</Screen>
+`;
+
+exports[`<Screen /> should renders without close button 1`] = `
+<Screen
+  navBarProps={
+    Object {
+      "buttons": Object {
+        "end": Object {
+          "text": "cross replacer",
+        },
+      },
+    }
+  }
+  subtitle="Test subtitle"
+  title="Test title"
+  withCloseButton={false}
+>
+  <Layer>
+    <Portal
+      containerInfo={
+        <div>
+          <div
+            class="screen full-width"
+          >
+            <div
+              class="nav-bar inner-border-bottom"
+            >
+              <div
+                class="button-groups"
+              >
+                <div
+                  class="group"
+                >
+                  <button
+                    aria-hidden="true"
+                    class="button stub"
+                  >
+                    cross replacer
+                  </button>
+                </div>
+              </div>
+              <div
+                class="main"
+              >
+                <div
+                  class="title truncate"
+                >
+                  Test title
+                </div>
+                <div
+                  class="subtitle truncate"
+                >
+                  Test subtitle
+                </div>
+              </div>
+              <div
+                class="button-groups end"
+              >
+                <div
+                  class="group"
+                >
+                  <button
+                    class="button"
+                  >
+                    cross replacer
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              class="content full-width"
+            />
           </div>
+        </div>
+      }
+    >
+      <div
+        className="screen full-width"
+      >
+        <ScreenLayout
+          childrenRef={[Function]}
+          fullScrollThreshold={320}
+          navBarProps={
+            Object {
+              "buttons": Object {
+                "end": Object {
+                  "text": "cross replacer",
+                },
+              },
+            }
+          }
+          onBack={[Function]}
+          onClose={[Function]}
+          subtitle="Test subtitle"
+          title="Test title"
+          withBackButton={false}
+          withCloseButton={false}
+          withHeader={true}
+        >
+          <NavBar
+            buttons={
+              Object {
+                "end": Object {
+                  "text": "cross replacer",
+                },
+                "start": undefined,
+              }
+            }
+            className="inner-border-bottom"
+            subtitle="Test subtitle"
+            title="Test title"
+          >
+            <div
+              className="nav-bar inner-border-bottom"
+            >
+              <div
+                className="button-groups"
+              >
+                <div
+                  className="group"
+                >
+                  <NavButton
+                    shift={false}
+                    stub={true}
+                    text="cross replacer"
+                  >
+                    <button
+                      aria-hidden="true"
+                      className="button stub"
+                    >
+                      cross replacer
+                    </button>
+                  </NavButton>
+                </div>
+              </div>
+              <div
+                className="main"
+              >
+                <div
+                  className="title truncate"
+                >
+                  Test title
+                </div>
+                <div
+                  className="subtitle truncate"
+                >
+                  Test subtitle
+                </div>
+              </div>
+              <div
+                className="button-groups end"
+              >
+                <div
+                  className="group"
+                >
+                  <NavButton
+                    shift={false}
+                    text="cross replacer"
+                  >
+                    <button
+                      className="button"
+                    >
+                      cross replacer
+                    </button>
+                  </NavButton>
+                </div>
+              </div>
+            </div>
+          </NavBar>
           <div
             className="content full-width"
           />

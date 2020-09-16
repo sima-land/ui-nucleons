@@ -1,11 +1,11 @@
 import React, { Fragment, useRef, useImperativeHandle } from 'react';
-import Text from '../text';
-import Icon from '../icon';
+import NavBar from '../nav-bar';
 import { cx } from './common';
 import on from '../helpers/on';
 import { isFullyScrolled } from '../helpers/is-fully-scrolled';
 import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
+import { get } from 'lodash';
 
 import arrowLeft from '../icons/full-left-arrow.svg';
 import crossIcon from '../icons/cross-big.svg';
@@ -22,6 +22,7 @@ import crossIcon from '../icons/cross-big.svg';
  * @param {boolean} [props.withCloseButton] Нужно ли выводить закрывающий крест.
  * @param {*} [props.children] Содержимое.
  * @param {*} [props.footer] Содержимое подвала.
+ * @param {*} [props.navBarProps={}] Свойства компонента NavBar.
  * @return {ReactElement} Разметка содержимого компонента Screen.
  */
 export const ScreenLayout = ({
@@ -37,6 +38,7 @@ export const ScreenLayout = ({
   footer,
   onFullScroll,
   fullScrollThreshold,
+  navBarProps = {},
 }) => {
   const contentRef = useRef();
   const unsubscribeRef = useRef();
@@ -46,49 +48,29 @@ export const ScreenLayout = ({
   return (
     <Fragment>
       {Boolean(withHeader) && (
-        <div className={cx('header', 'full-width')}>
-          {Boolean(withBackButton) && (
-            <Icon
-              size={24}
-              icon={arrowLeft}
-              className={cx('button', 'button-back')}
-              onClick={() => isFunction(onBack) && onBack({
-                contentElement: contentRef.current,
-              })}
-              aria-label='Вернуться назад'
-              role='button'
-            />
-          )}
-          <Text
-            truncate
-            size={16}
-            lineHeight={24}
-            weight={500}
-            color='gray87'
-            children={title}
-          />
-          {Boolean(subtitle) && (
-            <Text
-              truncate
-              size={12}
-              lineHeight={12}
-              color='gray38'
-              children={subtitle}
-            />
-          )}
-          {Boolean(withCloseButton) && (
-            <Icon
-              size={24}
-              icon={crossIcon}
-              className={cx('button', 'button-close')}
-              onClick={() => isFunction(onClose) && onClose({
-                contentElement: contentRef.current,
-              })}
-              aria-label={`Закрыть ${title}`}
-              role='button'
-            />
-          )}
-        </div>
+        <NavBar
+          {...navBarProps}
+          className={cx(navBarProps.className, 'inner-border-bottom')}
+          title={title}
+          subtitle={subtitle}
+          buttons={{
+            ...navBarProps.buttons,
+            start: withBackButton
+              ? {
+                icon: arrowLeft,
+                onClick: () => isFunction(onBack) && onBack({ contentElement: contentRef.current }),
+                'aria-label': 'Вернуться назад',
+              }
+              : get(navBarProps.buttons, 'start'),
+            end: withCloseButton
+              ? {
+                icon: crossIcon,
+                onClick: () => isFunction(onClose) && onClose({ contentElement: contentRef.current }),
+                'aria-label': `Закрыть ${title}`,
+              }
+              : get(navBarProps.buttons, 'end'),
+          }}
+        />
       )}
       <div
         className={cx('content', 'full-width')}
@@ -206,4 +188,9 @@ ScreenLayout.propTypes = {
    * Содержимое подвала.
    */
   footer: PropTypes.any,
+
+  /**
+   * Свойства компонента NavBar.
+   */
+  navBarProps: PropTypes.object,
 };

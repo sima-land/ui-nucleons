@@ -13,32 +13,6 @@
   background-color: #fff;
   outline: 100px solid #fff;
   z-index: 300; // Для интеграции с монолитом.
-  .header {
-    flex-grow: 0;
-    flex-shrink: 0;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 56px;
-    padding: 0 48px;
-    box-shadow: inset 0 -1px 0 #e0e0e0;
-    box-sizing: border-box;
-    overflow: hidden;
-    .button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      &.button-back {
-        left: 16px;
-      }
-      &.button-close {
-        right: 16px;
-      }
-    }
-  }
   .content {
     height: 0;
     overflow-y: auto;
@@ -56,4 +30,8 @@
 
 .full-width {
   width: 100%;
+}
+
+.inner-border-bottom {
+  box-shadow: inset 0 -1px 0 #e0e0e0;
 }
