@@ -4,6 +4,7 @@ import classes from './nav-bar.scss';
 import classnames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import { prop } from 'lodash/fp';
+import { InnerBorder } from '../styling/borders';
 
 const cx = classnames.bind(classes);
 
@@ -15,6 +16,7 @@ const getIcon = prop('icon');
  * @param {string} [props.title] Заголовок.
  * @param {string} [props.subtitle] Подзаголовок.
  * @param {string} [props.className] Класс корневого элемента.
+ * @param {boolean} [props.bottomBordered=false] Нужна ли внутренняя граница снизу.
  * @param {{ start, startSecondary, end, endSecondary }} [props.buttons] Данные кнопок.
  * @return {import('react').ReactElement<HTMLDivElement>} Компонент панели навигации.
  */
@@ -22,6 +24,7 @@ const NavBar = ({
   title,
   subtitle,
   className,
+  bottomBordered = false,
   buttons: {
     start,
     startSecondary,
@@ -40,7 +43,7 @@ const NavBar = ({
   const isEndIconGroup = hasEndButtons && endButtons.every(getIcon);
 
   return (
-    <div className={cx('nav-bar', className)}>
+    <div className={cx('nav-bar', className, bottomBordered && InnerBorder.bottom)}>
       {hasButtons && (
         <div className={cx('button-groups')}>
           {hasStartButtons && (
@@ -124,6 +127,11 @@ NavBar.propTypes = {
    * Класс корневого элемента.
    */
   className: PropTypes.string,
+
+  /**
+   * Нужна ли внутренняя граница снизу.
+   */
+  bottomBordered: PropTypes.bool,
 
   /**
    * Данные кнопок.

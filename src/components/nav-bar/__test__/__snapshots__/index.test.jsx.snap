@@ -1,5 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<NavBar /> should handle "bottomBordered" prop 1`] = `
+<NavBar
+  bottomBordered={true}
+  subtitle="World"
+  title="Hello"
+>
+  <div
+    className="nav-bar inner-border-bottom"
+  >
+    <div
+      className="main"
+    >
+      <div
+        className="title truncate"
+      >
+        Hello
+      </div>
+      <div
+        className="subtitle truncate"
+      >
+        World
+      </div>
+    </div>
+  </div>
+</NavBar>
+`;
+
 exports[`<NavBar /> should render end icon-button 1`] = `
 <NavBar
   buttons={
