@@ -17,6 +17,7 @@ import PropTypes from 'prop-types';
  * @param {Function} [props.onFullScroll] Сработает при полной прокрутке контента.
  * @param {Function} [props.fullScrollThreshold=320] Отступ от нижней границы для срабатывания onFullScroll.
  * @param {boolean} [props.withHeader=true] Нужно ли выводить кнопку "назад".
+ * @param {boolean} [props.withDivideHeader=true] Нужно ли рисовать черту между шапкой и основным содержимым.
  * @param {boolean} [props.withBackButton=false] Нужно ли выводить кнопку "назад".
  * @param {boolean} [props.withCloseButton=true] Нужно ли выводить закрывающий крест.
  * @param {*} [props.children] Содержимое.
@@ -29,22 +30,23 @@ import PropTypes from 'prop-types';
  * @return {ReactElement} Экран.
  */
 const Screen = ({
-  title,
-  subtitle,
+  children,
+  contentRef,
+  footer,
+  fullScrollThreshold = 320,
+  loading = false,
+  loadingOverlayProps = {},
+  navBarProps,
   onBack,
   onClose,
   onFullScroll,
-  withHeader = true,
+  subtitle,
+  title,
   withBackButton = false,
   withCloseButton = true,
-  children,
-  footer,
-  loading = false,
-  loadingOverlayProps = {},
-  fullScrollThreshold = 320,
-  contentRef,
+  withDivideHeader = true,
+  withHeader = true,
   withLayer = true,
-  navBarProps,
 }) => {
   const Wrapper = withLayer ? Layer : React.Fragment;
   const rootRef = useRef();
@@ -67,6 +69,7 @@ const Screen = ({
                 title={title}
                 subtitle={subtitle}
                 withHeader={withHeader}
+                withDivideHeader={withDivideHeader}
                 withBackButton={withBackButton}
                 withCloseButton={withCloseButton}
                 children={children}
@@ -164,6 +167,11 @@ Screen.propTypes = {
    * Нужно ли выводить шапку с заголовком и кнопками.
    */
   withHeader: PropTypes.bool,
+
+  /**
+   * Нужно ли рисовать черту между шапкой и основным содержимым.
+   */
+  withDivideHeader: PropTypes.bool,
 
   /**
    * Нужно ли выводить кнопку "назад".

@@ -1,13 +1,13 @@
 .screen {
   position: fixed;
+
+  // для корректного отображения с динамическим viewport переменная --offsetTop должна быть доступна
   top: var(--offsetTop, 0);
   left: 0;
   display: flex;
   flex-direction: column;
-  /*
-  Для корректного отображения с динамическими элементами браузеров
-  переменная --vh должна быть определена на странице в элементе body.
-   */
+
+  // для корректного отображения с динамическим viewport переменная --vh должна быть доступна
   height: calc(var(--vh, 1vh) * 100);
   box-sizing: border-box;
   background-color: #fff;
@@ -30,8 +30,4 @@
 
 .full-width {
   width: 100%;
-}
-
-.inner-border-bottom {
-  box-shadow: inset 0 -1px 0 #e0e0e0;
 }
