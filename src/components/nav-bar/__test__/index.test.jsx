@@ -18,6 +18,18 @@ describe('<NavBar />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it('should handle "bottomBordered" prop', () => {
+    const wrapper = mount(
+      <NavBar
+        title='Hello'
+        subtitle='World'
+        bottomBordered
+      />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it('should render start link-button', () => {
     const wrapper = mount(
       <NavBar
