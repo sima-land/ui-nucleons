@@ -215,9 +215,11 @@ exports[`<Screen /> should handle props 1`] = `
           title="Test title"
           withBackButton={true}
           withCloseButton={true}
+          withDivideHeader={true}
           withHeader={true}
         >
           <NavBar
+            bottomBordered={true}
             buttons={
               Object {
                 "end": Object {
@@ -232,7 +234,6 @@ exports[`<Screen /> should handle props 1`] = `
                 },
               }
             }
-            className="inner-border-bottom"
             subtitle="Test subtitle"
             title="Test title"
           >
@@ -481,9 +482,11 @@ exports[`<Screen /> should render without props 1`] = `
           onClose={[Function]}
           withBackButton={false}
           withCloseButton={true}
+          withDivideHeader={true}
           withHeader={true}
         >
           <NavBar
+            bottomBordered={true}
             buttons={
               Object {
                 "end": Object {
@@ -494,7 +497,6 @@ exports[`<Screen /> should render without props 1`] = `
                 "start": undefined,
               }
             }
-            className="inner-border-bottom"
           >
             <div
               className="nav-bar inner-border-bottom"
@@ -682,9 +684,11 @@ exports[`<Screen /> should renders without close button 1`] = `
           title="Test title"
           withBackButton={false}
           withCloseButton={false}
+          withDivideHeader={true}
           withHeader={true}
         >
           <NavBar
+            bottomBordered={true}
             buttons={
               Object {
                 "end": Object {
@@ -693,7 +697,6 @@ exports[`<Screen /> should renders without close button 1`] = `
                 "start": undefined,
               }
             }
-            className="inner-border-bottom"
             subtitle="Test subtitle"
             title="Test title"
           >

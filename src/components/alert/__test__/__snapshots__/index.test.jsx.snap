@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Alert /> should handle props 1`] = `
+<Alert
+  className="test-class"
+  footer="Footer content"
+  inLayer={false}
+  navBarProps={
+    Object {
+      "subtitle": "Subtitle text",
+    }
+  }
+  title="Hello, world!"
+  withDivideNavBar={false}
+  withNavBar={true}
+>
+  <div
+    className="overlay"
+  >
+    <div
+      className="alert test-class"
+    >
+      <NavBar
+        bottomBordered={false}
+        className="header"
+        subtitle="Subtitle text"
+        title="Hello, world!"
+      >
+        <div
+          className="nav-bar header"
+        >
+          <div
+            className="main"
+          >
+            <div
+              className="title truncate"
+            >
+              Hello, world!
+            </div>
+            <div
+              className="subtitle truncate"
+            >
+              Subtitle text
+            </div>
+          </div>
+        </div>
+      </NavBar>
+      <div
+        className="main"
+      >
+        Main content
+      </div>
+      <div
+        className="inner-border-top"
+      >
+        Footer content
+      </div>
+    </div>
+  </div>
+</Alert>
+`;
+
+exports[`<Alert /> should renders without props 1`] = `
+<Alert>
+  <Layer>
+    <Portal
+      containerInfo={
+        <div>
+          <div
+            class="overlay"
+          >
+            <div
+              class="alert"
+            >
+              <div
+                class="main"
+              />
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <div
+        className="overlay"
+      >
+        <div
+          className="alert"
+        >
+          <div
+            className="main"
+          />
+        </div>
+      </div>
+    </Portal>
+  </Layer>
+</Alert>
+`;

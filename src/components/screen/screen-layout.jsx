@@ -13,32 +13,37 @@ import crossIcon from '../icons/cross-big.svg';
 /**
  * Разметка содержимого компонента Screen.
  * @param {Object} props Свойства.
- * @param {string} [props.title] Заголовок.
- * @param {string} [props.subtitle] Подзаголовок.
+ * @param {*} [props.children] Содержимое.
+ * @param {*} [props.childrenRef] Ref для элемента содержимого.
+ * @param {*} [props.footer] Содержимое подвала.
+ * @param {*} [props.fullScrollThreshold] Отступ от нижней границы для срабатывания onFullScroll.
+ * @param {*} [props.navBarProps={}] Свойства компонента NavBar.
  * @param {Function} [props.onBack] Сработает при клике на кнопку "назад".
  * @param {Function} [props.onClose] Сработает при клике на крест.
  * @param {Function} [props.onFullScroll] Сработает при полной прокрутке контента.
+ * @param {string} [props.subtitle] Подзаголовок.
+ * @param {string} [props.title] Заголовок.
  * @param {boolean} [props.withBackButton] Нужно ли выводить кнопку "назад".
  * @param {boolean} [props.withCloseButton] Нужно ли выводить закрывающий крест.
- * @param {*} [props.children] Содержимое.
- * @param {*} [props.footer] Содержимое подвала.
- * @param {*} [props.navBarProps={}] Свойства компонента NavBar.
+ * @param {boolean} [props.withDivideHeader] Нужно ли рисовать черту между шапкой и основным содержимым.
+ * @param {boolean} [props.withHeader] Нужно ли выводить шапку с заголовком и кнопками.
  * @return {ReactElement} Разметка содержимого компонента Screen.
  */
 export const ScreenLayout = ({
-  title,
-  subtitle,
-  onBack,
-  onClose,
-  withHeader,
-  withBackButton,
-  withCloseButton,
   children,
   childrenRef,
   footer,
-  onFullScroll,
   fullScrollThreshold,
   navBarProps = {},
+  onBack,
+  onClose,
+  onFullScroll,
+  subtitle,
+  title,
+  withBackButton,
+  withCloseButton,
+  withDivideHeader,
+  withHeader,
 }) => {
   const contentRef = useRef();
   const unsubscribeRef = useRef();
@@ -50,9 +55,9 @@ export const ScreenLayout = ({
       {Boolean(withHeader) && (
         <NavBar
           {...navBarProps}
-          className={cx(navBarProps.className, 'inner-border-bottom')}
           title={title}
           subtitle={subtitle}
+          bottomBordered={withDivideHeader}
           buttons={{
             ...navBarProps.buttons,
             start: withBackButton
@@ -163,6 +168,11 @@ ScreenLayout.propTypes = {
    * Нужно ли выводить шапку с заголовком и кнопками.
    */
   withHeader: PropTypes.bool,
+
+  /**
+   * Нужно ли рисовать черту между шапкой и основным содержимым.
+   */
+  withDivideHeader: PropTypes.bool,
 
   /**
    * Нужно ли выводить кнопку "назад".
