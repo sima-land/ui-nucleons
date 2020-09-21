@@ -1,7 +1,7 @@
-$unchecked: "g:nth-child(1)";
-$checked: "g:nth-child(2)";
-$disabled: "g:nth-child(3)";
-$disabledChecked: "g:nth-child(4)";
+$unchecked: 'g:nth-child(1)';
+$checked: 'g:nth-child(2)';
+$disabled: 'g:nth-child(3)';
+$disabledChecked: 'g:nth-child(4)';
 
 .checkbox-wrapper {
   position: relative;
