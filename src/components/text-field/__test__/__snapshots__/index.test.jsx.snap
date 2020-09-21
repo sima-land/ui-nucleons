@@ -42,7 +42,7 @@ exports[`<TextField /> should handle "caption" prop 1`] = `
       </div>
     </div>
     <div
-      className="caption margin-top__2"
+      className="caption M-t__2"
     >
       <span>
         Hello 
@@ -104,7 +104,7 @@ exports[`<TextField /> should handle "caption" prop 2`] = `
       </div>
     </div>
     <div
-      className="caption margin-top__1 disabled failed"
+      className="caption M-t__1 disabled failed"
     >
       <span>
         Hello 
@@ -401,7 +401,7 @@ exports[`<TextField /> should handle adornment props 1`] = `
         marginRight={4}
       >
         <div
-          className="display-flex align-items-center margin-right__4"
+          className="display-flex align-items-center M-r__4"
         >
           Name: 
         </div>
@@ -471,7 +471,7 @@ exports[`<TextField /> should handle adornment props 2`] = `
         marginLeft={4}
       >
         <div
-          className="display-flex align-items-center margin-left__4"
+          className="display-flex align-items-center M-l__4"
         >
           Kg
         </div>

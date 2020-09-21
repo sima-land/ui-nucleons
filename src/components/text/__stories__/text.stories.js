@@ -1,23 +1,10 @@
 import React, { useRef, useLayoutEffect } from 'react';
 import { storiesOf } from '@storybook/react';
-import Text, { SIZES, WEIGHTS, ALIGNS } from '../index';
+import Text, { ALIGNS } from '../index';
 import cutTextContent from '../../helpers/cut-text-content';
 import isElement from 'lodash/isElement';
 import { COLORS } from '../../constants';
-
-const CutTextContent = () => {
-  const textRef = useRef(null);
-  useLayoutEffect(() => {
-    const { current: element } = textRef;
-    isElement(element) && cutTextContent(element, 50);
-  }, []);
-  return (
-    <div ref={textRef} style={{ width: '300px' }}>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid deserunt earum nam rem. Consectetur,
-      dignissimos dolore dolores eos esse itaque iusto nemo optio quaerat quo ratione reprehenderit voluptatem
-      voluptates?
-    </div>
-  );};
+import { WEIGHTS } from '../../styling/fonts';
 
 storiesOf('Text', module)
   .add('Base usage', () => (
@@ -40,14 +27,9 @@ storiesOf('Text', module)
       </div>
     </div>
   ))
-  .add('with cutTextContent helper', () => (
-    <Text>
-      <CutTextContent />
-    </Text>
-  ))
-  .add('"size" prop variations', () => [...SIZES].map(
+  .add('"size" prop variations', () => [12, 14, 16, 20, 24, 28, 32, 48, 64].map(
     (size, index) => (
-      <div key={index}>
+      <div key={index} style={{ marginBottom: 24 }}>
         <Text size={size}>
           Text with size {size} px
         </Text>
@@ -57,7 +39,7 @@ storiesOf('Text', module)
   .add('"color" prop variations', () => [...COLORS.keys()].map(
     (color, index) => (
       <div key={index}>
-        <Text size={16} color={color} weight={800}>
+        <Text size={16} color={color} weight={700}>
           {color}
         </Text>
       </div>
@@ -82,4 +64,20 @@ storiesOf('Text', module)
         </Text>
       </div>
     )
-  ));
+  ))
+  .add('cutTextContent demo', () => {
+    const textRef = useRef(null);
+
+    useLayoutEffect(() => {
+      const { current: element } = textRef;
+      isElement(element) && cutTextContent(element, 50);
+    }, []);
+
+    return (
+      <div ref={textRef} style={{ width: '300px' }}>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid deserunt earum nam rem. Consectetur,
+        dignissimos dolore dolores eos esse itaque iusto nemo optio quaerat quo ratione reprehenderit voluptatem
+        voluptates?
+      </div>
+    );
+  });

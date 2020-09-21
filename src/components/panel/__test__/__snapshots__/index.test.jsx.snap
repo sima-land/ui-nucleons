@@ -9,7 +9,7 @@ exports[`<Panel /> should handle props 1`] = `
   inline={true}
 >
   <div
-    className="panel inline background-color__white test-class"
+    className="panel inline bg-color__white test-class"
   >
     <Icon
       aria-hidden="true"
@@ -65,7 +65,7 @@ exports[`<Panel /> should handle props 2`] = `
   inline={true}
 >
   <div
-    className="panel inline background-color__white test-class"
+    className="panel inline bg-color__white test-class"
   >
     <Icon
       aria-hidden="true"
@@ -117,7 +117,7 @@ exports[`<Panel /> should handle props 2`] = `
 exports[`<Panel /> should renders without props 1`] = `
 <Panel>
   <div
-    className="panel background-color__gray4"
+    className="panel bg-color__gray4"
   >
     <div
       className="content color__gray87"

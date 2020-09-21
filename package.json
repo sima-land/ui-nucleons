@@ -27,7 +27,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
-    "@dev-dep/linters": "^1.0.3",
+    "@dev-dep/linters": "^1.0.5",
     "@storybook/addon-actions": "^5.2.6",
     "@storybook/addon-links": "^5.2.4",
     "@storybook/addons": "^5.2.4",

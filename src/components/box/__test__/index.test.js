@@ -38,7 +38,7 @@ describe('<Box />', () => {
       />
     );
     expect(wrapper.find('div').prop('className')).toBe(
-      'margin-top__2 margin-right__3 margin-bottom__4 margin-left__5'
+      'M-t__2 M-r__3 M-b__4 M-l__5'
     );
 
     wrapper.setProps({
@@ -51,7 +51,7 @@ describe('<Box />', () => {
       marginY: -7,
     });
     expect(wrapper.find('div').prop('className')).toBe(
-      'margin-left__-6 margin-right__-6 margin-top__-7 margin-bottom__-7'
+      'M-l__-6 M-r__-6 M-t__-7 M-b__-7'
     );
 
     wrapper.setProps({
@@ -64,7 +64,7 @@ describe('<Box />', () => {
       marginY: undefined,
     });
     expect(wrapper.find('div').prop('className')).toBe(
-      'margin-top__8 margin-bottom__8 margin-left__8 margin-right__8'
+      'M-t__8 M-b__8 M-l__8 M-r__8'
     );
   });
   it('should handle "padding*" props', () => {
@@ -78,7 +78,7 @@ describe('<Box />', () => {
       />
     );
     expect(wrapper.find('div').prop('className')).toBe(
-      'padding-top__2 padding-right__3 padding-bottom__4 padding-left__5'
+      'P-t__2 P-r__3 P-b__4 P-l__5'
     );
 
     wrapper.setProps({
@@ -102,7 +102,7 @@ describe('<Box />', () => {
       paddingY: 2,
     });
     expect(wrapper.find('div').prop('className')).toBe(
-      'padding-left__3 padding-right__3 padding-top__2 padding-bottom__2'
+      'P-l__3 P-r__3 P-t__2 P-b__2'
     );
 
     wrapper.setProps({
@@ -115,7 +115,7 @@ describe('<Box />', () => {
       paddingY: undefined,
     });
     expect(wrapper.find('div').prop('className')).toBe(
-      'padding-top__8 padding-bottom__8 padding-left__8 padding-right__8'
+      'P-t__8 P-b__8 P-l__8 P-r__8'
     );
   });
   it('should handle "display" prop', () => {
