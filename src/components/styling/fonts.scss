@@ -1,0 +1,39 @@
+$sizes: (
+  12,
+  14,
+  16,
+  20,
+  24,
+  28,
+  32,
+  48,
+  64,
+  80,
+);
+
+@each $size in $sizes {
+  .size-#{$size} {
+    font-size: #{$size}px;
+
+    // автоматически устанавливаем нужный font-family по гайдам дизайн-системы
+    @if $size >= 20 {
+      font-family: SF Pro Display, 'Open Sans', sans-serif; // временные fallback'и для миграции с Open Sans
+    }
+  }
+  .line-height-#{$size} {
+    line-height: #{$size}px;
+  }
+}
+
+$weights: (
+  400,
+  500,
+  600, // временно нужен для миграции с Open Sans
+  700,
+);
+
+@each $weight in $weights {
+  .weight-#{$weight} {
+    font-weight: $weight;
+  }
+}

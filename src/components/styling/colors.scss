@@ -4,10 +4,13 @@
   .color__#{$key} {
     color: $color;
   }
-  .background-color__#{$key} {
+  .bg-color__#{$key} {
     background-color: $color;
   }
   .stroke__#{$key} {
     stroke: $color;
+  }
+  .fill__#{$key} {
+    fill: $color;
   }
 }

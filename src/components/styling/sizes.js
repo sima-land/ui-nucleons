@@ -1,56 +1,26 @@
-import allPass from 'lodash/fp/allPass';
-import always from 'lodash/fp/always';
-import concat from 'lodash/fp/concat';
-import __ from 'lodash/fp/__';
-import cond from 'lodash/fp/cond';
-import gte from 'lodash/fp/gte';
-import join from 'lodash/fp/join';
-import lte from 'lodash/fp/lte';
-import pipe from 'lodash/fp/pipe';
-import T from 'lodash/fp/T';
-import classnames from 'classnames/bind';
-
+import { ClassGetter } from './utils';
 import classes from './sizes.scss';
 
-export const isMargin = allPass([
-  Number.isInteger,
-  gte(__, -8),
-  lte(__, 32),
-]);
-
-export const isPadding = allPass([
-  Number.isInteger,
-  gte(__, 0),
-  lte(__, 32),
-]);
+/**
+ * Проверяет, является ли значение шагом дизайн-системы для внешних отступов.
+ * @param {*} value Значение.
+ * @return {boolean} Результат.
+ */
+export const isMargin = value => Number.isInteger(value) && value >= -8 && value <= 32;
 
 /**
- * Фабрика геттеров CSS-классов.
- * @param {Function} checker Функция проверки ключа для класса.
- * @param {string} prefix Префикс имени класса.
- * @return {Function} Геттер CSS-класса.
+ * Проверяет, является ли значение шагом дизайн-системы для внутренних отступов.
+ * @param {*} value Значение.
+ * @return {boolean} Результат.
  */
-const ClassGetter = (checker, prefix) => cond([
-  [checker, pipe([
-    concat(prefix),
-    join(''),
-    classnames.bind(classes),
-  ])],
-  [T, always(null)],
-]);
+export const isPadding = value => Number.isInteger(value) && value >= 0 && value <= 32;
 
-export const marginTop = ClassGetter(isMargin, 'margin-top__');
+export const marginTop = ClassGetter(classes, isMargin, 'M-t__');
+export const marginRight = ClassGetter(classes, isMargin, 'M-r__');
+export const marginBottom = ClassGetter(classes, isMargin, 'M-b__');
+export const marginLeft = ClassGetter(classes, isMargin, 'M-l__');
 
-export const marginRight = ClassGetter(isMargin, 'margin-right__');
-
-export const marginBottom = ClassGetter(isMargin, 'margin-bottom__');
-
-export const marginLeft = ClassGetter(isMargin, 'margin-left__');
-
-export const paddingTop = ClassGetter(isPadding, 'padding-top__');
-
-export const paddingRight = ClassGetter(isPadding, 'padding-right__');
-
-export const paddingBottom = ClassGetter(isPadding, 'padding-bottom__');
-
-export const paddingLeft = ClassGetter(isPadding, 'padding-left__');
+export const paddingTop = ClassGetter(classes, isPadding, 'P-t__');
+export const paddingRight = ClassGetter(classes, isPadding, 'P-r__');
+export const paddingBottom = ClassGetter(classes, isPadding, 'P-b__');
+export const paddingLeft = ClassGetter(classes, isPadding, 'P-l__');

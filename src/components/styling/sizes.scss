@@ -2,16 +2,20 @@ $step: 4px;
 
 $directions: 'top', 'right', 'bottom', 'left';
 
-// диапазон отступов на основе стилей проектов
+// диапазон отступов сформирован на основе стилей проектов
 @for $index from -8 through 32 {
   @each $direction in $directions {
-    .margin-#{$direction}__#{$index} {
+    // ключи классов попадают в JS - сокращаем до одной буквы для экономии
+    $short: str-slice($direction, 0, 1);
+
+    // внешние отступы
+    .M-#{$short}__#{$index} {
       margin-#{$direction}: $step * $index;
     }
 
     // внутренние отступы могут быть только положительными
     @if $index >= 0 {
-      .padding-#{$direction}__#{$index} {
+      .P-#{$short}__#{$index} {
         padding-#{$direction}: $step * $index;
       }
     }

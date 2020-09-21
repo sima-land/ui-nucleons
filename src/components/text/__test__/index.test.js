@@ -69,11 +69,10 @@ describe('<Text />', () => {
       <Text />
     );
     const validValues = [
-      300,
       400,
+      500,
       600,
       700,
-      800,
     ];
     validValues.forEach(value => {
       wrapper.setProps({ weight: value });

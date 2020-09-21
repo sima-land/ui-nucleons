@@ -60,13 +60,13 @@ exports[`<BasePagination /> should handle "onButtonClick" prop 1`] = `
   >
     <PageButton
       aria-label="Назад"
-      className="margin-right__2"
+      className="M-r__2"
       onClick={[Function]}
       rounded="all"
     >
       <button
         aria-label="Назад"
-        className="page-button rounds-all margin-right__2"
+        className="page-button rounds-all M-r__2"
         onClick={[Function]}
       >
         <Icon
@@ -205,13 +205,13 @@ exports[`<BasePagination /> should handle "onButtonClick" prop 1`] = `
     </PageButton>
     <PageButton
       aria-label="Вперед"
-      className="margin-left__2"
+      className="M-l__2"
       onClick={[Function]}
       rounded="all"
     >
       <button
         aria-label="Вперед"
-        className="page-button rounds-all margin-left__2"
+        className="page-button rounds-all M-l__2"
         onClick={[Function]}
       >
         <Icon
@@ -257,13 +257,13 @@ exports[`<BasePagination /> should handle "total" and "current" props 1`] = `
   >
     <PageButton
       aria-label="Назад"
-      className="margin-right__2"
+      className="M-r__2"
       onClick={[Function]}
       rounded="all"
     >
       <button
         aria-label="Назад"
-        className="page-button rounds-all margin-right__2"
+        className="page-button rounds-all M-r__2"
         onClick={[Function]}
       >
         <Icon
@@ -402,13 +402,13 @@ exports[`<BasePagination /> should handle "total" and "current" props 1`] = `
     </PageButton>
     <PageButton
       aria-label="Вперед"
-      className="margin-left__2"
+      className="M-l__2"
       onClick={[Function]}
       rounded="all"
     >
       <button
         aria-label="Вперед"
-        className="page-button rounds-all margin-left__2"
+        className="page-button rounds-all M-l__2"
         onClick={[Function]}
       >
         <Icon
