@@ -429,7 +429,7 @@ exports[`<Screen /> should render without props 1`] = `
                 >
                   <button
                     aria-hidden="true"
-                    aria-label="Закрыть undefined"
+                    aria-label="Закрыть"
                     class="button icon stub"
                   />
                 </div>
@@ -444,7 +444,7 @@ exports[`<Screen /> should render without props 1`] = `
                   class="group"
                 >
                   <button
-                    aria-label="Закрыть undefined"
+                    aria-label="Закрыть"
                     class="button icon"
                   >
                     <svg
@@ -490,7 +490,7 @@ exports[`<Screen /> should render without props 1`] = `
             buttons={
               Object {
                 "end": Object {
-                  "aria-label": "Закрыть undefined",
+                  "aria-label": "Закрыть",
                   "icon": [Function],
                   "onClick": [Function],
                 },
@@ -508,7 +508,7 @@ exports[`<Screen /> should render without props 1`] = `
                   className="group"
                 >
                   <NavButton
-                    aria-label="Закрыть undefined"
+                    aria-label="Закрыть"
                     icon={[Function]}
                     onClick={[Function]}
                     shift={false}
@@ -516,7 +516,7 @@ exports[`<Screen /> should render without props 1`] = `
                   >
                     <button
                       aria-hidden="true"
-                      aria-label="Закрыть undefined"
+                      aria-label="Закрыть"
                       className="button icon stub"
                       onClick={[Function]}
                     />
@@ -533,13 +533,13 @@ exports[`<Screen /> should render without props 1`] = `
                   className="group"
                 >
                   <NavButton
-                    aria-label="Закрыть undefined"
+                    aria-label="Закрыть"
                     icon={[Function]}
                     onClick={[Function]}
                     shift={false}
                   >
                     <button
-                      aria-label="Закрыть undefined"
+                      aria-label="Закрыть"
                       className="button icon"
                       onClick={[Function]}
                     >
