@@ -71,7 +71,7 @@ export const ScreenLayout = ({
               ? {
                 icon: crossIcon,
                 onClick: () => isFunction(onClose) && onClose({ contentElement: contentRef.current }),
-                'aria-label': `Закрыть ${title}`,
+                'aria-label': `Закрыть ${title || ''}`.trim(),
               }
               : get(navBarProps.buttons, 'end'),
           }}
