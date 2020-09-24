@@ -25,13 +25,15 @@ export const COLORS = new Map(Object.entries({
   black: '#000',
   white: '#fff',
 
+  // basic
+  'basic-gray': '#afb8bb',
+
   // brand
   'brand-dark-blue': '#002b41',
   'brand-deep-blue': '#f5f9fc',
   'brand-blue': '#1f84db',
   'brand-dirty': '#80b4d2',
   'brand-sky': '#e4f1f9',
-  'brand-gray': '#afb8bb',
 
   // gray
   gray87: '#212121',

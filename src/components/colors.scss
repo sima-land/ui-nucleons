@@ -1,13 +1,15 @@
 $black: #000;
 $white: #fff;
 
+// basic
+$basic-gray: #afb8bb;
+
 // brand
 $brand-dark-blue: #002b41;
 $brand-deep-blue: #f5f9fc;
 $brand-blue: #1f84db;
 $brand-dirty: #80b4d2;
 $brand-sky: #e4f1f9;
-$brand-gray: #afb8bb;
 
 // gray
 $gray87: #212121;
@@ -51,12 +53,12 @@ $additional-teal: #09ab8b;
 $colors: (
   'black': $black,
   'white': $white,
+  'basic-gray': $basic-gray,
   'brand-dark-blue': $brand-dark-blue,
   'brand-deep-blue': $brand-deep-blue,
   'brand-blue': $brand-blue,
   'brand-dirty': $brand-dirty,
   'brand-sky': $brand-sky,
-  'brand-gray': $brand-gray,
   'gray87': $gray87,
   'gray76': $gray76,
   'gray66': $gray66,
