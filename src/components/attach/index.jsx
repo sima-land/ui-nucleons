@@ -3,7 +3,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import Link from '../link';
+import Link from '../link/deprecated';
 import Icon from '../icon';
 import isFunction from 'lodash/isFunction';
 import withPrevent from '../helpers/with-prevent';

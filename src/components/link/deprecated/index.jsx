@@ -3,7 +3,7 @@ import {
   createLinkStyle,
 } from './create-link-style';
 import Type from 'prop-types';
-import { getNoIndex } from '../helpers/get-no-index';
+import { getNoIndex } from '../../helpers/get-no-index';
 
 export const LINK_TARGETS = ['_blank', '_self'];
 

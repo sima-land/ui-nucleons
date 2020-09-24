@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
 import Attach from '../index';
-import Link from '../../link';
+import Link from '../../link/deprecated';
 import customStyles from './custom-styles.scss';
 
 storiesOf('Attach', module)

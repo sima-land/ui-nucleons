@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import on from '../../helpers/on';
-import Link from '../../link';
+import Link from '../../link/deprecated';
 import WithTooltip from '../index';
 import boundsOf from '../../helpers/bounds-of';
 import classes from './index.scss';

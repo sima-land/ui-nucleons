@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 import omit from 'lodash/omit';
 import ModifiersList from '../';
 import ModifierItem from '../modifier-item';
-import Link from '../../link';
+import Link from '../../link/deprecated';
 import Icon from '../../icon';
 
 describe('<ModifiersList />', () => {
