@@ -2,7 +2,7 @@ import React from 'react';
 import getDeclination from '../../helpers/get-declination';
 import ModifiersGroup from '../modifiers-group/modifiers-group';
 import prop from 'lodash/fp/prop';
-import Link from '../../link';
+import Link from '../../link/deprecated';
 import classNames from 'classnames/bind';
 import styles from '../modifiers.scss';
 import isFunction from 'lodash/isFunction';

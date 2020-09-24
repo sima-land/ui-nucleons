@@ -2,7 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import ModifiersWidget, { getSelectItem } from '../modifiers-widget';
 import ModifiersGroup from '../../modifiers-group/modifiers-group';
-import Link from '../../../link';
+import Link from '../../../link/deprecated';
 import isFunction from 'lodash/isFunction';
 
 describe('<ModifiersWidget />', () => {

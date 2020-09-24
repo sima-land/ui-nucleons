@@ -1,5 +1,5 @@
 ```jsx
-import Link from '../link';
+import Link from '../link/deprecated';
 
 const [shown, setShown] = React.useState(false);
 

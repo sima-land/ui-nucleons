@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import prop from 'lodash/fp/prop';
 import { squareArrowDown } from '../icons';
-import Link from '../link';
+import Link from '../link/deprecated';
 import Icon from '../icon';
 import Popup from '../popups/popup';
 import withGlobalListeners from '../hoc/with-global-listeners';

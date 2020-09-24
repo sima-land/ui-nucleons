@@ -4,7 +4,7 @@ import styles from '../breadcrumbs.scss';
 import Breadcrumbs, { createMountHandler } from '../breadcrumbs';
 import Icon from '../../icon';
 import CSSTransition from 'react-transition-group/CSSTransition';
-import Link from '../../link';
+import Link from '../../link/deprecated';
 
 describe('<Breadcrumbs />', () => {
   it('should render without props', () => {

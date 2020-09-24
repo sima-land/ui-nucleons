@@ -1,6 +1,6 @@
 Варианты отображения:
 ```jsx
-import Link from '../link';
+import Link from '../link/deprecated';
 
 <React.Fragment>
   <h3>Без настроек</h3>
