@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Link /> calls helpers and renders correctly with external 1`] = `
+<ForwardRef(Link)
+  color="white"
+  href="/cabinet/"
+>
+  <a
+    className="link color__white"
+    href="/cabinet/"
+  >
+    Test link
+  </a>
+</ForwardRef(Link)>
+`;
+
+exports[`<Link /> calls helpers and renders correctly with pseudo 1`] = `
+<ForwardRef(Link)
+  color="black"
+  pseudo={true}
+>
+  <a
+    className="link color__black"
+    role="button"
+    tabIndex={0}
+  >
+    Test link
+  </a>
+</ForwardRef(Link)>
+`;
+
+exports[`<Link /> calls helpers with right params and renders correctly without external 1`] = `
+<ForwardRef(Link)
+  className="testClass"
+  color="white"
+  href="/cart/"
+  target="_blank"
+>
+  <a
+    className="link testClass color__white"
+    href="/cart/"
+    target="_blank"
+  >
+    Test link
+  </a>
+</ForwardRef(Link)>
+`;
+
+exports[`<Link /> render render pseudo link properly 1`] = `
+<ForwardRef(Link)
+  pseudo={true}
+>
+  <a
+    className="link color__brand-blue"
+    role="button"
+    tabIndex={0}
+  >
+    Test link
+  </a>
+</ForwardRef(Link)>
+`;
