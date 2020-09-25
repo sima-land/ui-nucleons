@@ -1,0 +1,19 @@
+@import '../colors';
+
+.link,
+.link:link,
+.link:visited,
+.link:hover,
+.link:active {
+  text-decoration: none;
+  font-weight: inherit;
+  cursor: default;
+  border-bottom-color: transparent;
+}
+
+.link:hover {
+  cursor: pointer;
+
+  // до появления руководств на ссылки, при наведении любая ссылка краснеет
+  color: $service-error;
+}

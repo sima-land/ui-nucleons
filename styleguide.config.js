@@ -6,6 +6,7 @@ module.exports = {
   ignore: [
     'src/components/**/__stories__/**/*',
     'src/components/**/__test__/**/*',
+    'src/components/link/deprecated/**/*',
   ],
   sections: [
     {
