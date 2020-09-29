@@ -1,0 +1,39 @@
+$sizes: (
+  sm: 4px,
+  md: 8px,
+);
+
+@each $key, $value in $sizes {
+  .rounds-#{$key}__all {
+    border-radius: $value;
+  }
+  .rounds-#{$key}__t {
+    border-top-left-radius: $value;
+    border-top-right-radius: $value;
+  }
+  .rounds-#{$key}__l {
+    border-top-left-radius: $value;
+    border-bottom-left-radius: $value;
+  }
+  .rounds-#{$key}__b {
+    border-bottom-left-radius: $value;
+    border-bottom-right-radius: $value;
+  }
+  .rounds-#{$key}__r {
+    border-top-right-radius: $value;
+    border-bottom-right-radius: $value;
+  }
+  .rounds-#{$key}__b-l {
+    border-bottom-left-radius: $value;
+  }
+  .rounds-#{$key}__b-r {
+    border-bottom-right-radius: $value;
+  }
+  .rounds-#{$key}__t-l {
+    border-top-left-radius: $value;
+  }
+  .rounds-#{$key}__t-r {
+    border-top-right-radius: $value;
+  }
+}
+
