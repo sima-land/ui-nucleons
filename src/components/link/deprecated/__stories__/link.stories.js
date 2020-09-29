@@ -16,7 +16,7 @@ const marginRight = {
   marginRight: '15px',
 };
 
-storiesOf('Link', module)
+storiesOf('Link [deprecated]', module)
   .add('without underline', () => (
     <div>
       <div style={grayBackground}>

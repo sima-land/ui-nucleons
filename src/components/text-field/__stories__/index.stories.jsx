@@ -152,6 +152,31 @@ storiesOf('TextField', module)
       />
     </Fragment>
   )))
+  .add('Rounds', () => (
+    <Fragment>
+      <h2>Скругления</h2>
+      <p>Их можно задавать только для варианта <code>desktop</code>:</p>
+      {[
+        'none',
+        'all',
+        'top',
+        'left',
+        'bottom',
+        'right',
+        'bottomLeft',
+        'bottomRight',
+        'topLeft',
+        'topRight',
+      ].map(variant => (
+        <div style={{ marginBottom: 32 }} key={variant}>
+          <TextField
+            label={`rounds="${variant}"`}
+            rounds={variant}
+          />
+        </div>
+      ))}
+    </Fragment>
+  ))
   .add('service: Value prop change', () => {
     const [value, setValue] = useState('');
 

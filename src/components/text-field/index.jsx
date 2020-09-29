@@ -7,6 +7,7 @@ import { cx } from './classes';
 import { Label } from './label';
 import { BaseInput } from './base-input';
 import PropTypes from 'prop-types';
+import { SmallRounds } from '../styling/shapes';
 
 /**
  * Вернет true если переданное значение будет выведено при установке в input.
@@ -34,6 +35,7 @@ const isVisibleValue = value => !isNil(value) && `${value}` !== '';
  * @param {Function} [props.onKeyUp] Сработает при событии "keyUp".
  * @param {string} [props.placeholder] Placeholder.
  * @param {boolean} [props.readOnly] Значение атрибута "readonly".
+ * @param {string} [props.rounds] Задает скругления.
  * @param {'xs'|'s'|'l'} [props.size='l'] Размеры поля для variant = "desktop".
  * @param {*} [props.startAdornment] Дополнительная верстка до текста.
  * @param {string} [props.value] Значение.
@@ -60,6 +62,7 @@ const TextField = forwardRef(function TextField ({
   onKeyUp,
   placeholder,
   readOnly,
+  rounds = 'all',
   size = 'l',
   startAdornment,
   value,
@@ -99,6 +102,7 @@ const TextField = forwardRef(function TextField ({
           disabled && 'disabled',
           multiline && 'multiline',
           withLabel && 'with-label',
+          variant === 'desktop' && rounds !== 'none' && SmallRounds[rounds]
         )}
         onClick={event => {
           const { current: input } = baseInputRef;
@@ -266,6 +270,11 @@ TextField.propTypes = {
    * Значение атрибута "readonly".
    */
   readOnly: PropTypes.bool,
+
+  /**
+   * Задает скругления.
+   */
+  rounds: PropTypes.oneOf(Object.keys(SmallRounds)),
 
   /**
    * Размеры для variant = "desktop".

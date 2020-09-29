@@ -39,7 +39,6 @@ input.reset {
   &.variant-desktop {
     background-color: #fff;
     border: 1px solid map-get($colors, 'gray12');
-    border-radius: 4px;
     &.disabled {
       border-color: map-get($colors, 'gray12');
       background-color: map-get($colors, 'gray2');

@@ -50,7 +50,7 @@ export const badges = [
     fields: [
       {
         type: 'timer',
-        value: '2021-02-29 23:59:59+05',
+        value: '2021-02-28 23:59:59+05',
         format: 'd:h:m:s',
       },
       {
