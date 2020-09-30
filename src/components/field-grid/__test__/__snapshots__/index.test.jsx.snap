@@ -1,0 +1,1512 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FieldGrid should handle "renderField" prop 1`] = `
+<FieldGrid>
+  <div
+    className="container"
+  >
+    <Row
+      isFirst={true}
+      isLast={true}
+      key=".0"
+    >
+      <Cell
+        key=".0"
+        renderField={[Function]}
+        rounds="left"
+        size="half"
+      >
+        <div
+          className="cell size-half"
+        >
+          <ForwardRef(TextField)
+            defaultValue="Foo"
+            rounds="left"
+          >
+            <div
+              className="text-field-root"
+            >
+              <div
+                className="reset input-block size-l variant-desktop rounds-sm__l"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Foo"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Foo"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+      <Cell
+        key=".1"
+        renderField={[Function]}
+        rounds="right"
+        size="half"
+      >
+        <div
+          className="cell size-half"
+        >
+          <ForwardRef(TextField)
+            defaultValue="Bar"
+            rounds="right"
+          >
+            <div
+              className="text-field-root"
+            >
+              <div
+                className="reset input-block size-l variant-desktop rounds-sm__r"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Bar"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Bar"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+    </Row>
+  </div>
+</FieldGrid>
+`;
+
+exports[`FieldGrid should render multiple different rows 1`] = `
+<FieldGrid>
+  <div
+    className="container"
+  >
+    <Row
+      isFirst={true}
+      isLast={false}
+      key=".0"
+    >
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".0"
+        rounds="topLeft"
+        size="third"
+      >
+        <div
+          className="cell size-third"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="topLeft"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop rounds-sm__t-l"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".1"
+        rounds="none"
+        size="third"
+      >
+        <div
+          className="cell size-third"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="none"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".2"
+        rounds="topRight"
+        size="third"
+      >
+        <div
+          className="cell size-third"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="topRight"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop rounds-sm__t-r"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+    </Row>
+    <Row
+      isFirst={false}
+      isLast={false}
+      key=".1"
+    >
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".0"
+        rounds="none"
+        size="third"
+      >
+        <div
+          className="cell size-third"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="none"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".1"
+        rounds="none"
+        size="third"
+      >
+        <div
+          className="cell size-third"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="none"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".2"
+        rounds="none"
+        size="third"
+      >
+        <div
+          className="cell size-third"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="none"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+    </Row>
+    <Row
+      isFirst={false}
+      isLast={false}
+      key=".2"
+    >
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".0"
+        rounds="none"
+        size="half"
+      >
+        <div
+          className="cell size-half"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="none"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".1"
+        rounds="none"
+        size="half"
+      >
+        <div
+          className="cell size-half"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="none"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+    </Row>
+    <Row
+      isFirst={false}
+      isLast={true}
+      key=".3"
+    >
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+            multiline={true}
+          />
+        }
+        key=".0"
+        rounds="bottom"
+        size="full"
+      >
+        <div
+          className="cell size-full"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            multiline={true}
+            rounds="bottom"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop multiline rounds-sm__b"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      multiline={true}
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <textarea
+                        className="reset base-input multiline size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                        rows={1}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+    </Row>
+  </div>
+</FieldGrid>
+`;
+
+exports[`FieldGrid should render single row with one cell 1`] = `
+<FieldGrid>
+  <div
+    className="container"
+  >
+    <Row
+      isFirst={true}
+      isLast={true}
+      key=".0"
+    >
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".0"
+        rounds="all"
+        size="full"
+      >
+        <div
+          className="cell size-full"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="all"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop rounds-sm__all"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+    </Row>
+  </div>
+</FieldGrid>
+`;
+
+exports[`FieldGrid should render single row with three cells 1`] = `
+<FieldGrid>
+  <div
+    className="container"
+  >
+    <Row
+      isFirst={true}
+      isLast={true}
+      key=".0"
+    >
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".0"
+        rounds="left"
+        size="third"
+      >
+        <div
+          className="cell size-third"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="left"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop rounds-sm__l"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".1"
+        rounds="none"
+        size="third"
+      >
+        <div
+          className="cell size-third"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="none"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".2"
+        rounds="right"
+        size="third"
+      >
+        <div
+          className="cell size-third"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="right"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop rounds-sm__r"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+    </Row>
+  </div>
+</FieldGrid>
+`;
+
+exports[`FieldGrid should render single row with two cells 1`] = `
+<FieldGrid>
+  <div
+    className="container"
+  >
+    <Row
+      isFirst={true}
+      isLast={true}
+      key=".0"
+    >
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".0"
+        rounds="left"
+        size="half"
+      >
+        <div
+          className="cell size-half"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="left"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop rounds-sm__l"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".1"
+        rounds="right"
+        size="half"
+      >
+        <div
+          className="cell size-half"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="right"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop rounds-sm__r"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+    </Row>
+  </div>
+</FieldGrid>
+`;
+
+exports[`FieldGrid should render two rows 1`] = `
+<FieldGrid>
+  <div
+    className="container"
+  >
+    <Row
+      isFirst={true}
+      isLast={false}
+      key=".0"
+    >
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".0"
+        rounds="topLeft"
+        size="half"
+      >
+        <div
+          className="cell size-half"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="topLeft"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop rounds-sm__t-l"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".1"
+        rounds="topRight"
+        size="half"
+      >
+        <div
+          className="cell size-half"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="topRight"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop rounds-sm__t-r"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+    </Row>
+    <Row
+      isFirst={false}
+      isLast={true}
+      key=".1"
+    >
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".0"
+        rounds="bottomLeft"
+        size="third"
+      >
+        <div
+          className="cell size-third"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="bottomLeft"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop rounds-sm__b-l"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".1"
+        rounds="none"
+        size="third"
+      >
+        <div
+          className="cell size-third"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="none"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".2"
+        rounds="bottomRight"
+        size="third"
+      >
+        <div
+          className="cell size-third"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="bottomRight"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop rounds-sm__b-r"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+    </Row>
+  </div>
+</FieldGrid>
+`;
+
+exports[`FieldGrid should render two rows with one cell 1`] = `
+<FieldGrid>
+  <div
+    className="container"
+  >
+    <Row
+      isFirst={true}
+      isLast={false}
+      key=".0"
+    >
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".0"
+        rounds="top"
+        size="full"
+      >
+        <div
+          className="cell size-full"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="top"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop rounds-sm__t"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+    </Row>
+    <Row
+      isFirst={false}
+      isLast={true}
+      key=".1"
+    >
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".0"
+        rounds="bottom"
+        size="full"
+      >
+        <div
+          className="cell size-full"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="bottom"
+          >
+            <div
+              className="text-field-root size-full"
+            >
+              <div
+                className="reset input-block size-l variant-desktop rounds-sm__b"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className=""
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      size="l"
+                    >
+                      <input
+                        className="reset base-input size-l"
+                        defaultValue="Field value"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                      />
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+    </Row>
+  </div>
+</FieldGrid>
+`;

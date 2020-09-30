@@ -21,7 +21,7 @@ const isVisibleValue = value => !isNil(value) && `${value}` !== '';
  * @param {Object} props Свойства.
  * @param {boolean} [props.autoFocus] Нужно ли фокусироваться после монтирования.
  * @param {*} [props.caption] Подпись снизу.
- * @param {{ root, baseInput }} [props.classes] CSS-классы.
+ * @param {{ root, baseInput, blockFocused }} [props.classes] CSS-классы.
  * @param {string} props.defaultValue Значение по умолчанию.
  * @param {boolean} [props.disabled] Отключено ли поле.
  * @param {*} [props.endAdornment] Дополнительная верстка после текста.
@@ -99,6 +99,7 @@ const TextField = forwardRef(function TextField ({
           size && `size-${size}`,
           variant && `variant-${variant}`,
           focused && 'focused',
+          focused && classes.blockFocused,
           disabled && 'disabled',
           multiline && 'multiline',
           withLabel && 'with-label',
@@ -204,7 +205,11 @@ TextField.propTypes = {
   /**
    * CSS-классы.
    */
-  classes: PropTypes.shape({ root: PropTypes.string, baseInput: PropTypes.string }),
+  classes: PropTypes.shape({
+    root: PropTypes.string,
+    baseInput: PropTypes.string,
+    blockFocused: PropTypes.string,
+  }),
 
   /**
    * Значение по умолчанию.
@@ -274,7 +279,7 @@ TextField.propTypes = {
   /**
    * Задает скругления.
    */
-  rounds: PropTypes.oneOf(Object.keys(SmallRounds)),
+  rounds: PropTypes.oneOf([...Object.keys(SmallRounds), 'none']),
 
   /**
    * Размеры для variant = "desktop".
