@@ -21,7 +21,9 @@ input.reset {
 
 .input-block {
   display: flex;
-  min-width: 250px;
+
+  // временно уменьшен размер, решение будет разработано в задаче #216
+  min-width: 120px;
   max-width: 100%;
   padding: 0 12px;
   flex-direction: row;

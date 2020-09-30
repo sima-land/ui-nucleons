@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1px 0 0 1px;
+}
+
+.cell {
+  display: flex;
+  justify-content: stretch;
+  flex-grow: 1;
+  margin: -1px 0 0 -1px;
+}
+
+.size-third {
+  width: calc(100% / 3);
+}
+
+.size-half {
+  width: 50%;
+}
+
+.size-full {
+  width: 100%;
+}
+
+.focused-field {
+  // чтобы выделенные границы не скрывались под другими элементами сетки, поднимаем при фокусировке
+  position: relative;
+  z-index: 1;
+}
