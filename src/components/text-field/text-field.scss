@@ -149,7 +149,7 @@ input.reset {
       color: map-get($colors, 'service-error');
     }
   }
-  &.variant-mobile.focused {
+  &.variant-mobile.focused:not(.disabled) {
     color: map-get($colors, 'brand-blue');
   }
 }

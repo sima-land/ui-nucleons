@@ -26,6 +26,7 @@ const isVisibleValue = value => !isNil(value) && `${value}` !== '';
  * @param {boolean} [props.disabled] Отключено ли поле.
  * @param {*} [props.endAdornment] Дополнительная верстка после текста.
  * @param {boolean} [props.failed] Показывать ли поле как ошибочное.
+ * @param {boolean} [props.focused] Показывать ли поле как сфокусированное (влияет только на оформление).
  * @param {string} [props.label] Ярлык.
  * @param {Function} [props.onClick] Сработает при клике.
  * @param {Function} [props.onBlur] Сработает при потере фокуса.
@@ -53,6 +54,7 @@ const TextField = forwardRef(function TextField ({
   disabled,
   endAdornment,
   failed,
+  focused: asFocused,
   label,
   onClick,
   onBlur,
@@ -75,7 +77,8 @@ const TextField = forwardRef(function TextField ({
     isVisibleValue(value)
     || isVisibleValue(defaultValue)
   );
-  const [focused, toggleFocused] = useState(autoFocus);
+  const [reallyFocused, toggleFocused] = useState(autoFocus);
+  const focused = reallyFocused || Boolean(asFocused);
   const baseInputRef = useRef();
 
   const isDesktop = variant === 'desktop';
@@ -230,6 +233,11 @@ TextField.propTypes = {
    * Показывать ли поле как ошибочное.
    */
   failed: PropTypes.bool,
+
+  /**
+   * Показывать ли поле как сфокусированное (влияет только на оформление).
+   */
+  focused: PropTypes.bool,
 
   /**
    * Ярлык.

@@ -8,6 +8,7 @@ const stateProps = {
   default: {},
   disabled: { disabled: true },
   failed: { failed: true },
+  focused: { focused: true },
 };
 
 const desktopSizes = ['xs', 's', 'l'];

@@ -157,6 +157,43 @@ exports[`<TextField /> should handle "disabled" prop 1`] = `
 </ForwardRef(TextField)>
 `;
 
+exports[`<TextField /> should handle "focused" prop 1`] = `
+<ForwardRef(TextField)
+  focused={true}
+>
+  <div
+    className="text-field-root"
+  >
+    <div
+      className="reset input-block size-l variant-desktop focused rounds-sm__all"
+      onClick={[Function]}
+    >
+      <div
+        className="main-column"
+      >
+        <div
+          className="input-wrapper"
+        >
+          <ForwardRef(BaseInput)
+            className=""
+            onBlur={[Function]}
+            onFocus={[Function]}
+            size="l"
+          >
+            <input
+              className="reset base-input size-l"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onInput={[Function]}
+            />
+          </ForwardRef(BaseInput)>
+        </div>
+      </div>
+    </div>
+  </div>
+</ForwardRef(TextField)>
+`;
+
 exports[`<TextField /> should handle "label" prop 1`] = `
 <ForwardRef(TextField)
   label="The best label in our world!"
@@ -173,6 +210,7 @@ exports[`<TextField /> should handle "label" prop 1`] = `
       >
         <Label
           asPlaceholder={true}
+          focused={false}
           variant="desktop"
         >
           <label
@@ -227,6 +265,7 @@ exports[`<TextField /> should handle "label" prop 2`] = `
           asPlaceholder={true}
           disabled={true}
           failed={true}
+          focused={false}
           variant="mobile"
         >
           <label

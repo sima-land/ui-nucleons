@@ -33,6 +33,14 @@ describe('<TextField />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it('should handle "focused" prop', () => {
+    const wrapper = mount(
+      <TextField focused />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it('should handle "variant" prop', () => {
     const wrapper = mount(
       <TextField variant='desktop' />
