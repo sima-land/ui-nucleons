@@ -1,0 +1,53 @@
+@font-face {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url(./SFProDisplay-Regular.woff2) format('woff2'),
+    url(./SFProDisplay-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(./SFProDisplay-Medium.woff2) format('woff2'),
+    url(./SFProDisplay-Medium.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+  src: url(./SFProDisplay-Bold.woff2) format('woff2'),
+    url(./SFProDisplay-Bold.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'SF Pro Text';
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url(./SFProText-Regular.woff2) format('woff2'),
+    url(./SFProText-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'SF Pro Text';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(./SFProText-Medium.woff2) format('woff2'),
+    url(./SFProText-Medium.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'SF Pro Text';
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+  src: url(./SFProText-Bold.woff2) format('woff2'),
+    url(./SFProText-Bold.woff) format('woff');
+}
