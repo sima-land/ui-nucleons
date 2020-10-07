@@ -64,26 +64,26 @@ const testPaddingPropsList = [
 ```jsx
 import { graphemes } from '../constants';
 
-const testAlignItems = [
-  <Box
-    key={20}
-    margin={1}
-    dangerouslySetInlineStyle={{ __style: { minWidth: 10, minHeight: 20, background: '#323232' } }}
-  />,
-  <Box
-    key={40}
-    margin={1}
-    dangerouslySetInlineStyle={{ __style: { minWidth: 10, minHeight: 40, background: '#323232' } }}
-  />,
-  <Box
-    key={60}
-    margin={1}
-    dangerouslySetInlineStyle={{ __style: { minWidth: 10, minHeight: 60, background: '#323232' } }}
-  />,
-];
+const testAlignItems = (
+  <React.Fragment>
+    <Box
+      margin={1}
+      dangerouslySetInlineStyle={{ __style: { minWidth: 10, minHeight: 20, background: '#323232' } }}
+    />
+    <Box
+      margin={1}
+      dangerouslySetInlineStyle={{ __style: { minWidth: 10, minHeight: 40, background: '#323232' } }}
+    />
+    <Box
+      margin={1}
+      dangerouslySetInlineStyle={{ __style: { minWidth: 10, minHeight: 60, background: '#323232' } }}
+    />
+  </React.Fragment>
+);
 
-const getTestBoxes = ({ alignItems, justifyContent }) => (
+const renderTestBox = ({ alignItems, justifyContent }, key) => (
   <Box
+    key={key}
     margin={2}
     padding={1}
     display='flex'
@@ -97,20 +97,20 @@ const getTestBoxes = ({ alignItems, justifyContent }) => (
 <React.Fragment>
   <Box display='flex' wrap>
     {[
-      getTestBoxes({ alignItems: 'center', justifyContent: 'start' }),
-      getTestBoxes({ alignItems: 'center', justifyContent: 'center' }),
-      getTestBoxes({ alignItems: 'center', justifyContent: 'end' }),
-      getTestBoxes({ alignItems: 'center', justifyContent: 'between' }),
-      getTestBoxes({ alignItems: 'center', justifyContent: 'around' }),
-    ]}
+      { alignItems: 'center', justifyContent: 'start' },
+      { alignItems: 'center', justifyContent: 'center' },
+      { alignItems: 'center', justifyContent: 'end' },
+      { alignItems: 'center', justifyContent: 'between' },
+      { alignItems: 'center', justifyContent: 'around' },
+    ].map(renderTestBox)}
   </Box>
   <Box display='flex' wrap>
     {[
-      getTestBoxes({ alignItems: 'start', justifyContent: 'center' }),
-      getTestBoxes({ alignItems: 'end', justifyContent: 'center' }),
-      getTestBoxes({ alignItems: 'center', justifyContent: 'center' }),
-      getTestBoxes({ alignItems: 'stretch', justifyContent: 'center' }),
-    ]}
+      { alignItems: 'start', justifyContent: 'center' },
+      { alignItems: 'end', justifyContent: 'center' },
+      { alignItems: 'center', justifyContent: 'center' },
+      { alignItems: 'stretch', justifyContent: 'center' },
+    ].map(renderTestBox)}
   </Box>
 </React.Fragment>
 ```

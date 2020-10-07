@@ -1,3 +1,4 @@
+const path = require('path');
 const reactDoc = require('react-docgen');
 
 module.exports = {
@@ -99,25 +100,25 @@ module.exports = {
   propsParser: (filePath, source, resolver, handlers) => reactDoc.parse(source, resolver, handlers),
   handlers: componentPath =>
     reactDoc.defaultHandlers.concat(
-      (documentation, path) => {
+      (documentation, pathData) => {
         // Calculate a display name for components based upon the declared class name.
         if (
-          path.value.type === 'ClassDeclaration'
-          && path.value.id.type === 'Identifier'
+          pathData.value.type === 'ClassDeclaration'
+          && pathData.value.id.type === 'Identifier'
         ) {
-          documentation.set('displayName', path.value.id.name);
+          documentation.set('displayName', pathData.value.id.name);
 
           // Calculate the key required to find the component in the module exports
           if (
-            path.parentPath.value.type === 'ExportNamedDeclaration'
+            pathData.parentPath.value.type === 'ExportNamedDeclaration'
           ) {
-            documentation.set('path', path.value.id.name);
+            documentation.set('path', pathData.value.id.name);
           }
         }
 
         // The component is the default export
         if (
-          path.parentPath.value.type === 'ExportDefaultDeclaration'
+          pathData.parentPath.value.type === 'ExportDefaultDeclaration'
         ) {
           documentation.set('path', 'default');
         }
@@ -128,14 +129,13 @@ module.exports = {
     ),
   serverPort: 8080,
   styleguideDir: require('path').resolve(__dirname, 'styleguide'),
+  require: [
+    path.join(__dirname, 'static/assets/fonts/fonts.css'),
+  ],
   styles: {
     StyleGuide: {
-      '@font-face': {
-        fontFamily: 'Open Sans',
-        src: 'url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i&display=swap&subset=cyrillic")',
-      },
       '@global body': {
-        fontFamily: '"Open Sans", sans-serif',
+        fontFamily: '"SF Pro Text"',
         fontSize: 14,
       },
       sidebar: {
@@ -158,15 +158,30 @@ module.exports = {
           loader: 'babel-loader',
         },
         {
-          test: /\.scss$/,
-          use: ['style-loader', {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: '[name]__[local]',
+          test: /\.(css|scss)$/,
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                modules: {
+                  localIdentName: '[name]__[local]',
+                },
               },
             },
-          }, 'sass-loader'],
+            'sass-loader',
+          ],
+        },
+        {
+          test: /\.(woff|woff2|eot|ttf)$/,
+          use: [
+            {
+              loader: 'file-loader',
+              query: {
+                name: '[name].[ext]',
+              },
+            },
+          ],
         },
       ],
     },
