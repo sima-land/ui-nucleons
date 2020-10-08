@@ -3,6 +3,9 @@ import { storiesOf } from '@storybook/react';
 import TextField from '../index';
 import Icon from '../../icon';
 import { BaseInput } from '../base-input';
+import classes from './stories.scss';
+
+const baseProps = { className: classes['full-width'] };
 
 const stateProps = {
   default: {},
@@ -28,12 +31,13 @@ storiesOf('TextField', module)
       <h2>Desktop</h2>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         {Object.entries(stateProps).map(([stateName, props]) => (
-          <div style={{ width: '30%' }} key={stateName}>
+          <div style={{ width: '30%', padding: 16 }} key={stateName}>
             <h4 style={{ textTransform: 'capitalize' }}>{stateName}</h4>
             {desktopSizes.map(sizeName => (
               <div style={{ marginTop: 24 }} key={sizeName}>
                 <h5 style={{ textTransform: 'uppercase' }}>Size: {sizeName}</h5>
                 <TextField
+                  {...baseProps}
                   {...props}
                   label='Label'
                   placeholder='Placeholder'
@@ -51,6 +55,7 @@ storiesOf('TextField', module)
                   <Fragment>
                     <div style={{ height: 32 }} />
                     <TextField
+                      {...baseProps}
                       {...props}
                       size={sizeName}
                       placeholder='Placeholder'
@@ -74,9 +79,10 @@ storiesOf('TextField', module)
       <h2 style={{ marginTop: 32 }}>Mobile</h2>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 32 }}>
         {Object.entries(stateProps).map(([stateName, props]) => (
-          <div style={{ width: '30%' }} key={stateName}>
+          <div style={{ width: '30%', padding: 16 }} key={stateName}>
             <h4 style={{ textTransform: 'capitalize' }}>{stateName}</h4>
             <TextField
+              {...baseProps}
               {...props}
               label='Label'
               placeholder='Placeholder'
@@ -91,6 +97,7 @@ storiesOf('TextField', module)
             />
             <div style={{ height: 32 }} />
             <TextField
+              {...baseProps}
               {...props}
               placeholder='Placeholder'
               defaultValue='Text'
@@ -111,6 +118,7 @@ storiesOf('TextField', module)
     <Fragment>
       <h2>Desktop</h2>
       <TextField
+        {...baseProps}
         defaultValue={longValue}
         multiline
         label='Label'
@@ -119,6 +127,7 @@ storiesOf('TextField', module)
       />
       <div style={{ height: 32 }} />
       <TextField
+        {...baseProps}
         defaultValue={longValue}
         multiline
         caption='Caption'
@@ -127,6 +136,7 @@ storiesOf('TextField', module)
 
       <h2>Mobile</h2>
       <TextField
+        {...baseProps}
         defaultValue={longValue}
         multiline
         label='Label'
@@ -136,6 +146,7 @@ storiesOf('TextField', module)
       />
       <div style={{ height: 32 }} />
       <TextField
+        {...baseProps}
         defaultValue={longValue}
         multiline
         caption='Caption'
@@ -148,6 +159,7 @@ storiesOf('TextField', module)
     <Fragment key={index}>
       <h3>Value: {String(testValue) || JSON.stringify(testValue)}</h3>
       <TextField
+        {...baseProps}
         label='Label'
         defaultValue={testValue}
       />
@@ -171,6 +183,7 @@ storiesOf('TextField', module)
       ].map(variant => (
         <div style={{ marginBottom: 32 }} key={variant}>
           <TextField
+            {...baseProps}
             label={`rounds="${variant}"`}
             rounds={variant}
           />

@@ -27,7 +27,7 @@ exports[`FieldGrid should handle "renderField" prop 1`] = `
               className="text-field-root"
             >
               <div
-                className="reset input-block size-l variant-desktop rounds-sm__l"
+                className="reset input-block variant-desktop size-l rounds-sm__l"
                 onClick={[Function]}
               >
                 <div
@@ -37,14 +37,13 @@ exports[`FieldGrid should handle "renderField" prop 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Foo"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Foo"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -75,7 +74,7 @@ exports[`FieldGrid should handle "renderField" prop 1`] = `
               className="text-field-root"
             >
               <div
-                className="reset input-block size-l variant-desktop rounds-sm__r"
+                className="reset input-block variant-desktop size-l rounds-sm__r"
                 onClick={[Function]}
               >
                 <div
@@ -85,14 +84,13 @@ exports[`FieldGrid should handle "renderField" prop 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Bar"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Bar"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -148,7 +146,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop rounds-sm__t-l"
+                className="reset input-block variant-desktop size-l rounds-sm__t-l"
                 onClick={[Function]}
               >
                 <div
@@ -158,14 +156,13 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -206,7 +203,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop"
+                className="reset input-block variant-desktop size-l"
                 onClick={[Function]}
               >
                 <div
@@ -216,14 +213,13 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -264,7 +260,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop rounds-sm__t-r"
+                className="reset input-block variant-desktop size-l rounds-sm__t-r"
                 onClick={[Function]}
               >
                 <div
@@ -274,14 +270,13 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -328,7 +323,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop"
+                className="reset input-block variant-desktop size-l"
                 onClick={[Function]}
               >
                 <div
@@ -338,14 +333,13 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -386,7 +380,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop"
+                className="reset input-block variant-desktop size-l"
                 onClick={[Function]}
               >
                 <div
@@ -396,14 +390,13 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -444,7 +437,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop"
+                className="reset input-block variant-desktop size-l"
                 onClick={[Function]}
               >
                 <div
@@ -454,14 +447,13 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -508,7 +500,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop"
+                className="reset input-block variant-desktop size-l"
                 onClick={[Function]}
               >
                 <div
@@ -518,14 +510,13 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -566,7 +557,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop"
+                className="reset input-block variant-desktop size-l"
                 onClick={[Function]}
               >
                 <div
@@ -576,14 +567,13 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -632,7 +622,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop multiline rounds-sm__b"
+                className="reset input-block variant-desktop size-l multiline rounds-sm__b"
                 onClick={[Function]}
               >
                 <div
@@ -642,15 +632,14 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       multiline={true}
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <textarea
-                        className="reset base-input multiline size-l"
+                        className="reset base-input multiline variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -707,7 +696,7 @@ exports[`FieldGrid should render single row with one cell 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop rounds-sm__all"
+                className="reset input-block variant-desktop size-l rounds-sm__all"
                 onClick={[Function]}
               >
                 <div
@@ -717,14 +706,13 @@ exports[`FieldGrid should render single row with one cell 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -780,7 +768,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop rounds-sm__l"
+                className="reset input-block variant-desktop size-l rounds-sm__l"
                 onClick={[Function]}
               >
                 <div
@@ -790,14 +778,13 @@ exports[`FieldGrid should render single row with three cells 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -838,7 +825,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop"
+                className="reset input-block variant-desktop size-l"
                 onClick={[Function]}
               >
                 <div
@@ -848,14 +835,13 @@ exports[`FieldGrid should render single row with three cells 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -896,7 +882,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop rounds-sm__r"
+                className="reset input-block variant-desktop size-l rounds-sm__r"
                 onClick={[Function]}
               >
                 <div
@@ -906,14 +892,13 @@ exports[`FieldGrid should render single row with three cells 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -969,7 +954,7 @@ exports[`FieldGrid should render single row with two cells 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop rounds-sm__l"
+                className="reset input-block variant-desktop size-l rounds-sm__l"
                 onClick={[Function]}
               >
                 <div
@@ -979,14 +964,13 @@ exports[`FieldGrid should render single row with two cells 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -1027,7 +1011,7 @@ exports[`FieldGrid should render single row with two cells 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop rounds-sm__r"
+                className="reset input-block variant-desktop size-l rounds-sm__r"
                 onClick={[Function]}
               >
                 <div
@@ -1037,14 +1021,13 @@ exports[`FieldGrid should render single row with two cells 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -1100,7 +1083,7 @@ exports[`FieldGrid should render two rows 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop rounds-sm__t-l"
+                className="reset input-block variant-desktop size-l rounds-sm__t-l"
                 onClick={[Function]}
               >
                 <div
@@ -1110,14 +1093,13 @@ exports[`FieldGrid should render two rows 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -1158,7 +1140,7 @@ exports[`FieldGrid should render two rows 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop rounds-sm__t-r"
+                className="reset input-block variant-desktop size-l rounds-sm__t-r"
                 onClick={[Function]}
               >
                 <div
@@ -1168,14 +1150,13 @@ exports[`FieldGrid should render two rows 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -1222,7 +1203,7 @@ exports[`FieldGrid should render two rows 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop rounds-sm__b-l"
+                className="reset input-block variant-desktop size-l rounds-sm__b-l"
                 onClick={[Function]}
               >
                 <div
@@ -1232,14 +1213,13 @@ exports[`FieldGrid should render two rows 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -1280,7 +1260,7 @@ exports[`FieldGrid should render two rows 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop"
+                className="reset input-block variant-desktop size-l"
                 onClick={[Function]}
               >
                 <div
@@ -1290,14 +1270,13 @@ exports[`FieldGrid should render two rows 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -1338,7 +1317,7 @@ exports[`FieldGrid should render two rows 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop rounds-sm__b-r"
+                className="reset input-block variant-desktop size-l rounds-sm__b-r"
                 onClick={[Function]}
               >
                 <div
@@ -1348,14 +1327,13 @@ exports[`FieldGrid should render two rows 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -1411,7 +1389,7 @@ exports[`FieldGrid should render two rows with one cell 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop rounds-sm__t"
+                className="reset input-block variant-desktop size-l rounds-sm__t"
                 onClick={[Function]}
               >
                 <div
@@ -1421,14 +1399,13 @@ exports[`FieldGrid should render two rows with one cell 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}
@@ -1475,7 +1452,7 @@ exports[`FieldGrid should render two rows with one cell 1`] = `
               className="text-field-root size-full"
             >
               <div
-                className="reset input-block size-l variant-desktop rounds-sm__b"
+                className="reset input-block variant-desktop size-l rounds-sm__b"
                 onClick={[Function]}
               >
                 <div
@@ -1485,14 +1462,13 @@ exports[`FieldGrid should render two rows with one cell 1`] = `
                     className="input-wrapper"
                   >
                     <ForwardRef(BaseInput)
-                      className=""
+                      className="variant-desktop size-l"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
-                      size="l"
                     >
                       <input
-                        className="reset base-input size-l"
+                        className="reset base-input variant-desktop size-l"
                         defaultValue="Field value"
                         onBlur={[Function]}
                         onFocus={[Function]}

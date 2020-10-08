@@ -13,12 +13,13 @@ const desktopSizes = ['xs', 's', 'l'];
   <h2>Desktop</h2>
   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
     {Object.entries(stateProps).map(([stateName, props]) => (
-      <div style={{ width: '30%' }} key={stateName}>
+      <div style={{ width: '30%', padding: 16 }} key={stateName}>
         <h4 style={{ textTransform: 'capitalize' }}>{stateName}</h4>
         {desktopSizes.map(sizeName => (
           <div style={{ marginTop: 24 }} key={sizeName}>
             <h5 style={{ textTransform: 'uppercase' }}>Size: {sizeName}</h5>
             <TextField
+              style={{ width: '100%' }}
               {...props}
               label='Label'
               placeholder='Placeholder'
@@ -35,6 +36,7 @@ const desktopSizes = ['xs', 's', 'l'];
               <React.Fragment>
                 <div style={{ height: 32 }} />
                 <TextField
+                  style={{ width: '100%' }}
                   {...props}
                   size={sizeName}
                   placeholder='Placeholder'
@@ -58,9 +60,10 @@ const desktopSizes = ['xs', 's', 'l'];
   <h2 style={{ marginTop: 32 }}>Mobile</h2>
   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 32 }}>
     {Object.entries(stateProps).map(([stateName, props]) => (
-      <div style={{ width: '30%' }} key={stateName}>
+      <div style={{ width: '30%', padding: 16 }} key={stateName}>
         <h4 style={{ textTransform: 'capitalize' }}>{stateName}</h4>
         <TextField
+          style={{ width: '100%' }}
           {...props}
           label='Label'
           placeholder='Placeholder'
@@ -74,6 +77,7 @@ const desktopSizes = ['xs', 's', 'l'];
         />
         <div style={{ height: 32 }} />
         <TextField
+          style={{ width: '100%' }}
           {...props}
           placeholder='Placeholder'
           defaultValue='Text'

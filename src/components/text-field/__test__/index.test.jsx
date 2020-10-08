@@ -4,7 +4,6 @@ import { act } from 'react-dom/test-utils';
 import TextField from '../index';
 import { BaseInput } from '../base-input';
 import { fitElementHeight } from '../../helpers/fit-element-height';
-import { Label } from '../label';
 
 jest.mock('../../helpers/fit-element-height', () => {
   const original = jest.requireActual('../../helpers/fit-element-height');
@@ -178,20 +177,22 @@ describe('<TextField />', () => {
   });
 
   it('should handle invalid types of "value" prop', () => {
-    ['', [], null, undefined].forEach(testValue => {
+    const spy = jest.fn();
+
+    ['', undefined].forEach(testValue => {
       const wrapper = mount(
-        <TextField label='Label' value={testValue} />
+        <TextField label='Label' value={testValue} onChange={spy} />
       );
 
-      expect(wrapper.find(Label).prop('asPlaceholder')).toBe(true);
+      expect(wrapper.find('label.label').prop('className')).toContain('as-placeholder');
     });
 
-    ['text', false, true, 123, {}].forEach(testValue => {
+    ['text', 123].forEach(testValue => {
       const wrapper = mount(
-        <TextField label='Label' value={testValue} />
+        <TextField label='Label' value={testValue} onChange={spy} />
       );
 
-      expect(wrapper.find(Label).prop('asPlaceholder')).toBe(false);
+      expect(wrapper.find('label.label').prop('className')).not.toContain('as-placeholder');
     });
   });
   it('should handle ref prop', () => {
