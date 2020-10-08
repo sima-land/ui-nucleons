@@ -17,8 +17,6 @@ import isFunction from 'lodash/isFunction';
  * @return {ReactElement} Компонент поля ввода.
  */
 export const BaseInput = forwardRef(function BaseInput ({
-  size,
-  failed,
   disabled,
   className,
   onInput,
@@ -44,13 +42,10 @@ export const BaseInput = forwardRef(function BaseInput ({
       ref={inputRef}
       disabled={disabled}
       className={cx([
-        className,
         'reset',
         'base-input',
-        failed && 'failed',
-        disabled && 'disabled',
         multiline && 'multiline',
-        size && `size-${size}`,
+        className,
       ])}
       onInput={event => {
         multiline && fitElementHeight(event);
@@ -61,16 +56,6 @@ export const BaseInput = forwardRef(function BaseInput ({
 });
 
 BaseInput.propTypes = {
-  /**
-   * Размер.
-   */
-  size: PropTypes.oneOf(['xs', 's', 'l']),
-
-  /**
-   * Ошибочно ли введено значение.
-   */
-  failed: PropTypes.bool,
-
   /**
    * Отключено ли поле.
    */

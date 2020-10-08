@@ -1,10 +1,8 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
-import isFunction from 'lodash/isFunction';
-import isNil from 'lodash/isNil';
+import { isNil, isFunction } from 'lodash';
 import Box from '../box';
 import * as Sizes from '../styling/sizes';
 import { cx } from './classes';
-import { Label } from './label';
 import { BaseInput } from './base-input';
 import PropTypes from 'prop-types';
 import { SmallRounds } from '../styling/shapes';
@@ -15,6 +13,18 @@ import { SmallRounds } from '../styling/shapes';
  * @return {boolean} Будет ли выведено значение.
  */
 const isVisibleValue = value => !isNil(value) && `${value}` !== '';
+
+/**
+ * Получив данные визуальных модификаторов, возвращает строку с css-классами.
+ * @param {Object} modifiers Данные визуальных модификаторов.
+ * @return {string} Строка с css-классами.
+ */
+const modifiersToClasses = ({ disabled, failed, focused, variant }) => cx(
+  disabled && 'disabled',
+  failed && 'failed',
+  focused && 'focused',
+  variant && `variant-${variant}`,
+);
 
 /**
  * Компонент текстового поля.
@@ -44,6 +54,7 @@ const isVisibleValue = value => !isNil(value) && `${value}` !== '';
  * @param {boolean} [props.multiline] Нужно ли выводить textarea вместо input.
  * @param {Object} [props.baseInputProps] Свойства BaseInput.
  * @param {string} [props.className] Класс корневого компонента.
+ * @param {string} [props.style] Стили корневого компонента.
  * @return {ReactElement} Компонент текстового поля.
  */
 const TextField = forwardRef(function TextField ({
@@ -72,6 +83,7 @@ const TextField = forwardRef(function TextField ({
   multiline,
   baseInputProps = {},
   className,
+  style,
 }, ref) {
   const [hasValue, toggleHasValue] = useState(
     isVisibleValue(value)
@@ -87,30 +99,37 @@ const TextField = forwardRef(function TextField ({
   const withLabel = (isLargeDesktop || isMobile) && Boolean(label);
   const labelAsPlaceholder = !(focused || hasValue);
 
+  const commonModifyClasses = modifiersToClasses({
+    disabled,
+    failed,
+    focused,
+    variant,
+  });
+
   useImperativeHandle(ref, () => baseInputRef.current);
 
   useEffect(() => toggleHasValue(baseInputRef.current.value));
 
   return (
-    <div className={cx('text-field-root', className, classes.root)}>
+    <div className={cx('text-field-root', className, classes.root)} style={style}>
 
       {/* field row */}
       <div
         className={cx(
           'reset',
           'input-block',
+          commonModifyClasses,
           size && `size-${size}`,
-          variant && `variant-${variant}`,
-          focused && 'focused',
           focused && classes.blockFocused,
-          disabled && 'disabled',
           multiline && 'multiline',
           withLabel && 'with-label',
           variant === 'desktop' && rounds !== 'none' && SmallRounds[rounds]
         )}
         onClick={event => {
           const { current: input } = baseInputRef;
+
           isFunction(onClick) && onClick(event);
+
           input
             && !disabled
             && input !== document.activeElement
@@ -127,12 +146,13 @@ const TextField = forwardRef(function TextField ({
         {/* input & label column */}
         <div className={cx('main-column')}>
           {withLabel && (
-            <Label
-              disabled={disabled}
-              focused={focused}
-              failed={failed}
-              variant={variant}
-              asPlaceholder={labelAsPlaceholder}
+            <label
+              className={cx(
+                'label',
+                commonModifyClasses,
+                hasValue && 'filled',
+                labelAsPlaceholder && 'as-placeholder',
+              )}
               children={label}
             />
           )}
@@ -146,11 +166,13 @@ const TextField = forwardRef(function TextField ({
                 : placeholder
               }
               autoFocus={autoFocus}
-              className={cx(classes.baseInput)}
+              className={cx(
+                commonModifyClasses,
+                classes.baseInput,
+                size && `size-${size}`,
+              )}
               defaultValue={defaultValue}
               value={value}
-              size={size}
-              failed={failed}
               readOnly={readOnly}
               disabled={disabled}
               onFocus={event => {
@@ -302,7 +324,7 @@ TextField.propTypes = {
   /**
    * Значение.
    */
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
   /**
    * Вариант отображения.
@@ -323,6 +345,11 @@ TextField.propTypes = {
    * Класс корневого компонента.
    */
   className: PropTypes.string,
+
+  /**
+   * Стили корневого компонента.
+   */
+  style: PropTypes.string,
 };
 
 export default TextField;

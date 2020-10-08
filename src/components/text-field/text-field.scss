@@ -21,9 +21,7 @@ input.reset {
 
 .input-block {
   display: flex;
-
-  // временно уменьшен размер, решение будет разработано в задаче #216
-  min-width: 120px;
+  min-width: 64px; // минимальная ширина по договоренности с дизайнерами
   max-width: 100%;
   padding: 0 12px;
   flex-direction: row;
@@ -45,7 +43,7 @@ input.reset {
       border-color: map-get($colors, 'gray12');
       background-color: map-get($colors, 'gray2');
     }
-    &.focused:not(.disabled) {
+    &.focused:not(.disabled):not(.failed) {
       border-color: map-get($colors, 'brand-blue');
     }
     &.disabled {
@@ -91,6 +89,9 @@ input.reset {
     }
     &.focused:not(.disabled) {
       box-shadow: inset 0 -1px map-get($colors, 'brand-blue');
+    }
+    &.failed:not(:disabled) {
+      box-shadow: inset 0 -1px map-get($colors, 'additional-red');
     }
     &:not(.multiline) {
       height: 48px;
@@ -145,12 +146,20 @@ input.reset {
     top: calc(50% - 12px);
     font-size: 16px;
     line-height: 24px;
-    &.failed {
-      color: map-get($colors, 'service-error');
+  }
+  &.variant-mobile {
+    &.focused:not(.failed) {
+      color: map-get($colors, 'brand-blue');
+    }
+    &.failed.focused,
+    &.failed.filled {
+      color: map-get($colors, 'additional-red');
     }
   }
-  &.variant-mobile.focused:not(.disabled) {
-    color: map-get($colors, 'brand-blue');
+  &.variant-desktop {
+    &.failed:not(.focused):not(.filled) {
+      color: map-get($colors, 'additional-red');
+    }
   }
 }
 
@@ -174,12 +183,6 @@ input.reset {
     font-size: 14px;
     line-height: 20px;
   }
-  &.failed:not(:disabled) {
-    color: map-get($colors, 'service-error');
-    &::placeholder {
-      color: map-get($colors, 'service-error');
-    }
-  }
   &.disabled {
     color: map-get($colors, 'gray24');
     &::placeholder {
@@ -188,6 +191,17 @@ input.reset {
   }
   &.multiline {
     resize: none;
+  }
+  &.variant-mobile {
+    &:not(:focus) {
+      text-overflow: ellipsis;
+    }
+  }
+  &.variant-desktop {
+    &.failed,
+    &.failed::placeholder {
+      color: map-get($colors, 'additional-red');
+    }
   }
 }
 
@@ -199,6 +213,6 @@ input.reset {
     color: map-get($colors, 'gray24');
   }
   &.failed {
-    color: map-get($colors, 'service-error');
+    color: map-get($colors, 'additional-red');
   }
 }

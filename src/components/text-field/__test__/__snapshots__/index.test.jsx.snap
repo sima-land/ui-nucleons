@@ -16,7 +16,7 @@ exports[`<TextField /> should handle "caption" prop 1`] = `
     className="text-field-root"
   >
     <div
-      className="reset input-block size-l variant-desktop rounds-sm__all"
+      className="reset input-block variant-desktop size-l rounds-sm__all"
       onClick={[Function]}
     >
       <div
@@ -26,13 +26,12 @@ exports[`<TextField /> should handle "caption" prop 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className=""
+            className="variant-desktop size-l"
             onBlur={[Function]}
             onFocus={[Function]}
-            size="l"
           >
             <input
-              className="reset base-input size-l"
+              className="reset base-input variant-desktop size-l"
               onBlur={[Function]}
               onFocus={[Function]}
               onInput={[Function]}
@@ -75,7 +74,7 @@ exports[`<TextField /> should handle "caption" prop 2`] = `
     className="text-field-root"
   >
     <div
-      className="reset input-block size-l variant-mobile disabled"
+      className="reset input-block disabled failed variant-mobile size-l"
       onClick={[Function]}
     >
       <div
@@ -85,15 +84,13 @@ exports[`<TextField /> should handle "caption" prop 2`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className=""
+            className="disabled failed variant-mobile size-l"
             disabled={true}
-            failed={true}
             onBlur={[Function]}
             onFocus={[Function]}
-            size="l"
           >
             <input
-              className="reset base-input failed disabled size-l"
+              className="reset base-input disabled failed variant-mobile size-l"
               disabled={true}
               onBlur={[Function]}
               onFocus={[Function]}
@@ -126,7 +123,7 @@ exports[`<TextField /> should handle "disabled" prop 1`] = `
     className="text-field-root"
   >
     <div
-      className="reset input-block size-l variant-desktop disabled rounds-sm__all"
+      className="reset input-block disabled variant-desktop size-l rounds-sm__all"
       onClick={[Function]}
     >
       <div
@@ -136,14 +133,13 @@ exports[`<TextField /> should handle "disabled" prop 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className=""
+            className="disabled variant-desktop size-l"
             disabled={true}
             onBlur={[Function]}
             onFocus={[Function]}
-            size="l"
           >
             <input
-              className="reset base-input disabled size-l"
+              className="reset base-input disabled variant-desktop size-l"
               disabled={true}
               onBlur={[Function]}
               onFocus={[Function]}
@@ -165,7 +161,7 @@ exports[`<TextField /> should handle "focused" prop 1`] = `
     className="text-field-root"
   >
     <div
-      className="reset input-block size-l variant-desktop focused rounds-sm__all"
+      className="reset input-block focused variant-desktop size-l rounds-sm__all"
       onClick={[Function]}
     >
       <div
@@ -175,13 +171,12 @@ exports[`<TextField /> should handle "focused" prop 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className=""
+            className="focused variant-desktop size-l"
             onBlur={[Function]}
             onFocus={[Function]}
-            size="l"
           >
             <input
-              className="reset base-input size-l"
+              className="reset base-input focused variant-desktop size-l"
               onBlur={[Function]}
               onFocus={[Function]}
               onInput={[Function]}
@@ -202,35 +197,28 @@ exports[`<TextField /> should handle "label" prop 1`] = `
     className="text-field-root"
   >
     <div
-      className="reset input-block size-l variant-desktop with-label rounds-sm__all"
+      className="reset input-block variant-desktop size-l with-label rounds-sm__all"
       onClick={[Function]}
     >
       <div
         className="main-column"
       >
-        <Label
-          asPlaceholder={true}
-          focused={false}
-          variant="desktop"
+        <label
+          className="label variant-desktop as-placeholder"
         >
-          <label
-            className="label as-placeholder variant-desktop"
-          >
-            The best label in our world!
-          </label>
-        </Label>
+          The best label in our world!
+        </label>
         <div
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className=""
+            className="variant-desktop size-l"
             onBlur={[Function]}
             onFocus={[Function]}
             placeholder={null}
-            size="l"
           >
             <input
-              className="reset base-input size-l"
+              className="reset base-input variant-desktop size-l"
               onBlur={[Function]}
               onFocus={[Function]}
               onInput={[Function]}
@@ -255,39 +243,29 @@ exports[`<TextField /> should handle "label" prop 2`] = `
     className="text-field-root"
   >
     <div
-      className="reset input-block size-l variant-mobile disabled with-label"
+      className="reset input-block disabled failed variant-mobile size-l with-label"
       onClick={[Function]}
     >
       <div
         className="main-column"
       >
-        <Label
-          asPlaceholder={true}
-          disabled={true}
-          failed={true}
-          focused={false}
-          variant="mobile"
+        <label
+          className="label disabled failed variant-mobile as-placeholder"
         >
-          <label
-            className="label as-placeholder disabled failed variant-mobile"
-          >
-            The best label in our world!
-          </label>
-        </Label>
+          The best label in our world!
+        </label>
         <div
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className=""
+            className="disabled failed variant-mobile size-l"
             disabled={true}
-            failed={true}
             onBlur={[Function]}
             onFocus={[Function]}
             placeholder={null}
-            size="l"
           >
             <input
-              className="reset base-input failed disabled size-l"
+              className="reset base-input disabled failed variant-mobile size-l"
               disabled={true}
               onBlur={[Function]}
               onFocus={[Function]}
@@ -316,7 +294,7 @@ exports[`<TextField /> should handle "multiline" prop 1`] = `
     className="text-field-root"
   >
     <div
-      className="reset input-block size-l variant-desktop multiline rounds-sm__all"
+      className="reset input-block variant-desktop size-l multiline rounds-sm__all"
       onClick={[Function]}
     >
       <div
@@ -326,16 +304,15 @@ exports[`<TextField /> should handle "multiline" prop 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className=""
+            className="variant-desktop size-l"
             multiline={true}
             onBlur={[Function]}
             onFocus={[Function]}
             onInput={[MockFunction]}
             rows={3}
-            size="l"
           >
             <textarea
-              className="reset base-input multiline size-l"
+              className="reset base-input multiline variant-desktop size-l"
               onBlur={[Function]}
               onFocus={[Function]}
               onInput={[Function]}
@@ -357,7 +334,7 @@ exports[`<TextField /> should handle "variant" prop 1`] = `
     className="text-field-root"
   >
     <div
-      className="reset input-block size-l variant-desktop rounds-sm__all"
+      className="reset input-block variant-desktop size-l rounds-sm__all"
       onClick={[Function]}
     >
       <div
@@ -367,13 +344,12 @@ exports[`<TextField /> should handle "variant" prop 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className=""
+            className="variant-desktop size-l"
             onBlur={[Function]}
             onFocus={[Function]}
-            size="l"
           >
             <input
-              className="reset base-input size-l"
+              className="reset base-input variant-desktop size-l"
               onBlur={[Function]}
               onFocus={[Function]}
               onInput={[Function]}
@@ -394,7 +370,7 @@ exports[`<TextField /> should handle "variant" prop 2`] = `
     className="text-field-root"
   >
     <div
-      className="reset input-block size-l variant-mobile"
+      className="reset input-block variant-mobile size-l"
       onClick={[Function]}
     >
       <div
@@ -404,13 +380,12 @@ exports[`<TextField /> should handle "variant" prop 2`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className=""
+            className="variant-mobile size-l"
             onBlur={[Function]}
             onFocus={[Function]}
-            size="l"
           >
             <input
-              className="reset base-input size-l"
+              className="reset base-input variant-mobile size-l"
               onBlur={[Function]}
               onFocus={[Function]}
               onInput={[Function]}
@@ -431,7 +406,7 @@ exports[`<TextField /> should handle adornment props 1`] = `
     className="text-field-root"
   >
     <div
-      className="reset input-block size-l variant-desktop rounds-sm__all"
+      className="reset input-block variant-desktop size-l rounds-sm__all"
       onClick={[Function]}
     >
       <Box
@@ -452,13 +427,12 @@ exports[`<TextField /> should handle adornment props 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className=""
+            className="variant-desktop size-l"
             onBlur={[Function]}
             onFocus={[Function]}
-            size="l"
           >
             <input
-              className="reset base-input size-l"
+              className="reset base-input variant-desktop size-l"
               onBlur={[Function]}
               onFocus={[Function]}
               onInput={[Function]}
@@ -480,7 +454,7 @@ exports[`<TextField /> should handle adornment props 2`] = `
     className="text-field-root"
   >
     <div
-      className="reset input-block size-l variant-desktop rounds-sm__all"
+      className="reset input-block variant-desktop size-l rounds-sm__all"
       onClick={[Function]}
     >
       <div
@@ -490,13 +464,12 @@ exports[`<TextField /> should handle adornment props 2`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className=""
+            className="variant-desktop size-l"
             onBlur={[Function]}
             onFocus={[Function]}
-            size="l"
           >
             <input
-              className="reset base-input size-l"
+              className="reset base-input variant-desktop size-l"
               onBlur={[Function]}
               onFocus={[Function]}
               onInput={[Function]}
@@ -526,7 +499,7 @@ exports[`<TextField /> should render without props 1`] = `
     className="text-field-root"
   >
     <div
-      className="reset input-block size-l variant-desktop rounds-sm__all"
+      className="reset input-block variant-desktop size-l rounds-sm__all"
       onClick={[Function]}
     >
       <div
@@ -536,13 +509,12 @@ exports[`<TextField /> should render without props 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className=""
+            className="variant-desktop size-l"
             onBlur={[Function]}
             onFocus={[Function]}
-            size="l"
           >
             <input
-              className="reset base-input size-l"
+              className="reset base-input variant-desktop size-l"
               onBlur={[Function]}
               onFocus={[Function]}
               onInput={[Function]}
