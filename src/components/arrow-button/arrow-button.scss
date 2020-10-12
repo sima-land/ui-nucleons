@@ -1,3 +1,5 @@
+@import '../styling/shadows';
+
 .arrow-button {
   display: inline-flex;
   align-items: center;
@@ -16,17 +18,17 @@
   &.size-s {
     width: 32px;
     height: 32px;
-    box-shadow: 0 0 4px rgba(0, 0, 0, .04), 0 4px 8px rgba(0, 0, 0, .1);
+    @extend .shadow-z2;
     &:hover {
-      box-shadow: 0 8px 16px rgba(0, 0, 0, .08), 0 0 4px rgba(0, 0, 0, .04);
+      @extend .shadow-z3;
     }
   }
   &.size-l {
     width: 56px;
     height: 56px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, .08), 0 0 4px rgba(0, 0, 0, .04);
+    @extend .shadow-z3;
     &:hover {
-      box-shadow: 0 0 4px rgba(0, 0, 0, .04), 0 12px 32px rgba(0, 0, 0, .1);
+      @extend .shadow-z4;
     }
   }
 }

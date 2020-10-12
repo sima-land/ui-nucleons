@@ -13,7 +13,11 @@ const directions = ['up', 'right', 'down', 'left'];
       <h3>Size: {size}</h3>
       {directions.map(direction => (
         <div key={direction} style={{ display: 'inline-block', paddingRight: 32 }}>
-          <ArrowButton size={size} direction={direction} />
+          <ArrowButton
+            size={size}
+            direction={direction}
+            aria-label={direction}
+          />
         </div>
       ))}
     </div>

@@ -1,4 +1,5 @@
 @import '../colors';
+@import '../styling/shadows';
 
 
 .tooltip {
@@ -11,8 +12,8 @@
   box-sizing: border-box;
   overflow: hidden;
   background: $gray4;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, .1), 0 0 4px rgba(0, 0, 0, .04);
   border-radius: 4px;
+  @extend .shadow-z2;
 }
 
 .tooltip-cross {
