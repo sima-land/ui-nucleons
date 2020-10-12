@@ -18,6 +18,7 @@ storiesOf('ArrowButton', module)
           {directions.map(direction => (
             <div key={direction} style={{ display: 'inline-block', paddingRight: 32 }}>
               <ArrowButton
+                aria-label={direction}
                 size={size}
                 direction={direction}
                 onClick={() => action('onClick')(`${size}, ${direction}`)}
