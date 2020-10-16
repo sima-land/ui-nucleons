@@ -1,15 +1,17 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import ModifiersWidget, { getSelectItem } from '../modifiers-widget';
-import ModifiersGroup from '../../modifiers-group/modifiers-group';
+import ModifiersWidget, { getSelectItem } from '..';
+import ModifiersGroup from '../../group';
 import Link from '../../../link/deprecated';
 import isFunction from 'lodash/isFunction';
 
 describe('<ModifiersWidget />', () => {
   it('should renders correctly without props', () => {
     const modifiersWidget = shallow(<ModifiersWidget />);
+
     expect(modifiersWidget).toMatchSnapshot();
   });
+
   it('should renders correctly with prop', () => {
     const onSelectItem = jest.fn();
     const modifiersWidget = mount(
@@ -31,8 +33,7 @@ describe('<ModifiersWidget />', () => {
 
 describe('getSelectItem()', () => {
   it('should return null if item is selected', () => {
-    expect(getSelectItem(jest.fn(), { selected: true }))
-      .toBe(null);
+    expect(getSelectItem(jest.fn(), { selected: true })).toBe(null);
   });
 
   it('should return function if item is not selected', () => {

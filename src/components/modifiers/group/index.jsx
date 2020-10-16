@@ -2,11 +2,11 @@ import React, { Component, createRef } from 'react';
 import isFunction from 'lodash/isFunction';
 import debounce from 'lodash/debounce';
 import prop from 'lodash/fp/prop';
-import ModifierButton from '../modifier-button/modifier-button';
+import ModifierButton from '../button';
 import withGlobalListeners from '../../hoc/with-global-listeners';
-import classes from '../modifiers.scss';
+import classes from './modifiers-group.scss';
 import classnames from 'classnames/bind';
-import Type from 'prop-types';
+import PropTypes from 'prop-types';
 
 const cx = classnames.bind(classes);
 
@@ -139,7 +139,7 @@ export class ModifiersGroup extends Component {
       const containerEl = this.containerRef.current;
       const showingButtonEl = this.showingButtonRef.current;
 
-      if (containerEl instanceof HTMLElement && showingButtonEl instanceof HTMLElement) {
+      if (containerEl && showingButtonEl) {
         const childList = [...containerEl.children];
         const firstHiddenNodeIndex = childList.findIndex(createHiddenNodeIndexFinder(containerEl));
 
@@ -219,17 +219,24 @@ export class ModifiersGroup extends Component {
               selected={isSelectedItem(item)}
               image={getItemImage(item)}
               onClick={getSelectItem(onSelectItem, item)}
-              wrapperClassName={cx(!isDisplayed && 'not-display')}
+              className={cx(
+                'guttered',
+                !isDisplayed && 'not-display'
+              )}
               isMarkdown={isMarkdown(item)}
             />
           );
         })}
         {hasItems && hasHiddenNodes && !needShowAll && (
           <ModifierButton
+            squared
             ref={this.showingButtonRef}
             content={`+${items.length - lastVisibleChildIndex}`}
-            className={cx('show-all-button')}
-            wrapperClassName={cx(lastVisibleChildIndex === null && 'invisible')}
+            className={cx(
+              'show-all-button',
+              'guttered',
+              lastVisibleChildIndex === null && 'invisible'
+            )}
             onClick={this.handleShowAllClick}
           />
         )}
@@ -243,67 +250,67 @@ ModifiersGroup.propTypes = {
   /**
    * Список модификаторов.
    */
-  items: Type.arrayOf(Type.object),
+  items: PropTypes.arrayOf(PropTypes.object),
 
   /**
    * Функция сменяющая модификатор, получит сам модификатор.
    */
-  onSelectItem: Type.func,
+  onSelectItem: PropTypes.func,
 
   /**
    * Возвращает тип модификатора ("text" или "image", по умолчанию "text").
    */
-  getItemType: Type.func,
+  getItemType: PropTypes.func,
 
   /**
    * Возвращает число с количеством модификатора (по умолчанию свойство "count").
    */
-  getItemCount: Type.func,
+  getItemCount: PropTypes.func,
 
   /**
    * Возвращает цвет модификатора (по умолчанию свойство "color").
    */
-  getItemColor: Type.func,
+  getItemColor: PropTypes.func,
 
   /**
    * Возвращает содержимое модификатора (по умолчанию свойство "content").
    */
-  getItemContent: Type.func,
+  getItemContent: PropTypes.func,
 
   /**
    * Показывает, выбран ли модификатор (по умолчанию свойство "selected").
    */
-  isSelectedItem: Type.func,
+  isSelectedItem: PropTypes.func,
 
   /**
    * Возвращает URL изображения модификатора (по умолчанию свойство "image").
    */
-  getItemImage: Type.func,
+  getItemImage: PropTypes.func,
 
   /**
    * Возвращает функцию смены модификатора.
    */
-  getSelectItem: Type.func,
+  getSelectItem: PropTypes.func,
 
   /**
    * Имеет ли товар уценку.
    */
-  isMarkdown: Type.func,
+  isMarkdown: PropTypes.func,
 
   /**
    * Глобальный обработчик событий.
    */
-  addGlobalListener: Type.func,
+  addGlobalListener: PropTypes.func,
 
   /**
    * Флаг необходимости отображения всех модификаторов.
    */
-  needShowAll: Type.bool,
+  needShowAll: PropTypes.bool,
 
   /**
    * Сработает при нажатии на кнопку отображения всех модификаторов.
    */
-  onClickShowAll: Type.func,
+  onClickShowAll: PropTypes.func,
 };
 
 export default withGlobalListeners(ModifiersGroup);
