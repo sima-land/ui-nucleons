@@ -1,14 +1,14 @@
 import React from 'react';
 import getDeclination from '../../helpers/get-declination';
-import ModifiersGroup from '../modifiers-group/modifiers-group';
+import ModifiersGroup from '../group';
 import prop from 'lodash/fp/prop';
 import Link from '../../link/deprecated';
 import classNames from 'classnames/bind';
-import styles from '../modifiers.scss';
+import classes from './modifiers-widget.scss';
 import isFunction from 'lodash/isFunction';
-import Type from 'prop-types';
+import PropTypes from 'prop-types';
 
-const cx = classNames.bind(styles);
+const cx = classNames.bind(classes);
 
 /**
  * Функция-геттер для обработчика клика по модификатору.
@@ -16,10 +16,9 @@ const cx = classNames.bind(styles);
  * @param {Object} item Модификатор.
  * @return {Function} Обработчик клика по модификатору.
  */
-export const getSelectItem = (onSelectItem, item) =>
-  item.selected
-    ? null
-    : () => isFunction(onSelectItem) && onSelectItem(item);
+export const getSelectItem = (onSelectItem, item) => item.selected
+  ? null
+  : () => isFunction(onSelectItem) && onSelectItem(item);
 
 /**
  * Компонент блока модификаторов.
@@ -38,6 +37,7 @@ const ModifiersWidget = ({ title, items, sizesTableUrl, onSelectItem }) => (
         {getDeclination(items.length, ['вариант', 'варианта', 'вариантов'])}):
       </h3>
     )}
+
     <ModifiersGroup
       items={items}
       getItemContent={prop('name')}
@@ -45,6 +45,7 @@ const ModifiersWidget = ({ title, items, sizesTableUrl, onSelectItem }) => (
       onSelectItem={onSelectItem}
       getSelectItem={getSelectItem}
     />
+
     {Boolean(sizesTableUrl) && (
       <Link
         href={sizesTableUrl}
@@ -56,27 +57,26 @@ const ModifiersWidget = ({ title, items, sizesTableUrl, onSelectItem }) => (
 );
 
 ModifiersWidget.propTypes = {
-
   /**
    * Название сущности модификатора.
    */
 
-  title: Type.string,
+  title: PropTypes.string,
 
   /**
    * Данные модификатора товара.
    */
-  items: Type.arrayOf(Type.object),
+  items: PropTypes.arrayOf(PropTypes.object),
 
   /**
    * Url таблицы размеров.
    */
-  sizesTableUrl: Type.string,
+  sizesTableUrl: PropTypes.string,
 
   /**
    * Обработчик клика по модификатору.
    */
-  onSelectItem: Type.func,
+  onSelectItem: PropTypes.func,
 };
 
 export default ModifiersWidget;

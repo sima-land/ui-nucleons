@@ -1,17 +1,13 @@
 import React, { forwardRef } from 'react';
 import isNumber from 'lodash/isNumber';
-import classes from '../modifiers.scss';
+import classes from './modifier-button.scss';
 import classnames from 'classnames/bind';
-import { MODIFIERS_TYPES } from '../../constants';
-import Type from 'prop-types';
+import { MODIFIERS_TYPES as TYPES } from '../../constants';
+import PropTypes from 'prop-types';
 
 const cx = classnames.bind(classes);
 
-/**
- * Массив доступных типов содержимого модификатора.
- * @type {Array<string>}
- */
-const availableTypes = Object.values(MODIFIERS_TYPES);
+const typesList = Object.values(TYPES);
 
 /**
  * Возвращает компонент модификатора.
@@ -25,6 +21,7 @@ const availableTypes = Object.values(MODIFIERS_TYPES);
  * @param {string} [props.className] Дополнительный CSS-класс.
  * @param {Function} [props.onClick] Сработает при клике на модификатор.
  * @param {boolean} [props.isMarkdown] Имеет ли товар уценку.
+ * @param {boolean} [props.squared] Должна ли быть кнопка квадратной.
  * @param {Object} ref Реф.
  * @return {ReactElement} Компонент модификатора.
  */
@@ -34,53 +31,58 @@ const ModifierButton = forwardRef(function ModifierButton ({
   selected,
   color,
   image,
-  type = 'text',
-  className = '',
-  wrapperClassName = '',
+  type: typeProp = 'text',
+  className,
   onClick,
-  isMarkdown,
+  isMarkdown: hasMarkdown,
+  squared = [TYPES.color, TYPES.image].includes(typeProp),
 }, ref) {
-  const readyType = availableTypes.includes(type) ? type : 'text';
+  const type = typesList.includes(typeProp) ? typeProp : 'text';
+  const hasCount = isNumber(count) && count >= 0;
 
   return (
     <div
       ref={ref}
       className={cx(
         'modifier-button',
-        wrapperClassName,
-        { square: readyType !== MODIFIERS_TYPES.text }
+        squared && 'squared',
+        selected && 'selected',
+        className
       )}
+      style={color ? { background: color } : undefined}
       onClick={onClick}
-      role={onClick ? 'button' : null}
     >
-      {((isNumber(count) && count >= 0) || isMarkdown) && (
+      {/* label */}
+      {(hasCount || hasMarkdown) && (
         <span
           className={cx(
-            isNumber(count) && 'count',
-            isMarkdown && 'markdown'
+            'label',
+            hasCount && 'with-count',
           )}
         >
-          {isNumber(count) && count}
-          {isMarkdown && (isNumber(count) ? '(У)' : 'У')}
+          {hasCount && (count > 99 ? '99+' : count)}
+          {hasMarkdown && (hasCount ? '(У)' : 'У')}
         </span>
       )}
-      <div
-        className={cx('content',
-          selected && 'selected',
-          isMarkdown && 'markdown-content',
-          className)}
-        style={color ? { backgroundColor: color } : undefined}
-        title={content}
-      >
-        {readyType === MODIFIERS_TYPES.text && (
-          <span className={cx('text')}>
-            {String(content || '')}
-          </span>
-        )}
-        {readyType === MODIFIERS_TYPES.image && (
-          <img alt={content} src={image} className={cx('image')} />
-        )}
-      </div>
+
+      {/* content */}
+      {[TYPES.text, TYPES.image].includes(type) && (
+        <div className={cx('content')}>
+          {type === TYPES.text && (
+            <span className={cx('text', !squared && 'guttered')}>
+              {String(content || '')}
+            </span>
+          )}
+
+          {type === TYPES.image && (
+            <img
+              src={image}
+              alt={content}
+              className={cx('image')}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 });
@@ -90,53 +92,57 @@ ModifierButton.propTypes = {
   /**
    * Количество компонента.
    */
-  count: Type.number,
+  count: PropTypes.number,
 
   /**
    * Содержимое модификатора.
    */
-  content: Type.string,
+  content: PropTypes.string,
 
   /**
    * Выбран ли модификатор.
    */
-  selected: Type.bool,
+  selected: PropTypes.bool,
 
   /**
    * Цвет модификатора.
    */
-  color: Type.string,
+  color: PropTypes.string,
 
   /**
    * URL изображения модификатора.
    */
-  image: Type.string,
+  image: PropTypes.string,
 
   /**
    * Тип содержимого модификатора.
    */
-  type: Type.oneOf(['text', 'color', 'image']),
+  type: PropTypes.oneOf(['text', 'color', 'image']),
 
   /**
    * Дополнительный CSS-класс.
    */
-  className: Type.string,
+  className: PropTypes.string,
 
   /**
    * Дополнительный CSS-класс обертки.
    */
-  wrapperClassName: Type.string,
+  wrapperClassName: PropTypes.string,
 
   /**
    * Сработает при клике на модификатор.
    */
-  onClick: Type.func,
+  onClick: PropTypes.func,
 
   /**
    * Имеет ли товар уценку.
    */
-  isMarkdown: Type.bool,
+  isMarkdown: PropTypes.bool,
+
+  /**
+   * Должна ли быть кнопка квадратной.
+   */
+  squared: PropTypes.bool,
 };
 
-ModifierButton.displayName = 'ModifierButton';
 export default ModifierButton;

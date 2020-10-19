@@ -48,39 +48,36 @@ exports[`<ModifiersWidget /> should renders correctly with prop 1`] = `
         <div
           className="modifiers-group height-limited"
         >
-          <ModifierButton
+          <ForwardRef(ModifierButton)
+            className="guttered"
             key="0"
             onClick={[Function]}
-            wrapperClassName=""
           >
             <div
-              className="modifier-button"
+              className="modifier-button guttered"
               onClick={[Function]}
-              role="button"
             >
               <div
                 className="content"
               >
                 <span
-                  className="text"
+                  className="text guttered"
                 />
               </div>
             </div>
-          </ModifierButton>
-          <ModifierButton
-            className="show-all-button"
+          </ForwardRef(ModifierButton)>
+          <ForwardRef(ModifierButton)
+            className="show-all-button guttered invisible"
             content="+1"
             onClick={[Function]}
-            wrapperClassName="invisible"
+            squared={true}
           >
             <div
-              className="modifier-button invisible"
+              className="modifier-button squared show-all-button guttered invisible"
               onClick={[Function]}
-              role="button"
             >
               <div
-                className="content show-all-button"
-                title="+1"
+                className="content"
               >
                 <span
                   className="text"
@@ -89,7 +86,7 @@ exports[`<ModifiersWidget /> should renders correctly with prop 1`] = `
                 </span>
               </div>
             </div>
-          </ModifierButton>
+          </ForwardRef(ModifierButton)>
         </div>
       </ModifiersGroup>
     </withGlobalListeners(ModifiersGroup)>

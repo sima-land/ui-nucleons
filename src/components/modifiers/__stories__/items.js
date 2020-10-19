@@ -1,5 +1,6 @@
 const imgItems = [
-  { name: 'желтый',
+  {
+    name: 'желтый',
     selected: false,
     inCartQty: null,
     isMarkdown: false,
@@ -7,9 +8,10 @@ const imgItems = [
     color: '',
     priority: 0,
     productId: 3609321,
-    image:
-    'https://cdn2.static1-sima-land.com/items/3609321/0/140.jpg?v=1547789627' },
-  { name: 'красный',
+    image: 'https://cdn2.static1-sima-land.com/items/3609321/0/140.jpg?v=1547789627',
+  },
+  {
+    name: 'красный',
     selected: false,
     inCartQty: null,
     isMarkdown: false,
@@ -17,9 +19,10 @@ const imgItems = [
     color: '',
     priority: 0,
     productId: 3609268,
-    image:
-      'https://cdn2.static1-sima-land.com/items/3609268/0/140.jpg?v=1547789630' },
-  { name: 'розовый',
+    image: 'https://cdn2.static1-sima-land.com/items/3609268/0/140.jpg?v=1547789630',
+  },
+  {
+    name: 'розовый',
     selected: false,
     inCartQty: null,
     isMarkdown: false,
@@ -27,9 +30,10 @@ const imgItems = [
     color: '',
     priority: 0,
     productId: 3607801,
-    image:
-      'https://cdn2.static1-sima-land.com/items/3607801/0/140.jpg?v=1547706544' },
-  { name: 'синий',
+    image: 'https://cdn2.static1-sima-land.com/items/3607801/0/140.jpg?v=1547706544',
+  },
+  {
+    name: 'синий',
     selected: true,
     inCartQty: null,
     isMarkdown: false,
@@ -37,9 +41,10 @@ const imgItems = [
     color: '',
     priority: 0,
     productId: 3607798,
-    image:
-      'https://cdn2.static1-sima-land.com/items/3607798/0/140.jpg?v=1547787530' },
-  { name: 'фиолетовый',
+    image: 'https://cdn2.static1-sima-land.com/items/3607798/0/140.jpg?v=1547787530',
+  },
+  {
+    name: 'фиолетовый',
     selected: false,
     inCartQty: null,
     isMarkdown: false,
@@ -47,12 +52,13 @@ const imgItems = [
     color: '',
     priority: 0,
     productId: 3607805,
-    image:
-      'https://cdn2.static1-sima-land.com/items/3607805/0/140.jpg?v=1554450174' },
+    image: 'https://cdn2.static1-sima-land.com/items/3607805/0/140.jpg?v=1554450174',
+  },
 ];
 
 const imgItemsWithMark = [
-  { name: 'желтый',
+  {
+    name: 'желтый',
     selected: false,
     inCartQty: 3,
     isMarkdown: false,
@@ -60,9 +66,10 @@ const imgItemsWithMark = [
     color: '',
     priority: 0,
     productId: 3609321,
-    image:
-      'https://cdn2.static1-sima-land.com/items/3609321/0/140.jpg?v=1547789627' },
-  { name: 'красный',
+    image: 'https://cdn2.static1-sima-land.com/items/3609321/0/140.jpg?v=1547789627',
+  },
+  {
+    name: 'красный',
     selected: false,
     inCartQty: null,
     isMarkdown: true,
@@ -70,9 +77,10 @@ const imgItemsWithMark = [
     color: '',
     priority: 0,
     productId: 3609268,
-    image:
-      'https://cdn2.static1-sima-land.com/items/3609268/0/140.jpg?v=1547789630' },
-  { name: 'розовый',
+    image: 'https://cdn2.static1-sima-land.com/items/3609268/0/140.jpg?v=1547789630',
+  },
+  {
+    name: 'розовый',
     selected: false,
     inCartQty: 3,
     isMarkdown: true,
@@ -80,9 +88,10 @@ const imgItemsWithMark = [
     color: '',
     priority: 0,
     productId: 3607801,
-    image:
-      'https://cdn2.static1-sima-land.com/items/3607801/0/140.jpg?v=1547706544' },
-  { name: 'синий',
+    image: 'https://cdn2.static1-sima-land.com/items/3607801/0/140.jpg?v=1547706544',
+  },
+  {
+    name: 'синий',
     selected: false,
     inCartQty: 256,
     isMarkdown: false,
@@ -90,9 +99,10 @@ const imgItemsWithMark = [
     color: '',
     priority: 0,
     productId: 3607798,
-    image:
-      'https://cdn2.static1-sima-land.com/items/3607798/0/140.jpg?v=1547787530' },
-  { name: 'фиолетовый',
+    image: 'https://cdn2.static1-sima-land.com/items/3607798/0/140.jpg?v=1547787530',
+  },
+  {
+    name: 'фиолетовый',
     selected: false,
     inCartQty: null,
     isMarkdown: false,
@@ -100,12 +110,13 @@ const imgItemsWithMark = [
     color: '',
     priority: 0,
     productId: 3607805,
-    image:
-      'https://cdn2.static1-sima-land.com/items/3607805/0/140.jpg?v=1554450174' },
+    image: 'https://cdn2.static1-sima-land.com/items/3607805/0/140.jpg?v=1554450174',
+  },
 ];
 
 const textItems = [
-  { name: '30 (98-104см)',
+  {
+    name: '30 (98-104см)',
     selected: false,
     inCartQty: null,
     isMarkdown: false,
@@ -113,9 +124,10 @@ const textItems = [
     color: '',
     priority: 0,
     productId: 3485686,
-    image:
-    'https://cdn2.static1-sima-land.com/items/3485686/0/140.jpg?v=1541497336' },
-  { name: '32 (110-116см)',
+    image: 'https://cdn2.static1-sima-land.com/items/3485686/0/140.jpg?v=1541497336',
+  },
+  {
+    name: '32 (110-116см)',
     selected: false,
     inCartQty: 25,
     isMarkdown: false,
@@ -123,9 +135,10 @@ const textItems = [
     color: '',
     priority: 0,
     productId: 3485687,
-    image:
-      'https://cdn2.static1-sima-land.com/items/3485687/0/140.jpg?v=1541497517' },
-  { name: '34 (122-128см)',
+    image: 'https://cdn2.static1-sima-land.com/items/3485687/0/140.jpg?v=1541497517',
+  },
+  {
+    name: '34 (122-128см)',
     selected: false,
     inCartQty: null,
     isMarkdown: false,
@@ -133,9 +146,10 @@ const textItems = [
     color: '',
     priority: 0,
     productId: 3485688,
-    image:
-      'https://cdn2.static1-sima-land.com/items/3485688/0/140.jpg?v=1541497335' },
-  { name: '36 (134-140см)',
+    image: 'https://cdn2.static1-sima-land.com/items/3485688/0/140.jpg?v=1541497335',
+  },
+  {
+    name: '36 (134-140см)',
     selected: true,
     inCartQty: 7,
     isMarkdown: false,
@@ -143,12 +157,13 @@ const textItems = [
     color: '',
     priority: 0,
     productId: 3485685,
-    image:
-      'https://cdn2.static1-sima-land.com/items/3485685/0/140.jpg?v=1541497492' },
+    image: 'https://cdn2.static1-sima-land.com/items/3485685/0/140.jpg?v=1541497492',
+  },
 ];
 
 const colorItems = [
-  { name: '30 (98-104см)',
+  {
+    name: '30 (98-104см)',
     selected: false,
     inCartQty: 67,
     isMarkdown: false,
@@ -156,9 +171,10 @@ const colorItems = [
     color: 'red',
     priority: 0,
     productId: 3485686,
-    image:
-      'https://cdn2.static1-sima-land.com/items/3485686/0/140.jpg?v=1541497336' },
-  { name: '32 (110-116см)',
+    image: 'https://cdn2.static1-sima-land.com/items/3485686/0/140.jpg?v=1541497336',
+  },
+  {
+    name: '32 (110-116см)',
     selected: false,
     inCartQty: null,
     isMarkdown: false,
@@ -166,9 +182,10 @@ const colorItems = [
     color: '#ffab00',
     priority: 0,
     productId: 3485687,
-    image:
-      'https://cdn2.static1-sima-land.com/items/3485687/0/140.jpg?v=1541497517' },
-  { name: '34 (122-128см)',
+    image: 'https://cdn2.static1-sima-land.com/items/3485687/0/140.jpg?v=1541497517',
+  },
+  {
+    name: '34 (122-128см)',
     selected: false,
     inCartQty: null,
     isMarkdown: false,
@@ -176,9 +193,10 @@ const colorItems = [
     color: '#1f84db',
     priority: 0,
     productId: 3485688,
-    image:
-      'https://cdn2.static1-sima-land.com/items/3485688/0/140.jpg?v=1541497335' },
-  { name: '36 (134-140см)',
+    image: 'https://cdn2.static1-sima-land.com/items/3485688/0/140.jpg?v=1541497335',
+  },
+  {
+    name: '36 (134-140см)',
     selected: true,
     inCartQty: null,
     isMarkdown: false,
@@ -186,8 +204,8 @@ const colorItems = [
     color: 'green',
     priority: 0,
     productId: 3485685,
-    image:
-      'https://cdn2.static1-sima-land.com/items/3485685/0/140.jpg?v=1541497492' },
+    image: 'https://cdn2.static1-sima-land.com/items/3485685/0/140.jpg?v=1541497492',
+  },
 ];
 
 const items = {

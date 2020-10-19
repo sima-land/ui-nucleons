@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import ModifiersWidget from '../modifiers-widget/modifiers-widget';
+import ModifiersWidget from '../widget';
 import items from './items';
 
 storiesOf('Modifiers', module)
@@ -37,7 +37,7 @@ storiesOf('Modifiers', module)
       />
       <br />
       <h3>Тип &quot;image&quot;, в узком блоке:</h3>
-      <div style={{ width: 200, border: '1px dashed #ccc' }}>
+      <div style={{ width: 160, marginBottom: 40, padding: 20, border: '1px dashed #ccc' }}>
         <ModifiersWidget
           title='Варианты'
           items={items.imgItems.concat(items.imgItemsWithMark)}

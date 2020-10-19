@@ -1,0 +1,43 @@
+@import '../modifiers';
+@import '../../colors';
+
+.modifiers-group {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -$gutter;
+  overflow: hidden;
+  &.height-limited {
+    max-height: $groupMaxHeight;
+  }
+}
+
+.modifiers-title {
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0 0 16px;
+}
+
+.modifiers-link {
+  display: inline-block;
+  margin: 16px 0;
+}
+
+.guttered {
+  margin: $gutter;
+}
+
+.show-all-button {
+  width: $minSize;
+  color: $brand-blue;
+}
+
+.not-display {
+  display: none;
+}
+
+.invisible {
+  opacity: 0;
+  height: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
