@@ -29,7 +29,7 @@ const Price = ({
   withFractionalPart: withFraction = 'auto',
   graphemeBeforePrice,
   fractionalInSuper,
-  fractionalSign = '.',
+  fractionalSign = ',',
   boldIntegerPart,
   currencyGraphemeClass,
   fractionalClass,

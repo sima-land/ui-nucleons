@@ -5,7 +5,7 @@ exports[`<Price /> renders correctly 1`] = `
   className="price"
 >
   100
-  .58
+  ,58
 </span>
 `;
 
@@ -27,7 +27,7 @@ exports[`<Price /> renders correctly 3`] = `
   <b>
     100
   </b>
-  .00
+  ,00
   <span>
      €
   </span>
