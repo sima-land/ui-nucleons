@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Spinner from '../';
+import Spinner from '..';
 
 const withMargin = {
   margin: '0 0 30px 10px',
