@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Spinner } from '../../spinner/spinner';
+import Spinner from '..';
 
 describe('<Spinner />', () => {
   it('should render component', () => {
@@ -41,15 +41,12 @@ describe('<Spinner />', () => {
       <Spinner />
     );
 
-    expect(component.find('circle').hasClass('stroke__brand-blue')).toBe(true);
     expect(component).toMatchSnapshot();
 
     component.setProps({ color: 'white' });
-    expect(component.find('circle').hasClass('stroke__white')).toBe(true);
     expect(component).toMatchSnapshot();
 
     component.setProps({ color: 'black' });
-    expect(component.find('circle').hasClass('stroke__brand-blue')).toBe(true);
     expect(component).toMatchSnapshot();
   });
 });

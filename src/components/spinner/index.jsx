@@ -2,9 +2,8 @@ import React from 'react';
 import has from 'lodash/has';
 import classnames from 'classnames/bind';
 import PropTypes from 'prop-types';
-
+import { COLORS } from '../constants';
 import classes from './spinner.scss';
-import { stroke } from '../styling/colors';
 
 const cx = classnames.bind(classes);
 
@@ -15,7 +14,7 @@ export const DIAMETERS = Object.freeze({
 });
 
 const DEFAULT_COLOR = 'brand-blue';
-const COLORS = ['brand-blue', 'white'];
+const AVAILABLE_COLORS = ['brand-blue', 'white'];
 
 /**
  * Компонент спиннера.
@@ -25,28 +24,32 @@ const COLORS = ['brand-blue', 'white'];
  * @param {Object} props.style Стили элемента-обертки.
  * @return {ReactElement} Компонент.
  */
-export const Spinner = ({
+const Spinner = ({
   size = 'medium',
   color = DEFAULT_COLOR,
   className,
   style,
 }) => {
   const readySize = has(DIAMETERS, size) ? size : 'medium';
-  const readyColor = COLORS.includes(color) ? color : DEFAULT_COLOR;
+  const readyColor = AVAILABLE_COLORS.includes(color) ? color : DEFAULT_COLOR;
   const diameter = DIAMETERS[readySize];
   const radius = diameter / 2;
 
   return (
-    <div className={className} style={style}>
+    <div
+      className={className}
+      style={style}
+    >
       <svg
         className={cx('spinner', `size-${readySize}`)}
         viewBox={`0 0 ${diameter} ${diameter}`}
         width={diameter}
         height={diameter}
         xmlns='http://www.w3.org/2000/svg'
+        stroke={COLORS.get(readyColor)}
       >
         <circle
-          className={cx('circle', stroke(readyColor))}
+          className={cx('circle')}
           cx={radius}
           cy={radius}
           r={radius - 1} // учет обводки
@@ -65,7 +68,7 @@ Spinner.propTypes = {
   /**
    * Цвет.
    */
-  color: PropTypes.oneOf(COLORS),
+  color: PropTypes.oneOf(AVAILABLE_COLORS),
 
   /**
    * CSS-класс элемента-обертки.
@@ -77,3 +80,5 @@ Spinner.propTypes = {
    */
   style: PropTypes.object,
 };
+
+export default Spinner;
