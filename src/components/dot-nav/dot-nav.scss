@@ -1,0 +1,35 @@
+$itemSize: 14px;
+
+.wrapper {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  width: $itemSize * 5;
+  height: $itemSize;
+}
+
+.item {
+  position: absolute;
+  top: 0;
+  width: $itemSize;
+  height: $itemSize;
+  transition: left .3s;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    transform: translate(-50%, -50%);
+    transition: transform .3s, background .3s, left .3s;
+    border-radius: 50%;
+    background: #e0e0e0;
+  }
+  &.current::after {
+    background: #9e9e9e;
+  }
+  &.distant::after {
+    transform: translate(-50%, -50%) scale(calc(2 / 3), calc(2 / 3));
+  }
+}

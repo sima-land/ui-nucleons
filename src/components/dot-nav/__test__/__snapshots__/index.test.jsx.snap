@@ -1,0 +1,2091 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DotsNav /> should handle "current" change 1`] = `
+<DotNav
+  current={0}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item current"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "70px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "84px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "98px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "112px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "126px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "current" change 2`] = `
+<DotNav
+  current={0}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item current"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "70px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "84px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "98px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "112px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "126px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "current" change 3`] = `
+<DotNav
+  current={1}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item current"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "70px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "84px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "98px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "112px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "126px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "current" change 4`] = `
+<DotNav
+  current={2}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item current"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "70px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "84px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "98px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "112px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "126px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "current" change 5`] = `
+<DotNav
+  current={3}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item current"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "70px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "84px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "98px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "112px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "current" change 6`] = `
+<DotNav
+  current={4}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-14px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item current"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "70px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "84px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "98px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "current" change 7`] = `
+<DotNav
+  current={5}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-28px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-14px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item current"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "70px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "84px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "current" change 8`] = `
+<DotNav
+  current={6}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-28px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-14px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item current"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "70px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "current" change 9`] = `
+<DotNav
+  current={7}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-28px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-14px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item current"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "56px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "current" change 10`] = `
+<DotNav
+  current={8}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-70px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-28px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-14px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item current"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "current" change 11`] = `
+<DotNav
+  current={8}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-70px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-28px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-14px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item current"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "current" change 12`] = `
+<DotNav
+  current={7}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-70px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-28px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-14px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item current"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "current" change 13`] = `
+<DotNav
+  current={6}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-70px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-28px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-14px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item current"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "current" change 14`] = `
+<DotNav
+  current={5}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-28px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-14px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item current"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "56px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "current" change 15`] = `
+<DotNav
+  current={4}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-28px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-14px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item current"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "70px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "current" change 16`] = `
+<DotNav
+  current={3}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-28px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-14px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item current"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "70px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "84px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "current" change 17`] = `
+<DotNav
+  current={2}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-14px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item current"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "70px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "84px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "98px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "current" change 18`] = `
+<DotNav
+  current={1}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item current"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "70px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "84px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "98px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "112px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "current" change 19`] = `
+<DotNav
+  current={0}
+  total={9}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item current"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "70px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "84px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "98px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "112px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "126px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle props 1`] = `
+<DotNav
+  current={2}
+  onSelect={[MockFunction]}
+  total={12}
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "14px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+    <div
+      className="item current"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "42px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "56px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "70px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "84px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "98px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "112px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "126px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="9"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "140px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="10"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "154px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="11"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "168px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should renders without props 1`] = `
+<DotNav>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="item current"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "28px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
