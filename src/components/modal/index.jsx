@@ -46,6 +46,7 @@ const CLASSES_PRESETS = {
  * @param {string} [props.customClasses.modal] Классы модального окна.
  * @param {string} [props.customClasses.close] Классы закрывающей кнопки.
  * @param {boolean} [props.withCloseButton=Number.isFinite(closeButtonSize)] Нужно ли выводить крестик.
+ * @param {boolean} [props.withTopBar=boolean] Нужно ли выводить TopBar.
  * @return {ReactElement} Компонент модального окна.
  */
 const Modal = ({
@@ -55,6 +56,7 @@ const Modal = ({
   title,
   subtitle,
   topBarProps = {},
+  withTopBar = true,
   withDivideTopBar = false,
   withDivideFooter = true,
   footer,
@@ -86,7 +88,7 @@ const Modal = ({
   return (
     <div ref={rootRef} {...useCloseHandler(onClose)} className={readyClasses.overlay}>
       <Popup additionalClass={readyClasses.modal}>
-        {Boolean(extended) && (
+        {Boolean(extended && withTopBar) && (
           <TopBar
             className={cx('header', withDivideTopBar && 'divided')}
             title={title}
@@ -212,6 +214,11 @@ Modal.propTypes = {
    * Нужно ли выводить крестик.
    */
   withCloseButton: PropTypes.bool,
+
+  /**
+   * Нужно ли выводить TopBar.
+   */
+  withTopBar: PropTypes.bool,
 };
 
 export default Modal;

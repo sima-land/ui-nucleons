@@ -74,4 +74,23 @@ storiesOf('Modal', module)
         This is content of modal window.
       </p>
     </ModalDemo>
+  ))
+  .add('extended without top bar', () => (
+    <ModalDemo
+      extended
+      title='Extended modal'
+      withTopBar={false}
+      withCloseButton
+      topBarProps={{ size: 's' }}
+      footer={(
+        <Clean.Group size='s'>
+          <Clean.Button>Button</Clean.Button>
+          <Clean.Button>Another button</Clean.Button>
+        </Clean.Group>
+      )}
+    >
+      <p style={{ width: 400, height: 200, padding: 20 }}>
+        This is content of modal window.
+      </p>
+    </ModalDemo>
   ));

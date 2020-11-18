@@ -1,7 +1,8 @@
 import React from 'react';
-import Modal from '../';
+import Modal from '..';
 import { shallow, mount } from 'enzyme';
 import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
+import TopBar from '../../top-bar';
 
 jest.mock('body-scroll-lock', () => {
   const original = jest.requireActual('body-scroll-lock');
@@ -133,5 +134,16 @@ describe('<Modal />', () => {
 
     expect(disableBodyScroll).toHaveBeenCalledTimes(1);
     expect(enableBodyScroll).toHaveBeenCalledTimes(1);
+  });
+
+  it('extended: should hide top bar ', () => {
+    const wrapper = mount(
+      <Modal
+        extended
+        withTopBar={false}
+      />
+    );
+
+    expect(wrapper.find(TopBar)).toHaveLength(0);
   });
 });
