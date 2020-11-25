@@ -1,4 +1,4 @@
-import React, { Component, Fragment, createRef } from 'react';
+import React, { Component, createRef } from 'react';
 import Draggable from './draggable';
 import NavButton from './nav-button';
 import eq from 'lodash/fp/eq';
@@ -198,6 +198,7 @@ export class Carousel extends Component {
     const { autoplayTimeout = 3000 } = this.props;
 
     this.toggleAutoMove(true);
+
     this.timerId = setInterval(() => {
       this.canAutoMove && this.moveForward();
     }, autoplayTimeout);
@@ -357,7 +358,7 @@ export class Carousel extends Component {
    * @param {import('./helpers/draggable-event').DraggableEvent} dragEvent Событие.
    */
   onDragStart (dragEvent) {
-    this.toggleAutoMove(false);
+    this.disableAutoplay();
     this.saveDragStartData(dragEvent);
     this.toggleDragTransition(false);
   }
@@ -458,9 +459,7 @@ export class Carousel extends Component {
       this.toggleDragTransition(true);
     }
 
-    if (this.props.autoplay && this.canDrag()) {
-      this.toggleAutoMove(true);
-    }
+    this.props.autoplay && this.canDrag() && this.enableAutoplay();
 
     this.updateItemsVisibility();
   }
@@ -671,14 +670,10 @@ export class Carousel extends Component {
           containerProps.className
         )}
         onMouseEnter={() => {
-          if (autoplay && autoplayHoverPause) {
-            this.toggleAutoMove(false);
-          }
+          autoplay && autoplayHoverPause && this.toggleAutoMove(false);
         }}
         onMouseLeave={() => {
-          if (autoplay && autoplayHoverPause && !this.isGrabbed()) {
-            this.toggleAutoMove(true);
-          }
+          autoplay && autoplayHoverPause && !this.isGrabbed() && this.toggleAutoMove(true);
         }}
       >
         <Draggable
@@ -709,7 +704,7 @@ export class Carousel extends Component {
           )}
         />
         {needShowControls && (
-          <Fragment>
+          <>
             {renderControl({
               type: 'backward',
               onUse: this.moveBackward,
@@ -722,7 +717,7 @@ export class Carousel extends Component {
               canUse: this.infinite || currentOffset > this.defineMinOffset(),
               vertical,
             })}
-          </Fragment>
+          </>
         )}
       </div>
     );

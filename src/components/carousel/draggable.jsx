@@ -1,4 +1,4 @@
-import React, { createRef, PureComponent } from 'react';
+import React, { createRef, Component } from 'react';
 import withGlobalListeners from '../hoc/with-global-listeners';
 import __ from 'lodash/fp/placeholder';
 import curry from 'lodash/fp/curry';
@@ -21,13 +21,12 @@ const EVENT_NAMES = {
 /**
  * Компонент области, которую можно прокручивать перетаскиванием.
  */
-export class Draggable extends PureComponent {
+export class Draggable extends Component {
   /**
    * Конструктор компонента области, которую можно прокручивать перетаскиванием.
-   * @param {Object} props Свойства.
    */
-  constructor (props) {
-    super(props);
+  constructor () {
+    super();
 
     this.isGrabbed = false;
     this.hasTransition = false;
@@ -80,7 +79,7 @@ export class Draggable extends PureComponent {
    * Выполняет отписку от глобальных событий.
    */
   componentWillUnmount () {
-    this.unsubscribers.forEach(unsubscribe => unsubscribe());
+    this.unsubscribers.forEach(fn => fn());
   }
 
   /**
