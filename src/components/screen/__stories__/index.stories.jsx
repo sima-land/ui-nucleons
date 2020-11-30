@@ -48,7 +48,30 @@ storiesOf('Screen', module)
     </Screen>
   ))
   .add('Loading state', () => (
-    <Screen loading />
+    <Screen
+      loading
+      title='Заголовок'
+      subtitle='Подзаголовок'
+    />
+  ))
+  .add('Loading area: "full"', () => (
+    <Screen
+      loading
+      loadingArea='full'
+    />
+  ))
+  .add('Loading area: "content"', () => (
+    <Screen
+      loading
+      loadingArea='content'
+      title='Заголовок'
+      subtitle='Подзаголовок'
+      footer={(
+        <div style={{ padding: 12 }}>
+          <Button style={{ width: '100%' }} disabled>Отправить</Button>
+        </div>
+      )}
+    />
   ))
   .add('full scroll after loading', () => {
     const [isReady, setIsReady] = useState(false);

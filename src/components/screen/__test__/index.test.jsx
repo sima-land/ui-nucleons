@@ -109,6 +109,17 @@ describe('<Screen />', () => {
 
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('should handle "loadingArea" prop', () => {
+    const wrapper = mount(
+      <Screen
+        loading
+        loadingArea='content'
+      />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
 });
 
 describe('createTakeScrollableElement()', () => {

@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useImperativeHandle } from 'react';
+import React, { useRef, useImperativeHandle } from 'react';
 import NavBar from '../nav-bar';
 import { cx } from './common';
 import on from '../helpers/on';
@@ -51,7 +51,7 @@ export const ScreenLayout = ({
   useImperativeHandle(childrenRef, () => contentRef.current);
 
   return (
-    <Fragment>
+    <>
       {Boolean(withHeader) && (
         <NavBar
           {...navBarProps}
@@ -92,7 +92,7 @@ export const ScreenLayout = ({
           {footer}
         </div>
       )}
-    </Fragment>
+    </>
   );
 };
 

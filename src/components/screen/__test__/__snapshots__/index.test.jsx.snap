@@ -85,6 +85,250 @@ exports[`<Screen /> should handle "loading/loadingOverlayProps" props 1`] = `
 </Screen>
 `;
 
+exports[`<Screen /> should handle "loadingArea" prop 1`] = `
+<Screen
+  loading={true}
+  loadingArea="content"
+>
+  <Layer>
+    <Portal
+      containerInfo={
+        <div>
+          <div
+            class="screen full-width"
+          >
+            <div
+              class="nav-bar inner-border-bottom"
+            >
+              <div
+                class="button-groups"
+              >
+                <div
+                  class="group"
+                >
+                  <button
+                    aria-hidden="true"
+                    aria-label="Закрыть"
+                    class="button icon stub"
+                  />
+                </div>
+              </div>
+              <div
+                class="main"
+              />
+              <div
+                class="button-groups end"
+              >
+                <div
+                  class="group"
+                >
+                  <button
+                    aria-label="Закрыть"
+                    class="button icon"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="icon icon-block color__gray87"
+                      height="24"
+                      viewBox="0 0 36 36"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              class="content full-width"
+            >
+              <div
+                class="loading-overlay"
+                style="height: 100%;"
+              >
+                <div>
+                  <svg
+                    class="spinner size-medium"
+                    height="48"
+                    stroke="#1f84db"
+                    viewBox="0 0 48 48"
+                    width="48"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      class="circle"
+                      cx="24"
+                      cy="24"
+                      r="23"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <div
+        className="screen full-width"
+      >
+        <ScreenLayout
+          childrenRef={[Function]}
+          fullScrollThreshold={320}
+          onBack={[Function]}
+          onClose={[Function]}
+          withBackButton={false}
+          withCloseButton={true}
+          withDivideHeader={true}
+          withHeader={true}
+        >
+          <NavBar
+            bottomBordered={true}
+            buttons={
+              Object {
+                "end": Object {
+                  "aria-label": "Закрыть",
+                  "icon": [Function],
+                  "onClick": [Function],
+                },
+                "start": undefined,
+              }
+            }
+          >
+            <div
+              className="nav-bar inner-border-bottom"
+            >
+              <div
+                className="button-groups"
+              >
+                <div
+                  className="group"
+                >
+                  <NavButton
+                    aria-label="Закрыть"
+                    icon={[Function]}
+                    onClick={[Function]}
+                    shift={false}
+                    stub={true}
+                  >
+                    <button
+                      aria-hidden="true"
+                      aria-label="Закрыть"
+                      className="button icon stub"
+                      onClick={[Function]}
+                    />
+                  </NavButton>
+                </div>
+              </div>
+              <div
+                className="main"
+              />
+              <div
+                className="button-groups end"
+              >
+                <div
+                  className="group"
+                >
+                  <NavButton
+                    aria-label="Закрыть"
+                    icon={[Function]}
+                    onClick={[Function]}
+                    shift={false}
+                  >
+                    <button
+                      aria-label="Закрыть"
+                      className="button icon"
+                      onClick={[Function]}
+                    >
+                      <Icon
+                        aria-hidden="true"
+                        color="gray87"
+                        icon={[Function]}
+                        size={24}
+                      >
+                        <crossIcon
+                          aria-hidden="true"
+                          className="icon icon-block color__gray87"
+                          height={24}
+                          viewBox="0 0 36 36"
+                          width={24}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            className="icon icon-block color__gray87"
+                            height={24}
+                            viewBox="0 0 36 36"
+                            width={24}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              clipRule="evenodd"
+                              d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
+                              fillRule="evenodd"
+                            />
+                          </svg>
+                        </crossIcon>
+                      </Icon>
+                    </button>
+                  </NavButton>
+                </div>
+              </div>
+            </div>
+          </NavBar>
+          <div
+            className="content full-width"
+          >
+            <LoadingOverlay
+              fill={false}
+              style={
+                Object {
+                  "height": "100%",
+                }
+              }
+            >
+              <div
+                className="loading-overlay"
+                style={
+                  Object {
+                    "height": "100%",
+                  }
+                }
+              >
+                <Spinner>
+                  <div>
+                    <svg
+                      className="spinner size-medium"
+                      height={48}
+                      stroke="#1f84db"
+                      viewBox="0 0 48 48"
+                      width={48}
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        className="circle"
+                        cx={24}
+                        cy={24}
+                        r={23}
+                      />
+                    </svg>
+                  </div>
+                </Spinner>
+              </div>
+            </LoadingOverlay>
+          </div>
+        </ScreenLayout>
+      </div>
+    </Portal>
+  </Layer>
+</Screen>
+`;
+
 exports[`<Screen /> should handle props 1`] = `
 <Screen
   footer="Test footer"
