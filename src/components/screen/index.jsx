@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { Fragment, useRef, useEffect } from 'react';
 import Layer from '../layer';
 import isFunction from 'lodash/isFunction';
 import { ScreenLayout } from './screen-layout';
@@ -24,6 +24,7 @@ import PropTypes from 'prop-types';
  * @param {*} [props.footer] Содержимое подвала.
  * @param {boolean} [props.loading=false] Нужно ли выводить вместо содержимого состояние загрузки.
  * @param {Object} [props.loadingOverlayProps={}] Свойства компонента LoadingOverlay.
+ * @param {'content'|'full'} [props.loadingArea='full'] Определяет область отображаемую как загружающуюся.
  * @param {Object} [props.contentRef] Реф контента.
  * @param {boolean} [props.withLayer=true] Нужно ли выводить Layer.
  * @param {boolean} [props.navBarProps] Свойства компонента NavBar.
@@ -35,7 +36,8 @@ const Screen = ({
   footer,
   fullScrollThreshold = 320,
   loading = false,
-  loadingOverlayProps = {},
+  loadingArea = 'full',
+  loadingOverlayProps,
   navBarProps,
   onBack,
   onClose,
@@ -48,7 +50,7 @@ const Screen = ({
   withHeader = true,
   withLayer = true,
 }) => {
-  const Wrapper = withLayer ? Layer : React.Fragment;
+  const Wrapper = withLayer ? Layer : Fragment;
   const rootRef = useRef();
   const innerContentRef = useRef();
 
@@ -62,7 +64,7 @@ const Screen = ({
         className={cx('screen', 'full-width')}
       >
         {
-          loading
+          loading && loadingArea === 'full'
             ? <LoadingOverlay {...loadingOverlayProps} />
             : (
               <ScreenLayout
@@ -72,7 +74,19 @@ const Screen = ({
                 withDivideHeader={withDivideHeader}
                 withBackButton={withBackButton}
                 withCloseButton={withCloseButton}
-                children={children}
+                children={
+                  loading && loadingArea === 'content'
+                    ? (
+                      <LoadingOverlay
+                        {...loadingOverlayProps}
+                        {...loadingArea === 'content' && {
+                          fill: false,
+                          style: { height: '100%' },
+                        }}
+                      />
+                    )
+                    : children
+                }
                 childrenRef={element => {
                   setRefValue(contentRef, element);
                   takeScrollableElement(innerContentRef, element);
@@ -202,6 +216,11 @@ Screen.propTypes = {
    * Свойства компонента LoadingOverlay.
    */
   loadingOverlayProps: PropTypes.object,
+
+  /**
+   * Определяет область отображаемую как загружающуюся.
+   */
+  loadingArea: PropTypes.oneOf(['content', 'full']),
 
   /**
    * Реф контента.
