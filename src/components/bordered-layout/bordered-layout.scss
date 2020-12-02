@@ -1,14 +1,14 @@
 @import '../colors';
 
 .outer {
-  @media (max-width: 720px) {
+  @media (max-width: 600px) {
     border-top: 1px solid $gray12;
     border-bottom: 1px solid $gray12;
   }
 }
 
 .inner {
-  @media (min-width: 721px) {
+  @media (min-width: 601px) {
     border-top: 1px solid $gray12;
     border-bottom: 1px solid $gray12;
   }
