@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TouchSlider /> should renders correctly 1`] = `
+<TouchSlider>
+  <ForwardRef(Layout)>
+    <div
+      className="layout"
+    >
+      <div
+        className="outer invisible-scroll"
+      >
+        <div
+          className="inner"
+        >
+          <div>
+            Foo
+          </div>
+          <div>
+            Bar
+          </div>
+          <div>
+            Baz
+          </div>
+        </div>
+      </div>
+    </div>
+  </ForwardRef(Layout)>
+</TouchSlider>
+`;

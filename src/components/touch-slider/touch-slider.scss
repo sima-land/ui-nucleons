@@ -1,11 +1,15 @@
-.wrapper {
+.outer {
   display: flex;
   overflow: hidden;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  .inner {
-    display: flex;
-  }
+  --sliderGutter: calc((100vw - var(--layoutWidth)) / 2);
+  margin: 0 calc(-1 * var(--sliderGutter));
+}
+
+.inner {
+  display: flex;
+  padding: 0 var(--sliderGutter);
 }
 
 .invisible-scroll {
