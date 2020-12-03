@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './bordered-layout.scss';
 import classnames from 'classnames/bind';
-import MobileLayout from '../layout/mobile-layout/';
+import Layout from '../layout';
+import { InnerBorder } from '../styling/borders';
 
 const cx = classnames.bind(styles);
 
@@ -11,24 +12,28 @@ const cx = classnames.bind(styles);
  * @param {Object} props Свойства компонента.
  * @param {boolean} props.top Флаг добавления рамки сверху.
  * @param {boolean} props.bottom Флаг добавления рамки снизу.
- * @param {*} props.children Содержимое компонента.
+ * @param {React.ReactNode} props.children Содержимое компонента.
  * @return {ReactElement} Компонент добавления рамки.
  */
 const BorderedLayout = ({ top, bottom, children }) => {
-  const classes = [!top && 'disable-border-top', !bottom && 'disable-border-bottom'];
+  let borderClass;
+
+  if (top && bottom) {
+    borderClass = InnerBorder.y;
+  } else if (top) {
+    borderClass = InnerBorder.top;
+  } else if (bottom) {
+    borderClass = InnerBorder.bottom;
+  }
 
   return (
-    <div className={cx('base', 'outer', classes)}>
-      <MobileLayout>
-        <div className={cx('base', 'inner', classes)}>
-          {children}
-        </div>
-      </MobileLayout>
-    </div>
+    <Layout>
+      <div className={cx('inner', borderClass)}>
+        {children}
+      </div>
+    </Layout>
   );
 };
-
-export default BorderedLayout;
 
 BorderedLayout.propTypes = {
   /**
@@ -44,5 +49,7 @@ BorderedLayout.propTypes = {
   /**
    * Содержимое слоя.
    */
-  children: PropTypes.any,
+  children: PropTypes.node,
 };
+
+export default BorderedLayout;

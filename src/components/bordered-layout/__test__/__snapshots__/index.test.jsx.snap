@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BoBorderedLayoutrder /> without props 1`] = `
+<BorderedLayout>
+  <ForwardRef(Layout)>
+    <div
+      className="layout"
+    >
+      <div
+        className="inner"
+      >
+        Hello, world
+      </div>
+    </div>
+  </ForwardRef(Layout)>
+</BorderedLayout>
+`;
+
+exports[`<BoBorderedLayoutrder /> without props 2`] = `
+<BorderedLayout
+  bottom={false}
+  top={true}
+>
+  <ForwardRef(Layout)>
+    <div
+      className="layout"
+    >
+      <div
+        className="inner inner-border-top"
+      >
+        Hello, world
+      </div>
+    </div>
+  </ForwardRef(Layout)>
+</BorderedLayout>
+`;
+
+exports[`<BoBorderedLayoutrder /> without props 3`] = `
+<BorderedLayout
+  bottom={true}
+  top={false}
+>
+  <ForwardRef(Layout)>
+    <div
+      className="layout"
+    >
+      <div
+        className="inner inner-border-bottom"
+      >
+        Hello, world
+      </div>
+    </div>
+  </ForwardRef(Layout)>
+</BorderedLayout>
+`;
+
+exports[`<BoBorderedLayoutrder /> without props 4`] = `
+<BorderedLayout
+  bottom={true}
+  top={true}
+>
+  <ForwardRef(Layout)>
+    <div
+      className="layout"
+    >
+      <div
+        className="inner inner-border-y"
+      >
+        Hello, world
+      </div>
+    </div>
+  </ForwardRef(Layout)>
+</BorderedLayout>
+`;

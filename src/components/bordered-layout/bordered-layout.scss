@@ -1,26 +1,9 @@
-@import '../colors';
-
-.outer {
-  @media (max-width: 600px) {
-    border-top: 1px solid $gray12;
-    border-bottom: 1px solid $gray12;
-  }
-}
+@use '../breakpoints';
 
 .inner {
-  @media (min-width: 601px) {
-    border-top: 1px solid $gray12;
-    border-bottom: 1px solid $gray12;
-  }
-}
-
-.base {
-  margin-bottom: -1px;
-  &.disable-border-top {
-    border-top: 0;
-  }
-  &.disable-border-bottom {
-    border-bottom: 0;
-    margin-bottom: 0;
+  @include breakpoints.on('xxs') {
+    --borderedGutter: calc((100vw - var(--layoutWidth)) / 2);
+    margin: 0 calc(-1 * var(--borderedGutter));
+    padding: 0 var(--borderedGutter);
   }
 }
