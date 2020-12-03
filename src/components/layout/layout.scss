@@ -1,0 +1,44 @@
+@use '../breakpoints';
+
+.layout {
+  margin-left: auto;
+  margin-right: auto;
+  width: var(--layoutWidth);
+
+  // 1601+
+  --layoutWidth: 1504px;
+
+  @include breakpoints.on('xxl') {
+    --layoutWidth: 1348px;
+  }
+
+  // 1281-1440
+  @include breakpoints.on('xl') {
+    --layoutWidth: 1192px;
+  }
+
+  // 1025-1280
+  @include breakpoints.on('lg') {
+    --layoutWidth: calc(100vw - (68px * 2));
+  }
+
+  // 841-1024
+  @include breakpoints.on('md') {
+    --layoutWidth: 792px;
+  }
+
+  // 721-840
+  @include breakpoints.on('sm') {
+    --layoutWidth: 672px;
+  }
+
+  // 601-720
+  @include breakpoints.on('xs') {
+    --layoutWidth: calc(100vw - (32px * 2));
+  }
+
+  // 600-
+  @include breakpoints.on('xxs') {
+    --layoutWidth: calc(100vw - (16px * 2));
+  }
+}

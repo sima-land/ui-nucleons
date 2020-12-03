@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Layout /> should handle "element" prop 1`] = `
+<ForwardRef(Layout)
+  className="test-class"
+  element="main"
+  style={
+    Object {
+      "height": 128,
+    }
+  }
+>
+  <main
+    className="layout test-class"
+    style={
+      Object {
+        "height": 128,
+      }
+    }
+  >
+    Hello, world!
+  </main>
+</ForwardRef(Layout)>
+`;
+
+exports[`<Layout /> should renders correctly 1`] = `
+<ForwardRef(Layout)
+  className="test-class"
+  style={
+    Object {
+      "height": 128,
+    }
+  }
+>
+  <div
+    className="layout test-class"
+    style={
+      Object {
+        "height": 128,
+      }
+    }
+  >
+    Hello, world!
+  </div>
+</ForwardRef(Layout)>
+`;
