@@ -27,7 +27,7 @@ $badgeTimeColor: $white !default;
 
 .link {
   color: inherit;
-  border-bottom: none;
+  border-bottom: 0;
   text-decoration: none;
   &:hover {
     opacity: .7;

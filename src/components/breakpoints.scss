@@ -1,0 +1,34 @@
+$_breakpoints: (
+  // 600-
+  'xxs': 600px,
+
+  // 601-720
+  'xs': 720px,
+
+  // 721-840
+  'sm': 840px,
+
+  // 841-1023
+  'md': 1023px,
+
+  // 1024-1280
+  'lg': 1280px,
+
+  // 1281-1440
+  'xl': 1440px,
+
+  // 1441-1600
+  'xxl': 1600px,
+) !default;
+
+@mixin on ($breakpoint) {
+  @if map-has-key($_breakpoints, $breakpoint) {
+    @media (max-width: map-get($_breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn 'No such breakpoint `#{$breakpoint}`. Available values: #{map-keys($_breakpoints)}.';
+  }
+}
