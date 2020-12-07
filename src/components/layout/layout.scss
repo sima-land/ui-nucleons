@@ -1,5 +1,14 @@
 @use '../breakpoints';
 
+@mixin autoWidth ($breakpoint) {
+  &.disabled-#{$breakpoint} {
+    width: auto;
+  }
+  &:not(.disabled-#{$breakpoint}) {
+    width: var(--layoutWidth);
+  }
+}
+
 .layout {
   --layoutWMin: 1px;
   --layoutWMax: 100vw;
@@ -7,34 +16,44 @@
   --layoutWidth: clamp(var(--layoutWMin), var(--layoutWStd), var(--layoutWMax));
   margin-left: auto;
   margin-right: auto;
-  width: var(--layoutWidth);
+
+  @include breakpoints.on('max') {
+    @include autoWidth('max');
+  }
 
   @include breakpoints.on('xxl') {
     --layoutWStd: 1348px;
+    @include autoWidth('xxl');
   }
 
   @include breakpoints.on('xl') {
     --layoutWStd: 1192px;
+    @include autoWidth('xl');
   }
 
   @include breakpoints.on('lg') {
     --layoutWStd: calc(100vw - (68px * 2));
+    @include autoWidth('lg');
   }
 
   @include breakpoints.on('md') {
     --layoutWStd: 792px;
+    @include autoWidth('md');
   }
 
   @include breakpoints.on('sm') {
     --layoutWStd: 672px;
+    @include autoWidth('sm');
   }
 
   @include breakpoints.on('xs') {
     --layoutWStd: calc(100vw - (32px * 2));
+    @include autoWidth('xs');
   }
 
   @include breakpoints.on('xxs') {
     --layoutWStd: calc(100vw - (16px * 2));
+    @include autoWidth('xxs');
   }
 }
 

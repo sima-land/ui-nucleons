@@ -16,12 +16,18 @@ const createLayout = (specificClass, displayName) => {
     children,
     className,
     element: Element = 'div',
+    disabledOn = [],
     ...restProps
   }, ref) => (
     <Element
       {...restProps}
       ref={ref}
-      className={cx('layout', specificClass, className)}
+      className={cx(
+        'layout',
+        specificClass,
+        className,
+        disabledOn.map(key => `disabled-${key}`)
+      )}
     >
       {children}
     </Element>
@@ -42,6 +48,11 @@ const createLayout = (specificClass, displayName) => {
      * Тип выводимого элемента например 'div', 'article' или 'main'.
      */
     element: PropTypes.string,
+
+    /**
+     * Ключи диапазонов, на которых ограничение ширины отключается.
+     */
+    disabledOn: PropTypes.arrayOf(PropTypes.oneOf(['max', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs'])),
   };
 
   Component.displayName = displayName;

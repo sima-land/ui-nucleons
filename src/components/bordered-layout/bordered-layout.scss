@@ -3,7 +3,6 @@
 .inner {
   @include breakpoints.on('xxs') {
     --borderedGutter: calc((100vw - var(--layoutWidth)) / 2);
-    margin: 0 calc(-1 * var(--borderedGutter));
     padding: 0 var(--borderedGutter);
   }
 }

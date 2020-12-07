@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import BorderedLayout from '../index';
 
 const Demo = ({ children, ...props }) => (
-  <div style={{ margin: '32px 0', padding: 16 }}>
+  <div style={{ margin: '32px 0' }}>
     <BorderedLayout {...props}>
       <div style={{ padding: '16px 0' }}>
         {children}

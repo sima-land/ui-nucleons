@@ -23,5 +23,15 @@ describe('Layouts', () => {
 
       expect(wrapper).toMatchSnapshot();
     });
+
+    it('should handle "disabledOn" prop', () => {
+      const wrapper = mount(
+        <Layout disabledOn={['xxl', 'xs']}>
+          Hello, world!
+        </Layout>
+      );
+
+      expect(wrapper).toMatchSnapshot();
+    });
   });
 });

@@ -4,7 +4,7 @@ exports[`<TouchSlider /> should renders correctly 1`] = `
 <TouchSlider>
   <MobileLayout>
     <div
-      className="layout mobile"
+      className="layout mobile "
     >
       <div
         className="outer invisible-scroll"
