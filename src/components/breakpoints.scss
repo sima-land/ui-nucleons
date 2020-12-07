@@ -19,6 +19,9 @@ $_breakpoints: (
 
   // 1441-1600
   'xxl': 1600px,
+
+  // 1600+
+  'max': 100vw,
 ) !default;
 
 @mixin on ($breakpoint) {

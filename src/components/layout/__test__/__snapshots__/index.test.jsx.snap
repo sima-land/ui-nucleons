@@ -1,5 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Layouts should handle "disabledOn" prop 1`] = `
+<DesktopLayout
+  disabledOn={
+    Array [
+      "xxl",
+      "xs",
+    ]
+  }
+>
+  <div
+    className="layout desktop disabled-xxl disabled-xs"
+  >
+    Hello, world!
+  </div>
+</DesktopLayout>
+`;
+
+exports[`Layouts should handle "disabledOn" prop 2`] = `
+<MobileLayout
+  disabledOn={
+    Array [
+      "xxl",
+      "xs",
+    ]
+  }
+>
+  <div
+    className="layout mobile disabled-xxl disabled-xs"
+  >
+    Hello, world!
+  </div>
+</MobileLayout>
+`;
+
 exports[`Layouts should handle "element" prop 1`] = `
 <DesktopLayout
   className="test-class"
@@ -11,7 +45,7 @@ exports[`Layouts should handle "element" prop 1`] = `
   }
 >
   <main
-    className="layout desktop test-class"
+    className="layout desktop test-class "
     style={
       Object {
         "height": 128,
@@ -34,7 +68,7 @@ exports[`Layouts should handle "element" prop 2`] = `
   }
 >
   <main
-    className="layout mobile test-class"
+    className="layout mobile test-class "
     style={
       Object {
         "height": 128,
@@ -56,7 +90,7 @@ exports[`Layouts should renders correctly 1`] = `
   }
 >
   <div
-    className="layout desktop test-class"
+    className="layout desktop test-class "
     style={
       Object {
         "height": 128,
@@ -78,7 +112,7 @@ exports[`Layouts should renders correctly 2`] = `
   }
 >
   <div
-    className="layout mobile test-class"
+    className="layout mobile test-class "
     style={
       Object {
         "height": 128,
