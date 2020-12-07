@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Layout /> should handle "element" prop 1`] = `
-<ForwardRef(Layout)
+exports[`Layouts should handle "element" prop 1`] = `
+<DesktopLayout
   className="test-class"
   element="main"
   style={
@@ -11,7 +11,7 @@ exports[`<Layout /> should handle "element" prop 1`] = `
   }
 >
   <main
-    className="layout test-class"
+    className="layout desktop test-class"
     style={
       Object {
         "height": 128,
@@ -20,11 +20,34 @@ exports[`<Layout /> should handle "element" prop 1`] = `
   >
     Hello, world!
   </main>
-</ForwardRef(Layout)>
+</DesktopLayout>
 `;
 
-exports[`<Layout /> should renders correctly 1`] = `
-<ForwardRef(Layout)
+exports[`Layouts should handle "element" prop 2`] = `
+<MobileLayout
+  className="test-class"
+  element="main"
+  style={
+    Object {
+      "height": 128,
+    }
+  }
+>
+  <main
+    className="layout mobile test-class"
+    style={
+      Object {
+        "height": 128,
+      }
+    }
+  >
+    Hello, world!
+  </main>
+</MobileLayout>
+`;
+
+exports[`Layouts should renders correctly 1`] = `
+<DesktopLayout
   className="test-class"
   style={
     Object {
@@ -33,7 +56,7 @@ exports[`<Layout /> should renders correctly 1`] = `
   }
 >
   <div
-    className="layout test-class"
+    className="layout desktop test-class"
     style={
       Object {
         "height": 128,
@@ -42,5 +65,27 @@ exports[`<Layout /> should renders correctly 1`] = `
   >
     Hello, world!
   </div>
-</ForwardRef(Layout)>
+</DesktopLayout>
+`;
+
+exports[`Layouts should renders correctly 2`] = `
+<MobileLayout
+  className="test-class"
+  style={
+    Object {
+      "height": 128,
+    }
+  }
+>
+  <div
+    className="layout mobile test-class"
+    style={
+      Object {
+        "height": 128,
+      }
+    }
+  >
+    Hello, world!
+  </div>
+</MobileLayout>
 `;

@@ -2,9 +2,9 @@
 
 exports[`<BoBorderedLayoutrder /> without props 1`] = `
 <BorderedLayout>
-  <ForwardRef(Layout)>
+  <MobileLayout>
     <div
-      className="layout"
+      className="layout mobile"
     >
       <div
         className="inner"
@@ -12,7 +12,7 @@ exports[`<BoBorderedLayoutrder /> without props 1`] = `
         Hello, world
       </div>
     </div>
-  </ForwardRef(Layout)>
+  </MobileLayout>
 </BorderedLayout>
 `;
 
@@ -21,9 +21,9 @@ exports[`<BoBorderedLayoutrder /> without props 2`] = `
   bottom={false}
   top={true}
 >
-  <ForwardRef(Layout)>
+  <MobileLayout>
     <div
-      className="layout"
+      className="layout mobile"
     >
       <div
         className="inner inner-border-top"
@@ -31,7 +31,7 @@ exports[`<BoBorderedLayoutrder /> without props 2`] = `
         Hello, world
       </div>
     </div>
-  </ForwardRef(Layout)>
+  </MobileLayout>
 </BorderedLayout>
 `;
 
@@ -40,9 +40,9 @@ exports[`<BoBorderedLayoutrder /> without props 3`] = `
   bottom={true}
   top={false}
 >
-  <ForwardRef(Layout)>
+  <MobileLayout>
     <div
-      className="layout"
+      className="layout mobile"
     >
       <div
         className="inner inner-border-bottom"
@@ -50,7 +50,7 @@ exports[`<BoBorderedLayoutrder /> without props 3`] = `
         Hello, world
       </div>
     </div>
-  </ForwardRef(Layout)>
+  </MobileLayout>
 </BorderedLayout>
 `;
 
@@ -59,9 +59,9 @@ exports[`<BoBorderedLayoutrder /> without props 4`] = `
   bottom={true}
   top={true}
 >
-  <ForwardRef(Layout)>
+  <MobileLayout>
     <div
-      className="layout"
+      className="layout mobile"
     >
       <div
         className="inner inner-border-y"
@@ -69,6 +69,6 @@ exports[`<BoBorderedLayoutrder /> without props 4`] = `
         Hello, world
       </div>
     </div>
-  </ForwardRef(Layout)>
+  </MobileLayout>
 </BorderedLayout>
 `;

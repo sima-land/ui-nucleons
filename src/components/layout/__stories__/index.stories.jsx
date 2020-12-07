@@ -1,16 +1,25 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Layout from '..';
+import { DesktopLayout, MobileLayout } from '..';
 
-storiesOf('Layout [new]', module)
-  .add('Example', () => (
+storiesOf('Layouts', module)
+  .add('Desktop', () => (
     <>
-      <h1>Простой пример</h1>
-      <Layout>
+      <DesktopLayout>
         <div style={{ background: 'rgb(207, 232, 252)' }}>
           <h2>Контент ограниченный layout`ом</h2>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum!</p>
         </div>
-      </Layout>
+      </DesktopLayout>
+    </>
+  ))
+  .add('Mobile', () => (
+    <>
+      <MobileLayout>
+        <div style={{ background: 'rgb(207, 232, 252)' }}>
+          <h2>Контент ограниченный layout`ом</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum!</p>
+        </div>
+      </MobileLayout>
     </>
   ));
