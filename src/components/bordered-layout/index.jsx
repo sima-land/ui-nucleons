@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './bordered-layout.scss';
 import classnames from 'classnames/bind';
-import Layout from '../layout';
+import { MobileLayout } from '../layout';
 import { InnerBorder } from '../styling/borders';
 
 const cx = classnames.bind(styles);
 
 /**
- * Компонент добавления рамки.
+ * Выводит содержимое по мобильному layout'у с вертикальными полосками.
  * @param {Object} props Свойства компонента.
  * @param {boolean} props.top Флаг добавления рамки сверху.
  * @param {boolean} props.bottom Флаг добавления рамки снизу.
@@ -27,11 +27,11 @@ const BorderedLayout = ({ top, bottom, children }) => {
   }
 
   return (
-    <Layout>
+    <MobileLayout>
       <div className={cx('inner', borderClass)}>
         {children}
       </div>
-    </Layout>
+    </MobileLayout>
   );
 };
 

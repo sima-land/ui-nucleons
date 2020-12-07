@@ -6,42 +6,51 @@ import PropTypes from 'prop-types';
 const cx = classnames.bind(classes);
 
 /**
- * Экспериментальная версия обертки которая формирует ширину по Grid Layout.
- * @param {Object} props Свойства.
- * @param {string} [props.element='div'] Тип выводимого элемента например 'div', 'article' или 'main'.
+ * Возвращает компонент формирующий Layout.
+ * @param {string} specificClass Специальный класс.
+ * @param {string} displayName Отображаемое имя компонента.
+ * @return {import('react').ComponentType} Компонент.
  */
-const Layout = forwardRef(function Layout ({
-  children,
-  className,
-  element: Element = 'div',
-  ...restProps
-}, ref) {
-  return (
+const createLayout = (specificClass, displayName) => {
+  const Component = forwardRef(({
+    children,
+    className,
+    element: Element = 'div',
+    ...restProps
+  }, ref) => (
     <Element
       {...restProps}
       ref={ref}
-      className={cx('layout', className)}
+      className={cx('layout', specificClass, className)}
     >
       {children}
     </Element>
-  );
-});
+  ));
 
-Layout.propTypes = {
-  /**
-   * Содержимое.
-   */
-  children: PropTypes.node,
+  Component.propTypes = {
+    /**
+     * Содержимое.
+     */
+    children: PropTypes.node,
 
-  /**
-   * Дополнительный css-класс.
-   */
-  className: PropTypes.string,
+    /**
+     * Дополнительный css-класс.
+     */
+    className: PropTypes.string,
 
-  /**
-   * Тип выводимого элемента например 'div', 'article' или 'main'.
-   */
-  element: PropTypes.string,
+    /**
+     * Тип выводимого элемента например 'div', 'article' или 'main'.
+     */
+    element: PropTypes.string,
+  };
+
+  Component.displayName = displayName;
+
+  return Component;
 };
 
-export default Layout;
+const DesktopLayout = createLayout('desktop', 'DesktopLayout');
+
+const MobileLayout = createLayout('mobile', 'MobileLayout');
+
+export { DesktopLayout, MobileLayout };

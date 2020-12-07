@@ -2,9 +2,9 @@
 
 exports[`<TouchSlider /> should renders correctly 1`] = `
 <TouchSlider>
-  <ForwardRef(Layout)>
+  <MobileLayout>
     <div
-      className="layout"
+      className="layout mobile"
     >
       <div
         className="outer invisible-scroll"
@@ -24,6 +24,6 @@ exports[`<TouchSlider /> should renders correctly 1`] = `
         </div>
       </div>
     </div>
-  </ForwardRef(Layout)>
+  </MobileLayout>
 </TouchSlider>
 `;

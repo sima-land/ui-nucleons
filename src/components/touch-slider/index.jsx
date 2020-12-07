@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../layout';
+import { MobileLayout } from '../layout';
 import classnames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import classes from './touch-slider.scss';
@@ -7,19 +7,19 @@ import classes from './touch-slider.scss';
 const cx = classnames.bind(classes);
 
 /**
- * Компонент блока, прокручиваемого по горизонтали. Реализует отступы Layout.
+ * Компонент блока, прокручиваемого по горизонтали. Реализует отступы MobileLayout.
  * @param {Object} props Свойства.
  * @param {*} props.children Прокручиваемое содержимое.
  * @return {ReactElement} Компонент блока, прокручиваемого по горизонтали.
  */
 const TouchSlider = ({ children }) => (
-  <Layout>
+  <MobileLayout>
     <div className={cx('outer', 'invisible-scroll')}>
       <div className={cx('inner')}>
         {children}
       </div>
     </div>
-  </Layout>
+  </MobileLayout>
 );
 
 TouchSlider.propTypes = {
