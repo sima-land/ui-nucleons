@@ -82,6 +82,7 @@ export const BasePagination = ({
         type: BUTTON_TYPES.prev,
         children: BUTTON_CONTENTS.prev,
         onClick: () => hasHandler && onButtonClick(current - 1),
+        page: current - 1,
       })}
 
       {pageButtons.map(({ content, value }, index) => renderButton({
@@ -96,6 +97,7 @@ export const BasePagination = ({
         selected: isButtonSelected(content),
         'aria-label': `Перейти на страницу ${value}`,
         onClick: () => hasHandler && onButtonClick(value),
+        page: value,
       }, index))}
 
       {needNextButton({ current, total }) && renderButton({
@@ -103,6 +105,7 @@ export const BasePagination = ({
         type: BUTTON_TYPES.next,
         children: BUTTON_CONTENTS.next,
         onClick: () => hasHandler && onButtonClick(current + 1),
+        page: current + 1,
       })}
     </div>
   );

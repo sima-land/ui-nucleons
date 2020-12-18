@@ -9,12 +9,14 @@ import PropTypes from 'prop-types';
  * @param {number} props.total Номер последней страницы.
  * @param {number} props.current Номер текущей страницы.
  * @param {Function} props.onChange Сработает при выборе страницы.
+ * @param {Function} props.renderButton Функция возвращающая компонент кнопки.
  * @return {ReactElement} Компонент списка кнопок навигации по страницам.
  */
 const Pagination = ({
   total,
   current,
   onChange,
+  renderButton,
 }) => {
   const hasChangeHandler = isFunction(onChange);
 
@@ -22,6 +24,7 @@ const Pagination = ({
     <BasePagination
       total={total}
       current={current}
+      renderButton={renderButton}
       onButtonClick={content => {
         Number.isFinite(content)
           && hasChangeHandler
@@ -46,6 +49,11 @@ Pagination.propTypes = {
    * Сработает при выборе страницы.
    */
   onChange: PropTypes.func,
+
+  /**
+   * Функция возвращающая компонент кнопки.
+   */
+  renderButton: PropTypes.func,
 };
 
 export default Pagination;

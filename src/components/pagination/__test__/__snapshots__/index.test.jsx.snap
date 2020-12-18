@@ -18,12 +18,14 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
         aria-label="Назад"
         className="M-r__2"
         onClick={[Function]}
+        page={22}
         rounded="all"
       >
         <button
           aria-label="Назад"
           className="page-button rounds-all M-r__2"
           onClick={[Function]}
+          page={22}
         >
           <Icon
             icon={[Function]}
@@ -58,6 +60,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
         aria-label="Перейти на страницу 1"
         key="0"
         onClick={[Function]}
+        page={1}
         rounded="left"
         selected={false}
       >
@@ -65,6 +68,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
           aria-label="Перейти на страницу 1"
           className="page-button rounds-left"
           onClick={[Function]}
+          page={1}
         >
           1
         </button>
@@ -73,6 +77,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
         aria-label="Перейти на страницу 21"
         key="1"
         onClick={[Function]}
+        page={21}
         rounded="none"
         selected={false}
       >
@@ -80,6 +85,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
           aria-label="Перейти на страницу 21"
           className="page-button"
           onClick={[Function]}
+          page={21}
         >
           ...
         </button>
@@ -88,6 +94,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
         aria-label="Перейти на страницу 22"
         key="2"
         onClick={[Function]}
+        page={22}
         rounded="none"
         selected={false}
       >
@@ -95,6 +102,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
           aria-label="Перейти на страницу 22"
           className="page-button"
           onClick={[Function]}
+          page={22}
         >
           22
         </button>
@@ -103,6 +111,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
         aria-label="Перейти на страницу 23"
         key="3"
         onClick={[Function]}
+        page={23}
         rounded="none"
         selected={true}
       >
@@ -110,6 +119,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
           aria-label="Перейти на страницу 23"
           className="page-button selected"
           onClick={[Function]}
+          page={23}
         >
           23
         </button>
@@ -118,6 +128,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
         aria-label="Перейти на страницу 24"
         key="4"
         onClick={[Function]}
+        page={24}
         rounded="none"
         selected={false}
       >
@@ -125,6 +136,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
           aria-label="Перейти на страницу 24"
           className="page-button"
           onClick={[Function]}
+          page={24}
         >
           24
         </button>
@@ -133,6 +145,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
         aria-label="Перейти на страницу 25"
         key="5"
         onClick={[Function]}
+        page={25}
         rounded="none"
         selected={false}
       >
@@ -140,6 +153,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
           aria-label="Перейти на страницу 25"
           className="page-button"
           onClick={[Function]}
+          page={25}
         >
           25
         </button>
@@ -148,6 +162,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
         aria-label="Перейти на страницу 26"
         key="6"
         onClick={[Function]}
+        page={26}
         rounded="none"
         selected={false}
       >
@@ -155,6 +170,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
           aria-label="Перейти на страницу 26"
           className="page-button"
           onClick={[Function]}
+          page={26}
         >
           ...
         </button>
@@ -163,6 +179,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
         aria-label="Перейти на страницу 123"
         key="7"
         onClick={[Function]}
+        page={123}
         rounded="right"
         selected={false}
       >
@@ -170,6 +187,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
           aria-label="Перейти на страницу 123"
           className="page-button rounds-right"
           onClick={[Function]}
+          page={123}
         >
           123
         </button>
@@ -178,12 +196,14 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
         aria-label="Вперед"
         className="M-l__2"
         onClick={[Function]}
+        page={24}
         rounded="all"
       >
         <button
           aria-label="Вперед"
           className="page-button rounds-all M-l__2"
           onClick={[Function]}
+          page={24}
         >
           <Icon
             icon={[Function]}
