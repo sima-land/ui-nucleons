@@ -41,6 +41,38 @@ import Badge from './index';
 </div>
 ```
 
+Шильдики с иконками:
+
+> Важное замечание: при использовании типа `svg` серверный рендер выведет пустой блок.
+> Сама иконка загрузится только на клиенте.
+
+```jsx
+import Badge from './index';
+
+<div style={{ background: '#fff', padding: 16 }}>
+  <Badge
+    isIconOnly
+    bgColor='gold'
+    fields={[
+      {
+        type: 'svg',
+        value: 'https://static2.static1-sima-land.com/img/badges/dolphin.svg',
+      },
+    ]}
+  />
+  <br />
+  <Badge
+    isIconOnly
+    fields={[
+      {
+        type: 'icon',
+        value: 'https://static2.static1-sima-land.com/favicon/favicon-32x32.png',
+      },
+    ]}
+  />
+</div>
+```
+
 Шильдики в узком блоке с кастомными стилями:
 
 ```jsx
@@ -59,6 +91,7 @@ const badges = [
         type: 'timer',
         value: '2025-01-01 23:59:59+05',
         format: 'd:h:m:s',
+        textColor: '#face8d',
       },
       {
         type: 'text',
@@ -110,6 +143,30 @@ const badges = [
       {
         type: 'text',
         value: 'Очень длинное название шильдика',
+      },
+    ],
+  },
+  {
+    title: null,
+    bgColor: 'gold',
+    textColor: '#FFFFFF',
+    strokeColor: null,
+    shadowColor: null,
+    fields: [
+      {
+        type: 'text',
+        value: 'Разные',
+        textColor: 'red',
+      },
+      {
+        type: 'text',
+        value: 'цвета',
+        textColor: 'green',
+      },
+      {
+        type: 'text',
+        value: 'полей',
+        textColor: 'blue',
       },
     ],
   },

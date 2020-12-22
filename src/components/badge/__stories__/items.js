@@ -38,6 +38,10 @@ export const badges = [
         value: '2021-02-28 23:59:59+05',
         format: 'd:h:m:s',
       },
+      {
+        type: 'svg',
+        value: 'https://static2.static1-sima-land.com/img/badges/dolphin.svg',
+      },
     ],
   },
   {
