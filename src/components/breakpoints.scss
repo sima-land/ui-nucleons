@@ -21,7 +21,7 @@ $_breakpoints: (
   'xxl': 1600px,
 
   // 1600+
-  'max': 100vw,
+  'max': 9999999px, // hotfix: Safari не понимает 100vw в media-запросах
 ) !default;
 
 @mixin on ($breakpoint) {
