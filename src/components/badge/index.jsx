@@ -8,9 +8,15 @@ import pipe from 'lodash/fp/pipe';
 import assoc from 'lodash/fp/assoc';
 import pick from 'lodash/fp/pick';
 import propEq from 'lodash/fp/propEq';
+import omit from 'lodash/fp/omit';
+import curry from 'lodash/fp/curry';
+import path from 'lodash/fp/path';
+import identity from 'lodash/fp/identity';
 import T from 'lodash/stubTrue';
 import Timer from '../timer';
 import rename from '../helpers/rename';
+import { ReactSVG } from 'react-svg';
+import isBrowser from '../helpers/is-browser';
 
 const cx = classnames.bind(styles);
 
@@ -43,14 +49,12 @@ export const Badge = ({
       { 'container-icon': isIconOnly },
       containerProps.className,
     )}
-    style={isIconOnly
-      ? containerProps.style
-      : {
-        color,
-        backgroundColor,
-        fill,
-        ...containerProps.style,
-      }}
+    style={{
+      color,
+      backgroundColor,
+      fill,
+      ...containerProps.style,
+    }}
     title={title}
   >
     <span className={cx('content')}>
@@ -71,7 +75,7 @@ export default Badge;
 /**
  * Возвращает компонент контентного поля шильдика.
  * @param {Object} field Поле с данными.
- * @param {number} index Индекс.
+ * @param {number} [index] Индекс.
  * @return {ReactElement} Компонент.
  */
 export const renderField = (field, index) => {
@@ -82,26 +86,74 @@ export const renderField = (field, index) => {
 const typeEq = propEq('type');
 
 /**
+ * Устанавливает выбранные поля в свойство style.
+ * @param {string|Array} propKeys Свойства поля.
+ * @return {Function} Обработчик.
+ */
+const style = propKeys => cond([
+  [path(propKeys), curry(source => assoc(
+    'style',
+    pick(propKeys, source),
+    omit(propKeys, source)
+  ))],
+  [T, identity],
+]);
+
+/**
+ * Обрабатывает свойства для таймера.
+ */
+const timeProps = curry(source => assoc(
+  'timeProps',
+  pick('style', style('color')(source)),
+  omit('color', source)
+));
+
+/**
  * Возвращает преобразованный объект с контентным полем шильдика.
  * @param {Object} field Данные контентного поля шильдика.
  * @return {Object} Преобразованные данные.
  */
 const resolveFieldComponent = cond([
+  [typeEq('svg'), cond([
+    [isBrowser, pipe(
+      pick(['value', 'color']),
+      assoc('Component', ReactSVG),
+      rename('value', 'src'),
+      assoc('wrapper', 'span'),
+      assoc('fallback', 'img'),
+      assoc('className', cx('icon')),
+      style('color'),
+    )],
+    [T, pipe(
+      assoc('Component', 'div'),
+      assoc('className', cx('icon', 'empty'))
+    )],
+  ])],
   [typeEq('icon'), pipe(
     pick(['value', 'title']),
     assoc('Component', 'img'),
+    assoc('className', cx('icon')),
     rename('value', 'src'),
     rename('title', 'alt'),
   )],
   [typeEq('timer'), pipe(
-    pick(['value', 'format']),
+    pick(['value', 'format', 'textColor']),
     assoc('Component', Timer),
-    rename('value', 'endTime')
+    assoc('className', cx('text')),
+    rename('value', 'endTime'),
+    rename('textColor', 'color'),
+    cond([
+      [path('color'), timeProps],
+      [T, identity],
+    ])
   )],
   [T, pipe(
-    pick(['value']),
+    pick(['value', 'textColor']),
     assoc('Component', 'span'),
-    rename('value', 'children')
+    assoc('className', cx('text')),
+    rename('value', 'children'),
+    rename('textColor', 'color'),
+    style('color'),
   )],
 ]);
 
