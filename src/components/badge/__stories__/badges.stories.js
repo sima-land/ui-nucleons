@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
-import { badges } from './items';
+import { badges as badges } from './items';
 import Badge from '../index';
 
 storiesOf('Badge', module)
@@ -53,71 +53,5 @@ storiesOf('Badge', module)
           />
         ))}
       </div>
-
-      <h3>Шильдики с иконками:</h3>
-      <Badge
-        isIconOnly
-        bgColor='gold'
-        fields={[
-          {
-            type: 'svg',
-            value: 'https://static2.static1-sima-land.com/img/badges/dolphin.svg',
-          },
-        ]}
-      />
-      &nbsp;
-      <Badge
-        isIconOnly
-        fields={[
-          {
-            type: 'icon',
-            value: 'https://static2.static1-sima-land.com/favicon/favicon-32x32.png',
-          },
-        ]}
-      />
-
-      <h3>Шильдик с разноцветными полями:</h3>
-      <Badge
-        bgColor='gold'
-        textColor='#000'
-        fields={[
-          {
-            type: 'text',
-            value: 'До начала 2077 осталось',
-          },
-          {
-            type: 'timer',
-            value: '2077-01-01 00:00:00+05',
-            format: 'd:h:m:s',
-            color: '#000',
-          },
-          ...['red', 'green', 'blue'].map(color => ({
-            type: 'text',
-            value: color,
-            color,
-          })),
-        ]}
-      />
-      <br />
-      <Badge
-        bgColor='#0091EA'
-        textColor='#fff'
-        fields={[
-          {
-            type: 'text',
-            value: '-10%',
-          },
-          {
-            type: 'timer',
-            value: '2077-01-01 00:00:00+05',
-            format: 'd:h:m:s',
-            color: 'red',
-          },
-          {
-            type: 'text',
-            value: '— Специальные цены на музыкальные игрушки',
-          },
-        ]}
-      />
     </Fragment>
   ));

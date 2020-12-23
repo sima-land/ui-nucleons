@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 import Badge, { renderField } from '../index';
 import { badges } from '../__stories__/items';
 import Timer from '../../timer';
-import { ReactSVG } from 'react-svg';
 
 describe('<Badge />', () => {
   describe('without props', () => {
@@ -107,9 +106,6 @@ describe('<Badge />', () => {
       });
       expect(badge.find('.container').at(0).prop('style')).toEqual({
         margin: '10px',
-        color: 'red',
-        backgroundColor: 'green',
-        fill: 'blue',
       });
     });
   });
@@ -153,7 +149,6 @@ describe('<Badge />', () => {
         margin: 10,
       });
     });
-
     it('should pass style prop with icon', () => {
       const badge = shallow(
         <Badge
@@ -166,88 +161,24 @@ describe('<Badge />', () => {
       );
       expect(badge.find('.container').prop('style')).toEqual({
         margin: 10,
-        backgroundColor: 'white',
-        color: 'red',
-        fill: '#fff',
       });
-    });
-  });
-
-  describe('with fields textColor', () => {
-    it('should add props to field', () => {
-      const badge = shallow(
-        <Badge
-          fields={[
-            {
-              type: 'text',
-              value: 'foo',
-              textColor: '#face8d',
-            },
-          ]}
-          textColor='red'
-          bgColor='white'
-        />
-      );
-      expect(badge.find('.content span').prop('style')).toEqual({
-        color: '#face8d',
-      });
-    });
-    it('should add props to time', () => {
-      const badge = shallow(
-        <Badge
-          fields={[
-            {
-              type: 'timer',
-              value: '2021-02-28 23:59:59+05',
-              format: 'd:h:m:s',
-              textColor: '#face8d',
-            },
-          ]}
-          textColor='red'
-          bgColor='white'
-        />
-      );
-      expect(badge.find(Timer).prop('timeProps')).toEqual({
-        style: { color: '#face8d' },
-      });
-    });
-    it('should not add props', () => {
-      const badge = shallow(
-        <Badge
-          fields={[
-            {
-              type: 'timer',
-              value: '2021-02-28 23:59:59+05',
-              format: 'd:h:m:s',
-            },
-          ]}
-          textColor='red'
-          bgColor='white'
-        />
-      );
-      expect(badge.find(Timer).prop('timeProps')).toBeUndefined();
     });
   });
 });
 
 describe('renderField', () => {
   const testBadge = badges[1];
-  it('should resolve svg icon properly', () => {
-    const field = renderField({ ...testBadge.fields[0], type: 'svg' });
-    expect(field.type).toBe(ReactSVG);
-    expect(field.props.src).toEqual(testBadge.fields[0].value);
-    expect(field.props.wrapper).toEqual('span');
-  });
-  it('should resolve other icon properly', () => {
-    const field = renderField({ ...testBadge.fields[0], value: 'https://example.com/icon.png' });
+  it('should resolve icon properly', () => {
+    const field = renderField(testBadge.fields[0]);
     expect(field.type).toBe('img');
-    expect(field.props.src).toEqual('https://example.com/icon.png');
+    expect(field.props).toEqual({
+      src: testBadge.fields[0].value,
+    });
   });
   it('should resolve timer properly', () => {
     const field = renderField(testBadge.fields[2]);
     expect(field.type).toBe(Timer);
     expect(field.props).toEqual({
-      className: 'text',
       endTime: testBadge.fields[2].value,
       format: testBadge.fields[2].format,
     });
@@ -256,7 +187,6 @@ describe('renderField', () => {
     const field = renderField(testBadge.fields[1]);
     expect(field.type).toBe('span');
     expect(field.props).toEqual({
-      className: 'text',
       children: testBadge.fields[1].value,
     });
   });
@@ -266,7 +196,6 @@ describe('renderField', () => {
     });
     expect(field.type).toBe('span');
     expect(field.props).toEqual({
-      className: 'text',
       children: 'some text',
     });
   });

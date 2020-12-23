@@ -19,7 +19,6 @@
     "intersection-observer": "^0.7.0",
     "lodash": "4.17.15",
     "prop-types": "^15.7.2",
-    "react-svg": "11.2.0",
     "react-transition-group": "^4.3.0"
   },
   "devDependencies": {

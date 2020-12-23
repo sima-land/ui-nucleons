@@ -1,13 +1,13 @@
 @import '../variables';
-@import '../colors';
 
 $badgeColor: $black !default;
 $badgeBackground: $white !default;
 $badgeFill: $black !default;
-$badgeTimeColor: $gray12 !default;
+$badgeTimeColor: $white !default;
 
 .container {
   font-size: 12px;
+  line-height: 16px;
   position: relative;
   display: inline-block;
   font-weight: 500;
@@ -16,13 +16,12 @@ $badgeTimeColor: $gray12 !default;
   overflow: hidden;
   max-width: 100%;
   box-sizing: border-box;
-  color: $badgeColor;
-  fill: $badgeFill;
-  background: $badgeBackground;
-  border-radius: 2px;
-  padding: 2px 4px;
-  &.container-icon {
-    padding: 3px 6px;
+  &:not(.container-icon) {
+    color: $badgeColor;
+    fill: $badgeFill;
+    background: $badgeBackground;
+    padding: 0 4px;
+    border-radius: 2px;
   }
 }
 
@@ -37,24 +36,13 @@ $badgeTimeColor: $gray12 !default;
 }
 
 .content {
-  .text {
-    line-height: 16px;
-  }
-  .icon {
-    margin-top: 1px;
-    vertical-align: top;
-    height: 12px;
-    width: auto;
-    display: inline-block !important;
-    fill: currentColor;
-    svg {
-      height: 12px;
-      width: auto;
-    }
-    &.empty {
-      width: 12px;
-      height: 12px;
-    }
+  line-height: 20px;
+  vertical-align: middle;
+  display: inline !important;
+  align-items: center;
+  img {
+    display: inline-block;
+    vertical-align: middle;
   }
   * + * {
     margin-left: 4px;
