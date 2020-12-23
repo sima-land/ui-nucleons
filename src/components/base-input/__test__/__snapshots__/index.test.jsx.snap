@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BaseInput /> should handle "restPlaceholder" prop 1`] = `
+<ForwardRef(BaseInput)
+  onChange={[MockFunction]}
+  restPlaceholder=", World!"
+  value="Hello"
+>
+  <div
+    className="reset root"
+  >
+    <span
+      className="fake-text"
+    >
+      <span
+        className="invisible-value"
+      >
+        Hello
+      </span>
+      <span
+        className="placeholder"
+      >
+        , World!
+      </span>
+    </span>
+    <input
+      className="field reset"
+      onChange={[MockFunction]}
+      onInput={[Function]}
+      value="Hello"
+    />
+  </div>
+</ForwardRef(BaseInput)>
+`;
+
+exports[`<BaseInput /> should handle "restPlaceholder" prop 2`] = `
+<ForwardRef(BaseInput)
+  onChange={[MockFunction]}
+  restPlaceholder={
+    Object {
+      "shiftValue": "Hello",
+      "value": ", World!",
+    }
+  }
+  value=""
+>
+  <div
+    className="reset root"
+  >
+    <span
+      className="fake-text"
+    >
+      <span
+        className="invisible-value"
+      >
+        Hello
+      </span>
+      <span
+        className="placeholder"
+      >
+        , World!
+      </span>
+    </span>
+    <input
+      className="field reset"
+      onChange={[MockFunction]}
+      onInput={[Function]}
+      value=""
+    />
+  </div>
+</ForwardRef(BaseInput)>
+`;
+
+exports[`<BaseInput /> should render without props 1`] = `
+<ForwardRef(BaseInput)>
+  <div
+    className="reset root"
+  >
+    <input
+      className="field reset"
+      onInput={[Function]}
+    />
+  </div>
+</ForwardRef(BaseInput)>
+`;
