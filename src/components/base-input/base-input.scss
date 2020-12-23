@@ -1,0 +1,68 @@
+@import '../colors';
+
+.reset {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  font: inherit;
+}
+
+.root {
+  position: relative;
+  background-color: transparent;
+  width: 0;
+  flex-grow: 1;
+  display: flex;
+}
+
+.field {
+  width: 0;
+  flex-grow: 1;
+  display: block;
+  color: inherit;
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  z-index: 1;
+  text-overflow: inherit;
+  background: inherit;
+  &::placeholder {
+    opacity: 1;
+    color: var(--placeholder-color);
+  }
+  &::-ms-clear { // отключаем системный крестик в IE
+    display: none;
+    height: 0;
+    width: 0;
+  }
+  &.multiline {
+    resize: none;
+
+    // скрытие полосы прокрутки
+    scrollbar-width: none; // Firefox
+    overflow: -moz-scrollbars-none; // old Firefox
+    -ms-overflow-style: none; // IE, old Edge
+    &::-webkit-scrollbar {
+      display: none; // Chrome, Safari, Opera
+    }
+  }
+}
+
+.fake-text {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  overflow: hidden;
+  z-index: 0;
+  .invisible-value {
+    color: transparent;
+  }
+  .placeholder {
+    color: var(--placeholder-color);
+  }
+}
