@@ -167,41 +167,23 @@ input.reset {
   font-size: 16px;
   line-height: 24px;
   color: map-get($colors, 'gray87');
+  --placeholder-color: #{map-get($colors, 'gray38')};
   background-color: transparent;
   width: 0;
   flex-grow: 1;
-  &::-ms-clear { // отключаем системный крестик в IE
-    display: none;
-    height: 0;
-    width: 0;
-  }
-  &::placeholder {
-    opacity: 1;
-    color: map-get($colors, 'gray38');
+  &.disabled {
+    color: map-get($colors, 'gray24');
+    --placeholder-color: #{map-get($colors, 'gray24')};
   }
   &.size-xs {
     font-size: 14px;
     line-height: 20px;
   }
-  &.disabled {
-    color: map-get($colors, 'gray24');
-    &::placeholder {
-      color: map-get($colors, 'gray24');
-    }
+  &.variant-mobile:not(:focus) {
+    text-overflow: ellipsis;
   }
-  &.multiline {
-    resize: none;
-  }
-  &.variant-mobile {
-    &:not(:focus) {
-      text-overflow: ellipsis;
-    }
-  }
-  &.variant-desktop {
-    &.failed,
-    &.failed::placeholder {
-      color: map-get($colors, 'additional-red');
-    }
+  &.variant-desktop.failed {
+    --placeholder-color: #{map-get($colors, 'additional-red')};
   }
 }
 

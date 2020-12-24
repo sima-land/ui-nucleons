@@ -16,7 +16,7 @@ const cx = classnames.bind(classes);
  * @param {Function} [props.onInput] Сработает при событии input.
  * @param {boolean} [props.multiline] Нужно ли выводить textarea вместо input.
  * @param {number|string} [props.rows] Значение атрибута rows для textarea.
- * @param {string|Object} props.style Стили.
+ * @param {string|Object} props.style Стили. Цвет placeholder'а можно задать через свойство "--placeholder-color".
  * @param {string} props.value Значение.
  * @return {ReactElement} Компонент поля ввода.
  */
@@ -57,7 +57,7 @@ export const BaseInput = forwardRef(function BaseInput ({
       )}
     >
       {!multiline && Boolean(restPlaceholder.value) && (
-        <span className={cx('fake-text')}>
+        <span aria-hidden className={cx('fake-text')}>
           <span className={cx('invisible-value')}>{restPlaceholder.shiftValue}</span>
           <span className={cx('placeholder')}>{restPlaceholder.value}</span>
         </span>

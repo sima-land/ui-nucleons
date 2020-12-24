@@ -1,8 +1,7 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import TextField from '../index';
 import Icon from '../../icon';
-import { BaseInput } from '../base-input';
 import classes from './stories.scss';
 
 const baseProps = { className: classes['full-width'] };
@@ -23,15 +22,19 @@ const longValue = [
   'Omnis, accusamus?',
 ].join(' \n');
 
-const testValues = ['test', 123, '', [], null, undefined, false, true, {}];
+const testValues = ['test', 123, '', null, undefined];
+
+const Demo = ({ children }) => (
+  <div style={{ padding: 32 }}>{children}</div>
+);
 
 storiesOf('TextField', module)
   .add('Default', () => (
-    <Fragment>
+    <Demo>
       <h2>Desktop</h2>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         {Object.entries(stateProps).map(([stateName, props]) => (
-          <div style={{ width: '30%', padding: 16 }} key={stateName}>
+          <div style={{ flexGrow: '1', marginRight: 16 }} key={stateName}>
             <h4 style={{ textTransform: 'capitalize' }}>{stateName}</h4>
             {desktopSizes.map(sizeName => (
               <div style={{ marginTop: 24 }} key={sizeName}>
@@ -52,7 +55,7 @@ storiesOf('TextField', module)
                   )}
                 />
                 {sizeName === 'l' && (
-                  <Fragment>
+                  <>
                     <div style={{ height: 32 }} />
                     <TextField
                       {...baseProps}
@@ -68,7 +71,7 @@ storiesOf('TextField', module)
                         />
                       )}
                     />
-                  </Fragment>
+                  </>
                 )}
               </div>
             ))}
@@ -79,7 +82,7 @@ storiesOf('TextField', module)
       <h2 style={{ marginTop: 32 }}>Mobile</h2>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 32 }}>
         {Object.entries(stateProps).map(([stateName, props]) => (
-          <div style={{ width: '30%', padding: 16 }} key={stateName}>
+          <div style={{ flexGrow: 1, marginRight: 16 }} key={stateName}>
             <h4 style={{ textTransform: 'capitalize' }}>{stateName}</h4>
             <TextField
               {...baseProps}
@@ -112,10 +115,10 @@ storiesOf('TextField', module)
           </div>
         ))}
       </div>
-    </Fragment>
+    </Demo>
   ))
   .add('Multiline', () => (
-    <Fragment>
+    <Demo>
       <h2>Desktop</h2>
       <TextField
         {...baseProps}
@@ -153,20 +156,20 @@ storiesOf('TextField', module)
         placeholder='Placeholder'
         variant='mobile'
       />
-    </Fragment>
+    </Demo>
   ))
   .add('Different values', () => testValues.map((testValue, index) => (
-    <Fragment key={index}>
-      <h3>Value: {String(testValue) || JSON.stringify(testValue)}</h3>
+    <Demo key={index}>
+      <h3>Значение <code>value</code>: {String(testValue) || JSON.stringify(testValue)}</h3>
       <TextField
         {...baseProps}
         label='Label'
         defaultValue={testValue}
       />
-    </Fragment>
+    </Demo>
   )))
   .add('Rounds', () => (
-    <Fragment>
+    <Demo>
       <h2>Скругления</h2>
       <p>Их можно задавать только для варианта <code>desktop</code>:</p>
       {[
@@ -189,32 +192,54 @@ storiesOf('TextField', module)
           />
         </div>
       ))}
-    </Fragment>
+    </Demo>
   ))
+  .add('Rest placeholder', () => {
+    const [value, setValue] = useState('');
+
+    return (
+      <Demo>
+        <h3>Введите 10 цифр</h3>
+        <TextField
+          value={value}
+          label='Label'
+          onChange={e => setValue(e.target.value.slice(0, 10))}
+          restPlaceholder={'9'.repeat(10).slice(value.length)}
+          style={{ width: 240 }}
+        />
+        <div style={{ height: 24 }} />
+        <TextField
+          variant='mobile'
+          label='Label'
+          value={value}
+          onChange={e => setValue(e.target.value.slice(0, 10))}
+          restPlaceholder={'9'.repeat(10).slice(value.length)}
+          style={{ width: 240 }}
+        />
+      </Demo>
+    );
+  })
   .add('service: Value prop change', () => {
     const [value, setValue] = useState('');
 
     return (
-      <Fragment>
-        <button onClick={() => setValue('Some text')}>Fill value</button>
-        <button onClick={() => setValue('')}>Clear value</button>
+      <Demo>
+        <p>
+          Label должен подниматься и опускаться в зависимости от того введено значение или нет
+        </p>
 
-        <div style={{ height: 32 }} />
+        <p>
+          <button onClick={() => setValue('Some text')}>Заполнить</button>
+          {' '}
+          <button onClick={() => setValue('')}>Очистить</button>
+        </p>
 
-        <TextField label='Test label' value={value} onChange={event => setValue(event.target.value)} />
-      </Fragment>
+        <TextField
+          label='Test label'
+          value={value}
+          onChange={event => setValue(event.target.value)}
+          style={{ width: 240 }}
+        />
+      </Demo>
     );
-  })
-  .add('service: BaseInput', () => (
-    <Fragment>
-      <div style={{ border: '1px solid #000', display: 'flex', width: 200 }}>
-        <BaseInput defaultValue='Text' />
-      </div>
-
-      <div style={{ height: 32 }} />
-
-      <div style={{ border: '1px solid #000', display: 'flex', width: 200 }}>
-        <BaseInput defaultValue='Text' multiline />
-      </div>
-    </Fragment>
-  ));
+  });

@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import TextField from '../index';
-import { BaseInput } from '../base-input';
+import { BaseInput } from '../../base-input';
 import { fitElementHeight } from '../../helpers/fit-element-height';
 
 jest.mock('../../helpers/fit-element-height', () => {
@@ -108,7 +108,7 @@ describe('<TextField />', () => {
     });
 
     act(() => {
-      wrapper.find(BaseInput).simulate('focus');
+      wrapper.find(BaseInput).find('input').simulate('focus');
     });
 
     expect(callbacks.onClick).toHaveBeenCalledTimes(0);
@@ -117,7 +117,7 @@ describe('<TextField />', () => {
     expect(callbacks.onFocus).toHaveBeenCalledTimes(1);
 
     act(() => {
-      wrapper.find(BaseInput).simulate('blur');
+      wrapper.find(BaseInput).find('input').simulate('blur');
     });
 
     expect(callbacks.onClick).toHaveBeenCalledTimes(0);
@@ -126,7 +126,7 @@ describe('<TextField />', () => {
     expect(callbacks.onFocus).toHaveBeenCalledTimes(1);
 
     act(() => {
-      wrapper.find(BaseInput).simulate('change');
+      wrapper.find(BaseInput).find('input').simulate('change');
     });
 
     expect(callbacks.onClick).toHaveBeenCalledTimes(0);
@@ -135,16 +135,16 @@ describe('<TextField />', () => {
     expect(callbacks.onFocus).toHaveBeenCalledTimes(1);
 
     act(() => {
-      jest.spyOn(wrapper.find(BaseInput).getDOMNode(), 'focus');
+      jest.spyOn(wrapper.find(BaseInput).find('input').getDOMNode(), 'focus');
     });
 
-    expect(wrapper.find(BaseInput).getDOMNode().focus).toHaveBeenCalledTimes(0);
+    expect(wrapper.find(BaseInput).find('input').getDOMNode().focus).toHaveBeenCalledTimes(0);
 
     act(() => {
       wrapper.find('.input-block').simulate('click');
     });
 
-    expect(wrapper.find(BaseInput).getDOMNode().focus).toHaveBeenCalledTimes(1);
+    expect(wrapper.find(BaseInput).find('input').getDOMNode().focus).toHaveBeenCalledTimes(1);
     expect(callbacks.onClick).toHaveBeenCalledTimes(1);
     expect(callbacks.onBlur).toHaveBeenCalledTimes(1);
     expect(callbacks.onChange).toHaveBeenCalledTimes(1);
