@@ -26,16 +26,20 @@ exports[`<TextField /> should handle "caption" prop 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="variant-desktop size-l"
+            className="base-input variant-desktop size-l"
             onBlur={[Function]}
             onFocus={[Function]}
           >
-            <input
-              className="reset base-input variant-desktop size-l"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onInput={[Function]}
-            />
+            <div
+              className="reset root base-input variant-desktop size-l"
+            >
+              <input
+                className="field reset"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onInput={[Function]}
+              />
+            </div>
           </ForwardRef(BaseInput)>
         </div>
       </div>
@@ -84,18 +88,22 @@ exports[`<TextField /> should handle "caption" prop 2`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="disabled failed variant-mobile size-l"
+            className="base-input disabled failed variant-mobile size-l"
             disabled={true}
             onBlur={[Function]}
             onFocus={[Function]}
           >
-            <input
-              className="reset base-input disabled failed variant-mobile size-l"
-              disabled={true}
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onInput={[Function]}
-            />
+            <div
+              className="reset root disabled base-input disabled failed variant-mobile size-l"
+            >
+              <input
+                className="field reset"
+                disabled={true}
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onInput={[Function]}
+              />
+            </div>
           </ForwardRef(BaseInput)>
         </div>
       </div>
@@ -133,18 +141,22 @@ exports[`<TextField /> should handle "disabled" prop 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="disabled variant-desktop size-l"
+            className="base-input disabled variant-desktop size-l"
             disabled={true}
             onBlur={[Function]}
             onFocus={[Function]}
           >
-            <input
-              className="reset base-input disabled variant-desktop size-l"
-              disabled={true}
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onInput={[Function]}
-            />
+            <div
+              className="reset root disabled base-input disabled variant-desktop size-l"
+            >
+              <input
+                className="field reset"
+                disabled={true}
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onInput={[Function]}
+              />
+            </div>
           </ForwardRef(BaseInput)>
         </div>
       </div>
@@ -171,16 +183,20 @@ exports[`<TextField /> should handle "focused" prop 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="focused variant-desktop size-l"
+            className="base-input focused variant-desktop size-l"
             onBlur={[Function]}
             onFocus={[Function]}
           >
-            <input
-              className="reset base-input focused variant-desktop size-l"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onInput={[Function]}
-            />
+            <div
+              className="reset root base-input focused variant-desktop size-l"
+            >
+              <input
+                className="field reset"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onInput={[Function]}
+              />
+            </div>
           </ForwardRef(BaseInput)>
         </div>
       </div>
@@ -212,18 +228,20 @@ exports[`<TextField /> should handle "label" prop 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="variant-desktop size-l"
+            className="base-input variant-desktop size-l"
             onBlur={[Function]}
             onFocus={[Function]}
-            placeholder={null}
           >
-            <input
-              className="reset base-input variant-desktop size-l"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onInput={[Function]}
-              placeholder={null}
-            />
+            <div
+              className="reset root base-input variant-desktop size-l"
+            >
+              <input
+                className="field reset"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onInput={[Function]}
+              />
+            </div>
           </ForwardRef(BaseInput)>
         </div>
       </div>
@@ -258,20 +276,22 @@ exports[`<TextField /> should handle "label" prop 2`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="disabled failed variant-mobile size-l"
+            className="base-input disabled failed variant-mobile size-l"
             disabled={true}
             onBlur={[Function]}
             onFocus={[Function]}
-            placeholder={null}
           >
-            <input
-              className="reset base-input disabled failed variant-mobile size-l"
-              disabled={true}
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onInput={[Function]}
-              placeholder={null}
-            />
+            <div
+              className="reset root disabled base-input disabled failed variant-mobile size-l"
+            >
+              <input
+                className="field reset"
+                disabled={true}
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onInput={[Function]}
+              />
+            </div>
           </ForwardRef(BaseInput)>
         </div>
       </div>
@@ -304,20 +324,24 @@ exports[`<TextField /> should handle "multiline" prop 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="variant-desktop size-l"
+            className="base-input variant-desktop size-l"
             multiline={true}
             onBlur={[Function]}
             onFocus={[Function]}
             onInput={[MockFunction]}
             rows={3}
           >
-            <textarea
-              className="reset base-input multiline variant-desktop size-l"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onInput={[Function]}
-              rows={3}
-            />
+            <div
+              className="reset root base-input variant-desktop size-l"
+            >
+              <textarea
+                className="field reset multiline"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onInput={[Function]}
+                rows={3}
+              />
+            </div>
           </ForwardRef(BaseInput)>
         </div>
       </div>
@@ -344,16 +368,20 @@ exports[`<TextField /> should handle "variant" prop 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="variant-desktop size-l"
+            className="base-input variant-desktop size-l"
             onBlur={[Function]}
             onFocus={[Function]}
           >
-            <input
-              className="reset base-input variant-desktop size-l"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onInput={[Function]}
-            />
+            <div
+              className="reset root base-input variant-desktop size-l"
+            >
+              <input
+                className="field reset"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onInput={[Function]}
+              />
+            </div>
           </ForwardRef(BaseInput)>
         </div>
       </div>
@@ -380,16 +408,20 @@ exports[`<TextField /> should handle "variant" prop 2`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="variant-mobile size-l"
+            className="base-input variant-mobile size-l"
             onBlur={[Function]}
             onFocus={[Function]}
           >
-            <input
-              className="reset base-input variant-mobile size-l"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onInput={[Function]}
-            />
+            <div
+              className="reset root base-input variant-mobile size-l"
+            >
+              <input
+                className="field reset"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onInput={[Function]}
+              />
+            </div>
           </ForwardRef(BaseInput)>
         </div>
       </div>
@@ -427,16 +459,20 @@ exports[`<TextField /> should handle adornment props 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="variant-desktop size-l"
+            className="base-input variant-desktop size-l"
             onBlur={[Function]}
             onFocus={[Function]}
           >
-            <input
-              className="reset base-input variant-desktop size-l"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onInput={[Function]}
-            />
+            <div
+              className="reset root base-input variant-desktop size-l"
+            >
+              <input
+                className="field reset"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onInput={[Function]}
+              />
+            </div>
           </ForwardRef(BaseInput)>
         </div>
       </div>
@@ -464,16 +500,20 @@ exports[`<TextField /> should handle adornment props 2`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="variant-desktop size-l"
+            className="base-input variant-desktop size-l"
             onBlur={[Function]}
             onFocus={[Function]}
           >
-            <input
-              className="reset base-input variant-desktop size-l"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onInput={[Function]}
-            />
+            <div
+              className="reset root base-input variant-desktop size-l"
+            >
+              <input
+                className="field reset"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onInput={[Function]}
+              />
+            </div>
           </ForwardRef(BaseInput)>
         </div>
       </div>
@@ -509,16 +549,20 @@ exports[`<TextField /> should render without props 1`] = `
           className="input-wrapper"
         >
           <ForwardRef(BaseInput)
-            className="variant-desktop size-l"
+            className="base-input variant-desktop size-l"
             onBlur={[Function]}
             onFocus={[Function]}
           >
-            <input
-              className="reset base-input variant-desktop size-l"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onInput={[Function]}
-            />
+            <div
+              className="reset root base-input variant-desktop size-l"
+            >
+              <input
+                className="field reset"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onInput={[Function]}
+              />
+            </div>
           </ForwardRef(BaseInput)>
         </div>
       </div>

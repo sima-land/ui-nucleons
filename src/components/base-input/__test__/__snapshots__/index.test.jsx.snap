@@ -10,6 +10,7 @@ exports[`<BaseInput /> should handle "restPlaceholder" prop 1`] = `
     className="reset root"
   >
     <span
+      aria-hidden={true}
       className="fake-text"
     >
       <span
@@ -48,6 +49,7 @@ exports[`<BaseInput /> should handle "restPlaceholder" prop 2`] = `
     className="reset root"
   >
     <span
+      aria-hidden={true}
       className="fake-text"
     >
       <span

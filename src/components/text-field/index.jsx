@@ -1,11 +1,14 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
 import { isNil, isFunction } from 'lodash';
 import Box from '../box';
-import * as Sizes from '../styling/sizes';
-import { cx } from './classes';
-import { BaseInput } from './base-input';
+import { marginTop } from '../styling/sizes';
+import classnames from 'classnames/bind';
+import styles from './text-field.scss';
+import { BaseInput } from '../base-input';
 import PropTypes from 'prop-types';
 import { SmallRounds } from '../styling/shapes';
+
+export const cx = classnames.bind(styles);
 
 /**
  * Вернет true если переданное значение будет выведено при установке в input.
@@ -55,6 +58,7 @@ const modifiersToClasses = ({ disabled, failed, focused, variant }) => cx(
  * @param {Object} [props.baseInputProps] Свойства BaseInput.
  * @param {string} [props.className] Класс корневого компонента.
  * @param {string} [props.style] Стили корневого компонента.
+ * @param {string|Object} [props.restPlaceholder] Placeholder, который выводится после введенного значения.
  * @return {ReactElement} Компонент текстового поля.
  */
 const TextField = forwardRef(function TextField ({
@@ -83,6 +87,7 @@ const TextField = forwardRef(function TextField ({
   multiline,
   baseInputProps = {},
   className,
+  restPlaceholder,
   style,
 }, ref) {
   const [hasValue, toggleHasValue] = useState(
@@ -161,12 +166,19 @@ const TextField = forwardRef(function TextField ({
               {...baseInputProps}
               multiline={multiline}
               ref={baseInputRef}
-              placeholder={withLabel && labelAsPlaceholder
-                ? null
-                : placeholder
+              placeholder={
+                withLabel && labelAsPlaceholder
+                  ? undefined
+                  : placeholder
+              }
+              restPlaceholder={
+                withLabel && labelAsPlaceholder
+                  ? undefined
+                  : restPlaceholder
               }
               autoFocus={autoFocus}
               className={cx(
+                'base-input',
                 commonModifyClasses,
                 classes.baseInput,
                 size && `size-${size}`,
@@ -205,7 +217,7 @@ const TextField = forwardRef(function TextField ({
         <div
           className={cx(
             'caption',
-            Sizes.marginTop(isMobile ? 1 : 2),
+            marginTop(isMobile ? 1 : 2),
             disabled && 'disabled',
             failed && 'failed',
           )}
@@ -239,7 +251,7 @@ TextField.propTypes = {
   /**
    * Значение по умолчанию.
    */
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
   /**
    * Отключено ли поле.
@@ -349,7 +361,15 @@ TextField.propTypes = {
   /**
    * Стили корневого компонента.
    */
-  style: PropTypes.string,
+  style: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+
+  /**
+   * Placeholder, который выводится после введенного значения.
+   */
+  restPlaceholder: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({ shiftValue: PropTypes.string, value: PropTypes.string.isRequired }),
+  ]),
 };
 
 export default TextField;
