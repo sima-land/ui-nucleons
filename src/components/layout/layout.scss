@@ -13,7 +13,8 @@
   --layoutWMin: 1px;
   --layoutWMax: 100vw;
   --layoutWStd: 1504px;
-  --layoutWidth: clamp(var(--layoutWMin), var(--layoutWStd), var(--layoutWMax));
+  // После появления сборки пакета нужно будет переделать на clamp (#239)
+  --layoutWidth: max(var(--layoutWMin), min(var(--layoutWStd), var(--layoutWMax)));
   margin-left: auto;
   margin-right: auto;
 
