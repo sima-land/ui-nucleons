@@ -184,6 +184,7 @@ input.reset {
     text-overflow: ellipsis;
   }
   &.variant-desktop.failed {
+    color: map-get($colors, 'additional-red');
     --placeholder-color: #{map-get($colors, 'additional-red')};
   }
 }
