@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropdownItem should handle props 1`] = `
+<DropdownItem
+  className="hello"
+  role="test-role"
+  size="l"
+>
+  <div
+    className="root size-l hello"
+    role="test-role"
+  >
+    Hello, world!
+  </div>
+</DropdownItem>
+`;
+
+exports[`DropdownItem should handle size prop 1`] = `
+<DropdownItem
+  size="s"
+>
+  <div
+    className="root size-s"
+  />
+</DropdownItem>
+`;
+
+exports[`DropdownItem should handle size prop 2`] = `
+<DropdownItem
+  size="m"
+>
+  <div
+    className="root size-m"
+  />
+</DropdownItem>
+`;
+
+exports[`DropdownItem should handle size prop 3`] = `
+<DropdownItem
+  size="l"
+>
+  <div
+    className="root size-l"
+  />
+</DropdownItem>
+`;
+
+exports[`DropdownItem should render without props 1`] = `
+<DropdownItem>
+  <div
+    className="root size-m"
+  />
+</DropdownItem>
+`;
