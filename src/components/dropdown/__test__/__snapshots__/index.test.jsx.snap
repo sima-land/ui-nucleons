@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown should handle props 1`] = `
+<ForwardRef(Dropdown)
+  className="hello"
+  role="test-role"
+>
+  <div
+    className="root invisible-scroll shadow-z4 rounds-md__all hello"
+    role="test-role"
+  >
+    Hello, world!
+  </div>
+</ForwardRef(Dropdown)>
+`;
+
+exports[`Dropdown should render without props 1`] = `
+<ForwardRef(Dropdown)>
+  <div
+    className="root invisible-scroll shadow-z4 rounds-md__all"
+  />
+</ForwardRef(Dropdown)>
+`;
