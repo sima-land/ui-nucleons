@@ -1,0 +1,37 @@
+@import '../colors';
+
+.root {
+  position: relative;
+  width: var(--width, 320px);
+  height: 80px;
+}
+
+.field {
+  width: 100%;
+}
+
+.adornment {
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.popup {
+  position: absolute;
+  width: 100%;
+  top: 56px;
+  height: 208px;
+}
+
+.popup-item {
+  font-size: 16px;
+  line-height: 24px;
+  .item-name {
+    color: $gray87;
+    flex-grow: 1;
+    margin-left: 16px;
+  }
+  .item-code {
+    color: $gray38;
+  }
+}

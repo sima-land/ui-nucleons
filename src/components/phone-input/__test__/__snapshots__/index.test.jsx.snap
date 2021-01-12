@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PhoneInput /> should render without props 1`] = `
+<PhoneInput>
+  <div
+    className="root"
+  >
+    <ForwardRef(MaskedField)
+      className="field"
+      endAdornment={
+        <div
+          className="adornment"
+          data-testid="phone-input:dropdown-opener"
+          onClick={[Function]}
+        >
+          <img
+            alt=""
+            height={24}
+            src={Object {}}
+            width={24}
+          />
+          <DownSVG
+            className="M-l__1"
+            fill="#9e9e9e"
+          />
+        </div>
+      }
+      label="Телефон"
+      mask="+7 (___) ___-__-__"
+    >
+      <ForwardRef(TextField)
+        className="field"
+        endAdornment={
+          <div
+            className="adornment"
+            data-testid="phone-input:dropdown-opener"
+            onClick={[Function]}
+          >
+            <img
+              alt=""
+              height={24}
+              src={Object {}}
+              width={24}
+            />
+            <DownSVG
+              className="M-l__1"
+              fill="#9e9e9e"
+            />
+          </div>
+        }
+        label="Телефон"
+        onBlur={[Function]}
+        restPlaceholder={
+          Object {
+            "shiftValue": "+7 (",
+            "value": "___) ___-__-__",
+          }
+        }
+      >
+        <div
+          className="text-field-root field"
+        >
+          <div
+            className="reset input-block variant-desktop size-l with-label rounds-sm__all"
+            onClick={[Function]}
+          >
+            <div
+              className="main-column"
+            >
+              <label
+                className="label variant-desktop filled"
+              >
+                Телефон
+              </label>
+              <div
+                className="input-wrapper"
+              >
+                <ForwardRef(BaseInput)
+                  className="base-input variant-desktop size-l"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  restPlaceholder={
+                    Object {
+                      "shiftValue": "+7 (",
+                      "value": "___) ___-__-__",
+                    }
+                  }
+                >
+                  <div
+                    className="reset root base-input variant-desktop size-l"
+                  >
+                    <span
+                      aria-hidden={true}
+                      className="fake-text"
+                    >
+                      <span
+                        className="invisible-value"
+                      >
+                        +7 (
+                      </span>
+                      <span
+                        className="placeholder"
+                      >
+                        ___) ___-__-__
+                      </span>
+                    </span>
+                    <input
+                      className="field reset"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onInput={[Function]}
+                    />
+                  </div>
+                </ForwardRef(BaseInput)>
+              </div>
+            </div>
+            <Box
+              alignItems="center"
+              display="flex"
+              marginLeft={4}
+            >
+              <div
+                className="display-flex align-items-center M-l__4"
+              >
+                <div
+                  className="adornment"
+                  data-testid="phone-input:dropdown-opener"
+                  onClick={[Function]}
+                >
+                  <img
+                    alt=""
+                    height={24}
+                    src={Object {}}
+                    width={24}
+                  />
+                  <DownSVG
+                    className="M-l__1"
+                    fill="#9e9e9e"
+                  >
+                    <svg
+                      className="M-l__1"
+                      fill="#9e9e9e"
+                      height={16}
+                      viewBox="0 0 16 16"
+                      width={16}
+                    >
+                      <path
+                        clipRule="evenodd"
+                        d="M3.247 6.342a1 1 0 011.412-.095L8 9.171l3.341-2.924a1 1 0 011.318 1.506l-4 3.5a1 1 0 01-1.317 0l-4-3.5a1 1 0 01-.095-1.411z"
+                        fillRule="evenodd"
+                      />
+                    </svg>
+                  </DownSVG>
+                </div>
+              </div>
+            </Box>
+          </div>
+        </div>
+      </ForwardRef(TextField)>
+    </ForwardRef(MaskedField)>
+  </div>
+</PhoneInput>
+`;
