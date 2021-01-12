@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MaskedField should renders properly 1`] = `
+<ForwardRef(MaskedField)
+  mask="__ __ №______"
+>
+  <ForwardRef(TextField)
+    onBlur={[Function]}
+    restPlaceholder={
+      Object {
+        "shiftValue": "",
+        "value": "__ __ №______",
+      }
+    }
+  >
+    <div
+      className="text-field-root"
+    >
+      <div
+        className="reset input-block variant-desktop size-l rounds-sm__all"
+        onClick={[Function]}
+      >
+        <div
+          className="main-column"
+        >
+          <div
+            className="input-wrapper"
+          >
+            <ForwardRef(BaseInput)
+              className="base-input variant-desktop size-l"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              restPlaceholder={
+                Object {
+                  "shiftValue": "",
+                  "value": "__ __ №______",
+                }
+              }
+            >
+              <div
+                className="reset root base-input variant-desktop size-l"
+              >
+                <span
+                  aria-hidden={true}
+                  className="fake-text"
+                >
+                  <span
+                    className="invisible-value"
+                  />
+                  <span
+                    className="placeholder"
+                  >
+                    __ __ №______
+                  </span>
+                </span>
+                <input
+                  className="field reset"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onInput={[Function]}
+                />
+              </div>
+            </ForwardRef(BaseInput)>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ForwardRef(TextField)>
+</ForwardRef(MaskedField)>
+`;

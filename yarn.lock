@@ -1922,6 +1922,11 @@
     stylelint-config-sass-guidelines "^7.1.0"
     stylelint-scss "^3.12.1"
 
+"@dev-dep/ui-quarks@^1.0.1":
+  version "1.0.1"
+  resolved "https://gitlab.sima-land.ru/api/v4/projects/1151/packages/npm/@dev-dep/ui-quarks/-/@dev-dep/ui-quarks-1.0.1.tgz#680e5de4267fba278377bcfab7a9c36296b62ca4"
+  integrity sha1-aA5d5CZ/uieDd7z6t6nDYpa2LKQ=
+
 "@emotion/cache@^10.0.27":
   version "10.0.29"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-10.0.29.tgz#87e7e64f412c060102d589fe7c6dc042e6f9d1e0"
@@ -2176,6 +2181,11 @@
     "@types/istanbul-lib-coverage" "^2.0.0"
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
+
+"@krutoo/input-mask@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@krutoo/input-mask/-/input-mask-0.0.7.tgz#dda5d43a399fe0ffbbc3bbcdb7a24e03aeecfdbf"
+  integrity sha512-UoKWMXjHYP8wn2nPeKyPFcccsRD7770kvZC+YgjLsEILzSPp2mOASPRGBvUADFQ8l4vBVUSR3DNQG0uA7JiWrg==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"

@@ -12,6 +12,8 @@
     "node": ">=10.15.3"
   },
   "dependencies": {
+    "@dev-dep/ui-quarks": "^1.0.1",
+    "@krutoo/input-mask": "^0.0.7",
     "@storybook/addon-console": "^1.2.2",
     "@types/jest": "^24.0.19",
     "body-scroll-lock": "3.1.5",
