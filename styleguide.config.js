@@ -173,11 +173,11 @@ module.exports = {
           ],
         },
         {
-          test: /\.(woff|woff2|eot|ttf)$/,
+          test: /\.(png|jpg|jpeg|gif|woff|woff2|eot|ttf)$/,
           use: [
             {
               loader: 'file-loader',
-              query: {
+              options: {
                 name: '[name].[ext]',
               },
             },
