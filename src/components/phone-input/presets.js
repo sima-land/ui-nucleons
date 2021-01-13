@@ -113,6 +113,7 @@ export const countriesList = ORDER.map(id => ({
   id,
   name: NAMES[id],
   code: CODES[id],
+  codeChars: CODES[id].replace(/\D/g, ''),
   mask: MASKS[id],
   imageSrc: IMAGES[id],
 }));

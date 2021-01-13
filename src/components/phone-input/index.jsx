@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classnames from 'classnames/bind';
 import DownSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/down';
 import UpSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/up';
@@ -6,13 +6,22 @@ import { Dropdown } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';
 import { MaskedField } from '../masked-field';
 import { useOutsideClick } from '../hooks';
-import { countries, countriesList } from './presets';
+import { countriesList } from './presets';
 import { marginLeft } from '../styling/sizes';
 import { COLORS } from '../constants';
 import classes from './phone-input.scss';
 import PropTypes from 'prop-types';
+import { defineCountry } from './utils';
 
 const cx = classnames.bind(classes);
+
+/**
+ * Удаляет из значения код переданной страны.
+ * @param {string} value Значение.
+ * @param {Object} country Данные страны.
+ * @return {string} Значение без кода.
+ */
+const formatValue = (value, country) => value.replace(/\D/g, '').slice(country.codeChars.length);
 
 /**
  * Компонент поля ввода номера телефона.
@@ -24,17 +33,24 @@ const cx = classnames.bind(classes);
  * @return {ReactElement} Компонент.
  */
 export const PhoneInput = ({
+  'data-testid': testId,
+  className,
   label = 'Телефон',
+  onBlur,
   onCountrySelect,
   style,
-  className,
-  'data-testid': testId,
+  value = '',
   ...restOptions
 }) => {
-  const [countryId, setCountryId] = useState('russia');
+  // маску определяем автоматически только при старте
+  const [country, setCountry] = useState(defineCountry(value));
+  const [cleanValue, setCleanValue] = useState(formatValue(value, country));
   const [isPopupOpen, togglePopup] = useState(false);
   const dropdownRef = useRef();
-  const country = countries[countryId];
+
+  useEffect(() => {
+    setCleanValue(formatValue(value, country));
+  }, [value]);
 
   useOutsideClick(dropdownRef, event => {
     event.stopPropagation();
@@ -52,7 +68,18 @@ export const PhoneInput = ({
       <MaskedField
         {...restOptions}
         mask={country.mask}
+
+        // убираем код страны, так как он уже зашит в маску
+        value={cleanValue}
         label={label}
+        onBlur={(event, state) => {
+          onBlur && onBlur(event, {
+            ...state,
+
+            // вставляем код страны обратно в чистое значение
+            cleanValue: `${country.codeChars}${state.cleanValue}`,
+          });
+        }}
         className={cx('field')}
         endAdornment={(
           <div
@@ -85,7 +112,7 @@ export const PhoneInput = ({
           data-testid='phone-input:dropdown'
         >
           {countriesList.map(
-            (item, index) => item.id === countryId
+            (item, index) => item.id === country.id
               ? null
               : (
                 <DropdownItem
@@ -95,7 +122,7 @@ export const PhoneInput = ({
                   className={cx('popup-item')}
                   onClick={() => {
                     togglePopup(false);
-                    setCountryId(item.id);
+                    setCountry(item);
                     onCountrySelect && onCountrySelect(item);
                   }}
                 >
@@ -141,4 +168,14 @@ PhoneInput.propTypes = {
    * Идентификатор для систем автоматизированного тестирования.
    */
   'data-testid': PropTypes.string,
+
+  /**
+   * Значение.
+   */
+  value: PropTypes.string,
+
+  /**
+   * Сработает при событии "blur".
+   */
+  onBlur: PropTypes.func,
 };

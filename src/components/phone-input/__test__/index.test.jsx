@@ -5,6 +5,8 @@ import { PhoneInput } from '..';
 import TextField from '../../text-field';
 import { Dropdown } from '../../dropdown';
 import { DropdownItem } from '../../dropdown-item';
+import { MaskedField } from '../../masked-field';
+import { countries } from '../presets';
 
 describe('<PhoneInput />', () => {
   it('should render without props', () => {
@@ -77,6 +79,40 @@ describe('<PhoneInput />', () => {
 
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy.mock.calls[0][0].type).toBe('blur');
-    expect(spy.mock.calls[0][1].cleanValue).toBe('');
+    expect(spy.mock.calls[0][1].cleanValue).toBe('7');
+  });
+
+  it('should define initial mask properly', () => {
+    const wrapper = mount(
+      <PhoneInput value='375112223344' />
+    );
+
+    expect(wrapper.find(MaskedField).prop('mask')).toBe(countries.belarus.mask);
+  });
+
+  it('should handle "value" prop change', () => {
+    const spy = jest.fn();
+
+    const wrapper = mount(
+      <PhoneInput value='375112223344' onBlur={spy} />
+    );
+
+    act(() => {
+      wrapper.find(TextField).find('input').simulate('blur');
+    });
+
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy.mock.calls[0][0].type).toBe('blur');
+    expect(spy.mock.calls[0][1].cleanValue).toBe('375112223344');
+
+    wrapper.setProps({ value: '375000000000' });
+
+    act(() => {
+      wrapper.find(TextField).find('input').simulate('blur');
+    });
+
+    expect(spy).toHaveBeenCalledTimes(2);
+    expect(spy.mock.calls[1][0].type).toBe('blur');
+    expect(spy.mock.calls[1][1].cleanValue).toBe('375000000000');
   });
 });

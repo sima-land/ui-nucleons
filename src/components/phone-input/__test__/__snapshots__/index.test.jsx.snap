@@ -27,6 +27,8 @@ exports[`<PhoneInput /> should render without props 1`] = `
       }
       label="Телефон"
       mask="+7 (___) ___-__-__"
+      onBlur={[Function]}
+      value=""
     >
       <ForwardRef(TextField)
         className="field"
