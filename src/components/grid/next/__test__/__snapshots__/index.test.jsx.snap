@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grid should renders correctly 1`] = `
+<Grid
+  align="center"
+  className="custom-grid-class"
+  spacing={32}
+  style={
+    Object {
+      "background": "#0f0",
+    }
+  }
+>
+  <div
+    className="grid grid-spacing-32 grid-align-center custom-grid-class"
+    style={
+      Object {
+        "background": "#0f0",
+      }
+    }
+  >
+    <Grid.Item
+      max={2}
+      md={12}
+    >
+      <div
+        className="col col-size-md-12 col-size-max-2"
+      >
+        First
+      </div>
+    </Grid.Item>
+    <Grid.Item
+      max={4}
+      md={12}
+    >
+      <div
+        className="col col-size-md-12 col-size-max-4"
+      >
+        Second
+      </div>
+    </Grid.Item>
+    <Grid.Item
+      max={6}
+      md={12}
+    >
+      <div
+        className="col col-size-md-12 col-size-max-6"
+      >
+        Third
+      </div>
+    </Grid.Item>
+  </div>
+</Grid>
+`;
+
+exports[`Grid should renders without props 1`] = `
+<Grid>
+  <div
+    className="grid grid-spacing-16"
+  />
+</Grid>
+`;
+
+exports[`Grid.Item should renders correctly 1`] = `
+<Grid.Item
+  className="custom-item-class"
+  lg={4}
+  max={1}
+  md={5}
+  sm={6}
+  style={
+    Object {
+      "background": "#f00",
+    }
+  }
+  xl={3}
+  xs={7}
+  xxl={2}
+  xxs={8}
+>
+  <div
+    className="col col-size-xxs-8 col-size-xs-7 col-size-sm-6 col-size-md-5 col-size-lg-4 col-size-xl-3 col-size-xxl-2 col-size-max-1 className"
+    style={
+      Object {
+        "background": "#f00",
+      }
+    }
+  >
+    Hello, world!
+  </div>
+</Grid.Item>
+`;
