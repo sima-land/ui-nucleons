@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Badge, { renderField } from '../index';
 import { badges } from '../__stories__/items';
-import Timer from '../../timer';
 
 describe('<Badge />', () => {
   describe('without props', () => {
@@ -177,10 +176,8 @@ describe('renderField', () => {
   });
   it('should resolve timer properly', () => {
     const field = renderField(testBadge.fields[2]);
-    expect(field.type).toBe(Timer);
     expect(field.props).toEqual({
-      endTime: testBadge.fields[2].value,
-      format: testBadge.fields[2].format,
+      date: testBadge.fields[2].value,
     });
   });
   it('should resolve text properly', () => {

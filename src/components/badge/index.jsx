@@ -94,9 +94,13 @@ const resolveFieldComponent = cond([
     rename('title', 'alt'),
   )],
   [typeEq('timer'), pipe(
-    pick(['value', 'format']),
-    assoc('Component', Timer),
-    rename('value', 'endTime')
+    pick(['value']),
+    assoc('Component', props => (
+      <time>
+        <Timer {...props} />
+      </time>
+    )),
+    rename('value', 'date')
   )],
   [T, pipe(
     pick(['value']),
