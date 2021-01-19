@@ -31,7 +31,7 @@ import Badge from './index';
             {
               type: 'text',
               value: 'Шильдик',
-            },            
+            },
             {
               type: 'timer',
               value: '2025-01-01',

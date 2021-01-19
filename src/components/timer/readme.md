@@ -1,21 +1,9 @@
 Таймер
 
-```
-import Timer from './index';
+```jsx
+import { addDays, formatISO } from 'date-fns';
 
 <div style={{ background: '#fff', padding: 16 }}>
-    <Timer 
-        endTime='2020-03-08'
-        format='D д., hh:mm:ss'
-        timeProps={{
-            className: 'timer',
-            style: {
-                display: 'inline-block',
-                padding: 10,
-                margin: '5px 0',
-                background: '#eee',
-            },
-        }}
-    />
+  <Timer date={formatISO(addDays(new Date(), 7))} />
 </div>
 ```
