@@ -1,49 +1,50 @@
 import React, { useEffect, useState } from 'react';
+import { getDistanceToNow, formatDistance } from './utils';
 import PropTypes from 'prop-types';
-import { getTimeDurationToNow } from './helper';
 
 /**
  * Возвращает таймер с временем между событием и текущим временем.
  * @param {Object} props Свойства компонента.
- * @param {string} props.endTime Дата и время события.
- * @param {string} [props.calculate] Должна рассчитать новое значение времени для последующего вывода.
+ * @param {string} props.date Дата и время события.
+ * @param {string} [props.format] Должна отформатировать данные об оставшемся времени для вывода.
  * @param {number} [props.timeout] Частота обновления таймера в миллисекундах.
  * @param {Object} [props.timeProps] Свойства для HTML элемента таймера.
  * @return {ReactElement} Таймер.
  */
 const Timer = ({
-  endTime,
-  calculate = getTimeDurationToNow,
+  date,
+  format = formatDistance,
   timeout = 1000,
-  timeProps,
 }) => {
-  const [time, setTime] = useState(calculate(endTime));
+  const [distance, setDistance] = useState();
 
   useEffect(() => {
     const timerId = setInterval(() => {
-      setTime(calculate(endTime));
+      setDistance(getDistanceToNow(date));
     }, timeout);
 
+    setDistance(getDistanceToNow(date));
+
     return () => clearInterval(timerId);
-  }, []);
+  }, [timeout]);
 
   return (
-    <time {...timeProps}>
-      {time}
-    </time>
+    <>
+      {distance && format(distance)}
+    </>
   );
 };
 
 Timer.propTypes = {
   /**
-   * Дата и время события.
+   * Дата и время события в формате ISO.
    */
-  endTime: PropTypes.string,
+  date: PropTypes.string,
 
   /**
-   * Должна рассчитать новое значение времени для последующего вывода.
+   * Должна отформатировать данные об оставшемся времени для вывода.
    */
-  calculate: PropTypes.func,
+  format: PropTypes.func,
 
   /**
    * Частота обновления таймера в мс.
