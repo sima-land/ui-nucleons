@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
  * @param {string} props.date Дата и время события.
  * @param {string} [props.format] Должна отформатировать данные об оставшемся времени для вывода.
  * @param {number} [props.timeout] Частота обновления таймера в миллисекундах.
- * @param {Object} [props.timeProps] Свойства для HTML элемента таймера.
  * @return {ReactElement} Таймер.
  */
 const Timer = ({
@@ -16,7 +15,7 @@ const Timer = ({
   format = formatDistance,
   timeout = 1000,
 }) => {
-  const [distance, setDistance] = useState();
+  const [distance, setDistance] = useState(getDistanceToNow(date));
 
   useEffect(() => {
     const timerId = setInterval(() => {
@@ -30,7 +29,7 @@ const Timer = ({
 
   return (
     <>
-      {distance && format(distance)}
+      {format(distance)}
     </>
   );
 };

@@ -13,7 +13,7 @@ jest.mock('../utils', () => {
   return {
     ...original,
     __esModule: true,
-    getDistanceToNow: jest.fn(),
+    getDistanceToNow: jest.fn(() => ({ days: 1, hours: 2, minutes: 3, seconds: 4 })),
   };
 });
 
@@ -52,13 +52,13 @@ describe('Timer', () => {
       render(<Timer date='2030-03-08' />, container);
     });
 
-    expect(getDistanceToNow).toHaveBeenCalledTimes(1);
+    expect(getDistanceToNow).toHaveBeenCalledTimes(3);
 
     act(() => {
       jest.advanceTimersByTime(5000);
     });
 
-    expect(getDistanceToNow).toHaveBeenCalledTimes(6);
+    expect(getDistanceToNow).toHaveBeenCalledTimes(9);
   });
 
   it('should reset interval on unmount', () => {
