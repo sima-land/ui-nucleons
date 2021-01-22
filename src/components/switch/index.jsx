@@ -14,7 +14,7 @@ const cx = classnames.bind(classes);
  * @param {Object} [props.inputProps] Свойства внутреннего элемента input.
  * @param {Function} [props.onChange] Сработает при смене состояния.
  * @param {Function} [props.style] Стили корневого компонента.
- * @param {import('react').RefObject|Function} [props.inputRef] Ref внутреннего элемента input.
+ * @param {import('react').RefObject | Function} [props.inputRef] Ref внутреннего элемента input.
  * @return {ReactElement} Компонент стилизованного переключателя.
  */
 const Switch = ({

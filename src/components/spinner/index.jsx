@@ -22,6 +22,7 @@ const AVAILABLE_COLORS = ['brand-blue', 'white'];
  * @param {'small'|'medium'|'large'} props.size Размер.
  * @param {string} props.className CSS-класс элемента-обертки.
  * @param {Object} props.style Стили элемента-обертки.
+ * @param {'brand-blue' | 'white'} props.color Цвет.
  * @return {ReactElement} Компонент.
  */
 const Spinner = ({

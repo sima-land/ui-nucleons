@@ -19,14 +19,14 @@ const isVisibleValue = value => !isNil(value) && `${value}` !== '';
 
 /**
  * Получив данные визуальных модификаторов, возвращает строку с css-классами.
- * @param {Object} modifiers Данные визуальных модификаторов.
+ * @param {{ disabled, failed, focused, variant }} modifiers Данные визуальных модификаторов.
  * @return {string} Строка с css-классами.
  */
 const modifiersToClasses = ({ disabled, failed, focused, variant }) => cx(
   disabled && 'disabled',
   failed && 'failed',
   focused && 'focused',
-  variant && `variant-${variant}`,
+  variant && `variant-${variant}`
 );
 
 /**
@@ -156,7 +156,7 @@ const TextField = forwardRef(function TextField ({
                 'label',
                 commonModifyClasses,
                 hasValue && 'filled',
-                labelAsPlaceholder && 'as-placeholder',
+                labelAsPlaceholder && 'as-placeholder'
               )}
               children={label}
             />
@@ -181,7 +181,7 @@ const TextField = forwardRef(function TextField ({
                 'base-input',
                 commonModifyClasses,
                 classes.baseInput,
-                size && `size-${size}`,
+                size && `size-${size}`
               )}
               defaultValue={defaultValue}
               value={value}
@@ -219,7 +219,7 @@ const TextField = forwardRef(function TextField ({
             'caption',
             marginTop(isMobile ? 1 : 2),
             disabled && 'disabled',
-            failed && 'failed',
+            failed && 'failed'
           )}
           children={caption}
         />

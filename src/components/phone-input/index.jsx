@@ -30,6 +30,9 @@ const formatValue = (value, country) => value.replace(/\D/g, '').slice(country.c
  * @param {Function} [props.onCountrySelect] Срабатывает при изменении страны.
  * @param {Object} [props.style] Стили.
  * @param {string} [props.className] Класс.
+ * @param {string} [props.'data-testid'] Идентификатор для систем автоматизированного тестирования.
+ * @param {Function} props.onBlur Сработает при "blur".
+ * @param {string} props.value Значение.
  * @return {ReactElement} Компонент.
  */
 export const PhoneInput = ({

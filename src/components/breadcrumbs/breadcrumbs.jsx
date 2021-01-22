@@ -35,6 +35,7 @@ const defaultGetHasSiblings = siblings => Array.isArray(siblings) && siblings.le
  * @param {Function} [props.isActiveItem] Должна вернуть true если элемент представляет активный раздел.
  * @param {Function} [props.getHasSiblings] Должна вернуть true если имеются соседние категории.
  * @param {Function} props.onOpenBreadcrumbs Функция, вызываемая при открытии списка соседних элементов.
+ * @param {Function} props.addGlobalListener Должен зарегистрировать глобальный обработчик.
  * @return {ReactElement} Компонент "хлебных крошек".
  */
 const Breadcrumbs = ({
@@ -144,10 +145,10 @@ const Breadcrumbs = ({
 /**
  * Создает функцию-обработчик монтирования компонента.
  * @param {Array} dependencies Зависимости.
- * @param {Object} dependencies.popupNodeContainer Должен содержать узел popup'a в свойстве current.
- * @param {Object} dependencies.openerNodeContainer Должен содержать узел кнопки открытия popup'а в свойстве current.
- * @param {Function} dependencies.addGlobalListener Функция подписки на событие window.
- * @param {Function} dependencies.togglePopup Функция переключения состояния popup'a.
+ * @param {Object} dependencies.'0' Должен содержать узел popup'a в свойстве current.
+ * @param {Object} dependencies.'1' Должен содержать узел кнопки открытия popup'а в свойстве current.
+ * @param {Function} dependencies.'2' Функция подписки на событие window.
+ * @param {Function} dependencies.'3' Функция переключения состояния popup'a.
  * @return {Function} Функция-обработчик монтирования компонента.
  */
 export const createMountHandler = ([

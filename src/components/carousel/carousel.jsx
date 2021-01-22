@@ -73,6 +73,8 @@ export class Carousel extends Component {
   /**
    * Возвращает кнопку управления.
    * @param {Object} props Свойства кнопки.
+   * @param {boolean} props.canUse Можно ли использовать кнопку.
+   * @param {Function} props.onUse Выполнится при нажатии на кнопку.
    * @return {ReactElement} Кнопка управления.
    */
   static defaultRenderControl ({ canUse, onUse, ...restProps }) {
@@ -612,6 +614,7 @@ export class Carousel extends Component {
    * Сохраняет смещение карусели и позицию из события при старте захвата.
    * @param {Object} dragEvent Нестандартное событие из компонента Draggable.
    * @param {Object} dragEvent.offset Смещение.
+   * @param {Object} dragEvent.client Позиция.
    */
   saveDragStartData ({ offset, client }) {
     this.dragStartOffset = offset;
@@ -637,7 +640,7 @@ export class Carousel extends Component {
 
   /**
    * Получает управление от Draggable.
-   * @param {Object} draggableInterface Функции управления и доступа к данным о состоянии Draggable.
+   * @param {{ isGrabbed, setOffset, toggleTransition }} draggableControls Функции управления Draggable.
    */
   takeDragControl ({ isGrabbed, setOffset, toggleTransition }) {
     this.toggleDragTransition = toggleTransition;

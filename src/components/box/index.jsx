@@ -91,6 +91,7 @@ const JUSTIFY_CONTENT = new Set([
  * @param {number} [props.paddingLeft] Внутренний отступ слева.
  * @param {number} [props.paddingX] Внутренний отступ по вертикали.
  * @param {number} [props.paddingY] Внутренний отступ по горизонтали.
+ * @param {string} [props.color] Название цвета из дизайн-системы.
  * @return {ReactElement} Блок.
  */
 const Box = ({
@@ -156,7 +157,7 @@ const Box = ({
         paddingLeft,
         paddingX,
         paddingY,
-      }),
+      })
     )}
     children={children}
   />
@@ -199,16 +200,16 @@ const getMarginClasses = ({
     !hasMarginBottom && !hasMarginY && Spacing.marginBottom(margin),
 
     !hasMarginLeft && !hasMarginX && Spacing.marginLeft(margin),
-    !hasMarginRight && !hasMarginX && Spacing.marginRight(margin),
+    !hasMarginRight && !hasMarginX && Spacing.marginRight(margin)
   );
 
   hasMarginX && result.push(
     !hasMarginLeft && Spacing.marginLeft(marginX),
-    !hasMarginRight && Spacing.marginRight(marginX),
+    !hasMarginRight && Spacing.marginRight(marginX)
   );
   hasMarginY && result.push(
     !hasMarginTop && Spacing.marginTop(marginY),
-    !hasMarginBottom && Spacing.marginBottom(marginY),
+    !hasMarginBottom && Spacing.marginBottom(marginY)
   );
 
   hasMarginTop && result.push(Spacing.marginTop(marginTop));
@@ -256,16 +257,16 @@ const getPaddingClasses = ({
     !hasPaddingBottom && !hasPaddingY && Spacing.paddingBottom(padding),
 
     !hasPaddingLeft && !hasPaddingX && Spacing.paddingLeft(padding),
-    !hasPaddingRight && !hasPaddingX && Spacing.paddingRight(padding),
+    !hasPaddingRight && !hasPaddingX && Spacing.paddingRight(padding)
   );
 
   hasPaddingX && result.push(
     !hasPaddingLeft && Spacing.paddingLeft(paddingX),
-    !hasPaddingRight && Spacing.paddingRight(paddingX),
+    !hasPaddingRight && Spacing.paddingRight(paddingX)
   );
   hasPaddingY && result.push(
     !hasPaddingTop && Spacing.paddingTop(paddingY),
-    !hasPaddingBottom && Spacing.paddingBottom(paddingY),
+    !hasPaddingBottom && Spacing.paddingBottom(paddingY)
   );
 
   hasPaddingTop && result.push(Spacing.paddingTop(paddingTop));

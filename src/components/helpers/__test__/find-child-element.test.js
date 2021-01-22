@@ -27,7 +27,7 @@ describe('findChildElement()', () => {
       sibling1,
       sibling2,
       sibling3,
-      sibling4,
+      sibling4
     );
 
     expect(findChildElement({
@@ -46,7 +46,7 @@ describe('findChildElement()', () => {
       sibling1,
       sibling2,
       sibling3,
-      sibling4,
+      sibling4
     );
 
     expect(findChildElement({
@@ -66,7 +66,7 @@ describe('findChildElement()', () => {
       sibling1,
       sibling2,
       sibling3,
-      sibling4,
+      sibling4
     );
 
     expect(findChildElement({
@@ -87,7 +87,7 @@ describe('findChildElement()', () => {
       sibling1,
       sibling2,
       sibling3,
-      sibling4,
+      sibling4
     );
 
     expect(findChildElement({

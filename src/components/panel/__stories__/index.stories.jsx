@@ -32,7 +32,7 @@ storiesOf('Panel', module)
 
       <h3>Inline (with icon)</h3>
       {variants.map((props, index) => (
-        <Panel key={index} {...props} inline className={[marginRight(4)]} icon={infoSVG}>
+        <Panel key={index} {...props} inline className={marginRight(4)} icon={infoSVG}>
           Lorem ipsum
         </Panel>
       ))}
@@ -43,7 +43,7 @@ storiesOf('Panel', module)
           key={index}
           {...props}
           inline
-          className={[marginRight(4)]}
+          className={marginRight(4)}
           icon={infoSVG}
           html={markup}
         />

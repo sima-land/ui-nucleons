@@ -57,7 +57,7 @@ const ModifierButton = forwardRef(function ModifierButton ({
         <span
           className={cx(
             'label',
-            hasCount && 'with-count',
+            hasCount && 'with-count'
           )}
         >
           {hasCount && (count > 99 ? '99+' : count)}

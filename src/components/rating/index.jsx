@@ -51,7 +51,7 @@ export const getStarClass = ({ starIndex, value, starsClasses = {} }) => {
  * @param {Object} props Свойства компонента.
  * @param {number} [props.value] Значение рейтинга.
  * @param {number} [props.count=5] Общее количество звезд рейтинга.
- * @param {Object} [props.starSizes] Размеры звезд.
+ * @param {{ big, regular }} [props.starSizes] Размеры звезд.
  * @param {number} [props.starSizes.regular=16] Обычная звезда.
  * @param {number} [props.starSizes.big=20] Увеличенная.
  * @param {boolean} [props.withBig] Увеличивать звезду со значением рейтинга.
@@ -69,10 +69,7 @@ export const getStarClass = ({ starIndex, value, starsClasses = {} }) => {
 const Rating = ({
   value,
   count = 5,
-  starSizes = {
-    regular: 16,
-    big: 20,
-  },
+  starSizes = { regular: 16, big: 20 },
   withBig,
   withHover,
   customClasses = {},

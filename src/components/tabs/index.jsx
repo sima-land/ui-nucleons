@@ -16,10 +16,7 @@ const DEFAULT_CLASSES = {
  * Компонент списка табов.
  * @param {Object} props Свойства компонента.
  * @param {Array} [props.items=[]] Массив табов.
- * @param {Object} [props.customClasses={}] Пользовательские классы.
- * @param {string} [props.customClasses.itemsList] Классы списка.
- * @param {string} [props.customClasses.item] Классы элемента списка.
- * @param {string} [props.customClasses.selectedItem] Классы выбранного элемента списка.
+ * @param {{ itemsList, item, selectedItem }} [props.customClasses={}] Пользовательские классы.
  * @param {Function} [props.onSelectItem] Функция, вызываемая при выборе элемента списка.
  * @param {Function} [props.renderItem=String] Функция отрисовки элемента.
  * @param {Function} [props.isSelectedItem] Функция, определяющая является ли элемент выбранным.

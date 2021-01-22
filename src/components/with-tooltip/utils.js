@@ -61,7 +61,7 @@ export const PlaceOffset = {
     return sum(
       SPACES.toHolder,
       boundsOf(holderEl).right,
-      correction.x,
+      correction.x
     );
   },
   onLeft: (tooltipEl, holderEl) => {
@@ -71,7 +71,7 @@ export const PlaceOffset = {
       boundsOf(holderEl).left,
       -boundsOf(tooltipEl).width,
       -SPACES.toHolder,
-      correction.x,
+      correction.x
     );
   },
   onBottom: (tooltipEl, holderEl) => {
@@ -80,7 +80,7 @@ export const PlaceOffset = {
     return sum(
       boundsOf(holderEl).bottom,
       SPACES.toHolder,
-      correction.y,
+      correction.y
     );
   },
   onTop: (tooltipEl, holderEl) => {

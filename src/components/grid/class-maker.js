@@ -55,7 +55,7 @@ export const makeRowClasses = ({
     isCorrectGutters(lgGutters) && styles[`row-lg-columns-gutters-${lgGutters}`],
     isCorrectGutters(mdGutters) && styles[`row-md-columns-gutters-${mdGutters}`],
     isCorrectGutters(smGutters) && styles[`row-sm-columns-gutters-${smGutters}`],
-    externalClass,
+    externalClass
   );
 
 /**
@@ -75,5 +75,5 @@ export const makeColClasses = ({
     styles.col,
     styles[`col-lg-width-${desktop}`],
     styles[`col-md-width-${mobile}`],
-    externalClass,
+    externalClass
   );

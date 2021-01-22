@@ -234,7 +234,7 @@ export class Range extends Component {
 
   /**
    * Возвращает текущие значения в процентах.
-   * @return {[number, number]} Начальное и конечное значения в процентах.
+   * @return {number[]} Начальное и конечное значения в процентах.
    */
   getPercents () {
     const { min, max } = this.props;
