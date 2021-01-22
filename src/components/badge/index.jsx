@@ -24,6 +24,7 @@ const cx = classnames.bind(styles);
  * @param {string} props.bgColor Цвет фона.
  * @param {string} props.strokeColor Цвет иконки.
  * @param {Array} props.fields Массив с контентыми полями для шильдика.
+ * @param {boolean} props.isIconOnly Нужно ли выводить только иконку.
  * @return {ReactElement} Шильдик.
  */
 export const Badge = ({
@@ -41,7 +42,7 @@ export const Badge = ({
     className={cx(
       'container',
       { 'container-icon': isIconOnly },
-      containerProps.className,
+      containerProps.className
     )}
     style={isIconOnly
       ? containerProps.style
@@ -91,7 +92,7 @@ const resolveFieldComponent = cond([
     pick(['value', 'title']),
     assoc('Component', 'img'),
     rename('value', 'src'),
-    rename('title', 'alt'),
+    rename('title', 'alt')
   )],
   [typeEq('timer'), pipe(
     pick(['value']),

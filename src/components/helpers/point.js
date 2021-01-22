@@ -1,7 +1,7 @@
 /**
  * @typedef {Object} Point Объект представляющий точку в двухмерном пространстве.
- * @param {number} x Координата по оси X.
- * @param {number} y Координата по оси Y.
+ * @property {number} x Координата по оси X.
+ * @property {number} y Координата по оси Y.
  */
 
 /**

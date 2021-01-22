@@ -53,7 +53,7 @@ const Link = forwardRef(function Link ({
       className={cx(
         'link',
         className,
-        getColorClass(color),
+        getColorClass(color)
       )}
       {...getContentProps(children, noIndex)}
     />

@@ -18,7 +18,7 @@ const getIcon = prop('icon');
  * @param {string} [props.className] Класс корневого элемента.
  * @param {boolean} [props.bottomBordered=false] Нужна ли внутренняя граница снизу.
  * @param {{ start, startSecondary, end, endSecondary }} [props.buttons] Данные кнопок.
- * @return {import('react').ReactElement<HTMLDivElement>} Компонент панели навигации.
+ * @return {ReactElement} Компонент панели навигации.
  */
 const NavBar = ({
   title,

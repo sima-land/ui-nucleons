@@ -5,7 +5,6 @@ import isFunction from 'lodash/isFunction';
 
 /**
  * Компонент инпута с маской.
- * @param {ReactElement} Компонент Инпута.
  * @param {Object} props Свойства компонента.
  * @param {string} props.component Элемент инпута.
  * @param {string} props.value Значение инпута.

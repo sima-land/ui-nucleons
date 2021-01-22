@@ -5,8 +5,8 @@ import initAddObserve from '../helpers/intersection-observer';
 
 /**
  * @typedef {Object} ObserverData Объект данных объявленного Intersection Observer.
- * @param {Object} option Опции с которыми был объявлен Intersection Observer.
- * @param {Function} add Функция подписки на IntersectionObserver.
+ * @property {Object} option Опции с которыми был объявлен Intersection Observer.
+ * @property {Function} add Функция подписки на IntersectionObserver.
  */
 
 /**

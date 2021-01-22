@@ -28,7 +28,7 @@ describe('getNewMaskedValue', () => {
       '+79 (___) ___-00-__',
       maskedValue,
       validator,
-      { actual: 4, prev: 3 },
+      { actual: 4, prev: 3 }
     )).toStrictEqual({
       maskedValue: '+7 (9__) ___-_0-0_',
       newCaretPosition: 4,

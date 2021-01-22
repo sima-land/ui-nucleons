@@ -16,7 +16,7 @@ export const getNewMaskedObject = (
   value,
   maskedValue,
   validator,
-  carret,
+  carret
 ) => {
   const carretPositionDiff = carret.actual - carret.prev;
   const lastInsertValue = clearValue(
@@ -182,7 +182,7 @@ export const setSelection = (inputRef, valueRef, caret, event) => {
 const withInputMask = (
   Component,
   mask = '+_(___)___-__-__',
-  allowedPattern = /[0-9_]/g,
+  allowedPattern = /[0-9_]/g
 ) => {
   const validator = {
     pattern: allowedPattern,

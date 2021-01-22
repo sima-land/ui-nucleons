@@ -27,7 +27,7 @@ describe('findSiblingIndex()', () => {
       sibling1,
       sibling2,
       sibling3,
-      sibling4,
+      sibling4
     );
 
     expect(findSiblingIndex({
@@ -46,7 +46,7 @@ describe('findSiblingIndex()', () => {
       sibling1,
       sibling2,
       sibling3,
-      sibling4,
+      sibling4
     );
 
     expect(findSiblingIndex({
@@ -66,7 +66,7 @@ describe('findSiblingIndex()', () => {
       sibling1,
       sibling2,
       sibling3,
-      sibling4,
+      sibling4
     );
 
     expect(findSiblingIndex({
@@ -87,7 +87,7 @@ describe('findSiblingIndex()', () => {
       sibling1,
       sibling2,
       sibling3,
-      sibling4,
+      sibling4
     );
 
     expect(findSiblingIndex({

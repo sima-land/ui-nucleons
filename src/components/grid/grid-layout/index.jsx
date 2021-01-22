@@ -28,6 +28,22 @@ export const isMaxWidth = value => MAX_WIDTHS.includes(value);
  * @param {*} props.children Содержимое компонента.
  * @param {string} [props.containerTag='div'] Имя элемента-контейнера.
  * @param {Object} [props.containerProps] Свойства контейнера.
+ * @param {string} props.xxlPadding Внутренние отступы на размере "xxl".
+ * @param {string} props.xlPadding Внутренние отступы на размере "xl".
+ * @param {string} props.lgPadding Внутренние отступы на размере "lg".
+ * @param {string} props.mdPadding Внутренние отступы на размере "md".
+ * @param {string} props.smPadding Внутренние отступы на размере "sm".
+ * @param {string} props.xsPadding Внутренние отступы на размере "xs".
+ * @param {string} props.xxsPadding Внутренние отступы на размере "xxs".
+ * @param {string} props.xxxsPadding Внутренние отступы на размере "xxxs".
+ * @param {string} props.xxlMaxWidth Максимальная высота на размере "xxl".
+ * @param {string} props.xlMaxWidth Максимальная высота на размере "xl".
+ * @param {string} props.lgMaxWidth Максимальная высота на размере "lg".
+ * @param {string} props.mdMaxWidth Максимальная высота на размере "md".
+ * @param {string} props.smMaxWidth Максимальная высота на размере "sm".
+ * @param {string} props.xsMaxWidth Максимальная высота на размере "xs".
+ * @param {string} props.xxsMaxWidth Максимальная высота на размере "xxs".
+ * @param {string} props.xxxsMaxWidth Максимальная высота на размере "xxxs".
  * @return {ReactElement} Компонент-обертка.
  */
 const GridLayout = ({
@@ -68,7 +84,7 @@ const GridLayout = ({
         isPadding(smPadding) && `layout-sm-padding-${smPadding}`,
         isPadding(xsPadding) && `layout-xs-padding-${xsPadding}`,
         isPadding(xxsPadding) && `layout-xxs-padding-${xxsPadding}`,
-        isPadding(xxxsPadding) && `layout-xxxs-padding-${xxxsPadding}`,
+        isPadding(xxxsPadding) && `layout-xxxs-padding-${xxxsPadding}`
       )}
     >
       <Container
@@ -84,7 +100,7 @@ const GridLayout = ({
             isMaxWidth(xsMaxWidth) && `layout-xs-width-${xsMaxWidth}`,
             isMaxWidth(xxsMaxWidth) && `layout-xxs-width-${xxsMaxWidth}`,
             isMaxWidth(xxxsMaxWidth) && `layout-xxxs-width-${xxxsMaxWidth}`,
-            className,
+            className
           )}
         children={children}
       />

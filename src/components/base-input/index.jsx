@@ -53,7 +53,7 @@ export const BaseInput = forwardRef(function BaseInput ({
         'reset',
         'root',
         disabled && 'disabled',
-        className,
+        className
       )}
     >
       {!multiline && Boolean(restPlaceholder.value) && (
@@ -72,7 +72,7 @@ export const BaseInput = forwardRef(function BaseInput ({
         className={cx(
           'field',
           'reset',
-          multiline && 'multiline',
+          multiline && 'multiline'
         )}
         value={value}
         onInput={event => {

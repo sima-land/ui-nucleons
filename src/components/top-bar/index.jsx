@@ -13,11 +13,7 @@ const cx = classnames.bind(classes);
  * @param {'s'|'m'|'l'} [props.size='m'] Размер.
  * @param {string} props.title Заголовок.
  * @param {string} [props.subtitle] Подзаголовок.
- * @param {Object} [props.buttonsProps] Свойства кнопок.
- * @param {Object} [props.buttonsProps.start] Свойства начальной кнопки.
- * @param {Object} [props.buttonsProps.startSecondary] Свойства дополнительной начальной кнопки (ближе к центру).
- * @param {Object} [props.buttonsProps.end] Свойства конечной кнопки.
- * @param {Object} [props.buttonsProps.endSecondary] Свойства дополнительной конечной кнопки (ближе к центру).
+ * @param {{ start, startSecondary, end, endSecondary }} [props.buttonsProps] Свойства кнопок.
  * @param {*} [props.className] CSS-класс корневого элемента.
  * @return {ReactElement} Компонент шапки модальных окон/экранов.
  */

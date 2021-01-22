@@ -4,7 +4,7 @@ import Type from 'prop-types';
 /**
  * Компонент отображает неиндексируемый контент.
  * @param {Object} props Свойства компонента.
- * @param {boolean} props.closing=false Флаг закрывающегося тэга.
+ * @param {boolean} [props.closing=false] Флаг закрывающегося тэга.
  * @return {ReactElement} Метка для поискового робота.
  */
 const NoIndexMark = ({ closing = false }) => (
