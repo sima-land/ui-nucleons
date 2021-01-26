@@ -1,4 +1,4 @@
-@import '../colors';
+@use '../colors';
 
 $sizes: (s: 40px, m: 48px, l: 56px);
 
@@ -8,7 +8,7 @@ $sizes: (s: 40px, m: 48px, l: 56px);
   padding: 0 24px;
   &:hover {
     cursor: pointer;
-    background: $gray4;
+    background: colors.$gray4;
   }
   @each $key, $size in $sizes {
     &.size-#{$key} {

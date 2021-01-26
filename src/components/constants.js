@@ -1,4 +1,5 @@
 export const DEFAULT_CURRENCY_NAME = 'RUB';
+
 export const USER_DEFAULT_PARAMS = {
   currency: DEFAULT_CURRENCY_NAME,
   sort: 'createdAt',
@@ -6,6 +7,7 @@ export const USER_DEFAULT_PARAMS = {
   'per-page': 20,
   viewtype: 'list',
 };
+
 export const graphemes = ['₽', '€', '$', '₴', 'Br'];
 
 /**
@@ -22,16 +24,14 @@ export const MODIFIERS_TYPES = Object.freeze({
  * Цвета дизайн системы.
  */
 export const COLORS = new Map(Object.entries({
+  // basic
   black: '#000',
   white: '#fff',
 
-  // basic
-  'basic-gray': '#afb8bb',
-
   // brand
-  'brand-dark-blue': '#002b41',
-  'brand-deep-blue': '#f5f9fc',
   'brand-blue': '#1f84db',
+  'brand-dark-blue': '#002b41',
+  'brand-deep-blue': '#00599d',
   'brand-dirty': '#80b4d2',
   'brand-sky': '#e4f1f9',
 
@@ -47,30 +47,28 @@ export const COLORS = new Map(Object.entries({
   gray4: '#f5f5f5',
   gray2: '#fafafa',
 
-  // service
-  'service-error': '#fb3a2f',
-  'service-success': '#66cb2f',
-  'service-visited-link': '#902bd0',
-  'service-attention': '#e9f1f4',
-  'service-light-red': '#feebea',
-  'service-light-green': '#eff9ea',
-  'service-sand': '#f6f5ed',
-
   // additional
+  'additional-amber': '#ffab00',
   'additional-blue-gray': '#607d8b',
-  'additional-red': '#d50000',
+  'additional-blue': '#2962ff',
+  'additional-brown': '#795548',
+  'additional-cyan': '#00b8d4',
+  'additional-deep-orange': '#ff7200',
+  'additional-deep-purple': '#634bdf',
+  'additional-deep-red': '#d50000',
+  'additional-faded-green': '#eff9ea',
+  'additional-fog': '#e9f1f4',
+  'additional-grass': '#66cb2f',
+  'additional-green': '#00c853',
+  'additional-light-blue': '#0091ea',
+  'additional-light-green': '#64dd17',
+  'additional-light-red': '#feebea',
+  'additional-lime': '#aeea00',
   'additional-pink': '#e82e5c',
   'additional-purple': '#b52ea8',
-  'additional-deep-purple': '#634bdf',
-  'additional-blue': '#2962ff',
-  'additional-light-blue': '#0091ea',
-  'additional-cyan': '#00b8d4',
-  'additional-brown': '#795548',
-  'additional-deep-orange': '#ff7200',
-  'additional-amber': '#ffab00',
-  'additional-yellow': '#ffd600',
-  'additional-lime': '#aeea00',
-  'additional-light-green': '#64dd17',
-  'additional-green': '#00c853',
+  'additional-red': '#fb3a2f',
+  'additional-sand': '#f6f5ed',
   'additional-teal': '#09ab8b',
+  'additional-violet': '#902bd0',
+  'additional-yellow': '#ffd600',
 }));

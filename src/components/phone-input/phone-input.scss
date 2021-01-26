@@ -1,4 +1,4 @@
-@import '../colors';
+@use '../colors';
 
 .root {
   position: relative;
@@ -28,11 +28,11 @@
   font-size: 16px;
   line-height: 24px;
   .item-name {
-    color: $gray87;
+    color: colors.$gray87;
     flex-grow: 1;
     margin-left: 16px;
   }
   .item-code {
-    color: $gray38;
+    color: colors.$gray38;
   }
 }

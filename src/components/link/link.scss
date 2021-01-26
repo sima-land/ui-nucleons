@@ -1,4 +1,4 @@
-@import '../colors';
+@use '../colors';
 
 .link,
 .link:link,
@@ -15,5 +15,5 @@
   cursor: pointer;
 
   // до появления руководств на ссылки, при наведении любая ссылка краснеет
-  color: $service-error;
+  color: colors.$additional-red;
 }

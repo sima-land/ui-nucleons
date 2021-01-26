@@ -1,5 +1,5 @@
+@use '../colors';
 @import '../variables';
-@import '../colors';
 
 .overlay-default {
   background: $modalOverlay;
@@ -14,7 +14,7 @@
 }
 
 .modal-default {
-  background-color: $white;
+  background-color: #fff;
   margin: auto;
   flex-shrink: 0;
 }
@@ -55,7 +55,7 @@
 .header {
   border-radius: 8px 8px 0 0;
   &.divided {
-    border-bottom: 1px solid $gray12;
+    border-bottom: 1px solid colors.$gray12;
   }
 }
 
@@ -63,7 +63,7 @@
   border-radius: 0 0 8px 8px;
   overflow: hidden;
   &.divided {
-    border-top: 1px solid $gray12;
+    border-top: 1px solid colors.$gray12;
   }
 }
 

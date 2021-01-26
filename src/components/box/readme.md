@@ -48,7 +48,7 @@ const testPaddingPropsList = [
   <h2>Padding</h2>
   {testPaddingPropsList.map((paddingProps, index) => (
     <React.Fragment key={index}>
-      <Box display='flex' color='service-success' {...paddingProps}>
+      <Box display='flex' color='additional-grass' {...paddingProps}>
         <Box flex='grow' color='brand-sky' padding={2}>
           {JSON.stringify(paddingProps, null, 2)}
         </Box>

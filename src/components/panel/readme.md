@@ -4,7 +4,7 @@ import { information as infoSVG } from '../icons';
 
 const variants = [
   { color: 'gray4' },
-  { color: 'additional-red', contentColor: 'white' },
+  { color: 'additional-deep-red', contentColor: 'white' },
   { color: 'additional-teal', contentColor: 'white' },
   { color: 'additional-yellow' },
 ];

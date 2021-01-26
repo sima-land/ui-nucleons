@@ -1,4 +1,4 @@
-@import '../colors';
+@use '../colors';
 
 .clean-button,
 a.clean-button,
@@ -10,7 +10,7 @@ button.clean-button {
   padding: 0;
   border: 0;
   outline: 0;
-  color: $brand-blue;
+  color: colors.$brand-blue;
   font-family: inherit;
   font-weight: 500;
   font-size: 16px;
@@ -21,7 +21,7 @@ button.clean-button {
   box-sizing: border-box;
   cursor: pointer;
   &:visited {
-    color: $brand-blue;
+    color: colors.$brand-blue;
   }
   &.size-s {
     height: 56px;
@@ -40,7 +40,7 @@ button.clean-button {
     flex-shrink: 1;
     flex-basis: 0;
     + .clean-button {
-      border-left: 1px solid $gray12;
+      border-left: 1px solid colors.$gray12;
     }
   }
 }

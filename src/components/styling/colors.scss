@@ -1,6 +1,6 @@
-@import '../colors';
+@use '../colors';
 
-@each $key, $color in $colors {
+@each $key, $color in module-variables(colors) {
   .color__#{$key} {
     color: $color;
   }

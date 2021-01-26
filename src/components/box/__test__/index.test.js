@@ -213,9 +213,9 @@ describe('<Box />', () => {
   });
   it('should handle "color" prop', () => {
     const wrapper = shallow(
-      <Box color='service-error' />
+      <Box color='additional-red' />
     );
 
-    expect(wrapper.find('div').prop('className')).toContain(bgColor('service-error'));
+    expect(wrapper.find('div').prop('className')).toContain(bgColor('additional-red'));
   });
 });

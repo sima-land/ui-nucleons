@@ -1,5 +1,5 @@
+@use '../../colors';
 @import '../modifiers';
-@import '../../colors';
 
 .modifiers-group {
   display: flex;
@@ -28,7 +28,7 @@
 
 .show-all-button {
   width: $minSize;
-  color: $brand-blue;
+  color: colors.$brand-blue;
 }
 
 .not-display {
