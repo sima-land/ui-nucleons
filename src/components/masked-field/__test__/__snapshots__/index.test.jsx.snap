@@ -18,6 +18,7 @@ exports[`MaskedField should renders properly 1`] = `
     >
       <div
         className="reset input-block variant-desktop size-l rounds-sm__all"
+        data-testid="text-field:block"
         onClick={[Function]}
       >
         <div
@@ -28,6 +29,7 @@ exports[`MaskedField should renders properly 1`] = `
           >
             <ForwardRef(BaseInput)
               className="base-input variant-desktop size-l"
+              data-testid="text-field:field"
               onBlur={[Function]}
               onFocus={[Function]}
               restPlaceholder={
@@ -55,6 +57,7 @@ exports[`MaskedField should renders properly 1`] = `
                 </span>
                 <input
                   className="field reset"
+                  data-testid="text-field:field"
                   onBlur={[Function]}
                   onFocus={[Function]}
                   onInput={[Function]}

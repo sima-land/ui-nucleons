@@ -1,4 +1,5 @@
 module.exports = {
+  globalSetup: './jest.global-setup.js',
   setupFiles: ['./jest.setup.js'],
   transformIgnorePatterns: ['/node_modules/(?!@dev-dep/).*/'],
   snapshotSerializers: ['enzyme-to-json/serializer'],

@@ -28,6 +28,7 @@ exports[`FieldGrid should handle "renderField" prop 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__l"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -38,6 +39,7 @@ exports[`FieldGrid should handle "renderField" prop 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Foo"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -47,6 +49,7 @@ exports[`FieldGrid should handle "renderField" prop 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Foo"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -79,6 +82,7 @@ exports[`FieldGrid should handle "renderField" prop 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__r"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -89,6 +93,7 @@ exports[`FieldGrid should handle "renderField" prop 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Bar"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -98,6 +103,7 @@ exports[`FieldGrid should handle "renderField" prop 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Bar"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -155,6 +161,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__t-l"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -165,6 +172,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -174,6 +182,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -216,6 +225,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -226,6 +236,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -235,6 +246,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -277,6 +289,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__t-r"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -287,6 +300,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -296,6 +310,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -344,6 +359,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -354,6 +370,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -363,6 +380,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -405,6 +423,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -415,6 +434,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -424,6 +444,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -466,6 +487,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -476,6 +498,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -485,6 +508,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -533,6 +557,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -543,6 +568,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -552,6 +578,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -594,6 +621,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -604,6 +632,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -613,6 +642,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -663,6 +693,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l multiline rounds-sm__b"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -673,6 +704,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       multiline={true}
                       onBlur={[Function]}
@@ -683,6 +715,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                       >
                         <textarea
                           className="field reset multiline"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -741,6 +774,7 @@ exports[`FieldGrid should render single row with one cell 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__all"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -751,6 +785,7 @@ exports[`FieldGrid should render single row with one cell 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -760,6 +795,7 @@ exports[`FieldGrid should render single row with one cell 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -817,6 +853,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__l"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -827,6 +864,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -836,6 +874,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -878,6 +917,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -888,6 +928,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -897,6 +938,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -939,6 +981,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__r"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -949,6 +992,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -958,6 +1002,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -1015,6 +1060,7 @@ exports[`FieldGrid should render single row with two cells 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__l"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -1025,6 +1071,7 @@ exports[`FieldGrid should render single row with two cells 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -1034,6 +1081,7 @@ exports[`FieldGrid should render single row with two cells 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -1076,6 +1124,7 @@ exports[`FieldGrid should render single row with two cells 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__r"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -1086,6 +1135,7 @@ exports[`FieldGrid should render single row with two cells 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -1095,6 +1145,7 @@ exports[`FieldGrid should render single row with two cells 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -1152,6 +1203,7 @@ exports[`FieldGrid should render two rows 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__t-l"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -1162,6 +1214,7 @@ exports[`FieldGrid should render two rows 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -1171,6 +1224,7 @@ exports[`FieldGrid should render two rows 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -1213,6 +1267,7 @@ exports[`FieldGrid should render two rows 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__t-r"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -1223,6 +1278,7 @@ exports[`FieldGrid should render two rows 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -1232,6 +1288,7 @@ exports[`FieldGrid should render two rows 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -1280,6 +1337,7 @@ exports[`FieldGrid should render two rows 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__b-l"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -1290,6 +1348,7 @@ exports[`FieldGrid should render two rows 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -1299,6 +1358,7 @@ exports[`FieldGrid should render two rows 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -1341,6 +1401,7 @@ exports[`FieldGrid should render two rows 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -1351,6 +1412,7 @@ exports[`FieldGrid should render two rows 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -1360,6 +1422,7 @@ exports[`FieldGrid should render two rows 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -1402,6 +1465,7 @@ exports[`FieldGrid should render two rows 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__b-r"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -1412,6 +1476,7 @@ exports[`FieldGrid should render two rows 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -1421,6 +1486,7 @@ exports[`FieldGrid should render two rows 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -1478,6 +1544,7 @@ exports[`FieldGrid should render two rows with one cell 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__t"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -1488,6 +1555,7 @@ exports[`FieldGrid should render two rows with one cell 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -1497,6 +1565,7 @@ exports[`FieldGrid should render two rows with one cell 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}
@@ -1545,6 +1614,7 @@ exports[`FieldGrid should render two rows with one cell 1`] = `
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__b"
+                data-testid="text-field:block"
                 onClick={[Function]}
               >
                 <div
@@ -1555,6 +1625,7 @@ exports[`FieldGrid should render two rows with one cell 1`] = `
                   >
                     <ForwardRef(BaseInput)
                       className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
                       defaultValue="Field value"
                       onBlur={[Function]}
                       onFocus={[Function]}
@@ -1564,6 +1635,7 @@ exports[`FieldGrid should render two rows with one cell 1`] = `
                       >
                         <input
                           className="field reset"
+                          data-testid="text-field:field"
                           defaultValue="Field value"
                           onBlur={[Function]}
                           onFocus={[Function]}

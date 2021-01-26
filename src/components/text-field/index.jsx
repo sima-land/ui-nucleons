@@ -59,6 +59,7 @@ const modifiersToClasses = ({ disabled, failed, focused, variant }) => cx(
  * @param {string} [props.className] Класс корневого компонента.
  * @param {string} [props.style] Стили корневого компонента.
  * @param {string|Object} [props.restPlaceholder] Placeholder, который выводится после введенного значения.
+ * @param {string} [props.'data-testid'] Идентификатор для систем автоматизированного тестирования.
  * @return {ReactElement} Компонент текстового поля.
  */
 const TextField = forwardRef(function TextField ({
@@ -89,6 +90,7 @@ const TextField = forwardRef(function TextField ({
   className,
   restPlaceholder,
   style,
+  'data-testid': dataTestId,
 }, ref) {
   const [hasValue, toggleHasValue] = useState(
     isVisibleValue(value)
@@ -116,10 +118,11 @@ const TextField = forwardRef(function TextField ({
   useEffect(() => toggleHasValue(baseInputRef.current.value));
 
   return (
-    <div className={cx('text-field-root', className, classes.root)} style={style}>
+    <div data-testid={dataTestId} className={cx('text-field-root', className, classes.root)} style={style}>
 
       {/* field row */}
       <div
+        data-testid='text-field:block'
         className={cx(
           'reset',
           'input-block',
@@ -131,7 +134,7 @@ const TextField = forwardRef(function TextField ({
           variant === 'desktop' && rounds !== 'none' && SmallRounds[rounds]
         )}
         onClick={event => {
-          const { current: input } = baseInputRef;
+          const input = baseInputRef.current;
 
           isFunction(onClick) && onClick(event);
 
@@ -164,6 +167,7 @@ const TextField = forwardRef(function TextField ({
           <div className={cx('input-wrapper')}>
             <BaseInput
               {...baseInputProps}
+              data-testid='text-field:field'
               multiline={multiline}
               ref={baseInputRef}
               placeholder={
@@ -370,6 +374,11 @@ TextField.propTypes = {
     PropTypes.string,
     PropTypes.shape({ shiftValue: PropTypes.string, value: PropTypes.string.isRequired }),
   ]),
+
+  /**
+   * Идентификатор для систем автоматизированного тестирования.
+   */
+  'data-testid': PropTypes.string,
 };
 
 export default TextField;
