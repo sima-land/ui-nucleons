@@ -1,4 +1,4 @@
-@import '../../colors';
+@use '../../colors';
 
 .root {
   padding: 0 16px;
@@ -17,11 +17,11 @@
 }
 
 .root-failed {
-  border-color: map-get($colors, 'service-error');
+  border-color: colors.$additional-red;
 }
 
 .root-focused {
-  border-color: map-get($colors, 'brand-blue');
+  border-color: colors.$brand-blue;
 }
 
 .root-with-start-adornment {

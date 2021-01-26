@@ -4,7 +4,7 @@ exports[`<Panel /> should handle props 1`] = `
 <Panel
   className="test-class"
   color="white"
-  contentColor="service-error"
+  contentColor="additional-red"
   icon={[Function]}
   inline={true}
 >
@@ -14,14 +14,14 @@ exports[`<Panel /> should handle props 1`] = `
     <Icon
       aria-hidden="true"
       className="icon"
-      color="service-error"
+      color="additional-red"
       height={20}
       icon={[Function]}
       width={16}
     >
       <infoSVG
         aria-hidden="true"
-        className="icon icon-block color__service-error icon"
+        className="icon icon-block color__additional-red icon"
         height={20}
         viewBox="0 0 36 36"
         width={16}
@@ -29,7 +29,7 @@ exports[`<Panel /> should handle props 1`] = `
       >
         <svg
           aria-hidden="true"
-          className="icon icon-block color__service-error icon"
+          className="icon icon-block color__additional-red icon"
           height={20}
           viewBox="0 0 36 36"
           width={16}
@@ -47,7 +47,7 @@ exports[`<Panel /> should handle props 1`] = `
       </infoSVG>
     </Icon>
     <div
-      className="content color__service-error"
+      className="content color__additional-red"
     >
       Hello, world!
     </div>
@@ -59,7 +59,7 @@ exports[`<Panel /> should handle props 2`] = `
 <Panel
   className="test-class"
   color="white"
-  contentColor="service-error"
+  contentColor="additional-red"
   html="Lorem <i>ipsum</i> <b>dolor</b> sit."
   icon={[Function]}
   inline={true}
@@ -70,14 +70,14 @@ exports[`<Panel /> should handle props 2`] = `
     <Icon
       aria-hidden="true"
       className="icon"
-      color="service-error"
+      color="additional-red"
       height={20}
       icon={[Function]}
       width={16}
     >
       <infoSVG
         aria-hidden="true"
-        className="icon icon-block color__service-error icon"
+        className="icon icon-block color__additional-red icon"
         height={20}
         viewBox="0 0 36 36"
         width={16}
@@ -85,7 +85,7 @@ exports[`<Panel /> should handle props 2`] = `
       >
         <svg
           aria-hidden="true"
-          className="icon icon-block color__service-error icon"
+          className="icon icon-block color__additional-red icon"
           height={20}
           viewBox="0 0 36 36"
           width={16}
@@ -103,7 +103,7 @@ exports[`<Panel /> should handle props 2`] = `
       </infoSVG>
     </Icon>
     <div
-      className="content color__service-error"
+      className="content color__additional-red"
       dangerouslySetInnerHTML={
         Object {
           "__html": "Lorem <i>ipsum</i> <b>dolor</b> sit.",

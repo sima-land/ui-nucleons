@@ -1,13 +1,11 @@
+// basic
 $black: #000;
 $white: #fff;
 
-// basic
-$basic-gray: #afb8bb;
-
 // brand
-$brand-dark-blue: #002b41;
-$brand-deep-blue: #f5f9fc;
 $brand-blue: #1f84db;
+$brand-dark-blue: #002b41;
+$brand-deep-blue: #00599d;
 $brand-dirty: #80b4d2;
 $brand-sky: #e4f1f9;
 
@@ -23,73 +21,27 @@ $gray8: #ebebeb;
 $gray4: #f5f5f5;
 $gray2: #fafafa;
 
-// service
-$service-error: #fb3a2f;
-$service-success: #66cb2f;
-$service-visited-link: #902bd0;
-$service-attention: #e9f1f4;
-$service-light-red: #feebea;
-$service-light-green: #eff9ea;
-$service-sand: #f6f5ed;
-
 // additional
+$additional-amber: #ffab00;
 $additional-blue-gray: #607d8b;
-$additional-red: #d50000;
+$additional-blue: #2962ff;
+$additional-brown: #795548;
+$additional-cyan: #00b8d4;
+$additional-deep-orange: #ff7200;
+$additional-deep-purple: #634bdf;
+$additional-deep-red: #d50000;
+$additional-faded-green: #eff9ea;
+$additional-fog: #e9f1f4;
+$additional-grass: #66cb2f;
+$additional-green: #00c853;
+$additional-light-blue: #0091ea;
+$additional-light-green: #64dd17;
+$additional-light-red: #feebea;
+$additional-lime: #aeea00;
 $additional-pink: #e82e5c;
 $additional-purple: #b52ea8;
-$additional-deep-purple: #634bdf;
-$additional-blue: #2962ff;
-$additional-light-blue: #0091ea;
-$additional-cyan: #00b8d4;
-$additional-brown: #795548;
-$additional-deep-orange: #ff7200;
-$additional-amber: #ffab00;
-$additional-yellow: #ffd600;
-$additional-lime: #aeea00;
-$additional-light-green: #64dd17;
-$additional-green: #00c853;
+$additional-red: #fb3a2f;
+$additional-sand: #f6f5ed;
 $additional-teal: #09ab8b;
-
-$colors: (
-  'black': $black,
-  'white': $white,
-  'basic-gray': $basic-gray,
-  'brand-dark-blue': $brand-dark-blue,
-  'brand-deep-blue': $brand-deep-blue,
-  'brand-blue': $brand-blue,
-  'brand-dirty': $brand-dirty,
-  'brand-sky': $brand-sky,
-  'gray87': $gray87,
-  'gray76': $gray76,
-  'gray66': $gray66,
-  'gray54': $gray54,
-  'gray38': $gray38,
-  'gray24': $gray24,
-  'gray12': $gray12,
-  'gray8': $gray8,
-  'gray4': $gray4,
-  'gray2': $gray2,
-  'service-error': $service-error,
-  'service-success': $service-success,
-  'service-visited-link': $service-visited-link,
-  'service-attention': $service-attention,
-  'service-light-red': $service-light-red,
-  'service-light-green': $service-light-green,
-  'service-sand': $service-sand,
-  'additional-blue-gray': $additional-blue-gray,
-  'additional-red': $additional-red,
-  'additional-pink': $additional-pink,
-  'additional-purple': $additional-purple,
-  'additional-deep-purple': $additional-deep-purple,
-  'additional-blue': $additional-blue,
-  'additional-light-blue': $additional-light-blue,
-  'additional-cyan': $additional-cyan,
-  'additional-brown': $additional-brown,
-  'additional-deep-orange': $additional-deep-orange,
-  'additional-amber': $additional-amber,
-  'additional-yellow': $additional-yellow,
-  'additional-lime': $additional-lime,
-  'additional-light-green': $additional-light-green,
-  'additional-green': $additional-green,
-  'additional-teal': $additional-teal
-);
+$additional-violet: #902bd0;
+$additional-yellow: #ffd600;

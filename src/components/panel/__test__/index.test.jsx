@@ -16,7 +16,7 @@ describe('<Panel />', () => {
     const wrapper = mount(
       <Panel
         color='white'
-        contentColor='service-error'
+        contentColor='additional-red'
         inline
         icon={infoSVG}
         className='test-class'

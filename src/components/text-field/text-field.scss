@@ -1,4 +1,4 @@
-@import '../colors';
+@use '../colors';
 
 .reset {
   margin: 0;
@@ -38,16 +38,16 @@ input.reset {
   // variant: desktop
   &.variant-desktop {
     background-color: #fff;
-    border: 1px solid map-get($colors, 'gray12');
+    border: 1px solid colors.$gray12;
     &.disabled {
-      border-color: map-get($colors, 'gray12');
-      background-color: map-get($colors, 'gray2');
+      border-color: colors.$gray12;
+      background-color: colors.$gray2;
     }
     &.focused:not(.disabled):not(.failed) {
-      border-color: map-get($colors, 'brand-blue');
+      border-color: colors.$brand-blue;
     }
     &.disabled {
-      border-color: map-get($colors, 'gray12');
+      border-color: colors.$gray12;
     }
     &:not(.multiline) {
       &.size-xs {
@@ -79,7 +79,7 @@ input.reset {
   &.variant-mobile {
     padding: 0;
     border: 0;
-    box-shadow: inset 0 -1px map-get($colors, 'gray12');
+    box-shadow: inset 0 -1px colors.$gray12;
     .main-column {
       height: 100%;
       justify-content: center;
@@ -88,10 +88,10 @@ input.reset {
       justify-content: flex-start;
     }
     &.focused:not(.disabled) {
-      box-shadow: inset 0 -1px map-get($colors, 'brand-blue');
+      box-shadow: inset 0 -1px colors.$brand-blue;
     }
     &.failed:not(:disabled) {
-      box-shadow: inset 0 -1px map-get($colors, 'additional-red');
+      box-shadow: inset 0 -1px colors.$additional-red;
     }
     &:not(.multiline) {
       height: 48px;
@@ -109,9 +109,9 @@ input.reset {
   }
 
   // чтобы startAdornment/endAdornment подхватили цвет
-  color: map-get($colors, 'gray87');
+  color: colors.$gray87;
   &.disabled {
-    color: map-get($colors, 'gray24');
+    color: colors.$gray24;
   }
 }
 
@@ -138,9 +138,9 @@ input.reset {
   transform-origin: left bottom;
   white-space: nowrap;
   overflow: hidden;
-  color: map-get($colors, 'gray38');
+  color: colors.$gray38;
   &.disabled {
-    color: map-get($colors, 'gray24');
+    color: colors.$gray24;
   }
   &.as-placeholder {
     top: calc(50% - 12px);
@@ -149,16 +149,16 @@ input.reset {
   }
   &.variant-mobile {
     &.focused:not(.failed) {
-      color: map-get($colors, 'brand-blue');
+      color: colors.$brand-blue;
     }
     &.failed.focused,
     &.failed.filled {
-      color: map-get($colors, 'additional-red');
+      color: colors.$additional-red;
     }
   }
   &.variant-desktop {
     &.failed:not(.focused):not(.filled) {
-      color: map-get($colors, 'additional-red');
+      color: colors.$additional-red;
     }
   }
 }
@@ -167,14 +167,14 @@ input.reset {
 .input-wrapper .base-input {
   font-size: 16px;
   line-height: 24px;
-  color: map-get($colors, 'gray87');
-  --placeholder-color: #{map-get($colors, 'gray38')};
+  color: colors.$gray87;
+  --placeholder-color: #{colors.$gray38};
   background-color: transparent;
   width: 0;
   flex-grow: 1;
   &.disabled {
-    color: map-get($colors, 'gray24');
-    --placeholder-color: #{map-get($colors, 'gray24')};
+    color: colors.$gray24;
+    --placeholder-color: #{colors.$gray24};
   }
   &.size-xs {
     font-size: 14px;
@@ -184,19 +184,19 @@ input.reset {
     text-overflow: ellipsis;
   }
   &.variant-desktop.failed {
-    color: map-get($colors, 'additional-red');
-    --placeholder-color: #{map-get($colors, 'additional-red')};
+    color: colors.$additional-red;
+    --placeholder-color: #{colors.$additional-deep-red};
   }
 }
 
 .caption {
   font-size: 12px;
   line-height: 16px;
-  color: map-get($colors, 'gray38');
+  color: colors.$gray38;
   &.disabled {
-    color: map-get($colors, 'gray24');
+    color: colors.$gray24;
   }
   &.failed {
-    color: map-get($colors, 'additional-red');
+    color: colors.$additional-red;
   }
 }

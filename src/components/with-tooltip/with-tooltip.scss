@@ -1,6 +1,5 @@
-@import '../colors';
+@use '../colors';
 @import '../styling/shadows';
-
 
 .tooltip {
   position: absolute;
@@ -11,7 +10,7 @@
   padding: 40px 8px;
   box-sizing: border-box;
   overflow: hidden;
-  background: $gray4;
+  background: colors.$gray4;
   border-radius: 4px;
   @extend .shadow-z2;
 }
