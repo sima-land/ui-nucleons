@@ -64,6 +64,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
         >
           <div
             className="reset input-block variant-desktop size-l with-label rounds-sm__all"
+            data-testid="text-field:block"
             onClick={[Function]}
           >
             <div
@@ -79,6 +80,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
               >
                 <ForwardRef(BaseInput)
                   className="base-input variant-desktop size-l"
+                  data-testid="text-field:field"
                   onBlur={[Function]}
                   onFocus={[Function]}
                   restPlaceholder={
@@ -108,6 +110,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
                     </span>
                     <input
                       className="field reset"
+                      data-testid="text-field:field"
                       onBlur={[Function]}
                       onFocus={[Function]}
                       onInput={[Function]}

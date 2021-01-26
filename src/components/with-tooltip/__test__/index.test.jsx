@@ -162,7 +162,7 @@ describe('Tooltip', () => {
   });
 
   it('should handle window "resize" event', () => {
-    jest.useFakeTimers();
+    jest.useFakeTimers('modern');
 
     wrapper = mount(
       <Tooltip
@@ -179,7 +179,7 @@ describe('Tooltip', () => {
 
     expect(placeTooltip).toHaveBeenCalledTimes(1);
 
-    jest.runAllTimers();
+    jest.advanceTimersByTime(250);
 
     expect(placeTooltip).toHaveBeenCalledTimes(2);
   });

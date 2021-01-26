@@ -1,9 +1,15 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import Badge, { renderField } from '../index';
 import { badges } from '../__stories__/items';
+import { addDays } from 'date-fns';
 
 describe('<Badge />', () => {
+  beforeEach(() => {
+    jest.useFakeTimers('modern');
+    jest.setSystemTime(new Date('2021-01-01T09:00:00'));
+  });
+
   describe('without props', () => {
     const badge = shallow(<Badge />);
 
@@ -70,6 +76,22 @@ describe('<Badge />', () => {
     it('contains href', () => {
       expect(badge.find('a').prop('href')).toEqual('/test');
     });
+  });
+
+  it('with timer', function () {
+    const badge = mount(
+      <Badge
+        fields={[
+          {
+            type: 'timer',
+            value: addDays(new Date(), 7).toISOString(),
+            format: 'd:h:m:s',
+          },
+        ]}
+      />
+    );
+
+    expect(badge).toMatchSnapshot();
   });
 
   describe('with icon', () => {

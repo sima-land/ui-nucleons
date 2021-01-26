@@ -17,6 +17,7 @@ exports[`<TextField /> should handle "caption" prop 1`] = `
   >
     <div
       className="reset input-block variant-desktop size-l rounds-sm__all"
+      data-testid="text-field:block"
       onClick={[Function]}
     >
       <div
@@ -27,6 +28,7 @@ exports[`<TextField /> should handle "caption" prop 1`] = `
         >
           <ForwardRef(BaseInput)
             className="base-input variant-desktop size-l"
+            data-testid="text-field:field"
             onBlur={[Function]}
             onFocus={[Function]}
           >
@@ -35,6 +37,7 @@ exports[`<TextField /> should handle "caption" prop 1`] = `
             >
               <input
                 className="field reset"
+                data-testid="text-field:field"
                 onBlur={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
@@ -79,6 +82,7 @@ exports[`<TextField /> should handle "caption" prop 2`] = `
   >
     <div
       className="reset input-block disabled failed variant-mobile size-l"
+      data-testid="text-field:block"
       onClick={[Function]}
     >
       <div
@@ -89,6 +93,7 @@ exports[`<TextField /> should handle "caption" prop 2`] = `
         >
           <ForwardRef(BaseInput)
             className="base-input disabled failed variant-mobile size-l"
+            data-testid="text-field:field"
             disabled={true}
             onBlur={[Function]}
             onFocus={[Function]}
@@ -98,6 +103,7 @@ exports[`<TextField /> should handle "caption" prop 2`] = `
             >
               <input
                 className="field reset"
+                data-testid="text-field:field"
                 disabled={true}
                 onBlur={[Function]}
                 onFocus={[Function]}
@@ -132,6 +138,7 @@ exports[`<TextField /> should handle "disabled" prop 1`] = `
   >
     <div
       className="reset input-block disabled variant-desktop size-l rounds-sm__all"
+      data-testid="text-field:block"
       onClick={[Function]}
     >
       <div
@@ -142,6 +149,7 @@ exports[`<TextField /> should handle "disabled" prop 1`] = `
         >
           <ForwardRef(BaseInput)
             className="base-input disabled variant-desktop size-l"
+            data-testid="text-field:field"
             disabled={true}
             onBlur={[Function]}
             onFocus={[Function]}
@@ -151,6 +159,7 @@ exports[`<TextField /> should handle "disabled" prop 1`] = `
             >
               <input
                 className="field reset"
+                data-testid="text-field:field"
                 disabled={true}
                 onBlur={[Function]}
                 onFocus={[Function]}
@@ -174,6 +183,7 @@ exports[`<TextField /> should handle "focused" prop 1`] = `
   >
     <div
       className="reset input-block focused variant-desktop size-l rounds-sm__all"
+      data-testid="text-field:block"
       onClick={[Function]}
     >
       <div
@@ -184,6 +194,7 @@ exports[`<TextField /> should handle "focused" prop 1`] = `
         >
           <ForwardRef(BaseInput)
             className="base-input focused variant-desktop size-l"
+            data-testid="text-field:field"
             onBlur={[Function]}
             onFocus={[Function]}
           >
@@ -192,6 +203,7 @@ exports[`<TextField /> should handle "focused" prop 1`] = `
             >
               <input
                 className="field reset"
+                data-testid="text-field:field"
                 onBlur={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
@@ -214,6 +226,7 @@ exports[`<TextField /> should handle "label" prop 1`] = `
   >
     <div
       className="reset input-block variant-desktop size-l with-label rounds-sm__all"
+      data-testid="text-field:block"
       onClick={[Function]}
     >
       <div
@@ -229,6 +242,7 @@ exports[`<TextField /> should handle "label" prop 1`] = `
         >
           <ForwardRef(BaseInput)
             className="base-input variant-desktop size-l"
+            data-testid="text-field:field"
             onBlur={[Function]}
             onFocus={[Function]}
           >
@@ -237,6 +251,7 @@ exports[`<TextField /> should handle "label" prop 1`] = `
             >
               <input
                 className="field reset"
+                data-testid="text-field:field"
                 onBlur={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
@@ -262,6 +277,7 @@ exports[`<TextField /> should handle "label" prop 2`] = `
   >
     <div
       className="reset input-block disabled failed variant-mobile size-l with-label"
+      data-testid="text-field:block"
       onClick={[Function]}
     >
       <div
@@ -277,6 +293,7 @@ exports[`<TextField /> should handle "label" prop 2`] = `
         >
           <ForwardRef(BaseInput)
             className="base-input disabled failed variant-mobile size-l"
+            data-testid="text-field:field"
             disabled={true}
             onBlur={[Function]}
             onFocus={[Function]}
@@ -286,6 +303,7 @@ exports[`<TextField /> should handle "label" prop 2`] = `
             >
               <input
                 className="field reset"
+                data-testid="text-field:field"
                 disabled={true}
                 onBlur={[Function]}
                 onFocus={[Function]}
@@ -315,6 +333,7 @@ exports[`<TextField /> should handle "multiline" prop 1`] = `
   >
     <div
       className="reset input-block variant-desktop size-l multiline rounds-sm__all"
+      data-testid="text-field:block"
       onClick={[Function]}
     >
       <div
@@ -325,6 +344,7 @@ exports[`<TextField /> should handle "multiline" prop 1`] = `
         >
           <ForwardRef(BaseInput)
             className="base-input variant-desktop size-l"
+            data-testid="text-field:field"
             multiline={true}
             onBlur={[Function]}
             onFocus={[Function]}
@@ -336,6 +356,7 @@ exports[`<TextField /> should handle "multiline" prop 1`] = `
             >
               <textarea
                 className="field reset multiline"
+                data-testid="text-field:field"
                 onBlur={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
@@ -359,6 +380,7 @@ exports[`<TextField /> should handle "variant" prop 1`] = `
   >
     <div
       className="reset input-block variant-desktop size-l rounds-sm__all"
+      data-testid="text-field:block"
       onClick={[Function]}
     >
       <div
@@ -369,6 +391,7 @@ exports[`<TextField /> should handle "variant" prop 1`] = `
         >
           <ForwardRef(BaseInput)
             className="base-input variant-desktop size-l"
+            data-testid="text-field:field"
             onBlur={[Function]}
             onFocus={[Function]}
           >
@@ -377,6 +400,7 @@ exports[`<TextField /> should handle "variant" prop 1`] = `
             >
               <input
                 className="field reset"
+                data-testid="text-field:field"
                 onBlur={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
@@ -399,6 +423,7 @@ exports[`<TextField /> should handle "variant" prop 2`] = `
   >
     <div
       className="reset input-block variant-mobile size-l"
+      data-testid="text-field:block"
       onClick={[Function]}
     >
       <div
@@ -409,6 +434,7 @@ exports[`<TextField /> should handle "variant" prop 2`] = `
         >
           <ForwardRef(BaseInput)
             className="base-input variant-mobile size-l"
+            data-testid="text-field:field"
             onBlur={[Function]}
             onFocus={[Function]}
           >
@@ -417,6 +443,7 @@ exports[`<TextField /> should handle "variant" prop 2`] = `
             >
               <input
                 className="field reset"
+                data-testid="text-field:field"
                 onBlur={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
@@ -439,6 +466,7 @@ exports[`<TextField /> should handle adornment props 1`] = `
   >
     <div
       className="reset input-block variant-desktop size-l rounds-sm__all"
+      data-testid="text-field:block"
       onClick={[Function]}
     >
       <Box
@@ -460,6 +488,7 @@ exports[`<TextField /> should handle adornment props 1`] = `
         >
           <ForwardRef(BaseInput)
             className="base-input variant-desktop size-l"
+            data-testid="text-field:field"
             onBlur={[Function]}
             onFocus={[Function]}
           >
@@ -468,6 +497,7 @@ exports[`<TextField /> should handle adornment props 1`] = `
             >
               <input
                 className="field reset"
+                data-testid="text-field:field"
                 onBlur={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
@@ -491,6 +521,7 @@ exports[`<TextField /> should handle adornment props 2`] = `
   >
     <div
       className="reset input-block variant-desktop size-l rounds-sm__all"
+      data-testid="text-field:block"
       onClick={[Function]}
     >
       <div
@@ -501,6 +532,7 @@ exports[`<TextField /> should handle adornment props 2`] = `
         >
           <ForwardRef(BaseInput)
             className="base-input variant-desktop size-l"
+            data-testid="text-field:field"
             onBlur={[Function]}
             onFocus={[Function]}
           >
@@ -509,6 +541,7 @@ exports[`<TextField /> should handle adornment props 2`] = `
             >
               <input
                 className="field reset"
+                data-testid="text-field:field"
                 onBlur={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
@@ -540,6 +573,7 @@ exports[`<TextField /> should render without props 1`] = `
   >
     <div
       className="reset input-block variant-desktop size-l rounds-sm__all"
+      data-testid="text-field:block"
       onClick={[Function]}
     >
       <div
@@ -550,6 +584,7 @@ exports[`<TextField /> should render without props 1`] = `
         >
           <ForwardRef(BaseInput)
             className="base-input variant-desktop size-l"
+            data-testid="text-field:field"
             onBlur={[Function]}
             onFocus={[Function]}
           >
@@ -558,6 +593,7 @@ exports[`<TextField /> should render without props 1`] = `
             >
               <input
                 className="field reset"
+                data-testid="text-field:field"
                 onBlur={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
