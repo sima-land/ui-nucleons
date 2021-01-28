@@ -15,7 +15,7 @@ storiesOf('DropdownItem', module)
           border: '1px dashed #ccc',
         }}
       >
-        {['s', 'm', 'l'].map(size => (
+        {['s', 'm', 'l', 'xl'].map(size => (
           <DropdownItem key={size} size={size} style={{ width: 100 }}>
             Hello
           </DropdownItem>

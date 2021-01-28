@@ -8,7 +8,7 @@ const cx = classnames.bind(styles);
 /**
  * Компонент элемента выпадающего списка.
  * @param {Object} props Свойства.
- * @param {'s'|'m'|'l'} [props.size='m'] Размер.
+ * @param {'s'|'m'|'l'|'xl'} [props.size='m'] Размер.
  * @param {*} props.children Содержимое.
  * @param {string} [props.className] Класс.
  * @return {ReactElement} Элемент выпадающего списка.
