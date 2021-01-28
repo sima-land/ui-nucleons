@@ -4,9 +4,10 @@ import DownSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/down';
 import UpSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/up';
 import { Dropdown } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';
+import TextField from '../text-field';
 import { MaskedField } from '../masked-field';
 import { useOutsideClick } from '../hooks';
-import { countriesList } from './presets';
+import { IDS, countriesList } from './presets';
 import { marginLeft } from '../styling/sizes';
 import { COLORS } from '../constants';
 import classes from './phone-input.scss';
@@ -31,8 +32,9 @@ const formatValue = (value, country) => value.replace(/\D/g, '').slice(country.c
  * @param {Object} [props.style] Стили.
  * @param {string} [props.className] Класс.
  * @param {string} [props.'data-testid'] Идентификатор для систем автоматизированного тестирования.
- * @param {Function} props.onBlur Сработает при "blur".
+ * @param {Function} [props.onBlur] Сработает при "blur".
  * @param {string} props.value Значение.
+ * @param {Function} [props.onChange] Сработает при изменении поля. Не рекомендуется использовать.
  * @return {ReactElement} Компонент.
  */
 export const PhoneInput = ({
@@ -43,7 +45,8 @@ export const PhoneInput = ({
   onCountrySelect,
   style,
   value = '',
-  ...restOptions
+  onChange,
+  ...restProps
 }) => {
   // маску определяем автоматически только при старте
   const [country, setCountry] = useState(defineCountry(value));
@@ -62,50 +65,76 @@ export const PhoneInput = ({
 
   const AdornmentSVG = isPopupOpen ? UpSVG : DownSVG;
 
+  const commonFieldProps = {
+    ...restProps,
+    label,
+    multiline: false,
+    className: cx('field'),
+    endAdornment: (
+      <div
+        className={cx('adornment')}
+        data-testid='phone-input:dropdown-opener'
+        onClick={event => {
+          event.stopPropagation();
+          togglePopup(true);
+        }}
+      >
+        <img
+          alt=''
+          width={24}
+          height={24}
+          src={country.imageSrc}
+        />
+        <AdornmentSVG
+          fill={COLORS.get('gray38')}
+          className={marginLeft(1)}
+        />
+      </div>
+    ),
+  };
+
   return (
     <div
       data-testid={testId}
       style={style}
       className={cx('root', className)}
     >
-      <MaskedField
-        {...restOptions}
-        mask={country.mask}
-
-        // убираем код страны, так как он уже зашит в маску
-        value={cleanValue}
-        label={label}
-        onBlur={(event, state) => {
-          onBlur && onBlur(event, {
-            ...state,
-
-            // вставляем код страны обратно в чистое значение
-            cleanValue: `${country.codeChars}${state.cleanValue}`,
-          });
-        }}
-        className={cx('field')}
-        endAdornment={(
-          <div
-            className={cx('adornment')}
-            data-testid='phone-input:dropdown-opener'
-            onClick={event => {
-              event.stopPropagation();
-              togglePopup(true);
-            }}
-          >
-            <img
-              alt=''
-              width={24}
-              height={24}
-              src={country.imageSrc}
+      {
+        country.id === IDS.other
+          ? (
+            <TextField
+              {...commonFieldProps}
+              onChange={e => {
+                e.target.value = e.target.value.replace(/\D/g, '').slice(0, 20);
+                onChange && onChange(e);
+              }}
+              onBlur={e => {
+                onBlur && onBlur(e, {
+                  value: e.target.value,
+                  cleanValue: e.target.value,
+                  ready: e.target.value.length > 0,
+                });
+              }}
             />
-            <AdornmentSVG
-              fill={COLORS.get('gray38')}
-              className={marginLeft(1)}
+          ) : (
+            <MaskedField
+              {...commonFieldProps}
+
+              // убираем код страны, так как он уже зашит в маску
+              value={cleanValue}
+
+              mask={country.mask}
+              onBlur={(event, state) => {
+                onBlur && onBlur(event, {
+                  ...state,
+
+                  // вставляем код страны обратно в чистое значение
+                  cleanValue: `${country.codeChars}${state.cleanValue}`,
+                });
+              }}
             />
-          </div>
-        )}
-      />
+          )
+      }
 
       {isPopupOpen && (
         <Dropdown
@@ -181,4 +210,9 @@ PhoneInput.propTypes = {
    * Сработает при событии "blur".
    */
   onBlur: PropTypes.func,
+
+  /**
+   * Сработает при изменении поля. Не рекомендуется использовать.
+   */
+  onChange: PropTypes.func,
 };
