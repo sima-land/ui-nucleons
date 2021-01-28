@@ -45,6 +45,16 @@ exports[`DropdownItem should handle size prop 3`] = `
 </DropdownItem>
 `;
 
+exports[`DropdownItem should handle size prop 4`] = `
+<DropdownItem
+  size="xl"
+>
+  <div
+    className="root size-xl"
+  />
+</DropdownItem>
+`;
+
 exports[`DropdownItem should render without props 1`] = `
 <DropdownItem>
   <div

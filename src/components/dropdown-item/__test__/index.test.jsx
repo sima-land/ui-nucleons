@@ -22,7 +22,7 @@ describe('DropdownItem', () => {
   });
 
   it('should handle size prop', () => {
-    ['s', 'm', 'l'].forEach(size => {
+    ['s', 'm', 'l', 'xl'].forEach(size => {
       const wrapper = mount(
         <DropdownItem size={size} />
       );
