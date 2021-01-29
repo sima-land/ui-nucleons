@@ -17,7 +17,7 @@ const cx = classnames.bind(styles);
  * Поле выбора из списка.
  * @param {Object} props Свойства.
  * @param {Array} [props.options] Список опций.
- * @param {'s' | 'm' | 'l'} [props.optionSize] Размер для DropdownItem.
+ * @param {'s' | 'm' | 'l' | 'xl'} [props.optionSize] Размер для DropdownItem.
  * @param {Function} [props.onSelect] Сработает при выборе.
  * @param {Object} [props.style] Стили.
  * @param {string} [props.className] Класс.
@@ -151,7 +151,7 @@ Select.propTypes = {
   /**
    * Размер для DropdownItem.
    */
-  optionSize: PropTypes.oneOf(['s', 'm', 'l']),
+  optionSize: PropTypes.oneOf(['s', 'm', 'l', 'xl']),
 
   /**
    * Сработает при выборе.
