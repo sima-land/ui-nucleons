@@ -2,345 +2,260 @@
 
 exports[`<Avatar /> should handle props 1`] = `
 <Avatar
-  bgStyle={
-    Object {
-      "opacity": 0.4,
-    }
-  }
-  clipStyle={
+  bgColor="additional-teal"
+  bgOpacity={0.48}
+  color="brand-blue"
+  icon={[Function]}
+  imageUrl="www.images.com"
+  size={40}
+  style={
     Object {
       "clipPath": "url(#fake-id)",
     }
   }
-  color="brand-blue"
-  iconProps={
-    Object {
-      "size": 16,
-    }
-  }
-  imageUrl="www.images.com"
-  size={40}
   textColor="white"
-  textProps={
-    Object {
-      "className": "text-class",
-    }
-  }
   title="Hello World"
 >
-  <span
-    className="avatar"
+  <div
+    className="root size-40 color__white"
     style={
       Object {
-        "height": 40,
-        "width": 40,
+        "clipPath": "url(#fake-id)",
       }
     }
   >
-    <svg
-      className="super-ellipse"
-    >
-      <rect
-        fill="#1f84db"
-        height={40}
-        style={
-          Object {
-            "clipPath": "url(#fake-id)",
-            "opacity": 0.4,
-          }
-        }
-        width={40}
-        x={0}
-        y={0}
-      />
-    </svg>
-    <span
-      className="content"
-    >
-      <span
-        className="title truncate color__white text-class"
-        role="presentation"
-      >
-        HW
-      </span>
-    </span>
-  </span>
+    <div
+      className="shape"
+      style={Object {}}
+    />
+    <img
+      alt=""
+      className="image"
+      onError={[Function]}
+      src="www.images.com"
+    />
+  </div>
 </Avatar>
 `;
 
 exports[`<Avatar /> should handle props 2`] = `
 <Avatar
-  bgStyle={
-    Object {
-      "opacity": 0.4,
-    }
-  }
-  clipStyle={
+  bgColor="additional-teal"
+  bgOpacity={0.48}
+  color="brand-blue"
+  icon={[Function]}
+  imageUrl="www.images.com"
+  monogram="WH"
+  size={40}
+  style={
     Object {
       "clipPath": "url(#fake-id)",
     }
   }
-  color="brand-blue"
-  iconProps={
-    Object {
-      "size": 16,
-    }
-  }
-  imageUrl="www.images.com"
-  monogram="WH"
-  size={40}
   textColor="white"
-  textProps={
-    Object {
-      "className": "text-class",
-    }
-  }
   title="Hello World"
 >
-  <span
-    className="avatar"
+  <div
+    className="root size-40 color__white"
     style={
       Object {
-        "height": 40,
-        "width": 40,
+        "clipPath": "url(#fake-id)",
       }
     }
   >
-    <svg
-      className="super-ellipse"
-    >
-      <rect
-        fill="#1f84db"
-        height={40}
-        style={
-          Object {
-            "clipPath": "url(#fake-id)",
-            "opacity": 0.4,
-          }
-        }
-        width={40}
-        x={0}
-        y={0}
-      />
-    </svg>
-    <span
-      className="content"
-    >
-      <span
-        className="title truncate color__white text-class"
-        role="presentation"
-      >
-        WH
-      </span>
-    </span>
-  </span>
+    <div
+      className="shape"
+      style={Object {}}
+    />
+    <img
+      alt=""
+      className="image"
+      onError={[Function]}
+      src="www.images.com"
+    />
+  </div>
 </Avatar>
 `;
 
 exports[`<Avatar /> should handle props 3`] = `
 <Avatar
-  bgStyle={
-    Object {
-      "opacity": 0.4,
-    }
-  }
-  clipStyle={
+  bgColor="additional-teal"
+  bgOpacity={0.48}
+  color="#f0f"
+  icon={[Function]}
+  imageUrl="www.images.com"
+  monogram="WH"
+  size={40}
+  style={
     Object {
       "clipPath": "url(#fake-id)",
     }
   }
-  color="#f0f"
-  iconProps={
-    Object {
-      "size": 16,
-    }
-  }
-  imageUrl="www.images.com"
-  monogram="WH"
-  size={40}
   textColor="white"
-  textProps={
-    Object {
-      "className": "text-class",
-    }
-  }
   title="Hello World"
 >
-  <span
-    className="avatar"
+  <div
+    className="root size-40 color__white"
     style={
       Object {
-        "height": 40,
-        "width": 40,
+        "clipPath": "url(#fake-id)",
       }
     }
   >
-    <svg
-      className="super-ellipse"
-    >
-      <rect
-        fill="#f0f"
-        height={40}
-        style={
-          Object {
-            "clipPath": "url(#fake-id)",
-            "opacity": 0.4,
-          }
+    <div
+      className="shape"
+      style={Object {}}
+    />
+    <img
+      alt=""
+      className="image"
+      onError={[Function]}
+      src="www.images.com"
+    />
+  </div>
+</Avatar>
+`;
+
+exports[`<Avatar /> should handle wrong size 1`] = `
+<Avatar
+  size={49.92}
+  title="Jason"
+>
+  <div
+    className="root size-72 color__gray87"
+  >
+    <div
+      className="shape"
+      style={
+        Object {
+          "background": "#f5f5f5",
+          "opacity": 1,
         }
-        width={40}
-        x={0}
-        y={0}
-      />
-    </svg>
-    <span
+      }
+    />
+    <div
       className="content"
     >
-      <span
-        className="title truncate color__white text-class"
-        role="presentation"
-      >
-        WH
-      </span>
-    </span>
-  </span>
+      J
+    </div>
+  </div>
 </Avatar>
 `;
 
-exports[`<Avatar /> should render image after it loaded 1`] = `
+exports[`<Avatar /> should render without image 1`] = `
 <Avatar
-  imageUrl="https://test-cdn/"
-  monogram="JD"
-  title="John Doe"
+  size={40}
+  title="Hello World"
 >
-  <span
-    className="avatar"
-    style={
-      Object {
-        "height": 80,
-        "width": 80,
-      }
-    }
+  <div
+    className="root size-40 color__gray87"
   >
-    <svg
-      className="super-ellipse"
-    >
-      <rect
-        fill="#f5f5f5"
-        height={80}
-        style={Object {}}
-        width={80}
-        x={0}
-        y={0}
-      />
-    </svg>
-    <span
+    <div
+      className="shape"
+      style={
+        Object {
+          "background": "#f5f5f5",
+          "opacity": 1,
+        }
+      }
+    />
+    <div
       className="content"
     >
-      <span
-        className="title truncate color__gray87"
-        role="presentation"
-      >
-        JD
-      </span>
-    </span>
-  </span>
+      WH
+    </div>
+  </div>
 </Avatar>
 `;
 
-exports[`<Avatar /> should render image after it loaded 2`] = `
+exports[`<Avatar /> should render without image and title 1`] = `
 <Avatar
-  imageUrl="https://test-cdn/"
-  monogram="JD"
-  title="John Doe"
+  size={64}
 >
-  <span
-    className="avatar"
-    style={
-      Object {
-        "height": 80,
-        "width": 80,
-      }
-    }
+  <div
+    className="root size-64 color__gray87"
   >
-    <svg
-      className="super-ellipse"
+    <div
+      className="shape"
+      style={
+        Object {
+          "background": "#f5f5f5",
+          "opacity": 1,
+        }
+      }
+    />
+    <div
+      className="content"
     >
-      <image
-        href="https://test-cdn/"
-        preserveAspectRatio="xMidYMid slice"
-      />
-      <rect
-        fill="rgba(0, 0, 0, .04)"
-        height={80}
-        width={80}
-        x={0}
-        y={0}
-      />
-    </svg>
-  </span>
+      <PersonSVG
+        className="icon"
+        fill="#212121"
+        height={24}
+        width={24}
+      >
+        <svg
+          className="icon"
+          fill="#212121"
+          height={24}
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            clipRule="evenodd"
+            d="M11.88 1C8.723 1 6.356 3.887 6.975 6.98l.455 2.274a4.66 4.66 0 009.138 0l.455-2.273C17.642 3.887 15.276 1 12.12 1h-.242zM8.936 6.588A3 3 0 0111.88 3h.242a3 3 0 012.941 3.588l-.454 2.274a2.66 2.66 0 01-5.216 0l-.455-2.274z"
+            fillRule="evenodd"
+          />
+          <path
+            d="M7.214 14.977a1 1 0 00-.428-1.954c-2.223.486-3.462 1.496-4.123 2.508a4.205 4.205 0 00-.573 1.311 3.43 3.43 0 00-.09.626c-.009.51 0 1.021 0 1.532a3 3 0 003 3h14a3 3 0 003-3c0-.51.007-1.021 0-1.532l-.002-.048a3.449 3.449 0 00-.088-.578 4.203 4.203 0 00-.573-1.31c-.66-1.013-1.9-2.023-4.123-2.509a1 1 0 10-.428 1.954c1.777.389 2.538 1.129 2.877 1.648.178.272.262.518.302.685a1.44 1.44 0 01.035.203V19a1 1 0 01-1 1H5a1 1 0 01-1-1v-1.484l.002-.025c.004-.035.013-.097.033-.18.04-.168.124-.414.302-.686.34-.52 1.1-1.26 2.877-1.648z"
+          />
+        </svg>
+      </PersonSVG>
+    </div>
+  </div>
 </Avatar>
 `;
 
 exports[`<Avatar /> should renders without props 1`] = `
 <Avatar>
-  <span
-    className="avatar"
-    style={
-      Object {
-        "height": 80,
-        "width": 80,
-      }
-    }
+  <div
+    className="root size-72 color__gray87"
   >
-    <svg
-      className="super-ellipse"
-    >
-      <rect
-        fill="#f5f5f5"
-        height={80}
-        style={Object {}}
-        width={80}
-        x={0}
-        y={0}
-      />
-    </svg>
-    <span
+    <div
+      className="shape"
+      style={
+        Object {
+          "background": "#f5f5f5",
+          "opacity": 1,
+        }
+      }
+    />
+    <div
       className="content"
     >
-      <Icon
-        aria-hidden={true}
-        color="gray38"
-        icon={[Function]}
-        size={32}
+      <PersonSVG
+        className="icon"
+        fill="#212121"
+        height={24}
+        width={24}
       >
-        <userPureSvg
-          aria-hidden={true}
-          className="icon icon-block color__gray38"
-          height={32}
-          viewBox="0 0 36 36"
-          width={32}
-          xmlns="http://www.w3.org/2000/svg"
+        <svg
+          className="icon"
+          fill="#212121"
+          height={24}
+          viewBox="0 0 24 24"
+          width={24}
         >
-          <svg
-            aria-hidden={true}
-            className="icon icon-block color__gray38"
-            height={32}
-            viewBox="0 0 36 36"
-            width={32}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              clipRule="evenodd"
-              d="M11.479 10.268C10.619 6.132 13.776 2.25 18 2.25c4.224 0 7.382 3.882 6.521 8.018l-.607 2.921a6.04 6.04 0 0 1-11.829 0l-.607-2.921z"
-              fillRule="evenodd"
-            />
-            <path
-              d="M31.5 33.75h-27c-1.243 0-2.273-1.017-2.043-2.238C3.75 24.671 10.875 20.25 18 20.25s14.25 4.42 15.543 11.262c.23 1.221-.8 2.238-2.043 2.238z"
-            />
-          </svg>
-        </userPureSvg>
-      </Icon>
-    </span>
-  </span>
+          <path
+            clipRule="evenodd"
+            d="M11.88 1C8.723 1 6.356 3.887 6.975 6.98l.455 2.274a4.66 4.66 0 009.138 0l.455-2.273C17.642 3.887 15.276 1 12.12 1h-.242zM8.936 6.588A3 3 0 0111.88 3h.242a3 3 0 012.941 3.588l-.454 2.274a2.66 2.66 0 01-5.216 0l-.455-2.274z"
+            fillRule="evenodd"
+          />
+          <path
+            d="M7.214 14.977a1 1 0 00-.428-1.954c-2.223.486-3.462 1.496-4.123 2.508a4.205 4.205 0 00-.573 1.311 3.43 3.43 0 00-.09.626c-.009.51 0 1.021 0 1.532a3 3 0 003 3h14a3 3 0 003-3c0-.51.007-1.021 0-1.532l-.002-.048a3.449 3.449 0 00-.088-.578 4.203 4.203 0 00-.573-1.31c-.66-1.013-1.9-2.023-4.123-2.509a1 1 0 10-.428 1.954c1.777.389 2.538 1.129 2.877 1.648.178.272.262.518.302.685a1.44 1.44 0 01.035.203V19a1 1 0 01-1 1H5a1 1 0 01-1-1v-1.484l.002-.025c.004-.035.013-.097.033-.18.04-.168.124-.414.302-.686.34-.52 1.1-1.26 2.877-1.648z"
+          />
+        </svg>
+      </PersonSVG>
+    </div>
+  </div>
 </Avatar>
 `;

@@ -1,29 +1,10 @@
 import React from 'react';
-import { act } from 'react-dom/test-utils';
+import { act, Simulate } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
-import Avatar from '../index';
-import { color } from '../../styling/colors';
+import { Avatar } from '../index';
+import UpSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/up';
 
 describe('<Avatar />', () => {
-  let originalImage;
-
-  beforeAll(() => {
-    originalImage = global.Image;
-    global.Image = class FakeImage {
-      constructor () {
-        setTimeout(() => {
-          this.onload && this.onload();
-        }, 500);
-      }
-    };
-  });
-
-  afterAll(() => {
-    global.Image = originalImage;
-  });
-
-  jest.useFakeTimers();
-
   it('should renders without props', () => {
     const wrapper = mount(
       <Avatar />
@@ -40,10 +21,10 @@ describe('<Avatar />', () => {
         color='brand-blue'
         textColor='white'
         title='Hello World'
-        iconProps={{ size: 16 }}
-        textProps={{ className: 'text-class' }}
-        bgStyle={{ opacity: 0.4 }}
-        clipStyle={{ clipPath: 'url(#fake-id)' }}
+        icon={UpSVG}
+        bgColor='additional-teal'
+        bgOpacity={0.48}
+        style={{ clipPath: 'url(#fake-id)' }}
       />
     );
 
@@ -58,38 +39,52 @@ describe('<Avatar />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should handle textProps with textColor properly', () => {
+  it('should render without image', () => {
     const wrapper = mount(
       <Avatar
-        title='Test title'
-        textColor='white'
-        textProps={{ className: 'text-class' }}
+        size={40}
+        title='Hello World'
       />
     );
 
-    expect(wrapper.find('.title').prop('className')).toContain('truncate');
-    expect(wrapper.find('.title').prop('className')).toContain('text-class');
-    expect(wrapper.find('.title').prop('className')).toContain(color('white'));
+    expect(wrapper).toMatchSnapshot();
   });
 
-  it('should render image after it loaded', () => {
+  it('should render without image and title', () => {
+    const wrapper = mount(
+      <Avatar size={64} />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should handle wrong size', () => {
     const wrapper = mount(
       <Avatar
-        title='John Doe'
-        monogram='JD'
-        imageUrl='https://test-cdn/'
+        size={49.92}
+        title='Jason'
       />
     );
 
     expect(wrapper).toMatchSnapshot();
-    expect(wrapper.find('image')).toHaveLength(0);
+  });
+
+  it('should handle image error', () => {
+    const wrapper = mount(
+      <Avatar
+        size={49.92}
+        title='John Doe'
+        imageUrl='https://www.images.com/random/'
+      />
+    );
+
+    expect(wrapper.find('img')).toHaveLength(1);
 
     act(() => {
-      jest.runAllTimers();
-      wrapper.update();
+      Simulate.error(wrapper.find('img').getDOMNode());
     });
+    wrapper.update();
 
-    expect(wrapper).toMatchSnapshot();
-    expect(wrapper.find('image')).toHaveLength(1);
+    expect(wrapper.find('img')).toHaveLength(0);
   });
 });
