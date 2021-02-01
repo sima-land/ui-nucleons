@@ -1,108 +1,104 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames/bind';
-import Icon from '../icon';
 import { COLORS } from '../constants';
-import { color } from '../styling/colors';
 import PropTypes from 'prop-types';
-import userPureSvg from '../icons/filled-person.svg';
+import PersonSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/person';
 import classes from './avatar.scss';
-import { useImageLoad, getMonogram } from './utils';
+import { getMonogram } from './utils';
+import { color as colorClass } from '../styling/colors';
 
 const cx = classnames.bind(classes);
 
+const SIZES = [40, 48, 56, 64, 72, 104];
+
+const ICON_SIZES = {
+  40: 16,
+  48: 24,
+  56: 24,
+  64: 24,
+  72: 24,
+  104: 24,
+};
+
 /**
- * Компонент информации о пользователе.
+ * Компонент аватара.
  * @param {Object} props Свойства компонента.
  * @param {number} props.size Размер аватара.
- * @param {string} props.imageUrl Ссылка на картинку.
- * @param {string} props.color Цвет аватара без картинки.
+ * @param {string} [props.imageUrl] Ссылка на картинку.
+ * @param {string} [props.bgColor='gray4'] Цвет аватара без картинки.
+ * @param {number} [props.bgOpacity=1] Цвет аватара без картинки.
  * @param {string} props.textColor Цвет текста без картинки.
  * @param {string} props.title Текст без картинки.
- * @param {string} props.monogram Монограмма без картинки.
- * @param {Object} props.iconProps Свойства Icon.
- * @param {Object} props.textProps Свойства элемента с текстом.
- * @param {Object} props.bgStyle Стиль элемента rect, формирующего фон.
- * @param {Object} props.clipStyle Стиль элементов rect/image, формирующего маску "super ellipse".
+ * @param {string} [props.monogram] Монограмма без картинки.
+ * @param {string} [props.className] Класс.
+ * @param {React.ComponentType} [props.icon] Иконка.
+ * @param {Object} props.style Стиль элементов rect/image, формирующего маску "super ellipse".
  * @return {ReactElement} Компонент.
  */
-const Avatar = ({
-  size = 80,
+export const Avatar = ({
+  size = 72,
   imageUrl,
-  color: bgColor = 'gray4',
+  bgColor = 'gray4',
+  bgOpacity = 1,
   textColor = 'gray87',
   title,
   monogram = getMonogram(title),
-  iconProps = { color: 'gray38' },
-  textProps = {},
-  bgStyle,
-  clipStyle,
+  className,
+  icon: Icon = PersonSVG,
+  style,
 }) => {
-  // в IE11/React для <image /> не работает onerror/onload - подгружаем через new Image()
-  const needShowImage = useImageLoad(imageUrl);
-
+  const [needImage, toggleImage] = useState(Boolean(imageUrl));
   return (
-    <span className={cx('avatar')} style={{ width: size, height: size }}>
-      {/* IE11 поддерживает CSS-свойство clip-path только для SVG-элементов, рисуем SVG */}
-      <svg className={cx('super-ellipse')}>
-        {needShowImage ? (
-          <>
-            <image
-              preserveAspectRatio='xMidYMid slice' // для обрезания не квадратных изображений (aka cover)
-              href={imageUrl}
-              style={clipStyle} // вешаем clipPath именно на сам image для работы в IE11
-            />
-            <rect
-              x={0}
-              y={0}
-              fill='rgba(0, 0, 0, .04)'
-              style={clipStyle} // вешаем clipPath именно на сам rect для работы в IE11
-
-              // для работы в IE11 width/height должны быть указаны как атрибуты
-              width={size}
-              height={size}
-            />
-          </>
-        ) : (
-          <rect
-            x={0}
-            y={0}
-            fill={COLORS.has(bgColor) ? COLORS.get(bgColor) : bgColor}
-            style={{
-              ...bgStyle,
-              ...clipStyle, // вешаем clipPath именно на сам rect для работы в IE11
-            }}
-
-            // для работы в IE11 width/height должны быть указаны как атрибуты
-            width={size}
-            height={size}
-          />
-        )}
-      </svg>
-      {!needShowImage && (
-        <span className={cx('content')}>
-          {monogram ? (
-            <span
-              role='presentation'
-              {...textProps}
-              className={cx(
-                'title',
-                'truncate',
-                color(textColor),
-                textProps.className
-              )}
-              children={monogram}
-            />
-          ) : (
-            <Icon
-              icon={userPureSvg}
-              size={32}
-              aria-hidden
-              {...iconProps}
-            />
-          )}
-        </span>
+    <div
+      className={cx(
+        'root',
+        `size-${SIZES.includes(size) ? size : 72}`,
+        colorClass(textColor),
+        className
       )}
-    </span>
+      style={style}
+    >
+      {/* фон, необходим в том числе под изображениями так как могут быть PNG */}
+      <div
+        className={cx('shape')}
+        style={
+          !needImage
+            ? {
+              opacity: bgOpacity,
+              background: COLORS.get(bgColor),
+            }
+            : {}
+        }
+      />
+
+      {/* инициалы/иконка */}
+      {!needImage && (
+        <div className={cx('content')}>
+          {
+            monogram
+              ? monogram.slice(0, 2).toUpperCase()
+              : (
+                <Icon
+                  fill={COLORS.get(textColor)}
+                  width={ICON_SIZES[size]}
+                  height={ICON_SIZES[size]}
+                  className={cx('icon')}
+                />
+              )
+          }
+        </div>
+      )}
+
+      {/* изображение */}
+      {needImage && (
+        <img
+          src={imageUrl}
+          alt=''
+          className={cx('image')}
+          onError={() => toggleImage(false)}
+        />
+      )}
+    </div>
   );
 };
 
@@ -118,9 +114,14 @@ Avatar.propTypes = {
   imageUrl: PropTypes.string,
 
   /**
-   * Цвет аватара без картинки.
+   * Цвет фона без картинки.
    */
-  color: PropTypes.string,
+  bgColor: PropTypes.string,
+
+  /**
+   * Непрозрачность фона без картинки.
+   */
+  bgOpacity: PropTypes.number,
 
   /**
    * Цвет текста без картинки.
@@ -148,14 +149,17 @@ Avatar.propTypes = {
   textProps: PropTypes.object,
 
   /**
-   * Стиль элемента rect, формирующего фон.
-   */
-  bgStyle: PropTypes.object,
-
-  /**
    * Стиль элементов rect/image, формирующего маску "super ellipse".
    */
-  clipStyle: PropTypes.object,
-};
+  style: PropTypes.object,
 
-export default Avatar;
+  /**
+   * Компонент, который выведет иконку.
+   */
+  icon: PropTypes.elementType,
+
+  /**
+   * Класс.
+   */
+  className: PropTypes.string,
+};
