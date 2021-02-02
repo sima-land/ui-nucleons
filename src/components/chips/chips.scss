@@ -1,0 +1,51 @@
+@use '../colors';
+
+$gutter: 8px;
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 (-$gutter) (-$gutter) 0;
+}
+
+.item {
+  flex-grow: 0;
+  flex-shrink: 0;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  margin: 0 $gutter $gutter 0;
+  white-space: nowrap;
+  overflow: hidden;
+  outline: 0;
+  border: 0;
+  padding: 0 12px;
+  background: colors.$gray8;
+  color: colors.$gray87;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  text-decoration: none;
+  &:hover,
+  &:active {
+    cursor: pointer;
+    color: colors.$gray87;
+    background: colors.$gray12;
+  }
+  &.checked {
+    background: colors.$gray76;
+    color: colors.$gray2;
+  }
+
+  // переопределяем стили монолита
+  &,
+  &:link,
+  &:visited {
+    background: colors.$gray8;
+    color: colors.$gray87;
+  }
+}
