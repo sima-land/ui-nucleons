@@ -87,4 +87,20 @@ describe('<Avatar />', () => {
 
     expect(wrapper.find('img')).toHaveLength(0);
   });
+
+  it('should handle imageUrl change', () => {
+    const wrapper = mount(
+      <Avatar
+        size={49.92}
+        title='John Doe'
+        imageUrl='https://www.images.com/random/'
+      />
+    );
+
+    expect(wrapper.find('img')).toHaveLength(1);
+
+    wrapper.setProps({ imageUrl: 'https://www.images.com/other/' });
+
+    expect(wrapper.find('img')).toHaveLength(1);
+  });
 });

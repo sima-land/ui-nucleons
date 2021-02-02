@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classnames from 'classnames/bind';
 import { COLORS } from '../constants';
 import PropTypes from 'prop-types';
@@ -48,6 +48,11 @@ export const Avatar = ({
   style,
 }) => {
   const [needImage, toggleImage] = useState(Boolean(imageUrl));
+
+  useEffect(() => {
+    toggleImage(Boolean(imageUrl));
+  }, [imageUrl]);
+
   return (
     <div
       className={cx(

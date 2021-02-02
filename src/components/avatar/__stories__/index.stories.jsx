@@ -1,6 +1,8 @@
+import { useState } from '@storybook/addons';
 import React, { Fragment } from 'react';
 import { Avatar } from '..';
 import SuperEllipseClipPath from '../../super-ellipse-clip-path';
+import { random } from 'lodash';
 
 const superEllipseId = 'header-image-clip-path';
 
@@ -111,3 +113,22 @@ export const DifferentImages = () => (
     <SuperEllipseClipPath id={superEllipseId} />
   </>
 );
+
+export const DeferredImageURLChange = () => {
+  const [imageUrl, setImageUrl] = useState(null);
+
+  return (
+    <>
+      <div style={{ marginBottom: 16 }}>
+        <Avatar
+          style={clipStyle}
+          imageUrl={imageUrl}
+        />
+      </div>
+
+      <button onClick={() => setImageUrl(`https://picsum.photos/${200 + random(10, 20)}`)}>Set URL</button>
+
+      <SuperEllipseClipPath id={superEllipseId} />
+    </>
+  );
+};
