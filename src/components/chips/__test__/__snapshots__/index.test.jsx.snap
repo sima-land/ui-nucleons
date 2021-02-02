@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chips should renders correctly 1`] = `
+<Chips
+  isItemChecked={[Function]}
+  items={
+    Array [
+      Object {
+        "children": "Ручка для пакета",
+      },
+      Object {
+        "children": "Спортивные кружки",
+      },
+      Object {
+        "children": "Пакеты пищевые",
+      },
+      Object {
+        "children": "Пакеты для заморозки",
+      },
+      Object {
+        "children": "Домашние животные",
+      },
+      Object {
+        "children": "Дикие звери",
+      },
+      Object {
+        "children": "Крафт пакеты",
+      },
+      Object {
+        "children": "Интерьер",
+      },
+      Object {
+        "children": "Зоотовары",
+      },
+    ]
+  }
+  onItemClick={[MockFunction]}
+>
+  <div
+    className="list"
+  >
+    <a
+      className="item"
+      key="0"
+      onClick={[Function]}
+    >
+      Ручка для пакета
+    </a>
+    <a
+      className="item"
+      key="1"
+      onClick={[Function]}
+    >
+      Спортивные кружки
+    </a>
+    <a
+      className="item checked"
+      key="2"
+      onClick={[Function]}
+    >
+      Пакеты пищевые
+    </a>
+    <a
+      className="item"
+      key="3"
+      onClick={[Function]}
+    >
+      Пакеты для заморозки
+    </a>
+    <a
+      className="item"
+      key="4"
+      onClick={[Function]}
+    >
+      Домашние животные
+    </a>
+    <a
+      className="item"
+      key="5"
+      onClick={[Function]}
+    >
+      Дикие звери
+    </a>
+    <a
+      className="item"
+      key="6"
+      onClick={[Function]}
+    >
+      Крафт пакеты
+    </a>
+    <a
+      className="item"
+      key="7"
+      onClick={[Function]}
+    >
+      Интерьер
+    </a>
+    <a
+      className="item"
+      key="8"
+      onClick={[Function]}
+    >
+      Зоотовары
+    </a>
+  </div>
+</Chips>
+`;
