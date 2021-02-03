@@ -11,35 +11,36 @@ const cx = classnames.bind(styles);
  * @param {'s'|'m'|'l'|'xl'} [props.size='m'] Размер.
  * @param {*} props.children Содержимое.
  * @param {string} [props.className] Класс.
+ * @param {boolean} props.disabled Отключен ли элемент.
+ * @param {boolean} props.noHover Нужно ли отключить эффект при наведении.
  * @return {ReactElement} Элемент выпадающего списка.
  */
 export const DropdownItem = ({
   size = 'm',
   children,
   className,
+  disabled,
+  noHover,
   ...restProps
 }) => (
   <div
     {...restProps}
-    className={cx('root', `size-${size}`, className)}
+    className={cx(
+      'root',
+      `size-${size}`,
+      disabled && 'disabled',
+      noHover && 'no-hover',
+      className
+    )}
   >
     {children}
   </div>
 );
 
 DropdownItem.propTypes = {
-  /**
-   * Размер.
-   */
-  size: PropTypes.oneOf(['s', 'm', 'l']),
-
-  /**
-   * Содержимое.
-   */
+  size: PropTypes.oneOf(['s', 'm', 'l', 'xl']),
   children: PropTypes.node,
-
-  /**
-   * Класс.
-   */
   className: PropTypes.string,
+  disabled: PropTypes.bool,
+  noHover: PropTypes.bool,
 };
