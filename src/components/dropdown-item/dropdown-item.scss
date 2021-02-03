@@ -6,13 +6,18 @@ $sizes: (s: 40px, m: 48px, l: 56px, xl: 72px);
   display: flex;
   align-items: center;
   padding: 0 24px;
-  &:hover {
+  &:not(.disabled):not(.no-hover):hover {
     cursor: pointer;
     background: colors.$gray4;
   }
-  @each $key, $size in $sizes {
-    &.size-#{$key} {
-      height: $size;
-    }
+}
+
+.disabled {
+  color: colors.$gray24;
+}
+
+@each $key, $size in $sizes {
+  .size-#{$key} {
+    height: $size;
   }
 }

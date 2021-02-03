@@ -55,6 +55,26 @@ exports[`DropdownItem should handle size prop 4`] = `
 </DropdownItem>
 `;
 
+exports[`DropdownItem should render as disabled 1`] = `
+<DropdownItem
+  disabled={true}
+>
+  <div
+    className="root size-m disabled"
+  />
+</DropdownItem>
+`;
+
+exports[`DropdownItem should render with no hover effect 1`] = `
+<DropdownItem
+  noHover={true}
+>
+  <div
+    className="root size-m no-hover"
+  />
+</DropdownItem>
+`;
+
 exports[`DropdownItem should render without props 1`] = `
 <DropdownItem>
   <div
