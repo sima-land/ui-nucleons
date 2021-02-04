@@ -19,6 +19,14 @@ describe('DropdownItem', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it('should render as checked', () => {
+    const wrapper = mount(
+      <DropdownItem checked />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it('should render with no hover effect', () => {
     const wrapper = mount(
       <DropdownItem noHover />

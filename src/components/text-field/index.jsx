@@ -46,7 +46,8 @@ const modifiersToClasses = ({ disabled, failed, focused, variant }) => cx(
  * @param {Function} [props.onChange] Сработает при изменении значения.
  * @param {Function} [props.onFocus] Сработает при фокусировке.
  * @param {Function} [props.onInput] Сработает при событии "input".
- * @param {Function} [props.onKeyUp] Сработает при событии "keyUp".
+ * @param {Function} [props.onKeyDown] Сработает при событии "keydown".
+ * @param {Function} [props.onKeyUp] Сработает при событии "keyup".
  * @param {string} [props.placeholder] Placeholder.
  * @param {boolean} [props.readOnly] Значение атрибута "readonly".
  * @param {string} [props.rounds] Задает скругления.
@@ -77,6 +78,7 @@ const TextField = forwardRef(function TextField ({
   onChange,
   onFocus,
   onInput,
+  onKeyDown,
   onKeyUp,
   placeholder,
   readOnly,
@@ -203,6 +205,7 @@ const TextField = forwardRef(function TextField ({
               }}
               onInput={onInput}
               onChange={onChange}
+              onKeyDown={onKeyDown}
               onKeyUp={onKeyUp}
             />
           </div>
@@ -308,9 +311,14 @@ TextField.propTypes = {
   onInput: PropTypes.func,
 
   /**
-   * Сработает при нажатии клавишу.
+   * Сработает при событии "keyup".
    */
   onKeyUp: PropTypes.func,
+
+  /**
+   * Сработает при событии "keydown".
+   */
+  onKeyDown: PropTypes.func,
 
   /**
    * Placeholder.

@@ -55,6 +55,16 @@ exports[`DropdownItem should handle size prop 4`] = `
 </DropdownItem>
 `;
 
+exports[`DropdownItem should render as checked 1`] = `
+<DropdownItem
+  checked={true}
+>
+  <div
+    className="root size-m checked"
+  />
+</DropdownItem>
+`;
+
 exports[`DropdownItem should render as disabled 1`] = `
 <DropdownItem
   disabled={true}
