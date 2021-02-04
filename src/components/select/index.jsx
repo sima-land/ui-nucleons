@@ -83,10 +83,8 @@ export const Select = ({
         onBlur={({ relatedTarget }) => {
           relatedTarget !== menuRef.current && toggleMenu(false);
         }}
-        baseInputProps={{
-          onKeyDown: event => {
-            event.key === 'Enter' && toggleMenu(true);
-          },
+        onKeyDown={e => {
+          e.key === 'Enter' && toggleMenu(true);
         }}
         className={cx('field')}
         endAdornment={(

@@ -1,5 +1,4 @@
-import { useEffect } from '@storybook/addons';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Select } from '..';
 import Link from '../../link';
 

@@ -19,11 +19,6 @@ exports[`Select should render loading state 1`] = `
     className="root"
   >
     <ForwardRef(TextField)
-      baseInputProps={
-        Object {
-          "onKeyDown": [Function],
-        }
-      }
       className="field"
       data-testid="select:field"
       endAdornment={
@@ -36,6 +31,7 @@ exports[`Select should render loading state 1`] = `
       multiline={false}
       onBlur={[Function]}
       onClick={[Function]}
+      onKeyDown={[Function]}
       readOnly={true}
       value="Карточки товаров JPG"
       variant="desktop"
@@ -201,11 +197,6 @@ exports[`Select should renders correctly 1`] = `
     className="root"
   >
     <ForwardRef(TextField)
-      baseInputProps={
-        Object {
-          "onKeyDown": [Function],
-        }
-      }
       className="field"
       data-testid="select:field"
       endAdornment={
@@ -218,6 +209,7 @@ exports[`Select should renders correctly 1`] = `
       multiline={false}
       onBlur={[Function]}
       onClick={[Function]}
+      onKeyDown={[Function]}
       readOnly={true}
       value="Карточки товаров JPG"
       variant="desktop"
@@ -346,11 +338,6 @@ exports[`Select should renders correctly 2`] = `
     className="root"
   >
     <ForwardRef(TextField)
-      baseInputProps={
-        Object {
-          "onKeyDown": [Function],
-        }
-      }
       className="field"
       data-testid="select:field"
       endAdornment={
@@ -363,6 +350,7 @@ exports[`Select should renders correctly 2`] = `
       multiline={false}
       onBlur={[Function]}
       onClick={[Function]}
+      onKeyDown={[Function]}
       readOnly={true}
       value="Карточки товаров JPG"
       variant="desktop"
