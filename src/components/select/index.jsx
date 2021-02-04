@@ -8,8 +8,8 @@ import UpSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/up';
 import styles from './select.scss';
 import { COLORS } from '../constants';
 import { useOutsideClick } from '../hooks';
-import Spinner from '../spinner';
 import PropTypes from 'prop-types';
+import { DropdownLoading } from '../_internal/dropdown-loading';
 
 const cx = classnames.bind(styles);
 
@@ -113,12 +113,7 @@ export const Select = ({
         >
           {loading
             ? (
-              <div
-                data-testid='select:loading-area'
-                className={cx('loading-area')}
-              >
-                <Spinner size='small' />
-              </div>
+              <DropdownLoading data-testid='select:loading-area' />
             )
             : options.map((option, index) => (
               <DropdownItem

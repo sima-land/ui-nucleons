@@ -1,0 +1,894 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Autocomplete should handle "renderItem" prop missing 1`] = `
+<Autocomplete
+  items={
+    Array [
+      "aaaa",
+      "bbbb",
+      "cccc",
+      "dddd",
+      "eeee",
+    ]
+  }
+  value="Hello"
+>
+  <div
+    className="root"
+  >
+    <ForwardRef(TextField)
+      className="field"
+      data-testid="autocomplete:field"
+      endAdornment={
+        <DownSVG
+          fill="#9e9e9e"
+        />
+      }
+      focused={true}
+      multiline={false}
+      onChange={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      value="Hello"
+      variant="desktop"
+    >
+      <div
+        className="text-field-root field"
+        data-testid="autocomplete:field"
+      >
+        <div
+          className="reset input-block focused variant-desktop size-l rounds-sm__all"
+          data-testid="text-field:block"
+          onClick={[Function]}
+        >
+          <div
+            className="main-column"
+          >
+            <div
+              className="input-wrapper"
+            >
+              <ForwardRef(BaseInput)
+                className="base-input focused variant-desktop size-l"
+                data-testid="text-field:field"
+                multiline={false}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                value="Hello"
+              >
+                <div
+                  className="reset root base-input focused variant-desktop size-l"
+                >
+                  <input
+                    className="field reset"
+                    data-testid="text-field:field"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onInput={[Function]}
+                    onKeyDown={[Function]}
+                    value="Hello"
+                  />
+                </div>
+              </ForwardRef(BaseInput)>
+            </div>
+          </div>
+          <Box
+            alignItems="center"
+            display="flex"
+            marginLeft={4}
+          >
+            <div
+              className="display-flex align-items-center M-l__4"
+            >
+              <DownSVG
+                fill="#9e9e9e"
+              >
+                <svg
+                  fill="#9e9e9e"
+                  height={16}
+                  viewBox="0 0 16 16"
+                  width={16}
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M3.247 6.342a1 1 0 011.412-.095L8 9.171l3.341-2.924a1 1 0 011.318 1.506l-4 3.5a1 1 0 01-1.317 0l-4-3.5a1 1 0 01-.095-1.411z"
+                    fillRule="evenodd"
+                  />
+                </svg>
+              </DownSVG>
+            </div>
+          </Box>
+        </div>
+      </div>
+    </ForwardRef(TextField)>
+    <ForwardRef(Dropdown)
+      className="menu"
+      data-testid="autocomplete:menu"
+      role="menu"
+    >
+      <div
+        className="root invisible-scroll shadow-z4 rounds-md__all menu"
+        data-testid="autocomplete:menu"
+        role="menu"
+      >
+        <DropdownItem
+          checked={false}
+          key="0"
+          noHover={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          role="menuitem"
+        >
+          <div
+            className="root size-m no-hover"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            role="menuitem"
+          >
+            aaaa
+          </div>
+        </DropdownItem>
+        <DropdownItem
+          checked={false}
+          key="1"
+          noHover={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          role="menuitem"
+        >
+          <div
+            className="root size-m no-hover"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            role="menuitem"
+          >
+            bbbb
+          </div>
+        </DropdownItem>
+        <DropdownItem
+          checked={false}
+          key="2"
+          noHover={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          role="menuitem"
+        >
+          <div
+            className="root size-m no-hover"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            role="menuitem"
+          >
+            cccc
+          </div>
+        </DropdownItem>
+        <DropdownItem
+          checked={false}
+          key="3"
+          noHover={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          role="menuitem"
+        >
+          <div
+            className="root size-m no-hover"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            role="menuitem"
+          >
+            dddd
+          </div>
+        </DropdownItem>
+        <DropdownItem
+          checked={false}
+          key="4"
+          noHover={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          role="menuitem"
+        >
+          <div
+            className="root size-m no-hover"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            role="menuitem"
+          >
+            eeee
+          </div>
+        </DropdownItem>
+      </div>
+    </ForwardRef(Dropdown)>
+  </div>
+</Autocomplete>
+`;
+
+exports[`Autocomplete should handle defaultValue 1`] = `
+<Autocomplete
+  defaultValue="dddd"
+  items={
+    Array [
+      "aaaa",
+      "bbbb",
+      "cccc",
+    ]
+  }
+>
+  <div
+    className="root"
+  >
+    <ForwardRef(TextField)
+      className="field"
+      data-testid="autocomplete:field"
+      endAdornment={
+        <DownSVG
+          fill="#9e9e9e"
+        />
+      }
+      focused={false}
+      multiline={false}
+      onChange={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      variant="desktop"
+    >
+      <div
+        className="text-field-root field"
+        data-testid="autocomplete:field"
+      >
+        <div
+          className="reset input-block variant-desktop size-l rounds-sm__all"
+          data-testid="text-field:block"
+          onClick={[Function]}
+        >
+          <div
+            className="main-column"
+          >
+            <div
+              className="input-wrapper"
+            >
+              <ForwardRef(BaseInput)
+                className="base-input variant-desktop size-l"
+                data-testid="text-field:field"
+                multiline={false}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+              >
+                <div
+                  className="reset root base-input variant-desktop size-l"
+                >
+                  <input
+                    className="field reset"
+                    data-testid="text-field:field"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onInput={[Function]}
+                    onKeyDown={[Function]}
+                  />
+                </div>
+              </ForwardRef(BaseInput)>
+            </div>
+          </div>
+          <Box
+            alignItems="center"
+            display="flex"
+            marginLeft={4}
+          >
+            <div
+              className="display-flex align-items-center M-l__4"
+            >
+              <DownSVG
+                fill="#9e9e9e"
+              >
+                <svg
+                  fill="#9e9e9e"
+                  height={16}
+                  viewBox="0 0 16 16"
+                  width={16}
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M3.247 6.342a1 1 0 011.412-.095L8 9.171l3.341-2.924a1 1 0 011.318 1.506l-4 3.5a1 1 0 01-1.317 0l-4-3.5a1 1 0 01-.095-1.411z"
+                    fillRule="evenodd"
+                  />
+                </svg>
+              </DownSVG>
+            </div>
+          </Box>
+        </div>
+      </div>
+    </ForwardRef(TextField)>
+  </div>
+</Autocomplete>
+`;
+
+exports[`Autocomplete should renders correctly 1`] = `
+<Autocomplete
+  items={
+    Array [
+      "U.S.",
+      "France",
+      "China",
+      "Cambodia",
+      "Chile",
+      "Canada",
+      "Poland",
+      "Russia",
+      "Belarus",
+      "Ukraine",
+    ]
+  }
+  renderItem={[Function]}
+  value="Hello"
+>
+  <div
+    className="root"
+  >
+    <ForwardRef(TextField)
+      className="field"
+      data-testid="autocomplete:field"
+      endAdornment={
+        <DownSVG
+          fill="#9e9e9e"
+        />
+      }
+      focused={false}
+      multiline={false}
+      onChange={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      value="Hello"
+      variant="desktop"
+    >
+      <div
+        className="text-field-root field"
+        data-testid="autocomplete:field"
+      >
+        <div
+          className="reset input-block variant-desktop size-l rounds-sm__all"
+          data-testid="text-field:block"
+          onClick={[Function]}
+        >
+          <div
+            className="main-column"
+          >
+            <div
+              className="input-wrapper"
+            >
+              <ForwardRef(BaseInput)
+                className="base-input variant-desktop size-l"
+                data-testid="text-field:field"
+                multiline={false}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                value="Hello"
+              >
+                <div
+                  className="reset root base-input variant-desktop size-l"
+                >
+                  <input
+                    className="field reset"
+                    data-testid="text-field:field"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onInput={[Function]}
+                    onKeyDown={[Function]}
+                    value="Hello"
+                  />
+                </div>
+              </ForwardRef(BaseInput)>
+            </div>
+          </div>
+          <Box
+            alignItems="center"
+            display="flex"
+            marginLeft={4}
+          >
+            <div
+              className="display-flex align-items-center M-l__4"
+            >
+              <DownSVG
+                fill="#9e9e9e"
+              >
+                <svg
+                  fill="#9e9e9e"
+                  height={16}
+                  viewBox="0 0 16 16"
+                  width={16}
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M3.247 6.342a1 1 0 011.412-.095L8 9.171l3.341-2.924a1 1 0 011.318 1.506l-4 3.5a1 1 0 01-1.317 0l-4-3.5a1 1 0 01-.095-1.411z"
+                    fillRule="evenodd"
+                  />
+                </svg>
+              </DownSVG>
+            </div>
+          </Box>
+        </div>
+      </div>
+    </ForwardRef(TextField)>
+  </div>
+</Autocomplete>
+`;
+
+exports[`Autocomplete should renders correctly 2`] = `
+<Autocomplete
+  items={
+    Array [
+      "U.S.",
+      "France",
+      "China",
+      "Cambodia",
+      "Chile",
+      "Canada",
+      "Poland",
+      "Russia",
+      "Belarus",
+      "Ukraine",
+    ]
+  }
+  preset="filled-only-list"
+  renderItem={[Function]}
+  value="Hello"
+>
+  <div
+    className="root"
+  >
+    <ForwardRef(TextField)
+      className="field"
+      data-testid="autocomplete:field"
+      focused={false}
+      multiline={false}
+      onChange={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      value="Hello"
+      variant="desktop"
+    >
+      <div
+        className="text-field-root field"
+        data-testid="autocomplete:field"
+      >
+        <div
+          className="reset input-block variant-desktop size-l rounds-sm__all"
+          data-testid="text-field:block"
+          onClick={[Function]}
+        >
+          <div
+            className="main-column"
+          >
+            <div
+              className="input-wrapper"
+            >
+              <ForwardRef(BaseInput)
+                className="base-input variant-desktop size-l"
+                data-testid="text-field:field"
+                multiline={false}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                value="Hello"
+              >
+                <div
+                  className="reset root base-input variant-desktop size-l"
+                >
+                  <input
+                    className="field reset"
+                    data-testid="text-field:field"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onInput={[Function]}
+                    onKeyDown={[Function]}
+                    value="Hello"
+                  />
+                </div>
+              </ForwardRef(BaseInput)>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ForwardRef(TextField)>
+  </div>
+</Autocomplete>
+`;
+
+exports[`Autocomplete should renders correctly 3`] = `
+<Autocomplete
+  items={
+    Array [
+      "U.S.",
+      "France",
+      "China",
+      "Cambodia",
+      "Chile",
+      "Canada",
+      "Poland",
+      "Russia",
+      "Belarus",
+      "Ukraine",
+    ]
+  }
+  preset="filled-only-list"
+  renderItem={[Function]}
+  value="Hello"
+>
+  <div
+    className="root"
+  >
+    <ForwardRef(TextField)
+      className="field"
+      data-testid="autocomplete:field"
+      focused={true}
+      multiline={false}
+      onChange={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      value="Hello"
+      variant="desktop"
+    >
+      <div
+        className="text-field-root field"
+        data-testid="autocomplete:field"
+      >
+        <div
+          className="reset input-block focused variant-desktop size-l rounds-sm__all"
+          data-testid="text-field:block"
+          onClick={[Function]}
+        >
+          <div
+            className="main-column"
+          >
+            <div
+              className="input-wrapper"
+            >
+              <ForwardRef(BaseInput)
+                className="base-input focused variant-desktop size-l"
+                data-testid="text-field:field"
+                multiline={false}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                value="Hello"
+              >
+                <div
+                  className="reset root base-input focused variant-desktop size-l"
+                >
+                  <input
+                    className="field reset"
+                    data-testid="text-field:field"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onInput={[Function]}
+                    onKeyDown={[Function]}
+                    value="Hello"
+                  />
+                </div>
+              </ForwardRef(BaseInput)>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ForwardRef(TextField)>
+    <ForwardRef(Dropdown)
+      className="menu"
+      data-testid="autocomplete:menu"
+      role="menu"
+    >
+      <div
+        className="root invisible-scroll shadow-z4 rounds-md__all menu"
+        data-testid="autocomplete:menu"
+        role="menu"
+      >
+        <DropdownItem
+          checked={false}
+          key="0"
+          noHover={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          role="menuitem"
+        >
+          <div
+            className="root size-m no-hover"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            role="menuitem"
+          >
+            U.S.
+          </div>
+        </DropdownItem>
+        <DropdownItem
+          checked={false}
+          key="1"
+          noHover={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          role="menuitem"
+        >
+          <div
+            className="root size-m no-hover"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            role="menuitem"
+          >
+            FRANCE
+          </div>
+        </DropdownItem>
+        <DropdownItem
+          checked={false}
+          key="2"
+          noHover={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          role="menuitem"
+        >
+          <div
+            className="root size-m no-hover"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            role="menuitem"
+          >
+            CHINA
+          </div>
+        </DropdownItem>
+        <DropdownItem
+          checked={false}
+          key="3"
+          noHover={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          role="menuitem"
+        >
+          <div
+            className="root size-m no-hover"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            role="menuitem"
+          >
+            CAMBODIA
+          </div>
+        </DropdownItem>
+        <DropdownItem
+          checked={false}
+          key="4"
+          noHover={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          role="menuitem"
+        >
+          <div
+            className="root size-m no-hover"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            role="menuitem"
+          >
+            CHILE
+          </div>
+        </DropdownItem>
+        <DropdownItem
+          checked={false}
+          key="5"
+          noHover={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          role="menuitem"
+        >
+          <div
+            className="root size-m no-hover"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            role="menuitem"
+          >
+            CANADA
+          </div>
+        </DropdownItem>
+        <DropdownItem
+          checked={false}
+          key="6"
+          noHover={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          role="menuitem"
+        >
+          <div
+            className="root size-m no-hover"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            role="menuitem"
+          >
+            POLAND
+          </div>
+        </DropdownItem>
+        <DropdownItem
+          checked={false}
+          key="7"
+          noHover={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          role="menuitem"
+        >
+          <div
+            className="root size-m no-hover"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            role="menuitem"
+          >
+            RUSSIA
+          </div>
+        </DropdownItem>
+        <DropdownItem
+          checked={false}
+          key="8"
+          noHover={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          role="menuitem"
+        >
+          <div
+            className="root size-m no-hover"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            role="menuitem"
+          >
+            BELARUS
+          </div>
+        </DropdownItem>
+        <DropdownItem
+          checked={false}
+          key="9"
+          noHover={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          role="menuitem"
+        >
+          <div
+            className="root size-m no-hover"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            role="menuitem"
+          >
+            UKRAINE
+          </div>
+        </DropdownItem>
+      </div>
+    </ForwardRef(Dropdown)>
+  </div>
+</Autocomplete>
+`;
+
+exports[`Autocomplete should renders correctly 4`] = `
+<Autocomplete
+  items={
+    Array [
+      "U.S.",
+      "France",
+      "China",
+      "Cambodia",
+      "Chile",
+      "Canada",
+      "Poland",
+      "Russia",
+      "Belarus",
+      "Ukraine",
+    ]
+  }
+  loading={true}
+  preset="filled-only-list"
+  renderItem={[Function]}
+  value="Hello"
+>
+  <div
+    className="root"
+  >
+    <ForwardRef(TextField)
+      className="field"
+      data-testid="autocomplete:field"
+      focused={true}
+      multiline={false}
+      onChange={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      value="Hello"
+      variant="desktop"
+    >
+      <div
+        className="text-field-root field"
+        data-testid="autocomplete:field"
+      >
+        <div
+          className="reset input-block focused variant-desktop size-l rounds-sm__all"
+          data-testid="text-field:block"
+          onClick={[Function]}
+        >
+          <div
+            className="main-column"
+          >
+            <div
+              className="input-wrapper"
+            >
+              <ForwardRef(BaseInput)
+                className="base-input focused variant-desktop size-l"
+                data-testid="text-field:field"
+                multiline={false}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                value="Hello"
+              >
+                <div
+                  className="reset root base-input focused variant-desktop size-l"
+                >
+                  <input
+                    className="field reset"
+                    data-testid="text-field:field"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onInput={[Function]}
+                    onKeyDown={[Function]}
+                    value="Hello"
+                  />
+                </div>
+              </ForwardRef(BaseInput)>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ForwardRef(TextField)>
+    <ForwardRef(Dropdown)
+      className="menu"
+      data-testid="autocomplete:menu"
+      role="menu"
+    >
+      <div
+        className="root invisible-scroll shadow-z4 rounds-md__all menu"
+        data-testid="autocomplete:menu"
+        role="menu"
+      >
+        <DropdownLoading
+          data-testid="autocomplete:loading-area"
+        >
+          <div
+            className="root"
+            data-testid="autocomplete:loading-area"
+          >
+            <Spinner
+              size="small"
+            >
+              <div>
+                <svg
+                  className="spinner size-small"
+                  height={20}
+                  stroke="#1f84db"
+                  viewBox="0 0 20 20"
+                  width={20}
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    className="circle"
+                    cx={10}
+                    cy={10}
+                    r={9}
+                  />
+                </svg>
+              </div>
+            </Spinner>
+          </div>
+        </DropdownLoading>
+      </div>
+    </ForwardRef(Dropdown)>
+  </div>
+</Autocomplete>
+`;
