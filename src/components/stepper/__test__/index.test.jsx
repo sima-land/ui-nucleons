@@ -1,51 +1,70 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { act } from 'react-dom/test-utils';
-import Amount from '../amount';
-import Icon from '../../icon';
+import { act, Simulate } from 'react-dom/test-utils';
+import { Stepper } from '..';
 
-describe('<Amount />', () => {
+describe('<Stepper />', () => {
   it('should render without props', () => {
     const wrapper = mount(
-      <Amount />
+      <Stepper />
     );
 
     expect(wrapper).toMatchSnapshot();
   });
-  it('should handle Input props', () => {
-    const spy = jest.fn();
-    const otherSpy = jest.fn();
-    const anotherSpy = jest.fn();
+
+  it('should handle input props', () => {
+    const focusSpy = jest.fn();
+    const blurSpy = jest.fn();
 
     const wrapper = mount(
-      <Amount
+      <Stepper
         defaultValue={123}
         disabled
-        onChange={spy}
-        onBlur={otherSpy}
-        onKeyDown={anotherSpy}
+        onFocus={focusSpy}
+        onBlur={blurSpy}
       />
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(blurSpy).toBeCalledTimes(0);
+    expect(focusSpy).toBeCalledTimes(0);
+
+    act(() => {
+      Simulate.focus(wrapper.find('[data-testid="stepper:input"]').getDOMNode());
+    });
+    wrapper.update();
+
+    expect(focusSpy).toBeCalledTimes(1);
+    expect(blurSpy).toBeCalledTimes(0);
+
+    act(() => {
+      Simulate.blur(wrapper.find('[data-testid="stepper:input"]').getDOMNode());
+    });
+    wrapper.update();
+
+    expect(focusSpy).toBeCalledTimes(1);
+    expect(blurSpy).toBeCalledTimes(1);
   });
+
   it('should handle "size" prop', () => {
     const wrapper = mount(
-      <Amount />
+      <Stepper />
     );
 
     expect(wrapper).toMatchSnapshot();
-    wrapper.setProps({ size: 'medium' });
+
+    wrapper.setProps({ size: 'm' });
     expect(wrapper).toMatchSnapshot();
-    wrapper.setProps({ size: 'small' });
+
+    wrapper.setProps({ size: 'm' });
     expect(wrapper).toMatchSnapshot();
   });
+
   it('should handle "onAdd/onSubtract/canAdd/canSubtract" props', () => {
     const subtractSpy = jest.fn();
     const addSpy = jest.fn();
 
     const wrapper = mount(
-      <Amount
+      <Stepper
         onSubtract={subtractSpy}
         onAdd={addSpy}
       />
@@ -56,42 +75,31 @@ describe('<Amount />', () => {
     expect(addSpy).toHaveBeenCalledTimes(0);
 
     act(() => {
-      wrapper.find(Icon).first().simulate('click');
+      wrapper.find('[data-testid="stepper:minus"]').first().simulate('click');
     });
     wrapper.update();
+
     expect(subtractSpy).toHaveBeenCalledTimes(1);
     expect(addSpy).toHaveBeenCalledTimes(0);
 
     act(() => {
-      wrapper.find(Icon).last().simulate('click');
+      wrapper.find('[data-testid="stepper:plus"]').last().simulate('click');
     });
     wrapper.update();
 
     expect(subtractSpy).toHaveBeenCalledTimes(1);
     expect(addSpy).toHaveBeenCalledTimes(1);
 
-    // disable buttons
+    // hide buttons
     act(() => {
       wrapper.setProps({ canAdd: false, canSubtract: false });
     });
     wrapper.update();
 
-    wrapper.find(Icon).first().simulate('click');
+    wrapper.find('[data-testid="stepper:minus"]').first().simulate('click');
     expect(subtractSpy).toHaveBeenCalledTimes(1);
 
-    wrapper.find(Icon).last().simulate('click');
+    wrapper.find('[data-testid="stepper:plus"]').last().simulate('click');
     expect(addSpy).toHaveBeenCalledTimes(1);
-  });
-  it('should handle "computeClasses" prop', () => {
-    const wrapper = mount(
-      <Amount
-        computeClasses={defaults => ({
-          ...defaults,
-          root: 'custom-root',
-          input: [defaults.input, 'extended-input'].join(' '),
-        })}
-      />
-    );
-    expect(wrapper).toMatchSnapshot();
   });
 });

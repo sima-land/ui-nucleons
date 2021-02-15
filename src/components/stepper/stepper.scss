@@ -1,0 +1,54 @@
+@use '../colors';
+
+.root {
+  display: flex;
+  align-items: center;
+  border: 1px solid colors.$gray12;
+  border-radius: 4px;
+  color: colors.$gray87;
+  &.focused:not(.disabled) {
+    border-color: colors.$brand-blue;
+  }
+  &.disabled {
+    color: colors.$gray24;
+    border-color: colors.$gray12;
+    .button {
+      fill: colors.$gray12;
+    }
+  }
+  &.size-s {
+    width: 122px;
+    height: 40px;
+    padding: 0 8px;
+  }
+  &.size-m {
+    width: 160px;
+    height: 48px;
+    padding: 0 16px;
+  }
+}
+
+.input {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  outline: 0;
+  width: 0;
+  flex-grow: 1;
+  text-align: center;
+  color: inherit;
+  font: inherit;
+  height: 100%;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.button {
+  fill: colors.$gray38;
+  flex-shrink: 0;
+  cursor: pointer;
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
