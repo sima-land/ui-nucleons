@@ -1,0 +1,257 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Stepper /> should handle "onAdd/onSubtract/canAdd/canSubtract" props 1`] = `
+<Stepper
+  onAdd={[MockFunction]}
+  onSubtract={[MockFunction]}
+>
+  <div
+    className="root size-m"
+  >
+    <MinusSVG
+      className="button"
+      data-testid="stepper:minus"
+      onClick={[MockFunction]}
+    >
+      <svg
+        className="button"
+        data-testid="stepper:minus"
+        height={16}
+        onClick={[MockFunction]}
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          clipRule="evenodd"
+          d="M2 8a1 1 0 011-1h10a1 1 0 110 2H3a1 1 0 01-1-1z"
+          fillRule="evenodd"
+        />
+      </svg>
+    </MinusSVG>
+    <input
+      className="input"
+      data-testid="stepper:input"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    />
+    <PlusSVG
+      className="button"
+      data-testid="stepper:plus"
+      onClick={[MockFunction]}
+    >
+      <svg
+        className="button"
+        data-testid="stepper:plus"
+        height={16}
+        onClick={[MockFunction]}
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          d="M9 3a1 1 0 00-2 0v4H3a1 1 0 000 2h4v4a1 1 0 102 0V9h4a1 1 0 100-2H9V3z"
+        />
+      </svg>
+    </PlusSVG>
+  </div>
+</Stepper>
+`;
+
+exports[`<Stepper /> should handle "size" prop 1`] = `
+<Stepper>
+  <div
+    className="root size-m"
+  >
+    <MinusSVG
+      className="button"
+      data-testid="stepper:minus"
+    >
+      <svg
+        className="button"
+        data-testid="stepper:minus"
+        height={16}
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          clipRule="evenodd"
+          d="M2 8a1 1 0 011-1h10a1 1 0 110 2H3a1 1 0 01-1-1z"
+          fillRule="evenodd"
+        />
+      </svg>
+    </MinusSVG>
+    <input
+      className="input"
+      data-testid="stepper:input"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    />
+    <PlusSVG
+      className="button"
+      data-testid="stepper:plus"
+    >
+      <svg
+        className="button"
+        data-testid="stepper:plus"
+        height={16}
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          d="M9 3a1 1 0 00-2 0v4H3a1 1 0 000 2h4v4a1 1 0 102 0V9h4a1 1 0 100-2H9V3z"
+        />
+      </svg>
+    </PlusSVG>
+  </div>
+</Stepper>
+`;
+
+exports[`<Stepper /> should handle "size" prop 2`] = `
+<Stepper
+  size="m"
+>
+  <div
+    className="root size-m"
+  >
+    <MinusSVG
+      className="button"
+      data-testid="stepper:minus"
+    >
+      <svg
+        className="button"
+        data-testid="stepper:minus"
+        height={16}
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          clipRule="evenodd"
+          d="M2 8a1 1 0 011-1h10a1 1 0 110 2H3a1 1 0 01-1-1z"
+          fillRule="evenodd"
+        />
+      </svg>
+    </MinusSVG>
+    <input
+      className="input"
+      data-testid="stepper:input"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    />
+    <PlusSVG
+      className="button"
+      data-testid="stepper:plus"
+    >
+      <svg
+        className="button"
+        data-testid="stepper:plus"
+        height={16}
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          d="M9 3a1 1 0 00-2 0v4H3a1 1 0 000 2h4v4a1 1 0 102 0V9h4a1 1 0 100-2H9V3z"
+        />
+      </svg>
+    </PlusSVG>
+  </div>
+</Stepper>
+`;
+
+exports[`<Stepper /> should handle "size" prop 3`] = `
+<Stepper
+  size="m"
+>
+  <div
+    className="root size-m"
+  >
+    <MinusSVG
+      className="button"
+      data-testid="stepper:minus"
+    >
+      <svg
+        className="button"
+        data-testid="stepper:minus"
+        height={16}
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          clipRule="evenodd"
+          d="M2 8a1 1 0 011-1h10a1 1 0 110 2H3a1 1 0 01-1-1z"
+          fillRule="evenodd"
+        />
+      </svg>
+    </MinusSVG>
+    <input
+      className="input"
+      data-testid="stepper:input"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    />
+    <PlusSVG
+      className="button"
+      data-testid="stepper:plus"
+    >
+      <svg
+        className="button"
+        data-testid="stepper:plus"
+        height={16}
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          d="M9 3a1 1 0 00-2 0v4H3a1 1 0 000 2h4v4a1 1 0 102 0V9h4a1 1 0 100-2H9V3z"
+        />
+      </svg>
+    </PlusSVG>
+  </div>
+</Stepper>
+`;
+
+exports[`<Stepper /> should render without props 1`] = `
+<Stepper>
+  <div
+    className="root size-m"
+  >
+    <MinusSVG
+      className="button"
+      data-testid="stepper:minus"
+    >
+      <svg
+        className="button"
+        data-testid="stepper:minus"
+        height={16}
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          clipRule="evenodd"
+          d="M2 8a1 1 0 011-1h10a1 1 0 110 2H3a1 1 0 01-1-1z"
+          fillRule="evenodd"
+        />
+      </svg>
+    </MinusSVG>
+    <input
+      className="input"
+      data-testid="stepper:input"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    />
+    <PlusSVG
+      className="button"
+      data-testid="stepper:plus"
+    >
+      <svg
+        className="button"
+        data-testid="stepper:plus"
+        height={16}
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          d="M9 3a1 1 0 00-2 0v4H3a1 1 0 000 2h4v4a1 1 0 102 0V9h4a1 1 0 100-2H9V3z"
+        />
+      </svg>
+    </PlusSVG>
+  </div>
+</Stepper>
+`;
