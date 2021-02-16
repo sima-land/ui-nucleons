@@ -1,5 +1,5 @@
 import React from 'react';
-import Spinner from '../../spinner';
+import { Spinner } from '../../spinner';
 import styles from './index.scss';
 
 /**

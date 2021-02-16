@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Spinner from '..';
+import { Spinner } from '..';
 
 describe('<Spinner />', () => {
   it('should render component', () => {

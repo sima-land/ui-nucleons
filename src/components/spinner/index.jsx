@@ -25,7 +25,7 @@ const AVAILABLE_COLORS = ['brand-blue', 'white'];
  * @param {'brand-blue' | 'white'} props.color Цвет.
  * @return {ReactElement} Компонент.
  */
-const Spinner = ({
+export const Spinner = ({
   size = 'medium',
   color = DEFAULT_COLOR,
   className,
@@ -37,16 +37,12 @@ const Spinner = ({
   const radius = diameter / 2;
 
   return (
-    <div
-      className={className}
-      style={style}
-    >
+    <div className={className} style={style}>
       <svg
         className={cx('spinner', `size-${readySize}`)}
         viewBox={`0 0 ${diameter} ${diameter}`}
         width={diameter}
         height={diameter}
-        xmlns='http://www.w3.org/2000/svg'
         stroke={COLORS.get(readyColor)}
       >
         <circle
@@ -61,25 +57,8 @@ const Spinner = ({
 };
 
 Spinner.propTypes = {
-  /**
-   * Размер.
-   */
   size: PropTypes.string,
-
-  /**
-   * Цвет.
-   */
   color: PropTypes.oneOf(AVAILABLE_COLORS),
-
-  /**
-   * CSS-класс элемента-обертки.
-   */
   className: PropTypes.string,
-
-  /**
-   * Стили элемента-обертки.
-   */
   style: PropTypes.object,
 };
-
-export default Spinner;

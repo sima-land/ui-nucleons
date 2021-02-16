@@ -1,5 +1,5 @@
 import React from 'react';
-import Spinner from '../spinner';
+import { Spinner } from '../spinner';
 import classnames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import classes from './loading-overlay.scss';
