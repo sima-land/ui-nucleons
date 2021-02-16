@@ -12,7 +12,7 @@ import withInputMask, {
 } from '../with-input-mask';
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
-import Input from '../../input';
+import TextField from '../../text-field';
 import { shallow } from 'enzyme';
 import TestUtils, { act } from 'react-dom/test-utils';
 
@@ -320,10 +320,10 @@ describe('withInputMask', () => {
   const onMouseOut = jest.fn();
   const onFocus = jest.fn();
   it('should works properly without props', () => {
-    const MaskedPhoneInput = withInputMask(Input);
+    const MaskedPhoneInput = withInputMask(TextField);
     const wrapper = shallow(<MaskedPhoneInput />);
-    expect(wrapper.find(Input)).toHaveLength(1);
-    expect(wrapper.find(Input).prop('value')).toBe(undefined);
+    expect(wrapper.find(TextField)).toHaveLength(1);
+    expect(wrapper.find(TextField).prop('value')).toBe(undefined);
   });
   it('should call pure handlers', () => {
     const event = {
@@ -332,7 +332,7 @@ describe('withInputMask', () => {
         value: '',
       },
     };
-    const MaskedPhoneInput = withInputMask(Input);
+    const MaskedPhoneInput = withInputMask(TextField);
     const wrapper = shallow(
       <MaskedPhoneInput
         onClick={onClick}
@@ -342,7 +342,7 @@ describe('withInputMask', () => {
         onFocus={onFocus}
       />
     );
-    const input = wrapper.find(Input).at(0);
+    const input = wrapper.find(TextField).at(0);
 
     expect(onClick).not.toHaveBeenCalled();
     input.simulate('click', event);
@@ -382,7 +382,7 @@ describe('MaskedPhoneInput', () => {
   it('should works properly', () => {
     jest.useFakeTimers();
 
-    const MaskedPhoneInput = withInputMask(Input, '+_ (___) ___-__-__');
+    const MaskedPhoneInput = withInputMask(TextField, '+_ (___) ___-__-__');
     act(() => {
       render(<MaskedPhoneInput />, container);
     });
