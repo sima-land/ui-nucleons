@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Switch /> should work without props 1`] = `
-<Switch>
+exports[`<Toggle /> should work without props 1`] = `
+<ForwardRef>
   <label
-    className="switch-root"
+    className="root"
   >
     <input
-      className="switch-input"
+      className="input"
       type="checkbox"
     />
     <span
       className="switch"
     />
   </label>
-</Switch>
+</ForwardRef>
 `;
