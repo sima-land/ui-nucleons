@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames/bind';
-import imageCap from '../icons/image-cap.svg';
+import StubSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/search';
 import classes from './icon.scss';
 import Type from 'prop-types';
 import { color as getColorClass } from '../styling/colors';
@@ -26,7 +26,7 @@ const Icon = ({ icon, size, color, inline, className, ...restProps }) => {
     getColorClass(color),
     className
   );
-  const Image = typeof icon === 'function' ? icon : imageCap;
+  const Image = typeof icon === 'function' ? icon : StubSVG;
 
   return (
     <Image

@@ -1,9 +1,8 @@
 import React, { useState, useRef } from 'react';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import prop from 'lodash/fp/prop';
-import { squareArrowDown } from '../icons';
+import DownSVG from './square-arrow-down.svg';
 import Link from '../link/deprecated';
-import Icon from '../icon';
 import Popup from '../popups/popup';
 import withGlobalListeners from '../hoc/with-global-listeners';
 import { useApplyMemo, useOnMount } from '../hooks/';
@@ -78,10 +77,7 @@ const Breadcrumbs = ({
           {breadcrumbName}
           {hasSiblings && (
             <span ref={openerNodeContainer}>
-              <Icon
-                inline
-                icon={squareArrowDown}
-                size={14}
+              <DownSVG
                 className={cx('toggle-icon')}
                 onClick={() => {
                   togglePopup(true);
@@ -107,10 +103,7 @@ const Breadcrumbs = ({
                 ref={popupNodeContainer}
               >
                 {breadcrumbName}
-                <Icon
-                  inline
-                  icon={squareArrowDown}
-                  size={14}
+                <DownSVG
                   className={cx('toggle-icon', 'close')}
                   onClick={() => togglePopup(false)}
                 />

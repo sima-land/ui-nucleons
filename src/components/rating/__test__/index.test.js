@@ -1,5 +1,5 @@
 import React from 'react';
-import Rating, { getStarClass } from '../';
+import Rating, { getStarClass } from '..';
 import { shallow } from 'enzyme';
 
 describe('<Rating />', () => {
@@ -12,7 +12,8 @@ describe('<Rating />', () => {
 
     expect(rating.find('.rating-star')).toHaveLength(5);
     expect(rating.find('.empty-star')).toHaveLength(5);
-    expect(rating.find('.empty-star').first().prop('size')).toEqual(16);
+    expect(rating.find('.empty-star').first().prop('width')).toEqual(16);
+    expect(rating.find('.empty-star').first().prop('height')).toEqual(16);
 
     expect(rating).toMatchSnapshot();
   });
@@ -34,11 +35,14 @@ describe('<Rating />', () => {
 
     expect(rating.find('.rating-star')).toHaveLength(7);
     expect(rating.find('.empty-star')).toHaveLength(4);
-    expect(rating.find('.empty-star').first().prop('size')).toEqual(7);
+    expect(rating.find('.empty-star').first().prop('width')).toEqual(7);
+    expect(rating.find('.empty-star').first().prop('height')).toEqual(7);
     expect(rating.find('.half-star')).toHaveLength(1);
-    expect(rating.find('.half-star').prop('size')).toEqual(15);
+    expect(rating.find('.half-star').prop('width')).toEqual(15);
+    expect(rating.find('.half-star').prop('height')).toEqual(15);
     expect(rating.find('.full-star')).toHaveLength(2);
-    expect(rating.find('.full-star').first().prop('size')).toEqual(7);
+    expect(rating.find('.full-star').first().prop('width')).toEqual(7);
+    expect(rating.find('.full-star').first().prop('height')).toEqual(7);
 
     expect(rating).toMatchSnapshot();
   });

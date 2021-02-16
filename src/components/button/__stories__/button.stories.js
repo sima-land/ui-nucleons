@@ -2,24 +2,24 @@ import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Button from '../index';
-import plusIcon from '../../icons/amount-plus.svg';
+import PlusSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/plus';
 
 const types = ['primary', 'secondary'];
 const sizes = ['small', 'medium'];
 const states = [undefined, 'disabled'];
 const contents = [
   {
-    icon: plusIcon,
+    icon: PlusSVG,
   },
   {
     children: 'Действие',
   },
   {
-    icon: plusIcon,
+    icon: PlusSVG,
     children: 'Действие',
   },
   {
-    icon: plusIcon,
+    icon: PlusSVG,
     iconPosition: 'end',
     children: 'Действие',
   },

@@ -1,6 +1,5 @@
 import React from 'react';
-import Icon from '../icon';
-import star from '../icons/star.svg';
+import StarSVG from './star.svg';
 import styles from './rating.scss';
 import Type from 'prop-types';
 import isFunction from 'lodash/isFunction';
@@ -87,16 +86,19 @@ const Rating = ({
   const { regular, big } = starSizes;
   return (
     <div className={wrapperClasses}>
-      {range(count, 0).map(starIndex => (
-        <Icon
-          icon={star}
-          key={starIndex}
-          className={getStarClass({ starIndex, value, starsClasses })}
-          onClick={() => isFunction(onStarClick) && onStarClick(starIndex)}
-          size={withBig && starIndex === Math.ceil(value) ? big : regular}
-          inline
-        />
-      ))}
+      {range(count, 0).map(starIndex => {
+        const size = withBig && starIndex === Math.ceil(value) ? big : regular;
+
+        return (
+          <StarSVG
+            key={starIndex}
+            className={getStarClass({ starIndex, value, starsClasses })}
+            onClick={() => isFunction(onStarClick) && onStarClick(starIndex)}
+            width={size}
+            height={size}
+          />
+        );
+      })}
     </div>
   );
 };

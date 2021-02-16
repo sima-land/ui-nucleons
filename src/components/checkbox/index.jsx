@@ -1,5 +1,5 @@
 import React, { useState, forwardRef, useEffect } from 'react';
-import CheckboxIcon from '../icons/checkbox.svg';
+import CheckboxIcon from './checkbox.svg';
 import classnames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import classes from './checkbox.scss';

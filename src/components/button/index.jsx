@@ -1,5 +1,4 @@
 import React, { Fragment, forwardRef } from 'react';
-import Icon from '../icon';
 import classnames from 'classnames/bind';
 import classes from './button.scss';
 import PropTypes from 'prop-types';
@@ -30,7 +29,7 @@ const Button = forwardRef(function Button ({
   actionType = 'primary',
   appearance = 'button',
   size = 'medium',
-  icon,
+  icon: Icon,
   iconPosition = 'start',
   ...restProps
 }, ref) {
@@ -38,7 +37,7 @@ const Button = forwardRef(function Button ({
     className,
     size,
     actionType,
-    withIcon: Boolean(icon),
+    withIcon: Boolean(Icon),
     withContent: Boolean(children) && children !== 0,
     iconPosition,
   });
@@ -53,18 +52,18 @@ const Button = forwardRef(function Button ({
       className={readyClassName}
       children={(
         <Fragment>
-          {icon && iconPosition === 'start' && (
+          {Icon && iconPosition === 'start' && (
             <Icon
-              size={24}
-              icon={icon}
+              width={24}
+              height={24}
               className={cx('icon', `icon-${children ? 'start' : ''}`)}
             />
           )}
           {children}
-          {icon && iconPosition === 'end' && (
+          {Icon && iconPosition === 'end' && (
             <Icon
-              size={24}
-              icon={icon}
+              width={24}
+              height={24}
               className={cx('icon', `icon-${children ? 'end' : ''}`)}
             />
           )}

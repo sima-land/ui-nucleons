@@ -68,30 +68,19 @@ exports[`<StyledGallery /> should render with custom props 1`] = `
           onClick={[Function]}
           type="button"
         >
-          <Icon
-            icon={[Function]}
-            size={10}
-          >
-            <arrowUp
-              className="icon icon-block"
-              height={10}
-              viewBox="0 0 36 36"
-              width={10}
-              xmlns="http://www.w3.org/2000/svg"
+          <UpSVG>
+            <svg
+              height={16}
+              viewBox="0 0 16 16"
+              width={16}
             >
-              <svg
-                className="icon icon-block"
-                height={10}
-                viewBox="0 0 36 36"
-                width={10}
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M18.03 6.855a2.563 2.657 0 0 0-1.807.783L.846 23.578a2.564 2.658 0 0 0 3.626 3.76l13.57-14.067 13.57 14.067a2.564 2.658 0 0 0 3.627-3.76L19.862 7.639a2.563 2.657 0 0 0-1.832-.783z"
-                />
-              </svg>
-            </arrowUp>
-          </Icon>
+              <path
+                clipRule="evenodd"
+                d="M12.753 9.659a1 1 0 01-1.412.094L8 6.829 4.659 9.753a1 1 0 01-1.317-1.506l4-3.5a1 1 0 011.317 0l4 3.5a1 1 0 01.094 1.412z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </UpSVG>
         </button>
         <div
           className="items-wrapper"
@@ -129,30 +118,19 @@ exports[`<StyledGallery /> should render with custom props 1`] = `
           onClick={[Function]}
           type="button"
         >
-          <Icon
-            icon={[Function]}
-            size={10}
-          >
-            <arrowDown
-              className="icon icon-block"
-              height={10}
-              viewBox="0 0 36 36"
-              width={10}
-              xmlns="http://www.w3.org/2000/svg"
+          <DownSVG>
+            <svg
+              height={16}
+              viewBox="0 0 16 16"
+              width={16}
             >
-              <svg
-                className="icon icon-block"
-                height={10}
-                viewBox="0 0 36 36"
-                width={10}
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M18.03 28.116a2.563 2.657 0 0 1-1.807-.783L.846 11.393a2.564 2.658 0 0 1 3.626-3.76l13.57 14.068 13.57-14.068a2.564 2.658 0 0 1 3.627 3.76l-15.377 15.94a2.563 2.657 0 0 1-1.832.783z"
-                />
-              </svg>
-            </arrowDown>
-          </Icon>
+              <path
+                clipRule="evenodd"
+                d="M3.247 6.342a1 1 0 011.412-.095L8 9.171l3.341-2.924a1 1 0 011.318 1.506l-4 3.5a1 1 0 01-1.317 0l-4-3.5a1 1 0 01-.095-1.411z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </DownSVG>
         </button>
       </BaseGallery>
     </withGlobalListeners(BaseGallery)>
@@ -210,30 +188,19 @@ exports[`getControlProps default 1`] = `
     disabled={false}
     type="button"
   >
-    <Icon
-      icon={[Function]}
-      size={10}
-    >
-      <arrowUp
-        className="icon icon-block"
-        height={10}
-        viewBox="0 0 36 36"
-        width={10}
-        xmlns="http://www.w3.org/2000/svg"
+    <UpSVG>
+      <svg
+        height={16}
+        viewBox="0 0 16 16"
+        width={16}
       >
-        <svg
-          className="icon icon-block"
-          height={10}
-          viewBox="0 0 36 36"
-          width={10}
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M18.03 6.855a2.563 2.657 0 0 0-1.807.783L.846 23.578a2.564 2.658 0 0 0 3.626 3.76l13.57-14.067 13.57 14.067a2.564 2.658 0 0 0 3.627-3.76L19.862 7.639a2.563 2.657 0 0 0-1.832-.783z"
-          />
-        </svg>
-      </arrowUp>
-    </Icon>
+        <path
+          clipRule="evenodd"
+          d="M12.753 9.659a1 1 0 01-1.412.094L8 6.829 4.659 9.753a1 1 0 01-1.317-1.506l4-3.5a1 1 0 011.317 0l4 3.5a1 1 0 01.094 1.412z"
+          fillRule="evenodd"
+        />
+      </svg>
+    </UpSVG>
   </button>
 </ForwardRef(Button)>
 `;
@@ -251,30 +218,19 @@ exports[`getControlProps with params 1`] = `
     disabled={true}
     type="button"
   >
-    <Icon
-      icon={[Function]}
-      size={10}
-    >
-      <arrowRight
-        className="icon icon-block"
-        height={10}
-        viewBox="0 0 36 36"
-        width={10}
-        xmlns="http://www.w3.org/2000/svg"
+    <RightSVG>
+      <svg
+        height={16}
+        viewBox="0 0 16 16"
+        width={16}
       >
-        <svg
-          className="icon icon-block"
-          height={10}
-          viewBox="0 0 36 36"
-          width={10}
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M10.076 36.028c.855 0 1.711-.33 2.356-.99l16.829-17.024L12.432.991a3.299 3.299 0 0 0-4.713 0 3.398 3.398 0 0 0 0 4.774l12.1 12.25-12.1 12.249a3.398 3.398 0 0 0 0 4.774c.645.66 1.5.99 2.357.99"
-          />
-        </svg>
-      </arrowRight>
-    </Icon>
+        <path
+          clipRule="evenodd"
+          d="M6.341 12.753a1 1 0 01-.094-1.412L9.171 8 6.247 4.659a1 1 0 011.506-1.317l3.5 4a1 1 0 010 1.317l-3.5 4a1 1 0 01-1.412.094z"
+          fillRule="evenodd"
+        />
+      </svg>
+    </RightSVG>
   </button>
 </ForwardRef(Button)>
 `;

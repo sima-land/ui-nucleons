@@ -1,9 +1,9 @@
 import React from 'react';
-import Icon from '../icon';
 import classnames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import classes from './panel.scss';
 import { color, bgColor } from '../styling/colors';
+import { COLORS } from '../constants';
 
 const cx = classnames.bind(classes);
 
@@ -23,7 +23,7 @@ const Panel = ({
   color: panelColor = 'gray4',
   contentColor = 'gray87',
   inline = false,
-  icon,
+  icon: Icon,
   className,
   children,
   html,
@@ -41,10 +41,9 @@ const Panel = ({
         className
       )}
     >
-      {Boolean(icon) && (
+      {Boolean(Icon) && (
         <Icon
-          icon={icon}
-          color={contentColor}
+          fill={COLORS.get(contentColor)}
           width={16}
           height={20}
           className={cx('icon')}

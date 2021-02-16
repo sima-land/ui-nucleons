@@ -17,34 +17,22 @@ exports[`Tooltip should handle "inline" prop 1`] = `
       }
     }
   >
-    <Icon
+    <CrossSVG
       className="tooltip-cross"
-      icon={[Function]}
       onClick={[Function]}
-      size={16}
     >
-      <crossIcon
-        className="icon icon-block tooltip-cross"
+      <svg
+        className="tooltip-cross"
         height={16}
         onClick={[Function]}
-        viewBox="0 0 36 36"
+        viewBox="0 0 16 16"
         width={16}
-        xmlns="http://www.w3.org/2000/svg"
       >
-        <svg
-          className="icon icon-block tooltip-cross"
-          height={16}
-          onClick={[Function]}
-          viewBox="0 0 36 36"
-          width={16}
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M28.59 10.591a2.25 2.25 0 1 0-3.182-3.182L18 14.818 10.59 7.409a2.25 2.25 0 1 0-3.182 3.182L14.818 18l-7.41 7.409a2.25 2.25 0 0 0 3.182 3.182L18 21.182l7.408 7.409a2.25 2.25 0 0 0 3.182-3.182L21.181 18l7.41-7.409z"
-          />
-        </svg>
-      </crossIcon>
-    </Icon>
+        <path
+          d="M12.707 4.707a1 1 0 00-1.414-1.414L8 6.586 4.707 3.293a1 1 0 00-1.414 1.414L6.586 8l-3.293 3.293a1 1 0 101.414 1.414L8 9.414l3.293 3.293a1 1 0 001.414-1.414L9.414 8l3.293-3.293z"
+        />
+      </svg>
+    </CrossSVG>
     <div
       className="tooltip-content"
     >
@@ -70,34 +58,22 @@ exports[`Tooltip should renders 1`] = `
       }
     }
   >
-    <Icon
+    <CrossSVG
       className="tooltip-cross"
-      icon={[Function]}
       onClick={[Function]}
-      size={16}
     >
-      <crossIcon
-        className="icon icon-block tooltip-cross"
+      <svg
+        className="tooltip-cross"
         height={16}
         onClick={[Function]}
-        viewBox="0 0 36 36"
+        viewBox="0 0 16 16"
         width={16}
-        xmlns="http://www.w3.org/2000/svg"
       >
-        <svg
-          className="icon icon-block tooltip-cross"
-          height={16}
-          onClick={[Function]}
-          viewBox="0 0 36 36"
-          width={16}
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M28.59 10.591a2.25 2.25 0 1 0-3.182-3.182L18 14.818 10.59 7.409a2.25 2.25 0 1 0-3.182 3.182L14.818 18l-7.41 7.409a2.25 2.25 0 0 0 3.182 3.182L18 21.182l7.408 7.409a2.25 2.25 0 0 0 3.182-3.182L21.181 18l7.41-7.409z"
-          />
-        </svg>
-      </crossIcon>
-    </Icon>
+        <path
+          d="M12.707 4.707a1 1 0 00-1.414-1.414L8 6.586 4.707 3.293a1 1 0 00-1.414 1.414L6.586 8l-3.293 3.293a1 1 0 101.414 1.414L8 9.414l3.293 3.293a1 1 0 001.414-1.414L9.414 8l3.293-3.293z"
+        />
+      </svg>
+    </CrossSVG>
     <div
       className="tooltip-content"
     >

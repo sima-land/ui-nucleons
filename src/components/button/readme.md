@@ -5,24 +5,24 @@
 
 Виды кнопок:
 ```jsx
-import { amountPlus } from '../icons';
+import PlusSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/plus.js';
 
 const types = ['primary', 'secondary'];
 const sizes = ['small', 'medium'];
 const states = [undefined, 'disabled'];
 const contents = [
   {
-    icon: amountPlus,
+    icon: PlusSVG,
   },
   {
     children: 'Действие',
   },
   {
-    icon: amountPlus,
+    icon: PlusSVG,
     children: 'Действие',
   },
   {
-    icon: amountPlus,
+    icon: PlusSVG,
     iconPosition: 'end',
     children: 'Действие',
   },

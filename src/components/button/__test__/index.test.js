@@ -1,7 +1,8 @@
 import React from 'react';
 import Button, { computeClassName } from '../index';
 import { shallow } from 'enzyme';
-import { search, amountPlus } from '../../icons';
+import SearchSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/search.js';
+import PlusSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/plus.js';
 
 describe('<Button />', () => {
   it('should renders without props', () => {
@@ -15,7 +16,7 @@ describe('<Button />', () => {
     expect(wrapper).toMatchSnapshot();
   });
   it('should render icon button', () => {
-    const wrapper = shallow(<Button icon={amountPlus} />);
+    const wrapper = shallow(<Button icon={PlusSVG} />);
 
     expect(wrapper).toMatchSnapshot();
     wrapper.setProps({ iconPosition: 'end' });
@@ -29,7 +30,7 @@ describe('<Button />', () => {
     expect(wrapper).toMatchSnapshot();
   });
   it('should handle "icon" and "iconPosition" props', () => {
-    const wrapper = shallow(<Button icon={search}>Икать</Button>);
+    const wrapper = shallow(<Button icon={SearchSVG}>Икать</Button>);
 
     expect(wrapper).toMatchSnapshot();
     wrapper.setProps({ iconPosition: 'end' });

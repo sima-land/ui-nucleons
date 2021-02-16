@@ -1,16 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
 import Popup from '../popups/popup';
-import Icon from '../icon';
 import TopBar from '../top-bar';
 import composeClasses from '../helpers/compose-classes';
 import { useCloseHandler } from './utils';
 import classnames from 'classnames/bind';
 import PropTypes from 'prop-types';
-
 import styles from './modal.scss';
-import crossIcon from '../icons/cross.svg';
-import bigCrossIcon from '../icons/cross-big.svg';
+import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
+import CrossSmallSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/cross';
 
 const cx = classnames.bind(styles);
 
@@ -98,9 +96,7 @@ const Modal = ({
                 onClick: onClose,
                 icon: withCloseButton
                   ? (
-                    <Icon
-                      icon={bigCrossIcon}
-                      size={24}
+                    <CrossSVG
                       className={cx('cursor-pointer')}
                     />
                   )
@@ -111,9 +107,7 @@ const Modal = ({
           />
         )}
         {!extended && Boolean(withCloseButton) && (
-          <Icon
-            size={closeButtonSize}
-            icon={crossIcon}
+          <CrossSmallSVG
             className={readyClasses.close}
             onClick={onClose}
           />

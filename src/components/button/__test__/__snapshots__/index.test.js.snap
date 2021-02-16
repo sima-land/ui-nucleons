@@ -4,10 +4,10 @@ exports[`<Button /> should handle "icon" and "iconPosition" props 1`] = `
 <button
   className="button-base button-primary button-medium button-medium-with-start-icon"
 >
-  <Icon
+  <SearchSVG
     className="icon icon-start"
-    icon={[Function]}
-    size={24}
+    height={24}
+    width={24}
   />
   Икать
 </button>
@@ -18,10 +18,10 @@ exports[`<Button /> should handle "icon" and "iconPosition" props 2`] = `
   className="button-base button-primary button-medium button-medium-with-end-icon"
 >
   Икать
-  <Icon
+  <SearchSVG
     className="icon icon-end"
-    icon={[Function]}
-    size={24}
+    height={24}
+    width={24}
   />
 </button>
 `;
@@ -30,10 +30,10 @@ exports[`<Button /> should handle "icon" and "iconPosition" props 3`] = `
 <button
   className="button-base button-primary button-medium button-medium-with-start-icon"
 >
-  <Icon
+  <SearchSVG
     className="icon icon-start"
-    icon={[Function]}
-    size={24}
+    height={24}
+    width={24}
   />
   Икать
 </button>
@@ -59,10 +59,10 @@ exports[`<Button /> should render icon button 1`] = `
 <button
   className="button-base button-primary button-medium"
 >
-  <Icon
+  <PlusSVG
     className="icon icon-"
-    icon={[Function]}
-    size={24}
+    height={24}
+    width={24}
   />
 </button>
 `;
@@ -71,10 +71,10 @@ exports[`<Button /> should render icon button 2`] = `
 <button
   className="button-base button-primary button-medium"
 >
-  <Icon
+  <PlusSVG
     className="icon icon-"
-    icon={[Function]}
-    size={24}
+    height={24}
+    width={24}
   />
 </button>
 `;

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import Icon from '../icon';
 import Layer from '../layer';
 import { placeTooltip } from './utils';
 import classnames from 'classnames/bind';
@@ -8,9 +7,8 @@ import PropTypes from 'prop-types';
 import { isFunction, debounce } from 'lodash';
 import on from '../helpers/on';
 import { getScrollParent } from '../helpers/get-scroll-parent';
-
 import classes from './with-tooltip.scss';
-import crossIcon from '../icons/stroked-cross.svg';
+import CrossSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/cross';
 
 const cx = classnames.bind(classes);
 
@@ -135,9 +133,7 @@ export const Tooltip = ({
       }}
       className={cx('tooltip', className)}
     >
-      <Icon
-        size={16}
-        icon={crossIcon}
+      <CrossSVG
         className={cx('tooltip-cross')}
         onClick={event => {
           isFunction(onDismiss) && onDismiss(event, { byHolder: false });

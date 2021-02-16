@@ -102,31 +102,19 @@ exports[`<TopBar /> should renders with all icons 1`] = `
   buttonsProps={
     Object {
       "end": Object {
-        "icon": <Icon
-          icon={[Function]}
-          size={24}
-        />,
+        "icon": <CrossSVG />,
         "onClick": [Function],
       },
       "endSecondary": Object {
-        "icon": <Icon
-          icon={[Function]}
-          size={24}
-        />,
+        "icon": <PersonSVG />,
         "onClick": [Function],
       },
       "start": Object {
-        "icon": <Icon
-          icon={[Function]}
-          size={24}
-        />,
+        "icon": <ArrowLeftSVG />,
         "onClick": [Function],
       },
       "startSecondary": Object {
-        "icon": <Icon
-          icon={[Function]}
-          size={24}
-        />,
+        "icon": <PersonSVG />,
         "onClick": [Function],
       },
     }
@@ -136,12 +124,7 @@ exports[`<TopBar /> should renders with all icons 1`] = `
     className="modal-header size-m"
   >
     <IconButton
-      icon={
-        <Icon
-          icon={[Function]}
-          size={24}
-        />
-      }
+      icon={<ArrowLeftSVG />}
       onClick={[Function]}
     >
       <button
@@ -149,39 +132,21 @@ exports[`<TopBar /> should renders with all icons 1`] = `
         onClick={[Function]}
         type="button"
       >
-        <Icon
-          icon={[Function]}
-          size={24}
-        >
-          <leftIcon
-            className="icon icon-block"
+        <ArrowLeftSVG>
+          <svg
             height={24}
-            viewBox="0 0 36 36"
+            viewBox="0 0 24 24"
             width={24}
-            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              className="icon icon-block"
-              height={24}
-              viewBox="0 0 36 36"
-              width={24}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8.121 19.5l7.941 7.938c.583.585.583 1.539 0 2.125a1.511 1.511 0 0 1-2.125 0l-10.5-10.5a1.511 1.511 0 0 1 0-2.125l10.5-10.5a1.511 1.511 0 0 1 2.126 0c.582.585.582 1.539 0 2.125L8.12 16.5H31.5a1.5 1.5 0 0 1 0 3zm0 0"
-              />
-            </svg>
-          </leftIcon>
-        </Icon>
+            <path
+              d="M5.414 13l5.293 5.293a1 1 0 01-1.414 1.414l-7-7a1 1 0 010-1.414l7-7a1 1 0 011.414 1.414L5.414 11H21a1 1 0 110 2H5.414z"
+            />
+          </svg>
+        </ArrowLeftSVG>
       </button>
     </IconButton>
     <IconButton
-      icon={
-        <Icon
-          icon={[Function]}
-          size={24}
-        />
-      }
+      icon={<PersonSVG />}
       onClick={[Function]}
     >
       <button
@@ -189,30 +154,22 @@ exports[`<TopBar /> should renders with all icons 1`] = `
         onClick={[Function]}
         type="button"
       >
-        <Icon
-          icon={[Function]}
-          size={24}
-        >
-          <capIcon
-            className="icon icon-block"
+        <PersonSVG>
+          <svg
             height={24}
-            viewBox="0 0 36 36"
+            viewBox="0 0 24 24"
             width={24}
-            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              className="icon icon-block"
-              height={24}
-              viewBox="0 0 36 36"
-              width={24}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M25.763 24.085a14.645 14.645 0 0 0 3.22-9.017A14.492 14.492 0 1 0 14.492 29.56a13.735 13.735 0 0 0 9.017-3.22l9.178 9.177a1.554 1.554 0 0 0 2.254 0 1.554 1.554 0 0 0 0-2.254zm-11.271 2.254a11.271 11.271 0 1 1 11.27-11.271 11.199 11.199 0 0 1-11.27 11.271z"
-              />
-            </svg>
-          </capIcon>
-        </Icon>
+            <path
+              clipRule="evenodd"
+              d="M11.88 1C8.723 1 6.356 3.887 6.975 6.98l.455 2.274a4.66 4.66 0 009.138 0l.455-2.273C17.642 3.887 15.276 1 12.12 1h-.242zM8.936 6.588A3 3 0 0111.88 3h.242a3 3 0 012.941 3.588l-.454 2.274a2.66 2.66 0 01-5.216 0l-.455-2.274z"
+              fillRule="evenodd"
+            />
+            <path
+              d="M7.214 14.977a1 1 0 00-.428-1.954c-2.223.486-3.462 1.496-4.123 2.508a4.205 4.205 0 00-.573 1.311 3.43 3.43 0 00-.09.626c-.009.51 0 1.021 0 1.532a3 3 0 003 3h14a3 3 0 003-3c0-.51.007-1.021 0-1.532l-.002-.048a3.449 3.449 0 00-.088-.578 4.203 4.203 0 00-.573-1.31c-.66-1.013-1.9-2.023-4.123-2.509a1 1 0 10-.428 1.954c1.777.389 2.538 1.129 2.877 1.648.178.272.262.518.302.685a1.44 1.44 0 01.035.203V19a1 1 0 01-1 1H5a1 1 0 01-1-1v-1.484l.002-.025c.004-.035.013-.097.033-.18.04-.168.124-.414.302-.686.34-.52 1.1-1.26 2.877-1.648z"
+            />
+          </svg>
+        </PersonSVG>
       </button>
     </IconButton>
     <div
@@ -223,12 +180,7 @@ exports[`<TopBar /> should renders with all icons 1`] = `
       />
     </div>
     <IconButton
-      icon={
-        <Icon
-          icon={[Function]}
-          size={24}
-        />
-      }
+      icon={<PersonSVG />}
       onClick={[Function]}
     >
       <button
@@ -236,39 +188,26 @@ exports[`<TopBar /> should renders with all icons 1`] = `
         onClick={[Function]}
         type="button"
       >
-        <Icon
-          icon={[Function]}
-          size={24}
-        >
-          <capIcon
-            className="icon icon-block"
+        <PersonSVG>
+          <svg
             height={24}
-            viewBox="0 0 36 36"
+            viewBox="0 0 24 24"
             width={24}
-            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              className="icon icon-block"
-              height={24}
-              viewBox="0 0 36 36"
-              width={24}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M25.763 24.085a14.645 14.645 0 0 0 3.22-9.017A14.492 14.492 0 1 0 14.492 29.56a13.735 13.735 0 0 0 9.017-3.22l9.178 9.177a1.554 1.554 0 0 0 2.254 0 1.554 1.554 0 0 0 0-2.254zm-11.271 2.254a11.271 11.271 0 1 1 11.27-11.271 11.199 11.199 0 0 1-11.27 11.271z"
-              />
-            </svg>
-          </capIcon>
-        </Icon>
+            <path
+              clipRule="evenodd"
+              d="M11.88 1C8.723 1 6.356 3.887 6.975 6.98l.455 2.274a4.66 4.66 0 009.138 0l.455-2.273C17.642 3.887 15.276 1 12.12 1h-.242zM8.936 6.588A3 3 0 0111.88 3h.242a3 3 0 012.941 3.588l-.454 2.274a2.66 2.66 0 01-5.216 0l-.455-2.274z"
+              fillRule="evenodd"
+            />
+            <path
+              d="M7.214 14.977a1 1 0 00-.428-1.954c-2.223.486-3.462 1.496-4.123 2.508a4.205 4.205 0 00-.573 1.311 3.43 3.43 0 00-.09.626c-.009.51 0 1.021 0 1.532a3 3 0 003 3h14a3 3 0 003-3c0-.51.007-1.021 0-1.532l-.002-.048a3.449 3.449 0 00-.088-.578 4.203 4.203 0 00-.573-1.31c-.66-1.013-1.9-2.023-4.123-2.509a1 1 0 10-.428 1.954c1.777.389 2.538 1.129 2.877 1.648.178.272.262.518.302.685a1.44 1.44 0 01.035.203V19a1 1 0 01-1 1H5a1 1 0 01-1-1v-1.484l.002-.025c.004-.035.013-.097.033-.18.04-.168.124-.414.302-.686.34-.52 1.1-1.26 2.877-1.648z"
+            />
+          </svg>
+        </PersonSVG>
       </button>
     </IconButton>
     <IconButton
-      icon={
-        <Icon
-          icon={[Function]}
-          size={24}
-        />
-      }
+      icon={<CrossSVG />}
       onClick={[Function]}
     >
       <button
@@ -276,32 +215,19 @@ exports[`<TopBar /> should renders with all icons 1`] = `
         onClick={[Function]}
         type="button"
       >
-        <Icon
-          icon={[Function]}
-          size={24}
-        >
-          <crossIcon
-            className="icon icon-block"
+        <CrossSVG>
+          <svg
             height={24}
-            viewBox="0 0 36 36"
+            viewBox="0 0 24 24"
             width={24}
-            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              className="icon icon-block"
-              height={24}
-              viewBox="0 0 36 36"
-              width={24}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                clipRule="evenodd"
-                d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
-                fillRule="evenodd"
-              />
-            </svg>
-          </crossIcon>
-        </Icon>
+            <path
+              clipRule="evenodd"
+              d="M4.293 19.707a1 1 0 001.414 0L12 13.414l6.293 6.293a1 1 0 001.414-1.414L13.414 12l6.293-6.293a1 1 0 00-1.414-1.414L12 10.586 5.707 4.293a1 1 0 00-1.414 1.414L10.586 12l-6.293 6.293a1 1 0 000 1.414z"
+              fillRule="evenodd"
+            />
+          </svg>
+        </CrossSVG>
       </button>
     </IconButton>
   </div>
@@ -313,10 +239,7 @@ exports[`<TopBar /> should renders with end icon 1`] = `
   buttonsProps={
     Object {
       "end": Object {
-        "icon": <Icon
-          icon={[Function]}
-          size={24}
-        />,
+        "icon": <CrossSVG />,
         "onClick": [Function],
       },
     }
@@ -336,12 +259,7 @@ exports[`<TopBar /> should renders with end icon 1`] = `
       />
     </div>
     <IconButton
-      icon={
-        <Icon
-          icon={[Function]}
-          size={24}
-        />
-      }
+      icon={<CrossSVG />}
       onClick={[Function]}
     >
       <button
@@ -349,32 +267,19 @@ exports[`<TopBar /> should renders with end icon 1`] = `
         onClick={[Function]}
         type="button"
       >
-        <Icon
-          icon={[Function]}
-          size={24}
-        >
-          <crossIcon
-            className="icon icon-block"
+        <CrossSVG>
+          <svg
             height={24}
-            viewBox="0 0 36 36"
+            viewBox="0 0 24 24"
             width={24}
-            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              className="icon icon-block"
-              height={24}
-              viewBox="0 0 36 36"
-              width={24}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                clipRule="evenodd"
-                d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
-                fillRule="evenodd"
-              />
-            </svg>
-          </crossIcon>
-        </Icon>
+            <path
+              clipRule="evenodd"
+              d="M4.293 19.707a1 1 0 001.414 0L12 13.414l6.293 6.293a1 1 0 001.414-1.414L13.414 12l6.293-6.293a1 1 0 00-1.414-1.414L12 10.586 5.707 4.293a1 1 0 00-1.414 1.414L10.586 12l-6.293 6.293a1 1 0 000 1.414z"
+              fillRule="evenodd"
+            />
+          </svg>
+        </CrossSVG>
       </button>
     </IconButton>
   </div>
@@ -386,17 +291,11 @@ exports[`<TopBar /> should renders with end icons 1`] = `
   buttonsProps={
     Object {
       "end": Object {
-        "icon": <Icon
-          icon={[Function]}
-          size={24}
-        />,
+        "icon": <CrossSVG />,
         "onClick": [Function],
       },
       "endSecondary": Object {
-        "icon": <Icon
-          icon={[Function]}
-          size={24}
-        />,
+        "icon": <PersonSVG />,
         "onClick": [Function],
       },
     }
@@ -419,12 +318,7 @@ exports[`<TopBar /> should renders with end icons 1`] = `
       />
     </div>
     <IconButton
-      icon={
-        <Icon
-          icon={[Function]}
-          size={24}
-        />
-      }
+      icon={<PersonSVG />}
       onClick={[Function]}
     >
       <button
@@ -432,39 +326,26 @@ exports[`<TopBar /> should renders with end icons 1`] = `
         onClick={[Function]}
         type="button"
       >
-        <Icon
-          icon={[Function]}
-          size={24}
-        >
-          <capIcon
-            className="icon icon-block"
+        <PersonSVG>
+          <svg
             height={24}
-            viewBox="0 0 36 36"
+            viewBox="0 0 24 24"
             width={24}
-            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              className="icon icon-block"
-              height={24}
-              viewBox="0 0 36 36"
-              width={24}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M25.763 24.085a14.645 14.645 0 0 0 3.22-9.017A14.492 14.492 0 1 0 14.492 29.56a13.735 13.735 0 0 0 9.017-3.22l9.178 9.177a1.554 1.554 0 0 0 2.254 0 1.554 1.554 0 0 0 0-2.254zm-11.271 2.254a11.271 11.271 0 1 1 11.27-11.271 11.199 11.199 0 0 1-11.27 11.271z"
-              />
-            </svg>
-          </capIcon>
-        </Icon>
+            <path
+              clipRule="evenodd"
+              d="M11.88 1C8.723 1 6.356 3.887 6.975 6.98l.455 2.274a4.66 4.66 0 009.138 0l.455-2.273C17.642 3.887 15.276 1 12.12 1h-.242zM8.936 6.588A3 3 0 0111.88 3h.242a3 3 0 012.941 3.588l-.454 2.274a2.66 2.66 0 01-5.216 0l-.455-2.274z"
+              fillRule="evenodd"
+            />
+            <path
+              d="M7.214 14.977a1 1 0 00-.428-1.954c-2.223.486-3.462 1.496-4.123 2.508a4.205 4.205 0 00-.573 1.311 3.43 3.43 0 00-.09.626c-.009.51 0 1.021 0 1.532a3 3 0 003 3h14a3 3 0 003-3c0-.51.007-1.021 0-1.532l-.002-.048a3.449 3.449 0 00-.088-.578 4.203 4.203 0 00-.573-1.31c-.66-1.013-1.9-2.023-4.123-2.509a1 1 0 10-.428 1.954c1.777.389 2.538 1.129 2.877 1.648.178.272.262.518.302.685a1.44 1.44 0 01.035.203V19a1 1 0 01-1 1H5a1 1 0 01-1-1v-1.484l.002-.025c.004-.035.013-.097.033-.18.04-.168.124-.414.302-.686.34-.52 1.1-1.26 2.877-1.648z"
+            />
+          </svg>
+        </PersonSVG>
       </button>
     </IconButton>
     <IconButton
-      icon={
-        <Icon
-          icon={[Function]}
-          size={24}
-        />
-      }
+      icon={<CrossSVG />}
       onClick={[Function]}
     >
       <button
@@ -472,32 +353,19 @@ exports[`<TopBar /> should renders with end icons 1`] = `
         onClick={[Function]}
         type="button"
       >
-        <Icon
-          icon={[Function]}
-          size={24}
-        >
-          <crossIcon
-            className="icon icon-block"
+        <CrossSVG>
+          <svg
             height={24}
-            viewBox="0 0 36 36"
+            viewBox="0 0 24 24"
             width={24}
-            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              className="icon icon-block"
-              height={24}
-              viewBox="0 0 36 36"
-              width={24}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                clipRule="evenodd"
-                d="M6.44 29.56a1.5 1.5 0 0 0 2.12 0L18 20.122l9.44 9.44a1.5 1.5 0 1 0 2.12-2.122L20.122 18l9.44-9.44a1.5 1.5 0 1 0-2.122-2.12L18 15.878l-9.44-9.44a1.5 1.5 0 0 0-2.12 2.122L15.878 18l-9.44 9.44a1.5 1.5 0 0 0 0 2.12z"
-                fillRule="evenodd"
-              />
-            </svg>
-          </crossIcon>
-        </Icon>
+            <path
+              clipRule="evenodd"
+              d="M4.293 19.707a1 1 0 001.414 0L12 13.414l6.293 6.293a1 1 0 001.414-1.414L13.414 12l6.293-6.293a1 1 0 00-1.414-1.414L12 10.586 5.707 4.293a1 1 0 00-1.414 1.414L10.586 12l-6.293 6.293a1 1 0 000 1.414z"
+              fillRule="evenodd"
+            />
+          </svg>
+        </CrossSVG>
       </button>
     </IconButton>
   </div>
@@ -509,10 +377,7 @@ exports[`<TopBar /> should renders with start icon 1`] = `
   buttonsProps={
     Object {
       "start": Object {
-        "icon": <Icon
-          icon={[Function]}
-          size={24}
-        />,
+        "icon": <ArrowLeftSVG />,
         "onClick": [Function],
       },
     }
@@ -522,12 +387,7 @@ exports[`<TopBar /> should renders with start icon 1`] = `
     className="modal-header size-m"
   >
     <IconButton
-      icon={
-        <Icon
-          icon={[Function]}
-          size={24}
-        />
-      }
+      icon={<ArrowLeftSVG />}
       onClick={[Function]}
     >
       <button
@@ -535,30 +395,17 @@ exports[`<TopBar /> should renders with start icon 1`] = `
         onClick={[Function]}
         type="button"
       >
-        <Icon
-          icon={[Function]}
-          size={24}
-        >
-          <leftIcon
-            className="icon icon-block"
+        <ArrowLeftSVG>
+          <svg
             height={24}
-            viewBox="0 0 36 36"
+            viewBox="0 0 24 24"
             width={24}
-            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              className="icon icon-block"
-              height={24}
-              viewBox="0 0 36 36"
-              width={24}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8.121 19.5l7.941 7.938c.583.585.583 1.539 0 2.125a1.511 1.511 0 0 1-2.125 0l-10.5-10.5a1.511 1.511 0 0 1 0-2.125l10.5-10.5a1.511 1.511 0 0 1 2.126 0c.582.585.582 1.539 0 2.125L8.12 16.5H31.5a1.5 1.5 0 0 1 0 3zm0 0"
-              />
-            </svg>
-          </leftIcon>
-        </Icon>
+            <path
+              d="M5.414 13l5.293 5.293a1 1 0 01-1.414 1.414l-7-7a1 1 0 010-1.414l7-7a1 1 0 011.414 1.414L5.414 11H21a1 1 0 110 2H5.414z"
+            />
+          </svg>
+        </ArrowLeftSVG>
       </button>
     </IconButton>
     <div
@@ -580,17 +427,11 @@ exports[`<TopBar /> should renders with start icons 1`] = `
   buttonsProps={
     Object {
       "start": Object {
-        "icon": <Icon
-          icon={[Function]}
-          size={24}
-        />,
+        "icon": <ArrowLeftSVG />,
         "onClick": [Function],
       },
       "startSecondary": Object {
-        "icon": <Icon
-          icon={[Function]}
-          size={24}
-        />,
+        "icon": <PersonSVG />,
         "onClick": [Function],
       },
     }
@@ -600,12 +441,7 @@ exports[`<TopBar /> should renders with start icons 1`] = `
     className="modal-header size-m"
   >
     <IconButton
-      icon={
-        <Icon
-          icon={[Function]}
-          size={24}
-        />
-      }
+      icon={<ArrowLeftSVG />}
       onClick={[Function]}
     >
       <button
@@ -613,39 +449,21 @@ exports[`<TopBar /> should renders with start icons 1`] = `
         onClick={[Function]}
         type="button"
       >
-        <Icon
-          icon={[Function]}
-          size={24}
-        >
-          <leftIcon
-            className="icon icon-block"
+        <ArrowLeftSVG>
+          <svg
             height={24}
-            viewBox="0 0 36 36"
+            viewBox="0 0 24 24"
             width={24}
-            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              className="icon icon-block"
-              height={24}
-              viewBox="0 0 36 36"
-              width={24}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8.121 19.5l7.941 7.938c.583.585.583 1.539 0 2.125a1.511 1.511 0 0 1-2.125 0l-10.5-10.5a1.511 1.511 0 0 1 0-2.125l10.5-10.5a1.511 1.511 0 0 1 2.126 0c.582.585.582 1.539 0 2.125L8.12 16.5H31.5a1.5 1.5 0 0 1 0 3zm0 0"
-              />
-            </svg>
-          </leftIcon>
-        </Icon>
+            <path
+              d="M5.414 13l5.293 5.293a1 1 0 01-1.414 1.414l-7-7a1 1 0 010-1.414l7-7a1 1 0 011.414 1.414L5.414 11H21a1 1 0 110 2H5.414z"
+            />
+          </svg>
+        </ArrowLeftSVG>
       </button>
     </IconButton>
     <IconButton
-      icon={
-        <Icon
-          icon={[Function]}
-          size={24}
-        />
-      }
+      icon={<PersonSVG />}
       onClick={[Function]}
     >
       <button
@@ -653,30 +471,22 @@ exports[`<TopBar /> should renders with start icons 1`] = `
         onClick={[Function]}
         type="button"
       >
-        <Icon
-          icon={[Function]}
-          size={24}
-        >
-          <capIcon
-            className="icon icon-block"
+        <PersonSVG>
+          <svg
             height={24}
-            viewBox="0 0 36 36"
+            viewBox="0 0 24 24"
             width={24}
-            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              className="icon icon-block"
-              height={24}
-              viewBox="0 0 36 36"
-              width={24}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M25.763 24.085a14.645 14.645 0 0 0 3.22-9.017A14.492 14.492 0 1 0 14.492 29.56a13.735 13.735 0 0 0 9.017-3.22l9.178 9.177a1.554 1.554 0 0 0 2.254 0 1.554 1.554 0 0 0 0-2.254zm-11.271 2.254a11.271 11.271 0 1 1 11.27-11.271 11.199 11.199 0 0 1-11.27 11.271z"
-              />
-            </svg>
-          </capIcon>
-        </Icon>
+            <path
+              clipRule="evenodd"
+              d="M11.88 1C8.723 1 6.356 3.887 6.975 6.98l.455 2.274a4.66 4.66 0 009.138 0l.455-2.273C17.642 3.887 15.276 1 12.12 1h-.242zM8.936 6.588A3 3 0 0111.88 3h.242a3 3 0 012.941 3.588l-.454 2.274a2.66 2.66 0 01-5.216 0l-.455-2.274z"
+              fillRule="evenodd"
+            />
+            <path
+              d="M7.214 14.977a1 1 0 00-.428-1.954c-2.223.486-3.462 1.496-4.123 2.508a4.205 4.205 0 00-.573 1.311 3.43 3.43 0 00-.09.626c-.009.51 0 1.021 0 1.532a3 3 0 003 3h14a3 3 0 003-3c0-.51.007-1.021 0-1.532l-.002-.048a3.449 3.449 0 00-.088-.578 4.203 4.203 0 00-.573-1.31c-.66-1.013-1.9-2.023-4.123-2.509a1 1 0 10-.428 1.954c1.777.389 2.538 1.129 2.877 1.648.178.272.262.518.302.685a1.44 1.44 0 01.035.203V19a1 1 0 01-1 1H5a1 1 0 01-1-1v-1.484l.002-.025c.004-.035.013-.097.033-.18.04-.168.124-.414.302-.686.34-.52 1.1-1.26 2.877-1.648z"
+            />
+          </svg>
+        </PersonSVG>
       </button>
     </IconButton>
     <div

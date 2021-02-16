@@ -1,11 +1,10 @@
 import React from 'react';
 import classes from './styled-gallery.scss';
 import classNames from 'classnames/bind';
-import Icon from '../../icon';
-import arrowUp from '../../icons/arrow-up.svg';
-import arrowLeft from '../../icons/arrow-left.svg';
-import arrowDown from '../../icons/arrow-down.svg';
-import arrowRight from '../../icons/arrow-right.svg';
+import UpSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/up';
+import LeftSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/left';
+import DownSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/down';
+import RightSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/right';
 import BaseGallery from '../base-gallery/';
 import PropTypes from 'prop-types';
 
@@ -21,12 +20,12 @@ const cx = classNames.bind(classes);
  * @return {Object} Объект с параметрами.
  */
 export const getControlProps = (type = 'forward', disabled = false, arrows = {}) => {
-  const [icon, buttonClass] = arrows[type] || [];
+  const [Icon, buttonClass] = arrows[type] || [UpSVG];
   const direction = type === 'forward' ? 'вперед' : 'назад';
   return {
     type: 'button',
     className: cx('button', disabled && 'disabled', buttonClass),
-    children: <Icon icon={icon || arrowUp} size={10} />,
+    children: <Icon />,
     disabled,
     'aria-label': `Промотать ${direction}`,
   };
@@ -48,8 +47,8 @@ export const StyledGallery = ({
 }) => {
   const vertical = direction === 'vertical';
   const arrows = {
-    backward: vertical ? [arrowUp, cx('arrow-up')] : [arrowLeft, cx('arrow-left')],
-    forward: vertical ? [arrowDown, cx('arrow-down')] : [arrowRight, cx('arrow-right')],
+    backward: vertical ? [UpSVG, cx('arrow-up')] : [LeftSVG, cx('arrow-left')],
+    forward: vertical ? [DownSVG, cx('arrow-down')] : [RightSVG, cx('arrow-right')],
   };
   const {
     className: galleryClasses,

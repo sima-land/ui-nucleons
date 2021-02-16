@@ -5,10 +5,14 @@
   display: flex;
   align-items: center;
   .button {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     position: absolute;
     flex-shrink: 0;
-    padding: 8px;
     border: 0;
     box-shadow: 0 0 0 1px rgba($black, .1), 0 2px 3px rgba($black, .3);
     z-index: 4;
