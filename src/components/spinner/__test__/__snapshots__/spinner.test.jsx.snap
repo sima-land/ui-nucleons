@@ -9,7 +9,6 @@ exports[`<Spinner /> should render component 1`] = `
       stroke="#1f84db"
       viewBox="0 0 48 48"
       width={48}
-      xmlns="http://www.w3.org/2000/svg"
     >
       <circle
         className="circle"
@@ -31,7 +30,6 @@ exports[`<Spinner /> should render component with different colors 1`] = `
       stroke="#1f84db"
       viewBox="0 0 48 48"
       width={48}
-      xmlns="http://www.w3.org/2000/svg"
     >
       <circle
         className="circle"
@@ -55,7 +53,6 @@ exports[`<Spinner /> should render component with different colors 2`] = `
       stroke="#fff"
       viewBox="0 0 48 48"
       width={48}
-      xmlns="http://www.w3.org/2000/svg"
     >
       <circle
         className="circle"
@@ -79,7 +76,6 @@ exports[`<Spinner /> should render component with different colors 3`] = `
       stroke="#1f84db"
       viewBox="0 0 48 48"
       width={48}
-      xmlns="http://www.w3.org/2000/svg"
     >
       <circle
         className="circle"
@@ -101,7 +97,6 @@ exports[`<Spinner /> should render component with different sizes 1`] = `
       stroke="#1f84db"
       viewBox="0 0 48 48"
       width={48}
-      xmlns="http://www.w3.org/2000/svg"
     >
       <circle
         className="circle"
@@ -125,7 +120,6 @@ exports[`<Spinner /> should render component with different sizes 2`] = `
       stroke="#1f84db"
       viewBox="0 0 20 20"
       width={20}
-      xmlns="http://www.w3.org/2000/svg"
     >
       <circle
         className="circle"
@@ -149,7 +143,6 @@ exports[`<Spinner /> should render component with different sizes 3`] = `
       stroke="#1f84db"
       viewBox="0 0 48 48"
       width={48}
-      xmlns="http://www.w3.org/2000/svg"
     >
       <circle
         className="circle"
@@ -173,7 +166,6 @@ exports[`<Spinner /> should render component with different sizes 4`] = `
       stroke="#1f84db"
       viewBox="0 0 80 80"
       width={80}
-      xmlns="http://www.w3.org/2000/svg"
     >
       <circle
         className="circle"
@@ -197,7 +189,6 @@ exports[`<Spinner /> should render component with different sizes 5`] = `
       stroke="#1f84db"
       viewBox="0 0 48 48"
       width={48}
-      xmlns="http://www.w3.org/2000/svg"
     >
       <circle
         className="circle"

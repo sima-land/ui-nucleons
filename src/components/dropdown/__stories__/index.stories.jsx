@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Dropdown } from '..';
 import { DropdownItem } from '../../dropdown-item';
-import Spinner from '../../spinner';
+import { Spinner } from '../../spinner';
 
 const Divider = () => (<div style={{ height: 64 }} />);
 
