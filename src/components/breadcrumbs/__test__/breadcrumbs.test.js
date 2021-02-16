@@ -2,7 +2,6 @@ import React from 'react';
 import { mount } from 'enzyme';
 import styles from '../breadcrumbs.scss';
 import Breadcrumbs, { createMountHandler } from '../breadcrumbs';
-import Icon from '../../icon';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import Link from '../../link/deprecated';
 
@@ -45,6 +44,7 @@ describe('<Breadcrumbs />', () => {
     expect(wrapper.find('li').at(1).text()).toContain('Second');
     expect(wrapper.find('li').at(2).text()).toContain('Third');
   });
+
   it('should render open icon for items with children', () => {
     jest.useFakeTimers();
     const spy = jest.fn();
@@ -62,21 +62,22 @@ describe('<Breadcrumbs />', () => {
         onOpenBreadcrumbs={spy}
       />
     );
+
     expect(wrapper.find('li')).toHaveLength(1);
-    expect(wrapper.find(Icon)).toHaveLength(1);
+    expect(wrapper.find('svg.toggle-icon')).toHaveLength(1);
     expect(wrapper.find(CSSTransition).prop('in')).toBe(false);
 
-    wrapper.find(Icon).simulate('click');
+    wrapper.find('svg.toggle-icon').simulate('click');
     expect(wrapper.find(CSSTransition).prop('in')).toBe(true);
 
-    wrapper.find(Icon).at(1).simulate('click');
+    wrapper.find('svg.toggle-icon').at(1).simulate('click');
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(breadcrumb);
     jest.advanceTimersByTime(1000);
     expect(wrapper.find(CSSTransition).prop('in')).toBe(false);
-    wrapper.find(Icon).at(1).simulate('click');
+    wrapper.find('svg.toggle-icon').at(1).simulate('click');
     expect(spy).toHaveBeenCalledTimes(1);
-    wrapper.find(Icon).simulate('click');
+    wrapper.find('svg.toggle-icon').simulate('click');
     expect(spy).toHaveBeenCalledTimes(2);
   });
   it('should render active child breadcrumbs with default isActiveChild function', () => {
@@ -104,7 +105,7 @@ describe('<Breadcrumbs />', () => {
     expect(wrapper.find('li').at(0).find(Link).prop('underlined')).toBeFalsy();
     expect(wrapper.find('li').at(1).find('span').text()).toContain('Active');
 
-    wrapper.find(Icon).simulate('click');
+    wrapper.find('svg.toggle-icon').simulate('click');
 
     expect(wrapper.find(`.${styles['sibling-item']}`).at(0).find(Link).prop('color')).toBe('dark-gray');
     expect(wrapper.find(`.${styles['sibling-item']}`).at(0).find(Link).prop('href')).toBe('href');
@@ -141,7 +142,7 @@ describe('<Breadcrumbs />', () => {
     expect(wrapper.find('li').at(0).find(Link).prop('underlined')).toBeFalsy();
     expect(wrapper.find('li').at(1).text()).toContain('Active');
 
-    wrapper.find(Icon).simulate('click');
+    wrapper.find('svg.toggle-icon').simulate('click');
 
     expect(wrapper.find(`.${styles['sibling-item']}`).at(0).find(Link).prop('color')).toBe('dark-gray');
     expect(wrapper.find(`.${styles['sibling-item']}`).at(0).find(Link).prop('href')).toBe('href');

@@ -3,8 +3,8 @@ import { render } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 import WithTooltip, { Tooltip } from '../index';
-import Icon from '../../icon';
 import { placeTooltip } from '../utils';
+import CrossSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/cross';
 
 jest.mock('../utils', () => {
   const original = jest.requireActual('../utils');
@@ -216,7 +216,7 @@ describe('Tooltip', () => {
     expect(spy).toHaveBeenCalledTimes(0);
 
     act(() => {
-      wrapper.find(Icon).simulate('click');
+      wrapper.find(CrossSVG).simulate('click');
     });
     wrapper.update();
 

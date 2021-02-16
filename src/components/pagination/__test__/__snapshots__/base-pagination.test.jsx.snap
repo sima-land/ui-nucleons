@@ -71,33 +71,22 @@ exports[`<BasePagination /> should handle "onButtonClick" prop 1`] = `
         onClick={[Function]}
         page={2}
       >
-        <Icon
-          icon={[Function]}
-          inline={true}
-          size={16}
+        <LeftSVG
+          className="icon"
         >
-          <leftIcon
+          <svg
             className="icon"
             height={16}
-            viewBox="0 0 36 36"
+            viewBox="0 0 16 16"
             width={16}
-            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              className="icon"
-              height={16}
-              viewBox="0 0 36 36"
-              width={16}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                clipRule="evenodd"
-                d="M21.732 7.307a2.25 2.25 0 0 1 .211 3.175L15.365 18l6.578 7.518a2.25 2.25 0 1 1-3.386 2.964l-7.875-9a2.25 2.25 0 0 1 0-2.964l7.875-9a2.25 2.25 0 0 1 3.175-.211z"
-                fillRule="evenodd"
-              />
-            </svg>
-          </leftIcon>
-        </Icon>
+            <path
+              clipRule="evenodd"
+              d="M9.659 3.247a1 1 0 01.094 1.412L6.829 8l2.924 3.341a1 1 0 01-1.506 1.318l-3.5-4a1 1 0 010-1.317l3.5-4a1 1 0 011.412-.095z"
+              fillRule="evenodd"
+            />
+          </svg>
+        </LeftSVG>
       </button>
     </PageButton>
     <PageButton
@@ -232,33 +221,22 @@ exports[`<BasePagination /> should handle "onButtonClick" prop 1`] = `
         onClick={[Function]}
         page={4}
       >
-        <Icon
-          icon={[Function]}
-          inline={true}
-          size={16}
+        <RightSVG
+          className="icon"
         >
-          <rightIcon
+          <svg
             className="icon"
             height={16}
-            viewBox="0 0 36 36"
+            viewBox="0 0 16 16"
             width={16}
-            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              className="icon"
-              height={16}
-              viewBox="0 0 36 36"
-              width={16}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                clipRule="evenodd"
-                d="M14.268 28.693a2.25 2.25 0 0 1-.211-3.175L20.635 18l-6.578-7.518a2.25 2.25 0 0 1 3.386-2.964l7.875 9a2.25 2.25 0 0 1 0 2.964l-7.875 9a2.25 2.25 0 0 1-3.175.211z"
-                fillRule="evenodd"
-              />
-            </svg>
-          </rightIcon>
-        </Icon>
+            <path
+              clipRule="evenodd"
+              d="M6.341 12.753a1 1 0 01-.094-1.412L9.171 8 6.247 4.659a1 1 0 011.506-1.317l3.5 4a1 1 0 010 1.317l-3.5 4a1 1 0 01-1.412.094z"
+              fillRule="evenodd"
+            />
+          </svg>
+        </RightSVG>
       </button>
     </PageButton>
   </div>
@@ -286,33 +264,22 @@ exports[`<BasePagination /> should handle "total" and "current" props 1`] = `
         onClick={[Function]}
         page={1}
       >
-        <Icon
-          icon={[Function]}
-          inline={true}
-          size={16}
+        <LeftSVG
+          className="icon"
         >
-          <leftIcon
+          <svg
             className="icon"
             height={16}
-            viewBox="0 0 36 36"
+            viewBox="0 0 16 16"
             width={16}
-            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              className="icon"
-              height={16}
-              viewBox="0 0 36 36"
-              width={16}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                clipRule="evenodd"
-                d="M21.732 7.307a2.25 2.25 0 0 1 .211 3.175L15.365 18l6.578 7.518a2.25 2.25 0 1 1-3.386 2.964l-7.875-9a2.25 2.25 0 0 1 0-2.964l7.875-9a2.25 2.25 0 0 1 3.175-.211z"
-                fillRule="evenodd"
-              />
-            </svg>
-          </leftIcon>
-        </Icon>
+            <path
+              clipRule="evenodd"
+              d="M9.659 3.247a1 1 0 01.094 1.412L6.829 8l2.924 3.341a1 1 0 01-1.506 1.318l-3.5-4a1 1 0 010-1.317l3.5-4a1 1 0 011.412-.095z"
+              fillRule="evenodd"
+            />
+          </svg>
+        </LeftSVG>
       </button>
     </PageButton>
     <PageButton
@@ -447,33 +414,22 @@ exports[`<BasePagination /> should handle "total" and "current" props 1`] = `
         onClick={[Function]}
         page={3}
       >
-        <Icon
-          icon={[Function]}
-          inline={true}
-          size={16}
+        <RightSVG
+          className="icon"
         >
-          <rightIcon
+          <svg
             className="icon"
             height={16}
-            viewBox="0 0 36 36"
+            viewBox="0 0 16 16"
             width={16}
-            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              className="icon"
-              height={16}
-              viewBox="0 0 36 36"
-              width={16}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                clipRule="evenodd"
-                d="M14.268 28.693a2.25 2.25 0 0 1-.211-3.175L20.635 18l-6.578-7.518a2.25 2.25 0 0 1 3.386-2.964l7.875 9a2.25 2.25 0 0 1 0 2.964l-7.875 9a2.25 2.25 0 0 1-3.175.211z"
-                fillRule="evenodd"
-              />
-            </svg>
-          </rightIcon>
-        </Icon>
+            <path
+              clipRule="evenodd"
+              d="M6.341 12.753a1 1 0 01-.094-1.412L9.171 8 6.247 4.659a1 1 0 011.506-1.317l3.5 4a1 1 0 010 1.317l-3.5 4a1 1 0 01-1.412.094z"
+              fillRule="evenodd"
+            />
+          </svg>
+        </RightSVG>
       </button>
     </PageButton>
   </div>

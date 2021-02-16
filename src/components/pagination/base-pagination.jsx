@@ -1,5 +1,4 @@
 import React from 'react';
-import Icon from '../icon';
 import { PageButton } from './page-button';
 import { getPageButtons, cx } from './utils';
 import allPass from 'lodash/fp/allPass';
@@ -14,9 +13,8 @@ import propEq from 'lodash/fp/propEq';
 import T from 'lodash/fp/T';
 import { marginRight, marginLeft } from '../styling/sizes';
 import PropTypes from 'prop-types';
-
-import leftIcon from '../icons/stroke-arrow-left.svg';
-import rightIcon from '../icons/stroke-arrow-right.svg';
+import LeftSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/left';
+import RightSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/right';
 
 const DEFAULTS = Object.freeze({
   // eslint-disable-next-line react/prop-types
@@ -40,8 +38,8 @@ export const BUTTON_TYPES = Object.freeze({
 });
 
 export const BUTTON_CONTENTS = Object.freeze({
-  prev: <Icon inline size={16} icon={leftIcon} />,
-  next: <Icon inline size={16} icon={rightIcon} />,
+  prev: <LeftSVG className={cx('icon')} />,
+  next: <RightSVG className={cx('icon')} />,
   more: '...',
 });
 

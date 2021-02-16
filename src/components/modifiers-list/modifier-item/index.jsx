@@ -5,8 +5,7 @@ import classnames from 'classnames/bind';
 import { MODIFIERS_TYPES } from '../../constants';
 import Price from '../../price';
 import Text from '../../text';
-import Icon from '../../icon';
-import checkMark from '../../icons/check-mark.svg';
+import CheckSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/check';
 
 export const cx = classnames.bind(classes);
 
@@ -74,11 +73,9 @@ const ModifierItem = ({
     <div className={cx('icon-wrapper')}>
       {selected && (
         <div className={cx('icon')}>
-          <Icon
-            icon={checkMark}
-            color='white'
+          <CheckSVG
+            fill='#fff'
             role='presentation'
-            size={24}
           />
         </div>
       )}

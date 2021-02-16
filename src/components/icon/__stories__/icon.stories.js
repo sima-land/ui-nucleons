@@ -1,12 +1,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Icon from '../';
-import heart from '../../icons/heart.svg';
-import cross from '../../icons/cross.svg';
+import FavoriteSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/favorite';
+import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
 import { COLORS } from '../../constants';
 
 const props = {
-  icon: cross,
+  icon: CrossSVG,
   size: 40,
   color: 'dark-blue',
 };
@@ -19,7 +19,7 @@ storiesOf('Icon', module)
       <Icon
         inline
         size={24}
-        icon={heart}
+        icon={FavoriteSVG}
         color={colorKey}
         style={{ marginRight: 8 }}
       />
@@ -28,6 +28,6 @@ storiesOf('Icon', module)
   )))
   .add('icon in text', () => (
     <p style={{ color: '#ff0000', fontSize: 20 }}>
-      We <Icon icon={heart} inline /> frontend!
+      We <Icon icon={FavoriteSVG} inline /> frontend!
     </p>
   ));

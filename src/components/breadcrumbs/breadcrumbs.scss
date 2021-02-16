@@ -66,8 +66,8 @@ $rightGapWidth: 1.5em;
     }
   }
   .toggle-icon {
-    margin: 0 4px 1px 2px;
-    opacity: .32;
+    vertical-align: middle;
+    margin: 0 0 1px 6px;
     cursor: pointer;
     &.close {
       transform: scaleY(-1);

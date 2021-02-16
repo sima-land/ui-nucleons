@@ -3,8 +3,7 @@ import Type from 'prop-types';
 import isFunction from 'lodash/isFunction';
 import ModifierItem from './modifier-item/';
 import Link from '../link/deprecated';
-import Icon from '../icon';
-import statement from '../icons/statement.svg';
+import StatementSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/statement';
 import classes from './modifiers-list.scss';
 import classnames from 'classnames/bind';
 
@@ -38,11 +37,8 @@ const ModifiersList = ({
           external
         >
           Таблица размеров
-          <Icon
-            inline
-            icon={statement}
+          <StatementSVG
             role='presentation'
-            size={24}
             className={cx('sizes-table-icon')}
           />
         </Link>

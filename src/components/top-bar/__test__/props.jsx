@@ -1,8 +1,7 @@
 import React from 'react';
-import Icon from '../../icon';
-import crossIcon from '../../icons/cross-big.svg';
-import leftIcon from '../../icons/full-left-arrow.svg';
-import capIcon from '../../icons/image-cap.svg';
+import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross.js';
+import ArrowLeftSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-left.js';
+import PersonSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/person.js';
 
 const longText = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad, provident aspernatur dolore. ';
 
@@ -24,22 +23,22 @@ export const longTitles = { title: longText.repeat(2), subtitle: longText.repeat
 
 export const startButtons = {
   start: {
-    icon: <Icon size={24} icon={leftIcon} />,
+    icon: <ArrowLeftSVG />,
     onClick: createClickHandler('start'),
   },
   startSecondary: {
-    icon: <Icon size={24} icon={capIcon} />,
+    icon: <PersonSVG />,
     onClick: createClickHandler('start secondary'),
   },
 };
 
 export const endButtons = {
   end: {
-    icon: <Icon size={24} icon={crossIcon} />,
+    icon: <CrossSVG />,
     onClick: createClickHandler('end'),
   },
   endSecondary: {
-    icon: <Icon size={24} icon={capIcon} />,
+    icon: <PersonSVG />,
     onClick: createClickHandler('end secondary'),
   },
 };

@@ -2,10 +2,10 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import NavBar from '..';
-import ArrowLeftSVG from '../../icons/full-left-arrow.svg';
-import CrossSVG from '../../icons/cross-big.svg';
-import CartSVG from '../../icons/cart.svg';
-import UserSVG from '../../icons/user.svg';
+import ArrowLeftSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-left';
+import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
+import CartSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cart';
+import PersonSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/person';
 
 const DisplayWrapper = ({ children }) => (
   <div
@@ -107,7 +107,7 @@ storiesOf('NavBar', module)
           subtitle='Очень очень очень очень длинный подзаголовок'
           buttons={{
             start: { icon: ArrowLeftSVG, onClick: action('click:start') },
-            startSecondary: { icon: UserSVG, onClick: action('click:startSecondary') },
+            startSecondary: { icon: PersonSVG, onClick: action('click:startSecondary') },
             end: { icon: CrossSVG, onClick: action('click:end') },
             endSecondary: { icon: CartSVG, onClick: action('click:endSecondary') },
           }}

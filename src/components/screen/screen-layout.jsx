@@ -6,9 +6,8 @@ import { isFullyScrolled } from '../helpers/is-fully-scrolled';
 import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
-
-import arrowLeft from '../icons/full-left-arrow.svg';
-import crossIcon from '../icons/cross-big.svg';
+import ArrowLeftSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-left';
+import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
 
 /**
  * Разметка содержимого компонента Screen.
@@ -62,14 +61,14 @@ export const ScreenLayout = ({
             ...navBarProps.buttons,
             start: withBackButton
               ? {
-                icon: arrowLeft,
+                icon: ArrowLeftSVG,
                 onClick: () => isFunction(onBack) && onBack({ contentElement: contentRef.current }),
                 'aria-label': 'Вернуться назад',
               }
               : get(navBarProps.buttons, 'start'),
             end: withCloseButton
               ? {
-                icon: crossIcon,
+                icon: CrossSVG,
                 onClick: () => isFunction(onClose) && onClose({ contentElement: contentRef.current }),
                 'aria-label': `Закрыть ${title || ''}`.trim(),
               }

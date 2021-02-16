@@ -104,7 +104,7 @@ storiesOf('FieldGrid', module)
           <FieldGrid.Row>
             <FieldGrid.Cell
               field={(
-                <TextField defaultValue='Hello, world!' />
+                <TextField disabled defaultValue='Hello, world!' />
               )}
             />
             <FieldGrid.Cell

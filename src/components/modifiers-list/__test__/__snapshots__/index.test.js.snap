@@ -14,12 +14,9 @@ exports[`<ModifiersList /> should pass custom props to correct blocks 1`] = `
       href="test.ru/123"
     >
       Таблица размеров
-      <Icon
+      <StatementSVG
         className="sizes-table-icon"
-        icon={[Function]}
-        inline={true}
         role="presentation"
-        size={24}
       />
     </Link>
   </div>
@@ -63,38 +60,27 @@ exports[`<ModifiersList /> should render correct with sizesTableUrl 1`] = `
           target="_blank"
         >
           Таблица размеров
-          <Icon
+          <StatementSVG
             className="sizes-table-icon"
-            icon={[Function]}
-            inline={true}
             role="presentation"
-            size={24}
           >
-            <statement
-              className="icon sizes-table-icon"
+            <svg
+              className="sizes-table-icon"
               height={24}
               role="presentation"
-              viewBox="0 0 36 36"
+              viewBox="0 0 24 24"
               width={24}
-              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                className="icon sizes-table-icon"
-                height={24}
-                role="presentation"
-                viewBox="0 0 36 36"
-                width={24}
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12 24a1.5 1.5 0 0 0 1.5 1.5h6a1.5 1.5 0 0 0 0-3h-6A1.5 1.5 0 0 0 12 24zm1.5-4.5a1.5 1.5 0 0 1 0-3h9a1.5 1.5 0 0 1 0 3zM12 12a1.5 1.5 0 0 0 1.5 1.5h9a1.5 1.5 0 0 0 0-3h-9A1.5 1.5 0 0 0 12 12zm0 0"
-                />
-                <path
-                  d="M9 3h18c2.484 0 4.5 2.016 4.5 4.5v21c0 2.484-2.016 4.5-4.5 4.5H9a4.501 4.501 0 0 1-4.5-4.5v-21C4.5 5.016 6.516 3 9 3zm0 3a1.5 1.5 0 0 0-1.5 1.5v21A1.5 1.5 0 0 0 9 30h18a1.5 1.5 0 0 0 1.5-1.5v-21A1.5 1.5 0 0 0 27 6zm0 0"
-                />
-              </svg>
-            </statement>
-          </Icon>
+              <path
+                d="M8 16a1 1 0 001 1h4a1 1 0 100-2H9a1 1 0 00-1 1zM9 13a1 1 0 110-2h6a1 1 0 110 2H9zM8 8a1 1 0 001 1h6a1 1 0 100-2H9a1 1 0 00-1 1z"
+              />
+              <path
+                clipRule="evenodd"
+                d="M6 2h12a3 3 0 013 3v14a3 3 0 01-3 3H6a3 3 0 01-3-3V5a3 3 0 013-3zm0 2a1 1 0 00-1 1v14a1 1 0 001 1h12a1 1 0 001-1V5a1 1 0 00-1-1H6z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </StatementSVG>
         </a>
       </Link>
     </div>

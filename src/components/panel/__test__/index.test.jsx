@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import Panel from '../';
-import infoSVG from '../../icons/information.svg';
+import InformationSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/information.js';
 
 describe('<Panel />', () => {
   it('should renders without props', () => {
@@ -18,7 +18,7 @@ describe('<Panel />', () => {
         color='white'
         contentColor='additional-red'
         inline
-        icon={infoSVG}
+        icon={InformationSVG}
         className='test-class'
         children='Hello, world!'
       />

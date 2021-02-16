@@ -1,7 +1,8 @@
 import Icon from '../';
 import React from 'react';
 import { mount } from 'enzyme';
-import svgIcon from '../../icons/bus.svg';
+import CarSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/car';
+import StubSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/search';
 
 describe('<Icon />', () => {
   it('should renders correctly with image-cap', () => {
@@ -18,14 +19,14 @@ describe('<Icon />', () => {
     expect(icon.find('svg')).toHaveLength(1);
     expect(icon.find('svg').prop('className')).toBe('icon icon-block color__brand-blue test');
     expect(icon.find('svg').prop('onClick')).toBe(spy);
-    expect(icon.find('imageCap')).toHaveLength(1);
+    expect(icon.find(StubSVG)).toHaveLength(1);
     expect(icon).toMatchSnapshot();
   });
   it('should renders correctly with icon prop', () => {
     const spy = jest.fn();
     const icon = mount(
       <Icon
-        icon={svgIcon}
+        icon={CarSVG}
         color='brand-blue'
         className='test'
         inline
@@ -33,8 +34,7 @@ describe('<Icon />', () => {
       />
     );
 
-    expect(icon.find('svgIcon')).toHaveLength(1);
-    expect(icon.find('svgIcon').prop('height')).toBe('33');
+    expect(icon.find(CarSVG)).toHaveLength(1);
     expect(icon).toMatchSnapshot();
   });
 });

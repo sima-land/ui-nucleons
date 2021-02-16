@@ -120,11 +120,9 @@ exports[`<ModifierItem should render correctly with additionalText and selected 
     <div
       className="icon"
     >
-      <Icon
-        color="white"
-        icon={[Function]}
+      <CheckSVG
+        fill="#fff"
         role="presentation"
-        size={24}
       />
     </div>
   </div>

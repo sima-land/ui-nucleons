@@ -1,9 +1,8 @@
 import React from 'react';
-import Icon from '../icon';
-import arrowUp from '../icons/arrow-up.svg';
-import arrowLeft from '../icons/arrow-left.svg';
-import arrowDown from '../icons/arrow-down.svg';
-import arrowRight from '../icons/arrow-right.svg';
+import UpSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/up';
+import LeftSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/left';
+import DownSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/down';
+import RightSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/right';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
 import classes from './nav-button.scss';
@@ -24,26 +23,26 @@ export const NavButton = ({
   vertical,
   disabled,
   onClick,
-}) => (
-  <button
-    type='button'
-    className={cx([
-      'carousel-control',
-      vertical && 'vertical',
-      type,
-    ])}
-    onClick={onClick}
-    aria-label={type === 'backward' ? 'назад' : 'вперед'}
-    children={(
-      <Icon
-        size={10}
-        role='presentation'
-        icon={getIcon({ type, vertical })}
-      />
-    )}
-    disabled={disabled}
-  />
-);
+}) => {
+  const Icon = getIcon({ type, vertical });
+
+  return (
+    <button
+      type='button'
+      className={cx([
+        'carousel-control',
+        vertical && 'vertical',
+        type,
+      ])}
+      onClick={onClick}
+      aria-label={type === 'backward' ? 'назад' : 'вперед'}
+      children={(
+        <Icon role='presentation' fill='currentColor' />
+      )}
+      disabled={disabled}
+    />
+  );
+};
 
 NavButton.propTypes = {
   /**
@@ -78,9 +77,9 @@ export const getIcon = ({ type, vertical }) => {
   let icon;
 
   if (type === 'backward') {
-    icon = vertical ? arrowUp : arrowLeft;
+    icon = vertical ? UpSVG : LeftSVG;
   } else {
-    icon = vertical ? arrowDown : arrowRight;
+    icon = vertical ? DownSVG : RightSVG;
   }
 
   return icon;

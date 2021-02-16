@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Panel from '../';
 import { marginBottom, marginRight } from '../../styling/sizes';
-import infoSVG from '../../icons/information.svg';
+import InfoSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/information';
 
 const variants = [
   { color: 'gray4' },
@@ -32,7 +32,7 @@ storiesOf('Panel', module)
 
       <h3>Inline (with icon)</h3>
       {variants.map((props, index) => (
-        <Panel key={index} {...props} inline className={marginRight(4)} icon={infoSVG}>
+        <Panel key={index} {...props} inline className={marginRight(4)} icon={InfoSVG}>
           Lorem ipsum
         </Panel>
       ))}
@@ -44,7 +44,7 @@ storiesOf('Panel', module)
           {...props}
           inline
           className={marginRight(4)}
-          icon={infoSVG}
+          icon={InfoSVG}
           html={markup}
         />
       ))}
@@ -58,7 +58,7 @@ storiesOf('Panel', module)
 
       <h3>Block (with icon)</h3>
       {variants.map((props, index) => (
-        <Panel key={index} {...props} className={marginBottom(5)} icon={infoSVG}>
+        <Panel key={index} {...props} className={marginBottom(5)} icon={InfoSVG}>
           {longText}
         </Panel>
       ))}
@@ -69,7 +69,7 @@ storiesOf('Panel', module)
           key={index}
           {...props}
           className={marginBottom(5)}
-          icon={infoSVG}
+          icon={InfoSVG}
           html={markup}
         />
       ))}

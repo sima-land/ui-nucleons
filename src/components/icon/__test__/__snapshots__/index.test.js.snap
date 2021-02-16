@@ -8,30 +8,23 @@ exports[`<Icon /> should renders correctly with icon prop 1`] = `
   inline={true}
   onClick={[MockFunction]}
 >
-  <svgIcon
+  <CarSVG
     className="icon color__brand-blue test"
-    height="33"
     onClick={[MockFunction]}
     viewBox="0 0 36 36"
-    width="30"
-    xmlns="http://www.w3.org/2000/svg"
   >
     <svg
       className="icon color__brand-blue test"
-      height="33"
       onClick={[MockFunction]}
       viewBox="0 0 36 36"
-      width="30"
-      xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M28 10h-1V2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8H2a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2v8a1 1 0 0 0 1 1v3a2 2 0 0 0 4 0v-3h16v3a2 2 0 0 0 4 0v-3a1 1 0 0 0 1-1v-8a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2zm-8-8h5v5h-5V2zm-9 0h8v5h-8V2zM5 2h5v5H5V2zm0 7h20v8H5V9zm-4 8v-5a1 1 0 0 1 1-1h1v7H2a1 1 0 0 1-1-1zm25 9H4v-8h22v8zm3-9a1 1 0 0 1-1 1h-1v-7h1a1 1 0 0 1 1 1v5z"
-      />
-      <path
-        d="M10 21h10v1H10zm1 2h8v1h-8zm11.5-2a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5zm0 2a.5.5 0 1 1 .5-.5.5.5 0 0 1-.5.5zm-15-2A1.5 1.5 0 1 0 9 22.5 1.5 1.5 0 0 0 7.5 21zm0 2a.5.5 0 1 1 .5-.5.5.5 0 0 1-.5.5z"
+        clipRule="evenodd"
+        d="M12 3a3 3 0 00-3 3v2H6.437a3 3 0 00-2.305 1.08L.695 13.202A3 3 0 000 15.124V16c0 1.312.842 2.427 2.016 2.835A3.5 3.5 0 008.965 19h6.07a3.501 3.501 0 006.95-.165A3.001 3.001 0 0024 16V6a3 3 0 00-3-3h-9zm9.572 13.82A.999.999 0 0022 16V6a1 1 0 00-1-1h-9a1 1 0 00-1 1v8a1 1 0 11-2 0v-4H6.437a1 1 0 00-.768.36l-3.437 4.124a1 1 0 00-.232.64V16c0 .34.17.64.428.82a3.5 3.5 0 016.235.18h6.674a3.5 3.5 0 016.235-.18zM7 18.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM18.5 20a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"
+        fillRule="evenodd"
       />
     </svg>
-  </svgIcon>
+  </CarSVG>
 </Icon>
 `;
 
@@ -42,13 +35,12 @@ exports[`<Icon /> should renders correctly with image-cap 1`] = `
   onClick={[MockFunction]}
   size={20}
 >
-  <imageCap
+  <SearchSVG
     className="icon icon-block color__brand-blue test"
     height={20}
     onClick={[MockFunction]}
     viewBox="0 0 36 36"
     width={20}
-    xmlns="http://www.w3.org/2000/svg"
   >
     <svg
       className="icon icon-block color__brand-blue test"
@@ -56,12 +48,13 @@ exports[`<Icon /> should renders correctly with image-cap 1`] = `
       onClick={[MockFunction]}
       viewBox="0 0 36 36"
       width={20}
-      xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M25.763 24.085a14.645 14.645 0 0 0 3.22-9.017A14.492 14.492 0 1 0 14.492 29.56a13.735 13.735 0 0 0 9.017-3.22l9.178 9.177a1.554 1.554 0 0 0 2.254 0 1.554 1.554 0 0 0 0-2.254zm-11.271 2.254a11.271 11.271 0 1 1 11.27-11.271 11.199 11.199 0 0 1-11.27 11.271z"
+        clipRule="evenodd"
+        d="M10.5 18a7.5 7.5 0 115.963-2.95l4.244 4.243a1 1 0 01-1.414 1.414l-4.244-4.244A7.467 7.467 0 0110.5 18zm0-2a5.5 5.5 0 100-11 5.5 5.5 0 000 11z"
+        fillRule="evenodd"
       />
     </svg>
-  </imageCap>
+  </SearchSVG>
 </Icon>
 `;

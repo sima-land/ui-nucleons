@@ -11,41 +11,31 @@ exports[`<Panel /> should handle props 1`] = `
   <div
     className="panel inline bg-color__white test-class"
   >
-    <Icon
+    <InformationSVG
       aria-hidden="true"
       className="icon"
-      color="additional-red"
+      fill="#fb3a2f"
       height={20}
-      icon={[Function]}
       width={16}
     >
-      <infoSVG
+      <svg
         aria-hidden="true"
-        className="icon icon-block color__additional-red icon"
+        className="icon"
+        fill="#fb3a2f"
         height={20}
-        viewBox="0 0 36 36"
+        viewBox="0 0 16 16"
         width={16}
-        xmlns="http://www.w3.org/2000/svg"
       >
-        <svg
-          aria-hidden="true"
-          className="icon icon-block color__additional-red icon"
-          height={20}
-          viewBox="0 0 36 36"
-          width={16}
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M18 16a2 2 0 0 1 2 2v6a2 2 0 1 1-4 0v-6a2 2 0 0 1 2-2zM18 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
-          />
-          <path
-            clipRule="evenodd"
-            d="M2 18C2 9.163 9.163 2 18 2s16 7.163 16 16-7.163 16-16 16S2 26.837 2 18zM18 6C11.373 6 6 11.373 6 18s5.373 12 12 12 12-5.373 12-12S24.627 6 18 6z"
-            fillRule="evenodd"
-          />
-        </svg>
-      </infoSVG>
-    </Icon>
+        <path
+          d="M8 7a1 1 0 011 1v3a1 1 0 11-2 0V8a1 1 0 011-1zM8 6a1 1 0 100-2 1 1 0 000 2z"
+        />
+        <path
+          clipRule="evenodd"
+          d="M0 8a8 8 0 1116 0A8 8 0 010 8zm8-6a6 6 0 100 12A6 6 0 008 2z"
+          fillRule="evenodd"
+        />
+      </svg>
+    </InformationSVG>
     <div
       className="content color__additional-red"
     >
@@ -67,41 +57,31 @@ exports[`<Panel /> should handle props 2`] = `
   <div
     className="panel inline bg-color__white test-class"
   >
-    <Icon
+    <InformationSVG
       aria-hidden="true"
       className="icon"
-      color="additional-red"
+      fill="#fb3a2f"
       height={20}
-      icon={[Function]}
       width={16}
     >
-      <infoSVG
+      <svg
         aria-hidden="true"
-        className="icon icon-block color__additional-red icon"
+        className="icon"
+        fill="#fb3a2f"
         height={20}
-        viewBox="0 0 36 36"
+        viewBox="0 0 16 16"
         width={16}
-        xmlns="http://www.w3.org/2000/svg"
       >
-        <svg
-          aria-hidden="true"
-          className="icon icon-block color__additional-red icon"
-          height={20}
-          viewBox="0 0 36 36"
-          width={16}
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M18 16a2 2 0 0 1 2 2v6a2 2 0 1 1-4 0v-6a2 2 0 0 1 2-2zM18 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
-          />
-          <path
-            clipRule="evenodd"
-            d="M2 18C2 9.163 9.163 2 18 2s16 7.163 16 16-7.163 16-16 16S2 26.837 2 18zM18 6C11.373 6 6 11.373 6 18s5.373 12 12 12 12-5.373 12-12S24.627 6 18 6z"
-            fillRule="evenodd"
-          />
-        </svg>
-      </infoSVG>
-    </Icon>
+        <path
+          d="M8 7a1 1 0 011 1v3a1 1 0 11-2 0V8a1 1 0 011-1zM8 6a1 1 0 100-2 1 1 0 000 2z"
+        />
+        <path
+          clipRule="evenodd"
+          d="M0 8a8 8 0 1116 0A8 8 0 010 8zm8-6a6 6 0 100 12A6 6 0 008 2z"
+          fillRule="evenodd"
+        />
+      </svg>
+    </InformationSVG>
     <div
       className="content color__additional-red"
       dangerouslySetInnerHTML={

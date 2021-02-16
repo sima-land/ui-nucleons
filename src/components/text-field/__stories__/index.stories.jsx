@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import TextField from '../index';
-import Icon from '../../icon';
+import RightSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/right.js';
 import classes from './stories.scss';
+import { COLORS } from '../../constants';
 
 const baseProps = { className: classes['full-width'] };
 
@@ -49,9 +50,7 @@ storiesOf('TextField', module)
                   variant='desktop'
                   caption='Caption'
                   endAdornment={(
-                    <Icon
-                      size={16}
-                    />
+                    <RightSVG fill={COLORS.get('gray24')} />
                   )}
                 />
                 {sizeName === 'l' && (
@@ -66,9 +65,7 @@ storiesOf('TextField', module)
                       variant='desktop'
                       caption='Caption'
                       endAdornment={(
-                        <Icon
-                          size={16}
-                        />
+                        <RightSVG fill={COLORS.get('gray24')} />
                       )}
                     />
                   </>
@@ -93,9 +90,7 @@ storiesOf('TextField', module)
               variant='mobile'
               caption='Caption'
               endAdornment={(
-                <Icon
-                  size={16}
-                />
+                <RightSVG fill={COLORS.get('gray24')} />
               )}
             />
             <div style={{ height: 32 }} />
@@ -107,9 +102,7 @@ storiesOf('TextField', module)
               variant='mobile'
               caption='Caption'
               endAdornment={(
-                <Icon
-                  size={16}
-                />
+                <RightSVG fill={COLORS.get('gray24')} />
               )}
             />
           </div>

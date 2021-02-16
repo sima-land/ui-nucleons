@@ -1,10 +1,10 @@
 import React from 'react';
-import Icon from '../icon';
 import classes from './nav-bar.scss';
 import classnames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import { prop } from 'lodash/fp';
 import { InnerBorder } from '../styling/borders';
+import { COLORS } from '../constants';
 
 const cx = classnames.bind(classes);
 
@@ -156,7 +156,7 @@ NavBar.propTypes = {
  */
 export const NavButton = ({
   text,
-  icon,
+  icon: Icon,
   stub = false,
   shift,
   className,
@@ -166,7 +166,7 @@ export const NavButton = ({
     {...buttonProps}
     className={cx(
       'button',
-      icon && 'icon',
+      Icon && 'icon',
       shift === 'left' && 'shift-left',
       shift === 'right' && 'shift-right',
       stub && 'stub',
@@ -175,8 +175,8 @@ export const NavButton = ({
     aria-hidden={stub ? 'true' : undefined}
   >
     {
-      icon && !stub
-        ? <Icon size={24} color='gray87' icon={icon} aria-hidden='true' />
+      Icon && !stub
+        ? <Icon fill={COLORS.get('gray87')} aria-hidden='true' />
         : text
     }
   </button>

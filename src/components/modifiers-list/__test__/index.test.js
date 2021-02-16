@@ -4,7 +4,7 @@ import omit from 'lodash/omit';
 import ModifiersList from '../';
 import ModifierItem from '../modifier-item';
 import Link from '../../link/deprecated';
-import Icon from '../../icon';
+import StatementSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/statement';
 
 describe('<ModifiersList />', () => {
   const items = [
@@ -14,7 +14,7 @@ describe('<ModifiersList />', () => {
   it('should renders correctly without props', () => {
     const wrapper = shallow(<ModifiersList />);
     expect(wrapper.find(Link)).toHaveLength(0);
-    expect(wrapper.find(Icon)).toHaveLength(0);
+    expect(wrapper.find(StatementSVG)).toHaveLength(0);
     expect(wrapper.find(ModifierItem)).toHaveLength(0);
     expect(wrapper).toMatchSnapshot();
   });
@@ -50,7 +50,7 @@ describe('<ModifiersList />', () => {
     );
     expect(wrapper.find(Link)).toHaveLength(1);
     expect(wrapper.find(Link).text()).toEqual('Таблица размеров');
-    expect(wrapper.find(Icon)).toHaveLength(1);
+    expect(wrapper.find(StatementSVG)).toHaveLength(1);
     expect(wrapper).toMatchSnapshot();
   });
   it('should pass custom props to correct blocks', () => {

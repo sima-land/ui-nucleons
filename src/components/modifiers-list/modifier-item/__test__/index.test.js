@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import ModifierItem from '../';
 import Text from '../../../text';
 import Price from '../../../price';
-import Icon from '../../../icon';
+import CheckSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/check';
 
 describe('<ModifierItem', () => {
   const modifier = {
@@ -17,14 +17,14 @@ describe('<ModifierItem', () => {
     const wrapper = shallow(<ModifierItem />);
     expect(wrapper.find('.adornment')).toHaveLength(0);
     expect(wrapper.find(Price)).toHaveLength(0);
-    expect(wrapper.find(Icon)).toHaveLength(0);
+    expect(wrapper.find(CheckSVG)).toHaveLength(0);
     expect(wrapper).toMatchSnapshot();
   });
   it('should render correctly default text type modifier', () => {
     const wrapper = shallow(<ModifierItem {...modifier} />);
     expect(wrapper.find('.adornment')).toHaveLength(0);
     expect(wrapper.find(Price).prop('className')).toEqual('price');
-    expect(wrapper.find(Icon)).toHaveLength(0);
+    expect(wrapper.find(CheckSVG)).toHaveLength(0);
     expect(wrapper).toMatchSnapshot();
   });
   it('should render correctly image modifier', () => {
@@ -60,7 +60,7 @@ describe('<ModifierItem', () => {
       lineHeight: 16,
     });
     expect(wrapper.find(Price).prop('className')).toEqual('price additional');
-    expect(wrapper.find(Icon)).toHaveLength(1);
+    expect(wrapper.find(CheckSVG)).toHaveLength(1);
     expect(wrapper).toMatchSnapshot();
   });
   it('should calls onClick correctly', () => {
