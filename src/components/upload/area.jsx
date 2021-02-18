@@ -5,6 +5,7 @@ import UploadSVG from './upload.svg';
 import { COLORS } from '../constants';
 import Link from '../link';
 import { useDragAndDrop } from './utils';
+import { upperFirst } from 'lodash';
 import PropTypes from 'prop-types';
 
 const cx = classnames.bind(styles);
@@ -17,6 +18,8 @@ const cx = classnames.bind(styles);
  * @param {string} [props.fileRole] Роль файлов.
  * @param {string} [props.formats] Форматы.
  * @param {string} [props.sizeLimit] Ограничение на размер.
+ * @param {boolean} [props.multiple] Ограничение на количество файлов.
+ * @param {boolean} [props.failed] Есть ли ошибки валидации.
  * @return {ReactElement} Элемент.
  */
 export const UploadArea = ({
@@ -25,11 +28,26 @@ export const UploadArea = ({
   fileRole = 'файл',
   formats,
   sizeLimit = '2 Mb',
+  multiple,
+  failed,
   ...restProps
 }) => {
   const { active, bind } = useDragAndDrop({
-    onDrop: e => onSelect?.(e.dataTransfer.files, e),
+    onDrop: e => onSelect?.(
+      multiple ? [...e.dataTransfer.files] : [...e.dataTransfer.files].slice(0, 1),
+      e
+    ),
   });
+
+  const secondaryInfo = upperFirst(
+    [
+      !multiple && '1 файл',
+      formats && `формат ${formats}`,
+      `до ${sizeLimit}`,
+    ]
+      .filter(Boolean)
+      .join(', ')
+  );
 
   return (
     <div
@@ -46,9 +64,10 @@ export const UploadArea = ({
           <label>
             <input
               type='file'
+              multiple={multiple}
               className={cx('input')}
               onChange={e => {
-                onSelect?.(e.target.files, e);
+                onSelect?.([...e.target.files], e);
 
                 // очищаем поле чтобы можно было выбрать тот же файл повторно
                 e.target.value = '';
@@ -58,12 +77,8 @@ export const UploadArea = ({
           </label>
         </div>
 
-        <div className={cx('info', 'secondary')}>
-          {
-            formats
-              ? `В формате ${formats}, не более ${sizeLimit}`
-              : sizeLimit && `Не более ${sizeLimit}`
-          }
+        <div className={cx('info', 'secondary', { failed })}>
+          {secondaryInfo}
         </div>
       </div>
     </div>
@@ -76,4 +91,6 @@ UploadArea.propTypes = {
   fileRole: PropTypes.string,
   formats: PropTypes.string,
   sizeLimit: PropTypes.string,
+  multiple: PropTypes.bool,
+  failed: PropTypes.bool,
 };

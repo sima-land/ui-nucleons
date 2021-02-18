@@ -10,13 +10,46 @@ export default {
   },
 };
 
+const variants = [
+  {
+    fileRole: 'фото',
+    formats: undefined,
+    multiple: undefined,
+  },
+  {
+    fileRole: 'архив',
+    formats: 'PDF, JPG, PNG',
+    multiple: undefined,
+  },
+  {
+    fileRole: 'документ',
+    formats: undefined,
+    multiple: true,
+  },
+  {
+    fileRole: 'скан',
+    formats: 'PDF, JPG, PNG',
+    multiple: true,
+  },
+  {
+    fileRole: 'изображение',
+    formats: 'PDF, JPG, PNG',
+    multiple: true,
+    failed: true,
+  },
+];
+
 export const Primary = () => (
-  <UploadArea
-    formats='PDF, JPG, PNG'
-    fileRole='скан'
-    sizeLimit='4 Mb'
-    onSelect={(files, e) => {
-      action(`"${e.type}" event`)(files);
-    }}
-  />
+  <>
+    {variants.map((v, i) => (
+      <div key={i} style={{ marginBottom: 16 }}>
+        <UploadArea
+          {...v}
+          onSelect={(files, e) => {
+            action(`"${e.type}" event`)(files);
+          }}
+        />
+      </div>
+    ))}
+  </>
 );

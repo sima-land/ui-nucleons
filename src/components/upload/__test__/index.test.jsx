@@ -88,12 +88,39 @@ describe('UploadArea', () => {
 
     expect(spy).toBeCalledTimes(0);
 
+    // drop two files
     act(() => {
-      Simulate.drop(wrapper.find('.root').getDOMNode(), { dataTransfer: { files: [] } });
+      Simulate.drop(
+        wrapper.find('.root').getDOMNode(),
+        {
+          dataTransfer: {
+            files: [{ fakeFile: true }, { fakeFile: true }],
+          },
+        }
+      );
     });
     wrapper.update();
 
     expect(spy).toBeCalledTimes(1);
+    expect(spy.mock.calls[0][0]).toHaveLength(1);
+
+    wrapper.setProps({ multiple: true });
+
+    // drop two files again
+    act(() => {
+      Simulate.drop(
+        wrapper.find('.root').getDOMNode(),
+        {
+          dataTransfer: {
+            files: [{ fakeFile: true }, { fakeFile: true }],
+          },
+        }
+      );
+    });
+    wrapper.update();
+
+    expect(spy).toBeCalledTimes(2);
+    expect(spy.mock.calls[1][0]).toHaveLength(2);
   });
 
   it('should handle "change" event', () => {
@@ -116,5 +143,42 @@ describe('UploadArea', () => {
     wrapper.update();
 
     expect(spy).toBeCalledTimes(1);
+  });
+
+  it('should render different visual variants', () => {
+    [
+      {
+        fileRole: 'фото',
+        formats: undefined,
+        multiple: undefined,
+      },
+      {
+        fileRole: 'архив',
+        formats: 'PDF, JPG, PNG',
+        multiple: undefined,
+      },
+      {
+        fileRole: 'документ',
+        formats: undefined,
+        multiple: true,
+      },
+      {
+        fileRole: 'скан',
+        formats: 'PDF, JPG, PNG',
+        multiple: true,
+      },
+      {
+        fileRole: 'изображение',
+        formats: 'PDF, JPG, PNG',
+        multiple: true,
+        failed: true,
+      },
+    ].forEach(props => {
+      const wrapper = mount(
+        <UploadArea {...props} />
+      );
+
+      expect(wrapper).toMatchSnapshot();
+    });
   });
 });
