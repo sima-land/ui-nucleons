@@ -36,6 +36,9 @@
       font-size: 14px;
       line-height: 20px;
       color: colors.$gray38;
+      &.failed {
+        color: colors.$additional-deep-red;
+      }
     }
   }
 }
