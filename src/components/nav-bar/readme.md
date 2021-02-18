@@ -3,7 +3,10 @@
 Примеры:
 
 ```jsx
-import { crossBig, fullLeftArrow, cart, user } from '../icons';
+import ArrowLeftSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-left';
+import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
+import CartSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cart';
+import PersonSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/person';
 
 const DisplayWrapper = ({ children }) => (
   <div
@@ -25,10 +28,10 @@ const DisplayWrapper = ({ children }) => (
       title='Достаточно длинный заголовок'
       subtitle='Чрезвычайно длинный подзаголовок'
       buttons={{
-        start: { icon: fullLeftArrow },
-        startSecondary: { icon: user },
-        end: { icon: crossBig },
-        endSecondary: { icon: cart },
+        start: { icon: ArrowLeftSVG },
+        startSecondary: { icon: PersonSVG },
+        end: { icon: CrossSVG },
+        endSecondary: { icon: CartSVG },
       }}
     />
   </DisplayWrapper>
@@ -38,7 +41,7 @@ const DisplayWrapper = ({ children }) => (
       title='Достаточно длинный заголовок'
       subtitle='Чрезвычайно длинный подзаголовок'
       buttons={{
-        start: { icon: fullLeftArrow },
+        start: { icon: ArrowLeftSVG },
         end: { text: 'Применить' },
       }}
     />

@@ -2,7 +2,8 @@
 
 ```jsx
 import Icon from '../icon';
-import { search, close } from '../icons';
+import SearchSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/search';
+import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
 
 <React.Fragment>
   <TopBar
@@ -17,11 +18,11 @@ import { search, close } from '../icons';
     subtitle='Подзаголовок'
     buttonsProps={{
       start: {
-        icon: <Icon size={24} icon={search} />,
+        icon: <Icon size={24} icon={SearchSVG} />,
         onClick: () => console.log('Click to the start icon'),
       },
       end: {
-        icon: <Icon size={24} icon={close} />,
+        icon: <Icon size={24} icon={CrossSVG} />,
         onClick: () => console.log('Click to the end icon'),
       },
     }}
