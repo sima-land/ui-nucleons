@@ -5,22 +5,24 @@
 
 Все иконки библиотеки:
 ```jsx
-import icons from '../icons';
+import ThumbsUpSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/thumbs-up.js';
+import UploadSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/upload.js';
+import ArrowUpSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-up.js';
 
-Object.keys(icons).map(icon =>
+[ThumbsUpSVG, UploadSVG, ArrowUpSVG].map((icon, index) =>
   <Icon
+    key={index}
     style={{ marginRight: 10 }}
-    key={icon}
     inline
-    icon={icons[icon]}
-    size={36}
+    icon={ThumbsUpSVG}
+    size={48}
   />
 );
 ```
 
 Иконки во всех доступных цветах разных размеров:
 ```jsx
-import { clock } from '../icons';
+import ThumbsUpSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/thumbs-up.js';
 import { COLORS } from '../constants';
 
 <React.Fragment>
@@ -29,7 +31,7 @@ import { COLORS } from '../constants';
       <Icon
         inline
         size={24}
-        icon={clock}
+        icon={ThumbsUpSVG}
         color={colorKey}
         style={{ marginRight: 8 }}
       />

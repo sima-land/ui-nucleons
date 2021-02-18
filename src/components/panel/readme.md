@@ -1,6 +1,6 @@
 ```jsx
 import { marginBottom, marginRight } from '../styling/sizes';
-import { information as infoSVG } from '../icons';
+import InfoSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/information';
 
 const variants = [
   { color: 'gray4' },
