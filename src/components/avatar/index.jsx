@@ -27,6 +27,7 @@ const ICON_SIZES = {
  * @param {number} props.size Размер аватара.
  * @param {string} [props.imageUrl] Ссылка на картинку.
  * @param {string} [props.bgColor='gray4'] Цвет аватара без картинки.
+ * @param {number} [props.bgOpacity=1] Цвет аватара без картинки.
  * @param {string} props.textColor Цвет текста без картинки.
  * @param {string} props.title Текст без картинки.
  * @param {string} [props.monogram] Монограмма без картинки.
@@ -37,9 +38,10 @@ const ICON_SIZES = {
  * @return {ReactElement} Компонент.
  */
 export const Avatar = ({
-  size = 72,
+  size: sizeProp = 72,
   imageUrl,
   bgColor = 'gray4',
+  bgOpacity = 1,
   textColor = 'gray87',
   title,
   monogram = getMonogram(title),
@@ -53,18 +55,21 @@ export const Avatar = ({
     toggleImage(Boolean(imageUrl));
   }, [imageUrl]);
 
+  const size = SIZES.includes(sizeProp) ? sizeProp : 72;
+
   return (
     <div
       data-testid={dataTestId}
       className={cx(
         'root',
-        `size-${SIZES.includes(size) ? size : 72}`,
+        `size-${size}`,
         colorClass(textColor),
         className
       )}
       style={{
         ...style,
-        background: !needImage ? COLORS.get(bgColor) : undefined,
+        '--avatar-color': !needImage ? COLORS.get(bgColor) : undefined,
+        '--avatar-color-opacity': bgOpacity,
       }}
     >
       {/* инициалы/иконка */}
@@ -109,6 +114,7 @@ Avatar.propTypes = {
   size: PropTypes.number,
   imageUrl: PropTypes.string,
   bgColor: PropTypes.string,
+  bgOpacity: PropTypes.number,
   textColor: PropTypes.string,
   title: PropTypes.string,
   monogram: PropTypes.string,
