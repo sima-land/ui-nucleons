@@ -37,7 +37,7 @@ describe('UserAvatar', () => {
     );
 
     expect(wrapper1).toMatchSnapshot();
-    expect(wrapper1.find('.shape').prop('style').background).toEqual(COLORS.get(window[colorKey]));
+    expect(wrapper1.find('.root').prop('style').background).toEqual(COLORS.get(window[colorKey]));
 
     const wrapper2 = mount(
       <UserAvatar
@@ -49,6 +49,6 @@ describe('UserAvatar', () => {
     );
 
     expect(wrapper2).toMatchSnapshot();
-    expect(wrapper2.find('.shape').prop('style').background).toEqual(COLORS.get(window[colorKey]));
+    expect(wrapper2.find('.root').prop('style').background).toEqual(COLORS.get(window[colorKey]));
   });
 });

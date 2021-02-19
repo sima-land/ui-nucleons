@@ -2,7 +2,6 @@ import React from 'react';
 import { act, Simulate } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 import { Avatar } from '../index';
-import UpSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/up';
 
 describe('<Avatar />', () => {
   it('should renders without props', () => {
@@ -21,9 +20,7 @@ describe('<Avatar />', () => {
         color='brand-blue'
         textColor='white'
         title='Hello World'
-        icon={UpSVG}
         bgColor='additional-teal'
-        bgOpacity={0.48}
         style={{ clipPath: 'url(#fake-id)' }}
       />
     );

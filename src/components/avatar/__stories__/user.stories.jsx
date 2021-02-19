@@ -1,15 +1,5 @@
 import React, { Fragment } from 'react';
 import { UserAvatar } from '../user';
-import SuperEllipseClipPath from '../../super-ellipse-clip-path';
-
-const superEllipseId = 'header-image-clip-path';
-
-const clipPathUrl = `url(#${superEllipseId})`;
-
-const clipStyle = {
-  clipPath: clipPathUrl,
-  WebkitClipPath: clipPathUrl,
-};
 
 const variants = [
   {
@@ -46,10 +36,8 @@ export const Primary = () => (
         <UserAvatar
           key={index}
           {...variant.props}
-          style={clipStyle}
         />
       </Fragment>
     ))}
-    <SuperEllipseClipPath id={superEllipseId} />
   </>
 );

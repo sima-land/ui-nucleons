@@ -20,7 +20,7 @@ const COLORS = [
   'additional-deep-orange',
 ];
 
-export const colorKey = Symbol('user-avatar:color-key');
+export const colorKey = Symbol.for('user-avatar:color-key');
 
 /**
  * Компонент аватара пользователя (не сотрудника).

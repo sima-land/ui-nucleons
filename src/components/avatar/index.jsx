@@ -9,7 +9,7 @@ import { color as colorClass } from '../styling/colors';
 
 const cx = classnames.bind(classes);
 
-const SIZES = [40, 48, 56, 64, 72, 104];
+const SIZES = [40, 48, 56, 64, 72, 80, 104];
 
 const ICON_SIZES = {
   40: 16,
@@ -17,6 +17,7 @@ const ICON_SIZES = {
   56: 24,
   64: 24,
   72: 24,
+  80: 24,
   104: 24,
 };
 
@@ -26,26 +27,25 @@ const ICON_SIZES = {
  * @param {number} props.size Размер аватара.
  * @param {string} [props.imageUrl] Ссылка на картинку.
  * @param {string} [props.bgColor='gray4'] Цвет аватара без картинки.
- * @param {number} [props.bgOpacity=1] Цвет аватара без картинки.
  * @param {string} props.textColor Цвет текста без картинки.
  * @param {string} props.title Текст без картинки.
  * @param {string} [props.monogram] Монограмма без картинки.
  * @param {string} [props.className] Класс.
  * @param {React.ComponentType} [props.icon] Иконка.
  * @param {Object} props.style Стиль элементов rect/image, формирующего маску "super ellipse".
+ * @param {string} props.'data-testid' Идентификатор для систем автоматизированного тестирования.
  * @return {ReactElement} Компонент.
  */
 export const Avatar = ({
   size = 72,
   imageUrl,
   bgColor = 'gray4',
-  bgOpacity = 1,
   textColor = 'gray87',
   title,
   monogram = getMonogram(title),
   className,
-  icon: Icon = PersonSVG,
   style,
+  'data-testid': dataTestId,
 }) => {
   const [needImage, toggleImage] = useState(Boolean(imageUrl));
 
@@ -55,35 +55,30 @@ export const Avatar = ({
 
   return (
     <div
+      data-testid={dataTestId}
       className={cx(
         'root',
         `size-${SIZES.includes(size) ? size : 72}`,
         colorClass(textColor),
         className
       )}
-      style={style}
+      style={{
+        ...style,
+        background: !needImage ? COLORS.get(bgColor) : undefined,
+      }}
     >
-      {/* фон, необходим в том числе под изображениями так как могут быть PNG */}
-      <div
-        className={cx('shape')}
-        style={
-          !needImage
-            ? {
-              opacity: bgOpacity,
-              background: COLORS.get(bgColor),
-            }
-            : {}
-        }
-      />
-
       {/* инициалы/иконка */}
       {!needImage && (
-        <div className={cx('content')}>
+        <>
           {
             monogram
-              ? monogram.slice(0, 2).toUpperCase()
+              ? (
+                <span className={cx('monogram')}>
+                  {monogram.slice(0, 2).toUpperCase()}
+                </span>
+              )
               : (
-                <Icon
+                <PersonSVG
                   fill={COLORS.get(textColor)}
                   width={ICON_SIZES[size]}
                   height={ICON_SIZES[size]}
@@ -91,80 +86,36 @@ export const Avatar = ({
                 />
               )
           }
-        </div>
+        </>
       )}
 
       {/* изображение */}
       {needImage && (
-        <img
-          src={imageUrl}
-          alt=''
-          className={cx('image')}
-          onError={() => toggleImage(false)}
-        />
+        <>
+          <img
+            src={imageUrl}
+            alt=''
+            className={cx('layer', 'image')}
+            onError={() => toggleImage(false)}
+          />
+          <div className={cx('layer', 'image-overlay')} />
+        </>
       )}
     </div>
   );
 };
 
 Avatar.propTypes = {
-  /**
-   * Размер аватара.
-   */
   size: PropTypes.number,
-
-  /**
-   * Ссылка на картинку.
-   */
   imageUrl: PropTypes.string,
-
-  /**
-   * Цвет фона без картинки.
-   */
   bgColor: PropTypes.string,
-
-  /**
-   * Непрозрачность фона без картинки.
-   */
-  bgOpacity: PropTypes.number,
-
-  /**
-   * Цвет текста без картинки.
-   */
   textColor: PropTypes.string,
-
-  /**
-   * Текст без картинки.
-   */
   title: PropTypes.string,
-
-  /**
-   * Монограмма без картинки.
-   */
   monogram: PropTypes.string,
-
-  /**
-   * Свойства Icon.
-   */
   iconProps: PropTypes.object,
-
-  /**
-   * Свойства элемента с текстом.
-   */
   textProps: PropTypes.object,
-
-  /**
-   * Стиль элементов rect/image, формирующего маску "super ellipse".
-   */
   style: PropTypes.object,
-
-  /**
-   * Компонент, который выведет иконку.
-   */
   icon: PropTypes.elementType,
-
-  /**
-   * Класс.
-   */
   className: PropTypes.string,
+  'data-testid': PropTypes.string,
 };

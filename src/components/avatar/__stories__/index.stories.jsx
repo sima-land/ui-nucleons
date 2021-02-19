@@ -1,17 +1,7 @@
 import { useState } from '@storybook/addons';
 import React, { Fragment } from 'react';
 import { Avatar } from '..';
-import SuperEllipseClipPath from '../../super-ellipse-clip-path';
 import { random } from 'lodash';
-
-const superEllipseId = 'header-image-clip-path';
-
-const clipPathUrl = `url(#${superEllipseId})`;
-
-const clipStyle = {
-  clipPath: clipPathUrl,
-  WebkitClipPath: clipPathUrl,
-};
 
 const propsVariants = [
   {
@@ -49,7 +39,6 @@ export const Primary = () => (
         <Avatar
           key={index}
           {...variant.props}
-          style={clipStyle}
         />
       </Fragment>
     ))}
@@ -62,9 +51,7 @@ export const Primary = () => (
           key={index}
           {...variant.props}
           bgColor='additional-teal'
-          bgOpacity={0.48}
           textColor='white'
-          style={clipStyle}
           iconProps={{ color: 'white' }}
         />
       </Fragment>
@@ -74,20 +61,18 @@ export const Primary = () => (
     {propsVariants.map((variant, variantIndex) => (
       <Fragment key={variantIndex}>
         <h3>{variant.title}</h3>
-        {[40, 48, 56, 64, 72, 104].map((size, index) => (
+        {[40, 48, 56, 64, 72, 80, 104].map((size, index) => (
           <Fragment key={index}>
             <h4>size={size}</h4>
             <Avatar
               key={`${index}-${variantIndex}`}
               {...variant.props}
               size={size}
-              style={clipStyle}
             />
           </Fragment>
         ))}
       </Fragment>
     ))}
-    <SuperEllipseClipPath id={superEllipseId} />
   </>
 );
 
@@ -99,7 +84,6 @@ export const DifferentImages = () => (
         <Avatar
           key={index}
           imageUrl={`https://picsum.photos/${200 + (index * 50)}`}
-          style={clipStyle}
         />
         <br />
       </Fragment>
@@ -108,9 +92,7 @@ export const DifferentImages = () => (
     <h3>Invalid URL</h3>
     <Avatar
       imageUrl='https://foo123.bar345/'
-      style={clipStyle}
     />
-    <SuperEllipseClipPath id={superEllipseId} />
   </>
 );
 
@@ -121,14 +103,11 @@ export const DeferredImageURLChange = () => {
     <>
       <div style={{ marginBottom: 16 }}>
         <Avatar
-          style={clipStyle}
           imageUrl={imageUrl}
         />
       </div>
 
       <button onClick={() => setImageUrl(`https://picsum.photos/${200 + random(10, 20)}`)}>Set URL</button>
-
-      <SuperEllipseClipPath id={superEllipseId} />
     </>
   );
 };

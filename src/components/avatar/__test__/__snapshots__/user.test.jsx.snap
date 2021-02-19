@@ -28,24 +28,16 @@ exports[`UserAvatar should handle props 1`] = `
       className="root size-40 color__white"
       style={
         Object {
+          "background": "#d50000",
           "clipPath": "url(#fake-id)",
         }
       }
     >
-      <div
-        className="shape"
-        style={
-          Object {
-            "background": "#d50000",
-            "opacity": 0.48,
-          }
-        }
-      />
-      <div
-        className="content"
+      <span
+        className="monogram"
       >
         WH
-      </div>
+      </span>
     </div>
   </Avatar>
 </UserAvatar>
@@ -79,24 +71,16 @@ exports[`UserAvatar should handle props 2`] = `
       className="root size-40 color__white"
       style={
         Object {
+          "background": "#d50000",
           "clipPath": "url(#fake-id)",
         }
       }
     >
-      <div
-        className="shape"
-        style={
-          Object {
-            "background": "#d50000",
-            "opacity": 0.48,
-          }
-        }
-      />
-      <div
-        className="content"
+      <span
+        className="monogram"
       >
         WH
-      </div>
+      </span>
     </div>
   </Avatar>
 </UserAvatar>
@@ -111,43 +95,35 @@ exports[`UserAvatar should renders without props 1`] = `
   >
     <div
       className="root size-72 color__white"
-    >
-      <div
-        className="shape"
-        style={
-          Object {
-            "background": "#d50000",
-            "opacity": 0.48,
-          }
+      style={
+        Object {
+          "background": "#d50000",
         }
-      />
-      <div
-        className="content"
+      }
+    >
+      <PersonSVG
+        className="icon"
+        fill="#fff"
+        height={24}
+        width={24}
       >
-        <PersonSVG
+        <svg
           className="icon"
           fill="#fff"
           height={24}
+          viewBox="0 0 24 24"
           width={24}
         >
-          <svg
-            className="icon"
-            fill="#fff"
-            height={24}
-            viewBox="0 0 24 24"
-            width={24}
-          >
-            <path
-              clipRule="evenodd"
-              d="M11.88 1C8.723 1 6.356 3.887 6.975 6.98l.455 2.274a4.66 4.66 0 009.138 0l.455-2.273C17.642 3.887 15.276 1 12.12 1h-.242zM8.936 6.588A3 3 0 0111.88 3h.242a3 3 0 012.941 3.588l-.454 2.274a2.66 2.66 0 01-5.216 0l-.455-2.274z"
-              fillRule="evenodd"
-            />
-            <path
-              d="M7.214 14.977a1 1 0 00-.428-1.954c-2.223.486-3.462 1.496-4.123 2.508a4.205 4.205 0 00-.573 1.311 3.43 3.43 0 00-.09.626c-.009.51 0 1.021 0 1.532a3 3 0 003 3h14a3 3 0 003-3c0-.51.007-1.021 0-1.532l-.002-.048a3.449 3.449 0 00-.088-.578 4.203 4.203 0 00-.573-1.31c-.66-1.013-1.9-2.023-4.123-2.509a1 1 0 10-.428 1.954c1.777.389 2.538 1.129 2.877 1.648.178.272.262.518.302.685a1.44 1.44 0 01.035.203V19a1 1 0 01-1 1H5a1 1 0 01-1-1v-1.484l.002-.025c.004-.035.013-.097.033-.18.04-.168.124-.414.302-.686.34-.52 1.1-1.26 2.877-1.648z"
-            />
-          </svg>
-        </PersonSVG>
-      </div>
+          <path
+            clipRule="evenodd"
+            d="M11.88 1C8.723 1 6.356 3.887 6.975 6.98l.455 2.274a4.66 4.66 0 009.138 0l.455-2.273C17.642 3.887 15.276 1 12.12 1h-.242zM8.936 6.588A3 3 0 0111.88 3h.242a3 3 0 012.941 3.588l-.454 2.274a2.66 2.66 0 01-5.216 0l-.455-2.274z"
+            fillRule="evenodd"
+          />
+          <path
+            d="M7.214 14.977a1 1 0 00-.428-1.954c-2.223.486-3.462 1.496-4.123 2.508a4.205 4.205 0 00-.573 1.311 3.43 3.43 0 00-.09.626c-.009.51 0 1.021 0 1.532a3 3 0 003 3h14a3 3 0 003-3c0-.51.007-1.021 0-1.532l-.002-.048a3.449 3.449 0 00-.088-.578 4.203 4.203 0 00-.573-1.31c-.66-1.013-1.9-2.023-4.123-2.509a1 1 0 10-.428 1.954c1.777.389 2.538 1.129 2.877 1.648.178.272.262.518.302.685a1.44 1.44 0 01.035.203V19a1 1 0 01-1 1H5a1 1 0 01-1-1v-1.484l.002-.025c.004-.035.013-.097.033-.18.04-.168.124-.414.302-.686.34-.52 1.1-1.26 2.877-1.648z"
+          />
+        </svg>
+      </PersonSVG>
     </div>
   </Avatar>
 </UserAvatar>
