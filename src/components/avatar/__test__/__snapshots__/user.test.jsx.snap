@@ -28,7 +28,8 @@ exports[`UserAvatar should handle props 1`] = `
       className="root size-40 color__white"
       style={
         Object {
-          "background": "#d50000",
+          "--avatar-color": "#d50000",
+          "--avatar-color-opacity": 0.48,
           "clipPath": "url(#fake-id)",
         }
       }
@@ -71,7 +72,8 @@ exports[`UserAvatar should handle props 2`] = `
       className="root size-40 color__white"
       style={
         Object {
-          "background": "#d50000",
+          "--avatar-color": "#d50000",
+          "--avatar-color-opacity": 0.48,
           "clipPath": "url(#fake-id)",
         }
       }
@@ -97,7 +99,8 @@ exports[`UserAvatar should renders without props 1`] = `
       className="root size-72 color__white"
       style={
         Object {
-          "background": "#d50000",
+          "--avatar-color": "#d50000",
+          "--avatar-color-opacity": 0.48,
         }
       }
     >

@@ -10,6 +10,14 @@ $textSizes: (
   104: 24
 );
 
+@mixin layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .root {
   display: flex;
   align-items: center;
@@ -19,6 +27,13 @@ $textSizes: (
   flex-shrink: 0;
   border-radius: 50%;
   overflow: hidden;
+  &::before {
+    @include layer;
+    content: '';
+    display: block;
+    background: var(--avatar-color, none);
+    opacity: var(--avatar-color-opacity, 1);
+  }
 }
 
 @each $size in $sizes {
@@ -32,6 +47,7 @@ $textSizes: (
 }
 
 .monogram {
+  position: relative;
   padding: 0 8px;
   font-weight: 500;
   white-space: nowrap;
@@ -40,15 +56,12 @@ $textSizes: (
 }
 
 .icon {
+  position: relative;
   fill: currentColor;
 }
 
 .layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  @include layer;
   &.image {
     object-fit: cover;
   }
