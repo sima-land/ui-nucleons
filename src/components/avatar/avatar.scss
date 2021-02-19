@@ -1,4 +1,4 @@
-$sizes: 40, 48, 56, 64, 72, 104;
+$sizes: 40, 48, 56, 64, 72, 80, 104;
 
 $textSizes: (
   40: 12,
@@ -6,24 +6,19 @@ $textSizes: (
   56: 16,
   64: 16,
   72: 16,
+  80: 16,
   104: 24
 );
 
 .root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   flex-grow: 0;
   flex-shrink: 0;
-}
-
-.shape {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  // по гайдам под прозрачной картинкой всегда должен быть фон
-  background: rgba(0, 0, 0, .04);
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 @each $size in $sizes {
@@ -36,29 +31,29 @@ $textSizes: (
   }
 }
 
-.content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.monogram {
+  padding: 0 8px;
+  font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
-  padding: 0 8px;
+  text-overflow: ellipsis;
 }
 
 .icon {
   fill: currentColor;
 }
 
-.image {
+.layer {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  &.image {
+    object-fit: cover;
+  }
+  &.image-overlay {
+    background: #000;
+    opacity: .04;
+  }
 }
