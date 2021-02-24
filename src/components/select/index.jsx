@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Dropdown } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';
 import TextField from '../text-field';
+import { placeDropdown } from '../_internal/utils/dropdown';
 import classnames from 'classnames/bind';
 import DownSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/down';
 import UpSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/up';
@@ -96,6 +97,7 @@ export const Select = ({
 
       {opened && (loading || options?.length > 0) && (
         <Dropdown
+          {...placeDropdown(restProps.size)}
           ref={menuRef}
           data-testid='select:menu'
           tabIndex={-1}

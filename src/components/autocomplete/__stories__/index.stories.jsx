@@ -34,6 +34,7 @@ export const PresetDefault = () => {
         items={testItems.filter(s => s.toLowerCase().includes(value.toLowerCase()))}
         onChange={e => setValue(e.target.value)}
         onSelect={setValue}
+        caption='Test caption'
       />
     </>
   );

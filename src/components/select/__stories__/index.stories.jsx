@@ -26,6 +26,7 @@ export const Primary = () => {
         ]}
         optionSize='m'
         onSelect={selectOption}
+        caption='Test caption'
       />
       <div style={{ marginTop: 8 }}>
         <Link pseudo onClick={() => selectOption('')}>Сбросить</Link>

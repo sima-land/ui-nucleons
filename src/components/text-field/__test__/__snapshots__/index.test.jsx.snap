@@ -13,7 +13,7 @@ exports[`<TextField /> should handle "caption" prop 1`] = `
   }
 >
   <div
-    className="text-field-root"
+    className="root"
   >
     <div
       className="reset input-block variant-desktop size-l rounds-sm__all"
@@ -78,7 +78,7 @@ exports[`<TextField /> should handle "caption" prop 2`] = `
   variant="mobile"
 >
   <div
-    className="text-field-root"
+    className="root"
   >
     <div
       className="reset input-block disabled failed variant-mobile size-l"
@@ -115,7 +115,7 @@ exports[`<TextField /> should handle "caption" prop 2`] = `
       </div>
     </div>
     <div
-      className="caption M-t__1 disabled failed"
+      className="caption M-t__1 failed"
     >
       <span>
         Hello 
@@ -134,7 +134,7 @@ exports[`<TextField /> should handle "disabled" prop 1`] = `
   disabled={true}
 >
   <div
-    className="text-field-root"
+    className="root"
   >
     <div
       className="reset input-block disabled variant-desktop size-l rounds-sm__all"
@@ -179,7 +179,7 @@ exports[`<TextField /> should handle "focused" prop 1`] = `
   focused={true}
 >
   <div
-    className="text-field-root"
+    className="root"
   >
     <div
       className="reset input-block focused variant-desktop size-l rounds-sm__all"
@@ -222,7 +222,7 @@ exports[`<TextField /> should handle "label" prop 1`] = `
   label="The best label in our world!"
 >
   <div
-    className="text-field-root"
+    className="root"
   >
     <div
       className="reset input-block variant-desktop size-l with-label rounds-sm__all"
@@ -273,7 +273,7 @@ exports[`<TextField /> should handle "label" prop 2`] = `
   variant="mobile"
 >
   <div
-    className="text-field-root"
+    className="root"
   >
     <div
       className="reset input-block disabled failed variant-mobile size-l with-label"
@@ -329,7 +329,7 @@ exports[`<TextField /> should handle "multiline" prop 1`] = `
   onInput={[MockFunction]}
 >
   <div
-    className="text-field-root"
+    className="root"
   >
     <div
       className="reset input-block variant-desktop size-l multiline rounds-sm__all"
@@ -376,7 +376,7 @@ exports[`<TextField /> should handle "variant" prop 1`] = `
   variant="desktop"
 >
   <div
-    className="text-field-root"
+    className="root"
   >
     <div
       className="reset input-block variant-desktop size-l rounds-sm__all"
@@ -419,7 +419,7 @@ exports[`<TextField /> should handle "variant" prop 2`] = `
   variant="mobile"
 >
   <div
-    className="text-field-root"
+    className="root"
   >
     <div
       className="reset input-block variant-mobile size-l"
@@ -462,7 +462,7 @@ exports[`<TextField /> should handle adornment props 1`] = `
   startAdornment="Name: "
 >
   <div
-    className="text-field-root"
+    className="root"
   >
     <div
       className="reset input-block variant-desktop size-l rounds-sm__all"
@@ -517,7 +517,7 @@ exports[`<TextField /> should handle adornment props 2`] = `
   startAdornment={null}
 >
   <div
-    className="text-field-root"
+    className="root"
   >
     <div
       className="reset input-block variant-desktop size-l rounds-sm__all"
@@ -569,7 +569,7 @@ exports[`<TextField /> should handle adornment props 2`] = `
 exports[`<TextField /> should render without props 1`] = `
 <ForwardRef(TextField)>
   <div
-    className="text-field-root"
+    className="root"
   >
     <div
       className="reset input-block variant-desktop size-l rounds-sm__all"

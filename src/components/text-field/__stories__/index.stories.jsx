@@ -120,6 +120,7 @@ storiesOf('TextField', module)
         label='Label'
         caption='Caption'
         placeholder='Placeholder'
+        baseInputProps={{ rows: 8 }}
       />
       <div style={{ height: 32 }} />
       <TextField

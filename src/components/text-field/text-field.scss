@@ -15,13 +15,13 @@ input.reset {
   padding: 0;
 }
 
-.text-field-root {
+.root {
   display: inline-block;
 }
 
 .input-block {
   display: flex;
-  min-width: 64px; // минимальная ширина по договоренности с дизайнерами
+  min-width: 56px; // минимальная ширина по договоренности с дизайнерами
   max-width: 100%;
   padding: 0 12px;
   flex-direction: row;
@@ -143,9 +143,14 @@ input.reset {
     color: colors.$gray24;
   }
   &.as-placeholder {
-    top: calc(50% - 12px);
     font-size: 16px;
     line-height: 24px;
+    &.variant-desktop {
+      top: 8px;
+    }
+    &.variant-mobile {
+      top: 12px;
+    }
   }
   &.variant-mobile {
     &.focused:not(.failed) {
@@ -193,9 +198,6 @@ input.reset {
   font-size: 12px;
   line-height: 16px;
   color: colors.$gray38;
-  &.disabled {
-    color: colors.$gray24;
-  }
   &.failed {
     color: colors.$additional-red;
   }

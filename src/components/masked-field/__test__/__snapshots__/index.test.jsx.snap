@@ -14,7 +14,7 @@ exports[`MaskedField should renders properly 1`] = `
     }
   >
     <div
-      className="text-field-root"
+      className="root"
     >
       <div
         className="reset input-block variant-desktop size-l rounds-sm__all"

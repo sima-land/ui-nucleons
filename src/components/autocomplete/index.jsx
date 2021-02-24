@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Dropdown } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';
 import TextField from '../text-field';
+import { placeDropdown } from '../_internal/utils/dropdown';
 import classnames from 'classnames/bind';
 import DownSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/down';
 import { COLORS } from '../constants';
@@ -139,6 +140,7 @@ export const Autocomplete = ({
 
       {canShowDropdown && (
         <Dropdown
+          {...placeDropdown(restProps.size)}
           ref={menuRef}
           data-testid='autocomplete:menu'
           className={cx('menu')}

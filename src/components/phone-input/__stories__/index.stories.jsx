@@ -9,7 +9,7 @@ const DemoForm = ({ initialValue = '' }) => {
   return (
     <PhoneInput
       value={value}
-      caption={error}
+      caption={error || 'Test caption'}
       failed={Boolean(error)}
       onFocus={() => {
         setError(null);

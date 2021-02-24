@@ -35,7 +35,7 @@ exports[`<PhoneInput /> Other: should render just text field with able to input 
       onChange={[Function]}
     >
       <div
-        className="text-field-root field"
+        className="root field"
       >
         <div
           className="reset input-block variant-desktop size-l with-label rounds-sm__all"
@@ -185,7 +185,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
         }
       >
         <div
-          className="text-field-root field"
+          className="root field"
         >
           <div
             className="reset input-block variant-desktop size-l with-label rounds-sm__all"

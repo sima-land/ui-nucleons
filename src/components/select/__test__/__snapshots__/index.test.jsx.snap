@@ -37,7 +37,7 @@ exports[`Select should render loading state 1`] = `
       variant="desktop"
     >
       <div
-        className="text-field-root field"
+        className="root field"
         data-testid="select:field"
       >
         <div
@@ -118,6 +118,11 @@ exports[`Select should render loading state 1`] = `
       onBlur={[Function]}
       onKeyDown={[Function]}
       role="menu"
+      style={
+        Object {
+          "top": "56px",
+        }
+      }
       tabIndex={-1}
     >
       <div
@@ -126,6 +131,11 @@ exports[`Select should render loading state 1`] = `
         onBlur={[Function]}
         onKeyDown={[Function]}
         role="menu"
+        style={
+          Object {
+            "top": "56px",
+          }
+        }
         tabIndex={-1}
       >
         <DropdownLoading
@@ -218,7 +228,7 @@ exports[`Select should renders correctly 1`] = `
       variant="desktop"
     >
       <div
-        className="text-field-root field"
+        className="root field"
         data-testid="select:field"
       >
         <div
@@ -359,7 +369,7 @@ exports[`Select should renders correctly 2`] = `
       variant="desktop"
     >
       <div
-        className="text-field-root field"
+        className="root field"
         data-testid="select:field"
       >
         <div
@@ -440,6 +450,11 @@ exports[`Select should renders correctly 2`] = `
       onBlur={[Function]}
       onKeyDown={[Function]}
       role="menu"
+      style={
+        Object {
+          "top": "56px",
+        }
+      }
       tabIndex={-1}
     >
       <div
@@ -448,6 +463,11 @@ exports[`Select should renders correctly 2`] = `
         onBlur={[Function]}
         onKeyDown={[Function]}
         role="menu"
+        style={
+          Object {
+            "top": "56px",
+          }
+        }
         tabIndex={-1}
       >
         <DropdownItem
