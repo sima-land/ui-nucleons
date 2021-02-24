@@ -41,20 +41,6 @@ module.exports = {
       components: ['src/components/grid/**/*.jsx'],
     },
     {
-      name: 'Modifiers',
-      sections: [
-        {
-          name: 'asList',
-          components: ['src/components/modifiers-list/**/*.jsx'],
-        },
-        {
-          name: 'asButtons',
-          components: ['src/components/modifiers/**/*.jsx'],
-        },
-      ],
-      sectionDepth: 1,
-    },
-    {
       name: 'Popups',
       components: ['src/components/popups/**/*.jsx'],
     },

@@ -28,7 +28,7 @@ const markup = 'Lorem <i>ipsum</i> <b>dolor</b>.';
 
 <h3>Inline (with icon)</h3>
 {variants.map((props, index) => (
-  <Panel key={index} {...props} inline className={[marginRight(4)]} icon={infoSVG}>
+  <Panel key={index} {...props} inline className={[marginRight(4)]} icon={InfoSVG}>
     Lorem ipsum
   </Panel>
 ))}
@@ -40,7 +40,7 @@ const markup = 'Lorem <i>ipsum</i> <b>dolor</b>.';
     {...props}
     inline
     className={[marginRight(4)]}
-    icon={infoSVG}
+    icon={InfoSVG}
     html={markup}
   />
 ))}
@@ -54,7 +54,7 @@ const markup = 'Lorem <i>ipsum</i> <b>dolor</b>.';
 
 <h3>Block (with icon)</h3>
 {variants.map((props, index) => (
-  <Panel key={index} {...props} className={marginBottom(5)} icon={infoSVG}>
+  <Panel key={index} {...props} className={marginBottom(5)} icon={InfoSVG}>
     {longText}
   </Panel>
 ))}
@@ -65,7 +65,7 @@ const markup = 'Lorem <i>ipsum</i> <b>dolor</b>.';
     key={index}
     {...props}
     className={marginBottom(5)}
-    icon={infoSVG}
+    icon={InfoSVG}
     html={markup}
   />
 ))}

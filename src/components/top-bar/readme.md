@@ -1,7 +1,6 @@
 Представляет собой шапку модальных окон/экранов.
 
 ```jsx
-import Icon from '../icon';
 import SearchSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/search';
 import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
 
@@ -18,11 +17,11 @@ import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
     subtitle='Подзаголовок'
     buttonsProps={{
       start: {
-        icon: <Icon size={24} icon={SearchSVG} />,
+        icon: <SearchSVG size={24} />,
         onClick: () => console.log('Click to the start icon'),
       },
       end: {
-        icon: <Icon size={24} icon={CrossSVG} />,
+        icon: <CrossSVG size={24} />,
         onClick: () => console.log('Click to the end icon'),
       },
     }}
