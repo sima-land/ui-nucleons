@@ -33,7 +33,7 @@ exports[`Autocomplete should handle "renderItem" prop missing 1`] = `
       variant="desktop"
     >
       <div
-        className="text-field-root field"
+        className="root field"
         data-testid="autocomplete:field"
       >
         <div
@@ -107,11 +107,21 @@ exports[`Autocomplete should handle "renderItem" prop missing 1`] = `
       className="menu"
       data-testid="autocomplete:menu"
       role="menu"
+      style={
+        Object {
+          "top": "56px",
+        }
+      }
     >
       <div
         className="root invisible-scroll shadow-z4 rounds-md__all menu"
         data-testid="autocomplete:menu"
         role="menu"
+        style={
+          Object {
+            "top": "56px",
+          }
+        }
       >
         <DropdownItem
           checked={false}
@@ -234,7 +244,7 @@ exports[`Autocomplete should handle defaultValue 1`] = `
       variant="desktop"
     >
       <div
-        className="text-field-root field"
+        className="root field"
         data-testid="autocomplete:field"
       >
         <div
@@ -345,7 +355,7 @@ exports[`Autocomplete should renders correctly 1`] = `
       variant="desktop"
     >
       <div
-        className="text-field-root field"
+        className="root field"
         data-testid="autocomplete:field"
       >
         <div
@@ -454,7 +464,7 @@ exports[`Autocomplete should renders correctly 2`] = `
       variant="desktop"
     >
       <div
-        className="text-field-root field"
+        className="root field"
         data-testid="autocomplete:field"
       >
         <div
@@ -537,7 +547,7 @@ exports[`Autocomplete should renders correctly 3`] = `
       variant="desktop"
     >
       <div
-        className="text-field-root field"
+        className="root field"
         data-testid="autocomplete:field"
       >
         <div
@@ -585,11 +595,21 @@ exports[`Autocomplete should renders correctly 3`] = `
       className="menu"
       data-testid="autocomplete:menu"
       role="menu"
+      style={
+        Object {
+          "top": "56px",
+        }
+      }
     >
       <div
         className="root invisible-scroll shadow-z4 rounds-md__all menu"
         data-testid="autocomplete:menu"
         role="menu"
+        style={
+          Object {
+            "top": "56px",
+          }
+        }
       >
         <DropdownItem
           checked={false}
@@ -803,7 +823,7 @@ exports[`Autocomplete should renders correctly 4`] = `
       variant="desktop"
     >
       <div
-        className="text-field-root field"
+        className="root field"
         data-testid="autocomplete:field"
       >
         <div
@@ -851,11 +871,21 @@ exports[`Autocomplete should renders correctly 4`] = `
       className="menu"
       data-testid="autocomplete:menu"
       role="menu"
+      style={
+        Object {
+          "top": "56px",
+        }
+      }
     >
       <div
         className="root invisible-scroll shadow-z4 rounds-md__all menu"
         data-testid="autocomplete:menu"
         role="menu"
+        style={
+          Object {
+            "top": "56px",
+          }
+        }
       >
         <DropdownLoading
           data-testid="autocomplete:loading-area"

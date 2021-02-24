@@ -1,14 +1,18 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
 import { isNil, isFunction } from 'lodash';
 import Box from '../box';
-import { marginTop } from '../styling/sizes';
+import { BaseInput } from '../base-input';
+import { SmallRounds } from '../styling/shapes';
+import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
 import styles from './text-field.scss';
-import { BaseInput } from '../base-input';
-import PropTypes from 'prop-types';
-import { SmallRounds } from '../styling/shapes';
+import { marginTop } from '../styling/sizes';
 
-export const cx = classnames.bind(styles);
+const cx = classnames.bind(styles);
+
+export const HEIGHTS = { xs: 32, s: 40, l: 56 };
+
+export const DEFAULTS = { size: 'l' };
 
 /**
  * Вернет true если переданное значение будет выведено при установке в input.
@@ -83,7 +87,7 @@ const TextField = forwardRef(function TextField ({
   placeholder,
   readOnly,
   rounds = 'all',
-  size = 'l',
+  size = DEFAULTS.size,
   startAdornment,
   value,
   variant = 'desktop',
@@ -120,7 +124,7 @@ const TextField = forwardRef(function TextField ({
   useEffect(() => toggleHasValue(baseInputRef.current.value));
 
   return (
-    <div data-testid={dataTestId} className={cx('text-field-root', className, classes.root)} style={style}>
+    <div data-testid={dataTestId} className={cx('root', className, classes.root)} style={style}>
 
       {/* field row */}
       <div
@@ -225,7 +229,6 @@ const TextField = forwardRef(function TextField ({
           className={cx(
             'caption',
             marginTop(isMobile ? 1 : 2),
-            disabled && 'disabled',
             failed && 'failed'
           )}
           children={caption}

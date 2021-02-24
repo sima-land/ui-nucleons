@@ -24,7 +24,7 @@ exports[`FieldGrid should handle "renderField" prop 1`] = `
             rounds="left"
           >
             <div
-              className="text-field-root"
+              className="root"
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__l"
@@ -78,7 +78,7 @@ exports[`FieldGrid should handle "renderField" prop 1`] = `
             rounds="right"
           >
             <div
-              className="text-field-root"
+              className="root"
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__r"
@@ -157,7 +157,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
             rounds="topLeft"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__t-l"
@@ -221,7 +221,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
             rounds="none"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l"
@@ -285,7 +285,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
             rounds="topRight"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__t-r"
@@ -355,7 +355,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
             rounds="none"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l"
@@ -419,7 +419,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
             rounds="none"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l"
@@ -483,7 +483,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
             rounds="none"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l"
@@ -553,7 +553,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
             rounds="none"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l"
@@ -617,7 +617,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
             rounds="none"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l"
@@ -689,7 +689,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
             rounds="bottom"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l multiline rounds-sm__b"
@@ -770,7 +770,7 @@ exports[`FieldGrid should render single row with one cell 1`] = `
             rounds="all"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__all"
@@ -849,7 +849,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
             rounds="left"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__l"
@@ -913,7 +913,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
             rounds="none"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l"
@@ -977,7 +977,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
             rounds="right"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__r"
@@ -1056,7 +1056,7 @@ exports[`FieldGrid should render single row with two cells 1`] = `
             rounds="left"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__l"
@@ -1120,7 +1120,7 @@ exports[`FieldGrid should render single row with two cells 1`] = `
             rounds="right"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__r"
@@ -1199,7 +1199,7 @@ exports[`FieldGrid should render two rows 1`] = `
             rounds="topLeft"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__t-l"
@@ -1263,7 +1263,7 @@ exports[`FieldGrid should render two rows 1`] = `
             rounds="topRight"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__t-r"
@@ -1333,7 +1333,7 @@ exports[`FieldGrid should render two rows 1`] = `
             rounds="bottomLeft"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__b-l"
@@ -1397,7 +1397,7 @@ exports[`FieldGrid should render two rows 1`] = `
             rounds="none"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l"
@@ -1461,7 +1461,7 @@ exports[`FieldGrid should render two rows 1`] = `
             rounds="bottomRight"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__b-r"
@@ -1540,7 +1540,7 @@ exports[`FieldGrid should render two rows with one cell 1`] = `
             rounds="top"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__t"
@@ -1610,7 +1610,7 @@ exports[`FieldGrid should render two rows with one cell 1`] = `
             rounds="bottom"
           >
             <div
-              className="text-field-root size-full"
+              className="root size-full"
             >
               <div
                 className="reset input-block variant-desktop size-l rounds-sm__b"
