@@ -1,0 +1,237 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FileIcon /> should render known file type icons 1`] = `
+<FileIcon
+  type="doc"
+>
+  <svg
+    height="32"
+    viewBox="0 0 32 32"
+    width="32"
+  >
+    <path
+      d="M6 5C6 3.89543 6.89543 3 8 3H20L26 9V27C26 28.1046 25.1046 29 24 29H8C6.89543 29 6 28.1046 6 27V5Z"
+      fill="#2962ff"
+      opacity="0.88"
+    />
+    <path
+      d="M21 9L26 9L20 3L20 8C20 8.55229 20.4477 9 21 9Z"
+      fill="white"
+      opacity="0.32"
+    />
+    <path
+      d="M25.1667 9L21 9L26 15L26 9C25.5833 9 25.6269 9 25.1667 9Z"
+      fill="black"
+      opacity="0.24"
+    />
+    <text
+      fill="#fff"
+      fontSize="6.5"
+      fontWeight="700"
+      textAnchor="middle"
+      x="16"
+      y="23"
+    >
+      DOC
+    </text>
+  </svg>
+</FileIcon>
+`;
+
+exports[`<FileIcon /> should render known file type icons 2`] = `
+<FileIcon
+  type="xls"
+>
+  <svg
+    height="32"
+    viewBox="0 0 32 32"
+    width="32"
+  >
+    <path
+      d="M6 5C6 3.89543 6.89543 3 8 3H20L26 9V27C26 28.1046 25.1046 29 24 29H8C6.89543 29 6 28.1046 6 27V5Z"
+      fill="#66cb2f"
+      opacity="0.88"
+    />
+    <path
+      d="M21 9L26 9L20 3L20 8C20 8.55229 20.4477 9 21 9Z"
+      fill="white"
+      opacity="0.32"
+    />
+    <path
+      d="M25.1667 9L21 9L26 15L26 9C25.5833 9 25.6269 9 25.1667 9Z"
+      fill="black"
+      opacity="0.24"
+    />
+    <text
+      fill="#fff"
+      fontSize="6.5"
+      fontWeight="700"
+      textAnchor="middle"
+      x="16"
+      y="23"
+    >
+      XLS
+    </text>
+  </svg>
+</FileIcon>
+`;
+
+exports[`<FileIcon /> should render known file type icons 3`] = `
+<FileIcon
+  type="pdf"
+>
+  <svg
+    height="32"
+    viewBox="0 0 32 32"
+    width="32"
+  >
+    <path
+      d="M6 5C6 3.89543 6.89543 3 8 3H20L26 9V27C26 28.1046 25.1046 29 24 29H8C6.89543 29 6 28.1046 6 27V5Z"
+      fill="#d50000"
+      opacity="0.88"
+    />
+    <path
+      d="M21 9L26 9L20 3L20 8C20 8.55229 20.4477 9 21 9Z"
+      fill="white"
+      opacity="0.32"
+    />
+    <path
+      d="M25.1667 9L21 9L26 15L26 9C25.5833 9 25.6269 9 25.1667 9Z"
+      fill="black"
+      opacity="0.24"
+    />
+    <text
+      fill="#fff"
+      fontSize="6.5"
+      fontWeight="700"
+      textAnchor="middle"
+      x="16"
+      y="23"
+    >
+      PDF
+    </text>
+  </svg>
+</FileIcon>
+`;
+
+exports[`<FileIcon /> should render known file type icons 4`] = `
+<FileIcon
+  type="jpg"
+>
+  <svg
+    height="32"
+    viewBox="0 0 32 32"
+    width="32"
+  >
+    <path
+      d="M6 5C6 3.89543 6.89543 3 8 3H20L26 9V27C26 28.1046 25.1046 29 24 29H8C6.89543 29 6 28.1046 6 27V5Z"
+      fill="#ff7200"
+      opacity="0.88"
+    />
+    <path
+      d="M21 9L26 9L20 3L20 8C20 8.55229 20.4477 9 21 9Z"
+      fill="white"
+      opacity="0.32"
+    />
+    <path
+      d="M25.1667 9L21 9L26 15L26 9C25.5833 9 25.6269 9 25.1667 9Z"
+      fill="black"
+      opacity="0.24"
+    />
+    <text
+      fill="#fff"
+      fontSize="6.5"
+      fontWeight="700"
+      textAnchor="middle"
+      x="16"
+      y="23"
+    >
+      JPG
+    </text>
+  </svg>
+</FileIcon>
+`;
+
+exports[`<FileIcon /> should render known file type icons 5`] = `
+<FileIcon
+  type="xml"
+>
+  <svg
+    height="32"
+    viewBox="0 0 32 32"
+    width="32"
+  >
+    <path
+      d="M6 5C6 3.89543 6.89543 3 8 3H20L26 9V27C26 28.1046 25.1046 29 24 29H8C6.89543 29 6 28.1046 6 27V5Z"
+      fill="#634bdf"
+      opacity="0.88"
+    />
+    <path
+      d="M21 9L26 9L20 3L20 8C20 8.55229 20.4477 9 21 9Z"
+      fill="white"
+      opacity="0.32"
+    />
+    <path
+      d="M25.1667 9L21 9L26 15L26 9C25.5833 9 25.6269 9 25.1667 9Z"
+      fill="black"
+      opacity="0.24"
+    />
+    <text
+      fill="#fff"
+      fontSize="6.5"
+      fontWeight="700"
+      textAnchor="middle"
+      x="16"
+      y="23"
+    >
+      XML
+    </text>
+  </svg>
+</FileIcon>
+`;
+
+exports[`<FileIcon /> should render unknown file type icon 1`] = `
+<FileIcon
+  type="cpp"
+>
+  <UnknownSVG
+    fill="none"
+    height="32"
+    viewBox="0 0 32 32"
+    width="32"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <svg
+      fill="none"
+      height="32"
+      viewBox="0 0 32 32"
+      width="32"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6 5a2 2 0 0 1 2-2h12l6 6v18a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5z"
+        fill="#C2C2C2"
+        opacity=".88"
+      />
+      <path
+        d="M21 9h5l-6-6v5a1 1 0 0 0 1 1z"
+        fill="#fff"
+        opacity=".32"
+      />
+      <path
+        d="M25.167 9H21l5 6V9h-.833z"
+        fill="#000"
+        opacity=".24"
+      />
+      <g
+        fill="#fff"
+        opacity=".8"
+      >
+        <path
+          d="M9 22h14v2H9v-2zM9 18h10v2H9v-2z"
+        />
+      </g>
+    </svg>
+  </UnknownSVG>
+</FileIcon>
+`;
