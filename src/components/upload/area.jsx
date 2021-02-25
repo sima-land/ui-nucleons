@@ -4,9 +4,10 @@ import styles from './area.scss';
 import UploadSVG from './upload.svg';
 import { COLORS } from '../constants';
 import Link from '../link';
-import { useDragAndDrop } from './utils';
+import { useDragAndDrop, getFilesPreparer } from './utils';
 import { upperFirst } from 'lodash';
 import PropTypes from 'prop-types';
+import getDeclination from '../helpers/get-declination';
 
 const cx = classnames.bind(styles);
 
@@ -20,6 +21,7 @@ const cx = classnames.bind(styles);
  * @param {string} [props.sizeLimit] Ограничение на размер.
  * @param {boolean} [props.multiple] Ограничение на количество файлов.
  * @param {boolean} [props.failed] Есть ли ошибки валидации.
+ * @param {number} [props.countLimit] Ограничение на количество файлов.
  * @return {ReactElement} Элемент.
  */
 export const UploadArea = ({
@@ -29,25 +31,25 @@ export const UploadArea = ({
   formats,
   sizeLimit = '2 Mb',
   multiple,
+  countLimit = multiple ? undefined : 1,
   failed,
   ...restProps
 }) => {
-  const { active, bind } = useDragAndDrop({
-    onDrop: e => onSelect?.(
-      multiple ? [...e.dataTransfer.files] : [...e.dataTransfer.files].slice(0, 1),
-      e
-    ),
-  });
-
   const secondaryInfo = upperFirst(
     [
-      !multiple && '1 файл',
+      countLimit > 0 && `${countLimit} ${getDeclination(countLimit, ['файл', 'файла', 'файлов'])}`,
       formats && `формат ${formats}`,
       `до ${sizeLimit}`,
     ]
       .filter(Boolean)
       .join(', ')
   );
+
+  const prepareFiles = getFilesPreparer({ multiple, countLimit });
+
+  const { active, bind } = useDragAndDrop({
+    onDrop: e => onSelect?.(prepareFiles(e.dataTransfer.files), e),
+  });
 
   return (
     <div
@@ -67,7 +69,7 @@ export const UploadArea = ({
               multiple={multiple}
               className={cx('input')}
               onChange={e => {
-                onSelect?.([...e.target.files], e);
+                onSelect?.(prepareFiles(e.target.files), e);
 
                 // очищаем поле чтобы можно было выбрать тот же файл повторно
                 e.target.value = '';
@@ -93,4 +95,5 @@ UploadArea.propTypes = {
   sizeLimit: PropTypes.string,
   multiple: PropTypes.bool,
   failed: PropTypes.bool,
+  countLimit: PropTypes.number,
 };

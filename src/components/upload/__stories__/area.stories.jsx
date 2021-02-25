@@ -32,6 +32,18 @@ const variants = [
     multiple: true,
   },
   {
+    fileRole: 'картинку',
+    formats: 'PDF, JPG, PNG',
+    multiple: true,
+    countLimit: 3,
+  },
+  {
+    fileRole: 'изображение',
+    formats: 'PDF, JPG, PNG',
+    multiple: true,
+    countLimit: 12,
+  },
+  {
     fileRole: 'изображение',
     formats: 'PDF, JPG, PNG',
     multiple: true,
@@ -40,7 +52,7 @@ const variants = [
 ];
 
 export const Primary = () => (
-  <>
+  <div style={{ width: 540 }}>
     {variants.map((v, i) => (
       <div key={i} style={{ marginBottom: 16 }}>
         <UploadArea
@@ -51,5 +63,5 @@ export const Primary = () => (
         />
       </div>
     ))}
-  </>
+  </div>
 );
