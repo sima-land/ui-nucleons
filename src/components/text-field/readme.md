@@ -1,5 +1,5 @@
 ```jsx
-import Icon from '../icon';
+import RightSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/right.js';
 
 const stateProps = {
   default: {},
@@ -27,9 +27,7 @@ const desktopSizes = ['xs', 's', 'l'];
               variant='desktop'
               caption='Caption'
               endAdornment={(
-                <Icon
-                  size={16}
-                />
+                <RightSVG fill='#ccc' />
               )}
             />
             {sizeName === 'l' && (
@@ -44,9 +42,7 @@ const desktopSizes = ['xs', 's', 'l'];
                   variant='desktop'
                   caption='Caption'
                   endAdornment={(
-                    <Icon
-                      size={16}
-                    />
+                    <RightSVG fill='#ccc' />
                   )}
                 />
               </React.Fragment>
@@ -70,9 +66,7 @@ const desktopSizes = ['xs', 's', 'l'];
           variant='mobile'
           caption='Caption'
           endAdornment={(
-            <Icon
-              size={16}
-            />
+            <RightSVG fill='#ccc' />
           )}
         />
         <div style={{ height: 32 }} />
@@ -84,9 +78,7 @@ const desktopSizes = ['xs', 's', 'l'];
           variant='mobile'
           caption='Caption'
           endAdornment={(
-            <Icon
-              size={16}
-            />
+            <RightSVG fill='#ccc' />
           )}
         />
       </div>
