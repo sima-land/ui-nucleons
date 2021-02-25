@@ -18,6 +18,7 @@ describe('UploadArea', () => {
         formats='PDF, JPG, PNG'
         fileRole='скан'
         sizeLimit='4 Mb'
+        countLimit={12}
       />
     );
 
@@ -83,6 +84,7 @@ describe('UploadArea', () => {
         fileRole='скан'
         sizeLimit='4 Mb'
         onSelect={spy}
+        countLimit={5}
       />
     );
 

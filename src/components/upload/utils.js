@@ -27,3 +27,18 @@ export const useDragAndDrop = ({ onDrop }) => {
     },
   };
 };
+
+/**
+ * Возвращает функцию обработки FileList по заданным ограничениям.
+ * @param {{ multiple, countLimit }} props Свойства.
+ * @return {Function} Функция.
+ */
+export const getFilesPreparer = ({ multiple, countLimit }) => list => {
+  const files = [...list];
+
+  multiple
+    ? Number.isFinite(countLimit) && files.splice(countLimit)
+    : files.splice(1);
+
+  return files;
+};

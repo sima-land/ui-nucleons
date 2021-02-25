@@ -540,6 +540,7 @@ exports[`UploadArea should handle drag events to highlight area 4`] = `
 
 exports[`UploadArea should handle props 1`] = `
 <UploadArea
+  countLimit={12}
   fileRole="скан"
   formats="PDF, JPG, PNG"
   sizeLimit="4 Mb"
@@ -620,7 +621,7 @@ exports[`UploadArea should handle props 1`] = `
       <div
         className="info secondary"
       >
-        1 файл, формат PDF, JPG, PNG, до 4 Mb
+        12 файлов, формат PDF, JPG, PNG, до 4 Mb
       </div>
     </div>
   </div>
