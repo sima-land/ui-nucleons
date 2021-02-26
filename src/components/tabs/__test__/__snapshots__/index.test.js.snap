@@ -1,75 +1,91 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Tabs /> renders correctly 1`] = `
+exports[`<Tabs /> calls getItemName, isSelectedItem and onSelect properly 1`] = `
 <ul
-  className="tabs-list"
+  className="tabs-list type-text gap-m"
 >
   <li
     className="tab-item"
     key="0"
     onClick={[Function]}
   >
-    <span>
-      item 1
-    </span>
+    item 1
   </li>
   <li
-    className="tab-item tab-selected"
+    className="tab-item selected"
     key="1"
     onClick={[Function]}
   >
-    <span>
-      item 2
-    </span>
+    item 2
   </li>
   <li
     className="tab-item"
     key="2"
     onClick={[Function]}
   >
-    <span>
-      item 3
-    </span>
+    item 3
   </li>
 </ul>
 `;
 
-exports[`<Tabs /> renders correctly with customClasses 1`] = `
+exports[`<Tabs /> renders correctly with round type and small gap 1`] = `
 <ul
-  className="test-items-list tabs-list"
+  className="tabs-list type-round gap-s"
 >
   <li
-    className="test-item tab-item"
+    className="tab-item"
     key="0"
     onClick={[Function]}
   >
-    <span>
-      item 1
-    </span>
+    item 1
   </li>
   <li
-    className="test-selected-item tab-item tab-selected"
+    className="tab-item selected"
     key="1"
     onClick={[Function]}
   >
-    <span>
-      item 2
-    </span>
+    item 2
   </li>
   <li
-    className="test-item tab-item"
+    className="tab-item"
     key="2"
     onClick={[Function]}
   >
-    <span>
-      item 3
-    </span>
+    item 3
+  </li>
+</ul>
+`;
+
+exports[`<Tabs /> renders correctly with text type, underline and stretch 1`] = `
+<ul
+  className="tabs-list type-text gap-m underline stretch"
+>
+  <li
+    className="tab-item"
+    key="0"
+    onClick={[Function]}
+  >
+    item 1
+  </li>
+  <li
+    className="tab-item selected"
+    key="1"
+    onClick={[Function]}
+  >
+    item 2
+  </li>
+  <li
+    className="tab-item"
+    key="2"
+    onClick={[Function]}
+  >
+    item 3
   </li>
 </ul>
 `;
 
 exports[`<Tabs /> renders correctly without params 1`] = `
 <ul
-  className="tabs-list"
+  className="tabs-list type-text gap-m"
 />
 `;
