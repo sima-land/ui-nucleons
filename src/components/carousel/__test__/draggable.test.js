@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import isFunction from 'lodash/isFunction';
 import Draggable, { Draggable as PureDraggable } from '../draggable';
 import DraggableEvent from '../helpers/draggable-event';
-import classes from './draggable.scss';
+import classes from '../draggable.scss';
 
 /**
  * Возвращает поддельное событие мыши.

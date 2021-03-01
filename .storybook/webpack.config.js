@@ -1,5 +1,6 @@
 module.exports = async ({ config }) => {
   const rules = [
+    ...config.module.rules,
     {
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,

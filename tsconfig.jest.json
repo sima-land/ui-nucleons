@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "es2018"
+    ],
+    "target": "es2018",
+  }
+}

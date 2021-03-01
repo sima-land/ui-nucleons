@@ -1,17 +1,29 @@
 module.exports = {
-  globalSetup: './jest.global-setup.js',
-  setupFiles: ['./jest.setup.js'],
-  transformIgnorePatterns: ['/node_modules/(?!@dev-dep/).*/'],
+  preset: 'ts-jest/presets/js-with-babel',
+  globalSetup: '<rootDir>/jest/global-setup.js',
+  setupFiles: [
+    './jest/setup.js',
+  ],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.jest.json',
+    },
+  },
+  transformIgnorePatterns: [
+    '/node_modules/(?!@dev-dep/).*/',
+  ],
+  transform: {
+    '\\.svg$': '<rootDir>/jest/transforms/svg.js',
+    '\\.(css|scss)$': 'jest-css-modules-transform',
+    '\\.(jpg|jpeg|png|gif|eot|otf|ttf|woff|woff2)$': '<rootDir>/jest/transforms/media.js',
+  },
   snapshotSerializers: ['enzyme-to-json/serializer'],
   testPathIgnorePatterns: ['<rootDir>/.yarn-cache/', '<rootDir>/node_modules/'],
   modulePathIgnorePatterns: ['<rootDir>/.yarn-cache/', '<rootDir>/build/'],
-  moduleNameMapper: {
-    '\\.(pdf|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/__mocks__/fileMock.js',
-    '\\.(css|scss)$': 'identity-obj-proxy',
-  },
   coveragePathIgnorePatterns: [
-    'jest.setup.js',
+    '\\.scss$',
+    '\\.svg$',
+    '/jest/',
   ],
   clearMocks: true,
   coverageThreshold: {
