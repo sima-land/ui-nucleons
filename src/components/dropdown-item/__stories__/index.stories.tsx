@@ -1,5 +1,5 @@
 import React from 'react';
-import { DropdownItem } from '..';
+import { DropdownItem, Props } from '..';
 
 export default {
   title: 'DropdownItem',
@@ -8,6 +8,8 @@ export default {
     layout: 'padded',
   },
 };
+
+const SIZES: Array<Props['size']> = ['s', 'm', 'l', 'xl'];
 
 export const Primary = () => (
   <>
@@ -21,7 +23,7 @@ export const Primary = () => (
         border: '1px dashed #ccc',
       }}
     >
-      {['s', 'm', 'l', 'xl'].map(size => (
+      {SIZES.map(size => (
         <DropdownItem key={size} size={size} style={{ width: 100 }}>
           Hello
         </DropdownItem>
@@ -42,7 +44,7 @@ export const NoHover = () => (
         border: '1px dashed #ccc',
       }}
     >
-      {['s', 'm', 'l', 'xl'].map(size => (
+      {SIZES.map(size => (
         <DropdownItem key={size} size={size} style={{ width: 100 }} noHover>
           Hello
         </DropdownItem>
@@ -63,7 +65,7 @@ export const Disabled = () => (
         border: '1px dashed #ccc',
       }}
     >
-      {['s', 'm', 'l', 'xl'].map(size => (
+      {SIZES.map(size => (
         <DropdownItem key={size} size={size} style={{ width: 100 }} disabled>
           Hello
         </DropdownItem>

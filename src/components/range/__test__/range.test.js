@@ -52,8 +52,8 @@ describe('<Range />', () => {
       />
     );
 
-    expect(wrapper.find(`.${classes['selected-base']}`).prop('className')).toContain('test-range');
-    expect(wrapper.find(`.${classes['selected-base']}`).prop('data-test')).toBe(456);
+    expect(wrapper.find('.selected-base').prop('className')).toContain('test-range');
+    expect(wrapper.find('.selected-base').prop('data-test')).toBe(456);
   });
 
   it('should handle "thumbProps" prop', () => {
@@ -139,23 +139,23 @@ describe('<Range />', () => {
 
     expect(wrapper.find(`.${classes['thumb-base']}`).at(0).prop('style').left).toBe('20%');
     expect(wrapper.find(`.${classes['thumb-base']}`).at(1).prop('style').left).toBe('40%');
-    expect(wrapper.find(`.${classes['selected-base']}`).prop('style').left).toBe('20%');
-    expect(wrapper.find(`.${classes['selected-base']}`).prop('style').width).toBe('20%');
+    expect(wrapper.find('.selected-base').prop('style').left).toBe('20%');
+    expect(wrapper.find('.selected-base').prop('style').width).toBe('20%');
 
     // не знаю почему но работает только так
     wrapper.setProps({ finishValue: 6 });
     wrapper.setProps({ finishValue: 6 });
     expect(wrapper.find(`.${classes['thumb-base']}`).at(0).prop('style').left).toBe('20%');
     expect(wrapper.find(`.${classes['thumb-base']}`).at(1).prop('style').left).toBe('60%');
-    expect(wrapper.find(`.${classes['selected-base']}`).prop('style').left).toBe('20%');
-    expect(wrapper.find(`.${classes['selected-base']}`).prop('style').width).toBe('40%');
+    expect(wrapper.find('.selected-base').prop('style').left).toBe('20%');
+    expect(wrapper.find('.selected-base').prop('style').width).toBe('40%');
 
     wrapper.setProps({ startValue: undefined, finishValue: undefined });
     wrapper.setProps({ startValue: undefined, finishValue: undefined });
     expect(wrapper.find(`.${classes['thumb-base']}`).at(0).prop('style').left).toBe('20%');
     expect(wrapper.find(`.${classes['thumb-base']}`).at(1).prop('style').left).toBe('60%');
-    expect(wrapper.find(`.${classes['selected-base']}`).prop('style').left).toBe('20%');
-    expect(wrapper.find(`.${classes['selected-base']}`).prop('style').width).toBe('40%');
+    expect(wrapper.find('.selected-base').prop('style').left).toBe('20%');
+    expect(wrapper.find('.selected-base').prop('style').width).toBe('40%');
   });
 
   it('should unsubscribe event listeners on unmount', () => {
