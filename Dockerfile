@@ -1,8 +1,8 @@
 FROM nginx:1.17.0
 
-COPY .docker/assets/ /
+COPY .build-storybook/assets /
 
-COPY ./styleguide /app
+COPY .build-storybook/storybook /app
 
 WORKDIR /app
 

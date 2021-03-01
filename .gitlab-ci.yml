@@ -1,43 +1,95 @@
 stages:
+  - prepare
   - test
   - build
   - dockerize
   - publish
 
-test:
-  stage: test
-  image: node:10.15.3-alpine
-  cache:
-    paths:
-      - node_modules
-  before_script:
-    - yarn install
-  script:
-    - yarn test
+# TEMPLATES
+
+.node_image_template: &node_image
+  image: node:14.15.5-alpine
+
+.runner_tags_template: &runner_tags
   tags:
     - sl-frontend
 
-build-styleguide:
-  stage: build
-  image: node:10.15.3-alpine
+.cache_template: &cache
+  cache:
+    paths:
+      - node_modules
+
+.test_template:
+  <<: *node_image
+  <<: *cache
+  stage: test
   cache:
     paths:
       - node_modules
   before_script:
     - yarn install
   script:
-    - yarn styleguide:build
-  artifacts:
-    paths:
-      - styleguide
-    expire_in: 1 hrs
+    - yarn coverage
+  <<: *runner_tags
+
+.build_template:
+  <<: *node_image
+  <<: *cache
+  stage: build
   only:
     refs:
       - tags
-  tags:
-    - sl-frontend
+  <<: *runner_tags
 
-dockerize-styleguide:
+# STAGE: prepare
+
+prepare:
+  <<: *node_image
+  <<: *cache
+  stage: prepare
+  script:
+    - yarn install
+  <<: *runner_tags
+
+# STAGE: testing
+
+test_mr:
+  extends: .test_template
+  except:
+    refs:
+      - tags
+
+test_tags:
+  extends: .test_template
+  only:
+    refs:
+      - tags
+
+# STAGE: build
+
+build_package:
+  extends: .build_template
+  artifacts:
+    paths:
+      - build
+    expire_in: 1 hrs
+  before_script:
+    - npm version $CI_COMMIT_REF_NAME
+  script:
+    - yarn build
+
+build_storybook:
+  extends: .build_template
+  artifacts:
+    paths:
+      - .build-storybook/storybook
+    expire_in: 1 hrs
+  script:
+    - yarn storybook:build
+
+# STAGE: dockerize
+
+dockerize_storybook:
   stage: dockerize
   image: docker:stable
   before_script:
@@ -45,59 +97,40 @@ dockerize-styleguide:
   script:
     - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME .
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  dependencies:
+    - build_storybook
   only:
     refs:
       - tags
-  tags:
-    - sl-frontend
+  <<: *runner_tags
 
-publish-styleguide:
+# STAGE: publish
+
+publish_storybook:
   stage: publish
   image: registry.sima-land.ru:5043/k8s-deploy:latest
   before_script:
     - export DOMAIN_NAME=`echo $CI_ENVIRONMENT_URL | awk -F "[/:]" '{print $4}'`
     - export DEPLOY_DATE=`date +"%Y-%m-%d_%H-%M-%S"`
   script:
-    - envsubst < styleguide.k8s.yaml | kubectl apply -f -
+    - envsubst < storybook.k8s.yaml | kubectl apply -f -
   only:
     refs:
       - tags
-  tags:
-    - sl-frontend
   environment:
     name: ui-nucleons-office
+  <<: *runner_tags
 
-publish-package:
+publish_package:
+  <<: *node_image
   stage: publish
-  image: node:10.15.3-alpine
-  cache:
-    paths:
-      - node_modules
   before_script:
     - echo //gitlab.sima-land.ru/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN} > .npmrc
-    - npm version $CI_COMMIT_REF_NAME
-    - yarn build
   script:
     - npm publish build
+  dependencies:
+    - build_package
   only:
     refs:
       - tags
-  tags:
-    - sl-frontend
-
-badge_release:
-  stage: publish
-  image: python:3.6
-  before_script:
-    - pip install anybadge
-  script:
-    - anybadge -l "release" -v "$CI_COMMIT_TAG" -f release-version.svg -c green
-  artifacts:
-    paths:
-      - release-version.svg
-    expire_in: 4 weeks
-  only:
-    refs:
-      - tags
-  tags:
-    - sl-frontend
+  <<: *runner_tags
