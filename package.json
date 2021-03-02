@@ -34,6 +34,7 @@
     "@types/classnames": "^2.2.11",
     "@types/enzyme": "^3.10.8",
     "@types/jest": "^26.0.20",
+    "@types/lodash": "^4.14.168",
     "@types/react": "^17.0.2",
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
@@ -70,12 +71,12 @@
   },
   "scripts": {
     "build:before": "rimraf build",
-    "build:main": "tsc -p . -d --outDir ./build",
+    "build:main": "tsc -p . -d",
     "build:after": "node dist.js",
     "build": "yarn build:before && yarn build:main && yarn build:after",
     "test": "jest",
     "coverage": "jest --clearCache && jest --coverage",
-    "lint:scripts": "eslint --cache src/ --ext .js,.jsx",
+    "lint:scripts": "eslint --cache src/ --ext .js,.jsx,.ts,.tsx",
     "lint:styles": "stylelint 'src/**/*.scss'",
     "storybook": "start-storybook -p 9009 -c .storybook -s ./.storybook/public",
     "storybook:build": "build-storybook --no-dll --quiet --loglevel error -s .storybook/public -o .build-storybook/storybook"
