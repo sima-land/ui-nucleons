@@ -1,7 +1,6 @@
 import React from 'react';
 import classnames from 'classnames/bind';
 import styles from './dropdown-item.scss';
-import PropTypes from 'prop-types';
 
 const cx = classnames.bind(styles);
 
@@ -46,12 +45,3 @@ export const DropdownItem: React.FC<Props> = ({
     {children}
   </div>
 );
-
-DropdownItem.propTypes = {
-  size: PropTypes.oneOf(['s', 'm', 'l', 'xl']),
-  children: PropTypes.node,
-  className: PropTypes.string,
-  disabled: PropTypes.bool,
-  noHover: PropTypes.bool,
-  checked: PropTypes.bool,
-};

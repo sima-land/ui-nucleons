@@ -10,6 +10,8 @@ module.exports = {
         './**/__stories__/**/*',
         './**/*.test.*',
         './**/*.test.*',
+        '*.ts',
+        '*.tsx',
       ],
       rules: {
         'require-jsdoc': 'off',
