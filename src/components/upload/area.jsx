@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames/bind';
 import styles from './area.scss';
 import UploadSVG from './upload.svg';
-import { COLORS } from '../constants';
+import { COLORS } from '../colors';
 import Link from '../link';
 import { useDragAndDrop, getFilesPreparer } from './utils';
 import { upperFirst } from 'lodash';

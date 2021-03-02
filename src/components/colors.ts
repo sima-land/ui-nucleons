@@ -1,29 +1,4 @@
-export const DEFAULT_CURRENCY_NAME = 'RUB';
-
-export const USER_DEFAULT_PARAMS = {
-  currency: DEFAULT_CURRENCY_NAME,
-  sort: 'createdAt',
-  per_page: 20,
-  'per-page': 20,
-  viewtype: 'list',
-};
-
-export const graphemes = ['₽', '€', '$', '₴', 'Br'];
-
-/**
- * Набор типов содержимого модификатора.
- * @type {Object}
- */
-export const MODIFIERS_TYPES = Object.freeze({
-  text: 'text',
-  image: 'image',
-  color: 'color',
-});
-
-/**
- * Цвета дизайн системы.
- */
-export const COLORS = new Map(Object.entries({
+const collection = {
   // basic
   black: '#000',
   white: '#fff',
@@ -71,4 +46,8 @@ export const COLORS = new Map(Object.entries({
   'additional-teal': '#09ab8b',
   'additional-violet': '#902bd0',
   'additional-yellow': '#ffd600',
-}));
+} as const;
+
+export type Token = keyof typeof collection;
+
+export const COLORS = new Map(Object.entries(collection)) as Map<Token, string>;

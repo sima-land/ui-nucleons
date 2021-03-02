@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames/bind';
-import { COLORS } from '../constants';
+import { COLORS } from '../colors';
 import classes from './arrow-button.scss';
 import UpSVG from './icons/24x24/arrow-up.svg';
 import RightSVG from './icons/24x24/arrow-right.svg';

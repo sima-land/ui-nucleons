@@ -7,7 +7,7 @@ import classnames from 'classnames/bind';
 import DownSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/down';
 import UpSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/up';
 import styles from './select.scss';
-import { COLORS } from '../constants';
+import { COLORS } from '../colors';
 import { useOutsideClick } from '../hooks';
 import PropTypes from 'prop-types';
 import { DropdownLoading } from '../_internal/dropdown-loading';
