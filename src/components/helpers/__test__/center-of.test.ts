@@ -8,6 +8,6 @@ describe('centerOf()', () => {
       left: 10,
       bottom: 10,
       right: 0,
-    })).toEqual(Point(5, 5));
+    } as ClientRect)).toEqual(Point(5, 5));
   });
 });
