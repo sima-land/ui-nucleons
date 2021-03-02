@@ -4,7 +4,7 @@ import classnames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import { prop } from 'lodash/fp';
 import { InnerBorder } from '../styling/borders';
-import { COLORS } from '../constants';
+import { COLORS } from '../colors';
 
 const cx = classnames.bind(classes);
 

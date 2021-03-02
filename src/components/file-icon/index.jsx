@@ -1,5 +1,5 @@
 import React from 'react';
-import { COLORS } from '../constants';
+import { COLORS } from '../colors';
 import UnknownSVG from './unknown.svg';
 import PropTypes from 'prop-types';
 

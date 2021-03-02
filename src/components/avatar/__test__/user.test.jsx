@@ -2,7 +2,7 @@ import { mount } from 'enzyme';
 import React from 'react';
 import { UserAvatar, colorKey } from '../user';
 import UpSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/up';
-import { COLORS } from '../../constants';
+import { COLORS } from '../../colors';
 
 jest.mock('lodash', () => {
   const original = jest.requireActual('lodash');

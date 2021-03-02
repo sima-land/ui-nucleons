@@ -2,7 +2,7 @@ import React from 'react';
 import has from 'lodash/has';
 import classnames from 'classnames/bind';
 import PropTypes from 'prop-types';
-import { COLORS } from '../constants';
+import { COLORS } from '../colors';
 import classes from './spinner.scss';
 
 const cx = classnames.bind(classes);

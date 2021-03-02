@@ -9,7 +9,7 @@ import { MaskedField } from '../masked-field';
 import { useOutsideClick } from '../hooks';
 import { IDS, countriesList } from './presets';
 import { marginLeft } from '../styling/sizes';
-import { COLORS } from '../constants';
+import { COLORS } from '../colors';
 import classes from './phone-input.scss';
 import PropTypes from 'prop-types';
 import { defineCountry } from './utils';

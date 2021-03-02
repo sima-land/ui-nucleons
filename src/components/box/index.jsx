@@ -5,7 +5,7 @@ import classes from './box.scss';
 import Type from 'prop-types';
 import * as Spacing from '../styling/sizes';
 import { bgColor as getBgColorClass } from '../styling/colors';
-import { COLORS } from '../constants';
+import { COLORS } from '../colors';
 
 const cx = classnames.bind(classes);
 

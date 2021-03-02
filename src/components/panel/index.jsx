@@ -3,7 +3,7 @@ import classnames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import classes from './panel.scss';
 import { color, bgColor } from '../styling/colors';
-import { COLORS } from '../constants';
+import { COLORS } from '../colors';
 
 const cx = classnames.bind(classes);
 

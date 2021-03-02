@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classnames from 'classnames/bind';
-import { COLORS } from '../constants';
+import { COLORS } from '../colors';
 import PropTypes from 'prop-types';
 import PersonSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/person';
 import classes from './avatar.scss';

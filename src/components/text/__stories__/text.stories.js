@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import Text, { ALIGNS } from '../index';
 import cutTextContent from '../../helpers/cut-text-content';
 import isElement from 'lodash/isElement';
-import { COLORS } from '../../constants';
+import { COLORS } from '../../colors';
 import { WEIGHTS } from '../../styling/fonts';
 
 storiesOf('Text', module)

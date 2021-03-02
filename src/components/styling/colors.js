@@ -1,5 +1,5 @@
 import { ClassGetter } from './utils';
-import { COLORS } from '../constants';
+import { COLORS } from '../colors';
 import classes from './colors.scss';
 
 const isColorKey = COLORS.has.bind(COLORS);

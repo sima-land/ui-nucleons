@@ -4,7 +4,7 @@ import { getNoIndex } from '../helpers/get-no-index';
 import { color as getColorClass } from '../styling/colors';
 import classNames from 'classnames/bind';
 import styles from './link.scss';
-import { COLORS } from '../constants';
+import { COLORS } from '../colors';
 
 const cx = classNames.bind(styles);
 

@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import TextField from '../index';
 import RightSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/right.js';
 import classes from './stories.scss';
-import { COLORS } from '../../constants';
+import { COLORS } from '../../colors';
 
 const baseProps = { className: classes['full-width'] };
 

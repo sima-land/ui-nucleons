@@ -8,7 +8,7 @@ import {
   lineHeight as getLineHeight,
   weight as getWeightClass,
 } from '../styling/fonts';
-import { COLORS } from '../constants';
+import { COLORS } from '../colors';
 
 const cx = classnames.bind(classes);
 
