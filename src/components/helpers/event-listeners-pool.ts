@@ -2,24 +2,19 @@ import isString from 'lodash/isString';
 import isFunction from 'lodash/isFunction';
 import ObservableList from './observable-list';
 
-/**
- * @typedef {Object} EventListenersPool Интерфейс для работы с пулом обработчиков событий.
- * @property {Function} add Добавляет слушатель.
- * @property {Function} getCount Возвращает количество слушателей события.
- */
+interface IEventListenersPool {
+  getCount: () => number
+  add: (item: () => void) => () => void
+}
 
 /**
  * Возвращает интерфейс для работы с пулом обработчиков событий.
  * Позволяет подписывать множество функций без вызова addEventListener на экземпляре EventTarget.
- * @param {EventTarget} target Объект для прослушивания события.
- * @param {string} eventName Имя события.
- * @return {EventListenersPool} Интерфейс для работы с пулом обработчиков событий.
+ * @param target Объект для прослушивания события.
+ * @param eventName Имя события.
+ * @return Интерфейс для работы с пулом обработчиков событий.
  */
-const EventListenersPool = (target, eventName) => {
-  if (!(target && isFunction(target.addEventListener))) {
-    throw TypeError('First argument should implements "addEventListener" method');
-  }
-
+const EventListenersPool = (target: EventTarget, eventName: string): IEventListenersPool => {
   if (!isString(eventName) || eventName.length === 0) {
     throw TypeError('Second argument must be a non empty string');
   }
@@ -30,7 +25,7 @@ const EventListenersPool = (target, eventName) => {
    * Вызывает все слушатели по событию.
    * @param {Event} event Объект события.
    */
-  const callListeners = event => {
+  const callListeners = (event: Event) => {
     // предотвращаем вызов обработчиков, которые будут добавлены в процессе выполнения существующих
     const currentListeners = [...listeners];
 
@@ -55,18 +50,9 @@ const EventListenersPool = (target, eventName) => {
   });
 
   return {
-    /**
-     * Возвращает текущее количество функций подписчиков в пуле.
-     * @return {number} Текущее количество функций подписчиков в пуле.
-     */
     getCount: () => listeners.getLength(),
 
-    /**
-     * Подписывает переданный слушатель на событие.
-     * @param {Function} listener Слушатель.
-     * @return {Function} Функция отписки переданного слушателя.
-     */
-    add: listener => {
+    add: (listener: () => void) => {
       isFunction(listener) && listeners.enqueue(listener);
 
       // функция удаления добавленного слушателя
