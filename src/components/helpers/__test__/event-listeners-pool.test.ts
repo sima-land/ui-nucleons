@@ -1,22 +1,9 @@
 import EventListenersPool from '../event-listeners-pool';
 
 describe('EventListenersPool()', () => {
-  it('should throw error when first argument is not event target', () => {
-    expect(() => {
-      EventListenersPool(null);
-    }).toThrow(
-      TypeError('First argument should implements "addEventListener" method')
-    );
-    expect(() => {
-      EventListenersPool(document.createElement('div'), 'click');
-    }).not.toThrow();
-  });
   it('should throw error when second argument is not non empty string', () => {
     expect(() => {
       EventListenersPool(document.createElement('div'), '');
-    }).toThrow(TypeError('Second argument must be a non empty string'));
-    expect(() => {
-      EventListenersPool(document.createElement('div'), null);
     }).toThrow(TypeError('Second argument must be a non empty string'));
     expect(() => {
       EventListenersPool(document.createElement('div'), 'click');
@@ -74,7 +61,7 @@ describe('EventListenersPool()', () => {
     const spy = jest.fn();
     const anotherSpy = jest.fn();
 
-    const pool = EventListenersPool(div, 'click', true);
+    const pool = EventListenersPool(div, 'click');
 
     jest.spyOn(div, 'addEventListener');
     jest.spyOn(div, 'removeEventListener');
@@ -102,8 +89,8 @@ describe('EventListenersPool()', () => {
     const pool = EventListenersPool(div, 'click');
 
     const listener1 = jest.fn();
-    const listener2 = jest.fn(() => pool.add(listener3));
     const listener3 = jest.fn();
+    const listener2 = jest.fn(() => pool.add(listener3));
 
     expect(listener1).toHaveBeenCalledTimes(0);
     expect(listener2).toHaveBeenCalledTimes(0);

@@ -1,13 +1,22 @@
 import isFunction from 'lodash/isFunction';
 
+interface IObservableList extends Iterable<any> {
+  get: (item: number) => any
+  getLength: () => number
+  enqueue: (item: any) => number
+  dequeue: () => void
+  remove: (item: any) => void
+  subscribe: (listener: () => void) => () => void
+}
+
 /**
  * Возвращает объект списка, на который можно подписаться.
- * @param {Array} [initialItems] Массив начальных значений списка.
- * @return {Object} Объект списка, на который можно подписаться.
+ * @param [initialItems] Массив начальных значений списка.
+ * @return Объект списка, на который можно подписаться.
  */
-const ObservableList = initialItems => {
+const ObservableList = (initialItems?: any[]): IObservableList => {
   const items = Array.isArray(initialItems) ? [...initialItems] : [];
-  const listeners = [];
+  const listeners: Array<() => void> = [];
 
   /**
    * Вызывает все функции-подписчики.
@@ -19,7 +28,6 @@ const ObservableList = initialItems => {
   return {
     /**
      * Позволяет итерировать объект в циклах и при разворачивании в массив.
-     * @inheritdoc
      */
     * [Symbol.iterator] () {
       yield *items;
@@ -27,21 +35,21 @@ const ObservableList = initialItems => {
 
     /**
      * Возвращает элемент по индексу.
-     * @param {number} index Индекс элемента.
-     * @return {*} Элемент массива.
+     * @param index Индекс элемента.
+     * @return Элемент массива.
      */
     get: index => items[index],
 
     /**
      * Возвращает длину списка.
-     * @return {number} Длина списка.
+     * @return Длина списка.
      */
     getLength: () => items.length,
 
     /**
      * Добавляет элемент в конец списка.
-     * @param {*} item Новый элемент.
-     * @return {number} Новая длинна.
+     * @param item Новый элемент.
+     * @return Новая длинна.
      */
     enqueue (item) {
       const newLength = items.push(item);
@@ -59,7 +67,7 @@ const ObservableList = initialItems => {
 
     /**
      * Удаляет переданный элемент из списка.
-     * @param {*} value Удаляемый элемент.
+     * @param value Удаляемый элемент.
      */
     remove (value) {
       const itemIndex = items.indexOf(value);
@@ -69,8 +77,8 @@ const ObservableList = initialItems => {
 
     /**
      * Подписывает переданную функцию на изменение списка.
-     * @param {Function} listener Функция-подписчик.
-     * @return {Function} Функция отписки переданной функции-подписчика.
+     * @param listener Функция-подписчик.
+     * @return Функция отписки переданной функции-подписчика.
      */
     subscribe (listener) {
       isFunction(listener) && listeners.push(listener);

@@ -58,6 +58,7 @@ describe('ObservableList', () => {
     const spy = jest.fn();
     const list = ObservableList([1, 2, 3, 4, 5, 6]);
     const unsubscribe = list.subscribe(spy);
+
     expect(spy).toHaveBeenCalledTimes(0);
     list.enqueue(7);
     expect(spy).toHaveBeenCalledTimes(1);
