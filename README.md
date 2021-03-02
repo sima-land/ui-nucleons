@@ -7,28 +7,25 @@
 ## Начало работы
 
 ### Консольные команды, необходимые в процессе разработки
-* ```yarn dev``` - установка пакетов и запуск storybook для разработки
-* ```yarn build``` - сборка компонентов в build/components для публикации
+* ```yarn build``` - сборка компонентов в `./build` для публикации
 * ```yarn test``` - запуск тестов *Jest*
-* ```yarn lint``` - запуск линтера *ESLint*
-* ```yarn stylelint``` - запуск линтера *StyleLint*
-* ```yarn styleguide``` - запуск styleguide
-* ```yarn styleguide:build``` - сборка компонентов в build/styleguide для публикации
-* ```yarn storybook``` - запуск storybook
+* ```yarn lint:scripts``` - запуск линтера *ESLint*
+* ```yarn lint:styles``` - запуск линтера *styleLint*
+* ```yarn type-check``` - Проверка типов TS
+* ```yarn storybook``` - запуск *storybook*
 
 ### Структура библиотеки
 
-src/components/ - директория со всеми компонентами библиотеки
+`src/components/` - директория со всеми компонентами библиотеки
 
-* link/ - директория с компонентом
+* `link/` - директория с компонентом
     * `__stories__/`
-        * link.stories.js - описание компонента для storybook
+        * `index.stories.jsx` - описание компонента для storybook
     * `__test__/`
-        * index.test.js - тесты на компонент
-    * index.jsx - компонент Link
-    * readme.md - описание компонента для styleguide
+        * `index.test.jsx` - тесты на компонент
+    * `index.jsx` - компонент
 
-* helpers/ - директория со вспомогательными функциями
+* `helpers/` - директория со вспомогательными функциями
     * На каждую функцию необходимо создавать отдельный файл
 
 ## Работа компонентов, использующих информацию о viewport
