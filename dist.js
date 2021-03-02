@@ -1,11 +1,13 @@
 /* eslint-disable require-jsdoc */
 const fs = require('fs');
 const path = require('path');
+const rimraf = require('rimraf');
 const copyfiles = require('copyfiles');
 
 async function main () {
   const local = (...p) => path.resolve(__dirname, ...p);
   const copy = (p, o = {}) => new Promise(r => copyfiles(p, o, r));
+  const rm = (p, o = {}) => new Promise(r => rimraf(p, o, r));
 
   // добавляем стили т.к. tsc прогнал только скрипты
   await copy(['./src/components/**/*.scss', 'build'], {
@@ -26,6 +28,9 @@ async function main () {
   // формируем пакет
   await copy(['package.json', 'build']);
   await copy(['README.md', 'build']);
+
+  // удаляем тесты
+  await rm('./build/**/__test__');
 }
 
 main();

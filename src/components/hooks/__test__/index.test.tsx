@@ -1,10 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { render } from 'react-dom';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import {
-  useOnMount,
-  useApplyMemo,
   useIsTouchDevice,
   useInfiniteScroll,
   useOutsideClick,
@@ -20,7 +18,7 @@ jest.mock('../../helpers/is-touch-device', () => {
 });
 
 describe('useInfiniteScroll()', () => {
-  let container;
+  let container: HTMLDivElement | null;
 
   beforeEach(() => {
     container = document.createElement('div');
@@ -28,21 +26,25 @@ describe('useInfiniteScroll()', () => {
   });
 
   afterEach(() => {
-    document.body.removeChild(container);
+    container && document.body.removeChild(container);
     container = null;
   });
 
-  const TestComponent = ({ withList = true, onFullScroll }) => {
-    const listRef = useRef();
+  const TestComponent = ({ withList = true, onFullScroll }: { withList?: boolean, onFullScroll?: () => void }) => {
+    const listRef = useRef() as React.MutableRefObject<HTMLUListElement>;
 
     useInfiniteScroll(listRef, {
       onFullScroll,
     });
 
-    return withList && (
-      <ul className='test-list' ref={listRef}>
-        Test list
-      </ul>
+    return (
+      <>
+        {withList && (
+          <ul className='test-list' ref={listRef}>
+            Test list
+          </ul>
+        )}
+      </>
     );
   };
 
@@ -53,7 +55,7 @@ describe('useInfiniteScroll()', () => {
       render(<TestComponent onFullScroll={spy} />, container);
     });
 
-    const listEl = container.querySelector('.test-list');
+    const listEl = (container as HTMLDivElement).querySelector('.test-list') as HTMLUListElement;
     expect(spy).toHaveBeenCalledTimes(0);
 
     // with full scroll
@@ -73,7 +75,7 @@ describe('useInfiniteScroll()', () => {
 
   it('should works without ref.current', () => {
     jest.spyOn(HTMLUListElement.prototype, 'addEventListener');
-    HTMLUListElement.prototype.addEventListener.mockClear();
+    (HTMLUListElement.prototype.addEventListener as unknown as jest.Mock).mockClear();
 
     act(() => {
       render(<TestComponent withList={false} />, container);
@@ -83,7 +85,7 @@ describe('useInfiniteScroll()', () => {
 
   it('should works with ref.current', () => {
     jest.spyOn(HTMLUListElement.prototype, 'addEventListener');
-    HTMLUListElement.prototype.addEventListener.mockClear();
+    (HTMLUListElement.prototype.addEventListener as unknown as jest.Mock).mockClear();
 
     act(() => {
       render(<TestComponent withList />, container);
@@ -96,107 +98,21 @@ describe('useInfiniteScroll()', () => {
       <TestComponent />
     );
 
-    let listElement;
+    let listElement: HTMLUListElement | null = null;
 
     act(() => {
-      listElement = wrapper.find('.test-list').getDOMNode();
-      jest.spyOn(listElement, 'removeEventListener');
+      listElement = wrapper.find('.test-list').getDOMNode() as HTMLUListElement;
+      listElement && jest.spyOn(listElement, 'removeEventListener');
     });
 
     wrapper.unmount();
 
-    expect(listElement.removeEventListener).toHaveBeenCalledTimes(1);
-  });
-});
-
-describe('useOnMount()', () => {
-  let container;
-
-  beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
-  });
-
-  afterEach(() => {
-    document.body.removeChild(container);
-    container = null;
-  });
-
-  it('should call effect only on mount', () => {
-    const spy = jest.fn();
-
-    const TestComponent = () => {
-      const [isOpen, setIsOpen] = useState(false);
-      useOnMount(spy);
-      return (
-        <div>
-          Test
-          <button id='test-open-button' onClick={() => setIsOpen(true)}></button>
-          {isOpen && (
-            <span>Opened</span>
-          )}
-        </div>
-      );
-    };
-    expect(spy).toHaveBeenCalledTimes(0);
-
-    act(() => {
-      render(<TestComponent />, container);
-    });
-    expect(spy).toHaveBeenCalledTimes(1);
-
-    act(() => {
-      document.querySelector('#test-open-button').click();
-    });
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-});
-
-describe('useApplyMemo()', () => {
-  let container;
-
-  beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
-  });
-
-  afterEach(() => {
-    document.body.removeChild(container);
-    container = null;
-  });
-
-  it('should call function with dependencies', () => {
-    const spy = jest.fn();
-
-    const TestComponent = () => {
-      const [isOpen, setIsOpen] = useState(false);
-      useApplyMemo(spy, [isOpen]);
-      return (
-        <div>
-          Test
-          <button id='test-open-button' onClick={() => setIsOpen(true)}></button>
-          {isOpen && (
-            <span>Opened</span>
-          )}
-        </div>
-      );
-    };
-    act(() => {
-      render(<TestComponent />, container);
-    });
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith([false]);
-
-    act(() => {
-      document.querySelector('#test-open-button').click();
-    });
-    expect(spy).toHaveBeenCalledTimes(2);
-    expect(spy).toHaveBeenCalledWith([true]);
+    expect((listElement as unknown as HTMLUListElement).removeEventListener).toHaveBeenCalledTimes(1);
   });
 });
 
 describe('useIsTouchDevice', () => {
-  let container;
+  let container: HTMLDivElement | null;
 
   beforeEach(() => {
     container = document.createElement('div');
@@ -204,16 +120,19 @@ describe('useIsTouchDevice', () => {
   });
 
   afterEach(() => {
-    document.body.removeChild(container);
+    container && document.body.removeChild(container);
     container = null;
   });
 
   const TestComponent = () => {
     const touch = useIsTouchDevice();
+
     return (
-      touch && (
-        <span>Visible on touch</span>
-      )
+      <>
+        {touch && (
+          <span>Visible on touch</span>
+        )}
+      </>
     );
   };
 
@@ -221,13 +140,14 @@ describe('useIsTouchDevice', () => {
     act(() => {
       render(<TestComponent />, container);
     });
-    expect(container.querySelector('span').textContent).toBe('Visible on touch');
+    expect(((container as HTMLDivElement).querySelector('span') as HTMLSpanElement).textContent)
+      .toBe('Visible on touch');
   });
 });
 
 describe('useOutsideClick', () => {
-  const TestComponent = ({ callback }) => {
-    const ref = useRef();
+  const TestComponent = ({ callback }: { callback: () => void }) => {
+    const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
 
     useOutsideClick(ref, callback);
 
@@ -236,7 +156,7 @@ describe('useOutsideClick', () => {
     );
   };
 
-  let container;
+  let container: HTMLDivElement | null;
 
   beforeEach(() => {
     container = document.createElement('div');
@@ -244,7 +164,7 @@ describe('useOutsideClick', () => {
   });
 
   afterEach(() => {
-    document.body.removeChild(container);
+    container && document.body.removeChild(container);
     container = null;
   });
 

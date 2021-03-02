@@ -4,11 +4,6 @@ module.exports = {
   setupFiles: [
     './jest/setup.js',
   ],
-  globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.jest.json',
-    },
-  },
   transformIgnorePatterns: [
     '/node_modules/(?!@dev-dep/).*/',
   ],

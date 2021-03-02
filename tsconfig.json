@@ -81,7 +81,6 @@
   "exclude": [
     "build",
     "node_modules",
-    "./src/**/__test__/*",
     "./src/**/__stories__/*"
   ]
 }
