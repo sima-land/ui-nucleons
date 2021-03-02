@@ -6,14 +6,14 @@ import classes from './sizes.scss';
  * @param {*} value Значение.
  * @return {boolean} Результат.
  */
-export const isMargin = value => Number.isInteger(value) && value >= -8 && value <= 32;
+export const isMargin = (value: any) => Number.isInteger(value) && value >= -8 && value <= 32;
 
 /**
  * Проверяет, является ли значение шагом дизайн-системы для внутренних отступов.
  * @param {*} value Значение.
  * @return {boolean} Результат.
  */
-export const isPadding = value => Number.isInteger(value) && value >= 0 && value <= 32;
+export const isPadding = (value: any) => Number.isInteger(value) && value >= 0 && value <= 32;
 
 export const marginTop = ClassGetter(classes, isMargin, 'M-t__');
 export const marginRight = ClassGetter(classes, isMargin, 'M-r__');
