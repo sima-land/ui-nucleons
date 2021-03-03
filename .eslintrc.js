@@ -60,7 +60,11 @@ module.exports = {
           },
         ],
         'no-use-before-define': 'off',
-        '@typescript-eslint/no-use-before-define': 'error',
+        '@typescript-eslint/no-use-before-define': ['error', {
+          variables: false,
+          functions: false,
+          classes: false,
+        }],
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         'jsdoc/require-param-type': 'off',
         'jsdoc/require-returns-type': 'off',

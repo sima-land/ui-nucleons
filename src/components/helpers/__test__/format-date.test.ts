@@ -3,7 +3,7 @@ import isValid from 'date-fns/isValid';
 
 describe('formatDate()', () => {
   it('returns empty string if have been passed wrong params', () => {
-    let date = formatDate();
+    let date = formatDate('');
     expect(date).toBe('');
     date = formatDate('2014*83');
     expect(date).toBe('');
@@ -47,7 +47,7 @@ describe('createDateFormatter()', () => {
     const spy = jest.fn(date => isValid(date) && 'dd.MM');
     const date = createDateFormatter({
       formatFrom: 'yyyy-MM-dd',
-      formatTo: spy,
+      formatTo: spy as (d: Date) => string,
     })('2014-02-03');
 
     expect(date).toBe('03.02');
