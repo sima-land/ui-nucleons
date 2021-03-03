@@ -2,7 +2,6 @@ import maxIndexOf from '../max-index-of';
 
 describe('maxIndexOf()', () => {
   it('should works properly', () => {
-    expect(maxIndexOf()).toBe(-1);
     expect(maxIndexOf(null)).toBe(-1);
     expect(maxIndexOf(undefined)).toBe(-1);
     expect(maxIndexOf([])).toBe(0);

@@ -3,10 +3,10 @@ const regex = /(auto|scroll)/;
 
 /**
  * Определяет, имеет ли элемент возможность прокручиваться.
- * @param {Element} element Элемент.
- * @return {boolean} Имеет ли элемент возможность прокручиваться.
+ * @param element Элемент.
+ * @return Имеет ли элемент возможность прокручиваться.
  */
-const isScrollable = element => {
+const isScrollable = (element: HTMLElement | undefined | null) => {
   let result = false;
 
   if (element) {
@@ -19,10 +19,10 @@ const isScrollable = element => {
 
 /**
  * Возвращает ближайший родительский элемент с возможностью прокрутки.
- * @param {Element} element Элемент.
- * @return {Element} Ближайший родительский элемент с возможностью прокрутки..
+ * @param element Элемент.
+ * @return Ближайший родительский элемент с возможностью прокрутки..
  */
-const getScrollParent = element => {
+const getScrollParent = (element: HTMLElement | undefined | null): HTMLElement => {
   let result;
 
   if (!element || element === document.body) {
@@ -33,7 +33,7 @@ const getScrollParent = element => {
       : getScrollParent(element.parentElement);
   }
 
-  return result;
+  return result as HTMLElement;
 };
 
 export { getScrollParent };

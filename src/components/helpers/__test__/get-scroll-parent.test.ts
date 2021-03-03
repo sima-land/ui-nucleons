@@ -1,5 +1,7 @@
 import { getScrollParent } from '../get-scroll-parent';
 
+type FakeStyledElem = HTMLElement & { __fakeStyles: any };
+
 describe('getScrollParent', () => {
   const actualDescriptor = {
     ...Object.getOwnPropertyDescriptor(window, 'getComputedStyle'),
@@ -7,7 +9,7 @@ describe('getScrollParent', () => {
 
   beforeAll(() => {
     Object.defineProperty(window, 'getComputedStyle', {
-      value: el => el.__fakeStyles,
+      value: (el: FakeStyledElem) => el.__fakeStyles,
     });
   });
 
@@ -16,14 +18,14 @@ describe('getScrollParent', () => {
   });
 
   it('should return document.body', () => {
-    document.body.__fakeStyles = { overflowX: '', overflowY: '', overflow: '' };
+    (document.body as FakeStyledElem).__fakeStyles = { overflowX: '', overflowY: '', overflow: '' };
 
     expect(getScrollParent(null)).toBe(document.body);
     expect(getScrollParent(undefined)).toBe(document.body);
     expect(getScrollParent({
       parentElement: document.body,
       __fakeStyles: { overflowX: '', overflowY: '', overflow: '' },
-    })).toBe(document.body);
+    } as unknown as HTMLElement)).toBe(document.body);
   });
 
   it('should return parentElement', () => {
@@ -32,7 +34,7 @@ describe('getScrollParent', () => {
       parentElement: {
         __fakeStyles: { overflowX: '', overflowY: '', overflow: 'auto' },
       },
-    };
+    } as unknown as HTMLElement;
 
     expect(getScrollParent(fakeDiv)).toBe(fakeDiv.parentElement);
   });

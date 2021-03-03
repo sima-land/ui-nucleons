@@ -35,7 +35,7 @@ export const useInfiniteScroll = (ref: React.MutableRefObject<HTMLElement>, {
     const { current: element } = ref;
 
     if (element) {
-      return on(element, 'scroll', (event: UIEvent) => {
+      return on<UIEvent>(element, 'scroll', (event: UIEvent) => {
         const {
           scrollTop,
           clientHeight,

@@ -1,5 +1,5 @@
 module.exports = {
-  'src/**/*.{js,jsx}': [
+  'src/**/*.{js,jsx,ts,tsx}': [
     'yarn lint:scripts',
   ],
   'src/**/*.scss': [
