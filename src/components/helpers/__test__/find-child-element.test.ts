@@ -4,16 +4,13 @@ describe('findChildElement()', () => {
   afterEach(() => {
     document.body.innerHTML = '';
   });
-  it('should return -1 without arguments', () => {
-    expect(findChildElement()).toBe(-1);
-  });
   it('should return -1 without "props.isSuitable" function', () => {
     const div = document.createElement('div');
     document.body.append(div);
 
     expect(findChildElement({
       target: div,
-      isSuitable: null,
+      isSuitable: undefined,
     })).toBe(-1);
   });
   it('should return first suitable sibling without "props.needBreakLoop" function', () => {
