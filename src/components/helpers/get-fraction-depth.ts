@@ -1,10 +1,11 @@
 /**
  * Вычисляет разрядность дробной части.
- * @param {(number|null)} fraction Дробь.
- * @return {number} Разрядность / Колличество символов после точки.
+ * @param fraction Дробь.
+ * @return Разрядность / Количество символов после точки.
  */
-export const getFractionDepth = (fraction = null) => {
+export const getFractionDepth = (fraction: number | null = null) => {
   const fractionString = Number(fraction).toString();
+
   return fractionString.includes('.')
     ? fractionString.length - fractionString.indexOf('.') - 1
     : 0;

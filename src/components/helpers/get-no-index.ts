@@ -5,4 +5,6 @@ import toString from 'lodash/toString';
  * @param {string} str Исходная строка.
  * @return {Object} Объект, содержащий обернутую строку, для использования c атрибутом dangerouslySetInnerHTML.
  */
-export const getNoIndex = str => str && { __html: `<!--noindex-->${toString(str)}<!--/noindex-->` };
+export const getNoIndex = (str: any) => str
+  ? { __html: `<!--noindex-->${toString(str)}<!--/noindex-->` }
+  : undefined;

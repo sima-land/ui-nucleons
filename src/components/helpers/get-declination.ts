@@ -1,10 +1,10 @@
 /**
  * Возвращает нужное склонение из переданного списка по переданному числу.
- * @param {number} number Число, используемое для склонения.
- * @param {Array} titles Массив со склонениями слова. Например: ['отзыв', 'отзыва', 'отзывов'].
- * @return {string} Слово в нужном склонении.
+ * @param number Число, используемое для склонения.
+ * @param titles Массив со склонениями слова. Например: ['отзыв', 'отзыва', 'отзывов'].
+ * @return Слово в нужном склонении.
  */
-export default function getDeclination (number, titles) {
+export default function getDeclination (number: number, titles: string[]) {
   const cases = [2, 0, 1, 1, 1, 2];
   const positiveNumber = Math.abs(number);
   const index = positiveNumber % 100 > 4 && positiveNumber % 100 < 20

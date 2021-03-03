@@ -5,16 +5,16 @@ import isValid from 'date-fns/isValid';
 import getMonth from 'date-fns/getMonth';
 import ruLocale from 'date-fns/locale/ru';
 
-const inputFormat = ['yyyy-MM-dd'];
+const inputFormat = 'yyyy-MM-dd';
 const formatOptions = { locale: ruLocale };
 
 /**
  * Формирует интервал дат.
- * @param {string} startDate Начальная дата.
- * @param {string} endDate Конечная дата.
- * @return {{ date: string, isInterval: boolean }} Объект с данными сформированного интервала.
+ * @param startDate Начальная дата.
+ * @param endDate Конечная дата.
+ * @return Объект с данными сформированного интервала.
  */
-const getDateIntervalData = (startDate, endDate) => {
+const getDateIntervalData = (startDate: string, endDate: string) => {
   const start = parse(startDate, inputFormat, new Date());
   const end = parse(endDate, inputFormat, new Date());
 
