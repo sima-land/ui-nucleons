@@ -1,13 +1,14 @@
 /**
  * Форматирует число.
- * @param {number} value Число для форматирования.
- * @param {string} [separator=' '] Разделяющий символ для чисел больше 999.
- * @return {Array} Массив строк с целой и дробной отоформатированными частями числа.
+ * @param value Число для форматирования.
+ * @param separator Разделяющий символ для чисел больше 999.
+ * @return Массив строк с целой и дробной отоформатированными частями числа.
  */
-export const formatNumber = (value, separator) => {
+export const formatNumber = (value: number | string, separator?: string): string[] => {
   const pureSeparator = String(separator) === separator ? separator : ' ';
   const number = Number(value);
-  let result = [];
+  let result: string[] = [];
+
   if (!isNaN(number) && isFinite(number)) {
     const decimals = number < 0.01 && number > 0 ? 4 : 2;
     result = [
@@ -16,10 +17,13 @@ export const formatNumber = (value, separator) => {
     ];
     const array = result[0].split(''); // получаем массив строк с цифрами из строки целой части числа
     const separated = [];
+
     while (array.length) {
       separated.unshift(array.splice(-3).join('')); // вытаскиваем последние три цифры и объединяем в строку
     }
+
     result[0] = separated.join(pureSeparator); // подменяем целую часть на целую разделённую
   }
+
   return result;
 };
