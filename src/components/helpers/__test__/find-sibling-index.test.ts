@@ -4,18 +4,17 @@ describe('findSiblingIndex()', () => {
   afterEach(() => {
     document.body.innerHTML = '';
   });
-  it('should return -1 without arguments', () => {
-    expect(findSiblingIndex()).toBe(-1);
-  });
+
   it('should return -1 without "props.isSuitable" function', () => {
     const div = document.createElement('div');
     document.body.append(div);
 
     expect(findSiblingIndex({
       target: div,
-      isSuitable: null,
+      isSuitable: undefined,
     })).toBe(-1);
   });
+
   it('should return first suitable sibling without "props.needBreakLoop" function', () => {
     const div = document.createElement('div');
     const sibling1 = document.createElement('header');
@@ -35,6 +34,7 @@ describe('findSiblingIndex()', () => {
       isSuitable: sibling => sibling.tagName === 'SECTION',
     })).toBe(3);
   });
+
   it('should return last suitable sibling with "props.needBreakLoop" function', () => {
     const div = document.createElement('div');
     const sibling1 = document.createElement('header');

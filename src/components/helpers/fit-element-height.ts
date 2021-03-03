@@ -3,7 +3,7 @@
  * @param {Event} event Событие.
  * @param {HTMLElement} event.target Поле.
  */
-export const fitElementHeight = ({ target }) => {
+export const fitElementHeight = ({ target }: { target: HTMLElement }) => {
   target.style.height = 'auto';
 
   // актуальные значения после установки "auto" (в начало функции не переносить)

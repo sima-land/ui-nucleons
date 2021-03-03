@@ -8,7 +8,7 @@ describe('fitElementHeight()', () => {
       offsetHeight: 12,
       clientHeight: 23,
       style: {
-        set height (value) {
+        set height (value: string | number) {
           spy(value);
           if (value === 'auto') {
             fakeTarget.scrollHeight = 123;
@@ -16,7 +16,7 @@ describe('fitElementHeight()', () => {
         },
       },
     };
-    const fakeEvent = { target: fakeTarget };
+    const fakeEvent = { target: fakeTarget as HTMLElement };
 
     fitElementHeight(fakeEvent);
 
