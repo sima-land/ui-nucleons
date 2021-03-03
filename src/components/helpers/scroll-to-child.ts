@@ -2,11 +2,11 @@ import boundsOf from './bounds-of';
 
 /**
  * Прокручивает родительский элемент по вертикали так, чтобы дочерний был в зоне видимости.
- * @param {HTMLElement} parent Родительский элемент.
- * @param {HTMLElement} child Дочерний элемент.
+ * @param parent Родительский элемент.
+ * @param child Дочерний элемент.
  */
-export const scrollToChild = (parent, child) => {
-  const [parentRect, childRect] = [parent, child].map(boundsOf);
+export const scrollToChild = (parent: HTMLElement, child: HTMLElement) => {
+  const [parentRect, childRect] = [parent, child].map(boundsOf) as DOMRect[];
 
   // ВАЖНО: не надо использовать offsetTop здесь, offsetParent может не соответствовать указанному родителю
   if (childRect.bottom > parentRect.bottom) {

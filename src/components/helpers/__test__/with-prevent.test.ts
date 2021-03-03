@@ -19,4 +19,20 @@ describe('withPrevent()', () => {
     expect(fakeEvent.preventDefault).toHaveBeenCalledTimes(1);
     expect(fakeEvent.stopPropagation).toHaveBeenCalledTimes(1);
   });
+
+  it('should works without callback', () => {
+    const decoratedFn = withPrevent();
+
+    const fakeEvent = {
+      preventDefault: jest.fn(),
+      stopPropagation: jest.fn(),
+    };
+
+    expect(fakeEvent.preventDefault).toHaveBeenCalledTimes(0);
+    expect(fakeEvent.stopPropagation).toHaveBeenCalledTimes(0);
+
+    decoratedFn(fakeEvent as unknown as Event);
+    expect(fakeEvent.preventDefault).toHaveBeenCalledTimes(1);
+    expect(fakeEvent.stopPropagation).toHaveBeenCalledTimes(1);
+  });
 });

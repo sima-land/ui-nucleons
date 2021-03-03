@@ -1,9 +1,9 @@
 /**
  * Возвращает максимальный индекс списка.
- * @param {Array} list Список.
- * @return {number} Максимальный индекс.
+ * @param list Список.
+ * @return Максимальный индекс.
  */
-const maxIndexOf = list => {
+const maxIndexOf = (list?: Array<any> | null) => {
   let maxIndex = -1;
 
   if (list) {
