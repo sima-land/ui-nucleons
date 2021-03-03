@@ -16,16 +16,16 @@ describe('test getDateIntervalData', () => {
     });
   });
   it('getDateIntervalData() returns object with not interval date', () => {
-    result = getDateIntervalData('2018-03-03');
+    result = getDateIntervalData('2018-03-03', '');
     expect(result).toEqual({
       date: '3 марта',
       isInterval: false,
     });
   });
   it('getDateIntervalData() returns empty object if wrong data have been passed', () => {
-    result = getDateIntervalData(null, '2018-03-03');
+    result = getDateIntervalData('null', '2018-03-03');
     expect(result).toEqual({});
-    result = getDateIntervalData();
+    result = getDateIntervalData('a', 'b');
     expect(result).toEqual({});
   });
 });

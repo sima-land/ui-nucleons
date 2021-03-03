@@ -14,6 +14,6 @@ describe('getChild()', () => {
     expect(getChild(parent, 1)).toBe(child2);
     expect(getChild(parent, 2)).toBe(child3);
     expect(getChild(parent, 3)).toBe(undefined);
-    expect(getChild()).toBe(undefined);
+    expect(getChild(undefined, 3)).toBe(undefined);
   });
 });
