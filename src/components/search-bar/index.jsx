@@ -9,10 +9,9 @@ import { Dropdown } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';
 import { useOutsideClick } from '../hooks/';
 import on from '../helpers/on';
-
 import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Filled/cross';
 import SearchSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/magnifier';
-import MoreVertSVG from '@dev-dep/ui-quarks/icons/24x24/Filled/more-vert.js';
+import MoreVertSVG from '@dev-dep/ui-quarks/icons/24x24/Filled/more-vert';
 
 export const cx = classnames.bind(classes);
 
