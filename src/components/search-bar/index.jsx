@@ -4,7 +4,7 @@ import classnames from 'classnames/bind';
 import classes from './search-bar.scss';
 import Link from '../link';
 import { isFunction, once } from 'lodash';
-import { COLORS } from '../constants';
+import { COLORS } from '../colors';
 import { Dropdown } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';
 import { useOutsideClick } from '../hooks/';
