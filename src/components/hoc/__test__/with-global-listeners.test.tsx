@@ -33,10 +33,10 @@ describe('withGlobalListeners', () => {
     jest.spyOn(window, 'removeEventListener');
     expect(window.addEventListener).toHaveBeenCalledTimes(0);
 
-    const unsubscribeSpy = wrapper.find(TestSpan).prop('addGlobalListener')('click', spy);
+    const unsubscribeSpy = (wrapper.find(TestSpan).prop('addGlobalListener') as any)('click', spy);
     expect(window.addEventListener).toHaveBeenCalledTimes(1);
 
-    const unsubscribeAnotherSpy = wrapper.find(TestSpan).prop('addGlobalListener')('click', anotherSpy);
+    const unsubscribeAnotherSpy = (wrapper.find(TestSpan).prop('addGlobalListener') as any)('click', anotherSpy);
     expect(window.addEventListener).toHaveBeenCalledTimes(1);
 
     window.dispatchEvent(new Event('click'));
