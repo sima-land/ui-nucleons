@@ -1,10 +1,11 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import withInViewportObserver from '../';
+import withInViewportObserver from '..';
 import initAddObserve from '../../helpers/intersection-observer';
 
 jest.mock('../../helpers/intersection-observer', () => {
   const original = jest.requireActual('../../helpers/intersection-observer');
+
   return {
     ...original,
     __esModule: true,
