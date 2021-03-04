@@ -5,13 +5,18 @@ import initAddObserve,
   observerHandle,
   wrapAddObserve,
   wrapObserverHandle,
+  Callback,
 } from '../intersection-observer';
 import React from 'react';
 import isFunction from 'lodash/isFunction';
 import { makeInViewportObserverHOC } from '../../with-in-viewport-observer';
-import PropTypes from 'prop-types';
 
-class TestProductPreviewsWidget extends React.Component {
+type Props = {
+  addObserve: (el: Element, c: Callback) => void
+  onIntersection: Callback
+}
+
+class TestProductPreviewsWidget extends React.Component<Props> {
   widgetRef = React.createRef();
 
   componentDidMount () {
@@ -21,15 +26,10 @@ class TestProductPreviewsWidget extends React.Component {
 
   render () {
     return (
-      <div ref={this.widgetRef}>content</div>
+      <div ref={this.widgetRef as React.LegacyRef<HTMLDivElement>}>content</div>
     );
   }
 }
-
-TestProductPreviewsWidget.propTypes = {
-  addObserve: PropTypes.func,
-  onIntersection: PropTypes.func,
-};
 
 describe('observerHandle()', () => {
   const spy = jest.fn();
@@ -46,7 +46,7 @@ describe('observerHandle()', () => {
         isIntersecting: true,
       });
     }
-    observerHandle(observerContainer, testEntries);
+    observerHandle(observerContainer as any, testEntries as any);
     expect(spy).toBeCalledTimes(observerContainer.registry.size);
   });
 });
@@ -70,14 +70,14 @@ describe('addObserve()', () => {
     const mockSet = jest.spyOn(Map.prototype, 'set');
     const mockObserve = jest.spyOn(observerContainer.observer, 'observe');
 
-    addObserve(observerContainer, testEl, spy);
+    addObserve(observerContainer as any, testEl, spy);
     expect(mockSet).toBeCalledTimes(1);
     expect(mockObserve).toBeCalledTimes(1);
     expect(spy2.mock.calls[0][0]).toBe(testEl);
   });
   it('should not run', () => {
     const mockSet = jest.spyOn(Map.prototype, 'set');
-    addObserve({}, testEl, spy);
+    addObserve({} as any, testEl, spy);
     expect(mockSet).toBeCalledTimes(0);
   });
 });
@@ -91,7 +91,7 @@ describe('wrapAddObserve()', () => {
         options: {},
       },
     ];
-    const hoc = makeInViewportObserverHOC(observersList);
+    const hoc = makeInViewportObserverHOC(observersList as any);
     const TestComponent = hoc(TestProductPreviewsWidget);
     mount(<TestComponent />);
     expect(add).toBeCalledTimes(1);
@@ -103,7 +103,7 @@ describe('wrapAddObserve()', () => {
       observer: {},
       registry: new Map(),
     };
-    wrapAddObserve(observerContainer, addObserver)();
+    (wrapAddObserve(observerContainer as any, addObserver as any) as any)();
     expect(addObserver).toBeCalledTimes(1);
   });
 });
@@ -112,7 +112,7 @@ describe('wrapObserverHandle()', () => {
   it ('test', () => {
     const observerHandler = jest.fn();
     const addObserver = initAddObserve(observerHandler);
-    wrapObserverHandle(addObserver, observerHandler)();
+    (wrapObserverHandle(addObserver as any, observerHandler as any) as any)();
     expect(observerHandler).toBeCalledTimes(1);
   });
 });
@@ -130,7 +130,7 @@ describe('initAddObserve', () => {
   });
 
   it ('run addObserve when window is undefined', () => {
-    jest.spyOn(global, 'window', 'get').mockImplementation(() => undefined);
+    jest.spyOn(global as typeof global & { window: any }, 'window', 'get').mockImplementation(() => undefined);
     initAddObserve();
     expect(window).toBeUndefined();
     expect(spy).toBeCalledTimes(0);
