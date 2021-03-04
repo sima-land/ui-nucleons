@@ -1,10 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { storiesOf } from '@storybook/react';
-import withInViewportObserver from '../';
+import withInViewportObserver from '..';
 
-const PureSomeComponent = ({
-  addObserve,
-}) => {
+const PureSomeComponent = ({ addObserve }) => {
   const divRef = useRef();
 
   useEffect(() => {
