@@ -2,6 +2,7 @@ import React, { createRef } from 'react';
 import { mount } from 'enzyme';
 import { BaseInput } from '..';
 import { fitElementHeight } from '../../helpers/fit-element-height';
+import { act } from 'react-dom/test-utils';
 
 jest.mock('../../helpers/fit-element-height', () => {
   const original = jest.requireActual('../../helpers/fit-element-height');
@@ -23,7 +24,7 @@ describe('<BaseInput />', () => {
   });
 
   it('should forward ref', () => {
-    const testRef = createRef();
+    const testRef = createRef<any>();
 
     const wrapper = mount(
       <BaseInput ref={testRef} />
@@ -36,6 +37,30 @@ describe('<BaseInput />', () => {
     expect(fitElementHeight).toHaveBeenCalledTimes(0);
     mount(<BaseInput multiline />);
     expect(fitElementHeight).toHaveBeenCalledTimes(1);
+  });
+
+  it('should handle "oninput" prop', () => {
+    const spy = jest.fn();
+
+    const wrapper = mount(
+      <BaseInput onInput={spy} />
+    );
+
+    expect(spy).toBeCalledTimes(0);
+
+    act(() => {
+      wrapper.find('input').simulate('input');
+    });
+
+    expect(spy).toBeCalledTimes(1);
+
+    wrapper.setProps({ onInput: undefined });
+
+    act(() => {
+      wrapper.find('input').simulate('input');
+    });
+
+    expect(spy).toBeCalledTimes(1);
   });
 
   it('should handle "restPlaceholder" prop', () => {
