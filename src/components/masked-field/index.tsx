@@ -1,38 +1,47 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import TextField from '../text-field';
+import TextField, { Props as TextFieldProps } from '../text-field';
 import { InputMask } from '@krutoo/input-mask/dist/dom';
-import PropTypes from 'prop-types';
+
+export interface MaskState {
+  value: string
+  cleanValue: string
+}
+
+export interface Props extends Omit<TextFieldProps, 'value' | 'onBlur'> {
+  mask: string
+  value?: string
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>, s: MaskState) => void
+}
 
 const maskCommons = { placeholder: '_', pattern: /\d/ };
 
 /**
  * Компонент текстового поля (TextField) с маской.
- * @param {Object} props Свойства.
- * @param {string} props.mask Маска.
- * @param {string} [props.value] Значение.
- * @param {Function} props.onBlur Сработает при событии blur.
- * @return {ReactElement} Компонент.
+ * @param props Свойства.
+ * @param props.mask Маска.
+ * @param props.value Значение.
+ * @param props.onBlur Сработает при событии blur.
  */
-export const MaskedField = forwardRef(function MaskedField ({
+export const MaskedField = forwardRef<HTMLInputElement | undefined, Props>(function MaskedField ({
   mask,
   value = '',
   onBlur,
   ...restOptions
 }, ref) {
-  const [inputMask, setInputMask] = useState();
-  const [inputState, setInputState] = useState({ value, cleanValue: '' });
+  const [inputMask, setInputMask] = useState<any>();
+  const [inputState, setInputState] = useState<MaskState>({ value, cleanValue: '' });
   const innerRef = useRef();
 
   useImperativeHandle(ref, () => innerRef.current);
 
   useEffect(() => {
-    const im = InputMask(innerRef.current, {
+    const im = InputMask(innerRef.current as any, {
       ...maskCommons,
       mask,
       onChange: setInputState,
     });
 
-    im.setValue(value);
+    im.setValue(value as string);
     setInputMask(im);
 
     return () => im.disable();
@@ -52,24 +61,7 @@ export const MaskedField = forwardRef(function MaskedField ({
       }}
 
       // получаем данные маски только по событию "blur"
-      onBlur={e => onBlur && onBlur(e, inputState)}
+      onBlur={e => onBlur?.(e, inputState)}
     />
   );
 });
-
-MaskedField.propTypes = {
-  /**
-   * Маска.
-   */
-  mask: PropTypes.string.isRequired,
-
-  /**
-   * Значение.
-   */
-  value: PropTypes.string,
-
-  /**
-   * Сработает при событии blur.
-   */
-  onBlur: PropTypes.func,
-};

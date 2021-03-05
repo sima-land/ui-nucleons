@@ -29,6 +29,14 @@ describe('MaskedField', () => {
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy.mock.calls[0][0].type).toBe('blur');
     expect(spy.mock.calls[0][1].cleanValue).toBe('');
+
+    wrapper.setProps({ onBlur: undefined });
+
+    act(() => {
+      wrapper.find(TextField).find('input').simulate('blur');
+    });
+
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should handle ref prop', () => {
@@ -46,13 +54,13 @@ describe('MaskedField', () => {
       <MaskedField mask='__-__' value='112233' />
     );
 
-    expect(wrapper.find('input').getDOMNode().value).toBe('11-22');
+    expect((wrapper.find('input').getDOMNode() as any).value).toBe('11-22');
 
     wrapper.setProps({
       mask: '__-__-__',
       value: '112233',
     });
 
-    expect(wrapper.find('input').getDOMNode().value).toBe('11-22-33');
+    expect((wrapper.find('input').getDOMNode() as any).value).toBe('11-22-33');
   });
 });
