@@ -6,6 +6,7 @@
   border: 1px solid colors.$gray12;
   border-radius: 4px;
   color: colors.$gray87;
+  background: #fff;
   &.focused:not(.disabled) {
     border-color: colors.$brand-blue;
   }
@@ -31,7 +32,9 @@
 .input {
   border: 0;
   padding: 0;
-  background: transparent;
+
+  // не надо делать transparent: https://stackoverflow.com/q/43483363/13166471
+  background: #fff;
   outline: 0;
   width: 0;
   flex-grow: 1;

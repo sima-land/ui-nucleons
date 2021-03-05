@@ -30,8 +30,9 @@ const Template = props => {
         }}
       />
       <br />
+
       <h4>Disabled</h4>
-      <Stepper {...props} disabled />
+      <Stepper {...props} value={value} disabled />
     </>
   );
 };
