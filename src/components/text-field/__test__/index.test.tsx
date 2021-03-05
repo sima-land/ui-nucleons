@@ -135,20 +135,46 @@ describe('<TextField />', () => {
     expect(callbacks.onFocus).toHaveBeenCalledTimes(1);
 
     act(() => {
-      jest.spyOn(wrapper.find(BaseInput).find('input').getDOMNode(), 'focus');
+      jest.spyOn(wrapper.find(BaseInput).find('input').getDOMNode() as any, 'focus');
     });
 
-    expect(wrapper.find(BaseInput).find('input').getDOMNode().focus).toHaveBeenCalledTimes(0);
+    expect((wrapper.find(BaseInput).find('input').getDOMNode() as any).focus).toHaveBeenCalledTimes(0);
 
     act(() => {
       wrapper.find('.input-block').simulate('click');
     });
 
-    expect(wrapper.find(BaseInput).find('input').getDOMNode().focus).toHaveBeenCalledTimes(1);
+    expect((wrapper.find(BaseInput).find('input').getDOMNode() as any).focus).toHaveBeenCalledTimes(1);
     expect(callbacks.onClick).toHaveBeenCalledTimes(1);
     expect(callbacks.onBlur).toHaveBeenCalledTimes(1);
     expect(callbacks.onChange).toHaveBeenCalledTimes(1);
     expect(callbacks.onFocus).toHaveBeenCalledTimes(1);
+  });
+  it('should handle "onClick" prop missing', () => {
+    const spy = jest.fn();
+
+    const wrapper = mount(
+      <TextField
+        label='Test label'
+        onClick={spy}
+      />
+    );
+
+    expect(spy).toHaveBeenCalledTimes(0);
+
+    act(() => {
+      wrapper.find('.input-block').simulate('click');
+    });
+
+    expect(spy).toHaveBeenCalledTimes(1);
+
+    wrapper.setProps({ onClick: undefined });
+
+    act(() => {
+      wrapper.find('.input-block').simulate('click');
+    });
+
+    expect(spy).toHaveBeenCalledTimes(1);
   });
   it('should handle "multiline" prop', () => {
     const spy = jest.fn();
@@ -163,7 +189,7 @@ describe('<TextField />', () => {
 
     expect(wrapper).toMatchSnapshot();
 
-    fitElementHeight.mockClear();
+    (fitElementHeight as any).mockClear();
 
     expect(spy).toHaveBeenCalledTimes(0);
     expect(fitElementHeight).toHaveBeenCalledTimes(0);
