@@ -71,6 +71,7 @@
     "react-dom": ">=16"
   },
   "scripts": {
+    "prepare": "husky install",
     "build:before": "rimraf build",
     "build:main": "tsc -p . -d",
     "build:after": "node dist.js",
