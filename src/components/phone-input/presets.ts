@@ -13,6 +13,15 @@ import ukrainePNG from './images/ukraine.png';
 import otherPNG from './images/other.png';
 import { keyBy } from 'lodash';
 
+export interface Country {
+  id: string
+  name: string
+  code: string
+  codeChars: string
+  mask: string
+  imageSrc: string
+}
+
 export const IDS = {
   russia: 'russia',
   kazakhstan: 'kazakhstan',
@@ -109,7 +118,7 @@ const ORDER = [
   IDS.other,
 ];
 
-export const countriesList = ORDER.map(id => ({
+export const countriesList: Country[] = ORDER.map(id => ({
   id,
   name: NAMES[id],
   code: CODES[id],

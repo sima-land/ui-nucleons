@@ -38,7 +38,7 @@ describe('<PhoneInput />', () => {
     expect(wrapper.find(Dropdown)).toHaveLength(1);
 
     act(() => {
-      wrapper.find(DropdownItem).at(0).prop('onClick')();
+      (wrapper.find(DropdownItem).at(0).prop('onClick') as any)();
     });
     wrapper.update();
 
@@ -135,7 +135,7 @@ describe('<PhoneInput />', () => {
     act(() => {
       Simulate.change(
         wrapper.find('input').getDOMNode(),
-        { target: { value: '000sss111' } }
+        { target: { value: '000sss111' } as HTMLInputElement }
       );
     });
 
@@ -146,7 +146,7 @@ describe('<PhoneInput />', () => {
     act(() => {
       Simulate.blur(
         wrapper.find('input').getDOMNode(),
-        { target: { value: '000111' } }
+        { target: { value: '000111' } as HTMLInputElement }
       );
     });
 
