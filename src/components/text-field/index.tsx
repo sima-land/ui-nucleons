@@ -42,9 +42,9 @@ export interface Props extends Omit<React.HTMLProps<HTMLInputElement>, IgnoredIn
 
 const cx = classnames.bind(styles);
 
-export const HEIGHTS = { xs: 32, s: 40, l: 56 };
+export const HEIGHTS = { xs: 32, s: 40, l: 56 } as const;
 
-export const DEFAULTS = { size: 'l' };
+export const DEFAULTS = { size: 'l' as keyof typeof HEIGHTS } as const;
 
 /**
  * Вернет true если переданное значение будет выведено при установке в input.
