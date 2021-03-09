@@ -1,11 +1,11 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import { act, Simulate } from 'react-dom/test-utils';
 import { Select } from '..';
 import TextField from '../../text-field';
 
 describe('Select', () => {
-  const openMenu = wrapper => {
+  const openMenu = (wrapper: ReactWrapper) => {
     act(() => {
       Simulate.keyDown(
         wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
@@ -15,7 +15,7 @@ describe('Select', () => {
     wrapper.update();
   };
 
-  const findMenu = wrapper => wrapper.find('div[data-testid="select:menu"]');
+  const findMenu = (wrapper: ReactWrapper) => wrapper.find('div[data-testid="select:menu"]');
 
   it('should renders correctly', () => {
     const menuToggleSpy = jest.fn();

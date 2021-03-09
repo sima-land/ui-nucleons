@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Select } from '..';
 import Link from '../../link';
 
@@ -40,8 +40,6 @@ Primary.storyName = 'Использование';
 export const WithLoading = () => {
   const [currentOption, selectOption] = useState('');
   const [ready, toggleReady] = useState(false);
-
-  useEffect(() => {}, [currentOption]);
 
   return (
     <>

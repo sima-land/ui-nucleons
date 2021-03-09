@@ -3,19 +3,19 @@ import { BoxShadow } from '../styling/shadows';
 import styles from './dropdown.scss';
 import classnames from 'classnames/bind';
 import { MediumRounds } from '../styling/shapes';
-import PropTypes from 'prop-types';
+
+export interface Props extends React.HTMLProps<HTMLDivElement> {
+  withShadow?: boolean
+}
 
 const cx = classnames.bind(styles);
 
 /**
  * Компонент выпадающего контента.
- * @param {*} props.children Содержимое.
- * @param {boolean} [props.withShadow=true] Нужна ли тень.
- * @param {string} [props.className] Класс.
- * @return {ReactElement} Компонент.
+ * @param props.withShadow Нужна ли тень.
+ * @return Элемент.
  */
-export const Dropdown = forwardRef(function Dropdown ({
-  children,
+export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown ({
   withShadow = true,
   className,
   ...restProps
@@ -31,25 +31,6 @@ export const Dropdown = forwardRef(function Dropdown ({
         MediumRounds.all,
         className
       )}
-    >
-      {children}
-    </div>
+    />
   );
 });
-
-Dropdown.propTypes = {
-  /**
-   * Содержимое.
-   */
-  children: PropTypes.node,
-
-  /**
-   * Нужна ли тень.
-   */
-  withShadow: PropTypes.bool,
-
-  /**
-   * Класс.
-   */
-  className: PropTypes.string,
-};
