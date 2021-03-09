@@ -57,7 +57,10 @@ export const useInfiniteScroll = (ref: React.MutableRefObject<HTMLElement>, {
  * @param {Object} elementRef Ref элемента, клик вне которого нужно обработать.
  * @param {Function} callback Сработает при клике вне элемента.
  */
-export const useOutsideClick = (elementRef: React.RefObject<HTMLElement>, callback: (e: MouseEvent) => void) => {
+export const useOutsideClick = (
+  elementRef: React.MutableRefObject<HTMLElement | undefined>,
+  callback: (e: MouseEvent) => void
+) => {
   const callbackRef = useRef(callback);
 
   callbackRef.current = callback;

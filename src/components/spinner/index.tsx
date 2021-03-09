@@ -1,37 +1,46 @@
 import React from 'react';
 import has from 'lodash/has';
 import classnames from 'classnames/bind';
-import PropTypes from 'prop-types';
 import { COLORS } from '../colors';
 import classes from './spinner.scss';
 
+type Color = 'brand-blue' | 'white'
+
+type Size = 'small' | 'medium' | 'large'
+
+export interface Props {
+  size?: Size
+  color?: Color
+  className?: string
+  style?: React.CSSProperties
+}
+
 const cx = classnames.bind(classes);
 
-export const DIAMETERS = Object.freeze({
+export const DIAMETERS: Record<Size, number> = {
   small: 20,
   medium: 48,
   large: 80,
-});
+} as const;
 
-const DEFAULT_COLOR = 'brand-blue';
-const AVAILABLE_COLORS = ['brand-blue', 'white'];
+const DEFAULT_COLOR: Color = 'brand-blue';
+
+const AVAILABLE_COLORS: Color[] = ['brand-blue', 'white'];
 
 /**
  * Компонент спиннера.
- * @param {Object} props Свойства компонента.
- * @param {'small'|'medium'|'large'} props.size Размер.
- * @param {string} props.className CSS-класс элемента-обертки.
- * @param {Object} props.style Стили элемента-обертки.
- * @param {'brand-blue' | 'white'} props.color Цвет.
+ * @param props Свойства компонента.
+ * @param props.size Размер.
+ * @param props.color Цвет.
  * @return {ReactElement} Компонент.
  */
-export const Spinner = ({
+export const Spinner: React.FC<Props> = ({
   size = 'medium',
   color = DEFAULT_COLOR,
   className,
   style,
 }) => {
-  const readySize = has(DIAMETERS, size) ? size : 'medium';
+  const readySize: Size = has(DIAMETERS, size) ? size : 'medium';
   const readyColor = AVAILABLE_COLORS.includes(color) ? color : DEFAULT_COLOR;
   const diameter = DIAMETERS[readySize];
   const radius = diameter / 2;
@@ -54,11 +63,4 @@ export const Spinner = ({
       </svg>
     </div>
   );
-};
-
-Spinner.propTypes = {
-  size: PropTypes.string,
-  color: PropTypes.oneOf(AVAILABLE_COLORS),
-  className: PropTypes.string,
-  style: PropTypes.object,
 };
