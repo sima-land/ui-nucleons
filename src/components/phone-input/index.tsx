@@ -4,25 +4,31 @@ import DownSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/down';
 import UpSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/up';
 import { Dropdown } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';
-import TextField from '../text-field';
-import { MaskedField } from '../masked-field';
+import TextField, { Props as TextFieldProps } from '../text-field';
+import { MaskedField, MaskState } from '../masked-field';
 import { useOutsideClick } from '../hooks';
-import { IDS, countriesList } from './presets';
+import { IDS, countriesList, Country } from './presets';
 import { marginLeft } from '../styling/sizes';
 import { COLORS } from '../colors';
 import classes from './phone-input.scss';
-import PropTypes from 'prop-types';
 import { defineCountry } from './utils';
+
+export interface Props extends Omit<TextFieldProps, 'onChange' | 'onBlur' | 'value' | 'ref'> {
+  onChange?: React.ChangeEventHandler<HTMLInputElement>
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>, s: MaskState & { ready?: boolean }) => void
+  onCountrySelect?: (c: Country) => void
+  value?: string
+}
 
 const cx = classnames.bind(classes);
 
 /**
  * Удаляет из значения код переданной страны.
- * @param {string} value Значение.
- * @param {Object} country Данные страны.
- * @return {string} Значение без кода.
+ * @param value Значение.
+ * @param country Данные страны.
+ * @return Значение без кода.
  */
-const formatValue = (value, country) => value.replace(/\D/g, '').slice(country.codeChars.length);
+const formatValue = (value: string, country: Country) => value.replace(/\D/g, '').slice(country.codeChars.length);
 
 /**
  * Компонент поля ввода номера телефона.
@@ -37,7 +43,7 @@ const formatValue = (value, country) => value.replace(/\D/g, '').slice(country.c
  * @param {Function} [props.onChange] Сработает при изменении поля. Не рекомендуется использовать.
  * @return {ReactElement} Компонент.
  */
-export const PhoneInput = ({
+export const PhoneInput: React.FC<Props> = ({
   'data-testid': testId,
   className,
   label = 'Телефон',
@@ -52,7 +58,7 @@ export const PhoneInput = ({
   const [country, setCountry] = useState(defineCountry(value));
   const [cleanValue, setCleanValue] = useState(formatValue(value, country));
   const [isPopupOpen, togglePopup] = useState(false);
-  const dropdownRef = useRef();
+  const dropdownRef = useRef<HTMLDivElement>();
 
   useEffect(() => {
     setCleanValue(formatValue(value, country));
@@ -87,7 +93,7 @@ export const PhoneInput = ({
         />
         <AdornmentSVG
           fill={COLORS.get('gray38')}
-          className={marginLeft(1)}
+          className={marginLeft(1) as string}
         />
       </div>
     ),
@@ -104,9 +110,9 @@ export const PhoneInput = ({
           ? (
             <TextField
               {...commonFieldProps}
-              onChange={e => {
+              onChange={(e: any) => {
                 e.target.value = e.target.value.replace(/\D/g, '').slice(0, 20);
-                onChange && onChange(e);
+                onChange && onChange(e as React.ChangeEvent<HTMLInputElement>);
               }}
               onBlur={e => {
                 onBlur && onBlur(e, {
@@ -138,7 +144,7 @@ export const PhoneInput = ({
 
       {isPopupOpen && (
         <Dropdown
-          ref={dropdownRef}
+          ref={dropdownRef as any}
           role='menu'
           className={cx('popup')}
           data-testid='phone-input:dropdown'
@@ -173,46 +179,4 @@ export const PhoneInput = ({
       )}
     </div>
   );
-};
-
-PhoneInput.propTypes = {
-  /**
-   * Ярлык.
-   */
-  label: PropTypes.string,
-
-  /**
-   * Сработает при выборе страны.
-   */
-  onCountrySelect: PropTypes.func,
-
-  /**
-   * Стили.
-   */
-  style: PropTypes.object,
-
-  /**
-   * Класс.
-   */
-  className: PropTypes.string,
-
-  /**
-   * Идентификатор для систем автоматизированного тестирования.
-   */
-  'data-testid': PropTypes.string,
-
-  /**
-   * Значение.
-   */
-  value: PropTypes.string,
-
-  /**
-   * Сработает при событии "blur".
-   */
-  onBlur: PropTypes.func,
-
-  /**
-   * Сработает при изменении поля. Не рекомендуется использовать.
-   */
-  onChange: PropTypes.func,
 };

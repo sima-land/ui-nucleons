@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { storiesOf } from '@storybook/react';
 import { PhoneInput } from '..';
 
 const DemoForm = ({ initialValue = '' }) => {
@@ -26,19 +25,26 @@ const DemoForm = ({ initialValue = '' }) => {
   );
 };
 
-storiesOf('PhoneInput', module)
-  .add('Usage', () => (
-    <div style={{ padding: 32 }}>
-      <h3>Пустое значение (Россия, по умолчанию)</h3>
-      <DemoForm initialValue='' />
+export default {
+  title: 'PhoneInput',
+  component: PhoneInput,
+  parameters: {
+    layout: 'padded',
+  },
+};
 
-      <h3>Известная страна (Беларусь)</h3>
-      <DemoForm initialValue='375112223344' />
+export const Primary = () => (
+  <div style={{ padding: 32 }}>
+    <h3>Пустое значение (Россия, по умолчанию)</h3>
+    <DemoForm initialValue='' />
 
-      <h3>Известная страна (Казахстан)</h3>
-      <DemoForm initialValue='76005002040' />
+    <h3>Известная страна (Беларусь)</h3>
+    <DemoForm initialValue='375112223344' />
 
-      <h3>Неизвестная страна (Другое)</h3>
-      <DemoForm initialValue='55566667777' />
-    </div>
-  ));
+    <h3>Известная страна (Казахстан)</h3>
+    <DemoForm initialValue='76005002040' />
+
+    <h3>Неизвестная страна (Другое)</h3>
+    <DemoForm initialValue='55566667777' />
+  </div>
+);
