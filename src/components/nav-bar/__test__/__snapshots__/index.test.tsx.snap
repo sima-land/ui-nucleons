@@ -50,12 +50,12 @@ exports[`<NavBar /> should render end icon-button 1`] = `
       >
         <NavButton
           icon={[Function]}
-          shift={false}
           stub={true}
         >
           <button
-            aria-hidden="true"
+            aria-hidden={true}
             className="button icon stub"
+            type="button"
           />
         </NavButton>
       </div>
@@ -82,10 +82,11 @@ exports[`<NavBar /> should render end icon-button 1`] = `
       >
         <NavButton
           icon={[Function]}
-          shift={false}
         >
           <button
+            aria-hidden={false}
             className="button icon"
+            type="button"
           >
             <ArrowLeftSVG
               aria-hidden="true"
@@ -133,13 +134,13 @@ exports[`<NavBar /> should render end link-button 1`] = `
         className="group"
       >
         <NavButton
-          shift={false}
           stub={true}
           text="Bar"
         >
           <button
-            aria-hidden="true"
+            aria-hidden={true}
             className="button stub"
+            type="button"
           >
             Bar
           </button>
@@ -167,11 +168,84 @@ exports[`<NavBar /> should render end link-button 1`] = `
         className="group"
       >
         <NavButton
-          shift={false}
           text="Bar"
         >
           <button
+            aria-hidden={false}
             className="button"
+            type="button"
+          >
+            Bar
+          </button>
+        </NavButton>
+      </div>
+    </div>
+  </div>
+</NavBar>
+`;
+
+exports[`<NavBar /> should render end secondary link-button 1`] = `
+<NavBar
+  buttons={
+    Object {
+      "endSecondary": Object {
+        "text": "Bar",
+      },
+    }
+  }
+  subtitle="Очень очень очень очень длинный подзаголовок"
+  title="Очень очень очень длинный заголовок"
+>
+  <div
+    className="nav-bar"
+  >
+    <div
+      className="button-groups"
+    >
+      <div
+        className="group"
+      >
+        <NavButton
+          stub={true}
+          text="Bar"
+        >
+          <button
+            aria-hidden={true}
+            className="button stub"
+            type="button"
+          >
+            Bar
+          </button>
+        </NavButton>
+      </div>
+    </div>
+    <div
+      className="main"
+    >
+      <div
+        className="title truncate"
+      >
+        Очень очень очень длинный заголовок
+      </div>
+      <div
+        className="subtitle truncate"
+      >
+        Очень очень очень очень длинный подзаголовок
+      </div>
+    </div>
+    <div
+      className="button-groups end"
+    >
+      <div
+        className="group"
+      >
+        <NavButton
+          text="Bar"
+        >
+          <button
+            aria-hidden={false}
+            className="button"
+            type="button"
           >
             Bar
           </button>
@@ -217,7 +291,9 @@ exports[`<NavBar /> should render four icon-buttons 1`] = `
           shift="right"
         >
           <button
+            aria-hidden={false}
             className="button icon shift-right"
+            type="button"
           >
             <ArrowLeftSVG
               aria-hidden="true"
@@ -242,7 +318,9 @@ exports[`<NavBar /> should render four icon-buttons 1`] = `
           shift="left"
         >
           <button
+            aria-hidden={false}
             className="button icon shift-left"
+            type="button"
           >
             <CartSVG
               aria-hidden="true"
@@ -277,8 +355,9 @@ exports[`<NavBar /> should render four icon-buttons 1`] = `
           stub={true}
         >
           <button
-            aria-hidden="true"
+            aria-hidden={true}
             className="button icon shift-right stub"
+            type="button"
           />
         </NavButton>
         <NavButton
@@ -287,8 +366,9 @@ exports[`<NavBar /> should render four icon-buttons 1`] = `
           stub={true}
         >
           <button
-            aria-hidden="true"
+            aria-hidden={true}
             className="button icon shift-left stub"
+            type="button"
           />
         </NavButton>
       </div>
@@ -318,7 +398,9 @@ exports[`<NavBar /> should render four icon-buttons 1`] = `
           shift="right"
         >
           <button
+            aria-hidden={false}
             className="button icon shift-right"
+            type="button"
           >
             <PersonSVG
               aria-hidden="true"
@@ -348,7 +430,9 @@ exports[`<NavBar /> should render four icon-buttons 1`] = `
           shift="left"
         >
           <button
+            aria-hidden={false}
             className="button icon shift-left"
+            type="button"
           >
             <CrossSVG
               aria-hidden="true"
@@ -380,8 +464,9 @@ exports[`<NavBar /> should render four icon-buttons 1`] = `
           stub={true}
         >
           <button
-            aria-hidden="true"
+            aria-hidden={true}
             className="button icon shift-right stub"
+            type="button"
           />
         </NavButton>
         <NavButton
@@ -390,8 +475,9 @@ exports[`<NavBar /> should render four icon-buttons 1`] = `
           stub={true}
         >
           <button
-            aria-hidden="true"
+            aria-hidden={true}
             className="button icon shift-left stub"
+            type="button"
           />
         </NavButton>
       </div>
@@ -426,10 +512,11 @@ exports[`<NavBar /> should render icon-buttons 1`] = `
       >
         <NavButton
           icon={[Function]}
-          shift={false}
         >
           <button
+            aria-hidden={false}
             className="button icon"
+            type="button"
           >
             <ArrowLeftSVG
               aria-hidden="true"
@@ -455,12 +542,12 @@ exports[`<NavBar /> should render icon-buttons 1`] = `
       >
         <NavButton
           icon={[Function]}
-          shift={false}
           stub={true}
         >
           <button
-            aria-hidden="true"
+            aria-hidden={true}
             className="button icon stub"
+            type="button"
           />
         </NavButton>
       </div>
@@ -487,10 +574,11 @@ exports[`<NavBar /> should render icon-buttons 1`] = `
       >
         <NavButton
           icon={[Function]}
-          shift={false}
         >
           <button
+            aria-hidden={false}
             className="button icon"
+            type="button"
           >
             <CrossSVG
               aria-hidden="true"
@@ -518,12 +606,12 @@ exports[`<NavBar /> should render icon-buttons 1`] = `
       >
         <NavButton
           icon={[Function]}
-          shift={false}
           stub={true}
         >
           <button
-            aria-hidden="true"
+            aria-hidden={true}
             className="button icon stub"
+            type="button"
           />
         </NavButton>
       </div>
@@ -583,11 +671,12 @@ exports[`<NavBar /> should render link-buttons 1`] = `
         className="group"
       >
         <NavButton
-          shift={false}
           text="Foo"
         >
           <button
+            aria-hidden={false}
             className="button"
+            type="button"
           >
             Foo
           </button>
@@ -597,13 +686,13 @@ exports[`<NavBar /> should render link-buttons 1`] = `
         className="group"
       >
         <NavButton
-          shift={false}
           stub={true}
           text="Bar"
         >
           <button
-            aria-hidden="true"
+            aria-hidden={true}
             className="button stub"
+            type="button"
           >
             Bar
           </button>
@@ -631,11 +720,12 @@ exports[`<NavBar /> should render link-buttons 1`] = `
         className="group"
       >
         <NavButton
-          shift={false}
           text="Bar"
         >
           <button
+            aria-hidden={false}
             className="button"
+            type="button"
           >
             Bar
           </button>
@@ -645,13 +735,13 @@ exports[`<NavBar /> should render link-buttons 1`] = `
         className="group"
       >
         <NavButton
-          shift={false}
           stub={true}
           text="Foo"
         >
           <button
-            aria-hidden="true"
+            aria-hidden={true}
             className="button stub"
+            type="button"
           >
             Foo
           </button>
@@ -687,11 +777,12 @@ exports[`<NavBar /> should render mixed buttons 1`] = `
         className="group"
       >
         <NavButton
-          shift={false}
           text="Foo"
         >
           <button
+            aria-hidden={false}
             className="button"
+            type="button"
           >
             Foo
           </button>
@@ -702,12 +793,12 @@ exports[`<NavBar /> should render mixed buttons 1`] = `
       >
         <NavButton
           icon={[Function]}
-          shift={false}
           stub={true}
         >
           <button
-            aria-hidden="true"
+            aria-hidden={true}
             className="button icon stub"
+            type="button"
           />
         </NavButton>
       </div>
@@ -734,10 +825,11 @@ exports[`<NavBar /> should render mixed buttons 1`] = `
       >
         <NavButton
           icon={[Function]}
-          shift={false}
         >
           <button
+            aria-hidden={false}
             className="button icon"
+            type="button"
           >
             <CrossSVG
               aria-hidden="true"
@@ -764,13 +856,13 @@ exports[`<NavBar /> should render mixed buttons 1`] = `
         className="group"
       >
         <NavButton
-          shift={false}
           stub={true}
           text="Foo"
         >
           <button
-            aria-hidden="true"
+            aria-hidden={true}
             className="button stub"
+            type="button"
           >
             Foo
           </button>
@@ -804,10 +896,11 @@ exports[`<NavBar /> should render start icon-button 1`] = `
       >
         <NavButton
           icon={[Function]}
-          shift={false}
         >
           <button
+            aria-hidden={false}
             className="button icon"
+            type="button"
           >
             <ArrowLeftSVG
               aria-hidden="true"
@@ -851,12 +944,12 @@ exports[`<NavBar /> should render start icon-button 1`] = `
       >
         <NavButton
           icon={[Function]}
-          shift={false}
           stub={true}
         >
           <button
-            aria-hidden="true"
+            aria-hidden={true}
             className="button icon stub"
+            type="button"
           />
         </NavButton>
       </div>
@@ -887,11 +980,12 @@ exports[`<NavBar /> should render start link-button 1`] = `
         className="group"
       >
         <NavButton
-          shift={false}
           text="Foo"
         >
           <button
+            aria-hidden={false}
             className="button"
+            type="button"
           >
             Foo
           </button>
@@ -919,13 +1013,85 @@ exports[`<NavBar /> should render start link-button 1`] = `
         className="group"
       >
         <NavButton
-          shift={false}
           stub={true}
           text="Foo"
         >
           <button
-            aria-hidden="true"
+            aria-hidden={true}
             className="button stub"
+            type="button"
+          >
+            Foo
+          </button>
+        </NavButton>
+      </div>
+    </div>
+  </div>
+</NavBar>
+`;
+
+exports[`<NavBar /> should render start secondary link-button 1`] = `
+<NavBar
+  buttons={
+    Object {
+      "startSecondary": Object {
+        "text": "Foo",
+      },
+    }
+  }
+  subtitle="Очень очень очень очень длинный подзаголовок"
+  title="Очень очень очень длинный заголовок"
+>
+  <div
+    className="nav-bar"
+  >
+    <div
+      className="button-groups"
+    >
+      <div
+        className="group"
+      >
+        <NavButton
+          text="Foo"
+        >
+          <button
+            aria-hidden={false}
+            className="button"
+            type="button"
+          >
+            Foo
+          </button>
+        </NavButton>
+      </div>
+    </div>
+    <div
+      className="main"
+    >
+      <div
+        className="title truncate"
+      >
+        Очень очень очень длинный заголовок
+      </div>
+      <div
+        className="subtitle truncate"
+      >
+        Очень очень очень очень длинный подзаголовок
+      </div>
+    </div>
+    <div
+      className="button-groups end"
+    >
+      <div
+        className="group"
+      >
+        <NavButton
+          stub={true}
+          text="Foo"
+        >
+          <button
+            aria-hidden={true}
+            className="button stub"
+            type="button"
           >
             Foo
           </button>

@@ -44,6 +44,20 @@ describe('<NavBar />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it('should render start secondary link-button', () => {
+    const wrapper = mount(
+      <NavBar
+        title='Очень очень очень длинный заголовок'
+        subtitle='Очень очень очень очень длинный подзаголовок'
+        buttons={{
+          startSecondary: { text: 'Foo' },
+        }}
+      />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it('should render end link-button', () => {
     const wrapper = mount(
       <NavBar
@@ -51,6 +65,20 @@ describe('<NavBar />', () => {
         subtitle='Очень очень очень очень длинный подзаголовок'
         buttons={{
           end: { text: 'Bar' },
+        }}
+      />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render end secondary link-button', () => {
+    const wrapper = mount(
+      <NavBar
+        title='Очень очень очень длинный заголовок'
+        subtitle='Очень очень очень очень длинный подзаголовок'
+        buttons={{
+          endSecondary: { text: 'Bar' },
         }}
       />
     );
