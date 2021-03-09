@@ -108,6 +108,7 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
                     aria-hidden="true"
                     aria-label="Закрыть"
                     class="button icon stub"
+                    type="button"
                   />
                 </div>
               </div>
@@ -121,8 +122,10 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
                   class="group"
                 >
                   <button
+                    aria-hidden="false"
                     aria-label="Закрыть"
                     class="button icon"
+                    type="button"
                   >
                     <svg
                       aria-hidden="true"
@@ -209,14 +212,14 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
                     aria-label="Закрыть"
                     icon={[Function]}
                     onClick={[Function]}
-                    shift={false}
                     stub={true}
                   >
                     <button
-                      aria-hidden="true"
+                      aria-hidden={true}
                       aria-label="Закрыть"
                       className="button icon stub"
                       onClick={[Function]}
+                      type="button"
                     />
                   </NavButton>
                 </div>
@@ -234,12 +237,13 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
                     aria-label="Закрыть"
                     icon={[Function]}
                     onClick={[Function]}
-                    shift={false}
                   >
                     <button
+                      aria-hidden={false}
                       aria-label="Закрыть"
                       className="button icon"
                       onClick={[Function]}
+                      type="button"
                     >
                       <CrossSVG
                         aria-hidden="true"
@@ -339,8 +343,10 @@ exports[`<Screen /> should handle props 1`] = `
                   class="group"
                 >
                   <button
+                    aria-hidden="false"
                     aria-label="Вернуться назад"
                     class="button icon"
+                    type="button"
                   >
                     <svg
                       aria-hidden="true"
@@ -362,6 +368,7 @@ exports[`<Screen /> should handle props 1`] = `
                     aria-hidden="true"
                     aria-label="Закрыть Test title"
                     class="button icon stub"
+                    type="button"
                   />
                 </div>
               </div>
@@ -386,8 +393,10 @@ exports[`<Screen /> should handle props 1`] = `
                   class="group"
                 >
                   <button
+                    aria-hidden="false"
                     aria-label="Закрыть Test title"
                     class="button icon"
+                    type="button"
                   >
                     <svg
                       aria-hidden="true"
@@ -411,6 +420,7 @@ exports[`<Screen /> should handle props 1`] = `
                     aria-hidden="true"
                     aria-label="Вернуться назад"
                     class="button icon stub"
+                    type="button"
                   />
                 </div>
               </div>
@@ -477,12 +487,13 @@ exports[`<Screen /> should handle props 1`] = `
                     aria-label="Вернуться назад"
                     icon={[Function]}
                     onClick={[Function]}
-                    shift={false}
                   >
                     <button
+                      aria-hidden={false}
                       aria-label="Вернуться назад"
                       className="button icon"
                       onClick={[Function]}
+                      type="button"
                     >
                       <ArrowLeftSVG
                         aria-hidden="true"
@@ -510,14 +521,14 @@ exports[`<Screen /> should handle props 1`] = `
                     aria-label="Закрыть Test title"
                     icon={[Function]}
                     onClick={[Function]}
-                    shift={false}
                     stub={true}
                   >
                     <button
-                      aria-hidden="true"
+                      aria-hidden={true}
                       aria-label="Закрыть Test title"
                       className="button icon stub"
                       onClick={[Function]}
+                      type="button"
                     />
                   </NavButton>
                 </div>
@@ -546,12 +557,13 @@ exports[`<Screen /> should handle props 1`] = `
                     aria-label="Закрыть Test title"
                     icon={[Function]}
                     onClick={[Function]}
-                    shift={false}
                   >
                     <button
+                      aria-hidden={false}
                       aria-label="Закрыть Test title"
                       className="button icon"
                       onClick={[Function]}
+                      type="button"
                     >
                       <CrossSVG
                         aria-hidden="true"
@@ -581,14 +593,14 @@ exports[`<Screen /> should handle props 1`] = `
                     aria-label="Вернуться назад"
                     icon={[Function]}
                     onClick={[Function]}
-                    shift={false}
                     stub={true}
                   >
                     <button
-                      aria-hidden="true"
+                      aria-hidden={true}
                       aria-label="Вернуться назад"
                       className="button icon stub"
                       onClick={[Function]}
+                      type="button"
                     />
                   </NavButton>
                 </div>
@@ -634,6 +646,7 @@ exports[`<Screen /> should render without props 1`] = `
                     aria-hidden="true"
                     aria-label="Закрыть"
                     class="button icon stub"
+                    type="button"
                   />
                 </div>
               </div>
@@ -647,8 +660,10 @@ exports[`<Screen /> should render without props 1`] = `
                   class="group"
                 >
                   <button
+                    aria-hidden="false"
                     aria-label="Закрыть"
                     class="button icon"
+                    type="button"
                   >
                     <svg
                       aria-hidden="true"
@@ -713,14 +728,14 @@ exports[`<Screen /> should render without props 1`] = `
                     aria-label="Закрыть"
                     icon={[Function]}
                     onClick={[Function]}
-                    shift={false}
                     stub={true}
                   >
                     <button
-                      aria-hidden="true"
+                      aria-hidden={true}
                       aria-label="Закрыть"
                       className="button icon stub"
                       onClick={[Function]}
+                      type="button"
                     />
                   </NavButton>
                 </div>
@@ -738,12 +753,13 @@ exports[`<Screen /> should render without props 1`] = `
                     aria-label="Закрыть"
                     icon={[Function]}
                     onClick={[Function]}
-                    shift={false}
                   >
                     <button
+                      aria-hidden={false}
                       aria-label="Закрыть"
                       className="button icon"
                       onClick={[Function]}
+                      type="button"
                     >
                       <CrossSVG
                         aria-hidden="true"
@@ -813,6 +829,7 @@ exports[`<Screen /> should renders without close button 1`] = `
                   <button
                     aria-hidden="true"
                     class="button stub"
+                    type="button"
                   >
                     cross replacer
                   </button>
@@ -839,7 +856,9 @@ exports[`<Screen /> should renders without close button 1`] = `
                   class="group"
                 >
                   <button
+                    aria-hidden="false"
                     class="button"
+                    type="button"
                   >
                     cross replacer
                   </button>
@@ -900,13 +919,13 @@ exports[`<Screen /> should renders without close button 1`] = `
                   className="group"
                 >
                   <NavButton
-                    shift={false}
                     stub={true}
                     text="cross replacer"
                   >
                     <button
-                      aria-hidden="true"
+                      aria-hidden={true}
                       className="button stub"
+                      type="button"
                     >
                       cross replacer
                     </button>
@@ -934,11 +953,12 @@ exports[`<Screen /> should renders without close button 1`] = `
                   className="group"
                 >
                   <NavButton
-                    shift={false}
                     text="cross replacer"
                   >
                     <button
+                      aria-hidden={false}
                       className="button"
+                      type="button"
                     >
                       cross replacer
                     </button>
