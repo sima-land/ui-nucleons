@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Dropdown } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';
-import TextField from '../text-field';
+import TextField, { Props as TextFieldProps } from '../text-field';
 import { placeDropdown } from '../_internal/utils/dropdown';
 import classnames from 'classnames/bind';
 import DownSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/down';
@@ -9,29 +9,40 @@ import UpSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/up';
 import styles from './select.scss';
 import { COLORS } from '../colors';
 import { useOutsideClick } from '../hooks';
-import PropTypes from 'prop-types';
 import { DropdownLoading } from '../_internal/dropdown-loading';
+
+type Size = 's' | 'm' | 'l' | 'xl';
+
+export interface Props extends Omit<TextFieldProps, 'style'> {
+  options: any[]
+  optionSize?: Size
+  onSelect?: (option: any) => void
+  style?: React.CSSProperties
+  loading?: boolean
+  onMenuToggle?: (opened: boolean) => void
+  renderOption?: (option: any) => React.ReactNode
+}
 
 const cx = classnames.bind(styles);
 
 /**
  * Поле выбора из списка.
- * @param {Object} props Свойства.
- * @param {Array} [props.options] Список опций.
- * @param {'s' | 'm' | 'l' | 'xl'} [props.optionSize] Размер для DropdownItem.
- * @param {Function} [props.onSelect] Сработает при выборе.
- * @param {Object} [props.style] Стили.
- * @param {string} [props.className] Класс.
- * @param {string} [props.label] Ярлык.
- * @param {Function} [props.onClick] Сработает при клике по полю.
- * @param {string} props.value Введенное значение.
- * @param {boolean} [props.loading] Нужно ли выводить состояние загрузки списка.
- * @param {string} [props.'data-testid'] Идентификатор для систем автоматизированного тестирования.
- * @param {Function} props.onMenuToggle Сработает при открытии/закрытии меню.
- * @param {Function} props.renderOption Вернет содержимое опции.
+ * @param props Свойства.
+ * @param props.options Список опций.
+ * @param props.optionSize Размер для DropdownItem.
+ * @param props.onSelect Сработает при выборе.
+ * @param props.style Стили.
+ * @param props.className Класс.
+ * @param props.label Ярлык.
+ * @param props.onClick Сработает при клике по полю.
+ * @param props.value Введенное значение.
+ * @param props.loading Нужно ли выводить состояние загрузки списка.
+ * @param props.onMenuToggle Сработает при открытии/закрытии меню.
+ * @param props.renderOption Вернет содержимое опции.
+ * @param props.'data-testid' Идентификатор для систем автоматизированного тестирования.
  * @return {ReactElement} Компонент.
  */
-export const Select = ({
+export const Select: React.FC<Props> = ({
   options,
   optionSize,
   onSelect,
@@ -46,8 +57,8 @@ export const Select = ({
   'data-testid': dataTestId,
   ...restProps
 }) => {
-  const fieldRef = useRef();
-  const menuRef = useRef();
+  const fieldRef = useRef<HTMLInputElement>();
+  const menuRef = useRef<HTMLDivElement>();
   const [opened, toggleMenu] = useState(false);
 
   const ArrowSVG = opened ? UpSVG : DownSVG;
@@ -57,7 +68,7 @@ export const Select = ({
   });
 
   useEffect(() => {
-    opened && menuRef.current?.focus();
+    opened && (menuRef.current as any).focus();
     onMenuToggle && onMenuToggle(opened);
   }, [opened]);
 
@@ -84,7 +95,7 @@ export const Select = ({
         onBlur={({ relatedTarget }) => {
           relatedTarget !== menuRef.current && toggleMenu(false);
         }}
-        onKeyDown={e => {
+        onKeyDown={(e: React.KeyboardEvent) => {
           e.key === 'Enter' && toggleMenu(true);
         }}
         className={cx('field')}
@@ -95,10 +106,10 @@ export const Select = ({
         )}
       />
 
-      {opened && (loading || options?.length > 0) && (
+      {opened && (loading || options.length > 0) && (
         <Dropdown
           {...placeDropdown(restProps.size)}
-          ref={menuRef}
+          ref={menuRef as any}
           data-testid='select:menu'
           tabIndex={-1}
           className={cx('menu')}
@@ -106,7 +117,7 @@ export const Select = ({
             toggleMenu(false);
           }}
           role='menu'
-          onKeyDown={event => {
+          onKeyDown={(event: React.KeyboardEvent) => {
             if (event.key === 'Enter') {
               toggleMenu(false);
               fieldRef.current && fieldRef.current.focus();
@@ -135,66 +146,4 @@ export const Select = ({
       )}
     </div>
   );
-};
-
-Select.propTypes = {
-  /**
-   * Список опций.
-   */
-  options: PropTypes.array,
-
-  /**
-   * Размер для DropdownItem.
-   */
-  optionSize: PropTypes.oneOf(['s', 'm', 'l', 'xl']),
-
-  /**
-   * Сработает при выборе.
-   */
-  onSelect: PropTypes.func,
-
-  /**
-   * Стили.
-   */
-  style: PropTypes.object,
-
-  /**
-   * Класс.
-   */
-  className: PropTypes.string,
-
-  /**
-   * Ярлык.
-   */
-  label: PropTypes.string,
-
-  /**
-   * Сработает при клике по полю.
-   */
-  onClick: PropTypes.func,
-
-  /**
-   * Введенное значение.
-   */
-  value: PropTypes.string,
-
-  /**
-   * Нужно ли выводить состояние загрузки списка.
-   */
-  loading: PropTypes.bool,
-
-  /**
-   * Сработает при открытии/закрытии меню.
-   */
-  onMenuToggle: PropTypes.func,
-
-  /**
-   * Вернет содержимое опции.
-   */
-  renderOption: PropTypes.func,
-
-  /**
-   * Идентификатор для систем автоматизированного тестирования.
-   */
-  'data-testid': PropTypes.string,
 };
