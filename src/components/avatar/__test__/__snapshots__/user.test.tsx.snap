@@ -2,7 +2,6 @@
 
 exports[`UserAvatar should handle props 1`] = `
 <UserAvatar
-  icon={[Function]}
   size={40}
   style={
     Object {
@@ -14,7 +13,6 @@ exports[`UserAvatar should handle props 1`] = `
   <Avatar
     bgColor="additional-deep-red"
     bgOpacity={0.48}
-    icon={[Function]}
     size={40}
     style={
       Object {
@@ -46,7 +44,6 @@ exports[`UserAvatar should handle props 1`] = `
 
 exports[`UserAvatar should handle props 2`] = `
 <UserAvatar
-  icon={[Function]}
   size={40}
   style={
     Object {
@@ -58,7 +55,6 @@ exports[`UserAvatar should handle props 2`] = `
   <Avatar
     bgColor="additional-deep-red"
     bgOpacity={0.48}
-    icon={[Function]}
     size={40}
     style={
       Object {

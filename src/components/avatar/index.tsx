@@ -1,17 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import classnames from 'classnames/bind';
-import { COLORS } from '../colors';
-import PropTypes from 'prop-types';
+import { COLORS, Token } from '../colors';
 import PersonSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/person';
 import classes from './avatar.scss';
 import { getMonogram } from './utils';
 import { color as colorClass } from '../styling/colors';
 
+export interface Props {
+  size?: number
+  imageUrl?: string
+  bgColor?: Token
+  bgOpacity?: number
+  textColor?: Token
+  title?: string
+  monogram?: string
+  className?: string
+  style?: React.CSSProperties
+  'data-testid'?: string
+}
+
 const cx = classnames.bind(classes);
 
-const SIZES = [40, 48, 56, 64, 72, 80, 104];
+type Size = 40 | 48 | 56 | 64 | 72 | 80 | 104
 
-const ICON_SIZES = {
+const SIZES: ReadonlyArray<number> = [40, 48, 56, 64, 72, 80, 104];
+
+const ICON_SIZES: Readonly<Record<Size, number>> = {
   40: 16,
   48: 24,
   56: 24,
@@ -37,7 +51,7 @@ const ICON_SIZES = {
  * @param {string} props.'data-testid' Идентификатор для систем автоматизированного тестирования.
  * @return {ReactElement} Компонент.
  */
-export const Avatar = ({
+export const Avatar: React.FC<Props> = ({
   size: sizeProp = 72,
   imageUrl,
   bgColor = 'gray4',
@@ -55,7 +69,7 @@ export const Avatar = ({
     toggleImage(Boolean(imageUrl));
   }, [imageUrl]);
 
-  const size = SIZES.includes(sizeProp) ? sizeProp : 72;
+  const size: Size = SIZES.includes(sizeProp) ? (sizeProp as Size) : 72;
 
   return (
     <div
@@ -70,7 +84,7 @@ export const Avatar = ({
         ...style,
         '--avatar-color': !needImage ? COLORS.get(bgColor) : undefined,
         '--avatar-color-opacity': bgOpacity,
-      }}
+      } as any}
     >
       {/* инициалы/иконка */}
       {!needImage && (
@@ -108,20 +122,4 @@ export const Avatar = ({
       )}
     </div>
   );
-};
-
-Avatar.propTypes = {
-  size: PropTypes.number,
-  imageUrl: PropTypes.string,
-  bgColor: PropTypes.string,
-  bgOpacity: PropTypes.number,
-  textColor: PropTypes.string,
-  title: PropTypes.string,
-  monogram: PropTypes.string,
-  iconProps: PropTypes.object,
-  textProps: PropTypes.object,
-  style: PropTypes.object,
-  icon: PropTypes.elementType,
-  className: PropTypes.string,
-  'data-testid': PropTypes.string,
 };

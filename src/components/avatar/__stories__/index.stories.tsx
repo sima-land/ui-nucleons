@@ -52,7 +52,6 @@ export const Primary = () => (
           {...variant.props}
           bgColor='additional-teal'
           textColor='white'
-          iconProps={{ color: 'white' }}
         />
       </Fragment>
     ))}
@@ -67,7 +66,7 @@ export const Primary = () => (
             <Avatar
               key={`${index}-${variantIndex}`}
               {...variant.props}
-              size={size}
+              size={size as any}
             />
           </Fragment>
         ))}
