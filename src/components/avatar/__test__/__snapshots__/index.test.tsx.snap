@@ -3,7 +3,6 @@
 exports[`<Avatar /> should handle props 1`] = `
 <Avatar
   bgColor="additional-teal"
-  color="brand-blue"
   imageUrl="www.images.com"
   size={40}
   style={
@@ -40,7 +39,6 @@ exports[`<Avatar /> should handle props 1`] = `
 exports[`<Avatar /> should handle props 2`] = `
 <Avatar
   bgColor="additional-teal"
-  color="brand-blue"
   imageUrl="www.images.com"
   monogram="WH"
   size={40}

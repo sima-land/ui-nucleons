@@ -1,7 +1,6 @@
 import { mount } from 'enzyme';
 import React from 'react';
 import { UserAvatar, colorKey } from '../user';
-import UpSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/up';
 import { COLORS } from '../../colors';
 
 jest.mock('lodash', () => {
@@ -15,7 +14,7 @@ jest.mock('lodash', () => {
 
 describe('UserAvatar', () => {
   beforeEach(() => {
-    window[colorKey] = undefined;
+    (window as any)[colorKey] = undefined;
   });
 
   it('should renders without props', () => {
@@ -31,24 +30,24 @@ describe('UserAvatar', () => {
       <UserAvatar
         size={40}
         title='Hello World'
-        icon={UpSVG}
         style={{ clipPath: 'url(#fake-id)' }}
       />
     );
 
     expect(wrapper1).toMatchSnapshot();
-    expect(wrapper1.find('.root').prop('style')['--avatar-color']).toEqual(COLORS.get(window[colorKey]));
+    expect((wrapper1.find('.root').prop('style') as any)['--avatar-color'])
+      .toEqual(COLORS.get((window as any)[colorKey]));
 
     const wrapper2 = mount(
       <UserAvatar
         size={40}
         title='Hello World'
-        icon={UpSVG}
         style={{ clipPath: 'url(#fake-id)' }}
       />
     );
 
     expect(wrapper2).toMatchSnapshot();
-    expect(wrapper2.find('.root').prop('style')['--avatar-color']).toEqual(COLORS.get(window[colorKey]));
+    expect((wrapper2.find('.root').prop('style') as any)['--avatar-color'])
+      .toEqual(COLORS.get((window as any)[colorKey]));
   });
 });

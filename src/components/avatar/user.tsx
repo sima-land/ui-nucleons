@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { sample } from 'lodash';
-import { Avatar } from '.';
+import { Avatar, Props as BaseProps } from '.';
+import { Token } from '../colors';
 
-const COLORS = [
+export type Props = Omit<BaseProps, 'bgColor' | 'bgOpacity' | 'textColor'>
+
+const COLORS: ReadonlyArray<Token> = [
   'additional-deep-red',
   'additional-red',
   'additional-teal',
@@ -24,16 +27,16 @@ export const colorKey = Symbol.for('user-avatar:color-key');
 
 /**
  * Компонент аватара пользователя (не сотрудника).
- * @param {Object} props Свойства. Поддерживаются свойства Avatar.
- * @return {ReactElement} Компонент.
+ * @param props Свойства. Поддерживаются свойства Avatar.
+ * @return Компонент.
  */
-export const UserAvatar = props => {
-  const [color, setColor] = useState(window[colorKey]);
+export const UserAvatar: React.FC<Props> = props => {
+  const [color, setColor] = useState((window as any)[colorKey]);
 
   useEffect(() => {
     // запоминаем цвет (пока только один для всех аватаров на странице)
-    window[colorKey] = window[colorKey] || sample(COLORS);
-    setColor(window[colorKey]);
+    (window as any)[colorKey] = (window as any)[colorKey] || sample(COLORS);
+    setColor((window as any)[colorKey]);
   }, []);
 
   return (

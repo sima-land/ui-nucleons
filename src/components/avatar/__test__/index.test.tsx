@@ -17,7 +17,6 @@ describe('<Avatar />', () => {
       <Avatar
         size={40}
         imageUrl='www.images.com'
-        color='brand-blue'
         textColor='white'
         title='Hello World'
         bgColor='additional-teal'
