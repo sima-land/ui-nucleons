@@ -4,55 +4,40 @@ exports[`<Rating /> renders correctly with custom classes 1`] = `
 <div
   className="test-rating rating test-hovered rating-can-be-hovered"
 >
-  <StarSVG
+  <SvgStar
     className="test-star rating-star test-empty empty-star"
-    fill="none"
     height={16}
     key="5"
     onClick={[Function]}
-    viewBox="0 0 16 16"
     width={16}
-    xmlns="http://www.w3.org/2000/svg"
   />
-  <StarSVG
+  <SvgStar
     className="test-star rating-star test-empty empty-star"
-    fill="none"
     height={16}
     key="4"
     onClick={[Function]}
-    viewBox="0 0 16 16"
     width={16}
-    xmlns="http://www.w3.org/2000/svg"
   />
-  <StarSVG
+  <SvgStar
     className="test-star rating-star test-empty empty-star"
-    fill="none"
     height={16}
     key="3"
     onClick={[Function]}
-    viewBox="0 0 16 16"
     width={16}
-    xmlns="http://www.w3.org/2000/svg"
   />
-  <StarSVG
+  <SvgStar
     className="test-star rating-star test-half half-star"
-    fill="none"
     height={16}
     key="2"
     onClick={[Function]}
-    viewBox="0 0 16 16"
     width={16}
-    xmlns="http://www.w3.org/2000/svg"
   />
-  <StarSVG
+  <SvgStar
     className="test-star rating-star test-full full-star"
-    fill="none"
     height={16}
     key="1"
     onClick={[Function]}
-    viewBox="0 0 16 16"
     width={16}
-    xmlns="http://www.w3.org/2000/svg"
   />
 </div>
 `;
@@ -61,75 +46,54 @@ exports[`<Rating /> renders correctly with settings 1`] = `
 <div
   className="rating rating-can-be-hovered"
 >
-  <StarSVG
+  <SvgStar
     className="rating-star empty-star"
-    fill="none"
     height={7}
     key="7"
     onClick={[Function]}
-    viewBox="0 0 16 16"
     width={7}
-    xmlns="http://www.w3.org/2000/svg"
   />
-  <StarSVG
+  <SvgStar
     className="rating-star empty-star"
-    fill="none"
     height={7}
     key="6"
     onClick={[Function]}
-    viewBox="0 0 16 16"
     width={7}
-    xmlns="http://www.w3.org/2000/svg"
   />
-  <StarSVG
+  <SvgStar
     className="rating-star empty-star"
-    fill="none"
     height={7}
     key="5"
     onClick={[Function]}
-    viewBox="0 0 16 16"
     width={7}
-    xmlns="http://www.w3.org/2000/svg"
   />
-  <StarSVG
+  <SvgStar
     className="rating-star empty-star"
-    fill="none"
     height={7}
     key="4"
     onClick={[Function]}
-    viewBox="0 0 16 16"
     width={7}
-    xmlns="http://www.w3.org/2000/svg"
   />
-  <StarSVG
+  <SvgStar
     className="rating-star half-star"
-    fill="none"
     height={15}
     key="3"
     onClick={[Function]}
-    viewBox="0 0 16 16"
     width={15}
-    xmlns="http://www.w3.org/2000/svg"
   />
-  <StarSVG
+  <SvgStar
     className="rating-star full-star"
-    fill="none"
     height={7}
     key="2"
     onClick={[Function]}
-    viewBox="0 0 16 16"
     width={7}
-    xmlns="http://www.w3.org/2000/svg"
   />
-  <StarSVG
+  <SvgStar
     className="rating-star full-star"
-    fill="none"
     height={7}
     key="1"
     onClick={[Function]}
-    viewBox="0 0 16 16"
     width={7}
-    xmlns="http://www.w3.org/2000/svg"
   />
 </div>
 `;
@@ -138,55 +102,40 @@ exports[`<Rating /> renders correctly without params 1`] = `
 <div
   className="rating"
 >
-  <StarSVG
+  <SvgStar
     className="rating-star empty-star"
-    fill="none"
     height={16}
     key="5"
     onClick={[Function]}
-    viewBox="0 0 16 16"
     width={16}
-    xmlns="http://www.w3.org/2000/svg"
   />
-  <StarSVG
+  <SvgStar
     className="rating-star empty-star"
-    fill="none"
     height={16}
     key="4"
     onClick={[Function]}
-    viewBox="0 0 16 16"
     width={16}
-    xmlns="http://www.w3.org/2000/svg"
   />
-  <StarSVG
+  <SvgStar
     className="rating-star empty-star"
-    fill="none"
     height={16}
     key="3"
     onClick={[Function]}
-    viewBox="0 0 16 16"
     width={16}
-    xmlns="http://www.w3.org/2000/svg"
   />
-  <StarSVG
+  <SvgStar
     className="rating-star empty-star"
-    fill="none"
     height={16}
     key="2"
     onClick={[Function]}
-    viewBox="0 0 16 16"
     width={16}
-    xmlns="http://www.w3.org/2000/svg"
   />
-  <StarSVG
+  <SvgStar
     className="rating-star empty-star"
-    fill="none"
     height={16}
     key="1"
     onClick={[Function]}
-    viewBox="0 0 16 16"
     width={16}
-    xmlns="http://www.w3.org/2000/svg"
   />
 </div>
 `;
