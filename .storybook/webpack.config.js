@@ -38,14 +38,6 @@ module.exports = async ({ config }) => {
         }
       ],
     },
-    {
-      test: /\.(png|jpg|jpeg|gif)$/,
-      use: [
-        {
-          loader: 'file-loader',
-        },
-      ],
-    },
   ];
 
   return { ...config, module: { ...config.module, rules } };
