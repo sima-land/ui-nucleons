@@ -194,44 +194,38 @@ exports[`<FileIcon /> should render unknown file type icon 1`] = `
 <FileIcon
   type="cpp"
 >
-  <UnknownSVG
-    fill="none"
-    height="32"
-    viewBox="0 0 32 32"
-    width="32"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <SvgUnknown>
     <svg
       fill="none"
-      height="32"
+      height={32}
       viewBox="0 0 32 32"
-      width="32"
+      width={32}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M6 5a2 2 0 0 1 2-2h12l6 6v18a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5z"
+        d="M6 5a2 2 0 012-2h12l6 6v18a2 2 0 01-2 2H8a2 2 0 01-2-2V5z"
         fill="#C2C2C2"
-        opacity=".88"
+        opacity={0.88}
       />
       <path
-        d="M21 9h5l-6-6v5a1 1 0 0 0 1 1z"
+        d="M21 9h5l-6-6v5a1 1 0 001 1z"
         fill="#fff"
-        opacity=".32"
+        opacity={0.32}
       />
       <path
         d="M25.167 9H21l5 6V9h-.833z"
         fill="#000"
-        opacity=".24"
+        opacity={0.24}
       />
       <g
         fill="#fff"
-        opacity=".8"
+        opacity={0.8}
       >
         <path
           d="M9 22h14v2H9v-2zM9 18h10v2H9v-2z"
         />
       </g>
     </svg>
-  </UnknownSVG>
+  </SvgUnknown>
 </FileIcon>
 `;

@@ -10,11 +10,21 @@ import TopSmallSVG from './icons/16x16/arrow-up.svg';
 import RightSmallSVG from './icons/16x16/arrow-right.svg';
 import DownSmallSVG from './icons/16x16/arrow-down.svg';
 import LeftSmallSVG from './icons/16x16/arrow-left.svg';
-import PropTypes from 'prop-types';
+
+type Size = 's' | 'l'
+
+type Direction = 'up' | 'right' | 'down' | 'left'
+
+type IconSet = Readonly<Record<Direction, React.FC<React.SVGProps<SVGSVGElement>>>>
+
+export interface Props extends Omit<JSX.IntrinsicElements['button'], 'size'> {
+  size?: Size
+  direction?: Direction
+}
 
 const cx = classnames.bind(classes);
 
-const ICONS = {
+const ICONS: Readonly<Record<Size, IconSet>> = {
   s: {
     up: TopSmallSVG,
     right: RightSmallSVG,
@@ -31,13 +41,13 @@ const ICONS = {
 
 /**
  * Компонент круглой кнопки со стрелкой.
- * @param {Object} props Свойства. Поддерживаются свойства элемента button.
- * @param {'s'|'l'} [props.size='l'] Размер.
- * @param {'up'|'right'|'down'|'left'} [props.direction='right'] Направление (отвечает за иконку).
- * @param {string} [props.className] CSS-класс.
- * @return {ReactElement} Компонент кнопки.
+ * @param props Свойства. Поддерживаются свойства элемента button.
+ * @param props.size Размер.
+ * @param props.direction Направление (отвечает за иконку).
+ * @param props.className CSS-класс.
+ * @return Элемент.
  */
-const ArrowButton = ({
+const ArrowButton: React.FC<Props> = ({
   size = 'l',
   direction = 'right',
   className,
@@ -57,13 +67,6 @@ const ArrowButton = ({
       <Icon aria-hidden fill={COLORS.get('gray87')} />
     </button>
   );
-};
-
-ArrowButton.propTypes = {
-  'aria-label': PropTypes.string.isRequired,
-  size: PropTypes.oneOf(['s', 'l']),
-  direction: PropTypes.oneOf(['up', 'right', 'down', 'left']),
-  className: PropTypes.string,
 };
 
 export default ArrowButton;
