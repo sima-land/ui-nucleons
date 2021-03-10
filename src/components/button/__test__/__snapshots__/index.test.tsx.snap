@@ -60,7 +60,7 @@ exports[`<Button /> should render icon button 1`] = `
   className="button-base button-primary button-medium"
 >
   <PlusSVG
-    className="icon icon-"
+    className="icon"
     height={24}
     width={24}
   />
@@ -72,7 +72,7 @@ exports[`<Button /> should render icon button 2`] = `
   className="button-base button-primary button-medium"
 >
   <PlusSVG
-    className="icon icon-"
+    className="icon"
     height={24}
     width={24}
   />

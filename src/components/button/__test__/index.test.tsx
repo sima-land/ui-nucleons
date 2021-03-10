@@ -41,9 +41,6 @@ describe('<Button />', () => {
 });
 
 describe('computeClassName()', () => {
-  it('should use default props', () => {
-    expect(computeClassName({})).toBe('button-base button-primary button-medium');
-  });
   it('should handle all props', () => {
     expect(computeClassName({
       size: 'small',
