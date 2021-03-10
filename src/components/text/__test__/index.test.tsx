@@ -3,6 +3,7 @@ import Text from '../index';
 import classes from '../text.scss';
 import { shallow } from 'enzyme';
 import { COLORS } from '../../colors';
+import { LINE_HEIGHTS, SIZES } from '../../styling/fonts';
 
 describe('<Text />', () => {
   it('should render without props', () => {
@@ -32,11 +33,12 @@ describe('<Text />', () => {
     const wrapper = shallow(
       <Text />
     );
-    const validValues = [12, 14, 16, 20, 24, 28, 32, 48, 64, 80];
-    validValues.forEach(value => {
+
+    [...SIZES].forEach(value => {
       wrapper.setProps({ size: value });
       expect(wrapper.find('span').prop('className')).toContain(`size-${value}`);
     });
+
     wrapper.setProps({ size: 7 });
     expect(wrapper.find('span').prop('className')).not.toContain('size-7');
   });
@@ -44,11 +46,12 @@ describe('<Text />', () => {
     const wrapper = shallow(
       <Text />
     );
-    const validValues = [12, 14, 16, 20, 24, 32, 48, 64, 80];
-    validValues.forEach(value => {
+
+    [...LINE_HEIGHTS].forEach(value => {
       wrapper.setProps({ lineHeight: value });
       expect(wrapper.find('span').prop('className')).toContain(`line-height-${value}`);
     });
+
     wrapper.setProps({ size: 7 });
     expect(wrapper.find('span').prop('className')).not.toContain('line-height-7');
   });
@@ -107,7 +110,7 @@ describe('<Text />', () => {
   it('should match snapshot', () => {
     const wrapper = shallow(
       <Text
-        color='red'
+        color='additional-red'
         size={24}
         lineHeight={32}
         weight={600}
