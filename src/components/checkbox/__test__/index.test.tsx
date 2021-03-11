@@ -1,29 +1,35 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import Checkbox from '../index';
 import classes from '../checkbox.scss';
 
 describe('<Checkbox />', () => {
   it('should render without props', () => {
     const wrapper = mount(<Checkbox />);
+
     expect(wrapper.find('input')).toHaveLength(1);
     expect(wrapper.find('input').prop('type')).toBe('checkbox');
   });
+
   it('should handle "id" property', () => {
     const wrapper = mount(
       <Checkbox
         id='test-checkbox'
       />
     );
+
     expect(wrapper.find('input').prop('id')).toBe('test-checkbox');
   });
+
   it('should handle "onChange" property', () => {
     const spy = jest.fn();
+
     const wrapper = mount(
       <Checkbox
         onChange={spy}
       />
     );
+
     expect(spy).toHaveBeenCalledTimes(0);
 
     wrapper.find('input').simulate('change');
@@ -32,23 +38,27 @@ describe('<Checkbox />', () => {
     wrapper.setProps({ onChange: null });
     expect(() => wrapper.find('input').simulate('change')).not.toThrow();
   });
+
   it('should renders correctly with props', () => {
     const spy = jest.fn();
-    const wrapper = shallow(
+    const wrapper = mount(
       <Checkbox
         checked
         onChange={spy}
       />
     );
+
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.find('.checkbox-container.error')).toHaveLength(0);
   });
+
   it('should pass "className" prop', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Checkbox
         className='test-class-name'
       />
     );
+
     expect(wrapper.find(`.${classes['checkbox-wrapper']}`).prop('className')).toContain('test-class-name');
   });
 });

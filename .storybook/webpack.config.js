@@ -1,15 +1,20 @@
+
+const svgrOptions = require('../svgr.config');
+
 module.exports = async ({ config }) => {
+  const baseRules = config.module.rules.map(
+    rule => rule.test.test('.svg')
+      ? {
+        ...rule,
+
+        // исключаем svg так как он будет обрабатываться другим загрузчиком (ниже)
+        exclude: /\.svg$/
+      }
+      : rule
+  );
+
   const rules = [
-    ...config.module.rules,
-    {
-      test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
-      use: [
-        {
-          loader: 'babel-loader',
-        },
-      ],
-    },
+    ...baseRules,
     {
       test: /\.(css|scss)$/,
       exclude: /node_modules/,
@@ -37,6 +42,16 @@ module.exports = async ({ config }) => {
           }
         }
       ],
+    },
+    {
+      test: /\.svg$/,
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: svgrOptions,
+        },
+      ],
+      exclude: /node_modules\/(?!(@dev-dep)).*/,
     },
   ];
 
