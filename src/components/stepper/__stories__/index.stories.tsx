@@ -20,12 +20,12 @@ const Template = props => {
         {...props}
         value={value}
         onChange={e => setValue(e.target.value.replace(/\D/g, ''))}
-        onAdd={() => setValue(Math.min(10, amount + 1))}
-        onSubtract={() => setValue(Math.max(0, amount - 1))}
+        onAdd={() => setValue(String(Math.min(10, amount + 1)))}
+        onSubtract={() => setValue(String(Math.max(0, amount - 1)))}
         canAdd={withControls && amount < 10}
         canSubtract={withControls && amount > 0}
         onBlur={e => {
-          setValue(Math.min(10, Math.max(0, parseInt(e.target.value || '0'))));
+          setValue(String(Math.min(10, Math.max(0, parseInt(e.target.value || '0')))));
           toggleControls(Boolean(e.target.value));
         }}
       />
