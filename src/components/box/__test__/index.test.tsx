@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import Box from '../index';
 import { bgColor } from '../../styling/colors';
 
@@ -9,6 +9,13 @@ describe('<Box />', () => {
       <Box />
     );
     expect(wrapper.find('div')).toHaveLength(1);
+  });
+  it('should handle "dangerouslySetInlineStyle" prop', () => {
+    const wrapper = mount(
+      <Box dangerouslySetInlineStyle={{ __style: { textAlign: 'left' } }} />
+    );
+
+    expect(wrapper).toMatchSnapshot();
   });
   it('should handle "element" prop', () => {
     const wrapper = shallow(
