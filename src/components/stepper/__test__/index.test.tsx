@@ -45,6 +45,58 @@ describe('<Stepper />', () => {
     expect(blurSpy).toBeCalledTimes(1);
   });
 
+  it('should handle "onFocus" missing', () => {
+    const spy = jest.fn();
+
+    const wrapper = mount(
+      <Stepper
+        onFocus={spy}
+      />
+    );
+
+    expect(spy).toBeCalledTimes(0);
+
+    act(() => {
+      Simulate.focus(wrapper.find('[data-testid="stepper:input"]').getDOMNode());
+    });
+    wrapper.update();
+    expect(spy).toBeCalledTimes(1);
+
+    wrapper.setProps({ onFocus: undefined });
+
+    act(() => {
+      Simulate.focus(wrapper.find('[data-testid="stepper:input"]').getDOMNode());
+    });
+    wrapper.update();
+    expect(spy).toBeCalledTimes(1);
+  });
+
+  it('should handle "onBlur" missing', () => {
+    const spy = jest.fn();
+
+    const wrapper = mount(
+      <Stepper
+        onBlur={spy}
+      />
+    );
+
+    expect(spy).toBeCalledTimes(0);
+
+    act(() => {
+      Simulate.blur(wrapper.find('[data-testid="stepper:input"]').getDOMNode());
+    });
+    wrapper.update();
+    expect(spy).toBeCalledTimes(1);
+
+    wrapper.setProps({ onBlur: undefined });
+
+    act(() => {
+      Simulate.blur(wrapper.find('[data-testid="stepper:input"]').getDOMNode());
+    });
+    wrapper.update();
+    expect(spy).toBeCalledTimes(1);
+  });
+
   it('should handle "size" prop', () => {
     const wrapper = mount(
       <Stepper />
