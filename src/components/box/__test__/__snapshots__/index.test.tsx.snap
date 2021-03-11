@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Box /> should handle "dangerouslySetInlineStyle" prop 1`] = `
+<Box
+  dangerouslySetInlineStyle={
+    Object {
+      "__style": Object {
+        "textAlign": "left",
+      },
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "textAlign": "left",
+      }
+    }
+  />
+</Box>
+`;
