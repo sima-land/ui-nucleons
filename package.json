@@ -33,6 +33,7 @@
     "@storybook/react": "^6.1.14",
     "@svgr/core": "^5.5.0",
     "@svgr/plugin-svgo": "^5.5.0",
+    "@svgr/webpack": "^5.5.0",
     "@types/classnames": "^2.2.11",
     "@types/enzyme": "^3.10.8",
     "@types/jest": "^26.0.20",
