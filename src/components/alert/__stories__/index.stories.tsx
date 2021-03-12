@@ -32,7 +32,7 @@ export const Primary = () => (
   />
 );
 
-export const WIthHeader = () => (
+export const WithHeader = () => (
   <Alert
     title='Тестовый диалог'
     withDivideNavBar

@@ -1,6 +1,331 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`FieldGrid should handle "field" and "renderField" props missing 1`] = `
+<FieldGrid
+  rootProps={
+    Object {
+      "title": "hello",
+    }
+  }
+>
+  <div
+    className="container"
+    title="hello"
+  >
+    <Row
+      isFirst={true}
+      isLast={true}
+      key=".0"
+    >
+      <Cell
+        key=".0"
+        rounds="all"
+        size="full"
+      >
+        <div
+          className="cell size-full"
+        />
+      </Cell>
+    </Row>
+  </div>
+</FieldGrid>
+`;
+
 exports[`FieldGrid should handle "renderField" prop 1`] = `
+<FieldGrid>
+  <div
+    className="container"
+  >
+    <Row
+      isFirst={true}
+      isLast={true}
+      key=".0"
+    >
+      <Cell
+        key=".0"
+        renderField={[Function]}
+        rounds="left"
+        size="half"
+      >
+        <div
+          className="cell size-half"
+        >
+          <ForwardRef(TextField)
+            defaultValue="Foo"
+            rounds="left"
+          >
+            <div
+              className="root"
+            >
+              <div
+                className="reset input-block variant-desktop size-l rounds-sm__l"
+                data-testid="text-field:block"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
+                      defaultValue="Foo"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                    >
+                      <div
+                        className="reset root base-input variant-desktop size-l"
+                      >
+                        <input
+                          className="field reset"
+                          data-testid="text-field:field"
+                          defaultValue="Foo"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onInput={[Function]}
+                        />
+                      </div>
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+      <Cell
+        key=".1"
+        renderField={[Function]}
+        rounds="right"
+        size="half"
+      >
+        <div
+          className="cell size-half"
+        >
+          <ForwardRef(TextField)
+            defaultValue="Bar"
+            rounds="right"
+          >
+            <div
+              className="root"
+            >
+              <div
+                className="reset input-block variant-desktop size-l rounds-sm__r"
+                data-testid="text-field:block"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
+                      defaultValue="Bar"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                    >
+                      <div
+                        className="reset root base-input variant-desktop size-l"
+                      >
+                        <input
+                          className="field reset"
+                          data-testid="text-field:field"
+                          defaultValue="Bar"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onInput={[Function]}
+                        />
+                      </div>
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+    </Row>
+  </div>
+</FieldGrid>
+`;
+
+exports[`FieldGrid should handle "rootProps" prop 1`] = `
+<FieldGrid
+  rootProps={
+    Object {
+      "title": "hello",
+    }
+  }
+>
+  <div
+    className="container"
+    title="hello"
+  >
+    <Row
+      isFirst={true}
+      isLast={true}
+      key=".0"
+    >
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".0"
+        rounds="all"
+        size="full"
+      >
+        <div
+          className="cell size-full"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="all"
+          >
+            <div
+              className="root size-full"
+            >
+              <div
+                className="reset input-block variant-desktop size-l rounds-sm__all"
+                data-testid="text-field:block"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                    >
+                      <div
+                        className="reset root base-input variant-desktop size-l"
+                      >
+                        <input
+                          className="field reset"
+                          data-testid="text-field:field"
+                          defaultValue="Field value"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onInput={[Function]}
+                        />
+                      </div>
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+    </Row>
+  </div>
+</FieldGrid>
+`;
+
+exports[`FieldGrid should handle "rootProps" prop 2`] = `
+<FieldGrid
+  rootProps={
+    Object {
+      "className": "test-class",
+    }
+  }
+>
+  <div
+    className="container test-class"
+  >
+    <Row
+      isFirst={true}
+      isLast={true}
+      key=".0"
+    >
+      <Cell
+        field={
+          <ForwardRef(TextField)
+            defaultValue="Field value"
+          />
+        }
+        key=".0"
+        rounds="all"
+        size="full"
+      >
+        <div
+          className="cell size-full"
+        >
+          <ForwardRef(TextField)
+            className="size-full"
+            classes={
+              Object {
+                "blockFocused": "focused-field",
+              }
+            }
+            defaultValue="Field value"
+            rounds="all"
+          >
+            <div
+              className="root size-full"
+            >
+              <div
+                className="reset input-block variant-desktop size-l rounds-sm__all"
+                data-testid="text-field:block"
+                onClick={[Function]}
+              >
+                <div
+                  className="main-column"
+                >
+                  <div
+                    className="input-wrapper"
+                  >
+                    <ForwardRef(BaseInput)
+                      className="base-input variant-desktop size-l"
+                      data-testid="text-field:field"
+                      defaultValue="Field value"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                    >
+                      <div
+                        className="reset root base-input variant-desktop size-l"
+                      >
+                        <input
+                          className="field reset"
+                          data-testid="text-field:field"
+                          defaultValue="Field value"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onInput={[Function]}
+                        />
+                      </div>
+                    </ForwardRef(BaseInput)>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ForwardRef(TextField)>
+        </div>
+      </Cell>
+    </Row>
+  </div>
+</FieldGrid>
+`;
+
+exports[`FieldGrid should handle invalid children 1`] = `
 <FieldGrid>
   <div
     className="container"
@@ -136,6 +461,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
       <Cell
         field={
           <ForwardRef(TextField)
+            classes={Object {}}
             defaultValue="Field value"
           />
         }
