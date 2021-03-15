@@ -1,67 +1,49 @@
 @use '../breakpoints';
 
-@mixin autoWidth ($breakpoint) {
-  &.disabled-#{$breakpoint} {
-    width: auto;
-  }
-  &:not(.disabled-#{$breakpoint}) {
-    width: var(--layoutWidth);
-  }
-}
-
 .layout {
-  --layoutWMin: 1px;
-  --layoutWMax: 100vw;
-  --layoutWStd: 1504px;
-  // После появления сборки пакета нужно будет переделать на clamp (#239)
-  --layoutWidth: max(var(--layoutWMin), min(var(--layoutWStd), var(--layoutWMax)));
-  margin-left: auto;
-  margin-right: auto;
-
-  @include breakpoints.on('max') {
-    @include autoWidth('max');
-  }
-
-  @include breakpoints.on('xxl') {
-    --layoutWStd: 1348px;
-    @include autoWidth('xxl');
-  }
-
-  @include breakpoints.on('xl') {
-    --layoutWStd: 1192px;
-    @include autoWidth('xl');
-  }
-
-  @include breakpoints.on('lg') {
-    --layoutWStd: calc(100vw - (68px * 2));
-    @include autoWidth('lg');
-  }
-
-  @include breakpoints.on('md') {
-    --layoutWStd: 792px;
-    @include autoWidth('md');
-  }
-
-  @include breakpoints.on('sm') {
-    --layoutWStd: 672px;
-    @include autoWidth('sm');
-  }
-
-  @include breakpoints.on('xs') {
-    --layoutWStd: calc(100vw - (32px * 2));
-    @include autoWidth('xs');
-  }
-
-  @include breakpoints.on('xxs') {
-    --layoutWStd: calc(100vw - (16px * 2));
-    @include autoWidth('xxs');
+  width: var(--l-width);
+  margin: 0 var(--l-gutter);
+  @each $key, $val in breakpoints.$map {
+    @include breakpoints.up($key) {
+      &.disabled-#{$key} {
+        width: auto;
+        margin: 0;
+      }
+      &:not(.disabled-#{$key}) {
+        width: var(--l-width);
+        margin: 0 var(--l-gutter);
+      }
+    }
   }
 }
 
 .mobile {
-  --layoutWMax: 792px;
+  --l-gutter: 16px;
+  --l-width: calc(100vw - (2 * var(--l-gutter)));
+  @include breakpoints.up('mm') {
+    --l-width: 656px;
+    --l-gutter: auto;
+  }
+  @include breakpoints.up('ml') {
+    --l-width: 672px;
+    --l-gutter: auto;
+  }
+  @include breakpoints.up('xs') {
+    --l-width: 792px;
+    --l-gutter: auto;
+  }
 }
 
 .desktop {
-  --layoutWMin: 892px;
+  min-width: 896px;
+  --l-gutter: 64px;
+  --l-width: calc(100vw - (2 * var(--l-gutter)));
+  @include breakpoints.up('l') {
+    --l-width: 1472px;
+    --l-gutter: auto;
+  }
+  @include breakpoints.up('xl') {
+    --l-width: 1504px;
+    --l-gutter: auto;
+  }
 }

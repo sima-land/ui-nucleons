@@ -1,37 +1,35 @@
-$_breakpoints: (
-  // 600-
-  'xxs': 600px,
-
-  // 601-720
-  'xs': 720px,
-
-  // 721-840
-  'sm': 840px,
-
-  // 841-1023
-  'md': 1023px,
-
-  // 1024-1280
-  'lg': 1280px,
-
-  // 1281-1440
-  'xl': 1440px,
-
-  // 1441-1600
-  'xxl': 1600px,
-
-  // 1600+
-  'max': 9999999px, // hotfix: Safari не понимает 100vw в media-запросах
+$map: (
+  mxs: 0,
+  ms: 480px,
+  mm: 720px,
+  ml: 840px,
+  xs: 1024px,
+  s: 1280px,
+  m: 1440px,
+  l: 1600px,
+  xl: 1920px,
 ) !default;
 
-@mixin on ($breakpoint) {
-  @if map-has-key($_breakpoints, $breakpoint) {
-    @media (max-width: map-get($_breakpoints, $breakpoint)) {
+@mixin up ($breakpoint) {
+  @if map-has-key($map, $breakpoint) {
+    @media (min-width: map-get($map, $breakpoint)) {
       @content;
     }
   }
 
   @else {
-    @warn 'No such breakpoint `#{$breakpoint}`. Available values: #{map-keys($_breakpoints)}.';
+    @warn 'No such breakpoint `#{$breakpoint}`. Available values: #{map-keys($map)}.';
+  }
+}
+
+@mixin down ($breakpoint) {
+  @if map-has-key($map, $breakpoint) {
+    @media (max-width: map-get($map, $breakpoint) - 1px) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn 'No such breakpoint `#{$breakpoint}`. Available values: #{map-keys($map)}.';
   }
 }

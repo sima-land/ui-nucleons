@@ -8,9 +8,6 @@ $_alignments: (
   end: 'flex-end',
 );
 
-// в обратном порядке (в отличие от src/breakpoints.scss) чтобы правильно задать специфичность циклом
-$_breakpoints: 'max', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs';
-
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -37,8 +34,8 @@ $_breakpoints: 'max', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs';
   padding: 0 calc(var(--grid-spacing) / 2);
 }
 
-@each $key, $val in $_breakpoints {
-  @include breakpoints.on($key) {
+@each $key, $val in breakpoints.$map {
+  @include breakpoints.up($key) {
     @for $i from 1 through 12 {
       .col-size-#{$key}-#{$i} {
         width: calc(100% * (#{$i} / 12));

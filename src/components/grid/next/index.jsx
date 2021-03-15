@@ -8,44 +8,49 @@ const cx = classnames.bind(styles);
 /**
  * Ячейка сетки.
  * @param {Object} props Свойства.
- * @param {number} [props.xxs] Кол-во ячеек в диапазоне "xxs-".
- * @param {number} [props.xs] Кол-во ячеек в диапазоне "xs-".
- * @param {number} [props.sm] Кол-во ячеек в диапазоне "sm-".
- * @param {number} [props.md] Кол-во ячеек в диапазоне "md-".
- * @param {number} [props.lg] Кол-во ячеек в диапазоне "lg-".
- * @param {number} [props.xl] Кол-во ячеек в диапазоне "xl-".
- * @param {number} [props.xxl] Кол-во ячеек в диапазоне "xxl-".
- * @param {number} [props.max] Кол-во ячеек в диапазоне "max-".
+ * @param {number} props.mxs Количество занимаемых колонок на диапазоне "mxs".
+ * @param {number} props.ms Количество занимаемых колонок на диапазоне "ms".
+ * @param {number} props.mm Количество занимаемых колонок на диапазоне "mm".
+ * @param {number} props.ml Количество занимаемых колонок на диапазоне "ml".
+ * @param {number} props.xs Количество занимаемых колонок на диапазоне "xs".
+ * @param {number} props.s Количество занимаемых колонок на диапазоне "s".
+ * @param {number} props.m Количество занимаемых колонок на диапазоне "m".
+ * @param {number} props.l Количество занимаемых колонок на диапазоне "l".
+ * @param {number} props.xl Количество занимаемых колонок на диапазоне "xl".
  * @param {*} [props.children] Содержимое.
  * @param {string} [props.className] Класс.
  * @param {Object} props.style Стили.
  * @return {ReactElement} Компонент.
  */
 const Item = ({
-  xxs,
+  mxs,
+  ms,
+  mm,
+  ml,
   xs,
-  sm,
-  md,
-  lg,
+  s,
+  m,
+  l,
   xl,
-  xxl,
-  max,
   children,
   className,
   style,
 }) => (
   <div
     className={cx('col', {
-      // мобильная сетка на xs/xxs - имеет только 4 колонки
-      [`col-size-xxs-${Math.max(3, xxs)}`]: xxs !== undefined,
-      [`col-size-xs-${Math.max(3, xs)}`]: xs !== undefined,
+      // мобильная сетка имеет только 4 колонки
+      [`col-size-mxs-${Math.max(3, mxs)}`]: mxs !== undefined,
+      [`col-size-ms-${Math.max(3, ms)}`]: ms !== undefined,
+      [`col-size-mm-${Math.max(3, mm)}`]: mm !== undefined,
+      [`col-size-ml-${Math.max(3, ml)}`]: ml !== undefined,
 
-      [`col-size-sm-${sm}`]: sm !== undefined,
-      [`col-size-md-${md}`]: md !== undefined,
-      [`col-size-lg-${lg}`]: lg !== undefined,
+      // десктопная сетка
+      [`col-size-xs-${xs}`]: xs !== undefined,
+      [`col-size-s-${s}`]: s !== undefined,
+      [`col-size-m-${m}`]: m !== undefined,
+      [`col-size-l-${l}`]: l !== undefined,
       [`col-size-xl-${xl}`]: xl !== undefined,
-      [`col-size-xxl-${xxl}`]: xxl !== undefined,
-      [`col-size-max-${max}`]: max !== undefined,
+
       className,
     })}
     style={style}
@@ -53,19 +58,18 @@ const Item = ({
   />
 );
 
-const rangeType = PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
-
 Item.displayName = 'Grid.Item';
 
 Item.propTypes = {
-  xxs: rangeType,
-  xs: rangeType,
-  sm: rangeType,
-  md: rangeType,
-  lg: rangeType,
-  xl: rangeType,
-  xxl: rangeType,
-  max: rangeType,
+  mxs: PropTypes.number,
+  ms: PropTypes.number,
+  mm: PropTypes.number,
+  ml: PropTypes.number,
+  xs: PropTypes.number,
+  s: PropTypes.number,
+  m: PropTypes.number,
+  l: PropTypes.number,
+  xl: PropTypes.number,
   children: PropTypes.node,
   className: PropTypes.string,
   style: PropTypes.object,

@@ -2,78 +2,63 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { DesktopLayout, MobileLayout } from '..';
 
+const DemoContent = () => (
+  <div style={{ background: 'rgb(207, 232, 252)' }}>
+    <h2>Контент ограниченный layout`ом</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum!</p>
+  </div>
+);
+
 storiesOf('Layouts', module)
   .add('Desktop', () => (
     <>
-      <h1>Простой пример</h1>
+      <h2>Простой пример</h2>
       <DesktopLayout>
-        <div style={{ background: 'rgb(207, 232, 252)' }}>
-          <h2>Контент ограниченный layout`ом</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum!</p>
-        </div>
+        <DemoContent />
       </DesktopLayout>
 
-      <h1>Отключение на определенных разрешениях</h1>
-      <DesktopLayout disabledOn={['lg', 'md', 'sm', 'xs', 'xxs']}>
-        <div style={{ background: 'rgb(207, 232, 252)' }}>
-          <h2>Контент ограниченный layout`ом</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum!</p>
-        </div>
+      <h2>Отключение на определенных разрешениях</h2>
+      <p>Необходимо изменить ширину окна для эффекта</p>
+      <DesktopLayout disabledOn={['mxs', 'ms', 'mm', 'ml', 'mxl', 'xs']}>
+        <DemoContent />
+      </DesktopLayout>
+      <DesktopLayout disabledOn={['s']}>
+        <DemoContent />
+      </DesktopLayout>
+      <DesktopLayout disabledOn={['m']}>
+        <DemoContent />
+      </DesktopLayout>
+      <DesktopLayout disabledOn={['l']}>
+        <DemoContent />
       </DesktopLayout>
       <DesktopLayout disabledOn={['xl']}>
-        <div style={{ background: 'rgb(207, 232, 252)' }}>
-          <h2>Контент ограниченный layout`ом</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum!</p>
-        </div>
-      </DesktopLayout>
-      <DesktopLayout disabledOn={['xxl']}>
-        <div style={{ background: 'rgb(207, 232, 252)' }}>
-          <h2>Контент ограниченный layout`ом</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum!</p>
-        </div>
-      </DesktopLayout>
-      <DesktopLayout disabledOn={['max']}>
-        <div style={{ background: 'rgb(207, 232, 252)' }}>
-          <h2>Контент ограниченный layout`ом</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum!</p>
-        </div>
+        <DemoContent />
       </DesktopLayout>
     </>
   ))
   .add('Mobile', () => (
     <>
-      <h1>Простой пример</h1>
+      <h2>Простой пример</h2>
       <MobileLayout>
-        <div style={{ background: 'rgb(207, 232, 252)' }}>
-          <h2>Контент ограниченный layout`ом</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum!</p>
-        </div>
+        <DemoContent />
       </MobileLayout>
 
-      <h1>Отключение на определенных разрешениях</h1>
-      <MobileLayout disabledOn={['xxs']}>
-        <div style={{ background: 'rgb(207, 232, 252)' }}>
-          <h2>Контент ограниченный layout`ом</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum!</p>
-        </div>
+      <h2>Отключение на определенных точках</h2>
+      <p>Необходимо изменить ширину окна для эффекта</p>
+      <MobileLayout disabledOn={['mxs']}>
+        <DemoContent />
       </MobileLayout>
-      <MobileLayout disabledOn={['xs']}>
-        <div style={{ background: 'rgb(207, 232, 252)' }}>
-          <h2>Контент ограниченный layout`ом</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum!</p>
-        </div>
+      <MobileLayout disabledOn={['ms']}>
+        <DemoContent />
       </MobileLayout>
-      <MobileLayout disabledOn={['sm']}>
-        <div style={{ background: 'rgb(207, 232, 252)' }}>
-          <h2>Контент ограниченный layout`ом</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum!</p>
-        </div>
+      <MobileLayout disabledOn={['mm']}>
+        <DemoContent />
       </MobileLayout>
-      <MobileLayout disabledOn={['md', 'lg', 'xl', 'xxl', 'max']}>
-        <div style={{ background: 'rgb(207, 232, 252)' }}>
-          <h2>Контент ограниченный layout`ом</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum!</p>
-        </div>
+      <MobileLayout disabledOn={['ml']}>
+        <DemoContent />
+      </MobileLayout>
+      <MobileLayout disabledOn={['xs', 's', 'm', 'l', 'xl']}>
+        <DemoContent />
       </MobileLayout>
     </>
   ));

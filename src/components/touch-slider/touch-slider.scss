@@ -3,13 +3,13 @@
   overflow: hidden;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  --sliderGutter: calc((100vw - var(--layoutWidth)) / 2);
-  margin: 0 calc(-1 * var(--sliderGutter));
+  --slider-gutter: calc((100vw - var(--l-width)) / 2);
+  margin: 0 calc(-1 * var(--slider-gutter));
 }
 
 .inner {
   display: flex;
-  padding: 0 var(--sliderGutter);
+  padding: 0 var(--slider-gutter);
 }
 
 .invisible-scroll {

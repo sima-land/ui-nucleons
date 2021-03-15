@@ -56,7 +56,7 @@ storiesOf('Grid [next]', module)
         </div>
         <div style={{ flexGrow: 1 }}>
           <Grid spacing={32}>
-            <Grid.Item max={8} md={12}>
+            <Grid.Item mxs={12} xs={8}>
               {Array(3).fill(0).map((a, i) => (
                 <div key={i} style={{ ...styles.card, marginBottom: 32 }}>
                   <div style={{ ...styles.placeholder, height: 24 }}></div>
@@ -65,7 +65,7 @@ storiesOf('Grid [next]', module)
                 </div>
               ))}
             </Grid.Item>
-            <Grid.Item max={4} md={12}>
+            <Grid.Item mxs={12} xs={4}>
               <div style={{ ...styles.card, height: 160 }} />
               <div style={{ ...styles.card, height: 160, marginTop: 32 }} />
             </Grid.Item>

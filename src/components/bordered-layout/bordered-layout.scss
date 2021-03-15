@@ -1,8 +1,7 @@
 @use '../breakpoints';
 
 .inner {
-  @include breakpoints.on('xxs') {
-    --borderedGutter: calc((100vw - var(--layoutWidth)) / 2);
-    padding: 0 var(--borderedGutter);
+  @include breakpoints.down('mm') {
+    padding: 0 var(--l-gutter);
   }
 }
