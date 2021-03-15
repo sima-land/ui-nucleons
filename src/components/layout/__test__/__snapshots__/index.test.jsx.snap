@@ -4,13 +4,13 @@ exports[`Layouts should handle "disabledOn" prop 1`] = `
 <DesktopLayout
   disabledOn={
     Array [
-      "xxl",
+      "xl",
       "xs",
     ]
   }
 >
   <div
-    className="layout desktop disabled-xxl disabled-xs"
+    className="layout desktop disabled-xl disabled-xs"
   >
     Hello, world!
   </div>
@@ -21,13 +21,13 @@ exports[`Layouts should handle "disabledOn" prop 2`] = `
 <MobileLayout
   disabledOn={
     Array [
-      "xxl",
+      "xl",
       "xs",
     ]
   }
 >
   <div
-    className="layout mobile disabled-xxl disabled-xs"
+    className="layout mobile disabled-xl disabled-xs"
   >
     Hello, world!
   </div>

@@ -27,7 +27,7 @@ const BorderedLayout = ({ top, bottom, children }) => {
   }
 
   return (
-    <MobileLayout disabledOn={['xxs']}>
+    <MobileLayout disabledOn={['mxs', 'ms']}>
       <div className={cx('inner', borderClass)}>
         {children}
       </div>

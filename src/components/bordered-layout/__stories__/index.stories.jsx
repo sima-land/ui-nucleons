@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import BorderedLayout from '../index';
+import BorderedLayout from '..';
 
 const Demo = ({ children, ...props }) => (
   <div style={{ margin: '32px 0' }}>
@@ -16,15 +16,15 @@ storiesOf('BorderedLayout', module)
   .add('Usage', () => (
     <>
       <Demo top bottom>
-        Рамка сверху и снизу
+        Граница сверху и снизу
       </Demo>
 
       <Demo top>
-        Рамка сверху
+        Граница сверху
       </Demo>
 
       <Demo bottom>
-        Рамка снизу
+        Граница снизу
       </Demo>
     </>
   ));

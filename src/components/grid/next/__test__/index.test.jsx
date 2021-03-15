@@ -14,9 +14,9 @@ describe('Grid', () => {
   it('should renders correctly', () => {
     const wrapper = mount(
       <Grid align='center' spacing={32} className='custom-grid-class' style={{ background: '#0f0' }}>
-        <Grid.Item max={2} md={12}>First</Grid.Item>
-        <Grid.Item max={4} md={12}>Second</Grid.Item>
-        <Grid.Item max={6} md={12}>Third</Grid.Item>
+        <Grid.Item xl={2} m={12}>First</Grid.Item>
+        <Grid.Item xl={4} m={12}>Second</Grid.Item>
+        <Grid.Item xl={6} m={12}>Third</Grid.Item>
       </Grid>
     );
 
@@ -28,14 +28,15 @@ describe('Grid.Item', () => {
   it('should renders correctly', () => {
     const wrapper = mount(
       <Grid.Item
-        xxs={8}
-        xs={7}
-        sm={6}
-        md={5}
-        lg={4}
-        xl={3}
-        xxl={2}
-        max={1}
+        mxs={12}
+        ms={11}
+        mm={10}
+        ml={9}
+        xs={8}
+        s={7}
+        m={6}
+        l={5}
+        xl={4}
         children='Hello, world!'
         className='custom-item-class'
         style={{ background: '#f00' }}

@@ -5,12 +5,13 @@ exports[`<BoBorderedLayoutrder /> without props 1`] = `
   <MobileLayout
     disabledOn={
       Array [
-        "xxs",
+        "mxs",
+        "ms",
       ]
     }
   >
     <div
-      className="layout mobile disabled-xxs"
+      className="layout mobile disabled-mxs disabled-ms"
     >
       <div
         className="inner"
@@ -30,12 +31,13 @@ exports[`<BoBorderedLayoutrder /> without props 2`] = `
   <MobileLayout
     disabledOn={
       Array [
-        "xxs",
+        "mxs",
+        "ms",
       ]
     }
   >
     <div
-      className="layout mobile disabled-xxs"
+      className="layout mobile disabled-mxs disabled-ms"
     >
       <div
         className="inner inner-border-top"
@@ -55,12 +57,13 @@ exports[`<BoBorderedLayoutrder /> without props 3`] = `
   <MobileLayout
     disabledOn={
       Array [
-        "xxs",
+        "mxs",
+        "ms",
       ]
     }
   >
     <div
-      className="layout mobile disabled-xxs"
+      className="layout mobile disabled-mxs disabled-ms"
     >
       <div
         className="inner inner-border-bottom"
@@ -80,12 +83,13 @@ exports[`<BoBorderedLayoutrder /> without props 4`] = `
   <MobileLayout
     disabledOn={
       Array [
-        "xxs",
+        "mxs",
+        "ms",
       ]
     }
   >
     <div
-      className="layout mobile disabled-xxs"
+      className="layout mobile disabled-mxs disabled-ms"
     >
       <div
         className="inner inner-border-y"

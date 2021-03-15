@@ -26,7 +26,7 @@ describe('Layouts', () => {
 
     it('should handle "disabledOn" prop', () => {
       const wrapper = mount(
-        <Layout disabledOn={['xxl', 'xs']}>
+        <Layout disabledOn={['xl', 'xs']}>
           Hello, world!
         </Layout>
       );

@@ -34,7 +34,7 @@ export default {
 };
 
 export const Primary = () => (
-  <div style={{ padding: 32 }}>
+  <>
     <h3>Пустое значение (Россия, по умолчанию)</h3>
     <DemoForm initialValue='' />
 
@@ -46,5 +46,5 @@ export const Primary = () => (
 
     <h3>Неизвестная страна (Другое)</h3>
     <DemoForm initialValue='55566667777' />
-  </div>
+  </>
 );
