@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import on from '../../helpers/on';
-import Link from '../../link/deprecated';
+import Link from '../../link';
 import WithTooltip from '../index';
 import boundsOf from '../../helpers/bounds-of';
 import classes from './index.scss';
@@ -62,7 +62,7 @@ const ReadyTooltip = () => {
       shown={shown}
       onDismiss={() => setShown(false)}
       children={(
-        <Link onClick={() => setShown(true)}>Hello, world!</Link>
+        <Link pseudo onClick={() => setShown(true)}>Hello, world!</Link>
       )}
       tooltipChildren='Open tooltip'
     />
