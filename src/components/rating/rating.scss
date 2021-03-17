@@ -1,18 +1,18 @@
-@import '../variables';
+@use '../colors';
 
-$background: 'path:first-child';
-$half: 'path:nth-child(2)';
+$full: '[data-star-type="full"]';
+$half: '[data-star-type="half"]';
 
 .rating {
   display: flex;
   justify-content: flex-end;
   flex-direction: row-reverse;
   align-items: center;
-  #{$background} {
-    fill: $lightGray;
+  #{$full} {
+    fill: colors.$gray12;
   }
   #{$half} {
-    fill: $lightGray;
+    fill: colors.$gray12;
   }
 }
 
@@ -29,45 +29,45 @@ $half: 'path:nth-child(2)';
 
 .empty-star {
   #{$half} {
-    fill: $lightGray;
+    fill: colors.$gray12;
   }
 }
 
 .half-star {
-  #{$background} {
-    fill: $lightGray;
+  #{$full} {
+    fill: colors.$gray12;
   }
   #{$half} {
-    fill: $orangeStar;
+    fill: colors.$additional-amber;
   }
 }
 
 .full-star {
-  #{$background} {
-    fill: $orangeStar;
+  #{$full} {
+    fill: colors.$additional-amber;
   }
   #{$half} {
-    fill: $orangeStar;
+    fill: colors.$additional-amber;
   }
 }
 
 .rating-can-be-hovered {
   &:hover .rating-star {
     cursor: pointer;
-    #{$background} {
-      fill: $lightGray;
+    #{$full} {
+      fill: colors.$gray12;
     }
     #{$half} {
-      fill: $lightGray;
+      fill: colors.$gray12;
     }
   }
   .rating-star:hover,
   .rating-star:hover ~ .rating-star {
-    #{$background} {
-      fill: $orangeStar;
+    #{$full} {
+      fill: colors.$additional-amber;
     }
     #{$half} {
-      fill: $orangeStar;
+      fill: colors.$additional-amber;
     }
   }
 }
