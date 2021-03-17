@@ -2,16 +2,14 @@ import React, { useState } from 'react';
 import { mount } from 'enzyme';
 import { render } from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import Layer from '../index';
-
-/* eslint-disable react/prop-types */
+import Layer, { Props } from '..';
 
 describe('<Layer />', () => {
   const TestComponent = ({
     defaultWithLayer = false,
-    layerContent,
+    children,
     layerProps,
-  }) => {
+  }: { defaultWithLayer?: boolean, children?: React.ReactNode, layerProps?: Props }) => {
     const [withLayer, toggleLayer] = useState(defaultWithLayer);
 
     return (
@@ -19,7 +17,7 @@ describe('<Layer />', () => {
         <button onClick={() => toggleLayer(!withLayer)}>Toggle layer</button>
         {withLayer && (
           <Layer {...layerProps}>
-            {layerContent}
+            {children}
           </Layer>
         )}
       </div>
@@ -29,7 +27,7 @@ describe('<Layer />', () => {
   it('should render children into created element', () => {
     const wrapper = mount(
       <TestComponent
-        layerContent={(
+        children={(
           <h2 className='test-title'>New layer</h2>
         )}
       />
@@ -41,10 +39,9 @@ describe('<Layer />', () => {
     });
     wrapper.update();
 
-    const newLastElement = wrapper.find(Layer).instance().element;
-    expect(document.body.contains(newLastElement)).toBe(true);
-    expect(document.body.lastElementChild).toBe(newLastElement);
-    expect(document.body.lastElementChild.querySelectorAll('h2.test-title')).toHaveLength(1);
+    const element = document.body.lastElementChild as HTMLDivElement;
+
+    expect(element.querySelectorAll('h2.test-title')).toHaveLength(1);
 
     // unmount layer
     act(() => {
@@ -52,7 +49,7 @@ describe('<Layer />', () => {
     });
     wrapper.update();
 
-    expect(document.body.contains(newLastElement)).toBe(false);
+    expect(document.body.contains(element)).toBe(false);
   });
 
   it('should handle "defineRoot" prop', () => {
@@ -67,7 +64,7 @@ describe('<Layer />', () => {
       render(
         <TestComponent
           defaultWithLayer
-          layerContent={(
+          children={(
             <h2 className='test-title'>New layer</h2>
           )}
           layerProps={{
