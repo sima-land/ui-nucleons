@@ -1,0 +1,211 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Modal /> renders correct without close button and customClasses 1`] = `
+<Modal>
+  <div
+    className="overlay"
+    data-testid="modal:overlay"
+  >
+    <div
+      className="modal"
+      data-testid="modal"
+    >
+      <TopBar
+        className="header"
+      >
+        <div
+          className="modal-header size-m header"
+        >
+          <div
+            className="main-section"
+          >
+            <div
+              className="title ellipsis"
+            />
+          </div>
+        </div>
+      </TopBar>
+      Test modal content
+    </div>
+  </div>
+</Modal>
+`;
+
+exports[`<Modal /> should handle extended props 1`] = `
+<Modal
+  footer={
+    <button>
+      Hello
+    </button>
+  }
+  onClose={[MockFunction]}
+  subtitle="Subtitle"
+  title="Title"
+  topBarProps={
+    Object {
+      "size": "m",
+    }
+  }
+  withCloseButton={true}
+  withDivideFooter={true}
+  withDivideTopBar={true}
+>
+  <div
+    className="overlay"
+    data-testid="modal:overlay"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+  >
+    <div
+      className="modal"
+      data-testid="modal"
+    >
+      <TopBar
+        buttonsProps={
+          Object {
+            "end": Object {
+              "data-testid": "modal:close",
+              "icon": <CrossSVG
+                className="cursor-pointer"
+              />,
+              "onClick": [MockFunction],
+            },
+          }
+        }
+        className="header divided"
+        size="m"
+        subtitle="Subtitle"
+        title="Title"
+      >
+        <div
+          className="modal-header size-m header divided"
+        >
+          <div
+            className="icon-button"
+          />
+          <div
+            className="main-section"
+          >
+            <div
+              className="title ellipsis"
+            >
+              Title
+            </div>
+            <div
+              className="subtitle ellipsis"
+            >
+              Subtitle
+            </div>
+          </div>
+          <IconButton
+            data-testid="modal:close"
+            icon={
+              <CrossSVG
+                className="cursor-pointer"
+              />
+            }
+            onClick={[MockFunction]}
+          >
+            <button
+              className="icon-button"
+              data-testid="modal:close"
+              onClick={[MockFunction]}
+              type="button"
+            >
+              <CrossSVG
+                className="cursor-pointer"
+              >
+                <svg
+                  className="cursor-pointer"
+                  height={24}
+                  viewBox="0 0 24 24"
+                  width={24}
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M4.293 19.707a1 1 0 001.414 0L12 13.414l6.293 6.293a1 1 0 001.414-1.414L13.414 12l6.293-6.293a1 1 0 00-1.414-1.414L12 10.586 5.707 4.293a1 1 0 00-1.414 1.414L10.586 12l-6.293 6.293a1 1 0 000 1.414z"
+                    fillRule="evenodd"
+                  />
+                </svg>
+              </CrossSVG>
+            </button>
+          </IconButton>
+        </div>
+      </TopBar>
+      <div
+        className="footer divided"
+      >
+        <button>
+          Hello
+        </button>
+      </div>
+    </div>
+  </div>
+</Modal>
+`;
+
+exports[`<Modal /> should handle extended props 2`] = `
+<Modal
+  footer={
+    <button>
+      Hello
+    </button>
+  }
+  onClose={[MockFunction]}
+  subtitle="Subtitle"
+  title="Title"
+  topBarProps={
+    Object {
+      "size": "m",
+    }
+  }
+  withCloseButton={false}
+  withDivideFooter={true}
+  withDivideTopBar={true}
+>
+  <div
+    className="overlay"
+    data-testid="modal:overlay"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+  >
+    <div
+      className="modal"
+      data-testid="modal"
+    >
+      <TopBar
+        className="header divided"
+        size="m"
+        subtitle="Subtitle"
+        title="Title"
+      >
+        <div
+          className="modal-header size-m header divided"
+        >
+          <div
+            className="main-section"
+          >
+            <div
+              className="title ellipsis"
+            >
+              Title
+            </div>
+            <div
+              className="subtitle ellipsis"
+            >
+              Subtitle
+            </div>
+          </div>
+        </div>
+      </TopBar>
+      <div
+        className="footer divided"
+      >
+        <button>
+          Hello
+        </button>
+      </div>
+    </div>
+  </div>
+</Modal>
+`;

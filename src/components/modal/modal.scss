@@ -1,38 +1,6 @@
 @use '../colors';
-@import '../variables';
 
-.overlay-default {
-  background: $modalOverlay;
-  overflow: auto;
-  position: fixed;
-  z-index: 102;
-  display: flex;
-  height: 100%;
-  width: 100%;
-  right: 0;
-  top: 0;
-}
-
-.modal-default {
-  background-color: #fff;
-  margin: auto;
-  flex-shrink: 0;
-}
-
-.close-default {
-  position: absolute;
-  top: 9px;
-  right: 9px;
-  color: $silvery;
-  cursor: pointer;
-}
-
-.close-default:hover {
-  color: $red;
-}
-
-// extended
-.overlay-extended {
+.overlay {
   background: rgba(0, 0, 0, .24);
   overflow: auto;
   position: fixed;
@@ -45,11 +13,13 @@
   top: 0;
 }
 
-.modal-extended {
+.modal {
+  position: relative;
+  border-radius: 8px;
   background-color: #fff;
   margin: auto;
   flex-shrink: 0;
-  box-shadow: none;
+  z-index: 1;
 }
 
 .header {
