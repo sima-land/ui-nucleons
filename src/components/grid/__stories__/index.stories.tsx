@@ -24,7 +24,7 @@ const styles = {
   },
 };
 
-const Item = ({ color = '#eee', margin, padding = 8, height, children }) => (
+const Block = ({ color = '#eee', margin, padding = 8, height, children }: any) => (
   <div
     style={{
       margin,
@@ -88,15 +88,15 @@ export const Alignment = () => (
       <React.Fragment key={align}>
         <h3>{align}:</h3>
         <div style={{ background: '#eee' }}>
-          <Grid align={align} spacing={32}>
+          <Grid align={align as any} spacing={32}>
             <Grid.Item xs={2}>
-              <Item margin='16px 0' color='#bbb' />
+              <Block margin='16px 0' color='#bbb' />
             </Grid.Item>
             <Grid.Item xs={2}>
-              <Item margin='16px 0' color='#bbb' />
+              <Block margin='16px 0' color='#bbb' />
             </Grid.Item>
             <Grid.Item xs={2}>
-              <Item margin='16px 0' color='#bbb' />
+              <Block margin='16px 0' color='#bbb' />
             </Grid.Item>
           </Grid>
         </div>
@@ -110,10 +110,10 @@ export const Breakpoints = () => (
     <p>Поддерживается установка разных размеров колонок для разных точек остановки</p>
     <Grid spacing={32} style={{ marginTop: 32 }}>
       <Grid.Item xs={9} s={6} m={4} l={3}>
-        <Item color='#ff000033' padding={24} />
+        <Block color='#ff000033' padding={24} />
       </Grid.Item>
       <Grid.Item xs={3} s={6} m={8} l={9}>
-        <Item color='#0000ff33' padding={24} />
+        <Block color='#0000ff33' padding={24} />
       </Grid.Item>
     </Grid>
   </DesktopLayout>
@@ -124,15 +124,15 @@ export const DifferentColumns = () => (
     {Array(11).fill(0).map((v, i) => (
       <Grid key={i} style={{ marginBottom: 16 }}>
         <Grid.Item xs={i + 1}>
-          <Item color='#ff000033'>
+          <Block color='#ff000033'>
             {`xs=${i + 1}`}
-          </Item>
+          </Block>
         </Grid.Item>
 
         <Grid.Item xs={12 - (i + 1)}>
-          <Item color='#ff000033'>
+          <Block color='#ff000033'>
             {`xs=${i + 1}`}
-          </Item>
+          </Block>
         </Grid.Item>
       </Grid>
     ))}
@@ -141,9 +141,9 @@ export const DifferentColumns = () => (
       <Grid key={n} style={{ marginBottom: 16 }}>
         {Array(12 / n).fill(0).map((v, j) => (
           <Grid.Item key={j} xs={n}>
-            <Item color='#0000ff33'>
+            <Block color='#0000ff33'>
               {`xs=${n}`}
-            </Item>
+            </Block>
           </Grid.Item>
         ))}
       </Grid>
@@ -157,8 +157,8 @@ export const Overflow = () => (
     {[3, 4, 6, 12].map(n => (
       <Grid key={n} style={{ marginBottom: 48 }}>
         {Array(12 / n).fill(0).map((v, j) => (
-          <Grid.Item key={j} xl={n} xs={12}>
-            <Item color='#0000ff33' height={48} />
+          <Grid.Item key={j} mxs={12} xs={n}>
+            <Block color='#0000ff33' height={48} />
           </Grid.Item>
         ))}
       </Grid>
