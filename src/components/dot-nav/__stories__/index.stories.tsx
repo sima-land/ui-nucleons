@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import DotNav from '..';
 import { times } from 'lodash';
 
-const styles = {
+const styles: Record<string, React.CSSProperties> = {
   wrap: {
     height: 200,
     position: 'relative',

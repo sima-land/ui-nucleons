@@ -1,23 +1,28 @@
 import React, { useRef } from 'react';
 import { times } from 'lodash';
 import classnames from 'classnames/bind';
-import PropTypes from 'prop-types';
-import classes from './dot-nav.scss';
+import styles from './dot-nav.scss';
+
+export interface Props {
+  current?: number
+  total?: number
+  onSelect?: (index: number) => void
+}
 
 const itemSize = 14;
 const maxWidth = itemSize * 5;
 
-const cx = classnames.bind(classes);
+const cx = classnames.bind(styles);
 
 /**
  * Компонент точек навигации для каруселей и слайдеров.
- * @param {Object} props Свойства.
- * @param {number} props.current Индекс выбранной точки.
- * @param {number} props.total Количество точек.
- * @param {Function} props.onSelect Сработает при выборе точки.
- * @return {ReactElement} Компонент точек навигации.
+ * @param props Свойства.
+ * @param props.current Индекс выбранной точки.
+ * @param props.total Количество точек.
+ * @param props.onSelect Сработает при выборе точки.
+ * @return Элемент.
  */
-const DotNav = ({ current = 0, total = 1, onSelect }) => {
+const DotNav: React.FC<Props> = ({ current = 0, total = 1, onSelect }) => {
   const withShift = total > 4;
 
   const shift = useShift(current, total);
@@ -47,30 +52,13 @@ const DotNav = ({ current = 0, total = 1, onSelect }) => {
   );
 };
 
-DotNav.propTypes = {
-  /**
-   * Индекс выбранной точки.
-   */
-  current: PropTypes.number,
-
-  /**
-   * Количество точек.
-   */
-  total: PropTypes.number,
-
-  /**
-   * Сработает при выборе точки.
-   */
-  onSelect: PropTypes.func,
-};
-
 /**
  * Определяет необходимое для точек навигации смещение.
- * @param {number} current Индекс выбранной точки.
- * @param {number} total Количество точек.
- * @return {number} Смещение.
+ * @param current Индекс выбранной точки.
+ * @param total Количество точек.
+ * @return Смещение.
  */
-const useShift = (current, total) => {
+const useShift = (current: number, total: number) => {
   const shiftRef = useRef(0);
   const prevCurrentRef = useRef(0);
 
