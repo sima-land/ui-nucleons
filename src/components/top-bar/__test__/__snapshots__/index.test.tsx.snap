@@ -103,19 +103,19 @@ exports[`<TopBar /> should renders with all icons 1`] = `
     Object {
       "end": Object {
         "icon": <CrossSVG />,
-        "onClick": [Function],
+        "onClick": [MockFunction],
       },
       "endSecondary": Object {
         "icon": <PersonSVG />,
-        "onClick": [Function],
+        "onClick": [MockFunction],
       },
       "start": Object {
         "icon": <ArrowLeftSVG />,
-        "onClick": [Function],
+        "onClick": [MockFunction],
       },
       "startSecondary": Object {
         "icon": <PersonSVG />,
-        "onClick": [Function],
+        "onClick": [MockFunction],
       },
     }
   }
@@ -125,11 +125,11 @@ exports[`<TopBar /> should renders with all icons 1`] = `
   >
     <IconButton
       icon={<ArrowLeftSVG />}
-      onClick={[Function]}
+      onClick={[MockFunction]}
     >
       <button
         className="icon-button"
-        onClick={[Function]}
+        onClick={[MockFunction]}
         type="button"
       >
         <ArrowLeftSVG>
@@ -147,11 +147,11 @@ exports[`<TopBar /> should renders with all icons 1`] = `
     </IconButton>
     <IconButton
       icon={<PersonSVG />}
-      onClick={[Function]}
+      onClick={[MockFunction]}
     >
       <button
         className="icon-button"
-        onClick={[Function]}
+        onClick={[MockFunction]}
         type="button"
       >
         <PersonSVG>
@@ -181,11 +181,11 @@ exports[`<TopBar /> should renders with all icons 1`] = `
     </div>
     <IconButton
       icon={<PersonSVG />}
-      onClick={[Function]}
+      onClick={[MockFunction]}
     >
       <button
         className="icon-button"
-        onClick={[Function]}
+        onClick={[MockFunction]}
         type="button"
       >
         <PersonSVG>
@@ -208,11 +208,11 @@ exports[`<TopBar /> should renders with all icons 1`] = `
     </IconButton>
     <IconButton
       icon={<CrossSVG />}
-      onClick={[Function]}
+      onClick={[MockFunction]}
     >
       <button
         className="icon-button"
-        onClick={[Function]}
+        onClick={[MockFunction]}
         type="button"
       >
         <CrossSVG>
@@ -240,7 +240,6 @@ exports[`<TopBar /> should renders with end icon 1`] = `
     Object {
       "end": Object {
         "icon": <CrossSVG />,
-        "onClick": [Function],
       },
     }
   }
@@ -260,11 +259,9 @@ exports[`<TopBar /> should renders with end icon 1`] = `
     </div>
     <IconButton
       icon={<CrossSVG />}
-      onClick={[Function]}
     >
       <button
         className="icon-button"
-        onClick={[Function]}
         type="button"
       >
         <CrossSVG>
@@ -292,11 +289,9 @@ exports[`<TopBar /> should renders with end icons 1`] = `
     Object {
       "end": Object {
         "icon": <CrossSVG />,
-        "onClick": [Function],
       },
       "endSecondary": Object {
         "icon": <PersonSVG />,
-        "onClick": [Function],
       },
     }
   }
@@ -319,11 +314,9 @@ exports[`<TopBar /> should renders with end icons 1`] = `
     </div>
     <IconButton
       icon={<PersonSVG />}
-      onClick={[Function]}
     >
       <button
         className="icon-button"
-        onClick={[Function]}
         type="button"
       >
         <PersonSVG>
@@ -346,11 +339,9 @@ exports[`<TopBar /> should renders with end icons 1`] = `
     </IconButton>
     <IconButton
       icon={<CrossSVG />}
-      onClick={[Function]}
     >
       <button
         className="icon-button"
-        onClick={[Function]}
         type="button"
       >
         <CrossSVG>
@@ -378,7 +369,6 @@ exports[`<TopBar /> should renders with start icon 1`] = `
     Object {
       "start": Object {
         "icon": <ArrowLeftSVG />,
-        "onClick": [Function],
       },
     }
   }
@@ -388,11 +378,9 @@ exports[`<TopBar /> should renders with start icon 1`] = `
   >
     <IconButton
       icon={<ArrowLeftSVG />}
-      onClick={[Function]}
     >
       <button
         className="icon-button"
-        onClick={[Function]}
         type="button"
       >
         <ArrowLeftSVG>
@@ -428,11 +416,9 @@ exports[`<TopBar /> should renders with start icons 1`] = `
     Object {
       "start": Object {
         "icon": <ArrowLeftSVG />,
-        "onClick": [Function],
       },
       "startSecondary": Object {
         "icon": <PersonSVG />,
-        "onClick": [Function],
       },
     }
   }
@@ -442,11 +428,9 @@ exports[`<TopBar /> should renders with start icons 1`] = `
   >
     <IconButton
       icon={<ArrowLeftSVG />}
-      onClick={[Function]}
     >
       <button
         className="icon-button"
-        onClick={[Function]}
         type="button"
       >
         <ArrowLeftSVG>
@@ -464,11 +448,9 @@ exports[`<TopBar /> should renders with start icons 1`] = `
     </IconButton>
     <IconButton
       icon={<PersonSVG />}
-      onClick={[Function]}
     >
       <button
         className="icon-button"
-        onClick={[Function]}
         type="button"
       >
         <PersonSVG>

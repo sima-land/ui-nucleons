@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
-import { storiesOf } from '@storybook/react';
-import TopBar from '../index';
-import { sizes, shortTitles, longTitles, allButtons, startButtons, endButtons } from '../__test__/props.jsx';
+import TopBar from '..';
+import { sizes, shortTitles, longTitles, allButtons, startButtons, endButtons } from '../__test__/test-props';
 
 const propsList = [
   ...sizes.map(size => ({ size, ...shortTitles })),
@@ -32,14 +31,21 @@ const propsList = [
   ...sizes.map(size => ({ size, ...longTitles, buttonsProps: allButtons })),
 ];
 
-storiesOf('TopBar', module)
-  .add('Variants', () => (
-    <div style={{ background: '#aaa', padding: 32 }}>
-      {propsList.map((props, index) => (
-        <Fragment key={index}>
-          <TopBar {...props} />
-          <div style={{ height: 32 }} />
-        </Fragment>
-      ))}
-    </div>
-  ));
+export default {
+  title: 'TopBar',
+  component: TopBar,
+  parameters: {
+    layout: 'fullscreen',
+  },
+};
+
+export const Primary = () => (
+  <div style={{ background: '#ccc', padding: 32 }}>
+    {propsList.map((props, index) => (
+      <Fragment key={index}>
+        <TopBar {...props} />
+        <div style={{ height: 32 }} />
+      </Fragment>
+    ))}
+  </div>
+);
