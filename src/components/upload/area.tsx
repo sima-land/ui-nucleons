@@ -6,25 +6,34 @@ import { COLORS } from '../colors';
 import Link from '../link';
 import { useDragAndDrop, getFilesPreparer } from './utils';
 import { upperFirst } from 'lodash';
-import PropTypes from 'prop-types';
 import getDeclination from '../helpers/get-declination';
+
+export interface Props extends Omit<React.HTMLProps<HTMLDivElement>, 'onSelect' | 'multiple'> {
+  countLimit?: number
+  failed?: boolean
+  fileRole?: string
+  formats?: string
+  multiple?: boolean
+  onSelect?: (list: File[], e: React.DragEvent<HTMLDivElement> | React.ChangeEvent<HTMLInputElement>) => void
+  sizeLimit?: string
+}
 
 const cx = classnames.bind(styles);
 
 /**
  * Компонент поля выбора файла.
- * @param {Object} props Свойства.
- * @param {Function} [props.onSelect] Сработает при выборе или перетаскивании файлов, получив список и событие.
- * @param {string} [props.className] Класс.
- * @param {string} [props.fileRole] Роль файлов.
- * @param {string} [props.formats] Форматы.
- * @param {string} [props.sizeLimit] Ограничение на размер.
- * @param {boolean} [props.multiple] Ограничение на количество файлов.
- * @param {boolean} [props.failed] Есть ли ошибки валидации.
- * @param {number} [props.countLimit] Ограничение на количество файлов.
- * @return {ReactElement} Элемент.
+ * @param props Свойства.
+ * @param props.onSelect Сработает при выборе или перетаскивании файлов, получив список и событие.
+ * @param props.className Класс.
+ * @param props.fileRole Роль файлов.
+ * @param props.formats Форматы.
+ * @param props.sizeLimit Ограничение на размер.
+ * @param props.multiple Ограничение на количество файлов.
+ * @param props.failed Есть ли ошибки валидации.
+ * @param props.countLimit Ограничение на количество файлов.
+ * @return Элемент.
  */
-export const UploadArea = ({
+export const UploadArea: React.FC<Props> = ({
   onSelect,
   className,
   fileRole = 'файл',
@@ -37,7 +46,7 @@ export const UploadArea = ({
 }) => {
   const secondaryInfo = upperFirst(
     [
-      countLimit > 0 && `${countLimit} ${getDeclination(countLimit, ['файл', 'файла', 'файлов'])}`,
+      countLimit && countLimit > 0 && `${countLimit} ${getDeclination(countLimit, ['файл', 'файла', 'файлов'])}`,
       formats && `формат ${formats}`,
       `до ${sizeLimit}`,
     ]
@@ -47,7 +56,7 @@ export const UploadArea = ({
 
   const prepareFiles = getFilesPreparer({ multiple, countLimit });
 
-  const { active, bind } = useDragAndDrop({
+  const { active, bind } = useDragAndDrop<HTMLDivElement>({
     onDrop: e => onSelect?.(prepareFiles(e.dataTransfer.files), e),
   });
 
@@ -69,7 +78,7 @@ export const UploadArea = ({
               multiple={multiple}
               className={cx('input')}
               onChange={e => {
-                onSelect?.(prepareFiles(e.target.files), e);
+                onSelect?.(prepareFiles(e.target.files as any), e);
 
                 // очищаем поле чтобы можно было выбрать тот же файл повторно
                 e.target.value = '';
@@ -85,15 +94,4 @@ export const UploadArea = ({
       </div>
     </div>
   );
-};
-
-UploadArea.propTypes = {
-  onSelect: PropTypes.func,
-  className: PropTypes.string,
-  fileRole: PropTypes.string,
-  formats: PropTypes.string,
-  sizeLimit: PropTypes.string,
-  multiple: PropTypes.bool,
-  failed: PropTypes.bool,
-  countLimit: PropTypes.number,
 };
