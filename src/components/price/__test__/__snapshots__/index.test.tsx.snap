@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Price should handle props 1`] = `
+<Price
+  className="test-class"
+  crossedOut={true}
+  currencyGrapheme="$"
+  graphemeBefore={true}
+  value="1234567.89"
+>
+  <span
+    className="root test-class crossed-out"
+  >
+    $ 1 234 567,89
+    <svg
+      className="red-line-svg"
+      preserveAspectRatio="none"
+      viewBox="0 0 1 1"
+    >
+      <line
+        stroke="#d50000"
+        strokeWidth="2px"
+        vectorEffect="non-scaling-stroke"
+        x1="0"
+        x2="1"
+        y1="1"
+        y2="0"
+      />
+    </svg>
+  </span>
+</Price>
+`;
+
+exports[`Price should renders correctly 1`] = `
+<Price
+  currencyGrapheme="₽"
+  value="123.45"
+>
+  <span
+    className="root"
+  >
+    123,45 ₽
+  </span>
+</Price>
+`;

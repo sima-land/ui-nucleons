@@ -1,32 +1,17 @@
-.price {
+@use '../colors';
+
+.root {
+  position: relative;
+  display: inline-block;
   white-space: nowrap;
 }
 
-.invisible-dot {
-  display: inline-block;
-  opacity: 0;
-  width: 0;
-}
-
-.old-price {
-  color: #9e9e9e;
-  position: relative;
-  vertical-align: middle;
-  display: inline-block;
-  &::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 0;
-    border-top: 1px solid #9e9e9e;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -1px);
-  }
-}
-
-sup {
-  line-height: 0;
-  vertical-align: super;
-  font-size: smaller;
+.red-line-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 2px);
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
 }
