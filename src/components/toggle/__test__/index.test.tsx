@@ -44,7 +44,7 @@ describe('<Toggle />', () => {
     expect(spy).toHaveBeenCalledTimes(0);
 
     act(() => {
-      wrapper.find('input').prop('onChange')({ target: { checked: false } });
+      (wrapper.find('input').prop('onChange') as any)({ target: { checked: false } });
     });
     wrapper.update();
 
@@ -56,7 +56,7 @@ describe('<Toggle />', () => {
     const container = document.createElement('div');
 
     const wrapper = (
-      <Toggle ref={ref} />
+      <Toggle ref={ref as any} />
     );
 
     act(() => {
