@@ -25,7 +25,7 @@ beforeEach(() => {
 describe('Timer', () => {
   it('should render properly without props', () => {
     const wrapper = mount(
-      <Timer />
+      <Timer date='' />
     );
 
     expect(wrapper).toMatchSnapshot();

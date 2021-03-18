@@ -11,7 +11,9 @@ exports[`Timer should pass props 1`] = `
 `;
 
 exports[`Timer should render properly without props 1`] = `
-<Timer>
+<Timer
+  date=""
+>
   1:02:03:04
 </Timer>
 `;
