@@ -1,8 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import NoIndex from '../';
+import NoIndex from '..';
 
-describe('<NoIndex', () => {
+describe('NoIndex', () => {
   it('should renders correctly', () => {
     const elem = mount(<NoIndex>test<p>test2</p></NoIndex>);
     expect(elem.find('p').text()).toBe('test2');
