@@ -21,7 +21,7 @@ export const Primary = () => (
       'unk',
     ].map(fileType => (
       <div key={fileType} style={{ marginRight: 12 }}>
-        <FileIcon type={fileType} />
+        <FileIcon type={fileType as any} />
       </div>
     ))}
   </div>

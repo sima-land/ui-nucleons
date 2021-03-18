@@ -1,7 +1,6 @@
 import React from 'react';
 import { COLORS } from '../colors';
 import UnknownSVG from './unknown.svg';
-import PropTypes from 'prop-types';
 
 const VARIANTS = {
   doc: { fill: COLORS.get('additional-blue') },
@@ -10,18 +9,22 @@ const VARIANTS = {
   jpg: { fill: COLORS.get('additional-deep-orange') },
   xml: { fill: COLORS.get('additional-deep-purple') },
   zip: { fill: COLORS.get('additional-teal') },
-};
+} as const;
+
+export interface Props extends Omit<React.SVGProps<SVGSVGElement>, 'type'> {
+  type?: string
+}
 
 /**
  * Компонент иконки файла.
- * @param {Object} props Свойства. Поддерживаются свойства <svg />.
- * @param {string} props.type Тип файла.
- * @return {ReactElement} Компонент.
+ * @param props Свойства. Поддерживаются свойства <svg />.
+ * @param props.type Тип файла.
+ * @return Элементё.
  */
-export const FileIcon = ({ type, ...svgProps }) => {
-  const typeProps = VARIANTS[type];
+export const FileIcon: React.FC<Props> = ({ type, ...svgProps }) => {
+  const typeProps = (VARIANTS as any)[type as any];
 
-  return typeProps
+  return type && typeProps
     ? (
       <svg width='32' height='32' viewBox='0 0 32 32' {...svgProps}>
         <path
@@ -45,8 +48,4 @@ export const FileIcon = ({ type, ...svgProps }) => {
     ) : (
       <UnknownSVG {...svgProps} />
     );
-};
-
-FileIcon.propTypes = {
-  type: PropTypes.oneOf(Object.keys(VARIANTS)),
 };
