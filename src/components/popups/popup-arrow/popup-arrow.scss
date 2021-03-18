@@ -19,26 +19,26 @@
 
 .white {
   border-color: $white;
-  border-right-color: $transparent;
-  border-left-color: $transparent;
+  border-right-color: transparent;
+  border-left-color: transparent;
 }
 
 .blue {
   border-color: $blue;
-  border-right-color: $transparent;
-  border-left-color: $transparent;
+  border-right-color: transparent;
+  border-left-color: transparent;
 }
 
 .dark-blue {
   border-color: $darkBlue;
-  border-right-color: $transparent;
-  border-left-color: $transparent;
+  border-right-color: transparent;
+  border-left-color: transparent;
 }
 
 .deep-blue {
   border-color: $deepBlue;
-  border-right-color: $transparent;
-  border-left-color: $transparent;
+  border-right-color: transparent;
+  border-left-color: transparent;
 }
 
 .shadow::before {
