@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Dropdown } from '../dropdown';
-import { DropdownItem } from '../dropdown-item';
-import TextField from '../text-field';
+import { DropdownItem, Props as ItemProps } from '../dropdown-item';
+import TextField, { Props as TextFieldProps } from '../text-field';
 import { placeDropdown } from '../_internal/utils/dropdown';
 import classnames from 'classnames/bind';
 import DownSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/down';
@@ -9,8 +9,19 @@ import { COLORS } from '../colors';
 import { useOutsideClick } from '../hooks';
 import { scrollToChild } from '../helpers/scroll-to-child';
 import { DropdownLoading } from '../_internal/dropdown-loading';
-import PropTypes from 'prop-types';
+import { isNull } from 'lodash';
 import styles from './autocomplete.scss';
+
+export interface Props extends Omit<TextFieldProps, 'ref' | 'value' | 'defaultValue'> {
+  value?: string
+  defaultValue?: string
+  items?: any[]
+  itemSize?: ItemProps['size']
+  onSelect?: (item: any) => void
+  loading?: boolean
+  renderItem?: (item: any) => React.ReactNode
+  preset?: 'default' | 'filled-only-list'
+}
 
 const cx = classnames.bind(styles);
 
@@ -33,7 +44,7 @@ const cx = classnames.bind(styles);
  * @param {string} props.'data-testid' Идентификатор для систем автоматизированного тестирования.
  * @return {ReactElement} Элемент.
  */
-export const Autocomplete = ({
+export const Autocomplete: React.FC<Props> = ({
   items,
   itemSize,
   onSelect,
@@ -51,14 +62,14 @@ export const Autocomplete = ({
   ...restProps
 }) => {
   const rootRef = useRef();
-  const fieldRef = useRef();
-  const menuRef = useRef();
+  const fieldRef = useRef<HTMLInputElement>();
+  const menuRef = useRef<HTMLDivElement>();
   const [needDropdown, toggleDropdown] = useState(false);
-  const [realValue, setRealValue] = useState(value || defaultValue);
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [realValue, setRealValue] = useState<string | undefined>(value || defaultValue);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const canShowDropdown = preset === 'filled-only-list'
-    ? needDropdown && realValue?.length > 0
+    ? needDropdown && realValue && realValue.length > 0
     : needDropdown;
 
   const endAdornment = preset === 'default'
@@ -80,14 +91,14 @@ export const Autocomplete = ({
   useEffect(() => {
     const menu = menuRef.current;
 
-    Number.isFinite(activeIndex)
+    !isNull(activeIndex)
       && menu?.children?.[activeIndex]
-      && scrollToChild(menu, menu.children[activeIndex]);
+      && scrollToChild(menu, menu.children[activeIndex] as HTMLElement);
   }, [activeIndex]);
 
   return (
     <div
-      ref={rootRef}
+      ref={rootRef as any}
       style={style}
       className={cx('root', className)}
       data-testid={dataTestId}
@@ -103,45 +114,45 @@ export const Autocomplete = ({
         multiline={false}
         onClick={e => {
           toggleDropdown(true);
-          onClick?.(e);
+          onClick && onClick(e);
         }}
-        onChange={e => {
+        onChange={(e: any) => {
           toggleDropdown(true);
           setRealValue(e.target.value);
           setActiveIndex(0);
-          onChange?.(e);
+          onChange && onChange(e);
         }}
         className={cx('field')}
-        onKeyDown={e => {
+        onKeyDown={(e: React.KeyboardEvent) => {
           const size = items?.length || 0;
 
           let nextIndex;
 
           switch (e.key) {
             case 'ArrowDown':
-              nextIndex = (Number.isFinite(activeIndex) ? size + activeIndex + 1 : 0) % size;
+              nextIndex = (!isNull(activeIndex) ? size + activeIndex + 1 : 0) % size;
               break;
             case 'ArrowUp':
               nextIndex = (size + Number(activeIndex) - 1) % size;
               break;
             case 'Enter':
-              if (Number.isFinite(activeIndex) && items?.length > activeIndex) {
-                onSelect(items[activeIndex]);
+              if (items && !isNull(activeIndex) && items.length > activeIndex) {
+                onSelect && onSelect(items[activeIndex]);
                 toggleDropdown(false);
               }
               break;
           }
 
-          Number.isFinite(nextIndex) && setActiveIndex(nextIndex);
+          Number.isFinite(nextIndex) && setActiveIndex(nextIndex as number);
 
-          onKeyDown?.(e);
+          onKeyDown && onKeyDown(e as any);
         }}
       />
 
       {canShowDropdown && (
         <Dropdown
           {...placeDropdown(restProps.size)}
-          ref={menuRef}
+          ref={menuRef as any}
           data-testid='autocomplete:menu'
           className={cx('menu')}
           role='menu'
@@ -153,7 +164,7 @@ export const Autocomplete = ({
             : (
               <>
                 {
-                  items?.length > 0
+                  items && items.length > 0
                     ? items.map((item, index) => (
                       <DropdownItem
                         size={itemSize}
@@ -162,10 +173,10 @@ export const Autocomplete = ({
                         checked={index === activeIndex}
                         noHover={index !== activeIndex}
                         onClick={() => {
-                          onSelect?.(item);
+                          onSelect && onSelect(item);
                           setActiveIndex(null);
                           toggleDropdown(false);
-                          fieldRef.current.focus();
+                          fieldRef.current && fieldRef.current.focus();
                         }}
                         onMouseEnter={() => {
                           setActiveIndex(index);
@@ -187,21 +198,4 @@ export const Autocomplete = ({
       )}
     </div>
   );
-};
-
-Autocomplete.propTypes = {
-  items: PropTypes.array,
-  itemSize: PropTypes.oneOf(['s', 'm', 'l', 'xl']),
-  onSelect: PropTypes.func,
-  onChange: PropTypes.func,
-  onClick: PropTypes.func,
-  onKeyDown: PropTypes.func,
-  style: PropTypes.object,
-  className: PropTypes.string,
-  value: PropTypes.string,
-  defaultValue: PropTypes.string,
-  loading: PropTypes.bool,
-  renderItem: PropTypes.func,
-  preset: PropTypes.oneOf(['default', 'filled-only-list']),
-  'data-testid': PropTypes.string,
 };
