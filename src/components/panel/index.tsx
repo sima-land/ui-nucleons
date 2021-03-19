@@ -1,11 +1,19 @@
 import React from 'react';
 import classnames from 'classnames/bind';
-import PropTypes from 'prop-types';
-import classes from './panel.scss';
 import { color, bgColor } from '../styling/colors';
-import { COLORS } from '../colors';
+import { COLORS, Token } from '../colors';
+import styles from './panel.scss';
 
-const cx = classnames.bind(classes);
+export interface Props {
+  color?: Token
+  contentColor?: Token
+  inline?: boolean
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
+  className?: string
+  html?: string
+}
+
+const cx = classnames.bind(styles);
 
 /**
  * Компонент панели с информацией.
@@ -19,7 +27,7 @@ const cx = classnames.bind(classes);
  * @param {string} [props.html] Содержимое в виде строки с html-версткой.
  * @return {ReactElement} Компонент панели с информацией.
  */
-const Panel = ({
+const Panel: React.FC<Props> = ({
   color: panelColor = 'gray4',
   contentColor = 'gray87',
   inline = false,
@@ -41,7 +49,7 @@ const Panel = ({
         className
       )}
     >
-      {Boolean(Icon) && (
+      {Icon && (
         <Icon
           fill={COLORS.get(contentColor)}
           width={16}
@@ -56,43 +64,6 @@ const Panel = ({
       />
     </div>
   );
-};
-
-Panel.propTypes = {
-  /**
-   * Наименование цвета панели.
-   */
-  color: PropTypes.string,
-
-  /**
-   * Наименование цвета содержимого.
-   */
-  contentColor: PropTypes.string,
-
-  /**
-   * Нужно ли стилизовать как inline-элемент.
-   */
-  inline: PropTypes.bool,
-
-  /**
-   * Компонент иконки.
-   */
-  icon: PropTypes.elementType,
-
-  /**
-   * CSS-класс корневого элемента.
-   */
-  className: PropTypes.string,
-
-  /**
-   * Содержимое.
-   */
-  children: PropTypes.any,
-
-  /**
-   * Содержимое в виде строки с html-версткой.
-   */
-  html: PropTypes.string,
 };
 
 export default Panel;
