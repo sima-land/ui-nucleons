@@ -1,9 +1,8 @@
 import React from 'react';
 import Tabs from '../';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 describe('<Tabs />', () => {
-  let selectableTabs;
   const items = [
     'item 1',
     'item 2',
@@ -13,14 +12,15 @@ describe('<Tabs />', () => {
   const isSelectedItemMock = jest.fn(item => item === 'item 2');
 
   it('renders correctly without params', () => {
-    selectableTabs = shallow(
+    const wrapper = mount(
       <Tabs />
     );
-    expect(selectableTabs).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
+
   it('calls getItemName, isSelectedItem and onSelect properly', () => {
     const onSelectItemMock = jest.fn();
-    selectableTabs = shallow(
+    const wrapper = mount(
       <Tabs
         items={items}
         getItemName={getItemNameMock}
@@ -38,14 +38,15 @@ describe('<Tabs />', () => {
     expect(isSelectedItemMock.mock.calls[1][0]).toEqual(items[1]);
     expect(isSelectedItemMock.mock.calls[2][0]).toEqual(items[2]);
 
-    selectableTabs.find('.tab-item').at(2).simulate('click');
+    wrapper.find('.tab-item').at(2).simulate('click');
     expect(onSelectItemMock).toHaveBeenCalledTimes(1);
     expect(onSelectItemMock).toHaveBeenCalledWith('item 3');
 
-    expect(selectableTabs).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
+
   it('calls status getters', function () {
-    selectableTabs = shallow(
+    const wrapper = mount(
       <Tabs
         items={[
           { name: 'item 1', selected: true },
@@ -58,24 +59,26 @@ describe('<Tabs />', () => {
       />
     );
 
-    const tabs = selectableTabs.find('.tab-item');
+    const tabs = wrapper.find('.tab-item');
     expect(tabs.at(0).hasClass('selected')).toBeTruthy();
     expect(tabs.at(2).hasClass('disabled')).toBeTruthy();
   });
+
   it('renders correctly with round type and small gap', () => {
-    selectableTabs = shallow(
+    const wrapper = mount(
       <Tabs
         items={items}
         getItemName={getItemNameMock}
         isSelectedItem={isSelectedItemMock}
-        type='round'
+        view='round'
         gapSize='s'
       />
     );
-    expect(selectableTabs).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
+
   it('renders correctly with text type, underline and stretch', () => {
-    selectableTabs = shallow(
+    const wrapper = mount(
       <Tabs
         items={items}
         getItemName={getItemNameMock}
@@ -84,6 +87,26 @@ describe('<Tabs />', () => {
         stretch
       />
     );
-    expect(selectableTabs).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should handle onSelect missing', () => {
+    const spy = jest.fn();
+
+    const wrapper = mount(
+      <Tabs
+        items={items}
+        onSelectItem={spy}
+      />
+    );
+
+    expect(spy).toBeCalledTimes(0);
+
+    wrapper.find('.tab-item').at(2).simulate('click');
+    expect(spy).toBeCalledTimes(1);
+
+    wrapper.setProps({ onSelectItem: undefined });
+    wrapper.find('.tab-item').at(2).simulate('click');
+    expect(spy).toBeCalledTimes(1);
   });
 });
