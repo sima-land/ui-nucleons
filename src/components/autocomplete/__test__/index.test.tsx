@@ -1,21 +1,23 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import { act, Simulate } from 'react-dom/test-utils';
 import { Autocomplete } from '..';
 import TextField from '../../text-field';
 
 describe('Autocomplete', () => {
-  const findMenu = wrapper => wrapper.find('div[data-testid="autocomplete:menu"]');
+  const findMenu = (w: ReactWrapper) => w.find('div[data-testid="autocomplete:menu"]');
 
-  const findMenuItems = wrapper => wrapper.find('div[data-testid="autocomplete:menu"]').find('div[role="menuitem"]');
+  const findMenuItems = (w: ReactWrapper) => w
+    .find('div[data-testid="autocomplete:menu"]')
+    .find('div[role="menuitem"]');
 
-  const isCheckedItem = wrapper => wrapper.getDOMNode().classList.contains('checked');
+  const isCheckedItem = (w: ReactWrapper) => w.getDOMNode().classList.contains('checked');
 
-  const openMenu = wrapper => {
+  const openMenu = (w: ReactWrapper) => {
     act(() => {
-      Simulate.click(wrapper.find(TextField).find('[data-testid="text-field:block"]').getDOMNode());
+      Simulate.click(w.find(TextField).find('[data-testid="text-field:block"]').getDOMNode());
     });
-    wrapper.update();
+    w.update();
   };
 
   it('should renders correctly', () => {
@@ -94,7 +96,7 @@ describe('Autocomplete', () => {
     act(() => {
       Simulate.change(
         wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-        { target: { value: 'jjjj' } }
+        { target: { value: 'jjjj' } as any }
       );
     });
     wrapper.update();
@@ -407,5 +409,22 @@ describe('Autocomplete', () => {
 
       expect(spy).toBeCalledTimes(0);
     });
+  });
+
+  it('should handle onClick prop', () => {
+    const spy = jest.fn();
+
+    const wrapper = mount(
+      <Autocomplete
+        items={undefined}
+        onClick={spy}
+      />
+    );
+
+    expect(spy).toBeCalledTimes(0);
+
+    openMenu(wrapper);
+
+    expect(spy).toBeCalledTimes(1);
   });
 });
