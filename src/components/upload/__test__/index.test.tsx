@@ -26,7 +26,7 @@ describe('UploadArea', () => {
   });
 
   it('should handle drag events to highlight area', () => {
-    ['dragEnter', 'dragOver'].forEach(eventName => {
+    (['dragEnter', 'dragOver'] as const).forEach(eventName => {
       const spy = jest.fn();
 
       const wrapper = mount(
@@ -98,7 +98,7 @@ describe('UploadArea', () => {
           dataTransfer: {
             files: [{ fakeFile: true }, { fakeFile: true }],
           },
-        }
+        } as any
       );
     });
     wrapper.update();
@@ -116,13 +116,30 @@ describe('UploadArea', () => {
           dataTransfer: {
             files: [{ fakeFile: true }, { fakeFile: true }],
           },
-        }
+        } as any
       );
     });
     wrapper.update();
 
     expect(spy).toBeCalledTimes(2);
     expect(spy.mock.calls[1][0]).toHaveLength(2);
+
+    // drop two files again (without onSelect)
+    wrapper.setProps({ onSelect: undefined });
+
+    act(() => {
+      Simulate.drop(
+        wrapper.find('.root').getDOMNode(),
+        {
+          dataTransfer: {
+            files: [{ fakeFile: true }, { fakeFile: true }],
+          },
+        } as any
+      );
+    });
+    wrapper.update();
+
+    expect(spy).toBeCalledTimes(2);
   });
 
   it('should handle "change" event', () => {
@@ -140,7 +157,17 @@ describe('UploadArea', () => {
     expect(spy).toBeCalledTimes(0);
 
     act(() => {
-      Simulate.change(wrapper.find('input').getDOMNode(), { target: { files: [] } });
+      Simulate.change(wrapper.find('input').getDOMNode(), { target: { files: [] } as any });
+    });
+    wrapper.update();
+
+    expect(spy).toBeCalledTimes(1);
+
+    // without onSelect
+    wrapper.setProps({ onSelect: undefined });
+
+    act(() => {
+      Simulate.change(wrapper.find('input').getDOMNode(), { target: { files: [] } as any });
     });
     wrapper.update();
 
