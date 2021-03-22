@@ -10,7 +10,7 @@ const on = <T extends Event>(
   target: EventTarget,
   eventNames: string,
   callback: (e: T) => void,
-  options?: boolean | EventListenerOptions
+  options?: boolean | EventListenerOptions | AddEventListenerOptions | undefined
 ) => {
   const eventNamesList = eventNames.split(' ');
 

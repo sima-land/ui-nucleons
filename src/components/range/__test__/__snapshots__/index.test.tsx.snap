@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Range /> should works without props 1`] = `
+<Range>
+  <div
+    className="range-wrapper-base range-wrapper-styled"
+  >
+    <div
+      className="track-base available-base available-styled"
+    />
+    <div
+      className="track-base selected-base selected-styled"
+      style={
+        Object {
+          "left": "0%",
+          "width": "100%",
+        }
+      }
+    />
+    <div
+      className="range-container-base range-container-styled"
+    >
+      <button
+        className="thumb-base thumb-styled"
+        style={
+          Object {
+            "left": "0%",
+          }
+        }
+        type="button"
+      />
+      <button
+        className="thumb-base thumb-styled"
+        style={
+          Object {
+            "left": "100%",
+          }
+        }
+        type="button"
+      />
+    </div>
+  </div>
+</Range>
+`;
