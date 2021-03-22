@@ -19,7 +19,7 @@ describe('getRangeNumbers', () => {
   });
 
   it('should return empty array', () => {
-    expect(getRangeNumbers({})).toEqual([]);
+    expect(getRangeNumbers({ current: 0, total: 0, range: 0 })).toEqual([]);
   });
 });
 
@@ -79,10 +79,10 @@ describe('getPageButtons', () => {
       [{ current: 7, range: 5, total: 7 }, [1, 2, 3, 4, 5, 6, 7]],
     ];
 
-    assertions.forEach(([props, list]) => {
-      getPageButtons(props).forEach((pageButton, index) => {
-        expect(pageButton.value).toBe(list[index]);
-        expect(pageButton.content).toBe(list[index]);
+    assertions.forEach(([state, list]) => {
+      getPageButtons(state as any).forEach((pageButton, index) => {
+        expect(pageButton.value).toBe((list as any)[index]);
+        expect(pageButton.content).toBe((list as any)[index]);
       });
     });
   });
