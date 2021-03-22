@@ -1,11 +1,10 @@
 import React, { Fragment } from 'react';
-import { storiesOf } from '@storybook/react';
-import Box from '../index';
+import Box from '..';
 
 const testJustifyItems = [
-  <Box padding={4} margin={4} key={1} dangerouslySetInlineStyle={{ __style: { background: 'red' } }}>First</Box>,
-  <Box padding={4} margin={4} key={2} dangerouslySetInlineStyle={{ __style: { background: 'green' } }}>Second</Box>,
-  <Box padding={4} margin={4} key={3} dangerouslySetInlineStyle={{ __style: { background: 'blue' } }}>Third</Box>,
+  <Box padding={4} margin={4} key={1} color='additional-red'>First</Box>,
+  <Box padding={4} margin={4} key={2} color='additional-green'>Second</Box>,
+  <Box padding={4} margin={4} key={3} color='additional-light-blue'>Third</Box>,
 ];
 
 const testAlignItems = [
@@ -13,7 +12,8 @@ const testAlignItems = [
     padding={4}
     margin={4}
     key={1}
-    dangerouslySetInlineStyle={{ __style: { minHeight: 50, background: 'red' } }}
+    color='additional-red'
+    dangerouslySetInlineStyle={{ __style: { minHeight: 50 } }}
   >
     First
   </Box>,
@@ -21,7 +21,8 @@ const testAlignItems = [
     padding={4}
     margin={4}
     key={2}
-    dangerouslySetInlineStyle={{ __style: { minHeight: 100, background: 'green' } }}
+    color='additional-green'
+    dangerouslySetInlineStyle={{ __style: { minHeight: 100 } }}
   >
     Second
   </Box>,
@@ -29,7 +30,8 @@ const testAlignItems = [
     padding={4}
     margin={4}
     key={3}
-    dangerouslySetInlineStyle={{ __style: { minHeight: 150, background: 'blue' } }}
+    color='additional-light-blue'
+    dangerouslySetInlineStyle={{ __style: { minHeight: 150 } }}
   >
     Third
   </Box>,
@@ -57,137 +59,153 @@ const testPaddingPropsList = [
   { padding: 2, paddingLeft: 8 },
 ];
 
-const getTestAlignItemsBox = alignItems => (
-  <Box
-    padding={2}
-    display='flex'
-    alignItems={alignItems}
-    dangerouslySetInlineStyle={{ __style: { height: 240, border: '1px dashed #aaa' } }}
-    children={testAlignItems}
-  />
+export default {
+  title: 'Box',
+  component: Box,
+  parameters: {
+    layout: 'padded',
+  },
+};
+
+export const Primary = () => (
+  <Box>
+    Box without props is just a &quot;div&quot;
+  </Box>
 );
 
-const getTestFlexPropBox = flex => (
-  <Box
-    margin={4}
-    padding={4}
-    display='flex'
-    flex={flex}
-    dangerouslySetInlineStyle={{ __style: { background: '#aaa' } }}
-    children={`flex='${flex}'`}
-  />
+export const MarginsAndPaddings = () => (
+  <div style={{ width: 320 }}>
+    <h2>Margin</h2>
+    {testMarginPropsList.map((marginProps, index) => (
+      <Fragment key={index}>
+        <Box display='flex' color='additional-amber'>
+          <Box flex='grow' color='brand-sky' padding={2} {...marginProps}>
+            {JSON.stringify(marginProps, null, 2)}
+          </Box>
+        </Box>
+        <div style={{ height: 32 }} />
+      </Fragment>
+    ))}
+
+    <h2>Padding</h2>
+    {testPaddingPropsList.map((paddingProps, index) => (
+      <Fragment key={index}>
+        <Box display='flex' color='additional-grass' {...paddingProps}>
+          <Box flex='grow' color='brand-sky' padding={2}>
+            {JSON.stringify(paddingProps, null, 2)}
+          </Box>
+        </Box>
+        <div style={{ height: 32 }} />
+      </Fragment>
+    ))}
+  </div>
 );
 
-storiesOf('Box', module)
-  .add('Box without props', () => (
-    <Box>
-      Box without props is just a &quot;div&quot;
+export const JustifyContent = () => (
+  <>
+    <h3>start</h3>
+    <Box display='flex' justifyContent='start'>
+      {testJustifyItems}
     </Box>
-  ))
-  .add('Margins and paddings', () => (
-    <div style={{ width: 320 }}>
-      <h2>Margin</h2>
-      {testMarginPropsList.map((marginProps, index) => (
-        <Fragment key={index}>
-          <Box display='flex' color='additional-amber'>
-            <Box flex='grow' color='brand-sky' padding={2} {...marginProps}>
-              {JSON.stringify(marginProps, null, 2)}
-            </Box>
-          </Box>
-          <div style={{ height: 32 }} />
-        </Fragment>
-      ))}
 
-      <h2>Padding</h2>
-      {testPaddingPropsList.map((paddingProps, index) => (
-        <Fragment key={index}>
-          <Box display='flex' color='additional-grass' {...paddingProps}>
-            <Box flex='grow' color='brand-sky' padding={2}>
-              {JSON.stringify(paddingProps, null, 2)}
-            </Box>
-          </Box>
-          <div style={{ height: 32 }} />
-        </Fragment>
-      ))}
-    </div>
-  ))
-  .add('"justifyContent" prop variations', () => (
-    <Fragment>
+    <h3>end</h3>
+    <Box display='flex' justifyContent='end'>
+      {testJustifyItems}
+    </Box>
+
+    <h3>center</h3>
+    <Box display='flex' justifyContent='center'>
+      {testJustifyItems}
+    </Box>
+
+    <h3>space-between</h3>
+    <Box display='flex' justifyContent='between'>
+      {testJustifyItems}
+    </Box>
+
+    <h3>space-around</h3>
+    <Box display='flex' justifyContent='around'>
+      {testJustifyItems}
+    </Box>
+  </>
+);
+
+export const AlignItems = () => {
+  const renderBox = alignItems => (
+    <Box
+      padding={2}
+      display='flex'
+      alignItems={alignItems}
+      dangerouslySetInlineStyle={{ __style: { height: 240, border: '1px dashed #aaa' } }}
+      children={testAlignItems}
+    />
+  );
+
+  return (
+    <>
       <h3>start</h3>
-      <Box display='flex' justifyContent='start'>
-        {testJustifyItems}
-      </Box>
+      {renderBox('start')}
 
       <h3>end</h3>
-      <Box display='flex' justifyContent='end'>
-        {testJustifyItems}
-      </Box>
+      {renderBox('end')}
 
       <h3>center</h3>
-      <Box display='flex' justifyContent='center'>
-        {testJustifyItems}
-      </Box>
-
-      <h3>space-between</h3>
-      <Box display='flex' justifyContent='between'>
-        {testJustifyItems}
-      </Box>
-
-      <h3>space-around</h3>
-      <Box display='flex' justifyContent='around'>
-        {testJustifyItems}
-      </Box>
-    </Fragment>
-  ))
-  .add('"alignItems" prop variations', () => (
-    <Fragment>
-      <h3>start</h3>
-      {getTestAlignItemsBox('start')}
-
-      <h3>end</h3>
-      {getTestAlignItemsBox('end')}
-
-      <h3>center</h3>
-      {getTestAlignItemsBox('center')}
+      {renderBox('center')}
 
       <h3>baseline</h3>
-      {getTestAlignItemsBox('baseline')}
+      {renderBox('baseline')}
 
       <h3>stretch</h3>
-      {getTestAlignItemsBox('stretch')}
-    </Fragment>
-  ))
-  .add('"direction" prop variations', () => (
-    <Fragment>
-      <h3>row</h3>
-      <Box display='flex' direction='row'>
-        {testJustifyItems}
-      </Box>
+      {renderBox('stretch')}
+    </>
+  );
+};
 
-      <h3>column</h3>
-      <Box display='flex' direction='column'>
-        {testJustifyItems}
-      </Box>
-    </Fragment>
-  ))
-  .add('"flex" prop variations', () => (
-    <Fragment>
+export const Direction = () => (
+  <>
+    <h3>row</h3>
+    <Box display='flex' direction='row'>
+      {testJustifyItems}
+    </Box>
+
+    <h3>column</h3>
+    <Box display='flex' direction='column'>
+      {testJustifyItems}
+    </Box>
+  </>
+);
+
+export const FlexProp = () => {
+  const renderBox = flex => (
+    <Box
+      margin={4}
+      padding={4}
+      display='flex'
+      flex={flex}
+      color='gray24'
+      children={`flex='${flex}'`}
+    />
+  );
+
+  return (
+    <>
       <h3>shrink</h3>
       <Box display='flex'>
         {testJustifyItems}
-        {getTestFlexPropBox('shrink')}
+        {renderBox('shrink')}
       </Box>
 
       <h3>grow</h3>
       <Box display='flex'>
         {testJustifyItems}
-        {getTestFlexPropBox('grow')}
+        {renderBox('grow')}
       </Box>
 
       <h3>none</h3>
       <Box display='flex'>
         {testJustifyItems}
-        {getTestFlexPropBox('none')}
+        {renderBox('none')}
       </Box>
-    </Fragment>
-  ));
+    </>
+  );
+};
