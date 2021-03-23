@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import DotNav from '..';
 import { times } from 'lodash';
@@ -41,33 +40,42 @@ const styles: Record<string, React.CSSProperties> = {
 
 const clickAction = action('Dot clicked, index');
 
-const Demo = ({ total = 1, step = 1 }) => {
-  const [current, setCurrent] = useState(total - 1);
-
-  return (
-    <div style={styles.wrap}>
-      <DotNav
-        current={current}
-        total={total}
-        onSelect={index => {
-          setCurrent(index);
-          clickAction(index);
-        }}
-      />
-
-      <div style={styles.btnWrap}>
-        <button style={styles.btn} onClick={() => setCurrent((total + (current - step)) % total)}>◄</button>
-        <button style={styles.btn} onClick={() => setCurrent((total + (current + step)) % total)}>►</button>
-      </div>
-    </div>
-  );
+export default {
+  title: 'DotNav',
+  component: DotNav,
+  parameters: {
+    layout: 'padded',
+  },
 };
 
-storiesOf('DotNav', module)
-  .add('Default', () => (
+export const Primary = () => {
+  const Demo = ({ total = 1, step = 1 }) => {
+    const [current, setCurrent] = useState(total - 1);
+
+    return (
+      <div style={styles.wrap}>
+        <DotNav
+          current={current}
+          total={total}
+          onSelect={index => {
+            setCurrent(index);
+            clickAction(index);
+          }}
+        />
+
+        <div style={styles.btnWrap}>
+          <button style={styles.btn} onClick={() => setCurrent((total + (current - step)) % total)}>◄</button>
+          <button style={styles.btn} onClick={() => setCurrent((total + (current + step)) % total)}>►</button>
+        </div>
+      </div>
+    );
+  };
+
+  return (
     <>
       {times(10).map(i => i + 1).map(index => (
         <Demo key={index} total={index} />
       ))}
     </>
-  ));
+  );
+};

@@ -7,7 +7,7 @@ export interface MaskState {
   cleanValue: string
 }
 
-export interface Props extends Omit<TextFieldProps, 'value' | 'onBlur'> {
+export interface Props extends Omit<TextFieldProps, 'value' | 'onBlur' | 'multiple'> {
   mask: string
   value?: string
   onBlur?: (e: React.FocusEvent<HTMLInputElement>, s: MaskState) => void
@@ -30,7 +30,7 @@ export const MaskedField = forwardRef<HTMLInputElement | undefined, Props>(funct
 }, ref) {
   const [inputMask, setInputMask] = useState<any>();
   const [inputState, setInputState] = useState<MaskState>({ value, cleanValue: '' });
-  const innerRef = useRef();
+  const innerRef = useRef<HTMLInputElement>();
 
   useImperativeHandle(ref, () => innerRef.current);
 
@@ -55,6 +55,7 @@ export const MaskedField = forwardRef<HTMLInputElement | undefined, Props>(funct
     <TextField
       {...restOptions}
       ref={innerRef}
+      multiline={false}
       restPlaceholder={{
         value: mask.slice(inputState.value.length),
         shiftValue: inputState.value,

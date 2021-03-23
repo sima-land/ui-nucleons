@@ -5,6 +5,7 @@ exports[`MaskedField should renders properly 1`] = `
   mask="__ __ №______"
 >
   <ForwardRef(TextField)
+    multiline={false}
     onBlur={[Function]}
     restPlaceholder={
       Object {
@@ -30,6 +31,7 @@ exports[`MaskedField should renders properly 1`] = `
             <ForwardRef(BaseInput)
               className="base-input variant-desktop size-l"
               data-testid="text-field:field"
+              multiline={false}
               onBlur={[Function]}
               onFocus={[Function]}
               restPlaceholder={
