@@ -51,11 +51,11 @@ describe('<Screen />', () => {
     expect(disableBodyScroll).toHaveBeenCalledTimes(1);
 
     expect(spy).toHaveBeenCalledTimes(0);
-    wrapper.find(NavBar).prop('buttons').start.onClick();
+    (wrapper.find(NavBar).prop('buttons') as any).start.onClick();
     expect(spy).toHaveBeenCalledTimes(1);
 
     expect(otherSpy).toHaveBeenCalledTimes(0);
-    wrapper.find(NavBar).prop('buttons').end.onClick();
+    (wrapper.find(NavBar).prop('buttons') as any).end.onClick();
     expect(otherSpy).toHaveBeenCalledTimes(1);
 
     expect(enableBodyScroll).toHaveBeenCalledTimes(0);
@@ -133,11 +133,12 @@ describe('createTakeScrollableElement()', () => {
     expect(enableBodyScroll).toHaveBeenCalledTimes(0);
     expect(disableBodyScroll).toHaveBeenCalledTimes(1);
   });
+
   it('result should enable body scroll', () => {
     const elementRef = { current: { old: true } };
     const fakeElement = document.createElement('div');
 
-    takeScrollableElement(elementRef, fakeElement);
+    takeScrollableElement(elementRef as any, fakeElement);
 
     expect(elementRef.current).toBe(fakeElement);
     expect(enableBodyScroll).toHaveBeenCalledTimes(1);

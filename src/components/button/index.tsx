@@ -9,7 +9,9 @@ type ViewType = 'primary' | 'secondary'
 
 type IconPosition = 'start' | 'end';
 
-interface CustomProps<T extends 'button' | 'link' | 'container'> {
+type Appearance = 'button' | 'link' | 'container'
+
+interface CustomProps<T extends Appearance = Appearance> {
   size?: Size
   actionType?: ViewType
   iconPosition?: IconPosition
@@ -17,10 +19,12 @@ interface CustomProps<T extends 'button' | 'link' | 'container'> {
   appearance?: T
 }
 
+type ExcludeKeys<T> = Omit<T, 'ref' | keyof CustomProps>
+
 export type Props = (
-  CustomProps<'button'> & JSX.IntrinsicElements['button']
-  | CustomProps<'link'> & JSX.IntrinsicElements['a']
-  | CustomProps<'container'> & JSX.IntrinsicElements['div']
+  CustomProps<'button'> & ExcludeKeys<JSX.IntrinsicElements['button']>
+  | CustomProps<'link'> & ExcludeKeys<JSX.IntrinsicElements['a']>
+  | CustomProps<'container'> & ExcludeKeys<JSX.IntrinsicElements['div']>
 )
 
 const cx = classnames.bind(classes);
