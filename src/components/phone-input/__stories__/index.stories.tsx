@@ -3,7 +3,7 @@ import { PhoneInput } from '..';
 
 const DemoForm = ({ initialValue = '' }) => {
   const [value, setValue] = useState(initialValue);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   return (
     <PhoneInput

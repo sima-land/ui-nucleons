@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Clean from '../index';
 
-const DisplayWrapper = ({ children }) => (
+const DisplayWrapper: React.FC = ({ children }) => (
   <div style={{ background: '#fff' }}>
     {children}
   </div>

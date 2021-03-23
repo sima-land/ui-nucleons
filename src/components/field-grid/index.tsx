@@ -32,7 +32,7 @@ export interface Props {
   rootProps?: React.HTMLProps<HTMLDivElement>
 }
 
-interface GridComponent extends React.FC<Props> {
+export interface FieldGridComponent extends React.FC<Props> {
   Row: typeof Row
   Cell: typeof Cell
 }
@@ -57,7 +57,7 @@ const TypeCheck = {
  * @param props.rootProps Свойства корневого элемента.
  * @return Компонент сетки полей.
  */
-const FieldGrid: GridComponent = ({ children, rootProps }) => {
+const FieldGrid: FieldGridComponent = ({ children, rootProps }) => {
   const rows = Children.toArray(children).filter(TypeCheck.isRow) as React.ReactElement<RowProps>[];
 
   return (

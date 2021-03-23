@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { storiesOf } from '@storybook/react';
 import withInViewportObserver from '..';
 
-const PureSomeComponent = ({ addObserve }) => {
+const PureSomeComponent: React.FC<{ addObserve: any }> = ({ addObserve }) => {
   const divRef = useRef();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const PureSomeComponent = ({ addObserve }) => {
       </div>
 
       <div
-        ref={divRef}
+        ref={divRef as any}
         style={{
           marginTop: '150vh',
           border: '1px dashed rgba(0, 0, 0, .15)',

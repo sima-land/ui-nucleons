@@ -7,7 +7,7 @@ import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
 import CartSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cart';
 import PersonSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/person';
 
-const DisplayWrapper = ({ children }) => (
+const DisplayWrapper: React.FC = ({ children }) => (
   <div
     style={{ width: 480, margin: '64px auto', boxShadow: '0 8px 12px rgba(0,0,0,.1)' }}
     children={children}

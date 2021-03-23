@@ -22,7 +22,9 @@ const testItems = [
 ];
 
 export const Primary = () => {
-  const [checked, toggle] = useReducer((ids, id) => ({ ...ids, [id]: !ids[id] }), { 2: true });
+  const reducer = (ids: Record<number, boolean>, id: number) => ({ ...ids, [id]: !ids[id] });
+
+  const [checked, toggle] = useReducer(reducer, { 2: true });
 
   return (
     <>

@@ -77,7 +77,7 @@ export const AlignVariants = () => [...ALIGNS].map(
 );
 
 export const CutTextContent = () => {
-  const textRef = useRef(null);
+  const textRef = useRef<HTMLElement>();
 
   useLayoutEffect(() => {
     const { current: element } = textRef;
@@ -85,7 +85,7 @@ export const CutTextContent = () => {
   }, []);
 
   return (
-    <div ref={textRef} style={{ width: '300px' }}>
+    <div ref={textRef as any} style={{ width: '300px' }}>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid deserunt earum nam rem. Consectetur,
       dignissimos dolore dolores eos esse itaque iusto nemo optio quaerat quo ratione reprehenderit voluptatem
       voluptates?
