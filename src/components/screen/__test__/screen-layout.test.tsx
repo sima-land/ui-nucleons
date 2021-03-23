@@ -4,7 +4,7 @@ describe('createTakeContentRef()', () => {
   it('should save data to refs', () => {
     const onFullScroll = jest.fn();
     const elementRef = { current: null };
-    const unsubscribeRef = { current: null };
+    const unsubscribeRef = { current: null } as any;
     const element = document.createElement('div');
 
     const takeContentRef = createTakeContentRef({
@@ -33,7 +33,7 @@ describe('createTakeContentRef()', () => {
 
   it('should handle element update', () => {
     const onFullScroll = jest.fn();
-    const elementRef = { current: {} };
+    const elementRef = { current: {} } as any;
     const oldUnsubscribe = jest.fn();
     const unsubscribeRef = { current: oldUnsubscribe };
     const element = document.createElement('div');
@@ -65,7 +65,7 @@ describe('createTakeContentRef()', () => {
 
   it('should not resubscribe on second call wit same ref', () => {
     const onFullScroll = jest.fn();
-    const elementRef = { current: {} };
+    const elementRef = { current: {} } as any;
     const oldUnsubscribe = jest.fn();
     const unsubscribeRef = { current: oldUnsubscribe };
     const element = document.createElement('div');
