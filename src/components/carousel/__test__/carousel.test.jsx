@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import Carousel, { Carousel as PureCarousel } from '../carousel';
-import Draggable, { Draggable as PureDraggable } from '../draggable';
+import Draggable from '../draggable';
 import DraggableEvent from '../helpers/draggable-event';
 import NavButton from '../nav-button';
 import classes from '../carousel.scss';
@@ -137,7 +137,7 @@ describe('<Carousel />', () => {
     const instance = wrapper.find(PureCarousel).instance();
 
     // simulate drag start
-    wrapper.find(PureDraggable).prop('onDragStart')(new DraggableEvent({ offset: Point(), client: Point() }));
+    wrapper.find(Draggable).prop('onDragStart')(new DraggableEvent({ offset: Point(), client: Point() }));
 
     jest.spyOn(instance, 'toggleAutoMove');
     expect(instance.toggleAutoMove).toHaveBeenCalledTimes(0);
@@ -155,7 +155,7 @@ describe('<Carousel />', () => {
     const instance = wrapper.find(PureCarousel).instance();
 
     // simulate drag start
-    wrapper.find(PureDraggable).prop('onDragStart')(new DraggableEvent({ offset: Point(), client: Point() }));
+    wrapper.find(Draggable).prop('onDragStart')(new DraggableEvent({ offset: Point(), client: Point() }));
 
     jest.spyOn(instance, 'toggleAutoMove');
     expect(instance.toggleAutoMove).toHaveBeenCalledTimes(0);
@@ -1202,7 +1202,7 @@ describe('Carousel: infinite mode', () => {
       offset: dragOffset,
     });
 
-    expect(wrapper.find(PureDraggable).instance().currentOffset).toEqual({
+    expect(wrapper.find(Draggable).instance().currentOffset).toEqual({
       x: 0,
       y: 0,
     });
@@ -1217,7 +1217,7 @@ describe('Carousel: infinite mode', () => {
       client: Point(dragOffset, 0),
     }));
 
-    expect(wrapper.find(PureDraggable).instance().currentOffset).toEqual({
+    expect(wrapper.find(Draggable).instance().currentOffset).toEqual({
       x: -990,
       y: 0,
     });
@@ -1266,7 +1266,7 @@ describe('Carousel: infinite mode', () => {
     });
     wrapper.find(PureCarousel).setState({ isAllItemsVisible: false });
 
-    expect(wrapper.find(PureDraggable).instance().currentOffset).toEqual({
+    expect(wrapper.find(Draggable).instance().currentOffset).toEqual({
       x: 0,
       y: 0,
     });
@@ -1284,7 +1284,7 @@ describe('Carousel: infinite mode', () => {
       client: Point(dragOffset, 0),
     }));
 
-    expect(wrapper.find(PureDraggable).instance().currentOffset).toEqual({
+    expect(wrapper.find(Draggable).instance().currentOffset).toEqual({
       x: -110,
       y: 0,
     });
@@ -1333,7 +1333,7 @@ describe('Carousel: infinite mode', () => {
     });
     wrapper.find(PureCarousel).setState({ isAllItemsVisible: false });
 
-    expect(wrapper.find(PureDraggable).instance().currentOffset).toEqual({
+    expect(wrapper.find(Draggable).instance().currentOffset).toEqual({
       x: 0,
       y: 0,
     });
@@ -1351,7 +1351,7 @@ describe('Carousel: infinite mode', () => {
       client: Point(0, dragOffset),
     }));
 
-    expect(wrapper.find(PureDraggable).instance().currentOffset).toEqual({
+    expect(wrapper.find(Draggable).instance().currentOffset).toEqual({
       x: 0,
       y: 0,
     });

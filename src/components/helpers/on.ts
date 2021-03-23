@@ -1,12 +1,14 @@
+import React from 'react';
+
 /**
  * Выполняет подписку на событие целевого объекта.
  * @param target Целевой объект.
  * @param eventNames Имена событий через пробел.
  * @param callback Функция обратного вызова.
  * @param options Опции подписки.
- * @return {Function} Функция отписки.
+ * @return Функция отписки.
  */
-const on = <T extends Event>(
+const on = <T extends Event | React.SyntheticEvent>(
   target: EventTarget,
   eventNames: string,
   callback: (e: T) => void,
