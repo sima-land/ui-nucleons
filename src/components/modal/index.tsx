@@ -56,7 +56,7 @@ const Modal: React.FC<Props> = ({
   withTopBar = true,
   'data-testid': dataTestId = 'modal',
 }) => {
-  const rootRef = useRef<HTMLDivElement>();
+  const rootRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     withScrollDisable
@@ -72,7 +72,7 @@ const Modal: React.FC<Props> = ({
 
   return (
     <div
-      ref={rootRef as any}
+      ref={rootRef}
       className={cx('overlay')}
       data-testid='modal:overlay'
       {...onClose && useCloseHandler(onClose)}

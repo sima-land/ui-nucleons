@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from 'react';
-import { storiesOf } from '@storybook/react';
 import withInViewportObserver from '..';
 
 const PureSomeComponent: React.FC<{ addObserve: any }> = ({ addObserve }) => {
@@ -35,6 +34,7 @@ const PureSomeComponent: React.FC<{ addObserve: any }> = ({ addObserve }) => {
 };
 
 const SomeComponent = withInViewportObserver(PureSomeComponent);
+
 const SomeComponentWithCustomOptions = withInViewportObserver(
   PureSomeComponent,
   {
@@ -42,14 +42,22 @@ const SomeComponentWithCustomOptions = withInViewportObserver(
   }
 );
 
-storiesOf('withInViewportObserver', module)
-  .add('add observer', () => (
-    <div>
-      <SomeComponent />
-    </div>
-  ))
-  .add('add observer with options', () => (
-    <div>
-      <SomeComponentWithCustomOptions />
-    </div>
-  ));
+export default {
+  title: 'HOC/withInViewportObserver',
+  component: withInViewportObserver,
+  parameters: {
+    layout: 'padded',
+  },
+};
+
+export const AddObserver = () => (
+  <div>
+    <SomeComponent />
+  </div>
+);
+
+export const AddObserverWithOptions = () => (
+  <div>
+    <SomeComponentWithCustomOptions />
+  </div>
+);

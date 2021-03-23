@@ -109,7 +109,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   className,
 }) => {
   const Container = inline ? 'span' : 'div';
-  const tooltipRef = useRef<HTMLDivElement>();
+  const tooltipRef = useRef<HTMLDivElement | null>(null);
 
   const place = useCallback(() => {
     tooltipRef.current
@@ -145,7 +145,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
 
   return (
     <Container
-      ref={tooltipRef as any}
+      ref={tooltipRef}
       style={{ opacity: 0 }}
       className={cx('tooltip', className)}
     >
