@@ -21,7 +21,7 @@ const longValue = [
   'Omnis, accusamus?',
 ].join(' \n');
 
-const testValues = ['test', 123, '', null, undefined];
+const testValues = ['test', 123, '', null, undefined] as const;
 
 export default {
   title: 'TextField',
@@ -163,7 +163,7 @@ export const DifferentValues = () => (
         <TextField
           {...baseProps}
           label='Label'
-          defaultValue={testValue}
+          defaultValue={testValue as any}
         />
       </div>
     ))}
@@ -204,7 +204,7 @@ export const RestPlaceholder = () => {
       <TextField
         value={value}
         label='Label'
-        onChange={e => setValue(e.target.value.slice(0, 10))}
+        onChange={(e: any) => setValue(e.target.value.slice(0, 10))}
         restPlaceholder={'9'.repeat(10).slice(value.length)}
         style={{ width: 240 }}
       />
@@ -213,7 +213,7 @@ export const RestPlaceholder = () => {
         variant='mobile'
         label='Label'
         value={value}
-        onChange={e => setValue(e.target.value.slice(0, 10))}
+        onChange={(e: any) => setValue(e.target.value.slice(0, 10))}
         restPlaceholder={'9'.repeat(10).slice(value.length)}
         style={{ width: 240 }}
       />
@@ -239,7 +239,7 @@ export const ValuePropChange = () => {
       <TextField
         label='Test label'
         value={value}
-        onChange={event => setValue(event.target.value)}
+        onChange={(e: any) => setValue(e.target.value)}
         style={{ width: 240 }}
       />
     </>

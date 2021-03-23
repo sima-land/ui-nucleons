@@ -17,7 +17,7 @@ export const Primary = () => (
 );
 
 export const Styling = () => {
-  const TimerPart = ({ label, value }) => (
+  const TimerPart: React.FC<{ label: string, value: number }> = ({ label, value }) => (
     <div style={{ textAlign: 'center' }}>
       <div>{`${value}`.padStart(2, '0')}</div>
       <div style={{ fontSize: 14, fontWeight: 'normal' }}>{label}</div>

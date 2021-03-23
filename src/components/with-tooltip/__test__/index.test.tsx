@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import { mount } from 'enzyme';
-import WithTooltip, { Tooltip } from '../index';
+import { mount, ReactWrapper } from 'enzyme';
+import WithTooltip, { Tooltip } from '..';
 import { placeTooltip } from '../utils';
 import CrossSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/cross';
 
@@ -17,7 +17,7 @@ jest.mock('../utils', () => {
 });
 
 describe('WithTooltip', () => {
-  let wrapper;
+  let wrapper: ReactWrapper;
 
   afterEach(() => {
     // enzyme не выполняет unmount после завершения it() - выполняем вручную (иначе ломаются тесты)
@@ -87,7 +87,7 @@ describe('WithTooltip', () => {
 });
 
 describe('Tooltip', () => {
-  let wrapper;
+  let wrapper: ReactWrapper;
 
   const actualDescriptor = {
     ...Object.getOwnPropertyDescriptor(window, 'getComputedStyle'),
@@ -95,7 +95,7 @@ describe('Tooltip', () => {
 
   beforeAll(() => {
     Object.defineProperty(window, 'getComputedStyle', {
-      value: el => el.__fakeStyles || actualDescriptor.value(el),
+      value: (el: any) => el.__fakeStyles || actualDescriptor.value(el),
     });
   });
 
@@ -109,7 +109,7 @@ describe('Tooltip', () => {
   });
 
   beforeEach(() => {
-    placeTooltip.mockClear();
+    (placeTooltip as any).mockClear();
   });
 
   it('should renders', () => {
@@ -225,7 +225,7 @@ describe('Tooltip', () => {
 
   it('should handle "scroll" event of custom scroll parent', () => {
     const container = document.createElement('div');
-    container.__fakeStyles = { overflow: 'auto' };
+    (container as any).__fakeStyles = { overflow: 'auto' };
 
     document.body.append(container);
 

@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '../../text-field';
 import FieldGrid from '..';
 
-const DisplayWrapper = ({ children }) => (
+const DisplayWrapper: React.FC = ({ children }) => (
   <div style={{ padding: '32px 0', background: '#fff', maxWidth: 1024, margin: '0 auto' }}>
     {children}
   </div>

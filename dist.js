@@ -9,7 +9,7 @@ async function main () {
   const copy = (p, o = {}) => new Promise(r => copyfiles(p, o, r));
   const rm = (p, o = {}) => new Promise(r => rimraf(p, o, r));
 
-  // добавляем стили т.к. tsc прогнал только скрипты
+  // копируем стили из исходников т.к. tsc прогнал только скрипты
   await copy(['./src/components/**/*.scss', 'build'], {
     up: 1,
     exclude: [
@@ -29,8 +29,9 @@ async function main () {
   await copy(['package.json', 'build']);
   await copy(['README.md', 'build']);
 
-  // удаляем тесты
+  // удаляем тесты и stories
   await rm('./build/**/__test__');
+  await rm('./build/**/__stories__');
 }
 
 main();

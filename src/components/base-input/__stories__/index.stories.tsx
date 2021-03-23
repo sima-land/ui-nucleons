@@ -53,7 +53,7 @@ export const RestPlaceholder = () => {
 
       <BaseInput
         value={value}
-        onChange={e => setValue(e.target.value.replace(/\D/g, '').slice(0, 10))}
+        onChange={(e: any) => setValue(e.target.value.replace(/\D/g, '').slice(0, 10))}
         restPlaceholder={{ value: '9'.repeat(10).slice(value.length) }}
         style={{
           padding: 16,

@@ -14,7 +14,7 @@ const FakeElement = ({
   height = 0,
   bottom = 0,
   right = 0,
-} = {}) => ({
+} = {}): any => ({
   style: {},
   getBoundingClientRect: () => ({
     top,
@@ -37,8 +37,8 @@ describe('CanPlace', () => {
   };
 
   it('onRight', () => {
-    let holderEl = FakeElement({ right: 10 });
-    let tooltipEl = FakeElement({ width: 100 });
+    let holderEl = FakeElement({ right: 10 }) as any;
+    let tooltipEl = FakeElement({ width: 100 }) as any;
 
     expect(CanPlace.onRight(holderEl, tooltipEl, testArea)).toBe(true);
 
@@ -49,8 +49,8 @@ describe('CanPlace', () => {
   });
 
   it('onLeft', () => {
-    let holderEl = FakeElement({ left: 400 });
-    let tooltipEl = FakeElement({ width: 100 });
+    let holderEl = FakeElement({ left: 400 }) as any;
+    let tooltipEl = FakeElement({ width: 100 }) as any;
 
     expect(CanPlace.onLeft(holderEl, tooltipEl, testArea)).toBe(true);
 
@@ -61,8 +61,8 @@ describe('CanPlace', () => {
   });
 
   it('onBottom', () => {
-    let holderEl = FakeElement({ bottom: 100 });
-    let tooltipEl = FakeElement({ height: 100 });
+    let holderEl = FakeElement({ bottom: 100 }) as any;
+    let tooltipEl = FakeElement({ height: 100 }) as any;
 
     expect(CanPlace.onBottom(holderEl, tooltipEl, testArea)).toBe(true);
 
@@ -73,13 +73,13 @@ describe('CanPlace', () => {
   });
 
   it('onTop', () => {
-    let holderEl = FakeElement({ bottom: 500 });
-    let tooltipEl = FakeElement({ height: 100 });
+    let holderEl = FakeElement({ bottom: 500 }) as any;
+    let tooltipEl = FakeElement({ height: 100 }) as any;
 
     expect(CanPlace.onTop(holderEl, tooltipEl, testArea)).toBe(true);
 
-    holderEl = FakeElement({ bottom: 100 });
-    tooltipEl = FakeElement({ height: 100 });
+    holderEl = FakeElement({ bottom: 100 }) as any;
+    tooltipEl = FakeElement({ height: 100 }) as any;
 
     expect(CanPlace.onTop(holderEl, tooltipEl, testArea)).toBe(false);
   });
@@ -94,7 +94,7 @@ describe('PlaceOffset', () => {
 
   beforeAll(() => {
     Object.defineProperty(window, 'getComputedStyle', {
-      value: el => el.__fakeStyles || actualDescriptor.value(el),
+      value: (el: any) => el.__fakeStyles || actualDescriptor.value(el),
     });
   });
 
@@ -103,31 +103,31 @@ describe('PlaceOffset', () => {
   });
 
   afterEach(() => {
-    window.pageXOffset = realOffset.x;
-    window.pageYOffset = realOffset.y;
+    (window as any).pageXOffset = realOffset.x;
+    (window as any).pageYOffset = realOffset.y;
   });
 
   it('reset', () => {
     const fakeElement = { style: {} };
 
-    PlaceOffset.reset(fakeElement);
+    PlaceOffset.reset(fakeElement as any);
 
     expect(fakeElement.style).toStrictEqual({
-      top: null,
-      left: null,
-      bottom: null,
-      right: null,
+      top: '',
+      left: '',
+      bottom: '',
+      right: '',
     });
   });
 
   it('onRight', () => {
-    const holderEl = FakeElement({ left: 40, width: 80, right: 120 });
-    const tooltipEl = FakeElement();
+    const holderEl = FakeElement({ left: 40, width: 80, right: 120 }) as any;
+    const tooltipEl = FakeElement() as any;
 
-    window.pageXOffset = 200;
+    (window as any).pageXOffset = 200;
 
     tooltipEl.offsetParent = { __fakeStyles: { position: 'static' } };
-    document.documentElement.__fakeStyles = { position: 'static' };
+    (document.documentElement as any).__fakeStyles = { position: 'static' };
 
     const result = PlaceOffset.onRight(tooltipEl, holderEl);
 
@@ -138,10 +138,10 @@ describe('PlaceOffset', () => {
     const holderEl = FakeElement({ left: 40, width: 80 });
     const tooltipEl = FakeElement();
 
-    window.pageXOffset = 400;
+    (window as any).pageXOffset = 400;
 
     tooltipEl.offsetParent = { __fakeStyles: { position: 'static' } };
-    document.documentElement.__fakeStyles = { position: 'static' };
+    (document.documentElement as any).__fakeStyles = { position: 'static' };
 
     const result = PlaceOffset.onLeft(tooltipEl, holderEl);
 
@@ -152,10 +152,10 @@ describe('PlaceOffset', () => {
     const holderEl = FakeElement({ top: 10, height: 20, bottom: 30 });
     const tooltipEl = FakeElement();
 
-    window.pageYOffset = 100;
+    (window as any).pageYOffset = 100;
 
     tooltipEl.offsetParent = { __fakeStyles: { position: 'static' } };
-    document.documentElement.__fakeStyles = { position: 'static' };
+    (document.documentElement as any).__fakeStyles = { position: 'static' };
 
     const result = PlaceOffset.onBottom(tooltipEl, holderEl);
 
@@ -166,10 +166,10 @@ describe('PlaceOffset', () => {
     const holderEl = FakeElement({ top: 200, height: 20, bottom: 220 });
     const tooltipEl = FakeElement({ height: 120 });
 
-    window.pageYOffset = 300;
+    (window as any).pageYOffset = 300;
 
     tooltipEl.offsetParent = { __fakeStyles: { position: 'static' } };
-    document.documentElement.__fakeStyles = { position: 'static' };
+    (document.documentElement as any).__fakeStyles = { position: 'static' };
 
     const result = PlaceOffset.onBottom(tooltipEl, holderEl);
 
@@ -184,7 +184,7 @@ describe('Correct', () => {
 
   beforeAll(() => {
     Object.defineProperty(window, 'getComputedStyle', {
-      value: el => el.__fakeStyles || actualDescriptor.value(el),
+      value: (el: any) => el.__fakeStyles || actualDescriptor.value(el),
     });
   });
 
@@ -207,18 +207,18 @@ describe('Correct', () => {
   };
 
   afterEach(() => {
-    window.pageXOffset = realOffset.x;
-    window.pageYOffset = realOffset.y;
+    (window as any).pageXOffset = realOffset.x;
+    (window as any).pageYOffset = realOffset.y;
   });
 
   it('vertically', () => {
     let holderEl = FakeElement({ top: 80, bottom: 100 });
     let tooltipEl = FakeElement({ height: 120 });
 
-    window.pageYOffset = 300;
+    (window as any).pageYOffset = 300;
 
     tooltipEl.offsetParent = { __fakeStyles: { position: 'static' } };
-    document.documentElement.__fakeStyles = { position: 'static' };
+    (document.documentElement as any).__fakeStyles = { position: 'static' };
 
     let result = CorrectOffset.vertically(tooltipEl, holderEl, testArea);
 
@@ -228,7 +228,7 @@ describe('Correct', () => {
     holderEl = FakeElement({ top: 980, bottom: 990 });
     tooltipEl = FakeElement({ height: 200 });
 
-    window.pageYOffset = 0;
+    (window as any).pageYOffset = 0;
 
     result = CorrectOffset.vertically(tooltipEl, holderEl, testArea);
 
@@ -247,7 +247,7 @@ describe('Correct', () => {
     const tooltipEl = FakeElement({ height: 120 });
 
     tooltipEl.offsetParent = { __fakeStyles: { position: 'static' } };
-    document.documentElement.__fakeStyles = { position: 'static' };
+    (document.documentElement as any).__fakeStyles = { position: 'static' };
 
     const result = CorrectOffset.horizontally(tooltipEl, testArea);
 
@@ -264,7 +264,7 @@ describe('placeTooltip', () => {
       height: 1000,
       bottom: 1000,
       right: 1000,
-    });
+    } as any);
   });
 
   it('should place on right', () => {
@@ -307,8 +307,8 @@ describe('placeTooltip', () => {
     const holderEl = FakeElement();
     const tooltipEl = FakeElement();
 
-    placeTooltip(null, holderEl);
-    placeTooltip(tooltipEl, null);
+    placeTooltip(null as any, holderEl);
+    placeTooltip(tooltipEl, null as any);
   });
 });
 
@@ -321,7 +321,7 @@ describe('getOriginCorrection', () => {
 
   beforeAll(() => {
     Object.defineProperty(window, 'getComputedStyle', {
-      value: el => el.__fakeStyles || actualDescriptor.value(el),
+      value: (el: any) => el.__fakeStyles || actualDescriptor.value(el),
     });
   });
 
@@ -330,8 +330,8 @@ describe('getOriginCorrection', () => {
   });
 
   afterEach(() => {
-    window.pageXOffset = realOffset.x;
-    window.pageYOffset = realOffset.y;
+    (window as any).pageXOffset = realOffset.x;
+    (window as any).pageYOffset = realOffset.y;
   });
 
   it('should work without offsetParent', () => {
@@ -340,13 +340,13 @@ describe('getOriginCorrection', () => {
       parentElement: { __fakeStyles: { overflow: 'auto' } },
     };
 
-    document.body.__fakeStyles = { position: 'static' };
-    document.documentElement.__fakeStyles = { position: 'static' };
+    (document.body as any).__fakeStyles = { position: 'static' };
+    (document.documentElement as any).__fakeStyles = { position: 'static' };
 
-    window.pageXOffset = 100;
-    window.pageYOffset = 200;
+    (window as any).pageXOffset = 100;
+    (window as any).pageYOffset = 200;
 
-    expect(getOriginCorrection(testDiv)).toEqual({ x: 100, y: 200 });
+    expect(getOriginCorrection(testDiv as any)).toEqual({ x: 100, y: 200 });
   });
 
   it('should work with offsetParent that is equal to scrollParent', () => {
@@ -367,10 +367,10 @@ describe('getOriginCorrection', () => {
       parentElement: testParent,
     };
 
-    window.pageXOffset = 120;
-    window.pageYOffset = 230;
+    (window as any).pageXOffset = 120;
+    (window as any).pageYOffset = 230;
 
-    expect(getOriginCorrection(testDiv)).toEqual({ x: 70, y: 60 });
+    expect(getOriginCorrection(testDiv as any)).toEqual({ x: 70, y: 60 });
   });
 });
 

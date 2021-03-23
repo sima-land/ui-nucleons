@@ -32,7 +32,7 @@ export const PresetDefault = () => {
         value={value}
         label='Страна'
         items={testItems.filter(s => s.toLowerCase().includes(value.toLowerCase()))}
-        onChange={e => setValue(e.target.value)}
+        onChange={(e: any) => setValue(e.target.value)}
         onSelect={setValue}
         caption='Test caption'
       />
@@ -51,7 +51,7 @@ export const PresetFilledOnlyList = () => {
         label='Страна'
         placeholder='Начните вводить название'
         items={testItems.filter(s => s.toLowerCase().includes(value.toLowerCase()))}
-        onChange={e => setValue(e.target.value)}
+        onChange={(e: any) => setValue(e.target.value)}
         onSelect={setValue}
       />
     </>
@@ -71,7 +71,7 @@ export const Loading = () => {
         label='Страна'
         placeholder='Начните вводить название'
         items={testItems.filter(s => s.toLowerCase().includes(value.toLowerCase()))}
-        onChange={e => {
+        onChange={(e: any) => {
           setLoading(true);
           setValue(e.target.value);
 

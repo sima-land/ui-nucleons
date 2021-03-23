@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Box from '..';
+import Box, { Props } from '..';
 
 const testJustifyItems = [
   <Box padding={4} margin={4} key={1} color='additional-red'>First</Box>,
@@ -131,7 +131,7 @@ export const JustifyContent = () => (
 );
 
 export const AlignItems = () => {
-  const renderBox = alignItems => (
+  const renderBox = (alignItems: Props['alignItems']) => (
     <Box
       padding={2}
       display='flex'
@@ -176,7 +176,7 @@ export const Direction = () => (
 );
 
 export const FlexProp = () => {
-  const renderBox = flex => (
+  const renderBox = (flex: Props['flex']) => (
     <Box
       margin={4}
       padding={4}

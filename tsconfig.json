@@ -81,6 +81,5 @@
   "exclude": [
     "build",
     "node_modules",
-    "./src/**/__stories__/*"
   ]
 }

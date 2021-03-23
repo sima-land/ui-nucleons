@@ -83,7 +83,7 @@ const Item: React.FC<ItemProps> = ({
 
 Item.displayName = 'Grid.Item';
 
-interface GridComponent extends React.FC<Props> {
+export interface GridComponent extends React.FC<Props> {
   Item: typeof Item
 }
 

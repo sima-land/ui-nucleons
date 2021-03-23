@@ -31,14 +31,14 @@ export const Primary = () => (
   <>
     <h3>Inline</h3>
     {variants.map((props, index) => (
-      <Panel key={index} {...props} inline className={marginRight(4)}>
+      <Panel key={index} {...props} inline className={marginRight(4) as string}>
         Lorem ipsum
       </Panel>
     ))}
 
     <h3>Inline (with icon)</h3>
     {variants.map((props, index) => (
-      <Panel key={index} {...props} inline className={marginRight(4)} icon={InfoSVG}>
+      <Panel key={index} {...props} inline className={marginRight(4) as string} icon={InfoSVG}>
         Lorem ipsum
       </Panel>
     ))}
@@ -49,7 +49,7 @@ export const Primary = () => (
         key={index}
         {...props}
         inline
-        className={marginRight(4)}
+        className={marginRight(4) as string}
         icon={InfoSVG}
         html={markup}
       />
@@ -57,14 +57,14 @@ export const Primary = () => (
 
     <h3>Block</h3>
     {variants.map((props, index) => (
-      <Panel key={index} {...props} className={marginBottom(5)}>
+      <Panel key={index} {...props} className={marginBottom(5) as string}>
         {longText}
       </Panel>
     ))}
 
     <h3>Block (with icon)</h3>
     {variants.map((props, index) => (
-      <Panel key={index} {...props} className={marginBottom(5)} icon={InfoSVG}>
+      <Panel key={index} {...props} className={marginBottom(5) as string} icon={InfoSVG}>
         {longText}
       </Panel>
     ))}
@@ -74,7 +74,7 @@ export const Primary = () => (
       <Panel
         key={index}
         {...props}
-        className={marginBottom(5)}
+        className={marginBottom(5) as string}
         icon={InfoSVG}
         html={markup}
       />

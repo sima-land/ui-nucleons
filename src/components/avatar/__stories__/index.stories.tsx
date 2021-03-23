@@ -96,7 +96,7 @@ export const DifferentImages = () => (
 );
 
 export const DeferredImageURLChange = () => {
-  const [imageUrl, setImageUrl] = useState(null);
+  const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
 
   return (
     <>
