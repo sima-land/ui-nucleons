@@ -2,7 +2,7 @@ import React from 'react';
 import Draggable from '../draggable';
 
 export default {
-  title: 'Draggable',
+  title: 'service/Draggable',
   component: Draggable,
   parameters: {
     layout: 'padded',

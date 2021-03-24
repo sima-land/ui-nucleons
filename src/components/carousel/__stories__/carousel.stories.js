@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Carousel from '../index';
-import { items as testItems } from '../../gallery/items';
+import { items as testItems } from './items';
 import classnames from 'classnames/bind';
 import classes from './test-carousel.scss';
 
