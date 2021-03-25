@@ -11,11 +11,11 @@ import RightSmallSVG from './icons/16x16/arrow-right.svg';
 import DownSmallSVG from './icons/16x16/arrow-down.svg';
 import LeftSmallSVG from './icons/16x16/arrow-left.svg';
 
-type Size = 's' | 'l'
+type Size = 's' | 'l';
 
-type Direction = 'up' | 'right' | 'down' | 'left'
+type Direction = 'up' | 'right' | 'down' | 'left';
 
-type IconSet = Readonly<Record<Direction, React.FC<React.SVGProps<SVGSVGElement>>>>
+type IconSet = Readonly<Record<Direction, React.FC<React.SVGProps<SVGSVGElement>>>>;
 
 export interface Props extends Omit<JSX.IntrinsicElements['button'], 'size'> {
   size?: Size

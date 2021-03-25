@@ -14,7 +14,7 @@ import { makeInViewportObserverHOC } from '../../with-in-viewport-observer';
 type Props = {
   addObserve: (el: Element, c: Callback) => void
   onIntersection: Callback
-}
+};
 
 class TestProductPreviewsWidget extends React.Component<Props> {
   widgetRef = React.createRef();

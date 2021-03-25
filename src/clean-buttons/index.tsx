@@ -2,7 +2,7 @@ import React, { Children, cloneElement } from 'react';
 import classnames from 'classnames/bind';
 import classes from './clean-buttons.scss';
 
-type Size = 's' | 'm'
+type Size = 's' | 'm';
 
 interface CustomButtonProps {
   asLink?: boolean
@@ -11,7 +11,7 @@ interface CustomButtonProps {
 
 export type ButtonProps = CustomButtonProps
 & Omit<React.HTMLProps<HTMLAnchorElement>, 'size'>
-& Omit<React.HTMLProps<HTMLButtonElement>, 'size'>
+& Omit<React.HTMLProps<HTMLButtonElement>, 'size'>;
 
 export interface Props {
   children?: React.ReactElement<ButtonProps>[]

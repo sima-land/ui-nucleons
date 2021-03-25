@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import LoadingOverlay from '..';
 
 export default {
-  title: 'LoadingOverlay',
+  title: 'service/LoadingOverlay',
   component: LoadingOverlay,
   parameters: {
     layout: 'padded',

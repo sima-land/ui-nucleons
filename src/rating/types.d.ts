@@ -5,4 +5,4 @@ export type Classes = {
   emptyStar?: string
   halfStar?: string
   fullStar?: string
-}
+};

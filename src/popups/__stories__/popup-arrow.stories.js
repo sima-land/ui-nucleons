@@ -18,7 +18,7 @@ const titleStyle = {
   fontSize: '20px',
 };
 
-storiesOf('Popups/PopupArrow', module)
+storiesOf('deprecated/PopupArrow', module)
   .add('appearance with different props', () => (
     <div>
       <div style={containerStyles}>

@@ -52,21 +52,21 @@ const isAuto = eq('auto');
 
 // не по умолчанию так как проблемы с storybook: https://github.com/styleguidist/react-docgen-typescript/issues/334
 export class Carousel extends Component<Props, State> {
-  infinite: boolean
-  dragStartClient: IPoint
-  dragStartOffset: IPoint
-  currentIndex: number
-  containerRef: React.RefObject<HTMLDivElement>
-  wrapperRef: React.RefObject<HTMLDivElement>
-  timerId?: number
-  canAutoMove?: boolean
-  mounted?: boolean
+  infinite: boolean;
+  dragStartClient: IPoint;
+  dragStartOffset: IPoint;
+  currentIndex: number;
+  containerRef: React.RefObject<HTMLDivElement>;
+  wrapperRef: React.RefObject<HTMLDivElement>;
+  timerId?: number;
+  canAutoMove?: boolean;
+  mounted?: boolean;
 
-  offWindowResize: () => void
+  offWindowResize: () => void;
 
-  toggleDragTransition: Control['toggleTransition']
-  setDragOffset: Control['setOffset']
-  isGrabbed: Control['isGrabbed']
+  toggleDragTransition: Control['toggleTransition'];
+  setDragOffset: Control['setOffset'];
+  isGrabbed: Control['isGrabbed'];
 
   /**
    * Конструктор.

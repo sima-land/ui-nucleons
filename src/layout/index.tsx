@@ -2,12 +2,12 @@ import React, { forwardRef } from 'react';
 import classnames from 'classnames/bind';
 import classes from './layout.scss';
 
-type Breakpoint = 'mxs' | 'ms' | 'mm' | 'ml' | 'xs' | 's' | 'm' | 'l' | 'xl'
+type Breakpoint = 'mxs' | 'ms' | 'mm' | 'ml' | 'xs' | 's' | 'm' | 'l' | 'xl';
 
 type Props = {
   element?: string
   disabledOn?: Array<Breakpoint>
-} & React.HTMLProps<HTMLElement>
+} & React.HTMLProps<HTMLElement>;
 
 const cx = classnames.bind(classes);
 

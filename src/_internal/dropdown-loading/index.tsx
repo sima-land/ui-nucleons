@@ -2,7 +2,7 @@ import React from 'react';
 import { Spinner } from '../../spinner';
 import styles from './index.scss';
 
-type Props = Omit<React.HTMLProps<HTMLDivElement>, 'className'>
+type Props = Omit<React.HTMLProps<HTMLDivElement>, 'className'>;
 
 /**
  * Плашка состояния загрузки для Dropdown.

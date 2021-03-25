@@ -46,16 +46,16 @@ const getFraction = (start: number, end: number, value: number) => ((value - sta
 const getPercentage = (...args: Parameters<typeof getFraction>) => getFraction(...args) * 100;
 
 class Range extends Component<Props> {
-  containerRef: React.RefObject<HTMLElement | undefined>
-  rangeRef: React.RefObject<HTMLElement | undefined>
-  startThumbRef: React.RefObject<HTMLElement | undefined>
-  finishThumbRef: React.RefObject<HTMLElement | undefined>
-  start: Container<number>
-  finish: Container<number>
-  activeBounds: [number, number]
-  unsubscribers?: Array<() => void>
-  activeThumbEl?: HTMLElement
-  isGrabbed?: boolean
+  containerRef: React.RefObject<HTMLElement | undefined>;
+  rangeRef: React.RefObject<HTMLElement | undefined>;
+  startThumbRef: React.RefObject<HTMLElement | undefined>;
+  finishThumbRef: React.RefObject<HTMLElement | undefined>;
+  start: Container<number>;
+  finish: Container<number>;
+  activeBounds: [number, number];
+  unsubscribers?: Array<() => void>;
+  activeThumbEl?: HTMLElement;
+  isGrabbed?: boolean;
 
   constructor (props: Props) {
     const {

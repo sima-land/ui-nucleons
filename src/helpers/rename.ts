@@ -1,6 +1,6 @@
 import { curry, prop, assoc, omit } from 'lodash/fp';
 
-type ObjectKey = string | number | symbol
+type ObjectKey = string | number | symbol;
 
 /**
  * Переименовывает свойство, возвращая новый объект.

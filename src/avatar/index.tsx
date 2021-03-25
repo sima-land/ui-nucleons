@@ -21,7 +21,7 @@ export interface Props {
 
 const cx = classnames.bind(classes);
 
-type Size = 40 | 48 | 56 | 64 | 72 | 80 | 104
+type Size = 40 | 48 | 56 | 64 | 72 | 80 | 104;
 
 const SIZES: ReadonlyArray<number> = [40, 48, 56, 64, 72, 80, 104];
 

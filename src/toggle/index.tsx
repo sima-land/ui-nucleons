@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import classnames from 'classnames/bind';
 import styles from './toggle.scss';
 
-type InputProps = React.HTMLProps<HTMLInputElement>
+type InputProps = React.HTMLProps<HTMLInputElement>;
 
 export interface Props {
   checked?: InputProps['checked']

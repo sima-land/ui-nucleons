@@ -2,9 +2,9 @@ import React from 'react';
 import classnames from 'classnames/bind';
 import styles from './grid.scss';
 
-type Align = 'start' | 'center' | 'end'
+type Align = 'start' | 'center' | 'end';
 
-type Spacing = 0 | 16 | 32
+type Spacing = 0 | 16 | 32;
 
 export interface Props {
   spacing?: Spacing

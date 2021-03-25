@@ -12,7 +12,7 @@ import {
 } from '../styling/fonts';
 import { Token } from '../colors';
 
-type Align = 'left' | 'center' | 'right' | 'justify'
+type Align = 'left' | 'center' | 'right' | 'justify';
 
 export interface Props {
   children?: React.ReactNode

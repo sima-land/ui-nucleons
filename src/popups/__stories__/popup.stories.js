@@ -10,7 +10,7 @@ const childPadding = {
   padding: '20px',
 };
 
-storiesOf('Popups/Popup', module)
+storiesOf('deprecated/Popup', module)
   .add('default appearance', () => (
     <div style={popupWidth}>
       <Popup>

@@ -3,7 +3,7 @@ import { sample } from 'lodash';
 import { Avatar, Props as BaseProps } from '.';
 import { Token } from '../colors';
 
-export type Props = Omit<BaseProps, 'bgColor' | 'bgOpacity' | 'textColor'>
+export type Props = Omit<BaseProps, 'bgColor' | 'bgOpacity' | 'textColor'>;
 
 const COLORS: ReadonlyArray<Token> = [
   'additional-deep-red',

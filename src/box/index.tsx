@@ -6,7 +6,7 @@ import { bgColor as getBgColorClass } from '../styling/colors';
 import { COLORS, Token } from '../colors';
 
 type CustomElement = { className: string, children?: React.ReactNode, style?: React.CSSProperties }
-& React.RefAttributes<any>
+& React.RefAttributes<any>;
 
 export interface Props {
   alignItems?: 'start'|'end'|'center'|'baseline'|'stretch'
