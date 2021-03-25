@@ -15,3 +15,26 @@
     flex-direction: column;
   }
 }
+
+.control {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  &:not(.vertical) {
+    top: 50%;
+    &.backward {
+      left: 0;
+    }
+    &.forward {
+      left: 100%;
+    }
+  }
+  &.vertical {
+    left: 50%;
+    &.backward {
+      top: 0;
+    }
+    &.forward {
+      top: 100%;
+    }
+  }
+}

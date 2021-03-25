@@ -16,8 +16,6 @@ export default {
 
 export const Primary = () => (
   <>
-    <h1>Кнопка-стрелка</h1>
-    <p>Используется в галереях и слайдерах</p>
     {sizes.map(size => (
       <div key={size} style={{ paddingTop: 16 }}>
         <h3>Size: {size}</h3>

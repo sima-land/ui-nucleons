@@ -1,7 +1,7 @@
 /**
  * Возвращает offsetParent с учетом того, что html может иметь или не иметь position !== 'static'.
- * @param {Element} element Элемент.
- * @return {Element|null} Правильный offsetParent.
+ * @param element Элемент.
+ * @return Правильный offsetParent.
  */
 const findOffsetParent = (element: HTMLElement) => {
   let parent: Element | null = element.offsetParent || document.body;

@@ -57,6 +57,7 @@ const ArrowButton: React.FC<Props> = ({
 
   return (
     <button
+      type='button'
       {...buttonProps}
       className={cx(
         'arrow-button',
