@@ -192,7 +192,7 @@ export const getOriginCorrection = (element: HTMLElement): { x: number, y: numbe
   const correction = { x: window.pageXOffset, y: window.pageYOffset };
 
   if (offsetParent) {
-    const parentRect = boundsOf(offsetParent as HTMLElement) as DOMRect;
+    const parentRect = boundsOf(offsetParent);
     const parentStyle = getComputedStyle(offsetParent);
 
     correction.x = -parentRect.left;

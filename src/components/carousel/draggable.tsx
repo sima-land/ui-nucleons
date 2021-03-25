@@ -8,9 +8,9 @@ import classes from './draggable.scss';
 import on from '../helpers/on';
 
 export interface Control {
-  isGrabbed?: () => boolean
-  setOffset?: typeof Draggable.prototype.setOffset
-  toggleTransition?: typeof Draggable.prototype.toggleTransition
+  isGrabbed: () => boolean
+  setOffset: typeof Draggable.prototype.setOffset
+  toggleTransition: typeof Draggable.prototype.toggleTransition
 }
 
 export type Delta2d = { dx: number, dy: number }

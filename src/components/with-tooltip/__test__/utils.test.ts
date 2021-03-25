@@ -7,24 +7,43 @@ import {
   placeTooltip,
 } from '../utils';
 
-const FakeElement = ({
-  top = 0,
-  left = 0,
-  width = 0,
-  height = 0,
-  bottom = 0,
-  right = 0,
-} = {}): any => ({
-  style: {},
-  getBoundingClientRect: () => ({
-    top,
-    left,
-    width,
-    height,
-    bottom,
-    right,
+const FakeElement = {
+  create: (data: any = {}) => {
+    const el = document.createElement('div');
+
+    [
+      'offsetParent',
+      'parentElement',
+      'scrollLeft',
+      'scrollWidth',
+      'scrollTop',
+      'scrollHeight',
+    ].forEach(n => Object.defineProperty(el, n, {
+      value: undefined,
+      configurable: true,
+      writable: true,
+    }));
+
+    Object.assign(el, {
+      style: {},
+      ...data,
+    });
+
+    return el as any;
+  },
+
+  withRect: (rect: any) => FakeElement.create({
+    getBoundingClientRect: () => ({
+      top: 0,
+      left: 0,
+      bottom: 0,
+      right: 0,
+      width: 0,
+      height: 0,
+      ...rect,
+    }),
   }),
-});
+};
 
 describe('CanPlace', () => {
   const testArea = {
@@ -37,49 +56,49 @@ describe('CanPlace', () => {
   };
 
   it('onRight', () => {
-    let holderEl = FakeElement({ right: 10 }) as any;
-    let tooltipEl = FakeElement({ width: 100 }) as any;
+    let holderEl = FakeElement.withRect({ right: 10 }) as any;
+    let tooltipEl = FakeElement.withRect({ width: 100 }) as any;
 
     expect(CanPlace.onRight(holderEl, tooltipEl, testArea)).toBe(true);
 
-    holderEl = FakeElement({ right: 10 });
-    tooltipEl = FakeElement({ width: 1200 });
+    holderEl = FakeElement.withRect({ right: 10 });
+    tooltipEl = FakeElement.withRect({ width: 1200 });
 
     expect(CanPlace.onRight(holderEl, tooltipEl, testArea)).toBe(false);
   });
 
   it('onLeft', () => {
-    let holderEl = FakeElement({ left: 400 }) as any;
-    let tooltipEl = FakeElement({ width: 100 }) as any;
+    let holderEl = FakeElement.withRect({ left: 400 }) as any;
+    let tooltipEl = FakeElement.withRect({ width: 100 }) as any;
 
     expect(CanPlace.onLeft(holderEl, tooltipEl, testArea)).toBe(true);
 
-    holderEl = FakeElement({ left: 100 });
-    tooltipEl = FakeElement({ width: 100 });
+    holderEl = FakeElement.withRect({ left: 100 });
+    tooltipEl = FakeElement.withRect({ width: 100 });
 
     expect(CanPlace.onLeft(holderEl, tooltipEl, testArea)).toBe(false);
   });
 
   it('onBottom', () => {
-    let holderEl = FakeElement({ bottom: 100 }) as any;
-    let tooltipEl = FakeElement({ height: 100 }) as any;
+    let holderEl = FakeElement.withRect({ bottom: 100 }) as any;
+    let tooltipEl = FakeElement.withRect({ height: 100 }) as any;
 
     expect(CanPlace.onBottom(holderEl, tooltipEl, testArea)).toBe(true);
 
-    holderEl = FakeElement({ bottom: 900 });
-    tooltipEl = FakeElement({ height: 100 });
+    holderEl = FakeElement.withRect({ bottom: 900 });
+    tooltipEl = FakeElement.withRect({ height: 100 });
 
     expect(CanPlace.onBottom(holderEl, tooltipEl, testArea)).toBe(false);
   });
 
   it('onTop', () => {
-    let holderEl = FakeElement({ bottom: 500 }) as any;
-    let tooltipEl = FakeElement({ height: 100 }) as any;
+    let holderEl = FakeElement.withRect({ bottom: 500 }) as any;
+    let tooltipEl = FakeElement.withRect({ height: 100 }) as any;
 
     expect(CanPlace.onTop(holderEl, tooltipEl, testArea)).toBe(true);
 
-    holderEl = FakeElement({ bottom: 100 }) as any;
-    tooltipEl = FakeElement({ height: 100 }) as any;
+    holderEl = FakeElement.withRect({ bottom: 100 }) as any;
+    tooltipEl = FakeElement.withRect({ height: 100 }) as any;
 
     expect(CanPlace.onTop(holderEl, tooltipEl, testArea)).toBe(false);
   });
@@ -108,21 +127,19 @@ describe('PlaceOffset', () => {
   });
 
   it('reset', () => {
-    const fakeElement = { style: {} };
+    const fakeElement = FakeElement.create();
 
     PlaceOffset.reset(fakeElement as any);
 
-    expect(fakeElement.style).toStrictEqual({
-      top: '',
-      left: '',
-      bottom: '',
-      right: '',
-    });
+    expect(fakeElement.style.top).toBe('');
+    expect(fakeElement.style.left).toBe('');
+    expect(fakeElement.style.bottom).toBe('');
+    expect(fakeElement.style.right).toBe('');
   });
 
   it('onRight', () => {
-    const holderEl = FakeElement({ left: 40, width: 80, right: 120 }) as any;
-    const tooltipEl = FakeElement() as any;
+    const holderEl = FakeElement.withRect({ left: 40, width: 80, right: 120 }) as any;
+    const tooltipEl = FakeElement.create() as any;
 
     (window as any).pageXOffset = 200;
 
@@ -135,8 +152,8 @@ describe('PlaceOffset', () => {
   });
 
   it('onLeft', () => {
-    const holderEl = FakeElement({ left: 40, width: 80 });
-    const tooltipEl = FakeElement();
+    const holderEl = FakeElement.withRect({ left: 40, width: 80 });
+    const tooltipEl = FakeElement.create();
 
     (window as any).pageXOffset = 400;
 
@@ -149,8 +166,8 @@ describe('PlaceOffset', () => {
   });
 
   it('onBottom', () => {
-    const holderEl = FakeElement({ top: 10, height: 20, bottom: 30 });
-    const tooltipEl = FakeElement();
+    const holderEl = FakeElement.withRect({ top: 10, height: 20, bottom: 30 });
+    const tooltipEl = FakeElement.create();
 
     (window as any).pageYOffset = 100;
 
@@ -163,8 +180,8 @@ describe('PlaceOffset', () => {
   });
 
   it('onTop', () => {
-    const holderEl = FakeElement({ top: 200, height: 20, bottom: 220 });
-    const tooltipEl = FakeElement({ height: 120 });
+    const holderEl = FakeElement.withRect({ top: 200, height: 20, bottom: 220 });
+    const tooltipEl = FakeElement.withRect({ height: 120 });
 
     (window as any).pageYOffset = 300;
 
@@ -212,8 +229,8 @@ describe('Correct', () => {
   });
 
   it('vertically', () => {
-    let holderEl = FakeElement({ top: 80, bottom: 100 });
-    let tooltipEl = FakeElement({ height: 120 });
+    let holderEl = FakeElement.withRect({ top: 80, bottom: 100 });
+    let tooltipEl = FakeElement.withRect({ height: 120 });
 
     (window as any).pageYOffset = 300;
 
@@ -225,8 +242,8 @@ describe('Correct', () => {
     expect(result).toEqual(380);
 
     // second case
-    holderEl = FakeElement({ top: 980, bottom: 990 });
-    tooltipEl = FakeElement({ height: 200 });
+    holderEl = FakeElement.withRect({ top: 980, bottom: 990 });
+    tooltipEl = FakeElement.withRect({ height: 200 });
 
     (window as any).pageYOffset = 0;
 
@@ -235,8 +252,8 @@ describe('Correct', () => {
     expect(result).toEqual(790);
 
     // third case
-    holderEl = FakeElement({ top: 10, bottom: 990 });
-    tooltipEl = FakeElement({ height: 1000 });
+    holderEl = FakeElement.withRect({ top: 10, bottom: 990 });
+    tooltipEl = FakeElement.withRect({ height: 1000 });
 
     result = CorrectOffset.vertically(tooltipEl, holderEl, testArea);
 
@@ -244,7 +261,7 @@ describe('Correct', () => {
   });
 
   it('horizontally', () => {
-    const tooltipEl = FakeElement({ height: 120 });
+    const tooltipEl = FakeElement.withRect({ height: 120 });
 
     tooltipEl.offsetParent = { __fakeStyles: { position: 'static' } };
     (document.documentElement as any).__fakeStyles = { position: 'static' };
@@ -268,8 +285,8 @@ describe('placeTooltip', () => {
   });
 
   it('should place on right', () => {
-    const holderEl = FakeElement({ width: 10, height: 980, left: 10, right: 20, top: 10, bottom: 990 });
-    const tooltipEl = FakeElement({ width: 100, height: 100 });
+    const holderEl = FakeElement.withRect({ width: 10, height: 980, left: 10, right: 20, top: 10, bottom: 990 });
+    const tooltipEl = FakeElement.withRect({ width: 100, height: 100 });
 
     placeTooltip(tooltipEl, holderEl);
 
@@ -277,8 +294,8 @@ describe('placeTooltip', () => {
   });
 
   it('should place on left', () => {
-    const holderEl = FakeElement({ width: 10, height: 980, left: 980, right: 990, top: 10, bottom: 990 });
-    const tooltipEl = FakeElement({ width: 100, height: 100 });
+    const holderEl = FakeElement.withRect({ width: 10, height: 980, left: 980, right: 990, top: 10, bottom: 990 });
+    const tooltipEl = FakeElement.withRect({ width: 100, height: 100 });
 
     placeTooltip(tooltipEl, holderEl);
 
@@ -286,8 +303,8 @@ describe('placeTooltip', () => {
   });
 
   it('should place on bottom', () => {
-    const holderEl = FakeElement({ width: 980, height: 10, left: 10, right: 990, top: 10, bottom: 20 });
-    const tooltipEl = FakeElement({ height: 100, width: 100 });
+    const holderEl = FakeElement.withRect({ width: 980, height: 10, left: 10, right: 990, top: 10, bottom: 20 });
+    const tooltipEl = FakeElement.withRect({ height: 100, width: 100 });
 
     placeTooltip(tooltipEl, holderEl);
 
@@ -295,8 +312,8 @@ describe('placeTooltip', () => {
   });
 
   it('should place on top', () => {
-    const holderEl = FakeElement({ width: 980, height: 10, left: 10, right: 990, top: 980, bottom: 990 });
-    const tooltipEl = FakeElement({ height: 100, width: 100 });
+    const holderEl = FakeElement.withRect({ width: 980, height: 10, left: 10, right: 990, top: 980, bottom: 990 });
+    const tooltipEl = FakeElement.withRect({ height: 100, width: 100 });
 
     placeTooltip(tooltipEl, holderEl);
 
@@ -304,8 +321,8 @@ describe('placeTooltip', () => {
   });
 
   it('should do nothing when tooltip or holder is not defined', () => {
-    const holderEl = FakeElement();
-    const tooltipEl = FakeElement();
+    const holderEl = FakeElement.create();
+    const tooltipEl = FakeElement.create();
 
     placeTooltip(null as any, holderEl);
     placeTooltip(tooltipEl, null as any);
@@ -350,7 +367,7 @@ describe('getOriginCorrection', () => {
   });
 
   it('should work with offsetParent that is equal to scrollParent', () => {
-    const testParent = {
+    const testParent = FakeElement.create({
       getBoundingClientRect: () => ({ top: 200, left: 200 }),
       __fakeStyles: {
         position: 'relative',
@@ -360,12 +377,12 @@ describe('getOriginCorrection', () => {
       },
       scrollTop: 300,
       scrollLeft: 300,
-    };
+    });
 
-    const testDiv = {
+    const testDiv = FakeElement.create({
       offsetParent: testParent,
       parentElement: testParent,
-    };
+    });
 
     (window as any).pageXOffset = 120;
     (window as any).pageYOffset = 230;
@@ -376,7 +393,7 @@ describe('getOriginCorrection', () => {
 
 describe('getInnerRect', () => {
   it('should correct when scrollWidth/scrollHeight greater than bounds', () => {
-    const testDiv = FakeElement({
+    const testDiv = FakeElement.withRect({
       left: 10,
       width: 100,
       right: 110,

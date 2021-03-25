@@ -3,7 +3,7 @@
  * @param list Список.
  * @return Максимальный индекс.
  */
-const maxIndexOf = (list?: Array<any> | null) => {
+const maxIndexOf = (list?: ArrayLike<any> | null) => {
   let maxIndex = -1;
 
   if (list) {
