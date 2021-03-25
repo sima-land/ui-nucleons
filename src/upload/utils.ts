@@ -3,7 +3,7 @@ import withPrevent from '../helpers/with-prevent';
 
 type DnDProps<T> = {
   onDrop: React.DragEventHandler<T>
-}
+};
 
 type DnDResult<T> = {
   active: boolean
@@ -13,7 +13,7 @@ type DnDResult<T> = {
     onDragLeave: React.DragEventHandler<T>
     onDrop: React.DragEventHandler<T>
   }
-}
+};
 
 /**
  * Хук обработки drag-n-drop событий.

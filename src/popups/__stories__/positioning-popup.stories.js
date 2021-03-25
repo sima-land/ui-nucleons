@@ -8,7 +8,7 @@ const childStyles = {
   width: 200,
 };
 
-storiesOf('Popups/PositioningPopup', module)
+storiesOf('deprecated/PositioningPopup', module)
   .add('default appearance', () => (
     <PositioningPopupDemo>
       <p style={childStyles}>I am positioning popup. I am very smart.

@@ -6,7 +6,7 @@ interface ObserverContainer {
   observer: IntersectionObserver
 }
 
-export type Callback = (target: HTMLElement) => void
+export type Callback = (target: HTMLElement) => void;
 
 /**
  * Вызывает onIntersection у подписанного компонента при появлении его в области видимости.

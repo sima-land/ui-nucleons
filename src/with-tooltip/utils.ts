@@ -11,7 +11,7 @@ const SPACES = {
 
 const rectKeys = ['top', 'left', 'bottom', 'right', 'width', 'height'] as const;
 
-type DOMRectLike = Record<(typeof rectKeys)[number], number>
+type DOMRectLike = Record<(typeof rectKeys)[number], number>;
 
 /**
  * Преобразует css-значение размера в число.
@@ -27,7 +27,7 @@ const asNumber = (cssValue: string) => parseFloat(cssValue.replace(/[A-z]/g, '')
  */
 const sum = (...numbers: number[]) => numbers.reduce((a, b) => a + b);
 
-type CanPlaceFn = (holder: HTMLElement, tooltipEl: HTMLElement, area: DOMRectLike) => boolean
+type CanPlaceFn = (holder: HTMLElement, tooltipEl: HTMLElement, area: DOMRectLike) => boolean;
 
 export const CanPlace: Record<'onRight' | 'onLeft' | 'onBottom' | 'onTop', CanPlaceFn> = {
   onRight: (

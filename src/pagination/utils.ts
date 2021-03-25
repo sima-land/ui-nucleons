@@ -7,7 +7,7 @@ interface IPageButton {
   content: string | number
 }
 
-type State = { current: number, range: number, total: number }
+type State = { current: number, range: number, total: number };
 
 export const cx = classnames.bind(classes);
 

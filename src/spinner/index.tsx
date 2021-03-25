@@ -4,9 +4,9 @@ import classnames from 'classnames/bind';
 import { COLORS } from '../colors';
 import classes from './spinner.scss';
 
-type Color = 'brand-blue' | 'white'
+type Color = 'brand-blue' | 'white';
 
-type Size = 'small' | 'medium' | 'large'
+type Size = 'small' | 'medium' | 'large';
 
 export interface Props {
   size?: Size

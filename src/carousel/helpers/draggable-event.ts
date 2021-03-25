@@ -9,9 +9,9 @@ interface Data {
  * Нестандартное событие перетаскивания.
  */
 export default class DraggableEvent implements Data {
-  prevented: boolean
-  offset: IPoint
-  client: IPoint
+  prevented: boolean;
+  offset: IPoint;
+  client: IPoint;
 
   /**
    * Конструктор.

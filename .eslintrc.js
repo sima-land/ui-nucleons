@@ -34,6 +34,8 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
       ],
       rules: {
+        semi: 'off',
+        '@typescript-eslint/semi': ['error'],
         indent: 'off',
         '@typescript-eslint/indent': [
           'error',

@@ -7,17 +7,17 @@ import classnames from 'classnames/bind';
 import styles from './text-field.scss';
 import { marginTop } from '../styling/sizes';
 
-type Variant = 'desktop' | 'mobile'
+type Variant = 'desktop' | 'mobile';
 
-export type DesktopSize = 'xs' | 's' | 'l'
+export type DesktopSize = 'xs' | 's' | 'l';
 
 type Classes = {
   root?: string
   baseInput?: string
   blockFocused?: string
-}
+};
 
-type IgnoredInputProps = 'size' | 'onClick' | 'onInput' | 'onChange' | 'onKeyDown' | 'onKeyUp'
+type IgnoredInputProps = 'size' | 'onClick' | 'onInput' | 'onChange' | 'onKeyDown' | 'onKeyUp';
 
 export interface Props extends Omit<React.HTMLProps<HTMLInputElement>, IgnoredInputProps> {
   caption?: React.ReactNode

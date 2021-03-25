@@ -13,9 +13,9 @@ export interface Control {
   toggleTransition: typeof Draggable.prototype.toggleTransition
 }
 
-export type Delta2d = { dx: number, dy: number }
+export type Delta2d = { dx: number, dy: number };
 
-export type DraggableEventHandler = (e: DraggableEvent) => void
+export type DraggableEventHandler = (e: DraggableEvent) => void;
 
 export interface Props {
   axis?: 'x' | 'y'
@@ -28,7 +28,7 @@ export interface Props {
   containerProps?: React.HTMLProps<HTMLDivElement>
 }
 
-type Cb = () => void
+type Cb = () => void;
 
 const cx = classnames.bind(classes);
 
@@ -41,13 +41,13 @@ const EVENT_NAMES = {
  * Компонент области, которую можно прокручивать перетаскиванием.
  */
 export default class Draggable extends Component<Props> {
-  isGrabbed: boolean
-  hasTransition: boolean
-  needPreventClick: boolean
-  currentOffset: IPoint
-  clientPosition: IPoint
-  draggableRef: React.RefObject<HTMLDivElement>
-  offList: Array<Cb>
+  isGrabbed: boolean;
+  hasTransition: boolean;
+  needPreventClick: boolean;
+  currentOffset: IPoint;
+  clientPosition: IPoint;
+  draggableRef: React.RefObject<HTMLDivElement>;
+  offList: Array<Cb>;
 
   /**
    * Конструктор компонента области, которую можно прокручивать перетаскиванием.

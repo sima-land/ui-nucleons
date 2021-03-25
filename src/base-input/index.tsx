@@ -21,7 +21,7 @@ interface CustomProps {
   style?: Styles
 }
 
-export type Props = CustomProps & React.HTMLProps<HTMLTextAreaElement> & React.HTMLProps<HTMLInputElement>
+export type Props = CustomProps & React.HTMLProps<HTMLTextAreaElement> & React.HTMLProps<HTMLInputElement>;
 
 /**
  * Компонент поля ввода.

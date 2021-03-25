@@ -3,7 +3,7 @@ import classnames from 'classnames/bind';
 import classes from './field-grid.scss';
 import { Props as TextFieldProps } from '../text-field';
 
-type ItOrArray<T> = T[] | T
+type ItOrArray<T> = T[] | T;
 
 type CellSize = 'full' | 'half' | 'third';
 
@@ -14,12 +14,12 @@ interface CommonCellProps {
 
 type OnlyOneRequired<T, K extends keyof T = keyof T> = {
   [key in K]?: Required<Pick<T, key>> & Partial<Record<Exclude<K, key>, undefined>>
-}[K]
+}[K];
 
 export type CellProps = CommonCellProps & OnlyOneRequired<{
   field: React.ReactElement<Pick<TextFieldProps, 'rounds' | 'caption' | 'classes' | 'className'>>,
   renderField: (props: Pick<TextFieldProps, 'rounds' | 'caption'>) => React.ReactNode
-}>
+}>;
 
 export interface RowProps {
   isFirst?: boolean

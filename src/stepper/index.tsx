@@ -4,7 +4,7 @@ import MinusSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/minus';
 import styles from './stepper.scss';
 import classnames from 'classnames/bind';
 
-type Size = 's' | 'm'
+type Size = 's' | 'm';
 
 export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   canAdd?: boolean

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
 import CheckboxField from '../checkbox-field';
 
-storiesOf('CheckboxField', module)
+storiesOf('deprecated/CheckboxField', module)
   .add('Variants', () => (
     <Fragment>
       <h3>Just with label</h3>

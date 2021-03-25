@@ -10,12 +10,12 @@ import CrossSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/cross';
 import classes from './with-tooltip.scss';
 
 // @todo почему то бросает ошибку при keyof JSX.IntrinsicElements
-type ElementName = 'div' | 'span' | 'main' | 'section' | 'article' | 'aside'
+type ElementName = 'div' | 'span' | 'main' | 'section' | 'article' | 'aside';
 
 type DismissCallback = (
   e: React.MouseEvent<SVGSVGElement> | MouseEvent,
   data: { byHolder: boolean }
-) => void
+) => void;
 
 interface TooltipProps {
   inline?: boolean
