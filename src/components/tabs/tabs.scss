@@ -1,6 +1,6 @@
 @use '../colors';
 
-.tabs-list {
+.root {
   list-style-type: none;
   user-select: none;
   display: flex;
@@ -21,7 +21,7 @@
       width: 100%;
     }
   }
-  &.type-text {
+  &.view-clean {
     height: 32px;
     .tab-item {
       color: colors.$gray38;
@@ -62,7 +62,7 @@
       }
     }
   }
-  &.type-round {
+  &.view-round {
     height: 40px;
     .tab-item {
       color: colors.$gray87;
