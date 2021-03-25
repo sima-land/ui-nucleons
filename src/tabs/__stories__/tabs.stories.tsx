@@ -1,3 +1,4 @@
+import { Story } from '@storybook/react';
 import React from 'react';
 import Tabs from '..';
 
@@ -8,7 +9,7 @@ const items = [
   { name: 'Disabled', disabled: true },
 ];
 
-const Template = props => (
+const Template: Story<any> = props => (
   <>
     <p>Базовый вид</p>
     <Tabs {...props} />
@@ -43,7 +44,7 @@ export const Primary = Template.bind(null);
 
 Primary.args = {
   items,
-  getItemName: ({ name }) => name,
+  getItemName: ({ name }: { name: any }) => name,
 };
 
 export const RoundView = Template.bind(null);

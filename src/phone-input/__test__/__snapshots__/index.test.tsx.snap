@@ -20,7 +20,7 @@ exports[`<PhoneInput /> Other: should render just text field with able to input 
           <img
             alt=""
             height={24}
-            src="/src/components/phone-input/images/other.png"
+            src="/src/phone-input/images/other.png"
             width={24}
           />
           <DownSVG
@@ -92,7 +92,7 @@ exports[`<PhoneInput /> Other: should render just text field with able to input 
                 <img
                   alt=""
                   height={24}
-                  src="/src/components/phone-input/images/other.png"
+                  src="/src/phone-input/images/other.png"
                   width={24}
                 />
                 <DownSVG
@@ -139,7 +139,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
           <img
             alt=""
             height={24}
-            src="/src/components/phone-input/images/russia.png"
+            src="/src/phone-input/images/russia.png"
             width={24}
           />
           <DownSVG
@@ -165,7 +165,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
             <img
               alt=""
               height={24}
-              src="/src/components/phone-input/images/russia.png"
+              src="/src/phone-input/images/russia.png"
               width={24}
             />
             <DownSVG
@@ -261,7 +261,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
                   <img
                     alt=""
                     height={24}
-                    src="/src/components/phone-input/images/russia.png"
+                    src="/src/phone-input/images/russia.png"
                     width={24}
                   />
                   <DownSVG
