@@ -14,11 +14,6 @@ $sizes: (
 @each $size in $sizes {
   .size-#{$size} {
     font-size: #{$size}px;
-
-    // автоматически устанавливаем нужный font-family по гайдам дизайн-системы
-    @if $size >= 20 {
-      font-family: SF Pro Display, 'Open Sans', sans-serif; // временные fallback'и для миграции с Open Sans
-    }
   }
   .line-height-#{$size} {
     line-height: #{$size}px;
