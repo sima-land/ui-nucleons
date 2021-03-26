@@ -18,6 +18,8 @@ const Template: Story<Props> = props => {
 
       {opened && (
         <Modal
+          withLayer
+
           onClose={() => toggleModal(false)}
 
           children={(

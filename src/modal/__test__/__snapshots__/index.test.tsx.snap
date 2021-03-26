@@ -375,3 +375,66 @@ exports[`<Modal /> should render different sizes properly 5`] = `
   </div>
 </Modal>
 `;
+
+exports[`<Modal /> should renders in layer 1`] = `
+<Modal
+  withLayer={true}
+>
+  <Layer>
+    <Portal
+      containerInfo={
+        <div>
+          <div
+            class="overlay"
+            data-testid="modal:overlay"
+          >
+            <div
+              class="modal size-m shadow-z4"
+              data-testid="modal"
+            >
+              <div
+                class="modal-header size-s header"
+              >
+                <div
+                  class="main-section"
+                >
+                  <div
+                    class="title ellipsis"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <div
+        className="overlay"
+        data-testid="modal:overlay"
+      >
+        <div
+          className="modal size-m shadow-z4"
+          data-testid="modal"
+        >
+          <TopBar
+            className="header"
+            size="s"
+          >
+            <div
+              className="modal-header size-s header"
+            >
+              <div
+                className="main-section"
+              >
+                <div
+                  className="title ellipsis"
+                />
+              </div>
+            </div>
+          </TopBar>
+        </div>
+      </div>
+    </Portal>
+  </Layer>
+</Modal>
+`;
