@@ -10,7 +10,7 @@ interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
 
 export interface Props {
   className?: string,
-  size?: 's' | 'm' | 'l'
+  size?: 's' | 'm'
   title?: string
   subtitle?: string
   buttonsProps?: {

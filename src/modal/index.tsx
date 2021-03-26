@@ -4,9 +4,14 @@ import TopBar, { Props as TopBarProps } from '../top-bar';
 import { useCloseHandler } from './utils';
 import classnames from 'classnames/bind';
 import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
+import { BoxShadow } from '../styling/shadows';
+import { InnerBorder } from '../styling/borders';
 import styles from './modal.scss';
 
+type Size = 's' | 'm' | 'l' | 'xl' | 'fullscreen';
+
 export interface Props {
+  size?: Size
   children?: React.ReactNode
   footer?: React.ReactNode
   onClose?: () => void
@@ -18,7 +23,6 @@ export interface Props {
   withDivideFooter?: boolean
   withDivideTopBar?: boolean
   withScrollDisable?: boolean
-  withTopBar?: boolean
   'data-testid'?: string
 }
 
@@ -42,6 +46,7 @@ const cx = classnames.bind(styles);
  * @return Элемент.
  */
 const Modal: React.FC<Props> = ({
+  size = 'm',
   children,
   footer,
   onClose,
@@ -53,7 +58,6 @@ const Modal: React.FC<Props> = ({
   withDivideFooter = true,
   withDivideTopBar = false,
   withScrollDisable = true,
-  withTopBar = true,
   'data-testid': dataTestId = 'modal',
 }) => {
   const rootRef = useRef<HTMLDivElement | null>(null);
@@ -70,6 +74,8 @@ const Modal: React.FC<Props> = ({
     };
   }, [withScrollDisable]);
 
+  const fullscreen = size === 'fullscreen';
+
   return (
     <div
       ref={rootRef}
@@ -77,32 +83,31 @@ const Modal: React.FC<Props> = ({
       data-testid='modal:overlay'
       {...onClose && useCloseHandler(onClose)}
     >
-      <div className={cx('modal')} data-testid={dataTestId}>
-        {withTopBar && (
-          <TopBar
-            title={title}
-            subtitle={subtitle}
-            buttonsProps={
-              withCloseButton
-                ? {
-                  end: {
-                    'data-testid': 'modal:close',
-                    onClick: onClose,
-                    icon: <CrossSVG className={cx('cursor-pointer')} />,
-                  },
-                  ...topBarProps?.buttonsProps,
-                }
-                : undefined
-            }
-            {...topBarProps}
-            className={cx('header', withDivideTopBar && 'divided')}
-          />
-        )}
+      <div className={cx('modal', `size-${size}`, !fullscreen && BoxShadow.z4)} data-testid={dataTestId}>
+        <TopBar
+          title={title}
+          subtitle={subtitle}
+          buttonsProps={
+            withCloseButton
+              ? {
+                end: {
+                  'data-testid': 'modal:close',
+                  onClick: onClose,
+                  icon: <CrossSVG className={cx('cursor-pointer')} />,
+                },
+                ...topBarProps?.buttonsProps,
+              }
+              : undefined
+          }
+          {...topBarProps}
+          size={fullscreen ? 'm' : 's'}
+          className={cx('header', withDivideTopBar && InnerBorder.bottom)}
+        />
 
         {children}
 
         {Boolean(footer) && (
-          <div className={cx('footer', withDivideFooter && 'divided')}>
+          <div className={cx('footer', withDivideFooter && InnerBorder.top)}>
             {footer}
           </div>
         )}

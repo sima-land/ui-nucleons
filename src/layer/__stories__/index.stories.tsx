@@ -26,7 +26,7 @@ const styles: Record<string, React.CSSProperties> = {
 };
 
 export default {
-  title: 'Layer',
+  title: 'service/Layer',
   component: Layer,
   parameters: {
     layout: 'padded',
