@@ -7,14 +7,15 @@ exports[`<Modal /> renders correct without close button and customClasses 1`] = 
     data-testid="modal:overlay"
   >
     <div
-      className="modal"
+      className="modal size-m shadow-z4"
       data-testid="modal"
     >
       <TopBar
         className="header"
+        size="s"
       >
         <div
-          className="modal-header size-m header"
+          className="modal-header size-s header"
         >
           <div
             className="main-section"
@@ -57,7 +58,7 @@ exports[`<Modal /> should handle extended props 1`] = `
     onMouseUp={[Function]}
   >
     <div
-      className="modal"
+      className="modal size-m shadow-z4"
       data-testid="modal"
     >
       <TopBar
@@ -72,13 +73,13 @@ exports[`<Modal /> should handle extended props 1`] = `
             },
           }
         }
-        className="header divided"
-        size="m"
+        className="header inner-border-bottom"
+        size="s"
         subtitle="Subtitle"
         title="Title"
       >
         <div
-          className="modal-header size-m header divided"
+          className="modal-header size-s header inner-border-bottom"
         >
           <div
             className="icon-button"
@@ -133,7 +134,7 @@ exports[`<Modal /> should handle extended props 1`] = `
         </div>
       </TopBar>
       <div
-        className="footer divided"
+        className="footer inner-border-top"
       >
         <button>
           Hello
@@ -170,17 +171,17 @@ exports[`<Modal /> should handle extended props 2`] = `
     onMouseUp={[Function]}
   >
     <div
-      className="modal"
+      className="modal size-m shadow-z4"
       data-testid="modal"
     >
       <TopBar
-        className="header divided"
-        size="m"
+        className="header inner-border-bottom"
+        size="s"
         subtitle="Subtitle"
         title="Title"
       >
         <div
-          className="modal-header size-m header divided"
+          className="modal-header size-s header inner-border-bottom"
         >
           <div
             className="main-section"
@@ -199,12 +200,177 @@ exports[`<Modal /> should handle extended props 2`] = `
         </div>
       </TopBar>
       <div
-        className="footer divided"
+        className="footer inner-border-top"
       >
         <button>
           Hello
         </button>
       </div>
+    </div>
+  </div>
+</Modal>
+`;
+
+exports[`<Modal /> should render different sizes properly 1`] = `
+<Modal
+  size="s"
+>
+  <div
+    className="overlay"
+    data-testid="modal:overlay"
+  >
+    <div
+      className="modal size-s shadow-z4"
+      data-testid="modal"
+    >
+      <TopBar
+        className="header"
+        size="s"
+      >
+        <div
+          className="modal-header size-s header"
+        >
+          <div
+            className="main-section"
+          >
+            <div
+              className="title ellipsis"
+            />
+          </div>
+        </div>
+      </TopBar>
+    </div>
+  </div>
+</Modal>
+`;
+
+exports[`<Modal /> should render different sizes properly 2`] = `
+<Modal
+  size="m"
+>
+  <div
+    className="overlay"
+    data-testid="modal:overlay"
+  >
+    <div
+      className="modal size-m shadow-z4"
+      data-testid="modal"
+    >
+      <TopBar
+        className="header"
+        size="s"
+      >
+        <div
+          className="modal-header size-s header"
+        >
+          <div
+            className="main-section"
+          >
+            <div
+              className="title ellipsis"
+            />
+          </div>
+        </div>
+      </TopBar>
+    </div>
+  </div>
+</Modal>
+`;
+
+exports[`<Modal /> should render different sizes properly 3`] = `
+<Modal
+  size="l"
+>
+  <div
+    className="overlay"
+    data-testid="modal:overlay"
+  >
+    <div
+      className="modal size-l shadow-z4"
+      data-testid="modal"
+    >
+      <TopBar
+        className="header"
+        size="s"
+      >
+        <div
+          className="modal-header size-s header"
+        >
+          <div
+            className="main-section"
+          >
+            <div
+              className="title ellipsis"
+            />
+          </div>
+        </div>
+      </TopBar>
+    </div>
+  </div>
+</Modal>
+`;
+
+exports[`<Modal /> should render different sizes properly 4`] = `
+<Modal
+  size="xl"
+>
+  <div
+    className="overlay"
+    data-testid="modal:overlay"
+  >
+    <div
+      className="modal size-xl shadow-z4"
+      data-testid="modal"
+    >
+      <TopBar
+        className="header"
+        size="s"
+      >
+        <div
+          className="modal-header size-s header"
+        >
+          <div
+            className="main-section"
+          >
+            <div
+              className="title ellipsis"
+            />
+          </div>
+        </div>
+      </TopBar>
+    </div>
+  </div>
+</Modal>
+`;
+
+exports[`<Modal /> should render different sizes properly 5`] = `
+<Modal
+  size="fullscreen"
+>
+  <div
+    className="overlay"
+    data-testid="modal:overlay"
+  >
+    <div
+      className="modal size-fullscreen"
+      data-testid="modal"
+    >
+      <TopBar
+        className="header"
+        size="m"
+      >
+        <div
+          className="modal-header size-m header"
+        >
+          <div
+            className="main-section"
+          >
+            <div
+              className="title ellipsis"
+            />
+          </div>
+        </div>
+      </TopBar>
     </div>
   </div>
 </Modal>

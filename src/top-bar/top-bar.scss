@@ -33,20 +33,6 @@
     }
   }
   &.size-s {
-    height: 56px;
-    .main-section {
-      margin: 0 16px;
-    }
-    .icon-button {
-      &:first-child {
-        margin-left: 16px;
-      }
-      &:last-child {
-        margin-right: 16px;
-      }
-    }
-  }
-  &.size-m {
     height: 64px;
     .main-section {
       margin: 0 24px;
@@ -60,7 +46,7 @@
       }
     }
   }
-  &.size-l {
+  &.size-m {
     height: 80px;
     .main-section {
       margin: 0 40px;

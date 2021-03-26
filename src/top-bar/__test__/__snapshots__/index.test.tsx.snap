@@ -54,33 +54,6 @@ exports[`<TopBar /> should handle "size" prop 2`] = `
 </TopBar>
 `;
 
-exports[`<TopBar /> should handle "size" prop 3`] = `
-<TopBar
-  size="l"
-  subtitle="Modal subtitle"
-  title="Modal title"
->
-  <div
-    className="modal-header size-l"
-  >
-    <div
-      className="main-section"
-    >
-      <div
-        className="title ellipsis"
-      >
-        Modal title
-      </div>
-      <div
-        className="subtitle ellipsis"
-      >
-        Modal subtitle
-      </div>
-    </div>
-  </div>
-</TopBar>
-`;
-
 exports[`<TopBar /> should render without props 1`] = `
 <TopBar>
   <div

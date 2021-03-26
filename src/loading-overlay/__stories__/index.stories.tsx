@@ -24,7 +24,7 @@ export const Primary = () => {
           height: 100,
           border: '1px solid #aaa',
           background: '#eee',
-          margin: 20,
+          marginTop: 20,
         }}
       >
         {shown && (

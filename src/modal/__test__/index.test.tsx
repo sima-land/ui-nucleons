@@ -2,7 +2,6 @@ import React from 'react';
 import Modal from '..';
 import { mount, ReactWrapper } from 'enzyme';
 import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
-import TopBar from '../../top-bar';
 import { act } from 'react-dom/test-utils';
 
 jest.mock('body-scroll-lock', () => {
@@ -134,11 +133,13 @@ describe('<Modal />', () => {
     expect(enableBodyScroll).toHaveBeenCalledTimes(1);
   });
 
-  it('extended: should hide top bar ', () => {
-    const wrapper = mount(
-      <Modal withTopBar={false} />
-    );
+  it('should render different sizes properly', () => {
+    (['s', 'm', 'l', 'xl', 'fullscreen'] as const).forEach(size => {
+      const wrapper = mount(
+        <Modal size={size} />
+      );
 
-    expect(wrapper.find(TopBar)).toHaveLength(0);
+      expect(wrapper).toMatchSnapshot();
+    });
   });
 });

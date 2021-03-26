@@ -5,7 +5,7 @@ import PersonSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/person';
 
 const longText = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad, provident aspernatur dolore. ';
 
-export const sizes = ['s', 'm', 'l'];
+export const sizes = ['s', 'm'];
 
 export const shortTitles = { title: 'Modal title', subtitle: 'Modal subtitle' };
 

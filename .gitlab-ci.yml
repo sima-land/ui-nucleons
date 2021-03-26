@@ -29,6 +29,7 @@ stages:
   before_script:
     - yarn install
   script:
+    - yarn type-check
     - yarn coverage
   <<: *runner_tags
 

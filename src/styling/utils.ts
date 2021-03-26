@@ -16,5 +16,5 @@ export const ClassGetter = <T = string | number>(
 
   return (value: T) => isValidKey(value)
     ? cx(`${prefix}${value}`)
-    : null;
+    : undefined;
 };
