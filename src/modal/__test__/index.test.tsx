@@ -142,4 +142,12 @@ describe('<Modal />', () => {
       expect(wrapper).toMatchSnapshot();
     });
   });
+
+  it('should renders in layer', () => {
+    const wrapper = mount(
+      <Modal withLayer />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
 });
