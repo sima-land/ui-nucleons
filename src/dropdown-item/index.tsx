@@ -4,7 +4,7 @@ import styles from './dropdown-item.scss';
 
 const cx = classnames.bind(styles);
 
-export interface Props extends Omit<React.HTMLProps<HTMLDivElement>, 'size'> {
+export interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, 'size'> {
   size?: 's' | 'm' | 'l' | 'xl'
   disabled?: boolean
   noHover?: boolean

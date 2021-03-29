@@ -29,7 +29,7 @@ export interface RowProps {
 
 export interface Props {
   children: ItOrArray<React.ReactElement<RowProps, typeof Row>>
-  rootProps?: React.HTMLProps<HTMLDivElement>
+  rootProps?: React.HTMLAttributes<HTMLDivElement>
 }
 
 export interface FieldGridComponent extends React.FC<Props> {

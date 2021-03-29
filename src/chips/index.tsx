@@ -8,7 +8,7 @@ interface ChipsItem {
   [x: string]: any
 }
 
-export interface Props extends React.HTMLProps<HTMLDivElement> {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   items: ChipsItem[]
   onItemClick?: (item: ChipsItem, event: React.MouseEvent<HTMLAnchorElement>) => void
   isItemChecked?: (item: ChipsItem, index: number) => boolean

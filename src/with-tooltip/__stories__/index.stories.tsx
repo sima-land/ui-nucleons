@@ -53,7 +53,7 @@ function PositioningTest ({
   containerProps,
 }: {
   tooltipChildren: React.ReactNode
-  containerProps?: React.HTMLProps<HTMLDivElement>
+  containerProps?: React.HTMLAttributes<HTMLDivElement>
 }) {
   const [shown, setShown] = useState(false);
   const { draggableRef, movedRef } = useDraggable();

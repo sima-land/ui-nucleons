@@ -8,7 +8,7 @@ import { useDragAndDrop, getFilesPreparer } from './utils';
 import { upperFirst } from 'lodash';
 import getDeclination from '../helpers/get-declination';
 
-export interface Props extends Omit<React.HTMLProps<HTMLDivElement>, 'onSelect' | 'multiple'> {
+export interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect' | 'multiple'> {
   countLimit?: number
   failed?: boolean
   fileRole?: string

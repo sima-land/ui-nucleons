@@ -3,7 +3,7 @@ import CheckboxSVG from './checkbox.svg';
 import classnames from 'classnames/bind';
 import classes from './checkbox.scss';
 
-export type Props = React.HTMLProps<HTMLInputElement>;
+export type Props = React.InputHTMLAttributes<HTMLInputElement>;
 
 const cx = classnames.bind(classes);
 

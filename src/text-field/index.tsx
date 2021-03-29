@@ -19,7 +19,8 @@ type Classes = {
 
 type IgnoredInputProps = 'size' | 'onClick' | 'onInput' | 'onChange' | 'onKeyDown' | 'onKeyUp';
 
-export interface Props extends Omit<React.HTMLProps<HTMLInputElement>, IgnoredInputProps> {
+export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, IgnoredInputProps> {
+  label?: string
   caption?: React.ReactNode
   classes?: Classes
   endAdornment?: any

@@ -5,7 +5,7 @@ import { prop } from 'lodash/fp';
 import { InnerBorder } from '../styling/borders';
 import { COLORS } from '../colors';
 
-interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
   stub?: boolean

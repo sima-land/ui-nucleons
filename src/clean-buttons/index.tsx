@@ -10,8 +10,8 @@ interface CustomButtonProps {
 }
 
 export type ButtonProps = CustomButtonProps
-& Omit<React.HTMLProps<HTMLAnchorElement>, 'size'>
-& Omit<React.HTMLProps<HTMLButtonElement>, 'size'>;
+& Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'size'>
+& Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'size'>;
 
 export interface Props {
   children?: React.ReactElement<ButtonProps>[]

@@ -24,7 +24,7 @@ export interface Props {
   onChange?: (data: CallbackData) => void
   onSlide?: (data: CallbackData) => void
   disabled?: boolean
-  wrapperProps?: React.HTMLProps<HTMLDivElement>
+  wrapperProps?: React.HTMLAttributes<HTMLDivElement>
 }
 
 const cx = classnames.bind(classes);

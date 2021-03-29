@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import styles from './link.scss';
 import { Token } from '../colors';
 
-export interface Props extends React.HTMLProps<HTMLAnchorElement> {
+export interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   color?: Token
   noIndex?: boolean
   pseudo?: boolean

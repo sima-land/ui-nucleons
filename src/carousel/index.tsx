@@ -28,8 +28,8 @@ export interface Props {
   renderItem?: typeof Carousel.defaultRenderItem
   renderControl?: typeof Carousel.defaultRenderControl
   onChangeTargetIndex?: (newIndex: number) => void
-  containerProps?: React.HTMLProps<HTMLDivElement>
-  viewportElementProps?: React.HTMLProps<HTMLDivElement>
+  containerProps?: React.HTMLAttributes<HTMLDivElement>
+  viewportElementProps?: React.HTMLAttributes<HTMLDivElement>
   controlProps?: ButtonProps
 }
 
