@@ -4,7 +4,7 @@ import styles from './dropdown.scss';
 import classnames from 'classnames/bind';
 import { MediumRounds } from '../styling/shapes';
 
-export interface Props extends React.HTMLProps<HTMLDivElement> {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   withShadow?: boolean
 }
 

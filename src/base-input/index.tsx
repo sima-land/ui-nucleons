@@ -15,13 +15,15 @@ interface Styles extends React.CSSProperties {
   '--placeholder-color'?: string
 }
 
-interface CustomProps {
+export interface CustomProps {
   multiline?: boolean
   restPlaceholder?: string | RestPlaceholder
   style?: Styles
 }
 
-export type Props = CustomProps & React.HTMLProps<HTMLTextAreaElement> & React.HTMLProps<HTMLInputElement>;
+export type Props = CustomProps
+& React.TextareaHTMLAttributes<HTMLTextAreaElement>
+& React.InputHTMLAttributes<HTMLInputElement>;
 
 /**
  * Компонент поля ввода.

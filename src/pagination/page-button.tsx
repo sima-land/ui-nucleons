@@ -1,7 +1,7 @@
 import React from 'react';
 import { cx } from './utils';
 
-export interface Props extends React.HTMLProps<HTMLButtonElement> {
+export interface Props extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
   rounded?: 'all' | 'none' | 'left' | 'right'
   className?: string
   selected?: boolean

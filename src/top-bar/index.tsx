@@ -3,7 +3,7 @@ import classnames from 'classnames/bind';
 import has from 'lodash/has';
 import classes from './top-bar.scss';
 
-interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.ReactNode
   'data-testid'?: string
 }

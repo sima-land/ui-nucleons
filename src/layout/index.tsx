@@ -7,7 +7,7 @@ type Breakpoint = 'mxs' | 'ms' | 'mm' | 'ml' | 'xs' | 's' | 'm' | 'l' | 'xl';
 type Props = {
   element?: string
   disabledOn?: Array<Breakpoint>
-} & React.HTMLProps<HTMLElement>;
+} & React.HTMLAttributes<HTMLElement>;
 
 const cx = classnames.bind(classes);
 

@@ -27,7 +27,7 @@ interface TooltipProps {
 export interface Props<T extends ElementName = ElementName> {
   inline?: boolean
   holderElement?: T
-  holderProps?: React.PropsWithRef<React.HTMLProps<JSX.IntrinsicElements[T]>>
+  holderProps?: React.PropsWithRef<React.HTMLAttributes<JSX.IntrinsicElements[T]>>
   shown?: boolean
   onDismiss?: DismissCallback
   tooltipChildren?: React.ReactNode
