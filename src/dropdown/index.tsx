@@ -5,6 +5,8 @@ import classnames from 'classnames/bind';
 import { MediumRounds } from '../styling/shapes';
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+
+  /** Нужна ли тень. */
   withShadow?: boolean
 }
 
@@ -12,8 +14,6 @@ const cx = classnames.bind(styles);
 
 /**
  * Компонент выпадающего контента.
- * @param props.withShadow Нужна ли тень.
- * @return Элемент.
  */
 export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown ({
   withShadow = true,

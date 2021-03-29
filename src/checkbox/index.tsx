@@ -8,7 +8,7 @@ export type Props = React.InputHTMLAttributes<HTMLInputElement>;
 const cx = classnames.bind(classes);
 
 /**
- * Возвращает компонент галочки.
+ * Компонент галочки.
  * @param props Свойства.
  * @param props.checked Отмечена ли галочка.
  * @param props.disabled Отключена ли галочка.

@@ -4,6 +4,14 @@ module.exports = {
   ],
   addons: [
     '@storybook/addon-actions',
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        sourceLoaderOptions: {
+          injectStoryParameters: false,
+        },
+      },
+    },
   ],
   typescript: {
     check: false,

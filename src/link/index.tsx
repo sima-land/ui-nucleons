@@ -6,8 +6,14 @@ import styles from './link.scss';
 import { Token } from '../colors';
 
 export interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+
+  /** Цвет (название токена). */
   color?: Token
+
+  /** Нужно ли оборачивать содержимое комментариями no-index. */
   noIndex?: boolean
+
+  /** Выводить как псевдо-ссылку. */
   pseudo?: boolean
 }
 

@@ -12,11 +12,21 @@ type IconPosition = 'start' | 'end';
 type Appearance = 'button' | 'link' | 'container';
 
 interface CustomProps<T extends Appearance = Appearance> {
-  size?: Size
+
+  /** Определяет внешний вид кнопки. */
   actionType?: ViewType
-  iconPosition?: IconPosition
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
+
+  /** Определяет тип корневого элемента. */
   appearance?: T
+
+  /** Иконка. */
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
+
+  /** Позиция иконки. */
+  iconPosition?: IconPosition
+
+  /** Размер. */
+  size?: Size
 }
 
 type ExcludeKeys<T> = Omit<T, 'ref' | keyof CustomProps>;
@@ -30,16 +40,8 @@ export type Props = (
 const cx = classnames.bind(classes);
 
 /**
- * Возвращает компонент кнопки.
+ * Компонент кнопки.
  * @param props Свойства.
- * @param props.children Содержимое.
- * @param props.className CSS-класс.
- * @param props.disabled Отключена ли кнопка.
- * @param props.actionType Определяет внешний вид кнопки.
- * @param props.appearance Определяет тип корневого элемента.
- * @param props.size Определяет размер.
- * @param props.icon Иконка.
- * @param props.iconPosition Положение иконки.
  * @return Компонент кнопки.
  */
 const Button = forwardRef<any, Props>(function Button ({

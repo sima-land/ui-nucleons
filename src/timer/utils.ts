@@ -9,7 +9,7 @@ const UNITS = ['day', 'hour', 'minute', 'second'] as const;
 /**
  * Форматирует оставшееся время в виде "дни:часы:минуты:секунды".
  * @param distance Оставшееся время.
- * @return {string} Отформатированное время.
+ * @return Отформатированное время.
  */
 export const formatDistance = ({ days, hours, minutes, seconds }: Distance): string => [
   days,

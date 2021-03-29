@@ -13,36 +13,46 @@ import { isNull } from 'lodash';
 import styles from './autocomplete.scss';
 
 export interface Props extends Omit<TextFieldProps, 'ref' | 'value' | 'defaultValue'> {
-  value?: string
+
+  /** Значение по умолчанию. */
   defaultValue?: string
+
+  /** Элементы меню. */
   items?: any[]
+
+  /** Размер элемента меню. */
   itemSize?: ItemProps['size']
-  onSelect?: (item: any) => void
+
+  /** Нужно ли выводить состояние загрузки списка. */
   loading?: boolean
-  renderItem?: (item: any) => React.ReactNode
+
+  /** Сработает при выборе. */
+  onSelect?: (item: any) => void
+
+  /** Пресет (со стрелкой или без). */
   preset?: 'default' | 'filled-only-list'
+
+  /** Выведет содержимое элемента. */
+  renderItem?: (item: any) => React.ReactNode
+
+  /** Значение. */
+  value?: string
 }
 
 const cx = classnames.bind(styles);
 
 /**
  * Поле ввода с подсказками.
- * @param {Object} props Свойства.
- * @param {Array} props.items Элементы меню.
- * @param {string} props.itemSize Размер элемента меню.
- * @param {Function} props.onSelect Сработает при выборе.
- * @param {Function} props.onChange Сработает при вводе значения в поле.
- * @param {Function} props.onClick Сработает при клике.
- * @param {Function} props.onKeyDown Сработает при событии "keydown".
- * @param {Object} props.style Стили.
- * @param {string} props.className Класс.
- * @param {string} props.value Значение.
- * @param {string} props.defaultValue Значение по умолчанию.
- * @param {boolean} props.loading Нужно ли выводить состояние загрузки списка.
- * @param {Function} props.renderItem Выведет содержимое элемента.
- * @param {'default' | 'filled-only-list'} props.preset Пресет (со стрелкой или без).
- * @param {string} props.'data-testid' Идентификатор для систем автоматизированного тестирования.
- * @return {ReactElement} Элемент.
+ * @param props Свойства.
+ * @param props.defaultValue Значение по умолчанию.
+ * @param props.items Элементы меню.
+ * @param props.itemSize Размер элемента меню.
+ * @param props.loading Нужно ли выводить состояние загрузки списка.
+ * @param props.onSelect Сработает при выборе.
+ * @param props.preset Пресет (со стрелкой или без).
+ * @param props.renderItem Выведет содержимое элемента.
+ * @param props.value Значение.
+ * @return Элемент.
  */
 export const Autocomplete: React.FC<Props> = ({
   items,

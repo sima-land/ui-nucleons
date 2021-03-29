@@ -8,8 +8,14 @@ export interface MaskState {
 }
 
 export interface Props extends Omit<TextFieldProps, 'value' | 'onBlur' | 'multiple'> {
+
+  /** Маска. */
   mask: string
+
+  /** Значение. */
   value?: string
+
+  /** Обработчик blur. */
   onBlur?: (e: React.FocusEvent<HTMLInputElement>, s: MaskState) => void
 }
 

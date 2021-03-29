@@ -7,15 +7,35 @@ import { getMonogram } from './utils';
 import { color as colorClass } from '../styling/colors';
 
 export interface Props {
-  size?: number
-  imageUrl?: string
+
+  /** Цвет аватара без картинки. */
   bgColor?: Token
+
+  /** Цвет аватара без картинки. */
   bgOpacity?: number
-  textColor?: Token
-  title?: string
-  monogram?: string
+
+  /** Класс. */
   className?: string
+
+  /** Ссылка на картинку. */
+  imageUrl?: string
+
+  /** Монограмма без картинки. */
+  monogram?: string
+
+  /** Размер аватара. */
+  size?: number
+
+  /** Стиль элементов rect/image, формирующего маску "super ellipse". */
   style?: React.CSSProperties
+
+  /** Цвет текста без картинки. */
+  textColor?: Token
+
+  /** Текст без картинки. */
+  title?: string
+
+  /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string
 }
 
@@ -37,19 +57,8 @@ const ICON_SIZES: Readonly<Record<Size, number>> = {
 
 /**
  * Компонент аватара.
- * @param {Object} props Свойства компонента.
- * @param {number} props.size Размер аватара.
- * @param {string} [props.imageUrl] Ссылка на картинку.
- * @param {string} [props.bgColor='gray4'] Цвет аватара без картинки.
- * @param {number} [props.bgOpacity=1] Цвет аватара без картинки.
- * @param {string} props.textColor Цвет текста без картинки.
- * @param {string} props.title Текст без картинки.
- * @param {string} [props.monogram] Монограмма без картинки.
- * @param {string} [props.className] Класс.
- * @param {React.ComponentType} [props.icon] Иконка.
- * @param {Object} props.style Стиль элементов rect/image, формирующего маску "super ellipse".
- * @param {string} props.'data-testid' Идентификатор для систем автоматизированного тестирования.
- * @return {ReactElement} Компонент.
+ * @param props Свойства компонента.
+ * @return Компонент.
  */
 export const Avatar: React.FC<Props> = ({
   size: sizeProp = 72,

@@ -5,11 +5,21 @@ import classnames from 'classnames/bind';
 import { COLORS } from '../colors';
 
 export interface Props {
+
+  /** Класс/стили цены. */
   className?: string
-  currencyGrapheme?: string
-  value: number | string
-  graphemeBefore?: boolean
+
+  /** Отображать цену 'старой' - серой и зачеркнутой. */
   crossedOut?: boolean
+
+  /** Графема валюты пользователя. */
+  currencyGrapheme?: string
+
+  /** Отобразить знак валюты перед ценой. */
+  graphemeBefore?: boolean
+
+  /** Цена. */
+  value: number | string
 }
 
 const cx = classnames.bind(classes);
@@ -17,11 +27,6 @@ const cx = classnames.bind(classes);
 /**
  * Цена товара с указанием знака валюты.
  * @param props Параметры компонента.
- * @param props.className Класс/стили цены.
- * @param props.currencyGrapheme Графема валюты пользователя.
- * @param props.graphemeBefore Отобразить знак валюты перед ценой.
- * @param props.crossedOut Отображать цену 'старой' - серой и зачеркнутой.
- * @param props.value Цена.
  * @return Элемент.
  */
 const Price: React.FC<Props> = ({

@@ -9,9 +9,17 @@ type Color = 'brand-blue' | 'white';
 type Size = 'small' | 'medium' | 'large';
 
 export interface Props {
+
+  /** Размер. */
   size?: Size
+
+  /** Цвет. */
   color?: Color
+
+  /** Класс. */
   className?: string
+
+  /** Стили. */
   style?: React.CSSProperties
 }
 
@@ -29,10 +37,8 @@ const AVAILABLE_COLORS: Color[] = ['brand-blue', 'white'];
 
 /**
  * Компонент спиннера.
- * @param props Свойства компонента.
- * @param props.size Размер.
- * @param props.color Цвет.
- * @return {ReactElement} Компонент.
+ * @param props Свойства.
+ * @return Компонент.
  */
 export const Spinner: React.FC<Props> = ({
   size = 'medium',

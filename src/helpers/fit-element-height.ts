@@ -1,7 +1,7 @@
 /**
  * Перехватив событие, подгонит высоту поля под содержимое.
- * @param {Event} event Событие.
- * @param {HTMLElement} event.target Поле.
+ * @param event Событие.
+ * @param event.target Поле.
  */
 export const fitElementHeight = ({ target }: { target: HTMLElement }) => {
   target.style.height = 'auto';

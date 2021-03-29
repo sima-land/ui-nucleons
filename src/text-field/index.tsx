@@ -20,24 +20,62 @@ type Classes = {
 type IgnoredInputProps = 'size' | 'onClick' | 'onInput' | 'onChange' | 'onKeyDown' | 'onKeyUp';
 
 export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, IgnoredInputProps> {
+
+  /** Ярлык. */
   label?: string
-  caption?: React.ReactNode
-  classes?: Classes
-  endAdornment?: any
-  failed?: any
-  focused?: any
-  onClick?: React.MouseEventHandler<HTMLDivElement>
-  onInput?: BaseInputProps['onInput']
-  onChange?: BaseInputProps['onChange']
-  onKeyDown?: BaseInputProps['onKeyDown']
-  onKeyUp?: BaseInputProps['onKeyUp']
-  rounds?: 'none' | keyof typeof SmallRounds
-  startAdornment?: any
-  variant?: Variant
-  multiline?: any
+
+  /** Свойства BaseInput. */
   baseInputProps?: BaseInputProps
+
+  /** Подпись снизу. */
+  caption?: React.ReactNode
+
+  /** CSS-классы. */
+  classes?: Classes
+
+  /** Дополнительная верстка после текста. */
+  endAdornment?: React.ReactNode
+
+  /** Показывать ли поле как ошибочное. */
+  failed?: boolean
+
+  /** Показывать ли поле как сфокусированное (влияет только на оформление). */
+  focused?: boolean
+
+  /** Нужно ли выводить textarea вместо input. */
+  multiline?: boolean
+
+  /** Сработает при изменении значения. */
+  onChange?: BaseInputProps['onChange']
+
+  /** Сработает при клике. */
+  onClick?: React.MouseEventHandler<HTMLDivElement>
+
+  /** Сработает при событии "input". */
+  onInput?: BaseInputProps['onInput']
+
+  /** Сработает при событии "keydown". */
+  onKeyDown?: BaseInputProps['onKeyDown']
+
+  /** Сработает при событии "keyup". */
+  onKeyUp?: BaseInputProps['onKeyUp']
+
+  /** Placeholder, который выводится после введенного значения. */
   restPlaceholder?: BaseInputProps['restPlaceholder']
+
+  /** Задает скругления. */
+  rounds?: 'none' | keyof typeof SmallRounds
+
+  /** Размеры поля для variant = "desktop". */
   size?: DesktopSize
+
+  /** Дополнительная верстка до текста. */
+  startAdornment?: React.ReactNode
+
+  /** Вариант отображения. */
+  variant?: Variant
+
+  /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string
 }
 
@@ -74,36 +112,7 @@ const modifiersToClasses = ({ disabled, failed, focused, variant }: {
 /**
  * Компонент текстового поля.
  * @param props Свойства.
- * @param [props.autoFocus] Нужно ли фокусироваться после монтирования.
- * @param [props.caption] Подпись снизу.
- * @param [props.classes] CSS-классы.
- * @param props.defaultValue Значение по умолчанию.
- * @param [props.disabled] Отключено ли поле.
- * @param [props.endAdornment] Дополнительная верстка после текста.
- * @param [props.failed] Показывать ли поле как ошибочное.
- * @param [props.focused] Показывать ли поле как сфокусированное (влияет только на оформление).
- * @param [props.label] Ярлык.
- * @param [props.onClick] Сработает при клике.
- * @param [props.onBlur] Сработает при потере фокуса.
- * @param [props.onChange] Сработает при изменении значения.
- * @param [props.onFocus] Сработает при фокусировке.
- * @param [props.onInput] Сработает при событии "input".
- * @param [props.onKeyDown] Сработает при событии "keydown".
- * @param [props.onKeyUp] Сработает при событии "keyup".
- * @param [props.placeholder] Placeholder.
- * @param [props.readOnly] Значение атрибута "readonly".
- * @param [props.rounds] Задает скругления.
- * @param [props.size='l'] Размеры поля для variant = "desktop".
- * @param [props.startAdornment] Дополнительная верстка до текста.
- * @param [props.value] Значение.
- * @param [props.variant='desktop'] Вариант отображения.
- * @param [props.multiline] Нужно ли выводить textarea вместо input.
- * @param [props.baseInputProps] Свойства BaseInput.
- * @param [props.className] Класс корневого компонента.
- * @param [props.style] Стили корневого компонента.
- * @param [props.restPlaceholder] Placeholder, который выводится после введенного значения.
- * @param [props.'data-testid'] Идентификатор для систем автоматизированного тестирования.
- * @return Компонент текстового поля.
+ * @return Элемент.
  */
 const TextField = forwardRef<HTMLTextAreaElement | HTMLInputElement | undefined, Props>(function TextField ({
   autoFocus,

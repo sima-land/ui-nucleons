@@ -14,7 +14,7 @@ export default {
 const Divider = () => (<div style={{ height: 64 }} />);
 
 export const Primary = () => (
-  <div style={{ padding: 48 }}>
+  <>
     <h3>Вместе с DropdownItem</h3>
     <Dropdown style={{ width: 320 }}>
       {Array(4).fill(0).map((a, i) => (
@@ -61,5 +61,5 @@ export const Primary = () => (
         <Spinner size='small' />
       </div>
     </Dropdown>
-  </div>
+  </>
 );

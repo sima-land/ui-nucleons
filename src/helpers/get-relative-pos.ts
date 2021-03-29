@@ -1,8 +1,8 @@
 /**
  * Определяет позицию элемента относительно другого заданного элемента.
- * @param {Element} target Элемент для определения позиции.
- * @param {Element} parent Элемент, относительно которого необходимо определить позицию.
- * @return {{ x: number, y: number }} Относительная позиция элемента.
+ * @param target Элемент для определения позиции.
+ * @param parent Элемент, относительно которого необходимо определить позицию.
+ * @return Относительная позиция элемента.
  */
 const getRelativePos = (target: Element, parent = target.parentElement) => {
   const targetBounds = target.getBoundingClientRect();

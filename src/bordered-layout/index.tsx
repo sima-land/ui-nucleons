@@ -5,8 +5,14 @@ import { InnerBorder } from '../styling/borders';
 import styles from './bordered-layout.scss';
 
 export interface Props {
+
+  /** Флаг добавления рамки сверху. */
   top?: boolean
+
+  /** Флаг добавления рамки снизу. */
   bottom?: boolean
+
+  /** Содержимое. */
   children?: React.ReactNode
 }
 
@@ -15,9 +21,6 @@ const cx = classnames.bind(styles);
 /**
  * Выводит содержимое по мобильному layout'у с вертикальными полосками.
  * @param props Свойства компонента.
- * @param props.top Флаг добавления рамки сверху.
- * @param props.bottom Флаг добавления рамки снизу.
- * @param props.children Содержимое компонента.
  * @return Компонент добавления рамки.
  */
 const BorderedLayout: React.FC<Props> = ({ top, bottom, children }) => {

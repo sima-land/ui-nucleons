@@ -8,8 +8,8 @@ type Observer<T> = (prev: T | undefined, next: T | undefined) => void;
 
 /**
  * Фабрика контейнеров для произвольных значений.
- * @param {*} initialValue Начальное значение в контейнере.
- * @return {{ set: Function, get: Function, setObserver: Function }} Контейнер.
+ * @param initialValue Начальное значение в контейнере.
+ * @return Контейнер.
  */
 const createContainer = <T = any>(initialValue?: T): Container<T> => {
   let value: T | undefined = initialValue;
@@ -17,13 +17,13 @@ const createContainer = <T = any>(initialValue?: T): Container<T> => {
 
   /**
    * Геттер значения.
-   * @return {*} Значение.
+   * @return Значение.
    */
   const get = (): T | undefined => value;
 
   /**
    * Сеттер значения.
-   * @param {*} newValue Новое значение.
+   * @param newValue Новое значение.
    */
   const set = (newValue: T) => {
     const oldValue: T | undefined = value;
@@ -34,7 +34,7 @@ const createContainer = <T = any>(initialValue?: T): Container<T> => {
 
   /**
    * Сеттер функции-наблюдателя за изменением значения.
-   * @param {Function} newObserve Функция-наблюдатель.
+   * @param newObserve Функция-наблюдатель.
    */
   const setObserver = (newObserve: Observer<T> | null) => {
     observe = newObserve;

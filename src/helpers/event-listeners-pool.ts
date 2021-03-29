@@ -23,7 +23,7 @@ const EventListenersPool = (target: EventTarget, eventName: string): IEventListe
 
   /**
    * Вызывает все слушатели по событию.
-   * @param {Event} event Объект события.
+   * @param event Объект события.
    */
   const callListeners = (event: Event) => {
     // предотвращаем вызов обработчиков, которые будут добавлены в процессе выполнения существующих

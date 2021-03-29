@@ -14,22 +14,56 @@ import DraggableEvent from './helpers/draggable-event';
 import styles from './carousel.scss';
 
 export interface Props {
+
+  /** Список элементов. */
   items?: any[]
+
+  /** На склолько элементов прокручивать за раз. */
   step?: number
+
+  /** Можно ли перетаскивать мышью. */
   draggable?: boolean | 'auto'
+
+  /** Активирует бесконечную прокрутку. */
   infinite?: boolean
+
+  /** Вартикальный режим. */
   vertical?: boolean
+
+  /** Включена ли автоматическая прокрутка. */
   autoplay?: boolean
-  withControls?: boolean
+
+  /** Таймаут автоматической прокрутки. */
   autoplayTimeout?: number
-  targetIndex?: number
+
+  /** Нужно ли останавливать авто-прокрутку при наведении мыши. */
   autoplayHoverPause?: boolean
+
+  /** Показывать ли кнопки. */
+  withControls?: boolean
+
+  /** Индекс элемента к которому нужно прокрутиться. */
+  targetIndex?: number
+
+  /** Сработает при монтировании. */
   onReady?: (currentIndex: number) => void
+
+  /** Вернет содержимое элемента. */
   renderItem?: typeof Carousel.defaultRenderItem
+
+  /** Вернет содержимое кнопки. */
   renderControl?: typeof Carousel.defaultRenderControl
+
+  /** Сработает при смене индекса текущего элемента. */
   onChangeTargetIndex?: (newIndex: number) => void
+
+  /** Свойства контейнера. */
   containerProps?: React.HTMLAttributes<HTMLDivElement>
+
+  /** Свойства элемента, формирующего viewport карусели. */
   viewportElementProps?: React.HTMLAttributes<HTMLDivElement>
+
+  /** Свойства кнопок. */
   controlProps?: ButtonProps
 }
 
@@ -715,7 +749,7 @@ export class Carousel extends Component<Props, State> {
   }
 
   /**
-   * Возвращает компонент.
+   * Рендер.
    * @inheritDoc
    */
   render () {

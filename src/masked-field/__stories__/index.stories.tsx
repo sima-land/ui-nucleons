@@ -11,7 +11,6 @@ export default {
 
 export const Primary = () => (
   <>
-    <h3>Варианты</h3>
     <MaskedField
       style={{ width: 320 }}
       label='Контактный телефон'

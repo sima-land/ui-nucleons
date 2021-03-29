@@ -3,17 +3,20 @@ import { Distance } from './types';
 import { getDistanceToNow, formatDistance } from './utils';
 
 export interface Props {
+
+  /** Дата и время события. */
   date: string
+
+  /** Должна отформатировать данные об оставшемся времени для вывода. */
   format?: (d: Distance) => React.ReactNode
+
+  /** Частота обновления таймера в миллисекундах. */
   timeout?: number
 }
 
 /**
  * Возвращает таймер с временем между событием и текущим временем.
  * @param props Свойства компонента.
- * @param props.date Дата и время события.
- * @param props.format Должна отформатировать данные об оставшемся времени для вывода.
- * @param props.timeout Частота обновления таймера в миллисекундах.
  * @return Элемент.
  */
 const Timer: React.FC<Props> = ({

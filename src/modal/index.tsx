@@ -12,20 +12,48 @@ import Layer from '../layer';
 type Size = 's' | 'm' | 'l' | 'xl' | 'fullscreen';
 
 export interface Props {
-  size?: Size
+
+  /** Содержимое компонента. */
   children?: React.ReactNode
+
+  /** Содержимое футера. */
   footer?: React.ReactNode
+
+  /** Функция, вызываемая при закрытии модального окна. */
   onClose?: () => void
+
+  /** Опции для disableBodyScroll. */
   scrollDisableOptions?: BodyScrollOptions
+
+  /** Размер окна. */
+  size?: Size
+
+  /** Подзаголовок. */
   subtitle?: string
+
+  /** Заголовок. */
   title?: string
+
+  /** Свойства TopBar. */
   topBarProps?: TopBarProps
+
+  /** Нужно ли выводить крестик. */
   withCloseButton?: boolean
+
+  /** Нужно ли отделять footer чертой. */
   withDivideFooter?: boolean
+
+  /** Нужно ли отделять TopBar чертой. */
   withDivideTopBar?: boolean
-  withScrollDisable?: boolean
-  'data-testid'?: string
+
+  /** Нужно ли выводить элемент в Layer. */
   withLayer?: boolean
+
+  /** Нужно ли блокировать прокрутку body при показе. */
+  withScrollDisable?: boolean
+
+  /** Идентификатор для систем автоматизированного тестирования. */
+  'data-testid'?: string
 }
 
 const cx = classnames.bind(styles);
@@ -33,23 +61,9 @@ const cx = classnames.bind(styles);
 /**
  * Компонент модального окна.
  * @param props Свойства компонента.
- * @param props.children Содержимое компонента.
- * @param props.footer Содержимое футера (только при extended=true).
- * @param props.onClose Функция, вызываемая при закрытии модального окна.
- * @param props.scrollDisableOptions Опции для disableBodyScroll.
- * @param props.subtitle Подзаголовок (только при extended=true).
- * @param props.title Заголовок (только при extended=true).
- * @param props.topBarProps Свойства TopBar (только при extended=true).
- * @param props.withCloseButton Нужно ли выводить крестик.
- * @param props.withDivideFooter Нужно ли отделять footer чертой (только при extended=true).
- * @param props.withDivideTopBar Нужно ли отделять TopBar чертой (только при extended=true).
- * @param props.withLayer Нужно ли выводить элемент в Layer.
- * @param props.withScrollDisable Нужно ли блокировать прокрутку body при показе.
- * @param props.withTopBar Нужно ли выводить TopBar.
  * @return Элемент.
  */
 const Modal: React.FC<Props> = ({
-  'data-testid': dataTestId = 'modal',
   children,
   footer,
   onClose,
@@ -63,6 +77,7 @@ const Modal: React.FC<Props> = ({
   withDivideTopBar,
   withLayer,
   withScrollDisable = true,
+  'data-testid': dataTestId = 'modal',
 }) => {
   const Wrapper = withLayer ? Layer : Fragment;
   const fullscreen = size === 'fullscreen';

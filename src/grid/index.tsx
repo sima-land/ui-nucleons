@@ -7,25 +7,59 @@ type Align = 'start' | 'center' | 'end';
 type Spacing = 0 | 16 | 32;
 
 export interface Props {
-  spacing?: Spacing
+
+  /** Выравнивание колонок. */
   align?: Align
+
+  /** Расстояние между колонками. */
+  spacing?: Spacing
+
+  /** Содержимое. */
   children?: React.ReactNode
+
+  /** Класс. */
   className?: string
+
+  /** Стили. */
   style?: React.CSSProperties
 }
 
 interface ItemProps {
+
+  /** Количество занимаемых колонок на диапазоне "mxs". */
   mxs?: number
+
+  /** Количество занимаемых колонок на диапазоне "ms". */
   ms?: number
+
+  /** Количество занимаемых колонок на диапазоне "mm". */
   mm?: number
+
+  /** Количество занимаемых колонок на диапазоне "ml". */
   ml?: number
+
+  /** Количество занимаемых колонок на диапазоне "xs". */
   xs?: number
+
+  /** Количество занимаемых колонок на диапазоне "s". */
   s?: number
+
+  /** Количество занимаемых колонок на диапазоне "m". */
   m?: number
+
+  /** Количество занимаемых колонок на диапазоне "l". */
   l?: number
+
+  /** Количество занимаемых колонок на диапазоне "xl". */
   xl?: number
+
+  /** Содержимое. */
   children?: React.ReactNode
+
+  /** Класс. */
   className?: string
+
+  /** Стили. */
   style?: React.CSSProperties
 }
 
@@ -90,8 +124,8 @@ export interface GridComponent extends React.FC<Props> {
 /**
  * Контейнера для формирования сетки.
  * @param props Свойства.
- * @param props.spacing Расстояние между колонками.
  * @param props.align Выравнивание колонок.
+ * @param props.spacing Расстояние между колонками.
  * @return Элемент.
  */
 export const Grid: GridComponent = ({

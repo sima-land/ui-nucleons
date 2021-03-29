@@ -9,8 +9,14 @@ interface ChipsItem {
 }
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+
+  /** Элементы списка. */
   items: ChipsItem[]
+
+  /** Сработает при клике на элемент. */
   onItemClick?: (item: ChipsItem, event: React.MouseEvent<HTMLAnchorElement>) => void
+
+  /** Определит, отмечен ли переданный элемент. */
   isItemChecked?: (item: ChipsItem, index: number) => boolean
 }
 
@@ -19,10 +25,6 @@ const cx = classnames.bind(styles);
 /**
  * Список "чипсов".
  * @param props Свойства.
- * @param props.items Элементы списка.
- * @param props.onItemClick Сработает при клике на элемент.
- * @param props.isItemChecked Определит, отмечен ли переданный элемент.
- * @param props.className Класс.
  * @return Элемент.
  */
 export const Chips: React.FC<Props> = ({

@@ -17,7 +17,11 @@ interface Styles extends React.CSSProperties {
 
 export interface CustomProps {
   multiline?: boolean
+
+  /** Остаточный placeholder (выводится после введенного значения). */
   restPlaceholder?: string | RestPlaceholder
+
+  /** Стили. */
   style?: Styles
 }
 
@@ -28,8 +32,6 @@ export type Props = CustomProps
 /**
  * Компонент поля ввода.
  * @param props Свойства. Поддерживаются свойства элемента input.
- * @param props.multiline Нужно ли выводить textarea вместо input.
- * @param props.restPlaceholder Остаточный placeholder (выводится после введенного значения).
  * @return Компонент поля ввода.
  */
 export const BaseInput = forwardRef<HTMLTextAreaElement | HTMLInputElement | undefined, Props>(function BaseInput ({

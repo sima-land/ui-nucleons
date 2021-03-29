@@ -8,7 +8,7 @@ export interface Props extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement
 }
 
 /**
- * Возвращает компонент кнопки страницы по умолчанию. Поддерживаются свойства элемента button.
+ * Компонент кнопки страницы по умолчанию. Поддерживаются свойства элемента button.
  * @param props Свойства.
  * @param props.selected Выбрана ли кнопка.
  * @param props.className CSS-класс.

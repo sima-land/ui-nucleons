@@ -5,21 +5,27 @@ import styles from './dropdown-item.scss';
 const cx = classnames.bind(styles);
 
 export interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, 'size'> {
-  size?: 's' | 'm' | 'l' | 'xl'
-  disabled?: boolean
-  noHover?: boolean
+
+  /** Отображать элемент как отмеченный или нет. */
   checked?: boolean
+
+  /** Отключен ли элемент. */
+  disabled?: boolean
+
+  /** Нужно ли отключить эффект при наведении. */
+  noHover?: boolean
+
+  /** Размер. */
+  size?: 's' | 'm' | 'l' | 'xl'
 }
 
 /**
  * Компонент элемента выпадающего списка.
  * @param props Свойства.
- * @param props.size Размер.
- * @param props.children Содержимое.
- * @param props.className Класс.
- * @param props.disabled Отключен ли элемент.
  * @param props.checked Отображать элемент как отмеченный или нет.
+ * @param props.disabled Отключен ли элемент.
  * @param props.noHover Нужно ли отключить эффект при наведении.
+ * @param props.size Размер.
  * @return Элемент.
  */
 export const DropdownItem: React.FC<Props> = ({

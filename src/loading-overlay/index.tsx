@@ -4,10 +4,18 @@ import classnames from 'classnames/bind';
 import classes from './loading-overlay.scss';
 
 export interface Props {
-  style?: React.CSSProperties
+
+  /** Пользовательский CSS-класс корневого элемента. */
   className?: string
-  spinnerProps?: SpinnerProps
+
+  /** Нужно ли заполнять родительский элемент с помощью `position: absolute`. */
   fill?: boolean
+
+  /** Свойства компонента Spinner. */
+  spinnerProps?: SpinnerProps
+
+  /** Пользовательские стили. */
+  style?: React.CSSProperties
 }
 
 const cx = classnames.bind(classes);
@@ -15,11 +23,7 @@ const cx = classnames.bind(classes);
 /**
  * Компонент перекрытия для отображения состояния загрузки.
  * @param props Свойства.
- * @param props.style Пользовательские стили.
- * @param props.className Пользовательский CSS-класс корневого элемента.
- * @param props.spinnerProps Свойства компонента Spinner.
- * @param props.fill Нужно ли заполнять родительский элемент с помощью `position: absolute`.
- * @return Компонент перекрытия для отображения состояния загрузки.
+ * @return Элемент.
  */
 const LoadingOverlay: React.FC<Props> = ({ style, className, spinnerProps = {}, fill = true }) => (
   <div

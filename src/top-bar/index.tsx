@@ -9,16 +9,26 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export interface Props {
-  className?: string,
-  size?: 's' | 'm'
-  title?: string
-  subtitle?: string
+
+  /** Свойства кнопок. */
   buttonsProps?: {
     start?: ButtonProps
     startSecondary?: ButtonProps
     end?: ButtonProps
     endSecondary?: ButtonProps
   }
+
+  /** CSS-класс корневого элемента. */
+  className?: string
+
+  /** Размер. */
+  size?: 's' | 'm'
+
+  /** Подзаголовок. */
+  subtitle?: string
+
+  /** Заголовок. */
+  title?: string
 }
 
 const cx = classnames.bind(classes);
@@ -26,11 +36,6 @@ const cx = classnames.bind(classes);
 /**
  * Компонент шапки модальных окон/экранов.
  * @param props Свойства.
- * @param props.size Размер.
- * @param props.title Заголовок.
- * @param props.subtitle Подзаголовок.
- * @param props.buttonsProps Свойства кнопок.
- * @param props.className CSS-класс корневого элемента.
  * @return Элемент.
  */
 const TopBar: React.FC<Props> = ({

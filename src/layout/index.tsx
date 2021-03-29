@@ -4,15 +4,19 @@ import classes from './layout.scss';
 
 type Breakpoint = 'mxs' | 'ms' | 'mm' | 'ml' | 'xs' | 's' | 'm' | 'l' | 'xl';
 
-type Props = {
+interface Props extends React.HTMLProps<HTMLElement> {
+
+  /** Тэг. */
   element?: string
+
+  /** Список точек остановки на которых необходимо отключить ограничение ширины. */
   disabledOn?: Array<Breakpoint>
-} & React.HTMLAttributes<HTMLElement>;
+}
 
 const cx = classnames.bind(classes);
 
 /**
- * Возвращает компонент формирующий Layout.
+ * Возвращает созданный функциональный компонент, формирующий Layout.
  * @param specificClass Специальный класс.
  * @param displayName Отображаемое имя компонента.
  * @return Компонент.

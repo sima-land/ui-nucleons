@@ -18,19 +18,44 @@ type DismissCallback = (
 ) => void;
 
 interface TooltipProps {
-  inline?: boolean
-  holderRef: React.MutableRefObject<HTMLDivElement | undefined>
-  onDismiss?: DismissCallback
+
+  /** Содержимое. */
+  children?: React.ReactNode
+
+  /** CSS-класс корневого элемента. */
   className?: string
+
+  /** Реф с элементом, относительно которого нужно позиционироваться. */
+  holderRef: React.MutableRefObject<HTMLDivElement | undefined>
+
+  /** Нужно ли выводить inline-элемент. */
+  inline?: boolean
+
+  /** Сработает при клике за пределами или на крестик. */
+  onDismiss?: DismissCallback
 }
 
 export interface Props<T extends ElementName = ElementName> {
-  inline?: boolean
+
+  /** Тип элемента-контейнера. */
   holderElement?: T
+
+  /** Свойства контейнера. */
   holderProps?: React.PropsWithRef<React.HTMLAttributes<JSX.IntrinsicElements[T]>>
-  shown?: boolean
+
+  /** Нужно ли выводить inline-элемент. */
+  inline?: boolean
+
+  /** Сработает при клике вне подсказки или на крестик в ней. */
   onDismiss?: DismissCallback
+
+  /** Показывать ли подсказку. */
+  shown?: boolean
+
+  /** Содержимое компонента Tooltip. */
   tooltipChildren?: React.ReactNode
+
+  /** Свойства компонента Tooltip. */
   tooltipProps?: TooltipProps
 }
 
@@ -39,14 +64,6 @@ const cx = classnames.bind(classes);
 /**
  * Компонент, добавляющий к содержимому подсказку.
  * @param props Свойства.
- * @param props.inline Нужно ли выводить inline-элемент.
- * @param props.holderElement Тип элемента-контейнера.
- * @param props.holderProps Свойства контейнера.
- * @param props.shown Показывать ли подсказку.
- * @param props.onDismiss Сработает при клике вне подсказки или на крестик в ней.
- * @param props.children Содержимое.
- * @param props.tooltipChildren Содержимое компонента Tooltip.
- * @param props.tooltipProps Свойства компонента Tooltip.
  * @return Элемент.
  */
 const WithTooltip: React.FC<Props> = ({
@@ -94,11 +111,6 @@ const WithTooltip: React.FC<Props> = ({
 /**
  * Компонент подсказки. Позиционируется относительно переданного в holderRef элемента.
  * @param props Свойства.
- * @param props.inline Нужно ли выводить inline-элемент.
- * @param props.holderRef Реф с элементом, относительно которого нужно позиционироваться.
- * @param props.children Содержимое.
- * @param props.onDismiss Сработает при клике за пределами или на крестик.
- * @param props.className CSS-класс корневого элемента.
  * @return Элемент.
  */
 export const Tooltip: React.FC<TooltipProps> = ({

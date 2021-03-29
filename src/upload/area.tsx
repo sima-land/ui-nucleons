@@ -9,12 +9,26 @@ import { upperFirst } from 'lodash';
 import getDeclination from '../helpers/get-declination';
 
 export interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect' | 'multiple'> {
+
+  /** Ограничение на количество файлов. */
   countLimit?: number
+
+  /** Есть ли ошибки валидации. */
   failed?: boolean
+
+  /** Роль файлов. */
   fileRole?: string
+
+  /** Форматы. */
   formats?: string
+
+  /** Ограничение на количество файлов. */
   multiple?: boolean
+
+  /** Сработает при выборе или перетаскивании файлов, получив список и событие. */
   onSelect?: (list: File[], e: React.DragEvent<HTMLDivElement> | React.ChangeEvent<HTMLInputElement>) => void
+
+  /** Ограничение на размер. */
   sizeLimit?: string
 }
 
@@ -23,14 +37,6 @@ const cx = classnames.bind(styles);
 /**
  * Компонент поля выбора файла.
  * @param props Свойства.
- * @param props.onSelect Сработает при выборе или перетаскивании файлов, получив список и событие.
- * @param props.className Класс.
- * @param props.fileRole Роль файлов.
- * @param props.formats Форматы.
- * @param props.sizeLimit Ограничение на размер.
- * @param props.multiple Ограничение на количество файлов.
- * @param props.failed Есть ли ошибки валидации.
- * @param props.countLimit Ограничение на количество файлов.
  * @return Элемент.
  */
 export const UploadArea: React.FC<Props> = ({

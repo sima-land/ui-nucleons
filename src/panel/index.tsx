@@ -5,11 +5,23 @@ import { COLORS, Token } from '../colors';
 import styles from './panel.scss';
 
 export interface Props {
+
+  /** Наименование цвета панели. */
   color?: Token
+
+  /** Наименование цвета содержимого. */
   contentColor?: Token
+
+  /** Нужно ли стилизовать как inline-элемент. */
   inline?: boolean
+
+  /** Компонент иконки. */
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
+
+  /** CSS-класс корневого элемента. */
   className?: string
+
+  /** Содержимое в виде строки с html-версткой. */
   html?: string
 }
 
@@ -17,15 +29,8 @@ const cx = classnames.bind(styles);
 
 /**
  * Компонент панели с информацией.
- * @param {Object} props Свойства.
- * @param {string} props.color Наименование цвета панели.
- * @param {string} props.contentColor Наименование цвета содержимого.
- * @param {boolean} [props.inline=false] Нужно ли стилизовать как inline-элемент.
- * @param {*} props.icon Компонент иконки.
- * @param {string} props.className CSS-класс корневого элемента.
- * @param {*} [props.children] Содержимое.
- * @param {string} [props.html] Содержимое в виде строки с html-версткой.
- * @return {ReactElement} Компонент панели с информацией.
+ * @param props Свойства.
+ * @return Элемент.
  */
 const Panel: React.FC<Props> = ({
   color: panelColor = 'gray4',

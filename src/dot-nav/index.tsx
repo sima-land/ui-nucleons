@@ -4,8 +4,14 @@ import classnames from 'classnames/bind';
 import styles from './dot-nav.scss';
 
 export interface Props {
+
+  /** Индекс выбранной точки. */
   current?: number
+
+  /** Количество точек. */
   total?: number
+
+  /** Сработает при выборе точки. */
   onSelect?: (index: number) => void
 }
 
@@ -17,9 +23,6 @@ const cx = classnames.bind(styles);
 /**
  * Компонент точек навигации для каруселей и слайдеров.
  * @param props Свойства.
- * @param props.current Индекс выбранной точки.
- * @param props.total Количество точек.
- * @param props.onSelect Сработает при выборе точки.
  * @return Элемент.
  */
 const DotNav: React.FC<Props> = ({ current = 0, total = 1, onSelect }) => {
