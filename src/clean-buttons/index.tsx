@@ -14,7 +14,11 @@ export type ButtonProps = CustomButtonProps
 & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'size'>;
 
 export interface Props {
+
+  /** Содержимое. */
   children?: React.ReactElement<ButtonProps>[]
+
+  /** Размер. */
   size?: Size
 }
 
@@ -23,7 +27,6 @@ const cx = classnames.bind(classes);
 /**
  * Компонент группы прозрачных кнопок.
  * @param props Свойства.
- * @param props.size Содержимое.
  * @return Элемент.
  */
 const CleanGroup: React.FC<Props> = ({ children, size = 'm' }) => (

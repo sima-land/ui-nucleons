@@ -1,12 +1,17 @@
 import React from 'react';
 
+export interface Props {
+
+  /** Идентификатор. */
+  id?: string
+}
+
 /**
  * Выводит svg-элемент, содержащий clipPath в форме "супер-эллипса".
  * @param props Свойства.
- * @param props.id Идентификатор элемента.
  * @return Элемент.
  */
-const SuperEllipseClipPath: React.FC<{ id?: string }> = ({ id }) => (
+const SuperEllipseClipPath: React.FC<Props> = ({ id }) => (
   <svg width={0} height={0} style={{ position: 'absolute' }}>
     <defs>
       <clipPath id={id} clipPathUnits='objectBoundingBox'>

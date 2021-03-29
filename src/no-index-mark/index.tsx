@@ -1,12 +1,17 @@
 import React from 'react';
 
+export interface Props {
+
+  /** Флаг закрывающегося тэга. */
+  closing?: boolean
+}
+
 /**
  * Компонент отображает неиндексируемый контент.
- * @param props Свойства компонента.
- * @param props.closing Флаг закрывающегося тэга.
+ * @param props Свойства.
  * @return Элемент.
  */
-const NoIndexMark = ({ closing }: { closing?: boolean }) => (
+const NoIndexMark: React.FC<Props> = ({ closing }) => (
   <span dangerouslySetInnerHTML={{ __html: `<!--${closing ? '/' : ''}noindex-->` }} />
 );
 

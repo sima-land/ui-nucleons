@@ -18,7 +18,11 @@ type Direction = 'up' | 'right' | 'down' | 'left';
 type IconSet = Readonly<Record<Direction, React.FC<React.SVGProps<SVGSVGElement>>>>;
 
 export interface Props extends Omit<JSX.IntrinsicElements['button'], 'size'> {
+
+  /** Размер. */
   size?: Size
+
+  /** Направление (отвечает за иконку). */
   direction?: Direction
 }
 
@@ -42,8 +46,6 @@ const ICONS: Readonly<Record<Size, IconSet>> = {
 /**
  * Компонент круглой кнопки со стрелкой.
  * @param props Свойства. Поддерживаются свойства элемента button.
- * @param props.size Размер.
- * @param props.direction Направление (отвечает за иконку).
  * @param props.className CSS-класс.
  * @return Элемент.
  */

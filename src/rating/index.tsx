@@ -7,12 +7,24 @@ import { composeClasses, getStarClass } from './utils';
 import { Classes } from './types';
 
 export interface Props {
-  value: number
-  count?: number
-  starSize?: number,
-  withHover?: boolean
+
+  /** Пользовательские классы. */
   classes?: Classes
+
+  /** Общее количество звезд рейтинга. */
+  count?: number
+
+  /** Функция, вызываемая при клике на звезду. */
   onStarClick?: (index: number) => void
+
+  /** Размеры звезд. */
+  starSize?: number,
+
+  /** Значение рейтинга. */
+  value: number
+
+  /** С эффектом при наведении. */
+  withHover?: boolean
 }
 
 const DEFAULT_CLASSES: Classes = {
@@ -29,12 +41,6 @@ const cx = classnames.bind(styles);
 /**
  * Компонент рейтинга.
  * @param props Свойства компонента.
- * @param props.value Значение рейтинга.
- * @param props.count Общее количество звезд рейтинга.
- * @param props.starSizes Размеры звезд.
- * @param props.withHover С эффектом при наведении.
- * @param props.classes Пользовательские классы.
- * @param props.onStarClick Функция, вызываемая при клике на звезду.
  * @return Элемент.
  */
 const Rating: React.FC<Props> = ({

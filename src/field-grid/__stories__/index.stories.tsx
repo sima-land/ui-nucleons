@@ -3,7 +3,7 @@ import TextField from '../../text-field';
 import FieldGrid from '..';
 
 const DisplayWrapper: React.FC = ({ children }) => (
-  <div style={{ padding: '32px 0', background: '#fff', maxWidth: 1024, margin: '0 auto' }}>
+  <div style={{ margin: '0 auto', marginTop: 16, background: '#fff', maxWidth: 1024 }}>
     {children}
   </div>
 );

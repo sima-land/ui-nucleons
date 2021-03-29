@@ -14,13 +14,27 @@ import { DropdownLoading } from '../_internal/dropdown-loading';
 type Size = 's' | 'm' | 'l' | 'xl';
 
 export interface Props extends Omit<TextFieldProps, 'style'> {
-  options: any[]
-  optionSize?: Size
-  onSelect?: (option: any) => void
-  style?: React.CSSProperties
+
+  /** Нужно ли выводить состояние загрузки списка. */
   loading?: boolean
+
+  /** Сработает при открытии/закрытии меню. */
   onMenuToggle?: (opened: boolean) => void
+
+  /** Сработает при выборе. */
+  onSelect?: (option: any) => void
+
+  /** Список опций. */
+  options: any[]
+
+  /** Размер для DropdownItem. */
+  optionSize?: Size
+
+  /** Вернет содержимое опции. */
   renderOption?: (option: any) => React.ReactNode
+
+  /** Стили. */
+  style?: React.CSSProperties
 }
 
 const cx = classnames.bind(styles);
@@ -28,19 +42,7 @@ const cx = classnames.bind(styles);
 /**
  * Поле выбора из списка.
  * @param props Свойства.
- * @param props.options Список опций.
- * @param props.optionSize Размер для DropdownItem.
- * @param props.onSelect Сработает при выборе.
- * @param props.style Стили.
- * @param props.className Класс.
- * @param props.label Ярлык.
- * @param props.onClick Сработает при клике по полю.
- * @param props.value Введенное значение.
- * @param props.loading Нужно ли выводить состояние загрузки списка.
- * @param props.onMenuToggle Сработает при открытии/закрытии меню.
- * @param props.renderOption Вернет содержимое опции.
- * @param props.'data-testid' Идентификатор для систем автоматизированного тестирования.
- * @return {ReactElement} Компонент.
+ * @return Элемент.
  */
 export const Select: React.FC<Props> = ({
   options,

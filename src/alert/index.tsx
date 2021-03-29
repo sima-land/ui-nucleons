@@ -6,13 +6,29 @@ import classes from './alert.scss';
 import { InnerBorder } from '../styling/borders';
 
 export interface Props {
+
+  /** Основное содержимое. */
   children?: React.ReactNode
+
+  /** Класс для блока всего содержимого. */
   className?: string
+
+  /** Содержимое "подвала". */
   footer?: React.ReactNode
+
+  /** Нужно ли выводить в Layer. */
   inLayer?: boolean
+
+  /** Свойства компонента NavBar. */
   navBarProps?: NavBarProps
+
+  /** Заголовок. */
   title?: string
+
+  /** Нужна ли полоса между шапкой и основным содержимым. */
   withDivideNavBar?: boolean
+
+  /** Нужна ли шапка. */
   withNavBar?: boolean
 }
 
@@ -21,14 +37,6 @@ const cx = classnames.bind(classes);
 /**
  * Компонент модального диалога.
  * @param props Свойства.
- * @param props.children Основное содержимое.
- * @param props.className Класс для блока всего содержимого.
- * @param props.footer Содержимое "подвала".
- * @param props.inLayer Нужно ли выводить в Layer.
- * @param props.navBarProps Свойства компонента NavBar.
- * @param props.title Заголовок.
- * @param props.withDivideNavBar Нужна ли полоса между шапкой и основным содержимым.
- * @param props.withNavBar Нужна ли шапка.
  * @return Элемент.
  */
 const Alert: React.FC<Props> = ({

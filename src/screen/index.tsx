@@ -11,47 +11,66 @@ interface AdvancedCallbackData extends CallbackData {
 }
 
 export interface Props {
+
+  /** Содержимое. */
+  children?: React.ReactNode
+
+  /** Реф контента. */
   contentRef?: LayoutProps['childrenRef']
+
+  /** Содержимое подвала. */
   footer?: any
+
+  /** Отступ от нижней границы для срабатывания onFullScroll. */
   fullScrollThreshold?: number
+
+  /** Нужно ли выводить вместо содержимого состояние загрузки. */
   loading?: boolean
+
+  /** Определяет область отображаемую как загружающуюся. */
   loadingArea?: 'content' | 'full'
+
+  /** Свойства компонента LoadingOverlay. */
   loadingOverlayProps?: LoadingProps
+
+  /** Свойства компонента NavBar. */
   navBarProps?: LayoutProps['navBarProps']
+
+  /** Сработает при клике на кнопку "назад". */
   onBack?: (data: AdvancedCallbackData) => void
+
+  /** Сработает при кнопке на крест. */
   onClose?: (data: AdvancedCallbackData) => void
+
+  /** Сработает при полной прокрутке контента. */
   onFullScroll?: LayoutProps['onFullScroll']
+
+  /** Подзаголовок. */
   subtitle?: string
+
+  /** Заголовок. */
   title?: string
+
+  /** Нужно ли выводить кнопку "назад". */
   withBackButton?: boolean
+
+  /** Нужно ли выводить закрывающий крест. */
   withCloseButton?: boolean
+
+  /** Нужно ли рисовать черту между шапкой и основным содержимым. */
   withDivideHeader?: boolean
+
+  /** Нужно ли выводить кнопку "назад". */
   withHeader?: boolean
+
+  /** Нужно ли выводить Layer. */
   withLayer?: boolean
 }
 
 /**
  * Экран.
  * @param props Свойства.
- * @param props.title Заголовок.
- * @param props.subtitle Подзаголовок.
- * @param props.onBack Сработает при клике на кнопку "назад".
- * @param props.onClose Сработает при кнопке на крест.
- * @param props.onFullScroll Сработает при полной прокрутке контента.
- * @param props.fullScrollThreshold Отступ от нижней границы для срабатывания onFullScroll.
- * @param props.withHeader Нужно ли выводить кнопку "назад".
- * @param props.withDivideHeader Нужно ли рисовать черту между шапкой и основным содержимым.
- * @param props.withBackButton Нужно ли выводить кнопку "назад".
- * @param props.withCloseButton Нужно ли выводить закрывающий крест.
- * @param props.children Содержимое.
- * @param props.footer Содержимое подвала.
- * @param props.loading Нужно ли выводить вместо содержимого состояние загрузки.
- * @param props.loadingOverlayProps Свойства компонента LoadingOverlay.
- * @param props.loadingArea Определяет область отображаемую как загружающуюся.
- * @param props.contentRef Реф контента.
- * @param props.withLayer Нужно ли выводить Layer.
- * @param props.navBarProps Свойства компонента NavBar.
- * @return Элементё.
+ * @return Элемент.
  */
 const Screen: React.FC<Props> = ({
   children,
@@ -142,8 +161,8 @@ const Screen: React.FC<Props> = ({
 
 /**
  * Записывает переданное значение в ref контента.
- * @param {Object|Function} ref Ref-контейнер.
- * @param {*} value Значение для записи.
+ * @param ref Ref-контейнер.
+ * @param value Значение для записи.
  */
 export const setRefValue = (ref: React.RefCallback<any> | React.MutableRefObject<any>, value: any) => {
   if (isFunction(ref)) {
@@ -155,8 +174,8 @@ export const setRefValue = (ref: React.RefCallback<any> | React.MutableRefObject
 
 /**
  * Записывает полученный элемент в ref и отключает прокрутку.
- * @param {Object} ref Ref-контейнер.
- * @param {HTMLElement} element Элемент для записи.
+ * @param ref Ref-контейнер.
+ * @param element Элемент для записи.
  */
 export const takeScrollableElement = (
   ref: React.MutableRefObject<OrNil<HTMLDivElement>>,

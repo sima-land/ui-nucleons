@@ -3,15 +3,15 @@ import classes from './sizes.scss';
 
 /**
  * Проверяет, является ли значение шагом дизайн-системы для внешних отступов.
- * @param {*} value Значение.
- * @return {boolean} Результат.
+ * @param value Значение.
+ * @return Результат.
  */
 export const isMargin = (value: any) => Number.isInteger(value) && value >= -8 && value <= 32;
 
 /**
  * Проверяет, является ли значение шагом дизайн-системы для внутренних отступов.
- * @param {*} value Значение.
- * @return {boolean} Результат.
+ * @param value Значение.
+ * @return Результат.
  */
 export const isPadding = (value: any) => Number.isInteger(value) && value >= 0 && value <= 32;
 

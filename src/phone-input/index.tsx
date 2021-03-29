@@ -14,9 +14,17 @@ import classes from './phone-input.scss';
 import { defineCountry } from './utils';
 
 export interface Props extends Omit<TextFieldProps, 'onChange' | 'onBlur' | 'value' | 'ref'> {
-  onChange?: React.ChangeEventHandler<HTMLInputElement>
+
+  /** Сработает при "blur". */
   onBlur?: (e: React.FocusEvent<HTMLInputElement>, s: MaskState & { ready?: boolean }) => void
+
+  /** Сработает при изменении поля. Не рекомендуется использовать. */
+  onChange?: React.ChangeEventHandler<HTMLInputElement>
+
+  /** Срабатывает при изменении страны. */
   onCountrySelect?: (c: Country) => void
+
+  /** Значение. */
   value?: string
 }
 
@@ -32,16 +40,8 @@ const formatValue = (value: string, country: Country) => value.replace(/\D/g, ''
 
 /**
  * Компонент поля ввода номера телефона.
- * @param {Object} props Параметры компонента.
- * @param {string} props.label Ярлык.
- * @param {Function} [props.onCountrySelect] Срабатывает при изменении страны.
- * @param {Object} [props.style] Стили.
- * @param {string} [props.className] Класс.
- * @param {string} [props.'data-testid'] Идентификатор для систем автоматизированного тестирования.
- * @param {Function} [props.onBlur] Сработает при "blur".
- * @param {string} props.value Значение.
- * @param {Function} [props.onChange] Сработает при изменении поля. Не рекомендуется использовать.
- * @return {ReactElement} Компонент.
+ * @param props Параметры компонента.
+ * @return Элемент.
  */
 export const PhoneInput: React.FC<Props> = ({
   'data-testid': testId,

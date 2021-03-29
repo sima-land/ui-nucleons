@@ -15,15 +15,35 @@ import { Token } from '../colors';
 type Align = 'left' | 'center' | 'right' | 'justify';
 
 export interface Props {
-  children?: React.ReactNode
-  element?: string | React.ComponentType<{ className: string, children?: React.ReactNode } & React.RefAttributes<any>>
-  size?: Size
-  lineHeight?: LineHeight
+
+  /** Направление. */
   align?: Align
+
+  /** Содержимое. */
+  children?: React.ReactNode
+
+  /** Ключ цвета из дизайн системы. */
   color?: Token
+
+  /** Элемент, который будет использован как обертка. */
+  element?: string | React.ComponentType<{ className: string, children?: React.ReactNode } & React.RefAttributes<any>>
+
+  /** Нужно ли выводить текст наклонным. */
   italic?: boolean
+
+  /** Межстрочный интервал. */
+  lineHeight?: LineHeight
+
+  /** Нужно ли добавить стиль "white-space: nowrap". */
   nowrap?: boolean
+
+  /** Размер. */
+  size?: Size
+
+  /** Нужно ли обрезать текст многоточием в одну строку. */
   truncate?: boolean
+
+  /** Начертание. */
   weight?: Weight
 }
 
@@ -50,16 +70,6 @@ export const ALIGNS = new Set<Align>([
 /**
  * Компонент для стилизации текста.
  * @param props Свойства.
- * @param props.element Элемент, который будет использован как обертка.
- * @param props.children Содержимое.
- * @param props.align Направление.
- * @param props.size Размер.
- * @param props.lineHeight Межстрочный интервал.
- * @param props.color Ключ цвета из дизайн системы.
- * @param props.weight Начертание.
- * @param props.italic Нужно ли выводить текст наклонным.
- * @param props.truncate Нужно ли обрезать текст многоточием в одну строку.
- * @param props.nowrap Нужно ли добавить стиль "white-space: nowrap".
  * @return Элемент.
  */
 const Text = forwardRef<any, Props>(function Text ({

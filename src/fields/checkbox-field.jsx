@@ -8,7 +8,7 @@ import classes from './checkbox-field.scss';
 const cx = classnames.bind(classes);
 
 /**
- * Возвращает компонент поля галочки.
+ * Компонент поля галочки.
  * @param {Object} props Свойства компонента.
  * @param {boolean} [props.id] Идентификатор элемента input, также передастся в атрибут "for" ярлыка.
  * @param {boolean} [props.checked] Отмечена ли галочка.

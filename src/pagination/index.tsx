@@ -2,19 +2,23 @@ import React from 'react';
 import { BasePagination, Props as BaseProps } from './base-pagination';
 
 export interface Props {
+
+  /** Общее количество страниц. */
   total: number
+
+  /** Индекс текущей страницы. */
   current: number
+
+  /** Сработает при выборе страницы. */
   onChange?: (data: { value: number }) => void
+
+  /** Функция возвращающая компонент кнопки. */
   renderButton?: BaseProps['renderButton']
 }
 
 /**
- * Возвращает компонент списка кнопок навигации по страницам.
+ * Компонент списка кнопок навигации по страницам.
  * @param props Свойства.
- * @param props.total Номер последней страницы.
- * @param props.current Номер текущей страницы.
- * @param props.onChange Сработает при выборе страницы.
- * @param props.renderButton Функция возвращающая компонент кнопки.
  * @return Элемент.
  */
 const Pagination: React.FC<Props> = ({

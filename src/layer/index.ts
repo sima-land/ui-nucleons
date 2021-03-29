@@ -2,7 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 export interface Props {
+
+  /** Вернет элемент, в который нужно вывести содержимое через портал. */
   defineRoot?: () => HTMLElement
+
+  /** Содержимое. */
   children?: React.ReactNode
 }
 

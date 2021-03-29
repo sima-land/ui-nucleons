@@ -278,7 +278,7 @@ export default class Draggable extends Component<Props> {
   }
 
   /**
-   * Возвращает компонент.
+   * Рендер.
    * @inheritdoc
    */
   render () {

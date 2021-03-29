@@ -6,7 +6,7 @@ export default {
   title: 'service/SuperEllipseClipPath',
   component: SuperEllipseClipPath,
   parameters: {
-    layout: 'padded',
+    layout: 'centered',
   },
 };
 

@@ -13,10 +13,20 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export interface Props {
+
+  /** Заголовок. */
   title?: string
+
+  /** Подзаголовок. */
   subtitle?: string
+
+  /** Класс. */
   className?: string
+
+  /** Нужно ли выводить полоску снизу. */
   bottomBordered?: boolean
+
+  /** Свойства кнопок. */
   buttons?: {
     start?: ButtonProps
     startSecondary?: ButtonProps
@@ -32,10 +42,6 @@ const getIcon = prop('icon');
 /**
  * Компонент панели навигации.
  * @param props Свойства.
- * @param props.title Заголовок.
- * @param props.subtitle Подзаголовок.
- * @param props.bottomBordered Нужна ли внутренняя граница снизу.
- * @param props.buttons Данные кнопок.
  * @return Элемент.
  */
 const NavBar: React.FC<Props> = ({

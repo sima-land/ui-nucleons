@@ -12,13 +12,14 @@ const VARIANTS = {
 } as const;
 
 export interface Props extends Omit<React.SVGProps<SVGSVGElement>, 'type'> {
+
+  /** Тип файла. */
   type?: string
 }
 
 /**
  * Компонент иконки файла.
  * @param props Свойства. Поддерживаются свойства <svg />.
- * @param props.type Тип файла.
  * @return Элементё.
  */
 export const FileIcon: React.FC<Props> = ({ type, ...svgProps }) => {

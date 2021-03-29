@@ -40,16 +40,13 @@ export default {
   },
 };
 
-export const Primary = Template.bind(null);
-
-Primary.args = {
+export const Primary = Template.bind(null, {
   items,
   getItemName: ({ name }: { name: any }) => name,
-};
+});
 
-export const RoundView = Template.bind(null);
-
-RoundView.args = {
-  ...Primary.args,
+export const RoundView = Template.bind(null, {
   view: 'round',
-};
+  items,
+  getItemName: ({ name }: { name: any }) => name,
+});

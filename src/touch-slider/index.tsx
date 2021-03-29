@@ -4,6 +4,8 @@ import classnames from 'classnames/bind';
 import styles from './touch-slider.scss';
 
 export interface Props {
+
+  /** Прокручиваемое содержимое. */
   children?: React.ReactNode
 }
 
@@ -12,8 +14,7 @@ const cx = classnames.bind(styles);
 /**
  * Компонент блока, прокручиваемого по горизонтали. Реализует отступы MobileLayout.
  * @param props Свойства.
- * @param props.children Прокручиваемое содержимое.
- * @return Компонент блока, прокручиваемого по горизонтали.
+ * @return Элемент.
  */
 const TouchSlider: React.FC<Props> = ({ children }) => (
   <MobileLayout>

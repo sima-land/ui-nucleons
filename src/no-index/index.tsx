@@ -1,13 +1,18 @@
 import React from 'react';
 import NoIndexMark from '../no-index-mark';
 
+export interface Props {
+
+  /** Содержимое. */
+  children?: React.ReactNode
+}
+
 /**
  * Компонент отображает неиндексируемый контент.
- * @param props Свойства компонента.
- * @param props.children Содержимое.
+ * @param props Свойства.
  * @return Элемент.
  */
-const NoIndex: React.FC = ({ children }) => (
+const NoIndex: React.FC<Props> = ({ children }) => (
   <>
     <NoIndexMark />
     {children}
