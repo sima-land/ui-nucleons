@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import Box from '../index';
+import { Box } from '..';
 import { bgColor } from '../../styling/colors';
 
 describe('<Box />', () => {

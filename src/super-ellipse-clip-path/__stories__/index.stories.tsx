@@ -1,5 +1,5 @@
 import React from 'react';
-import SuperEllipseClipPath from '..';
+import { SuperEllipseClipPath } from '..';
 import { COLORS } from '../../colors';
 
 export default {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
-import DotNav from '..';
+import { DotNav } from '..';
 import { times } from 'lodash';
 
 describe('<DotsNav />', () => {

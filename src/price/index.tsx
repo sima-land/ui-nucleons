@@ -29,7 +29,7 @@ const cx = classnames.bind(classes);
  * @param props Параметры компонента.
  * @return Элемент.
  */
-const Price: React.FC<Props> = ({
+export const Price: React.FC<Props> = ({
   className,
   currencyGrapheme: grapheme,
   graphemeBefore,
@@ -80,5 +80,3 @@ const Price: React.FC<Props> = ({
     </span>
   );
 };
-
-export default Price;

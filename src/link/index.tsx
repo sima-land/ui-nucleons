@@ -38,7 +38,7 @@ const getContentProps = (children: React.ReactNode, noIndex?: boolean) => noInde
  * @param ref Реф для DOM-элемента ссылки.
  * @return Элемент.
  */
-const Link = forwardRef<HTMLAnchorElement, Props>(function Link ({
+export const Link = forwardRef<HTMLAnchorElement, Props>(function Link ({
   children,
   className,
   color = 'brand-blue',
@@ -66,5 +66,3 @@ const Link = forwardRef<HTMLAnchorElement, Props>(function Link ({
     />
   );
 });
-
-export default Link;

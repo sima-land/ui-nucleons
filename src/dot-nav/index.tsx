@@ -25,7 +25,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-const DotNav: React.FC<Props> = ({ current = 0, total = 1, onSelect }) => {
+export const DotNav: React.FC<Props> = ({ current = 0, total = 1, onSelect }) => {
   const withShift = total > 4;
 
   const shift = useShift(current, total);
@@ -87,5 +87,3 @@ const useShift = (current: number, total: number) => {
 
   return shiftRef.current;
 };
-
-export default DotNav;

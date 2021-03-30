@@ -1,6 +1,6 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
 import { isNil, isFunction } from 'lodash';
-import Box from '../box';
+import { Box } from '../box';
 import { BaseInput, Props as BaseInputProps } from '../base-input';
 import { SmallRounds } from '../styling/shapes';
 import classnames from 'classnames/bind';
@@ -114,7 +114,7 @@ const modifiersToClasses = ({ disabled, failed, focused, variant }: {
  * @param props Свойства.
  * @return Элемент.
  */
-const TextField = forwardRef<HTMLTextAreaElement | HTMLInputElement | undefined, Props>(function TextField ({
+export const TextField = forwardRef<HTMLTextAreaElement | HTMLInputElement | undefined, Props>(function TextField ({
   autoFocus,
   caption,
   classes = {},
@@ -281,5 +281,3 @@ const TextField = forwardRef<HTMLTextAreaElement | HTMLInputElement | undefined,
     </div>
   );
 });
-
-export default TextField;

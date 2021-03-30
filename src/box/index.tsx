@@ -168,7 +168,7 @@ const JUSTIFY_CONTENT = new Set([
  * @param props.wrap Формирует значение css-свойства "flex-wrap".
  * @return Элемент.
  */
-const Box: React.FC<Props> = ({
+export const Box: React.FC<Props> = ({
   element: Container = 'div',
   children,
   display,
@@ -366,5 +366,3 @@ const getPaddingClasses = ({
 
   return result.filter(Boolean).join(' ');
 };
-
-export default Box;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Select } from '..';
-import Link from '../../link';
+import { Link } from '../../link';
 
 export default {
   title: 'Select',

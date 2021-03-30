@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Range from '..';
+import { Range } from '..';
 
 describe('<Range />', () => {
   it('should works without props', () => {

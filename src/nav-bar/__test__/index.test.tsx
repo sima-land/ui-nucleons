@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import NavBar from '..';
+import { NavBar } from '..';
 import ArrowLeftSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-left';
 import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
 import CartSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cart';

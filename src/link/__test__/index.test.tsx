@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Link from '..';
+import { Link } from '..';
 
 describe('<Link />', () => {
   it('calls helpers with right params and renders correctly without external', () => {

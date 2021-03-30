@@ -4,7 +4,7 @@ import DownSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/down';
 import UpSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/up';
 import { Dropdown } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';
-import TextField, { Props as TextFieldProps } from '../text-field';
+import { TextField, Props as TextFieldProps } from '../text-field';
 import { MaskedField, MaskState } from '../masked-field';
 import { useOutsideClick } from '../hooks';
 import { IDS, countriesList, Country } from './presets';

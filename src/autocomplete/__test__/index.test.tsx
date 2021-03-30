@@ -2,7 +2,7 @@ import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { act, Simulate } from 'react-dom/test-utils';
 import { Autocomplete } from '..';
-import TextField from '../../text-field';
+import { TextField } from '../../text-field';
 
 describe('Autocomplete', () => {
   const findMenu = (w: ReactWrapper) => w.find('div[data-testid="autocomplete:menu"]');

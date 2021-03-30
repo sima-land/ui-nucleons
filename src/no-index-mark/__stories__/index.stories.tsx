@@ -1,5 +1,5 @@
 import React from 'react';
-import NoIndexMark from '..';
+import { NoIndexMark } from '..';
 
 export default {
   title: 'service/NoIndexMark',

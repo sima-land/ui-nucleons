@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import TouchSlider from '..';
+import { TouchSlider } from '..';
 
 describe('<TouchSlider />', () => {
   it('should renders correctly', () => {

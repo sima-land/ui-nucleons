@@ -71,5 +71,3 @@ export const Clean = {
   Group: CleanGroup,
   Button: CleanButton,
 };
-
-export default Clean;

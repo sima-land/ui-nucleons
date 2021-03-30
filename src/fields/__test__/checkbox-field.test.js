@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Checkbox from '../../checkbox/';
+import { Checkbox } from '../../checkbox';
 import CheckboxField from '../checkbox-field';
 import classes from '../checkbox-field.scss';
 

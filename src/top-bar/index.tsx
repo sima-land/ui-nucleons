@@ -38,7 +38,7 @@ const cx = classnames.bind(classes);
  * @param props Свойства.
  * @return Элемент.
  */
-const TopBar: React.FC<Props> = ({
+export const TopBar: React.FC<Props> = ({
   size = 'm',
   title,
   subtitle,
@@ -93,5 +93,3 @@ export const IconButton: React.FC<ButtonProps> = ({ icon, ...buttonProps }) => (
 const iconStub = (
   <div className={cx('icon-button')} />
 );
-
-export default TopBar;

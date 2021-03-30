@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import Layer from '../layer';
+import { Layer } from '../layer';
 import { placeTooltip } from './utils';
 import classnames from 'classnames/bind';
 import { useOutsideClick } from '../hooks';
@@ -66,7 +66,7 @@ const cx = classnames.bind(classes);
  * @param props Свойства.
  * @return Элемент.
  */
-const WithTooltip: React.FC<Props> = ({
+export const WithTooltip: React.FC<Props> = ({
   inline = false,
   holderElement: Holder = inline ? 'span' : 'div',
   holderProps = {},
@@ -173,5 +173,3 @@ export const Tooltip: React.FC<TooltipProps> = ({
     </Container>
   );
 };
-
-export default WithTooltip;

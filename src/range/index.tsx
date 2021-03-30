@@ -63,7 +63,7 @@ const getFraction = (start: number, end: number, value: number) => ((value - sta
  */
 const getPercentage = (...args: Parameters<typeof getFraction>) => getFraction(...args) * 100;
 
-class Range extends Component<Props> {
+export class Range extends Component<Props> {
   containerRef: React.RefObject<HTMLElement | undefined>;
   rangeRef: React.RefObject<HTMLElement | undefined>;
   startThumbRef: React.RefObject<HTMLElement | undefined>;
@@ -378,5 +378,3 @@ class Range extends Component<Props> {
     );
   }
 }
-
-export default Range;

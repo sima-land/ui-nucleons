@@ -1,9 +1,9 @@
 import React, { Fragment, useRef, useEffect } from 'react';
-import Layer from '../layer';
+import { Layer } from '../layer';
 import isFunction from 'lodash/isFunction';
 import { ScreenLayout, Props as LayoutProps, CallbackData } from './screen-layout';
 import { cx, OrNil } from './utils';
-import LoadingOverlay, { Props as LoadingProps } from '../loading-overlay';
+import { LoadingOverlay, Props as LoadingProps } from '../loading-overlay';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 interface AdvancedCallbackData extends CallbackData {
@@ -72,7 +72,7 @@ export interface Props {
  * @param props Свойства.
  * @return Элемент.
  */
-const Screen: React.FC<Props> = ({
+export const Screen: React.FC<Props> = ({
   children,
   contentRef,
   footer,
@@ -192,5 +192,3 @@ export const takeScrollableElement = (
     disableBodyScroll(element);
   }
 };
-
-export default Screen;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Panel from '..';
+import { Panel } from '..';
 import InformationSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/information.js';
 
 describe('<Panel />', () => {

@@ -10,12 +10,8 @@ const cx = classnames.bind(classes);
 /**
  * Компонент галочки.
  * @param props Свойства.
- * @param props.checked Отмечена ли галочка.
- * @param props.disabled Отключена ли галочка.
- * @param props.onChange Сработает при смене состояния.
- * @param props.className CSS-класс.
  */
-const Checkbox = forwardRef<HTMLInputElement, Props>(function Checkbox ({
+export const Checkbox = forwardRef<HTMLInputElement, Props>(function Checkbox ({
   checked = false,
   disabled,
   onChange,
@@ -52,5 +48,3 @@ const Checkbox = forwardRef<HTMLInputElement, Props>(function Checkbox ({
 });
 
 Checkbox.displayName = 'Checkbox';
-
-export default Checkbox;

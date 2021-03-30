@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
-import TextField from '../index';
+import { TextField } from '..';
 import { BaseInput } from '../../base-input';
 import { fitElementHeight } from '../../helpers/fit-element-height';
 

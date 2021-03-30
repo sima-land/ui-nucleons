@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
-import DotNav from '..';
+import { DotNav } from '..';
 import { times } from 'lodash';
 
 const styles: Record<string, React.CSSProperties> = {

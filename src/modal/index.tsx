@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
 import { BodyScrollOptions } from 'body-scroll-lock';
-import TopBar, { Props as TopBarProps } from '../top-bar';
+import { TopBar, Props as TopBarProps } from '../top-bar';
 import { useCloseHandler, useScrollDisable } from './utils';
 import classnames from 'classnames/bind';
 import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
 import { BoxShadow } from '../styling/shadows';
 import { InnerBorder } from '../styling/borders';
 import styles from './modal.scss';
-import Layer from '../layer';
+import { Layer } from '../layer';
 
 type Size = 's' | 'm' | 'l' | 'xl' | 'fullscreen';
 
@@ -63,7 +63,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства компонента.
  * @return Элемент.
  */
-const Modal: React.FC<Props> = ({
+export const Modal: React.FC<Props> = ({
   children,
   footer,
   onClose,
@@ -125,5 +125,3 @@ const Modal: React.FC<Props> = ({
     </Wrapper>
   );
 };
-
-export default Modal;

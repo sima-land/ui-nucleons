@@ -3,7 +3,7 @@ import classnames from 'classnames/bind';
 import styles from './area.scss';
 import UploadSVG from './upload.svg';
 import { COLORS } from '../colors';
-import Link from '../link';
+import { Link } from '../link';
 import { useDragAndDrop, getFilesPreparer } from './utils';
 import { upperFirst } from 'lodash';
 import getDeclination from '../helpers/get-declination';

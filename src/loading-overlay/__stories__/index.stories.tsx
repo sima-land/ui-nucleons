@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import LoadingOverlay from '..';
+import { LoadingOverlay } from '..';
 
 export default {
   title: 'service/LoadingOverlay',

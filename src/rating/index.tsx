@@ -43,7 +43,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства компонента.
  * @return Элемент.
  */
-const Rating: React.FC<Props> = ({
+export const Rating: React.FC<Props> = ({
   value,
   count = 5,
   starSize = 16,
@@ -67,5 +67,3 @@ const Rating: React.FC<Props> = ({
     </div>
   );
 };
-
-export default Rating;

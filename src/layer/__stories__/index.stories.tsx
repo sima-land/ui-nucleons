@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../../button';
-import Layer from '..';
+import { Layer } from '..';
 
 const styles: Record<string, React.CSSProperties> = {
   overlay: {

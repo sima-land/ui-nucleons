@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Rating from '..';
+import { Rating } from '..';
 import range from 'lodash/range';
 import styles from './custom-rating.scss';
 

@@ -44,7 +44,7 @@ const getIcon = prop('icon');
  * @param props Свойства.
  * @return Элемент.
  */
-const NavBar: React.FC<Props> = ({
+export const NavBar: React.FC<Props> = ({
   title,
   subtitle,
   className,
@@ -168,5 +168,3 @@ export const NavButton: React.FC<ButtonProps> = ({
     }
   </button>
 );
-
-export default NavBar;

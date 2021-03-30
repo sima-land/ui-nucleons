@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import FieldGrid from '..';
-import TextField from '../../text-field';
+import { FieldGrid } from '..';
+import { TextField } from '../../text-field';
 
 describe('FieldGrid', () => {
   it('should render single row with one cell', () => {

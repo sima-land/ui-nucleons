@@ -21,7 +21,7 @@ export interface Props {
  * @param props Свойства.
  * @return Элемент.
  */
-const Pagination: React.FC<Props> = ({
+export const Pagination: React.FC<Props> = ({
   total,
   current,
   onChange,
@@ -38,5 +38,3 @@ const Pagination: React.FC<Props> = ({
     }}
   />
 );
-
-export default Pagination;

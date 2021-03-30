@@ -1,5 +1,5 @@
 import React from 'react';
-import NoIndex from '..';
+import { NoIndex } from '..';
 
 export default {
   title: 'service/NoIndex',

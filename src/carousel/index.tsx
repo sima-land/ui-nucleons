@@ -7,7 +7,7 @@ import Point, { IPoint } from '../helpers/point';
 import maxIndexOf from '../helpers/max-index-of';
 import getRelativePos from '../helpers/get-relative-pos';
 import findChildElement from '../helpers/find-child-element';
-import ArrowButton, { Props as ButtonProps } from '../arrow-button';
+import { ArrowButton, Props as ButtonProps } from '../arrow-button';
 import on from '../helpers/on';
 import classnames from 'classnames/bind';
 import DraggableEvent from './helpers/draggable-event';

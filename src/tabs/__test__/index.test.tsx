@@ -1,5 +1,5 @@
 import React from 'react';
-import Tabs from '../';
+import { Tabs } from '..';
 import { mount } from 'enzyme';
 
 describe('<Tabs />', () => {

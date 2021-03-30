@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from '..';
+import { Modal } from '..';
 import { mount, ReactWrapper } from 'enzyme';
 import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
 import { act } from 'react-dom/test-utils';

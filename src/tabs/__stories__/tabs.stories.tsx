@@ -1,6 +1,6 @@
 import { Story } from '@storybook/react';
 import React from 'react';
-import Tabs from '..';
+import { Tabs } from '..';
 
 const items = [
   { name: 'Active', active: true },

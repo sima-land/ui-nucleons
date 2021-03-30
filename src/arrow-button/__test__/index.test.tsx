@@ -1,7 +1,7 @@
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
-import ArrowButton from '..';
+import { ArrowButton } from '..';
 
 describe('<ArrowButton />', () => {
   it('should renders correctly', () => {

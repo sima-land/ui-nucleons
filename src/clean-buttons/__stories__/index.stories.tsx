@@ -1,5 +1,5 @@
 import React from 'react';
-import Clean from '..';
+import { Clean } from '..';
 
 const DisplayWrapper: React.FC = ({ children }) => (
   <div style={{ background: '#fff' }}>

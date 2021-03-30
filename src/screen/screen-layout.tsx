@@ -1,5 +1,5 @@
 import React, { useRef, useImperativeHandle } from 'react';
-import NavBar, { Props as NavBarProps } from '../nav-bar';
+import { NavBar, Props as NavBarProps } from '../nav-bar';
 import { cx, OrNil } from './utils';
 import on from '../helpers/on';
 import { isFullyScrolled } from '../helpers/is-fully-scrolled';

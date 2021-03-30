@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Range from '..';
+import { Range } from '..';
 
 export default {
   title: 'Range',
