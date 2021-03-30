@@ -8,7 +8,7 @@ export type Props = React.InputHTMLAttributes<HTMLInputElement>;
 const cx = classnames.bind(classes);
 
 /**
- * Компонент галочки.
+ * Компонент галочки. Поддерживает все свойства тега input.
  * @param props Свойства.
  */
 export const Checkbox = forwardRef<HTMLInputElement, Props>(function Checkbox ({
