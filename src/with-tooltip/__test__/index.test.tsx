@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { mount, ReactWrapper } from 'enzyme';
-import WithTooltip, { Tooltip } from '..';
+import { WithTooltip, Tooltip } from '..';
 import { placeTooltip } from '../utils';
 import CrossSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/cross';
 

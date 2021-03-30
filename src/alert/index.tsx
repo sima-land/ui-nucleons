@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import Layer from '../layer';
-import NavBar, { Props as NavBarProps } from '../nav-bar';
+import { Layer } from '../layer';
+import { NavBar, Props as NavBarProps } from '../nav-bar';
 import classnames from 'classnames/bind';
 import classes from './alert.scss';
 import { InnerBorder } from '../styling/borders';
@@ -39,7 +39,7 @@ const cx = classnames.bind(classes);
  * @param props Свойства.
  * @return Элемент.
  */
-const Alert: React.FC<Props> = ({
+export const Alert: React.FC<Props> = ({
   children,
   className,
   footer,
@@ -78,5 +78,3 @@ const Alert: React.FC<Props> = ({
     </Wrapper>
   );
 };
-
-export default Alert;

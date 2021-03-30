@@ -1,11 +1,11 @@
 import React from 'react';
-import NavBar from '../../nav-bar';
+import { NavBar } from '../../nav-bar';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
-import Screen, { takeScrollableElement, setRefValue } from '../index';
+import { Screen, takeScrollableElement, setRefValue } from '../index';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { ScreenLayout } from '../screen-layout';
-import Layer from '../../layer';
+import { Layer } from '../../layer';
 
 jest.mock('body-scroll-lock', () => {
   const original = jest.requireActual('body-scroll-lock');

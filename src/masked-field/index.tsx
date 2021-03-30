@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import TextField, { Props as TextFieldProps } from '../text-field';
+import { TextField, Props as TextFieldProps } from '../text-field';
 import { InputMask } from '@krutoo/input-mask/dist/dom';
 
 export interface MaskState {

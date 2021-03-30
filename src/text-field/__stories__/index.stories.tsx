@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TextField from '../index';
+import { TextField } from '..';
 import RightSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/right.js';
 import { COLORS } from '../../colors';
 

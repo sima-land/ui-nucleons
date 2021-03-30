@@ -19,7 +19,7 @@ export interface Props {
  * @param props Свойства компонента.
  * @return Элемент.
  */
-const Timer: React.FC<Props> = ({
+export const Timer: React.FC<Props> = ({
   date,
   format = formatDistance,
   timeout = 1000,
@@ -42,5 +42,3 @@ const Timer: React.FC<Props> = ({
     </>
   );
 };
-
-export default Timer;

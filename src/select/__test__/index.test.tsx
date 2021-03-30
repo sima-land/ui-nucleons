@@ -2,7 +2,7 @@ import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { act, Simulate } from 'react-dom/test-utils';
 import { Select } from '..';
-import TextField from '../../text-field';
+import { TextField } from '../../text-field';
 
 describe('Select', () => {
   const openMenu = (wrapper: ReactWrapper) => {

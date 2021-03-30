@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Box, { Props } from '..';
+import { Box, Props } from '..';
 
 const testJustifyItems = [
   <Box padding={4} margin={4} key={1} color='additional-red'>First</Box>,

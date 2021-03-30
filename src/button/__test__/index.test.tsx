@@ -1,5 +1,5 @@
 import React from 'react';
-import Button, { computeClassName } from '../index';
+import { Button, computeClassName } from '../index';
 import { shallow } from 'enzyme';
 import SearchSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/search.js';
 import PlusSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/plus.js';

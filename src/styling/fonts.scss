@@ -4,10 +4,19 @@ $sizes: (
   16,
   20,
   24,
-  28,
   32,
   48,
   64,
+);
+
+$heights: (
+  16,
+  20,
+  24,
+  28,
+  32,
+  40,
+  60,
   80,
 );
 
@@ -15,8 +24,11 @@ $sizes: (
   .size-#{$size} {
     font-size: #{$size}px;
   }
-  .line-height-#{$size} {
-    line-height: #{$size}px;
+}
+
+@each $height in $heights {
+  .line-height-#{$height} {
+    line-height: #{$height}px;
   }
 }
 

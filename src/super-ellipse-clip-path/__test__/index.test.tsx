@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import SuperEllipseClipPath from '..';
+import { SuperEllipseClipPath } from '..';
 
 describe('SuperEllipseClipPath', () => {
   it('should match snapshot', () => {

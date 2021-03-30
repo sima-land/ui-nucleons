@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import NoIndex from '..';
+import { NoIndex } from '..';
 
 describe('NoIndex', () => {
   it('should renders correctly', () => {

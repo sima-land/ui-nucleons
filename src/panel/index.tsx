@@ -32,7 +32,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-const Panel: React.FC<Props> = ({
+export const Panel: React.FC<Props> = ({
   color: panelColor = 'gray4',
   contentColor = 'gray87',
   inline = false,
@@ -70,5 +70,3 @@ const Panel: React.FC<Props> = ({
     </div>
   );
 };
-
-export default Panel;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import Link from '..';
+import { Link } from '..';
 
 export default {
   title: 'Link',

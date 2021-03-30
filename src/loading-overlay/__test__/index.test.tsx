@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import LoadingOverlay from '../index';
+import { LoadingOverlay } from '..';
 
 describe('<LoadingOverlay />', () => {
   it('should renders without props', () => {

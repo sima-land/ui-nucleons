@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { act, Simulate } from 'react-dom/test-utils';
 import { PhoneInput } from '..';
-import TextField from '../../text-field';
+import { TextField } from '../../text-field';
 import { Dropdown } from '../../dropdown';
 import { DropdownItem } from '../../dropdown-item';
 import { MaskedField } from '../../masked-field';

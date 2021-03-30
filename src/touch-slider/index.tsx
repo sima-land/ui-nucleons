@@ -16,7 +16,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-const TouchSlider: React.FC<Props> = ({ children }) => (
+export const TouchSlider: React.FC<Props> = ({ children }) => (
   <MobileLayout>
     <div className={cx('outer', 'invisible-scroll')}>
       <div className={cx('inner')}>
@@ -25,5 +25,3 @@ const TouchSlider: React.FC<Props> = ({ children }) => (
     </div>
   </MobileLayout>
 );
-
-export default TouchSlider;

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import on from '../../helpers/on';
-import Link from '../../link';
-import WithTooltip from '../index';
+import { Link } from '../../link';
+import { WithTooltip } from '..';
 import boundsOf from '../../helpers/bounds-of';
 import classes from './index.scss';
 

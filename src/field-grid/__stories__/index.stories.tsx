@@ -1,6 +1,6 @@
 import React from 'react';
-import TextField from '../../text-field';
-import FieldGrid from '..';
+import { TextField } from '../../text-field';
+import { FieldGrid } from '..';
 
 const DisplayWrapper: React.FC = ({ children }) => (
   <div style={{ margin: '0 auto', marginTop: 16, background: '#fff', maxWidth: 1024 }}>

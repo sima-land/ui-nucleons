@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Alert from '..';
+import { Alert } from '..';
 
 describe('<Alert />', () => {
   it('should renders without props', () => {

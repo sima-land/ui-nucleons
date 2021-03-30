@@ -28,7 +28,11 @@ export interface RowProps {
 }
 
 export interface Props {
+
+  /** Содержимое. */
   children: ItOrArray<React.ReactElement<RowProps, typeof Row>>
+
+  /** Свойства корневого элемента. */
   rootProps?: React.HTMLAttributes<HTMLDivElement>
 }
 
@@ -57,7 +61,7 @@ const TypeCheck = {
  * @param props.rootProps Свойства корневого элемента.
  * @return Компонент сетки полей.
  */
-const FieldGrid: FieldGridComponent = ({ children, rootProps }) => {
+export const FieldGrid: FieldGridComponent = ({ children, rootProps }) => {
   const rows = Children.toArray(children).filter(TypeCheck.isRow) as React.ReactElement<RowProps>[];
 
   return (
@@ -160,5 +164,3 @@ const Cell: React.FC<CellProps> = ({ size, rounds, field, renderField }) => {
 
 FieldGrid.Row = Row;
 FieldGrid.Cell = Cell;
-
-export default FieldGrid;

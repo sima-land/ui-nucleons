@@ -23,7 +23,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства компонента.
  * @return Компонент добавления рамки.
  */
-const BorderedLayout: React.FC<Props> = ({ top, bottom, children }) => {
+export const BorderedLayout: React.FC<Props> = ({ top, bottom, children }) => {
   let borderClass;
 
   if (top && bottom) {
@@ -42,5 +42,3 @@ const BorderedLayout: React.FC<Props> = ({ top, bottom, children }) => {
     </MobileLayout>
   );
 };
-
-export default BorderedLayout;

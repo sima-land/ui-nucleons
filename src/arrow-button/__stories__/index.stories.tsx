@@ -1,5 +1,5 @@
 import React from 'react';
-import ArrowButton from '..';
+import { ArrowButton } from '..';
 import { action } from '@storybook/addon-actions';
 
 const sizes = ['l', 's'];

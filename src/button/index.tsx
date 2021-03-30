@@ -44,7 +44,7 @@ const cx = classnames.bind(classes);
  * @param props Свойства.
  * @return Компонент кнопки.
  */
-const Button = forwardRef<any, Props>(function Button ({
+export const Button = forwardRef<any, Props>(function Button ({
   children,
   className,
   actionType = 'primary',

@@ -1,5 +1,5 @@
 import React from 'react';
-import Panel, { Props } from '..';
+import { Panel, Props } from '..';
 import { marginBottom, marginRight } from '../../styling/sizes';
 import InfoSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/information';
 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
-import Screen from '..';
+import { Screen } from '..';
 import Button from '../../button';
-import Box from '../../box';
+import { Box } from '../../box';
 
 export default {
   title: 'Screen',

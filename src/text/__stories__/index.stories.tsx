@@ -1,5 +1,5 @@
 import React, { useRef, useLayoutEffect } from 'react';
-import Text, { ALIGNS } from '../index';
+import { Text, ALIGNS } from '../index';
 import cutTextContent from '../../helpers/cut-text-content';
 import isElement from 'lodash/isElement';
 import { COLORS } from '../../colors';

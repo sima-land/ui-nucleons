@@ -2,7 +2,7 @@ import { mount } from 'enzyme';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import React from 'react';
-import Timer from '..';
+import { Timer } from '..';
 import { getDistanceToNow } from '../utils';
 
 jest.useFakeTimers();

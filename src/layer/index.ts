@@ -10,7 +10,7 @@ export interface Props {
   children?: React.ReactNode
 }
 
-const Layer: React.FC<Props> = ({ children, defineRoot = () => document.body }) => {
+export const Layer: React.FC<Props> = ({ children, defineRoot = () => document.body }) => {
   const [mounted, setMounted] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>();
 
@@ -31,5 +31,3 @@ const Layer: React.FC<Props> = ({ children, defineRoot = () => document.body }) 
     ? createPortal(children, ref.current)
     : null;
 };
-
-export default Layer;

@@ -21,7 +21,7 @@ const cx = classnames.bind(styles);
  * @param props.className Внешние классы.
  * @return Элемент.
  */
-function Tabs <T = any> ({
+export function Tabs <T = any> ({
   items,
   getItemName = identity,
   onSelectItem,
@@ -77,5 +77,3 @@ function Tabs <T = any> ({
     </ul>
   );
 }
-
-export default Tabs;

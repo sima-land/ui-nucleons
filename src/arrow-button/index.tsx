@@ -46,10 +46,9 @@ const ICONS: Readonly<Record<Size, IconSet>> = {
 /**
  * Компонент круглой кнопки со стрелкой.
  * @param props Свойства. Поддерживаются свойства элемента button.
- * @param props.className CSS-класс.
  * @return Элемент.
  */
-const ArrowButton: React.FC<Props> = ({
+export const ArrowButton: React.FC<Props> = ({
   size = 'l',
   direction = 'right',
   className,
@@ -71,5 +70,3 @@ const ArrowButton: React.FC<Props> = ({
     </button>
   );
 };
-
-export default ArrowButton;

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { action } from '@storybook/addon-actions';
-import Button from '..';
+import { Button } from '..';
 import PlusSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/plus';
 
 const types = ['primary', 'secondary'];

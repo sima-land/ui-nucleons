@@ -1,9 +1,9 @@
 import { Story } from '@storybook/react';
 import React, { useState } from 'react';
-import Modal, { Props } from '..';
-import Box from '../../box';
+import { Modal, Props } from '..';
+import { Box } from '../../box';
 import Button from '../../button';
-import Clean from '../../clean-buttons';
+import { Clean } from '../../clean-buttons';
 import { DesktopLayout } from '../../layout';
 import { marginRight } from '../../styling/sizes';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Rating from '..';
+import { Rating } from '..';
 import { mount } from 'enzyme';
 
 describe('<Rating />', () => {

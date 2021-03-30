@@ -1,5 +1,5 @@
 import React, { forwardRef, useState, useEffect } from 'react';
-import Checkbox from '../checkbox/';
+import { Checkbox } from '../checkbox';
 import isFunction from 'lodash/isFunction';
 import classnames from 'classnames/bind';
 import PropTypes from 'prop-types';

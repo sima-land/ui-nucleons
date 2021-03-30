@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Dropdown } from '../dropdown';
 import { DropdownItem, Props as ItemProps } from '../dropdown-item';
-import TextField, { Props as TextFieldProps } from '../text-field';
+import { TextField, Props as TextFieldProps } from '../text-field';
 import { placeDropdown } from '../_internal/utils/dropdown';
 import classnames from 'classnames/bind';
 import DownSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/down';

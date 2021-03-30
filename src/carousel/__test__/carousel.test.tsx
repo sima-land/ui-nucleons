@@ -5,7 +5,7 @@ import Draggable from '../draggable';
 import DraggableEvent from '../helpers/draggable-event';
 import classes from '../carousel.scss';
 import Point from '../../helpers/point';
-import ArrowButton from '../../arrow-button';
+import { ArrowButton } from '../../arrow-button';
 import { act } from 'react-dom/test-utils';
 
 const defineProp = (object: Record<any, any>, key: any, value: any) => {

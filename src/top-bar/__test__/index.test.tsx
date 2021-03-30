@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import TopBar from '..';
+import { TopBar } from '..';
 import { mapValues } from 'lodash';
 import * as TestProps from './test-props';
 

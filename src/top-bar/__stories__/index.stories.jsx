@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import TopBar from '..';
+import { TopBar } from '..';
 import { sizes, shortTitles, longTitles, allButtons, startButtons, endButtons } from '../__test__/test-props';
 
 const propsList = [

@@ -2,7 +2,7 @@ import { mount } from 'enzyme';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { MaskedField } from '..';
-import TextField from '../../text-field';
+import { TextField } from '../../text-field';
 
 describe('MaskedField', () => {
   it('should renders properly', () => {

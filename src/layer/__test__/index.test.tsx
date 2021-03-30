@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { mount } from 'enzyme';
 import { render } from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import Layer, { Props } from '..';
+import { Layer, Props } from '..';
 
 describe('<Layer />', () => {
   const TestComponent = ({

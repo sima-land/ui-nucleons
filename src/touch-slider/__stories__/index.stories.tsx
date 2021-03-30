@@ -1,5 +1,5 @@
 import React from 'react';
-import TouchSlider from '..';
+import { TouchSlider } from '..';
 
 const styles = {
   root: {

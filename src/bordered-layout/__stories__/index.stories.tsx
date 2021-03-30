@@ -1,5 +1,5 @@
 import React from 'react';
-import BorderedLayout, { Props } from '..';
+import { BorderedLayout, Props } from '..';
 
 export default {
   title: 'BorderedLayout',

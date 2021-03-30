@@ -72,7 +72,7 @@ export const ALIGNS = new Set<Align>([
  * @param props Свойства.
  * @return Элемент.
  */
-const Text = forwardRef<any, Props>(function Text ({
+export const Text = memo(forwardRef<any, Props>(function Text ({
   children,
   element: Container = 'span',
   size,
@@ -104,6 +104,4 @@ const Text = forwardRef<any, Props>(function Text ({
       children={children}
     />
   );
-});
-
-export default memo(Text);
+}));
