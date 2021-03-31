@@ -4,7 +4,7 @@ import classes from './layout.scss';
 
 type Breakpoint = 'mxs' | 'ms' | 'mm' | 'ml' | 'xs' | 's' | 'm' | 'l' | 'xl';
 
-export interface Props extends React.HTMLProps<HTMLElement> {
+export interface Props extends React.HTMLAttributes<HTMLElement> {
 
   /** Тэг. */
   element?: string
