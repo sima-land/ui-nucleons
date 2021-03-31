@@ -80,11 +80,11 @@
   "scripts": {
     "prepare": "husky install",
     "build:before": "rimraf build",
-    "build:main": "tsc -p . -d",
+    "build:main": "tsc --project tsconfig.build.json",
     "build:after": "node dist.js",
     "build": "yarn build:before && yarn build:main && yarn build:after",
     "test": "jest",
-    "type-check": "tsc -p . -d --noEmit",
+    "type-check": "tsc -p . --noEmit",
     "coverage": "jest --clearCache && jest --coverage",
     "lint:scripts": "eslint --cache src/ --ext .js,.jsx,.ts,.tsx",
     "lint:styles": "stylelint 'src/**/*.scss'",
