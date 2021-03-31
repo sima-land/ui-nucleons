@@ -53,4 +53,35 @@ describe('Chips', () => {
     });
     wrapper.update();
   });
+
+  it('should handle items with "href" property', () => {
+    const wrapper = mount(
+      <Chips
+        items={[
+          { children: 'Ручка для пакета' },
+          { children: 'Спортивные кружки' },
+          { children: 'Пакеты пищевые' },
+        ].map(item => ({ ...item, href: 'www.foo-bar.com' }))}
+      />
+    );
+
+    act(() => {
+      Simulate.click(wrapper.find('a').at(0).getDOMNode());
+    });
+    wrapper.update();
+  });
+
+  it('should render with cross', () => {
+    const wrapper = mount(
+      <Chips
+        items={[
+          { children: 'Ручка для пакета' },
+          { children: 'Спортивные кружки' },
+          { children: 'Пакеты пищевые' },
+        ].map(item => ({ ...item, withCross: true }))}
+      />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
 });
