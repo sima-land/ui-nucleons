@@ -1,10 +1,12 @@
 import React from 'react';
 import classnames from 'classnames/bind';
+import CrossSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/cross';
 import styles from './chips.scss';
 
 interface ChipsItem {
   href?: string
   children?: React.ReactNode
+  withCross?: boolean
   [x: string]: any
 }
 
@@ -35,20 +37,26 @@ export const Chips: React.FC<Props> = ({
   ...restProps
 }) => (
   <div {...restProps} className={cx('list', className)}>
-    {items.map(
-      (item, index) => (
+    {items.map((item, index) => {
+      const { href, children, withCross } = item;
+
+      return (
         <a
-          {...item}
+          href={href}
+          role={href ? undefined : 'button'}
           key={index}
           className={cx(
             'item',
             isItemChecked?.(item, index) && 'checked'
           )}
-          onClick={e => {
-            onItemClick?.(item, e);
-          }}
-        />
-      )
-    )}
+          onClick={e => onItemClick?.(item, e)}
+        >
+          {children}
+          {withCross && (
+            <CrossSVG className={cx('cross-svg')} />
+          )}
+        </a>
+      );
+    })}
   </div>
 );
