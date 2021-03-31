@@ -150,4 +150,12 @@ describe('<Modal />', () => {
 
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('should renders without TopBar', () => {
+    const wrapper = mount(
+      <Modal withTopBar={false} />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
 });

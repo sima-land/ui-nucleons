@@ -438,3 +438,19 @@ exports[`<Modal /> should renders in layer 1`] = `
   </Layer>
 </Modal>
 `;
+
+exports[`<Modal /> should renders without TopBar 1`] = `
+<Modal
+  withTopBar={false}
+>
+  <div
+    className="overlay"
+    data-testid="modal:overlay"
+  >
+    <div
+      className="modal size-m shadow-z4"
+      data-testid="modal"
+    />
+  </div>
+</Modal>
+`;
