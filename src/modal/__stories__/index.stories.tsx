@@ -59,12 +59,14 @@ export const SizeS = Template.bind(null, {
   title: 'Модальное окно',
   withDivideTopBar: true,
   withCloseButton: true,
+  withTopBar: true,
 });
 
 export const SizeM = Template.bind(null, {
   title: 'Модальное окно',
   withDivideTopBar: true,
   withCloseButton: true,
+  withTopBar: true,
 });
 
 export const SizeL = Template.bind(null, {
@@ -72,6 +74,7 @@ export const SizeL = Template.bind(null, {
   title: 'Модальное окно',
   withDivideTopBar: true,
   withCloseButton: true,
+  withTopBar: true,
 });
 
 export const SizeXL = Template.bind(null, {
@@ -79,6 +82,7 @@ export const SizeXL = Template.bind(null, {
   title: 'Модальное окно',
   withDivideTopBar: true,
   withCloseButton: true,
+  withTopBar: true,
 });
 
 export const Fullscreen = Template.bind(null, {
@@ -86,6 +90,7 @@ export const Fullscreen = Template.bind(null, {
   title: 'Модальное окно',
   withDivideTopBar: true,
   withCloseButton: true,
+  withTopBar: true,
   children: (
     <DesktopLayout>
       <Box margin={6}>
@@ -105,4 +110,12 @@ export const Fullscreen = Template.bind(null, {
       </Box>
     </DesktopLayout>
   ),
+});
+
+export const WithoutBars = Template.bind(null, {
+  size: 's',
+  withDivideTopBar: true,
+  withCloseButton: true,
+  footer: undefined,
+  withTopBar: false,
 });

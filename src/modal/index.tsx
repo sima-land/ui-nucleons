@@ -52,6 +52,9 @@ export interface Props {
   /** Нужно ли блокировать прокрутку body при показе. */
   withScrollDisable?: boolean
 
+  /** Нужно ли выводить TopBar. */
+  withTopBar?: boolean
+
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string
 }
@@ -77,6 +80,7 @@ export const Modal: React.FC<Props> = ({
   withDivideTopBar,
   withLayer,
   withScrollDisable = true,
+  withTopBar = true,
   'data-testid': dataTestId = 'modal',
 }) => {
   const Wrapper = withLayer ? Layer : Fragment;
@@ -93,25 +97,27 @@ export const Modal: React.FC<Props> = ({
         {...onClose && useCloseHandler(onClose)}
       >
         <div className={cx('modal', `size-${size}`, !fullscreen && BoxShadow.z4)} data-testid={dataTestId}>
-          <TopBar
-            title={title}
-            subtitle={subtitle}
-            buttonsProps={
-              withCloseButton
-                ? {
-                  end: {
-                    'data-testid': 'modal:close',
-                    onClick: onClose,
-                    icon: <CrossSVG className={cx('cursor-pointer')} />,
-                  },
-                  ...topBarProps?.buttonsProps,
-                }
-                : undefined
-            }
-            {...topBarProps}
-            size={fullscreen ? 'm' : 's'}
-            className={cx('header', withDivideTopBar && InnerBorder.bottom)}
-          />
+          {withTopBar && (
+            <TopBar
+              title={title}
+              subtitle={subtitle}
+              buttonsProps={
+                withCloseButton
+                  ? {
+                    end: {
+                      'data-testid': 'modal:close',
+                      onClick: onClose,
+                      icon: <CrossSVG className={cx('cursor-pointer')} />,
+                    },
+                    ...topBarProps?.buttonsProps,
+                  }
+                  : undefined
+              }
+              {...topBarProps}
+              size={fullscreen ? 'm' : 's'}
+              className={cx('header', withDivideTopBar && InnerBorder.bottom)}
+            />
+          )}
 
           {children}
 
