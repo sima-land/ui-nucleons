@@ -1,23 +1,32 @@
 import React, { forwardRef } from 'react';
 import { getNoIndex } from '../helpers/get-no-index';
-import { color as getColorClass } from '../styling/colors';
-import classNames from 'classnames/bind';
-import styles from './link.scss';
+import { color as getColorClass, hoverColor } from '../styling/colors';
+import classnames from 'classnames/bind';
 import { Token } from '../colors';
+import styles from './link.scss';
 
-export interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface Props extends React.HTMLProps<HTMLAnchorElement> {
 
   /** Цвет (название токена). */
-  color?: Token
+  color?: Extract<Token, 'brand-blue' | 'gray87' | 'gray38'>
 
   /** Нужно ли оборачивать содержимое комментариями no-index. */
   noIndex?: boolean
 
   /** Выводить как псевдо-ссылку. */
   pseudo?: boolean
+
+  /** Отключает ссылку подобно кнопке. */
+  disabled?: boolean
 }
 
-const cx = classNames.bind(styles);
+const COLOR_CLASS = {
+  'brand-blue': classnames(getColorClass('brand-blue'), hoverColor('brand-deep-blue')),
+  gray87: classnames(getColorClass('gray87'), hoverColor('gray54')),
+  gray38: classnames(getColorClass('gray38'), hoverColor('gray54')),
+} as const;
+
+const cx = classnames.bind(styles);
 
 /**
  * Возвращает объект со свойствами, формирующими содержимое.
@@ -32,9 +41,6 @@ const getContentProps = (children: React.ReactNode, noIndex?: boolean) => noInde
 /**
  * Компонент ссылки.
  * @param props Свойства компонента. Поддерживаются свойства span/a.
- * @param props.noIndex Запрет индексации названия ссылки поисковиками.
- * @param props.color Цвет.
- * @param props.pseudo Нужно ли выводить не ссылочный элемент span, стилизованный под ссылку.
  * @param ref Реф для DOM-элемента ссылки.
  * @return Элемент.
  */
@@ -42,6 +48,8 @@ export const Link = forwardRef<HTMLAnchorElement, Props>(function Link ({
   children,
   className,
   color = 'brand-blue',
+  disabled,
+  href,
   noIndex = false,
   pseudo,
   role,
@@ -49,8 +57,14 @@ export const Link = forwardRef<HTMLAnchorElement, Props>(function Link ({
   ...restProps
 }, ref) {
   const baseProps = pseudo
-    ? { role: role || 'button', tabIndex: tabIndex || 0 }
-    : { role, tabIndex };
+    ? {
+      role: role || 'button',
+      tabIndex: disabled ? undefined : tabIndex || 0,
+
+      // при  href="javascript:;" обработчик клика срабатывает на Enter подобно button
+      href: disabled ? href : 'javascript:;',
+    }
+    : { href, role, tabIndex };
 
   return (
     <a
@@ -60,7 +74,8 @@ export const Link = forwardRef<HTMLAnchorElement, Props>(function Link ({
       className={cx(
         'link',
         className,
-        getColorClass(color)
+        COLOR_CLASS[color],
+        { disabled }
       )}
       {...getContentProps(children, noIndex)}
     />
