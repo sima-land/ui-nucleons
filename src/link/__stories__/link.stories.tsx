@@ -1,5 +1,5 @@
-import React from 'react';
 import { action } from '@storybook/addon-actions';
+import React from 'react';
 import { Link } from '..';
 
 export default {
@@ -10,20 +10,26 @@ export default {
   },
 };
 
-export const Primary = () => (
-  <>
-    <h3>Links are pretty smart:</h3>
+export const Primary = () => {
+  const onClick = () => action('click')(new Date());
 
-    <p>
-      <b>Link</b> component is just <Link href='https://ya.ru'>an anchor</Link>
-    </p>
+  return (
+    <>
+      <div style={{ display: 'flex', fontSize: 18 }}>
+        {(['brand-blue', 'gray87', 'gray38'] as const).map(color => (
+          <div key={color} style={{ marginRight: 48 }}>
+            <Link href='https://ya.ru' color={color}>Ссылка</Link>
 
-    <p>
-      But with <code>pseudo</code> prop <b>Link</b> has
-      {' '}
-      <code>role=&quot;button&quot;</code> attribute:
-      {' '}
-      <Link pseudo onClick={action('Click')}>pseudo link</Link>
-    </p>
-  </>
-);
+            <div style={{ marginBottom: 20 }} />
+
+            <Link pseudo color={color} onClick={onClick}>Псевдо-ссылка</Link>
+
+            <div style={{ marginBottom: 20 }} />
+
+            <Link pseudo disabled color={color} onClick={onClick}>Псевдо-ссылка (disabled)</Link>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+};

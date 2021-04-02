@@ -8,7 +8,7 @@ describe('<Link />', () => {
       <Link
         className='testClass'
         href='/cart/'
-        color='white'
+        color='gray38'
         target='_blank'
       >
         Test link
@@ -20,7 +20,7 @@ describe('<Link />', () => {
 
   it('calls helpers and renders correctly with pseudo', () => {
     const wrapper = mount(
-      <Link pseudo color='black'>
+      <Link pseudo color='gray38'>
         Test link
       </Link>
     );
@@ -30,7 +30,7 @@ describe('<Link />', () => {
 
   it('calls helpers and renders correctly with external', () => {
     const wrapper = mount(
-      <Link href='/cabinet/' color='white'>
+      <Link href='/cabinet/' color='brand-blue'>
         Test link
       </Link>
     );
@@ -89,6 +89,14 @@ describe('<Link />', () => {
   it('render render pseudo link properly', () => {
     const wrapper = mount(
       <Link pseudo>Test link</Link>
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('render render pseudo link disabled properly', () => {
+    const wrapper = mount(
+      <Link pseudo disabled>Test link</Link>
     );
 
     expect(wrapper).toMatchSnapshot();

@@ -13,7 +13,9 @@
 
 .link:hover {
   cursor: pointer;
+}
 
-  // до появления руководств на ссылки, при наведении любая ссылка краснеет
-  color: colors.$additional-red;
+.link.disabled {
+  color: colors.$gray24;
+  pointer-events: none;
 }

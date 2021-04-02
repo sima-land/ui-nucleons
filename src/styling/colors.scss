@@ -4,6 +4,9 @@
   .color__#{$key} {
     color: $color;
   }
+  .hover-color__#{$key}:hover {
+    color: $color;
+  }
   .bg-color__#{$key} {
     background-color: $color;
   }

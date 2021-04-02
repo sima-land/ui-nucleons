@@ -2,11 +2,11 @@
 
 exports[`<Link /> calls helpers and renders correctly with external 1`] = `
 <ForwardRef(Link)
-  color="white"
+  color="brand-blue"
   href="/cabinet/"
 >
   <a
-    className="link color__white"
+    className="link color__brand-blue hover-color__brand-deep-blue"
     href="/cabinet/"
   >
     Test link
@@ -16,11 +16,12 @@ exports[`<Link /> calls helpers and renders correctly with external 1`] = `
 
 exports[`<Link /> calls helpers and renders correctly with pseudo 1`] = `
 <ForwardRef(Link)
-  color="black"
+  color="gray38"
   pseudo={true}
 >
   <a
-    className="link color__black"
+    className="link color__gray38 hover-color__gray54"
+    href="javascript:;"
     role="button"
     tabIndex={0}
   >
@@ -32,14 +33,28 @@ exports[`<Link /> calls helpers and renders correctly with pseudo 1`] = `
 exports[`<Link /> calls helpers with right params and renders correctly without external 1`] = `
 <ForwardRef(Link)
   className="testClass"
-  color="white"
+  color="gray38"
   href="/cart/"
   target="_blank"
 >
   <a
-    className="link testClass color__white"
+    className="link testClass color__gray38 hover-color__gray54"
     href="/cart/"
     target="_blank"
+  >
+    Test link
+  </a>
+</ForwardRef(Link)>
+`;
+
+exports[`<Link /> render render pseudo link disabled properly 1`] = `
+<ForwardRef(Link)
+  disabled={true}
+  pseudo={true}
+>
+  <a
+    className="link color__brand-blue hover-color__brand-deep-blue disabled"
+    role="button"
   >
     Test link
   </a>
@@ -51,7 +66,8 @@ exports[`<Link /> render render pseudo link properly 1`] = `
   pseudo={true}
 >
   <a
-    className="link color__brand-blue"
+    className="link color__brand-blue hover-color__brand-deep-blue"
+    href="javascript:;"
     role="button"
     tabIndex={0}
   >
