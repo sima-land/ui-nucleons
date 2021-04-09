@@ -63,7 +63,7 @@ export interface Props {
   /** Нужно ли выводить кнопку "назад". */
   withHeader?: boolean
 
-  /** Нужно ли выводить Layer. */
+  /** Нужно ли выводить Layer (при SSR необходимо указать false). */
   withLayer?: boolean
 }
 
