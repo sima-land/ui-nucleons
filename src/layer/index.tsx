@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 export interface Props {
@@ -14,7 +14,7 @@ export const Layer: React.FC<Props> = ({ children, defineRoot = () => document.b
   const [mounted, setMounted] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const root = defineRoot();
 
     ref.current = document.createElement('div');

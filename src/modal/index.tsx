@@ -46,7 +46,7 @@ export interface Props {
   /** Нужно ли отделять TopBar чертой. */
   withDivideTopBar?: boolean
 
-  /** Нужно ли выводить элемент в Layer. */
+  /** Нужно ли выводить элемент в Layer (при SSR необходимо указать false). */
   withLayer?: boolean
 
   /** Нужно ли блокировать прокрутку body при показе. */
