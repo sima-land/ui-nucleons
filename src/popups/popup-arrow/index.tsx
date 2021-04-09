@@ -9,7 +9,7 @@ import { createArrowStyles } from './create-arrow-styles';
  * @return {ReactElement} Стрелка-треугольник.
  */
 const PopupArrow = ({ position = {}, ...restProps }) =>
-  <span className={createArrowStyles(restProps)} style={position} />;
+  <span className={createArrowStyles(restProps) as any} style={position} />;
 
 PopupArrow.propTypes = {
   /**

@@ -1,8 +1,8 @@
-import Popup from '../popup/';
+import Popup from '../popup';
 import Type from 'prop-types';
 import isNumber from 'lodash/isNumber';
 import classnames from 'classnames/bind';
-import PopupArrow from '../popup-arrow/';
+import PopupArrow from '../popup-arrow';
 import classes from './positioning-popup.scss';
 import isBrowser from '../../helpers/is-browser';
 import React, { Component, createRef } from 'react';
@@ -60,11 +60,17 @@ export const defaultArrowProps = {
  * @param {Function} [props.onMouseOut] Обработчик покидания курсором области попапа.
  * @param {Function} [props.onMouseOver] Обработчик наведения курсора мыши на попап.
  */
-class PositioningPopup extends Component {
+class PositioningPopup extends Component<any, any> {
+  parentWidth: any;
+  parentLeft: any;
+  openerLeft: any;
+  openerWidth: any;
+  static propTypes: any;
+
   state = {
     popupWidth: 0,
   };
-  popupRef = createRef();
+  popupRef: any = createRef();
 
   /**
    * Выполняется перед монтированием компонента
@@ -72,8 +78,8 @@ class PositioningPopup extends Component {
    */
   UNSAFE_componentWillMount () { // eslint-disable-line camelcase
     const { parent, opener } = this.props;
-    let parentCoords = {};
-    let openerCoords = {};
+    let parentCoords: any = {};
+    let openerCoords: any = {};
 
     if (parent && parent.current) {
       parentCoords = {
@@ -125,7 +131,7 @@ class PositioningPopup extends Component {
    * @param {number} data.edgeMargin Минимальный отступ от края.
    * @return {number} Откорректированный отступ.
    */
-  correctHorizontalPosition ({ left, edgeMargin }) {
+  correctHorizontalPosition ({ left, edgeMargin }: any) {
     const { current: opener } = this.props.opener || {};
     const { current: parent } = this.props.parent || {};
     const { current: popup } = this.popupRef;
@@ -212,13 +218,13 @@ class PositioningPopup extends Component {
    */
   getArrowProps = ({
     left: popupLeft,
-  }) => {
+  }: any) => {
     const {
       verticalPosition = 'bottom',
       arrowProps = {},
     } = this.props;
     const { popupWidth } = this.state;
-    const props = { ... defaultArrowProps };
+    const props: any = { ... defaultArrowProps };
 
     // Заменяем props по умолчанию на переданные в компонент
     Object.entries(arrowProps).forEach(prop => {

@@ -11,9 +11,9 @@ import Type from 'prop-types';
  * @param {Object} ref Реф для DOM-элемента попапа.
  * @return {ReactElement} Попап со скругленными углами, белым фоном и тенью.
  */
-const Popup = forwardRef(function Popup ({ children, additionalClass }, ref) {
+const Popup = forwardRef(function Popup ({ children, additionalClass }: any, ref) {
   return (
-    <div ref={ref} className={classnames(styles.popup, additionalClass)}>
+    <div ref={ref as any} className={classnames(styles.popup, additionalClass)}>
       {children}
     </div>
   );

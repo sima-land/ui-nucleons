@@ -26,7 +26,7 @@ export const CheckboxField = forwardRef(function CheckboxField ({
   checked = false,
   onChange,
   ...restProps
-}, ref) {
+}: any, ref) {
   const [isChecked, toggleCheck] = useState(checked);
 
   useEffect(() => toggleCheck(checked), [checked]);
