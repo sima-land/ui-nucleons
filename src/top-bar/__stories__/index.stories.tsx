@@ -43,7 +43,7 @@ export const Primary = () => (
   <div style={{ background: '#ccc', padding: 32 }}>
     {propsList.map((props, index) => (
       <Fragment key={index}>
-        <TopBar {...props} />
+        <TopBar {...props as any} />
         <div style={{ height: 32 }} />
       </Fragment>
     ))}

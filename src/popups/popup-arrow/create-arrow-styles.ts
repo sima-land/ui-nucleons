@@ -15,7 +15,7 @@ export const DIRECTION = ['top', 'bottom'];
  * @param {'white' | 'blue' | 'dark-blue' | 'deep-blue' } [props.color] Цвет.
  * @return {Object} Стили стрелки.
  */
-export const createArrowStyles = ({ direction, className, shadow, color } = {}) => {
+export const createArrowStyles = ({ direction, className, shadow, color }: any = {}) => {
   const col = COLORS.includes(color) ? color : 'white';
   const direct = DIRECTION.includes(direction) ? direction : 'top';
   return bindClassNames(
