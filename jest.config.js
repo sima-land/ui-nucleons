@@ -4,9 +4,6 @@ module.exports = {
   setupFiles: [
     './jest/setup.js',
   ],
-  transformIgnorePatterns: [
-    '/node_modules/(?!@dev-dep/).*/',
-  ],
   transform: {
     '\\.svg$': '<rootDir>/jest/transforms/svg.js',
     '\\.(css|scss)$': 'jest-css-modules-transform',

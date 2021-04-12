@@ -1665,10 +1665,10 @@
     stylelint-config-sass-guidelines "^7.1.0"
     stylelint-scss "^3.18.0"
 
-"@dev-dep/ui-quarks@^1.0.1":
-  version "1.0.1"
-  resolved "https://gitlab.sima-land.ru/api/v4/projects/1151/packages/npm/@dev-dep/ui-quarks/-/@dev-dep/ui-quarks-1.0.1.tgz#680e5de4267fba278377bcfab7a9c36296b62ca4"
-  integrity sha1-aA5d5CZ/uieDd7z6t6nDYpa2LKQ=
+"@dev-dep/ui-quarks@^1.1.1":
+  version "1.1.1"
+  resolved "https://gitlab.sima-land.ru/api/v4/projects/1151/packages/npm/@dev-dep/ui-quarks/-/@dev-dep/ui-quarks-1.1.1.tgz#d5c28d331fa98786e9d497a031d9dd8463b06f53"
+  integrity sha1-1cKNMx+ph4bp1JegMdndhGOwb1M=
 
 "@emotion/cache@^10.0.27":
   version "10.0.29"

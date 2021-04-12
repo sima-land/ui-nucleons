@@ -51,7 +51,7 @@ module.exports = async ({ config }) => {
           options: svgrOptions,
         },
       ],
-      exclude: /node_modules\/(?!(@dev-dep)).*/,
+      exclude: /node_modules/,
     },
   ];
 
