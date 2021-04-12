@@ -4,14 +4,8 @@
   position: relative;
   display: inline-block;
   white-space: nowrap;
-}
-
-.red-line-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: calc(100% - 2px);
-  height: 100%;
-  overflow: visible;
-  pointer-events: none;
+  &.crossed-out {
+    color: colors.$gray38;
+    text-decoration: line-through;
+  }
 }
