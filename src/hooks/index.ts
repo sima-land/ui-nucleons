@@ -22,9 +22,9 @@ export const useIsTouchDevice = () => {
  * @param ref Реф прокручиваемого элемента.
  * @param options Опции.
  * @param options.onFullScroll Сработает при событии полной прокрутки.
- * @param [options.threshold=0] Отступ от конца списка по которому событие должно срабатывать.
+ * @param options.threshold Отступ от конца списка по которому событие должно срабатывать.
  */
-export const useInfiniteScroll = (ref: React.MutableRefObject<HTMLElement>, {
+export const useInfiniteScroll = (ref: React.MutableRefObject<HTMLElement | undefined | null>, {
   onFullScroll,
   threshold = 0,
 }: {

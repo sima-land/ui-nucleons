@@ -2,7 +2,6 @@ import React from 'react';
 import { formatNumber } from '../helpers/format-number';
 import classes from './price.scss';
 import classnames from 'classnames/bind';
-import { COLORS } from '../colors';
 
 export interface Props {
 
@@ -58,25 +57,6 @@ export const Price: React.FC<Props> = ({
   return (
     <span className={cx('root', className, crossedOut && 'crossed-out')}>
       {content}
-
-      {/* диагональная красная полоска */}
-      {crossedOut && (
-        <svg
-          viewBox='0 0 1 1'
-          className={cx('red-line-svg')}
-          preserveAspectRatio='none'
-        >
-          <line
-            x1='0'
-            y1='1'
-            x2='1'
-            y2='0'
-            stroke={COLORS.get('additional-deep-red')}
-            strokeWidth='2px'
-            vectorEffect='non-scaling-stroke'
-          />
-        </svg>
-      )}
     </span>
   );
 };
