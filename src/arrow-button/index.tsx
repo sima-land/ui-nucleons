@@ -2,14 +2,14 @@ import React from 'react';
 import classnames from 'classnames/bind';
 import { COLORS } from '../colors';
 import classes from './arrow-button.scss';
-import UpSVG from './icons/24x24/arrow-up.svg';
-import RightSVG from './icons/24x24/arrow-right.svg';
-import DownSVG from './icons/24x24/arrow-down.svg';
-import LeftSVG from './icons/24x24/arrow-left.svg';
-import TopSmallSVG from './icons/16x16/arrow-up.svg';
-import RightSmallSVG from './icons/16x16/arrow-right.svg';
-import DownSmallSVG from './icons/16x16/arrow-down.svg';
-import LeftSmallSVG from './icons/16x16/arrow-left.svg';
+import UpSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-up';
+import RightSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-right';
+import DownSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-down';
+import LeftSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-left';
+import UpSmallSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/arrow-up';
+import RightSmallSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/arrow-right';
+import DownSmallSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/arrow-down';
+import LeftSmallSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/arrow-left';
 
 type Size = 's' | 'l';
 
@@ -30,7 +30,7 @@ const cx = classnames.bind(classes);
 
 const ICONS: Readonly<Record<Size, IconSet>> = {
   s: {
-    up: TopSmallSVG,
+    up: UpSmallSVG,
     right: RightSmallSVG,
     down: DownSmallSVG,
     left: LeftSmallSVG,
