@@ -17,6 +17,14 @@ export default {
 
 export const Primary = () => (
   <div style={{ background: '#aaa', padding: 32 }}>
+    <h3>Only one button</h3>
+
+    <DisplayWrapper>
+      <Clean.Group>
+        <Clean.Button>One button</Clean.Button>
+      </Clean.Group>
+    </DisplayWrapper>
+
     <h3>Just buttons</h3>
 
     <DisplayWrapper>

@@ -40,7 +40,7 @@ exports[`<Clean.Button /> should render without props 1`] = `
 </CleanButton>
 `;
 
-exports[`<Clean.Group /> should handle props 1`] = `
+exports[`<Clean.Group /> should handle props (1) 1`] = `
 <CleanGroup
   size="s"
 >
@@ -87,6 +87,28 @@ exports[`<Clean.Group /> should handle props 1`] = `
     >
       Just button
     </button>
+  </div>
+</CleanGroup>
+`;
+
+exports[`<Clean.Group /> should handle props (2) 1`] = `
+<CleanGroup
+  size="s"
+>
+  <div
+    className="clean-group"
+  >
+    <CleanButton
+      key=".0"
+      size="s"
+    >
+      <button
+        className="clean-button size-s"
+        type="button"
+      >
+        One button
+      </button>
+    </CleanButton>
   </div>
 </CleanGroup>
 `;
