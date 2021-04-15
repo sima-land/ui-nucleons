@@ -37,13 +37,23 @@ describe('<Clean.Group />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should handle props', () => {
+  it('should handle props (1)', () => {
     const wrapper = mount(
       <Clean.Group size='s'>
         <Clean.Button>Foo</Clean.Button>
         <Clean.Button>Bar</Clean.Button>
         <Clean.Button href='https://www.abc.xyz'>XYZ</Clean.Button>
         <button>Just button</button>
+      </Clean.Group>
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should handle props (2)', () => {
+    const wrapper = mount(
+      <Clean.Group size='s'>
+        <Clean.Button>One button</Clean.Button>
       </Clean.Group>
     );
 

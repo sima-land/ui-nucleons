@@ -16,7 +16,7 @@ export type ButtonProps = CustomButtonProps
 export interface Props {
 
   /** Содержимое. */
-  children?: React.ReactElement<ButtonProps>[]
+  children?: React.ReactElement<ButtonProps> | React.ReactElement<ButtonProps>[]
 
   /** Размер. */
   size?: Size
@@ -32,7 +32,7 @@ const cx = classnames.bind(classes);
 const CleanGroup: React.FC<Props> = ({ children, size = 'm' }) => (
   <div className={cx('clean-group')}>
     {Children.map(
-      children,
+      Array.isArray(children) ? children : [children],
       item => item && item.type === CleanButton
         ? cloneElement(item, { size })
         : item
