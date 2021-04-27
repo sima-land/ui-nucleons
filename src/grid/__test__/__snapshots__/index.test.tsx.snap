@@ -80,7 +80,7 @@ exports[`Grid.Item should renders correctly 1`] = `
   xs={8}
 >
   <div
-    className="col col-size-mxs-12 col-size-ms-11 col-size-mm-10 col-size-ml-9 col-size-xs-8 col-size-s-7 col-size-m-6 col-size-l-5 col-size-xl-4 className"
+    className="col custom-item-class col-size-mxs-12 col-size-ms-11 col-size-mm-10 col-size-ml-9 col-size-xs-8 col-size-s-7 col-size-m-6 col-size-l-5 col-size-xl-4"
     style={
       Object {
         "background": "#f00",
