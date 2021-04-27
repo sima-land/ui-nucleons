@@ -94,7 +94,7 @@ const Item: React.FC<ItemProps> = ({
   style,
 }) => (
   <div
-    className={cx('col', {
+    className={cx('col', className, {
       // мобильная сетка имеет только 4 колонки
       [`col-size-mxs-${Math.max(3, mxs as any)}`]: mxs !== undefined,
       [`col-size-ms-${Math.max(3, ms as any)}`]: ms !== undefined,
@@ -107,8 +107,6 @@ const Item: React.FC<ItemProps> = ({
       [`col-size-m-${m}`]: m !== undefined,
       [`col-size-l-${l}`]: l !== undefined,
       [`col-size-xl-${xl}`]: xl !== undefined,
-
-      className,
     })}
     style={style}
     children={children}

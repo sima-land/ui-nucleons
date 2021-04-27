@@ -44,5 +44,6 @@ describe('Grid.Item', () => {
     );
 
     expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('div').hasClass('custom-item-class')).toBe(true);
   });
 });
