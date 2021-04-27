@@ -66,7 +66,6 @@ exports[`UploadArea should handle "dragleave" event 1`] = `
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              href="javascript:;"
               role="button"
               tabIndex={0}
             >
@@ -152,7 +151,6 @@ exports[`UploadArea should handle "dragleave" event 2`] = `
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              href="javascript:;"
               role="button"
               tabIndex={0}
             >
@@ -239,7 +237,6 @@ exports[`UploadArea should handle drag events to highlight area 1`] = `
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              href="javascript:;"
               role="button"
               tabIndex={0}
             >
@@ -326,7 +323,6 @@ exports[`UploadArea should handle drag events to highlight area 2`] = `
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              href="javascript:;"
               role="button"
               tabIndex={0}
             >
@@ -413,7 +409,6 @@ exports[`UploadArea should handle drag events to highlight area 3`] = `
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              href="javascript:;"
               role="button"
               tabIndex={0}
             >
@@ -500,7 +495,6 @@ exports[`UploadArea should handle drag events to highlight area 4`] = `
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              href="javascript:;"
               role="button"
               tabIndex={0}
             >
@@ -587,7 +581,6 @@ exports[`UploadArea should handle props 1`] = `
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              href="javascript:;"
               role="button"
               tabIndex={0}
             >
@@ -671,7 +664,6 @@ exports[`UploadArea should render different visual variants 1`] = `
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              href="javascript:;"
               role="button"
               tabIndex={0}
             >
@@ -756,7 +748,6 @@ exports[`UploadArea should render different visual variants 2`] = `
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              href="javascript:;"
               role="button"
               tabIndex={0}
             >
@@ -842,7 +833,6 @@ exports[`UploadArea should render different visual variants 3`] = `
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              href="javascript:;"
               role="button"
               tabIndex={0}
             >
@@ -929,7 +919,6 @@ exports[`UploadArea should render different visual variants 4`] = `
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              href="javascript:;"
               role="button"
               tabIndex={0}
             >
@@ -1017,7 +1006,6 @@ exports[`UploadArea should render different visual variants 5`] = `
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              href="javascript:;"
               role="button"
               tabIndex={0}
             >
@@ -1099,7 +1087,6 @@ exports[`UploadArea should renders correctly 1`] = `
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              href="javascript:;"
               role="button"
               tabIndex={0}
             >

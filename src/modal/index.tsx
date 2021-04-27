@@ -35,7 +35,7 @@ export interface Props {
   title?: string
 
   /** Свойства TopBar. */
-  topBarProps?: TopBarProps
+  topBarProps?: Omit<TopBarProps, 'className'>
 
   /** Нужно ли выводить крестик. */
   withCloseButton?: boolean
