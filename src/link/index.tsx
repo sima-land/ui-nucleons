@@ -49,7 +49,6 @@ export const Link = forwardRef<HTMLAnchorElement, Props>(function Link ({
   className,
   color = 'brand-blue',
   disabled,
-  href,
   noIndex = false,
   pseudo,
   role,
@@ -60,11 +59,8 @@ export const Link = forwardRef<HTMLAnchorElement, Props>(function Link ({
     ? {
       role: role || 'button',
       tabIndex: disabled ? undefined : tabIndex || 0,
-
-      // при  href="javascript:;" обработчик клика срабатывает на Enter подобно button
-      href: disabled ? href : 'javascript:;',
     }
-    : { href, role, tabIndex };
+    : { role, tabIndex };
 
   return (
     <a
