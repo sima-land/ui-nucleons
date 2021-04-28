@@ -15,11 +15,11 @@ exports[`<ArrowButton /> should handle props 1`] = `
   >
     <ArrowLeftSVG
       aria-hidden={true}
-      fill="#212121"
+      fill="currentColor"
     >
       <svg
         aria-hidden={true}
-        fill="#212121"
+        fill="currentColor"
         height={24}
         viewBox="0 0 24 24"
         width={24}
@@ -44,11 +44,11 @@ exports[`<ArrowButton /> should renders correctly 1`] = `
   >
     <ArrowRightSVG
       aria-hidden={true}
-      fill="#212121"
+      fill="currentColor"
     >
       <svg
         aria-hidden={true}
-        fill="#212121"
+        fill="currentColor"
         height={24}
         viewBox="0 0 24 24"
         width={24}

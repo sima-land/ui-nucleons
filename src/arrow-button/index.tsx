@@ -1,6 +1,5 @@
 import React from 'react';
 import classnames from 'classnames/bind';
-import { COLORS } from '../colors';
 import classes from './arrow-button.scss';
 import UpSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-up';
 import RightSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-right';
@@ -66,7 +65,7 @@ export const ArrowButton: React.FC<Props> = ({
         className
       )}
     >
-      <Icon aria-hidden fill={COLORS.get('gray87')} />
+      <Icon aria-hidden fill='currentColor' />
     </button>
   );
 };
