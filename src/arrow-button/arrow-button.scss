@@ -1,3 +1,4 @@
+@use '../colors';
 @import '../styling/shadows';
 
 .arrow-button {
@@ -12,14 +13,18 @@
   outline: 0;
   box-sizing: border-box;
   transition: box-shadow 200ms ease-out;
-  &:hover {
+  color: colors.$gray87;
+  &:not(:disabled):hover {
     cursor: pointer;
+  }
+  &:disabled {
+    color: colors.$gray24;
   }
   &.size-s {
     width: 32px;
     height: 32px;
     @extend .shadow-z2;
-    &:hover {
+    &:not(:disabled):hover {
       @extend .shadow-z3;
     }
   }
@@ -27,7 +32,7 @@
     width: 56px;
     height: 56px;
     @extend .shadow-z3;
-    &:hover {
+    &:not(:disabled):hover {
       @extend .shadow-z4;
     }
   }
