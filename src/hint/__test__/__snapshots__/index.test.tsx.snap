@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Hint /> should renders correctly 1`] = `
+<ForwardRef
+  className="additional-class"
+  direction="top"
+>
+  <div
+    className="root additional-class top"
+    data-testid="hint"
+  >
+    <div
+      className="body shadow-z4"
+    >
+      Hello, world!
+    </div>
+  </div>
+</ForwardRef>
+`;
+
+exports[`<Hint /> should renders correctly 2`] = `
+<ForwardRef
+  className="additional-class"
+  direction="right"
+>
+  <div
+    className="root additional-class right"
+    data-testid="hint"
+  >
+    <div
+      className="body shadow-z4"
+    >
+      Hello, world!
+    </div>
+  </div>
+</ForwardRef>
+`;
+
+exports[`<Hint /> should renders correctly 3`] = `
+<ForwardRef
+  className="additional-class"
+  direction="bottom"
+>
+  <div
+    className="root additional-class bottom"
+    data-testid="hint"
+  >
+    <div
+      className="body shadow-z4"
+    >
+      Hello, world!
+    </div>
+  </div>
+</ForwardRef>
+`;
+
+exports[`<Hint /> should renders correctly 4`] = `
+<ForwardRef
+  className="additional-class"
+  direction="left"
+>
+  <div
+    className="root additional-class left"
+    data-testid="hint"
+  >
+    <div
+      className="body shadow-z4"
+    >
+      Hello, world!
+    </div>
+  </div>
+</ForwardRef>
+`;

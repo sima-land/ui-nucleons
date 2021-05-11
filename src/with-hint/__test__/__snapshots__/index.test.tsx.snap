@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WithHint /> should renders correctly 1`] = `
+<WithHint
+  hint="Hello, world"
+>
+  <div
+    data-testid="test-opener"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    Opener
+  </div>
+</WithHint>
+`;
+
+exports[`<WithHint /> should renders correctly 2`] = `
+<WithHint
+  hint="Hello, world"
+>
+  <div
+    data-testid="test-opener"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    Opener
+  </div>
+  <ForwardRef
+    className="hint hidden"
+    direction="top"
+  >
+    <div
+      className="root hint hidden top"
+      data-testid="hint"
+    >
+      <div
+        className="body shadow-z4"
+      >
+        Hello, world
+      </div>
+    </div>
+  </ForwardRef>
+</WithHint>
+`;
+
+exports[`<WithHint /> should renders correctly 3`] = `
+<WithHint
+  hint="Hello, world"
+>
+  <div
+    data-testid="test-opener"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    Opener
+  </div>
+</WithHint>
+`;
