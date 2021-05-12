@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { HintProps } from '../hint';
-import { getScrollParent } from '../helpers/get-scroll-parent';
-import on from '../helpers/on';
 import { Layer } from '../layer';
 import { PositioningHint } from './positioning-hint';
+import { onParentScroll } from './utils';
 
 type ChildrenFn = (
   ref: React.RefObject<HTMLElement | null>,
@@ -48,7 +47,7 @@ export const WithHint = ({
   // следим за прокруткой
   useEffect(() => {
     if (shown && openerRef.current) {
-      return on(getScrollParent(openerRef.current), 'scroll', () => {
+      return onParentScroll(openerRef.current, () => {
         toggle(false);
         onClose && onClose();
       });

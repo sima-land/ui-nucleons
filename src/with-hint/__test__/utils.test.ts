@@ -1,4 +1,4 @@
-import { PlaceAt } from '../utils';
+import { onParentScroll, PlaceAt } from '../utils';
 
 class FakeDOMRect {
   x: number;
@@ -75,5 +75,48 @@ describe('PlaceAt', () => {
 
     expect(hint.style.left).toBe('76px');
     expect(hint.style.top).toBe('100px');
+  });
+});
+
+describe('onParentScroll', () => {
+  it('should listen document scroll', () => {
+    const target = document.createElement('div');
+    const spy = jest.fn();
+
+    document.body.append(target);
+
+    const off = onParentScroll(target, spy);
+
+    expect(spy).toBeCalledTimes(0);
+    document.dispatchEvent(new Event('scroll'));
+    expect(spy).toBeCalledTimes(1);
+
+    off();
+    expect(spy).toBeCalledTimes(1);
+    document.dispatchEvent(new Event('scroll'));
+    expect(spy).toBeCalledTimes(1);
+  });
+
+  it('should listen not document parent scroll', () => {
+    const target = document.createElement('div');
+    const parent = document.createElement('div');
+    const spy = jest.fn();
+
+    parent.style.overflowY = 'scroll';
+
+    Object.defineProperty(target, 'parentElement', {
+      value: parent,
+    });
+
+    const off = onParentScroll(target, spy);
+
+    expect(spy).toBeCalledTimes(0);
+    parent.dispatchEvent(new Event('scroll'));
+    expect(spy).toBeCalledTimes(1);
+
+    off();
+    expect(spy).toBeCalledTimes(1);
+    parent.dispatchEvent(new Event('scroll'));
+    expect(spy).toBeCalledTimes(1);
   });
 });

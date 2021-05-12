@@ -20,12 +20,14 @@ const isScrollable = (element: HTMLElement | undefined | null) => {
 /**
  * Возвращает ближайший родительский элемент с возможностью прокрутки.
  * @param element Элемент.
- * @return Ближайший родительский элемент с возможностью прокрутки..
+ * @return Ближайший родительский элемент с возможностью прокрутки.
  */
 const getScrollParent = (element: HTMLElement | undefined | null): HTMLElement => {
   let result;
 
   if (!element || element === document.body) {
+    // @todo прокрутка на body не работает с addEventListener, https://stackoverflow.com/a/43632204/13166471
+    // надо будет придумать как обновить эту функцию
     result = document.body;
   } else {
     result = isScrollable(element.parentElement)
