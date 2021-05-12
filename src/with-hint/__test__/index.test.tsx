@@ -69,7 +69,44 @@ describe('<WithHint />', () => {
 
     // scroll
     act(() => {
-      document.body.dispatchEvent(new Event('scroll'));
+      document.dispatchEvent(new Event('scroll'));
+    });
+    wrapper.update();
+
+    expect(spy).toBeCalledTimes(1);
+  });
+
+  it('should handle scroll of non body parent', () => {
+    const spy = jest.fn();
+
+    const wrapper = mount(
+      <WithHint hint='Hello, world' onClose={spy}>
+        {(ref, toggle) => (
+          <div
+            ref={ref as any}
+            data-testid='test-opener'
+            onMouseEnter={() => toggle(true)}
+            onMouseLeave={() => toggle(false)}
+          >Opener</div>
+        )}
+      </WithHint>
+    );
+
+    expect(wrapper.find('[data-testid="hint"]')).toHaveLength(0);
+
+    // show
+    act(() => {
+      wrapper.find('[data-testid="test-opener"]').simulate('mouseenter');
+    });
+    wrapper.update();
+
+    expect(wrapper.find('[data-testid="hint"]')).toHaveLength(1);
+
+    expect(spy).toBeCalledTimes(0);
+
+    // scroll
+    act(() => {
+      document.dispatchEvent(new Event('scroll'));
     });
     wrapper.update();
 

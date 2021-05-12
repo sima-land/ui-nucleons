@@ -112,3 +112,31 @@ export const InScrolledParent = () => {
     </Modal>
   );
 };
+
+export const InDocumentWitScroll = () => {
+  const [bind, toggle] = useTempHint();
+
+  return (
+    <>
+      {[...Array(32).keys()].map(i => (
+        <p key={i}>Прокрути вниз</p>
+      ))}
+
+      <WithHint hint='Проверочный хинт!' direction='right' {...bind}>
+        {ref => (
+          <div
+            ref={ref as any}
+            onClick={() => toggle(true)}
+            style={{ ...styles.opener, marginBottom: 48 }}
+          >
+            Нажми на меня
+          </div>
+        )}
+      </WithHint>
+
+      {[...Array(32).keys()].map(i => (
+        <p key={i}>Можешь прокрутить еще</p>
+      ))}
+    </>
+  );
+};
