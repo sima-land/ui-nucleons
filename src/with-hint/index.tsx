@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Hint, HintProps } from '../hint';
-import { PlaceAt } from './utils';
-import classnames from 'classnames/bind';
-import styles from './with-hint.scss';
+import { HintProps } from '../hint';
+import { getScrollParent } from '../helpers/get-scroll-parent';
+import on from '../helpers/on';
+import { Layer } from '../layer';
+import { PositioningHint } from './positioning-hint';
 
 type ChildrenFn = (
   ref: React.RefObject<HTMLElement | null>,
@@ -22,42 +23,50 @@ export interface WithHintProps {
 
   /** Контент, содержащий элемент, рядом с которым будет показан хинт. */
   children: ChildrenFn
-}
 
-const cx = classnames.bind(styles);
+  /** Срабатывает при закрытии. */
+  onClose?: () => void
+}
 
 /**
  * Компонент вывода "хинта" рядом с заданным элементом.
  * @param props Свойства.
  * @return Элемент.
  */
-export const WithHint: React.FC<WithHintProps> = ({
+export const WithHint = ({
   children,
   direction = 'top',
   hint,
+  onClose,
   shown: shownProp = false,
-}) => {
-  const hintRef = useRef<HTMLDivElement>(null);
-  const openerRef = useRef<HTMLElement>(null);
+}: WithHintProps) => {
   const [shown, toggle] = useState(false);
+  const openerRef = useRef<HTMLElement>(null);
 
   useEffect(() => toggle(shownProp), [shownProp]);
 
+  // следим за прокруткой
   useEffect(() => {
-    if (shown && hintRef.current && openerRef.current) {
-      hintRef.current.classList.remove(cx('hidden'));
-      PlaceAt[direction](hintRef.current, openerRef.current);
+    if (shown && openerRef.current) {
+      return on(getScrollParent(openerRef.current), 'scroll', () => {
+        toggle(false);
+        onClose && onClose();
+      });
     }
-  }, [shown, hint]);
+  }, [shown]);
 
   return (
     <>
       {children(openerRef, toggle)}
 
       {shown && hint && (
-        <Hint ref={hintRef} direction={direction} className={cx('hint', 'hidden')}>
-          {hint}
-        </Hint>
+        <Layer>
+          <PositioningHint
+            openerRef={openerRef}
+            direction={direction}
+            children={hint}
+          />
+        </Layer>
       )}
     </>
   );
@@ -70,9 +79,14 @@ export const useTempHint = () => {
   const toggle = useCallback((value: boolean) => {
     setShown(value);
 
-    timerRef.current !== undefined && window.clearTimeout(timerRef.current);
-    timerRef.current = window.setTimeout(() => setShown(false), 2000);
+    window.clearTimeout(timerRef.current);
+
+    if (value) {
+      timerRef.current = window.setTimeout(() => setShown(false), 2000);
+    }
   }, []);
 
-  return [shown, toggle] as const;
+  const onClose = useCallback(() => toggle(false), []);
+
+  return [{ shown, onClose }, toggle] as const;
 };

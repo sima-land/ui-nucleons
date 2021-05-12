@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WithHint /> should not place itself when "openerRef" is empty 1`] = `
+<PositioningHint
+  direction="top"
+  openerRef={
+    Object {
+      "current": null,
+    }
+  }
+>
+  <ForwardRef
+    className="hint hidden"
+    direction="top"
+  >
+    <div
+      className="root hint hidden top"
+      data-testid="hint"
+    >
+      <div
+        className="body shadow-z4"
+      >
+        Hello, world!
+      </div>
+    </div>
+  </ForwardRef>
+</PositioningHint>
+`;
+
+exports[`<WithHint /> should renders correctly 1`] = `
+<PositioningHint
+  direction="top"
+  openerRef={
+    Object {
+      "current": <div />,
+    }
+  }
+>
+  <ForwardRef
+    className="hint hidden"
+    direction="top"
+  >
+    <div
+      className="root hint hidden top"
+      data-testid="hint"
+    >
+      <div
+        className="body shadow-z4"
+      >
+        Hello, world!
+      </div>
+    </div>
+  </ForwardRef>
+</PositioningHint>
+`;

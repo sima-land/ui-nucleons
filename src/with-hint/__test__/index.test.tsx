@@ -38,16 +38,56 @@ describe('<WithHint />', () => {
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.find(Hint)).toHaveLength(0);
   });
+
+  it('should handle scroll', () => {
+    const spy = jest.fn();
+
+    const wrapper = mount(
+      <WithHint hint='Hello, world' onClose={spy}>
+        {(ref, toggle) => (
+          <div
+            ref={ref as any}
+            data-testid='test-opener'
+            onMouseEnter={() => toggle(true)}
+            onMouseLeave={() => toggle(false)}
+          >Opener</div>
+        )}
+      </WithHint>
+    );
+
+    expect(wrapper.find('[data-testid="hint"]')).toHaveLength(0);
+
+    // show
+    act(() => {
+      wrapper.find('[data-testid="test-opener"]').simulate('mouseenter');
+    });
+    wrapper.update();
+
+    expect(wrapper.find('[data-testid="hint"]')).toHaveLength(1);
+
+    expect(spy).toBeCalledTimes(0);
+
+    // scroll
+    act(() => {
+      document.body.dispatchEvent(new Event('scroll'));
+    });
+    wrapper.update();
+
+    expect(spy).toBeCalledTimes(1);
+  });
 });
 
 describe('useTempHint', () => {
   const TestComponent = () => {
-    const [shown, toggle] = useTempHint();
+    const [bind, toggle] = useTempHint();
 
     return (
-      <div data-testid='test-opener' onClick={() => toggle(true)}>
-        {shown ? 'shown' : 'hidden'}
-      </div>
+      <>
+        <div data-testid='test-opener' onClick={() => toggle(true)}>
+          {bind.shown ? 'shown' : 'hidden'}
+        </div>
+        <div onClick={bind.onClose} data-testid='closer' />
+      </>
     );
   };
 
@@ -92,7 +132,7 @@ describe('useTempHint', () => {
 
     // wait
     act(() => {
-      jest.advanceTimersByTime(500);
+      jest.advanceTimersByTime(1500);
     });
     wrapper.update();
 
@@ -108,7 +148,7 @@ describe('useTempHint', () => {
 
     // wait for first timer
     act(() => {
-      jest.advanceTimersByTime(1300);
+      jest.advanceTimersByTime(600);
     });
     wrapper.update();
 
@@ -116,7 +156,31 @@ describe('useTempHint', () => {
 
     // wait
     act(() => {
-      jest.advanceTimersByTime(2200);
+      jest.advanceTimersByTime(1500);
+    });
+    wrapper.update();
+
+    expect(wrapper.text()).toBe('hidden');
+  });
+
+  it('should provide "onClose" prop', () => {
+    const wrapper = mount(
+      <TestComponent />
+    );
+
+    expect(wrapper.text()).toBe('hidden');
+
+    // try show
+    act(() => {
+      wrapper.find('[data-testid="test-opener"]').simulate('click');
+    });
+    wrapper.update();
+
+    expect(wrapper.text()).toBe('shown');
+
+    // call onClose
+    act(() => {
+      wrapper.find('[data-testid="closer"]').simulate('click');
     });
     wrapper.update();
 
