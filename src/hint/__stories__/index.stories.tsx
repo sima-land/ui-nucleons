@@ -2,7 +2,7 @@ import React from 'react';
 import { Hint } from '..';
 
 export default {
-  title: 'hint/Hint',
+  title: 'service/Hint',
   component: Hint,
   parameters: {
     layout: 'padded',

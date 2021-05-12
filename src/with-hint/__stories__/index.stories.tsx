@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { WithHint, useTempHint } from '..';
+import { Modal } from '../../modal';
 
 const styles: Record<string, React.CSSProperties> = {
   root: {
@@ -16,10 +17,16 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: 4,
     marginTop: 48,
   },
+  modalContent: {
+    position: 'relative',
+    height: 320,
+    overflowY: 'auto',
+    padding: 20,
+  },
 };
 
 export default {
-  title: 'hint/WithHint',
+  title: 'WithHint',
   component: WithHint,
   parameters: {
     layout: 'padded',
@@ -49,9 +56,9 @@ export const Primary = () => (
   </div>
 );
 
-export const AutoClosing = () => {
+export const AutoCloseHook = () => {
   const [data, setData] = useState<string>();
-  const [shown, toggle] = useTempHint();
+  const [bind, toggle] = useTempHint();
 
   useEffect(() => {
     if (data) {
@@ -65,7 +72,7 @@ export const AutoClosing = () => {
 
   return (
     <div style={styles.root}>
-      <WithHint shown={shown} hint={data}>
+      <WithHint hint={data} {...bind}>
         {ref => (
           <div ref={ref as any} style={styles.opener} onClick={fakeFetch}>
             Нажми на меня
@@ -73,5 +80,35 @@ export const AutoClosing = () => {
         )}
       </WithHint>
     </div>
+  );
+};
+
+export const InScrolledParent = () => {
+  const [bind, toggle] = useTempHint();
+
+  return (
+    <Modal size='s' title='Тестовое окно' withDivideTopBar>
+      <div style={styles.modalContent}>
+        {[...Array(32).keys()].map(i => (
+          <p key={i}>Прокрути вниз</p>
+        ))}
+
+        <WithHint hint='Проверочный хинт!' direction='right' {...bind}>
+          {ref => (
+            <div
+              ref={ref as any}
+              onClick={() => toggle(true)}
+              style={{ ...styles.opener, marginBottom: 48 }}
+            >
+              Нажми на меня
+            </div>
+          )}
+        </WithHint>
+
+        {[...Array(32).keys()].map(i => (
+          <p key={i}>Можешь прокрутить еще</p>
+        ))}
+      </div>
+    </Modal>
   );
 };

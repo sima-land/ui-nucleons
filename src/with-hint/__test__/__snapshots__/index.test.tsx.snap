@@ -25,21 +25,54 @@ exports[`<WithHint /> should renders correctly 2`] = `
   >
     Opener
   </div>
-  <ForwardRef
-    className="hint hidden"
-    direction="top"
-  >
-    <div
-      className="root hint hidden top"
-      data-testid="hint"
+  <Layer>
+    <Portal
+      containerInfo={
+        <div>
+          <div
+            class="root hint top"
+            data-testid="hint"
+            style="left: 0px; top: -4px;"
+          >
+            <div
+              class="body shadow-z4"
+            >
+              Hello, world
+            </div>
+          </div>
+        </div>
+      }
     >
-      <div
-        className="body shadow-z4"
+      <PositioningHint
+        direction="top"
+        openerRef={
+          Object {
+            "current": <div
+              data-testid="test-opener"
+            >
+              Opener
+            </div>,
+          }
+        }
       >
-        Hello, world
-      </div>
-    </div>
-  </ForwardRef>
+        <ForwardRef
+          className="hint hidden"
+          direction="top"
+        >
+          <div
+            className="root hint hidden top"
+            data-testid="hint"
+          >
+            <div
+              className="body shadow-z4"
+            >
+              Hello, world
+            </div>
+          </div>
+        </ForwardRef>
+      </PositioningHint>
+    </Portal>
+  </Layer>
 </WithHint>
 `;
 
