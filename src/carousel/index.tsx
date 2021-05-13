@@ -18,7 +18,7 @@ export interface Props {
   /** Список элементов. */
   items?: any[]
 
-  /** На склолько элементов прокручивать за раз. */
+  /** На сколько элементов прокручивать за раз. */
   step?: number
 
   /** Можно ли перетаскивать мышью. */
@@ -27,7 +27,7 @@ export interface Props {
   /** Активирует бесконечную прокрутку. */
   infinite?: boolean
 
-  /** Вартикальный режим. */
+  /** Вертикальный режим. */
   vertical?: boolean
 
   /** Включена ли автоматическая прокрутка. */
@@ -85,6 +85,10 @@ const cx = classnames.bind(styles);
 const isAuto = eq('auto');
 
 // не по умолчанию так как проблемы с storybook: https://github.com/styleguidist/react-docgen-typescript/issues/334
+
+/**
+ * Карусель.
+ */
 export class Carousel extends Component<Props, State> {
   infinite: boolean;
   dragStartClient: IPoint;
@@ -828,7 +832,7 @@ export class Carousel extends Component<Props, State> {
   }
 
   /**
-   * Выводит список элементов карусели учетом необходимости клонирования.
+   * Формирует список элементов карусели с учетом необходимости клонирования.
    * @return Список элементов карусели.
    */
   renderItems () {
@@ -837,11 +841,16 @@ export class Carousel extends Component<Props, State> {
     const realItemsCount = size(items);
     const needClone = this.infinite && this.mounted && !isAllItemsVisible;
     const loopLimit = realItemsCount * (needClone ? CLONE_FACTOR : 1);
-    const result = [];
+    const result: JSX.Element[] = [];
 
     for (let realIndex = 0; realIndex < loopLimit; realIndex++) {
       const index = realIndex % realItemsCount;
-      result.push(renderItem(items[index], realIndex));
+
+      result.push(
+        <React.Fragment key={realIndex}>
+          {renderItem(items[index], realIndex)}
+        </React.Fragment>
+      );
     }
 
     return result;

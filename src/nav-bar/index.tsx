@@ -44,7 +44,7 @@ const getIcon = prop('icon');
  * @param props Свойства.
  * @return Элемент.
  */
-export const NavBar: React.FC<Props> = ({
+export const NavBar = ({
   title,
   subtitle,
   className,
@@ -55,7 +55,7 @@ export const NavBar: React.FC<Props> = ({
     end,
     endSecondary,
   } = {},
-}) => {
+}: Props) => {
   const startButtons = [start, startSecondary];
   const endButtons = [end, endSecondary];
 

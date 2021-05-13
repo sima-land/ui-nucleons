@@ -11,7 +11,7 @@ export interface Props {
  * @param props Свойства.
  * @return Элемент.
  */
-export const SuperEllipseClipPath: React.FC<Props> = ({ id }) => (
+export const SuperEllipseClipPath = ({ id }: Props) => (
   <svg width={0} height={0} style={{ position: 'absolute' }}>
     <defs>
       <clipPath id={id} clipPathUnits='objectBoundingBox'>

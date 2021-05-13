@@ -71,6 +71,10 @@ export const WithHint = ({
   );
 };
 
+/**
+ * Хук для формирования состояния временного хинта по гайдам.
+ * @return Управление.
+ */
 export const useTempHint = () => {
   const timerRef = useRef<number>();
   const [shown, setShown] = useState<boolean>(false);

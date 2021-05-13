@@ -18,12 +18,12 @@
     }
   }
   &.size-s {
-    width: 122px;
+    width: var(--stepper-width, 122px);
     height: 40px;
     padding: 0 8px;
   }
   &.size-m {
-    width: 160px;
+    width: var(--stepper-width, 160px);
     height: 48px;
     padding: 0 16px;
   }

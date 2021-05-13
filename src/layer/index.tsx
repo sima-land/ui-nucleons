@@ -10,6 +10,11 @@ export interface Props {
   children?: React.ReactNode
 }
 
+/**
+ * Компонент слоя. Выводит содержимое в портале.
+ * @param props Свойства.
+ * @return Элемент.
+ */
 export const Layer: React.FC<Props> = ({ children, defineRoot = () => document.body }) => {
   const [mounted, setMounted] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>();

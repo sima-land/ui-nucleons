@@ -25,7 +25,7 @@ const cx = classnames.bind(classes);
  * @param props Свойства.
  * @return Элемент.
  */
-export const LoadingOverlay: React.FC<Props> = ({ style, className, spinnerProps = {}, fill = true }) => (
+export const LoadingOverlay = ({ style, className, spinnerProps = {}, fill = true }: Props) => (
   <div
     className={cx('loading-overlay', fill && 'fill', className)}
     style={style}

@@ -19,11 +19,11 @@ export interface Props {
  * @param props Свойства компонента.
  * @return Элемент.
  */
-export const Timer: React.FC<Props> = ({
+export const Timer = ({
   date,
   format = formatDistance,
   timeout = 1000,
-}) => {
+}: Props) => {
   const [distance, setDistance] = useState(getDistanceToNow(date));
 
   useEffect(() => {

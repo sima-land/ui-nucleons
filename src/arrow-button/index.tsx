@@ -16,7 +16,7 @@ type Direction = 'up' | 'right' | 'down' | 'left';
 
 type IconSet = Readonly<Record<Direction, React.FC<React.SVGProps<SVGSVGElement>>>>;
 
-export interface Props extends Omit<JSX.IntrinsicElements['button'], 'size'> {
+export interface Props extends Omit<JSX.IntrinsicElements['button'], 'size' | 'children'> {
 
   /** Размер. */
   size?: Size
@@ -47,12 +47,12 @@ const ICONS: Readonly<Record<Size, IconSet>> = {
  * @param props Свойства. Поддерживаются свойства элемента button.
  * @return Элемент.
  */
-export const ArrowButton: React.FC<Props> = ({
+export const ArrowButton = ({
   size = 'l',
   direction = 'right',
   className,
   ...buttonProps
-}) => {
+}: Props) => {
   const Icon = ICONS[size][direction];
 
   return (

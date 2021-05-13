@@ -17,6 +17,7 @@ const on = <T extends Event | React.SyntheticEvent>(
   const eventNamesList = eventNames.split(' ');
 
   // обернуто чтобы прокинуть T
+  // eslint-disable-next-line require-jsdoc
   const wrapped = (e: any) => callback(e as T);
 
   eventNamesList.forEach(eventName => {
