@@ -1,4 +1,4 @@
-@import '../colors';
+@use '../colors';
 
 .modal-header {
   display: flex;
@@ -25,7 +25,7 @@
   .subtitle {
     font-size: 12px;
     line-height: 16px;
-    color: $gray38;
+    color: colors.$gray38;
   }
   .icon-button {
     + .icon-button {
@@ -86,6 +86,14 @@
   flex-shrink: 0;
   overflow: hidden;
   background: transparent;
+  color: colors.$gray87;
+  &:hover {
+    cursor: pointer;
+    color: colors.$gray54;
+  }
+  > svg {
+    fill: currentColor;
+  }
 }
 
 .icon-stub {

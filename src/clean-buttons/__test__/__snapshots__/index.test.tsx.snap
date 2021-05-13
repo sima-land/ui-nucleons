@@ -5,13 +5,20 @@ exports[`<Clean.Button /> should handle props 1`] = `
   href="https://site.com"
   size="s"
 >
-  <a
+  <ForwardRef(Link)
     className="clean-button size-s"
     href="https://site.com"
-    type="button"
+    pseudo={true}
   >
-    Go to site
-  </a>
+    <a
+      className="link clean-button size-s color__brand-blue hover-color__brand-deep-blue"
+      href="https://site.com"
+      role="button"
+      tabIndex={0}
+    >
+      Go to site
+    </a>
+  </ForwardRef(Link)>
 </CleanButton>
 `;
 
@@ -21,22 +28,33 @@ exports[`<Clean.Button /> should handle props 2`] = `
   href={null}
   size="s"
 >
-  <a
+  <ForwardRef(Link)
     className="clean-button size-s"
     href={null}
-    type="button"
+    pseudo={true}
   >
-    Go to site
-  </a>
+    <a
+      className="link clean-button size-s color__brand-blue hover-color__brand-deep-blue"
+      href={null}
+      role="button"
+      tabIndex={0}
+    >
+      Go to site
+    </a>
+  </ForwardRef(Link)>
 </CleanButton>
 `;
 
 exports[`<Clean.Button /> should render without props 1`] = `
 <CleanButton>
-  <button
+  <ForwardRef(Link)
     className="clean-button size-m"
-    type="button"
-  />
+    pseudo={false}
+  >
+    <a
+      className="link clean-button size-m color__brand-blue hover-color__brand-deep-blue"
+    />
+  </ForwardRef(Link)>
 </CleanButton>
 `;
 
@@ -51,36 +69,51 @@ exports[`<Clean.Group /> should handle props (1) 1`] = `
       key=".0"
       size="s"
     >
-      <button
+      <ForwardRef(Link)
         className="clean-button size-s"
-        type="button"
+        pseudo={false}
       >
-        Foo
-      </button>
+        <a
+          className="link clean-button size-s color__brand-blue hover-color__brand-deep-blue"
+        >
+          Foo
+        </a>
+      </ForwardRef(Link)>
     </CleanButton>
     <CleanButton
       key=".1"
       size="s"
     >
-      <button
+      <ForwardRef(Link)
         className="clean-button size-s"
-        type="button"
+        pseudo={false}
       >
-        Bar
-      </button>
+        <a
+          className="link clean-button size-s color__brand-blue hover-color__brand-deep-blue"
+        >
+          Bar
+        </a>
+      </ForwardRef(Link)>
     </CleanButton>
     <CleanButton
       href="https://www.abc.xyz"
       key=".2"
       size="s"
     >
-      <a
+      <ForwardRef(Link)
         className="clean-button size-s"
         href="https://www.abc.xyz"
-        type="button"
+        pseudo={true}
       >
-        XYZ
-      </a>
+        <a
+          className="link clean-button size-s color__brand-blue hover-color__brand-deep-blue"
+          href="https://www.abc.xyz"
+          role="button"
+          tabIndex={0}
+        >
+          XYZ
+        </a>
+      </ForwardRef(Link)>
     </CleanButton>
     <button
       key=".3"
@@ -102,12 +135,16 @@ exports[`<Clean.Group /> should handle props (2) 1`] = `
       key=".0"
       size="s"
     >
-      <button
+      <ForwardRef(Link)
         className="clean-button size-s"
-        type="button"
+        pseudo={false}
       >
-        One button
-      </button>
+        <a
+          className="link clean-button size-s color__brand-blue hover-color__brand-deep-blue"
+        >
+          One button
+        </a>
+      </ForwardRef(Link)>
     </CleanButton>
   </div>
 </CleanGroup>

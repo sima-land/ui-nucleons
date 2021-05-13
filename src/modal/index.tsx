@@ -101,19 +101,19 @@ export const Modal: React.FC<Props> = ({
             <TopBar
               title={title}
               subtitle={subtitle}
+              {...topBarProps}
               buttonsProps={
                 withCloseButton
                   ? {
                     end: {
                       'data-testid': 'modal:close',
                       onClick: onClose,
-                      icon: <CrossSVG className={cx('cursor-pointer')} />,
+                      icon: <CrossSVG />,
                     },
                     ...topBarProps?.buttonsProps,
                   }
-                  : undefined
+                  : topBarProps?.buttonsProps
               }
-              {...topBarProps}
               size={fullscreen ? 'm' : 's'}
               className={cx('header', withDivideTopBar && InnerBorder.bottom)}
             />

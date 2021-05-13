@@ -1,17 +1,14 @@
 import React, { Children, cloneElement } from 'react';
 import classnames from 'classnames/bind';
 import classes from './clean-buttons.scss';
+import { Link, Props as LinkProps } from '../link';
 
 type Size = 's' | 'm';
 
-interface CustomButtonProps {
+export interface ButtonProps extends Omit<LinkProps, 'size'> {
   asLink?: boolean
   size?: Size
 }
-
-export type ButtonProps = CustomButtonProps
-& Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'size'>
-& Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'size'>;
 
 export interface Props {
 
@@ -49,23 +46,19 @@ const CleanGroup: React.FC<Props> = ({ children, size = 'm' }) => (
  * @param props.asLink Нужно ли выводить кнопку как ссылку.
  * @return Элемент.
  */
-const CleanButton: React.FC<ButtonProps> = ({
+const CleanButton = ({
   size = 'm',
   href,
   asLink = Boolean(href),
   ...restProps
-}) => {
-  const Container = asLink ? 'a' : 'button';
-
-  return (
-    <Container
-      className={cx('clean-button', `size-${size}`)}
-      href={href}
-      {...restProps}
-      type='button'
-    />
-  );
-};
+}: ButtonProps) => (
+  <Link
+    pseudo={asLink}
+    className={cx('clean-button', `size-${size}`)}
+    href={href}
+    {...restProps}
+  />
+);
 
 export const Clean = {
   Group: CleanGroup,
