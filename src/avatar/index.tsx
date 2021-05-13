@@ -60,7 +60,7 @@ const ICON_SIZES: Readonly<Record<Size, number>> = {
  * @param props Свойства компонента.
  * @return Компонент.
  */
-export const Avatar: React.FC<Props> = ({
+export const Avatar = ({
   size: sizeProp = 72,
   imageUrl,
   bgColor = 'gray4',
@@ -71,7 +71,7 @@ export const Avatar: React.FC<Props> = ({
   className,
   style,
   'data-testid': dataTestId,
-}) => {
+}: Props) => {
   const [needImage, toggleImage] = useState(Boolean(imageUrl));
 
   useEffect(() => {

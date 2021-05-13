@@ -11,6 +11,6 @@ export interface Props {
  * @param props Свойства.
  * @return Элемент.
  */
-export const NoIndexMark: React.FC<Props> = ({ closing }) => (
+export const NoIndexMark = ({ closing }: Props) => (
   <span dangerouslySetInnerHTML={{ __html: `<!--${closing ? '/' : ''}noindex-->` }} />
 );

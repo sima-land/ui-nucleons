@@ -30,8 +30,8 @@ export const colorKey = Symbol.for('user-avatar:color-key');
  * @param props Свойства. Поддерживаются свойства Avatar.
  * @return Компонент.
  */
-export const UserAvatar: React.FC<Props> = props => {
-  const [color, setColor] = useState((window as any)[colorKey]);
+export const UserAvatar = (props: Props) => {
+  const [color, setColor] = useState<typeof COLORS[number]>();
 
   useEffect(() => {
     // запоминаем цвет (пока только один для всех аватаров на странице)

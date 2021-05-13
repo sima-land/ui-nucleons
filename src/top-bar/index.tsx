@@ -38,7 +38,7 @@ const cx = classnames.bind(classes);
  * @param props Свойства.
  * @return Элемент.
  */
-export const TopBar: React.FC<Props> = ({
+export const TopBar = ({
   size = 'm',
   title,
   subtitle,
@@ -49,7 +49,7 @@ export const TopBar: React.FC<Props> = ({
     endSecondary,
   } = {},
   className,
-}) => {
+}: Props) => {
   const hasStart = has(start, 'icon');
   const hasStartSecondary = has(startSecondary, 'icon');
   const hasEnd = has(end, 'icon');
@@ -84,7 +84,7 @@ export const TopBar: React.FC<Props> = ({
  * @param props.icon Иконка.
  * @return Элемент.
  */
-export const IconButton: React.FC<ButtonProps> = ({ icon, ...buttonProps }) => (
+export const IconButton = ({ icon, ...buttonProps }: ButtonProps) => (
   <button {...buttonProps} type='button' className={cx('icon-button')}>
     {icon}
   </button>

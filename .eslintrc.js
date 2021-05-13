@@ -1,21 +1,22 @@
 module.exports = {
   extends: require.resolve('@dev-dep/linters/eslint'),
-  rules: {
-    'react/prop-types': 'error',
-  },
   overrides: [
     {
       files: [
         './**/__stories__/**/*',
         './**/__stories__/**/*',
         './**/*.test.*',
-        './**/*.test.*',
-        '*.ts',
-        '*.tsx',
       ],
       rules: {
         'require-jsdoc': 'off',
-        'react/prop-types': 'off',
+      },
+    },
+    {
+      files: [
+        './**/__stories__/**/*',
+        './**/__stories__/**/*',
+      ],
+      rules: {
         'import/no-anonymous-default-export': 'off',
       },
     },

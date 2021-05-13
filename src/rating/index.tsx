@@ -40,17 +40,17 @@ const cx = classnames.bind(styles);
 
 /**
  * Компонент рейтинга.
- * @param props Свойства компонента.
+ * @param props Свойства.
  * @return Элемент.
  */
-export const Rating: React.FC<Props> = ({
+export const Rating = ({
   value,
   count = 5,
   starSize = 16,
   withHover,
   classes: classesProp = {},
   onStarClick,
-}) => {
+}: Props) => {
   const classes = composeClasses(DEFAULT_CLASSES, classesProp);
 
   return (

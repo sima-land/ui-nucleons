@@ -40,12 +40,12 @@ const AVAILABLE_COLORS: Color[] = ['brand-blue', 'white'];
  * @param props Свойства.
  * @return Компонент.
  */
-export const Spinner: React.FC<Props> = ({
+export const Spinner = ({
   size = 'medium',
   color = DEFAULT_COLOR,
   className,
   style,
-}) => {
+}: Props) => {
   const readySize: Size = has(DIAMETERS, size) ? size : 'medium';
   const readyColor = AVAILABLE_COLORS.includes(color) ? color : DEFAULT_COLOR;
   const diameter = DIAMETERS[readySize];

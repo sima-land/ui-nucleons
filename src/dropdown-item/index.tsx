@@ -28,7 +28,7 @@ export interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, 'size'
  * @param props.size Размер.
  * @return Элемент.
  */
-export const DropdownItem: React.FC<Props> = ({
+export const DropdownItem = ({
   size = 'm',
   children,
   className,
@@ -36,7 +36,7 @@ export const DropdownItem: React.FC<Props> = ({
   noHover,
   checked,
   ...restProps
-}) => (
+}: Props) => (
   <div
     {...restProps}
     className={cx(

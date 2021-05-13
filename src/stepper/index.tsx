@@ -6,7 +6,11 @@ import classnames from 'classnames/bind';
 
 type Size = 's' | 'm';
 
-export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+interface StepperCSS extends React.CSSProperties {
+  '--stepper-width'?: string
+}
+
+export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'style'> {
 
   /** Нужно ли выводить кнопку добавления. */
   canAdd?: boolean
@@ -25,6 +29,8 @@ export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>,
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string
+
+  style?: StepperCSS
 }
 
 const cx = classnames.bind(styles);
@@ -34,7 +40,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export const Stepper: React.FC<Props> = ({
+export const Stepper = ({
   canAdd = true,
   canSubtract = true,
   className,
@@ -47,9 +53,9 @@ export const Stepper: React.FC<Props> = ({
   size = 'm',
   style,
   value,
-  'data-testid': dataTestId,
+  'data-testid': dataTestId = 'stepper',
   ...inputProps
-}) => {
+}: Props) => {
   const [focused, setFocused] = useState(false);
 
   return (

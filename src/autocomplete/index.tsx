@@ -54,7 +54,7 @@ const cx = classnames.bind(styles);
  * @param props.value Значение.
  * @return Элемент.
  */
-export const Autocomplete: React.FC<Props> = ({
+export const Autocomplete = ({
   items,
   itemSize,
   onSelect,
@@ -70,7 +70,7 @@ export const Autocomplete: React.FC<Props> = ({
   preset = 'default',
   'data-testid': dataTestId,
   ...restProps
-}) => {
+}: Props) => {
   const rootRef = useRef();
   const fieldRef = useRef<HTMLInputElement>();
   const menuRef = useRef<HTMLDivElement>();

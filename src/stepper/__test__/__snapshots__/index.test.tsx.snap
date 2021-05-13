@@ -7,6 +7,7 @@ exports[`<Stepper /> should handle "onAdd/onSubtract/canAdd/canSubtract" props 1
 >
   <div
     className="root size-m"
+    data-testid="stepper"
   >
     <MinusSVG
       className="button"
@@ -60,6 +61,7 @@ exports[`<Stepper /> should handle "size" prop 1`] = `
 <Stepper>
   <div
     className="root size-m"
+    data-testid="stepper"
   >
     <MinusSVG
       className="button"
@@ -111,6 +113,7 @@ exports[`<Stepper /> should handle "size" prop 2`] = `
 >
   <div
     className="root size-m"
+    data-testid="stepper"
   >
     <MinusSVG
       className="button"
@@ -162,6 +165,7 @@ exports[`<Stepper /> should handle "size" prop 3`] = `
 >
   <div
     className="root size-m"
+    data-testid="stepper"
   >
     <MinusSVG
       className="button"
@@ -211,6 +215,7 @@ exports[`<Stepper /> should render without props 1`] = `
 <Stepper>
   <div
     className="root size-m"
+    data-testid="stepper"
   >
     <MinusSVG
       className="button"

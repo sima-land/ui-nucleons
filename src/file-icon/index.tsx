@@ -20,9 +20,9 @@ export interface Props extends Omit<React.SVGProps<SVGSVGElement>, 'type'> {
 /**
  * Компонент иконки файла.
  * @param props Свойства. Поддерживаются свойства <svg />.
- * @return Элементё.
+ * @return Элемент.
  */
-export const FileIcon: React.FC<Props> = ({ type, ...svgProps }) => {
+export const FileIcon = ({ type, ...svgProps }: Props) => {
   const typeProps = (VARIANTS as any)[type as any];
 
   return type && typeProps

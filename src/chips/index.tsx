@@ -29,13 +29,13 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export const Chips: React.FC<Props> = ({
+export const Chips = ({
   items,
   onItemClick,
   isItemChecked,
   className,
   ...restProps
-}) => (
+}: Props) => (
   <div {...restProps} className={cx('list', className)}>
     {items.map((item, index) => {
       const { href, children, withCross } = item;

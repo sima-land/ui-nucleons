@@ -43,7 +43,7 @@ const formatValue = (value: string, country: Country) => value.replace(/\D/g, ''
  * @param props Параметры компонента.
  * @return Элемент.
  */
-export const PhoneInput: React.FC<Props> = ({
+export const PhoneInput = ({
   'data-testid': testId,
   className,
   label = 'Телефон',
@@ -53,7 +53,7 @@ export const PhoneInput: React.FC<Props> = ({
   value = '',
   onChange,
   ...restProps
-}) => {
+}: Props) => {
   // маску определяем автоматически только при старте
   const [country, setCountry] = useState(defineCountry(value));
   const [cleanValue, setCleanValue] = useState(formatValue(value, country));

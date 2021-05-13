@@ -63,6 +63,9 @@ const getFraction = (start: number, end: number, value: number) => ((value - sta
  */
 const getPercentage = (...args: Parameters<typeof getFraction>) => getFraction(...args) * 100;
 
+/**
+ * Поле выбора диапазона с двумя ползунками.
+ */
 export class Range extends Component<Props> {
   containerRef: React.RefObject<HTMLElement | undefined>;
   rangeRef: React.RefObject<HTMLElement | undefined>;
@@ -75,6 +78,10 @@ export class Range extends Component<Props> {
   activeThumbEl?: HTMLElement;
   isGrabbed?: boolean;
 
+  /**
+   * Конструктор.
+   * @param props Свойства.
+   */
   constructor (props: Props) {
     const {
       min = 0,
@@ -103,6 +110,7 @@ export class Range extends Component<Props> {
     this.handleDragStart = withPrevent(this.handleDragStart.bind(this));
   }
 
+  /** @inheritdoc */
   componentDidMount () {
     const { current: containerElem } = this.containerRef;
 
@@ -120,6 +128,7 @@ export class Range extends Component<Props> {
     this.finish.setObserver(this.handleValueChange.bind(this));
   }
 
+  /** @inheritdoc */
   componentDidUpdate (prevProps: Props) {
     const propKeys: Array<keyof Props> = ['min', 'max', 'step', 'startValue', 'finishValue'];
 
@@ -138,6 +147,7 @@ export class Range extends Component<Props> {
     }
   }
 
+  /** @inheritdoc */
   componentWillUnmount () {
     (this.unsubscribers as any[]).forEach(fn => fn());
   }
@@ -322,6 +332,7 @@ export class Range extends Component<Props> {
     });
   }
 
+  /** @inheritdoc */
   render () {
     const [start, finish] = this.getPercents();
 
