@@ -51,14 +51,3 @@
   border-radius: 0 0 8px 8px;
   overflow: hidden;
 }
-
-.cursor-pointer {
-  cursor: pointer;
-  transition: transform .1s cubic-bezier(0, 0, .58, 1);
-  &:hover {
-    transform: scale(1.2);
-  }
-  &:active {
-    transform: none;
-  }
-}

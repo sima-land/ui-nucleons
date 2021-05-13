@@ -66,9 +66,7 @@ exports[`<Modal /> should handle extended props 1`] = `
           Object {
             "end": Object {
               "data-testid": "modal:close",
-              "icon": <CrossSVG
-                className="cursor-pointer"
-              />,
+              "icon": <CrossSVG />,
               "onClick": [MockFunction],
             },
           }
@@ -100,11 +98,7 @@ exports[`<Modal /> should handle extended props 1`] = `
           </div>
           <IconButton
             data-testid="modal:close"
-            icon={
-              <CrossSVG
-                className="cursor-pointer"
-              />
-            }
+            icon={<CrossSVG />}
             onClick={[MockFunction]}
           >
             <button
@@ -113,11 +107,8 @@ exports[`<Modal /> should handle extended props 1`] = `
               onClick={[MockFunction]}
               type="button"
             >
-              <CrossSVG
-                className="cursor-pointer"
-              >
+              <CrossSVG>
                 <svg
-                  className="cursor-pointer"
                   height={24}
                   viewBox="0 0 24 24"
                   width={24}

@@ -5,7 +5,7 @@ import classnames from 'classnames/bind';
 import { Token } from '../colors';
 import styles from './link.scss';
 
-export interface Props extends React.HTMLProps<HTMLAnchorElement> {
+export interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 
   /** Цвет (название токена). */
   color?: Extract<Token, 'brand-blue' | 'gray87' | 'gray38'>

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Modal } from '..';
 import { mount, ReactWrapper } from 'enzyme';
+import ArrowLeftSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-left';
 import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
 import { act } from 'react-dom/test-utils';
+import { TopBar } from '../../top-bar';
 
 jest.mock('body-scroll-lock', () => {
   const original = jest.requireActual('body-scroll-lock');
@@ -157,5 +159,23 @@ describe('<Modal />', () => {
     );
 
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render ith close and custom start button in top bar', () => {
+    const wrapper = mount(
+      <Modal
+        withCloseButton
+        topBarProps={{
+          buttonsProps: {
+            start: {
+              icon: <ArrowLeftSVG data-testid='custom-top-bar-btn' />,
+            },
+          },
+        }}
+      />
+    );
+
+    expect(wrapper.find(TopBar).find('button[data-testid="modal:close"]')).toHaveLength(1);
+    expect(wrapper.find(TopBar).find('svg[data-testid="custom-top-bar-btn"]')).toHaveLength(1);
   });
 });
