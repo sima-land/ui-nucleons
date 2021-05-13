@@ -40,6 +40,12 @@ export const PlaceAt = {
   },
 };
 
+/**
+ * Правильно подписывает функцию на прокрутку заданного элемента.
+ * @param element Элемент.
+ * @param callback Функция.
+ * @return Функция отписки.
+ */
 export const onParentScroll = (element: HTMLElement, callback: (e: Event) => void) => {
   let scrollParent: HTMLElement | HTMLDocument = getScrollParent(element);
 
