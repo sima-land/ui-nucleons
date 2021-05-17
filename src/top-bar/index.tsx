@@ -91,5 +91,5 @@ export const IconButton = ({ icon, ...buttonProps }: ButtonProps) => (
 );
 
 const iconStub = (
-  <div className={cx('icon-button')} />
+  <div className={cx('icon-button', 'stub')} />
 );

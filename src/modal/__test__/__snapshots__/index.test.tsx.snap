@@ -80,7 +80,7 @@ exports[`<Modal /> should handle extended props 1`] = `
           className="modal-header size-s header inner-border-bottom"
         >
           <div
-            className="icon-button"
+            className="icon-button stub"
           />
           <div
             className="main-section"

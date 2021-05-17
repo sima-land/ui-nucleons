@@ -113,7 +113,7 @@ export const InScrolledParent = () => {
   );
 };
 
-export const InDocumentWitScroll = () => {
+export const InDocumentWithScroll = () => {
   const [bind, toggle] = useTempHint();
 
   return (

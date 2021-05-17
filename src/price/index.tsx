@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatNumber } from '../helpers/format-number';
+import { formatPrice } from './utils';
 import classes from './price.scss';
 import classnames from 'classnames/bind';
 
@@ -28,31 +28,16 @@ const cx = classnames.bind(classes);
  * @param props Параметры компонента.
  * @return Элемент.
  */
-export const Price: React.FC<Props> = ({
+export const Price = ({
   className,
   currencyGrapheme: grapheme,
   graphemeBefore,
   crossedOut,
   value,
-}) => {
-  const [integer, fractional] = formatNumber(value);
-
-  const content = [
-    // графема до
-    grapheme && graphemeBefore && `${grapheme} `,
-
-    // целая часть
-    integer,
-
-    // дробная часть
-    Number(fractional) > 0 && `,${fractional}`,
-
-    // графема после
-    grapheme && !graphemeBefore && ` ${grapheme}`,
-  ]
-    .filter(Boolean)
-    .map(s => (s as string).replace(/\s/g, '\u2009')) // заменяем пробелы на полупробелы
-    .join('');
+}: Props) => {
+  const content = formatPrice(value, grapheme, {
+    graphemeBefore,
+  });
 
   return (
     <span className={cx('root', className, crossedOut && 'crossed-out')}>
