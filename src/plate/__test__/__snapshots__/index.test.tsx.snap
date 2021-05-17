@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Plate should handle "data-testid" prop 1`] = `
+<ForwardRef(Plate)
+  className="test-class"
+  data-testid="test-plate"
+  onClick={[MockFunction]}
+  rounds="m"
+  shadow="z3"
+>
+  <div
+    className="bg-color__white test-class shadow-z3 rounds-md__all"
+    data-testid="test-plate"
+    onClick={[MockFunction]}
+  >
+    Test
+  </div>
+</ForwardRef(Plate)>
+`;
+
+exports[`Plate should handle props 1`] = `
+<ForwardRef(Plate)
+  className="test-class"
+  onClick={[MockFunction]}
+  rounds="m"
+  shadow="z3"
+>
+  <div
+    className="bg-color__white test-class shadow-z3 rounds-md__all"
+    data-testid="plate"
+    onClick={[MockFunction]}
+  >
+    Test
+  </div>
+</ForwardRef(Plate)>
+`;
+
+exports[`Plate should renders with small rounds 1`] = `
+<ForwardRef(Plate)
+  rounds="s"
+>
+  <div
+    className="bg-color__white shadow-z1 rounds-sm__all"
+    data-testid="plate"
+  >
+    Test
+  </div>
+</ForwardRef(Plate)>
+`;
+
+exports[`Plate should renders without props 1`] = `
+<ForwardRef(Plate)>
+  <div
+    className="bg-color__white shadow-z1 rounds-sm__all"
+    data-testid="plate"
+  />
+</ForwardRef(Plate)>
+`;
