@@ -17,7 +17,7 @@ type Classes = {
   blockFocused?: string
 };
 
-type IgnoredInputProps = 'size' | 'onClick' | 'onInput' | 'onChange' | 'onKeyDown' | 'onKeyUp';
+type IgnoredInputProps = 'size' | 'onClick' | 'onInput' | 'onChange' | 'onKeyDown' | 'onKeyUp' | 'onSelect';
 
 export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, IgnoredInputProps> {
 

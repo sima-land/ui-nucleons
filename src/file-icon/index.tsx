@@ -11,7 +11,7 @@ const VARIANTS = {
   zip: { fill: COLORS.get('additional-teal') },
 } as const;
 
-export interface Props extends Omit<React.SVGProps<SVGSVGElement>, 'type'> {
+export interface Props extends Omit<React.SVGAttributes<SVGSVGElement>, 'type'> {
 
   /** Тип файла. */
   type?: string

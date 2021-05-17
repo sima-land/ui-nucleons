@@ -1,5 +1,4 @@
-import { useState } from '@storybook/addons';
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Avatar } from '..';
 import { random } from 'lodash';
 

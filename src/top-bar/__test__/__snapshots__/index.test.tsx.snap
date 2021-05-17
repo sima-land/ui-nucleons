@@ -221,7 +221,7 @@ exports[`<TopBar /> should renders with end icon 1`] = `
     className="modal-header size-m"
   >
     <div
-      className="icon-button"
+      className="icon-button stub"
     />
     <div
       className="main-section"
@@ -273,10 +273,10 @@ exports[`<TopBar /> should renders with end icons 1`] = `
     className="modal-header size-m"
   >
     <div
-      className="icon-button"
+      className="icon-button stub"
     />
     <div
-      className="icon-button"
+      className="icon-button stub"
     />
     <div
       className="main-section"
@@ -377,7 +377,7 @@ exports[`<TopBar /> should renders with start icon 1`] = `
       />
     </div>
     <div
-      className="icon-button"
+      className="icon-button stub"
     />
   </div>
 </TopBar>
@@ -452,10 +452,10 @@ exports[`<TopBar /> should renders with start icons 1`] = `
       />
     </div>
     <div
-      className="icon-button"
+      className="icon-button stub"
     />
     <div
-      className="icon-button"
+      className="icon-button stub"
     />
   </div>
 </TopBar>
