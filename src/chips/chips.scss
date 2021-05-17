@@ -30,12 +30,6 @@ $gutter: 8px;
   font-weight: 500;
   line-height: 16px;
   text-decoration: none;
-  &:hover,
-  &:active {
-    cursor: pointer;
-    color: colors.$gray87;
-    background: colors.$gray12;
-  }
   &.checked {
     background: colors.$gray76;
     color: colors.$gray2;
@@ -47,6 +41,14 @@ $gutter: 8px;
   &:visited {
     background: colors.$gray8;
     color: colors.$gray87;
+  }
+
+  // эффект при наведении определяем **после** переопределения стилей монолита
+  &:hover,
+  &:active {
+    background: colors.$gray12;
+    color: colors.$gray87;
+    cursor: pointer;
   }
 }
 
