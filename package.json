@@ -85,6 +85,7 @@
     "test": "jest",
     "type-check": "tsc -p . --noEmit",
     "coverage": "jest --clearCache && jest --coverage",
+    "test:ci": "jest --clearCache && jest --maxWorkers=2 --coverage",
     "lint:scripts": "eslint --cache src/ --ext .js,.jsx,.ts,.tsx",
     "lint:styles": "stylelint 'src/**/*.scss'",
     "storybook": "start-storybook -p 9009 -c .storybook -s ./.storybook/public",

@@ -30,7 +30,7 @@ stages:
     - yarn install
   script:
     - yarn type-check
-    - yarn coverage
+    - yarn test:ci
   <<: *runner_tags
 
 .build_template:
