@@ -23,7 +23,7 @@ const Template: Story<Props> = props => {
           onClose={() => toggleModal(false)}
 
           children={(
-            <div style={{ height: 200, padding: 24 }}>
+            <div style={{ padding: 24 }}>
               Содержимое модального окна
             </div>
           )}
@@ -118,4 +118,21 @@ export const WithoutBars = Template.bind(null, {
   withCloseButton: true,
   footer: undefined,
   withTopBar: false,
+});
+
+export const WithScroll = Template.bind(null, {
+  title: 'Проверка полосы прокрутки',
+  size: 's',
+  withDivideTopBar: true,
+  withCloseButton: true,
+  footer: undefined,
+  children: (
+    <div style={{ padding: 24 }}>
+      {Array(50).fill(0).map((a, i) => (
+        <p key={i}>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sed ex odio voluptatibus laborum vero.
+        </p>
+      ))}
+    </div>
+  ),
 });

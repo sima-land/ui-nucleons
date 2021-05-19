@@ -2,12 +2,14 @@ import React, { Fragment } from 'react';
 import { BodyScrollOptions } from 'body-scroll-lock';
 import { TopBar, Props as TopBarProps } from '../top-bar';
 import { useCloseHandler, useScrollDisable } from './utils';
-import classnames from 'classnames/bind';
 import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
+import ArrowLeftSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-left';
 import { BoxShadow } from '../styling/shadows';
 import { InnerBorder } from '../styling/borders';
-import styles from './modal.scss';
 import { Layer } from '../layer';
+import { CustomScrollbar } from '../_internal/custom-scrollbar';
+import classnames from 'classnames/bind';
+import styles from './modal.scss';
 
 type Size = 's' | 'm' | 'l' | 'xl' | 'fullscreen';
 
@@ -19,7 +21,10 @@ export interface Props {
   /** Содержимое футера. */
   footer?: React.ReactNode
 
-  /** Функция, вызываемая при закрытии модального окна. */
+  /** Будет вызвана при нажатии на кнопку "назад" в топ баре. */
+  onBack?: () => void
+
+  /** Будет вызвана при закрытии окна. */
   onClose?: () => void
 
   /** Опции для disableBodyScroll. */
@@ -36,6 +41,9 @@ export interface Props {
 
   /** Свойства TopBar. */
   topBarProps?: Omit<TopBarProps, 'className'>
+
+  /** Нужно ли выводить кнопку назад в топ баре. */
+  withBackButton?: boolean
 
   /** Нужно ли выводить крестик. */
   withCloseButton?: boolean
@@ -66,27 +74,29 @@ const cx = classnames.bind(styles);
  * @param props Свойства компонента.
  * @return Элемент.
  */
-export const Modal: React.FC<Props> = ({
+export const Modal = ({
   children,
   footer,
   onClose,
+  onBack,
   scrollDisableOptions = { reserveScrollBarGap: true },
   size = 'm',
   subtitle,
   title,
   topBarProps,
   withCloseButton,
+  withBackButton = Boolean(onBack),
   withDivideFooter = true,
   withDivideTopBar,
   withLayer,
   withScrollDisable = true,
-  withTopBar = true,
-  'data-testid': dataTestId = 'modal',
-}) => {
+  withTopBar = Boolean(title) || withCloseButton || withBackButton,
+  'data-testid': testId = 'modal',
+}: Props) => {
   const Wrapper = withLayer ? Layer : Fragment;
   const fullscreen = size === 'fullscreen';
-
   const rootRef = useScrollDisable<HTMLDivElement>(withScrollDisable, scrollDisableOptions);
+  const handleClose = useCloseHandler(onClose);
 
   return (
     <Wrapper>
@@ -94,38 +104,49 @@ export const Modal: React.FC<Props> = ({
         ref={rootRef}
         className={cx('overlay')}
         data-testid='modal:overlay'
-        {...onClose && useCloseHandler(onClose)}
+        {...handleClose}
       >
-        <div className={cx('modal', `size-${size}`, !fullscreen && BoxShadow.z4)} data-testid={dataTestId}>
+        <div className={cx('modal', `size-${size}`, !fullscreen && BoxShadow.z4)} data-testid={testId}>
           {withTopBar && (
             <TopBar
+              {...topBarProps}
               title={title}
               subtitle={subtitle}
-              {...topBarProps}
-              buttonsProps={
-                withCloseButton
-                  ? {
-                    end: {
-                      'data-testid': 'modal:close',
-                      onClick: onClose,
-                      icon: <CrossSVG />,
-                    },
-                    ...topBarProps?.buttonsProps,
-                  }
-                  : topBarProps?.buttonsProps
-              }
+              buttonsProps={{
+                ...topBarProps?.buttonsProps,
+                ...withBackButton && {
+                  start: {
+                    'data-testid': 'modal:back',
+                    onClick: onBack,
+                    icon: <ArrowLeftSVG />,
+                  },
+                },
+                ...withCloseButton && {
+                  end: {
+                    'data-testid': 'modal:close',
+                    onClick: onClose,
+                    icon: <CrossSVG />,
+                  },
+                },
+              }}
               size={fullscreen ? 'm' : 's'}
               className={cx('header', withDivideTopBar && InnerBorder.bottom)}
             />
           )}
 
-          {children}
+          <CustomScrollbar className={cx('main')} overflow={{ x: 'h', y: 's' }}>
+            {children}
+          </CustomScrollbar>
 
-          {Boolean(footer) && (
-            <div className={cx('footer', withDivideFooter && InnerBorder.top)}>
-              {footer}
-            </div>
-          )}
+          {footer
+            ? (
+              <div className={cx('footer', withDivideFooter && InnerBorder.top)}>
+                {footer}
+              </div>
+            ) : (
+              <div className={cx('footer-stub')} />
+            )
+          }
         </div>
       </div>
     </Wrapper>
