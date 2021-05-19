@@ -31,6 +31,9 @@ stages:
   script:
     - yarn type-check
     - yarn test:ci
+  artifacts:
+    reports:
+      junit: junit.xml
   <<: *runner_tags
 
 .build_template:
