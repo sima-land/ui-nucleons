@@ -1,0 +1,49 @@
+@use '../../colors';
+
+// important используется здесь так как в storybook оригинальные стили почему-то не перекрываются
+$track-bound: 12px;
+
+.custom-scrollbar :global(.os-scrollbar-handle) {
+  border-radius: 2px !important;
+  background: colors.$gray12 !important;
+  &:hover,
+  &:global(.active) {
+    background: colors.$gray24 !important;
+  }
+}
+
+.custom-scrollbar,
+.custom-scrollbar:global(.os-host-scrollbar-horizontal-hidden) {
+  > :global(.os-scrollbar-vertical) {
+    width: 12px !important;
+    padding: 0 !important;
+    top: $track-bound !important;
+    bottom: $track-bound !important;
+    :global(.os-scrollbar-handle) {
+      left: 4px !important;
+      width: 4px !important;
+      &::before {
+        left: -4px !important;
+        right: -4px !important;
+      }
+    }
+  }
+}
+
+.custom-scrollbar,
+.custom-scrollbar:global(.os-host-scrollbar-vertical-hidden) {
+  > :global(.os-scrollbar-horizontal) {
+    height: 12px !important;
+    padding: 0 !important;
+    left: $track-bound !important;
+    right: $track-bound !important;
+    :global(.os-scrollbar-handle) {
+      top: 4px !important;
+      bottom: 4px !important;
+      &::before {
+        top: -4px !important;
+        bottom: -4px !important;
+      }
+    }
+  }
+}

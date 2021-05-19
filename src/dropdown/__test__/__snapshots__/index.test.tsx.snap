@@ -6,10 +6,76 @@ exports[`Dropdown should handle props 1`] = `
   role="test-role"
 >
   <div
-    className="root invisible-scroll shadow-z4 rounds-md__all hello"
+    className="root hello shadow-z4 rounds-md__all"
     role="test-role"
   >
-    Hello, world!
+    <CustomScrollbar
+      className="inner"
+      overflow={
+        Object {
+          "x": "h",
+          "y": "s",
+        }
+      }
+    >
+      <OverlayScrollbarsComponent
+        className="custom-scrollbar inner"
+        options={
+          Object {
+            "overflowBehavior": Object {
+              "x": "h",
+              "y": "s",
+            },
+          }
+        }
+      >
+        <div
+          className="os-host"
+        >
+          <div
+            className="os-resize-observer-host"
+          />
+          <div
+            className="os-padding"
+          >
+            <div
+              className="os-viewport"
+            >
+              <div
+                className="os-content"
+              >
+                Hello, world!
+              </div>
+            </div>
+          </div>
+          <div
+            className="os-scrollbar os-scrollbar-horizontal "
+          >
+            <div
+              className="os-scrollbar-track"
+            >
+              <div
+                className="os-scrollbar-handle"
+              />
+            </div>
+          </div>
+          <div
+            className="os-scrollbar os-scrollbar-vertical"
+          >
+            <div
+              className="os-scrollbar-track"
+            >
+              <div
+                className="os-scrollbar-handle"
+              />
+            </div>
+          </div>
+          <div
+            className="os-scrollbar-corner"
+          />
+        </div>
+      </OverlayScrollbarsComponent>
+    </CustomScrollbar>
   </div>
 </ForwardRef(Dropdown)>
 `;
@@ -17,7 +83,73 @@ exports[`Dropdown should handle props 1`] = `
 exports[`Dropdown should render without props 1`] = `
 <ForwardRef(Dropdown)>
   <div
-    className="root invisible-scroll shadow-z4 rounds-md__all"
-  />
+    className="root shadow-z4 rounds-md__all"
+  >
+    <CustomScrollbar
+      className="inner"
+      overflow={
+        Object {
+          "x": "h",
+          "y": "s",
+        }
+      }
+    >
+      <OverlayScrollbarsComponent
+        className="custom-scrollbar inner"
+        options={
+          Object {
+            "overflowBehavior": Object {
+              "x": "h",
+              "y": "s",
+            },
+          }
+        }
+      >
+        <div
+          className="os-host"
+        >
+          <div
+            className="os-resize-observer-host"
+          />
+          <div
+            className="os-padding"
+          >
+            <div
+              className="os-viewport"
+            >
+              <div
+                className="os-content"
+              />
+            </div>
+          </div>
+          <div
+            className="os-scrollbar os-scrollbar-horizontal "
+          >
+            <div
+              className="os-scrollbar-track"
+            >
+              <div
+                className="os-scrollbar-handle"
+              />
+            </div>
+          </div>
+          <div
+            className="os-scrollbar os-scrollbar-vertical"
+          >
+            <div
+              className="os-scrollbar-track"
+            >
+              <div
+                className="os-scrollbar-handle"
+              />
+            </div>
+          </div>
+          <div
+            className="os-scrollbar-corner"
+          />
+        </div>
+      </OverlayScrollbarsComponent>
+    </CustomScrollbar>
+  </div>
 </ForwardRef(Dropdown)>
 `;

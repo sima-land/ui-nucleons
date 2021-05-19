@@ -35,7 +35,7 @@ export const Plate = forwardRef<HTMLDivElement | null, PlateProps>(
         className={classnames(
           bgColor('white'),
           className,
-          shadow && BoxShadow[shadow],
+          BoxShadow[shadow],
           rounds === 's' && SmallRounds.all,
           rounds === 'm' && MediumRounds.all
         )}

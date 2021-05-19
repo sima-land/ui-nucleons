@@ -114,7 +114,7 @@ exports[`Autocomplete should handle "renderItem" prop missing 1`] = `
       }
     >
       <div
-        className="root invisible-scroll shadow-z4 rounds-md__all menu"
+        className="root menu shadow-z4 rounds-md__all"
         data-testid="autocomplete:menu"
         role="menu"
         style={
@@ -123,91 +123,157 @@ exports[`Autocomplete should handle "renderItem" prop missing 1`] = `
           }
         }
       >
-        <DropdownItem
-          checked={false}
-          key="0"
-          noHover={true}
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          role="menuitem"
+        <CustomScrollbar
+          className="inner"
+          overflow={
+            Object {
+              "x": "h",
+              "y": "s",
+            }
+          }
         >
-          <div
-            className="root size-m no-hover"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            role="menuitem"
+          <OverlayScrollbarsComponent
+            className="custom-scrollbar inner"
+            options={
+              Object {
+                "overflowBehavior": Object {
+                  "x": "h",
+                  "y": "s",
+                },
+              }
+            }
           >
-            aaaa
-          </div>
-        </DropdownItem>
-        <DropdownItem
-          checked={false}
-          key="1"
-          noHover={true}
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          role="menuitem"
-        >
-          <div
-            className="root size-m no-hover"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            role="menuitem"
-          >
-            bbbb
-          </div>
-        </DropdownItem>
-        <DropdownItem
-          checked={false}
-          key="2"
-          noHover={true}
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          role="menuitem"
-        >
-          <div
-            className="root size-m no-hover"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            role="menuitem"
-          >
-            cccc
-          </div>
-        </DropdownItem>
-        <DropdownItem
-          checked={false}
-          key="3"
-          noHover={true}
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          role="menuitem"
-        >
-          <div
-            className="root size-m no-hover"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            role="menuitem"
-          >
-            dddd
-          </div>
-        </DropdownItem>
-        <DropdownItem
-          checked={false}
-          key="4"
-          noHover={true}
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          role="menuitem"
-        >
-          <div
-            className="root size-m no-hover"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            role="menuitem"
-          >
-            eeee
-          </div>
-        </DropdownItem>
+            <div
+              className="os-host"
+            >
+              <div
+                className="os-resize-observer-host"
+              />
+              <div
+                className="os-padding"
+              >
+                <div
+                  className="os-viewport"
+                >
+                  <div
+                    className="os-content"
+                  >
+                    <DropdownItem
+                      checked={false}
+                      key="0"
+                      noHover={true}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      role="menuitem"
+                    >
+                      <div
+                        className="root size-m no-hover"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                        role="menuitem"
+                      >
+                        aaaa
+                      </div>
+                    </DropdownItem>
+                    <DropdownItem
+                      checked={false}
+                      key="1"
+                      noHover={true}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      role="menuitem"
+                    >
+                      <div
+                        className="root size-m no-hover"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                        role="menuitem"
+                      >
+                        bbbb
+                      </div>
+                    </DropdownItem>
+                    <DropdownItem
+                      checked={false}
+                      key="2"
+                      noHover={true}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      role="menuitem"
+                    >
+                      <div
+                        className="root size-m no-hover"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                        role="menuitem"
+                      >
+                        cccc
+                      </div>
+                    </DropdownItem>
+                    <DropdownItem
+                      checked={false}
+                      key="3"
+                      noHover={true}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      role="menuitem"
+                    >
+                      <div
+                        className="root size-m no-hover"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                        role="menuitem"
+                      >
+                        dddd
+                      </div>
+                    </DropdownItem>
+                    <DropdownItem
+                      checked={false}
+                      key="4"
+                      noHover={true}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      role="menuitem"
+                    >
+                      <div
+                        className="root size-m no-hover"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                        role="menuitem"
+                      >
+                        eeee
+                      </div>
+                    </DropdownItem>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="os-scrollbar os-scrollbar-horizontal "
+              >
+                <div
+                  className="os-scrollbar-track"
+                >
+                  <div
+                    className="os-scrollbar-handle"
+                  />
+                </div>
+              </div>
+              <div
+                className="os-scrollbar os-scrollbar-vertical"
+              >
+                <div
+                  className="os-scrollbar-track"
+                >
+                  <div
+                    className="os-scrollbar-handle"
+                  />
+                </div>
+              </div>
+              <div
+                className="os-scrollbar-corner"
+              />
+            </div>
+          </OverlayScrollbarsComponent>
+        </CustomScrollbar>
       </div>
     </ForwardRef(Dropdown)>
   </div>
@@ -602,7 +668,7 @@ exports[`Autocomplete should renders correctly 3`] = `
       }
     >
       <div
-        className="root invisible-scroll shadow-z4 rounds-md__all menu"
+        className="root menu shadow-z4 rounds-md__all"
         data-testid="autocomplete:menu"
         role="menu"
         style={
@@ -611,176 +677,242 @@ exports[`Autocomplete should renders correctly 3`] = `
           }
         }
       >
-        <DropdownItem
-          checked={false}
-          key="0"
-          noHover={true}
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          role="menuitem"
+        <CustomScrollbar
+          className="inner"
+          overflow={
+            Object {
+              "x": "h",
+              "y": "s",
+            }
+          }
         >
-          <div
-            className="root size-m no-hover"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            role="menuitem"
+          <OverlayScrollbarsComponent
+            className="custom-scrollbar inner"
+            options={
+              Object {
+                "overflowBehavior": Object {
+                  "x": "h",
+                  "y": "s",
+                },
+              }
+            }
           >
-            U.S.
-          </div>
-        </DropdownItem>
-        <DropdownItem
-          checked={false}
-          key="1"
-          noHover={true}
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          role="menuitem"
-        >
-          <div
-            className="root size-m no-hover"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            role="menuitem"
-          >
-            FRANCE
-          </div>
-        </DropdownItem>
-        <DropdownItem
-          checked={false}
-          key="2"
-          noHover={true}
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          role="menuitem"
-        >
-          <div
-            className="root size-m no-hover"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            role="menuitem"
-          >
-            CHINA
-          </div>
-        </DropdownItem>
-        <DropdownItem
-          checked={false}
-          key="3"
-          noHover={true}
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          role="menuitem"
-        >
-          <div
-            className="root size-m no-hover"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            role="menuitem"
-          >
-            CAMBODIA
-          </div>
-        </DropdownItem>
-        <DropdownItem
-          checked={false}
-          key="4"
-          noHover={true}
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          role="menuitem"
-        >
-          <div
-            className="root size-m no-hover"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            role="menuitem"
-          >
-            CHILE
-          </div>
-        </DropdownItem>
-        <DropdownItem
-          checked={false}
-          key="5"
-          noHover={true}
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          role="menuitem"
-        >
-          <div
-            className="root size-m no-hover"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            role="menuitem"
-          >
-            CANADA
-          </div>
-        </DropdownItem>
-        <DropdownItem
-          checked={false}
-          key="6"
-          noHover={true}
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          role="menuitem"
-        >
-          <div
-            className="root size-m no-hover"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            role="menuitem"
-          >
-            POLAND
-          </div>
-        </DropdownItem>
-        <DropdownItem
-          checked={false}
-          key="7"
-          noHover={true}
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          role="menuitem"
-        >
-          <div
-            className="root size-m no-hover"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            role="menuitem"
-          >
-            RUSSIA
-          </div>
-        </DropdownItem>
-        <DropdownItem
-          checked={false}
-          key="8"
-          noHover={true}
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          role="menuitem"
-        >
-          <div
-            className="root size-m no-hover"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            role="menuitem"
-          >
-            BELARUS
-          </div>
-        </DropdownItem>
-        <DropdownItem
-          checked={false}
-          key="9"
-          noHover={true}
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          role="menuitem"
-        >
-          <div
-            className="root size-m no-hover"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            role="menuitem"
-          >
-            UKRAINE
-          </div>
-        </DropdownItem>
+            <div
+              className="os-host"
+            >
+              <div
+                className="os-resize-observer-host"
+              />
+              <div
+                className="os-padding"
+              >
+                <div
+                  className="os-viewport"
+                >
+                  <div
+                    className="os-content"
+                  >
+                    <DropdownItem
+                      checked={false}
+                      key="0"
+                      noHover={true}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      role="menuitem"
+                    >
+                      <div
+                        className="root size-m no-hover"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                        role="menuitem"
+                      >
+                        U.S.
+                      </div>
+                    </DropdownItem>
+                    <DropdownItem
+                      checked={false}
+                      key="1"
+                      noHover={true}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      role="menuitem"
+                    >
+                      <div
+                        className="root size-m no-hover"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                        role="menuitem"
+                      >
+                        FRANCE
+                      </div>
+                    </DropdownItem>
+                    <DropdownItem
+                      checked={false}
+                      key="2"
+                      noHover={true}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      role="menuitem"
+                    >
+                      <div
+                        className="root size-m no-hover"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                        role="menuitem"
+                      >
+                        CHINA
+                      </div>
+                    </DropdownItem>
+                    <DropdownItem
+                      checked={false}
+                      key="3"
+                      noHover={true}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      role="menuitem"
+                    >
+                      <div
+                        className="root size-m no-hover"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                        role="menuitem"
+                      >
+                        CAMBODIA
+                      </div>
+                    </DropdownItem>
+                    <DropdownItem
+                      checked={false}
+                      key="4"
+                      noHover={true}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      role="menuitem"
+                    >
+                      <div
+                        className="root size-m no-hover"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                        role="menuitem"
+                      >
+                        CHILE
+                      </div>
+                    </DropdownItem>
+                    <DropdownItem
+                      checked={false}
+                      key="5"
+                      noHover={true}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      role="menuitem"
+                    >
+                      <div
+                        className="root size-m no-hover"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                        role="menuitem"
+                      >
+                        CANADA
+                      </div>
+                    </DropdownItem>
+                    <DropdownItem
+                      checked={false}
+                      key="6"
+                      noHover={true}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      role="menuitem"
+                    >
+                      <div
+                        className="root size-m no-hover"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                        role="menuitem"
+                      >
+                        POLAND
+                      </div>
+                    </DropdownItem>
+                    <DropdownItem
+                      checked={false}
+                      key="7"
+                      noHover={true}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      role="menuitem"
+                    >
+                      <div
+                        className="root size-m no-hover"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                        role="menuitem"
+                      >
+                        RUSSIA
+                      </div>
+                    </DropdownItem>
+                    <DropdownItem
+                      checked={false}
+                      key="8"
+                      noHover={true}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      role="menuitem"
+                    >
+                      <div
+                        className="root size-m no-hover"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                        role="menuitem"
+                      >
+                        BELARUS
+                      </div>
+                    </DropdownItem>
+                    <DropdownItem
+                      checked={false}
+                      key="9"
+                      noHover={true}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      role="menuitem"
+                    >
+                      <div
+                        className="root size-m no-hover"
+                        onClick={[Function]}
+                        onMouseEnter={[Function]}
+                        role="menuitem"
+                      >
+                        UKRAINE
+                      </div>
+                    </DropdownItem>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="os-scrollbar os-scrollbar-horizontal "
+              >
+                <div
+                  className="os-scrollbar-track"
+                >
+                  <div
+                    className="os-scrollbar-handle"
+                  />
+                </div>
+              </div>
+              <div
+                className="os-scrollbar os-scrollbar-vertical"
+              >
+                <div
+                  className="os-scrollbar-track"
+                >
+                  <div
+                    className="os-scrollbar-handle"
+                  />
+                </div>
+              </div>
+              <div
+                className="os-scrollbar-corner"
+              />
+            </div>
+          </OverlayScrollbarsComponent>
+        </CustomScrollbar>
       </div>
     </ForwardRef(Dropdown)>
   </div>
@@ -878,7 +1010,7 @@ exports[`Autocomplete should renders correctly 4`] = `
       }
     >
       <div
-        className="root invisible-scroll shadow-z4 rounds-md__all menu"
+        className="root menu shadow-z4 rounds-md__all"
         data-testid="autocomplete:menu"
         role="menu"
         style={
@@ -887,35 +1019,101 @@ exports[`Autocomplete should renders correctly 4`] = `
           }
         }
       >
-        <DropdownLoading
-          data-testid="autocomplete:loading-area"
+        <CustomScrollbar
+          className="inner"
+          overflow={
+            Object {
+              "x": "h",
+              "y": "s",
+            }
+          }
         >
-          <div
-            className="root"
-            data-testid="autocomplete:loading-area"
+          <OverlayScrollbarsComponent
+            className="custom-scrollbar inner"
+            options={
+              Object {
+                "overflowBehavior": Object {
+                  "x": "h",
+                  "y": "s",
+                },
+              }
+            }
           >
-            <Spinner
-              size="small"
+            <div
+              className="os-host"
             >
-              <div>
-                <svg
-                  className="spinner size-small"
-                  height={20}
-                  stroke="#1f84db"
-                  viewBox="0 0 20 20"
-                  width={20}
+              <div
+                className="os-resize-observer-host"
+              />
+              <div
+                className="os-padding"
+              >
+                <div
+                  className="os-viewport"
                 >
-                  <circle
-                    className="circle"
-                    cx={10}
-                    cy={10}
-                    r={9}
-                  />
-                </svg>
+                  <div
+                    className="os-content"
+                  >
+                    <DropdownLoading
+                      data-testid="autocomplete:loading-area"
+                    >
+                      <div
+                        className="root"
+                        data-testid="autocomplete:loading-area"
+                      >
+                        <Spinner
+                          size="small"
+                        >
+                          <div>
+                            <svg
+                              className="spinner size-small"
+                              height={20}
+                              stroke="#1f84db"
+                              viewBox="0 0 20 20"
+                              width={20}
+                            >
+                              <circle
+                                className="circle"
+                                cx={10}
+                                cy={10}
+                                r={9}
+                              />
+                            </svg>
+                          </div>
+                        </Spinner>
+                      </div>
+                    </DropdownLoading>
+                  </div>
+                </div>
               </div>
-            </Spinner>
-          </div>
-        </DropdownLoading>
+              <div
+                className="os-scrollbar os-scrollbar-horizontal "
+              >
+                <div
+                  className="os-scrollbar-track"
+                >
+                  <div
+                    className="os-scrollbar-handle"
+                  />
+                </div>
+              </div>
+              <div
+                className="os-scrollbar os-scrollbar-vertical"
+              >
+                <div
+                  className="os-scrollbar-track"
+                >
+                  <div
+                    className="os-scrollbar-handle"
+                  />
+                </div>
+              </div>
+              <div
+                className="os-scrollbar-corner"
+              />
+            </div>
+          </OverlayScrollbarsComponent>
+        </CustomScrollbar>
       </div>
     </ForwardRef(Dropdown)>
   </div>

@@ -1,17 +1,11 @@
 .root {
-  padding: 8px 0;
-  max-height: var(--max-height, 304px);
-  overflow: auto;
   background: #fff;
+  max-height: var(--dropdown-max-height, 304px);
   outline: 0;
+  padding: 8px 0;
+  position: relative;
 }
 
-// @todo сделать полосу прокрутки по макетам когда они появятся
-.invisible-scroll {
-  scrollbar-width: none; // Firefox
-  overflow: -moz-scrollbars-none; // old Firefox
-  -ms-overflow-style: none; // IE, old Edge
-  &::-webkit-scrollbar {
-    display: none; // Chrome, Safari, Opera
-  }
+.inner {
+  max-height: calc(var(--dropdown-max-height, 304px) - 16px);
 }
