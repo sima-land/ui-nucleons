@@ -138,7 +138,7 @@ describe('<Modal />', () => {
   it('should render different sizes properly', () => {
     (['s', 'm', 'l', 'xl', 'fullscreen'] as const).forEach(size => {
       const wrapper = mount(
-        <Modal size={size} />
+        <Modal size={size} withTopBar />
       );
 
       expect(wrapper).toMatchSnapshot();
@@ -159,6 +159,25 @@ describe('<Modal />', () => {
     );
 
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render TopBar with back button', () => {
+    const spy = jest.fn();
+
+    const wrapper = mount(
+      <Modal onBack={spy} />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+
+    expect(spy).toBeCalledTimes(0);
+
+    act(() => {
+      wrapper.find('button[data-testid="modal:back"]').simulate('click');
+    });
+    wrapper.update();
+
+    expect(spy).toBeCalledTimes(1);
   });
 
   it('should render ith close and custom start button in top bar', () => {

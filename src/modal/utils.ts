@@ -5,7 +5,7 @@ import { enableBodyScroll, disableBodyScroll, BodyScrollOptions } from 'body-scr
  * @param callback Сработает при закрытии.
  * @return Свойства для закрывающего элемента.
  */
-export const useCloseHandler = (callback: () => void) => {
+export const useCloseHandler = (callback?: () => void) => {
   const mouseDownTarget = useRef<HTMLElement>();
 
   const onMouseDown = useCallback(({ button, target }) => {

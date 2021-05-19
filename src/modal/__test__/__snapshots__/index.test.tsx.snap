@@ -5,28 +5,83 @@ exports[`<Modal /> renders correct without close button and customClasses 1`] = 
   <div
     className="overlay"
     data-testid="modal:overlay"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
   >
     <div
       className="modal size-m shadow-z4"
       data-testid="modal"
     >
-      <TopBar
-        className="header"
-        size="s"
+      <CustomScrollbar
+        className="main"
+        overflow={
+          Object {
+            "x": "h",
+            "y": "s",
+          }
+        }
       >
-        <div
-          className="modal-header size-s header"
+        <OverlayScrollbarsComponent
+          className="custom-scrollbar main"
+          options={
+            Object {
+              "overflowBehavior": Object {
+                "x": "h",
+                "y": "s",
+              },
+            }
+          }
         >
           <div
-            className="main-section"
+            className="os-host"
           >
             <div
-              className="title ellipsis"
+              className="os-resize-observer-host"
+            />
+            <div
+              className="os-padding"
+            >
+              <div
+                className="os-viewport"
+              >
+                <div
+                  className="os-content"
+                >
+                  Test modal content
+                </div>
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-horizontal "
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-vertical"
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar-corner"
             />
           </div>
-        </div>
-      </TopBar>
-      Test modal content
+        </OverlayScrollbarsComponent>
+      </CustomScrollbar>
+      <div
+        className="footer-stub"
+      />
     </div>
   </div>
 </Modal>
@@ -124,6 +179,71 @@ exports[`<Modal /> should handle extended props 1`] = `
           </IconButton>
         </div>
       </TopBar>
+      <CustomScrollbar
+        className="main"
+        overflow={
+          Object {
+            "x": "h",
+            "y": "s",
+          }
+        }
+      >
+        <OverlayScrollbarsComponent
+          className="custom-scrollbar main"
+          options={
+            Object {
+              "overflowBehavior": Object {
+                "x": "h",
+                "y": "s",
+              },
+            }
+          }
+        >
+          <div
+            className="os-host"
+          >
+            <div
+              className="os-resize-observer-host"
+            />
+            <div
+              className="os-padding"
+            >
+              <div
+                className="os-viewport"
+              >
+                <div
+                  className="os-content"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-horizontal "
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-vertical"
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar-corner"
+            />
+          </div>
+        </OverlayScrollbarsComponent>
+      </CustomScrollbar>
       <div
         className="footer inner-border-top"
       >
@@ -166,6 +286,7 @@ exports[`<Modal /> should handle extended props 2`] = `
       data-testid="modal"
     >
       <TopBar
+        buttonsProps={Object {}}
         className="header inner-border-bottom"
         size="s"
         subtitle="Subtitle"
@@ -190,6 +311,71 @@ exports[`<Modal /> should handle extended props 2`] = `
           </div>
         </div>
       </TopBar>
+      <CustomScrollbar
+        className="main"
+        overflow={
+          Object {
+            "x": "h",
+            "y": "s",
+          }
+        }
+      >
+        <OverlayScrollbarsComponent
+          className="custom-scrollbar main"
+          options={
+            Object {
+              "overflowBehavior": Object {
+                "x": "h",
+                "y": "s",
+              },
+            }
+          }
+        >
+          <div
+            className="os-host"
+          >
+            <div
+              className="os-resize-observer-host"
+            />
+            <div
+              className="os-padding"
+            >
+              <div
+                className="os-viewport"
+              >
+                <div
+                  className="os-content"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-horizontal "
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-vertical"
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar-corner"
+            />
+          </div>
+        </OverlayScrollbarsComponent>
+      </CustomScrollbar>
       <div
         className="footer inner-border-top"
       >
@@ -202,19 +388,162 @@ exports[`<Modal /> should handle extended props 2`] = `
 </Modal>
 `;
 
-exports[`<Modal /> should render different sizes properly 1`] = `
+exports[`<Modal /> should render TopBar with back button 1`] = `
 <Modal
-  size="s"
+  onBack={[MockFunction]}
 >
   <div
     className="overlay"
     data-testid="modal:overlay"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+  >
+    <div
+      className="modal size-m shadow-z4"
+      data-testid="modal"
+    >
+      <TopBar
+        buttonsProps={
+          Object {
+            "start": Object {
+              "data-testid": "modal:back",
+              "icon": <ArrowLeftSVG />,
+              "onClick": [MockFunction],
+            },
+          }
+        }
+        className="header"
+        size="s"
+      >
+        <div
+          className="modal-header size-s header"
+        >
+          <IconButton
+            data-testid="modal:back"
+            icon={<ArrowLeftSVG />}
+            onClick={[MockFunction]}
+          >
+            <button
+              className="icon-button"
+              data-testid="modal:back"
+              onClick={[MockFunction]}
+              type="button"
+            >
+              <ArrowLeftSVG>
+                <svg
+                  height={24}
+                  viewBox="0 0 24 24"
+                  width={24}
+                >
+                  <path
+                    d="M5.414 13l5.293 5.293a1 1 0 01-1.414 1.414l-7-7a1 1 0 010-1.414l7-7a1 1 0 011.414 1.414L5.414 11H21a1 1 0 110 2H5.414z"
+                  />
+                </svg>
+              </ArrowLeftSVG>
+            </button>
+          </IconButton>
+          <div
+            className="main-section"
+          >
+            <div
+              className="title ellipsis"
+            />
+          </div>
+          <div
+            className="icon-button stub"
+          />
+        </div>
+      </TopBar>
+      <CustomScrollbar
+        className="main"
+        overflow={
+          Object {
+            "x": "h",
+            "y": "s",
+          }
+        }
+      >
+        <OverlayScrollbarsComponent
+          className="custom-scrollbar main"
+          options={
+            Object {
+              "overflowBehavior": Object {
+                "x": "h",
+                "y": "s",
+              },
+            }
+          }
+        >
+          <div
+            className="os-host"
+          >
+            <div
+              className="os-resize-observer-host"
+            />
+            <div
+              className="os-padding"
+            >
+              <div
+                className="os-viewport"
+              >
+                <div
+                  className="os-content"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-horizontal "
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-vertical"
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar-corner"
+            />
+          </div>
+        </OverlayScrollbarsComponent>
+      </CustomScrollbar>
+      <div
+        className="footer-stub"
+      />
+    </div>
+  </div>
+</Modal>
+`;
+
+exports[`<Modal /> should render different sizes properly 1`] = `
+<Modal
+  size="s"
+  withTopBar={true}
+>
+  <div
+    className="overlay"
+    data-testid="modal:overlay"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
   >
     <div
       className="modal size-s shadow-z4"
       data-testid="modal"
     >
       <TopBar
+        buttonsProps={Object {}}
         className="header"
         size="s"
       >
@@ -230,6 +559,74 @@ exports[`<Modal /> should render different sizes properly 1`] = `
           </div>
         </div>
       </TopBar>
+      <CustomScrollbar
+        className="main"
+        overflow={
+          Object {
+            "x": "h",
+            "y": "s",
+          }
+        }
+      >
+        <OverlayScrollbarsComponent
+          className="custom-scrollbar main"
+          options={
+            Object {
+              "overflowBehavior": Object {
+                "x": "h",
+                "y": "s",
+              },
+            }
+          }
+        >
+          <div
+            className="os-host"
+          >
+            <div
+              className="os-resize-observer-host"
+            />
+            <div
+              className="os-padding"
+            >
+              <div
+                className="os-viewport"
+              >
+                <div
+                  className="os-content"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-horizontal "
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-vertical"
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar-corner"
+            />
+          </div>
+        </OverlayScrollbarsComponent>
+      </CustomScrollbar>
+      <div
+        className="footer-stub"
+      />
     </div>
   </div>
 </Modal>
@@ -238,16 +635,20 @@ exports[`<Modal /> should render different sizes properly 1`] = `
 exports[`<Modal /> should render different sizes properly 2`] = `
 <Modal
   size="m"
+  withTopBar={true}
 >
   <div
     className="overlay"
     data-testid="modal:overlay"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
   >
     <div
       className="modal size-m shadow-z4"
       data-testid="modal"
     >
       <TopBar
+        buttonsProps={Object {}}
         className="header"
         size="s"
       >
@@ -263,6 +664,74 @@ exports[`<Modal /> should render different sizes properly 2`] = `
           </div>
         </div>
       </TopBar>
+      <CustomScrollbar
+        className="main"
+        overflow={
+          Object {
+            "x": "h",
+            "y": "s",
+          }
+        }
+      >
+        <OverlayScrollbarsComponent
+          className="custom-scrollbar main"
+          options={
+            Object {
+              "overflowBehavior": Object {
+                "x": "h",
+                "y": "s",
+              },
+            }
+          }
+        >
+          <div
+            className="os-host"
+          >
+            <div
+              className="os-resize-observer-host"
+            />
+            <div
+              className="os-padding"
+            >
+              <div
+                className="os-viewport"
+              >
+                <div
+                  className="os-content"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-horizontal "
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-vertical"
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar-corner"
+            />
+          </div>
+        </OverlayScrollbarsComponent>
+      </CustomScrollbar>
+      <div
+        className="footer-stub"
+      />
     </div>
   </div>
 </Modal>
@@ -271,16 +740,20 @@ exports[`<Modal /> should render different sizes properly 2`] = `
 exports[`<Modal /> should render different sizes properly 3`] = `
 <Modal
   size="l"
+  withTopBar={true}
 >
   <div
     className="overlay"
     data-testid="modal:overlay"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
   >
     <div
       className="modal size-l shadow-z4"
       data-testid="modal"
     >
       <TopBar
+        buttonsProps={Object {}}
         className="header"
         size="s"
       >
@@ -296,6 +769,74 @@ exports[`<Modal /> should render different sizes properly 3`] = `
           </div>
         </div>
       </TopBar>
+      <CustomScrollbar
+        className="main"
+        overflow={
+          Object {
+            "x": "h",
+            "y": "s",
+          }
+        }
+      >
+        <OverlayScrollbarsComponent
+          className="custom-scrollbar main"
+          options={
+            Object {
+              "overflowBehavior": Object {
+                "x": "h",
+                "y": "s",
+              },
+            }
+          }
+        >
+          <div
+            className="os-host"
+          >
+            <div
+              className="os-resize-observer-host"
+            />
+            <div
+              className="os-padding"
+            >
+              <div
+                className="os-viewport"
+              >
+                <div
+                  className="os-content"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-horizontal "
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-vertical"
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar-corner"
+            />
+          </div>
+        </OverlayScrollbarsComponent>
+      </CustomScrollbar>
+      <div
+        className="footer-stub"
+      />
     </div>
   </div>
 </Modal>
@@ -304,16 +845,20 @@ exports[`<Modal /> should render different sizes properly 3`] = `
 exports[`<Modal /> should render different sizes properly 4`] = `
 <Modal
   size="xl"
+  withTopBar={true}
 >
   <div
     className="overlay"
     data-testid="modal:overlay"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
   >
     <div
       className="modal size-xl shadow-z4"
       data-testid="modal"
     >
       <TopBar
+        buttonsProps={Object {}}
         className="header"
         size="s"
       >
@@ -329,6 +874,74 @@ exports[`<Modal /> should render different sizes properly 4`] = `
           </div>
         </div>
       </TopBar>
+      <CustomScrollbar
+        className="main"
+        overflow={
+          Object {
+            "x": "h",
+            "y": "s",
+          }
+        }
+      >
+        <OverlayScrollbarsComponent
+          className="custom-scrollbar main"
+          options={
+            Object {
+              "overflowBehavior": Object {
+                "x": "h",
+                "y": "s",
+              },
+            }
+          }
+        >
+          <div
+            className="os-host"
+          >
+            <div
+              className="os-resize-observer-host"
+            />
+            <div
+              className="os-padding"
+            >
+              <div
+                className="os-viewport"
+              >
+                <div
+                  className="os-content"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-horizontal "
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-vertical"
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar-corner"
+            />
+          </div>
+        </OverlayScrollbarsComponent>
+      </CustomScrollbar>
+      <div
+        className="footer-stub"
+      />
     </div>
   </div>
 </Modal>
@@ -337,16 +950,20 @@ exports[`<Modal /> should render different sizes properly 4`] = `
 exports[`<Modal /> should render different sizes properly 5`] = `
 <Modal
   size="fullscreen"
+  withTopBar={true}
 >
   <div
     className="overlay"
     data-testid="modal:overlay"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
   >
     <div
       className="modal size-fullscreen"
       data-testid="modal"
     >
       <TopBar
+        buttonsProps={Object {}}
         className="header"
         size="m"
       >
@@ -362,6 +979,74 @@ exports[`<Modal /> should render different sizes properly 5`] = `
           </div>
         </div>
       </TopBar>
+      <CustomScrollbar
+        className="main"
+        overflow={
+          Object {
+            "x": "h",
+            "y": "s",
+          }
+        }
+      >
+        <OverlayScrollbarsComponent
+          className="custom-scrollbar main"
+          options={
+            Object {
+              "overflowBehavior": Object {
+                "x": "h",
+                "y": "s",
+              },
+            }
+          }
+        >
+          <div
+            className="os-host"
+          >
+            <div
+              className="os-resize-observer-host"
+            />
+            <div
+              className="os-padding"
+            >
+              <div
+                className="os-viewport"
+              >
+                <div
+                  className="os-content"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-horizontal "
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-vertical"
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar-corner"
+            />
+          </div>
+        </OverlayScrollbarsComponent>
+      </CustomScrollbar>
+      <div
+        className="footer-stub"
+      />
     </div>
   </div>
 </Modal>
@@ -384,16 +1069,121 @@ exports[`<Modal /> should renders in layer 1`] = `
               data-testid="modal"
             >
               <div
-                class="modal-header size-s header"
+                class="os-host os-host-foreign os-theme-dark os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden custom-scrollbar main"
               >
                 <div
-                  class="main-section"
+                  class="os-resize-observer-host"
                 >
                   <div
-                    class="title ellipsis"
-                  />
+                    class="os-resize-observer"
+                    style="right: 0px;"
+                  >
+                    <div
+                      class="os-resize-observer-item"
+                      dir="ltr"
+                      style="top: -2px; right: 0px; bottom: 0px; left: -2px;"
+                    >
+                      <div
+                        class="os-resize-observer-item"
+                      >
+                        <div
+                          class="os-resize-observer-item-final"
+                          style="width: 3333333px; height: 3333333px;"
+                        />
+                      </div>
+                      <div
+                        class="os-resize-observer-item"
+                      >
+                        <div
+                          class="os-resize-observer-item-final"
+                          style="width: 200%; height: 200%"
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <div
+                  class="os-size-auto-observer"
+                  style="height: calc(100% + 1px); float: left;"
+                >
+                  <div
+                    class="os-resize-observer"
+                  >
+                    <div
+                      class="os-resize-observer-item"
+                      dir="ltr"
+                      style="top: -2px; right: 0px; bottom: 0px; left: -2px;"
+                    >
+                      <div
+                        class="os-resize-observer-item"
+                      >
+                        <div
+                          class="os-resize-observer-item-final"
+                          style="width: 3333333px; height: 3333333px;"
+                        />
+                      </div>
+                      <div
+                        class="os-resize-observer-item"
+                      >
+                        <div
+                          class="os-resize-observer-item-final"
+                          style="width: 200%; height: 200%"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="os-content-glue"
+                  style="margin: 0px 0px 0px 0px; width: -1px; height: -1px;"
+                />
+                <div
+                  class="os-padding"
+                >
+                  <div
+                    class="os-viewport os-viewport-native-scrollbars-overlaid"
+                    style=""
+                  >
+                    <div
+                      class="os-content-arrange"
+                    />
+                    <div
+                      class="os-content"
+                      style="padding: 0px 0px 0px 0px; height: 100%; width: 100%;"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable"
+                >
+                  <div
+                    class="os-scrollbar-track os-scrollbar-track-off"
+                  >
+                    <div
+                      class="os-scrollbar-handle"
+                      style="transform: translate(0px, 0);"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="os-scrollbar os-scrollbar-vertical os-scrollbar-unusable"
+                >
+                  <div
+                    class="os-scrollbar-track os-scrollbar-track-off"
+                  >
+                    <div
+                      class="os-scrollbar-handle"
+                      style="transform: translate(0, 0px);"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="os-scrollbar-corner"
+                />
               </div>
+              <div
+                class="footer-stub"
+              />
             </div>
           </div>
         </div>
@@ -402,27 +1192,81 @@ exports[`<Modal /> should renders in layer 1`] = `
       <div
         className="overlay"
         data-testid="modal:overlay"
+        onMouseDown={[Function]}
+        onMouseUp={[Function]}
       >
         <div
           className="modal size-m shadow-z4"
           data-testid="modal"
         >
-          <TopBar
-            className="header"
-            size="s"
+          <CustomScrollbar
+            className="main"
+            overflow={
+              Object {
+                "x": "h",
+                "y": "s",
+              }
+            }
           >
-            <div
-              className="modal-header size-s header"
+            <OverlayScrollbarsComponent
+              className="custom-scrollbar main"
+              options={
+                Object {
+                  "overflowBehavior": Object {
+                    "x": "h",
+                    "y": "s",
+                  },
+                }
+              }
             >
               <div
-                className="main-section"
+                className="os-host"
               >
                 <div
-                  className="title ellipsis"
+                  className="os-resize-observer-host"
+                />
+                <div
+                  className="os-padding"
+                >
+                  <div
+                    className="os-viewport"
+                  >
+                    <div
+                      className="os-content"
+                    />
+                  </div>
+                </div>
+                <div
+                  className="os-scrollbar os-scrollbar-horizontal "
+                >
+                  <div
+                    className="os-scrollbar-track"
+                  >
+                    <div
+                      className="os-scrollbar-handle"
+                    />
+                  </div>
+                </div>
+                <div
+                  className="os-scrollbar os-scrollbar-vertical"
+                >
+                  <div
+                    className="os-scrollbar-track"
+                  >
+                    <div
+                      className="os-scrollbar-handle"
+                    />
+                  </div>
+                </div>
+                <div
+                  className="os-scrollbar-corner"
                 />
               </div>
-            </div>
-          </TopBar>
+            </OverlayScrollbarsComponent>
+          </CustomScrollbar>
+          <div
+            className="footer-stub"
+          />
         </div>
       </div>
     </Portal>
@@ -437,11 +1281,82 @@ exports[`<Modal /> should renders without TopBar 1`] = `
   <div
     className="overlay"
     data-testid="modal:overlay"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
   >
     <div
       className="modal size-m shadow-z4"
       data-testid="modal"
-    />
+    >
+      <CustomScrollbar
+        className="main"
+        overflow={
+          Object {
+            "x": "h",
+            "y": "s",
+          }
+        }
+      >
+        <OverlayScrollbarsComponent
+          className="custom-scrollbar main"
+          options={
+            Object {
+              "overflowBehavior": Object {
+                "x": "h",
+                "y": "s",
+              },
+            }
+          }
+        >
+          <div
+            className="os-host"
+          >
+            <div
+              className="os-resize-observer-host"
+            />
+            <div
+              className="os-padding"
+            >
+              <div
+                className="os-viewport"
+              >
+                <div
+                  className="os-content"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-horizontal "
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-vertical"
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar-corner"
+            />
+          </div>
+        </OverlayScrollbarsComponent>
+      </CustomScrollbar>
+      <div
+        className="footer-stub"
+      />
+    </div>
   </div>
 </Modal>
 `;

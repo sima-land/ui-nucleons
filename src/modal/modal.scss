@@ -22,6 +22,8 @@
   margin: auto;
   flex-shrink: 0;
   z-index: 1;
+  height: var(--modal-height, 360px);
+  overflow: hidden;
   &.size-s {
     width: 480px;
   }
@@ -46,8 +48,16 @@
   border-radius: 8px 8px 0 0;
 }
 
+.main {
+  flex-grow: 1;
+}
+
 .footer {
-  margin-top: auto;
   border-radius: 0 0 8px 8px;
   overflow: hidden;
+}
+
+.footer-stub {
+  height: 16px;
+  background: #fff;
 }

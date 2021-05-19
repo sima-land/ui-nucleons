@@ -1,7 +1,12 @@
 @use '../../colors';
 
 // important используется здесь так как в storybook оригинальные стили почему-то не перекрываются
-$track-bound: 12px;
+$track-bound: 16px;
+
+.custom-scrollbar {
+  max-width: 100%;
+  max-height: 100%;
+}
 
 .custom-scrollbar :global(.os-scrollbar-handle) {
   border-radius: 2px !important;
