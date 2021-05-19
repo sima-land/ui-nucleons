@@ -1,36 +1,27 @@
 import React, { forwardRef } from 'react';
 import { BoxShadow } from '../styling/shadows';
-import styles from './dropdown.scss';
-import classnames from 'classnames/bind';
 import { MediumRounds } from '../styling/shapes';
+import { CustomScrollbar } from '../_internal/custom-scrollbar';
+import classnames from 'classnames/bind';
+import styles from './dropdown.scss';
 
-export interface Props extends React.HTMLAttributes<HTMLDivElement> {
-
-  /** Нужна ли тень. */
-  withShadow?: boolean
-}
+export type Props = React.HTMLAttributes<HTMLDivElement>;
 
 const cx = classnames.bind(styles);
 
 /**
- * Компонент выпадающего контента.
+ * Компонент выпадающего блока с контентом, например списком.
  */
-export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown ({
-  withShadow = true,
+export const Dropdown = forwardRef<HTMLDivElement | null, Props>(function Dropdown ({
   className,
+  children,
   ...restProps
 }, ref) {
   return (
-    <div
-      {...restProps}
-      ref={ref}
-      className={cx(
-        'root',
-        'invisible-scroll',
-        withShadow && BoxShadow.z4,
-        MediumRounds.all,
-        className
-      )}
-    />
+    <div ref={ref} className={cx('root', className, BoxShadow.z4, MediumRounds.all)} {...restProps}>
+      <CustomScrollbar className={cx('inner')} overflow={{ x: 'h', y: 's' }}>
+        {children}
+      </CustomScrollbar>
+    </div>
   );
 });

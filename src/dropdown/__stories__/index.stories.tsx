@@ -26,17 +26,6 @@ export const Primary = () => (
 
     <Divider />
 
-    <h3>Вместе с DropdownItem без тени</h3>
-    <Dropdown style={{ width: 320 }} withShadow={false}>
-      {Array(4).fill(0).map((a, i) => (
-        <DropdownItem size='s' key={i} style={{ borderRadius: 4 }}>
-          Item №{i + 1}
-        </DropdownItem>
-      ))}
-    </Dropdown>
-
-    <Divider />
-
     <h3>Вместе с DropdownItem и прокруткой</h3>
     <Dropdown style={{ width: 320 }}>
       {Array(25).fill(0).map((a, i) => (

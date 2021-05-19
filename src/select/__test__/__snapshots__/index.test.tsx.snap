@@ -126,7 +126,7 @@ exports[`Select should render loading state 1`] = `
       tabIndex={-1}
     >
       <div
-        className="root invisible-scroll shadow-z4 rounds-md__all menu"
+        className="root menu shadow-z4 rounds-md__all"
         data-testid="select:menu"
         onBlur={[Function]}
         onKeyDown={[Function]}
@@ -138,35 +138,101 @@ exports[`Select should render loading state 1`] = `
         }
         tabIndex={-1}
       >
-        <DropdownLoading
-          data-testid="select:loading-area"
+        <CustomScrollbar
+          className="inner"
+          overflow={
+            Object {
+              "x": "h",
+              "y": "s",
+            }
+          }
         >
-          <div
-            className="root"
-            data-testid="select:loading-area"
+          <OverlayScrollbarsComponent
+            className="custom-scrollbar inner"
+            options={
+              Object {
+                "overflowBehavior": Object {
+                  "x": "h",
+                  "y": "s",
+                },
+              }
+            }
           >
-            <Spinner
-              size="small"
+            <div
+              className="os-host"
             >
-              <div>
-                <svg
-                  className="spinner size-small"
-                  height={20}
-                  stroke="#1f84db"
-                  viewBox="0 0 20 20"
-                  width={20}
+              <div
+                className="os-resize-observer-host"
+              />
+              <div
+                className="os-padding"
+              >
+                <div
+                  className="os-viewport"
                 >
-                  <circle
-                    className="circle"
-                    cx={10}
-                    cy={10}
-                    r={9}
-                  />
-                </svg>
+                  <div
+                    className="os-content"
+                  >
+                    <DropdownLoading
+                      data-testid="select:loading-area"
+                    >
+                      <div
+                        className="root"
+                        data-testid="select:loading-area"
+                      >
+                        <Spinner
+                          size="small"
+                        >
+                          <div>
+                            <svg
+                              className="spinner size-small"
+                              height={20}
+                              stroke="#1f84db"
+                              viewBox="0 0 20 20"
+                              width={20}
+                            >
+                              <circle
+                                className="circle"
+                                cx={10}
+                                cy={10}
+                                r={9}
+                              />
+                            </svg>
+                          </div>
+                        </Spinner>
+                      </div>
+                    </DropdownLoading>
+                  </div>
+                </div>
               </div>
-            </Spinner>
-          </div>
-        </DropdownLoading>
+              <div
+                className="os-scrollbar os-scrollbar-horizontal "
+              >
+                <div
+                  className="os-scrollbar-track"
+                >
+                  <div
+                    className="os-scrollbar-handle"
+                  />
+                </div>
+              </div>
+              <div
+                className="os-scrollbar os-scrollbar-vertical"
+              >
+                <div
+                  className="os-scrollbar-track"
+                >
+                  <div
+                    className="os-scrollbar-handle"
+                  />
+                </div>
+              </div>
+              <div
+                className="os-scrollbar-corner"
+              />
+            </div>
+          </OverlayScrollbarsComponent>
+        </CustomScrollbar>
       </div>
     </ForwardRef(Dropdown)>
   </div>
@@ -458,7 +524,7 @@ exports[`Select should renders correctly 2`] = `
       tabIndex={-1}
     >
       <div
-        className="root invisible-scroll shadow-z4 rounds-md__all menu"
+        className="root menu shadow-z4 rounds-md__all"
         data-testid="select:menu"
         onBlur={[Function]}
         onKeyDown={[Function]}
@@ -470,76 +536,142 @@ exports[`Select should renders correctly 2`] = `
         }
         tabIndex={-1}
       >
-        <DropdownItem
-          key="0"
-          onClick={[Function]}
-          role="menuitem"
-          size="m"
+        <CustomScrollbar
+          className="inner"
+          overflow={
+            Object {
+              "x": "h",
+              "y": "s",
+            }
+          }
         >
-          <div
-            className="root size-m"
-            onClick={[Function]}
-            role="menuitem"
+          <OverlayScrollbarsComponent
+            className="custom-scrollbar inner"
+            options={
+              Object {
+                "overflowBehavior": Object {
+                  "x": "h",
+                  "y": "s",
+                },
+              }
+            }
           >
-            ПРАЙС-ЛИСТ XML
-          </div>
-        </DropdownItem>
-        <DropdownItem
-          key="1"
-          onClick={[Function]}
-          role="menuitem"
-          size="m"
-        >
-          <div
-            className="root size-m"
-            onClick={[Function]}
-            role="menuitem"
-          >
-            ПРАЙС-ЛИСТ YML
-          </div>
-        </DropdownItem>
-        <DropdownItem
-          key="2"
-          onClick={[Function]}
-          role="menuitem"
-          size="m"
-        >
-          <div
-            className="root size-m"
-            onClick={[Function]}
-            role="menuitem"
-          >
-            КАРТОЧКИ ТОВАРОВ JPG
-          </div>
-        </DropdownItem>
-        <DropdownItem
-          key="3"
-          onClick={[Function]}
-          role="menuitem"
-          size="m"
-        >
-          <div
-            className="root size-m"
-            onClick={[Function]}
-            role="menuitem"
-          >
-            ФОТО ТОВАРОВ JPG + ПРАЙС-ЛИСТ XLS
-          </div>
-        </DropdownItem>
-        <DropdownItem
-          key="4"
-          onClick={[Function]}
-          role="menuitem"
-          size="m"
-        >
-          <div
-            className="root size-m"
-            onClick={[Function]}
-            role="menuitem"
-          >
-            ПЕЧАТНЫЙ КАТАЛОГ PDF
-          </div>
-        </DropdownItem>
+            <div
+              className="os-host"
+            >
+              <div
+                className="os-resize-observer-host"
+              />
+              <div
+                className="os-padding"
+              >
+                <div
+                  className="os-viewport"
+                >
+                  <div
+                    className="os-content"
+                  >
+                    <DropdownItem
+                      key="0"
+                      onClick={[Function]}
+                      role="menuitem"
+                      size="m"
+                    >
+                      <div
+                        className="root size-m"
+                        onClick={[Function]}
+                        role="menuitem"
+                      >
+                        ПРАЙС-ЛИСТ XML
+                      </div>
+                    </DropdownItem>
+                    <DropdownItem
+                      key="1"
+                      onClick={[Function]}
+                      role="menuitem"
+                      size="m"
+                    >
+                      <div
+                        className="root size-m"
+                        onClick={[Function]}
+                        role="menuitem"
+                      >
+                        ПРАЙС-ЛИСТ YML
+                      </div>
+                    </DropdownItem>
+                    <DropdownItem
+                      key="2"
+                      onClick={[Function]}
+                      role="menuitem"
+                      size="m"
+                    >
+                      <div
+                        className="root size-m"
+                        onClick={[Function]}
+                        role="menuitem"
+                      >
+                        КАРТОЧКИ ТОВАРОВ JPG
+                      </div>
+                    </DropdownItem>
+                    <DropdownItem
+                      key="3"
+                      onClick={[Function]}
+                      role="menuitem"
+                      size="m"
+                    >
+                      <div
+                        className="root size-m"
+                        onClick={[Function]}
+                        role="menuitem"
+                      >
+                        ФОТО ТОВАРОВ JPG + ПРАЙС-ЛИСТ XLS
+                      </div>
+                    </DropdownItem>
+                    <DropdownItem
+                      key="4"
+                      onClick={[Function]}
+                      role="menuitem"
+                      size="m"
+                    >
+                      <div
+                        className="root size-m"
+                        onClick={[Function]}
+                        role="menuitem"
+                      >
+                        ПЕЧАТНЫЙ КАТАЛОГ PDF
+                      </div>
+                    </DropdownItem>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="os-scrollbar os-scrollbar-horizontal "
+              >
+                <div
+                  className="os-scrollbar-track"
+                >
+                  <div
+                    className="os-scrollbar-handle"
+                  />
+                </div>
+              </div>
+              <div
+                className="os-scrollbar os-scrollbar-vertical"
+              >
+                <div
+                  className="os-scrollbar-track"
+                >
+                  <div
+                    className="os-scrollbar-handle"
+                  />
+                </div>
+              </div>
+              <div
+                className="os-scrollbar-corner"
+              />
+            </div>
+          </OverlayScrollbarsComponent>
+        </CustomScrollbar>
       </div>
     </ForwardRef(Dropdown)>
   </div>
