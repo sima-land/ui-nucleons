@@ -132,7 +132,7 @@ exports[`<Modal /> should handle extended props 1`] = `
         title="Title"
       >
         <div
-          className="modal-header size-s header inner-border-bottom"
+          className="root size-s header inner-border-bottom"
         >
           <div
             className="icon-button stub"
@@ -293,7 +293,7 @@ exports[`<Modal /> should handle extended props 2`] = `
         title="Title"
       >
         <div
-          className="modal-header size-s header inner-border-bottom"
+          className="root size-s header inner-border-bottom"
         >
           <div
             className="main-section"
@@ -416,7 +416,7 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
         size="s"
       >
         <div
-          className="modal-header size-s header"
+          className="root size-s header"
         >
           <IconButton
             data-testid="modal:back"
@@ -548,7 +548,7 @@ exports[`<Modal /> should render different sizes properly 1`] = `
         size="s"
       >
         <div
-          className="modal-header size-s header"
+          className="root size-s header"
         >
           <div
             className="main-section"
@@ -653,7 +653,7 @@ exports[`<Modal /> should render different sizes properly 2`] = `
         size="s"
       >
         <div
-          className="modal-header size-s header"
+          className="root size-s header"
         >
           <div
             className="main-section"
@@ -758,7 +758,7 @@ exports[`<Modal /> should render different sizes properly 3`] = `
         size="s"
       >
         <div
-          className="modal-header size-s header"
+          className="root size-s header"
         >
           <div
             className="main-section"
@@ -863,7 +863,7 @@ exports[`<Modal /> should render different sizes properly 4`] = `
         size="s"
       >
         <div
-          className="modal-header size-s header"
+          className="root size-s header"
         >
           <div
             className="main-section"
@@ -968,7 +968,7 @@ exports[`<Modal /> should render different sizes properly 5`] = `
         size="m"
       >
         <div
-          className="modal-header size-m header"
+          className="root size-m header"
         >
           <div
             className="main-section"

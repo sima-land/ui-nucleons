@@ -59,7 +59,7 @@ export const TopBar = ({
   const secondaryStub = hasStartSecondary || hasEndSecondary ? iconStub : null;
 
   return (
-    <div className={cx('modal-header', `size-${size}`, className)}>
+    <div className={cx('root', `size-${size}`, className)}>
       {hasStart ? <IconButton {...start} /> : stub}
       {hasStartSecondary ? <IconButton {...startSecondary} /> : secondaryStub}
 
