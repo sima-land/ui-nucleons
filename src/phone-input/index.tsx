@@ -13,7 +13,11 @@ import { COLORS } from '../colors';
 import classes from './phone-input.scss';
 import { defineCountry } from './utils';
 
-export interface Props extends Omit<TextFieldProps, 'onChange' | 'onBlur' | 'value' | 'ref'> {
+interface PhoneInputStyle extends React.CSSProperties {
+  '--phone-input-width'?: number | string
+}
+
+export interface Props extends Omit<TextFieldProps, 'onChange' | 'onBlur' | 'value' | 'ref' | 'style'> {
 
   /** Сработает при "blur". */
   onBlur?: (e: React.FocusEvent<HTMLInputElement>, s: MaskState & { ready?: boolean }) => void
@@ -26,6 +30,9 @@ export interface Props extends Omit<TextFieldProps, 'onChange' | 'onBlur' | 'val
 
   /** Значение. */
   value?: string
+
+  /** Стили. */
+  style?: PhoneInputStyle
 }
 
 const cx = classnames.bind(classes);

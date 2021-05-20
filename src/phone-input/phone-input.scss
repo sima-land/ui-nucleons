@@ -1,8 +1,9 @@
 @use '../colors';
 
 .root {
+  text-align: left;
   position: relative;
-  width: var(--width, 320px);
+  width: var(--phone-input-width, 320px);
 }
 
 .field {
@@ -20,7 +21,7 @@
   position: absolute;
   width: 100%;
   top: 56px;
-  height: 208px;
+  --dropdown-max-height: 208px;
   z-index: 2;
 }
 
