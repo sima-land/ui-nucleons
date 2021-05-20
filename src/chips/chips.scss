@@ -44,10 +44,14 @@ $gutter: 8px;
   }
 
   // эффект при наведении определяем **после** переопределения стилей монолита
-  &:hover,
-  &:active {
-    background: colors.$gray12;
-    color: colors.$gray87;
+  &:not(.checked) {
+    &:hover,
+    &:active {
+      background: colors.$gray12;
+      color: colors.$gray87;
+    }
+  }
+  &:hover {
     cursor: pointer;
   }
 }
