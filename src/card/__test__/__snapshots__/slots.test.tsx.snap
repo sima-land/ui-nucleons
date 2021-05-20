@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardContent should handle props 1`] = `
+<Card.Content
+  className="test-class"
+  style={
+    Object {
+      "width": 1080,
+    }
+  }
+>
+  <div
+    className="content test-class"
+    style={
+      Object {
+        "width": 1080,
+      }
+    }
+  >
+    Just content
+  </div>
+</Card.Content>
+`;
+
+exports[`CardFooter should handle props 1`] = `
+<Card.Footer
+  className="test-footer"
+  divided={true}
+  style={
+    Object {
+      "width": 1920,
+    }
+  }
+>
+  <div
+    className="test-footer inner-border-top"
+    style={
+      Object {
+        "width": 1920,
+      }
+    }
+  >
+    Just content
+  </div>
+</Card.Footer>
+`;
+
+exports[`CardHeader should handle TopBar as children 1`] = `
+<Card.Header
+  divided={true}
+>
+  <div
+    className="inner-border-bottom"
+  >
+    <TopBar
+      className="inner-border-bottom rounds-md__t"
+    >
+      <div
+        className="root size-m inner-border-bottom rounds-md__t"
+      >
+        <div
+          className="main-section"
+        >
+          <div
+            className="title ellipsis"
+          />
+        </div>
+      </div>
+    </TopBar>
+  </div>
+</Card.Header>
+`;
+
+exports[`CardHeader should handle small rounds 1`] = `
+<Card.Header
+  divided={true}
+>
+  <div
+    className="inner-border-bottom"
+  >
+    <TopBar
+      className="inner-border-bottom rounds-sm__t"
+    >
+      <div
+        className="root size-m inner-border-bottom rounds-sm__t"
+      >
+        <div
+          className="main-section"
+        >
+          <div
+            className="title ellipsis"
+          />
+        </div>
+      </div>
+    </TopBar>
+  </div>
+</Card.Header>
+`;
+
+exports[`CardHeader should render just children inside 1`] = `
+<Card.Header>
+  <div
+    className=""
+  >
+    Just children
+  </div>
+</Card.Header>
+`;
