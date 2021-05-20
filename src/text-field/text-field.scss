@@ -180,6 +180,7 @@ input.reset {
   &.disabled {
     color: colors.$gray24;
     --placeholder-color: #{colors.$gray24};
+    -webkit-text-fill-color: colors.$gray24; //fix safari disabled
   }
   &.size-xs {
     font-size: 14px;
