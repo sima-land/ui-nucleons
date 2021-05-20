@@ -5,7 +5,13 @@ import { CustomScrollbar } from '../_internal/custom-scrollbar';
 import classnames from 'classnames/bind';
 import styles from './dropdown.scss';
 
-export type Props = React.HTMLAttributes<HTMLDivElement>;
+interface DropdownStyle extends React.CSSProperties {
+  '--dropdown-max-height'?: string
+}
+
+export interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, 'style'> {
+  style?: DropdownStyle
+}
 
 const cx = classnames.bind(styles);
 
