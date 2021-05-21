@@ -1,4 +1,4 @@
-export const items = [
+export const demoItems = [
   {
     sid: 2187622,
     name: 'Велосипед 20" Forward Iris, 2017, цвет жёлтый, размер 10,5"',
