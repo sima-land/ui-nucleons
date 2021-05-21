@@ -15,6 +15,7 @@ exports[`<Avatar /> should handle props 1`] = `
 >
   <div
     className="root size-40 color__white"
+    data-testid="avatar"
     style={
       Object {
         "--avatar-color": undefined,
@@ -52,6 +53,7 @@ exports[`<Avatar /> should handle props 2`] = `
 >
   <div
     className="root size-40 color__white"
+    data-testid="avatar"
     style={
       Object {
         "--avatar-color": undefined,
@@ -90,6 +92,7 @@ exports[`<Avatar /> should handle props 3`] = `
 >
   <div
     className="root size-40 color__white"
+    data-testid="avatar"
     style={
       Object {
         "--avatar-color": undefined,
@@ -118,6 +121,7 @@ exports[`<Avatar /> should handle wrong size 1`] = `
 >
   <div
     className="root size-72 color__gray87"
+    data-testid="avatar"
     style={
       Object {
         "--avatar-color": "#f5f5f5",
@@ -141,6 +145,7 @@ exports[`<Avatar /> should render without image 1`] = `
 >
   <div
     className="root size-40 color__gray87"
+    data-testid="avatar"
     style={
       Object {
         "--avatar-color": "#f5f5f5",
@@ -163,6 +168,7 @@ exports[`<Avatar /> should render without image and title 1`] = `
 >
   <div
     className="root size-64 color__gray87"
+    data-testid="avatar"
     style={
       Object {
         "--avatar-color": "#f5f5f5",
@@ -201,6 +207,7 @@ exports[`<Avatar /> should renders without props 1`] = `
 <Avatar>
   <div
     className="root size-72 color__gray87"
+    data-testid="avatar"
     style={
       Object {
         "--avatar-color": "#f5f5f5",

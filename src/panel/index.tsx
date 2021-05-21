@@ -23,6 +23,9 @@ export interface Props {
 
   /** Содержимое в виде строки с html-версткой. */
   html?: string
+
+  /** Идентификатор для систем автоматизированного тестирования. */
+  'data-testid'?: string
 }
 
 const cx = classnames.bind(styles);
@@ -40,6 +43,7 @@ export const Panel: React.FC<Props> = ({
   className,
   children,
   html,
+  'data-testid': testId = 'panel',
 }) => {
   const contentProps = html
     ? { dangerouslySetInnerHTML: { __html: html } }
@@ -53,6 +57,7 @@ export const Panel: React.FC<Props> = ({
         bgColor(panelColor),
         className
       )}
+      data-testid={testId}
     >
       {Icon && (
         <Icon

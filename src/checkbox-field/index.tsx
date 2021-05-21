@@ -36,6 +36,7 @@ export const CheckboxField = forwardRef<HTMLInputElement | null, Props>(function
         <span className={cx('label-column')}>
           {label && (
             <span
+              data-testid='checkbox-field:label'
               className={cx('content-wrapper', 'label')}
               children={label}
             />

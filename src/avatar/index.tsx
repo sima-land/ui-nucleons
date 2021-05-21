@@ -70,7 +70,7 @@ export const Avatar = ({
   monogram = getMonogram(title),
   className,
   style,
-  'data-testid': dataTestId,
+  'data-testid': testId = 'avatar',
 }: Props) => {
   const [needImage, toggleImage] = useState(Boolean(imageUrl));
 
@@ -82,7 +82,7 @@ export const Avatar = ({
 
   return (
     <div
-      data-testid={dataTestId}
+      data-testid={testId}
       className={cx(
         'root',
         `size-${size}`,

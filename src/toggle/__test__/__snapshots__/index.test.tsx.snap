@@ -7,6 +7,7 @@ exports[`<Toggle /> should work without props 1`] = `
   >
     <input
       className="input"
+      data-testid="price"
       type="checkbox"
     />
     <span

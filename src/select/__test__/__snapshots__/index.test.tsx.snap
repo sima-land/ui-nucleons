@@ -579,6 +579,7 @@ exports[`Select should renders correctly 2`] = `
                     >
                       <div
                         className="root size-m"
+                        data-testid="dropdown-item"
                         onClick={[Function]}
                         role="menuitem"
                       >
@@ -593,6 +594,7 @@ exports[`Select should renders correctly 2`] = `
                     >
                       <div
                         className="root size-m"
+                        data-testid="dropdown-item"
                         onClick={[Function]}
                         role="menuitem"
                       >
@@ -607,6 +609,7 @@ exports[`Select should renders correctly 2`] = `
                     >
                       <div
                         className="root size-m"
+                        data-testid="dropdown-item"
                         onClick={[Function]}
                         role="menuitem"
                       >
@@ -621,6 +624,7 @@ exports[`Select should renders correctly 2`] = `
                     >
                       <div
                         className="root size-m"
+                        data-testid="dropdown-item"
                         onClick={[Function]}
                         role="menuitem"
                       >
@@ -635,6 +639,7 @@ exports[`Select should renders correctly 2`] = `
                     >
                       <div
                         className="root size-m"
+                        data-testid="dropdown-item"
                         onClick={[Function]}
                         role="menuitem"
                       >

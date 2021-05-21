@@ -12,6 +12,7 @@ exports[`<Clean.Button /> should handle props 1`] = `
   >
     <a
       className="link clean-button size-s color__brand-blue hover-color__brand-deep-blue"
+      data-testid="anchor"
       href="https://site.com"
       role="button"
       tabIndex={0}
@@ -35,6 +36,7 @@ exports[`<Clean.Button /> should handle props 2`] = `
   >
     <a
       className="link clean-button size-s color__brand-blue hover-color__brand-deep-blue"
+      data-testid="anchor"
       href={null}
       role="button"
       tabIndex={0}
@@ -53,6 +55,7 @@ exports[`<Clean.Button /> should render without props 1`] = `
   >
     <a
       className="link clean-button size-m color__brand-blue hover-color__brand-deep-blue"
+      data-testid="anchor"
     />
   </ForwardRef(Link)>
 </CleanButton>
@@ -75,6 +78,7 @@ exports[`<Clean.Group /> should handle props (1) 1`] = `
       >
         <a
           className="link clean-button size-s color__brand-blue hover-color__brand-deep-blue"
+          data-testid="anchor"
         >
           Foo
         </a>
@@ -90,6 +94,7 @@ exports[`<Clean.Group /> should handle props (1) 1`] = `
       >
         <a
           className="link clean-button size-s color__brand-blue hover-color__brand-deep-blue"
+          data-testid="anchor"
         >
           Bar
         </a>
@@ -107,6 +112,7 @@ exports[`<Clean.Group /> should handle props (1) 1`] = `
       >
         <a
           className="link clean-button size-s color__brand-blue hover-color__brand-deep-blue"
+          data-testid="anchor"
           href="https://www.abc.xyz"
           role="button"
           tabIndex={0}
@@ -141,6 +147,7 @@ exports[`<Clean.Group /> should handle props (2) 1`] = `
       >
         <a
           className="link clean-button size-s color__brand-blue hover-color__brand-deep-blue"
+          data-testid="anchor"
         >
           One button
         </a>

@@ -23,6 +23,9 @@ export interface Props extends Omit<JSX.IntrinsicElements['button'], 'size' | 'c
 
   /** Направление (отвечает за иконку). */
   direction?: Direction
+
+  /** Идентификатор для систем автоматизированного тестирования. */
+  'data-testid'?: string
 }
 
 const cx = classnames.bind(classes);
@@ -51,6 +54,7 @@ export const ArrowButton = ({
   size = 'l',
   direction = 'right',
   className,
+  'data-testid': testId = 'arrow-button',
   ...buttonProps
 }: Props) => {
   const Icon = ICONS[size][direction];
@@ -64,6 +68,7 @@ export const ArrowButton = ({
         `size-${size}`,
         className
       )}
+      data-testid={testId}
     >
       <Icon aria-hidden fill='currentColor' />
     </button>

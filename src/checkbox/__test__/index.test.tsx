@@ -1,7 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { Checkbox } from '..';
-import classes from '../checkbox.scss';
 
 describe('<Checkbox />', () => {
   it('should render without props', () => {
@@ -9,6 +8,13 @@ describe('<Checkbox />', () => {
 
     expect(wrapper.find('input')).toHaveLength(1);
     expect(wrapper.find('input').prop('type')).toBe('checkbox');
+  });
+
+  it('should renders as disabled', () => {
+    const wrapper = mount(<Checkbox disabled />);
+
+    expect(wrapper.find('input')).toHaveLength(1);
+    expect(wrapper.find('input').prop('disabled')).toBe(true);
   });
 
   it('should handle "id" property', () => {
@@ -59,6 +65,6 @@ describe('<Checkbox />', () => {
       />
     );
 
-    expect(wrapper.find(`.${classes['checkbox-wrapper']}`).prop('className')).toContain('test-class-name');
+    expect(wrapper.find('.root').prop('className')).toContain('test-class-name');
   });
 });

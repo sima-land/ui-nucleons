@@ -5,7 +5,7 @@ import { PositioningHint } from './positioning-hint';
 import { onParentScroll } from './utils';
 
 type ChildrenFn = (
-  ref: React.RefObject<HTMLElement | null>,
+  ref: React.RefObject<Element>,
   toggle: (opened: boolean) => void
 ) => React.ReactNode;
 
@@ -40,7 +40,7 @@ export const WithHint = ({
   shown: shownProp = false,
 }: WithHintProps) => {
   const [shown, toggle] = useState(false);
-  const openerRef = useRef<HTMLElement>(null);
+  const openerRef = useRef<Element>(null);
 
   useEffect(() => toggle(shownProp), [shownProp]);
 

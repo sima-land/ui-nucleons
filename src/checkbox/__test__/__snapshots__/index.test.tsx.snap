@@ -1,79 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Checkbox /> should renders correctly with props 1`] = `
-<Checkbox
+<ForwardRef(Checkbox)
   checked={true}
   onChange={[MockFunction]}
 >
   <span
-    className="checkbox-wrapper"
+    className="root"
   >
     <input
       checked={true}
-      className="checkbox-input"
+      className="input"
+      data-testid="checkbox"
       onChange={[Function]}
       type="checkbox"
     />
-    <SvgCheckbox
-      className="checkbox-icon checked"
-    >
+    <SvgChecked>
       <svg
-        className="checkbox-icon checked"
+        fill="none"
         height={16}
         viewBox="0 0 16 16"
         width={16}
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g>
-          <rect
-            fill="#fff"
-            height={15}
-            rx={1.5}
-            stroke="#9E9E9E"
-            width={15}
-            x={0.5}
-            y={0.5}
-          />
-        </g>
-        <g>
-          <rect
-            fill="#1F84DB"
-            height={16}
-            rx={2}
-            width={16}
-          />
-          <path
-            d="M10.8 5.22L6.4 9.19l-1.034-.97a.838.838 0 00-1.132 0 .717.717 0 000 1.06l1.6 1.5a.838.838 0 001.132 0l4.8-4.5a.717.717 0 000-1.06c-.313-.293-.654-.293-.966 0z"
-            fill="#fff"
-          />
-        </g>
-        <g>
-          <rect
-            fill="#F5F5F5"
-            height={15}
-            rx={1.5}
-            stroke="#C2C2C2"
-            width={15}
-            x={0.5}
-            y={0.5}
-          />
-        </g>
-        <g
-          opacity={0.48}
-        >
-          <rect
-            fill="#757575"
-            height={16}
-            rx={2}
-            width={16}
-          />
-          <path
-            d="M10.8 5.22L6.4 9.19l-1.034-.97a.838.838 0 00-1.132 0 .717.717 0 000 1.06l1.6 1.5a.838.838 0 001.132 0l4.8-4.5a.717.717 0 000-1.06c-.313-.293-.654-.293-.966 0z"
-            fill="#fff"
-          />
-        </g>
+        <rect
+          fill="#1F84DB"
+          height={16}
+          rx={2}
+          width={16}
+        />
+        <path
+          clipRule="evenodd"
+          d="M10.8 5.22L6.4 9.19l-1.034-.97a.838.838 0 00-1.132 0 .717.717 0 000 1.06l1.6 1.5a.838.838 0 001.132 0l4.8-4.5a.717.717 0 000-1.06c-.313-.293-.654-.293-.966 0z"
+          fill="#fff"
+          fillRule="evenodd"
+        />
       </svg>
-    </SvgCheckbox>
+    </SvgChecked>
   </span>
-</Checkbox>
+</ForwardRef(Checkbox)>
 `;

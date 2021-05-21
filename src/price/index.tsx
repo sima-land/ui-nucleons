@@ -19,6 +19,9 @@ export interface Props {
 
   /** Цена. */
   value: number | string
+
+  /** Идентификатор для систем автоматизированного тестирования. */
+  'data-testid'?: string
 }
 
 const cx = classnames.bind(classes);
@@ -34,13 +37,14 @@ export const Price = ({
   graphemeBefore,
   crossedOut,
   value,
+  'data-testid': testId = 'price',
 }: Props) => {
   const content = formatPrice(value, grapheme, {
     graphemeBefore,
   });
 
   return (
-    <span className={cx('root', className, crossedOut && 'crossed-out')}>
+    <span className={cx('root', className, crossedOut && 'crossed-out')} data-testid={testId}>
       {content}
     </span>
   );

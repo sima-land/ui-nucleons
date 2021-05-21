@@ -20,6 +20,9 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 
   /** Определит, отмечен ли переданный элемент. */
   isItemChecked?: (item: ChipsItem, index: number) => boolean
+
+  /** Идентификатор для систем автоматизированного тестирования. */
+  'data-testid'?: string
 }
 
 const cx = classnames.bind(styles);
@@ -34,9 +37,10 @@ export const Chips = ({
   onItemClick,
   isItemChecked,
   className,
+  'data-testid': testId = 'chips',
   ...restProps
 }: Props) => (
-  <div {...restProps} className={cx('list', className)}>
+  <div {...restProps} className={cx('list', className)} data-testid={testId}>
     {items.map((item, index) => {
       const { href, children, withCross } = item;
 
@@ -50,6 +54,7 @@ export const Chips = ({
             isItemChecked?.(item, index) && 'checked'
           )}
           onClick={e => onItemClick?.(item, e)}
+          data-testid='chips:item'
         >
           {children}
           {withCross && (

@@ -17,6 +17,9 @@ export interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, 'size'
 
   /** Размер. */
   size?: 's' | 'm' | 'l' | 'xl'
+
+  /** Идентификатор для систем автоматизированного тестирования. */
+  'data-testid'?: string
 }
 
 /**
@@ -35,6 +38,7 @@ export const DropdownItem = ({
   disabled,
   noHover,
   checked,
+  'data-testid': testId = 'dropdown-item',
   ...restProps
 }: Props) => (
   <div
@@ -47,6 +51,7 @@ export const DropdownItem = ({
       noHover && 'no-hover',
       className
     )}
+    data-testid={testId}
   >
     {children}
   </div>

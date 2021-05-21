@@ -19,8 +19,6 @@ const styles: Record<string, React.CSSProperties> = {
   },
   modalContent: {
     position: 'relative',
-    height: 320,
-    overflowY: 'auto',
     padding: 20,
   },
 };

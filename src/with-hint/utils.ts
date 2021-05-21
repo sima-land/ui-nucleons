@@ -5,34 +5,34 @@ import { getOriginCorrection } from '../with-tooltip/utils';
 const SPACE = 4;
 
 export const PlaceAt = {
-  commons: (hint: HTMLDivElement, opener: HTMLElement) => [
+  commons: (hint: HTMLDivElement, opener: Element) => [
     hint.getBoundingClientRect(),
     opener.getBoundingClientRect(),
     getOriginCorrection(hint),
   ] as const,
 
-  top: (hint: HTMLDivElement, opener: HTMLElement) => {
+  top: (hint: HTMLDivElement, opener: Element) => {
     const [hintRect, openerRect, correct] = PlaceAt.commons(hint, opener);
 
     hint.style.left = `${correct.x + openerRect.left + (openerRect.width / 2) - (hintRect.width / 2)}px`;
     hint.style.top = `${correct.y - SPACE + openerRect.top - hintRect.height}px`;
   },
 
-  right: (hint: HTMLDivElement, opener: HTMLElement) => {
+  right: (hint: HTMLDivElement, opener: Element) => {
     const [hintRect, openerRect, correct] = PlaceAt.commons(hint, opener);
 
     hint.style.left = `${correct.x + SPACE + openerRect.right}px`;
     hint.style.top = `${correct.y + openerRect.top + (openerRect.height / 2) - (hintRect.height / 2)}px`;
   },
 
-  bottom: (hint: HTMLDivElement, opener: HTMLElement) => {
+  bottom: (hint: HTMLDivElement, opener: Element) => {
     const [hintRect, openerRect, correct] = PlaceAt.commons(hint, opener);
 
     hint.style.left = `${correct.x + openerRect.left + (openerRect.width / 2) - (hintRect.width / 2)}px`;
     hint.style.top = `${correct.y + SPACE + openerRect.bottom}px`;
   },
 
-  left: (hint: HTMLDivElement, opener: HTMLElement) => {
+  left: (hint: HTMLDivElement, opener: Element) => {
     const [hintRect, openerRect, correct] = PlaceAt.commons(hint, opener);
 
     hint.style.left = `${correct.x - SPACE + openerRect.left - hintRect.width}px`;
@@ -46,7 +46,7 @@ export const PlaceAt = {
  * @param callback Функция.
  * @return Функция отписки.
  */
-export const onParentScroll = (element: HTMLElement, callback: (e: Event) => void) => {
+export const onParentScroll = (element: Element, callback: (e: Event) => void) => {
   let scrollParent: HTMLElement | HTMLDocument = getScrollParent(element);
 
   // прокрутка на body не работает с addEventListener, https://stackoverflow.com/a/43632204/13166471
