@@ -24,6 +24,7 @@ exports[`UserAvatar should handle props 1`] = `
   >
     <div
       className="root size-40 color__white"
+      data-testid="avatar"
       style={
         Object {
           "--avatar-color": "#d50000",
@@ -66,6 +67,7 @@ exports[`UserAvatar should handle props 2`] = `
   >
     <div
       className="root size-40 color__white"
+      data-testid="avatar"
       style={
         Object {
           "--avatar-color": "#d50000",
@@ -93,6 +95,7 @@ exports[`UserAvatar should renders without props 1`] = `
   >
     <div
       className="root size-72 color__white"
+      data-testid="avatar"
       style={
         Object {
           "--avatar-color": "#d50000",

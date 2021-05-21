@@ -10,6 +10,7 @@ exports[`<ArrowButton /> should handle props 1`] = `
   <button
     aria-label="Назад"
     className="arrow-button size-l"
+    data-testid="arrow-button"
     onClick={[MockFunction]}
     type="button"
   >
@@ -40,6 +41,7 @@ exports[`<ArrowButton /> should renders correctly 1`] = `
   <button
     aria-label="Вперед"
     className="arrow-button size-l"
+    data-testid="arrow-button"
     type="button"
   >
     <ArrowRightSVG

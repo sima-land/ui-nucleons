@@ -11,6 +11,9 @@ interface DropdownStyle extends React.CSSProperties {
 
 export interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, 'style'> {
   style?: DropdownStyle
+
+  /** Идентификатор для систем автоматизированного тестирования. */
+  'data-testid'?: string
 }
 
 const cx = classnames.bind(styles);
@@ -21,10 +24,16 @@ const cx = classnames.bind(styles);
 export const Dropdown = forwardRef<HTMLDivElement | null, Props>(function Dropdown ({
   className,
   children,
+  'data-testid': testId = 'dropdown',
   ...restProps
 }, ref) {
   return (
-    <div ref={ref} className={cx('root', className, BoxShadow.z4, MediumRounds.all)} {...restProps}>
+    <div
+      ref={ref}
+      className={cx('root', className, BoxShadow.z4, MediumRounds.all)}
+      {...restProps}
+      data-testid={testId}
+    >
       <CustomScrollbar className={cx('inner')} overflow={{ x: 'h', y: 's' }}>
         {children}
       </CustomScrollbar>

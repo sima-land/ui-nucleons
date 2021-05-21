@@ -10,6 +10,7 @@ exports[`<Panel /> should handle props 1`] = `
 >
   <div
     className="panel inline bg-color__white test-class"
+    data-testid="panel"
   >
     <InformationSVG
       aria-hidden="true"
@@ -56,6 +57,7 @@ exports[`<Panel /> should handle props 2`] = `
 >
   <div
     className="panel inline bg-color__white test-class"
+    data-testid="panel"
   >
     <InformationSVG
       aria-hidden="true"
@@ -98,6 +100,7 @@ exports[`<Panel /> should renders without props 1`] = `
 <Panel>
   <div
     className="panel bg-color__gray4"
+    data-testid="panel"
   >
     <div
       className="content color__gray87"

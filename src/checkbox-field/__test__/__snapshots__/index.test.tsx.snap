@@ -18,90 +18,54 @@ exports[`<CheckboxField /> should match snapshot 1`] = `
       <span
         className="checkbox-column"
       >
-        <Checkbox
+        <ForwardRef(Checkbox)
           checked={true}
           disabled={true}
           onChange={[Function]}
           type="checkbox"
         >
           <span
-            className="checkbox-wrapper"
+            className="root"
           >
             <input
               checked={true}
-              className="checkbox-input"
+              className="input"
+              data-testid="checkbox"
               disabled={true}
               onChange={[Function]}
               type="checkbox"
             />
-            <SvgCheckbox
-              className="checkbox-icon checked disabled"
-            >
+            <SvgDisabledChecked>
               <svg
-                className="checkbox-icon checked disabled"
+                fill="none"
                 height={16}
                 viewBox="0 0 16 16"
                 width={16}
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g>
-                  <rect
-                    fill="#fff"
-                    height={15}
-                    rx={1.5}
-                    stroke="#9E9E9E"
-                    width={15}
-                    x={0.5}
-                    y={0.5}
-                  />
-                </g>
-                <g>
-                  <rect
-                    fill="#1F84DB"
-                    height={16}
-                    rx={2}
-                    width={16}
-                  />
-                  <path
-                    d="M10.8 5.22L6.4 9.19l-1.034-.97a.838.838 0 00-1.132 0 .717.717 0 000 1.06l1.6 1.5a.838.838 0 001.132 0l4.8-4.5a.717.717 0 000-1.06c-.313-.293-.654-.293-.966 0z"
-                    fill="#fff"
-                  />
-                </g>
-                <g>
-                  <rect
-                    fill="#F5F5F5"
-                    height={15}
-                    rx={1.5}
-                    stroke="#C2C2C2"
-                    width={15}
-                    x={0.5}
-                    y={0.5}
-                  />
-                </g>
-                <g
-                  opacity={0.48}
-                >
-                  <rect
-                    fill="#757575"
-                    height={16}
-                    rx={2}
-                    width={16}
-                  />
-                  <path
-                    d="M10.8 5.22L6.4 9.19l-1.034-.97a.838.838 0 00-1.132 0 .717.717 0 000 1.06l1.6 1.5a.838.838 0 001.132 0l4.8-4.5a.717.717 0 000-1.06c-.313-.293-.654-.293-.966 0z"
-                    fill="#fff"
-                  />
-                </g>
+                <rect
+                  fill="#E0E0E0"
+                  height={16}
+                  rx={2}
+                  width={16}
+                />
+                <path
+                  clipRule="evenodd"
+                  d="M10.8 5.22L6.4 9.19l-1.034-.97a.838.838 0 00-1.132 0 .717.717 0 000 1.06l1.6 1.5a.838.838 0 001.132 0l4.8-4.5a.717.717 0 000-1.06c-.313-.293-.654-.293-.966 0z"
+                  fill="#F5F5F5"
+                  fillRule="evenodd"
+                />
               </svg>
-            </SvgCheckbox>
+            </SvgDisabledChecked>
           </span>
-        </Checkbox>
+        </ForwardRef(Checkbox)>
       </span>
       <span
         className="label-column"
       >
         <span
           className="content-wrapper label"
+          data-testid="checkbox-field:label"
         >
           Test label
         </span>

@@ -26,6 +26,9 @@ export interface Props {
 
   /** Стили корневого компонента. */
   style?: React.CSSProperties
+
+  /** Идентификатор для систем автоматизированного тестирования. */
+  'data-testid'?: string
 }
 
 const cx = classnames.bind(styles);
@@ -43,6 +46,7 @@ export const Toggle = forwardRef<HTMLInputElement, Props>(({
   onChange,
   style,
   disabled,
+  'data-testid': testId = 'price',
 }, ref) => (
   <label className={cx('root', className)} style={style}>
     <input
@@ -54,6 +58,7 @@ export const Toggle = forwardRef<HTMLInputElement, Props>(({
       onChange={onChange}
       ref={ref}
       type='checkbox'
+      data-testid={testId}
     />
     <span className={cx('switch')} />
   </label>

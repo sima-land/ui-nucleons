@@ -27,6 +27,9 @@ interface CustomProps<T extends Appearance = Appearance> {
 
   /** Размер. */
   size?: Size
+
+  /** Идентификатор для систем автоматизированного тестирования. */
+  'data-testid'?: string
 }
 
 type ExcludeKeys<T> = Omit<T, 'ref' | keyof CustomProps>;
@@ -52,6 +55,7 @@ export const Button = forwardRef<any, Props>(function Button ({
   size = 'medium',
   icon: Icon,
   iconPosition = 'start',
+  'data-testid': testId = 'button',
   ...restProps
 }, ref) {
   const [Element, moreProps] = resolveAppearance(appearance);
@@ -69,6 +73,7 @@ export const Button = forwardRef<any, Props>(function Button ({
     <Element
       {...restProps as any}
       {...moreProps as any}
+      data-testid={testId}
       ref={ref}
       className={readyClassName}
       children={(

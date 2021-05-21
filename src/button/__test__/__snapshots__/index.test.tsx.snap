@@ -3,6 +3,7 @@
 exports[`<Button /> should handle "icon" and "iconPosition" props 1`] = `
 <button
   className="button-base button-primary button-medium button-medium-with-start-icon"
+  data-testid="button"
 >
   <SearchSVG
     className="icon icon-start"
@@ -16,6 +17,7 @@ exports[`<Button /> should handle "icon" and "iconPosition" props 1`] = `
 exports[`<Button /> should handle "icon" and "iconPosition" props 2`] = `
 <button
   className="button-base button-primary button-medium button-medium-with-end-icon"
+  data-testid="button"
 >
   Икать
   <SearchSVG
@@ -29,6 +31,7 @@ exports[`<Button /> should handle "icon" and "iconPosition" props 2`] = `
 exports[`<Button /> should handle "icon" and "iconPosition" props 3`] = `
 <button
   className="button-base button-primary button-medium button-medium-with-start-icon"
+  data-testid="button"
 >
   <SearchSVG
     className="icon icon-start"
@@ -42,6 +45,7 @@ exports[`<Button /> should handle "icon" and "iconPosition" props 3`] = `
 exports[`<Button /> should handle "size" prop 1`] = `
 <button
   className="button-base button-primary button-small text-button-small"
+  data-testid="button"
 >
   Отмена
 </button>
@@ -50,6 +54,7 @@ exports[`<Button /> should handle "size" prop 1`] = `
 exports[`<Button /> should handle "size" prop 2`] = `
 <button
   className="button-base button-primary button-medium text-button-medium"
+  data-testid="button"
 >
   Отмена
 </button>
@@ -58,6 +63,7 @@ exports[`<Button /> should handle "size" prop 2`] = `
 exports[`<Button /> should render icon button 1`] = `
 <button
   className="button-base button-primary button-medium"
+  data-testid="button"
 >
   <PlusSVG
     className="icon"
@@ -70,6 +76,7 @@ exports[`<Button /> should render icon button 1`] = `
 exports[`<Button /> should render icon button 2`] = `
 <button
   className="button-base button-primary button-medium"
+  data-testid="button"
 >
   <PlusSVG
     className="icon"
@@ -82,6 +89,7 @@ exports[`<Button /> should render icon button 2`] = `
 exports[`<Button /> should render secondary button 1`] = `
 <button
   className="button-base button-secondary button-medium text-button-medium"
+  data-testid="button"
 >
   Отмена
 </button>
@@ -90,6 +98,7 @@ exports[`<Button /> should render secondary button 1`] = `
 exports[`<Button /> should renders without props 1`] = `
 <button
   className="button-base button-primary button-medium text-button-medium"
+  data-testid="button"
 >
   Кнопка
 </button>

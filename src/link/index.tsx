@@ -18,6 +18,9 @@ export interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 
   /** Отключает ссылку подобно кнопке. */
   disabled?: boolean
+
+  /** Идентификатор для систем автоматизированного тестирования. */
+  'data-testid'?: string
 }
 
 const COLOR_CLASS = {
@@ -53,6 +56,7 @@ export const Link = forwardRef<HTMLAnchorElement, Props>(function Link ({
   pseudo,
   role,
   tabIndex,
+  'data-testid': testId = 'anchor',
   ...restProps
 }, ref) {
   const baseProps = pseudo
@@ -66,6 +70,7 @@ export const Link = forwardRef<HTMLAnchorElement, Props>(function Link ({
     <a
       {...baseProps}
       {...restProps}
+      data-testid={testId}
       ref={ref}
       className={cx(
         'link',

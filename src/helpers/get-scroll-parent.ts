@@ -22,7 +22,7 @@ const isScrollable = (element: HTMLElement | undefined | null) => {
  * @param element Элемент.
  * @return Ближайший родительский элемент с возможностью прокрутки.
  */
-const getScrollParent = (element: HTMLElement | undefined | null): HTMLElement => {
+const getScrollParent = (element: Element | undefined | null): HTMLElement => {
   let result;
 
   if (!element || element === document.body) {

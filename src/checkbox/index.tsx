@@ -1,9 +1,16 @@
 import React, { useState, forwardRef, useEffect } from 'react';
-import CheckboxSVG from './checkbox.svg';
+import CheckedSVG from './svg/checked.svg';
+import UncheckedSVG from './svg/unchecked.svg';
+import DisabledCheckedSVG from './svg/disabled-checked.svg';
+import DisabledUncheckedSVG from './svg/disabled-unchecked.svg';
 import classnames from 'classnames/bind';
 import classes from './checkbox.scss';
 
-export type Props = React.InputHTMLAttributes<HTMLInputElement>;
+export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+
+  /** Идентификатор для систем автоматизированного тестирования. */
+  'data-testid'?: string
+}
 
 const cx = classnames.bind(classes);
 
@@ -11,24 +18,29 @@ const cx = classnames.bind(classes);
  * Компонент галочки. Поддерживает все свойства тега input.
  * @param props Свойства.
  */
-export const Checkbox = forwardRef<HTMLInputElement, Props>(function Checkbox ({
-  checked = false,
+export const Checkbox = forwardRef<HTMLInputElement | null, Props>(function Checkbox ({
+  defaultChecked,
+  checked = defaultChecked,
   disabled,
   onChange,
   className,
+  'data-testid': testId = 'checkbox',
   ...restProps
 }, ref) {
-  const [isChecked, toggleCheck] = useState(checked);
+  const [isChecked, toggleCheck] = useState<boolean>(Boolean(checked));
 
-  useEffect(() => toggleCheck(checked), [checked]);
+  useEffect(() => {
+    toggleCheck(Boolean(checked));
+  }, [checked]);
 
   return (
-    <span className={cx('checkbox-wrapper', className)}>
+    <span className={cx('root', className)}>
       <input
         {...restProps}
+        data-testid={testId}
         ref={ref}
         type='checkbox'
-        className={cx('checkbox-input')}
+        className={cx('input')}
         onChange={event => {
           toggleCheck(event.target.checked);
           onChange?.(event);
@@ -36,15 +48,18 @@ export const Checkbox = forwardRef<HTMLInputElement, Props>(function Checkbox ({
         checked={isChecked}
         disabled={disabled}
       />
-      <CheckboxSVG
-        className={cx([
-          'checkbox-icon',
-          isChecked && 'checked',
-          disabled && 'disabled',
-        ])}
-      />
+      {!isChecked && !disabled && (
+        <UncheckedSVG />
+      )}
+      {isChecked && !disabled && (
+        <CheckedSVG />
+      )}
+      {!isChecked && disabled && (
+        <DisabledUncheckedSVG />
+      )}
+      {isChecked && disabled && (
+        <DisabledCheckedSVG />
+      )}
     </span>
   );
 });
-
-Checkbox.displayName = 'Checkbox';

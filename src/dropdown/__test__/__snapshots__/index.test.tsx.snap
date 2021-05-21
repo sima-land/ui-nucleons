@@ -7,6 +7,7 @@ exports[`Dropdown should handle props 1`] = `
 >
   <div
     className="root hello shadow-z4 rounds-md__all"
+    data-testid="dropdown"
     role="test-role"
   >
     <CustomScrollbar
@@ -84,6 +85,7 @@ exports[`Dropdown should render without props 1`] = `
 <ForwardRef(Dropdown)>
   <div
     className="root shadow-z4 rounds-md__all"
+    data-testid="dropdown"
   >
     <CustomScrollbar
       className="inner"

@@ -7,7 +7,7 @@ import styles from './positioning-hint.scss';
 const cx = classnames.bind(styles);
 
 interface Props extends HintProps {
-  openerRef: React.RefObject<HTMLElement | undefined | null>
+  openerRef: React.RefObject<Element | undefined | null>
 }
 
 /**
