@@ -1044,9 +1044,6 @@ exports[`<Modal /> should render different sizes properly 5`] = `
           </div>
         </OverlayScrollbarsComponent>
       </CustomScrollbar>
-      <div
-        className="footer-stub"
-      />
     </div>
   </div>
 </Modal>

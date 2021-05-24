@@ -92,11 +92,13 @@ export const Fullscreen = Template.bind(null, {
   withCloseButton: true,
   withTopBar: true,
   children: (
-    <DesktopLayout>
-      <Box margin={6}>
-        Содержимое модального окна
-      </Box>
-    </DesktopLayout>
+    <div style={{ height: '100%', background: '#eee' }}>
+      <DesktopLayout>
+        <Box padding={6}>
+          Содержимое модального окна
+        </Box>
+      </DesktopLayout>
+    </div>
   ),
   footer: (
     <DesktopLayout>

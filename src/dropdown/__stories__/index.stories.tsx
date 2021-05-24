@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Dropdown } from '..';
 import { DropdownItem } from '../../dropdown-item';
+import { Link } from '../../link';
 import { Spinner } from '../../spinner';
+import DownSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/down';
+import UpSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/up';
 
 export default {
   title: 'Dropdown',
@@ -52,3 +55,25 @@ export const Primary = () => (
     </Dropdown>
   </>
 );
+
+export const Example = () => {
+  const [shown, toggle] = useState<boolean>(false);
+  const Icon = shown ? UpSVG : DownSVG;
+
+  return (
+    <div style={{ position: 'relative', fontSize: '16px' }}>
+      <Link color='gray87' onClick={() => toggle(!shown)} style={{ display: 'flex' }}>
+        <span style={{ lineHeight: '24px' }}>Сначала новые</span>
+        <Icon fill='currentColor' style={{ margin: '4px 0 4px 4px', display: 'block' }} />
+      </Link>
+
+      {shown && (
+        <Dropdown style={{ marginTop: 8, position: 'absolute', top: '100%', left: 0, whiteSpace: 'nowrap' }}>
+          <DropdownItem>Сначала новые</DropdownItem>
+          <DropdownItem>Сначала старые</DropdownItem>
+          <DropdownItem>Сначала с низкой оценкой</DropdownItem>
+        </Dropdown>
+      )}
+    </div>
+  );
+};
