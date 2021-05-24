@@ -138,15 +138,15 @@ export const Modal = ({
             {children}
           </CustomScrollbar>
 
-          {footer
-            ? (
-              <div className={cx('footer', withDivideFooter && InnerBorder.top)}>
-                {footer}
-              </div>
-            ) : (
-              <div className={cx('footer-stub')} />
-            )
-          }
+          {footer && (
+            <div className={cx('footer', withDivideFooter && InnerBorder.top)}>
+              {footer}
+            </div>
+          )}
+
+          {!footer && !fullscreen && (
+            <div className={cx('footer-stub')} />
+          )}
         </div>
       </div>
     </Wrapper>

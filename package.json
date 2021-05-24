@@ -19,6 +19,7 @@
     "date-fns": "^2.14.0",
     "intersection-observer": "^0.7.0",
     "lodash": "4.17.15",
+    "overlayscrollbars": "^1.13.1",
     "overlayscrollbars-react": "^0.2.2",
     "react-transition-group": "^4.3.0"
   },
