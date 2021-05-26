@@ -3,11 +3,11 @@
 exports[`<Rating /> renders correctly without params 1`] = `
 <Rating
   className="test-class"
-  value={3.2}
+  value={3.4}
 >
   <div
     className="root test-class"
-    data-rating={3.2}
+    data-rating={3.4}
     data-testid="rating"
   >
     <Star
