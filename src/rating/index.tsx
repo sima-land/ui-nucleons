@@ -1,40 +1,21 @@
 import React from 'react';
-import { range } from 'lodash';
+import { getStars } from './utils';
+import { StarType } from './types';
 import classnames from 'classnames/bind';
 import StarSVG from './star.svg';
 import styles from './rating.scss';
-import { composeClasses, getStarClass } from './utils';
-import { Classes } from './types';
 
-export interface Props {
+export type StarSize = 's' | 'm';
 
-  /** Пользовательские классы. */
-  classes?: Classes
-
-  /** Общее количество звезд рейтинга. */
-  count?: number
-
-  /** Функция, вызываемая при клике на звезду. */
-  onStarClick?: (index: number) => void
-
-  /** Размеры звезд. */
-  starSize?: number,
+export interface RatingProps extends React.HTMLAttributes<HTMLDivElement> {
+  size?: StarSize
 
   /** Значение рейтинга. */
   value: number
 
-  /** С эффектом при наведении. */
-  withHover?: boolean
+  /** Идентификатор для систем автоматизированного тестирования. */
+  'data-testid'?: string
 }
-
-const DEFAULT_CLASSES: Classes = {
-  rating: styles.rating,
-  hoveredRating: styles['rating-can-be-hovered'],
-  star: styles['rating-star'],
-  emptyStar: styles['empty-star'],
-  halfStar: styles['half-star'],
-  fullStar: styles['full-star'],
-};
 
 const cx = classnames.bind(styles);
 
@@ -44,26 +25,44 @@ const cx = classnames.bind(styles);
  * @return Элемент.
  */
 export const Rating = ({
+  size,
   value,
-  count = 5,
-  starSize = 16,
-  withHover,
-  classes: classesProp = {},
-  onStarClick,
-}: Props) => {
-  const classes = composeClasses(DEFAULT_CLASSES, classesProp);
+  className,
+  'data-testid': testId = 'rating',
+  ...restProps
+}: RatingProps) => (
+  <div
+    {...restProps}
+    className={cx('root', className)}
+    data-testid={testId}
+    data-rating={value} // для приемочного тестирования
+  >
+    {getStars(Math.min(5, value), 5).map((type, index) => (
+      <Star key={index} type={type} size={size} />
+    ))}
+  </div>
+);
 
-  return (
-    <div className={cx(classes.rating, withHover && classes.hoveredRating)}>
-      {range(count, 0).map(index => (
-        <StarSVG
-          key={index}
-          className={getStarClass({ index, value, classes })}
-          onClick={() => onStarClick && onStarClick(index)}
-          width={starSize}
-          height={starSize}
-        />
-      ))}
-    </div>
-  );
-};
+/**
+ * Звезда.
+ * @param props Свойства.
+ * @return Элемент.
+ */
+const Star = ({ type, size = 's' }: { type: StarType, size?: StarSize }) => (
+  <div className={cx('star', `size-${size}`)}>
+    {type === 'empty' && (
+      <StarSVG className={cx('svg')} />
+    )}
+
+    {type === 'half' && (
+      <>
+        <StarSVG className={cx('svg')} />
+        <StarSVG className={cx('svg', 'half')} preserveAspectRatio='xMinYMin slice' />
+      </>
+    )}
+
+    {type === 'full' && (
+      <StarSVG className={cx('svg', 'full')} />
+    )}
+  </div>
+);

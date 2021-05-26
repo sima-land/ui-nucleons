@@ -89,6 +89,7 @@ exports[`<Tabs /> calls getItemName, isSelectedItem and onSelect properly 1`] = 
   >
     <li
       className="tab-item"
+      data-testid="tab"
       key="0"
       onClick={[Function]}
     >
@@ -96,6 +97,7 @@ exports[`<Tabs /> calls getItemName, isSelectedItem and onSelect properly 1`] = 
     </li>
     <li
       className="tab-item selected"
+      data-testid="tab"
       key="1"
       onClick={[Function]}
     >
@@ -103,6 +105,7 @@ exports[`<Tabs /> calls getItemName, isSelectedItem and onSelect properly 1`] = 
     </li>
     <li
       className="tab-item"
+      data-testid="tab"
       key="2"
       onClick={[Function]}
     >
@@ -188,6 +191,7 @@ exports[`<Tabs /> renders correctly with round type and small gap 1`] = `
   >
     <li
       className="tab-item"
+      data-testid="tab"
       key="0"
       onClick={[Function]}
     >
@@ -195,6 +199,7 @@ exports[`<Tabs /> renders correctly with round type and small gap 1`] = `
     </li>
     <li
       className="tab-item selected"
+      data-testid="tab"
       key="1"
       onClick={[Function]}
     >
@@ -202,6 +207,7 @@ exports[`<Tabs /> renders correctly with round type and small gap 1`] = `
     </li>
     <li
       className="tab-item"
+      data-testid="tab"
       key="2"
       onClick={[Function]}
     >
@@ -287,6 +293,7 @@ exports[`<Tabs /> renders correctly with text type, underline and stretch 1`] = 
   >
     <li
       className="tab-item"
+      data-testid="tab"
       key="0"
       onClick={[Function]}
     >
@@ -294,6 +301,7 @@ exports[`<Tabs /> renders correctly with text type, underline and stretch 1`] = 
     </li>
     <li
       className="tab-item selected"
+      data-testid="tab"
       key="1"
       onClick={[Function]}
     >
@@ -301,6 +309,7 @@ exports[`<Tabs /> renders correctly with text type, underline and stretch 1`] = 
     </li>
     <li
       className="tab-item"
+      data-testid="tab"
       key="2"
       onClick={[Function]}
     >

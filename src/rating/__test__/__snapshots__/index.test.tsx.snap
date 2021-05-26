@@ -1,473 +1,152 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Rating /> renders correctly with custom classes 1`] = `
-<Rating
-  classes={
-    Object {
-      "emptyStar": "test-empty",
-      "fullStar": "test-full",
-      "halfStar": "test-half",
-      "hoveredRating": "test-hovered",
-      "rating": "test-rating",
-      "star": "test-star",
-    }
-  }
-  value={1.4}
-  withHover={true}
->
-  <div
-    className="rating test-rating rating-can-be-hovered test-hovered"
-  >
-    <SvgStar
-      className="rating-star test-star empty-star test-empty"
-      height={16}
-      key="5"
-      onClick={[Function]}
-      width={16}
-    >
-      <svg
-        className="rating-star test-star empty-star test-empty"
-        height={16}
-        onClick={[Function]}
-        viewBox="0 0 24 24"
-        width={16}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M10.304 1.318a.75.75 0 011.392 0l2.567 6.393 6.862.466c.686.046.96.89.442 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L11 17.754l-5.835 3.663A.75.75 0 014.04 20.6l1.681-6.681L.433 9.501a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-          data-star-type="full"
-        />
-        <path
-          d="M10.543 0a.746.746 0 00-.239.318L7.737 6.711l-6.874.466a.75.75 0 00-.43 1.324l5.287 4.417-1.68 6.681a.75.75 0 001.125.818L11 16.754V0h-.457z"
-          data-star-type="half"
-        />
-      </svg>
-    </SvgStar>
-    <SvgStar
-      className="rating-star test-star empty-star test-empty"
-      height={16}
-      key="4"
-      onClick={[Function]}
-      width={16}
-    >
-      <svg
-        className="rating-star test-star empty-star test-empty"
-        height={16}
-        onClick={[Function]}
-        viewBox="0 0 24 24"
-        width={16}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M10.304 1.318a.75.75 0 011.392 0l2.567 6.393 6.862.466c.686.046.96.89.442 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L11 17.754l-5.835 3.663A.75.75 0 014.04 20.6l1.681-6.681L.433 9.501a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-          data-star-type="full"
-        />
-        <path
-          d="M10.543 0a.746.746 0 00-.239.318L7.737 6.711l-6.874.466a.75.75 0 00-.43 1.324l5.287 4.417-1.68 6.681a.75.75 0 001.125.818L11 16.754V0h-.457z"
-          data-star-type="half"
-        />
-      </svg>
-    </SvgStar>
-    <SvgStar
-      className="rating-star test-star empty-star test-empty"
-      height={16}
-      key="3"
-      onClick={[Function]}
-      width={16}
-    >
-      <svg
-        className="rating-star test-star empty-star test-empty"
-        height={16}
-        onClick={[Function]}
-        viewBox="0 0 24 24"
-        width={16}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M10.304 1.318a.75.75 0 011.392 0l2.567 6.393 6.862.466c.686.046.96.89.442 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L11 17.754l-5.835 3.663A.75.75 0 014.04 20.6l1.681-6.681L.433 9.501a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-          data-star-type="full"
-        />
-        <path
-          d="M10.543 0a.746.746 0 00-.239.318L7.737 6.711l-6.874.466a.75.75 0 00-.43 1.324l5.287 4.417-1.68 6.681a.75.75 0 001.125.818L11 16.754V0h-.457z"
-          data-star-type="half"
-        />
-      </svg>
-    </SvgStar>
-    <SvgStar
-      className="rating-star test-star half-star test-half"
-      height={16}
-      key="2"
-      onClick={[Function]}
-      width={16}
-    >
-      <svg
-        className="rating-star test-star half-star test-half"
-        height={16}
-        onClick={[Function]}
-        viewBox="0 0 24 24"
-        width={16}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M10.304 1.318a.75.75 0 011.392 0l2.567 6.393 6.862.466c.686.046.96.89.442 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L11 17.754l-5.835 3.663A.75.75 0 014.04 20.6l1.681-6.681L.433 9.501a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-          data-star-type="full"
-        />
-        <path
-          d="M10.543 0a.746.746 0 00-.239.318L7.737 6.711l-6.874.466a.75.75 0 00-.43 1.324l5.287 4.417-1.68 6.681a.75.75 0 001.125.818L11 16.754V0h-.457z"
-          data-star-type="half"
-        />
-      </svg>
-    </SvgStar>
-    <SvgStar
-      className="rating-star test-star full-star test-full"
-      height={16}
-      key="1"
-      onClick={[Function]}
-      width={16}
-    >
-      <svg
-        className="rating-star test-star full-star test-full"
-        height={16}
-        onClick={[Function]}
-        viewBox="0 0 24 24"
-        width={16}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M10.304 1.318a.75.75 0 011.392 0l2.567 6.393 6.862.466c.686.046.96.89.442 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L11 17.754l-5.835 3.663A.75.75 0 014.04 20.6l1.681-6.681L.433 9.501a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-          data-star-type="full"
-        />
-        <path
-          d="M10.543 0a.746.746 0 00-.239.318L7.737 6.711l-6.874.466a.75.75 0 00-.43 1.324l5.287 4.417-1.68 6.681a.75.75 0 001.125.818L11 16.754V0h-.457z"
-          data-star-type="half"
-        />
-      </svg>
-    </SvgStar>
-  </div>
-</Rating>
-`;
-
 exports[`<Rating /> renders correctly without params 1`] = `
 <Rating
-  value={0}
+  className="test-class"
+  value={3.2}
 >
   <div
-    className="rating"
+    className="root test-class"
+    data-rating={3.2}
+    data-testid="rating"
   >
-    <SvgStar
-      className="rating-star empty-star"
-      height={16}
-      key="5"
-      onClick={[Function]}
-      width={16}
+    <Star
+      key="0"
+      type="full"
     >
-      <svg
-        className="rating-star empty-star"
-        height={16}
-        onClick={[Function]}
-        viewBox="0 0 24 24"
-        width={16}
-        xmlns="http://www.w3.org/2000/svg"
+      <div
+        className="star size-s"
       >
-        <path
-          d="M10.304 1.318a.75.75 0 011.392 0l2.567 6.393 6.862.466c.686.046.96.89.442 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L11 17.754l-5.835 3.663A.75.75 0 014.04 20.6l1.681-6.681L.433 9.501a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-          data-star-type="full"
-        />
-        <path
-          d="M10.543 0a.746.746 0 00-.239.318L7.737 6.711l-6.874.466a.75.75 0 00-.43 1.324l5.287 4.417-1.68 6.681a.75.75 0 001.125.818L11 16.754V0h-.457z"
-          data-star-type="half"
-        />
-      </svg>
-    </SvgStar>
-    <SvgStar
-      className="rating-star empty-star"
-      height={16}
-      key="4"
-      onClick={[Function]}
-      width={16}
-    >
-      <svg
-        className="rating-star empty-star"
-        height={16}
-        onClick={[Function]}
-        viewBox="0 0 24 24"
-        width={16}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M10.304 1.318a.75.75 0 011.392 0l2.567 6.393 6.862.466c.686.046.96.89.442 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L11 17.754l-5.835 3.663A.75.75 0 014.04 20.6l1.681-6.681L.433 9.501a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-          data-star-type="full"
-        />
-        <path
-          d="M10.543 0a.746.746 0 00-.239.318L7.737 6.711l-6.874.466a.75.75 0 00-.43 1.324l5.287 4.417-1.68 6.681a.75.75 0 001.125.818L11 16.754V0h-.457z"
-          data-star-type="half"
-        />
-      </svg>
-    </SvgStar>
-    <SvgStar
-      className="rating-star empty-star"
-      height={16}
-      key="3"
-      onClick={[Function]}
-      width={16}
-    >
-      <svg
-        className="rating-star empty-star"
-        height={16}
-        onClick={[Function]}
-        viewBox="0 0 24 24"
-        width={16}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M10.304 1.318a.75.75 0 011.392 0l2.567 6.393 6.862.466c.686.046.96.89.442 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L11 17.754l-5.835 3.663A.75.75 0 014.04 20.6l1.681-6.681L.433 9.501a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-          data-star-type="full"
-        />
-        <path
-          d="M10.543 0a.746.746 0 00-.239.318L7.737 6.711l-6.874.466a.75.75 0 00-.43 1.324l5.287 4.417-1.68 6.681a.75.75 0 001.125.818L11 16.754V0h-.457z"
-          data-star-type="half"
-        />
-      </svg>
-    </SvgStar>
-    <SvgStar
-      className="rating-star empty-star"
-      height={16}
-      key="2"
-      onClick={[Function]}
-      width={16}
-    >
-      <svg
-        className="rating-star empty-star"
-        height={16}
-        onClick={[Function]}
-        viewBox="0 0 24 24"
-        width={16}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M10.304 1.318a.75.75 0 011.392 0l2.567 6.393 6.862.466c.686.046.96.89.442 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L11 17.754l-5.835 3.663A.75.75 0 014.04 20.6l1.681-6.681L.433 9.501a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-          data-star-type="full"
-        />
-        <path
-          d="M10.543 0a.746.746 0 00-.239.318L7.737 6.711l-6.874.466a.75.75 0 00-.43 1.324l5.287 4.417-1.68 6.681a.75.75 0 001.125.818L11 16.754V0h-.457z"
-          data-star-type="half"
-        />
-      </svg>
-    </SvgStar>
-    <SvgStar
-      className="rating-star empty-star"
-      height={16}
+        <SvgStar
+          className="svg full"
+        >
+          <svg
+            className="svg full"
+            height={24}
+            viewBox="0 0 24 24"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
+            />
+          </svg>
+        </SvgStar>
+      </div>
+    </Star>
+    <Star
       key="1"
-      onClick={[Function]}
-      width={16}
+      type="full"
     >
-      <svg
-        className="rating-star empty-star"
-        height={16}
-        onClick={[Function]}
-        viewBox="0 0 24 24"
-        width={16}
-        xmlns="http://www.w3.org/2000/svg"
+      <div
+        className="star size-s"
       >
-        <path
-          d="M10.304 1.318a.75.75 0 011.392 0l2.567 6.393 6.862.466c.686.046.96.89.442 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L11 17.754l-5.835 3.663A.75.75 0 014.04 20.6l1.681-6.681L.433 9.501a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-          data-star-type="full"
-        />
-        <path
-          d="M10.543 0a.746.746 0 00-.239.318L7.737 6.711l-6.874.466a.75.75 0 00-.43 1.324l5.287 4.417-1.68 6.681a.75.75 0 001.125.818L11 16.754V0h-.457z"
-          data-star-type="half"
-        />
-      </svg>
-    </SvgStar>
-  </div>
-</Rating>
-`;
-
-exports[`<Rating /> should handle props 1`] = `
-<Rating
-  count={7}
-  starSize={32}
-  value={2.5}
-  withHover={true}
->
-  <div
-    className="rating rating-can-be-hovered"
-  >
-    <SvgStar
-      className="rating-star empty-star"
-      height={32}
-      key="7"
-      onClick={[Function]}
-      width={32}
-    >
-      <svg
-        className="rating-star empty-star"
-        height={32}
-        onClick={[Function]}
-        viewBox="0 0 24 24"
-        width={32}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M10.304 1.318a.75.75 0 011.392 0l2.567 6.393 6.862.466c.686.046.96.89.442 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L11 17.754l-5.835 3.663A.75.75 0 014.04 20.6l1.681-6.681L.433 9.501a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-          data-star-type="full"
-        />
-        <path
-          d="M10.543 0a.746.746 0 00-.239.318L7.737 6.711l-6.874.466a.75.75 0 00-.43 1.324l5.287 4.417-1.68 6.681a.75.75 0 001.125.818L11 16.754V0h-.457z"
-          data-star-type="half"
-        />
-      </svg>
-    </SvgStar>
-    <SvgStar
-      className="rating-star empty-star"
-      height={32}
-      key="6"
-      onClick={[Function]}
-      width={32}
-    >
-      <svg
-        className="rating-star empty-star"
-        height={32}
-        onClick={[Function]}
-        viewBox="0 0 24 24"
-        width={32}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M10.304 1.318a.75.75 0 011.392 0l2.567 6.393 6.862.466c.686.046.96.89.442 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L11 17.754l-5.835 3.663A.75.75 0 014.04 20.6l1.681-6.681L.433 9.501a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-          data-star-type="full"
-        />
-        <path
-          d="M10.543 0a.746.746 0 00-.239.318L7.737 6.711l-6.874.466a.75.75 0 00-.43 1.324l5.287 4.417-1.68 6.681a.75.75 0 001.125.818L11 16.754V0h-.457z"
-          data-star-type="half"
-        />
-      </svg>
-    </SvgStar>
-    <SvgStar
-      className="rating-star empty-star"
-      height={32}
-      key="5"
-      onClick={[Function]}
-      width={32}
-    >
-      <svg
-        className="rating-star empty-star"
-        height={32}
-        onClick={[Function]}
-        viewBox="0 0 24 24"
-        width={32}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M10.304 1.318a.75.75 0 011.392 0l2.567 6.393 6.862.466c.686.046.96.89.442 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L11 17.754l-5.835 3.663A.75.75 0 014.04 20.6l1.681-6.681L.433 9.501a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-          data-star-type="full"
-        />
-        <path
-          d="M10.543 0a.746.746 0 00-.239.318L7.737 6.711l-6.874.466a.75.75 0 00-.43 1.324l5.287 4.417-1.68 6.681a.75.75 0 001.125.818L11 16.754V0h-.457z"
-          data-star-type="half"
-        />
-      </svg>
-    </SvgStar>
-    <SvgStar
-      className="rating-star empty-star"
-      height={32}
-      key="4"
-      onClick={[Function]}
-      width={32}
-    >
-      <svg
-        className="rating-star empty-star"
-        height={32}
-        onClick={[Function]}
-        viewBox="0 0 24 24"
-        width={32}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M10.304 1.318a.75.75 0 011.392 0l2.567 6.393 6.862.466c.686.046.96.89.442 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L11 17.754l-5.835 3.663A.75.75 0 014.04 20.6l1.681-6.681L.433 9.501a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-          data-star-type="full"
-        />
-        <path
-          d="M10.543 0a.746.746 0 00-.239.318L7.737 6.711l-6.874.466a.75.75 0 00-.43 1.324l5.287 4.417-1.68 6.681a.75.75 0 001.125.818L11 16.754V0h-.457z"
-          data-star-type="half"
-        />
-      </svg>
-    </SvgStar>
-    <SvgStar
-      className="rating-star half-star"
-      height={32}
-      key="3"
-      onClick={[Function]}
-      width={32}
-    >
-      <svg
-        className="rating-star half-star"
-        height={32}
-        onClick={[Function]}
-        viewBox="0 0 24 24"
-        width={32}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M10.304 1.318a.75.75 0 011.392 0l2.567 6.393 6.862.466c.686.046.96.89.442 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L11 17.754l-5.835 3.663A.75.75 0 014.04 20.6l1.681-6.681L.433 9.501a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-          data-star-type="full"
-        />
-        <path
-          d="M10.543 0a.746.746 0 00-.239.318L7.737 6.711l-6.874.466a.75.75 0 00-.43 1.324l5.287 4.417-1.68 6.681a.75.75 0 001.125.818L11 16.754V0h-.457z"
-          data-star-type="half"
-        />
-      </svg>
-    </SvgStar>
-    <SvgStar
-      className="rating-star full-star"
-      height={32}
+        <SvgStar
+          className="svg full"
+        >
+          <svg
+            className="svg full"
+            height={24}
+            viewBox="0 0 24 24"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
+            />
+          </svg>
+        </SvgStar>
+      </div>
+    </Star>
+    <Star
       key="2"
-      onClick={[Function]}
-      width={32}
+      type="full"
     >
-      <svg
-        className="rating-star full-star"
-        height={32}
-        onClick={[Function]}
-        viewBox="0 0 24 24"
-        width={32}
-        xmlns="http://www.w3.org/2000/svg"
+      <div
+        className="star size-s"
       >
-        <path
-          d="M10.304 1.318a.75.75 0 011.392 0l2.567 6.393 6.862.466c.686.046.96.89.442 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L11 17.754l-5.835 3.663A.75.75 0 014.04 20.6l1.681-6.681L.433 9.501a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-          data-star-type="full"
-        />
-        <path
-          d="M10.543 0a.746.746 0 00-.239.318L7.737 6.711l-6.874.466a.75.75 0 00-.43 1.324l5.287 4.417-1.68 6.681a.75.75 0 001.125.818L11 16.754V0h-.457z"
-          data-star-type="half"
-        />
-      </svg>
-    </SvgStar>
-    <SvgStar
-      className="rating-star full-star"
-      height={32}
-      key="1"
-      onClick={[Function]}
-      width={32}
+        <SvgStar
+          className="svg full"
+        >
+          <svg
+            className="svg full"
+            height={24}
+            viewBox="0 0 24 24"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
+            />
+          </svg>
+        </SvgStar>
+      </div>
+    </Star>
+    <Star
+      key="3"
+      type="half"
     >
-      <svg
-        className="rating-star full-star"
-        height={32}
-        onClick={[Function]}
-        viewBox="0 0 24 24"
-        width={32}
-        xmlns="http://www.w3.org/2000/svg"
+      <div
+        className="star size-s"
       >
-        <path
-          d="M10.304 1.318a.75.75 0 011.392 0l2.567 6.393 6.862.466c.686.046.96.89.442 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L11 17.754l-5.835 3.663A.75.75 0 014.04 20.6l1.681-6.681L.433 9.501a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-          data-star-type="full"
-        />
-        <path
-          d="M10.543 0a.746.746 0 00-.239.318L7.737 6.711l-6.874.466a.75.75 0 00-.43 1.324l5.287 4.417-1.68 6.681a.75.75 0 001.125.818L11 16.754V0h-.457z"
-          data-star-type="half"
-        />
-      </svg>
-    </SvgStar>
+        <SvgStar
+          className="svg"
+        >
+          <svg
+            className="svg"
+            height={24}
+            viewBox="0 0 24 24"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
+            />
+          </svg>
+        </SvgStar>
+        <SvgStar
+          className="svg half"
+          preserveAspectRatio="xMinYMin slice"
+        >
+          <svg
+            className="svg half"
+            height={24}
+            preserveAspectRatio="xMinYMin slice"
+            viewBox="0 0 24 24"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
+            />
+          </svg>
+        </SvgStar>
+      </div>
+    </Star>
+    <Star
+      key="4"
+      type="empty"
+    >
+      <div
+        className="star size-s"
+      >
+        <SvgStar
+          className="svg"
+        >
+          <svg
+            className="svg"
+            height={24}
+            viewBox="0 0 24 24"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
+            />
+          </svg>
+        </SvgStar>
+      </div>
+    </Star>
   </div>
 </Rating>
 `;
