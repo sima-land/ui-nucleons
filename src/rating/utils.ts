@@ -10,7 +10,7 @@ interface ReduceResult {
  * @param value Число.
  * @return Число.
  */
-const roundHalf = (value: number): number => Math.ceil(value * 2) / 2;
+const roundHalf = (value: number): number => Math.round(value * 2) / 2;
 
 /**
  * Возвращает список звезд.

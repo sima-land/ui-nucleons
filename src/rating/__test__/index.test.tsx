@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 describe('<Rating />', () => {
   it('renders correctly without params', () => {
     const wrapper = mount(
-      <Rating value={3.2} className='test-class' />
+      <Rating value={3.4} className='test-class' />
     );
 
     expect(wrapper).toMatchSnapshot();
