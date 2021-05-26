@@ -1,73 +1,41 @@
 @use '../colors';
 
-$full: '[data-star-type="full"]';
-$half: '[data-star-type="half"]';
-
-.rating {
+.root {
   display: flex;
-  justify-content: flex-end;
-  flex-direction: row-reverse;
-  align-items: center;
-  #{$full} {
-    fill: colors.$gray12;
+  flex-wrap: nowrap;
+}
+
+.star {
+  position: relative;
+  &.size-s {
+    width: 16px;
+    height: 16px;
+    & + & {
+      margin-left: 4px;
+    }
   }
-  #{$half} {
-    fill: colors.$gray12;
+  &.size-m {
+    width: 24px;
+    height: 24px;
+    & + & {
+      margin-left: 6px;
+    }
   }
 }
 
-.rating-star {
-  box-sizing: content-box;
-  padding: 0 2px;
-  &:first-child {
-    padding-right: 0;
-  }
-  &:last-child {
-    padding-left: 0;
-  }
-}
-
-.empty-star {
-  #{$half} {
-    fill: colors.$gray12;
-  }
-}
-
-.half-star {
-  #{$full} {
-    fill: colors.$gray12;
-  }
-  #{$half} {
+.svg {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  fill: colors.$gray12;
+  &.half {
+    width: 50%;
     fill: colors.$additional-amber;
   }
-}
-
-.full-star {
-  #{$full} {
+  &.full {
     fill: colors.$additional-amber;
-  }
-  #{$half} {
-    fill: colors.$additional-amber;
-  }
-}
-
-.rating-can-be-hovered {
-  &:hover .rating-star {
-    cursor: pointer;
-    #{$full} {
-      fill: colors.$gray12;
-    }
-    #{$half} {
-      fill: colors.$gray12;
-    }
-  }
-  .rating-star:hover,
-  .rating-star:hover ~ .rating-star {
-    #{$full} {
-      fill: colors.$additional-amber;
-    }
-    #{$half} {
-      fill: colors.$additional-amber;
-    }
   }
 }

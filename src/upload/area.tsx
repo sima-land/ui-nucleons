@@ -30,6 +30,9 @@ export interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSel
 
   /** Ограничение на размер. */
   sizeLimit?: string
+
+  /** Идентификатор для систем автоматизированного тестирования. */
+  'data-testid'?: string
 }
 
 const cx = classnames.bind(styles);
@@ -48,6 +51,7 @@ export const UploadArea: React.FC<Props> = ({
   multiple,
   countLimit = multiple ? undefined : 1,
   failed,
+  'data-testid': testId = 'upload-area',
   ...restProps
 }) => {
   const secondaryInfo = upperFirst(
@@ -71,6 +75,7 @@ export const UploadArea: React.FC<Props> = ({
       {...restProps}
       {...bind}
       className={cx('root', { active }, className)}
+      data-testid={testId}
     >
       <UploadSVG fill={COLORS.get('gray24')} />
 
@@ -89,8 +94,11 @@ export const UploadArea: React.FC<Props> = ({
                 // очищаем поле чтобы можно было выбрать тот же файл повторно
                 e.target.value = '';
               }}
+              data-testid='upload-area:input'
             />
-            <Link pseudo>загрузите {fileRole}</Link>
+            <Link pseudo data-testid='upload-area:anchor'>
+              загрузите {fileRole}
+            </Link>
           </label>
         </div>
 

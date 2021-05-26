@@ -8,6 +8,7 @@ exports[`UploadArea should handle "dragleave" event 1`] = `
 >
   <div
     className="root active"
+    data-testid="upload-area"
     onDragEnter={[Function]}
     onDragLeave={[Function]}
     onDragOver={[Function]}
@@ -58,15 +59,17 @@ exports[`UploadArea should handle "dragleave" event 1`] = `
         <label>
           <input
             className="input"
+            data-testid="upload-area:input"
             onChange={[Function]}
             type="file"
           />
           <ForwardRef(Link)
+            data-testid="upload-area:anchor"
             pseudo={true}
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              data-testid="anchor"
+              data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
             >
@@ -94,6 +97,7 @@ exports[`UploadArea should handle "dragleave" event 2`] = `
 >
   <div
     className="root"
+    data-testid="upload-area"
     onDragEnter={[Function]}
     onDragLeave={[Function]}
     onDragOver={[Function]}
@@ -144,15 +148,17 @@ exports[`UploadArea should handle "dragleave" event 2`] = `
         <label>
           <input
             className="input"
+            data-testid="upload-area:input"
             onChange={[Function]}
             type="file"
           />
           <ForwardRef(Link)
+            data-testid="upload-area:anchor"
             pseudo={true}
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              data-testid="anchor"
+              data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
             >
@@ -181,6 +187,7 @@ exports[`UploadArea should handle drag events to highlight area 1`] = `
 >
   <div
     className="root"
+    data-testid="upload-area"
     onDragEnter={[Function]}
     onDragLeave={[Function]}
     onDragOver={[Function]}
@@ -231,15 +238,17 @@ exports[`UploadArea should handle drag events to highlight area 1`] = `
         <label>
           <input
             className="input"
+            data-testid="upload-area:input"
             onChange={[Function]}
             type="file"
           />
           <ForwardRef(Link)
+            data-testid="upload-area:anchor"
             pseudo={true}
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              data-testid="anchor"
+              data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
             >
@@ -268,6 +277,7 @@ exports[`UploadArea should handle drag events to highlight area 2`] = `
 >
   <div
     className="root active"
+    data-testid="upload-area"
     onDragEnter={[Function]}
     onDragLeave={[Function]}
     onDragOver={[Function]}
@@ -318,15 +328,17 @@ exports[`UploadArea should handle drag events to highlight area 2`] = `
         <label>
           <input
             className="input"
+            data-testid="upload-area:input"
             onChange={[Function]}
             type="file"
           />
           <ForwardRef(Link)
+            data-testid="upload-area:anchor"
             pseudo={true}
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              data-testid="anchor"
+              data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
             >
@@ -355,6 +367,7 @@ exports[`UploadArea should handle drag events to highlight area 3`] = `
 >
   <div
     className="root"
+    data-testid="upload-area"
     onDragEnter={[Function]}
     onDragLeave={[Function]}
     onDragOver={[Function]}
@@ -405,15 +418,17 @@ exports[`UploadArea should handle drag events to highlight area 3`] = `
         <label>
           <input
             className="input"
+            data-testid="upload-area:input"
             onChange={[Function]}
             type="file"
           />
           <ForwardRef(Link)
+            data-testid="upload-area:anchor"
             pseudo={true}
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              data-testid="anchor"
+              data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
             >
@@ -442,6 +457,7 @@ exports[`UploadArea should handle drag events to highlight area 4`] = `
 >
   <div
     className="root active"
+    data-testid="upload-area"
     onDragEnter={[Function]}
     onDragLeave={[Function]}
     onDragOver={[Function]}
@@ -492,15 +508,17 @@ exports[`UploadArea should handle drag events to highlight area 4`] = `
         <label>
           <input
             className="input"
+            data-testid="upload-area:input"
             onChange={[Function]}
             type="file"
           />
           <ForwardRef(Link)
+            data-testid="upload-area:anchor"
             pseudo={true}
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              data-testid="anchor"
+              data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
             >
@@ -529,6 +547,7 @@ exports[`UploadArea should handle props 1`] = `
 >
   <div
     className="root"
+    data-testid="upload-area"
     onDragEnter={[Function]}
     onDragLeave={[Function]}
     onDragOver={[Function]}
@@ -579,15 +598,17 @@ exports[`UploadArea should handle props 1`] = `
         <label>
           <input
             className="input"
+            data-testid="upload-area:input"
             onChange={[Function]}
             type="file"
           />
           <ForwardRef(Link)
+            data-testid="upload-area:anchor"
             pseudo={true}
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              data-testid="anchor"
+              data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
             >
@@ -613,6 +634,7 @@ exports[`UploadArea should render different visual variants 1`] = `
 >
   <div
     className="root"
+    data-testid="upload-area"
     onDragEnter={[Function]}
     onDragLeave={[Function]}
     onDragOver={[Function]}
@@ -663,15 +685,17 @@ exports[`UploadArea should render different visual variants 1`] = `
         <label>
           <input
             className="input"
+            data-testid="upload-area:input"
             onChange={[Function]}
             type="file"
           />
           <ForwardRef(Link)
+            data-testid="upload-area:anchor"
             pseudo={true}
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              data-testid="anchor"
+              data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
             >
@@ -698,6 +722,7 @@ exports[`UploadArea should render different visual variants 2`] = `
 >
   <div
     className="root"
+    data-testid="upload-area"
     onDragEnter={[Function]}
     onDragLeave={[Function]}
     onDragOver={[Function]}
@@ -748,15 +773,17 @@ exports[`UploadArea should render different visual variants 2`] = `
         <label>
           <input
             className="input"
+            data-testid="upload-area:input"
             onChange={[Function]}
             type="file"
           />
           <ForwardRef(Link)
+            data-testid="upload-area:anchor"
             pseudo={true}
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              data-testid="anchor"
+              data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
             >
@@ -783,6 +810,7 @@ exports[`UploadArea should render different visual variants 3`] = `
 >
   <div
     className="root"
+    data-testid="upload-area"
     onDragEnter={[Function]}
     onDragLeave={[Function]}
     onDragOver={[Function]}
@@ -833,16 +861,18 @@ exports[`UploadArea should render different visual variants 3`] = `
         <label>
           <input
             className="input"
+            data-testid="upload-area:input"
             multiple={true}
             onChange={[Function]}
             type="file"
           />
           <ForwardRef(Link)
+            data-testid="upload-area:anchor"
             pseudo={true}
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              data-testid="anchor"
+              data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
             >
@@ -870,6 +900,7 @@ exports[`UploadArea should render different visual variants 4`] = `
 >
   <div
     className="root"
+    data-testid="upload-area"
     onDragEnter={[Function]}
     onDragLeave={[Function]}
     onDragOver={[Function]}
@@ -920,16 +951,18 @@ exports[`UploadArea should render different visual variants 4`] = `
         <label>
           <input
             className="input"
+            data-testid="upload-area:input"
             multiple={true}
             onChange={[Function]}
             type="file"
           />
           <ForwardRef(Link)
+            data-testid="upload-area:anchor"
             pseudo={true}
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              data-testid="anchor"
+              data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
             >
@@ -958,6 +991,7 @@ exports[`UploadArea should render different visual variants 5`] = `
 >
   <div
     className="root"
+    data-testid="upload-area"
     onDragEnter={[Function]}
     onDragLeave={[Function]}
     onDragOver={[Function]}
@@ -1008,16 +1042,18 @@ exports[`UploadArea should render different visual variants 5`] = `
         <label>
           <input
             className="input"
+            data-testid="upload-area:input"
             multiple={true}
             onChange={[Function]}
             type="file"
           />
           <ForwardRef(Link)
+            data-testid="upload-area:anchor"
             pseudo={true}
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              data-testid="anchor"
+              data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
             >
@@ -1041,6 +1077,7 @@ exports[`UploadArea should renders correctly 1`] = `
 <UploadArea>
   <div
     className="root"
+    data-testid="upload-area"
     onDragEnter={[Function]}
     onDragLeave={[Function]}
     onDragOver={[Function]}
@@ -1091,15 +1128,17 @@ exports[`UploadArea should renders correctly 1`] = `
         <label>
           <input
             className="input"
+            data-testid="upload-area:input"
             onChange={[Function]}
             type="file"
           />
           <ForwardRef(Link)
+            data-testid="upload-area:anchor"
             pseudo={true}
           >
             <a
               className="link color__brand-blue hover-color__brand-deep-blue"
-              data-testid="anchor"
+              data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
             >

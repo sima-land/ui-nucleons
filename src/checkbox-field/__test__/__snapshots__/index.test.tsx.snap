@@ -11,6 +11,7 @@ exports[`<CheckboxField /> should match snapshot 1`] = `
 >
   <span
     className="container"
+    data-testid="checkbox-field"
   >
     <label
       className="row"

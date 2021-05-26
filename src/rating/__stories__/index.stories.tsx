@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Rating } from '..';
-import range from 'lodash/range';
-import styles from './custom-rating.scss';
 
-const values = range(0, 5, 0.5);
+const prettyValues = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
+const values = [0.1, 0.2, 0.6, 1.2, 1.8, 2.1, 3, 3.6, 4.4, 5];
 
 export default {
   title: 'Rating',
@@ -15,7 +14,7 @@ export default {
 
 export const Primary = () => (
   <>
-    {values.map(value => (
+    {[...prettyValues, ...values].map(value => (
       <div key={value} style={{ display: 'flex', marginBottom: 16 }}>
         <div style={{ width: 48 }}>{value}</div>
         <Rating value={value} />
@@ -24,58 +23,13 @@ export const Primary = () => (
   </>
 );
 
-export const WithHover = () => (
+export const MediumSize = () => (
   <>
-    {values.map(value => (
-      <div key={value}>
-        <Rating
-          value={value}
-          withHover
-        />
+    {[...prettyValues, ...values].map(value => (
+      <div key={value} style={{ display: 'flex', marginBottom: 16 }}>
+        <div style={{ width: 48 }}>{value}</div>
+        <Rating size='m' value={value} />
       </div>
-    ))
-    }
+    ))}
   </>
 );
-
-export const CustomStarCountAndSize = () => (
-  <>
-    <Rating
-      value={3.5}
-      count={7}
-      starSize={32}
-      withHover
-    />
-  </>
-);
-
-export const CustomClasses = () => (
-  <>
-    <Rating
-      value={1.5}
-      starSize={32}
-      classes={{
-        rating: styles['doc-rating'],
-        hoveredRating: styles['doc-rating-can-be-hovered'],
-        star: styles['doc-rating-star'],
-        emptyStar: styles['doc-empty-star'],
-        halfStar: styles['doc-half-star'],
-        fullStar: styles['doc-full-star'],
-      }}
-      withHover
-    />
-  </>
-);
-
-export const Select = () => {
-  const [state, setState] = useState(2);
-
-  return (
-    <Rating
-      starSize={36}
-      value={state}
-      onStarClick={count => setState(count)}
-      withHover
-    />
-  );
-};

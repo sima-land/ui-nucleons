@@ -1,50 +1,36 @@
-import classnames from 'classnames';
-import { Classes } from './types';
+import { StarType } from './types';
+
+interface ReduceResult {
+  total: number
+  stars: StarType[]
+}
 
 /**
- * Объединяет пользовательские классы с обязательными.
- * @param base Обязательные классы.
- * @param customs Пользовательские классы.
- * @return Объект с объединенными классами.
+ * Округляет число до половины.
+ * @param value Число.
+ * @return Число.
  */
-export const composeClasses = <B extends Record<string, string>, C extends Record<string, string>>(
-  base: B,
-  customs: C
-): Record<keyof B & keyof C, string> => Object
-  .keys({ ...base, ...customs })
-  .reduce((result, key) => {
-    result[key] = classnames(base[key], customs[key]);
-
-    return result;
-  }, {} as any);
+const roundHalf = (value: number): number => Math.ceil(value * 2) / 2;
 
 /**
- * Функция для получения классов звезды.
- * @param params Параметры.
- * @param params.starIndex Значение текущей звезды.
- * @param params.value Значение рейтинга.
- * @param params.starsClasses Классы для звёзд.
- * @return Классы звезды.
+ * Возвращает список звезд.
+ * @param value Число.
+ * @param count Число.
+ * @return Типы звезд.
  */
-export const getStarClass = ({
-  index,
-  value,
-  classes,
-}: {
-  index: number
-  value: number
-  classes: Classes
-}): string => {
-  let result = classnames(classes.star, classes.emptyStar);
+export const getStars = (value: number, count: number) => [...Array(count).keys()].reduce<ReduceResult>(
+  acc => {
+    if (acc.total >= 1) {
+      acc.stars.push('full');
+    } else if (acc.total > 0) {
+      acc.stars.push('half');
+    } else {
+      acc.stars.push('empty');
+    }
 
-  if (value >= index) {
-    result = classnames(classes.star, classes.fullStar);
-  } else if (
-    Math.ceil(value) === index
-    && Math.ceil(value) !== Math.floor(value)
-  ) {
-    result = classnames(classes.star, classes.halfStar);
-  }
+    acc.total--;
 
-  return result;
-};
+    return acc;
+  },
+  { total: roundHalf(value), stars: [] }
+).stars;

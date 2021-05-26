@@ -13,6 +13,9 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 
   /** Содержимое описания. */
   info?: string
+
+  /** Идентификатор для систем автоматизированного тестирования. */
+  'data-testid'?: string
 }
 
 const cx = classnames.bind(classes);
@@ -21,10 +24,11 @@ export const CheckboxField = forwardRef<HTMLInputElement | null, Props>(function
   label,
   error,
   info,
+  'data-testid': testId = 'checkbox-field',
   ...restProps
 }, ref) {
   return (
-    <span className={cx('container')}>
+    <span className={cx('container')} data-testid={testId}>
       <label className={cx('row')}>
         <span className={cx('checkbox-column')}>
           <Checkbox

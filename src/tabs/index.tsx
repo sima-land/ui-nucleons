@@ -70,6 +70,7 @@ export function Tabs <T = any> ({
               disabled: isDisabledItem(item),
             }
           )}
+          data-testid='tab'
         >
           {getItemName(item)}
         </li>
