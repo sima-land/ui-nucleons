@@ -84,4 +84,19 @@ describe('Chips', () => {
 
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('should provide able to pass target props to anchor', () => {
+    const wrapper = mount(
+      <Chips
+        items={[
+          { href: 'https://www.foo.com', children: 'Foo', target: '_blank' },
+          { href: 'https://www.bar.com', children: 'Bar', target: '_parent' },
+        ]}
+      />
+    );
+
+    expect(wrapper.find('a[data-testid="chips:item"]')).toHaveLength(2);
+    expect(wrapper.find('a[data-testid="chips:item"]').at(0).prop('target')).toBe('_blank');
+    expect(wrapper.find('a[data-testid="chips:item"]').at(1).prop('target')).toBe('_parent');
+  });
 });
