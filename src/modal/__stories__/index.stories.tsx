@@ -67,6 +67,7 @@ export const SizeM = Template.bind(null, {
   withDivideTopBar: true,
   withCloseButton: true,
   withTopBar: true,
+  height: '400px',
 });
 
 export const SizeL = Template.bind(null, {
@@ -75,6 +76,7 @@ export const SizeL = Template.bind(null, {
   withDivideTopBar: true,
   withCloseButton: true,
   withTopBar: true,
+  height: '500px',
 });
 
 export const SizeXL = Template.bind(null, {
@@ -83,6 +85,7 @@ export const SizeXL = Template.bind(null, {
   withDivideTopBar: true,
   withCloseButton: true,
   withTopBar: true,
+  height: '600px',
 });
 
 export const Fullscreen = Template.bind(null, {
