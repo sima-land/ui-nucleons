@@ -7,6 +7,7 @@ interface ChipsItem {
   href?: string
   children?: React.ReactNode
   withCross?: boolean
+  target?: string
   [x: string]: any
 }
 
@@ -42,7 +43,7 @@ export const Chips = ({
 }: Props) => (
   <div {...restProps} className={cx('list', className)} data-testid={testId}>
     {items.map((item, index) => {
-      const { href, children, withCross } = item;
+      const { href, target, children, withCross } = item;
 
       return (
         <a
@@ -53,6 +54,7 @@ export const Chips = ({
             'item',
             isItemChecked?.(item, index) && 'checked'
           )}
+          target={target}
           onClick={e => onItemClick?.(item, e)}
           data-testid='chips:item'
         >
