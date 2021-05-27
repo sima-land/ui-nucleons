@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useRef } from 'react';
 import { BodyScrollOptions } from 'body-scroll-lock';
 import { TopBar, Props as TopBarProps } from '../top-bar';
 import { useCloseHandler, useScrollDisable } from './utils';
@@ -65,6 +65,9 @@ export interface Props {
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string
+
+  /** Высота вида "400px". */
+  height?: string | number,
 }
 
 const cx = classnames.bind(styles);
@@ -91,8 +94,10 @@ export const Modal = ({
   withLayer,
   withScrollDisable = true,
   withTopBar = Boolean(title) || withCloseButton || withBackButton,
+  height,
   'data-testid': testId = 'modal',
 }: Props) => {
+  const heightRef = useRef(height); // не обновляем значение здесь чтобы запретить динамику высоты
   const Wrapper = withLayer ? Layer : Fragment;
   const fullscreen = size === 'fullscreen';
   const rootRef = useScrollDisable<HTMLDivElement>(withScrollDisable, scrollDisableOptions);
@@ -106,7 +111,17 @@ export const Modal = ({
         data-testid='modal:overlay'
         {...handleClose}
       >
-        <div className={cx('modal', `size-${size}`, !fullscreen && BoxShadow.z4)} data-testid={testId}>
+        <div
+          className={cx(
+            'modal',
+            `size-${size}`,
+            !fullscreen && BoxShadow.z4
+          )}
+          style={{
+            '--modal-height': heightRef.current,
+          } as React.CSSProperties}
+          data-testid={testId}
+        >
           {withTopBar && (
             <TopBar
               {...topBarProps}

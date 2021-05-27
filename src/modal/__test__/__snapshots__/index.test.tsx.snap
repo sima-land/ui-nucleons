@@ -11,6 +11,11 @@ exports[`<Modal /> renders correct without close button and customClasses 1`] = 
     <div
       className="modal size-m shadow-z4"
       data-testid="modal"
+      style={
+        Object {
+          "--modal-height": undefined,
+        }
+      }
     >
       <CustomScrollbar
         className="main"
@@ -115,6 +120,11 @@ exports[`<Modal /> should handle extended props 1`] = `
     <div
       className="modal size-m shadow-z4"
       data-testid="modal"
+      style={
+        Object {
+          "--modal-height": undefined,
+        }
+      }
     >
       <TopBar
         buttonsProps={
@@ -284,6 +294,11 @@ exports[`<Modal /> should handle extended props 2`] = `
     <div
       className="modal size-m shadow-z4"
       data-testid="modal"
+      style={
+        Object {
+          "--modal-height": undefined,
+        }
+      }
     >
       <TopBar
         buttonsProps={Object {}}
@@ -401,6 +416,11 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
     <div
       className="modal size-m shadow-z4"
       data-testid="modal"
+      style={
+        Object {
+          "--modal-height": undefined,
+        }
+      }
     >
       <TopBar
         buttonsProps={
@@ -541,6 +561,11 @@ exports[`<Modal /> should render different sizes properly 1`] = `
     <div
       className="modal size-s shadow-z4"
       data-testid="modal"
+      style={
+        Object {
+          "--modal-height": undefined,
+        }
+      }
     >
       <TopBar
         buttonsProps={Object {}}
@@ -646,6 +671,11 @@ exports[`<Modal /> should render different sizes properly 2`] = `
     <div
       className="modal size-m shadow-z4"
       data-testid="modal"
+      style={
+        Object {
+          "--modal-height": undefined,
+        }
+      }
     >
       <TopBar
         buttonsProps={Object {}}
@@ -751,6 +781,11 @@ exports[`<Modal /> should render different sizes properly 3`] = `
     <div
       className="modal size-l shadow-z4"
       data-testid="modal"
+      style={
+        Object {
+          "--modal-height": undefined,
+        }
+      }
     >
       <TopBar
         buttonsProps={Object {}}
@@ -856,6 +891,11 @@ exports[`<Modal /> should render different sizes properly 4`] = `
     <div
       className="modal size-xl shadow-z4"
       data-testid="modal"
+      style={
+        Object {
+          "--modal-height": undefined,
+        }
+      }
     >
       <TopBar
         buttonsProps={Object {}}
@@ -961,6 +1001,11 @@ exports[`<Modal /> should render different sizes properly 5`] = `
     <div
       className="modal size-fullscreen"
       data-testid="modal"
+      style={
+        Object {
+          "--modal-height": undefined,
+        }
+      }
     >
       <TopBar
         buttonsProps={Object {}}
@@ -1195,6 +1240,11 @@ exports[`<Modal /> should renders in layer 1`] = `
         <div
           className="modal size-m shadow-z4"
           data-testid="modal"
+          style={
+            Object {
+              "--modal-height": undefined,
+            }
+          }
         >
           <CustomScrollbar
             className="main"
@@ -1284,6 +1334,11 @@ exports[`<Modal /> should renders without TopBar 1`] = `
     <div
       className="modal size-m shadow-z4"
       data-testid="modal"
+      style={
+        Object {
+          "--modal-height": undefined,
+        }
+      }
     >
       <CustomScrollbar
         className="main"
