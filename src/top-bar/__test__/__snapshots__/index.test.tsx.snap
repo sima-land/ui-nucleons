@@ -8,6 +8,11 @@ exports[`<TopBar /> should handle "size" prop 1`] = `
 >
   <div
     className="root size-s"
+    style={
+      Object {
+        "height": "64px",
+      }
+    }
   >
     <div
       className="main-section"
@@ -35,6 +40,11 @@ exports[`<TopBar /> should handle "size" prop 2`] = `
 >
   <div
     className="root size-m"
+    style={
+      Object {
+        "height": "80px",
+      }
+    }
   >
     <div
       className="main-section"
@@ -54,10 +64,38 @@ exports[`<TopBar /> should handle "size" prop 2`] = `
 </TopBar>
 `;
 
+exports[`<TopBar /> should render as divided 1`] = `
+<TopBar
+  divided={true}
+>
+  <div
+    className="root size-m inner-border-bottom"
+    style={
+      Object {
+        "height": "80px",
+      }
+    }
+  >
+    <div
+      className="main-section"
+    >
+      <div
+        className="title ellipsis"
+      />
+    </div>
+  </div>
+</TopBar>
+`;
+
 exports[`<TopBar /> should render without props 1`] = `
 <TopBar>
   <div
     className="root size-m"
+    style={
+      Object {
+        "height": "80px",
+      }
+    }
   >
     <div
       className="main-section"
@@ -95,6 +133,11 @@ exports[`<TopBar /> should renders with all icons 1`] = `
 >
   <div
     className="root size-m"
+    style={
+      Object {
+        "height": "80px",
+      }
+    }
   >
     <IconButton
       icon={<ArrowLeftSVG />}
@@ -219,6 +262,11 @@ exports[`<TopBar /> should renders with end icon 1`] = `
 >
   <div
     className="root size-m"
+    style={
+      Object {
+        "height": "80px",
+      }
+    }
   >
     <div
       className="icon-button stub"
@@ -271,6 +319,11 @@ exports[`<TopBar /> should renders with end icons 1`] = `
 >
   <div
     className="root size-m"
+    style={
+      Object {
+        "height": "80px",
+      }
+    }
   >
     <div
       className="icon-button stub"
@@ -348,6 +401,11 @@ exports[`<TopBar /> should renders with start icon 1`] = `
 >
   <div
     className="root size-m"
+    style={
+      Object {
+        "height": "80px",
+      }
+    }
   >
     <IconButton
       icon={<ArrowLeftSVG />}
@@ -398,6 +456,11 @@ exports[`<TopBar /> should renders with start icons 1`] = `
 >
   <div
     className="root size-m"
+    style={
+      Object {
+        "height": "80px",
+      }
+    }
   >
     <IconButton
       icon={<ArrowLeftSVG />}
@@ -468,6 +531,11 @@ exports[`<TopBar /> should renders with title and subtitle 1`] = `
 >
   <div
     className="root size-m"
+    style={
+      Object {
+        "height": "80px",
+      }
+    }
   >
     <div
       className="main-section"

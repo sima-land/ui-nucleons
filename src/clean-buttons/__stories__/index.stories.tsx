@@ -40,32 +40,12 @@ export const Primary = () => (
         </Clean.Group>
       </DisplayWrapper>
 
-      <h4>Small</h4>
-
-      <DisplayWrapper>
-        <Clean.Group size='s'>
-          <Clean.Button onClick={Action('Foo')}>Foo</Clean.Button>
-          <Clean.Button onClick={Action('Bar')}>Bar</Clean.Button>
-          <Clean.Button onClick={Action('Baz')}>Baz</Clean.Button>
-        </Clean.Group>
-      </DisplayWrapper>
-
       <h3>Buttons as links</h3>
 
       <DisplayWrapper>
         <Clean.Group>
           <Clean.Button href='https://ya.ru'>Yandex</Clean.Button>
           <Clean.Button href='https://google.com'>Google</Clean.Button>
-        </Clean.Group>
-      </DisplayWrapper>
-
-      <h4>Small</h4>
-
-      <DisplayWrapper>
-        <Clean.Group size='s'>
-          <Clean.Button href='https://ya.ru'>Yandex</Clean.Button>
-          <Clean.Button href='https://google.com'>Google</Clean.Button>
-          <Clean.Button href='https://rambler.com'>Rambler</Clean.Button>
         </Clean.Group>
       </DisplayWrapper>
     </div>

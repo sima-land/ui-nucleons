@@ -13,12 +13,14 @@ exports[`<Modal /> renders correct without close button and customClasses 1`] = 
       data-testid="modal"
       style={
         Object {
+          "--footer-height": "16px",
+          "--header-height": "0px",
           "--modal-height": undefined,
         }
       }
     >
       <CustomScrollbar
-        className="main"
+        className="body"
         overflow={
           Object {
             "x": "h",
@@ -27,7 +29,7 @@ exports[`<Modal /> renders correct without close button and customClasses 1`] = 
         }
       >
         <OverlayScrollbarsComponent
-          className="custom-scrollbar main"
+          className="custom-scrollbar body"
           options={
             Object {
               "overflowBehavior": Object {
@@ -52,7 +54,107 @@ exports[`<Modal /> renders correct without close button and customClasses 1`] = 
                 <div
                   className="os-content"
                 >
-                  Test modal content
+                  <div
+                    className="main"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-horizontal "
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-vertical"
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar-corner"
+            />
+          </div>
+        </OverlayScrollbarsComponent>
+      </CustomScrollbar>
+      <div
+        className="footer-stub"
+      />
+    </div>
+  </div>
+</Modal>
+`;
+
+exports[`<Modal /> should handle "height" prop 1`] = `
+<Modal
+  height={480}
+>
+  <div
+    className="overlay"
+    data-testid="modal:overlay"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+  >
+    <div
+      className="modal size-m shadow-z4"
+      data-testid="modal"
+      style={
+        Object {
+          "--footer-height": "16px",
+          "--header-height": "0px",
+          "--modal-height": "480px",
+        }
+      }
+    >
+      <CustomScrollbar
+        className="body"
+        overflow={
+          Object {
+            "x": "h",
+            "y": "s",
+          }
+        }
+      >
+        <OverlayScrollbarsComponent
+          className="custom-scrollbar body"
+          options={
+            Object {
+              "overflowBehavior": Object {
+                "x": "h",
+                "y": "s",
+              },
+            }
+          }
+        >
+          <div
+            className="os-host"
+          >
+            <div
+              className="os-resize-observer-host"
+            />
+            <div
+              className="os-padding"
+            >
+              <div
+                className="os-viewport"
+              >
+                <div
+                  className="os-content"
+                >
+                  <div
+                    className="main"
+                  />
                 </div>
               </div>
             </div>
@@ -93,24 +195,7 @@ exports[`<Modal /> renders correct without close button and customClasses 1`] = 
 `;
 
 exports[`<Modal /> should handle extended props 1`] = `
-<Modal
-  footer={
-    <button>
-      Hello
-    </button>
-  }
-  onClose={[MockFunction]}
-  subtitle="Subtitle"
-  title="Title"
-  topBarProps={
-    Object {
-      "size": "m",
-    }
-  }
-  withCloseButton={true}
-  withDivideFooter={true}
-  withDivideTopBar={true}
->
+<Modal>
   <div
     className="overlay"
     data-testid="modal:overlay"
@@ -122,291 +207,151 @@ exports[`<Modal /> should handle extended props 1`] = `
       data-testid="modal"
       style={
         Object {
+          "--footer-height": "72px",
+          "--header-height": "64px",
           "--modal-height": undefined,
         }
       }
     >
-      <TopBar
-        buttonsProps={
-          Object {
-            "end": Object {
-              "data-testid": "modal:close",
-              "icon": <CrossSVG />,
-              "onClick": [MockFunction],
-            },
-          }
-        }
-        className="header inner-border-bottom"
+      <ModalHeader
+        key=".0"
         size="s"
         subtitle="Subtitle"
         title="Title"
       >
-        <div
-          className="root size-s header inner-border-bottom"
+        <TopBar
+          buttonsProps={Object {}}
+          className="header"
+          size="s"
+          subtitle="Subtitle"
+          title="Title"
         >
           <div
-            className="icon-button stub"
-          />
-          <div
-            className="main-section"
+            className="root size-s header"
+            style={
+              Object {
+                "height": "64px",
+              }
+            }
           >
             <div
-              className="title ellipsis"
+              className="main-section"
             >
-              Title
-            </div>
-            <div
-              className="subtitle ellipsis"
-            >
-              Subtitle
+              <div
+                className="title ellipsis"
+              >
+                Title
+              </div>
+              <div
+                className="subtitle ellipsis"
+              >
+                Subtitle
+              </div>
             </div>
           </div>
-          <IconButton
-            data-testid="modal:close"
-            icon={<CrossSVG />}
-            onClick={[MockFunction]}
+        </TopBar>
+      </ModalHeader>
+      <CustomScrollbar
+        className="body"
+        overflow={
+          Object {
+            "x": "h",
+            "y": "s",
+          }
+        }
+      >
+        <OverlayScrollbarsComponent
+          className="custom-scrollbar body"
+          options={
+            Object {
+              "overflowBehavior": Object {
+                "x": "h",
+                "y": "s",
+              },
+            }
+          }
+        >
+          <div
+            className="os-host"
           >
-            <button
-              className="icon-button"
-              data-testid="modal:close"
-              onClick={[MockFunction]}
-              type="button"
+            <div
+              className="os-resize-observer-host"
+            />
+            <div
+              className="os-padding"
             >
-              <CrossSVG>
-                <svg
-                  height={24}
-                  viewBox="0 0 24 24"
-                  width={24}
+              <div
+                className="os-viewport"
+              >
+                <div
+                  className="os-content"
                 >
-                  <path
-                    clipRule="evenodd"
-                    d="M4.293 19.707a1 1 0 001.414 0L12 13.414l6.293 6.293a1 1 0 001.414-1.414L13.414 12l6.293-6.293a1 1 0 00-1.414-1.414L12 10.586 5.707 4.293a1 1 0 00-1.414 1.414L10.586 12l-6.293 6.293a1 1 0 000 1.414z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-              </CrossSVG>
+                  <div
+                    className="main"
+                  >
+                    <ModalBody
+                      key=".1"
+                    >
+                      Main Content
+                    </ModalBody>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-horizontal "
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar os-scrollbar-vertical"
+            >
+              <div
+                className="os-scrollbar-track"
+              >
+                <div
+                  className="os-scrollbar-handle"
+                />
+              </div>
+            </div>
+            <div
+              className="os-scrollbar-corner"
+            />
+          </div>
+        </OverlayScrollbarsComponent>
+      </CustomScrollbar>
+      <ModalFooter
+        key=".2"
+      >
+        <BottomBar>
+          <div
+            className="root rounds-md__b"
+            data-testid="bottom-bar"
+            style={
+              Object {
+                "height": "72px",
+              }
+            }
+          >
+            <button>
+              Hello
             </button>
-          </IconButton>
-        </div>
-      </TopBar>
-      <CustomScrollbar
-        className="main"
-        overflow={
-          Object {
-            "x": "h",
-            "y": "s",
-          }
-        }
-      >
-        <OverlayScrollbarsComponent
-          className="custom-scrollbar main"
-          options={
-            Object {
-              "overflowBehavior": Object {
-                "x": "h",
-                "y": "s",
-              },
-            }
-          }
-        >
-          <div
-            className="os-host"
-          >
-            <div
-              className="os-resize-observer-host"
-            />
-            <div
-              className="os-padding"
-            >
-              <div
-                className="os-viewport"
-              >
-                <div
-                  className="os-content"
-                />
-              </div>
-            </div>
-            <div
-              className="os-scrollbar os-scrollbar-horizontal "
-            >
-              <div
-                className="os-scrollbar-track"
-              >
-                <div
-                  className="os-scrollbar-handle"
-                />
-              </div>
-            </div>
-            <div
-              className="os-scrollbar os-scrollbar-vertical"
-            >
-              <div
-                className="os-scrollbar-track"
-              >
-                <div
-                  className="os-scrollbar-handle"
-                />
-              </div>
-            </div>
-            <div
-              className="os-scrollbar-corner"
-            />
           </div>
-        </OverlayScrollbarsComponent>
-      </CustomScrollbar>
-      <div
-        className="footer inner-border-top"
-      >
-        <button>
-          Hello
-        </button>
-      </div>
-    </div>
-  </div>
-</Modal>
-`;
-
-exports[`<Modal /> should handle extended props 2`] = `
-<Modal
-  footer={
-    <button>
-      Hello
-    </button>
-  }
-  onClose={[MockFunction]}
-  subtitle="Subtitle"
-  title="Title"
-  topBarProps={
-    Object {
-      "size": "m",
-    }
-  }
-  withCloseButton={false}
-  withDivideFooter={true}
-  withDivideTopBar={true}
->
-  <div
-    className="overlay"
-    data-testid="modal:overlay"
-    onMouseDown={[Function]}
-    onMouseUp={[Function]}
-  >
-    <div
-      className="modal size-m shadow-z4"
-      data-testid="modal"
-      style={
-        Object {
-          "--modal-height": undefined,
-        }
-      }
-    >
-      <TopBar
-        buttonsProps={Object {}}
-        className="header inner-border-bottom"
-        size="s"
-        subtitle="Subtitle"
-        title="Title"
-      >
-        <div
-          className="root size-s header inner-border-bottom"
-        >
-          <div
-            className="main-section"
-          >
-            <div
-              className="title ellipsis"
-            >
-              Title
-            </div>
-            <div
-              className="subtitle ellipsis"
-            >
-              Subtitle
-            </div>
-          </div>
-        </div>
-      </TopBar>
-      <CustomScrollbar
-        className="main"
-        overflow={
-          Object {
-            "x": "h",
-            "y": "s",
-          }
-        }
-      >
-        <OverlayScrollbarsComponent
-          className="custom-scrollbar main"
-          options={
-            Object {
-              "overflowBehavior": Object {
-                "x": "h",
-                "y": "s",
-              },
-            }
-          }
-        >
-          <div
-            className="os-host"
-          >
-            <div
-              className="os-resize-observer-host"
-            />
-            <div
-              className="os-padding"
-            >
-              <div
-                className="os-viewport"
-              >
-                <div
-                  className="os-content"
-                />
-              </div>
-            </div>
-            <div
-              className="os-scrollbar os-scrollbar-horizontal "
-            >
-              <div
-                className="os-scrollbar-track"
-              >
-                <div
-                  className="os-scrollbar-handle"
-                />
-              </div>
-            </div>
-            <div
-              className="os-scrollbar os-scrollbar-vertical"
-            >
-              <div
-                className="os-scrollbar-track"
-              >
-                <div
-                  className="os-scrollbar-handle"
-                />
-              </div>
-            </div>
-            <div
-              className="os-scrollbar-corner"
-            />
-          </div>
-        </OverlayScrollbarsComponent>
-      </CustomScrollbar>
-      <div
-        className="footer inner-border-top"
-      >
-        <button>
-          Hello
-        </button>
-      </div>
+        </BottomBar>
+      </ModalFooter>
     </div>
   </div>
 </Modal>
 `;
 
 exports[`<Modal /> should render TopBar with back button 1`] = `
-<Modal
-  onBack={[MockFunction]}
->
+<Modal>
   <div
     className="overlay"
     data-testid="modal:overlay"
@@ -418,64 +363,77 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
       data-testid="modal"
       style={
         Object {
+          "--footer-height": "16px",
+          "--header-height": "64px",
           "--modal-height": undefined,
         }
       }
     >
-      <TopBar
-        buttonsProps={
-          Object {
-            "start": Object {
-              "data-testid": "modal:back",
-              "icon": <ArrowLeftSVG />,
-              "onClick": [MockFunction],
-            },
-          }
-        }
-        className="header"
+      <ModalHeader
+        key=".0"
+        onBack={[MockFunction]}
         size="s"
       >
-        <div
-          className="root size-s header"
+        <TopBar
+          buttonsProps={
+            Object {
+              "start": Object {
+                "data-testid": "modal:back",
+                "icon": <ArrowLeftSVG />,
+                "onClick": [MockFunction],
+              },
+            }
+          }
+          className="header"
+          size="s"
         >
-          <IconButton
-            data-testid="modal:back"
-            icon={<ArrowLeftSVG />}
-            onClick={[MockFunction]}
-          >
-            <button
-              className="icon-button"
-              data-testid="modal:back"
-              onClick={[MockFunction]}
-              type="button"
-            >
-              <ArrowLeftSVG>
-                <svg
-                  height={24}
-                  viewBox="0 0 24 24"
-                  width={24}
-                >
-                  <path
-                    d="M5.414 13l5.293 5.293a1 1 0 01-1.414 1.414l-7-7a1 1 0 010-1.414l7-7a1 1 0 011.414 1.414L5.414 11H21a1 1 0 110 2H5.414z"
-                  />
-                </svg>
-              </ArrowLeftSVG>
-            </button>
-          </IconButton>
           <div
-            className="main-section"
+            className="root size-s header"
+            style={
+              Object {
+                "height": "64px",
+              }
+            }
           >
+            <IconButton
+              data-testid="modal:back"
+              icon={<ArrowLeftSVG />}
+              onClick={[MockFunction]}
+            >
+              <button
+                className="icon-button"
+                data-testid="modal:back"
+                onClick={[MockFunction]}
+                type="button"
+              >
+                <ArrowLeftSVG>
+                  <svg
+                    height={24}
+                    viewBox="0 0 24 24"
+                    width={24}
+                  >
+                    <path
+                      d="M5.414 13l5.293 5.293a1 1 0 01-1.414 1.414l-7-7a1 1 0 010-1.414l7-7a1 1 0 011.414 1.414L5.414 11H21a1 1 0 110 2H5.414z"
+                    />
+                  </svg>
+                </ArrowLeftSVG>
+              </button>
+            </IconButton>
             <div
-              className="title ellipsis"
+              className="main-section"
+            >
+              <div
+                className="title ellipsis"
+              />
+            </div>
+            <div
+              className="icon-button stub"
             />
           </div>
-          <div
-            className="icon-button stub"
-          />
-        </div>
-      </TopBar>
+        </TopBar>
+      </ModalHeader>
       <CustomScrollbar
-        className="main"
+        className="body"
         overflow={
           Object {
             "x": "h",
@@ -484,7 +442,7 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
         }
       >
         <OverlayScrollbarsComponent
-          className="custom-scrollbar main"
+          className="custom-scrollbar body"
           options={
             Object {
               "overflowBehavior": Object {
@@ -508,7 +466,11 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
               >
                 <div
                   className="os-content"
-                />
+                >
+                  <div
+                    className="main"
+                  />
+                </div>
               </div>
             </div>
             <div
@@ -550,7 +512,6 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
 exports[`<Modal /> should render different sizes properly 1`] = `
 <Modal
   size="s"
-  withTopBar={true}
 >
   <div
     className="overlay"
@@ -563,29 +524,14 @@ exports[`<Modal /> should render different sizes properly 1`] = `
       data-testid="modal"
       style={
         Object {
+          "--footer-height": "16px",
+          "--header-height": "0px",
           "--modal-height": undefined,
         }
       }
     >
-      <TopBar
-        buttonsProps={Object {}}
-        className="header"
-        size="s"
-      >
-        <div
-          className="root size-s header"
-        >
-          <div
-            className="main-section"
-          >
-            <div
-              className="title ellipsis"
-            />
-          </div>
-        </div>
-      </TopBar>
       <CustomScrollbar
-        className="main"
+        className="body"
         overflow={
           Object {
             "x": "h",
@@ -594,7 +540,7 @@ exports[`<Modal /> should render different sizes properly 1`] = `
         }
       >
         <OverlayScrollbarsComponent
-          className="custom-scrollbar main"
+          className="custom-scrollbar body"
           options={
             Object {
               "overflowBehavior": Object {
@@ -618,7 +564,11 @@ exports[`<Modal /> should render different sizes properly 1`] = `
               >
                 <div
                   className="os-content"
-                />
+                >
+                  <div
+                    className="main"
+                  />
+                </div>
               </div>
             </div>
             <div
@@ -660,7 +610,6 @@ exports[`<Modal /> should render different sizes properly 1`] = `
 exports[`<Modal /> should render different sizes properly 2`] = `
 <Modal
   size="m"
-  withTopBar={true}
 >
   <div
     className="overlay"
@@ -673,29 +622,14 @@ exports[`<Modal /> should render different sizes properly 2`] = `
       data-testid="modal"
       style={
         Object {
+          "--footer-height": "16px",
+          "--header-height": "0px",
           "--modal-height": undefined,
         }
       }
     >
-      <TopBar
-        buttonsProps={Object {}}
-        className="header"
-        size="s"
-      >
-        <div
-          className="root size-s header"
-        >
-          <div
-            className="main-section"
-          >
-            <div
-              className="title ellipsis"
-            />
-          </div>
-        </div>
-      </TopBar>
       <CustomScrollbar
-        className="main"
+        className="body"
         overflow={
           Object {
             "x": "h",
@@ -704,7 +638,7 @@ exports[`<Modal /> should render different sizes properly 2`] = `
         }
       >
         <OverlayScrollbarsComponent
-          className="custom-scrollbar main"
+          className="custom-scrollbar body"
           options={
             Object {
               "overflowBehavior": Object {
@@ -728,7 +662,11 @@ exports[`<Modal /> should render different sizes properly 2`] = `
               >
                 <div
                   className="os-content"
-                />
+                >
+                  <div
+                    className="main"
+                  />
+                </div>
               </div>
             </div>
             <div
@@ -770,7 +708,6 @@ exports[`<Modal /> should render different sizes properly 2`] = `
 exports[`<Modal /> should render different sizes properly 3`] = `
 <Modal
   size="l"
-  withTopBar={true}
 >
   <div
     className="overlay"
@@ -783,29 +720,14 @@ exports[`<Modal /> should render different sizes properly 3`] = `
       data-testid="modal"
       style={
         Object {
+          "--footer-height": "16px",
+          "--header-height": "0px",
           "--modal-height": undefined,
         }
       }
     >
-      <TopBar
-        buttonsProps={Object {}}
-        className="header"
-        size="s"
-      >
-        <div
-          className="root size-s header"
-        >
-          <div
-            className="main-section"
-          >
-            <div
-              className="title ellipsis"
-            />
-          </div>
-        </div>
-      </TopBar>
       <CustomScrollbar
-        className="main"
+        className="body"
         overflow={
           Object {
             "x": "h",
@@ -814,7 +736,7 @@ exports[`<Modal /> should render different sizes properly 3`] = `
         }
       >
         <OverlayScrollbarsComponent
-          className="custom-scrollbar main"
+          className="custom-scrollbar body"
           options={
             Object {
               "overflowBehavior": Object {
@@ -838,7 +760,11 @@ exports[`<Modal /> should render different sizes properly 3`] = `
               >
                 <div
                   className="os-content"
-                />
+                >
+                  <div
+                    className="main"
+                  />
+                </div>
               </div>
             </div>
             <div
@@ -880,7 +806,6 @@ exports[`<Modal /> should render different sizes properly 3`] = `
 exports[`<Modal /> should render different sizes properly 4`] = `
 <Modal
   size="xl"
-  withTopBar={true}
 >
   <div
     className="overlay"
@@ -893,29 +818,14 @@ exports[`<Modal /> should render different sizes properly 4`] = `
       data-testid="modal"
       style={
         Object {
+          "--footer-height": "16px",
+          "--header-height": "0px",
           "--modal-height": undefined,
         }
       }
     >
-      <TopBar
-        buttonsProps={Object {}}
-        className="header"
-        size="s"
-      >
-        <div
-          className="root size-s header"
-        >
-          <div
-            className="main-section"
-          >
-            <div
-              className="title ellipsis"
-            />
-          </div>
-        </div>
-      </TopBar>
       <CustomScrollbar
-        className="main"
+        className="body"
         overflow={
           Object {
             "x": "h",
@@ -924,7 +834,7 @@ exports[`<Modal /> should render different sizes properly 4`] = `
         }
       >
         <OverlayScrollbarsComponent
-          className="custom-scrollbar main"
+          className="custom-scrollbar body"
           options={
             Object {
               "overflowBehavior": Object {
@@ -948,7 +858,11 @@ exports[`<Modal /> should render different sizes properly 4`] = `
               >
                 <div
                   className="os-content"
-                />
+                >
+                  <div
+                    className="main"
+                  />
+                </div>
               </div>
             </div>
             <div
@@ -990,7 +904,6 @@ exports[`<Modal /> should render different sizes properly 4`] = `
 exports[`<Modal /> should render different sizes properly 5`] = `
 <Modal
   size="fullscreen"
-  withTopBar={true}
 >
   <div
     className="overlay"
@@ -1003,29 +916,14 @@ exports[`<Modal /> should render different sizes properly 5`] = `
       data-testid="modal"
       style={
         Object {
+          "--footer-height": "0px",
+          "--header-height": "0px",
           "--modal-height": undefined,
         }
       }
     >
-      <TopBar
-        buttonsProps={Object {}}
-        className="header"
-        size="m"
-      >
-        <div
-          className="root size-m header"
-        >
-          <div
-            className="main-section"
-          >
-            <div
-              className="title ellipsis"
-            />
-          </div>
-        </div>
-      </TopBar>
       <CustomScrollbar
-        className="main"
+        className="body"
         overflow={
           Object {
             "x": "h",
@@ -1034,7 +932,7 @@ exports[`<Modal /> should render different sizes properly 5`] = `
         }
       >
         <OverlayScrollbarsComponent
-          className="custom-scrollbar main"
+          className="custom-scrollbar body"
           options={
             Object {
               "overflowBehavior": Object {
@@ -1058,7 +956,11 @@ exports[`<Modal /> should render different sizes properly 5`] = `
               >
                 <div
                   className="os-content"
-                />
+                >
+                  <div
+                    className="main"
+                  />
+                </div>
               </div>
             </div>
             <div
@@ -1109,9 +1011,10 @@ exports[`<Modal /> should renders in layer 1`] = `
             <div
               class="modal size-m shadow-z4"
               data-testid="modal"
+              style="--header-height: 0px; --footer-height: 16px;"
             >
               <div
-                class="os-host os-host-foreign os-theme-dark os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden custom-scrollbar main"
+                class="os-host os-host-foreign os-theme-dark os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden custom-scrollbar body"
               >
                 <div
                   class="os-resize-observer-host"
@@ -1192,7 +1095,11 @@ exports[`<Modal /> should renders in layer 1`] = `
                     <div
                       class="os-content"
                       style="padding: 0px 0px 0px 0px; height: 100%; width: 100%;"
-                    />
+                    >
+                      <div
+                        class="main"
+                      />
+                    </div>
                   </div>
                 </div>
                 <div
@@ -1242,12 +1149,14 @@ exports[`<Modal /> should renders in layer 1`] = `
           data-testid="modal"
           style={
             Object {
+              "--footer-height": "16px",
+              "--header-height": "0px",
               "--modal-height": undefined,
             }
           }
         >
           <CustomScrollbar
-            className="main"
+            className="body"
             overflow={
               Object {
                 "x": "h",
@@ -1256,7 +1165,7 @@ exports[`<Modal /> should renders in layer 1`] = `
             }
           >
             <OverlayScrollbarsComponent
-              className="custom-scrollbar main"
+              className="custom-scrollbar body"
               options={
                 Object {
                   "overflowBehavior": Object {
@@ -1280,7 +1189,11 @@ exports[`<Modal /> should renders in layer 1`] = `
                   >
                     <div
                       className="os-content"
-                    />
+                    >
+                      <div
+                        className="main"
+                      />
+                    </div>
                   </div>
                 </div>
                 <div
@@ -1321,9 +1234,9 @@ exports[`<Modal /> should renders in layer 1`] = `
 </Modal>
 `;
 
-exports[`<Modal /> should renders without TopBar 1`] = `
+exports[`<Modal /> should renders with fullscreen size and footer 1`] = `
 <Modal
-  withTopBar={false}
+  size="fullscreen"
 >
   <div
     className="overlay"
@@ -1332,16 +1245,18 @@ exports[`<Modal /> should renders without TopBar 1`] = `
     onMouseUp={[Function]}
   >
     <div
-      className="modal size-m shadow-z4"
+      className="modal size-fullscreen"
       data-testid="modal"
       style={
         Object {
+          "--footer-height": "72px",
+          "--header-height": "0px",
           "--modal-height": undefined,
         }
       }
     >
       <CustomScrollbar
-        className="main"
+        className="body"
         overflow={
           Object {
             "x": "h",
@@ -1350,7 +1265,7 @@ exports[`<Modal /> should renders without TopBar 1`] = `
         }
       >
         <OverlayScrollbarsComponent
-          className="custom-scrollbar main"
+          className="custom-scrollbar body"
           options={
             Object {
               "overflowBehavior": Object {
@@ -1374,7 +1289,11 @@ exports[`<Modal /> should renders without TopBar 1`] = `
               >
                 <div
                   className="os-content"
-                />
+                >
+                  <div
+                    className="main"
+                  />
+                </div>
               </div>
             </div>
             <div
@@ -1405,9 +1324,26 @@ exports[`<Modal /> should renders without TopBar 1`] = `
           </div>
         </OverlayScrollbarsComponent>
       </CustomScrollbar>
-      <div
-        className="footer-stub"
-      />
+      <ModalFooter
+        key=".0"
+        size="l"
+      >
+        <BottomBar
+          size="l"
+        >
+          <div
+            className="root rounds-md__b"
+            data-testid="bottom-bar"
+            style={
+              Object {
+                "height": "80px",
+              }
+            }
+          >
+            Test footer
+          </div>
+        </BottomBar>
+      </ModalFooter>
     </div>
   </div>
 </Modal>

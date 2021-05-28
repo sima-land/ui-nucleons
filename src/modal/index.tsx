@@ -1,25 +1,31 @@
-import React, { Fragment, useRef } from 'react';
+import React, { cloneElement, Fragment, isValidElement } from 'react';
 import { BodyScrollOptions } from 'body-scroll-lock';
-import { TopBar, Props as TopBarProps } from '../top-bar';
-import { useCloseHandler, useScrollDisable } from './utils';
-import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
-import ArrowLeftSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-left';
+import { TopBarSize, TOP_BAR_HEIGHT } from '../top-bar';
+import { BottomBarProps, BOTTOM_BAR_DEFAULTS, BOTTOM_BAR_HEIGHT } from '../bottom-bar';
+import { defineSlots, useCloseHandler, useScrollDisable } from './utils';
 import { BoxShadow } from '../styling/shadows';
-import { InnerBorder } from '../styling/borders';
 import { Layer } from '../layer';
 import { CustomScrollbar } from '../_internal/custom-scrollbar';
+import { isNumber } from 'lodash';
+import { ModalBody, ModalFooter, ModalHeader, ModalHeaderProps } from './slots';
 import classnames from 'classnames/bind';
 import styles from './modal.scss';
 
-type Size = 's' | 'm' | 'l' | 'xl' | 'fullscreen';
+type ModalSize = 's' | 'm' | 'l' | 'xl' | 'fullscreen';
 
-export interface Props {
+interface ModalStyle extends React.CSSProperties {
+  '--modal-height'?: string
+  '--header-height': string
+  '--footer-height': string
+}
+
+export interface ModalProps {
 
   /** Содержимое компонента. */
   children?: React.ReactNode
 
-  /** Содержимое футера. */
-  footer?: React.ReactNode
+  /** Высота в пикселях. */
+  height?: number
 
   /** Будет вызвана при нажатии на кнопку "назад" в топ баре. */
   onBack?: () => void
@@ -31,28 +37,7 @@ export interface Props {
   scrollDisableOptions?: BodyScrollOptions
 
   /** Размер окна. */
-  size?: Size
-
-  /** Подзаголовок. */
-  subtitle?: string
-
-  /** Заголовок. */
-  title?: string
-
-  /** Свойства TopBar. */
-  topBarProps?: Omit<TopBarProps, 'className'>
-
-  /** Нужно ли выводить кнопку назад в топ баре. */
-  withBackButton?: boolean
-
-  /** Нужно ли выводить крестик. */
-  withCloseButton?: boolean
-
-  /** Нужно ли отделять footer чертой. */
-  withDivideFooter?: boolean
-
-  /** Нужно ли отделять TopBar чертой. */
-  withDivideTopBar?: boolean
+  size?: ModalSize
 
   /** Нужно ли выводить элемент в Layer (при SSR необходимо указать false). */
   withLayer?: boolean
@@ -60,48 +45,61 @@ export interface Props {
   /** Нужно ли блокировать прокрутку body при показе. */
   withScrollDisable?: boolean
 
-  /** Нужно ли выводить TopBar. */
-  withTopBar?: boolean
-
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string
+}
 
-  /** Высота вида "400px". */
-  height?: string | number,
+export interface ModalComponent {
+  (props: ModalProps): JSX.Element
+
+  Header: typeof ModalHeader
+  Body: typeof ModalBody
+  Footer: typeof ModalFooter
 }
 
 const cx = classnames.bind(styles);
 
 /**
  * Компонент модального окна.
- * @param props Свойства компонента.
+ * @param props Свойства.
  * @return Элемент.
  */
 export const Modal = ({
   children,
-  footer,
+  height,
   onClose,
-  onBack,
   scrollDisableOptions = { reserveScrollBarGap: true },
   size = 'm',
-  subtitle,
-  title,
-  topBarProps,
-  withCloseButton,
-  withBackButton = Boolean(onBack),
-  withDivideFooter = true,
-  withDivideTopBar,
   withLayer,
   withScrollDisable = true,
-  withTopBar = Boolean(title) || withCloseButton || withBackButton,
-  height,
   'data-testid': testId = 'modal',
-}: Props) => {
-  const heightRef = useRef(height); // не обновляем значение здесь чтобы запретить динамику высоты
-  const Wrapper = withLayer ? Layer : Fragment;
-  const fullscreen = size === 'fullscreen';
+}: ModalProps) => {
   const rootRef = useScrollDisable<HTMLDivElement>(withScrollDisable, scrollDisableOptions);
   const handleClose = useCloseHandler(onClose);
+
+  const Wrapper = withLayer ? Layer : Fragment;
+
+  const fullscreen = size === 'fullscreen';
+
+  const { header, content, footer } = defineSlots(children);
+
+  const topBarSize: TopBarSize = fullscreen ? 'm' : 's';
+
+  const headerHeight: number = isValidElement<ModalHeaderProps>(header)
+    ? TOP_BAR_HEIGHT[topBarSize]
+    : 0;
+
+  const footerStubHeight: number = fullscreen ? 0 : 16;
+
+  const footerHeight: number = isValidElement<BottomBarProps>(footer)
+    ? BOTTOM_BAR_HEIGHT[footer.props.size || BOTTOM_BAR_DEFAULTS.size]
+    : footerStubHeight;
+
+  const style: ModalStyle = {
+    '--modal-height': isNumber(height) ? `${Math.min(696, height)}px` : undefined,
+    '--header-height': `${headerHeight}px`,
+    '--footer-height': `${footerHeight}px`,
+  };
 
   return (
     <Wrapper>
@@ -117,47 +115,22 @@ export const Modal = ({
             `size-${size}`,
             !fullscreen && BoxShadow.z4
           )}
-          style={{
-            '--modal-height': heightRef.current,
-          } as React.CSSProperties}
+          style={style}
           data-testid={testId}
         >
-          {withTopBar && (
-            <TopBar
-              {...topBarProps}
-              title={title}
-              subtitle={subtitle}
-              buttonsProps={{
-                ...topBarProps?.buttonsProps,
-                ...withBackButton && {
-                  start: {
-                    'data-testid': 'modal:back',
-                    onClick: onBack,
-                    icon: <ArrowLeftSVG />,
-                  },
-                },
-                ...withCloseButton && {
-                  end: {
-                    'data-testid': 'modal:close',
-                    onClick: onClose,
-                    icon: <CrossSVG />,
-                  },
-                },
-              }}
-              size={fullscreen ? 'm' : 's'}
-              className={cx('header', withDivideTopBar && InnerBorder.bottom)}
-            />
-          )}
+          {header && cloneElement<ModalHeaderProps>(header, {
+            size: topBarSize,
+          })}
 
-          <CustomScrollbar className={cx('main')} overflow={{ x: 'h', y: 's' }}>
-            {children}
+          <CustomScrollbar className={cx('body')} overflow={{ x: 'h', y: 's' }}>
+            <div className={cx('main')}>
+              {content}
+            </div>
           </CustomScrollbar>
 
-          {footer && (
-            <div className={cx('footer', withDivideFooter && InnerBorder.top)}>
-              {footer}
-            </div>
-          )}
+          {footer && cloneElement<BottomBarProps>(footer, {
+            size: fullscreen ? 'l' : footer.props.size,
+          })}
 
           {!footer && !fullscreen && (
             <div className={cx('footer-stub')} />
@@ -167,3 +140,7 @@ export const Modal = ({
     </Wrapper>
   );
 };
+
+Modal.Header = ModalHeader;
+Modal.Body = ModalBody;
+Modal.Footer = ModalFooter;

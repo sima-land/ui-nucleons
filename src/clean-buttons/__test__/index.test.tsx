@@ -12,7 +12,6 @@ describe('<Clean.Button />', () => {
   it('should handle props', () => {
     const wrapper = mount(
       <Clean.Button
-        size='s'
         href='https://site.com'
         children='Go to site'
       />
@@ -39,7 +38,7 @@ describe('<Clean.Group />', () => {
 
   it('should handle props (1)', () => {
     const wrapper = mount(
-      <Clean.Group size='s'>
+      <Clean.Group>
         <Clean.Button>Foo</Clean.Button>
         <Clean.Button>Bar</Clean.Button>
         <Clean.Button href='https://www.abc.xyz'>XYZ</Clean.Button>
@@ -52,7 +51,7 @@ describe('<Clean.Group />', () => {
 
   it('should handle props (2)', () => {
     const wrapper = mount(
-      <Clean.Group size='s'>
+      <Clean.Group>
         <Clean.Button>One button</Clean.Button>
       </Clean.Group>
     );

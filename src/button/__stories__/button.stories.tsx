@@ -4,7 +4,7 @@ import { Button } from '..';
 import PlusSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/plus';
 
 const types = ['primary', 'secondary'];
-const sizes = ['small', 'medium'];
+const sizes = ['s', 'm'];
 const states = [undefined, 'disabled'];
 
 const contents = [
@@ -35,9 +35,9 @@ export default {
 
 export const Primary = () => (
   <>
-    {types.map(actionType => (
-      <Fragment key={actionType}>
-        <h2>Action type: {actionType}</h2>
+    {types.map(viewType => (
+      <Fragment key={viewType}>
+        <h2>Action type: {viewType}</h2>
 
         {sizes.map(size => (
           <Fragment key={size}>
@@ -52,8 +52,8 @@ export const Primary = () => (
                       <Button
                         {...(state ? { [state]: true } : {}) as any}
                         size={size as any}
-                        actionType={actionType as any}
-                        onClick={action(`${actionType} ${size} button was clicked!`)}
+                        viewType={viewType as any}
+                        onClick={action(`${viewType} [size="${size}"] button was clicked!`)}
                         {...content}
                       />
                       <div style={{ width: 8, height: 8 }}></div>

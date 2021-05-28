@@ -2,13 +2,16 @@ import React from 'react';
 import classnames from 'classnames/bind';
 import has from 'lodash/has';
 import classes from './top-bar.scss';
+import { InnerBorder } from '../styling/borders';
+
+export type TopBarSize = 's' | 'm';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.ReactNode
   'data-testid'?: string
 }
 
-export interface Props {
+export interface TopBarProps {
 
   /** Свойства кнопок. */
   buttonsProps?: {
@@ -22,14 +25,23 @@ export interface Props {
   className?: string
 
   /** Размер. */
-  size?: 's' | 'm'
+  size?: TopBarSize
 
   /** Подзаголовок. */
   subtitle?: string
 
   /** Заголовок. */
   title?: string
+
+  /** Нужна ли разделительная черта снизу. */
+  divided?: boolean
 }
+
+// некоторым компонентам нужно знать конкретную высоту, делаем единый источник
+export const TOP_BAR_HEIGHT: Readonly<Record<TopBarSize, number>> = {
+  s: 64,
+  m: 80,
+};
 
 const cx = classnames.bind(classes);
 
@@ -39,6 +51,7 @@ const cx = classnames.bind(classes);
  * @return Элемент.
  */
 export const TopBar = ({
+  divided,
   size = 'm',
   title,
   subtitle,
@@ -49,7 +62,7 @@ export const TopBar = ({
     endSecondary,
   } = {},
   className,
-}: Props) => {
+}: TopBarProps) => {
   const hasStart = has(start, 'icon');
   const hasStartSecondary = has(startSecondary, 'icon');
   const hasEnd = has(end, 'icon');
@@ -59,7 +72,10 @@ export const TopBar = ({
   const secondaryStub = hasStartSecondary || hasEndSecondary ? iconStub : null;
 
   return (
-    <div className={cx('root', `size-${size}`, className)}>
+    <div
+      className={cx('root', `size-${size}`, className, divided && InnerBorder.bottom)}
+      style={{ height: `${TOP_BAR_HEIGHT[size]}px` }}
+    >
       {hasStart ? <IconButton {...start} /> : stub}
       {hasStartSecondary ? <IconButton {...startSecondary} /> : secondaryStub}
 

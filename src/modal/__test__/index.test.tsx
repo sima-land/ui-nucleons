@@ -29,8 +29,11 @@ describe('<Modal />', () => {
     const spy = jest.fn();
 
     const wrapper = mount(
-      <Modal onClose={spy} withCloseButton>
-        Test modal content
+      <Modal onClose={spy}>
+        <Modal.Header title='Test title' onClose={spy} />
+        <Modal.Body>
+          Test modal content
+        </Modal.Body>
       </Modal>
     );
 
@@ -80,26 +83,15 @@ describe('<Modal />', () => {
   });
 
   it('should handle extended props', () => {
-    const spy = jest.fn();
-
     const wrapper = mount(
-      <Modal
-        title='Title'
-        subtitle='Subtitle'
-        onClose={spy}
-        topBarProps={{ size: 'm' }}
-        withDivideTopBar
-        withDivideFooter
-        withCloseButton
-        footer={(
+      <Modal>
+        <Modal.Header title='Title' subtitle='Subtitle' />
+        <Modal.Body>Main Content</Modal.Body>
+        <Modal.Footer>
           <button>Hello</button>
-        )}
-      />
+        </Modal.Footer>
+      </Modal>
     );
-
-    expect(wrapper).toMatchSnapshot();
-
-    wrapper.setProps({ withCloseButton: false });
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -138,7 +130,7 @@ describe('<Modal />', () => {
   it('should render different sizes properly', () => {
     (['s', 'm', 'l', 'xl', 'fullscreen'] as const).forEach(size => {
       const wrapper = mount(
-        <Modal size={size} withTopBar />
+        <Modal size={size} />
       );
 
       expect(wrapper).toMatchSnapshot();
@@ -153,19 +145,13 @@ describe('<Modal />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should renders without TopBar', () => {
-    const wrapper = mount(
-      <Modal withTopBar={false} />
-    );
-
-    expect(wrapper).toMatchSnapshot();
-  });
-
   it('should render TopBar with back button', () => {
     const spy = jest.fn();
 
     const wrapper = mount(
-      <Modal onBack={spy} />
+      <Modal>
+        <Modal.Header onBack={spy} />
+      </Modal>
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -182,19 +168,37 @@ describe('<Modal />', () => {
 
   it('should render ith close and custom start button in top bar', () => {
     const wrapper = mount(
-      <Modal
-        withCloseButton
-        topBarProps={{
-          buttonsProps: {
+      <Modal>
+        <Modal.Header
+          onClose={jest.fn()}
+          buttonsProps={{
             start: {
               icon: <ArrowLeftSVG data-testid='custom-top-bar-btn' />,
             },
-          },
-        }}
-      />
+          }}
+        />
+      </Modal>
     );
 
     expect(wrapper.find(TopBar).find('button[data-testid="modal:close"]')).toHaveLength(1);
     expect(wrapper.find(TopBar).find('svg[data-testid="custom-top-bar-btn"]')).toHaveLength(1);
+  });
+
+  it('should handle "height" prop', () => {
+    const wrapper = mount(
+      <Modal height={480} />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should renders with fullscreen size and footer', () => {
+    const wrapper = mount(
+      <Modal size='fullscreen'>
+        <Modal.Footer>Test footer</Modal.Footer>
+      </Modal>
+    );
+
+    expect(wrapper).toMatchSnapshot();
   });
 });

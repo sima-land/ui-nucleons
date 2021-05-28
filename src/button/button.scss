@@ -1,6 +1,5 @@
 @use '../colors';
 
-// новые стили по макетам дизайн системы
 .button-base {
   white-space: nowrap;
   display: inline-flex;
@@ -30,44 +29,44 @@
 }
 
 // small
-.button-small {
+.button-s {
   padding: 0 8px;
   min-width: 40px;
   height: 40px;
 }
 
-.text-button-small {
+.text-button-s {
   padding-left: 20px;
   padding-right: 20px;
 }
 
-.button-small-with-start-icon {
+.button-s-with-start-icon {
   padding-left: 12px;
   padding-right: 20px;
 }
 
-.button-small-with-end-icon {
+.button-s-with-end-icon {
   padding-left: 20px;
   padding-right: 12px;
 }
 
 // medium
-.button-medium {
+.button-m {
   padding: 0 12px;
   min-width: 48px;
   height: 48px;
 }
 
-.text-button-medium {
+.text-button-m {
   padding-left: 24px;
   padding-right: 24px;
 }
 
-.button-medium-with-start-icon {
+.button-m-with-start-icon {
   padding-right: 24px;
 }
 
-.button-medium-with-end-icon {
+.button-m-with-end-icon {
   padding-left: 24px;
 }
 

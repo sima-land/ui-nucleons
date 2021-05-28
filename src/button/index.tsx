@@ -3,7 +3,7 @@ import { always, cond, eq, stubTrue } from 'lodash/fp';
 import classnames from 'classnames/bind';
 import classes from './button.scss';
 
-type Size = 'small' | 'medium';
+type Size = 's' | 'm';
 
 type ViewType = 'primary' | 'secondary';
 
@@ -14,7 +14,7 @@ type Appearance = 'button' | 'link' | 'container';
 interface CustomProps<T extends Appearance = Appearance> {
 
   /** Определяет внешний вид кнопки. */
-  actionType?: ViewType
+  viewType?: ViewType
 
   /** Определяет тип корневого элемента. */
   appearance?: T
@@ -50,9 +50,9 @@ const cx = classnames.bind(classes);
 export const Button = forwardRef<any, Props>(function Button ({
   children,
   className,
-  actionType = 'primary',
+  viewType = 'primary',
   appearance = 'button',
-  size = 'medium',
+  size = 'm',
   icon: Icon,
   iconPosition = 'start',
   'data-testid': testId = 'button',
@@ -63,7 +63,7 @@ export const Button = forwardRef<any, Props>(function Button ({
   const readyClassName = computeClassName({
     className,
     size,
-    actionType,
+    viewType,
     withIcon: Boolean(Icon),
     withContent: Boolean(children) && children !== 0,
     iconPosition,
@@ -112,14 +112,14 @@ export const Button = forwardRef<any, Props>(function Button ({
  */
 export const computeClassName = ({
   size,
-  actionType,
+  viewType,
   iconPosition,
   withIcon,
   withContent,
   className,
 }: {
   size: Size
-  actionType: ViewType
+  viewType: ViewType
   iconPosition: IconPosition
   withIcon: boolean
   withContent: boolean
@@ -127,9 +127,8 @@ export const computeClassName = ({
 }) => cx([
   className,
   'button-base',
-  actionType === 'secondary' ? 'button-secondary' : 'button-primary',
-  size === 'small' && 'button-small',
-  size === 'medium' && 'button-medium',
+  viewType === 'secondary' ? 'button-secondary' : 'button-primary',
+  `button-${size}`,
   withContent && !withIcon && `text-button-${size}`,
   withContent && withIcon && `button-${size}-with-${iconPosition}-icon`,
 ]);
@@ -147,5 +146,3 @@ export const resolveAppearance = cond<
   [eq('container'), always(['div', { role: 'button' }])],
   [stubTrue, always(['button', null])],
 ]);
-
-export default Button;

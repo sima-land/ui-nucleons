@@ -13,6 +13,14 @@ describe('<TopBar />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it('should render as divided', () => {
+    const wrapper = mount(
+      <TopBar divided />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it('should renders with title and subtitle', () => {
     const wrapper = mount(
       <TopBar {...TestProps.shortTitles} />

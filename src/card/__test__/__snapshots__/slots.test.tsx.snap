@@ -57,6 +57,11 @@ exports[`CardHeader should handle TopBar as children 1`] = `
     >
       <div
         className="root size-m inner-border-bottom rounds-md__t"
+        style={
+          Object {
+            "height": "80px",
+          }
+        }
       >
         <div
           className="main-section"
@@ -83,6 +88,11 @@ exports[`CardHeader should handle small rounds 1`] = `
     >
       <div
         className="root size-m inner-border-bottom rounds-sm__t"
+        style={
+          Object {
+            "height": "80px",
+          }
+        }
       >
         <div
           className="main-section"
