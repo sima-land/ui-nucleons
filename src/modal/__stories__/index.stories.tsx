@@ -1,13 +1,13 @@
-import { Story } from '@storybook/react';
 import React, { useState } from 'react';
-import { Modal, Props } from '..';
-import { Box } from '../../box';
-import Button from '../../button';
+import { Story } from '@storybook/react';
+import { Modal, ModalProps } from '..';
+import { Button } from '../../button';
 import { Clean } from '../../clean-buttons';
 import { DesktopLayout } from '../../layout';
 import { marginRight } from '../../styling/sizes';
+import { Box } from '../../box';
 
-const Template: Story<Props> = props => {
+const Template: Story<ModalProps> = props => {
   const [opened, toggleModal] = useState<boolean>(true);
 
   return (
@@ -17,26 +17,20 @@ const Template: Story<Props> = props => {
       </Button>
 
       {opened && (
-        <Modal
-          withLayer
-
-          onClose={() => toggleModal(false)}
-
-          children={(
+        <Modal withLayer onClose={() => toggleModal(false)} {...props}>
+          <Modal.Header divided title='Модальное окно' />
+          <Modal.Body>
             <div style={{ padding: 24 }}>
               Содержимое модального окна
             </div>
-          )}
-
-          footer={(
-            <Clean.Group size='s'>
+          </Modal.Body>
+          <Modal.Footer divided size='s'>
+            <Clean.Group>
               <Clean.Button>Кнопка</Clean.Button>
               <Clean.Button>Ещё кнопка</Clean.Button>
             </Clean.Group>
-          )}
-
-          {...props}
-        />
+          </Modal.Footer>
+        </Modal>
       )}
 
       {[...Array(100).keys()].map(index => (
@@ -56,88 +50,100 @@ export default {
 
 export const SizeS = Template.bind(null, {
   size: 's',
-  title: 'Модальное окно',
-  withDivideTopBar: true,
-  withCloseButton: true,
-  withTopBar: true,
+  height: 300,
 });
 
 export const SizeM = Template.bind(null, {
-  title: 'Модальное окно',
-  withDivideTopBar: true,
-  withCloseButton: true,
-  withTopBar: true,
-  height: '400px',
+  height: 400,
 });
 
 export const SizeL = Template.bind(null, {
   size: 'l',
-  title: 'Модальное окно',
-  withDivideTopBar: true,
-  withCloseButton: true,
-  withTopBar: true,
-  height: '500px',
+  height: 500,
 });
 
 export const SizeXL = Template.bind(null, {
   size: 'xl',
-  title: 'Модальное окно',
-  withDivideTopBar: true,
-  withCloseButton: true,
-  withTopBar: true,
-  height: '600px',
+  height: 600,
 });
 
-export const Fullscreen = Template.bind(null, {
-  size: 'fullscreen',
-  title: 'Модальное окно',
-  withDivideTopBar: true,
-  withCloseButton: true,
-  withTopBar: true,
-  children: (
-    <div style={{ height: '100%', background: '#eee' }}>
+export const Fullscreen: Story = () => (
+  <Modal size='fullscreen' withLayer>
+    <Modal.Header divided title='Полноэкранное модальное окно' />
+    <Modal.Body>
+      <div style={{ height: '100%', background: '#eee' }}>
+        <DesktopLayout>
+          <Box padding={6}>
+            Содержимое модального окна
+          </Box>
+        </DesktopLayout>
+      </div>
+    </Modal.Body>
+    <Modal.Footer divided>
       <DesktopLayout>
-        <Box padding={6}>
-          Содержимое модального окна
+        <Box marginY={3} display='flex' justifyContent='end'>
+          <Button viewType='secondary' className={marginRight(3)}>
+            Кнопка
+          </Button>
+          <Button>
+            Кнопка
+          </Button>
         </Box>
       </DesktopLayout>
-    </div>
-  ),
-  footer: (
-    <DesktopLayout>
-      <Box marginY={3} display='flex' justifyContent='end'>
-        <Button actionType='secondary' className={marginRight(3)}>
-          Кнопка
-        </Button>
-        <Button>
-          Кнопка
-        </Button>
-      </Box>
-    </DesktopLayout>
-  ),
-});
+    </Modal.Footer>
+  </Modal>
+);
 
-export const WithoutBars = Template.bind(null, {
-  size: 's',
-  withDivideTopBar: true,
-  withCloseButton: true,
-  footer: undefined,
-  withTopBar: false,
-});
+export const WithoutBars: Story = () => (
+  <Modal size='s' height={320} withLayer>
+    <Modal.Body>
+      <div style={{ padding: 24 }}>
+        Содержимое модального окна
+      </div>
+    </Modal.Body>
+  </Modal>
+);
 
-export const WithScroll = Template.bind(null, {
-  title: 'Проверка полосы прокрутки',
-  size: 's',
-  withDivideTopBar: true,
-  withCloseButton: true,
-  footer: undefined,
-  children: (
-    <div style={{ padding: 24 }}>
-      {Array(50).fill(0).map((a, i) => (
-        <p key={i}>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sed ex odio voluptatibus laborum vero.
-        </p>
-      ))}
-    </div>
-  ),
-});
+export const DynamicHeight: Story<ModalProps> = () => {
+  const [count, setCount] = useState<number>(1);
+
+  return (
+    <Modal>
+      <Modal.Header divided title='Проверка высоты' />
+      <Modal.Body>
+        <div style={{ padding: '32px' }}>
+          {[...Array(count).keys()].map(index => (
+            <div
+              key={index}
+              style={{ padding: 24, marginTop: index ? '16px' : 0, background: '#ddd' }}
+              onClick={() => setCount(count + 1)}
+            >
+              Нажми на меня чтобы добавить немножко контента
+            </div>
+          ))}
+        </div>
+      </Modal.Body>
+      <Modal.Footer divided size='s'>
+        <Clean.Group>
+          <Clean.Button>Кнопка</Clean.Button>
+          <Clean.Button>Ещё кнопка</Clean.Button>
+        </Clean.Group>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
+export const WithScroll: Story = () => (
+  <Modal size='s' height={360} withLayer>
+    <Modal.Header divided title='Проверка прокрутки' />
+    <Modal.Body>
+      <div style={{ padding: 24 }}>
+        {Array(50).fill(0).map((a, i) => (
+          <p key={i}>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sed ex odio voluptatibus laborum vero.
+          </p>
+        ))}
+      </div>
+    </Modal.Body>
+  </Modal>
+);

@@ -1,22 +1,16 @@
-import React, { Children, cloneElement } from 'react';
+import React, { Children, isValidElement } from 'react';
 import classnames from 'classnames/bind';
 import classes from './clean-buttons.scss';
 import { Link, Props as LinkProps } from '../link';
 
-type Size = 's' | 'm';
-
-export interface ButtonProps extends Omit<LinkProps, 'size'> {
+export interface ButtonProps extends LinkProps {
   asLink?: boolean
-  size?: Size
 }
 
 export interface Props {
 
   /** Содержимое. */
   children?: React.ReactElement<ButtonProps> | React.ReactElement<ButtonProps>[]
-
-  /** Размер. */
-  size?: Size
 }
 
 const cx = classnames.bind(classes);
@@ -26,13 +20,12 @@ const cx = classnames.bind(classes);
  * @param props Свойства.
  * @return Элемент.
  */
-const CleanGroup: React.FC<Props> = ({ children, size = 'm' }) => (
+const CleanGroup: React.FC<Props> = ({ children }) => (
   <div className={cx('clean-group')}>
-    {Children.map(
-      Array.isArray(children) ? children : [children],
-      item => item && item.type === CleanButton
-        ? cloneElement(item, { size })
-        : item
+    {Children.toArray(children).map(
+      item => isValidElement(item) && item.type === CleanButton
+        ? item
+        : null
     )}
   </div>
 );
@@ -47,14 +40,13 @@ const CleanGroup: React.FC<Props> = ({ children, size = 'm' }) => (
  * @return Элемент.
  */
 const CleanButton = ({
-  size = 'm',
   href,
   asLink = Boolean(href),
   ...restProps
 }: ButtonProps) => (
   <Link
     pseudo={asLink}
-    className={cx('clean-button', `size-${size}`)}
+    className={cx('clean-button')}
     href={href}
     {...restProps}
   />

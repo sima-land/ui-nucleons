@@ -11,7 +11,7 @@ describe('<Button />', () => {
     expect(wrapper).toMatchSnapshot();
   });
   it('should render secondary button', () => {
-    const wrapper = shallow(<Button actionType='secondary'>Отмена</Button>);
+    const wrapper = shallow(<Button viewType='secondary'>Отмена</Button>);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -23,7 +23,7 @@ describe('<Button />', () => {
     expect(wrapper).toMatchSnapshot();
   });
   it('should handle "size" prop', () => {
-    const wrapper = shallow(<Button size='small'>Отмена</Button>);
+    const wrapper = shallow(<Button size='s'>Отмена</Button>);
 
     expect(wrapper).toMatchSnapshot();
     wrapper.setProps({ size: 'medium' });
@@ -43,12 +43,12 @@ describe('<Button />', () => {
 describe('computeClassName()', () => {
   it('should handle all props', () => {
     expect(computeClassName({
-      size: 'small',
-      actionType: 'secondary',
+      size: 's',
+      viewType: 'secondary',
       iconPosition: 'end',
       withIcon: true,
       withContent: true,
       className: 'custom-button',
-    })).toBe('custom-button button-base button-secondary button-small button-small-with-end-icon');
+    })).toBe('custom-button button-base button-secondary button-s button-s-with-end-icon');
   });
 });

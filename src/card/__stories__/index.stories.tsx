@@ -45,7 +45,7 @@ export const Primary = () => (
       </Card.Content>
 
       <Card.Footer divided>
-        <Clean.Group size='s'>
+        <Clean.Group>
           <Clean.Button>Отправить</Clean.Button>
         </Clean.Group>
       </Card.Footer>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from '../../button';
+import { Button } from '../../button';
 import { Layer } from '..';
 
 const styles: Record<string, React.CSSProperties> = {
@@ -41,7 +41,7 @@ export const Primary = () => {
       <p>
         Окно будет монтировано в отдельный элемент в конце <code>{'<body />'}</code>
       </p>
-      <Button size='small' onClick={() => toggleModal(true)}>
+      <Button size='s' onClick={() => toggleModal(true)}>
         Открыть окно
       </Button>
 
@@ -51,7 +51,7 @@ export const Primary = () => {
             <div style={styles.modal}>
               <h2 style={styles.title}>Тестовое окно </h2>
               <p>Монтировано в конце body в специальном div</p>
-              <Button size='small' onClick={() => toggleModal(false)}>Закрыть</Button>
+              <Button size='s' onClick={() => toggleModal(false)}>Закрыть</Button>
             </div>
           </div>
         </Layer>

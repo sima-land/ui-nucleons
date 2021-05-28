@@ -3,15 +3,14 @@
 exports[`<Clean.Button /> should handle props 1`] = `
 <CleanButton
   href="https://site.com"
-  size="s"
 >
   <ForwardRef(Link)
-    className="clean-button size-s"
+    className="clean-button"
     href="https://site.com"
     pseudo={true}
   >
     <a
-      className="link clean-button size-s color__brand-blue hover-color__brand-deep-blue"
+      className="link clean-button color__brand-blue hover-color__brand-deep-blue"
       data-testid="anchor"
       href="https://site.com"
       role="button"
@@ -27,15 +26,14 @@ exports[`<Clean.Button /> should handle props 2`] = `
 <CleanButton
   asLink={true}
   href={null}
-  size="s"
 >
   <ForwardRef(Link)
-    className="clean-button size-s"
+    className="clean-button"
     href={null}
     pseudo={true}
   >
     <a
-      className="link clean-button size-s color__brand-blue hover-color__brand-deep-blue"
+      className="link clean-button color__brand-blue hover-color__brand-deep-blue"
       data-testid="anchor"
       href={null}
       role="button"
@@ -50,11 +48,11 @@ exports[`<Clean.Button /> should handle props 2`] = `
 exports[`<Clean.Button /> should render without props 1`] = `
 <CleanButton>
   <ForwardRef(Link)
-    className="clean-button size-m"
+    className="clean-button"
     pseudo={false}
   >
     <a
-      className="link clean-button size-m color__brand-blue hover-color__brand-deep-blue"
+      className="link clean-button color__brand-blue hover-color__brand-deep-blue"
       data-testid="anchor"
     />
   </ForwardRef(Link)>
@@ -62,22 +60,19 @@ exports[`<Clean.Button /> should render without props 1`] = `
 `;
 
 exports[`<Clean.Group /> should handle props (1) 1`] = `
-<CleanGroup
-  size="s"
->
+<CleanGroup>
   <div
     className="clean-group"
   >
     <CleanButton
       key=".0"
-      size="s"
     >
       <ForwardRef(Link)
-        className="clean-button size-s"
+        className="clean-button"
         pseudo={false}
       >
         <a
-          className="link clean-button size-s color__brand-blue hover-color__brand-deep-blue"
+          className="link clean-button color__brand-blue hover-color__brand-deep-blue"
           data-testid="anchor"
         >
           Foo
@@ -86,14 +81,13 @@ exports[`<Clean.Group /> should handle props (1) 1`] = `
     </CleanButton>
     <CleanButton
       key=".1"
-      size="s"
     >
       <ForwardRef(Link)
-        className="clean-button size-s"
+        className="clean-button"
         pseudo={false}
       >
         <a
-          className="link clean-button size-s color__brand-blue hover-color__brand-deep-blue"
+          className="link clean-button color__brand-blue hover-color__brand-deep-blue"
           data-testid="anchor"
         >
           Bar
@@ -103,15 +97,14 @@ exports[`<Clean.Group /> should handle props (1) 1`] = `
     <CleanButton
       href="https://www.abc.xyz"
       key=".2"
-      size="s"
     >
       <ForwardRef(Link)
-        className="clean-button size-s"
+        className="clean-button"
         href="https://www.abc.xyz"
         pseudo={true}
       >
         <a
-          className="link clean-button size-s color__brand-blue hover-color__brand-deep-blue"
+          className="link clean-button color__brand-blue hover-color__brand-deep-blue"
           data-testid="anchor"
           href="https://www.abc.xyz"
           role="button"
@@ -121,32 +114,24 @@ exports[`<Clean.Group /> should handle props (1) 1`] = `
         </a>
       </ForwardRef(Link)>
     </CleanButton>
-    <button
-      key=".3"
-    >
-      Just button
-    </button>
   </div>
 </CleanGroup>
 `;
 
 exports[`<Clean.Group /> should handle props (2) 1`] = `
-<CleanGroup
-  size="s"
->
+<CleanGroup>
   <div
     className="clean-group"
   >
     <CleanButton
       key=".0"
-      size="s"
     >
       <ForwardRef(Link)
-        className="clean-button size-s"
+        className="clean-button"
         pseudo={false}
       >
         <a
-          className="link clean-button size-s color__brand-blue hover-color__brand-deep-blue"
+          className="link clean-button color__brand-blue hover-color__brand-deep-blue"
           data-testid="anchor"
         >
           One button
