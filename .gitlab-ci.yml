@@ -16,16 +16,17 @@ stages:
 
 .cache_template: &cache
   cache:
+    key:
+      files:
+        - yarn.lock
     paths:
       - node_modules
+    policy: pull
 
 .test_template:
+  stage: test
   <<: *node_image
   <<: *cache
-  stage: test
-  cache:
-    paths:
-      - node_modules
   before_script:
     - yarn install
   script:
@@ -37,9 +38,9 @@ stages:
   <<: *runner_tags
 
 .build_template:
+  stage: build
   <<: *node_image
   <<: *cache
-  stage: build
   only:
     refs:
       - tags
@@ -48,9 +49,14 @@ stages:
 # STAGE: prepare
 
 prepare:
-  <<: *node_image
-  <<: *cache
   stage: prepare
+  <<: *node_image
+  cache:
+    key:
+      files:
+        - yarn.lock
+    paths:
+      - node_modules
   script:
     - yarn install
   <<: *runner_tags
