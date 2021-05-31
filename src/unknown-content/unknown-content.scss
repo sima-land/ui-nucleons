@@ -1,0 +1,188 @@
+@use '../colors';
+
+.root {
+  color: colors.$gray87;
+  font-size: 16px;
+  line-height: 24px;
+
+  // сброс отступов
+  * {
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  // оформление заголовков
+  h1 {
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 40px;
+  }
+  h2 {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 32px;
+  }
+  h3 {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+  }
+  h4 {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  h5 {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  // отступы от заголовков
+  * + h2 {
+    margin-top: 80px;
+  }
+  * + h3 {
+    margin-top: 64px;
+  }
+  * + h4 {
+    margin-top: 24px;
+  }
+  h1 + * {
+    margin-top: 80px;
+  }
+  h2 + * {
+    margin-top: 32px;
+  }
+  h3 + * {
+    margin-top: 24px;
+  }
+  h4 + * {
+    margin-top: 16px;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    + img,
+    + video {
+      margin-top: 48px;
+    }
+  }
+  h1 + h2 {
+    margin-top: 80px;
+  }
+  h2 + h3 {
+    margin-top: 24px;
+  }
+  h3 + h4 {
+    margin-top: 24px;
+  }
+
+  // абзацы
+  p + p {
+    margin-top: 16px;
+  }
+
+  // ссылки
+  a {
+    color: colors.$brand-blue;
+    text-decoration: none;
+    &:hover {
+      color: colors.$brand-deep-blue;
+    }
+  }
+
+  // курсив
+  i,
+  em {
+    font-style: normal; // да, вот так по гайдам
+    color: colors.$gray38;
+  }
+
+  // таблицы
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 32px 0;
+    thead {
+      color: colors.$gray38;
+      td {
+        padding-top: 0;
+      }
+    }
+    td {
+      border: 0;
+      padding: 24px 0;
+
+      // накидываем именно сюда чтобы работало в Safari
+      box-shadow: inset 0 -1px 0 colors.$gray12;
+      &:not(:last-child) {
+        padding-right: 48px;
+      }
+    }
+    tbody td:nth-child(2) {
+      font-weight: 500;
+    }
+  }
+
+  // списки
+  ul {
+    list-style: none;
+    li + li {
+      margin-top: 16px;
+    }
+    li::before {
+      display: inline-block;
+      content: '—';
+      margin-right: 10px;
+    }
+  }
+  ol {
+    list-style-position: inside;
+    li::before {
+      content: '';
+      width: 8px;
+      display: inline-block;
+    }
+    li + li {
+      margin-top: 16px;
+    }
+  }
+  ul,
+  ol {
+    margin: 16px 0;
+  }
+
+  // горизонтальная черта
+  hr {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: colors.$gray12;
+  }
+  * + hr {
+    margin-top: 48px;
+  }
+
+  // цитата
+  blockquote {
+    display: block;
+    padding-left: 32px;
+    border-left: 4px solid colors.$brand-blue;
+    margin: 40px 0;
+  }
+
+  // @todo неопознанные стили оставшиеся при переносе из карточки товара, выяснить что это и зачем нужно
+  div {
+    font-weight: 500;
+    + p {
+      margin-top: 8px;
+    }
+  }
+  p + div {
+    margin-top: 16px;
+  }
+}
