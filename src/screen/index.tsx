@@ -1,10 +1,11 @@
 import React, { Fragment, useRef, useEffect } from 'react';
-import { Layer } from '../layer';
-import isFunction from 'lodash/isFunction';
+import { Portal } from '../portal';
+import { isFunction } from 'lodash';
 import { ScreenLayout, Props as LayoutProps, CallbackData } from './screen-layout';
 import { cx, OrNil } from './utils';
 import { LoadingOverlay, Props as LoadingProps } from '../loading-overlay';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import { LayerProvider, useLayer } from '../helpers/layer';
 
 interface AdvancedCallbackData extends CallbackData {
   rootElement: OrNil<HTMLDivElement>
@@ -64,7 +65,7 @@ export interface Props {
   withHeader?: boolean
 
   /** Нужно ли выводить Layer (при SSR необходимо указать false). */
-  withLayer?: boolean
+  inPortal?: boolean
 }
 
 /**
@@ -90,68 +91,72 @@ export const Screen: React.FC<Props> = ({
   withCloseButton = true,
   withDivideHeader = true,
   withHeader = true,
-  withLayer = true,
+  inPortal = true,
 }) => {
-  const Wrapper = withLayer ? Layer : Fragment;
-  const rootRef = useRef();
-  const innerContentRef = useRef<OrNil<HTMLDivElement>>();
+  const Wrapper = inPortal ? Portal : Fragment;
+  const layer = useLayer() + 300; // 300 из-за монолита
+  const rootRef = useRef<HTMLDivElement>(null);
+  const innerContentRef = useRef<HTMLDivElement>(null);
 
   // включаем прокрутку body при размонтировании
   useEffect(() => () => {
-    innerContentRef.current && enableBodyScroll(innerContentRef.current as any);
+    innerContentRef.current && enableBodyScroll(innerContentRef.current);
   }, []);
 
   return (
     <Wrapper>
       <div
-        ref={rootRef as any}
+        ref={rootRef}
         className={cx('screen', 'full-width')}
+        style={{ zIndex: layer }}
       >
         {
           loading && loadingArea === 'full'
             ? <LoadingOverlay {...loadingOverlayProps} />
             : (
-              <ScreenLayout
-                title={title}
-                subtitle={subtitle}
-                withHeader={withHeader}
-                withDivideHeader={withDivideHeader}
-                withBackButton={withBackButton}
-                withCloseButton={withCloseButton}
-                children={
-                  loading && loadingArea === 'content'
-                    ? (
-                      <LoadingOverlay
-                        {...loadingOverlayProps}
-                        {...loadingArea === 'content' && {
-                          fill: false,
-                          style: { height: '100%' },
-                        }}
-                      />
-                    )
-                    : children
-                }
-                childrenRef={element => {
-                  setRefValue(contentRef as any, element);
-                  takeScrollableElement(innerContentRef, element);
-                }}
-                footer={footer}
-                onBack={({ contentElement }) => {
-                  isFunction(onBack) && onBack({
-                    rootElement: rootRef.current,
-                    contentElement,
-                  });
-                }}
-                onClose={({ contentElement }) => {
-                  isFunction(onClose) && onClose({
-                    rootElement: rootRef.current,
-                    contentElement,
-                  });
-                }}
-                onFullScroll={onFullScroll}
-                fullScrollThreshold={fullScrollThreshold}
-                navBarProps={navBarProps}
-              />
+              <LayerProvider value={layer}>
+                <ScreenLayout
+                  title={title}
+                  subtitle={subtitle}
+                  withHeader={withHeader}
+                  withDivideHeader={withDivideHeader}
+                  withBackButton={withBackButton}
+                  withCloseButton={withCloseButton}
+                  children={
+                    loading && loadingArea === 'content'
+                      ? (
+                        <LoadingOverlay
+                          {...loadingOverlayProps}
+                          {...loadingArea === 'content' && {
+                            fill: false,
+                            style: { height: '100%' },
+                          }}
+                        />
+                      )
+                      : children
+                  }
+                  childrenRef={element => {
+                    setRefValue(contentRef as any, element);
+                    takeScrollableElement(innerContentRef, element);
+                  }}
+                  footer={footer}
+                  onBack={({ contentElement }) => {
+                    onBack && onBack({
+                      rootElement: rootRef.current,
+                      contentElement,
+                    });
+                  }}
+                  onClose={({ contentElement }) => {
+                    onClose && onClose({
+                      rootElement: rootRef.current,
+                      contentElement,
+                    });
+                  }}
+                  onFullScroll={onFullScroll}
+                  fullScrollThreshold={fullScrollThreshold}
+                  navBarProps={navBarProps}
+                />
+              </LayerProvider>
             )
         }
       </div>

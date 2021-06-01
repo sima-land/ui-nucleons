@@ -21,7 +21,7 @@ describe('<Alert />', () => {
         className='test-class'
         children='Main content'
         footer='Footer content'
-        inLayer={false}
+        inPortal={false}
       />
     );
 

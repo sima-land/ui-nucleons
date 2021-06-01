@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import { Layer } from '../layer';
+import { Portal } from '../portal';
 import { placeTooltip } from './utils';
 import classnames from 'classnames/bind';
 import { useOutsideClick } from '../hooks';
@@ -94,7 +94,7 @@ export const WithTooltip: React.FC<Props> = ({
         * https://github.com/facebook/react/issues/11387
         */}
       {shown && (
-        <Layer defineRoot={() => getScrollParent(holderRef.current)}>
+        <Portal defineRoot={() => getScrollParent(holderRef.current)}>
           <Tooltip
             onDismiss={onDismiss}
             children={tooltipChildren}
@@ -102,7 +102,7 @@ export const WithTooltip: React.FC<Props> = ({
             inline={inline}
             holderRef={holderRef}
           />
-        </Layer>
+        </Portal>
       )}
     </>
   );

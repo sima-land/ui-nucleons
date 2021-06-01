@@ -17,7 +17,7 @@ const Template: Story<ModalProps> = props => {
       </Button>
 
       {opened && (
-        <Modal withLayer onClose={() => toggleModal(false)} {...props}>
+        <Modal inPortal onClose={() => toggleModal(false)} {...props}>
           <Modal.Header divided title='Модальное окно' />
           <Modal.Body>
             <div style={{ padding: 24 }}>
@@ -68,7 +68,7 @@ export const SizeXL = Template.bind(null, {
 });
 
 export const Fullscreen: Story = () => (
-  <Modal size='fullscreen' withLayer>
+  <Modal size='fullscreen' inPortal>
     <Modal.Header divided title='Полноэкранное модальное окно' />
     <Modal.Body>
       <div style={{ height: '100%', background: '#eee' }}>
@@ -95,7 +95,7 @@ export const Fullscreen: Story = () => (
 );
 
 export const WithoutBars: Story = () => (
-  <Modal size='s' height={320} withLayer>
+  <Modal size='s' height={320} inPortal>
     <Modal.Body>
       <div style={{ padding: 24 }}>
         Содержимое модального окна
@@ -134,7 +134,7 @@ export const DynamicHeight: Story<ModalProps> = () => {
 };
 
 export const WithScroll: Story = () => (
-  <Modal size='s' height={360} withLayer>
+  <Modal size='s' height={360} inPortal>
     <Modal.Header divided title='Проверка прокрутки' />
     <Modal.Body>
       <div style={{ padding: 24 }}>

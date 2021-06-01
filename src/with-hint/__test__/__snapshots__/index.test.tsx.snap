@@ -25,14 +25,14 @@ exports[`<WithHint /> should renders correctly 2`] = `
   >
     Opener
   </div>
-  <Layer>
+  <Portal>
     <Portal
       containerInfo={
         <div>
           <div
             class="root hint top"
             data-testid="hint"
-            style="left: 0px; top: -4px;"
+            style="z-index: 1; left: 0px; top: -4px;"
           >
             <div
               class="body shadow-z4"
@@ -58,10 +58,20 @@ exports[`<WithHint /> should renders correctly 2`] = `
         <ForwardRef
           className="hint hidden"
           direction="top"
+          style={
+            Object {
+              "zIndex": 1,
+            }
+          }
         >
           <div
             className="root hint hidden top"
             data-testid="hint"
+            style={
+              Object {
+                "zIndex": 1,
+              }
+            }
           >
             <div
               className="body shadow-z4"
@@ -72,7 +82,7 @@ exports[`<WithHint /> should renders correctly 2`] = `
         </ForwardRef>
       </PositioningHint>
     </Portal>
-  </Layer>
+  </Portal>
 </WithHint>
 `;
 

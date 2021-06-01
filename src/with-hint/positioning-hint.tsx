@@ -3,6 +3,7 @@ import { Hint, HintProps } from '../hint';
 import { PlaceAt } from './utils';
 import classnames from 'classnames/bind';
 import styles from './positioning-hint.scss';
+import { useLayer } from '../helpers/layer';
 
 const cx = classnames.bind(styles);
 
@@ -20,6 +21,7 @@ export const PositioningHint = ({
   direction,
   openerRef,
 }: Props) => {
+  const layer = useLayer();
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -30,8 +32,12 @@ export const PositioningHint = ({
   }, [direction, children]);
 
   return (
-    <Hint ref={ref} direction={direction} className={cx('hint', 'hidden')}>
-      {children}
-    </Hint>
+    <Hint
+      ref={ref}
+      direction={direction}
+      className={cx('hint', 'hidden')}
+      style={{ zIndex: layer + 1 }}
+      children={children}
+    />
   );
 };
