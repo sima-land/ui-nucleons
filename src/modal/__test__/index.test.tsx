@@ -137,9 +137,9 @@ describe('<Modal />', () => {
     });
   });
 
-  it('should renders in layer', () => {
+  it('should renders in portal', () => {
     const wrapper = mount(
-      <Modal withLayer />
+      <Modal inPortal />
     );
 
     expect(wrapper).toMatchSnapshot();

@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-export interface Props {
+export interface PortalProps {
 
   /** Вернет элемент, в который нужно вывести содержимое через портал. */
   defineRoot?: () => HTMLElement
@@ -15,7 +15,7 @@ export interface Props {
  * @param props Свойства.
  * @return Элемент.
  */
-export const Layer: React.FC<Props> = ({ children, defineRoot = () => document.body }) => {
+export const Portal: React.FC<PortalProps> = ({ children, defineRoot = () => document.body }) => {
   const [mounted, setMounted] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>();
 

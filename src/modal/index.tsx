@@ -4,10 +4,11 @@ import { TopBarSize, TOP_BAR_HEIGHT } from '../top-bar';
 import { BottomBarProps, BOTTOM_BAR_DEFAULTS, BOTTOM_BAR_HEIGHT } from '../bottom-bar';
 import { defineSlots, useCloseHandler, useScrollDisable } from './utils';
 import { BoxShadow } from '../styling/shadows';
-import { Layer } from '../layer';
+import { Portal } from '../portal';
 import { CustomScrollbar } from '../_internal/custom-scrollbar';
 import { isNumber } from 'lodash';
 import { ModalBody, ModalFooter, ModalHeader, ModalHeaderProps } from './slots';
+import { LayerProvider, useLayer } from '../helpers/layer';
 import classnames from 'classnames/bind';
 import styles from './modal.scss';
 
@@ -40,7 +41,7 @@ export interface ModalProps {
   size?: ModalSize
 
   /** Нужно ли выводить элемент в Layer (при SSR необходимо указать false). */
-  withLayer?: boolean
+  inPortal?: boolean
 
   /** Нужно ли блокировать прокрутку body при показе. */
   withScrollDisable?: boolean
@@ -51,7 +52,6 @@ export interface ModalProps {
 
 export interface ModalComponent {
   (props: ModalProps): JSX.Element
-
   Header: typeof ModalHeader
   Body: typeof ModalBody
   Footer: typeof ModalFooter
@@ -64,20 +64,21 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export const Modal = ({
+export const Modal: ModalComponent = ({
   children,
   height,
   onClose,
   scrollDisableOptions = { reserveScrollBarGap: true },
   size = 'm',
-  withLayer,
+  inPortal,
   withScrollDisable = true,
   'data-testid': testId = 'modal',
-}: ModalProps) => {
+}) => {
+  const layer = useLayer() + 100;
   const rootRef = useScrollDisable<HTMLDivElement>(withScrollDisable, scrollDisableOptions);
   const handleClose = useCloseHandler(onClose);
 
-  const Wrapper = withLayer ? Layer : Fragment;
+  const Wrapper = inPortal ? Portal : Fragment;
 
   const fullscreen = size === 'fullscreen';
 
@@ -107,6 +108,7 @@ export const Modal = ({
         ref={rootRef}
         className={cx('overlay')}
         data-testid='modal:overlay'
+        style={{ zIndex: layer }} // z-index именно здесь из-за position: fixed
         {...handleClose}
       >
         <div
@@ -122,11 +124,13 @@ export const Modal = ({
             size: topBarSize,
           })}
 
-          <CustomScrollbar className={cx('body')} overflow={{ x: 'h', y: 's' }}>
-            <div className={cx('main')}>
-              {content}
-            </div>
-          </CustomScrollbar>
+          <LayerProvider value={layer}>
+            <CustomScrollbar className={cx('body')} overflow={{ x: 'h', y: 's' }}>
+              <div className={cx('main')}>
+                {content}
+              </div>
+            </CustomScrollbar>
+          </LayerProvider>
 
           {footer && cloneElement<BottomBarProps>(footer, {
             size: fullscreen ? 'l' : footer.props.size,

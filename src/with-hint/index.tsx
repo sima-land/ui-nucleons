@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { HintProps } from '../hint';
-import { Layer } from '../layer';
+import { Portal } from '../portal';
 import { PositioningHint } from './positioning-hint';
 import { onParentScroll } from './utils';
 
@@ -59,13 +59,13 @@ export const WithHint = ({
       {children(openerRef, toggle)}
 
       {shown && hint && (
-        <Layer>
+        <Portal>
           <PositioningHint
             openerRef={openerRef}
             direction={direction}
             children={hint}
           />
-        </Layer>
+        </Portal>
       )}
     </>
   );

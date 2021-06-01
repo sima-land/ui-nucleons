@@ -4,7 +4,7 @@ exports[`<Alert /> should handle props 1`] = `
 <Alert
   className="test-class"
   footer="Footer content"
-  inLayer={false}
+  inPortal={false}
   navBarProps={
     Object {
       "subtitle": "Subtitle text",
@@ -62,7 +62,7 @@ exports[`<Alert /> should handle props 1`] = `
 
 exports[`<Alert /> should renders without props 1`] = `
 <Alert>
-  <Layer>
+  <Portal>
     <Portal
       containerInfo={
         <div>
@@ -92,6 +92,6 @@ exports[`<Alert /> should renders without props 1`] = `
         </div>
       </div>
     </Portal>
-  </Layer>
+  </Portal>
 </Alert>
 `;

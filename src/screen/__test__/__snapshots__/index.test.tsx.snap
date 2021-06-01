@@ -11,12 +11,13 @@ exports[`<Screen /> should handle "loading/loadingOverlayProps" props 1`] = `
     }
   }
 >
-  <Layer>
+  <Portal>
     <Portal
       containerInfo={
         <div>
           <div
             class="screen full-width"
+            style="z-index: 300;"
           >
             <div
               class="loading-overlay fill"
@@ -44,6 +45,11 @@ exports[`<Screen /> should handle "loading/loadingOverlayProps" props 1`] = `
     >
       <div
         className="screen full-width"
+        style={
+          Object {
+            "zIndex": 300,
+          }
+        }
       >
         <LoadingOverlay
           spinnerProps={
@@ -79,7 +85,7 @@ exports[`<Screen /> should handle "loading/loadingOverlayProps" props 1`] = `
         </LoadingOverlay>
       </div>
     </Portal>
-  </Layer>
+  </Portal>
 </Screen>
 `;
 
@@ -88,12 +94,13 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
   loading={true}
   loadingArea="content"
 >
-  <Layer>
+  <Portal>
     <Portal
       containerInfo={
         <div>
           <div
             class="screen full-width"
+            style="z-index: 300;"
           >
             <div
               class="nav-bar inner-border-bottom"
@@ -175,6 +182,11 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
     >
       <div
         className="screen full-width"
+        style={
+          Object {
+            "zIndex": 300,
+          }
+        }
       >
         <ScreenLayout
           childrenRef={[Function]}
@@ -312,7 +324,7 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
         </ScreenLayout>
       </div>
     </Portal>
-  </Layer>
+  </Portal>
 </Screen>
 `;
 
@@ -326,12 +338,13 @@ exports[`<Screen /> should handle props 1`] = `
   withBackButton={true}
   withCloseButton={true}
 >
-  <Layer>
+  <Portal>
     <Portal
       containerInfo={
         <div>
           <div
             class="screen full-width"
+            style="z-index: 300;"
           >
             <div
               class="nav-bar inner-border-bottom"
@@ -441,6 +454,11 @@ exports[`<Screen /> should handle props 1`] = `
     >
       <div
         className="screen full-width"
+        style={
+          Object {
+            "zIndex": 300,
+          }
+        }
       >
         <ScreenLayout
           childrenRef={[Function]}
@@ -620,18 +638,19 @@ exports[`<Screen /> should handle props 1`] = `
         </ScreenLayout>
       </div>
     </Portal>
-  </Layer>
+  </Portal>
 </Screen>
 `;
 
 exports[`<Screen /> should render without props 1`] = `
 <Screen>
-  <Layer>
+  <Portal>
     <Portal
       containerInfo={
         <div>
           <div
             class="screen full-width"
+            style="z-index: 300;"
           >
             <div
               class="nav-bar inner-border-bottom"
@@ -691,6 +710,11 @@ exports[`<Screen /> should render without props 1`] = `
     >
       <div
         className="screen full-width"
+        style={
+          Object {
+            "zIndex": 300,
+          }
+        }
       >
         <ScreenLayout
           childrenRef={[Function]}
@@ -791,7 +815,7 @@ exports[`<Screen /> should render without props 1`] = `
         </ScreenLayout>
       </div>
     </Portal>
-  </Layer>
+  </Portal>
 </Screen>
 `;
 
@@ -810,12 +834,13 @@ exports[`<Screen /> should renders without close button 1`] = `
   title="Test title"
   withCloseButton={false}
 >
-  <Layer>
+  <Portal>
     <Portal
       containerInfo={
         <div>
           <div
             class="screen full-width"
+            style="z-index: 300;"
           >
             <div
               class="nav-bar inner-border-bottom"
@@ -874,6 +899,11 @@ exports[`<Screen /> should renders without close button 1`] = `
     >
       <div
         className="screen full-width"
+        style={
+          Object {
+            "zIndex": 300,
+          }
+        }
       >
         <ScreenLayout
           childrenRef={[Function]}
@@ -973,6 +1003,6 @@ exports[`<Screen /> should renders without close button 1`] = `
         </ScreenLayout>
       </div>
     </Portal>
-  </Layer>
+  </Portal>
 </Screen>
 `;

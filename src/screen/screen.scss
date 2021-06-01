@@ -12,7 +12,6 @@
   box-sizing: border-box;
   background-color: #fff;
   outline: 100px solid #fff;
-  z-index: 300; // Для интеграции с монолитом.
   .content {
     height: 0;
     overflow-y: auto;

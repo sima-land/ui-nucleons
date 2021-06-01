@@ -5,7 +5,7 @@ import { act } from 'react-dom/test-utils';
 import { Screen, takeScrollableElement, setRefValue } from '../index';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { ScreenLayout } from '../screen-layout';
-import { Layer } from '../../layer';
+import { Portal } from '../../portal';
 
 jest.mock('body-scroll-lock', () => {
   const original = jest.requireActual('body-scroll-lock');
@@ -168,14 +168,14 @@ describe('setRefElement()', () => {
     const wrapper = mount(
       <Screen />
     );
-    expect(wrapper.find(Layer)).toHaveLength(1);
+    expect(wrapper.find(Portal)).toHaveLength(1);
   });
 
   it('should not render Layer', () => {
     const wrapper = mount(
-      <Screen withLayer={false} />
+      <Screen inPortal={false} />
     );
 
-    expect(wrapper.find(Layer)).toHaveLength(0);
+    expect(wrapper.find(Portal)).toHaveLength(0);
   });
 });

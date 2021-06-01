@@ -12,10 +12,20 @@ exports[`<WithHint /> should not place itself when "openerRef" is empty 1`] = `
   <ForwardRef
     className="hint hidden"
     direction="top"
+    style={
+      Object {
+        "zIndex": 1,
+      }
+    }
   >
     <div
       className="root hint hidden top"
       data-testid="hint"
+      style={
+        Object {
+          "zIndex": 1,
+        }
+      }
     >
       <div
         className="body shadow-z4"
@@ -39,10 +49,20 @@ exports[`<WithHint /> should renders correctly 1`] = `
   <ForwardRef
     className="hint hidden"
     direction="top"
+    style={
+      Object {
+        "zIndex": 1,
+      }
+    }
   >
     <div
       className="root hint hidden top"
       data-testid="hint"
+      style={
+        Object {
+          "zIndex": 1,
+        }
+      }
     >
       <div
         className="body shadow-z4"

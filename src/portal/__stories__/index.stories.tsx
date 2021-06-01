@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '../../button';
-import { Layer } from '..';
+import { Portal } from '..';
 
 const styles: Record<string, React.CSSProperties> = {
   overlay: {
@@ -26,8 +26,8 @@ const styles: Record<string, React.CSSProperties> = {
 };
 
 export default {
-  title: 'service/Layer',
-  component: Layer,
+  title: 'service/Portal',
+  component: Portal,
   parameters: {
     layout: 'padded',
   },
@@ -46,7 +46,7 @@ export const Primary = () => {
       </Button>
 
       {isModalOpen && (
-        <Layer>
+        <Portal>
           <div style={styles.overlay}>
             <div style={styles.modal}>
               <h2 style={styles.title}>Тестовое окно </h2>
@@ -54,7 +54,7 @@ export const Primary = () => {
               <Button size='s' onClick={() => toggleModal(false)}>Закрыть</Button>
             </div>
           </div>
-        </Layer>
+        </Portal>
       )}
     </>
   );

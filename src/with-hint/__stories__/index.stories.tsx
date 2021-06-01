@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { WithHint, useTempHint } from '..';
+import { Button } from '../../button';
 import { Modal } from '../../modal';
 
 const styles: Record<string, React.CSSProperties> = {
@@ -82,35 +83,58 @@ export const AutoCloseHook = () => {
 };
 
 export const InScrolledParent = () => {
+  const [modalOpened, toggleModal] = useState<boolean>(true);
   const [bind, toggle] = useTempHint();
 
   return (
-    <Modal size='s' height={360}>
-      <Modal.Header divided title='Тестовое окно' />
-      <Modal.Body>
-        <div style={styles.modalContent}>
-          {[...Array(32).keys()].map(i => (
-            <p key={i}>Прокрути вниз</p>
-          ))}
+    <>
+      <div
+        style={{
+          width: '960px',
+          display: 'flex',
+          alignItems: 'center',
+          height: 'calc(100vh - 100px)',
+          margin: '0 auto',
+        }}
+      >
+        <WithHint hint='Проверочный хинт!' direction='right' {...bind}>
+          {ref => (
+            <Button ref={ref as any} onClick={() => toggleModal(true)}>
+              Открыть окно
+            </Button>
+          )}
+        </WithHint>
+      </div>
 
-          <WithHint hint='Проверочный хинт!' direction='right' {...bind}>
-            {ref => (
-              <div
-                ref={ref as any}
-                onClick={() => toggle(true)}
-                style={{ ...styles.opener, marginBottom: 48 }}
-              >
-                Нажми на меня
-              </div>
-            )}
-          </WithHint>
+      {modalOpened && (
+        <Modal size='s' height={360} onClose={() => toggleModal(false)}>
+          <Modal.Header divided title='Тестовое окно' />
+          <Modal.Body>
+            <div style={styles.modalContent}>
+              {[...Array(32).keys()].map(i => (
+                <p key={i}>Прокрути вниз</p>
+              ))}
 
-          {[...Array(32).keys()].map(i => (
-            <p key={i}>Можешь прокрутить еще</p>
-          ))}
-        </div>
-      </Modal.Body>
-    </Modal>
+              <WithHint hint='Проверочный хинт!' direction='right' {...bind}>
+                {ref => (
+                  <div
+                    ref={ref as any}
+                    onClick={() => toggle(true)}
+                    style={{ ...styles.opener, marginBottom: 48 }}
+                  >
+                    Нажми на меня
+                  </div>
+                )}
+              </WithHint>
+
+              {[...Array(32).keys()].map(i => (
+                <p key={i}>Можешь прокрутить еще</p>
+              ))}
+            </div>
+          </Modal.Body>
+        </Modal>
+      )}
+    </>
   );
 };
 

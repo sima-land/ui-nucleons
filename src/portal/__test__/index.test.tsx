@@ -2,23 +2,23 @@ import React, { useState } from 'react';
 import { mount } from 'enzyme';
 import { render } from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import { Layer, Props } from '..';
+import { Portal, PortalProps } from '..';
 
 describe('<Layer />', () => {
   const TestComponent = ({
-    defaultWithLayer = false,
+    defaultWithPortal = false,
     children,
-    layerProps,
-  }: { defaultWithLayer?: boolean, children?: React.ReactNode, layerProps?: Props }) => {
-    const [withLayer, toggleLayer] = useState(defaultWithLayer);
+    portalProps,
+  }: { defaultWithPortal?: boolean, children?: React.ReactNode, portalProps?: PortalProps }) => {
+    const [withPortal, togglePortal] = useState(defaultWithPortal);
 
     return (
       <div className='test-app'>
-        <button onClick={() => toggleLayer(!withLayer)}>Toggle layer</button>
-        {withLayer && (
-          <Layer {...layerProps}>
+        <button onClick={() => togglePortal(!withPortal)}>Toggle layer</button>
+        {withPortal && (
+          <Portal {...portalProps}>
             {children}
-          </Layer>
+          </Portal>
         )}
       </div>
     );
@@ -63,11 +63,11 @@ describe('<Layer />', () => {
     act(() => {
       render(
         <TestComponent
-          defaultWithLayer
+          defaultWithPortal
           children={(
             <h2 className='test-title'>New layer</h2>
           )}
-          layerProps={{
+          portalProps={{
             defineRoot: () => otherContainer,
           }}
         />,

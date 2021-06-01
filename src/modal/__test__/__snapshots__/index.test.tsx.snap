@@ -7,6 +7,11 @@ exports[`<Modal /> renders correct without close button and customClasses 1`] = 
     data-testid="modal:overlay"
     onMouseDown={[Function]}
     onMouseUp={[Function]}
+    style={
+      Object {
+        "zIndex": 100,
+      }
+    }
   >
     <div
       className="modal size-m shadow-z4"
@@ -105,6 +110,11 @@ exports[`<Modal /> should handle "height" prop 1`] = `
     data-testid="modal:overlay"
     onMouseDown={[Function]}
     onMouseUp={[Function]}
+    style={
+      Object {
+        "zIndex": 100,
+      }
+    }
   >
     <div
       className="modal size-m shadow-z4"
@@ -201,6 +211,11 @@ exports[`<Modal /> should handle extended props 1`] = `
     data-testid="modal:overlay"
     onMouseDown={[Function]}
     onMouseUp={[Function]}
+    style={
+      Object {
+        "zIndex": 100,
+      }
+    }
   >
     <div
       className="modal size-m shadow-z4"
@@ -357,6 +372,11 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
     data-testid="modal:overlay"
     onMouseDown={[Function]}
     onMouseUp={[Function]}
+    style={
+      Object {
+        "zIndex": 100,
+      }
+    }
   >
     <div
       className="modal size-m shadow-z4"
@@ -518,6 +538,11 @@ exports[`<Modal /> should render different sizes properly 1`] = `
     data-testid="modal:overlay"
     onMouseDown={[Function]}
     onMouseUp={[Function]}
+    style={
+      Object {
+        "zIndex": 100,
+      }
+    }
   >
     <div
       className="modal size-s shadow-z4"
@@ -616,6 +641,11 @@ exports[`<Modal /> should render different sizes properly 2`] = `
     data-testid="modal:overlay"
     onMouseDown={[Function]}
     onMouseUp={[Function]}
+    style={
+      Object {
+        "zIndex": 100,
+      }
+    }
   >
     <div
       className="modal size-m shadow-z4"
@@ -714,6 +744,11 @@ exports[`<Modal /> should render different sizes properly 3`] = `
     data-testid="modal:overlay"
     onMouseDown={[Function]}
     onMouseUp={[Function]}
+    style={
+      Object {
+        "zIndex": 100,
+      }
+    }
   >
     <div
       className="modal size-l shadow-z4"
@@ -812,6 +847,11 @@ exports[`<Modal /> should render different sizes properly 4`] = `
     data-testid="modal:overlay"
     onMouseDown={[Function]}
     onMouseUp={[Function]}
+    style={
+      Object {
+        "zIndex": 100,
+      }
+    }
   >
     <div
       className="modal size-xl shadow-z4"
@@ -910,6 +950,11 @@ exports[`<Modal /> should render different sizes properly 5`] = `
     data-testid="modal:overlay"
     onMouseDown={[Function]}
     onMouseUp={[Function]}
+    style={
+      Object {
+        "zIndex": 100,
+      }
+    }
   >
     <div
       className="modal size-fullscreen"
@@ -996,17 +1041,18 @@ exports[`<Modal /> should render different sizes properly 5`] = `
 </Modal>
 `;
 
-exports[`<Modal /> should renders in layer 1`] = `
+exports[`<Modal /> should renders in portal 1`] = `
 <Modal
-  withLayer={true}
+  inPortal={true}
 >
-  <Layer>
+  <Portal>
     <Portal
       containerInfo={
         <div>
           <div
             class="overlay"
             data-testid="modal:overlay"
+            style="z-index: 100;"
           >
             <div
               class="modal size-m shadow-z4"
@@ -1143,6 +1189,11 @@ exports[`<Modal /> should renders in layer 1`] = `
         data-testid="modal:overlay"
         onMouseDown={[Function]}
         onMouseUp={[Function]}
+        style={
+          Object {
+            "zIndex": 100,
+          }
+        }
       >
         <div
           className="modal size-m shadow-z4"
@@ -1230,7 +1281,7 @@ exports[`<Modal /> should renders in layer 1`] = `
         </div>
       </div>
     </Portal>
-  </Layer>
+  </Portal>
 </Modal>
 `;
 
@@ -1243,6 +1294,11 @@ exports[`<Modal /> should renders with fullscreen size and footer 1`] = `
     data-testid="modal:overlay"
     onMouseDown={[Function]}
     onMouseUp={[Function]}
+    style={
+      Object {
+        "zIndex": 100,
+      }
+    }
   >
     <div
       className="modal size-fullscreen"
