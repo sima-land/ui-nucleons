@@ -19,6 +19,9 @@ export interface CustomScrollbarProps {
 
   /** Опции переполнения. */
   overflow?: Options['overflowBehavior']
+
+  /** Необходимо поставить true если нужно использовать внутри flexbox-родителя. */
+  inFlexBox?: boolean
 }
 
 const cx = classnames.bind(styles);
@@ -33,10 +36,11 @@ export const CustomScrollbar = ({
   className,
   children,
   overflow,
+  inFlexBox = false,
 }: CustomScrollbarProps) => (
   <OverlayScrollbarsComponent
     style={style}
-    className={cx('custom-scrollbar', className)}
+    className={cx('custom-scrollbar', className, { 'os-host-flexbox': inFlexBox })}
     options={{ overflowBehavior: overflow }}
   >
     {children}

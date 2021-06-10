@@ -26,6 +26,7 @@ exports[`<Modal /> renders correct without close button and customClasses 1`] = 
     >
       <CustomScrollbar
         className="body"
+        inFlexBox={true}
         overflow={
           Object {
             "x": "h",
@@ -34,7 +35,7 @@ exports[`<Modal /> renders correct without close button and customClasses 1`] = 
         }
       >
         <OverlayScrollbarsComponent
-          className="custom-scrollbar body"
+          className="custom-scrollbar body os-host-flexbox"
           options={
             Object {
               "overflowBehavior": Object {
@@ -129,6 +130,7 @@ exports[`<Modal /> should handle "height" prop 1`] = `
     >
       <CustomScrollbar
         className="body"
+        inFlexBox={true}
         overflow={
           Object {
             "x": "h",
@@ -137,7 +139,7 @@ exports[`<Modal /> should handle "height" prop 1`] = `
         }
       >
         <OverlayScrollbarsComponent
-          className="custom-scrollbar body"
+          className="custom-scrollbar body os-host-flexbox"
           options={
             Object {
               "overflowBehavior": Object {
@@ -268,6 +270,7 @@ exports[`<Modal /> should handle extended props 1`] = `
       </ModalHeader>
       <CustomScrollbar
         className="body"
+        inFlexBox={true}
         overflow={
           Object {
             "x": "h",
@@ -276,7 +279,7 @@ exports[`<Modal /> should handle extended props 1`] = `
         }
       >
         <OverlayScrollbarsComponent
-          className="custom-scrollbar body"
+          className="custom-scrollbar body os-host-flexbox"
           options={
             Object {
               "overflowBehavior": Object {
@@ -454,6 +457,7 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
       </ModalHeader>
       <CustomScrollbar
         className="body"
+        inFlexBox={true}
         overflow={
           Object {
             "x": "h",
@@ -462,7 +466,7 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
         }
       >
         <OverlayScrollbarsComponent
-          className="custom-scrollbar body"
+          className="custom-scrollbar body os-host-flexbox"
           options={
             Object {
               "overflowBehavior": Object {
@@ -557,6 +561,7 @@ exports[`<Modal /> should render different sizes properly 1`] = `
     >
       <CustomScrollbar
         className="body"
+        inFlexBox={true}
         overflow={
           Object {
             "x": "h",
@@ -565,7 +570,7 @@ exports[`<Modal /> should render different sizes properly 1`] = `
         }
       >
         <OverlayScrollbarsComponent
-          className="custom-scrollbar body"
+          className="custom-scrollbar body os-host-flexbox"
           options={
             Object {
               "overflowBehavior": Object {
@@ -660,6 +665,7 @@ exports[`<Modal /> should render different sizes properly 2`] = `
     >
       <CustomScrollbar
         className="body"
+        inFlexBox={true}
         overflow={
           Object {
             "x": "h",
@@ -668,7 +674,7 @@ exports[`<Modal /> should render different sizes properly 2`] = `
         }
       >
         <OverlayScrollbarsComponent
-          className="custom-scrollbar body"
+          className="custom-scrollbar body os-host-flexbox"
           options={
             Object {
               "overflowBehavior": Object {
@@ -763,6 +769,7 @@ exports[`<Modal /> should render different sizes properly 3`] = `
     >
       <CustomScrollbar
         className="body"
+        inFlexBox={true}
         overflow={
           Object {
             "x": "h",
@@ -771,7 +778,7 @@ exports[`<Modal /> should render different sizes properly 3`] = `
         }
       >
         <OverlayScrollbarsComponent
-          className="custom-scrollbar body"
+          className="custom-scrollbar body os-host-flexbox"
           options={
             Object {
               "overflowBehavior": Object {
@@ -866,6 +873,7 @@ exports[`<Modal /> should render different sizes properly 4`] = `
     >
       <CustomScrollbar
         className="body"
+        inFlexBox={true}
         overflow={
           Object {
             "x": "h",
@@ -874,7 +882,7 @@ exports[`<Modal /> should render different sizes properly 4`] = `
         }
       >
         <OverlayScrollbarsComponent
-          className="custom-scrollbar body"
+          className="custom-scrollbar body os-host-flexbox"
           options={
             Object {
               "overflowBehavior": Object {
@@ -969,6 +977,7 @@ exports[`<Modal /> should render different sizes properly 5`] = `
     >
       <CustomScrollbar
         className="body"
+        inFlexBox={true}
         overflow={
           Object {
             "x": "h",
@@ -977,7 +986,7 @@ exports[`<Modal /> should render different sizes properly 5`] = `
         }
       >
         <OverlayScrollbarsComponent
-          className="custom-scrollbar body"
+          className="custom-scrollbar body os-host-flexbox"
           options={
             Object {
               "overflowBehavior": Object {
@@ -1060,7 +1069,7 @@ exports[`<Modal /> should renders in portal 1`] = `
               style="--header-height: 0px; --footer-height: 16px;"
             >
               <div
-                class="os-host os-host-foreign os-theme-dark os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden custom-scrollbar body"
+                class="os-host os-host-foreign os-theme-dark os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden custom-scrollbar body os-host-flexbox"
               >
                 <div
                   class="os-resize-observer-host"
@@ -1208,6 +1217,7 @@ exports[`<Modal /> should renders in portal 1`] = `
         >
           <CustomScrollbar
             className="body"
+            inFlexBox={true}
             overflow={
               Object {
                 "x": "h",
@@ -1216,7 +1226,7 @@ exports[`<Modal /> should renders in portal 1`] = `
             }
           >
             <OverlayScrollbarsComponent
-              className="custom-scrollbar body"
+              className="custom-scrollbar body os-host-flexbox"
               options={
                 Object {
                   "overflowBehavior": Object {
@@ -1313,6 +1323,7 @@ exports[`<Modal /> should renders with fullscreen size and footer 1`] = `
     >
       <CustomScrollbar
         className="body"
+        inFlexBox={true}
         overflow={
           Object {
             "x": "h",
@@ -1321,7 +1332,7 @@ exports[`<Modal /> should renders with fullscreen size and footer 1`] = `
         }
       >
         <OverlayScrollbarsComponent
-          className="custom-scrollbar body"
+          className="custom-scrollbar body os-host-flexbox"
           options={
             Object {
               "overflowBehavior": Object {

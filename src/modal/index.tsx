@@ -125,7 +125,7 @@ export const Modal: ModalComponent = ({
           })}
 
           <LayerProvider value={layer}>
-            <CustomScrollbar className={cx('body')} overflow={{ x: 'h', y: 's' }}>
+            <CustomScrollbar inFlexBox className={cx('body')} overflow={{ x: 'h', y: 's' }}>
               <div className={cx('main')}>
                 {content}
               </div>
