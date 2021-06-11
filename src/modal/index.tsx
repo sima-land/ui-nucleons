@@ -5,7 +5,6 @@ import { BottomBarProps, BOTTOM_BAR_DEFAULTS, BOTTOM_BAR_HEIGHT } from '../botto
 import { defineSlots, useCloseHandler, useScrollDisable } from './utils';
 import { BoxShadow } from '../styling/shadows';
 import { Portal } from '../portal';
-import { CustomScrollbar } from '../_internal/custom-scrollbar';
 import { isNumber } from 'lodash';
 import { ModalBody, ModalFooter, ModalHeader, ModalHeaderProps } from './slots';
 import { LayerProvider, useLayer } from '../helpers/layer';
@@ -125,11 +124,7 @@ export const Modal: ModalComponent = ({
           })}
 
           <LayerProvider value={layer}>
-            <CustomScrollbar inFlexBox className={cx('body')} overflow={{ x: 'h', y: 's' }}>
-              <div className={cx('main')}>
-                {content}
-              </div>
-            </CustomScrollbar>
+            {content}
           </LayerProvider>
 
           {footer && cloneElement<BottomBarProps>(footer, {

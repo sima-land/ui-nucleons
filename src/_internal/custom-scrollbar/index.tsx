@@ -22,6 +22,12 @@ export interface CustomScrollbarProps {
 
   /** Необходимо поставить true если нужно использовать внутри flexbox-родителя. */
   inFlexBox?: boolean
+
+  /** Сработает при полной прокрутке. */
+  onFullScroll?: () => void
+
+  /** Запас для определения полной прокрутки. */
+  fullScrollThreshold?: number
 }
 
 const cx = classnames.bind(styles);
@@ -37,12 +43,38 @@ export const CustomScrollbar = ({
   children,
   overflow,
   inFlexBox = false,
+  onFullScroll,
+  fullScrollThreshold,
 }: CustomScrollbarProps) => (
   <OverlayScrollbarsComponent
     style={style}
     className={cx('custom-scrollbar', className, { 'os-host-flexbox': inFlexBox })}
-    options={{ overflowBehavior: overflow }}
+    options={{
+      overflowBehavior: overflow,
+      callbacks: onFullScroll
+        ? {
+          onScrollStop: HandleFullScroll(onFullScroll, fullScrollThreshold),
+        }
+        : undefined,
+    }}
   >
     {children}
   </OverlayScrollbarsComponent>
 );
+
+/**
+ * Возвращает обработчик прокрутки, который вызовет callback при полной прокрутке.
+ * @param callback Callback.
+ * @param threshold Запас.
+ * @return Обработчик.
+ */
+export const HandleFullScroll = (
+  callback: () => void,
+  threshold = 16
+) => (event: UIEvent | undefined) => {
+  const el = event?.target;
+
+  el instanceof Element
+    && el.scrollTop >= el.scrollHeight - el.clientHeight - threshold
+    && callback();
+};

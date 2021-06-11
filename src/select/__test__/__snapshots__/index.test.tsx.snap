@@ -151,6 +151,7 @@ exports[`Select should render loading state 1`] = `
             className="custom-scrollbar inner"
             options={
               Object {
+                "callbacks": undefined,
                 "overflowBehavior": Object {
                   "x": "h",
                   "y": "s",
@@ -549,6 +550,7 @@ exports[`Select should renders correctly 2`] = `
             className="custom-scrollbar inner"
             options={
               Object {
+                "callbacks": undefined,
                 "overflowBehavior": Object {
                   "x": "h",
                   "y": "s",
