@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomScrollbar should handle onFullScroll/fullScrollThreshold 1`] = `
+<CustomScrollbar
+  fullScrollThreshold={120}
+  onFullScroll={[MockFunction]}
+>
+  <OverlayScrollbarsComponent
+    className="custom-scrollbar"
+    options={
+      Object {
+        "callbacks": Object {
+          "onScrollStop": [Function],
+        },
+        "overflowBehavior": undefined,
+      }
+    }
+  >
+    <div
+      className="os-host"
+    >
+      <div
+        className="os-resize-observer-host"
+      />
+      <div
+        className="os-padding"
+      >
+        <div
+          className="os-viewport"
+        >
+          <div
+            className="os-content"
+          />
+        </div>
+      </div>
+      <div
+        className="os-scrollbar os-scrollbar-horizontal "
+      >
+        <div
+          className="os-scrollbar-track"
+        >
+          <div
+            className="os-scrollbar-handle"
+          />
+        </div>
+      </div>
+      <div
+        className="os-scrollbar os-scrollbar-vertical"
+      >
+        <div
+          className="os-scrollbar-track"
+        >
+          <div
+            className="os-scrollbar-handle"
+          />
+        </div>
+      </div>
+      <div
+        className="os-scrollbar-corner"
+      />
+    </div>
+  </OverlayScrollbarsComponent>
+</CustomScrollbar>
+`;

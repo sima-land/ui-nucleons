@@ -6,6 +6,7 @@ import { Clean } from '../../clean-buttons';
 import { DesktopLayout } from '../../layout';
 import { marginRight } from '../../styling/sizes';
 import { Box } from '../../box';
+import { action } from '@storybook/addon-actions';
 
 const Template: Story<ModalProps> = props => {
   const [opened, toggleModal] = useState<boolean>(true);
@@ -110,7 +111,7 @@ export const DynamicHeight: Story<ModalProps> = () => {
   return (
     <Modal>
       <Modal.Header divided title='Проверка высоты' />
-      <Modal.Body>
+      <Modal.Body onFullScroll={() => action('FULLY SCROLLED')()}>
         <div style={{ padding: '32px' }}>
           {[...Array(count).keys()].map(index => (
             <div
