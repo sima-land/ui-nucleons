@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames/bind';
-import styles from './area.scss';
+import styles from './area.module.scss';
 import UploadSVG from './upload.svg';
 import { COLORS } from '../colors';
 import { Link } from '../link';

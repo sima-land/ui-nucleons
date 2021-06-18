@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames/bind';
 import { MobileLayout } from '../layout';
 import { InnerBorder } from '../styling/borders';
-import styles from './bordered-layout.scss';
+import styles from './bordered-layout.module.scss';
 
 export interface Props {
 

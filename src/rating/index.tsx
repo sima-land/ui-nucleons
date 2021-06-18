@@ -3,7 +3,7 @@ import { getStars } from './utils';
 import { StarType } from './types';
 import classnames from 'classnames/bind';
 import StarSVG from './star.svg';
-import styles from './rating.scss';
+import styles from './rating.module.scss';
 
 export type StarSize = 's' | 'm';
 

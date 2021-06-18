@@ -1,4 +1,4 @@
-import classes from './shadows.scss';
+import classes from './shadows.module.scss';
 
 export const BoxShadow = {
   z1: classes['shadow-z1'],

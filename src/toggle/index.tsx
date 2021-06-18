@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import classnames from 'classnames/bind';
-import styles from './toggle.scss';
+import styles from './toggle.module.scss';
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 

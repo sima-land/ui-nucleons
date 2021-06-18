@@ -4,7 +4,7 @@ import { Box } from '../box';
 import { BaseInput, Props as BaseInputProps } from '../base-input';
 import { SmallRounds } from '../styling/shapes';
 import classnames from 'classnames/bind';
-import styles from './text-field.scss';
+import styles from './text-field.module.scss';
 import { marginTop } from '../styling/sizes';
 
 type Variant = 'desktop' | 'mobile';

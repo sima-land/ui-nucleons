@@ -10,7 +10,7 @@ import { useOutsideClick } from '../hooks';
 import { scrollToChild } from '../helpers/scroll-to-child';
 import { DropdownLoading } from '../_internal/dropdown-loading';
 import { isNull } from 'lodash';
-import styles from './autocomplete.scss';
+import styles from './autocomplete.module.scss';
 
 export interface Props extends Omit<TextFieldProps, 'ref' | 'value' | 'defaultValue'> {
 

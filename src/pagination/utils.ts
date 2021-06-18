@@ -1,5 +1,5 @@
 import classnames from 'classnames/bind';
-import classes from './pagination.scss';
+import classes from './pagination.module.scss';
 import range from 'lodash/range';
 
 interface IPageButton {

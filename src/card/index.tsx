@@ -3,7 +3,7 @@ import { Plate, PlateProps } from '../plate';
 import { CardContent, CardFooter, CardHeader } from './slots';
 import { CardContext, defineSlots } from './utils';
 import classnames from 'classnames';
-import styles from './card.scss';
+import styles from './card.module.scss';
 
 export type CardProps = PlateProps;
 

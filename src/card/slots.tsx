@@ -1,7 +1,7 @@
 import React, { cloneElement, isValidElement, useContext } from 'react';
 import { InnerBorder } from '../styling/borders';
 import classnames from 'classnames';
-import styles from './card.scss';
+import styles from './card.module.scss';
 import { TopBar, TopBarProps } from '../top-bar';
 import { PlateProps } from '../plate';
 import { MediumRounds, SmallRounds } from '../styling/shapes';

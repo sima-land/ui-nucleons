@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames/bind';
-import classes from './arrow-button.scss';
+import classes from './arrow-button.module.scss';
 import UpSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-up';
 import RightSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-right';
 import DownSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-down';

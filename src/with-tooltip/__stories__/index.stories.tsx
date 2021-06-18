@@ -3,7 +3,7 @@ import on from '../../helpers/on';
 import { Link } from '../../link';
 import { WithTooltip } from '..';
 import boundsOf from '../../helpers/bounds-of';
-import classes from './index.scss';
+import classes from './index.module.scss';
 
 const shortText = 'Это ось задних колёс.';
 
@@ -161,7 +161,7 @@ export const LargeAvailableAreaLargeTooltipContent = () => (
 export const InScrollableParent = () => (
   <div style={{ position: 'relative', marginTop: 20, height: 1200 }}>
     <div className={classes['fake-side-page']}>
-      <div className={classes['fake-side-page-inner']}>
+      <div>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi, vel.</p>
 
         <ReadyTooltip />

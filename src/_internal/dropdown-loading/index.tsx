@@ -1,6 +1,6 @@
 import React from 'react';
 import { Spinner } from '../../spinner';
-import styles from './index.scss';
+import styles from './index.module.scss';
 
 type Props = Omit<React.HTMLAttributes<HTMLDivElement>, 'className' | 'children'>;
 

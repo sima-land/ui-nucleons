@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames/bind';
 import { identity } from 'lodash';
 import { prop } from 'lodash/fp';
-import styles from './tabs.scss';
+import styles from './tabs.module.scss';
 
 const cx = classnames.bind(styles);
 

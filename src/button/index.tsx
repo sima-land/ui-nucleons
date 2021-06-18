@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { always, cond, eq, stubTrue } from 'lodash/fp';
 import classnames from 'classnames/bind';
-import classes from './button.scss';
+import classes from './button.module.scss';
 
 type Size = 's' | 'm';
 

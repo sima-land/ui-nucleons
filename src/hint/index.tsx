@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { BoxShadow } from '../styling/shadows';
 import classnames from 'classnames/bind';
-import styles from './hint.scss';
+import styles from './hint.module.scss';
 
 type Direction = 'top' | 'left' | 'bottom' | 'right';
 

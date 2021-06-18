@@ -1,6 +1,6 @@
 import React, { Children, isValidElement } from 'react';
 import classnames from 'classnames/bind';
-import classes from './clean-buttons.scss';
+import classes from './clean-buttons.module.scss';
 import { Link, Props as LinkProps } from '../link';
 
 export interface ButtonProps extends LinkProps {

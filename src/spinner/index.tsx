@@ -2,7 +2,7 @@ import React from 'react';
 import has from 'lodash/has';
 import classnames from 'classnames/bind';
 import { COLORS } from '../colors';
-import classes from './spinner.scss';
+import classes from './spinner.module.scss';
 
 type Color = 'brand-blue' | 'white';
 

@@ -1,5 +1,5 @@
 import classnames from 'classnames/bind';
-import classes from './screen.scss';
+import classes from './screen.module.scss';
 
 export type OrNil<T> = T | null | undefined;
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames/bind';
-import styles from './dropdown-item.scss';
+import styles from './dropdown-item.module.scss';
 
 const cx = classnames.bind(styles);
 

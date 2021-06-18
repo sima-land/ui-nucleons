@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import { Carousel } from '..';
 import Draggable from '../draggable';
 import DraggableEvent from '../helpers/draggable-event';
-import classes from '../carousel.scss';
+import classes from '../carousel.module.scss';
 import Point from '../../helpers/point';
 import { ArrowButton } from '../../arrow-button';
 import { act } from 'react-dom/test-utils';

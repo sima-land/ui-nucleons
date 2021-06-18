@@ -3,7 +3,7 @@ import { BoxShadow } from '../styling/shadows';
 import { MediumRounds } from '../styling/shapes';
 import { CustomScrollbar } from '../_internal/custom-scrollbar';
 import classnames from 'classnames/bind';
-import styles from './dropdown.scss';
+import styles from './dropdown.module.scss';
 
 interface DropdownStyle extends React.CSSProperties {
   '--dropdown-max-height'?: string

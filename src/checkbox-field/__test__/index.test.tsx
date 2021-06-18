@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { Checkbox } from '../../checkbox';
 import { CheckboxField } from '..';
-import classes from '../checkbox-field.scss';
+import classes from '../checkbox-field.module.scss';
 
 describe('<CheckboxField />', () => {
   it('should render without props', () => {

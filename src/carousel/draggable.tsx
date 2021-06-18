@@ -4,7 +4,7 @@ import DraggableEvent from './helpers/draggable-event';
 import { getTransitionStyle, getTranslateStyle } from '../helpers/styles';
 import { isMainMouseButton, isTouchEvent, getEventClientPos, EventWithPosition } from '../helpers/events';
 import classnames from 'classnames/bind';
-import classes from './draggable.scss';
+import classes from './draggable.module.scss';
 import on from '../helpers/on';
 
 export interface Control {

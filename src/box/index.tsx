@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames/bind';
-import classes from './box.scss';
+import classes from './box.module.scss';
 import * as Spacing from '../styling/sizes';
 import { bgColor as getBgColorClass } from '../styling/colors';
 import { COLORS, Token } from '../colors';

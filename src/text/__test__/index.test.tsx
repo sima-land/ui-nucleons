@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from '../index';
-import classes from '../text.scss';
+import classes from '../text.module.scss';
 import { shallow } from 'enzyme';
 import { COLORS } from '../../colors';
 import { LINE_HEIGHTS, SIZES } from '../../styling/fonts';
