@@ -1,6 +1,6 @@
 import React, { forwardRef, memo } from 'react';
 import classnames from 'classnames/bind';
-import classes from './text.scss';
+import classes from './text.module.scss';
 import { color as colorClass } from '../styling/colors';
 import {
   size as sizeClass,

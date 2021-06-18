@@ -11,7 +11,7 @@ import { ArrowButton, Props as ButtonProps } from '../arrow-button';
 import on from '../helpers/on';
 import classnames from 'classnames/bind';
 import DraggableEvent from './helpers/draggable-event';
-import styles from './carousel.scss';
+import styles from './carousel.module.scss';
 
 export interface Props {
 

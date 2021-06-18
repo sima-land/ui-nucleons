@@ -3,7 +3,7 @@ import { getNoIndex } from '../helpers/get-no-index';
 import { color as getColorClass, hoverColor } from '../styling/colors';
 import classnames from 'classnames/bind';
 import { Token } from '../colors';
-import styles from './link.scss';
+import styles from './link.module.scss';
 
 export interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 

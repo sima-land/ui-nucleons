@@ -4,7 +4,7 @@ import UncheckedSVG from './svg/unchecked.svg';
 import DisabledCheckedSVG from './svg/disabled-checked.svg';
 import DisabledUncheckedSVG from './svg/disabled-unchecked.svg';
 import classnames from 'classnames/bind';
-import classes from './checkbox.scss';
+import classes from './checkbox.module.scss';
 
 export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 

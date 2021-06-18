@@ -2,7 +2,7 @@ import React from 'react';
 import { Carousel } from '..';
 import { demoItems } from './demo-items';
 import classnames from 'classnames/bind';
-import classes from './test-carousel.scss';
+import classes from './test-carousel.module.scss';
 
 const cx = classnames.bind(classes);
 

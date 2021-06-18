@@ -1,4 +1,4 @@
-import classes from './shapes.scss';
+import classes from './shapes.module.scss';
 
 export const SmallRounds = {
   all: classes['rounds-sm__all'],

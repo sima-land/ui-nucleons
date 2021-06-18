@@ -4,7 +4,7 @@ import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
 import ArrowLeftSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-left';
 import { BottomBar, BottomBarProps } from '../bottom-bar';
 import { CustomScrollbar } from '../_internal/custom-scrollbar';
-import styles from './modal.scss';
+import styles from './modal.module.scss';
 
 export interface ModalHeaderProps extends TopBarProps {
   onBack?: () => void

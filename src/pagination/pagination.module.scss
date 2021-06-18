@@ -1,4 +1,4 @@
-@import '../colors';
+@use '../colors';
 
 .page-select-form {
   font-size: 12px;
@@ -23,7 +23,7 @@
   width: 38px;
   height: 38px;
   background: #fff;
-  border: 1px solid $gray12;
+  border: 1px solid colors.$gray12;
   font-size: 14px;
   outline: 0;
   box-sizing: border-box;
@@ -43,7 +43,7 @@
     }
   }
   &:disabled {
-    color: $gray24;
+    color: colors.$gray24;
   }
   &:not(.rounds-all) {
     margin-right: -1px;
@@ -54,8 +54,8 @@
   }
   &.selected {
     position: relative;
-    background: $gray87;
-    border-color: $gray87;
+    background: colors.$gray87;
+    border-color: colors.$gray87;
     color: #fff;
     cursor: default;
     &::after {

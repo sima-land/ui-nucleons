@@ -15,8 +15,24 @@ module.exports = async ({ config }) => {
 
   const rules = [
     ...baseRules,
+
+    // scss
     {
-      test: /\.(css|scss)$/,
+      test: /\.scss$/,
+      exclude: [
+        /node_modules/,
+        /\.module\.scss$/,
+      ],
+      use: [
+        'style-loader',
+        'css-loader',
+        'sass-loader',
+      ],
+    },
+
+    // css-модули
+    {
+      test: /\.module\.(css|scss)$/,
       exclude: /node_modules/,
       use: [
         'style-loader',
@@ -31,6 +47,7 @@ module.exports = async ({ config }) => {
         'sass-loader',
       ],
     },
+
     {
       test: /\.(woff|woff2|eot|ttf)$/,
       exclude: /node_modules/,

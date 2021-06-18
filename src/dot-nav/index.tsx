@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { times } from 'lodash';
 import classnames from 'classnames/bind';
-import styles from './dot-nav.scss';
+import styles from './dot-nav.module.scss';
 
 export interface Props {
 

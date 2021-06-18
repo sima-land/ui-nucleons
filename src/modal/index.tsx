@@ -9,7 +9,7 @@ import { isNumber } from 'lodash';
 import { ModalBody, ModalFooter, ModalHeader, ModalHeaderProps } from './slots';
 import { LayerProvider, useLayer } from '../helpers/layer';
 import classnames from 'classnames/bind';
-import styles from './modal.scss';
+import styles from './modal.module.scss';
 
 type ModalSize = 's' | 'm' | 'l' | 'xl' | 'fullscreen';
 

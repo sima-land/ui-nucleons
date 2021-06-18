@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useImperativeHandle, forwardRef } from 'react';
 import classnames from 'classnames/bind';
-import classes from './base-input.scss';
+import classes from './base-input.module.scss';
 import { fitElementHeight } from '../helpers/fit-element-height';
 import { isString } from 'lodash';
 

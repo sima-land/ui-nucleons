@@ -7,7 +7,7 @@ import { isFunction, debounce } from 'lodash';
 import on from '../helpers/on';
 import { getScrollParent } from '../helpers/get-scroll-parent';
 import CrossSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/cross';
-import classes from './with-tooltip.scss';
+import classes from './with-tooltip.module.scss';
 
 // @todo почему то бросает ошибку при keyof JSX.IntrinsicElements
 type ElementName = 'div' | 'span' | 'main' | 'section' | 'article' | 'aside';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { formatPrice } from './utils';
-import classes from './price.scss';
+import classes from './price.module.scss';
 import classnames from 'classnames/bind';
 
 export interface Props {

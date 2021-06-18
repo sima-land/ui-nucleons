@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import styles from './unknown-content.scss';
+import styles from './unknown-content.module.scss';
 
 export interface UnknownContentProps extends React.HTMLAttributes<HTMLDivElement> {
 

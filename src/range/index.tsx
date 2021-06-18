@@ -8,7 +8,7 @@ import on from '../helpers/on';
 import { getFractionDepth } from '../helpers/get-fraction-depth';
 import { isInteger, clamp } from 'lodash';
 import classnames from 'classnames/bind';
-import classes from './range.scss';
+import classes from './range.module.scss';
 
 interface CallbackData {
   startValue: number

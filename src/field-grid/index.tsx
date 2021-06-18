@@ -1,6 +1,6 @@
 import React, { Children, cloneElement } from 'react';
 import classnames from 'classnames/bind';
-import classes from './field-grid.scss';
+import classes from './field-grid.module.scss';
 import { Props as TextFieldProps } from '../text-field';
 
 type ItOrArray<T> = T[] | T;

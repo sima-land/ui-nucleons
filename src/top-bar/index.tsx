@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames/bind';
 import has from 'lodash/has';
-import classes from './top-bar.scss';
+import classes from './top-bar.module.scss';
 import { InnerBorder } from '../styling/borders';
 
 export type TopBarSize = 's' | 'm';

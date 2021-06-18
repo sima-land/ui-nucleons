@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames/bind';
 import CrossSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/cross';
-import styles from './chips.scss';
+import styles from './chips.module.scss';
 
 interface ChipsItem {
   href?: string

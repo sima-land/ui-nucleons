@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Hint, HintProps } from '../hint';
 import { PlaceAt } from './utils';
 import classnames from 'classnames/bind';
-import styles from './positioning-hint.scss';
+import styles from './positioning-hint.module.scss';
 import { useLayer } from '../helpers/layer';
 
 const cx = classnames.bind(styles);

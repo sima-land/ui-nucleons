@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { Checkbox } from '../checkbox';
 import classnames from 'classnames/bind';
-import classes from './checkbox-field.scss';
+import classes from './checkbox-field.module.scss';
 
 export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 

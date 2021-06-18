@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Portal } from '../portal';
 import { NavBar, Props as NavBarProps } from '../nav-bar';
 import classnames from 'classnames/bind';
-import classes from './alert.scss';
+import classes from './alert.module.scss';
 import { InnerBorder } from '../styling/borders';
 import { LayerProvider, useLayer } from '../helpers/layer';
 

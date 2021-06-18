@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './nav-bar.scss';
+import classes from './nav-bar.module.scss';
 import classnames from 'classnames/bind';
 import { prop } from 'lodash/fp';
 import { InnerBorder } from '../styling/borders';

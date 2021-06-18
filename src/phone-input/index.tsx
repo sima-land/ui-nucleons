@@ -10,7 +10,7 @@ import { useOutsideClick } from '../hooks';
 import { IDS, countriesList, Country } from './presets';
 import { marginLeft } from '../styling/sizes';
 import { COLORS } from '../colors';
-import classes from './phone-input.scss';
+import classes from './phone-input.module.scss';
 import { defineCountry } from './utils';
 
 interface PhoneInputStyle extends React.CSSProperties {

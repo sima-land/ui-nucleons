@@ -1,7 +1,7 @@
 import React from 'react';
 import { Spinner, Props as SpinnerProps } from '../spinner';
 import classnames from 'classnames/bind';
-import classes from './loading-overlay.scss';
+import classes from './loading-overlay.module.scss';
 
 export interface Props {
 

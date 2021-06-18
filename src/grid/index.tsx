@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames/bind';
-import styles from './grid.scss';
+import styles from './grid.module.scss';
 
 type Align = 'start' | 'center' | 'end';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames/bind';
 import { color, bgColor } from '../styling/colors';
 import { COLORS, Token } from '../colors';
-import styles from './panel.scss';
+import styles from './panel.module.scss';
 
 export interface Props {
 

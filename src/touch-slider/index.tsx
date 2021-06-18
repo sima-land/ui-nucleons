@@ -1,7 +1,7 @@
 import React from 'react';
 import { MobileLayout } from '../layout';
 import classnames from 'classnames/bind';
-import styles from './touch-slider.scss';
+import styles from './touch-slider.module.scss';
 
 export interface Props {
 

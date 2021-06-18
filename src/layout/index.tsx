@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import classnames from 'classnames/bind';
-import classes from './layout.scss';
+import classes from './layout.module.scss';
 
 type Breakpoint = 'mxs' | 'ms' | 'mm' | 'ml' | 'xs' | 's' | 'm' | 'l' | 'xl';
 

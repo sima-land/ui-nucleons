@@ -1,6 +1,6 @@
 import { ClassGetter } from './utils';
 import { COLORS, Token } from '../colors';
-import classes from './colors.scss';
+import classes from './colors.module.scss';
 
 const isColorKey = COLORS.has.bind(COLORS);
 

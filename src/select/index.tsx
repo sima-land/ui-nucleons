@@ -6,7 +6,7 @@ import { placeDropdown } from '../_internal/utils/dropdown';
 import classnames from 'classnames/bind';
 import DownSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/down';
 import UpSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/up';
-import styles from './select.scss';
+import styles from './select.module.scss';
 import { COLORS } from '../colors';
 import { useOutsideClick } from '../hooks';
 import { DropdownLoading } from '../_internal/dropdown-loading';

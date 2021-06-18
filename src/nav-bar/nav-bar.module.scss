@@ -1,4 +1,4 @@
-@import '../colors';
+@use '../colors';
 
 .nav-bar {
   background: #fff;
@@ -22,14 +22,14 @@
 }
 
 .title {
-  color: $gray87;
+  color: colors.$gray87;
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
 }
 
 .subtitle {
-  color: $gray38;
+  color: colors.$gray38;
   font-size: 12px;
   line-height: 16px;
   margin-top: -4px;
@@ -61,7 +61,7 @@
   background: transparent;
   border: 0;
   box-sizing: border-box;
-  color: $brand-blue;
+  color: colors.$brand-blue;
   font-family: inherit;
   font-size: 14px;
   font-weight: 500;

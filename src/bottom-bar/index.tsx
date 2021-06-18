@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import styles from './bottom-bar.scss';
+import styles from './bottom-bar.module.scss';
 import { MediumRounds } from '../styling/shapes';
 
 type BottomBarSize = 's' | 'm' | 'l';
