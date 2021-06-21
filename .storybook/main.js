@@ -4,6 +4,7 @@ module.exports = {
   ],
   addons: [
     '@storybook/addon-actions',
+    '@storybook/addon-storysource',
     {
       name: '@storybook/addon-docs',
       options: {
