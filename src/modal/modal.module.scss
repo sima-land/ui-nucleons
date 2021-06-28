@@ -55,7 +55,7 @@ $max-height: 696px;
 
 .body {
   flex-grow: 1;
-  max-height: calc(#{$max-height} - var(--header-height) - var(--footer-height));
+  max-height: calc(var(--modal-height, #{$max-height}) - var(--header-height) - var(--footer-height));
 }
 
 .main {

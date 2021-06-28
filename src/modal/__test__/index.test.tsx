@@ -96,18 +96,18 @@ describe('<Modal />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should use disable/enable body scrolling', () => {
+  it('should do not use disable/enable body scrolling by default', () => {
     const wrapper = mount(
       <Modal />
     );
 
-    expect(disableBodyScroll).toHaveBeenCalledTimes(1);
+    expect(disableBodyScroll).toHaveBeenCalledTimes(0);
     expect(enableBodyScroll).toHaveBeenCalledTimes(0);
 
     wrapper.unmount();
 
-    expect(disableBodyScroll).toHaveBeenCalledTimes(1);
-    expect(enableBodyScroll).toHaveBeenCalledTimes(1);
+    expect(disableBodyScroll).toHaveBeenCalledTimes(0);
+    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
   });
 
   it('should handle "withScrollDisable" and "scrollDisableOptions" options', () => {
