@@ -58,7 +58,9 @@ export const Chips = ({
           onClick={e => onItemClick?.(item, e)}
           data-testid='chips:item'
         >
-          {children}
+          <span className={styles.text}>
+            {children}
+          </span>
           {withCross && (
             <CrossSVG className={cx('cross-svg')} />
           )}

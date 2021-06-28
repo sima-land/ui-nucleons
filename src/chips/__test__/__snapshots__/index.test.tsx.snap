@@ -30,7 +30,11 @@ exports[`Chips should render with cross 1`] = `
       onClick={[Function]}
       role="button"
     >
-      Ручка для пакета
+      <span
+        className="text"
+      >
+        Ручка для пакета
+      </span>
       <CrossSVG
         className="cross-svg"
       >
@@ -53,7 +57,11 @@ exports[`Chips should render with cross 1`] = `
       onClick={[Function]}
       role="button"
     >
-      Спортивные кружки
+      <span
+        className="text"
+      >
+        Спортивные кружки
+      </span>
       <CrossSVG
         className="cross-svg"
       >
@@ -76,7 +84,11 @@ exports[`Chips should render with cross 1`] = `
       onClick={[Function]}
       role="button"
     >
-      Пакеты пищевые
+      <span
+        className="text"
+      >
+        Пакеты пищевые
+      </span>
       <CrossSVG
         className="cross-svg"
       >
@@ -143,7 +155,11 @@ exports[`Chips should renders correctly 1`] = `
       onClick={[Function]}
       role="button"
     >
-      Ручка для пакета
+      <span
+        className="text"
+      >
+        Ручка для пакета
+      </span>
     </a>
     <a
       className="item"
@@ -152,7 +168,11 @@ exports[`Chips should renders correctly 1`] = `
       onClick={[Function]}
       role="button"
     >
-      Спортивные кружки
+      <span
+        className="text"
+      >
+        Спортивные кружки
+      </span>
     </a>
     <a
       className="item checked"
@@ -161,7 +181,11 @@ exports[`Chips should renders correctly 1`] = `
       onClick={[Function]}
       role="button"
     >
-      Пакеты пищевые
+      <span
+        className="text"
+      >
+        Пакеты пищевые
+      </span>
     </a>
     <a
       className="item"
@@ -170,7 +194,11 @@ exports[`Chips should renders correctly 1`] = `
       onClick={[Function]}
       role="button"
     >
-      Пакеты для заморозки
+      <span
+        className="text"
+      >
+        Пакеты для заморозки
+      </span>
     </a>
     <a
       className="item"
@@ -179,7 +207,11 @@ exports[`Chips should renders correctly 1`] = `
       onClick={[Function]}
       role="button"
     >
-      Домашние животные
+      <span
+        className="text"
+      >
+        Домашние животные
+      </span>
     </a>
     <a
       className="item"
@@ -188,7 +220,11 @@ exports[`Chips should renders correctly 1`] = `
       onClick={[Function]}
       role="button"
     >
-      Дикие звери
+      <span
+        className="text"
+      >
+        Дикие звери
+      </span>
     </a>
     <a
       className="item"
@@ -197,7 +233,11 @@ exports[`Chips should renders correctly 1`] = `
       onClick={[Function]}
       role="button"
     >
-      Крафт пакеты
+      <span
+        className="text"
+      >
+        Крафт пакеты
+      </span>
     </a>
     <a
       className="item"
@@ -206,7 +246,11 @@ exports[`Chips should renders correctly 1`] = `
       onClick={[Function]}
       role="button"
     >
-      Интерьер
+      <span
+        className="text"
+      >
+        Интерьер
+      </span>
     </a>
     <a
       className="item"
@@ -215,7 +259,11 @@ exports[`Chips should renders correctly 1`] = `
       onClick={[Function]}
       role="button"
     >
-      Зоотовары
+      <span
+        className="text"
+      >
+        Зоотовары
+      </span>
     </a>
   </div>
 </Chips>
