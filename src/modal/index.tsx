@@ -70,7 +70,7 @@ export const Modal: ModalComponent = ({
   scrollDisableOptions = { reserveScrollBarGap: true },
   size = 'm',
   inPortal,
-  withScrollDisable = true,
+  withScrollDisable = false,
   'data-testid': testId = 'modal',
 }) => {
   const layer = useLayer() + 100;
