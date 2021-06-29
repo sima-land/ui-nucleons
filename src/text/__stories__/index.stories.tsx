@@ -1,7 +1,5 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import React from 'react';
 import { Text, ALIGNS } from '../index';
-import cutTextContent from '../../helpers/cut-text-content';
-import isElement from 'lodash/isElement';
 import { COLORS } from '../../colors';
 import { SIZES, WEIGHTS } from '../../styling/fonts';
 
@@ -75,20 +73,3 @@ export const AlignVariants = () => [...ALIGNS].map(
     </div>
   )
 );
-
-export const CutTextContent = () => {
-  const textRef = useRef<HTMLElement>();
-
-  useLayoutEffect(() => {
-    const { current: element } = textRef;
-    isElement(element) && cutTextContent(element, 50);
-  }, []);
-
-  return (
-    <div ref={textRef as any} style={{ width: '300px' }}>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid deserunt earum nam rem. Consectetur,
-      dignissimos dolore dolores eos esse itaque iusto nemo optio quaerat quo ratione reprehenderit voluptatem
-      voluptates?
-    </div>
-  );
-};
