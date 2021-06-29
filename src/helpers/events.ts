@@ -1,7 +1,8 @@
 import React from 'react';
 import Point from './point';
 
-export type EventWithPosition<T extends HTMLElement = HTMLElement> = MouseEvent
+export type EventWithPosition<T extends HTMLElement = HTMLElement> =
+| MouseEvent
 | TouchEvent
 | React.MouseEvent<T>
 | React.TouchEvent<T>;

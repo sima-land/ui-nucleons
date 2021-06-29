@@ -1,6 +1,5 @@
 import React from 'react';
 import isEqual from 'lodash/isEqual';
-import getDisplayName from '../helpers/get-display-name';
 import initAddObserve from '../helpers/intersection-observer';
 
 /**
@@ -42,7 +41,7 @@ export function makeInViewportObserverHOC (observersDataList: any) {
       />
     );
 
-    Wrapper.displayName = `withInViewportObserver(${getDisplayName(Component)})`;
+    Wrapper.displayName = `withInViewportObserver(${Component.displayName || Component.name})`;
 
     return Wrapper;
   };
