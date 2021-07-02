@@ -89,8 +89,8 @@ const AlertInner = ({
   }, [withScrollDisable]);
 
   return (
-    <div className={cx('overlay')} ref={rootRef} data-testid='alert'>
-      <div className={cx('alert', className)}>
+    <div className={cx('overlay')} ref={rootRef}>
+      <div className={cx('alert', className)} data-testid='alert'>
         {withNavBar && (
           <NavBar
             {...navBarProps}
