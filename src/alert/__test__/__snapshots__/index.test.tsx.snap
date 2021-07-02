@@ -14,49 +14,63 @@ exports[`<Alert /> should handle props 1`] = `
   withDivideNavBar={false}
   withNavBar={true}
 >
-  <div
-    className="overlay"
+  <AlertInner
+    className="test-class"
+    footer="Footer content"
+    navBarProps={
+      Object {
+        "subtitle": "Subtitle text",
+      }
+    }
+    title="Hello, world!"
+    withDivideNavBar={false}
+    withNavBar={true}
   >
     <div
-      className="alert test-class"
+      className="overlay"
+      data-testid="alert"
     >
-      <NavBar
-        bottomBordered={false}
-        className="header"
-        subtitle="Subtitle text"
-        title="Hello, world!"
+      <div
+        className="alert test-class"
       >
-        <div
-          className="nav-bar header"
+        <NavBar
+          bottomBordered={false}
+          className="header"
+          subtitle="Subtitle text"
+          title="Hello, world!"
         >
           <div
-            className="main"
+            className="nav-bar header"
           >
             <div
-              className="title truncate"
+              className="main"
             >
-              Hello, world!
-            </div>
-            <div
-              className="subtitle truncate"
-            >
-              Subtitle text
+              <div
+                className="title truncate"
+              >
+                Hello, world!
+              </div>
+              <div
+                className="subtitle truncate"
+              >
+                Subtitle text
+              </div>
             </div>
           </div>
+        </NavBar>
+        <div
+          className="main"
+        >
+          Main content
         </div>
-      </NavBar>
-      <div
-        className="main"
-      >
-        Main content
-      </div>
-      <div
-        className="inner-border-top"
-      >
-        Footer content
+        <div
+          className="inner-border-top"
+        >
+          Footer content
+        </div>
       </div>
     </div>
-  </div>
+  </AlertInner>
 </Alert>
 `;
 
@@ -68,6 +82,7 @@ exports[`<Alert /> should renders without props 1`] = `
         <div>
           <div
             class="overlay"
+            data-testid="alert"
           >
             <div
               class="alert"
@@ -80,17 +95,20 @@ exports[`<Alert /> should renders without props 1`] = `
         </div>
       }
     >
-      <div
-        className="overlay"
-      >
+      <AlertInner>
         <div
-          className="alert"
+          className="overlay"
+          data-testid="alert"
         >
           <div
-            className="main"
-          />
+            className="alert"
+          >
+            <div
+              className="main"
+            />
+          </div>
         </div>
-      </div>
+      </AlertInner>
     </Portal>
   </Portal>
 </Alert>

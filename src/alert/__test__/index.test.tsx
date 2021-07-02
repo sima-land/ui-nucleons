@@ -1,6 +1,17 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { Alert } from '..';
+import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
+
+jest.mock('body-scroll-lock', () => {
+  const original = jest.requireActual('body-scroll-lock');
+
+  return {
+    ...original,
+    enableBodyScroll: jest.fn(original.enableBodyScroll),
+    disableBodyScroll: jest.fn(original.disableBodyScroll),
+  };
+});
 
 describe('<Alert />', () => {
   it('should renders without props', () => {
@@ -26,5 +37,24 @@ describe('<Alert />', () => {
     );
 
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should disable/enable body scroll', () => {
+    expect(disableBodyScroll).toBeCalledTimes(0);
+    expect(enableBodyScroll).toBeCalledTimes(0);
+
+    const wrapper = mount(
+      <Alert
+        withScrollDisable
+      />
+    );
+
+    expect(disableBodyScroll).toBeCalledTimes(1);
+    expect(enableBodyScroll).toBeCalledTimes(0);
+
+    wrapper.unmount();
+
+    expect(disableBodyScroll).toBeCalledTimes(1);
+    expect(enableBodyScroll).toBeCalledTimes(1);
   });
 });
