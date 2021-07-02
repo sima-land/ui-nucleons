@@ -1,10 +1,11 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useRef } from 'react';
 import { Portal } from '../portal';
 import { NavBar, Props as NavBarProps } from '../nav-bar';
 import classnames from 'classnames/bind';
 import classes from './alert.module.scss';
 import { InnerBorder } from '../styling/borders';
 import { LayerProvider, useLayer } from '../helpers/layer';
+import { enableBodyScroll, disableBodyScroll, BodyScrollOptions } from 'body-scroll-lock';
 
 export interface Props {
 
@@ -31,6 +32,12 @@ export interface Props {
 
   /** Нужна ли шапка. */
   withNavBar?: boolean
+
+  /** Нужно ли выключать прокрутку body. */
+  withScrollDisable?: boolean
+
+  /** Опции отключения прокрутки. */
+  scrollDisableOptions?: BodyScrollOptions
 }
 
 const cx = classnames.bind(classes);
@@ -40,45 +47,69 @@ const cx = classnames.bind(classes);
  * @param props Свойства.
  * @return Элемент.
  */
-export const Alert: React.FC<Props> = ({
-  children,
-  className,
-  footer,
-  inPortal = true,
-  navBarProps,
-  title,
-  withDivideNavBar = false,
-  withNavBar = Boolean(title),
-}) => {
+export const Alert = ({ inPortal = true, ...restProps }: Props) => {
   const layer = useLayer() + 100;
   const Wrapper = inPortal ? Portal : Fragment;
 
   return (
     <LayerProvider value={layer}>
       <Wrapper>
-        <div className={cx('overlay')}>
-          <div className={cx('alert', className)}>
-            {Boolean(withNavBar) && (
-              <NavBar
-                {...navBarProps}
-                title={title}
-                bottomBordered={withDivideNavBar}
-                className={cx('header')}
-              />
-            )}
-
-            <div className={cx('main')}>
-              {children}
-            </div>
-
-            {Boolean(footer) && (
-              <div className={InnerBorder.top}>
-                {footer}
-              </div>
-            )}
-          </div>
-        </div>
+        <AlertInner {...restProps} />
       </Wrapper>
     </LayerProvider>
+  );
+};
+
+/**
+ * Промежуточный компонент, необходимый для того чтобы не передавать реф для блокировки прокрутки через портал.
+ * @param props Свойства.
+ * @return Элемент.
+ */
+const AlertInner = ({
+  children,
+  className,
+  footer,
+  navBarProps,
+  title,
+  withDivideNavBar,
+  withNavBar = Boolean(title),
+  withScrollDisable,
+  scrollDisableOptions,
+}: Omit<Props, 'inPortal'>) => {
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const element = rootRef.current;
+
+    if (element && withScrollDisable) {
+      disableBodyScroll(element, scrollDisableOptions);
+
+      return () => enableBodyScroll(element);
+    }
+  }, [withScrollDisable]);
+
+  return (
+    <div className={cx('overlay')} ref={rootRef} data-testid='alert'>
+      <div className={cx('alert', className)}>
+        {withNavBar && (
+          <NavBar
+            {...navBarProps}
+            title={title}
+            bottomBordered={withDivideNavBar}
+            className={cx('header')}
+          />
+        )}
+
+        <div className={cx('main')}>
+          {children}
+        </div>
+
+        {Boolean(footer) && (
+          <div className={InnerBorder.top}>
+            {footer}
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
