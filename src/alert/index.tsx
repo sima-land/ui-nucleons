@@ -77,6 +77,7 @@ const AlertInner = ({
   scrollDisableOptions,
 }: Omit<Props, 'inPortal'>) => {
   const rootRef = useRef<HTMLDivElement>(null);
+  const layer = useLayer();
 
   useEffect(() => {
     const element = rootRef.current;
@@ -89,7 +90,11 @@ const AlertInner = ({
   }, [withScrollDisable]);
 
   return (
-    <div className={cx('overlay')} ref={rootRef}>
+    <div
+      ref={rootRef}
+      className={cx('overlay')}
+      style={{ zIndex: layer }} // z-index именно здесь из-за position: fixed
+    >
       <div className={cx('alert', className)} data-testid='alert'>
         {withNavBar && (
           <NavBar
