@@ -8,7 +8,7 @@ $trackHeight: 4px;
 }
 
 .range-wrapper-styled {
-  padding: 0 ($thumbSize / 2);
+  padding: 0 ($thumbSize * .5);
   box-sizing: border-box;
 }
 
@@ -59,12 +59,12 @@ $trackHeight: 4px;
 
 .available-styled {
   height: $trackHeight;
-  border-radius: $trackHeight / 2;
+  border-radius: $trackHeight * .5;
   background: #ebebeb;
 }
 
 .selected-styled {
   height: $trackHeight;
-  border-radius: $trackHeight / 2;
+  border-radius: $trackHeight * .5;
   background: #1f84db;
 }
