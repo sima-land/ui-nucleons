@@ -1,8 +1,8 @@
-import React, { cloneElement, Fragment, isValidElement } from 'react';
+import React, { cloneElement, Fragment } from 'react';
 import { BodyScrollOptions } from 'body-scroll-lock';
 import { TopBarSize, TOP_BAR_HEIGHT } from '../top-bar';
 import { BottomBarProps, BOTTOM_BAR_DEFAULTS, BOTTOM_BAR_HEIGHT } from '../bottom-bar';
-import { defineSlots, useCloseHandler, useScrollDisable } from './utils';
+import { useCloseHandler, useScrollDisable } from './utils';
 import { BoxShadow } from '../styling/shadows';
 import { Portal } from '../portal';
 import { isNumber } from 'lodash';
@@ -10,6 +10,7 @@ import { ModalBody, ModalFooter, ModalHeader, ModalHeaderProps } from './slots';
 import { LayerProvider, useLayer } from '../helpers/layer';
 import classnames from 'classnames/bind';
 import styles from './modal.module.scss';
+import { defineSlots } from '../helpers/define-slots';
 
 type ModalSize = 's' | 'm' | 'l' | 'xl' | 'fullscreen';
 
@@ -81,17 +82,21 @@ export const Modal: ModalComponent = ({
 
   const fullscreen = size === 'fullscreen';
 
-  const { header, content, footer } = defineSlots(children);
+  const { header, content, footer } = defineSlots(children, {
+    header: ModalHeader,
+    content: ModalBody,
+    footer: ModalFooter,
+  });
 
   const topBarSize: TopBarSize = fullscreen ? 'm' : 's';
 
-  const headerHeight: number = isValidElement<ModalHeaderProps>(header)
+  const headerHeight: number = header
     ? TOP_BAR_HEIGHT[topBarSize]
     : 0;
 
   const footerStubHeight: number = fullscreen ? 0 : 16;
 
-  const footerHeight: number = isValidElement<BottomBarProps>(footer)
+  const footerHeight: number = footer
     ? BOTTOM_BAR_HEIGHT[footer.props.size || BOTTOM_BAR_DEFAULTS.size]
     : footerStubHeight;
 
