@@ -23,7 +23,7 @@ $durations: (small: 600ms, medium: 750ms, large: 950ms);
           stroke-dashoffset: $perimeter * .25;
         }
         50% {
-          stroke-dasharray: $perimeter / 2, $perimeter / 2;
+          stroke-dasharray: $perimeter * .5, $perimeter * .5;
         }
         100% {
           stroke-dasharray: $perimeter * .125, $perimeter * .875;
