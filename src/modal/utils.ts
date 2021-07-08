@@ -1,6 +1,5 @@
-import { useRef, useCallback, useEffect, useState, Children, isValidElement } from 'react';
+import { useRef, useCallback, useEffect, useState } from 'react';
 import { enableBodyScroll, disableBodyScroll, BodyScrollOptions } from 'body-scroll-lock';
-import { ModalHeader, ModalBody, ModalFooter } from './slots';
 
 /**
  * @param callback Сработает при закрытии.
@@ -49,35 +48,3 @@ export const useScrollDisable = <T extends HTMLElement>(
 
   return setElement;
 };
-
-export interface ModalSlots {
-  header?: React.ReactElement
-  content?: React.ReactElement
-  footer?: React.ReactElement
-}
-
-/**
- * Распределяет содержимое окна по слотам.
- * @param children Содержимое.
- * @return Слоты.
- */
-export const defineSlots = (children: React.ReactNode) => Children.toArray(children).reduce<ModalSlots>(
-  (result, item) => {
-    if (isValidElement(item)) {
-      switch (item.type) {
-        case ModalHeader:
-          result.header = item;
-          break;
-        case ModalBody:
-          result.content = item;
-          break;
-        case ModalFooter:
-          result.footer = item;
-          break;
-      }
-    }
-
-    return result;
-  },
-  {}
-);

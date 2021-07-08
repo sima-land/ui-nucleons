@@ -1,9 +1,10 @@
 import React from 'react';
 import { Plate, PlateProps } from '../plate';
 import { CardContent, CardFooter, CardHeader } from './slots';
-import { CardContext, defineSlots } from './utils';
+import { CardContext } from './utils';
 import classnames from 'classnames';
 import styles from './card.module.scss';
+import { defineSlots } from '../helpers/define-slots';
 
 export type CardProps = PlateProps;
 
@@ -20,7 +21,11 @@ export interface CardComponent {
  * @return Элемент.
  */
 export const Card: CardComponent = ({ children, className, rounds, ...restProps }) => {
-  const { header, content, footer } = defineSlots(children);
+  const { header, content, footer } = defineSlots(children, {
+    header: CardHeader,
+    content: CardContent,
+    footer: CardFooter,
+  });
 
   return (
     <CardContext.Provider value={{ rounds }}>

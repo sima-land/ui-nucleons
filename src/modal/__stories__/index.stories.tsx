@@ -42,7 +42,7 @@ const Template: Story<ModalProps> = props => {
 };
 
 export default {
-  title: 'Modal',
+  title: 'desktop/Modal',
   component: Modal,
   parameters: {
     layout: 'padded',
