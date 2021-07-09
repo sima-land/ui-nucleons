@@ -18,7 +18,7 @@ const Template: Story<ModalProps> = props => {
       </Button>
 
       {opened && (
-        <Modal inPortal onClose={() => toggleModal(false)} {...props}>
+        <Modal inPortal onClose={() => toggleModal(false)} {...props} withScrollDisable>
           <Modal.Header divided title='Модальное окно' />
           <Modal.Body>
             <div style={{ padding: 24 }}>
