@@ -1,13 +1,13 @@
-import React, { Fragment, useEffect, useRef } from 'react';
+import React, { Fragment, useRef } from 'react';
 import { Portal } from '../portal';
 import { NavBar, Props as NavBarProps } from '../nav-bar';
 import classnames from 'classnames/bind';
 import classes from './alert.module.scss';
 import { InnerBorder } from '../styling/borders';
 import { LayerProvider, useLayer } from '../helpers/layer';
-import { enableBodyScroll, disableBodyScroll, BodyScrollOptions } from 'body-scroll-lock';
+import { WithBodyScrollLock, useBodyScrollLock } from '../_internal/body-scroll';
 
-export interface Props {
+export interface Props extends WithBodyScrollLock {
 
   /** Основное содержимое. */
   children?: React.ReactNode
@@ -32,12 +32,6 @@ export interface Props {
 
   /** Нужна ли шапка. */
   withNavBar?: boolean
-
-  /** Нужно ли выключать прокрутку body. */
-  withScrollDisable?: boolean
-
-  /** Опции отключения прокрутки. */
-  scrollDisableOptions?: BodyScrollOptions
 }
 
 const cx = classnames.bind(classes);
@@ -73,21 +67,13 @@ const AlertInner = ({
   title,
   withDivideNavBar,
   withNavBar = Boolean(title),
-  withScrollDisable,
+  withScrollDisable = false,
   scrollDisableOptions,
 }: Omit<Props, 'inPortal'>) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const layer = useLayer();
 
-  useEffect(() => {
-    const element = rootRef.current;
-
-    if (element && withScrollDisable) {
-      disableBodyScroll(element, scrollDisableOptions);
-
-      return () => enableBodyScroll(element);
-    }
-  }, [withScrollDisable]);
+  useBodyScrollLock(rootRef, withScrollDisable, scrollDisableOptions);
 
   return (
     <div

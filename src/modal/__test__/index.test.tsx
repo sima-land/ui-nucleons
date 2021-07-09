@@ -2,18 +2,17 @@ import React from 'react';
 import { Modal } from '..';
 import { mount, ReactWrapper } from 'enzyme';
 import ArrowLeftSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-left';
-import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
 import { act } from 'react-dom/test-utils';
 import { TopBar } from '../../top-bar';
+import { useBodyScrollLock } from '../../_internal/body-scroll';
 
-jest.mock('body-scroll-lock', () => {
-  const original = jest.requireActual('body-scroll-lock');
+jest.mock('../../_internal/body-scroll', () => {
+  const original = jest.requireActual('../../_internal/body-scroll');
 
   return {
     ...original,
     __esModule: true,
-    enableBodyScroll: jest.fn(original.enableBodyScroll),
-    disableBodyScroll: jest.fn(original.disableBodyScroll),
+    useBodyScrollLock: jest.fn(original.useBodyScrollLock),
   };
 });
 
@@ -97,34 +96,11 @@ describe('<Modal />', () => {
   });
 
   it('should do not use disable/enable body scrolling by default', () => {
-    const wrapper = mount(
+    mount(
       <Modal />
     );
 
-    expect(disableBodyScroll).toHaveBeenCalledTimes(0);
-    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
-
-    wrapper.unmount();
-
-    expect(disableBodyScroll).toHaveBeenCalledTimes(0);
-    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
-  });
-
-  it('should handle "withScrollDisable" and "scrollDisableOptions" options', () => {
-    const wrapper = mount(
-      <Modal
-        withScrollDisable
-        scrollDisableOptions={{}}
-      />
-    );
-
-    expect(disableBodyScroll).toHaveBeenCalledTimes(1);
-    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
-
-    wrapper.unmount();
-
-    expect(disableBodyScroll).toHaveBeenCalledTimes(1);
-    expect(enableBodyScroll).toHaveBeenCalledTimes(1);
+    expect((useBodyScrollLock as any).mock.calls[0][1]).toBe(false);
   });
 
   it('should render different sizes properly', () => {

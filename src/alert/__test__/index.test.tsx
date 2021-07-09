@@ -1,15 +1,15 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { Alert } from '..';
-import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
+import { useBodyScrollLock } from '../../_internal/body-scroll';
 
-jest.mock('body-scroll-lock', () => {
-  const original = jest.requireActual('body-scroll-lock');
+jest.mock('../../_internal/body-scroll', () => {
+  const original = jest.requireActual('../../_internal/body-scroll');
 
   return {
     ...original,
-    enableBodyScroll: jest.fn(original.enableBodyScroll),
-    disableBodyScroll: jest.fn(original.disableBodyScroll),
+    __esModule: true,
+    useBodyScrollLock: jest.fn(original.useBodyScrollLock),
   };
 });
 
@@ -40,21 +40,22 @@ describe('<Alert />', () => {
   });
 
   it('should disable/enable body scroll', () => {
-    expect(disableBodyScroll).toBeCalledTimes(0);
-    expect(enableBodyScroll).toBeCalledTimes(0);
+    expect(useBodyScrollLock).toBeCalledTimes(0);
 
-    const wrapper = mount(
+    mount(
       <Alert
         withScrollDisable
       />
     );
 
-    expect(disableBodyScroll).toBeCalledTimes(1);
-    expect(enableBodyScroll).toBeCalledTimes(0);
+    expect(useBodyScrollLock).toBeCalledTimes(1);
+  });
 
-    wrapper.unmount();
+  it('should do not use disable/enable body scrolling by default', () => {
+    mount(
+      <Alert />
+    );
 
-    expect(disableBodyScroll).toBeCalledTimes(1);
-    expect(enableBodyScroll).toBeCalledTimes(1);
+    expect((useBodyScrollLock as any).mock.calls[0][1]).toBe(false);
   });
 });
