@@ -1987,10 +1987,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@krutoo/input-mask@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@krutoo/input-mask/-/input-mask-0.0.7.tgz#dda5d43a399fe0ffbbc3bbcdb7a24e03aeecfdbf"
-  integrity sha512-UoKWMXjHYP8wn2nPeKyPFcccsRD7770kvZC+YgjLsEILzSPp2mOASPRGBvUADFQ8l4vBVUSR3DNQG0uA7JiWrg==
+"@krutoo/input-mask@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@krutoo/input-mask/-/input-mask-0.0.8.tgz#2a8f70b97b478d136c3a4e822081c3608a716370"
+  integrity sha512-EleFytQTqwfiFPyW8Ca486nuFRiLE23G2vfod4fq4ac0SZVZlgu3Bi5ULZLTXFWfmqQs5TPsQVA+7TyWwrgmFw==
 
 "@mdx-js/loader@^1.6.19":
   version "1.6.22"
