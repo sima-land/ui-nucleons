@@ -1656,27 +1656,6 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@dev-dep/linters@^1.0.11":
-  version "1.0.11"
-  resolved "https://gitlab.sima-land.ru/api/v4/projects/919/packages/npm/@dev-dep/linters/-/@dev-dep/linters-1.0.11.tgz#143b72ca55c9e0ce347361d623b56cb4364223ad"
-  integrity sha1-FDtyylXJ4M40c2HWI7VstDZCI60=
-  dependencies:
-    "@babel/eslint-parser" "^7.12.13"
-    confusing-browser-globals "^1.0.10"
-    eslint "^7.19.0"
-    eslint-plugin-import "^2.22.1"
-    eslint-plugin-jest "^24.1.3"
-    eslint-plugin-jsdoc "^31.6.1"
-    eslint-plugin-react "^7.22.0"
-    stylelint "^13.9.0"
-    stylelint-config-sass-guidelines "^7.1.0"
-    stylelint-scss "^3.18.0"
-
-"@dev-dep/ui-quarks@^1.1.1":
-  version "1.1.1"
-  resolved "https://gitlab.sima-land.ru/api/v4/projects/1151/packages/npm/@dev-dep/ui-quarks/-/@dev-dep/ui-quarks-1.1.1.tgz#d5c28d331fa98786e9d497a031d9dd8463b06f53"
-  integrity sha1-1cKNMx+ph4bp1JegMdndhGOwb1M=
-
 "@emotion/cache@^10.0.27":
   version "10.0.29"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-10.0.29.tgz#87e7e64f412c060102d589fe7c6dc042e6f9d1e0"
@@ -2108,6 +2087,27 @@
     invariant "^2.2.3"
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
+
+"@sima-land/linters@^1.0.12":
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/@sima-land/linters/-/linters-1.0.12.tgz#fed231a322cbf282f00e7be04ae78617a894e024"
+  integrity sha512-yHb/kANMSeSLWdjKwZPBbi6eTen8UhLH9NEsEgU1qGqNMfkgxSAiCfu7oKi/66YEe5XHP11Zs/faLxHHiKHL1Q==
+  dependencies:
+    "@babel/eslint-parser" "^7.12.13"
+    confusing-browser-globals "^1.0.10"
+    eslint "^7.19.0"
+    eslint-plugin-import "^2.22.1"
+    eslint-plugin-jest "^24.1.3"
+    eslint-plugin-jsdoc "^31.6.1"
+    eslint-plugin-react "^7.22.0"
+    stylelint "^13.9.0"
+    stylelint-config-sass-guidelines "^7.1.0"
+    stylelint-scss "^3.18.0"
+
+"@sima-land/ui-quarks@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@sima-land/ui-quarks/-/ui-quarks-1.2.2.tgz#14aca534cf7a178bbf17c8df9d899ce2380dcdc4"
+  integrity sha512-MgeNmHefFB5bGNBuHBXh+A/+Xgce4i3kfX6b6C7l3kl83YL2ch5vKNi3M21gLOR1+zmKccu/W87gwyW6Zs6+qQ==
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.2"
