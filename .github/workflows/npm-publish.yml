@@ -14,6 +14,7 @@ jobs:
           node-version: 14
           registry-url: https://registry.npmjs.org/
       - run: yarn install
+      - run: npm i -g npm@7 --registry=https://registry.npmjs.org
       - run: yarn lint:styles
       - run: yarn lint:scripts
       - run: yarn type-check
@@ -21,7 +22,6 @@ jobs:
       - run: npm set-script prepare ""
       - run: yarn build
       - run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-      - run: npm i -g npm@7 --registry=https://registry.npmjs.org
       - run: npm --no-git-tag-version version $RELEASE_VERSION
       - run: npm publish ./build --access public
         env:
