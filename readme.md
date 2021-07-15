@@ -7,10 +7,10 @@
 Установка
 ```bash
 # yarn
-yarn add @dev-dep/ui-nucleons
+yarn add @sima-land/ui-nucleons
 
 #npm
-npm i -S @dev-dep/ui-nucleons
+npm i -S @sima-land/ui-nucleons
 ```
 
 ### Настройка сборки и запуска тестов
@@ -45,7 +45,7 @@ module.exports = {
             options: svgrOptions,
           },
         ],
-        exclude: /node_modules\/(?!(@dev-dep)).*/,
+        exclude: /node_modules\/(?!(@sima-land/ui-nucleons)).*/,
       },
 
       // обработка обычных стилей
