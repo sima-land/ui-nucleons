@@ -13,16 +13,29 @@ jobs:
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
-      - run: yarn install
-      - run: npm i -g npm@7 --registry=https://registry.npmjs.org
-      - run: yarn lint:styles
-      - run: yarn lint:scripts
-      - run: yarn type-check
-      - run: yarn test:ci
-      - run: npm set-script prepare ""
-      - run: yarn build
-      - run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-      - run: npm --no-git-tag-version version $RELEASE_VERSION
-      - run: npm publish ./build --access public
+
+      - name: Install dependencies
+        run: |
+          yarn install
+          npm i -g npm@7 --registry=https://registry.npmjs.org
+
+      - name: Lint
+        run: |
+          yarn lint:styles
+          yarn lint:scripts
+          yarn type-check
+
+      - name: Test
+        run: yarn test:ci
+
+      - name: Build package
+        run: |
+          echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+          npm --no-git-tag-version version $RELEASE_VERSION
+          npm set-script prepare ""
+          yarn build
+
+      - name: Publish build
+        run: npm publish ./build --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
