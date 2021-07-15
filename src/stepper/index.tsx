@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import PlusSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/plus';
-import MinusSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/minus';
+import PlusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/plus';
+import MinusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/minus';
 import styles from './stepper.module.scss';
 import classnames from 'classnames/bind';
 

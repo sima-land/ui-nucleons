@@ -7,7 +7,7 @@ import { COLORS } from '../colors';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
+  icon?: React.ComponentType<React.SVGAttributes<SVGSVGElement>>
   stub?: boolean
   shift?: 'left' | 'right'
 }

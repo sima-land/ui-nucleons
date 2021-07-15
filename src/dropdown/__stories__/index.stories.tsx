@@ -3,8 +3,8 @@ import { Dropdown } from '..';
 import { DropdownItem } from '../../dropdown-item';
 import { Link } from '../../link';
 import { Spinner } from '../../spinner';
-import DownSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/down';
-import UpSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/up';
+import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/down';
+import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/up';
 
 export default {
   title: 'Dropdown',

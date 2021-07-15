@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from '..';
 import { Clean } from '../../clean-buttons';
 import { TopBar } from '../../top-bar';
-import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
+import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
 import { PhoneInput } from '../../phone-input';
 
 export default {

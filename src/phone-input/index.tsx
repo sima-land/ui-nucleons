@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classnames from 'classnames/bind';
-import DownSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/down';
-import UpSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/up';
+import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/down';
+import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/up';
 import { Dropdown } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';
 import { TextField, Props as TextFieldProps } from '../text-field';

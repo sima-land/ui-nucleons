@@ -1,5 +1,5 @@
 module.exports = {
-  extends: require.resolve('@dev-dep/linters/eslint'),
+  extends: require.resolve('@sima-land/linters/eslint'),
   overrides: [
     {
       files: [

@@ -1,5 +1,5 @@
 module.exports = {
-  extends: require.resolve('@dev-dep/linters/stylelint'),
+  extends: require.resolve('@sima-land/linters/stylelint'),
   ignoreFiles: [
     '**/*.js',
     '**/*.jsx',

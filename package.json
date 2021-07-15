@@ -1,10 +1,7 @@
 {
-  "name": "@dev-dep/ui-nucleons",
-  "publishConfig": {
-    "@dev-dep:registry": "https://gitlab.sima-land.ru/api/v4/projects/625/packages/npm/"
-  },
+  "name": "@sima-land/ui-nucleons",
   "version": "0.0.0",
-  "repository": "ssh://git@gitlab.sima-land.ru:7888/dev-dep/dev/ui-nucleons.git",
+  "repository": "ssh://git@github.com:sima-land/ui-nucleons.git",
   "author": "www.sima-land.ru team",
   "license": "MIT",
   "private": false,
@@ -12,8 +9,8 @@
     "node": ">=14.15.5"
   },
   "dependencies": {
-    "@dev-dep/ui-quarks": "^1.1.1",
     "@krutoo/input-mask": "^0.0.8",
+    "@sima-land/ui-quarks": "^1.2.2",
     "@types/body-scroll-lock": "^2.6.1",
     "body-scroll-lock": "3.1.5",
     "date-fns": "^2.14.0",
@@ -29,7 +26,7 @@
     "@babel/plugin-proposal-optional-chaining": "^7.12.7",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
-    "@dev-dep/linters": "^1.0.11",
+    "@sima-land/linters": "^1.0.12",
     "@storybook/addon-actions": "^6.1.14",
     "@storybook/addon-backgrounds": "^6.1.21",
     "@storybook/addon-docs": "^6.1.21",

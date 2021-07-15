@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classnames from 'classnames/bind';
 import { COLORS, Token } from '../colors';
-import PersonSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/person';
+import PersonSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/person';
 import classes from './avatar.module.scss';
 import { getMonogram } from './utils';
 import { color as colorClass } from '../styling/colors';

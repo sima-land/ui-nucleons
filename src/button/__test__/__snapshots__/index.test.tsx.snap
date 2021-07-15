@@ -5,7 +5,7 @@ exports[`<Button /> should handle "icon" and "iconPosition" props 1`] = `
   className="button-base button-primary button-m button-m-with-start-icon"
   data-testid="button"
 >
-  <SearchSVG
+  <ForwardRef(SearchSVG)
     className="icon icon-start"
     height={24}
     width={24}
@@ -20,7 +20,7 @@ exports[`<Button /> should handle "icon" and "iconPosition" props 2`] = `
   data-testid="button"
 >
   Икать
-  <SearchSVG
+  <ForwardRef(SearchSVG)
     className="icon icon-end"
     height={24}
     width={24}
@@ -33,7 +33,7 @@ exports[`<Button /> should handle "icon" and "iconPosition" props 3`] = `
   className="button-base button-primary button-m button-m-with-start-icon"
   data-testid="button"
 >
-  <SearchSVG
+  <ForwardRef(SearchSVG)
     className="icon icon-start"
     height={24}
     width={24}
@@ -65,7 +65,7 @@ exports[`<Button /> should render icon button 1`] = `
   className="button-base button-primary button-m"
   data-testid="button"
 >
-  <PlusSVG
+  <ForwardRef(PlusSVG)
     className="icon"
     height={24}
     width={24}
@@ -78,7 +78,7 @@ exports[`<Button /> should render icon button 2`] = `
   className="button-base button-primary button-m"
   data-testid="button"
 >
-  <PlusSVG
+  <ForwardRef(PlusSVG)
     className="icon"
     height={24}
     width={24}

@@ -1,7 +1,7 @@
 import React from 'react';
-import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
-import ArrowLeftSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-left';
-import PersonSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/person';
+import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
+import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
+import PersonSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/person';
 
 const longText = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad, provident aspernatur dolore. ';
 

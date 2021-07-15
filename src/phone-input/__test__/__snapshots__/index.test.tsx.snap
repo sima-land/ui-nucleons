@@ -23,7 +23,7 @@ exports[`<PhoneInput /> Other: should render just text field with able to input 
             src="/src/phone-input/images/other.png"
             width={24}
           />
-          <DownSVG
+          <ForwardRef(DownSVG)
             className="M-l__1"
             fill="#9e9e9e"
           />
@@ -95,7 +95,7 @@ exports[`<PhoneInput /> Other: should render just text field with able to input 
                   src="/src/phone-input/images/other.png"
                   width={24}
                 />
-                <DownSVG
+                <ForwardRef(DownSVG)
                   className="M-l__1"
                   fill="#9e9e9e"
                 >
@@ -112,7 +112,7 @@ exports[`<PhoneInput /> Other: should render just text field with able to input 
                       fillRule="evenodd"
                     />
                   </svg>
-                </DownSVG>
+                </ForwardRef(DownSVG)>
               </div>
             </div>
           </Box>
@@ -142,7 +142,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
             src="/src/phone-input/images/russia.png"
             width={24}
           />
-          <DownSVG
+          <ForwardRef(DownSVG)
             className="M-l__1"
             fill="#9e9e9e"
           />
@@ -168,7 +168,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
               src="/src/phone-input/images/russia.png"
               width={24}
             />
-            <DownSVG
+            <ForwardRef(DownSVG)
               className="M-l__1"
               fill="#9e9e9e"
             />
@@ -264,7 +264,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
                     src="/src/phone-input/images/russia.png"
                     width={24}
                   />
-                  <DownSVG
+                  <ForwardRef(DownSVG)
                     className="M-l__1"
                     fill="#9e9e9e"
                   >
@@ -281,7 +281,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
                         fillRule="evenodd"
                       />
                     </svg>
-                  </DownSVG>
+                  </ForwardRef(DownSVG)>
                 </div>
               </div>
             </Box>

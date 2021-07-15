@@ -272,7 +272,7 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
               Object {
                 "start": Object {
                   "data-testid": "modal:back",
-                  "icon": <ArrowLeftSVG />,
+                  "icon": <ForwardRef(ArrowLeftSVG) />,
                   "onClick": [MockFunction],
                 },
               }
@@ -290,7 +290,7 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
             >
               <IconButton
                 data-testid="modal:back"
-                icon={<ArrowLeftSVG />}
+                icon={<ForwardRef(ArrowLeftSVG) />}
                 onClick={[MockFunction]}
               >
                 <button
@@ -299,7 +299,7 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
                   onClick={[MockFunction]}
                   type="button"
                 >
-                  <ArrowLeftSVG>
+                  <ForwardRef(ArrowLeftSVG)>
                     <svg
                       height={24}
                       viewBox="0 0 24 24"
@@ -309,7 +309,7 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
                         d="M5.414 13l5.293 5.293a1 1 0 01-1.414 1.414l-7-7a1 1 0 010-1.414l7-7a1 1 0 011.414 1.414L5.414 11H21a1 1 0 110 2H5.414z"
                       />
                     </svg>
-                  </ArrowLeftSVG>
+                  </ForwardRef(ArrowLeftSVG)>
                 </button>
               </IconButton>
               <div

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, computeClassName } from '../index';
 import { shallow } from 'enzyme';
-import SearchSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/search.js';
-import PlusSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/plus.js';
+import SearchSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/search.js';
+import PlusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/plus.js';
 
 describe('<Button />', () => {
   it('should renders without props', () => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TextField } from '..';
-import RightSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/Arrows/right.js';
+import RightSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/right.js';
 import { COLORS } from '../../colors';
 
 const baseProps = { style: { width: '100%' } };

@@ -113,19 +113,19 @@ exports[`<TopBar /> should renders with all icons 1`] = `
   buttonsProps={
     Object {
       "end": Object {
-        "icon": <CrossSVG />,
+        "icon": <ForwardRef(CrossSVG) />,
         "onClick": [MockFunction],
       },
       "endSecondary": Object {
-        "icon": <PersonSVG />,
+        "icon": <ForwardRef(PersonSVG) />,
         "onClick": [MockFunction],
       },
       "start": Object {
-        "icon": <ArrowLeftSVG />,
+        "icon": <ForwardRef(ArrowLeftSVG) />,
         "onClick": [MockFunction],
       },
       "startSecondary": Object {
-        "icon": <PersonSVG />,
+        "icon": <ForwardRef(PersonSVG) />,
         "onClick": [MockFunction],
       },
     }
@@ -140,7 +140,7 @@ exports[`<TopBar /> should renders with all icons 1`] = `
     }
   >
     <IconButton
-      icon={<ArrowLeftSVG />}
+      icon={<ForwardRef(ArrowLeftSVG) />}
       onClick={[MockFunction]}
     >
       <button
@@ -148,7 +148,7 @@ exports[`<TopBar /> should renders with all icons 1`] = `
         onClick={[MockFunction]}
         type="button"
       >
-        <ArrowLeftSVG>
+        <ForwardRef(ArrowLeftSVG)>
           <svg
             height={24}
             viewBox="0 0 24 24"
@@ -158,11 +158,11 @@ exports[`<TopBar /> should renders with all icons 1`] = `
               d="M5.414 13l5.293 5.293a1 1 0 01-1.414 1.414l-7-7a1 1 0 010-1.414l7-7a1 1 0 011.414 1.414L5.414 11H21a1 1 0 110 2H5.414z"
             />
           </svg>
-        </ArrowLeftSVG>
+        </ForwardRef(ArrowLeftSVG)>
       </button>
     </IconButton>
     <IconButton
-      icon={<PersonSVG />}
+      icon={<ForwardRef(PersonSVG) />}
       onClick={[MockFunction]}
     >
       <button
@@ -170,7 +170,7 @@ exports[`<TopBar /> should renders with all icons 1`] = `
         onClick={[MockFunction]}
         type="button"
       >
-        <PersonSVG>
+        <ForwardRef(PersonSVG)>
           <svg
             height={24}
             viewBox="0 0 24 24"
@@ -185,7 +185,7 @@ exports[`<TopBar /> should renders with all icons 1`] = `
               d="M7.214 14.977a1 1 0 00-.428-1.954c-2.223.486-3.462 1.496-4.123 2.508a4.205 4.205 0 00-.573 1.311 3.43 3.43 0 00-.09.626c-.009.51 0 1.021 0 1.532a3 3 0 003 3h14a3 3 0 003-3c0-.51.007-1.021 0-1.532l-.002-.048a3.449 3.449 0 00-.088-.578 4.203 4.203 0 00-.573-1.31c-.66-1.013-1.9-2.023-4.123-2.509a1 1 0 10-.428 1.954c1.777.389 2.538 1.129 2.877 1.648.178.272.262.518.302.685a1.44 1.44 0 01.035.203V19a1 1 0 01-1 1H5a1 1 0 01-1-1v-1.484l.002-.025c.004-.035.013-.097.033-.18.04-.168.124-.414.302-.686.34-.52 1.1-1.26 2.877-1.648z"
             />
           </svg>
-        </PersonSVG>
+        </ForwardRef(PersonSVG)>
       </button>
     </IconButton>
     <div
@@ -196,7 +196,7 @@ exports[`<TopBar /> should renders with all icons 1`] = `
       />
     </div>
     <IconButton
-      icon={<PersonSVG />}
+      icon={<ForwardRef(PersonSVG) />}
       onClick={[MockFunction]}
     >
       <button
@@ -204,7 +204,7 @@ exports[`<TopBar /> should renders with all icons 1`] = `
         onClick={[MockFunction]}
         type="button"
       >
-        <PersonSVG>
+        <ForwardRef(PersonSVG)>
           <svg
             height={24}
             viewBox="0 0 24 24"
@@ -219,11 +219,11 @@ exports[`<TopBar /> should renders with all icons 1`] = `
               d="M7.214 14.977a1 1 0 00-.428-1.954c-2.223.486-3.462 1.496-4.123 2.508a4.205 4.205 0 00-.573 1.311 3.43 3.43 0 00-.09.626c-.009.51 0 1.021 0 1.532a3 3 0 003 3h14a3 3 0 003-3c0-.51.007-1.021 0-1.532l-.002-.048a3.449 3.449 0 00-.088-.578 4.203 4.203 0 00-.573-1.31c-.66-1.013-1.9-2.023-4.123-2.509a1 1 0 10-.428 1.954c1.777.389 2.538 1.129 2.877 1.648.178.272.262.518.302.685a1.44 1.44 0 01.035.203V19a1 1 0 01-1 1H5a1 1 0 01-1-1v-1.484l.002-.025c.004-.035.013-.097.033-.18.04-.168.124-.414.302-.686.34-.52 1.1-1.26 2.877-1.648z"
             />
           </svg>
-        </PersonSVG>
+        </ForwardRef(PersonSVG)>
       </button>
     </IconButton>
     <IconButton
-      icon={<CrossSVG />}
+      icon={<ForwardRef(CrossSVG) />}
       onClick={[MockFunction]}
     >
       <button
@@ -231,7 +231,7 @@ exports[`<TopBar /> should renders with all icons 1`] = `
         onClick={[MockFunction]}
         type="button"
       >
-        <CrossSVG>
+        <ForwardRef(CrossSVG)>
           <svg
             height={24}
             viewBox="0 0 24 24"
@@ -243,7 +243,7 @@ exports[`<TopBar /> should renders with all icons 1`] = `
               fillRule="evenodd"
             />
           </svg>
-        </CrossSVG>
+        </ForwardRef(CrossSVG)>
       </button>
     </IconButton>
   </div>
@@ -255,7 +255,7 @@ exports[`<TopBar /> should renders with end icon 1`] = `
   buttonsProps={
     Object {
       "end": Object {
-        "icon": <CrossSVG />,
+        "icon": <ForwardRef(CrossSVG) />,
       },
     }
   }
@@ -279,13 +279,13 @@ exports[`<TopBar /> should renders with end icon 1`] = `
       />
     </div>
     <IconButton
-      icon={<CrossSVG />}
+      icon={<ForwardRef(CrossSVG) />}
     >
       <button
         className="icon-button"
         type="button"
       >
-        <CrossSVG>
+        <ForwardRef(CrossSVG)>
           <svg
             height={24}
             viewBox="0 0 24 24"
@@ -297,7 +297,7 @@ exports[`<TopBar /> should renders with end icon 1`] = `
               fillRule="evenodd"
             />
           </svg>
-        </CrossSVG>
+        </ForwardRef(CrossSVG)>
       </button>
     </IconButton>
   </div>
@@ -309,10 +309,10 @@ exports[`<TopBar /> should renders with end icons 1`] = `
   buttonsProps={
     Object {
       "end": Object {
-        "icon": <CrossSVG />,
+        "icon": <ForwardRef(CrossSVG) />,
       },
       "endSecondary": Object {
-        "icon": <PersonSVG />,
+        "icon": <ForwardRef(PersonSVG) />,
       },
     }
   }
@@ -339,13 +339,13 @@ exports[`<TopBar /> should renders with end icons 1`] = `
       />
     </div>
     <IconButton
-      icon={<PersonSVG />}
+      icon={<ForwardRef(PersonSVG) />}
     >
       <button
         className="icon-button"
         type="button"
       >
-        <PersonSVG>
+        <ForwardRef(PersonSVG)>
           <svg
             height={24}
             viewBox="0 0 24 24"
@@ -360,17 +360,17 @@ exports[`<TopBar /> should renders with end icons 1`] = `
               d="M7.214 14.977a1 1 0 00-.428-1.954c-2.223.486-3.462 1.496-4.123 2.508a4.205 4.205 0 00-.573 1.311 3.43 3.43 0 00-.09.626c-.009.51 0 1.021 0 1.532a3 3 0 003 3h14a3 3 0 003-3c0-.51.007-1.021 0-1.532l-.002-.048a3.449 3.449 0 00-.088-.578 4.203 4.203 0 00-.573-1.31c-.66-1.013-1.9-2.023-4.123-2.509a1 1 0 10-.428 1.954c1.777.389 2.538 1.129 2.877 1.648.178.272.262.518.302.685a1.44 1.44 0 01.035.203V19a1 1 0 01-1 1H5a1 1 0 01-1-1v-1.484l.002-.025c.004-.035.013-.097.033-.18.04-.168.124-.414.302-.686.34-.52 1.1-1.26 2.877-1.648z"
             />
           </svg>
-        </PersonSVG>
+        </ForwardRef(PersonSVG)>
       </button>
     </IconButton>
     <IconButton
-      icon={<CrossSVG />}
+      icon={<ForwardRef(CrossSVG) />}
     >
       <button
         className="icon-button"
         type="button"
       >
-        <CrossSVG>
+        <ForwardRef(CrossSVG)>
           <svg
             height={24}
             viewBox="0 0 24 24"
@@ -382,7 +382,7 @@ exports[`<TopBar /> should renders with end icons 1`] = `
               fillRule="evenodd"
             />
           </svg>
-        </CrossSVG>
+        </ForwardRef(CrossSVG)>
       </button>
     </IconButton>
   </div>
@@ -394,7 +394,7 @@ exports[`<TopBar /> should renders with start icon 1`] = `
   buttonsProps={
     Object {
       "start": Object {
-        "icon": <ArrowLeftSVG />,
+        "icon": <ForwardRef(ArrowLeftSVG) />,
       },
     }
   }
@@ -408,13 +408,13 @@ exports[`<TopBar /> should renders with start icon 1`] = `
     }
   >
     <IconButton
-      icon={<ArrowLeftSVG />}
+      icon={<ForwardRef(ArrowLeftSVG) />}
     >
       <button
         className="icon-button"
         type="button"
       >
-        <ArrowLeftSVG>
+        <ForwardRef(ArrowLeftSVG)>
           <svg
             height={24}
             viewBox="0 0 24 24"
@@ -424,7 +424,7 @@ exports[`<TopBar /> should renders with start icon 1`] = `
               d="M5.414 13l5.293 5.293a1 1 0 01-1.414 1.414l-7-7a1 1 0 010-1.414l7-7a1 1 0 011.414 1.414L5.414 11H21a1 1 0 110 2H5.414z"
             />
           </svg>
-        </ArrowLeftSVG>
+        </ForwardRef(ArrowLeftSVG)>
       </button>
     </IconButton>
     <div
@@ -446,10 +446,10 @@ exports[`<TopBar /> should renders with start icons 1`] = `
   buttonsProps={
     Object {
       "start": Object {
-        "icon": <ArrowLeftSVG />,
+        "icon": <ForwardRef(ArrowLeftSVG) />,
       },
       "startSecondary": Object {
-        "icon": <PersonSVG />,
+        "icon": <ForwardRef(PersonSVG) />,
       },
     }
   }
@@ -463,13 +463,13 @@ exports[`<TopBar /> should renders with start icons 1`] = `
     }
   >
     <IconButton
-      icon={<ArrowLeftSVG />}
+      icon={<ForwardRef(ArrowLeftSVG) />}
     >
       <button
         className="icon-button"
         type="button"
       >
-        <ArrowLeftSVG>
+        <ForwardRef(ArrowLeftSVG)>
           <svg
             height={24}
             viewBox="0 0 24 24"
@@ -479,17 +479,17 @@ exports[`<TopBar /> should renders with start icons 1`] = `
               d="M5.414 13l5.293 5.293a1 1 0 01-1.414 1.414l-7-7a1 1 0 010-1.414l7-7a1 1 0 011.414 1.414L5.414 11H21a1 1 0 110 2H5.414z"
             />
           </svg>
-        </ArrowLeftSVG>
+        </ForwardRef(ArrowLeftSVG)>
       </button>
     </IconButton>
     <IconButton
-      icon={<PersonSVG />}
+      icon={<ForwardRef(PersonSVG) />}
     >
       <button
         className="icon-button"
         type="button"
       >
-        <PersonSVG>
+        <ForwardRef(PersonSVG)>
           <svg
             height={24}
             viewBox="0 0 24 24"
@@ -504,7 +504,7 @@ exports[`<TopBar /> should renders with start icons 1`] = `
               d="M7.214 14.977a1 1 0 00-.428-1.954c-2.223.486-3.462 1.496-4.123 2.508a4.205 4.205 0 00-.573 1.311 3.43 3.43 0 00-.09.626c-.009.51 0 1.021 0 1.532a3 3 0 003 3h14a3 3 0 003-3c0-.51.007-1.021 0-1.532l-.002-.048a3.449 3.449 0 00-.088-.578 4.203 4.203 0 00-.573-1.31c-.66-1.013-1.9-2.023-4.123-2.509a1 1 0 10-.428 1.954c1.777.389 2.538 1.129 2.877 1.648.178.272.262.518.302.685a1.44 1.44 0 01.035.203V19a1 1 0 01-1 1H5a1 1 0 01-1-1v-1.484l.002-.025c.004-.035.013-.097.033-.18.04-.168.124-.414.302-.686.34-.52 1.1-1.26 2.877-1.648z"
             />
           </svg>
-        </PersonSVG>
+        </ForwardRef(PersonSVG)>
       </button>
     </IconButton>
     <div
