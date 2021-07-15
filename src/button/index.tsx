@@ -20,7 +20,7 @@ interface CustomProps<T extends Appearance = Appearance> {
   appearance?: T
 
   /** Иконка. */
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
+  icon?: React.ComponentType<React.SVGAttributes<SVGSVGElement>>
 
   /** Позиция иконки. */
   iconPosition?: IconPosition

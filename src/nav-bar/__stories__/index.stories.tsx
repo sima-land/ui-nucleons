@@ -1,10 +1,10 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { NavBar } from '..';
-import ArrowLeftSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-left';
-import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
-import CartSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cart';
-import PersonSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/person';
+import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
+import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
+import CartSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cart';
+import PersonSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/person';
 
 const DemoWrapper: React.FC = ({ children }) => (
   <div

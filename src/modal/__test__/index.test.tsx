@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from '..';
 import { mount, ReactWrapper } from 'enzyme';
-import ArrowLeftSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-left';
+import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
 import { act } from 'react-dom/test-utils';
 import { TopBar } from '../../top-bar';
 import { useBodyScrollLock } from '../../_internal/body-scroll';

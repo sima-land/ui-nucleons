@@ -1,7 +1,7 @@
 import React from 'react';
 import { TopBar, TopBarProps } from '../top-bar';
-import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
-import ArrowLeftSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-left';
+import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
+import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
 import { BottomBar, BottomBarProps } from '../bottom-bar';
 import { CustomScrollbar } from '../_internal/custom-scrollbar';
 import styles from './modal.module.scss';

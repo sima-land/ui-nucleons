@@ -9,7 +9,7 @@ exports[`<Stepper /> should handle "onAdd/onSubtract/canAdd/canSubtract" props 1
     className="root size-m"
     data-testid="stepper"
   >
-    <MinusSVG
+    <ForwardRef(MinusSVG)
       className="button"
       data-testid="stepper:minus"
       onClick={[MockFunction]}
@@ -28,14 +28,14 @@ exports[`<Stepper /> should handle "onAdd/onSubtract/canAdd/canSubtract" props 1
           fillRule="evenodd"
         />
       </svg>
-    </MinusSVG>
+    </ForwardRef(MinusSVG)>
     <input
       className="input"
       data-testid="stepper:input"
       onBlur={[Function]}
       onFocus={[Function]}
     />
-    <PlusSVG
+    <ForwardRef(PlusSVG)
       className="button"
       data-testid="stepper:plus"
       onClick={[MockFunction]}
@@ -52,7 +52,7 @@ exports[`<Stepper /> should handle "onAdd/onSubtract/canAdd/canSubtract" props 1
           d="M9 3a1 1 0 00-2 0v4H3a1 1 0 000 2h4v4a1 1 0 102 0V9h4a1 1 0 100-2H9V3z"
         />
       </svg>
-    </PlusSVG>
+    </ForwardRef(PlusSVG)>
   </div>
 </Stepper>
 `;
@@ -63,7 +63,7 @@ exports[`<Stepper /> should handle "size" prop 1`] = `
     className="root size-m"
     data-testid="stepper"
   >
-    <MinusSVG
+    <ForwardRef(MinusSVG)
       className="button"
       data-testid="stepper:minus"
     >
@@ -80,14 +80,14 @@ exports[`<Stepper /> should handle "size" prop 1`] = `
           fillRule="evenodd"
         />
       </svg>
-    </MinusSVG>
+    </ForwardRef(MinusSVG)>
     <input
       className="input"
       data-testid="stepper:input"
       onBlur={[Function]}
       onFocus={[Function]}
     />
-    <PlusSVG
+    <ForwardRef(PlusSVG)
       className="button"
       data-testid="stepper:plus"
     >
@@ -102,7 +102,7 @@ exports[`<Stepper /> should handle "size" prop 1`] = `
           d="M9 3a1 1 0 00-2 0v4H3a1 1 0 000 2h4v4a1 1 0 102 0V9h4a1 1 0 100-2H9V3z"
         />
       </svg>
-    </PlusSVG>
+    </ForwardRef(PlusSVG)>
   </div>
 </Stepper>
 `;
@@ -115,7 +115,7 @@ exports[`<Stepper /> should handle "size" prop 2`] = `
     className="root size-m"
     data-testid="stepper"
   >
-    <MinusSVG
+    <ForwardRef(MinusSVG)
       className="button"
       data-testid="stepper:minus"
     >
@@ -132,14 +132,14 @@ exports[`<Stepper /> should handle "size" prop 2`] = `
           fillRule="evenodd"
         />
       </svg>
-    </MinusSVG>
+    </ForwardRef(MinusSVG)>
     <input
       className="input"
       data-testid="stepper:input"
       onBlur={[Function]}
       onFocus={[Function]}
     />
-    <PlusSVG
+    <ForwardRef(PlusSVG)
       className="button"
       data-testid="stepper:plus"
     >
@@ -154,7 +154,7 @@ exports[`<Stepper /> should handle "size" prop 2`] = `
           d="M9 3a1 1 0 00-2 0v4H3a1 1 0 000 2h4v4a1 1 0 102 0V9h4a1 1 0 100-2H9V3z"
         />
       </svg>
-    </PlusSVG>
+    </ForwardRef(PlusSVG)>
   </div>
 </Stepper>
 `;
@@ -167,7 +167,7 @@ exports[`<Stepper /> should handle "size" prop 3`] = `
     className="root size-m"
     data-testid="stepper"
   >
-    <MinusSVG
+    <ForwardRef(MinusSVG)
       className="button"
       data-testid="stepper:minus"
     >
@@ -184,14 +184,14 @@ exports[`<Stepper /> should handle "size" prop 3`] = `
           fillRule="evenodd"
         />
       </svg>
-    </MinusSVG>
+    </ForwardRef(MinusSVG)>
     <input
       className="input"
       data-testid="stepper:input"
       onBlur={[Function]}
       onFocus={[Function]}
     />
-    <PlusSVG
+    <ForwardRef(PlusSVG)
       className="button"
       data-testid="stepper:plus"
     >
@@ -206,7 +206,7 @@ exports[`<Stepper /> should handle "size" prop 3`] = `
           d="M9 3a1 1 0 00-2 0v4H3a1 1 0 000 2h4v4a1 1 0 102 0V9h4a1 1 0 100-2H9V3z"
         />
       </svg>
-    </PlusSVG>
+    </ForwardRef(PlusSVG)>
   </div>
 </Stepper>
 `;
@@ -217,7 +217,7 @@ exports[`<Stepper /> should render without props 1`] = `
     className="root size-m"
     data-testid="stepper"
   >
-    <MinusSVG
+    <ForwardRef(MinusSVG)
       className="button"
       data-testid="stepper:minus"
     >
@@ -234,14 +234,14 @@ exports[`<Stepper /> should render without props 1`] = `
           fillRule="evenodd"
         />
       </svg>
-    </MinusSVG>
+    </ForwardRef(MinusSVG)>
     <input
       className="input"
       data-testid="stepper:input"
       onBlur={[Function]}
       onFocus={[Function]}
     />
-    <PlusSVG
+    <ForwardRef(PlusSVG)
       className="button"
       data-testid="stepper:plus"
     >
@@ -256,7 +256,7 @@ exports[`<Stepper /> should render without props 1`] = `
           d="M9 3a1 1 0 00-2 0v4H3a1 1 0 000 2h4v4a1 1 0 102 0V9h4a1 1 0 100-2H9V3z"
         />
       </svg>
-    </PlusSVG>
+    </ForwardRef(PlusSVG)>
   </div>
 </Stepper>
 `;

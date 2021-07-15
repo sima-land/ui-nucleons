@@ -204,7 +204,10 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
               Object {
                 "end": Object {
                   "aria-label": "Закрыть",
-                  "icon": [Function],
+                  "icon": Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "render": [Function],
+                  },
                   "onClick": [Function],
                 },
                 "start": undefined,
@@ -222,7 +225,12 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
                 >
                   <NavButton
                     aria-label="Закрыть"
-                    icon={[Function]}
+                    icon={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "render": [Function],
+                      }
+                    }
                     onClick={[Function]}
                     stub={true}
                   >
@@ -247,7 +255,12 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
                 >
                   <NavButton
                     aria-label="Закрыть"
-                    icon={[Function]}
+                    icon={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "render": [Function],
+                      }
+                    }
                     onClick={[Function]}
                   >
                     <button
@@ -257,7 +270,7 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
                       onClick={[Function]}
                       type="button"
                     >
-                      <CrossSVG
+                      <ForwardRef(CrossSVG)
                         aria-hidden="true"
                         fill="#212121"
                       >
@@ -274,7 +287,7 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
                             fillRule="evenodd"
                           />
                         </svg>
-                      </CrossSVG>
+                      </ForwardRef(CrossSVG)>
                     </button>
                   </NavButton>
                 </div>
@@ -479,12 +492,18 @@ exports[`<Screen /> should handle props 1`] = `
               Object {
                 "end": Object {
                   "aria-label": "Закрыть Test title",
-                  "icon": [Function],
+                  "icon": Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "render": [Function],
+                  },
                   "onClick": [Function],
                 },
                 "start": Object {
                   "aria-label": "Вернуться назад",
-                  "icon": [Function],
+                  "icon": Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "render": [Function],
+                  },
                   "onClick": [Function],
                 },
               }
@@ -503,7 +522,12 @@ exports[`<Screen /> should handle props 1`] = `
                 >
                   <NavButton
                     aria-label="Вернуться назад"
-                    icon={[Function]}
+                    icon={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "render": [Function],
+                      }
+                    }
                     onClick={[Function]}
                   >
                     <button
@@ -513,7 +537,7 @@ exports[`<Screen /> should handle props 1`] = `
                       onClick={[Function]}
                       type="button"
                     >
-                      <ArrowLeftSVG
+                      <ForwardRef(ArrowLeftSVG)
                         aria-hidden="true"
                         fill="#212121"
                       >
@@ -528,7 +552,7 @@ exports[`<Screen /> should handle props 1`] = `
                             d="M5.414 13l5.293 5.293a1 1 0 01-1.414 1.414l-7-7a1 1 0 010-1.414l7-7a1 1 0 011.414 1.414L5.414 11H21a1 1 0 110 2H5.414z"
                           />
                         </svg>
-                      </ArrowLeftSVG>
+                      </ForwardRef(ArrowLeftSVG)>
                     </button>
                   </NavButton>
                 </div>
@@ -537,7 +561,12 @@ exports[`<Screen /> should handle props 1`] = `
                 >
                   <NavButton
                     aria-label="Закрыть Test title"
-                    icon={[Function]}
+                    icon={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "render": [Function],
+                      }
+                    }
                     onClick={[Function]}
                     stub={true}
                   >
@@ -573,7 +602,12 @@ exports[`<Screen /> should handle props 1`] = `
                 >
                   <NavButton
                     aria-label="Закрыть Test title"
-                    icon={[Function]}
+                    icon={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "render": [Function],
+                      }
+                    }
                     onClick={[Function]}
                   >
                     <button
@@ -583,7 +617,7 @@ exports[`<Screen /> should handle props 1`] = `
                       onClick={[Function]}
                       type="button"
                     >
-                      <CrossSVG
+                      <ForwardRef(CrossSVG)
                         aria-hidden="true"
                         fill="#212121"
                       >
@@ -600,7 +634,7 @@ exports[`<Screen /> should handle props 1`] = `
                             fillRule="evenodd"
                           />
                         </svg>
-                      </CrossSVG>
+                      </ForwardRef(CrossSVG)>
                     </button>
                   </NavButton>
                 </div>
@@ -609,7 +643,12 @@ exports[`<Screen /> should handle props 1`] = `
                 >
                   <NavButton
                     aria-label="Вернуться назад"
-                    icon={[Function]}
+                    icon={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "render": [Function],
+                      }
+                    }
                     onClick={[Function]}
                     stub={true}
                   >
@@ -732,7 +771,10 @@ exports[`<Screen /> should render without props 1`] = `
               Object {
                 "end": Object {
                   "aria-label": "Закрыть",
-                  "icon": [Function],
+                  "icon": Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "render": [Function],
+                  },
                   "onClick": [Function],
                 },
                 "start": undefined,
@@ -750,7 +792,12 @@ exports[`<Screen /> should render without props 1`] = `
                 >
                   <NavButton
                     aria-label="Закрыть"
-                    icon={[Function]}
+                    icon={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "render": [Function],
+                      }
+                    }
                     onClick={[Function]}
                     stub={true}
                   >
@@ -775,7 +822,12 @@ exports[`<Screen /> should render without props 1`] = `
                 >
                   <NavButton
                     aria-label="Закрыть"
-                    icon={[Function]}
+                    icon={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "render": [Function],
+                      }
+                    }
                     onClick={[Function]}
                   >
                     <button
@@ -785,7 +837,7 @@ exports[`<Screen /> should render without props 1`] = `
                       onClick={[Function]}
                       type="button"
                     >
-                      <CrossSVG
+                      <ForwardRef(CrossSVG)
                         aria-hidden="true"
                         fill="#212121"
                       >
@@ -802,7 +854,7 @@ exports[`<Screen /> should render without props 1`] = `
                             fillRule="evenodd"
                           />
                         </svg>
-                      </CrossSVG>
+                      </ForwardRef(CrossSVG)>
                     </button>
                   </NavButton>
                 </div>

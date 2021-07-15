@@ -72,7 +72,7 @@ exports[`<BasePagination /> should handle "onButtonClick" prop 1`] = `
         page={2}
         type="button"
       >
-        <LeftSVG
+        <ForwardRef(LeftSVG)
           className="icon"
         >
           <svg
@@ -87,7 +87,7 @@ exports[`<BasePagination /> should handle "onButtonClick" prop 1`] = `
               fillRule="evenodd"
             />
           </svg>
-        </LeftSVG>
+        </ForwardRef(LeftSVG)>
       </button>
     </PageButton>
     <PageButton
@@ -230,7 +230,7 @@ exports[`<BasePagination /> should handle "onButtonClick" prop 1`] = `
         page={4}
         type="button"
       >
-        <RightSVG
+        <ForwardRef(RightSVG)
           className="icon"
         >
           <svg
@@ -245,7 +245,7 @@ exports[`<BasePagination /> should handle "onButtonClick" prop 1`] = `
               fillRule="evenodd"
             />
           </svg>
-        </RightSVG>
+        </ForwardRef(RightSVG)>
       </button>
     </PageButton>
   </div>
@@ -274,7 +274,7 @@ exports[`<BasePagination /> should handle "total" and "current" props 1`] = `
         page={1}
         type="button"
       >
-        <LeftSVG
+        <ForwardRef(LeftSVG)
           className="icon"
         >
           <svg
@@ -289,7 +289,7 @@ exports[`<BasePagination /> should handle "total" and "current" props 1`] = `
               fillRule="evenodd"
             />
           </svg>
-        </LeftSVG>
+        </ForwardRef(LeftSVG)>
       </button>
     </PageButton>
     <PageButton
@@ -432,7 +432,7 @@ exports[`<BasePagination /> should handle "total" and "current" props 1`] = `
         page={3}
         type="button"
       >
-        <RightSVG
+        <ForwardRef(RightSVG)
           className="icon"
         >
           <svg
@@ -447,7 +447,7 @@ exports[`<BasePagination /> should handle "total" and "current" props 1`] = `
               fillRule="evenodd"
             />
           </svg>
-        </RightSVG>
+        </ForwardRef(RightSVG)>
       </button>
     </PageButton>
   </div>
@@ -476,7 +476,7 @@ exports[`<BasePagination /> should render correctly 1`] = `
         page={2}
         type="button"
       >
-        <LeftSVG
+        <ForwardRef(LeftSVG)
           className="icon"
         >
           <svg
@@ -491,7 +491,7 @@ exports[`<BasePagination /> should render correctly 1`] = `
               fillRule="evenodd"
             />
           </svg>
-        </LeftSVG>
+        </ForwardRef(LeftSVG)>
       </button>
     </PageButton>
     <PageButton
@@ -634,7 +634,7 @@ exports[`<BasePagination /> should render correctly 1`] = `
         page={4}
         type="button"
       >
-        <RightSVG
+        <ForwardRef(RightSVG)
           className="icon"
         >
           <svg
@@ -649,7 +649,7 @@ exports[`<BasePagination /> should render correctly 1`] = `
               fillRule="evenodd"
             />
           </svg>
-        </RightSVG>
+        </ForwardRef(RightSVG)>
       </button>
     </PageButton>
   </div>

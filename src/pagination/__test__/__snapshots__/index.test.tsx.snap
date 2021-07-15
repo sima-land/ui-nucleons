@@ -28,7 +28,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
           page={22}
           type="button"
         >
-          <LeftSVG
+          <ForwardRef(LeftSVG)
             className="icon"
           >
             <svg
@@ -43,7 +43,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
                 fillRule="evenodd"
               />
             </svg>
-          </LeftSVG>
+          </ForwardRef(LeftSVG)>
         </button>
       </PageButton>
       <PageButton
@@ -204,7 +204,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
           page={24}
           type="button"
         >
-          <RightSVG
+          <ForwardRef(RightSVG)
             className="icon"
           >
             <svg
@@ -219,7 +219,7 @@ exports[`<Pagination /> should handle "onChange" prop 1`] = `
                 fillRule="evenodd"
               />
             </svg>
-          </RightSVG>
+          </ForwardRef(RightSVG)>
         </button>
       </PageButton>
     </div>
@@ -254,7 +254,7 @@ exports[`<Pagination /> should render without props 1`] = `
           page={2}
           type="button"
         >
-          <LeftSVG
+          <ForwardRef(LeftSVG)
             className="icon"
           >
             <svg
@@ -269,7 +269,7 @@ exports[`<Pagination /> should render without props 1`] = `
                 fillRule="evenodd"
               />
             </svg>
-          </LeftSVG>
+          </ForwardRef(LeftSVG)>
         </button>
       </PageButton>
       <PageButton
@@ -412,7 +412,7 @@ exports[`<Pagination /> should render without props 1`] = `
           page={4}
           type="button"
         >
-          <RightSVG
+          <ForwardRef(RightSVG)
             className="icon"
           >
             <svg
@@ -427,7 +427,7 @@ exports[`<Pagination /> should render without props 1`] = `
                 fillRule="evenodd"
               />
             </svg>
-          </RightSVG>
+          </ForwardRef(RightSVG)>
         </button>
       </PageButton>
     </div>

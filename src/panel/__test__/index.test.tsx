@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { Panel } from '..';
-import InformationSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/information.js';
+import InformationSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information.js';
 
 describe('<Panel />', () => {
   it('should renders without props', () => {

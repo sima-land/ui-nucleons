@@ -1,20 +1,20 @@
 import React from 'react';
 import classnames from 'classnames/bind';
 import classes from './arrow-button.module.scss';
-import UpSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-up';
-import RightSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-right';
-import DownSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-down';
-import LeftSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-left';
-import UpSmallSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/arrow-up';
-import RightSmallSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/arrow-right';
-import DownSmallSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/arrow-down';
-import LeftSmallSVG from '@dev-dep/ui-quarks/icons/16x16/Stroked/arrow-left';
+import UpSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-up';
+import RightSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-right';
+import DownSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-down';
+import LeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
+import UpSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/arrow-up';
+import RightSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/arrow-right';
+import DownSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/arrow-down';
+import LeftSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/arrow-left';
 
 type Size = 's' | 'l';
 
 type Direction = 'up' | 'right' | 'down' | 'left';
 
-type IconSet = Readonly<Record<Direction, React.FC<React.SVGProps<SVGSVGElement>>>>;
+type IconSet = Readonly<Record<Direction, React.ComponentType<React.SVGAttributes<SVGSVGElement>>>>;
 
 export interface Props extends Omit<JSX.IntrinsicElements['button'], 'size' | 'children'> {
 

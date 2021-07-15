@@ -4,8 +4,8 @@ import { cx, OrNil } from './utils';
 import on from '../helpers/on';
 import { isFullyScrolled } from '../helpers/is-fully-scrolled';
 import { get } from 'lodash';
-import ArrowLeftSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/arrow-left';
-import CrossSVG from '@dev-dep/ui-quarks/icons/24x24/Stroked/cross';
+import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
+import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
 
 export interface CallbackData {
   contentElement: OrNil<HTMLDivElement>

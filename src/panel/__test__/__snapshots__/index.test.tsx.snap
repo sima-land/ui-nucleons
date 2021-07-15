@@ -5,14 +5,19 @@ exports[`<Panel /> should handle props 1`] = `
   className="test-class"
   color="white"
   contentColor="additional-red"
-  icon={[Function]}
+  icon={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [Function],
+    }
+  }
   inline={true}
 >
   <div
     className="panel inline bg-color__white test-class"
     data-testid="panel"
   >
-    <InformationSVG
+    <ForwardRef(InformationSVG)
       aria-hidden="true"
       className="icon"
       fill="#fb3a2f"
@@ -36,7 +41,7 @@ exports[`<Panel /> should handle props 1`] = `
           fillRule="evenodd"
         />
       </svg>
-    </InformationSVG>
+    </ForwardRef(InformationSVG)>
     <div
       className="content color__additional-red"
     >
@@ -52,14 +57,19 @@ exports[`<Panel /> should handle props 2`] = `
   color="white"
   contentColor="additional-red"
   html="Lorem <i>ipsum</i> <b>dolor</b> sit."
-  icon={[Function]}
+  icon={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [Function],
+    }
+  }
   inline={true}
 >
   <div
     className="panel inline bg-color__white test-class"
     data-testid="panel"
   >
-    <InformationSVG
+    <ForwardRef(InformationSVG)
       aria-hidden="true"
       className="icon"
       fill="#fb3a2f"
@@ -83,7 +93,7 @@ exports[`<Panel /> should handle props 2`] = `
           fillRule="evenodd"
         />
       </svg>
-    </InformationSVG>
+    </ForwardRef(InformationSVG)>
     <div
       className="content color__additional-red"
       dangerouslySetInnerHTML={

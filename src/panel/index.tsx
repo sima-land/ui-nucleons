@@ -16,7 +16,7 @@ export interface Props {
   inline?: boolean
 
   /** Компонент иконки. */
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
+  icon?: React.ComponentType<React.SVGAttributes<SVGSVGElement>>
 
   /** CSS-класс корневого элемента. */
   className?: string
