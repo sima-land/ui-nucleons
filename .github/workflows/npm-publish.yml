@@ -23,6 +23,6 @@ jobs:
       - run: npm i -g npm@7 --registry=https://registry.npmjs.org
       - run: npm set-script prepare ""
       - run: npm --no-git-tag-version version $RELEASE_VERSION
-      - run: npm publish --access public build
+      - run: npm publish ./build --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
