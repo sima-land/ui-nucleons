@@ -520,6 +520,126 @@ exports[`<Modal /> should render different sizes properly 5`] = `
 </Modal>
 `;
 
+exports[`<Modal /> should render overlap content 1`] = `
+<Modal>
+  <ModalInner>
+    <div
+      className="overlay"
+      data-testid="modal:overlay"
+      onMouseDown={[Function]}
+      onMouseUp={[Function]}
+      style={
+        Object {
+          "zIndex": 100,
+        }
+      }
+    >
+      <div
+        className="modal size-m shadow-z4"
+        data-testid="modal"
+        style={
+          Object {
+            "--footer-height": "16px",
+            "--header-height": "0px",
+            "--modal-height": undefined,
+          }
+        }
+      >
+        <ModalBody
+          key=".0"
+        >
+          <CustomScrollbar
+            className="body"
+            inFlexBox={true}
+            overflow={
+              Object {
+                "x": "h",
+                "y": "s",
+              }
+            }
+          >
+            <OverlayScrollbarsComponent
+              className="custom-scrollbar body os-host-flexbox"
+              options={
+                Object {
+                  "callbacks": undefined,
+                  "overflowBehavior": Object {
+                    "x": "h",
+                    "y": "s",
+                  },
+                }
+              }
+            >
+              <div
+                className="os-host"
+              >
+                <div
+                  className="os-resize-observer-host"
+                />
+                <div
+                  className="os-padding"
+                >
+                  <div
+                    className="os-viewport"
+                  >
+                    <div
+                      className="os-content"
+                    >
+                      <div
+                        className="main"
+                      >
+                        This is modal body
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="os-scrollbar os-scrollbar-horizontal "
+                >
+                  <div
+                    className="os-scrollbar-track"
+                  >
+                    <div
+                      className="os-scrollbar-handle"
+                    />
+                  </div>
+                </div>
+                <div
+                  className="os-scrollbar os-scrollbar-vertical"
+                >
+                  <div
+                    className="os-scrollbar-track"
+                  >
+                    <div
+                      className="os-scrollbar-handle"
+                    />
+                  </div>
+                </div>
+                <div
+                  className="os-scrollbar-corner"
+                />
+              </div>
+            </OverlayScrollbarsComponent>
+          </CustomScrollbar>
+        </ModalBody>
+        <div
+          className="footer-stub"
+        />
+        <div
+          className="overlap"
+        >
+          <ModalOverlap
+            key=".1"
+          >
+            Test is modal overlap content
+          </ModalOverlap>
+        </div>
+      </div>
+    </div>
+  </ModalInner>
+</Modal>
+`;
+
 exports[`<Modal /> should renders in portal 1`] = `
 <Modal
   inPortal={true}
