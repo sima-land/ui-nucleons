@@ -24,6 +24,21 @@ describe('<Modal />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it('should render overlap content', () => {
+    const wrapper = mount(
+      <Modal>
+        <Modal.Body>
+          This is modal body
+        </Modal.Body>
+        <Modal.Overlap>
+          Test is modal overlap content
+        </Modal.Overlap>
+      </Modal>
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it('calls onClose properly', () => {
     const spy = jest.fn();
 

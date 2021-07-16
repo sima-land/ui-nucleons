@@ -78,3 +78,12 @@ export const ModalBody: React.FC<{
 export const ModalFooter = (props: BottomBarProps) => (
   <BottomBar {...props} />
 );
+
+/**
+ * Контент который будет выводится поверх окна с абсолютным позиционированием.
+ * @param props Свойства.
+ * @return Элемент.
+ */
+export const ModalOverlap: React.FC = ({ children }) => (
+  <>{children}</>
+);

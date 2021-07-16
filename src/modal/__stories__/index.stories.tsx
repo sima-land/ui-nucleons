@@ -7,6 +7,7 @@ import { DesktopLayout } from '../../layout';
 import { marginRight } from '../../styling/sizes';
 import { Box } from '../../box';
 import { action } from '@storybook/addon-actions';
+import { ArrowButton } from '../../arrow-button';
 
 const Template: Story<ModalProps> = props => {
   const [opened, toggleModal] = useState<boolean>(true);
@@ -146,5 +147,32 @@ export const WithScroll: Story = () => (
         ))}
       </div>
     </Modal.Body>
+  </Modal>
+);
+
+export const WithOverlapContent: Story = () => (
+  <Modal size='l' inPortal>
+    <Modal.Header divided title='Со стрелочками рядом с окном' />
+    <Modal.Body>
+      <div style={{ padding: 24 }}>
+        {Array(50).fill(0).map((a, i) => (
+          <p key={i}>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sed ex odio voluptatibus laborum vero.
+          </p>
+        ))}
+      </div>
+    </Modal.Body>
+    <Modal.Overlap>
+      <ArrowButton
+        style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', right: 'calc(100% + 24px)' }}
+        direction='left'
+        onClick={action('Modal arrow click, prev')}
+      />
+      <ArrowButton
+        style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', left: 'calc(100% + 24px)' }}
+        direction='right'
+        onClick={action('Modal arrow click, next')}
+      />
+    </Modal.Overlap>
   </Modal>
 );

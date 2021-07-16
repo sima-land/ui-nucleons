@@ -5,7 +5,7 @@ import { useCloseHandler } from './utils';
 import { BoxShadow } from '../styling/shadows';
 import { Portal } from '../portal';
 import { isNumber } from 'lodash';
-import { ModalBody, ModalFooter, ModalHeader, ModalHeaderProps } from './slots';
+import { ModalBody, ModalFooter, ModalHeader, ModalHeaderProps, ModalOverlap } from './slots';
 import { LayerProvider, useLayer } from '../helpers/layer';
 import classnames from 'classnames/bind';
 import styles from './modal.module.scss';
@@ -49,6 +49,7 @@ export interface ModalComponent {
   Header: typeof ModalHeader
   Body: typeof ModalBody
   Footer: typeof ModalFooter
+  Overlap: typeof ModalOverlap
 }
 
 const cx = classnames.bind(styles);
@@ -90,10 +91,11 @@ const ModalInner = ({
 
   const fullscreen = size === 'fullscreen';
 
-  const { header, content, footer } = defineSlots(children, {
+  const { header, content, footer, overlay } = defineSlots(children, {
     header: ModalHeader,
     content: ModalBody,
     footer: ModalFooter,
+    overlay: ModalOverlap,
   });
 
   const topBarSize: TopBarSize = fullscreen ? 'm' : 's';
@@ -148,6 +150,10 @@ const ModalInner = ({
         {!footer && !fullscreen && (
           <div className={cx('footer-stub')} />
         )}
+
+        {!fullscreen && overlay && (
+          <div className={cx('overlap')}>{overlay}</div>
+        )}
       </div>
     </div>
   );
@@ -156,3 +162,4 @@ const ModalInner = ({
 Modal.Header = ModalHeader;
 Modal.Body = ModalBody;
 Modal.Footer = ModalFooter;
+Modal.Overlap = ModalOverlap;
