@@ -65,7 +65,7 @@ export const PhoneInput = ({
   const [country, setCountry] = useState(defineCountry(value));
   const [cleanValue, setCleanValue] = useState(formatValue(value, country));
   const [isPopupOpen, togglePopup] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setCleanValue(formatValue(value, country));

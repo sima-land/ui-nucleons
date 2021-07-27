@@ -1,1139 +1,742 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Autocomplete should handle "renderItem" prop missing 1`] = `
-<Autocomplete
-  items={
-    Array [
-      "aaaa",
-      "bbbb",
-      "cccc",
-      "dddd",
-      "eeee",
-    ]
-  }
-  value="Hello"
+<div
+  class="root"
 >
   <div
-    className="root"
+    class="root field"
+    data-testid="autocomplete:field"
   >
-    <ForwardRef(TextField)
-      className="field"
-      data-testid="autocomplete:field"
-      endAdornment={
-        <ForwardRef(DownSVG)
-          fill="#9e9e9e"
-        />
-      }
-      focused={true}
-      multiline={false}
-      onChange={[Function]}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      value="Hello"
-      variant="desktop"
+    <div
+      class="reset input-block focused variant-desktop size-l rounds-sm__all"
+      data-testid="text-field:block"
     >
       <div
-        className="root field"
-        data-testid="autocomplete:field"
+        class="main-column"
       >
         <div
-          className="reset input-block focused variant-desktop size-l rounds-sm__all"
-          data-testid="text-field:block"
-          onClick={[Function]}
+          class="input-wrapper"
         >
           <div
-            className="main-column"
+            class="reset root base-input focused variant-desktop size-l"
           >
-            <div
-              className="input-wrapper"
-            >
-              <ForwardRef(BaseInput)
-                className="base-input focused variant-desktop size-l"
-                data-testid="text-field:field"
-                multiline={false}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                value="Hello"
-              >
-                <div
-                  className="reset root base-input focused variant-desktop size-l"
-                >
-                  <input
-                    className="field reset"
-                    data-testid="text-field:field"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    onInput={[Function]}
-                    onKeyDown={[Function]}
-                    value="Hello"
-                  />
-                </div>
-              </ForwardRef(BaseInput)>
-            </div>
+            <input
+              class="field reset"
+              data-testid="text-field:field"
+              value="Hello"
+            />
           </div>
-          <Box
-            alignItems="center"
-            display="flex"
-            marginLeft={4}
-          >
-            <div
-              className="display-flex align-items-center M-l__4"
-            >
-              <ForwardRef(DownSVG)
-                fill="#9e9e9e"
-              >
-                <svg
-                  fill="#9e9e9e"
-                  height={16}
-                  viewBox="0 0 16 16"
-                  width={16}
-                >
-                  <path
-                    clipRule="evenodd"
-                    d="M3.247 6.342a1 1 0 011.412-.095L8 9.171l3.341-2.924a1 1 0 011.318 1.506l-4 3.5a1 1 0 01-1.317 0l-4-3.5a1 1 0 01-.095-1.411z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-              </ForwardRef(DownSVG)>
-            </div>
-          </Box>
         </div>
       </div>
-    </ForwardRef(TextField)>
-    <ForwardRef(Dropdown)
-      className="menu"
-      data-testid="autocomplete:menu"
-      role="menu"
-      style={
-        Object {
-          "top": "56px",
-        }
-      }
+      <div
+        class="display-flex align-items-center M-l__4"
+      >
+        <svg
+          fill="#9e9e9e"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M3.247 6.342a1 1 0 011.412-.095L8 9.171l3.341-2.924a1 1 0 011.318 1.506l-4 3.5a1 1 0 01-1.317 0l-4-3.5a1 1 0 01-.095-1.411z"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div
+    class="root menu shadow-z4 rounds-md__all"
+    data-testid="autocomplete:menu"
+    role="menu"
+    style="top: 56px;"
+  >
+    <div
+      class="os-host os-host-foreign os-theme-dark os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden custom-scrollbar inner"
     >
       <div
-        className="root menu shadow-z4 rounds-md__all"
-        data-testid="autocomplete:menu"
-        role="menu"
-        style={
-          Object {
-            "top": "56px",
-          }
-        }
+        class="os-resize-observer-host"
       >
-        <CustomScrollbar
-          className="inner"
-          overflow={
-            Object {
-              "x": "h",
-              "y": "s",
-            }
-          }
+        <div
+          class="os-resize-observer"
+          style="right: 0px;"
         >
-          <OverlayScrollbarsComponent
-            className="custom-scrollbar inner"
-            options={
-              Object {
-                "callbacks": undefined,
-                "overflowBehavior": Object {
-                  "x": "h",
-                  "y": "s",
-                },
-              }
-            }
+          <div
+            class="os-resize-observer-item"
+            dir="ltr"
+            style="top: -2px; right: 0px; bottom: 0px; left: -2px;"
           >
             <div
-              className="os-host"
+              class="os-resize-observer-item"
             >
               <div
-                className="os-resize-observer-host"
-              />
-              <div
-                className="os-padding"
-              >
-                <div
-                  className="os-viewport"
-                >
-                  <div
-                    className="os-content"
-                  >
-                    <DropdownItem
-                      checked={false}
-                      key="0"
-                      noHover={true}
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      role="menuitem"
-                    >
-                      <div
-                        className="root size-m no-hover"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        onMouseEnter={[Function]}
-                        role="menuitem"
-                      >
-                        aaaa
-                      </div>
-                    </DropdownItem>
-                    <DropdownItem
-                      checked={false}
-                      key="1"
-                      noHover={true}
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      role="menuitem"
-                    >
-                      <div
-                        className="root size-m no-hover"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        onMouseEnter={[Function]}
-                        role="menuitem"
-                      >
-                        bbbb
-                      </div>
-                    </DropdownItem>
-                    <DropdownItem
-                      checked={false}
-                      key="2"
-                      noHover={true}
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      role="menuitem"
-                    >
-                      <div
-                        className="root size-m no-hover"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        onMouseEnter={[Function]}
-                        role="menuitem"
-                      >
-                        cccc
-                      </div>
-                    </DropdownItem>
-                    <DropdownItem
-                      checked={false}
-                      key="3"
-                      noHover={true}
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      role="menuitem"
-                    >
-                      <div
-                        className="root size-m no-hover"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        onMouseEnter={[Function]}
-                        role="menuitem"
-                      >
-                        dddd
-                      </div>
-                    </DropdownItem>
-                    <DropdownItem
-                      checked={false}
-                      key="4"
-                      noHover={true}
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      role="menuitem"
-                    >
-                      <div
-                        className="root size-m no-hover"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        onMouseEnter={[Function]}
-                        role="menuitem"
-                      >
-                        eeee
-                      </div>
-                    </DropdownItem>
-                  </div>
-                </div>
-              </div>
-              <div
-                className="os-scrollbar os-scrollbar-horizontal "
-              >
-                <div
-                  className="os-scrollbar-track"
-                >
-                  <div
-                    className="os-scrollbar-handle"
-                  />
-                </div>
-              </div>
-              <div
-                className="os-scrollbar os-scrollbar-vertical"
-              >
-                <div
-                  className="os-scrollbar-track"
-                >
-                  <div
-                    className="os-scrollbar-handle"
-                  />
-                </div>
-              </div>
-              <div
-                className="os-scrollbar-corner"
+                class="os-resize-observer-item-final"
+                style="width: 3333333px; height: 3333333px;"
               />
             </div>
-          </OverlayScrollbarsComponent>
-        </CustomScrollbar>
+            <div
+              class="os-resize-observer-item"
+            >
+              <div
+                class="os-resize-observer-item-final"
+                style="width: 200%; height: 200%"
+              />
+            </div>
+          </div>
+        </div>
       </div>
-    </ForwardRef(Dropdown)>
+      <div
+        class="os-size-auto-observer"
+        style="height: calc(100% + 1px); float: left;"
+      >
+        <div
+          class="os-resize-observer"
+        >
+          <div
+            class="os-resize-observer-item"
+            dir="ltr"
+            style="top: -2px; right: 0px; bottom: 0px; left: -2px;"
+          >
+            <div
+              class="os-resize-observer-item"
+            >
+              <div
+                class="os-resize-observer-item-final"
+                style="width: 3333333px; height: 3333333px;"
+              />
+            </div>
+            <div
+              class="os-resize-observer-item"
+            >
+              <div
+                class="os-resize-observer-item-final"
+                style="width: 200%; height: 200%"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="os-content-glue"
+        style="margin: 0px 0px 0px 0px; width: -1px; height: -1px;"
+      />
+      <div
+        class="os-padding"
+      >
+        <div
+          class="os-viewport os-viewport-native-scrollbars-overlaid"
+          style=""
+        >
+          <div
+            class="os-content-arrange"
+          />
+          <div
+            class="os-content"
+            style="padding: 0px 0px 0px 0px; height: 100%; width: 100%;"
+          >
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              aaaa
+            </div>
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              bbbb
+            </div>
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              cccc
+            </div>
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              dddd
+            </div>
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              eeee
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable"
+      >
+        <div
+          class="os-scrollbar-track os-scrollbar-track-off"
+        >
+          <div
+            class="os-scrollbar-handle"
+            style="transform: translate(0px, 0);"
+          />
+        </div>
+      </div>
+      <div
+        class="os-scrollbar os-scrollbar-vertical os-scrollbar-unusable"
+      >
+        <div
+          class="os-scrollbar-track os-scrollbar-track-off"
+        >
+          <div
+            class="os-scrollbar-handle"
+            style="transform: translate(0, 0px);"
+          />
+        </div>
+      </div>
+      <div
+        class="os-scrollbar-corner"
+      />
+    </div>
   </div>
-</Autocomplete>
+</div>
 `;
 
 exports[`Autocomplete should handle defaultValue 1`] = `
-<Autocomplete
-  defaultValue="dddd"
-  items={
-    Array [
-      "aaaa",
-      "bbbb",
-      "cccc",
-    ]
-  }
+<div
+  class="root"
 >
   <div
-    className="root"
+    class="root field"
+    data-testid="autocomplete:field"
   >
-    <ForwardRef(TextField)
-      className="field"
-      data-testid="autocomplete:field"
-      endAdornment={
-        <ForwardRef(DownSVG)
-          fill="#9e9e9e"
-        />
-      }
-      focused={false}
-      multiline={false}
-      onChange={[Function]}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      variant="desktop"
+    <div
+      class="reset input-block variant-desktop size-l rounds-sm__all"
+      data-testid="text-field:block"
     >
       <div
-        className="root field"
-        data-testid="autocomplete:field"
+        class="main-column"
       >
         <div
-          className="reset input-block variant-desktop size-l rounds-sm__all"
-          data-testid="text-field:block"
-          onClick={[Function]}
+          class="input-wrapper"
         >
           <div
-            className="main-column"
+            class="reset root base-input variant-desktop size-l"
           >
-            <div
-              className="input-wrapper"
-            >
-              <ForwardRef(BaseInput)
-                className="base-input variant-desktop size-l"
-                data-testid="text-field:field"
-                multiline={false}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-              >
-                <div
-                  className="reset root base-input variant-desktop size-l"
-                >
-                  <input
-                    className="field reset"
-                    data-testid="text-field:field"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    onInput={[Function]}
-                    onKeyDown={[Function]}
-                  />
-                </div>
-              </ForwardRef(BaseInput)>
-            </div>
+            <input
+              class="field reset"
+              data-testid="text-field:field"
+              value=""
+            />
           </div>
-          <Box
-            alignItems="center"
-            display="flex"
-            marginLeft={4}
-          >
-            <div
-              className="display-flex align-items-center M-l__4"
-            >
-              <ForwardRef(DownSVG)
-                fill="#9e9e9e"
-              >
-                <svg
-                  fill="#9e9e9e"
-                  height={16}
-                  viewBox="0 0 16 16"
-                  width={16}
-                >
-                  <path
-                    clipRule="evenodd"
-                    d="M3.247 6.342a1 1 0 011.412-.095L8 9.171l3.341-2.924a1 1 0 011.318 1.506l-4 3.5a1 1 0 01-1.317 0l-4-3.5a1 1 0 01-.095-1.411z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-              </ForwardRef(DownSVG)>
-            </div>
-          </Box>
         </div>
       </div>
-    </ForwardRef(TextField)>
+      <div
+        class="display-flex align-items-center M-l__4"
+      >
+        <svg
+          fill="#9e9e9e"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M3.247 6.342a1 1 0 011.412-.095L8 9.171l3.341-2.924a1 1 0 011.318 1.506l-4 3.5a1 1 0 01-1.317 0l-4-3.5a1 1 0 01-.095-1.411z"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+    </div>
   </div>
-</Autocomplete>
+</div>
 `;
 
 exports[`Autocomplete should renders correctly 1`] = `
-<Autocomplete
-  items={
-    Array [
-      "U.S.",
-      "France",
-      "China",
-      "Cambodia",
-      "Chile",
-      "Canada",
-      "Poland",
-      "Russia",
-      "Belarus",
-      "Ukraine",
-    ]
-  }
-  renderItem={[Function]}
-  value="Hello"
+<div
+  class="root"
 >
   <div
-    className="root"
+    class="root field"
+    data-testid="autocomplete:field"
   >
-    <ForwardRef(TextField)
-      className="field"
-      data-testid="autocomplete:field"
-      endAdornment={
-        <ForwardRef(DownSVG)
-          fill="#9e9e9e"
-        />
-      }
-      focused={false}
-      multiline={false}
-      onChange={[Function]}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      value="Hello"
-      variant="desktop"
+    <div
+      class="reset input-block variant-desktop size-l rounds-sm__all"
+      data-testid="text-field:block"
     >
       <div
-        className="root field"
-        data-testid="autocomplete:field"
+        class="main-column"
       >
         <div
-          className="reset input-block variant-desktop size-l rounds-sm__all"
-          data-testid="text-field:block"
-          onClick={[Function]}
+          class="input-wrapper"
         >
           <div
-            className="main-column"
+            class="reset root base-input variant-desktop size-l"
           >
-            <div
-              className="input-wrapper"
-            >
-              <ForwardRef(BaseInput)
-                className="base-input variant-desktop size-l"
-                data-testid="text-field:field"
-                multiline={false}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                value="Hello"
-              >
-                <div
-                  className="reset root base-input variant-desktop size-l"
-                >
-                  <input
-                    className="field reset"
-                    data-testid="text-field:field"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    onInput={[Function]}
-                    onKeyDown={[Function]}
-                    value="Hello"
-                  />
-                </div>
-              </ForwardRef(BaseInput)>
-            </div>
+            <input
+              class="field reset"
+              data-testid="text-field:field"
+              value="Hello"
+            />
           </div>
-          <Box
-            alignItems="center"
-            display="flex"
-            marginLeft={4}
-          >
-            <div
-              className="display-flex align-items-center M-l__4"
-            >
-              <ForwardRef(DownSVG)
-                fill="#9e9e9e"
-              >
-                <svg
-                  fill="#9e9e9e"
-                  height={16}
-                  viewBox="0 0 16 16"
-                  width={16}
-                >
-                  <path
-                    clipRule="evenodd"
-                    d="M3.247 6.342a1 1 0 011.412-.095L8 9.171l3.341-2.924a1 1 0 011.318 1.506l-4 3.5a1 1 0 01-1.317 0l-4-3.5a1 1 0 01-.095-1.411z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-              </ForwardRef(DownSVG)>
-            </div>
-          </Box>
         </div>
       </div>
-    </ForwardRef(TextField)>
+      <div
+        class="display-flex align-items-center M-l__4"
+      >
+        <svg
+          fill="#9e9e9e"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M3.247 6.342a1 1 0 011.412-.095L8 9.171l3.341-2.924a1 1 0 011.318 1.506l-4 3.5a1 1 0 01-1.317 0l-4-3.5a1 1 0 01-.095-1.411z"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+    </div>
   </div>
-</Autocomplete>
+</div>
 `;
 
 exports[`Autocomplete should renders correctly 2`] = `
-<Autocomplete
-  items={
-    Array [
-      "U.S.",
-      "France",
-      "China",
-      "Cambodia",
-      "Chile",
-      "Canada",
-      "Poland",
-      "Russia",
-      "Belarus",
-      "Ukraine",
-    ]
-  }
-  preset="filled-only-list"
-  renderItem={[Function]}
-  value="Hello"
+<div
+  class="root"
 >
   <div
-    className="root"
+    class="root field"
+    data-testid="autocomplete:field"
   >
-    <ForwardRef(TextField)
-      className="field"
-      data-testid="autocomplete:field"
-      focused={false}
-      multiline={false}
-      onChange={[Function]}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      value="Hello"
-      variant="desktop"
+    <div
+      class="reset input-block variant-desktop size-l rounds-sm__all"
+      data-testid="text-field:block"
     >
       <div
-        className="root field"
-        data-testid="autocomplete:field"
+        class="main-column"
       >
         <div
-          className="reset input-block variant-desktop size-l rounds-sm__all"
-          data-testid="text-field:block"
-          onClick={[Function]}
+          class="input-wrapper"
         >
           <div
-            className="main-column"
+            class="reset root base-input variant-desktop size-l"
           >
-            <div
-              className="input-wrapper"
-            >
-              <ForwardRef(BaseInput)
-                className="base-input variant-desktop size-l"
-                data-testid="text-field:field"
-                multiline={false}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                value="Hello"
-              >
-                <div
-                  className="reset root base-input variant-desktop size-l"
-                >
-                  <input
-                    className="field reset"
-                    data-testid="text-field:field"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    onInput={[Function]}
-                    onKeyDown={[Function]}
-                    value="Hello"
-                  />
-                </div>
-              </ForwardRef(BaseInput)>
-            </div>
+            <input
+              class="field reset"
+              data-testid="text-field:field"
+              value="Hello"
+            />
           </div>
         </div>
       </div>
-    </ForwardRef(TextField)>
+    </div>
   </div>
-</Autocomplete>
+</div>
 `;
 
 exports[`Autocomplete should renders correctly 3`] = `
-<Autocomplete
-  items={
-    Array [
-      "U.S.",
-      "France",
-      "China",
-      "Cambodia",
-      "Chile",
-      "Canada",
-      "Poland",
-      "Russia",
-      "Belarus",
-      "Ukraine",
-    ]
-  }
-  preset="filled-only-list"
-  renderItem={[Function]}
-  value="Hello"
+<div
+  class="root"
 >
   <div
-    className="root"
+    class="root field"
+    data-testid="autocomplete:field"
   >
-    <ForwardRef(TextField)
-      className="field"
-      data-testid="autocomplete:field"
-      focused={true}
-      multiline={false}
-      onChange={[Function]}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      value="Hello"
-      variant="desktop"
+    <div
+      class="reset input-block focused variant-desktop size-l rounds-sm__all"
+      data-testid="text-field:block"
     >
       <div
-        className="root field"
-        data-testid="autocomplete:field"
+        class="main-column"
       >
         <div
-          className="reset input-block focused variant-desktop size-l rounds-sm__all"
-          data-testid="text-field:block"
-          onClick={[Function]}
+          class="input-wrapper"
         >
           <div
-            className="main-column"
+            class="reset root base-input focused variant-desktop size-l"
+          >
+            <input
+              class="field reset"
+              data-testid="text-field:field"
+              value="Hello"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="root menu shadow-z4 rounds-md__all"
+    data-testid="autocomplete:menu"
+    role="menu"
+    style="top: 56px;"
+  >
+    <div
+      class="os-host os-host-foreign os-theme-dark os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden custom-scrollbar inner"
+    >
+      <div
+        class="os-resize-observer-host"
+      >
+        <div
+          class="os-resize-observer"
+          style="right: 0px;"
+        >
+          <div
+            class="os-resize-observer-item"
+            dir="ltr"
+            style="top: -2px; right: 0px; bottom: 0px; left: -2px;"
           >
             <div
-              className="input-wrapper"
+              class="os-resize-observer-item"
             >
-              <ForwardRef(BaseInput)
-                className="base-input focused variant-desktop size-l"
-                data-testid="text-field:field"
-                multiline={false}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                value="Hello"
-              >
-                <div
-                  className="reset root base-input focused variant-desktop size-l"
-                >
-                  <input
-                    className="field reset"
-                    data-testid="text-field:field"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    onInput={[Function]}
-                    onKeyDown={[Function]}
-                    value="Hello"
-                  />
-                </div>
-              </ForwardRef(BaseInput)>
+              <div
+                class="os-resize-observer-item-final"
+                style="width: 3333333px; height: 3333333px;"
+              />
+            </div>
+            <div
+              class="os-resize-observer-item"
+            >
+              <div
+                class="os-resize-observer-item-final"
+                style="width: 200%; height: 200%"
+              />
             </div>
           </div>
         </div>
       </div>
-    </ForwardRef(TextField)>
-    <ForwardRef(Dropdown)
-      className="menu"
-      data-testid="autocomplete:menu"
-      role="menu"
-      style={
-        Object {
-          "top": "56px",
-        }
-      }
-    >
       <div
-        className="root menu shadow-z4 rounds-md__all"
-        data-testid="autocomplete:menu"
-        role="menu"
-        style={
-          Object {
-            "top": "56px",
-          }
-        }
+        class="os-size-auto-observer"
+        style="height: calc(100% + 1px); float: left;"
       >
-        <CustomScrollbar
-          className="inner"
-          overflow={
-            Object {
-              "x": "h",
-              "y": "s",
-            }
-          }
+        <div
+          class="os-resize-observer"
         >
-          <OverlayScrollbarsComponent
-            className="custom-scrollbar inner"
-            options={
-              Object {
-                "callbacks": undefined,
-                "overflowBehavior": Object {
-                  "x": "h",
-                  "y": "s",
-                },
-              }
-            }
+          <div
+            class="os-resize-observer-item"
+            dir="ltr"
+            style="top: -2px; right: 0px; bottom: 0px; left: -2px;"
           >
             <div
-              className="os-host"
+              class="os-resize-observer-item"
             >
               <div
-                className="os-resize-observer-host"
-              />
-              <div
-                className="os-padding"
-              >
-                <div
-                  className="os-viewport"
-                >
-                  <div
-                    className="os-content"
-                  >
-                    <DropdownItem
-                      checked={false}
-                      key="0"
-                      noHover={true}
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      role="menuitem"
-                    >
-                      <div
-                        className="root size-m no-hover"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        onMouseEnter={[Function]}
-                        role="menuitem"
-                      >
-                        U.S.
-                      </div>
-                    </DropdownItem>
-                    <DropdownItem
-                      checked={false}
-                      key="1"
-                      noHover={true}
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      role="menuitem"
-                    >
-                      <div
-                        className="root size-m no-hover"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        onMouseEnter={[Function]}
-                        role="menuitem"
-                      >
-                        FRANCE
-                      </div>
-                    </DropdownItem>
-                    <DropdownItem
-                      checked={false}
-                      key="2"
-                      noHover={true}
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      role="menuitem"
-                    >
-                      <div
-                        className="root size-m no-hover"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        onMouseEnter={[Function]}
-                        role="menuitem"
-                      >
-                        CHINA
-                      </div>
-                    </DropdownItem>
-                    <DropdownItem
-                      checked={false}
-                      key="3"
-                      noHover={true}
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      role="menuitem"
-                    >
-                      <div
-                        className="root size-m no-hover"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        onMouseEnter={[Function]}
-                        role="menuitem"
-                      >
-                        CAMBODIA
-                      </div>
-                    </DropdownItem>
-                    <DropdownItem
-                      checked={false}
-                      key="4"
-                      noHover={true}
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      role="menuitem"
-                    >
-                      <div
-                        className="root size-m no-hover"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        onMouseEnter={[Function]}
-                        role="menuitem"
-                      >
-                        CHILE
-                      </div>
-                    </DropdownItem>
-                    <DropdownItem
-                      checked={false}
-                      key="5"
-                      noHover={true}
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      role="menuitem"
-                    >
-                      <div
-                        className="root size-m no-hover"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        onMouseEnter={[Function]}
-                        role="menuitem"
-                      >
-                        CANADA
-                      </div>
-                    </DropdownItem>
-                    <DropdownItem
-                      checked={false}
-                      key="6"
-                      noHover={true}
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      role="menuitem"
-                    >
-                      <div
-                        className="root size-m no-hover"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        onMouseEnter={[Function]}
-                        role="menuitem"
-                      >
-                        POLAND
-                      </div>
-                    </DropdownItem>
-                    <DropdownItem
-                      checked={false}
-                      key="7"
-                      noHover={true}
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      role="menuitem"
-                    >
-                      <div
-                        className="root size-m no-hover"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        onMouseEnter={[Function]}
-                        role="menuitem"
-                      >
-                        RUSSIA
-                      </div>
-                    </DropdownItem>
-                    <DropdownItem
-                      checked={false}
-                      key="8"
-                      noHover={true}
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      role="menuitem"
-                    >
-                      <div
-                        className="root size-m no-hover"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        onMouseEnter={[Function]}
-                        role="menuitem"
-                      >
-                        BELARUS
-                      </div>
-                    </DropdownItem>
-                    <DropdownItem
-                      checked={false}
-                      key="9"
-                      noHover={true}
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      role="menuitem"
-                    >
-                      <div
-                        className="root size-m no-hover"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        onMouseEnter={[Function]}
-                        role="menuitem"
-                      >
-                        UKRAINE
-                      </div>
-                    </DropdownItem>
-                  </div>
-                </div>
-              </div>
-              <div
-                className="os-scrollbar os-scrollbar-horizontal "
-              >
-                <div
-                  className="os-scrollbar-track"
-                >
-                  <div
-                    className="os-scrollbar-handle"
-                  />
-                </div>
-              </div>
-              <div
-                className="os-scrollbar os-scrollbar-vertical"
-              >
-                <div
-                  className="os-scrollbar-track"
-                >
-                  <div
-                    className="os-scrollbar-handle"
-                  />
-                </div>
-              </div>
-              <div
-                className="os-scrollbar-corner"
+                class="os-resize-observer-item-final"
+                style="width: 3333333px; height: 3333333px;"
               />
             </div>
-          </OverlayScrollbarsComponent>
-        </CustomScrollbar>
+            <div
+              class="os-resize-observer-item"
+            >
+              <div
+                class="os-resize-observer-item-final"
+                style="width: 200%; height: 200%"
+              />
+            </div>
+          </div>
+        </div>
       </div>
-    </ForwardRef(Dropdown)>
+      <div
+        class="os-content-glue"
+        style="margin: 0px 0px 0px 0px; width: -1px; height: -1px;"
+      />
+      <div
+        class="os-padding"
+      >
+        <div
+          class="os-viewport os-viewport-native-scrollbars-overlaid"
+          style=""
+        >
+          <div
+            class="os-content-arrange"
+          />
+          <div
+            class="os-content"
+            style="padding: 0px 0px 0px 0px; height: 100%; width: 100%;"
+          >
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              U.S.
+            </div>
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              FRANCE
+            </div>
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              CHINA
+            </div>
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              CAMBODIA
+            </div>
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              CHILE
+            </div>
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              CANADA
+            </div>
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              POLAND
+            </div>
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              RUSSIA
+            </div>
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              BELARUS
+            </div>
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              UKRAINE
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable"
+      >
+        <div
+          class="os-scrollbar-track os-scrollbar-track-off"
+        >
+          <div
+            class="os-scrollbar-handle"
+            style="transform: translate(0px, 0);"
+          />
+        </div>
+      </div>
+      <div
+        class="os-scrollbar os-scrollbar-vertical os-scrollbar-unusable"
+      >
+        <div
+          class="os-scrollbar-track os-scrollbar-track-off"
+        >
+          <div
+            class="os-scrollbar-handle"
+            style="transform: translate(0, 0px);"
+          />
+        </div>
+      </div>
+      <div
+        class="os-scrollbar-corner"
+      />
+    </div>
   </div>
-</Autocomplete>
+</div>
 `;
 
 exports[`Autocomplete should renders correctly 4`] = `
-<Autocomplete
-  items={
-    Array [
-      "U.S.",
-      "France",
-      "China",
-      "Cambodia",
-      "Chile",
-      "Canada",
-      "Poland",
-      "Russia",
-      "Belarus",
-      "Ukraine",
-    ]
-  }
-  loading={true}
-  preset="filled-only-list"
-  renderItem={[Function]}
-  value="Hello"
+<div
+  class="root"
 >
   <div
-    className="root"
+    class="root field"
+    data-testid="autocomplete:field"
   >
-    <ForwardRef(TextField)
-      className="field"
-      data-testid="autocomplete:field"
-      focused={true}
-      multiline={false}
-      onChange={[Function]}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      value="Hello"
-      variant="desktop"
+    <div
+      class="reset input-block focused variant-desktop size-l rounds-sm__all"
+      data-testid="text-field:block"
     >
       <div
-        className="root field"
-        data-testid="autocomplete:field"
+        class="main-column"
       >
         <div
-          className="reset input-block focused variant-desktop size-l rounds-sm__all"
-          data-testid="text-field:block"
-          onClick={[Function]}
+          class="input-wrapper"
         >
           <div
-            className="main-column"
+            class="reset root base-input focused variant-desktop size-l"
+          >
+            <input
+              class="field reset"
+              data-testid="text-field:field"
+              value="Hello"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="root menu shadow-z4 rounds-md__all"
+    data-testid="autocomplete:menu"
+    role="menu"
+    style="top: 56px;"
+  >
+    <div
+      class="os-host os-host-foreign os-theme-dark os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden custom-scrollbar inner"
+    >
+      <div
+        class="os-resize-observer-host"
+      >
+        <div
+          class="os-resize-observer"
+          style="right: 0px;"
+        >
+          <div
+            class="os-resize-observer-item"
+            dir="ltr"
+            style="top: -2px; right: 0px; bottom: 0px; left: -2px;"
           >
             <div
-              className="input-wrapper"
+              class="os-resize-observer-item"
             >
-              <ForwardRef(BaseInput)
-                className="base-input focused variant-desktop size-l"
-                data-testid="text-field:field"
-                multiline={false}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                value="Hello"
-              >
-                <div
-                  className="reset root base-input focused variant-desktop size-l"
-                >
-                  <input
-                    className="field reset"
-                    data-testid="text-field:field"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    onInput={[Function]}
-                    onKeyDown={[Function]}
-                    value="Hello"
-                  />
-                </div>
-              </ForwardRef(BaseInput)>
+              <div
+                class="os-resize-observer-item-final"
+                style="width: 3333333px; height: 3333333px;"
+              />
+            </div>
+            <div
+              class="os-resize-observer-item"
+            >
+              <div
+                class="os-resize-observer-item-final"
+                style="width: 200%; height: 200%"
+              />
             </div>
           </div>
         </div>
       </div>
-    </ForwardRef(TextField)>
-    <ForwardRef(Dropdown)
-      className="menu"
-      data-testid="autocomplete:menu"
-      role="menu"
-      style={
-        Object {
-          "top": "56px",
-        }
-      }
-    >
       <div
-        className="root menu shadow-z4 rounds-md__all"
-        data-testid="autocomplete:menu"
-        role="menu"
-        style={
-          Object {
-            "top": "56px",
-          }
-        }
+        class="os-size-auto-observer"
+        style="height: calc(100% + 1px); float: left;"
       >
-        <CustomScrollbar
-          className="inner"
-          overflow={
-            Object {
-              "x": "h",
-              "y": "s",
-            }
-          }
+        <div
+          class="os-resize-observer"
         >
-          <OverlayScrollbarsComponent
-            className="custom-scrollbar inner"
-            options={
-              Object {
-                "callbacks": undefined,
-                "overflowBehavior": Object {
-                  "x": "h",
-                  "y": "s",
-                },
-              }
-            }
+          <div
+            class="os-resize-observer-item"
+            dir="ltr"
+            style="top: -2px; right: 0px; bottom: 0px; left: -2px;"
           >
             <div
-              className="os-host"
+              class="os-resize-observer-item"
             >
               <div
-                className="os-resize-observer-host"
-              />
-              <div
-                className="os-padding"
-              >
-                <div
-                  className="os-viewport"
-                >
-                  <div
-                    className="os-content"
-                  >
-                    <DropdownLoading
-                      data-testid="autocomplete:loading-area"
-                    >
-                      <div
-                        className="root"
-                        data-testid="autocomplete:loading-area"
-                      >
-                        <Spinner
-                          size="small"
-                        >
-                          <div>
-                            <svg
-                              className="spinner size-small"
-                              height={20}
-                              stroke="#1f84db"
-                              viewBox="0 0 20 20"
-                              width={20}
-                            >
-                              <circle
-                                className="circle"
-                                cx={10}
-                                cy={10}
-                                r={9}
-                              />
-                            </svg>
-                          </div>
-                        </Spinner>
-                      </div>
-                    </DropdownLoading>
-                  </div>
-                </div>
-              </div>
-              <div
-                className="os-scrollbar os-scrollbar-horizontal "
-              >
-                <div
-                  className="os-scrollbar-track"
-                >
-                  <div
-                    className="os-scrollbar-handle"
-                  />
-                </div>
-              </div>
-              <div
-                className="os-scrollbar os-scrollbar-vertical"
-              >
-                <div
-                  className="os-scrollbar-track"
-                >
-                  <div
-                    className="os-scrollbar-handle"
-                  />
-                </div>
-              </div>
-              <div
-                className="os-scrollbar-corner"
+                class="os-resize-observer-item-final"
+                style="width: 3333333px; height: 3333333px;"
               />
             </div>
-          </OverlayScrollbarsComponent>
-        </CustomScrollbar>
+            <div
+              class="os-resize-observer-item"
+            >
+              <div
+                class="os-resize-observer-item-final"
+                style="width: 200%; height: 200%"
+              />
+            </div>
+          </div>
+        </div>
       </div>
-    </ForwardRef(Dropdown)>
+      <div
+        class="os-content-glue"
+        style="margin: 0px 0px 0px 0px; width: -1px; height: -1px;"
+      />
+      <div
+        class="os-padding"
+      >
+        <div
+          class="os-viewport os-viewport-native-scrollbars-overlaid"
+          style=""
+        >
+          <div
+            class="os-content-arrange"
+          />
+          <div
+            class="os-content"
+            style="padding: 0px 0px 0px 0px; height: 100%; width: 100%;"
+          >
+            <div
+              class="root"
+              data-testid="autocomplete:loading-area"
+            >
+              <div>
+                <svg
+                  class="spinner size-small"
+                  height="20"
+                  stroke="#1f84db"
+                  viewBox="0 0 20 20"
+                  width="20"
+                >
+                  <circle
+                    class="circle"
+                    cx="10"
+                    cy="10"
+                    r="9"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable"
+      >
+        <div
+          class="os-scrollbar-track os-scrollbar-track-off"
+        >
+          <div
+            class="os-scrollbar-handle"
+            style="transform: translate(0px, 0);"
+          />
+        </div>
+      </div>
+      <div
+        class="os-scrollbar os-scrollbar-vertical os-scrollbar-unusable"
+      >
+        <div
+          class="os-scrollbar-track os-scrollbar-track-off"
+        >
+          <div
+            class="os-scrollbar-handle"
+            style="transform: translate(0, 0px);"
+          />
+        </div>
+      </div>
+      <div
+        class="os-scrollbar-corner"
+      />
+    </div>
   </div>
-</Autocomplete>
+</div>
 `;

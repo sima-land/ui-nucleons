@@ -1,23 +1,22 @@
 import React from 'react';
-import { act } from 'react-dom/test-utils';
-import { mount } from 'enzyme';
+import { render, fireEvent } from '@testing-library/react';
 import { ArrowButton } from '..';
 
 describe('<ArrowButton />', () => {
   it('should renders correctly', () => {
-    const wrapper = mount(
+    const { container } = render(
       <ArrowButton
         aria-label='Вперед'
       />
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
-  it('should handle props', () => {
+  it('should handle props', async function () {
     const spy = jest.fn();
 
-    const wrapper = mount(
+    const result = render(
       <ArrowButton
         size='l'
         direction='left'
@@ -26,13 +25,11 @@ describe('<ArrowButton />', () => {
       />
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(result.container).toMatchSnapshot();
 
     expect(spy).toBeCalledTimes(0);
 
-    act(() => {
-      wrapper.find('button').simulate('click');
-    });
+    fireEvent.click(await result.findByTestId('arrow-button'));
 
     expect(spy).toBeCalledTimes(1);
   });

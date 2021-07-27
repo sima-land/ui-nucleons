@@ -1,22 +1,22 @@
 module.exports = {
   preset: 'ts-jest/presets/js-with-babel',
-  globalSetup: '<rootDir>/jest/global-setup.js',
+  globalSetup: '<rootDir>/.jest/global-setup.js',
   setupFiles: [
-    './jest/setup.js',
+    './.jest/setup.js',
   ],
   transform: {
     // svg заменяем на React-компоненты
-    '\\.svg$': '<rootDir>/jest/transforms/svg.js',
+    '\\.svg$': '<rootDir>/.jest/transforms/svg.js',
 
     // генерируем css-модули
     '\\.module\\.(css|scss)$': 'jest-css-modules-transform',
 
     // все что должно заменяться на строку с url
-    '\\.(jpg|jpeg|png|gif|eot|otf|ttf|woff|woff2)$': '<rootDir>/jest/transforms/media.js',
+    '\\.(jpg|jpeg|png|gif|eot|otf|ttf|woff|woff2)$': '<rootDir>/.jest/transforms/media.js',
   },
   moduleNameMapper: {
     // обычные стили делаем просто пустыми модулями
-    '(?<!(.+\\.module))(\\.css|\\.scss)$': '<rootDir>/jest/mocks/style.js',
+    '(?<!(.+\\.module))(\\.css|\\.scss)$': '<rootDir>/.jest/mocks/style.js',
   },
   transformIgnorePatterns: [
     // из некоторых пакетов мы берем стили так что игнорируем только скрипты
@@ -29,7 +29,7 @@ module.exports = {
     '\\.css$',
     '\\.scss$',
     '\\.svg$',
-    '/jest/',
+    '/.jest/',
   ],
   clearMocks: true,
   coverageThreshold: {

@@ -40,19 +40,19 @@ describe('Autocomplete', () => {
       />
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.getDOMNode()).toMatchSnapshot();
 
     // preset "filled-only-list"
     wrapper.setProps({ preset: 'filled-only-list' });
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.getDOMNode()).toMatchSnapshot();
 
     // with menu opened
     openMenu(wrapper);
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.getDOMNode()).toMatchSnapshot();
 
     // loading state
     wrapper.setProps({ loading: true });
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.getDOMNode()).toMatchSnapshot();
   });
 
   it('should handle "renderItem" prop missing', () => {
@@ -70,7 +70,7 @@ describe('Autocomplete', () => {
     );
 
     openMenu(wrapper);
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.getDOMNode()).toMatchSnapshot();
   });
 
   it('should handle field change event', () => {
@@ -117,7 +117,7 @@ describe('Autocomplete', () => {
       />
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.getDOMNode()).toMatchSnapshot();
   });
 
   it('should handle outside click', () => {
@@ -141,36 +141,6 @@ describe('Autocomplete', () => {
     wrapper.update();
 
     expect(findMenu(wrapper)).toHaveLength(0);
-  });
-
-  it('should handle menu item mouse enter', () => {
-    const wrapper = mount(
-      <Autocomplete
-        defaultValue='0000'
-        items={[
-          'aaaa',
-          'bbbb',
-          'cccc',
-          'dddd',
-          'eeee',
-          'ffff',
-        ]}
-      />
-    );
-
-    openMenu(wrapper);
-
-    act(() => {
-      Simulate.mouseEnter(findMenuItems(wrapper).at(3).getDOMNode());
-    });
-    wrapper.update();
-
-    expect(isCheckedItem(findMenuItems(wrapper).at(0))).toBe(false);
-    expect(isCheckedItem(findMenuItems(wrapper).at(1))).toBe(false);
-    expect(isCheckedItem(findMenuItems(wrapper).at(2))).toBe(false);
-    expect(isCheckedItem(findMenuItems(wrapper).at(3))).toBe(true);
-    expect(isCheckedItem(findMenuItems(wrapper).at(4))).toBe(false);
-    expect(isCheckedItem(findMenuItems(wrapper).at(5))).toBe(false);
   });
 
   it('should handle menu item click', () => {

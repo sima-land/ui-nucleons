@@ -7,7 +7,7 @@ import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/down';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/up';
 
 export default {
-  title: 'Dropdown',
+  title: 'desktop/Dropdown',
   component: Dropdown,
   parameters: {
     layout: 'padded',

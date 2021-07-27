@@ -234,32 +234,6 @@ describe('Select', () => {
     expect(findMenu(wrapper)).toHaveLength(0);
   });
 
-  it('should handle menu outside click', () => {
-    const wrapper = mount(
-      <Select
-        label='Формат каталога'
-        value='Карточки товаров JPG'
-        options={[
-          'Прайс-лист XML',
-          'Прайс-лист YML',
-          'Карточки товаров JPG',
-          'Фото товаров JPG + прайс-лист XLS',
-          'Печатный каталог PDF',
-        ]}
-      />
-    );
-
-    expect(findMenu(wrapper)).toHaveLength(0);
-    openMenu(wrapper);
-    expect(findMenu(wrapper)).toHaveLength(1);
-
-    act(() => {
-      document.documentElement.dispatchEvent(new MouseEvent('click'));
-    });
-    wrapper.update();
-    expect(findMenu(wrapper)).toHaveLength(0);
-  });
-
   it('should handle menu item select', () => {
     const selectSpy = jest.fn();
 

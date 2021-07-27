@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { BoxShadow } from '../styling/shadows';
 import { MediumRounds } from '../styling/shapes';
-import { CustomScrollbar } from '../_internal/custom-scrollbar';
+import { CustomScrollbar, CustomScrollbarProps } from '../_internal/custom-scrollbar';
 import classnames from 'classnames/bind';
 import styles from './dropdown.module.scss';
 
@@ -14,6 +14,9 @@ export interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, 'style
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string
+
+  /** Свойства компонента CustomScrollbar. */
+  customScrollbarProps?: Omit<CustomScrollbarProps, 'className' | 'overflow' | 'children'>
 }
 
 const cx = classnames.bind(styles);
@@ -25,6 +28,7 @@ export const Dropdown = forwardRef<HTMLDivElement | null, Props>(function Dropdo
   className,
   children,
   'data-testid': testId = 'dropdown',
+  customScrollbarProps,
   ...restProps
 }, ref) {
   return (
@@ -34,7 +38,11 @@ export const Dropdown = forwardRef<HTMLDivElement | null, Props>(function Dropdo
       {...restProps}
       data-testid={testId}
     >
-      <CustomScrollbar className={cx('inner')} overflow={{ x: 'h', y: 's' }}>
+      <CustomScrollbar
+        {...customScrollbarProps}
+        className={cx('inner')}
+        overflow={{ x: 'h', y: 's' }}
+      >
         {children}
       </CustomScrollbar>
     </div>
