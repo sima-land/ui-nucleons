@@ -2,7 +2,7 @@ import React from 'react';
 import { UnknownContent } from '..';
 
 export default {
-  title: 'UnknownContent',
+  title: 'common/UnknownContent',
   component: UnknownContent,
   parameters: {
     layout: 'padded',

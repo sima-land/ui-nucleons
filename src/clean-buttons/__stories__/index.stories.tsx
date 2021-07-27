@@ -9,7 +9,7 @@ const DisplayWrapper: React.FC = ({ children }) => (
 );
 
 export default {
-  title: 'Clean.Group',
+  title: 'common/Clean.Group',
   component: Clean.Group,
   parameters: {
     layout: 'padded',

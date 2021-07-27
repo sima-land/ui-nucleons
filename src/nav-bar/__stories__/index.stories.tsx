@@ -14,7 +14,7 @@ const DemoWrapper: React.FC = ({ children }) => (
 );
 
 export default {
-  title: 'NavBar',
+  title: 'mobile/NavBar',
   component: NavBar,
   parameters: {
     layout: 'padded',

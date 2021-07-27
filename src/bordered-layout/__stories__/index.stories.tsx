@@ -2,7 +2,7 @@ import React from 'react';
 import { BorderedLayout, Props } from '..';
 
 export default {
-  title: 'BorderedLayout',
+  title: 'mobile/BorderedLayout',
   component: BorderedLayout,
   parameters: {
     layout: 'fullscreen',

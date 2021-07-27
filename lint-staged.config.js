@@ -1,8 +1,8 @@
 module.exports = {
   'src/**/*.{js,jsx,ts,tsx}': [
-    'yarn lint:scripts',
+    'eslint --fix --ext .js,.jsx,.ts,.tsx',
   ],
   'src/**/*.scss': [
-    'yarn lint:styles',
+    'stylelint',
   ],
 };

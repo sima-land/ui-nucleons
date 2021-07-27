@@ -2,7 +2,7 @@ import React from 'react';
 import { DropdownItem, Props } from '..';
 
 export default {
-  title: 'DropdownItem',
+  title: 'desktop/DropdownItem',
   component: DropdownItem,
   parameters: {
     layout: 'padded',

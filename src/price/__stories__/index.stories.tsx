@@ -15,7 +15,7 @@ const values = [
 ];
 
 export default {
-  title: 'Price',
+  title: 'common/Price',
   component: Price,
   parameters: {
     layout: 'padded',

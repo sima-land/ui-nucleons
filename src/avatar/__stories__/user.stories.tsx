@@ -21,7 +21,7 @@ const variants = [
 ];
 
 export default {
-  title: 'UserAvatar',
+  title: 'common/UserAvatar',
   component: UserAvatar,
   parameters: {
     layout: 'padded',

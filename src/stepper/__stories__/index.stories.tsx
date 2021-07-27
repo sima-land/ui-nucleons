@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Stepper, Props } from '..';
 
 export default {
-  title: 'Stepper',
+  title: 'desktop/Stepper',
   component: Stepper,
   parameters: {
     layout: 'padded',

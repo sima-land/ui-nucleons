@@ -2,7 +2,7 @@ import React from 'react';
 import { Spinner } from '..';
 
 export default {
-  title: 'Spinner',
+  title: 'common/Spinner',
   component: Spinner,
   parameters: {
     layout: 'padded',

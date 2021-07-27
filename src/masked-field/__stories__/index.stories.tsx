@@ -2,7 +2,7 @@ import React from 'react';
 import { MaskedField } from '..';
 
 export default {
-  title: 'MaskedField',
+  title: 'common/MaskedField',
   component: MaskedField,
   parameters: {
     layout: 'padded',

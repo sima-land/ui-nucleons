@@ -6,7 +6,7 @@ import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
 import { PhoneInput } from '../../phone-input';
 
 export default {
-  title: 'Card',
+  title: 'common/Card',
   component: Card,
   parameters: {
     layout: 'padded',

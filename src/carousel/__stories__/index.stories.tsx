@@ -7,7 +7,7 @@ import classes from './test-carousel.module.scss';
 const cx = classnames.bind(classes);
 
 export default {
-  title: 'Carousel',
+  title: 'desktop/Carousel',
   component: Carousel,
   parameters: {
     layout: 'padded',

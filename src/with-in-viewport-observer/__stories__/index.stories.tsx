@@ -43,7 +43,7 @@ const SomeComponentWithCustomOptions = withInViewportObserver(
 );
 
 export default {
-  title: 'HOC/withInViewportObserver',
+  title: 'deprecated/withInViewportObserver',
   component: withInViewportObserver,
   parameters: {
     layout: 'padded',

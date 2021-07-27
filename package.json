@@ -15,7 +15,7 @@
     "body-scroll-lock": "3.1.5",
     "date-fns": "^2.14.0",
     "intersection-observer": "^0.7.0",
-    "lodash": "4.17.15",
+    "lodash": "^4.17.21",
     "overlayscrollbars": "^1.13.1",
     "overlayscrollbars-react": "^0.2.2",
     "react-transition-group": "^4.3.0"
@@ -90,7 +90,7 @@
     "coverage": "jest --clearCache && jest --coverage",
     "test:ci": "yarn coverage --maxWorkers=2 --colors --reporters=jest-junit --reporters=default",
     "lint:scripts": "eslint --cache src/ --ext .js,.jsx,.ts,.tsx",
-    "lint:styles": "stylelint 'src/**/*.scss'",
+    "lint:styles": "stylelint 'src/**/*.{css,scss}'",
     "storybook": "start-storybook -p 9009 -c .storybook -s ./.storybook/public",
     "storybook:build": "build-storybook --no-dll --quiet --loglevel error -s .storybook/public -o .build-storybook/storybook"
   }

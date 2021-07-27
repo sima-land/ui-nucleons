@@ -26,7 +26,7 @@ const contents = [
 ];
 
 export default {
-  title: 'Button',
+  title: 'common/Button',
   component: Button,
   parameters: {
     layout: 'padded',

@@ -9,7 +9,7 @@ const DisplayWrapper: React.FC = ({ children }) => (
 );
 
 export default {
-  title: 'FieldGrid',
+  title: 'desktop/FieldGrid',
   component: FieldGrid,
   parameters: {
     layout: 'padded',

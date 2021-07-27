@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Range } from '..';
 
 export default {
-  title: 'Range',
+  title: 'common/Range',
   component: Range,
   parameters: {
     layout: 'padded',
