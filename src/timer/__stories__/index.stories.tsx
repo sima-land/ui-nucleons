@@ -3,7 +3,7 @@ import { addDays, addMonths, formatISO } from 'date-fns';
 import { Timer } from '..';
 
 export default {
-  title: 'Timer',
+  title: 'common/Timer',
   component: Timer,
   parameters: {
     layout: 'padded',

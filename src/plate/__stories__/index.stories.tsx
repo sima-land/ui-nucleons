@@ -2,7 +2,7 @@ import React from 'react';
 import { Plate } from '..';
 
 export default {
-  title: 'Plate',
+  title: 'common/Plate',
   component: Plate,
   parameters: {
     layout: 'padded',

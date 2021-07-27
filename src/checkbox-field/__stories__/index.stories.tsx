@@ -2,7 +2,7 @@ import React from 'react';
 import { CheckboxField } from '..';
 
 export default {
-  title: 'CheckboxField',
+  title: 'common/CheckboxField',
   component: CheckboxField,
   parameters: {
     layout: 'padded',

@@ -33,7 +33,7 @@ const Template: Story<any> = props => (
 );
 
 export default {
-  title: 'Tabs',
+  title: 'common/Tabs',
   component: Tabs,
   parameters: {
     layout: 'padded',

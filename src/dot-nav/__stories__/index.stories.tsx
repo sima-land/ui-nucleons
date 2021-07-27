@@ -41,7 +41,7 @@ const styles: Record<string, React.CSSProperties> = {
 const clickAction = action('Dot clicked, index');
 
 export default {
-  title: 'DotNav',
+  title: 'common/DotNav',
   component: DotNav,
   parameters: {
     layout: 'padded',

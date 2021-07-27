@@ -5,7 +5,7 @@ import { Link } from '../../link';
 import { Clean } from '../../clean-buttons';
 
 export default {
-  title: 'BottomBar',
+  title: 'common/BottomBar',
   component: BottomBar,
   parameters: {
     layout: 'padded',

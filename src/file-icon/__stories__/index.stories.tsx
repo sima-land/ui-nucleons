@@ -2,7 +2,7 @@ import React from 'react';
 import { FileIcon } from '..';
 
 export default {
-  title: 'FileIcon',
+  title: 'common/FileIcon',
   component: FileIcon,
   parameters: {
     layout: 'padded',

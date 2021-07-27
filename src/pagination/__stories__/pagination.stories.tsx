@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Pagination } from '..';
 
 export default {
-  title: 'Pagination',
+  title: 'common/Pagination',
   component: Pagination,
   parameters: {
     layout: 'padded',

@@ -20,7 +20,7 @@ const longText = [
 const markup = 'Lorem <i>ipsum</i> <b>dolor</b> sit.';
 
 export default {
-  title: 'Panel',
+  title: 'common/Panel',
   component: Panel,
   parameters: {
     layout: 'padded',

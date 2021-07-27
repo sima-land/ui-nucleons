@@ -25,7 +25,7 @@ const styles: Record<string, React.CSSProperties> = {
 };
 
 export default {
-  title: 'WithHint',
+  title: 'desktop/WithHint',
   component: WithHint,
   parameters: {
     layout: 'padded',

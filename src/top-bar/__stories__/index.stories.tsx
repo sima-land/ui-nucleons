@@ -32,7 +32,7 @@ const propsList = [
 ];
 
 export default {
-  title: 'TopBar',
+  title: 'desktop/TopBar',
   component: TopBar,
   parameters: {
     layout: 'fullscreen',

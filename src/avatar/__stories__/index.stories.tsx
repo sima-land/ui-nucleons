@@ -22,7 +22,7 @@ const propsVariants = [
 ];
 
 export default {
-  title: 'Avatar',
+  title: 'common/Avatar',
   component: Avatar,
   parameters: {
     layout: 'padded',

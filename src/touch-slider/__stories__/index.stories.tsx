@@ -22,7 +22,7 @@ const styles = {
 const phrase = 'этот текст будет прокручиваться на touch устройствах';
 
 export default {
-  title: 'TouchSlider',
+  title: 'mobile/TouchSlider',
   component: TouchSlider,
   parameters: {
     layout: 'fullscreen',

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BaseInput } from '..';
 
 export default {
-  title: 'BaseInput',
+  title: 'service/BaseInput',
   component: BaseInput,
   parameters: {
     layout: 'padded',

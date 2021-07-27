@@ -3,7 +3,7 @@ import React from 'react';
 import { UploadArea } from '../area';
 
 export default {
-  title: 'UploadArea',
+  title: 'desktop/UploadArea',
   component: UploadArea,
   parameters: {
     layout: 'padded',

@@ -14,7 +14,7 @@ const ITEMS = [
 ] as const;
 
 export default {
-  title: 'Chips',
+  title: 'common/Chips',
   component: Chips,
   parameters: {
     layout: 'padded',

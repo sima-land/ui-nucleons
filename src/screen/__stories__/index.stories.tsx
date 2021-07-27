@@ -5,7 +5,7 @@ import { Button } from '../../button';
 import { Box } from '../../box';
 
 export default {
-  title: 'Screen',
+  title: 'mobile/Screen',
   component: Screen,
   parameters: {
     layout: 'padded',
