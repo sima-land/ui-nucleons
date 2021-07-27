@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react';
 import { getNoIndex } from '../helpers/get-no-index';
-import { color as getColorClass, hoverColor } from '../styling/colors';
 import classnames from 'classnames/bind';
 import { Token } from '../colors';
 import styles from './link.module.scss';
@@ -22,12 +21,6 @@ export interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string
 }
-
-const COLOR_CLASS = {
-  'brand-blue': classnames(getColorClass('brand-blue'), hoverColor('brand-deep-blue')),
-  gray87: classnames(getColorClass('gray87'), hoverColor('gray54')),
-  gray38: classnames(getColorClass('gray38'), hoverColor('gray54')),
-} as const;
 
 const cx = classnames.bind(styles);
 
@@ -75,7 +68,7 @@ export const Link = forwardRef<HTMLAnchorElement, Props>(function Link ({
       className={cx(
         'link',
         className,
-        COLOR_CLASS[color],
+        color,
         { disabled }
       )}
       {...getContentProps(children, noIndex)}

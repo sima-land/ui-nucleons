@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from '..';
 
 export default {
-  title: 'Link',
+  title: 'common/Link',
   component: Link,
   parameters: {
     layout: 'padded',
