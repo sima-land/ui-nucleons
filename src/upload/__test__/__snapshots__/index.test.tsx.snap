@@ -68,7 +68,7 @@ exports[`UploadArea should handle "dragleave" event 1`] = `
             pseudo={true}
           >
             <a
-              className="link color__brand-blue hover-color__brand-deep-blue"
+              className="link brand-blue"
               data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
@@ -157,7 +157,7 @@ exports[`UploadArea should handle "dragleave" event 2`] = `
             pseudo={true}
           >
             <a
-              className="link color__brand-blue hover-color__brand-deep-blue"
+              className="link brand-blue"
               data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
@@ -247,7 +247,7 @@ exports[`UploadArea should handle drag events to highlight area 1`] = `
             pseudo={true}
           >
             <a
-              className="link color__brand-blue hover-color__brand-deep-blue"
+              className="link brand-blue"
               data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
@@ -337,7 +337,7 @@ exports[`UploadArea should handle drag events to highlight area 2`] = `
             pseudo={true}
           >
             <a
-              className="link color__brand-blue hover-color__brand-deep-blue"
+              className="link brand-blue"
               data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
@@ -427,7 +427,7 @@ exports[`UploadArea should handle drag events to highlight area 3`] = `
             pseudo={true}
           >
             <a
-              className="link color__brand-blue hover-color__brand-deep-blue"
+              className="link brand-blue"
               data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
@@ -517,7 +517,7 @@ exports[`UploadArea should handle drag events to highlight area 4`] = `
             pseudo={true}
           >
             <a
-              className="link color__brand-blue hover-color__brand-deep-blue"
+              className="link brand-blue"
               data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
@@ -607,7 +607,7 @@ exports[`UploadArea should handle props 1`] = `
             pseudo={true}
           >
             <a
-              className="link color__brand-blue hover-color__brand-deep-blue"
+              className="link brand-blue"
               data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
@@ -694,7 +694,7 @@ exports[`UploadArea should render different visual variants 1`] = `
             pseudo={true}
           >
             <a
-              className="link color__brand-blue hover-color__brand-deep-blue"
+              className="link brand-blue"
               data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
@@ -782,7 +782,7 @@ exports[`UploadArea should render different visual variants 2`] = `
             pseudo={true}
           >
             <a
-              className="link color__brand-blue hover-color__brand-deep-blue"
+              className="link brand-blue"
               data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
@@ -871,7 +871,7 @@ exports[`UploadArea should render different visual variants 3`] = `
             pseudo={true}
           >
             <a
-              className="link color__brand-blue hover-color__brand-deep-blue"
+              className="link brand-blue"
               data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
@@ -961,7 +961,7 @@ exports[`UploadArea should render different visual variants 4`] = `
             pseudo={true}
           >
             <a
-              className="link color__brand-blue hover-color__brand-deep-blue"
+              className="link brand-blue"
               data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
@@ -1052,7 +1052,7 @@ exports[`UploadArea should render different visual variants 5`] = `
             pseudo={true}
           >
             <a
-              className="link color__brand-blue hover-color__brand-deep-blue"
+              className="link brand-blue"
               data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
@@ -1137,7 +1137,7 @@ exports[`UploadArea should renders correctly 1`] = `
             pseudo={true}
           >
             <a
-              className="link color__brand-blue hover-color__brand-deep-blue"
+              className="link brand-blue"
               data-testid="upload-area:anchor"
               role="button"
               tabIndex={0}
