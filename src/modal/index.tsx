@@ -91,11 +91,11 @@ const ModalInner = ({
 
   const fullscreen = size === 'fullscreen';
 
-  const { header, content, footer, overlay } = defineSlots(children, {
+  const { header, content, footer, overlap } = defineSlots(children, {
     header: ModalHeader,
     content: ModalBody,
     footer: ModalFooter,
-    overlay: ModalOverlap,
+    overlap: ModalOverlap,
   });
 
   const topBarSize: TopBarSize = fullscreen ? 'm' : 's';
@@ -151,8 +151,8 @@ const ModalInner = ({
           <div className={cx('footer-stub')} />
         )}
 
-        {!fullscreen && overlay && (
-          <div className={cx('overlap')}>{overlay}</div>
+        {!fullscreen && overlap && (
+          <div className={cx('overlap')}>{overlap}</div>
         )}
       </div>
     </div>

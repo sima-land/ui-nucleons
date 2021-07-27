@@ -135,7 +135,7 @@ const useDraggable = () => {
 };
 
 export default {
-  title: 'WithTooltip',
+  title: 'desktop/WithTooltip',
   component: WithTooltip,
   parameters: {
     layout: 'padded',

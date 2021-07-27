@@ -26,7 +26,7 @@ const DemoForm = ({ initialValue = '' }) => {
 };
 
 export default {
-  title: 'PhoneInput',
+  title: 'desktop/PhoneInput',
   component: PhoneInput,
   parameters: {
     layout: 'padded',

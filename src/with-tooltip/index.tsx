@@ -121,7 +121,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   className,
 }) => {
   const Container = inline ? 'span' : 'div';
-  const tooltipRef = useRef<HTMLDivElement | null>(null);
+  const tooltipRef = useRef<HTMLDivElement>(null);
 
   const place = useCallback(() => {
     tooltipRef.current
