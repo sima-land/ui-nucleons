@@ -15,7 +15,29 @@
   cursor: pointer;
 }
 
+// ниже двойные классы для высокой специфичности в монолите
 .link.disabled {
   color: colors.$gray24;
   pointer-events: none;
+}
+
+.link:not(.disabled).brand-blue {
+  color: colors.$brand-blue;
+  &:hover {
+    color: colors.$brand-deep-blue;
+  }
+}
+
+.link:not(.disabled).gray87 {
+  color: colors.$gray87;
+  &:hover {
+    color: colors.$gray54;
+  }
+}
+
+.link:not(.disabled).gray38 {
+  color: colors.$gray38;
+  &:hover {
+    color: colors.$gray54;
+  }
 }

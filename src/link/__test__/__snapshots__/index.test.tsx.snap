@@ -6,7 +6,7 @@ exports[`<Link /> calls helpers and renders correctly with external 1`] = `
   href="/cabinet/"
 >
   <a
-    className="link color__brand-blue hover-color__brand-deep-blue"
+    className="link brand-blue"
     data-testid="anchor"
     href="/cabinet/"
   >
@@ -21,7 +21,7 @@ exports[`<Link /> calls helpers and renders correctly with pseudo 1`] = `
   pseudo={true}
 >
   <a
-    className="link color__gray38 hover-color__gray54"
+    className="link gray38"
     data-testid="anchor"
     role="button"
     tabIndex={0}
@@ -39,7 +39,7 @@ exports[`<Link /> calls helpers with right params and renders correctly without 
   target="_blank"
 >
   <a
-    className="link testClass color__gray38 hover-color__gray54"
+    className="link testClass gray38"
     data-testid="anchor"
     href="/cart/"
     target="_blank"
@@ -55,7 +55,7 @@ exports[`<Link /> render render pseudo link disabled properly 1`] = `
   pseudo={true}
 >
   <a
-    className="link color__brand-blue hover-color__brand-deep-blue disabled"
+    className="link brand-blue disabled"
     data-testid="anchor"
     role="button"
   >
@@ -69,7 +69,7 @@ exports[`<Link /> render render pseudo link properly 1`] = `
   pseudo={true}
 >
   <a
-    className="link color__brand-blue hover-color__brand-deep-blue"
+    className="link brand-blue"
     data-testid="anchor"
     role="button"
     tabIndex={0}
