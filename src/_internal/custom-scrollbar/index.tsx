@@ -28,6 +28,9 @@ export interface CustomScrollbarProps {
 
   /** Запас для определения полной прокрутки. */
   fullScrollThreshold?: number
+
+  /** Реф для экземпляра компонента OverlayScrollbarsComponent. */
+  osComponentRef?: React.LegacyRef<OverlayScrollbarsComponent>
 }
 
 const cx = classnames.bind(styles);
@@ -38,6 +41,7 @@ const cx = classnames.bind(styles);
  * @return Элемент.
  */
 export const CustomScrollbar = ({
+  osComponentRef,
   style,
   className,
   children,
@@ -47,6 +51,7 @@ export const CustomScrollbar = ({
   fullScrollThreshold,
 }: CustomScrollbarProps) => (
   <OverlayScrollbarsComponent
+    ref={osComponentRef}
     style={style}
     className={cx('custom-scrollbar', className, { 'os-host-flexbox': inFlexBox })}
     options={{
