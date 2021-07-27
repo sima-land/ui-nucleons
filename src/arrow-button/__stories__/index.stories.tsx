@@ -7,7 +7,7 @@ const sizes = ['l', 's'];
 const directions = ['up', 'right', 'down', 'left'];
 
 export default {
-  title: 'ArrowButton',
+  title: 'desktop/ArrowButton',
   component: ArrowButton,
   parameters: {
     layout: 'padded',
