@@ -173,7 +173,7 @@ export const Autocomplete = ({
           data-testid='autocomplete:menu'
           className={cx('menu')}
           role='menu'
-          customScrollbar={{ osComponentRef }}
+          customScrollbarProps={{ osComponentRef }}
         >
           {loading
             ? (
