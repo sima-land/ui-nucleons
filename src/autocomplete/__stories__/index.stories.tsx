@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Autocomplete } from '..';
 
 export default {
-  title: 'Autocomplete',
+  title: 'desktop/Autocomplete',
   component: Autocomplete,
   parameters: {
     layout: 'padded',

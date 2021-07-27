@@ -8,7 +8,6 @@ import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/down';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/up';
 import styles from './select.module.scss';
 import { COLORS } from '../colors';
-import { useOutsideClick } from '../hooks';
 import { DropdownLoading } from '../_internal/dropdown-loading';
 
 type Size = 's' | 'm' | 'l' | 'xl';
@@ -59,15 +58,11 @@ export const Select: React.FC<Props> = ({
   'data-testid': dataTestId,
   ...restProps
 }) => {
-  const fieldRef = useRef<HTMLInputElement>();
-  const menuRef = useRef<HTMLDivElement>();
+  const fieldRef = useRef<HTMLInputElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
   const [opened, toggleMenu] = useState(false);
 
   const ArrowSVG = opened ? UpSVG : DownSVG;
-
-  useOutsideClick(menuRef, () => {
-    toggleMenu(false);
-  });
 
   useEffect(() => {
     opened && (menuRef.current as any).focus();
@@ -91,7 +86,7 @@ export const Select: React.FC<Props> = ({
         multiline={false}
         focused={opened}
         onClick={e => {
-          toggleMenu(!opened);
+          toggleMenu(o => !o);
           onClick && onClick(e);
         }}
         onBlur={({ relatedTarget }) => {

@@ -3,7 +3,7 @@ import { Select } from '..';
 import { Link } from '../../link';
 
 export default {
-  title: 'Select',
+  title: 'desktop/Select',
   component: Select,
   parameters: {
     layout: 'padded',

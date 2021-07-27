@@ -7,10 +7,10 @@ import classnames from 'classnames/bind';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/down';
 import { COLORS } from '../colors';
 import { useOutsideClick } from '../hooks';
-import { scrollToChild } from '../helpers/scroll-to-child';
 import { DropdownLoading } from '../_internal/dropdown-loading';
 import { isNull } from 'lodash';
 import styles from './autocomplete.module.scss';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 
 export interface Props extends Omit<TextFieldProps, 'ref' | 'value' | 'defaultValue'> {
 
@@ -71,7 +71,8 @@ export const Autocomplete = ({
   'data-testid': dataTestId,
   ...restProps
 }: Props) => {
-  const rootRef = useRef();
+  const osComponentRef = useRef<OverlayScrollbarsComponent>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
   const fieldRef = useRef<HTMLInputElement>();
   const menuRef = useRef<HTMLDivElement>();
   const [needDropdown, toggleDropdown] = useState(false);
@@ -100,10 +101,16 @@ export const Autocomplete = ({
 
   useEffect(() => {
     const menu = menuRef.current;
+    const osInstance = osComponentRef.current?.osInstance();
 
-    !isNull(activeIndex)
-      && menu?.children?.[activeIndex]
-      && scrollToChild(menu, menu.children[activeIndex] as HTMLElement);
+    if (menu && osInstance && activeIndex !== null) {
+      const child = menu.querySelectorAll('[role="menuitem"]')[activeIndex];
+
+      child && osInstance.scroll({
+        el: child as HTMLElement,
+        scroll: { y: 'ifneeded' },
+      });
+    }
   }, [activeIndex]);
 
   return (
@@ -166,6 +173,7 @@ export const Autocomplete = ({
           data-testid='autocomplete:menu'
           className={cx('menu')}
           role='menu'
+          customScrollbar={{ osComponentRef }}
         >
           {loading
             ? (
@@ -181,15 +189,11 @@ export const Autocomplete = ({
                         key={index}
                         role='menuitem'
                         checked={index === activeIndex}
-                        noHover={index !== activeIndex}
                         onClick={() => {
                           onSelect && onSelect(item);
                           setActiveIndex(null);
                           toggleDropdown(false);
                           fieldRef.current && fieldRef.current.focus();
-                        }}
-                        onMouseEnter={() => {
-                          setActiveIndex(index);
                         }}
                       >
                         {renderItem(item)}
