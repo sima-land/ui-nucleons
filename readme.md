@@ -6,11 +6,11 @@
 
 Установка
 ```bash
-# yarn
-yarn add @sima-land/ui-nucleons
-
-#npm
+# npm
 npm i -S @sima-land/ui-nucleons
+
+# или yarn
+yarn add @sima-land/ui-nucleons
 ```
 
 ### Настройка сборки и запуска тестов
