@@ -88,7 +88,6 @@
     "test": "jest",
     "type-check": "tsc -p . --noEmit",
     "coverage": "jest --clearCache && jest --coverage",
-    "test:ci": "yarn coverage --maxWorkers=2 --colors --reporters=jest-junit --reporters=default",
     "lint:scripts": "eslint --cache src/ --ext .js,.jsx,.ts,.tsx",
     "lint:styles": "stylelint 'src/**/*.{css,scss}'",
     "storybook": "start-storybook -p 9009 -c .storybook -s ./.storybook/public",
