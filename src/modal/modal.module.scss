@@ -3,7 +3,7 @@
 $max-height: 696px;
 
 .overlay {
-  background: rgba(0, 0, 0, .24);
+  background: rgba(0, 0, 0, 0.24);
   overflow: auto;
   position: fixed;
   display: flex;
@@ -67,7 +67,10 @@ $max-height: 696px;
 
 .body {
   flex-grow: 1;
-  max-height: calc(var(--modal-height, #{$max-height}) - var(--header-height) - var(--footer-height));
+  max-height: calc(
+    var(--modal-height, #{$max-height}) - var(--header-height) -
+      var(--footer-height)
+  );
 }
 
 .main {

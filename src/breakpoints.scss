@@ -10,26 +10,22 @@ $map: (
   xl: 1920px,
 ) !default;
 
-@mixin up ($breakpoint) {
+@mixin up($breakpoint) {
   @if map-has-key($map, $breakpoint) {
     @media (min-width: map-get($map, $breakpoint)) {
       @content;
     }
-  }
-
-  @else {
+  } @else {
     @warn 'No such breakpoint `#{$breakpoint}`. Available values: #{map-keys($map)}.';
   }
 }
 
-@mixin down ($breakpoint) {
+@mixin down($breakpoint) {
   @if map-has-key($map, $breakpoint) {
     @media (max-width: map-get($map, $breakpoint) - 1px) {
       @content;
     }
-  }
-
-  @else {
+  } @else {
     @warn 'No such breakpoint `#{$breakpoint}`. Available values: #{map-keys($map)}.';
   }
 }

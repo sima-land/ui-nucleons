@@ -13,7 +13,7 @@ $itemSize: 14px;
   top: 0;
   width: $itemSize;
   height: $itemSize;
-  transition: left .3s;
+  transition: left 0.3s;
   &::after {
     content: '';
     position: absolute;
@@ -22,7 +22,7 @@ $itemSize: 14px;
     width: 6px;
     height: 6px;
     transform: translate(-50%, -50%);
-    transition: transform .3s, background .3s, left .3s;
+    transition: transform 0.3s, background 0.3s, left 0.3s;
     border-radius: 50%;
     background: #e0e0e0;
   }

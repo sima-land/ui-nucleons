@@ -7,7 +7,7 @@ $textSizes: (
   64: 16,
   72: 16,
   80: 16,
-  104: 24
+  104: 24,
 );
 
 @mixin layer {
@@ -67,6 +67,6 @@ $textSizes: (
   }
   &.image-overlay {
     background: #000;
-    opacity: .04;
+    opacity: 0.04;
   }
 }

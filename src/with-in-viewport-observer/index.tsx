@@ -1,5 +1,5 @@
 import React from 'react';
-import isEqual from 'lodash/isEqual';
+import { isEqual } from 'lodash';
 import initAddObserve from '../helpers/intersection-observer';
 
 /**
@@ -7,11 +7,11 @@ import initAddObserve from '../helpers/intersection-observer';
  * @param observersDataList Массив с данными объявленных Intersection Observer.
  * @return Функция, создающая компонент высшего порядка.
  */
-export function makeInViewportObserverHOC (observersDataList: any) {
-  return function HOC <T, K extends string> (
+export function makeInViewportObserverHOC(observersDataList: any) {
+  return function HOC<T, K extends string>(
     Component: React.ComponentType<T>,
     options: IntersectionObserverInit = {},
-    propName: K = 'addObserve' as K
+    propName: K = 'addObserve' as K,
   ) {
     let addObserve: any;
 
@@ -34,14 +34,13 @@ export function makeInViewportObserverHOC (observersDataList: any) {
      * @param props Свойства для оборачиваемого компонента.
      * @return Компонент высшего порядка.
      */
-    const Wrapper: React.FC<Omit<T, K> & { [key in K]?: any }> = (props: any) => (
-      <Component
-        {...{ [propName]: addObserve }}
-        {...props}
-      />
-    );
+    const Wrapper: React.FC<Omit<T, K> & { [key in K]?: any }> = (
+      props: any,
+    ) => <Component {...{ [propName]: addObserve }} {...props} />;
 
-    Wrapper.displayName = `withInViewportObserver(${Component.displayName || Component.name})`;
+    Wrapper.displayName = `withInViewportObserver(${
+      Component.displayName || Component.name
+    })`;
 
     return Wrapper;
   };

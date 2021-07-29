@@ -1,40 +1,39 @@
 import React from 'react';
 import classnames from 'classnames/bind';
-import has from 'lodash/has';
+import { has } from 'lodash';
 import classes from './top-bar.module.scss';
 import { InnerBorder } from '../styling/borders';
 
 export type TopBarSize = 's' | 'm';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  icon?: React.ReactNode
-  'data-testid'?: string
+  icon?: React.ReactNode;
+  'data-testid'?: string;
 }
 
 export interface TopBarProps {
-
   /** Свойства кнопок. */
   buttonsProps?: {
-    start?: ButtonProps
-    startSecondary?: ButtonProps
-    end?: ButtonProps
-    endSecondary?: ButtonProps
-  }
+    start?: ButtonProps;
+    startSecondary?: ButtonProps;
+    end?: ButtonProps;
+    endSecondary?: ButtonProps;
+  };
 
   /** CSS-класс корневого элемента. */
-  className?: string
+  className?: string;
 
   /** Размер. */
-  size?: TopBarSize
+  size?: TopBarSize;
 
   /** Подзаголовок. */
-  subtitle?: string
+  subtitle?: string;
 
   /** Заголовок. */
-  title?: string
+  title?: string;
 
   /** Нужна ли разделительная черта снизу. */
-  divided?: boolean
+  divided?: boolean;
 }
 
 // некоторым компонентам нужно знать конкретную высоту, делаем единый источник
@@ -55,12 +54,7 @@ export const TopBar = ({
   size = 'm',
   title,
   subtitle,
-  buttonsProps: {
-    start,
-    startSecondary,
-    end,
-    endSecondary,
-  } = {},
+  buttonsProps: { start, startSecondary, end, endSecondary } = {},
   className,
 }: TopBarProps) => {
   const hasStart = has(start, 'icon');
@@ -73,7 +67,12 @@ export const TopBar = ({
 
   return (
     <div
-      className={cx('root', `size-${size}`, className, divided && InnerBorder.bottom)}
+      className={cx(
+        'root',
+        `size-${size}`,
+        className,
+        divided && InnerBorder.bottom,
+      )}
       style={{ height: `${TOP_BAR_HEIGHT[size]}px` }}
     >
       {hasStart ? <IconButton {...start} /> : stub}
@@ -82,9 +81,7 @@ export const TopBar = ({
       <div className={cx('main-section')}>
         <div className={cx('title', 'ellipsis')}>{title}</div>
         {Boolean(subtitle) && (
-          <div className={cx('subtitle', 'ellipsis')}>
-            {subtitle}
-          </div>
+          <div className={cx('subtitle', 'ellipsis')}>{subtitle}</div>
         )}
       </div>
 
@@ -106,6 +103,4 @@ export const IconButton = ({ icon, ...buttonProps }: ButtonProps) => (
   </button>
 );
 
-const iconStub = (
-  <div className={cx('icon-button', 'stub')} />
-);
+const iconStub = <div className={cx('icon-button', 'stub')} />;

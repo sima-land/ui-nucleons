@@ -1,5 +1,4 @@
-import isFunction from 'lodash/isFunction';
-import identity from 'lodash/identity';
+import { isFunction, identity } from 'lodash';
 
 /**
  * Выполняет цикл для поиска родственного элемента по заданным условиям.
@@ -20,20 +19,16 @@ const findSiblingIndex = ({
   isSuitable,
   needBreakLoop = identity,
 }: {
-  target: HTMLElement
-  startIndex?: number
-  increment?: number
-  defaultResult?: number
-  isSuitable?: (el: Element) => boolean
-  needBreakLoop?: (passed: boolean) => boolean
+  target: HTMLElement;
+  startIndex?: number;
+  increment?: number;
+  defaultResult?: number;
+  isSuitable?: (el: Element) => boolean;
+  needBreakLoop?: (passed: boolean) => boolean;
 }) => {
   let result = defaultResult;
 
-  if (
-    target
-    && target.parentElement
-    && isFunction(isSuitable)
-  ) {
+  if (target && target.parentElement && isFunction(isSuitable)) {
     const { children } = target.parentElement;
 
     for (let i = startIndex; i >= 0 && i < children.length; i += increment) {

@@ -14,18 +14,20 @@ type Size = 's' | 'l';
 
 type Direction = 'up' | 'right' | 'down' | 'left';
 
-type IconSet = Readonly<Record<Direction, React.ComponentType<React.SVGAttributes<SVGSVGElement>>>>;
+type IconSet = Readonly<
+  Record<Direction, React.ComponentType<React.SVGAttributes<SVGSVGElement>>>
+>;
 
-export interface ArrowButtonProps extends Omit<JSX.IntrinsicElements['button'], 'size' | 'children'> {
-
+export interface ArrowButtonProps
+  extends Omit<JSX.IntrinsicElements['button'], 'size' | 'children'> {
   /** Размер. */
-  size?: Size
+  size?: Size;
 
   /** Направление (отвечает за иконку). */
-  direction?: Direction
+  direction?: Direction;
 
   /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string
+  'data-testid'?: string;
 }
 
 const cx = classnames.bind(classes);
@@ -63,11 +65,7 @@ export const ArrowButton = ({
     <button
       type='button'
       {...buttonProps}
-      className={cx(
-        'arrow-button',
-        `size-${size}`,
-        className
-      )}
+      className={cx('arrow-button', `size-${size}`, className)}
       data-testid={testId}
     >
       <Icon aria-hidden fill='currentColor' />

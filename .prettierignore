@@ -1,0 +1,14 @@
+# Artifacts:
+build
+build-storybook
+coverage
+
+# Configs
+.jest/
+.storybook/
+*config.*
+*.yaml
+*.yml
+
+# Other
+*.md

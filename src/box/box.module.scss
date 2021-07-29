@@ -1,6 +1,12 @@
 $axis: (
-  x: ('right', 'left'),
-  y: ('top', 'bottom'),
+  x: (
+    'right',
+    'left',
+  ),
+  y: (
+    'top',
+    'bottom',
+  ),
 );
 
 .flex-wrap {
@@ -8,13 +14,7 @@ $axis: (
 }
 
 // display
-$displayValues: (
-  block,
-  none,
-  flex,
-  inline,
-  inline-block,
-);
+$displayValues: (block, none, flex, inline, inline-block);
 
 @each $key in $displayValues {
   .display-#{$key} {
@@ -36,10 +36,7 @@ $flexValues: (
 }
 
 // direction
-$directionValues: (
-  row,
-  column,
-);
+$directionValues: (row, column);
 
 @each $key in $directionValues {
   .direction-#{$key} {

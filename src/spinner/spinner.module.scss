@@ -1,6 +1,14 @@
 $pi: 3.141592653589793;
-$sizes: (small: 20, medium: 48, large: 80);
-$durations: (small: 600ms, medium: 750ms, large: 950ms);
+$sizes: (
+  small: 20,
+  medium: 48,
+  large: 80,
+);
+$durations: (
+  small: 600ms,
+  medium: 750ms,
+  large: 950ms,
+);
 
 .spinner {
   .circle {
@@ -15,19 +23,22 @@ $durations: (small: 600ms, medium: 750ms, large: 950ms);
       width: #{$diameter}px;
       height: #{$diameter}px;
       .circle {
-        animation: dash-#{$sizeKey} map-get($durations, $sizeKey) linear infinite;
+        animation: dash-#{$sizeKey}
+          map-get($durations, $sizeKey)
+          linear
+          infinite;
       }
       @keyframes dash-#{$sizeKey} {
         0% {
-          stroke-dasharray: $perimeter * .125, $perimeter * .875;
-          stroke-dashoffset: $perimeter * .25;
+          stroke-dasharray: $perimeter * 0.125, $perimeter * 0.875;
+          stroke-dashoffset: $perimeter * 0.25;
         }
         50% {
-          stroke-dasharray: $perimeter * .5, $perimeter * .5;
+          stroke-dasharray: $perimeter * 0.5, $perimeter * 0.5;
         }
         100% {
-          stroke-dasharray: $perimeter * .125, $perimeter * .875;
-          stroke-dashoffset: -$perimeter + ($perimeter * .25);
+          stroke-dasharray: $perimeter * 0.125, $perimeter * 0.875;
+          stroke-dashoffset: -$perimeter + ($perimeter * 0.25);
         }
       }
     }
@@ -47,8 +58,8 @@ $durations: (small: 600ms, medium: 750ms, large: 950ms);
     }
     *::-ms-backdrop,
     .spinner.size-#{$sizeKey} .circle {
-      stroke-dasharray: $perimeter * .75, $perimeter * .25;
-      stroke-dashoffset: $perimeter * .25;
+      stroke-dasharray: $perimeter * 0.75, $perimeter * 0.25;
+      stroke-dashoffset: $perimeter * 0.25;
     }
   }
 }

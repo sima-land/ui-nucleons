@@ -1,1 +1,5 @@
 *.test.js.snap
+*.js
+*.ts
+*.jsx
+*.tsx

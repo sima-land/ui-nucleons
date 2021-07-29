@@ -1,5 +1,5 @@
 import React from 'react';
-import has from 'lodash/has';
+import { has } from 'lodash';
 import classnames from 'classnames/bind';
 import { COLORS } from '../colors';
 import classes from './spinner.module.scss';
@@ -9,18 +9,17 @@ type Color = 'brand-blue' | 'white';
 type Size = 'small' | 'medium' | 'large';
 
 export interface SpinnerProps {
-
   /** Размер. */
-  size?: Size
+  size?: Size;
 
   /** Цвет. */
-  color?: Color
+  color?: Color;
 
   /** Класс. */
-  className?: string
+  className?: string;
 
   /** Стили. */
-  style?: React.CSSProperties
+  style?: React.CSSProperties;
 }
 
 const cx = classnames.bind(classes);
