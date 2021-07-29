@@ -13,12 +13,7 @@
   white-space: nowrap;
 }
 
-$aligns: (
-  left,
-  right,
-  center,
-  justify
-);
+$aligns: (left, right, center, justify);
 
 @each $align in $aligns {
   .align-#{$align} {
@@ -26,18 +21,7 @@ $aligns: (
   }
 }
 
-$sizes: (
-  12,
-  14,
-  16,
-  20,
-  24,
-  28,
-  32,
-  48,
-  64,
-  80,
-);
+$sizes: (12, 14, 16, 20, 24, 28, 32, 48, 64, 80);
 
 @each $size in $sizes {
   .size-#{$size} {
@@ -51,14 +35,7 @@ $sizes: (
   }
 }
 
-$weights: (
-  300,
-  400,
-  500,
-  600,
-  700,
-  800,
-);
+$weights: (300, 400, 500, 600, 700, 800);
 
 @each $weight in $weights {
   .weight-#{$weight} {

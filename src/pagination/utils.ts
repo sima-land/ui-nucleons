@@ -1,13 +1,13 @@
 import classnames from 'classnames/bind';
 import classes from './pagination.module.scss';
-import range from 'lodash/range';
+import { range } from 'lodash';
 
 interface IPageButton {
-  value: number
-  content: string | number
+  value: number;
+  content: string | number;
 }
 
-type State = { current: number, range: number, total: number };
+type State = { current: number; range: number; total: number };
 
 export const cx = classnames.bind(classes);
 
@@ -17,7 +17,10 @@ export const cx = classnames.bind(classes);
  * @param content Содержимое кнопки.
  * @return Список кнопок.
  */
-export const PageButton = (value: number, content: string | number = value): IPageButton => ({ value, content });
+export const PageButton = (
+  value: number,
+  content: string | number = value,
+): IPageButton => ({ value, content });
 
 /**
  * Возвращает список кнопок навигации.
@@ -33,11 +36,13 @@ export const getPageButtons = ({
   total,
   buttonKeys = { more: '...' },
 }: {
-  current: number,
-  total: number,
-  buttonKeys?: { more: string | number }
+  current: number;
+  total: number;
+  buttonKeys?: { more: string | number };
 }): IPageButton[] => {
-  const list = getCorrectRangeNumbers({ current, range: 5, total }).map(v => PageButton(v));
+  const list = getCorrectRangeNumbers({ current, range: 5, total }).map(v =>
+    PageButton(v),
+  );
 
   if (list.length > 0 && total > 5) {
     // если находимся в середине множества (многоточия с обоих сторон) - диапазон уменьшается до 4
@@ -45,7 +50,8 @@ export const getPageButtons = ({
       list.shift();
     }
 
-    if (list[0].value > 1) { // формируем начало диапазона
+    if (list[0].value > 1) {
+      // формируем начало диапазона
       if (list[0].value === 2) {
         list.unshift(PageButton(1));
       } else {
@@ -55,22 +61,22 @@ export const getPageButtons = ({
           // не выводим многоточие когда вместо него можно поставить одно число
           list[0].value === 3
             ? PageButton(2)
-            : PageButton(list[0].value - 1, buttonKeys.more)
+            : PageButton(list[0].value - 1, buttonKeys.more),
         );
       }
     }
 
-    if (list[list.length - 1].value < total) { // формируем конец диапазона
+    if (list[list.length - 1].value < total) {
+      // формируем конец диапазона
       if (list[list.length - 1].value === total - 1) {
         list.push(PageButton(total));
       } else {
         list.push(
-
           // не выводим многоточие когда вместо него можно поставить одно число
           total - list[list.length - 1].value > 2
             ? PageButton(list[list.length - 1].value + 1, buttonKeys.more)
             : PageButton(total - 1),
-          PageButton(total)
+          PageButton(total),
         );
       }
     }
@@ -94,11 +100,13 @@ export const getCorrectRangeNumbers = ({
   range: rangeSize,
   total,
 }: State): number[] => {
-  let result = [...getRangeNumbers({
-    current,
-    range: rangeSize,
-    total,
-  })];
+  let result = [
+    ...getRangeNumbers({
+      current,
+      range: rangeSize,
+      total,
+    }),
+  ];
 
   if (total > rangeSize) {
     if (current < rangeSize) {

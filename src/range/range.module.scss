@@ -8,7 +8,7 @@ $trackHeight: 4px;
 }
 
 .range-wrapper-styled {
-  padding: 0 ($thumbSize * .5);
+  padding: 0 ($thumbSize * 0.5);
   box-sizing: border-box;
 }
 
@@ -22,7 +22,7 @@ $trackHeight: 4px;
 }
 
 .disabled {
-  opacity: .5;
+  opacity: 0.5;
 }
 
 /* Thumbs */
@@ -41,7 +41,7 @@ $trackHeight: 4px;
   height: $thumbSize;
   background: #fff;
   border-radius: 50%;
-  box-shadow: 0 3px 10px rgba(51, 51, 51, .2);
+  box-shadow: 0 3px 10px rgba(51, 51, 51, 0.2);
   box-sizing: border-box;
 }
 
@@ -59,12 +59,12 @@ $trackHeight: 4px;
 
 .available-styled {
   height: $trackHeight;
-  border-radius: $trackHeight * .5;
+  border-radius: $trackHeight * 0.5;
   background: #ebebeb;
 }
 
 .selected-styled {
   height: $trackHeight;
-  border-radius: $trackHeight * .5;
+  border-radius: $trackHeight * 0.5;
   background: #1f84db;
 }

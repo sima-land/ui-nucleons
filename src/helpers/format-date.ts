@@ -1,4 +1,4 @@
-import isFunction from 'lodash/isFunction';
+import { isFunction } from 'lodash';
 import format from 'date-fns/format';
 import isValid from 'date-fns/isValid';
 import parse from 'date-fns/parse';
@@ -17,9 +17,9 @@ export const createDateFormatter = ({
   formatTo = 'dd MMMM yyyy',
   invalidPlaceholder = '',
 }: {
-  formatFrom?: string | string[]
-  formatTo?: string | ((d: Date) => string)
-  invalidPlaceholder?: any
+  formatFrom?: string | string[];
+  formatTo?: string | ((d: Date) => string);
+  invalidPlaceholder?: any;
 } = {}) => (dateString: string) => {
   const date = parseMultiple(dateString, formatFrom, new Date());
 
@@ -29,7 +29,7 @@ export const createDateFormatter = ({
     result = format(
       date,
       isFunction(formatTo) ? formatTo(new Date(date.getTime())) : formatTo,
-      { locale: ruLocale }
+      { locale: ruLocale },
     );
   }
 
@@ -49,19 +49,21 @@ export const parseMultiple = (
   formatString: string | string[],
   referenceDate: Date,
   options?: {
-    locale?: Locale
-    weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-    firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7
-    useAdditionalWeekYearTokens?: boolean
-    useAdditionalDayOfYearTokens?: boolean
-  }
+    locale?: Locale;
+    weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+    firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7;
+    useAdditionalWeekYearTokens?: boolean;
+    useAdditionalDayOfYearTokens?: boolean;
+  },
 ): Date => {
   let result;
 
   if (Array.isArray(formatString)) {
     for (let i = 0; i < formatString.length; i++) {
       result = parse(dateString, formatString[i], referenceDate, options);
-      if (isValid(result)) { break; }
+      if (isValid(result)) {
+        break;
+      }
     }
   } else {
     result = parse(dateString, formatString, referenceDate, options);

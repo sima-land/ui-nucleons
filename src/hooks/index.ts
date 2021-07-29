@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { isTouchDevice } from '../helpers/is-touch-device';
-import isFunction from 'lodash/isFunction';
+import { isFunction } from 'lodash';
 import on from '../helpers/on';
 
 /**
@@ -24,13 +24,16 @@ export const useIsTouchDevice = () => {
  * @param options.onFullScroll Сработает при событии полной прокрутки.
  * @param options.threshold Отступ от конца списка по которому событие должно срабатывать.
  */
-export const useInfiniteScroll = (ref: React.MutableRefObject<HTMLElement | undefined | null>, {
-  onFullScroll,
-  threshold = 0,
-}: {
-  onFullScroll?: (event: UIEvent) => void
-  threshold?: number
-}) => {
+export const useInfiniteScroll = (
+  ref: React.MutableRefObject<HTMLElement | undefined | null>,
+  {
+    onFullScroll,
+    threshold = 0,
+  }: {
+    onFullScroll?: (event: UIEvent) => void;
+    threshold?: number;
+  },
+) => {
   useEffect(() => {
     const { current: element } = ref;
 
@@ -59,20 +62,24 @@ export const useInfiniteScroll = (ref: React.MutableRefObject<HTMLElement | unde
  */
 export const useOutsideClick = (
   elementRef: React.MutableRefObject<HTMLElement | undefined | null>,
-  callback: (e: MouseEvent) => void
+  callback: (e: MouseEvent) => void,
 ) => {
   const callbackRef = useRef(callback);
 
   callbackRef.current = callback;
 
-  useEffect(() => on(document.documentElement, 'click', (event: MouseEvent) => {
-    const { current: element } = elementRef;
-    const { current: handleClick } = callbackRef;
+  useEffect(
+    () =>
+      on(document.documentElement, 'click', (event: MouseEvent) => {
+        const { current: element } = elementRef;
+        const { current: handleClick } = callbackRef;
 
-    element
-      && element !== event.target
-      && !element.contains(event.target as HTMLElement)
-      && isFunction(handleClick)
-      && handleClick(event);
-  }) as () => void, []);
+        element &&
+          element !== event.target &&
+          !element.contains(event.target as HTMLElement) &&
+          isFunction(handleClick) &&
+          handleClick(event);
+      }) as () => void,
+    [],
+  );
 };

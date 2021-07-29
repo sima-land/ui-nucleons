@@ -1,6 +1,11 @@
 @use '../colors';
 
-$sizes: (s: 40px, m: 48px, l: 56px, xl: 72px);
+$sizes: (
+  s: 40px,
+  m: 48px,
+  l: 56px,
+  xl: 72px,
+);
 
 .root {
   display: flex;

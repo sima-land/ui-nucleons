@@ -1,6 +1,5 @@
 import { mount } from 'enzyme';
-import initAddObserve,
-{
+import initAddObserve, {
   addObserve,
   observerHandle,
   wrapAddObserve,
@@ -8,23 +7,23 @@ import initAddObserve,
   Callback,
 } from '../intersection-observer';
 import React from 'react';
-import isFunction from 'lodash/isFunction';
+import { isFunction } from 'lodash';
 import { makeInViewportObserverHOC } from '../../with-in-viewport-observer';
 
 type Props = {
-  addObserve: (el: Element, c: Callback) => void
-  onIntersection: Callback
+  addObserve: (el: Element, c: Callback) => void;
+  onIntersection: Callback;
 };
 
 class TestProductPreviewsWidget extends React.Component<Props> {
   widgetRef = React.createRef();
 
-  componentDidMount () {
-    isFunction(this.props.addObserve)
-    && this.props.addObserve(this.widgetRef.current, this.props.onIntersection);
+  componentDidMount() {
+    isFunction(this.props.addObserve) &&
+      this.props.addObserve(this.widgetRef.current, this.props.onIntersection);
   }
 
-  render () {
+  render() {
     return (
       <div ref={this.widgetRef as React.LegacyRef<HTMLDivElement>}>content</div>
     );
@@ -83,7 +82,7 @@ describe('addObserve()', () => {
 });
 
 describe('wrapAddObserve()', () => {
-  it ('run addObserve when component subscribe on IntersectionObserver ', () => {
+  it('run addObserve when component subscribe on IntersectionObserver', () => {
     const add = jest.fn();
     const observersList = [
       {
@@ -97,7 +96,7 @@ describe('wrapAddObserve()', () => {
     expect(add).toBeCalledTimes(1);
   });
 
-  it ('run addObserve into wrapAddObserve', () => {
+  it('run addObserve into wrapAddObserve', () => {
     const addObserver = jest.fn();
     const observerContainer = {
       observer: {},
@@ -109,7 +108,7 @@ describe('wrapAddObserve()', () => {
 });
 
 describe('wrapObserverHandle()', () => {
-  it ('test', () => {
+  it('test', () => {
     const observerHandler = jest.fn();
     const addObserver = initAddObserve(observerHandler);
     (wrapObserverHandle(addObserver as any, observerHandler as any) as any)();
@@ -118,19 +117,23 @@ describe('wrapObserverHandle()', () => {
 });
 
 describe('initAddObserve', () => {
-  const spy = jest.spyOn(window, 'IntersectionObserver').mockImplementation(jest.fn());
+  const spy = jest
+    .spyOn(window, 'IntersectionObserver')
+    .mockImplementation(jest.fn());
 
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it ('run addObserve when window is defined', () => {
+  it('run addObserve when window is defined', () => {
     initAddObserve();
     expect(spy).toBeCalledTimes(1);
   });
 
-  it ('run addObserve when window is undefined', () => {
-    jest.spyOn(global as typeof global & { window: any }, 'window', 'get').mockImplementation(() => undefined);
+  it('run addObserve when window is undefined', () => {
+    jest
+      .spyOn(global as typeof global & { window: any }, 'window', 'get')
+      .mockImplementation(() => undefined);
     initAddObserve();
     expect(window).toBeUndefined();
     expect(spy).toBeCalledTimes(0);

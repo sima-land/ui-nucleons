@@ -30,7 +30,8 @@
     opacity: 1;
     color: var(--placeholder-color);
   }
-  &::-ms-clear { // отключаем системный крестик в IE
+  &::-ms-clear {
+    // отключаем системный крестик в IE
     display: none;
     height: 0;
     width: 0;

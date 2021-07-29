@@ -1,9 +1,9 @@
-import isFunction from 'lodash/isFunction';
+import { isFunction } from 'lodash';
 import 'intersection-observer';
 
 interface ObserverContainer {
-  registry: Map<Element, any>
-  observer: IntersectionObserver
+  registry: Map<Element, any>;
+  observer: IntersectionObserver;
 }
 
 export type Callback = (target: HTMLElement) => void;
@@ -13,7 +13,10 @@ export type Callback = (target: HTMLElement) => void;
  * @param container Контейнер с обсервером и списком подписантов.
  * @param entries Массив с появившимися DOM-элементами.
  */
-export const observerHandle = ({ registry }: ObserverContainer, entries: IntersectionObserverEntry[]) => {
+export const observerHandle = (
+  { registry }: ObserverContainer,
+  entries: IntersectionObserverEntry[],
+) => {
   entries.forEach(entry => {
     const onIntersection = registry.get(entry.target);
     entry.isIntersecting && isFunction(onIntersection) && onIntersection();
@@ -29,7 +32,7 @@ export const observerHandle = ({ registry }: ObserverContainer, entries: Interse
 export const addObserve = (
   { observer, registry }: ObserverContainer,
   target: HTMLElement,
-  onIntersection: Callback
+  onIntersection: Callback,
 ) => {
   if (observer && isFunction(observer.observe)) {
     observer.observe(target);
@@ -45,8 +48,9 @@ export const addObserve = (
  */
 export const wrapAddObserve = (
   container: ObserverContainer,
-  addObserveFunc: (c: ObserverContainer, t: HTMLElement, cb: Callback) => void
-) => (target: HTMLElement, onIntersection: Callback) => addObserveFunc(container, target, onIntersection);
+  addObserveFunc: (c: ObserverContainer, t: HTMLElement, cb: Callback) => void,
+) => (target: HTMLElement, onIntersection: Callback) =>
+  addObserveFunc(container, target, onIntersection);
 
 /**
  * Пробрасывает контейнер с экземпляром обсервера в обработчик события обсервера.
@@ -56,7 +60,7 @@ export const wrapAddObserve = (
  */
 export const wrapObserverHandle = (
   container: ObserverContainer,
-  handler: (c: ObserverContainer, es: IntersectionObserverEntry[]) => void
+  handler: (c: ObserverContainer, es: IntersectionObserverEntry[]) => void,
 ) => (entries: IntersectionObserverEntry[]) => handler(container, entries);
 
 /**
@@ -71,7 +75,7 @@ const initAddObserve = (options = {}) => {
     container.registry = new Map();
     container.observer = new window.IntersectionObserver(
       wrapObserverHandle(container, observerHandle),
-      options
+      options,
     );
   }
 
