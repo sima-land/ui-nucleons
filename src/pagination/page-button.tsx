@@ -1,7 +1,7 @@
 import React from 'react';
 import { cx } from './utils';
 
-export interface Props extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
+export interface PageButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
   rounded?: 'all' | 'none' | 'left' | 'right'
   className?: string
   selected?: boolean
@@ -15,7 +15,7 @@ export interface Props extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement
  * @param props.rounded С какой стороны делать скругления.
  * @return Элемент.
  */
-export const PageButton: React.FC<Props> = ({
+export const PageButton: React.FC<PageButtonProps> = ({
   selected,
   rounded = 'all',
   className,

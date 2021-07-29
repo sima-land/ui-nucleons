@@ -8,7 +8,7 @@ import { useDragAndDrop, getFilesPreparer } from './utils';
 import { upperFirst } from 'lodash';
 import getDeclination from '../helpers/get-declination';
 
-export interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect' | 'multiple'> {
+export interface UploadAreaProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect' | 'multiple'> {
 
   /** Ограничение на количество файлов. */
   countLimit?: number
@@ -42,7 +42,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export const UploadArea: React.FC<Props> = ({
+export const UploadArea: React.FC<UploadAreaProps> = ({
   onSelect,
   className,
   fileRole = 'файл',

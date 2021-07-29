@@ -3,7 +3,7 @@ import { formatPrice } from './utils';
 import classes from './price.module.scss';
 import classnames from 'classnames/bind';
 
-export interface Props {
+export interface PriceProps {
 
   /** Класс/стили цены. */
   className?: string
@@ -38,7 +38,7 @@ export const Price = ({
   crossedOut,
   value,
   'data-testid': testId = 'price',
-}: Props) => {
+}: PriceProps) => {
   const content = formatPrice(value, grapheme, {
     graphemeBefore,
   });

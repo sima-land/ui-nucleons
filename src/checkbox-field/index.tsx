@@ -3,7 +3,7 @@ import { Checkbox } from '../checkbox';
 import classnames from 'classnames/bind';
 import classes from './checkbox-field.module.scss';
 
-export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface CheckboxFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
   /** Содержимое ярлыка. */
   label?: string
@@ -20,7 +20,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const cx = classnames.bind(classes);
 
-export const CheckboxField = forwardRef<HTMLInputElement | null, Props>(function CheckboxField ({
+export const CheckboxField = forwardRef<HTMLInputElement | null, CheckboxFieldProps>(function CheckboxField ({
   label,
   error,
   info,

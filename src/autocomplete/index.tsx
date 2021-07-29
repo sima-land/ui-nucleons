@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Dropdown } from '../dropdown';
-import { DropdownItem, Props as ItemProps } from '../dropdown-item';
-import { TextField, Props as TextFieldProps } from '../text-field';
+import { DropdownItem, DropdownItemProps } from '../dropdown-item';
+import { TextField, TextFieldProps } from '../text-field';
 import { placeDropdown } from '../_internal/utils/dropdown';
 import classnames from 'classnames/bind';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/down';
@@ -12,7 +12,7 @@ import { isNull } from 'lodash';
 import styles from './autocomplete.module.scss';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 
-export interface Props extends Omit<TextFieldProps, 'ref' | 'value' | 'defaultValue'> {
+export interface AutocompleteProps extends Omit<TextFieldProps, 'ref' | 'value' | 'defaultValue'> {
 
   /** Значение по умолчанию. */
   defaultValue?: string
@@ -21,7 +21,7 @@ export interface Props extends Omit<TextFieldProps, 'ref' | 'value' | 'defaultVa
   items?: any[]
 
   /** Размер элемента меню. */
-  itemSize?: ItemProps['size']
+  itemSize?: DropdownItemProps['size']
 
   /** Нужно ли выводить состояние загрузки списка. */
   loading?: boolean
@@ -70,7 +70,7 @@ export const Autocomplete = ({
   preset = 'default',
   'data-testid': dataTestId,
   ...restProps
-}: Props) => {
+}: AutocompleteProps) => {
   const osComponentRef = useRef<OverlayScrollbarsComponent>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const fieldRef = useRef<HTMLInputElement>();

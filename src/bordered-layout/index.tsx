@@ -4,7 +4,7 @@ import { MobileLayout } from '../layout';
 import { InnerBorder } from '../styling/borders';
 import styles from './bordered-layout.module.scss';
 
-export interface Props {
+export interface BorderedLayoutProps {
 
   /** Флаг добавления рамки сверху. */
   top?: boolean
@@ -23,7 +23,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства компонента.
  * @return Компонент добавления рамки.
  */
-export const BorderedLayout: React.FC<Props> = ({ top, bottom, children }) => {
+export const BorderedLayout = ({ top, bottom, children }: BorderedLayoutProps) => {
   let borderClass;
 
   if (top && bottom) {

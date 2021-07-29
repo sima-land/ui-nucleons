@@ -6,7 +6,7 @@ import DisabledUncheckedSVG from './svg/disabled-unchecked.svg';
 import classnames from 'classnames/bind';
 import classes from './checkbox.module.scss';
 
-export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string
@@ -18,7 +18,7 @@ const cx = classnames.bind(classes);
  * Компонент галочки. Поддерживает все свойства тега input.
  * @param props Свойства.
  */
-export const Checkbox = forwardRef<HTMLInputElement | null, Props>(function Checkbox ({
+export const Checkbox = forwardRef<HTMLInputElement | null, CheckboxProps>(function Checkbox ({
   defaultChecked,
   checked = defaultChecked,
   disabled,

@@ -4,7 +4,7 @@ import classnames from 'classnames/bind';
 import { Token } from '../colors';
 import styles from './link.module.scss';
 
-export interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 
   /** Цвет (название токена). */
   color?: Extract<Token, 'brand-blue' | 'gray87' | 'gray38'>
@@ -40,7 +40,7 @@ const getContentProps = (children: React.ReactNode, noIndex?: boolean) => noInde
  * @param ref Реф для DOM-элемента ссылки.
  * @return Элемент.
  */
-export const Link = forwardRef<HTMLAnchorElement, Props>(function Link ({
+export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link ({
   children,
   className,
   color = 'brand-blue',

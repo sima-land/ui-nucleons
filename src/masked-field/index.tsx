@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { TextField, Props as TextFieldProps } from '../text-field';
+import { TextField, TextFieldProps } from '../text-field';
 import { InputMask } from '@krutoo/input-mask/dist/dom';
 
 export interface MaskState {
@@ -7,7 +7,7 @@ export interface MaskState {
   cleanValue: string
 }
 
-export interface Props extends Omit<TextFieldProps, 'value' | 'onBlur' | 'multiple'> {
+export interface MaskedFieldProps extends Omit<TextFieldProps, 'value' | 'onBlur' | 'multiple'> {
 
   /** Маска. */
   mask: string
@@ -28,7 +28,7 @@ const maskCommons = { placeholder: '_', pattern: /\d/ };
  * @param props.value Значение.
  * @param props.onBlur Сработает при событии blur.
  */
-export const MaskedField = forwardRef<HTMLInputElement | undefined, Props>(function MaskedField ({
+export const MaskedField = forwardRef<HTMLInputElement | undefined, MaskedFieldProps>(function MaskedField ({
   mask,
   value = '',
   onBlur,

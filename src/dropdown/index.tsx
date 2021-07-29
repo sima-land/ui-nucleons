@@ -9,7 +9,7 @@ interface DropdownStyle extends React.CSSProperties {
   '--dropdown-max-height'?: string
 }
 
-export interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, 'style'> {
+export interface DropdownProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'style'> {
   style?: DropdownStyle
 
   /** Идентификатор для систем автоматизированного тестирования. */
@@ -24,7 +24,7 @@ const cx = classnames.bind(styles);
 /**
  * Компонент выпадающего блока с контентом, например списком.
  */
-export const Dropdown = forwardRef<HTMLDivElement | null, Props>(function Dropdown ({
+export const Dropdown = forwardRef<HTMLDivElement | null, DropdownProps>(function Dropdown ({
   className,
   children,
   'data-testid': testId = 'dropdown',

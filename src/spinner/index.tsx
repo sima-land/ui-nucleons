@@ -8,7 +8,7 @@ type Color = 'brand-blue' | 'white';
 
 type Size = 'small' | 'medium' | 'large';
 
-export interface Props {
+export interface SpinnerProps {
 
   /** Размер. */
   size?: Size
@@ -45,7 +45,7 @@ export const Spinner = ({
   color = DEFAULT_COLOR,
   className,
   style,
-}: Props) => {
+}: SpinnerProps) => {
   const readySize: Size = has(DIAMETERS, size) ? size : 'medium';
   const readyColor = AVAILABLE_COLORS.includes(color) ? color : DEFAULT_COLOR;
   const diameter = DIAMETERS[readySize];

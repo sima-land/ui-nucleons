@@ -25,7 +25,7 @@ export interface CustomProps {
   style?: Styles
 }
 
-export type Props = CustomProps
+export type BaseInputProps = CustomProps
 & React.TextareaHTMLAttributes<HTMLTextAreaElement>
 & React.InputHTMLAttributes<HTMLInputElement>;
 
@@ -34,7 +34,10 @@ export type Props = CustomProps
  * @param props Свойства. Поддерживаются свойства элемента input.
  * @return Компонент поля ввода.
  */
-export const BaseInput = forwardRef<HTMLTextAreaElement | HTMLInputElement | undefined, Props>(function BaseInput ({
+export const BaseInput = forwardRef<
+HTMLTextAreaElement | HTMLInputElement | undefined,
+BaseInputProps
+>(function BaseInput ({
   className,
   disabled,
   multiline,

@@ -14,7 +14,7 @@ import { Token } from '../colors';
 
 type Align = 'left' | 'center' | 'right' | 'justify';
 
-export interface Props {
+export interface TextProps {
 
   /** Направление. */
   align?: Align
@@ -72,7 +72,7 @@ export const ALIGNS = new Set<Align>([
  * @param props Свойства.
  * @return Элемент.
  */
-export const Text = memo(forwardRef<any, Props>(function Text ({
+export const Text = memo(forwardRef<any, TextProps>(function Text ({
   children,
   element: Container = 'span',
   size,

@@ -4,7 +4,7 @@ import { color, bgColor } from '../styling/colors';
 import { COLORS, Token } from '../colors';
 import styles from './panel.module.scss';
 
-export interface Props {
+export interface PanelProps {
 
   /** Наименование цвета панели. */
   color?: Token
@@ -35,7 +35,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export const Panel: React.FC<Props> = ({
+export const Panel: React.FC<PanelProps> = ({
   color: panelColor = 'gray4',
   contentColor = 'gray87',
   inline = false,

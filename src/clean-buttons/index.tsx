@@ -1,16 +1,16 @@
 import React, { Children, isValidElement } from 'react';
 import classnames from 'classnames/bind';
 import classes from './clean-buttons.module.scss';
-import { Link, Props as LinkProps } from '../link';
+import { Link, LinkProps } from '../link';
 
-export interface ButtonProps extends LinkProps {
+export interface CleanButtonProps extends LinkProps {
   asLink?: boolean
 }
 
-export interface Props {
+export interface CleanGroupProps {
 
   /** Содержимое. */
-  children?: React.ReactElement<ButtonProps> | React.ReactElement<ButtonProps>[]
+  children?: React.ReactElement<CleanButtonProps> | React.ReactElement<CleanButtonProps>[]
 }
 
 const cx = classnames.bind(classes);
@@ -20,7 +20,7 @@ const cx = classnames.bind(classes);
  * @param props Свойства.
  * @return Элемент.
  */
-const CleanGroup: React.FC<Props> = ({ children }) => (
+const CleanGroup: React.FC<CleanGroupProps> = ({ children }) => (
   <div className={cx('clean-group')}>
     {Children.toArray(children).map(
       item => isValidElement(item) && item.type === CleanButton
@@ -43,7 +43,7 @@ const CleanButton = ({
   href,
   asLink = Boolean(href),
   ...restProps
-}: ButtonProps) => (
+}: CleanButtonProps) => (
   <Link
     pseudo={asLink}
     className={cx('clean-button')}

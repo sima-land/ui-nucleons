@@ -1,9 +1,9 @@
 import React, { Fragment, useRef, useEffect } from 'react';
 import { Portal } from '../portal';
 import { isFunction } from 'lodash';
-import { ScreenLayout, Props as LayoutProps, CallbackData } from './screen-layout';
+import { ScreenLayout, ScreenLayoutProps, CallbackData } from './screen-layout';
 import { cx, OrNil } from './utils';
-import { LoadingOverlay, Props as LoadingProps } from '../loading-overlay';
+import { LoadingOverlay, LoadingOverlayProps } from '../loading-overlay';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { LayerProvider, useLayer } from '../helpers/layer';
 
@@ -11,13 +11,13 @@ interface AdvancedCallbackData extends CallbackData {
   rootElement: OrNil<HTMLDivElement>
 }
 
-export interface Props {
+export interface ScreenProps {
 
   /** Содержимое. */
   children?: React.ReactNode
 
   /** Реф контента. */
-  contentRef?: LayoutProps['childrenRef']
+  contentRef?: ScreenLayoutProps['childrenRef']
 
   /** Содержимое подвала. */
   footer?: any
@@ -32,10 +32,10 @@ export interface Props {
   loadingArea?: 'content' | 'full'
 
   /** Свойства компонента LoadingOverlay. */
-  loadingOverlayProps?: LoadingProps
+  loadingOverlayProps?: LoadingOverlayProps
 
   /** Свойства компонента NavBar. */
-  navBarProps?: LayoutProps['navBarProps']
+  navBarProps?: ScreenLayoutProps['navBarProps']
 
   /** Сработает при клике на кнопку "назад". */
   onBack?: (data: AdvancedCallbackData) => void
@@ -44,7 +44,7 @@ export interface Props {
   onClose?: (data: AdvancedCallbackData) => void
 
   /** Сработает при полной прокрутке контента. */
-  onFullScroll?: LayoutProps['onFullScroll']
+  onFullScroll?: ScreenLayoutProps['onFullScroll']
 
   /** Подзаголовок. */
   subtitle?: string
@@ -73,7 +73,7 @@ export interface Props {
  * @param props Свойства.
  * @return Элемент.
  */
-export const Screen: React.FC<Props> = ({
+export const Screen: React.FC<ScreenProps> = ({
   children,
   contentRef,
   footer,

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export interface Props {
+export interface NoIndexMarkProps {
 
   /** Флаг закрывающегося тэга. */
   closing?: boolean
@@ -11,6 +11,6 @@ export interface Props {
  * @param props Свойства.
  * @return Элемент.
  */
-export const NoIndexMark = ({ closing }: Props) => (
+export const NoIndexMark = ({ closing }: NoIndexMarkProps) => (
   <span dangerouslySetInnerHTML={{ __html: `<!--${closing ? '/' : ''}noindex-->` }} />
 );

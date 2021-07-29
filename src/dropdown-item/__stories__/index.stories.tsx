@@ -1,5 +1,5 @@
 import React from 'react';
-import { DropdownItem, Props } from '..';
+import { DropdownItem, DropdownItemProps } from '..';
 
 export default {
   title: 'desktop/DropdownItem',
@@ -9,7 +9,7 @@ export default {
   },
 };
 
-const SIZES: Array<Props['size']> = ['s', 'm', 'l', 'xl'];
+const SIZES: Array<DropdownItemProps['size']> = ['s', 'm', 'l', 'xl'];
 
 export const Primary = () => (
   <>

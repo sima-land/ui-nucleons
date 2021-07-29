@@ -4,7 +4,7 @@ import styles from './toggle.module.scss';
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
-export interface Props {
+export interface ToggleProps {
 
   /** Отмечен ли переключатель. */
   checked?: InputProps['checked']
@@ -38,7 +38,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export const Toggle = forwardRef<HTMLInputElement, Props>(({
+export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(({
   checked,
   className,
   defaultChecked,

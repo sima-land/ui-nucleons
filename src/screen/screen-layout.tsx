@@ -1,5 +1,5 @@
 import React, { useRef, useImperativeHandle } from 'react';
-import { NavBar, Props as NavBarProps } from '../nav-bar';
+import { NavBar, NavBarProps } from '../nav-bar';
 import { cx, OrNil } from './utils';
 import on from '../helpers/on';
 import { isFullyScrolled } from '../helpers/is-fully-scrolled';
@@ -11,7 +11,7 @@ export interface CallbackData {
   contentElement: OrNil<HTMLDivElement>
 }
 
-export interface Props {
+export interface ScreenLayoutProps {
   childrenRef?: React.MutableRefObject<OrNil<HTMLDivElement>> | React.RefCallback<OrNil<HTMLDivElement>>
   footer?: React.ReactNode
   fullScrollThreshold?: number
@@ -46,7 +46,7 @@ export interface Props {
  * @param props.withHeader Нужно ли выводить шапку с заголовком и кнопками.
  * @return Элемент.
  */
-export const ScreenLayout: React.FC<Props> = ({
+export const ScreenLayout: React.FC<ScreenLayoutProps> = ({
   children,
   childrenRef,
   footer,

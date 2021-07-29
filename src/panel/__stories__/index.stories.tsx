@@ -1,9 +1,9 @@
 import React from 'react';
-import { Panel, Props } from '..';
+import { Panel, PanelProps } from '..';
 import { marginBottom, marginRight } from '../../styling/sizes';
 import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information';
 
-const variants: Props[] = [
+const variants: PanelProps[] = [
   { color: 'gray4' },
   { color: 'additional-deep-red', contentColor: 'white' },
   { color: 'additional-teal', contentColor: 'white' },
