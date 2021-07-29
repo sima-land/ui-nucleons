@@ -7,13 +7,13 @@ import Point, { IPoint } from '../helpers/point';
 import maxIndexOf from '../helpers/max-index-of';
 import getRelativePos from '../helpers/get-relative-pos';
 import findChildElement from '../helpers/find-child-element';
-import { ArrowButton, Props as ButtonProps } from '../arrow-button';
+import { ArrowButton, ArrowButtonProps } from '../arrow-button';
 import on from '../helpers/on';
 import classnames from 'classnames/bind';
 import DraggableEvent from './helpers/draggable-event';
 import styles from './carousel.module.scss';
 
-export interface Props {
+export interface CarouselProps {
 
   /** Список элементов. */
   items?: any[]
@@ -64,7 +64,7 @@ export interface Props {
   viewportElementProps?: React.HTMLAttributes<HTMLDivElement>
 
   /** Свойства кнопок. */
-  controlProps?: ButtonProps
+  controlProps?: ArrowButtonProps
 }
 
 interface State {
@@ -89,7 +89,7 @@ const isAuto = eq('auto');
 /**
  * Карусель.
  */
-export class Carousel extends Component<Props, State> {
+export class Carousel extends Component<CarouselProps, State> {
   infinite: boolean;
   dragStartClient: IPoint;
   dragStartOffset: IPoint;
@@ -110,7 +110,7 @@ export class Carousel extends Component<Props, State> {
    * Конструктор.
    * @param props Свойства.
    */
-  constructor (props: Props) {
+  constructor (props: CarouselProps) {
     const { items, infinite = true, targetIndex = 0 } = props;
 
     super(props);
@@ -168,7 +168,7 @@ export class Carousel extends Component<Props, State> {
    */
   static defaultRenderControl (
     { canUse, onUse, type, vertical }: ControlData,
-    props: ButtonProps = { size: 's' }
+    props: ArrowButtonProps = { size: 's' }
   ) {
     const forward = vertical ? 'down' : 'right';
     const backward = vertical ? 'up' : 'left';
@@ -270,7 +270,7 @@ export class Carousel extends Component<Props, State> {
    * Обновляет информацию о состоянии отображения элементов.
    * @param prevProps Предыдущие свойства.
    */
-  componentDidUpdate (prevProps: Props) {
+  componentDidUpdate (prevProps: CarouselProps) {
     const { autoplay, targetIndex } = this.props;
     const {
       autoplay: prevAutoplay,

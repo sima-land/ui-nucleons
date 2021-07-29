@@ -1,7 +1,7 @@
 import React, { Children, cloneElement } from 'react';
 import classnames from 'classnames/bind';
 import classes from './field-grid.module.scss';
-import { Props as TextFieldProps } from '../text-field';
+import { TextFieldProps } from '../text-field';
 
 type ItOrArray<T> = T[] | T;
 
@@ -27,7 +27,7 @@ export interface RowProps {
   children: ItOrArray<React.ReactElement<CellProps, typeof Cell>>
 }
 
-export interface Props {
+export interface FieldGridProps {
 
   /** Содержимое. */
   children: ItOrArray<React.ReactElement<RowProps, typeof Row>>
@@ -36,7 +36,7 @@ export interface Props {
   rootProps?: React.HTMLAttributes<HTMLDivElement>
 }
 
-export interface FieldGridComponent extends React.FC<Props> {
+export interface FieldGridComponent extends React.FC<FieldGridProps> {
   Row: typeof Row
   Cell: typeof Cell
 }

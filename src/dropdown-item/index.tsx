@@ -4,7 +4,7 @@ import styles from './dropdown-item.module.scss';
 
 const cx = classnames.bind(styles);
 
-export interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, 'size'> {
+export interface DropdownItemProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'size'> {
 
   /** Отображать элемент как отмеченный или нет. */
   checked?: boolean
@@ -40,7 +40,7 @@ export const DropdownItem = ({
   checked,
   'data-testid': testId = 'dropdown-item',
   ...restProps
-}: Props) => (
+}: DropdownItemProps) => (
   <div
     {...restProps}
     className={cx(

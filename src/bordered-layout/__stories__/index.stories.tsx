@@ -1,5 +1,5 @@
 import React from 'react';
-import { BorderedLayout, Props } from '..';
+import { BorderedLayout, BorderedLayoutProps } from '..';
 
 export default {
   title: 'mobile/BorderedLayout',
@@ -10,7 +10,7 @@ export default {
 };
 
 export const Primary = () => {
-  const Demo: React.FC<Props> = ({ children, ...props }) => (
+  const Demo: React.FC<BorderedLayoutProps> = ({ children, ...props }) => (
     <div style={{ margin: '32px 0' }}>
       <BorderedLayout {...props}>
         <div style={{ padding: '16px 0' }}>

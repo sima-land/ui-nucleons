@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Stepper, Props } from '..';
+import { Stepper, StepperProps } from '..';
 
 export default {
   title: 'desktop/Stepper',
@@ -9,7 +9,7 @@ export default {
   },
 };
 
-const Template: React.FC<Props> = props => {
+const Template: React.FC<StepperProps> = props => {
   const [value, setValue] = useState('');
   const [withControls, toggleControls] = useState(false);
   const amount = parseInt(value || '0');

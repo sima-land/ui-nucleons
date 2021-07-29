@@ -4,7 +4,7 @@ import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/down';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/up';
 import { Dropdown } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';
-import { TextField, Props as TextFieldProps } from '../text-field';
+import { TextField, TextFieldProps } from '../text-field';
 import { MaskedField, MaskState } from '../masked-field';
 import { useOutsideClick } from '../hooks';
 import { IDS, countriesList, Country } from './presets';
@@ -17,7 +17,7 @@ interface PhoneInputStyle extends React.CSSProperties {
   '--phone-input-width'?: number | string
 }
 
-export interface Props extends Omit<TextFieldProps, 'onChange' | 'onBlur' | 'value' | 'ref' | 'style'> {
+export interface PhoneInputProps extends Omit<TextFieldProps, 'onChange' | 'onBlur' | 'value' | 'ref' | 'style'> {
 
   /** Сработает при "blur". */
   onBlur?: (e: React.FocusEvent<HTMLInputElement>, s: MaskState & { ready?: boolean }) => void
@@ -60,7 +60,7 @@ export const PhoneInput = ({
   value = '',
   onChange,
   ...restProps
-}: Props) => {
+}: PhoneInputProps) => {
   // маску определяем автоматически только при старте
   const [country, setCountry] = useState(defineCountry(value));
   const [cleanValue, setCleanValue] = useState(formatValue(value, country));

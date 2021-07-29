@@ -4,7 +4,7 @@ import classes from './layout.module.scss';
 
 type Breakpoint = 'mxs' | 'ms' | 'mm' | 'ml' | 'xs' | 's' | 'm' | 'l' | 'xl';
 
-export interface Props extends React.HTMLAttributes<HTMLElement> {
+export interface LayoutProps extends React.HTMLAttributes<HTMLElement> {
 
   /** Тэг. */
   element?: string
@@ -22,7 +22,7 @@ const cx = classnames.bind(classes);
  * @return Компонент.
  */
 const createLayout = (specificClass: string, displayName: string) => {
-  const Component = forwardRef<HTMLElement, Props>(({
+  const Component = forwardRef<HTMLElement, LayoutProps>(({
     className,
     element: Element = 'div',
     disabledOn = [],

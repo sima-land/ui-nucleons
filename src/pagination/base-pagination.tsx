@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageButton, Props as ButtonProps } from './page-button';
+import { PageButton, PageButtonProps } from './page-button';
 import { getPageButtons, cx } from './utils';
 import { allPass, always, cond, eq, prop, propEq, T } from 'lodash/fp';
 import { has } from 'lodash';
@@ -7,7 +7,7 @@ import { marginRight, marginLeft } from '../styling/sizes';
 import LeftSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/left';
 import RightSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/right';
 
-interface RenderButtonProps extends ButtonProps {
+interface RenderButtonProps extends PageButtonProps {
   type?: 'prev' | 'next' | 'more'
   isFirst?: boolean
   isLast?: boolean
@@ -15,7 +15,7 @@ interface RenderButtonProps extends ButtonProps {
   selected?: boolean
 }
 
-export interface Props {
+export interface BasePaginationProps {
   total: number
   current: number
   onButtonClick?: (n: number) => void
@@ -26,7 +26,7 @@ export interface Props {
   calculateButtons?: typeof getPageButtons
 }
 
-const DEFAULTS: Required<Omit<Props, 'total' | 'current' | 'onButtonClick' | 'isButtonSelected'>> = {
+const DEFAULTS: Required<Omit<BasePaginationProps, 'total' | 'current' | 'onButtonClick' | 'isButtonSelected'>> = {
   renderButton: ({ type, isFirst, isLast, ...restProps }, index) => (
     <PageButton
       key={index}
@@ -65,7 +65,7 @@ export const BUTTON_CONTENTS = {
  * @param props.calculateButtons Должна вернуть список кнопок (например ['prev', 1, 2, 3, 'next']).
  * @return Элемент.
  */
-export const BasePagination: React.FC<Props> = ({
+export const BasePagination: React.FC<BasePaginationProps> = ({
   total,
   current,
   onButtonClick,
@@ -117,7 +117,7 @@ export const BasePagination: React.FC<Props> = ({
   );
 };
 
-const resolveRounded = cond<any, ButtonProps['rounded']>([
+const resolveRounded = cond<any, PageButtonProps['rounded']>([
   [propEq('type', BUTTON_TYPES.prev), always('all')],
   [propEq('type', BUTTON_TYPES.next), always('all')],
   [allPass([prop('isFirst'), prop('isLast')]), always('all')],

@@ -1,13 +1,13 @@
 import React, { Fragment, useRef } from 'react';
 import { Portal } from '../portal';
-import { NavBar, Props as NavBarProps } from '../nav-bar';
+import { NavBar, NavBarProps } from '../nav-bar';
 import classnames from 'classnames/bind';
 import classes from './alert.module.scss';
 import { InnerBorder } from '../styling/borders';
 import { LayerProvider, useLayer } from '../helpers/layer';
 import { WithBodyScrollLock, useBodyScrollLock } from '../_internal/body-scroll';
 
-export interface Props extends WithBodyScrollLock {
+export interface AlertProps extends WithBodyScrollLock {
 
   /** Основное содержимое. */
   children?: React.ReactNode
@@ -41,7 +41,7 @@ const cx = classnames.bind(classes);
  * @param props Свойства.
  * @return Элемент.
  */
-export const Alert = ({ inPortal = true, ...restProps }: Props) => {
+export const Alert = ({ inPortal = true, ...restProps }: AlertProps) => {
   const layer = useLayer() + 100;
   const Wrapper = inPortal ? Portal : Fragment;
 
@@ -69,7 +69,7 @@ const AlertInner = ({
   withNavBar = Boolean(title),
   withScrollDisable = false,
   scrollDisableOptions,
-}: Omit<Props, 'inPortal'>) => {
+}: Omit<AlertProps, 'inPortal'>) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const layer = useLayer();
 

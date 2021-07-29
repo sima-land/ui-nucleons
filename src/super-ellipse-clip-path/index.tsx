@@ -1,6 +1,6 @@
 import React from 'react';
 
-export interface Props {
+export interface SuperEllipseClipPathProps {
 
   /** Идентификатор. */
   id?: string
@@ -11,7 +11,7 @@ export interface Props {
  * @param props Свойства.
  * @return Элемент.
  */
-export const SuperEllipseClipPath = ({ id }: Props) => (
+export const SuperEllipseClipPath = ({ id }: SuperEllipseClipPathProps) => (
   <svg width={0} height={0} style={{ position: 'absolute' }}>
     <defs>
       <clipPath id={id} clipPathUnits='objectBoundingBox'>

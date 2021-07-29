@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Dropdown } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';
-import { TextField, Props as TextFieldProps } from '../text-field';
+import { TextField, TextFieldProps } from '../text-field';
 import { placeDropdown } from '../_internal/utils/dropdown';
 import classnames from 'classnames/bind';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/down';
@@ -12,7 +12,7 @@ import { DropdownLoading } from '../_internal/dropdown-loading';
 
 type Size = 's' | 'm' | 'l' | 'xl';
 
-export interface Props extends Omit<TextFieldProps, 'style'> {
+export interface SelectProps extends Omit<TextFieldProps, 'style'> {
 
   /** Нужно ли выводить состояние загрузки списка. */
   loading?: boolean
@@ -43,7 +43,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export const Select: React.FC<Props> = ({
+export const Select: React.FC<SelectProps> = ({
   options,
   optionSize,
   onSelect,

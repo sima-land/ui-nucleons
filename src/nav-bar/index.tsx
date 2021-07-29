@@ -12,7 +12,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   shift?: 'left' | 'right'
 }
 
-export interface Props {
+export interface NavBarProps {
 
   /** Заголовок. */
   title?: string
@@ -55,7 +55,7 @@ export const NavBar = ({
     end,
     endSecondary,
   } = {},
-}: Props) => {
+}: NavBarProps) => {
   const startButtons = [start, startSecondary];
   const endButtons = [end, endSecondary];
 

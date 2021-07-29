@@ -3,7 +3,7 @@ import { times } from 'lodash';
 import classnames from 'classnames/bind';
 import styles from './dot-nav.module.scss';
 
-export interface Props {
+export interface DotNavProps {
 
   /** Индекс выбранной точки. */
   current?: number
@@ -25,7 +25,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export const DotNav: React.FC<Props> = ({ current = 0, total = 1, onSelect }) => {
+export const DotNav: React.FC<DotNavProps> = ({ current = 0, total = 1, onSelect }) => {
   const withShift = total > 4;
 
   const shift = useShift(current, total);

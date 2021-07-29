@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { sample } from 'lodash';
-import { Avatar, Props as BaseProps } from '.';
+import { Avatar, AvatarProps } from '.';
 import { Token } from '../colors';
 
-export type Props = Omit<BaseProps, 'bgColor' | 'bgOpacity' | 'textColor'>;
+export type UserAvatarProps = Omit<AvatarProps, 'bgColor' | 'bgOpacity' | 'textColor'>;
 
 const COLORS: ReadonlyArray<Token> = [
   'additional-deep-red',
@@ -30,7 +30,7 @@ export const colorKey = Symbol.for('user-avatar:color-key');
  * @param props Свойства. Поддерживаются свойства Avatar.
  * @return Компонент.
  */
-export const UserAvatar = (props: Props) => {
+export const UserAvatar = (props: UserAvatarProps) => {
   const [color, setColor] = useState<typeof COLORS[number]>();
 
   useEffect(() => {

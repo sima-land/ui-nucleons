@@ -15,7 +15,7 @@ interface CallbackData {
   finishValue: number
 }
 
-export interface Props {
+export interface RangeProps {
 
   /** Начальная граница. */
   min?: number
@@ -66,7 +66,7 @@ const getPercentage = (...args: Parameters<typeof getFraction>) => getFraction(.
 /**
  * Поле выбора диапазона с двумя ползунками.
  */
-export class Range extends Component<Props> {
+export class Range extends Component<RangeProps> {
   containerRef: React.RefObject<HTMLElement | undefined>;
   rangeRef: React.RefObject<HTMLElement | undefined>;
   startThumbRef: React.RefObject<HTMLElement | undefined>;
@@ -82,7 +82,7 @@ export class Range extends Component<Props> {
    * Конструктор.
    * @param props Свойства.
    */
-  constructor (props: Props) {
+  constructor (props: RangeProps) {
     const {
       min = 0,
       max = 1,
@@ -129,8 +129,8 @@ export class Range extends Component<Props> {
   }
 
   /** @inheritdoc */
-  componentDidUpdate (prevProps: Props) {
-    const propKeys: Array<keyof Props> = ['min', 'max', 'step', 'startValue', 'finishValue'];
+  componentDidUpdate (prevProps: RangeProps) {
+    const propKeys: Array<keyof RangeProps> = ['min', 'max', 'step', 'startValue', 'finishValue'];
 
     if (propKeys.some(key => !Object.is(this.props[key], prevProps[key]))) {
       const {

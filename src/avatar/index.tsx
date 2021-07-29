@@ -6,7 +6,7 @@ import classes from './avatar.module.scss';
 import { getMonogram } from './utils';
 import { color as colorClass } from '../styling/colors';
 
-export interface Props {
+export interface AvatarProps {
 
   /** Цвет аватара без картинки. */
   bgColor?: Token
@@ -71,7 +71,7 @@ export const Avatar = ({
   className,
   style,
   'data-testid': testId = 'avatar',
-}: Props) => {
+}: AvatarProps) => {
   const [needImage, toggleImage] = useState(Boolean(imageUrl));
 
   useEffect(() => {

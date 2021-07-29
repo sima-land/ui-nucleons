@@ -11,7 +11,7 @@ interface ChipsItem {
   [x: string]: any
 }
 
-export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+export interface ChipsProps extends React.HTMLAttributes<HTMLDivElement> {
 
   /** Элементы списка. */
   items: ChipsItem[]
@@ -40,7 +40,7 @@ export const Chips = ({
   className,
   'data-testid': testId = 'chips',
   ...restProps
-}: Props) => (
+}: ChipsProps) => (
   <div {...restProps} className={cx('list', className)} data-testid={testId}>
     {items.map((item, index) => {
       const { href, target, children, withCross } = item;

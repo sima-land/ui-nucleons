@@ -10,7 +10,7 @@ interface StepperCSS extends React.CSSProperties {
   '--stepper-width'?: string
 }
 
-export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'style'> {
+export interface StepperProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'style'> {
 
   /** Нужно ли выводить кнопку добавления. */
   canAdd?: boolean
@@ -55,7 +55,7 @@ export const Stepper = ({
   value,
   'data-testid': dataTestId = 'stepper',
   ...inputProps
-}: Props) => {
+}: StepperProps) => {
   const [focused, setFocused] = useState(false);
 
   return (

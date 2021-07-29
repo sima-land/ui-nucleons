@@ -1,7 +1,7 @@
 import React from 'react';
-import { BasePagination, Props as BaseProps } from './base-pagination';
+import { BasePagination, BasePaginationProps } from './base-pagination';
 
-export interface Props {
+export interface PaginationProps {
 
   /** Общее количество страниц. */
   total: number
@@ -13,7 +13,7 @@ export interface Props {
   onChange?: (data: { value: number }) => void
 
   /** Функция возвращающая компонент кнопки. */
-  renderButton?: BaseProps['renderButton']
+  renderButton?: BasePaginationProps['renderButton']
 }
 
 /**
@@ -21,7 +21,7 @@ export interface Props {
  * @param props Свойства.
  * @return Элемент.
  */
-export const Pagination: React.FC<Props> = ({
+export const Pagination: React.FC<PaginationProps> = ({
   total,
   current,
   onChange,

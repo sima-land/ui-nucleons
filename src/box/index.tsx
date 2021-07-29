@@ -8,7 +8,7 @@ import { COLORS, Token } from '../colors';
 type CustomElement = { className: string, children?: React.ReactNode, style?: React.CSSProperties }
 & React.RefAttributes<any>;
 
-export interface Props {
+export interface BoxProps {
 
   /** Значение свойства "alignItems". */
   alignItems?: 'start' | 'end' | 'center' | 'baseline' | 'stretch'
@@ -168,7 +168,7 @@ const JUSTIFY_CONTENT = new Set([
  * @param props.wrap Формирует значение css-свойства "flex-wrap".
  * @return Элемент.
  */
-export const Box: React.FC<Props> = ({
+export const Box = ({
   element: Container = 'div',
   children,
   display,
@@ -199,7 +199,7 @@ export const Box: React.FC<Props> = ({
 
   // color
   color,
-}) => (
+}: BoxProps) => (
   <Container
     style={dangerouslySetInlineStyle?.__style}
     className={cx(

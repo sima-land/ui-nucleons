@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { DropdownItem, Props } from '..';
+import { DropdownItem, DropdownItemProps } from '..';
 
 describe('DropdownItem', () => {
   it('should render without props', () => {
@@ -46,7 +46,7 @@ describe('DropdownItem', () => {
   });
 
   it('should handle size prop', () => {
-    const SIZES: Array<Props['size']> = ['s', 'm', 'l', 'xl'];
+    const SIZES: Array<DropdownItemProps['size']> = ['s', 'm', 'l', 'xl'];
 
     SIZES.forEach(size => {
       const wrapper = mount(

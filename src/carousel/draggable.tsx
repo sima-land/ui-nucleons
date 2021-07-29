@@ -17,7 +17,7 @@ export type Delta2d = { dx: number, dy: number };
 
 export type DraggableEventHandler = (e: DraggableEvent) => void;
 
-export interface Props {
+export interface DraggableProps {
   axis?: 'x' | 'y'
   active?: boolean
   onDragStart?: DraggableEventHandler
@@ -40,7 +40,7 @@ const EVENT_NAMES = {
 /**
  * Компонент области, которую можно прокручивать перетаскиванием.
  */
-export default class Draggable extends Component<Props> {
+export default class Draggable extends Component<DraggableProps> {
   isGrabbed: boolean;
   hasTransition: boolean;
   needPreventClick: boolean;
@@ -53,7 +53,7 @@ export default class Draggable extends Component<Props> {
    * Конструктор компонента области, которую можно прокручивать перетаскиванием.
    * @param props Свойства.
    */
-  constructor (props: Props) {
+  constructor (props: DraggableProps) {
     super(props);
 
     this.isGrabbed = false;

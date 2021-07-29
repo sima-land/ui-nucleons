@@ -1,7 +1,7 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
 import { isNil, isFunction } from 'lodash';
 import { Box } from '../box';
-import { BaseInput, Props as BaseInputProps } from '../base-input';
+import { BaseInput, BaseInputProps } from '../base-input';
 import { SmallRounds } from '../styling/shapes';
 import classnames from 'classnames/bind';
 import styles from './text-field.module.scss';
@@ -19,7 +19,7 @@ type Classes = {
 
 type IgnoredInputProps = 'size' | 'onClick' | 'onInput' | 'onChange' | 'onKeyDown' | 'onKeyUp' | 'onSelect';
 
-export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, IgnoredInputProps> {
+export interface TextFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, IgnoredInputProps> {
 
   /** Ярлык. */
   label?: string
@@ -114,7 +114,10 @@ const modifiersToClasses = ({ disabled, failed, focused, variant }: {
  * @param props Свойства.
  * @return Элемент.
  */
-export const TextField = forwardRef<HTMLTextAreaElement | HTMLInputElement | undefined, Props>(function TextField ({
+export const TextField = forwardRef<
+HTMLTextAreaElement | HTMLInputElement | undefined,
+TextFieldProps
+>(function TextField ({
   autoFocus,
   caption,
   classes = {},

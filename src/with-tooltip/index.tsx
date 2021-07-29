@@ -35,7 +35,7 @@ interface TooltipProps {
   onDismiss?: DismissCallback
 }
 
-export interface Props<T extends ElementName = ElementName> {
+export interface WithTooltipProps<T extends ElementName = ElementName> {
 
   /** Тип элемента-контейнера. */
   holderElement?: T
@@ -66,7 +66,7 @@ const cx = classnames.bind(classes);
  * @param props Свойства.
  * @return Элемент.
  */
-export const WithTooltip: React.FC<Props> = ({
+export const WithTooltip: React.FC<WithTooltipProps> = ({
   inline = false,
   holderElement: Holder = inline ? 'span' : 'div',
   holderProps = {},

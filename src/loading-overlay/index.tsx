@@ -1,9 +1,9 @@
 import React from 'react';
-import { Spinner, Props as SpinnerProps } from '../spinner';
+import { Spinner, SpinnerProps } from '../spinner';
 import classnames from 'classnames/bind';
 import classes from './loading-overlay.module.scss';
 
-export interface Props {
+export interface LoadingOverlayProps {
 
   /** Пользовательский CSS-класс корневого элемента. */
   className?: string
@@ -25,7 +25,7 @@ const cx = classnames.bind(classes);
  * @param props Свойства.
  * @return Элемент.
  */
-export const LoadingOverlay = ({ style, className, spinnerProps = {}, fill = true }: Props) => (
+export const LoadingOverlay = ({ style, className, spinnerProps = {}, fill = true }: LoadingOverlayProps) => (
   <div
     className={cx('loading-overlay', fill && 'fill', className)}
     style={style}

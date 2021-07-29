@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Distance } from './types';
 import { getDistanceToNow, formatDistance } from './utils';
 
-export interface Props {
+export interface TimerProps {
 
   /** Дата и время события. */
   date: string
@@ -23,7 +23,7 @@ export const Timer = ({
   date,
   format = formatDistance,
   timeout = 1000,
-}: Props) => {
+}: TimerProps) => {
   const [distance, setDistance] = useState(getDistanceToNow(date));
 
   useEffect(() => {

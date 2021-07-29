@@ -16,7 +16,7 @@ type Direction = 'up' | 'right' | 'down' | 'left';
 
 type IconSet = Readonly<Record<Direction, React.ComponentType<React.SVGAttributes<SVGSVGElement>>>>;
 
-export interface Props extends Omit<JSX.IntrinsicElements['button'], 'size' | 'children'> {
+export interface ArrowButtonProps extends Omit<JSX.IntrinsicElements['button'], 'size' | 'children'> {
 
   /** Размер. */
   size?: Size
@@ -56,7 +56,7 @@ export const ArrowButton = ({
   className,
   'data-testid': testId = 'arrow-button',
   ...buttonProps
-}: Props) => {
+}: ArrowButtonProps) => {
   const Icon = ICONS[size][direction];
 
   return (
