@@ -306,7 +306,14 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
                       width={24}
                     >
                       <path
-                        d="M5.414 13l5.293 5.293a1 1 0 01-1.414 1.414l-7-7a1 1 0 010-1.414l7-7a1 1 0 011.414 1.414L5.414 11H21a1 1 0 110 2H5.414z"
+                        clipRule="evenodd"
+                        d="M11.707 3.293a1 1 0 010 1.414L4.414 12l7.293 7.293a1 1 0 01-1.414 1.414l-8-8a1 1 0 010-1.414l8-8a1 1 0 011.414 0z"
+                        fillRule="evenodd"
+                      />
+                      <path
+                        clipRule="evenodd"
+                        d="M3 12a1 1 0 011-1h17a1 1 0 110 2H4a1 1 0 01-1-1z"
+                        fillRule="evenodd"
                       />
                     </svg>
                   </ForwardRef(ArrowLeftSVG)>
