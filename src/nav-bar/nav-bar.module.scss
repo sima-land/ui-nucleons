@@ -84,6 +84,10 @@
       padding-left: 16px;
       width: 52px;
     }
+    .svg {
+      // чтобы выравнивались по центру по вертикали
+      display: block;
+    }
   }
   &.stub {
     height: 0;

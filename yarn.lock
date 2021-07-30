@@ -2089,10 +2089,10 @@
     stylelint-config-sass-guidelines "^7.1.0"
     stylelint-scss "^3.20.1"
 
-"@sima-land/ui-quarks@^1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@sima-land/ui-quarks/-/ui-quarks-1.2.2.tgz#14aca534cf7a178bbf17c8df9d899ce2380dcdc4"
-  integrity sha512-MgeNmHefFB5bGNBuHBXh+A/+Xgce4i3kfX6b6C7l3kl83YL2ch5vKNi3M21gLOR1+zmKccu/W87gwyW6Zs6+qQ==
+"@sima-land/ui-quarks@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@sima-land/ui-quarks/-/ui-quarks-2.0.0.tgz#e7c8caabe8447f85d137f6606f6c39bcb8339327"
+  integrity sha512-ly3/peMW3Gv6Milb/QGTvvk09J8hOeZSn3GzxihdWis4AJimK8Slwyqdt0SlAp15fAImUgnPQHHrS6sclz+qng==
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.2"
