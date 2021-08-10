@@ -5,7 +5,7 @@ import {
   Description,
   ArgsTable,
   PRIMARY_STORY,
-} from '@storybook/addon-docs/blocks';
+} from '@storybook/addon-docs';
 
 export const parameters = {
   layout: 'padded',

@@ -45,7 +45,6 @@ module.exports = {
             options: svgrOptions,
           },
         ],
-        exclude: /node_modules\/(?!(@sima-land/ui-nucleons)).*/,
       },
 
       // обработка обычных стилей
