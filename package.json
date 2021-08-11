@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@krutoo/input-mask": "^0.0.8",
-    "@sima-land/ui-quarks": "^2.0.0",
+    "@sima-land/ui-quarks": "^2.0.1",
     "@types/body-scroll-lock": "^2.6.1",
     "body-scroll-lock": "3.1.5",
     "date-fns": "^2.14.0",
