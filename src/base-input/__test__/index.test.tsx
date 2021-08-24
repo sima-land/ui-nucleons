@@ -1,5 +1,6 @@
 import React, { createRef } from 'react';
 import { mount } from 'enzyme';
+import { render } from 'react-dom';
 import { BaseInput } from '..';
 import { fitElementHeight } from '../../helpers/fit-element-height';
 import { act } from 'react-dom/test-utils';
@@ -16,9 +17,7 @@ jest.mock('../../helpers/fit-element-height', () => {
 
 describe('<BaseInput />', () => {
   it('should render without props', () => {
-    const wrapper = mount(
-      <BaseInput />
-    );
+    const wrapper = mount(<BaseInput />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -26,9 +25,7 @@ describe('<BaseInput />', () => {
   it('should forward ref', () => {
     const testRef = createRef<any>();
 
-    const wrapper = mount(
-      <BaseInput ref={testRef} />
-    );
+    const wrapper = mount(<BaseInput ref={testRef} />);
 
     expect(testRef.current).toBe(wrapper.find('input').getDOMNode());
   });
@@ -39,12 +36,34 @@ describe('<BaseInput />', () => {
     expect(fitElementHeight).toHaveBeenCalledTimes(1);
   });
 
+  it('should call "fitElementHeight" after each render', () => {
+    const container = document.createElement('div');
+    document.body.append(container);
+
+    expect(fitElementHeight).toHaveBeenCalledTimes(0);
+
+    act(() => {
+      render(<BaseInput multiline />, container);
+    });
+    expect(fitElementHeight).toHaveBeenCalledTimes(1);
+
+    act(() => {
+      render(<BaseInput multiline />, container);
+    });
+    expect(fitElementHeight).toHaveBeenCalledTimes(2);
+
+    act(() => {
+      render(<BaseInput multiline />, container);
+    });
+    expect(fitElementHeight).toHaveBeenCalledTimes(3);
+
+    container.remove();
+  });
+
   it('should handle "oninput" prop', () => {
     const spy = jest.fn();
 
-    const wrapper = mount(
-      <BaseInput onInput={spy} />
-    );
+    const wrapper = mount(<BaseInput onInput={spy} />);
 
     expect(spy).toBeCalledTimes(0);
 
@@ -69,7 +88,7 @@ describe('<BaseInput />', () => {
         value='Hello'
         restPlaceholder=', World!'
         onChange={jest.fn()}
-      />
+      />,
     );
 
     expect(wrapper).toMatchSnapshot();
