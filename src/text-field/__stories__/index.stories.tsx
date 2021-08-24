@@ -50,9 +50,7 @@ export const Primary = () => (
                 defaultValue='Text'
                 variant='desktop'
                 caption='Caption'
-                endAdornment={(
-                  <RightSVG fill={COLORS.get('gray24')} />
-                )}
+                endAdornment={<RightSVG fill={COLORS.get('gray24')} />}
               />
               {sizeName === 'l' && (
                 <>
@@ -65,9 +63,7 @@ export const Primary = () => (
                     defaultValue='Text'
                     variant='desktop'
                     caption='Caption'
-                    endAdornment={(
-                      <RightSVG fill={COLORS.get('gray24')} />
-                    )}
+                    endAdornment={<RightSVG fill={COLORS.get('gray24')} />}
                   />
                 </>
               )}
@@ -78,7 +74,13 @@ export const Primary = () => (
     </div>
 
     <h2 style={{ marginTop: 32 }}>Mobile</h2>
-    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 32 }}>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        marginBottom: 32,
+      }}
+    >
       {Object.entries(stateProps).map(([stateName, props]) => (
         <div style={{ flexGrow: 1, marginRight: 16 }} key={stateName}>
           <h4 style={{ textTransform: 'capitalize' }}>{stateName}</h4>
@@ -90,9 +92,7 @@ export const Primary = () => (
             defaultValue='Text'
             variant='mobile'
             caption='Caption'
-            endAdornment={(
-              <RightSVG fill={COLORS.get('gray24')} />
-            )}
+            endAdornment={<RightSVG fill={COLORS.get('gray24')} />}
           />
           <div style={{ height: 32 }} />
           <TextField
@@ -102,9 +102,7 @@ export const Primary = () => (
             defaultValue='Text'
             variant='mobile'
             caption='Caption'
-            endAdornment={(
-              <RightSVG fill={COLORS.get('gray24')} />
-            )}
+            endAdornment={<RightSVG fill={COLORS.get('gray24')} />}
           />
         </div>
       ))}
@@ -159,7 +157,10 @@ export const DifferentValues = () => (
   <>
     {testValues.map((testValue, index) => (
       <div key={index} style={{ marginTop: 32 }}>
-        <h3>Значение <code>value</code>: {String(testValue) || JSON.stringify(testValue)}</h3>
+        <h3>
+          Значение <code>value</code>:{' '}
+          {String(testValue) || JSON.stringify(testValue)}
+        </h3>
         <TextField
           {...baseProps}
           label='Label'
@@ -172,7 +173,9 @@ export const DifferentValues = () => (
 export const Rounds = () => (
   <>
     <h2>Скругления</h2>
-    <p>Их можно задавать только для варианта <code>desktop</code>:</p>
+    <p>
+      Их можно задавать только для варианта <code>desktop</code>:
+    </p>
     {[
       'none',
       'all',
@@ -227,12 +230,12 @@ export const ValuePropChange = () => {
   return (
     <>
       <p>
-        Label должен подниматься и опускаться в зависимости от того введено значение или нет
+        Label должен подниматься и опускаться в зависимости от того введено
+        значение или нет
       </p>
 
       <p>
-        <button onClick={() => setValue('Some text')}>Заполнить</button>
-        {' '}
+        <button onClick={() => setValue('Some text')}>Заполнить</button>{' '}
         <button onClick={() => setValue('')}>Очистить</button>
       </p>
 
@@ -247,3 +250,33 @@ export const ValuePropChange = () => {
 };
 
 ValuePropChange.storyName = 'service: Value prop change';
+
+export const ValuePropChangeMultiline = () => {
+  const [value, setValue] = useState('');
+
+  return (
+    <>
+      <p>
+        Label должен подниматься и опускаться в зависимости от того введено
+        значение или нет
+      </p>
+
+      <p>
+        <button onClick={() => setValue([longValue, longValue].join('\n'))}>
+          Заполнить
+        </button>{' '}
+        <button onClick={() => setValue('')}>Очистить</button>
+      </p>
+
+      <TextField
+        multiline
+        label='Test label'
+        value={value}
+        onChange={(e: any) => setValue(e.target.value)}
+        style={{ width: 240 }}
+      />
+    </>
+  );
+};
+
+ValuePropChange.storyName = 'service: Multiline value prop change';
