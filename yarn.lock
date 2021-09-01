@@ -2070,10 +2070,10 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.0.6.tgz#023d72a5c4531b4ce204528971700a78a85a0c50"
   integrity sha512-Myxw//kzromB9yWgS8qYGuGVf91oBUUJpNvy5eM50sqvmKLbKjwLxohJnkWGTeeI9v9IBMtPLxz5Gc60FIfvCA==
 
-"@sima-land/linters@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@sima-land/linters/-/linters-2.0.3.tgz#74dc93adb054a4b507913890450a89fd2b75d1ca"
-  integrity sha512-63e3nQ1cSLBRe3gvOYQrLN+HdkqKmtw+FTma2b03uenDpwGST42YQFmLNk1ldZ/RDEoTsklB7WrzX+l+HsSmFg==
+"@sima-land/linters@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@sima-land/linters/-/linters-2.1.0.tgz#1ee55fb5de9845b4f7d50e6cfcde0cef71fb8c99"
+  integrity sha512-iUFY5idPf0AAdfNNo6tsLwg5WG1sb/aP4JE+WAt97OGFQ3r1WF3SsPKUpEUaDnZtsKTkDNAC7GJgUngDyhO2kg==
   dependencies:
     "@babel/eslint-parser" "^7.14.7"
     "@typescript-eslint/eslint-plugin" "^4.28.4"

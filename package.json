@@ -27,7 +27,7 @@
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "@rushstack/eslint-patch": "^1.0.6",
-    "@sima-land/linters": "^2.0.3",
+    "@sima-land/linters": "^2.1.0",
     "@storybook/addon-actions": "^6.3.5",
     "@storybook/addon-backgrounds": "^6.3.5",
     "@storybook/addon-docs": "^6.3.5",
