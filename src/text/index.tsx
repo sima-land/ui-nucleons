@@ -15,36 +15,42 @@ import { Token } from '../colors';
 type Align = 'left' | 'center' | 'right' | 'justify';
 
 export interface TextProps {
-
   /** Направление. */
-  align?: Align
+  align?: Align;
 
   /** Содержимое. */
-  children?: React.ReactNode
+  children?: React.ReactNode;
 
   /** Ключ цвета из дизайн системы. */
-  color?: Token
+  color?: Token;
 
   /** Элемент, который будет использован как обертка. */
-  element?: string | React.ComponentType<{ className: string, children?: React.ReactNode } & React.RefAttributes<any>>
+  element?:
+    | string
+    | React.ComponentType<
+        {
+          className: string;
+          children?: React.ReactNode;
+        } & React.RefAttributes<any>
+      >;
 
   /** Нужно ли выводить текст наклонным. */
-  italic?: boolean
+  italic?: boolean;
 
   /** Межстрочный интервал. */
-  lineHeight?: LineHeight
+  lineHeight?: LineHeight;
 
   /** Нужно ли добавить стиль "white-space: nowrap". */
-  nowrap?: boolean
+  nowrap?: boolean;
 
   /** Размер. */
-  size?: Size
+  size?: Size;
 
   /** Нужно ли обрезать текст многоточием в одну строку. */
-  truncate?: boolean
+  truncate?: boolean;
 
   /** Начертание. */
-  weight?: Weight
+  weight?: Weight;
 }
 
 const cx = classnames.bind(classes);
@@ -60,48 +66,51 @@ export const defaultHeights: Readonly<Record<Size, LineHeight>> = {
   64: 80,
 };
 
-export const ALIGNS = new Set<Align>([
-  'left',
-  'center',
-  'right',
-  'justify',
-]);
+export const ALIGNS = new Set<Align>(['left', 'center', 'right', 'justify']);
 
 /**
  * Компонент для стилизации текста.
  * @param props Свойства.
  * @return Элемент.
  */
-export const Text = memo(forwardRef<any, TextProps>(function Text ({
-  children,
-  element: Container = 'span',
-  size,
+export const Text = memo(
+  forwardRef<any, TextProps>(function Text(
+    {
+      children,
+      element: Container = 'span',
+      size,
 
-  // по гайдам дизайн-системы устанавливаем высоту по умолчанию
-  lineHeight = size ? defaultHeights[size] : undefined,
+      // по гайдам дизайн-системы устанавливаем высоту по умолчанию
+      lineHeight = size ? defaultHeights[size] : undefined,
 
-  // не устанавливаем значения по умолчанию, чтобы компонент вел себя предсказуемо
-  align,
-  color,
-  italic,
-  nowrap,
-  truncate,
-  weight,
-}, ref) {
-  return (
-    <Container
-      ref={ref as any}
-      className={cx([
-        size && sizeClass(size),
-        lineHeight && lineHeightClass(lineHeight),
-        color && colorClass(color),
-        weight && weightClass(weight),
-        align && ALIGNS.has(align) && `align-${align}`,
-        italic && 'italic',
-        nowrap && 'nowrap',
-        truncate && 'truncate',
-      ])}
-      children={children}
-    />
-  );
-}));
+      // не устанавливаем значения по умолчанию, чтобы компонент вел себя предсказуемо
+      align,
+      color,
+      italic,
+      nowrap,
+      truncate,
+      weight,
+    },
+    ref,
+  ) {
+    return (
+      <Container
+        ref={ref as any}
+        className={cx([
+          // styling
+          size && sizeClass(size),
+          lineHeight && lineHeightClass(lineHeight),
+          color && colorClass(color),
+          weight && weightClass(weight),
+
+          // text
+          align && ALIGNS.has(align) && `align-${align}`,
+          italic && 'italic',
+          nowrap && 'nowrap',
+          truncate && 'truncate',
+        ])}
+        children={children}
+      />
+    );
+  }),
+);

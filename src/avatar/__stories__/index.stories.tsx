@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Avatar } from '..';
 import { random } from 'lodash';
+import dogPng from './dog.png';
 
 const propsVariants = [
   {
@@ -9,7 +10,7 @@ const propsVariants = [
   },
   {
     title: 'С картинкой (PNG)',
-    props: { imageUrl: 'https://www.sima-land.ru/img/user/photo/6010f1c00d26d2.61409846.png' },
+    props: { imageUrl: dogPng },
   },
   {
     title: 'Только инициалы',
@@ -35,10 +36,7 @@ export const Primary = () => (
     {propsVariants.map((variant, index) => (
       <Fragment key={index}>
         <h3>{variant.title}</h3>
-        <Avatar
-          key={index}
-          {...variant.props}
-        />
+        <Avatar key={index} {...variant.props} />
       </Fragment>
     ))}
 
@@ -77,20 +75,20 @@ export const Primary = () => (
 export const DifferentImages = () => (
   <>
     <h3>Valid URLs</h3>
-    {Array(3).fill(0).map((zero, index) => (
-      <Fragment key={index}>
-        <Avatar
-          key={index}
-          imageUrl={`https://picsum.photos/${200 + (index * 50)}`}
-        />
-        <br />
-      </Fragment>
-    ))}
+    {Array(3)
+      .fill(0)
+      .map((zero, index) => (
+        <Fragment key={index}>
+          <Avatar
+            key={index}
+            imageUrl={`https://picsum.photos/${200 + index * 50}`}
+          />
+          <br />
+        </Fragment>
+      ))}
 
     <h3>Invalid URL</h3>
-    <Avatar
-      imageUrl='https://foo123.bar345/'
-    />
+    <Avatar imageUrl='https://foo123.bar345/' />
   </>
 );
 
@@ -100,12 +98,16 @@ export const DeferredImageURLChange = () => {
   return (
     <>
       <div style={{ marginBottom: 16 }}>
-        <Avatar
-          imageUrl={imageUrl}
-        />
+        <Avatar imageUrl={imageUrl} />
       </div>
 
-      <button onClick={() => setImageUrl(`https://picsum.photos/${200 + random(10, 20)}`)}>Set URL</button>
+      <button
+        onClick={() =>
+          setImageUrl(`https://picsum.photos/${200 + random(10, 20)}`)
+        }
+      >
+        Set URL
+      </button>
     </>
   );
 };

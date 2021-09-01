@@ -20,25 +20,3 @@ $aligns: (left, right, center, justify);
     text-align: $align;
   }
 }
-
-$sizes: (12, 14, 16, 20, 24, 28, 32, 48, 64, 80);
-
-@each $size in $sizes {
-  .size-#{$size} {
-    font-size: #{$size}px;
-  }
-}
-
-@each $size in $sizes {
-  .line-height-#{$size} {
-    line-height: #{$size}px;
-  }
-}
-
-$weights: (300, 400, 500, 600, 700, 800);
-
-@each $weight in $weights {
-  .weight-#{$weight} {
-    font-weight: $weight;
-  }
-}

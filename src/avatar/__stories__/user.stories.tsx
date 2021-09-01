@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { UserAvatar } from '../user';
+import dogPng from './dog.png';
 
 const variants = [
   {
@@ -8,7 +9,7 @@ const variants = [
   },
   {
     title: 'С картинкой (PNG)',
-    props: { imageUrl: 'https://www.sima-land.ru/img/user/photo/6010f1c00d26d2.61409846.png' },
+    props: { imageUrl: dogPng },
   },
   {
     title: 'Только инициалы',
@@ -33,10 +34,7 @@ export const Primary = () => (
     {variants.map((variant, index) => (
       <Fragment key={index}>
         <h3>{variant.title}</h3>
-        <UserAvatar
-          key={index}
-          {...variant.props}
-        />
+        <UserAvatar key={index} {...variant.props} />
       </Fragment>
     ))}
   </>
