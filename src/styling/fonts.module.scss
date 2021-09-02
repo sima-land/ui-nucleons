@@ -14,13 +14,7 @@ $heights: (16, 20, 24, 28, 32, 40, 60, 80);
   }
 }
 
-$weights: (
-  400,
-  500,
-  600,
-  // временно нужен для миграции с Open Sans
-  700
-);
+$weights: (400, 600, 700);
 
 @each $weight in $weights {
   .weight-#{$weight} {

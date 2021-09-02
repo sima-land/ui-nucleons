@@ -14,22 +14,22 @@
 
   // оформление заголовков
   h1 {
-    font-weight: bold;
+    font-weight: 700;
     font-size: 32px;
     line-height: 40px;
   }
   h2 {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 24px;
     line-height: 32px;
   }
   h3 {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 20px;
     line-height: 28px;
   }
   h4 {
-    font-weight: bold;
+    font-weight: 700;
     font-size: 16px;
     line-height: 24px;
   }
@@ -124,7 +124,7 @@
       }
     }
     tbody td:nth-child(2) {
-      font-weight: 500;
+      font-weight: 600; // @todo это видимо для какой-то конкретной таблицы было сделано, надо бы убрать
     }
   }
 
@@ -177,7 +177,7 @@
 
   // @todo неопознанные стили оставшиеся при переносе из карточки товара, выяснить что это и зачем нужно
   div {
-    font-weight: 500;
+    font-weight: 600;
     + p {
       margin-top: 8px;
     }
