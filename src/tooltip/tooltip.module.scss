@@ -1,10 +1,9 @@
 @use '../colors';
 @import '../styling/shadows.module';
 
-.tooltip {
-  position: absolute;
-  top: 0;
-  left: 0;
+.root {
+  display: inline-flex;
+  position: relative;
   max-width: 400px;
   max-height: 536px;
   padding: 40px 8px;
@@ -15,14 +14,16 @@
   @extend .shadow-z2;
 }
 
-.tooltip-cross {
+.cross {
   position: absolute;
   top: 8px;
   right: 8px;
   cursor: pointer;
 }
 
-.tooltip-content {
+.content {
+  font-size: 16px;
+  line-height: 24px;
   padding: 0 32px;
   max-height: 456px; // 536 (по макетам) - 80 (отступы)
   overflow-y: auto;
@@ -45,8 +46,4 @@
     background-color: #e0e0e0;
     border-radius: 4px;
   }
-}
-
-.inline-block {
-  display: inline-block;
 }
