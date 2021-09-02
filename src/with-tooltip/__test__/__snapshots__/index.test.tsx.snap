@@ -1,92 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tooltip should handle "inline" prop 1`] = `
-<Tooltip
-  holderRef={
-    Object {
-      "current": <div />,
-    }
-  }
-  inline={true}
->
-  <span
-    className="tooltip"
-    style={
-      Object {
-        "opacity": 0,
-      }
-    }
-  >
-    <ForwardRef(CrossSVG)
-      className="tooltip-cross"
-      onClick={[Function]}
-    >
-      <svg
-        className="tooltip-cross"
-        height={16}
-        onClick={[Function]}
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M12.707 4.707a1 1 0 00-1.414-1.414L8 6.586 4.707 3.293a1 1 0 00-1.414 1.414L6.586 8l-3.293 3.293a1 1 0 101.414 1.414L8 9.414l3.293 3.293a1 1 0 001.414-1.414L9.414 8l3.293-3.293z"
-        />
-      </svg>
-    </ForwardRef(CrossSVG)>
+exports[`WithTooltip should works correctly 1`] = `
+<body>
+  <div>
     <div
-      className="tooltip-content"
+      data-testid="opener"
     >
-      Test tooltip
-    </div>
-  </span>
-</Tooltip>
-`;
-
-exports[`Tooltip should renders 1`] = `
-<Tooltip
-  holderRef={
-    Object {
-      "current": <div />,
-    }
-  }
->
-  <div
-    className="tooltip"
-    style={
-      Object {
-        "opacity": 0,
-      }
-    }
-  >
-    <ForwardRef(CrossSVG)
-      className="tooltip-cross"
-      onClick={[Function]}
-    >
-      <svg
-        className="tooltip-cross"
-        height={16}
-        onClick={[Function]}
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M12.707 4.707a1 1 0 00-1.414-1.414L8 6.586 4.707 3.293a1 1 0 00-1.414 1.414L6.586 8l-3.293 3.293a1 1 0 101.414 1.414L8 9.414l3.293 3.293a1 1 0 001.414-1.414L9.414 8l3.293-3.293z"
-        />
-      </svg>
-    </ForwardRef(CrossSVG)>
-    <div
-      className="tooltip-content"
-    >
-      Test tooltip
+      Opener
     </div>
   </div>
-</Tooltip>
-`;
-
-exports[`WithTooltip should renders without props 1`] = `
-<WithTooltip>
-  <div
-    className="inline-block"
-  />
-</WithTooltip>
+  <div>
+    <div
+      class="root"
+      data-testid="tooltip"
+      style="position: absolute; top: 0px; left: 0px; z-index: 1; transform: translate3d(0px, 0px, 0);"
+    >
+      <svg
+        class="cross"
+        data-testid="tooltip:cross"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+      >
+        <path
+          d="M12.707 4.707a1 1 0 00-1.414-1.414L8 6.586 4.707 3.293a1 1 0 00-1.414 1.414L6.586 8l-3.293 3.293a1 1 0 101.414 1.414L8 9.414l3.293 3.293a1 1 0 001.414-1.414L9.414 8l3.293-3.293z"
+        />
+      </svg>
+      <div
+        class="content"
+      >
+        Hello, world!
+      </div>
+    </div>
+  </div>
+</body>
 `;

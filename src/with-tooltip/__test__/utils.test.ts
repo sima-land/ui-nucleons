@@ -18,11 +18,13 @@ const FakeElement = {
       'scrollWidth',
       'scrollTop',
       'scrollHeight',
-    ].forEach(n => Object.defineProperty(el, n, {
-      value: undefined,
-      configurable: true,
-      writable: true,
-    }));
+    ].forEach(n =>
+      Object.defineProperty(el, n, {
+        value: undefined,
+        configurable: true,
+        writable: true,
+      }),
+    );
 
     Object.assign(el, {
       style: {},
@@ -32,17 +34,18 @@ const FakeElement = {
     return el as any;
   },
 
-  withRect: (rect: any) => FakeElement.create({
-    getBoundingClientRect: () => ({
-      top: 0,
-      left: 0,
-      bottom: 0,
-      right: 0,
-      width: 0,
-      height: 0,
-      ...rect,
+  withRect: (rect: any) =>
+    FakeElement.create({
+      getBoundingClientRect: () => ({
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        width: 0,
+        height: 0,
+        ...rect,
+      }),
     }),
-  }),
 };
 
 describe('CanPlace', () => {
@@ -131,8 +134,8 @@ describe('PlaceOffset', () => {
 
     PlaceOffset.reset(fakeElement as any);
 
-    expect(fakeElement.style.top).toBe('');
-    expect(fakeElement.style.left).toBe('');
+    expect(fakeElement.style.top).toBe('0px');
+    expect(fakeElement.style.left).toBe('0px');
     expect(fakeElement.style.bottom).toBe('');
     expect(fakeElement.style.right).toBe('');
   });
@@ -268,7 +271,7 @@ describe('Correct', () => {
 
     const result = CorrectOffset.horizontally(tooltipEl, testArea);
 
-    expect(result).toEqual(984);
+    expect(result).toEqual(16);
   });
 });
 
@@ -285,7 +288,14 @@ describe('placeTooltip', () => {
   });
 
   it('should place on right', () => {
-    const holderEl = FakeElement.withRect({ width: 10, height: 980, left: 10, right: 20, top: 10, bottom: 990 });
+    const holderEl = FakeElement.withRect({
+      width: 10,
+      height: 980,
+      left: 10,
+      right: 20,
+      top: 10,
+      bottom: 990,
+    });
     const tooltipEl = FakeElement.withRect({ width: 100, height: 100 });
 
     placeTooltip(tooltipEl, holderEl);
@@ -294,7 +304,14 @@ describe('placeTooltip', () => {
   });
 
   it('should place on left', () => {
-    const holderEl = FakeElement.withRect({ width: 10, height: 980, left: 980, right: 990, top: 10, bottom: 990 });
+    const holderEl = FakeElement.withRect({
+      width: 10,
+      height: 980,
+      left: 980,
+      right: 990,
+      top: 10,
+      bottom: 990,
+    });
     const tooltipEl = FakeElement.withRect({ width: 100, height: 100 });
 
     placeTooltip(tooltipEl, holderEl);
@@ -303,29 +320,45 @@ describe('placeTooltip', () => {
   });
 
   it('should place on bottom', () => {
-    const holderEl = FakeElement.withRect({ width: 980, height: 10, left: 10, right: 990, top: 10, bottom: 20 });
+    const holderEl = FakeElement.withRect({
+      width: 980,
+      height: 10,
+      left: 10,
+      right: 990,
+      top: 10,
+      bottom: 20,
+    });
     const tooltipEl = FakeElement.withRect({ height: 100, width: 100 });
 
     placeTooltip(tooltipEl, holderEl);
 
-    expect(tooltipEl.style.transform).toEqual('translate3d(884px, 28px, 0)');
+    expect(tooltipEl.style.transform).toEqual('translate3d(16px, 28px, 0)');
   });
 
   it('should place on top', () => {
-    const holderEl = FakeElement.withRect({ width: 980, height: 10, left: 10, right: 990, top: 980, bottom: 990 });
+    const holderEl = FakeElement.withRect({
+      width: 980,
+      height: 10,
+      left: 10,
+      right: 990,
+      top: 980,
+      bottom: 990,
+    });
     const tooltipEl = FakeElement.withRect({ height: 100, width: 100 });
 
     placeTooltip(tooltipEl, holderEl);
 
-    expect(tooltipEl.style.transform).toEqual('translate3d(884px, 872px, 0)');
+    expect(tooltipEl.style.transform).toEqual('translate3d(16px, 872px, 0)');
   });
 
   it('should do nothing when tooltip or holder is not defined', () => {
     const holderEl = FakeElement.create();
     const tooltipEl = FakeElement.create();
 
-    placeTooltip(null as any, holderEl);
-    placeTooltip(tooltipEl, null as any);
+    expect(() => {
+      placeTooltip(null as any, holderEl);
+      placeTooltip(tooltipEl, null as any);
+    }).not.toThrow();
   });
 });
 
