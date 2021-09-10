@@ -13,12 +13,27 @@ const Template: Story<ModalProps> = props => {
   const [opened, toggleModal] = useState<boolean>(true);
   const [openedWithScroll, setOpenedWithScroll] = useState<boolean>(false);
   const [openedWithScroll2, setOpenedWithScroll2] = useState<boolean>(false);
+  const [openedWithScroll3, setOpenedWithScroll3] = useState<boolean>(false);
+  const [openedWithScroll4, setOpenedWithScroll4] = useState<boolean>(false);
 
   return (
     <>
       <Button onClick={() => toggleModal(true)}>Показать окно с блокировкой скролла</Button>
-      <Button onClick={() => setOpenedWithScroll(true)}>Показать окно со скролло вариант 1</Button>
-      <Button onClick={() => setOpenedWithScroll2(true)}>Показать окно со скролло вариант 2</Button>
+      <br />
+      <Button onClick={() => setOpenedWithScroll(true)}>Показать окно со скроллом вариант 1</Button>
+      <br />
+      <Button onClick={() => setOpenedWithScroll2(true)}>
+        Показать окно со скроллом вариант 2
+      </Button>
+      <br />
+      <Button onClick={() => setOpenedWithScroll3(true)}>
+        Показать окно со скроллом вариант 3
+      </Button>
+      <br />
+      <Button onClick={() => setOpenedWithScroll4(true)}>
+        Показать окно со скроллом вариант 4
+      </Button>
+      <br />
 
       {/* Без скролла */}
       {opened && (
@@ -40,7 +55,7 @@ const Template: Story<ModalProps> = props => {
       {openedWithScroll && (
         <Modal
           inPortal
-          onClose={() => toggleModal(false)}
+          onClose={() => setOpenedWithScroll(false)}
           {...props}
           withScrollDisable={false}
           scrollDisableOptions={{ reserveScrollBarGap: true }}
@@ -62,10 +77,54 @@ const Template: Story<ModalProps> = props => {
       {openedWithScroll2 && (
         <Modal
           inPortal
-          onClose={() => toggleModal(false)}
+          onClose={() => setOpenedWithScroll2(false)}
           {...props}
           withScrollDisable
           scrollDisableOptions={{ reserveScrollBarGap: true }}
+        >
+          <Modal.Header divided title='Модальное окно' />
+          <Modal.Body>
+            <div style={{ padding: 24 }}>Содержимое модального окна</div>
+          </Modal.Body>
+          <Modal.Footer divided size='s'>
+            <Clean.Group>
+              <Clean.Button>Кнопка</Clean.Button>
+              <Clean.Button>Ещё кнопка</Clean.Button>
+            </Clean.Group>
+          </Modal.Footer>
+        </Modal>
+      )}
+
+      {/* Есть скролл вариант 3 */}
+      {openedWithScroll3 && (
+        <Modal
+          inPortal
+          onClose={() => setOpenedWithScroll3(false)}
+          {...props}
+          withScrollDisable
+          scrollDisableOptions={{ reserveScrollBarGap: false }}
+        >
+          <Modal.Header divided title='Модальное окно' />
+          <Modal.Body>
+            <div style={{ padding: 24 }}>Содержимое модального окна</div>
+          </Modal.Body>
+          <Modal.Footer divided size='s'>
+            <Clean.Group>
+              <Clean.Button>Кнопка</Clean.Button>
+              <Clean.Button>Ещё кнопка</Clean.Button>
+            </Clean.Group>
+          </Modal.Footer>
+        </Modal>
+      )}
+
+      {/* Есть скролл вариант 4 */}
+      {openedWithScroll4 && (
+        <Modal
+          inPortal
+          onClose={() => setOpenedWithScroll4(false)}
+          {...props}
+          withScrollDisable={false}
+          scrollDisableOptions={{ reserveScrollBarGap: false }}
         >
           <Modal.Header divided title='Модальное окно' />
           <Modal.Body>
