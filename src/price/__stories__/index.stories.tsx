@@ -2,9 +2,12 @@ import React from 'react';
 import { Price } from '..';
 
 const values = [
+  'NaN',
   '0',
   '0.1',
   '0.15',
+  '0.00024',
+  '0.0000095',
   '1000',
   '2000.5',
   '3000.56',
@@ -26,6 +29,9 @@ export const Primary = () => (
   <>
     {values.map((value, index) => (
       <div key={index} style={{ fontSize: 24, marginBottom: 16 }}>
+        <span style={{ display: 'inline-block', minWidth: '200px' }}>
+          {value}
+        </span>
         <Price value={value} currencyGrapheme='₽' />
       </div>
     ))}
