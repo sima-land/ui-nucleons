@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import on from '../helpers/on';
+import { subscribe } from '../helpers/media-query-list';
 
 /**
  * Возвращает состояние по media-запросу.
@@ -14,9 +14,9 @@ export const useMedia = (query: string) => {
 
     setMatches(mql.matches);
 
-    return on<MediaQueryListEvent>(mql, 'change', event => {
+    return subscribe(mql, event => {
       setMatches(event.matches);
-    });
+    }).unsubscribe;
   }, [query]);
 
   return matches;

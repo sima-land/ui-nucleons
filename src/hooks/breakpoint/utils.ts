@@ -1,3 +1,4 @@
+import { subscribe } from '../../helpers/media-query-list';
 import {
   Breakpoint,
   ChangeHandler,
@@ -19,17 +20,7 @@ const Resolution: Record<Breakpoint, number> = {
   xl: 1920,
 } as const;
 
-const BREAKPOINTS: ReadonlyArray<Breakpoint> = [
-  'mxs',
-  'ms',
-  'mm',
-  'ml',
-  'xs',
-  's',
-  'm',
-  'l',
-  'xl',
-];
+const BREAKPOINTS: ReadonlyArray<Breakpoint> = ['mxs', 'ms', 'mm', 'ml', 'xs', 's', 'm', 'l', 'xl'];
 
 export const BreakpointQuery = {
   getBreakpoint: (query: string) => query.slice(0, -1),
@@ -71,7 +62,8 @@ export const createRegistry = (): Registry => {
           handlers: new Set([listener]),
         };
 
-        newItem.mql.addEventListener('change', e => {
+        // не предусматриваем отписку и удаление mql за ненадобностью
+        subscribe(newItem.mql, e => {
           newItem.handlers.forEach(fn => fn(e));
         });
 
@@ -87,10 +79,7 @@ export const createRegistry = (): Registry => {
 };
 
 // eslint-disable-next-line require-jsdoc
-const createSubscription = (
-  item: RegistryItem,
-  listener: ChangeHandler,
-): Subscription => ({
+const createSubscription = (item: RegistryItem, listener: ChangeHandler): Subscription => ({
   matches: item.mql.matches,
   unsubscribe: () => item.handlers.delete(listener),
 });
