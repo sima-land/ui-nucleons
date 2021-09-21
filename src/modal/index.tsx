@@ -15,41 +15,40 @@ import { WithBodyScrollLock, useBodyScrollLock } from '../_internal/body-scroll'
 type ModalSize = 's' | 'm' | 'l' | 'xl' | 'fullscreen';
 
 interface ModalStyle extends React.CSSProperties {
-  '--modal-height'?: string
-  '--header-height': string
-  '--footer-height': string
+  '--modal-height'?: string;
+  '--header-height': string;
+  '--footer-height': string;
 }
 
 export interface ModalProps extends WithBodyScrollLock {
-
   /** Содержимое компонента. */
-  children?: React.ReactNode
+  children?: React.ReactNode;
 
   /** Высота в пикселях. */
-  height?: number
+  height?: number;
 
   /** Будет вызвана при нажатии на кнопку "назад" в топ баре. */
-  onBack?: () => void
+  onBack?: () => void;
 
   /** Будет вызвана при закрытии окна. */
-  onClose?: () => void
+  onClose?: () => void;
 
   /** Размер окна. */
-  size?: ModalSize
+  size?: ModalSize;
 
-  /** Нужно ли выводить элемент в Layer (при SSR необходимо указать false). */
-  inPortal?: boolean
+  /** Нужно ли выводить элемент в портале (для SSR следует указывать false). */
+  inPortal?: boolean;
 
   /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string
+  'data-testid'?: string;
 }
 
 export interface ModalComponent {
-  (props: ModalProps): JSX.Element
-  Header: typeof ModalHeader
-  Body: typeof ModalBody
-  Footer: typeof ModalFooter
-  Overlap: typeof ModalOverlap
+  (props: ModalProps): JSX.Element;
+  Header: typeof ModalHeader;
+  Body: typeof ModalBody;
+  Footer: typeof ModalFooter;
+  Overlap: typeof ModalOverlap;
 }
 
 const cx = classnames.bind(styles);
@@ -100,9 +99,7 @@ const ModalInner = ({
 
   const topBarSize: TopBarSize = fullscreen ? 'm' : 's';
 
-  const headerHeight: number = header
-    ? TOP_BAR_HEIGHT[topBarSize]
-    : 0;
+  const headerHeight: number = header ? TOP_BAR_HEIGHT[topBarSize] : 0;
 
   const footerStubHeight: number = fullscreen ? 0 : 16;
 
@@ -127,33 +124,25 @@ const ModalInner = ({
       {...handleClose}
     >
       <div
-        className={cx(
-          'modal',
-          `size-${size}`,
-          !fullscreen && BoxShadow.z4
-        )}
+        className={cx('modal', `size-${size}`, !fullscreen && BoxShadow.z4)}
         style={style}
         data-testid={testId}
       >
-        {header && cloneElement<ModalHeaderProps>(header, {
-          size: topBarSize,
-        })}
+        {header &&
+          cloneElement<ModalHeaderProps>(header, {
+            size: topBarSize,
+          })}
 
-        <LayerProvider value={layer}>
-          {content}
-        </LayerProvider>
+        <LayerProvider value={layer}>{content}</LayerProvider>
 
-        {footer && cloneElement<BottomBarProps>(footer, {
-          size: fullscreen ? 'l' : footer.props.size,
-        })}
+        {footer &&
+          cloneElement<BottomBarProps>(footer, {
+            size: fullscreen ? 'l' : footer.props.size,
+          })}
 
-        {!footer && !fullscreen && (
-          <div className={cx('footer-stub')} />
-        )}
+        {!footer && !fullscreen && <div className={cx('footer-stub')} />}
 
-        {!fullscreen && overlap && (
-          <div className={cx('overlap')}>{overlap}</div>
-        )}
+        {!fullscreen && overlap && <div className={cx('overlap')}>{overlap}</div>}
       </div>
     </div>
   );

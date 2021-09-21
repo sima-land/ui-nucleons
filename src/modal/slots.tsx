@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { TopBar, TopBarProps } from '../top-bar';
 import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
 import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
 import { BottomBar, BottomBarProps } from '../bottom-bar';
 import { CustomScrollbar } from '../_internal/custom-scrollbar';
 import styles from './modal.module.scss';
+import { ViewportContext } from '../context/viewport';
 
 export interface ModalHeaderProps extends TopBarProps {
-  onBack?: () => void
-  onClose?: () => void
+  onBack?: () => void;
+  onClose?: () => void;
 }
 
 /**
@@ -16,29 +17,25 @@ export interface ModalHeaderProps extends TopBarProps {
  * @param props Свойства.
  * @return Элемент.
  */
-export const ModalHeader = ({
-  onBack,
-  onClose,
-  ...topBarProps
-}: ModalHeaderProps) => (
+export const ModalHeader = ({ onBack, onClose, ...topBarProps }: ModalHeaderProps) => (
   <TopBar
     {...topBarProps}
     buttonsProps={{
       ...topBarProps.buttonsProps,
-      ...onBack && {
+      ...(onBack && {
         start: {
           'data-testid': 'modal:back',
           onClick: onBack,
           icon: <ArrowLeftSVG />,
         },
-      },
-      ...onClose && {
+      }),
+      ...(onClose && {
         end: {
           'data-testid': 'modal:close',
           onClick: onClose,
           icon: <CrossSVG />,
         },
-      },
+      }),
     }}
     className={styles.header}
   />
@@ -49,41 +46,44 @@ export const ModalHeader = ({
  * @param props Свойства.
  * @return Элемент.
  */
-export const ModalBody: React.FC<{
-  onFullScroll?: () => void
-  fullScrollThreshold?: number
-}> = ({
+export const ModalBody = ({
   children,
   onFullScroll,
   fullScrollThreshold,
-}) => (
-  <CustomScrollbar
-    inFlexBox
-    className={styles.body}
-    overflow={{ x: 'h', y: 's' }}
-    onFullScroll={onFullScroll}
-    fullScrollThreshold={fullScrollThreshold}
-  >
-    <div className={styles.main}>
-      {children}
-    </div>
-  </CustomScrollbar>
-);
+}: {
+  children?: React.ReactNode;
+  fullScrollThreshold?: number;
+  onFullScroll?: () => void;
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  return (
+    <CustomScrollbar
+      inFlexBox
+      className={styles.body}
+      overflow={{ x: 'h', y: 's' }}
+      onFullScroll={onFullScroll}
+      fullScrollThreshold={fullScrollThreshold}
+    >
+      <ViewportContext.Provider value={ref}>
+        <div className={styles.main} ref={ref}>
+          {children}
+        </div>
+      </ViewportContext.Provider>
+    </CustomScrollbar>
+  );
+};
 
 /**
  * Футер окна.
  * @param props Свойства.
  * @return Элемент.
  */
-export const ModalFooter = (props: BottomBarProps) => (
-  <BottomBar {...props} />
-);
+export const ModalFooter = (props: BottomBarProps) => <BottomBar {...props} />;
 
 /**
  * Контент который будет выводится поверх окна с абсолютным позиционированием.
  * @param props Свойства.
  * @return Элемент.
  */
-export const ModalOverlap: React.FC = ({ children }) => (
-  <>{children}</>
-);
+export const ModalOverlap: React.FC = ({ children }) => <>{children}</>;
