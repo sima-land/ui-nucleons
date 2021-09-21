@@ -3,23 +3,24 @@ import { getScrollParent } from '../helpers/get-scroll-parent';
 import { findOffsetParent } from '../helpers/find-offset-parent';
 import { pick } from 'lodash';
 
+type DOMRectLike = Record<typeof rectKeys[number], number>;
+
+type CanPlaceFn = (holder: HTMLElement, tooltipEl: HTMLElement, area: DOMRectLike) => boolean;
+
 const SPACES = {
-  correction: 24,
+  correction: 24, // сумма toHolder и toAreas
   toHolder: 8,
   toArea: 16,
-};
+} as const;
 
 const rectKeys = ['top', 'left', 'bottom', 'right', 'width', 'height'] as const;
-
-type DOMRectLike = Record<typeof rectKeys[number], number>;
 
 /**
  * Преобразует css-значение размера в число.
  * @param cssValue Значение, например "12.23px".
  * @return Число. Неожиданно, правда?
  */
-const asNumber = (cssValue: string) =>
-  parseFloat(cssValue.replace(/[A-z]/g, '')) || 0;
+const asNumber = (cssValue: string) => parseFloat(cssValue.replace(/[A-z]/g, '')) || 0;
 
 /**
  * Складывает все аргументы.
@@ -28,28 +29,15 @@ const asNumber = (cssValue: string) =>
  */
 const sum = (...numbers: number[]) => numbers.reduce((a, b) => a + b);
 
-type CanPlaceFn = (
-  holder: HTMLElement,
-  tooltipEl: HTMLElement,
-  area: DOMRectLike,
-) => boolean;
-
-export const CanPlace: Record<
-  'onRight' | 'onLeft' | 'onBottom' | 'onTop',
-  CanPlaceFn
-> = {
+export const CanPlace: Record<'onRight' | 'onLeft' | 'onBottom' | 'onTop', CanPlaceFn> = {
   onRight: (holderEl, tooltipEl, area) =>
-    area.right - (boundsOf(holderEl) as any).right - SPACES.correction >
-    (boundsOf(tooltipEl) as any).width,
+    area.right - boundsOf(holderEl).right - SPACES.correction > boundsOf(tooltipEl).width,
   onLeft: (holderEl, tooltipEl, area) =>
-    (boundsOf(holderEl) as any).left - SPACES.correction - area.left >
-    (boundsOf(tooltipEl) as any).width,
+    boundsOf(holderEl).left - SPACES.correction - area.left > boundsOf(tooltipEl).width,
   onBottom: (holderEl, tooltipEl, area) =>
-    (boundsOf(tooltipEl) as any).height <
-    area.bottom - (boundsOf(holderEl) as any).bottom - SPACES.correction,
+    boundsOf(tooltipEl).height < area.bottom - boundsOf(holderEl).bottom - SPACES.correction,
   onTop: (holderEl, tooltipEl, area) =>
-    (boundsOf(tooltipEl) as any).height <
-    (boundsOf(holderEl) as any).bottom - area.top - SPACES.correction,
+    boundsOf(tooltipEl).height < boundsOf(holderEl).top - area.top - SPACES.correction,
 };
 
 export const PlaceOffset = {
@@ -58,68 +46,41 @@ export const PlaceOffset = {
     element.style.left = '0';
     element.style.bottom = '';
     element.style.right = '';
+    element.style.maxHeight = '';
   },
   onRight: (tooltipEl: HTMLElement, holderEl: HTMLElement) => {
     const correction = getOriginCorrection(tooltipEl);
 
-    return sum(
-      SPACES.toHolder,
-      (boundsOf(holderEl) as any).right,
-      correction.x,
-    );
+    return sum(SPACES.toHolder, boundsOf(holderEl).right, correction.x);
   },
   onLeft: (tooltipEl: HTMLElement, holderEl: HTMLElement) => {
     const correction = getOriginCorrection(tooltipEl);
 
-    return sum(
-      (boundsOf(holderEl) as any).left,
-      -(boundsOf(tooltipEl) as any).width,
-      -SPACES.toHolder,
-      correction.x,
-    );
+    return sum(boundsOf(holderEl).left, -boundsOf(tooltipEl).width, -SPACES.toHolder, correction.x);
   },
   onBottom: (tooltipEl: HTMLElement, holderEl: HTMLElement) => {
     const correction = getOriginCorrection(tooltipEl);
 
-    return sum(
-      (boundsOf(holderEl) as any).bottom,
-      SPACES.toHolder,
-      correction.y,
-    );
+    return sum(boundsOf(holderEl).bottom, SPACES.toHolder, correction.y);
   },
   onTop: (tooltipEl: HTMLElement, holderEl: HTMLElement) => {
     const correction = getOriginCorrection(tooltipEl);
 
-    return sum(
-      (boundsOf(holderEl) as any).top,
-      -(boundsOf(tooltipEl) as any).height,
-      -SPACES.toHolder,
-      correction.y,
-    );
+    return sum(boundsOf(holderEl).top, -boundsOf(tooltipEl).height, -SPACES.toHolder, correction.y);
   },
 };
 
 export const CorrectOffset = {
-  vertically: (
-    tooltipEl: HTMLElement,
-    holderEl: HTMLElement,
-    area: DOMRectLike,
-  ) => {
+  vertically: (tooltipEl: HTMLElement, holderEl: HTMLElement, area: DOMRectLike) => {
     const tooltipBounds = boundsOf(tooltipEl) as DOMRect;
     const holderBounds = boundsOf(holderEl) as DOMRect;
     const correction = getOriginCorrection(tooltipEl);
 
     let result;
 
-    if (
-      area.bottom - holderBounds.bottom >
-      tooltipBounds.height + SPACES.correction
-    ) {
+    if (area.bottom - holderBounds.bottom > tooltipBounds.height + SPACES.correction) {
       result = correction.y + holderBounds.top;
-    } else if (
-      holderBounds.bottom - area.top >
-      tooltipBounds.height + SPACES.correction
-    ) {
+    } else if (holderBounds.bottom - area.top > tooltipBounds.height + SPACES.correction) {
       result = correction.y + holderBounds.bottom - tooltipBounds.height;
     } else {
       result = correction.y + SPACES.toArea;
@@ -138,32 +99,38 @@ export const CorrectOffset = {
  * Позиционирует элемент подсказки относительно "держащего" элемента.
  * @param tooltipEl Элемент подсказки.
  * @param holderEl Держащий элемент.
+ * @param viewportEl Элемент, определяющий прямоугольник в который нужно вписать тултип.
  */
-export const placeTooltip = (tooltipEl: HTMLElement, holderEl: HTMLElement) => {
-  if (tooltipEl && holderEl) {
-    const scrollParent = getScrollParent(tooltipEl);
-    const area = getInnerRect(scrollParent);
-    const offset = { x: 0, y: 0 };
+export const placeTooltip = (
+  tooltipEl: HTMLElement,
+  holderEl: HTMLElement,
+  viewportEl: HTMLElement,
+) => {
+  const area = getInnerRect(viewportEl);
+  const offset = { x: 0, y: 0 };
 
-    PlaceOffset.reset(tooltipEl);
+  PlaceOffset.reset(tooltipEl);
 
-    if (CanPlace.onRight(holderEl, tooltipEl, area)) {
-      offset.x = PlaceOffset.onRight(tooltipEl, holderEl);
-      offset.y = CorrectOffset.vertically(tooltipEl, holderEl, area);
-    } else if (CanPlace.onLeft(holderEl, tooltipEl, area)) {
-      offset.x = PlaceOffset.onLeft(tooltipEl, holderEl);
-      offset.y = CorrectOffset.vertically(tooltipEl, holderEl, area);
-    } else if (CanPlace.onBottom(holderEl, tooltipEl, area)) {
-      offset.y = PlaceOffset.onBottom(tooltipEl, holderEl);
-      offset.x = CorrectOffset.horizontally(tooltipEl, area);
-    } else if (CanPlace.onTop(holderEl, tooltipEl, area)) {
-      offset.y = PlaceOffset.onTop(tooltipEl, holderEl);
-      offset.x = CorrectOffset.horizontally(tooltipEl, area);
-    }
-
-    // вместо top/left/bottom/right используем translate3d, т.к. его расчет использует графический ускоритель
-    tooltipEl.style.transform = `translate3d(${offset.x}px, ${offset.y}px, 0)`;
+  if (CanPlace.onRight(holderEl, tooltipEl, area)) {
+    offset.x = PlaceOffset.onRight(tooltipEl, holderEl);
+    offset.y = CorrectOffset.vertically(tooltipEl, holderEl, area);
+  } else if (CanPlace.onLeft(holderEl, tooltipEl, area)) {
+    offset.x = PlaceOffset.onLeft(tooltipEl, holderEl);
+    offset.y = CorrectOffset.vertically(tooltipEl, holderEl, area);
+  } else if (CanPlace.onBottom(holderEl, tooltipEl, area)) {
+    offset.y = PlaceOffset.onBottom(tooltipEl, holderEl);
+    offset.x = CorrectOffset.horizontally(tooltipEl, area);
+  } else if (CanPlace.onTop(holderEl, tooltipEl, area)) {
+    offset.y = PlaceOffset.onTop(tooltipEl, holderEl);
+    offset.x = CorrectOffset.horizontally(tooltipEl, area);
+  } else {
+    offset.x = area.left + SPACES.toArea;
+    offset.y = area.top + SPACES.toArea;
+    tooltipEl.style.maxHeight = `${area.height - SPACES.toArea * 2}px`;
   }
+
+  // вместо top/left/bottom/right используем translate3d, т.к. его расчет использует графический ускоритель
+  tooltipEl.style.transform = `translate3d(${offset.x}px, ${offset.y}px, 0)`;
 };
 
 /**
@@ -171,8 +138,8 @@ export const placeTooltip = (tooltipEl: HTMLElement, holderEl: HTMLElement) => {
  * @param element Элемент.
  * @return Прямоугольник.
  */
-export const getInnerRect = (element: HTMLElement): DOMRectLike => {
-  const area = pick(boundsOf(element), rectKeys) as DOMRectLike;
+export const getInnerRect = (element: Element): DOMRectLike => {
+  const area: DOMRectLike = pick(boundsOf(element), rectKeys);
 
   if (element.scrollWidth > area.width) {
     area.left = area.left - element.scrollLeft;
@@ -194,9 +161,7 @@ export const getInnerRect = (element: HTMLElement): DOMRectLike => {
  * @param element Элемент, должен находиться в документе.
  * @return Смещение по осям.
  */
-export const getOriginCorrection = (
-  element: HTMLElement,
-): { x: number; y: number } => {
+export const getOriginCorrection = (element: HTMLElement): { x: number; y: number } => {
   const offsetParent = findOffsetParent(element);
   const scrollParent = getScrollParent(element);
   const correction = { x: window.pageXOffset, y: window.pageYOffset };
@@ -208,7 +173,7 @@ export const getOriginCorrection = (
     correction.x = -parentRect.left;
     correction.y = -parentRect.top;
 
-    // border-[top/left] влияет на начало координат родителя, учитываем
+    // border-[top/left] влияют на начало координат родителя, учитываем
     correction.x -= asNumber(parentStyle.borderLeftWidth);
     correction.y -= asNumber(parentStyle.borderTopWidth);
   }

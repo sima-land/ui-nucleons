@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useContext } from 'react';
+import { ViewportContext } from '../context/viewport';
 import { debounce } from 'lodash';
 import { getScrollParent } from '../helpers/get-scroll-parent';
 import { placeTooltip } from './utils';
@@ -26,13 +27,18 @@ export interface PositioningTooltipProps {
 export const PositioningTooltip = ({ openerRef, children, onDismiss }: PositioningTooltipProps) => {
   const layer = useLayer();
   const tooltipRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useContext(ViewportContext);
 
   const place = useCallback(() => {
     if (tooltipRef.current && openerRef.current) {
-      placeTooltip(tooltipRef.current, openerRef.current);
-      tooltipRef.current.style.opacity = '';
+      placeTooltip(
+        tooltipRef.current,
+        openerRef.current,
+        viewportRef.current || getScrollParent(tooltipRef.current),
+      );
+      tooltipRef.current.style.opacity = '1';
     }
-  }, [openerRef]);
+  }, [openerRef, viewportRef]);
 
   useEffect(place);
 

@@ -95,7 +95,7 @@ describe('CanPlace', () => {
   });
 
   it('onTop', () => {
-    let holderEl = FakeElement.withRect({ bottom: 500 }) as any;
+    let holderEl = FakeElement.withRect({ top: 500 }) as any;
     let tooltipEl = FakeElement.withRect({ height: 100 }) as any;
 
     expect(CanPlace.onTop(holderEl, tooltipEl, testArea)).toBe(true);
@@ -290,33 +290,55 @@ describe('placeTooltip', () => {
   it('should place on right', () => {
     const holderEl = FakeElement.withRect({
       width: 10,
-      height: 980,
-      left: 10,
-      right: 20,
+      height: 10,
       top: 10,
-      bottom: 990,
+      left: 10,
+      bottom: 20,
+      right: 20,
     });
-    const tooltipEl = FakeElement.withRect({ width: 100, height: 100 });
 
-    placeTooltip(tooltipEl, holderEl);
+    const tooltipEl = FakeElement.withRect({
+      width: 100,
+      height: 100,
+      top: 0,
+      left: 0,
+      bottom: 100,
+      right: 100,
+    });
 
-    expect(tooltipEl.style.transform).toEqual('translate3d(28px, 890px, 0)');
+    const viewportEl = FakeElement.withRect({
+      width: 1000,
+      height: 1000,
+      right: 1000,
+      bottom: 1000,
+    });
+
+    placeTooltip(tooltipEl, holderEl, viewportEl);
+
+    expect(tooltipEl.style.transform).toEqual('translate3d(28px, 10px, 0)');
   });
 
   it('should place on left', () => {
     const holderEl = FakeElement.withRect({
       width: 10,
-      height: 980,
+      height: 10,
       left: 980,
       right: 990,
       top: 10,
-      bottom: 990,
+      bottom: 20,
     });
     const tooltipEl = FakeElement.withRect({ width: 100, height: 100 });
 
-    placeTooltip(tooltipEl, holderEl);
+    const viewportEl = FakeElement.withRect({
+      width: 1000,
+      height: 1000,
+      right: 1000,
+      bottom: 1000,
+    });
 
-    expect(tooltipEl.style.transform).toEqual('translate3d(872px, 890px, 0)');
+    placeTooltip(tooltipEl, holderEl, viewportEl);
+
+    expect(tooltipEl.style.transform).toEqual('translate3d(872px, 10px, 0)');
   });
 
   it('should place on bottom', () => {
@@ -330,7 +352,14 @@ describe('placeTooltip', () => {
     });
     const tooltipEl = FakeElement.withRect({ height: 100, width: 100 });
 
-    placeTooltip(tooltipEl, holderEl);
+    const viewportEl = FakeElement.withRect({
+      width: 1000,
+      height: 1000,
+      right: 1000,
+      bottom: 1000,
+    });
+
+    placeTooltip(tooltipEl, holderEl, viewportEl);
 
     expect(tooltipEl.style.transform).toEqual('translate3d(16px, 28px, 0)');
   });
@@ -346,19 +375,40 @@ describe('placeTooltip', () => {
     });
     const tooltipEl = FakeElement.withRect({ height: 100, width: 100 });
 
-    placeTooltip(tooltipEl, holderEl);
+    const viewportEl = FakeElement.withRect({
+      width: 1000,
+      height: 1000,
+      right: 1000,
+      bottom: 1000,
+    });
+
+    placeTooltip(tooltipEl, holderEl, viewportEl);
 
     expect(tooltipEl.style.transform).toEqual('translate3d(16px, 872px, 0)');
   });
 
-  it('should do nothing when tooltip or holder is not defined', () => {
-    const holderEl = FakeElement.create();
-    const tooltipEl = FakeElement.create();
+  it('should place at left top corner when no more space', () => {
+    const holderEl = FakeElement.withRect({
+      width: 980,
+      height: 980,
+      top: 10,
+      left: 10,
+      bottom: 990,
+      right: 990,
+    });
+    const tooltipEl = FakeElement.withRect({ height: 100, width: 100 });
 
-    expect(() => {
-      placeTooltip(null as any, holderEl);
-      placeTooltip(tooltipEl, null as any);
-    }).not.toThrow();
+    const viewportEl = FakeElement.withRect({
+      width: 1000,
+      height: 1000,
+      bottom: 1000,
+      right: 1000,
+    });
+
+    placeTooltip(tooltipEl, holderEl, viewportEl);
+
+    expect(tooltipEl.style.transform).toEqual('translate3d(16px, 16px, 0)');
+    expect(tooltipEl.style.maxHeight).toEqual('968px');
   });
 });
 

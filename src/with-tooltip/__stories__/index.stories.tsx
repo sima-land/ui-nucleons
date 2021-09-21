@@ -4,8 +4,9 @@ import { Link } from '../../link';
 import { WithTooltip } from '..';
 import boundsOf from '../../helpers/bounds-of';
 import { Modal } from '../../modal';
+import { times } from 'lodash';
 
-const shortText = 'Это ось задних колёс.';
+const shortText = 'Short tooltip text.';
 
 const longText = [
   'Тормоза делятся на 3 основных вида: барабанный (ножной), ободной и дисковый.',
@@ -19,18 +20,18 @@ const longText = [
   .join(' ')
   .repeat(2);
 
-const LinkWithTooltip = () => (
-  <WithTooltip tooltip='Open tooltip'>
+const LinkWithTooltip = ({ tooltip = shortText }: { tooltip?: React.ReactNode }) => (
+  <WithTooltip tooltip={tooltip}>
     {(ref, toggle) => (
       <Link ref={ref as any} pseudo onClick={() => toggle(true)}>
-        Hello, world!
+        Show tooltip
       </Link>
     )}
   </WithTooltip>
 );
 
 const SquareWithTooltip = () => (
-  <WithTooltip tooltip='Open tooltip'>
+  <WithTooltip tooltip='There is tooltip'>
     {(ref, toggle, shown) => (
       <div
         ref={ref as any}
@@ -105,48 +106,46 @@ const useDraggable = () => {
   const [, setCount] = useState(0);
 
   useEffect(() => {
-    const offDown = on<MouseEvent>(
-      window,
-      'mousedown',
-      event => {
-        if (
-          event.target === draggableRef.current ||
-          (draggableRef.current as any).contains((event as any).target)
-        ) {
-          event.preventDefault();
-          captureOffsetRef.current.x = (boundsOf(draggableRef.current) as any).left - event.clientX;
-          captureOffsetRef.current.y = (boundsOf(draggableRef.current) as any).top - event.clientY;
-          capturedRef.current = true;
+    const list = [
+      on<MouseEvent>(
+        window,
+        'mousedown',
+        event => {
+          if (
+            event.target === draggableRef.current ||
+            (draggableRef.current as any).contains((event as any).target)
+          ) {
+            event.preventDefault();
+            captureOffsetRef.current.x =
+              (boundsOf(draggableRef.current) as any).left - event.clientX;
+            captureOffsetRef.current.y =
+              (boundsOf(draggableRef.current) as any).top - event.clientY;
+            capturedRef.current = true;
+          }
+        },
+        { capture: true },
+      ),
+      on<MouseEvent>(window, 'mousemove', ({ clientX, clientY }) => {
+        if (capturedRef.current) {
+          const { current: captureOffset } = captureOffsetRef;
+
+          movedRef.current = true;
+          (draggableRef.current as any).style.top = `${
+            window.pageYOffset + clientY + captureOffset.y
+          }px`;
+          (draggableRef.current as any).style.left = `${
+            window.pageXOffset + clientX + captureOffset.x
+          }px`;
+          setCount(Math.random()); // для пересчета позиции
         }
-      },
-      { capture: true },
-    );
-
-    const offMove = on<MouseEvent>(window, 'mousemove', ({ clientX, clientY }) => {
-      if (capturedRef.current) {
-        const { current: captureOffset } = captureOffsetRef;
-
-        movedRef.current = true;
-        (draggableRef.current as any).style.top = `${
-          window.pageYOffset + clientY + captureOffset.y
-        }px`;
-        (draggableRef.current as any).style.left = `${
-          window.pageXOffset + clientX + captureOffset.x
-        }px`;
+      }),
+      on(window, 'mouseup', () => {
+        capturedRef.current = false;
         setCount(Math.random()); // для пересчета позиции
-      }
-    });
+      }),
+    ];
 
-    const offUp = on(window, 'mouseup', () => {
-      capturedRef.current = false;
-      setCount(Math.random()); // для пересчета позиции
-    });
-
-    return () => {
-      offDown();
-      offMove();
-      offUp();
-    };
+    return () => list.forEach(fn => fn());
   }, []);
 
   return { draggableRef, movedRef };
@@ -175,34 +174,77 @@ export const Primary = () => (
   </div>
 );
 
-export const LargeAreaSmallTooltip = () => <PositioningTest tooltip={shortText} />;
+export const SmallInLargeArea = () => <PositioningTest tooltip={shortText} />;
 
-export const LargeAreaLargeTooltip = () => <PositioningTest tooltip={longText} />;
+export const LongInLargeArea = () => <PositioningTest tooltip={longText} />;
 
 export const InScrollParent = () => (
   <div
     style={{
       width: 288,
-      height: 400,
+      height: 288,
       display: 'flex',
       flexWrap: 'wrap',
-      border: '1px solid #aaa',
+      border: '2px dashed #aaa',
+      borderRadius: '4px',
       overflowY: 'scroll',
       position: 'relative',
       justifyContent: 'center',
     }}
   >
-    {Array(60)
-      .fill(0)
-      .map((z, i) => (
-        <SquareWithTooltip key={i} />
-      ))}
+    {times(60).map(i => (
+      <SquareWithTooltip key={i} />
+    ))}
   </div>
 );
 
-export const InModal = () => (
+export const ShortInModal = () => (
+  <Modal size='s' inPortal>
+    <Modal.Header divided title='Тултип в модальном окне' subtitle='Без прокрутки' />
+    <Modal.Body>
+      <div
+        style={{
+          height: '400px',
+          display: 'grid',
+          gridTemplateRows: '1fr 1fr 1fr',
+          gridTemplateColumns: '1fr 1fr 1fr',
+        }}
+      >
+        {times(9).map(i => (
+          <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <LinkWithTooltip tooltip={shortText} />
+          </div>
+        ))}
+      </div>
+    </Modal.Body>
+  </Modal>
+);
+
+export const LongInModal = () => (
+  <Modal size='s' inPortal>
+    <Modal.Header divided title='Тултип в модальном окне' subtitle='Без прокрутки' />
+    <Modal.Body>
+      <div
+        style={{
+          height: '400px',
+          display: 'grid',
+          gridTemplateRows: '1fr 1fr 1fr',
+          gridTemplateColumns: '1fr 1fr 1fr',
+        }}
+      >
+        {times(9).map(i => (
+          <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <LinkWithTooltip tooltip={longText} />
+          </div>
+        ))}
+      </div>
+    </Modal.Body>
+  </Modal>
+);
+
+export const InModalWithScroll = () => (
   <Modal size='s'>
-    <Modal.Header divided title='Тултип в модальном окне' />
+    <Modal.Header divided title='Тултип в модальном окне' subtitle='С прокруткой' />
     <Modal.Body>
       <div style={{ height: '400px', padding: '20px' }}>
         {Array(5)
@@ -210,7 +252,7 @@ export const InModal = () => (
           .map((z, i) => (
             <p key={i}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, unde.</p>
           ))}
-        <LinkWithTooltip />
+        <LinkWithTooltip tooltip={`${longText.slice(0, 100)}...`} />
         {Array(25)
           .fill(0)
           .map((z, i) => (
@@ -221,22 +263,20 @@ export const InModal = () => (
   </Modal>
 );
 
-export const InPortalModal = () => (
+export const InModalWithPortal = () => (
   <Modal size='s' inPortal>
-    <Modal.Header divided title='Тултип в модальном окне' />
+    <Modal.Header divided title='Тултип в модальном окне' subtitle='С прокруткой' />
     <Modal.Body>
       <div style={{ height: '400px', padding: '20px' }}>
-        {Array(5)
-          .fill(0)
-          .map((z, i) => (
-            <p key={i}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, unde.</p>
-          ))}
-        <LinkWithTooltip />
-        {Array(25)
-          .fill(0)
-          .map((z, i) => (
-            <p key={i}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, unde.</p>
-          ))}
+        {times(5).map(i => (
+          <p key={i}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, unde.</p>
+        ))}
+
+        <LinkWithTooltip tooltip={`${longText.slice(0, 100)}...`} />
+
+        {times(25).map(i => (
+          <p key={i}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, unde.</p>
+        ))}
       </div>
     </Modal.Body>
   </Modal>
@@ -259,7 +299,8 @@ export const ComplexMarkup = () => {
     overflowX: 'hidden',
     overflowY: 'auto',
     background: '#fff',
-    border: '4px dashed #322332',
+    border: '2px dashed #aaa',
+    borderRadius: '4px',
     boxSizing: 'border-box',
   };
 
@@ -269,16 +310,14 @@ export const ComplexMarkup = () => {
         <div>
           <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi, vel.</p>
           <LinkWithTooltip />{' '}
-          {Array(260)
-            .fill(0)
-            .map((zero, index) => `${index + 1}`)
+          {times(260)
+            .map(n => `${n + 1}`)
             .join(', ')}
           <div style={{ textAlign: 'right' }}>
             <LinkWithTooltip />
           </div>
-          {Array(240)
-            .fill(0)
-            .map((zero, index) => `${index + 1}`)
+          {times(240)
+            .map(n => `${n + 1}`)
             .join(', ')}{' '}
           <LinkWithTooltip />
         </div>
