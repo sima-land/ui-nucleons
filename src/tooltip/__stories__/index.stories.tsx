@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import React from 'react';
 import { Tooltip } from '..';
 
@@ -23,6 +24,6 @@ export default {
   },
 };
 
-export const Primary = () => <Tooltip>{shortText}</Tooltip>;
+export const Primary = () => <Tooltip onClose={() => action('onClose')()}>{shortText}</Tooltip>;
 
-export const LargeContent = () => <Tooltip>{longText}</Tooltip>;
+export const LargeContent = () => <Tooltip onClose={() => action('onClose')()}>{longText}</Tooltip>;

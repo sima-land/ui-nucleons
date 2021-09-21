@@ -2,12 +2,11 @@ import { disableBodyScroll, enableBodyScroll, BodyScrollOptions } from 'body-scr
 import { useEffect } from 'react';
 
 export interface WithBodyScrollLock {
-
   /** Нужно ли выключать прокрутку body. */
-  withScrollDisable?: boolean
+  withScrollDisable?: boolean;
 
   /** Опции отключения прокрутки. */
-  scrollDisableOptions?: BodyScrollOptions
+  scrollDisableOptions?: BodyScrollOptions;
 }
 
 /**
@@ -17,9 +16,9 @@ export interface WithBodyScrollLock {
  * @param options Опции.
  */
 export const useBodyScrollLock = (
-  ref: React.RefObject<HTMLElement | null>,
+  ref: React.RefObject<HTMLElement>,
   needDisable: boolean | undefined,
-  options?: BodyScrollOptions
+  options?: BodyScrollOptions,
 ): void => {
   useEffect(() => {
     const element = ref.current;
