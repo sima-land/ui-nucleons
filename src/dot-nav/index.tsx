@@ -3,20 +3,21 @@ import { times } from 'lodash';
 import classnames from 'classnames/bind';
 import styles from './dot-nav.module.scss';
 
-export interface DotNavProps {
+export type DotNavSize = 's' | 'l';
 
+export interface DotNavProps {
   /** Индекс выбранной точки. */
-  current?: number
+  current?: number;
 
   /** Количество точек. */
-  total?: number
+  total?: number;
 
   /** Сработает при выборе точки. */
-  onSelect?: (index: number) => void
-}
+  onSelect?: (index: number) => void;
 
-const itemSize = 14;
-const maxWidth = itemSize * 5;
+  /** Размер. */
+  size?: DotNavSize;
+}
 
 const cx = classnames.bind(styles);
 
@@ -25,14 +26,19 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export const DotNav: React.FC<DotNavProps> = ({ current = 0, total = 1, onSelect }) => {
+export const DotNav = ({ size = 's', current = 0, total = 1, onSelect }: DotNavProps) => {
   const withShift = total > 4;
 
+  const itemSize = 14;
+  const itemGutter = { s: 0, l: 6 }[size];
+  const maxWidth = itemSize * 5 + itemGutter * 4;
+  const totalWidth = itemSize * total + itemGutter * (total - 1);
+
   const shift = useShift(current, total);
-  const correction = withShift ? itemSize : (maxWidth - (itemSize * total)) / 2;
+  const correction = withShift ? itemSize + itemGutter : (maxWidth - totalWidth) / 2;
 
   return (
-    <div className={cx('wrapper')}>
+    <div className={cx('root', `size-${size}`)} style={{ width: maxWidth, height: itemSize }}>
       {times(total).map(index => {
         const position = index - shift + 1;
 
@@ -40,13 +46,13 @@ export const DotNav: React.FC<DotNavProps> = ({ current = 0, total = 1, onSelect
           <div
             key={index}
             style={{
-              left: `${correction + ((index - shift) * itemSize)}px`,
+              left: `${correction + (index - shift) * (itemSize + itemGutter)}px`,
             }}
-            onClick={() => onSelect && onSelect(index)}
+            onClick={() => onSelect?.(index)}
             className={cx(
               'item',
-              index === current && 'current',
-              withShift && (position <= 0 || position >= 4) && 'distant'
+              index === current && 'active',
+              withShift && (position <= 0 || position >= 4) && 'distant',
             )}
           />
         );
