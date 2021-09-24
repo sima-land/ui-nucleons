@@ -6,10 +6,16 @@ exports[`<DotsNav /> should handle "current" change 1`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
-      className="item current"
+      className="item active"
       key="0"
       onClick={[Function]}
       style={
@@ -108,10 +114,16 @@ exports[`<DotsNav /> should handle "current" change 2`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
-      className="item current"
+      className="item active"
       key="0"
       onClick={[Function]}
       style={
@@ -210,7 +222,13 @@ exports[`<DotsNav /> should handle "current" change 3`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
       className="item"
@@ -223,7 +241,7 @@ exports[`<DotsNav /> should handle "current" change 3`] = `
       }
     />
     <div
-      className="item current"
+      className="item active"
       key="1"
       onClick={[Function]}
       style={
@@ -312,7 +330,13 @@ exports[`<DotsNav /> should handle "current" change 4`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
       className="item"
@@ -335,7 +359,7 @@ exports[`<DotsNav /> should handle "current" change 4`] = `
       }
     />
     <div
-      className="item current"
+      className="item active"
       key="2"
       onClick={[Function]}
       style={
@@ -414,7 +438,13 @@ exports[`<DotsNav /> should handle "current" change 5`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
       className="item distant"
@@ -447,7 +477,7 @@ exports[`<DotsNav /> should handle "current" change 5`] = `
       }
     />
     <div
-      className="item current"
+      className="item active"
       key="3"
       onClick={[Function]}
       style={
@@ -516,7 +546,13 @@ exports[`<DotsNav /> should handle "current" change 6`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
       className="item distant"
@@ -559,7 +595,7 @@ exports[`<DotsNav /> should handle "current" change 6`] = `
       }
     />
     <div
-      className="item current"
+      className="item active"
       key="4"
       onClick={[Function]}
       style={
@@ -618,7 +654,13 @@ exports[`<DotsNav /> should handle "current" change 7`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
       className="item distant"
@@ -671,7 +713,7 @@ exports[`<DotsNav /> should handle "current" change 7`] = `
       }
     />
     <div
-      className="item current"
+      className="item active"
       key="5"
       onClick={[Function]}
       style={
@@ -720,7 +762,13 @@ exports[`<DotsNav /> should handle "current" change 8`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
       className="item distant"
@@ -783,7 +831,7 @@ exports[`<DotsNav /> should handle "current" change 8`] = `
       }
     />
     <div
-      className="item current"
+      className="item active"
       key="6"
       onClick={[Function]}
       style={
@@ -822,7 +870,13 @@ exports[`<DotsNav /> should handle "current" change 9`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
       className="item distant"
@@ -895,7 +949,7 @@ exports[`<DotsNav /> should handle "current" change 9`] = `
       }
     />
     <div
-      className="item current"
+      className="item active"
       key="7"
       onClick={[Function]}
       style={
@@ -924,7 +978,13 @@ exports[`<DotsNav /> should handle "current" change 10`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
       className="item distant"
@@ -1007,7 +1067,7 @@ exports[`<DotsNav /> should handle "current" change 10`] = `
       }
     />
     <div
-      className="item current"
+      className="item active"
       key="8"
       onClick={[Function]}
       style={
@@ -1026,7 +1086,13 @@ exports[`<DotsNav /> should handle "current" change 11`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
       className="item distant"
@@ -1109,7 +1175,7 @@ exports[`<DotsNav /> should handle "current" change 11`] = `
       }
     />
     <div
-      className="item current"
+      className="item active"
       key="8"
       onClick={[Function]}
       style={
@@ -1128,7 +1194,13 @@ exports[`<DotsNav /> should handle "current" change 12`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
       className="item distant"
@@ -1201,7 +1273,7 @@ exports[`<DotsNav /> should handle "current" change 12`] = `
       }
     />
     <div
-      className="item current"
+      className="item active"
       key="7"
       onClick={[Function]}
       style={
@@ -1230,7 +1302,13 @@ exports[`<DotsNav /> should handle "current" change 13`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
       className="item distant"
@@ -1293,7 +1371,7 @@ exports[`<DotsNav /> should handle "current" change 13`] = `
       }
     />
     <div
-      className="item current"
+      className="item active"
       key="6"
       onClick={[Function]}
       style={
@@ -1332,7 +1410,13 @@ exports[`<DotsNav /> should handle "current" change 14`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
       className="item distant"
@@ -1385,7 +1469,7 @@ exports[`<DotsNav /> should handle "current" change 14`] = `
       }
     />
     <div
-      className="item current"
+      className="item active"
       key="5"
       onClick={[Function]}
       style={
@@ -1434,7 +1518,13 @@ exports[`<DotsNav /> should handle "current" change 15`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
       className="item distant"
@@ -1477,7 +1567,7 @@ exports[`<DotsNav /> should handle "current" change 15`] = `
       }
     />
     <div
-      className="item current"
+      className="item active"
       key="4"
       onClick={[Function]}
       style={
@@ -1536,7 +1626,13 @@ exports[`<DotsNav /> should handle "current" change 16`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
       className="item distant"
@@ -1569,7 +1665,7 @@ exports[`<DotsNav /> should handle "current" change 16`] = `
       }
     />
     <div
-      className="item current"
+      className="item active"
       key="3"
       onClick={[Function]}
       style={
@@ -1638,7 +1734,13 @@ exports[`<DotsNav /> should handle "current" change 17`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
       className="item distant"
@@ -1661,7 +1763,7 @@ exports[`<DotsNav /> should handle "current" change 17`] = `
       }
     />
     <div
-      className="item current"
+      className="item active"
       key="2"
       onClick={[Function]}
       style={
@@ -1740,7 +1842,13 @@ exports[`<DotsNav /> should handle "current" change 18`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
       className="item distant"
@@ -1753,7 +1861,7 @@ exports[`<DotsNav /> should handle "current" change 18`] = `
       }
     />
     <div
-      className="item current"
+      className="item active"
       key="1"
       onClick={[Function]}
       style={
@@ -1842,10 +1950,16 @@ exports[`<DotsNav /> should handle "current" change 19`] = `
   total={9}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
-      className="item current"
+      className="item active"
       key="0"
       onClick={[Function]}
       style={
@@ -1938,6 +2052,2077 @@ exports[`<DotsNav /> should handle "current" change 19`] = `
 </DotNav>
 `;
 
+exports[`<DotsNav /> should handle "size" prop 1`] = `
+<DotNav
+  current={0}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item active"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "100px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "120px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "140px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "160px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "180px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "size" prop 2`] = `
+<DotNav
+  current={0}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item active"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "100px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "120px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "140px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "160px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "180px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "size" prop 3`] = `
+<DotNav
+  current={1}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item active"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "100px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "120px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "140px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "160px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "180px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "size" prop 4`] = `
+<DotNav
+  current={2}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item active"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "100px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "120px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "140px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "160px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "180px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "size" prop 5`] = `
+<DotNav
+  current={3}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item active"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "100px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "120px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "140px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "160px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "size" prop 6`] = `
+<DotNav
+  current={4}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-20px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item active"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "100px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "120px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "140px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "size" prop 7`] = `
+<DotNav
+  current={5}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-40px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-20px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item active"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "100px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "120px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "size" prop 8`] = `
+<DotNav
+  current={6}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-40px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-20px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item active"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "100px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "size" prop 9`] = `
+<DotNav
+  current={7}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-40px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-20px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item active"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "80px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "size" prop 10`] = `
+<DotNav
+  current={8}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-100px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-40px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-20px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item active"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "size" prop 11`] = `
+<DotNav
+  current={8}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-100px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-40px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-20px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item active"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "size" prop 12`] = `
+<DotNav
+  current={7}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-100px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-40px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-20px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item active"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "size" prop 13`] = `
+<DotNav
+  current={6}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-100px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-40px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-20px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item active"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "size" prop 14`] = `
+<DotNav
+  current={5}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-40px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-20px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item active"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "80px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "size" prop 15`] = `
+<DotNav
+  current={4}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-40px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-20px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item active"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "100px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "size" prop 16`] = `
+<DotNav
+  current={3}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-40px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-20px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item active"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "100px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "120px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "size" prop 17`] = `
+<DotNav
+  current={2}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-20px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item active"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "100px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "120px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "140px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "size" prop 18`] = `
+<DotNav
+  current={1}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item active"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "100px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "120px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "140px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "160px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`<DotsNav /> should handle "size" prop 19`] = `
+<DotNav
+  current={0}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item active"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "100px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "120px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "140px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "160px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "180px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
 exports[`<DotsNav /> should handle props 1`] = `
 <DotNav
   current={2}
@@ -1945,7 +4130,13 @@ exports[`<DotsNav /> should handle props 1`] = `
   total={12}
 >
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
       className="item"
@@ -1968,7 +4159,7 @@ exports[`<DotsNav /> should handle props 1`] = `
       }
     />
     <div
-      className="item current"
+      className="item active"
       key="2"
       onClick={[Function]}
       style={
@@ -2074,10 +4265,16 @@ exports[`<DotsNav /> should handle props 1`] = `
 exports[`<DotsNav /> should renders without props 1`] = `
 <DotNav>
   <div
-    className="wrapper"
+    className="root size-s"
+    style={
+      Object {
+        "height": 14,
+        "width": 70,
+      }
+    }
   >
     <div
-      className="item current"
+      className="item active"
       key="0"
       onClick={[Function]}
       style={

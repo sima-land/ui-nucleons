@@ -1,35 +1,54 @@
-$itemSize: 14px;
+@use '../colors';
 
-.wrapper {
+.root {
   display: flex;
   position: relative;
   overflow: hidden;
-  width: $itemSize * 5;
-  height: $itemSize;
+  &.size-s {
+    --dot-regular-size: 6;
+    --dot-active-size: 6;
+    --dot-distant-size: 4;
+  }
+  &.size-l {
+    --dot-regular-size: 8;
+    --dot-active-size: 12;
+    --dot-distant-size: 4;
+  }
 }
 
 .item {
   position: absolute;
   top: 0;
-  width: $itemSize;
-  height: $itemSize;
+  width: 14px;
+  height: 14px;
   transition: left 0.3s;
+  --dot-size: var(--dot-regular-size);
+  cursor: pointer;
+  &.active {
+    --dot-size: var(--dot-active-size);
+  }
+  &.distant {
+    --dot-size: var(--dot-distant-size);
+  }
   &::after {
     content: '';
+    display: block;
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 6px;
-    height: 6px;
-    transform: translate(-50%, -50%);
-    transition: transform 0.3s, background 0.3s, left 0.3s;
     border-radius: 50%;
-    background: #e0e0e0;
+    background: colors.$gray12;
+
+    // используем 10 чтобы проще считать коэффициенты масштабирования
+    // ВАЖНО: не надо использовать здесь число болье чем размер родителя с overflow:hidden - моргает в Safari
+    width: 10px;
+    height: 10px;
+
+    // используем scale() чтобы плавное изменение размера выглядело нормально
+    transform: translate3d(-50%, -50%, 0) scale(calc(1 / (10 / var(--dot-size))));
+    transition: transform 0.3s, background 0.3s;
   }
-  &.current::after {
-    background: #9e9e9e;
-  }
-  &.distant::after {
-    transform: translate(-50%, -50%) scale(calc(2 / 3), calc(2 / 3));
+  &.active::after {
+    background: colors.$gray38;
   }
 }

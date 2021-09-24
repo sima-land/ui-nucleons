@@ -14,8 +14,8 @@ export default {
 
 export const Primary = () => (
   <>
-    {[...prettyValues, ...values].map(value => (
-      <div key={value} style={{ display: 'flex', marginBottom: 16 }}>
+    {[...prettyValues, ...values].map((value, index) => (
+      <div key={index} style={{ display: 'flex', marginBottom: 16 }}>
         <div style={{ width: 48 }}>{value}</div>
         <Rating value={value} />
       </div>
@@ -25,8 +25,8 @@ export const Primary = () => (
 
 export const MediumSize = () => (
   <>
-    {[...prettyValues, ...values].map(value => (
-      <div key={value} style={{ display: 'flex', marginBottom: 16 }}>
+    {[...prettyValues, ...values].map((value, index) => (
+      <div key={index} style={{ display: 'flex', marginBottom: 16 }}>
         <div style={{ width: 48 }}>{value}</div>
         <Rating size='m' value={value} />
       </div>

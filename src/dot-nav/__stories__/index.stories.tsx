@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
-import { DotNav } from '..';
+import { DotNav, DotNavSize } from '..';
 import { times } from 'lodash';
 
 const styles: Record<string, React.CSSProperties> = {
   wrap: {
-    height: 200,
+    height: 160,
+    maxWidth: 480,
     position: 'relative',
-    margin: 32,
-    boxShadow: '0 0 0 1px #ccc',
+    margin: '32px auto',
+    border: '2px dashed #ddd',
+    borderRadius: '4px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -38,8 +40,6 @@ const styles: Record<string, React.CSSProperties> = {
   },
 };
 
-const clickAction = action('Dot clicked, index');
-
 export default {
   title: 'common/DotNav',
   component: DotNav,
@@ -47,35 +47,49 @@ export default {
     layout: 'padded',
   },
 };
-
-export const Primary = () => {
-  const Demo = ({ total = 1, step = 1 }) => {
-    const [current, setCurrent] = useState(total - 1);
-
-    return (
-      <div style={styles.wrap}>
-        <DotNav
-          current={current}
-          total={total}
-          onSelect={index => {
-            setCurrent(index);
-            clickAction(index);
-          }}
-        />
-
-        <div style={styles.btnWrap}>
-          <button style={styles.btn} onClick={() => setCurrent((total + (current - step)) % total)}>◄</button>
-          <button style={styles.btn} onClick={() => setCurrent((total + (current + step)) % total)}>►</button>
-        </div>
-      </div>
-    );
-  };
+const DemoBlock = ({ total = 1, size }: { total: number; size?: DotNavSize }) => {
+  const [current, setCurrent] = useState<number>(total - 1);
 
   return (
-    <>
-      {times(10).map(i => i + 1).map(index => (
-        <Demo key={index} total={index} />
-      ))}
-    </>
+    <div style={styles.wrap}>
+      <DotNav
+        size={size}
+        current={current}
+        total={total}
+        onSelect={index => {
+          setCurrent(index);
+          action('Dot clicked, index')(index);
+        }}
+      />
+
+      <div style={styles.btnWrap}>
+        <button style={styles.btn} onClick={() => setCurrent((total + (current - 1)) % total)}>
+          ◄
+        </button>
+        <button style={styles.btn} onClick={() => setCurrent((total + (current + 1)) % total)}>
+          ►
+        </button>
+      </div>
+    </div>
   );
 };
+
+export const Primary = () => (
+  <>
+    {times(10)
+      .map(i => i + 1)
+      .map(index => (
+        <DemoBlock key={index} total={index} />
+      ))}
+  </>
+);
+
+export const LargeSize = () => (
+  <>
+    {times(10)
+      .map(i => i + 1)
+      .map(index => (
+        <DemoBlock key={index} total={index} size='l' />
+      ))}
+  </>
+);
