@@ -39,12 +39,13 @@
     border-radius: 50%;
     background: colors.$gray12;
 
-    // используем 100 чтобы проще считать коэффициенты масштабирования
-    width: 100px;
-    height: 100px;
+    // используем 10 чтобы проще считать коэффициенты масштабирования
+    // ВАЖНО: не надо использовать здесь число болье чем размер родителя с overflow:hidden - моргает в Safari
+    width: 10px;
+    height: 10px;
 
     // используем scale() чтобы плавное изменение размера выглядело нормально
-    transform: translate(-50%, -50%) scale(calc(1 / (100 / var(--dot-size))));
+    transform: translate3d(-50%, -50%, 0) scale(calc(1 / (10 / var(--dot-size))));
     transition: transform 0.3s, background 0.3s;
   }
   &.active::after {
