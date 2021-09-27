@@ -1,37 +1,56 @@
 @use '../colors';
 
-.container {
-  font-size: 14px;
+.root {
+  position: relative;
   display: inline-flex;
-  flex-direction: column;
-  vertical-align: baseline;
-  line-height: 20px;
-  .row {
+  .field-row {
     display: flex;
-    .checkbox-column {
-      display: flex;
-      align-items: center;
-      width: 16px;
-      height: 20px;
-      margin-right: 4px;
+    align-items: flex-start;
+  }
+  .label {
+    display: block;
+    cursor: pointer;
+    color: colors.$gray87;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .info {
+    display: block;
+    cursor: pointer;
+    color: colors.$gray38;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  &.field-checkbox {
+    .field-row {
+      padding-top: 4px;
+      margin-right: 8px;
     }
   }
-  .content-wrapper {
-    display: block;
-    &.label {
-      cursor: pointer;
+  &.field-toggle {
+    .field-row {
+      margin-right: 12px;
     }
-    &.error,
-    &.info {
-      margin: 8px 0 0 20px;
+    .label {
+      font-weight: 600;
     }
-    &.error {
-      color: colors.$additional-red;
-      font-size: 12px;
+  }
+  &.field-checkbox.small-text {
+    .label {
+      padding-top: 2px;
+      font-size: 14px;
+      line-height: 20px;
     }
-    &.info {
-      color: #ccc;
-      font-size: 12px;
+  }
+  &.failed:not(.disabled) {
+    .label {
+      color: colors.$additional-deep-red;
+    }
+  }
+  &.disabled {
+    .label,
+    .info {
+      color: colors.$gray24;
     }
   }
 }

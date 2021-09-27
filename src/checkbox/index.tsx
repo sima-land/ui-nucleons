@@ -1,65 +1,62 @@
-import React, { useState, forwardRef, useEffect } from 'react';
+import React, { forwardRef, useState, useEffect } from 'react';
 import CheckedSVG from './svg/checked.svg';
 import UncheckedSVG from './svg/unchecked.svg';
 import DisabledCheckedSVG from './svg/disabled-checked.svg';
 import DisabledUncheckedSVG from './svg/disabled-unchecked.svg';
 import classnames from 'classnames/bind';
 import classes from './checkbox.module.scss';
+import { CheckboxProps } from '../_internal/checkbox';
 
-export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string
-}
+export type { CheckboxProps };
 
 const cx = classnames.bind(classes);
 
 /**
- * Компонент галочки. Поддерживает все свойства тега input.
- * @param props Свойства.
+ * Компонент стилизованного переключателя (input[type=checkbox]).
  */
-export const Checkbox = forwardRef<HTMLInputElement | null, CheckboxProps>(function Checkbox ({
-  defaultChecked,
-  checked = defaultChecked,
-  disabled,
-  onChange,
-  className,
-  'data-testid': testId = 'checkbox',
-  ...restProps
-}, ref) {
-  const [isChecked, toggleCheck] = useState<boolean>(Boolean(checked));
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
+  (
+    {
+      className,
+      style,
+      'data-testid': testId = 'checkbox',
 
-  useEffect(() => {
-    toggleCheck(Boolean(checked));
-  }, [checked]);
+      // input props
+      checked,
+      disabled,
+      onChange,
+      ...restProps
+    },
+    ref,
+  ) => {
+    const [isChecked, toggleCheck] = useState<boolean>(Boolean(checked));
 
-  return (
-    <span className={cx('root', className)}>
-      <input
-        {...restProps}
-        data-testid={testId}
-        ref={ref}
-        type='checkbox'
-        className={cx('input')}
-        onChange={event => {
-          toggleCheck(event.target.checked);
-          onChange?.(event);
-        }}
-        checked={isChecked}
-        disabled={disabled}
-      />
-      {!isChecked && !disabled && (
-        <UncheckedSVG />
-      )}
-      {isChecked && !disabled && (
-        <CheckedSVG />
-      )}
-      {!isChecked && disabled && (
-        <DisabledUncheckedSVG />
-      )}
-      {isChecked && disabled && (
-        <DisabledCheckedSVG />
-      )}
-    </span>
-  );
-});
+    useEffect(() => {
+      toggleCheck(Boolean(checked));
+    }, [checked]);
+
+    return (
+      <span className={cx('root', className)} style={style}>
+        <input
+          {...restProps}
+          data-testid={testId}
+          ref={ref}
+          type='checkbox'
+          className={cx('input')}
+          onChange={event => {
+            toggleCheck(event.target.checked);
+            onChange?.(event);
+          }}
+          checked={isChecked}
+          disabled={disabled}
+        />
+        {!isChecked && !disabled && <UncheckedSVG />}
+        {isChecked && !disabled && <CheckedSVG />}
+        {!isChecked && disabled && <DisabledUncheckedSVG />}
+        {isChecked && disabled && <DisabledCheckedSVG />}
+      </span>
+    );
+  },
+);
+
+Checkbox.displayName = 'Checkbox';
