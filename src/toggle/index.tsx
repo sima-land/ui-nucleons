@@ -1,65 +1,38 @@
 import React, { forwardRef } from 'react';
 import classnames from 'classnames/bind';
 import styles from './toggle.module.scss';
+import { CheckboxProps } from '../_internal/checkbox';
 
-type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
-
-export interface ToggleProps {
-
-  /** Отмечен ли переключатель. */
-  checked?: InputProps['checked']
-
-  /** CSS-классы корневого компонента. */
-  className?: string
-
-  /** Отмечен ли переключатель по умолчанию. */
-  defaultChecked?: InputProps['defaultChecked']
-
-  /** Отключен ли переключатель. */
-  disabled?: InputProps['disabled']
-
-  /** Свойства внутреннего элемента input. */
-  inputProps?: InputProps
-
-  /** Сработает при смене состояния. */
-  onChange?: InputProps['onChange']
-
-  /** Стили корневого компонента. */
-  style?: React.CSSProperties
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string
-}
+export type ToggleProps = CheckboxProps;
 
 const cx = classnames.bind(styles);
 
 /**
  * Компонент стилизованного переключателя (input[type=checkbox]).
- * @param props Свойства.
- * @return Элемент.
  */
-export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(({
-  checked,
-  className,
-  defaultChecked,
-  inputProps,
-  onChange,
-  style,
-  disabled,
-  'data-testid': testId = 'price',
-}, ref) => (
-  <label className={cx('root', className)} style={style}>
-    <input
-      {...inputProps}
-      disabled={disabled}
-      checked={checked}
-      className={cx('input')}
-      defaultChecked={defaultChecked}
-      onChange={onChange}
-      ref={ref}
-      type='checkbox'
-      data-testid={testId}
-    />
-    <span className={cx('switch')} />
-  </label>
-));
+export const Toggle = forwardRef<HTMLInputElement, CheckboxProps>(
+  (
+    {
+      className,
+      style,
+      'data-testid': testId = 'toggle',
+
+      // input props
+      ...restProps
+    },
+    ref,
+  ) => (
+    <label className={cx('root', className)} style={style}>
+      <input
+        {...restProps}
+        className={cx('input')}
+        ref={ref}
+        type='checkbox'
+        data-testid={testId}
+      />
+      <span className={cx('switch')} />
+    </label>
+  ),
+);
+
+Toggle.displayName = 'Toggle';

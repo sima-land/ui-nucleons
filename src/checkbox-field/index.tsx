@@ -1,66 +1,75 @@
 import React, { forwardRef } from 'react';
 import { Checkbox } from '../checkbox';
+import { Toggle } from '../toggle';
 import classnames from 'classnames/bind';
 import classes from './checkbox-field.module.scss';
 
 export interface CheckboxFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
-
   /** Содержимое ярлыка. */
-  label?: string
-
-  /** Содержимое ошибки. */
-  error?: string
+  label: string;
 
   /** Содержимое описания. */
-  info?: string
+  info?: string;
+
+  /** Нужно ли показывать наличие ошибки. */
+  failed?: boolean;
+
+  /** Нужно ли выводить текст для "checkbox" мелким. */
+  smallText?: boolean;
+
+  /** Отображаемое поле. */
+  fieldView?: 'checkbox' | 'toggle';
 
   /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string
+  'data-testid'?: string;
 }
 
 const cx = classnames.bind(classes);
 
-export const CheckboxField = forwardRef<HTMLInputElement | null, CheckboxFieldProps>(function CheckboxField ({
-  label,
-  error,
-  info,
-  'data-testid': testId = 'checkbox-field',
-  ...restProps
-}, ref) {
-  return (
-    <span className={cx('container')} data-testid={testId}>
-      <label className={cx('row')}>
-        <span className={cx('checkbox-column')}>
-          <Checkbox
-            {...restProps}
-            ref={ref}
-            type='checkbox'
-          />
-        </span>
-        <span className={cx('label-column')}>
-          {label && (
-            <span
-              data-testid='checkbox-field:label'
-              className={cx('content-wrapper', 'label')}
-              children={label}
-            />
-          )}
-        </span>
-      </label>
+export const CheckboxField = forwardRef<HTMLInputElement | null, CheckboxFieldProps>(
+  function CheckboxField(
+    {
+      smallText,
+      fieldView = 'checkbox',
+      label,
+      info,
+      failed,
+      'data-testid': testId = 'checkbox-field',
+      style,
+      className,
 
-      {error && (
-        <span
-          className={cx('content-wrapper', 'error')}
-          children={error}
-        />
-      )}
+      // input props
+      id,
+      disabled,
+      ...restProps
+    },
+    ref,
+  ) {
+    const inputProps = { id, disabled, ...restProps };
 
-      {info && (
-        <span
-          className={cx('content-wrapper', 'info')}
-          children={info}
-        />
-      )}
-    </span>
-  );
-});
+    return (
+      <div
+        className={cx(
+          'root',
+          `field-${fieldView}`,
+          { failed, disabled, 'small-text': smallText },
+          className,
+        )}
+        style={style}
+        data-testid={testId}
+      >
+        <div className={cx('field-row')}>
+          {fieldView === 'checkbox' && <Checkbox {...inputProps} ref={ref} />}
+          {fieldView === 'toggle' && <Toggle {...inputProps} ref={ref} />}
+        </div>
+
+        <label htmlFor={id}>
+          <span className={cx('label')} data-testid='checkbox-field:label'>
+            {label}
+          </span>
+          {info && <span className={cx('info')}>{info}</span>}
+        </label>
+      </div>
+    );
+  },
+);

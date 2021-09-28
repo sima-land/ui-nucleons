@@ -1,87 +1,187 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<CheckboxField /> should match snapshot 1`] = `
+exports[`<CheckboxField /> should handle "failed" prop 1`] = `
+<ForwardRef(CheckboxField)
+  failed={true}
+  label="Hello!"
+>
+  <div
+    className="root field-checkbox failed"
+    data-testid="checkbox-field"
+  >
+    <div
+      className="field-row"
+    >
+      <Checkbox>
+        <span
+          className="root"
+        >
+          <input
+            checked={false}
+            className="input"
+            data-testid="checkbox"
+            onChange={[Function]}
+            type="checkbox"
+          />
+          <SvgUnchecked>
+            <svg
+              fill="none"
+              height={16}
+              viewBox="0 0 16 16"
+              width={16}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                height={15}
+                rx={1.5}
+                stroke="#9E9E9E"
+                width={15}
+                x={0.5}
+                y={0.5}
+              />
+            </svg>
+          </SvgUnchecked>
+        </span>
+      </Checkbox>
+    </div>
+    <label>
+      <span
+        className="label"
+        data-testid="checkbox-field:label"
+      >
+        Hello!
+      </span>
+    </label>
+  </div>
+</ForwardRef(CheckboxField)>
+`;
+
+exports[`<CheckboxField /> should handle "fieldView" prop 1`] = `
 <ForwardRef(CheckboxField)
   checked={true}
   disabled={true}
-  error="Test error"
+  failed={true}
+  fieldView="toggle"
   info="Test info"
   label="Test label"
   onChange={[Function]}
 >
-  <span
-    className="container"
+  <div
+    className="root field-toggle failed disabled"
     data-testid="checkbox-field"
   >
-    <label
-      className="row"
+    <div
+      className="field-row"
     >
-      <span
-        className="checkbox-column"
+      <Toggle
+        checked={true}
+        disabled={true}
+        onChange={[Function]}
       >
-        <ForwardRef(Checkbox)
-          checked={true}
-          disabled={true}
-          onChange={[Function]}
-          type="checkbox"
+        <label
+          className="root"
         >
+          <input
+            checked={true}
+            className="input"
+            data-testid="toggle"
+            disabled={true}
+            onChange={[Function]}
+            type="checkbox"
+          />
           <span
-            className="root"
-          >
-            <input
-              checked={true}
-              className="input"
-              data-testid="checkbox"
-              disabled={true}
-              onChange={[Function]}
-              type="checkbox"
-            />
-            <SvgDisabledChecked>
-              <svg
-                fill="none"
-                height={16}
-                viewBox="0 0 16 16"
-                width={16}
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  fill="#E0E0E0"
-                  height={16}
-                  rx={2}
-                  width={16}
-                />
-                <path
-                  clipRule="evenodd"
-                  d="M10.8 5.22L6.4 9.19l-1.034-.97a.838.838 0 00-1.132 0 .717.717 0 000 1.06l1.6 1.5a.838.838 0 001.132 0l4.8-4.5a.717.717 0 000-1.06c-.313-.293-.654-.293-.966 0z"
-                  fill="#F5F5F5"
-                  fillRule="evenodd"
-                />
-              </svg>
-            </SvgDisabledChecked>
-          </span>
-        </ForwardRef(Checkbox)>
+            className="switch"
+          />
+        </label>
+      </Toggle>
+    </div>
+    <label>
+      <span
+        className="label"
+        data-testid="checkbox-field:label"
+      >
+        Test label
       </span>
       <span
-        className="label-column"
+        className="info"
       >
-        <span
-          className="content-wrapper label"
-          data-testid="checkbox-field:label"
-        >
-          Test label
-        </span>
+        Test info
       </span>
     </label>
-    <span
-      className="content-wrapper error"
+  </div>
+</ForwardRef(CheckboxField)>
+`;
+
+exports[`<CheckboxField /> should match snapshot 1`] = `
+<ForwardRef(CheckboxField)
+  checked={true}
+  disabled={true}
+  failed={true}
+  info="Test info"
+  label="Test label"
+  onChange={[Function]}
+>
+  <div
+    className="root field-checkbox failed disabled"
+    data-testid="checkbox-field"
+  >
+    <div
+      className="field-row"
     >
-      Test error
-    </span>
-    <span
-      className="content-wrapper info"
-    >
-      Test info
-    </span>
-  </span>
+      <Checkbox
+        checked={true}
+        disabled={true}
+        onChange={[Function]}
+      >
+        <span
+          className="root"
+        >
+          <input
+            checked={true}
+            className="input"
+            data-testid="checkbox"
+            disabled={true}
+            onChange={[Function]}
+            type="checkbox"
+          />
+          <SvgDisabledChecked>
+            <svg
+              fill="none"
+              height={16}
+              viewBox="0 0 16 16"
+              width={16}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                fill="#E0E0E0"
+                height={16}
+                rx={2}
+                width={16}
+              />
+              <path
+                clipRule="evenodd"
+                d="M10.8 5.22L6.4 9.19l-1.034-.97a.838.838 0 00-1.132 0 .717.717 0 000 1.06l1.6 1.5a.838.838 0 001.132 0l4.8-4.5a.717.717 0 000-1.06c-.313-.293-.654-.293-.966 0z"
+                fill="#F5F5F5"
+                fillRule="evenodd"
+              />
+            </svg>
+          </SvgDisabledChecked>
+        </span>
+      </Checkbox>
+    </div>
+    <label>
+      <span
+        className="label"
+        data-testid="checkbox-field:label"
+      >
+        Test label
+      </span>
+      <span
+        className="info"
+      >
+        Test info
+      </span>
+    </label>
+  </div>
 </ForwardRef(CheckboxField)>
 `;
