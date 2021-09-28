@@ -30,12 +30,10 @@ export interface TextProps {
     | React.ComponentType<
         {
           className: string;
+          style: React.CSSProperties;
           children?: React.ReactNode;
         } & React.RefAttributes<any>
       >;
-
-  /** Нужно ли выводить текст наклонным. */
-  italic?: boolean;
 
   /** Межстрочный интервал. */
   lineHeight?: LineHeight;
@@ -47,7 +45,7 @@ export interface TextProps {
   size?: Size;
 
   /** Нужно ли обрезать текст многоточием в одну строку. */
-  truncate?: boolean;
+  truncate?: boolean | number;
 
   /** Начертание. */
   weight?: Weight;
@@ -86,13 +84,14 @@ export const Text = memo(
       // не устанавливаем значения по умолчанию, чтобы компонент вел себя предсказуемо
       align,
       color,
-      italic,
       nowrap,
       truncate,
       weight,
     },
     ref,
   ) {
+    const needLineClamp = typeof truncate === 'number' && truncate > 0;
+
     return (
       <Container
         ref={ref as any}
@@ -105,10 +104,11 @@ export const Text = memo(
 
           // text
           align && ALIGNS.has(align) && `align-${align}`,
-          italic && 'italic',
           nowrap && 'nowrap',
-          truncate && 'truncate',
+          truncate === true && 'truncate',
+          needLineClamp && 'line-clamp',
         ])}
+        style={needLineClamp ? { WebkitLineClamp: truncate } : {}}
         children={children}
       />
     );
