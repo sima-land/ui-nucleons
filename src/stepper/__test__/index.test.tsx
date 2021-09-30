@@ -5,9 +5,19 @@ import { Stepper } from '..';
 
 describe('<Stepper />', () => {
   it('should render without props', () => {
-    const wrapper = mount(
-      <Stepper />
-    );
+    const wrapper = mount(<Stepper />);
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render as "read only"', () => {
+    const wrapper = mount(<Stepper readOnly />);
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render as "failed"', () => {
+    const wrapper = mount(<Stepper failed />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -17,12 +27,7 @@ describe('<Stepper />', () => {
     const blurSpy = jest.fn();
 
     const wrapper = mount(
-      <Stepper
-        defaultValue={123}
-        disabled
-        onFocus={focusSpy}
-        onBlur={blurSpy}
-      />
+      <Stepper defaultValue={123} disabled onFocus={focusSpy} onBlur={blurSpy} />,
     );
 
     expect(blurSpy).toBeCalledTimes(0);
@@ -48,11 +53,7 @@ describe('<Stepper />', () => {
   it('should handle "onFocus" missing', () => {
     const spy = jest.fn();
 
-    const wrapper = mount(
-      <Stepper
-        onFocus={spy}
-      />
-    );
+    const wrapper = mount(<Stepper onFocus={spy} />);
 
     expect(spy).toBeCalledTimes(0);
 
@@ -74,11 +75,7 @@ describe('<Stepper />', () => {
   it('should handle "onBlur" missing', () => {
     const spy = jest.fn();
 
-    const wrapper = mount(
-      <Stepper
-        onBlur={spy}
-      />
-    );
+    const wrapper = mount(<Stepper onBlur={spy} />);
 
     expect(spy).toBeCalledTimes(0);
 
@@ -98,9 +95,7 @@ describe('<Stepper />', () => {
   });
 
   it('should handle "size" prop', () => {
-    const wrapper = mount(
-      <Stepper />
-    );
+    const wrapper = mount(<Stepper />);
 
     expect(wrapper).toMatchSnapshot();
 
@@ -115,12 +110,7 @@ describe('<Stepper />', () => {
     const subtractSpy = jest.fn();
     const addSpy = jest.fn();
 
-    const wrapper = mount(
-      <Stepper
-        onSubtract={subtractSpy}
-        onAdd={addSpy}
-      />
-    );
+    const wrapper = mount(<Stepper onSubtract={subtractSpy} onAdd={addSpy} />);
 
     expect(wrapper).toMatchSnapshot();
     expect(subtractSpy).toHaveBeenCalledTimes(0);
