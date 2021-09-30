@@ -17,6 +17,14 @@
       fill: colors.$gray12;
     }
   }
+  &.readonly {
+    .button {
+      fill: colors.$gray24;
+    }
+  }
+  &.failed:not(.disabled):not(.focused) {
+    border-color: colors.$additional-deep-red;
+  }
   &.size-s {
     width: var(--stepper-width, 122px);
     height: 40px;
@@ -50,7 +58,9 @@
 .button {
   fill: colors.$gray38;
   flex-shrink: 0;
-  cursor: pointer;
+  &:not(.hidden) {
+    cursor: pointer;
+  }
   &.hidden {
     opacity: 0;
     pointer-events: none;
