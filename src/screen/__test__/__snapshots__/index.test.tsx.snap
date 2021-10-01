@@ -104,6 +104,7 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
           >
             <div
               class="nav-bar inner-border-bottom"
+              style="height: 56px;"
             >
               <div
                 class="button-groups"
@@ -222,6 +223,11 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
           >
             <div
               className="nav-bar inner-border-bottom"
+              style={
+                Object {
+                  "height": "56px",
+                }
+              }
             >
               <div
                 className="button-groups"
@@ -374,6 +380,7 @@ exports[`<Screen /> should handle props 1`] = `
           >
             <div
               class="nav-bar inner-border-bottom"
+              style="height: 56px;"
             >
               <div
                 class="button-groups"
@@ -540,6 +547,11 @@ exports[`<Screen /> should handle props 1`] = `
           >
             <div
               className="nav-bar inner-border-bottom"
+              style={
+                Object {
+                  "height": "56px",
+                }
+              }
             >
               <div
                 className="button-groups"
@@ -736,6 +748,7 @@ exports[`<Screen /> should render without props 1`] = `
           >
             <div
               class="nav-bar inner-border-bottom"
+              style="height: 56px;"
             >
               <div
                 class="button-groups"
@@ -832,6 +845,11 @@ exports[`<Screen /> should render without props 1`] = `
           >
             <div
               className="nav-bar inner-border-bottom"
+              style={
+                Object {
+                  "height": "56px",
+                }
+              }
             >
               <div
                 className="button-groups"
@@ -952,6 +970,7 @@ exports[`<Screen /> should renders without close button 1`] = `
           >
             <div
               class="nav-bar inner-border-bottom"
+              style="height: 56px;"
             >
               <div
                 class="button-groups"
@@ -1049,6 +1068,11 @@ exports[`<Screen /> should renders without close button 1`] = `
           >
             <div
               className="nav-bar inner-border-bottom"
+              style={
+                Object {
+                  "height": "56px",
+                }
+              }
             >
               <div
                 className="button-groups"
