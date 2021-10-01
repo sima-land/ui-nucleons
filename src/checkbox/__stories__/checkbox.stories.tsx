@@ -22,5 +22,8 @@ export const Primary = () => (
 
     <h3>Disabled & checked</h3>
     <Checkbox checked disabled />
+
+    <h3>Default checked</h3>
+    <Checkbox defaultChecked />
   </>
 );
