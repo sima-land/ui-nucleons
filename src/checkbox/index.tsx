@@ -22,7 +22,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       'data-testid': testId = 'checkbox',
 
       // input props
-      checked,
+      defaultChecked,
+      checked = defaultChecked,
       disabled,
       onChange,
       ...restProps
