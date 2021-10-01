@@ -8,6 +8,11 @@ exports[`<NavBar /> should handle "bottomBordered" prop 1`] = `
 >
   <div
     className="nav-bar inner-border-bottom"
+    style={
+      Object {
+        "height": "56px",
+      }
+    }
   >
     <div
       className="main"
@@ -44,6 +49,11 @@ exports[`<NavBar /> should render end icon-button 1`] = `
 >
   <div
     className="nav-bar"
+    style={
+      Object {
+        "height": "56px",
+      }
+    }
   >
     <div
       className="button-groups"
@@ -148,6 +158,11 @@ exports[`<NavBar /> should render end link-button 1`] = `
 >
   <div
     className="nav-bar"
+    style={
+      Object {
+        "height": "56px",
+      }
+    }
   >
     <div
       className="button-groups"
@@ -220,6 +235,11 @@ exports[`<NavBar /> should render end secondary link-button 1`] = `
 >
   <div
     className="nav-bar"
+    style={
+      Object {
+        "height": "56px",
+      }
+    }
   >
     <div
       className="button-groups"
@@ -313,6 +333,11 @@ exports[`<NavBar /> should render four icon-buttons 1`] = `
 >
   <div
     className="nav-bar"
+    style={
+      Object {
+        "height": "56px",
+      }
+    }
   >
     <div
       className="button-groups"
@@ -603,6 +628,11 @@ exports[`<NavBar /> should render icon-buttons 1`] = `
 >
   <div
     className="nav-bar"
+    style={
+      Object {
+        "height": "56px",
+      }
+    }
   >
     <div
       className="button-groups"
@@ -763,6 +793,11 @@ exports[`<NavBar /> should render just title and subtitle 1`] = `
 >
   <div
     className="nav-bar"
+    style={
+      Object {
+        "height": "56px",
+      }
+    }
   >
     <div
       className="main"
@@ -799,6 +834,11 @@ exports[`<NavBar /> should render link-buttons 1`] = `
 >
   <div
     className="nav-bar"
+    style={
+      Object {
+        "height": "56px",
+      }
+    }
   >
     <div
       className="button-groups"
@@ -908,6 +948,11 @@ exports[`<NavBar /> should render mixed buttons 1`] = `
 >
   <div
     className="nav-bar"
+    style={
+      Object {
+        "height": "56px",
+      }
+    }
   >
     <div
       className="button-groups"
@@ -1046,6 +1091,11 @@ exports[`<NavBar /> should render start icon-button 1`] = `
 >
   <div
     className="nav-bar"
+    style={
+      Object {
+        "height": "56px",
+      }
+    }
   >
     <div
       className="button-groups"
@@ -1150,6 +1200,11 @@ exports[`<NavBar /> should render start link-button 1`] = `
 >
   <div
     className="nav-bar"
+    style={
+      Object {
+        "height": "56px",
+      }
+    }
   >
     <div
       className="button-groups"
@@ -1222,6 +1277,11 @@ exports[`<NavBar /> should render start secondary link-button 1`] = `
 >
   <div
     className="nav-bar"
+    style={
+      Object {
+        "height": "56px",
+      }
+    }
   >
     <div
       className="button-groups"

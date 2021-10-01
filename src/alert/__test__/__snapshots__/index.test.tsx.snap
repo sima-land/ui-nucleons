@@ -46,6 +46,11 @@ exports[`<Alert /> should handle props 1`] = `
         >
           <div
             className="nav-bar header"
+            style={
+              Object {
+                "height": "56px",
+              }
+            }
           >
             <div
               className="main"

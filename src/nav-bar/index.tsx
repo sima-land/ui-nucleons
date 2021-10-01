@@ -6,38 +6,42 @@ import { InnerBorder } from '../styling/borders';
 import { COLORS } from '../colors';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  text?: string
-  icon?: React.ComponentType<React.SVGAttributes<SVGSVGElement>>
-  stub?: boolean
-  shift?: 'left' | 'right'
+  text?: string;
+  icon?: React.ComponentType<React.SVGAttributes<SVGSVGElement>>;
+  stub?: boolean;
+  shift?: 'left' | 'right';
 }
 
 export interface NavBarProps {
-
   /** Заголовок. */
-  title?: string
+  title?: string;
 
   /** Подзаголовок. */
-  subtitle?: string
+  subtitle?: string;
 
   /** Класс. */
-  className?: string
+  className?: string;
 
   /** Нужно ли выводить полоску снизу. */
-  bottomBordered?: boolean
+  bottomBordered?: boolean;
 
   /** Свойства кнопок. */
   buttons?: {
-    start?: ButtonProps
-    startSecondary?: ButtonProps
-    end?: ButtonProps
-    endSecondary?: ButtonProps
-  }
+    start?: ButtonProps;
+    startSecondary?: ButtonProps;
+    end?: ButtonProps;
+    endSecondary?: ButtonProps;
+  };
 }
 
 const cx = classnames.bind(classes);
 
 const getIcon = prop('icon');
+
+/**
+ * Высота компонента в пикселях.
+ */
+export const NAV_BAR_HEIGHT = 56;
 
 /**
  * Компонент панели навигации.
@@ -49,12 +53,7 @@ export const NavBar = ({
   subtitle,
   className,
   bottomBordered = false,
-  buttons: {
-    start,
-    startSecondary,
-    end,
-    endSecondary,
-  } = {},
+  buttons: { start, startSecondary, end, endSecondary } = {},
 }: NavBarProps) => {
   const startButtons = [start, startSecondary];
   const endButtons = [end, endSecondary];
@@ -67,14 +66,15 @@ export const NavBar = ({
   const isEndIconGroup = hasEndButtons && endButtons.every(getIcon);
 
   return (
-    <div className={cx('nav-bar', className, bottomBordered && InnerBorder.bottom)}>
+    <div
+      className={cx('nav-bar', className, bottomBordered && InnerBorder.bottom)}
+      style={{ height: `${NAV_BAR_HEIGHT}px` }}
+    >
       {hasButtons && (
         <div className={cx('button-groups')}>
           {hasStartButtons && (
             <div className={cx('group')}>
-              {start && (
-                <NavButton shift={isStartIconGroup ? 'right' : undefined} {...start} />
-              )}
+              {start && <NavButton shift={isStartIconGroup ? 'right' : undefined} {...start} />}
               {startSecondary && (
                 <NavButton shift={isStartIconGroup ? 'left' : undefined} {...startSecondary} />
               )}
@@ -85,9 +85,7 @@ export const NavBar = ({
               {endSecondary && (
                 <NavButton stub shift={isEndIconGroup ? 'right' : undefined} {...endSecondary} />
               )}
-              {end && (
-                <NavButton stub shift={isEndIconGroup ? 'left' : undefined} {...end} />
-              )}
+              {end && <NavButton stub shift={isEndIconGroup ? 'left' : undefined} {...end} />}
             </div>
           )}
         </div>
@@ -95,12 +93,8 @@ export const NavBar = ({
 
       {/* центральный блок */}
       <div className={cx('main')}>
-        {Boolean(title) && (
-          <div className={cx('title', 'truncate')}>{title}</div>
-        )}
-        {Boolean(subtitle) && (
-          <div className={cx('subtitle', 'truncate')}>{subtitle}</div>
-        )}
+        {Boolean(title) && <div className={cx('title', 'truncate')}>{title}</div>}
+        {Boolean(subtitle) && <div className={cx('subtitle', 'truncate')}>{subtitle}</div>}
       </div>
 
       {hasButtons && (
@@ -110,9 +104,7 @@ export const NavBar = ({
               {endSecondary && (
                 <NavButton shift={isEndIconGroup ? 'right' : undefined} {...endSecondary} />
               )}
-              {end && (
-                <NavButton shift={isEndIconGroup ? 'left' : undefined} {...end} />
-              )}
+              {end && <NavButton shift={isEndIconGroup ? 'left' : undefined} {...end} />}
             </div>
           )}
           {hasStartButtons && (
@@ -157,14 +149,14 @@ export const NavButton: React.FC<ButtonProps> = ({
       shift === 'left' && 'shift-left',
       shift === 'right' && 'shift-right',
       stub && 'stub',
-      className
+      className,
     )}
     aria-hidden={stub}
   >
-    {
-      Icon && !stub
-        ? <Icon fill={COLORS.get('gray87')} className={cx('svg')} aria-hidden='true' />
-        : text
-    }
+    {Icon && !stub ? (
+      <Icon fill={COLORS.get('gray87')} className={cx('svg')} aria-hidden='true' />
+    ) : (
+      text
+    )}
   </button>
 );
