@@ -1,10 +1,11 @@
 import { useRef, useCallback } from 'react';
 
 /**
- * @param callback Сработает при закрытии.
- * @return Свойства для закрывающего элемента.
+ * Вызывает callback только если клик был начат и закончен по одному и тому же элементу.
+ * @param callback Сработает при клике.
+ * @return Свойства для целевого элемента.
  */
-export const useCloseHandler = (callback?: () => void) => {
+export const useStrictClick = (callback?: () => void) => {
   const mouseDownTarget = useRef<HTMLElement>();
 
   const onMouseDown = useCallback(({ button, target }) => {
@@ -13,13 +14,16 @@ export const useCloseHandler = (callback?: () => void) => {
     }
   }, []);
 
-  const onMouseUp = useCallback(({ target, currentTarget, button }) => {
-    callback
-      && button === 0
-      && target === currentTarget
-      && currentTarget === mouseDownTarget.current
-      && callback();
-  }, [callback]);
+  const onMouseUp = useCallback(
+    ({ target, currentTarget, button }) => {
+      callback &&
+        button === 0 &&
+        target === currentTarget &&
+        currentTarget === mouseDownTarget.current &&
+        callback();
+    },
+    [callback],
+  );
 
   return { onMouseUp, onMouseDown };
 };
