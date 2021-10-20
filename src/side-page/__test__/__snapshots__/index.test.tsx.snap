@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SidePage should renders correctly 1`] = `<div />`;
+
+exports[`SidePage should renders correctly 2`] = `
+<div>
+  <div
+    class="overlay"
+    style="z-index: 100; --transition-duration: 300ms;"
+  >
+    <div
+      class="main size-m"
+    >
+      <div
+        class="root size-m header"
+        style="height: 80px;"
+      >
+        <div
+          class="main-section"
+        >
+          <div
+            class="title ellipsis"
+          >
+            Test title
+          </div>
+        </div>
+      </div>
+      <div
+        class="body"
+      >
+        <h1>
+          Test body
+        </h1>
+      </div>
+      <div
+        class="root rounds-md__b footer"
+        data-testid="bottom-bar"
+        style="height: 72px;"
+      >
+        <p>
+          Test footer
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

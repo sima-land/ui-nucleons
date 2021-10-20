@@ -1,7 +1,7 @@
 import React, { cloneElement, Fragment, useRef } from 'react';
 import { TopBarSize, TOP_BAR_HEIGHT } from '../top-bar';
 import { BottomBarProps, BOTTOM_BAR_DEFAULTS, BOTTOM_BAR_HEIGHT } from '../bottom-bar';
-import { useCloseHandler } from './utils';
+import { useStrictClick } from './utils';
 import { BoxShadow } from '../styling/shadows';
 import { Portal } from '../portal';
 import { isNumber } from 'lodash';
@@ -86,7 +86,7 @@ const ModalInner = ({
 
   const rootRef = useRef<HTMLDivElement>(null);
 
-  const handleClose = useCloseHandler(onClose);
+  const bind = useStrictClick(onClose);
 
   const fullscreen = size === 'fullscreen';
 
@@ -121,7 +121,7 @@ const ModalInner = ({
       className={cx('overlay')}
       data-testid='modal:overlay'
       style={{ zIndex: layer }} // z-index именно здесь из-за position: fixed
-      {...handleClose}
+      {...bind}
     >
       <div
         className={cx('modal', `size-${size}`, !fullscreen && BoxShadow.z4)}
