@@ -5,7 +5,7 @@ import { useRef, useCallback } from 'react';
  * @param callback Сработает при клике.
  * @return Свойства для целевого элемента.
  */
-export const useStrictClick = (callback?: () => void) => {
+export const useCloseHandler = (callback?: () => void) => {
   const mouseDownTarget = useRef<HTMLElement>();
 
   const onMouseDown = useCallback(({ button, target }) => {
