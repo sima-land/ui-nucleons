@@ -1,6 +1,6 @@
 import React from 'react';
 import { defineSlots } from '../helpers/define-slots';
-import { useStrictClick } from '../modal/utils';
+import { useCloseHandler } from '../modal/utils';
 import { useLayer } from '../helpers/layer';
 import { SidePageBody, SidePageFooter, SidePageHeader } from './slots';
 import CSSTransition from 'react-transition-group/CSSTransition';
@@ -47,7 +47,7 @@ export const SidePage = ({
 }: SidePageProps) => {
   const layer = useLayer() + 100;
 
-  const overlayBind = useStrictClick(onClose);
+  const overlayBind = useCloseHandler(onClose);
 
   const transitionDuration = withTransitions ? 300 : 0;
 

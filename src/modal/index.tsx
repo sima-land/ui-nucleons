@@ -1,7 +1,7 @@
 import React, { cloneElement, Fragment, useRef } from 'react';
 import { TopBarSize, TOP_BAR_HEIGHT } from '../top-bar';
 import { BottomBarProps, BOTTOM_BAR_DEFAULTS, BOTTOM_BAR_HEIGHT } from '../bottom-bar';
-import { useStrictClick } from './utils';
+import { useCloseHandler } from './utils';
 import { BoxShadow } from '../styling/shadows';
 import { Portal } from '../portal';
 import { isNumber } from 'lodash';
@@ -86,7 +86,7 @@ const ModalInner = ({
 
   const rootRef = useRef<HTMLDivElement>(null);
 
-  const bind = useStrictClick(onClose);
+  const bind = useCloseHandler(onClose);
 
   const fullscreen = size === 'fullscreen';
 
