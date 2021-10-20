@@ -1,13 +1,13 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useIsomorphicLayoutEffect } from '../hooks';
 
 export interface PortalProps {
-
   /** Вернет элемент, в который нужно вывести содержимое через портал. */
-  defineRoot?: () => HTMLElement
+  defineRoot?: () => HTMLElement;
 
   /** Содержимое. */
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
 /**
@@ -19,7 +19,7 @@ export const Portal: React.FC<PortalProps> = ({ children, defineRoot = () => doc
   const [mounted, setMounted] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>();
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const root = defineRoot();
 
     ref.current = document.createElement('div');
@@ -32,7 +32,5 @@ export const Portal: React.FC<PortalProps> = ({ children, defineRoot = () => doc
     };
   }, []);
 
-  return mounted && ref.current
-    ? createPortal(children, ref.current)
-    : null;
+  return mounted && ref.current ? createPortal(children, ref.current) : null;
 };
