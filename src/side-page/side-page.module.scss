@@ -1,0 +1,81 @@
+@use '../colors';
+
+$overlay-color: rgba(0, 0, 0, 0.24);
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $overlay-color;
+}
+
+.main {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.size-s {
+  max-width: 488px;
+}
+
+.size-m {
+  max-width: 968px;
+}
+
+.header {
+  flex-shrink: 0;
+}
+
+.body {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.footer {
+  flex-shrink: 0;
+  width: 100%;
+  padding: 0 40px;
+}
+
+// transitions
+.enter {
+  background-color: transparent;
+  .main {
+    transform: translateX(100%);
+  }
+}
+
+.enter-active {
+  transition: background-color var(--transition-duration) ease-in-out;
+  background-color: $overlay-color;
+  overflow: hidden;
+  .main {
+    transition: transform var(--transition-duration) ease-in-out;
+    transform: translateX(0);
+  }
+}
+
+.exit {
+  background-color: $overlay-color;
+  .main {
+    transform: translateX(0);
+  }
+}
+
+.exit-active {
+  transition: background-color var(--transition-duration) ease-in-out;
+  background-color: transparent;
+  overflow: hidden;
+  .main {
+    transition: transform var(--transition-duration) ease-in-out;
+    transform: translateX(100%);
+  }
+}
