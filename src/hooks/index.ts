@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import { isTouchDevice } from '../helpers/is-touch-device';
 import { isFunction } from 'lodash';
 import on from '../helpers/on';
@@ -39,11 +39,7 @@ export const useInfiniteScroll = (
 
     if (element) {
       return on<UIEvent>(element, 'scroll', (event: UIEvent) => {
-        const {
-          scrollTop,
-          clientHeight,
-          scrollHeight,
-        } = event.target as HTMLElement;
+        const { scrollTop, clientHeight, scrollHeight } = event.target as HTMLElement;
         const bottom = threshold + scrollTop + clientHeight;
         const isFullyScrolled = bottom >= scrollHeight;
 
@@ -83,3 +79,10 @@ export const useOutsideClick = (
     [],
   );
 };
+
+/**
+ * Нужен для того чтобы не получать ошибку при использовании в SSR с NodeJS.
+ * @see {@link https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85#gistcomment-2911761}
+ */
+export const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect;

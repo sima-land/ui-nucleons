@@ -1,9 +1,5 @@
-import React, {
-  createContext,
-  useContext,
-  useLayoutEffect,
-  useState,
-} from 'react';
+import React, { createContext, useContext, useState } from 'react';
+import { useIsomorphicLayoutEffect } from '..';
 import isBrowser from '../../helpers/is-browser';
 import { Registry } from './types';
 import { BreakpointQuery, createRegistry } from './utils';
@@ -18,7 +14,7 @@ const Context = createContext<Registry | null>(null);
 export const BreakpointProvider: React.FC = ({ children }) => {
   const [contextValue, setRegistry] = useState<Registry | null>(null);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     isBrowser() && setRegistry(createRegistry());
   }, []);
 
@@ -38,7 +34,7 @@ export const useBreakpoint = (query: string): boolean => {
   const registry = useContext(Context);
   const [matches, setMatches] = useState<boolean>(false);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (registry) {
       const subscription = registry.subscribe(query, e => {
         setMatches(e.matches);
