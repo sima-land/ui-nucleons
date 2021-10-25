@@ -6,6 +6,7 @@ import { TextField } from '../../text-field';
 import { UploadArea } from '../../upload/area';
 import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information';
 import imageUrl from './image.png';
+import { times } from 'lodash';
 
 export default {
   title: 'desktop/SidePage',
@@ -129,20 +130,43 @@ export const SizeM = () => {
   );
 };
 
-export const NoTransitions = () => {
+export const BodyScrollLock = () => {
   const [shown, toggle] = useState<boolean>(false);
 
   return (
     <>
-      <Button onClick={() => toggle(true)}>Показать</Button>
+      {times(5).map(i => (
+        <p key={i}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. At, nobis? Porro assumenda optio
+          quisquam quos sequi, soluta a repudiandae eius?
+        </p>
+      ))}
 
-      <SidePage size='s' shown={shown} onClose={() => toggle(false)}>
-        <SidePage.Header
-          divided
-          title='Проверка'
-          subtitle='Без анимаций'
-          onClose={() => toggle(false)}
-        />
+      <Button size='s' onClick={() => toggle(true)}>
+        Показать
+      </Button>
+
+      {times(100).map(i => (
+        <p key={i}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. At, nobis? Porro assumenda optio
+          quisquam quos sequi, soluta a repudiandae eius?
+        </p>
+      ))}
+
+      <SidePage
+        size='s'
+        shown={shown}
+        withTransitions
+        withScrollDisable
+        onClose={() => toggle(false)}
+      >
+        <SidePage.Header divided title='Пусто' onClose={() => toggle(false)} />
+        <SidePage.Body>
+          <div style={{ padding: '20px 40px' }}>
+            <h2>Тут прям пусто</h2>
+            <p>А прокрутка страницы должна заблокироваться...</p>
+          </div>
+        </SidePage.Body>
       </SidePage>
     </>
   );
@@ -209,6 +233,25 @@ export const Transitions = () => {
         onClose={close}
         onBack={goBack}
       />
+    </>
+  );
+};
+
+export const NoTransitions = () => {
+  const [shown, toggle] = useState<boolean>(false);
+
+  return (
+    <>
+      <Button onClick={() => toggle(true)}>Показать</Button>
+
+      <SidePage size='s' shown={shown} onClose={() => toggle(false)}>
+        <SidePage.Header
+          divided
+          title='Проверка'
+          subtitle='Без анимаций'
+          onClose={() => toggle(false)}
+        />
+      </SidePage>
     </>
   );
 };
