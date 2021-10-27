@@ -10,6 +10,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.ComponentType<React.SVGAttributes<SVGSVGElement>>;
   stub?: boolean;
   shift?: 'left' | 'right';
+  'data-testid'?: string;
 }
 
 export interface NavBarProps {
@@ -141,7 +142,7 @@ export const NavButton: React.FC<ButtonProps> = ({
   ...buttonProps
 }) => (
   <button
-    {...buttonProps}
+    {...(!stub && buttonProps)} // игнорируем атрибуты и свойства для заглушек
     type='button'
     className={cx(
       'button',
