@@ -114,7 +114,6 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
                 >
                   <button
                     aria-hidden="true"
-                    aria-label="Закрыть"
                     class="button icon stub"
                     type="button"
                   />
@@ -248,9 +247,7 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
                   >
                     <button
                       aria-hidden={true}
-                      aria-label="Закрыть"
                       className="button icon stub"
-                      onClick={[Function]}
                       type="button"
                     />
                   </NavButton>
@@ -420,7 +417,6 @@ exports[`<Screen /> should handle props 1`] = `
                 >
                   <button
                     aria-hidden="true"
-                    aria-label="Закрыть Test title"
                     class="button icon stub"
                     type="button"
                   />
@@ -478,7 +474,6 @@ exports[`<Screen /> should handle props 1`] = `
                 >
                   <button
                     aria-hidden="true"
-                    aria-label="Вернуться назад"
                     class="button icon stub"
                     type="button"
                   />
@@ -620,9 +615,7 @@ exports[`<Screen /> should handle props 1`] = `
                   >
                     <button
                       aria-hidden={true}
-                      aria-label="Закрыть Test title"
                       className="button icon stub"
-                      onClick={[Function]}
                       type="button"
                     />
                   </NavButton>
@@ -709,9 +702,7 @@ exports[`<Screen /> should handle props 1`] = `
                   >
                     <button
                       aria-hidden={true}
-                      aria-label="Вернуться назад"
                       className="button icon stub"
-                      onClick={[Function]}
                       type="button"
                     />
                   </NavButton>
@@ -758,7 +749,6 @@ exports[`<Screen /> should render without props 1`] = `
                 >
                   <button
                     aria-hidden="true"
-                    aria-label="Закрыть"
                     class="button icon stub"
                     type="button"
                   />
@@ -870,9 +860,7 @@ exports[`<Screen /> should render without props 1`] = `
                   >
                     <button
                       aria-hidden={true}
-                      aria-label="Закрыть"
                       className="button icon stub"
-                      onClick={[Function]}
                       type="button"
                     />
                   </NavButton>
