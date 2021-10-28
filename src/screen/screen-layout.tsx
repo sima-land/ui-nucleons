@@ -8,23 +8,25 @@ import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
 import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
 
 export interface CallbackData {
-  contentElement: OrNil<HTMLDivElement>
+  contentElement: OrNil<HTMLDivElement>;
 }
 
 export interface ScreenLayoutProps {
-  childrenRef?: React.MutableRefObject<OrNil<HTMLDivElement>> | React.RefCallback<OrNil<HTMLDivElement>>
-  footer?: React.ReactNode
-  fullScrollThreshold?: number
-  navBarProps?: NavBarProps
-  onBack?: (data: CallbackData) => void
-  onClose?: (data: CallbackData) => void
-  onFullScroll?: (data: CallbackData) => void
-  subtitle?: string
-  title?: string
-  withBackButton?: boolean
-  withCloseButton?: boolean
-  withDivideHeader?: boolean
-  withHeader?: boolean
+  childrenRef?:
+    | React.MutableRefObject<OrNil<HTMLDivElement>>
+    | React.RefCallback<OrNil<HTMLDivElement>>;
+  footer?: React.ReactNode;
+  fullScrollThreshold?: number;
+  navBarProps?: NavBarProps;
+  onBack?: (data: CallbackData) => void;
+  onClose?: (data: CallbackData) => void;
+  onFullScroll?: (data: CallbackData) => void;
+  subtitle?: string;
+  title?: string;
+  withBackButton?: boolean;
+  withCloseButton?: boolean;
+  withDivideHeader?: boolean;
+  withHeader?: boolean;
 }
 
 /**
@@ -79,17 +81,23 @@ export const ScreenLayout: React.FC<ScreenLayoutProps> = ({
             ...navBarProps.buttons,
             start: withBackButton
               ? {
-                icon: ArrowLeftSVG,
-                onClick: () => onBack && onBack({ contentElement: contentRef.current }),
-                'aria-label': 'Вернуться назад',
-              }
+                  // ВАЖНО: не подмешиваем свойства из navBarProps.buttons.start
+                  // чтобы не распылять конфигурацию одной и той же кнопки по нескольким местам
+                  icon: ArrowLeftSVG,
+                  onClick: () => onBack && onBack({ contentElement: contentRef.current }),
+                  'aria-label': 'Вернуться назад',
+                  'data-testid': 'screen:back',
+                }
               : get(navBarProps.buttons, 'start'),
             end: withCloseButton
               ? {
-                icon: CrossSVG,
-                onClick: () => onClose && onClose({ contentElement: contentRef.current }),
-                'aria-label': `Закрыть ${title || ''}`.trim(),
-              }
+                  // ВАЖНО: не подмешиваем свойства из navBarProps.buttons.end
+                  // чтобы не распылять конфигурацию одной и той же кнопки по нескольким местам
+                  icon: CrossSVG,
+                  onClick: () => onClose && onClose({ contentElement: contentRef.current }),
+                  'aria-label': `Закрыть ${title || ''}`.trim(),
+                  'data-testid': 'screen:close',
+                }
               : get(navBarProps.buttons, 'end'),
           }}
         />
@@ -98,19 +106,17 @@ export const ScreenLayout: React.FC<ScreenLayoutProps> = ({
       <div
         className={cx('content', 'full-width')}
         children={children}
-        ref={createTakeContentRef({
-          elementRef: contentRef,
-          unsubscribeRef,
-          onFullScroll,
-          fullScrollThreshold,
-        }) as any}
+        ref={
+          createTakeContentRef({
+            elementRef: contentRef,
+            unsubscribeRef,
+            onFullScroll,
+            fullScrollThreshold,
+          }) as any
+        }
       />
 
-      {Boolean(footer) && (
-        <div className={cx('footer', 'full-width')}>
-          {footer}
-        </div>
-      )}
+      {Boolean(footer) && <div className={cx('footer', 'full-width')}>{footer}</div>}
     </>
   );
 };
@@ -125,35 +131,37 @@ export const ScreenLayout: React.FC<ScreenLayoutProps> = ({
  * @param options.fullScrollThreshold Отступ от нижней границы для срабатывания onFullScroll.
  * @return Функция сохранения аргумента в ref-контейнер.
  */
-export const createTakeContentRef = ({
-  elementRef,
-  unsubscribeRef,
-  onFullScroll,
-  fullScrollThreshold: threshold = 0,
-}: {
-  elementRef: React.MutableRefObject<OrNil<HTMLDivElement>>
-  unsubscribeRef: React.MutableRefObject<undefined | (() => void)>
-  onFullScroll?: (data: CallbackData) => void
-  fullScrollThreshold?: number
-}) => (element?: HTMLDivElement) => {
-  if (!element) {
-    // чистим реф
-    elementRef.current = undefined;
+export const createTakeContentRef =
+  ({
+    elementRef,
+    unsubscribeRef,
+    onFullScroll,
+    fullScrollThreshold: threshold = 0,
+  }: {
+    elementRef: React.MutableRefObject<OrNil<HTMLDivElement>>;
+    unsubscribeRef: React.MutableRefObject<undefined | (() => void)>;
+    onFullScroll?: (data: CallbackData) => void;
+    fullScrollThreshold?: number;
+  }) =>
+  (element?: HTMLDivElement) => {
+    if (!element) {
+      // чистим реф
+      elementRef.current = undefined;
 
-    // если ранее были подписаны - отписываемся
-    unsubscribeRef.current && unsubscribeRef.current();
-  } else if (element !== elementRef.current) {
-    // сохраняем ссылку для последующей отправки в onClose/onBack
-    elementRef.current = element;
+      // если ранее были подписаны - отписываемся
+      unsubscribeRef.current && unsubscribeRef.current();
+    } else if (element !== elementRef.current) {
+      // сохраняем ссылку для последующей отправки в onClose/onBack
+      elementRef.current = element;
 
-    // если ранее были подписаны - отписываемся
-    unsubscribeRef.current && unsubscribeRef.current();
+      // если ранее были подписаны - отписываемся
+      unsubscribeRef.current && unsubscribeRef.current();
 
-    // выполняем подписку, сохраняем функцию отписки
-    unsubscribeRef.current = on(element, 'scroll', () => {
-      isFullyScrolled(element, { threshold })
-        && onFullScroll
-        && onFullScroll({ contentElement: element });
-    });
-  }
-};
+      // выполняем подписку, сохраняем функцию отписки
+      unsubscribeRef.current = on(element, 'scroll', () => {
+        isFullyScrolled(element, { threshold }) &&
+          onFullScroll &&
+          onFullScroll({ contentElement: element });
+      });
+    }
+  };

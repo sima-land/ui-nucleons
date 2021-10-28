@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavBar } from '../../nav-bar';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import { Screen, takeScrollableElement, setRefValue } from '../index';
@@ -20,9 +19,7 @@ jest.mock('body-scroll-lock', () => {
 
 describe('<Screen />', () => {
   it('should render without props', () => {
-    const wrapper = mount(
-      <Screen />
-    );
+    const wrapper = mount(<Screen />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -44,18 +41,24 @@ describe('<Screen />', () => {
         withCloseButton
         children='Test content'
         footer='Test footer'
-      />
+      />,
     );
 
     expect(wrapper).toMatchSnapshot();
     expect(disableBodyScroll).toHaveBeenCalledTimes(1);
 
     expect(spy).toHaveBeenCalledTimes(0);
-    (wrapper.find(NavBar).prop('buttons') as any).start.onClick();
+    act(() => {
+      wrapper.find('button[data-testid="screen:back"]').simulate('click');
+    });
+    wrapper.update();
     expect(spy).toHaveBeenCalledTimes(1);
 
     expect(otherSpy).toHaveBeenCalledTimes(0);
-    (wrapper.find(NavBar).prop('buttons') as any).end.onClick();
+    act(() => {
+      wrapper.find('button[data-testid="screen:close"]').simulate('click');
+    });
+    wrapper.update();
     expect(otherSpy).toHaveBeenCalledTimes(1);
 
     expect(enableBodyScroll).toHaveBeenCalledTimes(0);
@@ -75,7 +78,7 @@ describe('<Screen />', () => {
             end: { text: 'cross replacer' },
           },
         }}
-      />
+      />,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -84,11 +87,7 @@ describe('<Screen />', () => {
   it('should handle "onFullScroll" prop', () => {
     const spyScroll = jest.fn();
 
-    const wrapper = mount(
-      <Screen
-        onFullScroll={spyScroll}
-      />
-    );
+    const wrapper = mount(<Screen onFullScroll={spyScroll} />);
 
     expect(spyScroll).toHaveBeenCalledTimes(0);
 
@@ -101,22 +100,14 @@ describe('<Screen />', () => {
 
   it('should handle "loading/loadingOverlayProps" props', () => {
     const wrapper = mount(
-      <Screen
-        loading
-        loadingOverlayProps={{ spinnerProps: { size: 'medium' } }}
-      />
+      <Screen loading loadingOverlayProps={{ spinnerProps: { size: 'medium' } }} />,
     );
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should handle "loadingArea" prop', () => {
-    const wrapper = mount(
-      <Screen
-        loading
-        loadingArea='content'
-      />
-    );
+    const wrapper = mount(<Screen loading loadingArea='content' />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -165,16 +156,12 @@ describe('setRefElement()', () => {
   });
 
   it('should render Layer', () => {
-    const wrapper = mount(
-      <Screen />
-    );
+    const wrapper = mount(<Screen />);
     expect(wrapper.find(Portal)).toHaveLength(1);
   });
 
   it('should not render Layer', () => {
-    const wrapper = mount(
-      <Screen inPortal={false} />
-    );
+    const wrapper = mount(<Screen inPortal={false} />);
 
     expect(wrapper.find(Portal)).toHaveLength(0);
   });
