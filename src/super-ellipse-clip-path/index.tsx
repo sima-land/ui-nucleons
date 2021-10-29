@@ -1,9 +1,8 @@
 import React from 'react';
 
 export interface SuperEllipseClipPathProps {
-
   /** Идентификатор. */
-  id?: string
+  id?: string;
 }
 
 /**

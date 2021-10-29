@@ -40,7 +40,6 @@ export const Primary = () => (
         Марина Михайловская позвонит
         <br />
         на этот номер
-
         <PhoneInput style={{ marginTop: 24, '--phone-input-width': 304 }} />
       </Card.Content>
 

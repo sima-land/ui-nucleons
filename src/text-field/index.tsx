@@ -12,71 +12,78 @@ type Variant = 'desktop' | 'mobile';
 export type DesktopSize = 'xs' | 's' | 'l';
 
 type Classes = {
-  root?: string
-  baseInput?: string
-  blockFocused?: string
+  root?: string;
+  baseInput?: string;
+  blockFocused?: string;
 };
 
-type IgnoredInputProps = 'size' | 'onClick' | 'onInput' | 'onChange' | 'onKeyDown' | 'onKeyUp' | 'onSelect';
+type IgnoredInputProps =
+  | 'size'
+  | 'onClick'
+  | 'onInput'
+  | 'onChange'
+  | 'onKeyDown'
+  | 'onKeyUp'
+  | 'onSelect';
 
-export interface TextFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, IgnoredInputProps> {
-
+export interface TextFieldProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, IgnoredInputProps> {
   /** Ярлык. */
-  label?: string
+  label?: string;
 
   /** Свойства BaseInput. */
-  baseInputProps?: BaseInputProps
+  baseInputProps?: BaseInputProps;
 
   /** Подпись снизу. */
-  caption?: React.ReactNode
+  caption?: React.ReactNode;
 
   /** CSS-классы. */
-  classes?: Classes
+  classes?: Classes;
 
   /** Дополнительная верстка после текста. */
-  endAdornment?: React.ReactNode
+  endAdornment?: React.ReactNode;
 
   /** Показывать ли поле как ошибочное. */
-  failed?: boolean
+  failed?: boolean;
 
   /** Показывать ли поле как сфокусированное (влияет только на оформление). */
-  focused?: boolean
+  focused?: boolean;
 
   /** Нужно ли выводить textarea вместо input. */
-  multiline?: boolean
+  multiline?: boolean;
 
   /** Сработает при изменении значения. */
-  onChange?: BaseInputProps['onChange']
+  onChange?: BaseInputProps['onChange'];
 
   /** Сработает при клике. */
-  onClick?: React.MouseEventHandler<HTMLDivElement>
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 
   /** Сработает при событии "input". */
-  onInput?: BaseInputProps['onInput']
+  onInput?: BaseInputProps['onInput'];
 
   /** Сработает при событии "keydown". */
-  onKeyDown?: BaseInputProps['onKeyDown']
+  onKeyDown?: BaseInputProps['onKeyDown'];
 
   /** Сработает при событии "keyup". */
-  onKeyUp?: BaseInputProps['onKeyUp']
+  onKeyUp?: BaseInputProps['onKeyUp'];
 
   /** Placeholder, который выводится после введенного значения. */
-  restPlaceholder?: BaseInputProps['restPlaceholder']
+  restPlaceholder?: BaseInputProps['restPlaceholder'];
 
   /** Задает скругления. */
-  rounds?: 'none' | keyof typeof SmallRounds
+  rounds?: 'none' | keyof typeof SmallRounds;
 
   /** Размеры поля для variant = "desktop". */
-  size?: DesktopSize
+  size?: DesktopSize;
 
   /** Дополнительная верстка до текста. */
-  startAdornment?: React.ReactNode
+  startAdornment?: React.ReactNode;
 
   /** Вариант отображения. */
-  variant?: Variant
+  variant?: Variant;
 
   /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string
+  'data-testid'?: string;
 }
 
 const cx = classnames.bind(styles);
@@ -97,17 +104,23 @@ const isVisible = (value?: any) => !isNil(value) && `${value}` !== '';
  * @param modifiers Данные визуальных модификаторов.
  * @return Строка с css-классами.
  */
-const modifiersToClasses = ({ disabled, failed, focused, variant }: {
-  disabled?: boolean
-  failed?: boolean
-  focused?: boolean
-  variant?: Variant
-}) => cx(
-  disabled && 'disabled',
-  failed && 'failed',
-  focused && 'focused',
-  variant && `variant-${variant}`
-);
+const modifiersToClasses = ({
+  disabled,
+  failed,
+  focused,
+  variant,
+}: {
+  disabled?: boolean;
+  failed?: boolean;
+  focused?: boolean;
+  variant?: Variant;
+}) =>
+  cx(
+    disabled && 'disabled',
+    failed && 'failed',
+    focused && 'focused',
+    variant && `variant-${variant}`,
+  );
 
 /**
  * Компонент текстового поля.
@@ -115,39 +128,42 @@ const modifiersToClasses = ({ disabled, failed, focused, variant }: {
  * @return Элемент.
  */
 export const TextField = forwardRef<
-HTMLTextAreaElement | HTMLInputElement | undefined,
-TextFieldProps
->(function TextField ({
-  autoFocus,
-  caption,
-  classes = {},
-  defaultValue,
-  disabled,
-  endAdornment,
-  failed,
-  focused: asFocused,
-  label,
-  onClick,
-  onBlur,
-  onChange,
-  onFocus,
-  onInput,
-  onKeyDown,
-  onKeyUp,
-  placeholder,
-  readOnly,
-  rounds = 'all',
-  size = DEFAULTS.size,
-  startAdornment,
-  value,
-  variant = 'desktop',
-  multiline,
-  baseInputProps = {},
-  className,
-  restPlaceholder,
-  style,
-  'data-testid': dataTestId,
-}, ref) {
+  HTMLTextAreaElement | HTMLInputElement | undefined,
+  TextFieldProps
+>(function TextField(
+  {
+    autoFocus,
+    caption,
+    classes = {},
+    defaultValue,
+    disabled,
+    endAdornment,
+    failed,
+    focused: asFocused,
+    label,
+    onClick,
+    onBlur,
+    onChange,
+    onFocus,
+    onInput,
+    onKeyDown,
+    onKeyUp,
+    placeholder,
+    readOnly,
+    rounds = 'all',
+    size = DEFAULTS.size,
+    startAdornment,
+    value,
+    variant = 'desktop',
+    multiline,
+    baseInputProps = {},
+    className,
+    restPlaceholder,
+    style,
+    'data-testid': dataTestId,
+  },
+  ref,
+) {
   const [hasValue, toggleHasValue] = useState(isVisible(value) || isVisible(defaultValue));
   const [reallyFocused, toggleFocused] = useState(autoFocus);
   const focused = reallyFocused || Boolean(asFocused);
@@ -172,7 +188,6 @@ TextFieldProps
 
   return (
     <div data-testid={dataTestId} className={cx('root', className, classes.root)} style={style}>
-
       {/* field row */}
       <div
         data-testid='text-field:block'
@@ -184,17 +199,14 @@ TextFieldProps
           focused && classes.blockFocused,
           multiline && 'multiline',
           withLabel && 'with-label',
-          variant === 'desktop' && rounds !== 'none' && SmallRounds[rounds]
+          variant === 'desktop' && rounds !== 'none' && SmallRounds[rounds],
         )}
         onClick={event => {
           const input = baseInputRef.current;
 
           onClick?.(event);
 
-          input
-            && !disabled
-            && input !== document.activeElement
-            && input.focus();
+          input && !disabled && input !== document.activeElement && input.focus();
         }}
       >
         {/* start adornment column */}
@@ -212,7 +224,7 @@ TextFieldProps
                 'label',
                 commonModifyClasses,
                 hasValue && 'filled',
-                labelAsPlaceholder && 'as-placeholder'
+                labelAsPlaceholder && 'as-placeholder',
               )}
               children={label}
             />
@@ -223,22 +235,14 @@ TextFieldProps
               data-testid='text-field:field'
               multiline={multiline}
               ref={baseInputRef}
-              placeholder={
-                withLabel && labelAsPlaceholder
-                  ? undefined
-                  : placeholder
-              }
-              restPlaceholder={
-                withLabel && labelAsPlaceholder
-                  ? undefined
-                  : restPlaceholder
-              }
+              placeholder={withLabel && labelAsPlaceholder ? undefined : placeholder}
+              restPlaceholder={withLabel && labelAsPlaceholder ? undefined : restPlaceholder}
               autoFocus={autoFocus}
               className={cx(
                 'base-input',
                 commonModifyClasses,
                 classes.baseInput,
-                size && `size-${size}`
+                size && `size-${size}`,
               )}
               defaultValue={defaultValue}
               value={value}
@@ -273,11 +277,7 @@ TextFieldProps
       {/* caption row */}
       {Boolean(caption) && (
         <div
-          className={cx(
-            'caption',
-            marginTop(isMobile ? 1 : 2),
-            failed && 'failed'
-          )}
+          className={cx('caption', marginTop(isMobile ? 1 : 2), failed && 'failed')}
           children={caption}
         />
       )}

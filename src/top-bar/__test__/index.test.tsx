@@ -6,33 +6,25 @@ import * as TestProps from './test-props';
 
 describe('<TopBar />', () => {
   it('should render without props', () => {
-    const wrapper = mount(
-      <TopBar />
-    );
+    const wrapper = mount(<TopBar />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should render as divided', () => {
-    const wrapper = mount(
-      <TopBar divided />
-    );
+    const wrapper = mount(<TopBar divided />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should renders with title and subtitle', () => {
-    const wrapper = mount(
-      <TopBar {...TestProps.shortTitles} />
-    );
+    const wrapper = mount(<TopBar {...TestProps.shortTitles} />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should handle "size" prop', () => {
-    const wrapper = mount(
-      <TopBar {...TestProps.shortTitles} />
-    );
+    const wrapper = mount(<TopBar {...TestProps.shortTitles} />);
 
     TestProps.sizes.forEach(size => {
       wrapper.setProps({ size });
@@ -41,41 +33,25 @@ describe('<TopBar />', () => {
   });
 
   it('should renders with start icon', () => {
-    const wrapper = mount(
-      <TopBar
-        buttonsProps={{ start: TestProps.allButtons.start }}
-      />
-    );
+    const wrapper = mount(<TopBar buttonsProps={{ start: TestProps.allButtons.start }} />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should renders with end icon', () => {
-    const wrapper = mount(
-      <TopBar
-        buttonsProps={{ end: TestProps.allButtons.end }}
-      />
-    );
+    const wrapper = mount(<TopBar buttonsProps={{ end: TestProps.allButtons.end }} />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should renders with start icons', () => {
-    const wrapper = mount(
-      <TopBar
-        buttonsProps={TestProps.startButtons}
-      />
-    );
+    const wrapper = mount(<TopBar buttonsProps={TestProps.startButtons} />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should renders with end icons', () => {
-    const wrapper = mount(
-      <TopBar
-        buttonsProps={TestProps.endButtons}
-      />
-    );
+    const wrapper = mount(<TopBar buttonsProps={TestProps.endButtons} />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -83,11 +59,7 @@ describe('<TopBar />', () => {
   it('should renders with all icons', () => {
     const buttonProps = mapValues(TestProps.allButtons, p => ({ ...p, onClick: jest.fn() }));
 
-    const wrapper = mount(
-      <TopBar
-        buttonsProps={buttonProps}
-      />
-    );
+    const wrapper = mount(<TopBar buttonsProps={buttonProps} />);
 
     expect(wrapper).toMatchSnapshot();
 

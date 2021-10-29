@@ -21,16 +21,8 @@ export const Primary = () => (
     <DisplayWrapper>
       <FieldGrid>
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Hello, world!' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Hello, world!' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField defaultValue='Hello, world!' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Hello, world!' />} />
         </FieldGrid.Row>
       </FieldGrid>
     </DisplayWrapper>
@@ -38,21 +30,9 @@ export const Primary = () => (
     <DisplayWrapper>
       <FieldGrid>
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Hello, world!' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Hello, world!' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Hello, world!' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField defaultValue='Hello, world!' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Hello, world!' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Hello, world!' />} />
         </FieldGrid.Row>
       </FieldGrid>
     </DisplayWrapper>
@@ -60,34 +40,14 @@ export const Primary = () => (
     <DisplayWrapper>
       <FieldGrid>
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Hello, world!' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Hello, world!' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField defaultValue='Hello, world!' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Hello, world!' />} />
         </FieldGrid.Row>
 
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Hello, world!' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Hello, world!' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Hello, world!' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField defaultValue='Hello, world!' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Hello, world!' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Hello, world!' />} />
         </FieldGrid.Row>
       </FieldGrid>
     </DisplayWrapper>
@@ -95,55 +55,23 @@ export const Primary = () => (
     <DisplayWrapper>
       <FieldGrid>
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Hello, world!' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Hello, world!' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField defaultValue='Hello, world!' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Hello, world!' />} />
         </FieldGrid.Row>
 
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField disabled defaultValue='Hello, world!' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Hello, world!' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Hello, world!' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField disabled defaultValue='Hello, world!' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Hello, world!' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Hello, world!' />} />
         </FieldGrid.Row>
 
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Hello, world!' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Hello, world!' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField defaultValue='Hello, world!' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Hello, world!' />} />
         </FieldGrid.Row>
 
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField multiline defaultValue='Hello, world!' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField multiline defaultValue='Hello, world!' />} />
         </FieldGrid.Row>
       </FieldGrid>
     </DisplayWrapper>

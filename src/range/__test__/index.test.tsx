@@ -4,18 +4,14 @@ import { Range } from '..';
 
 describe('<Range />', () => {
   it('should works without props', () => {
-    const wrapper = mount(
-      <Range />
-    );
+    const wrapper = mount(<Range />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should handle "wrapperProps" prop', () => {
     const wrapper = mount(
-      <Range
-        wrapperProps={{ className: 'test-wrapper', 'data-test': 123 } as any}
-      />
+      <Range wrapperProps={{ className: 'test-wrapper', 'data-test': 123 } as any} />,
     );
 
     expect(wrapper.find('.range-wrapper-base').prop('className')).toContain('test-wrapper');
@@ -23,9 +19,7 @@ describe('<Range />', () => {
   });
 
   it('should handle "disabled" prop', () => {
-    const wrapper = mount(
-      <Range disabled />
-    );
+    const wrapper = mount(<Range disabled />);
     const instance = wrapper.instance();
 
     expect(wrapper.find('.range-wrapper-base').prop('className')).toContain('disabled');
@@ -44,52 +38,45 @@ describe('<Range />', () => {
   it('should handle "onChange" and "onSlide" props', () => {
     const spy = jest.fn();
     const otherSpy = jest.fn();
-    const wrapper = mount(
-      <Range
-        min={10}
-        max={20}
-        step={2}
-        onChange={spy}
-        onSlide={otherSpy}
-      />
-    );
+    const wrapper = mount(<Range min={10} max={20} step={2} onChange={spy} onSlide={otherSpy} />);
     const instance = wrapper.instance();
     expect(spy).toHaveBeenCalledTimes(0);
 
     // simulate drag start
-    wrapper.find('.range-container-base').getDOMNode().dispatchEvent(new MouseEvent('mousedown', {
-      clientX: 10,
-    }));
+    wrapper
+      .find('.range-container-base')
+      .getDOMNode()
+      .dispatchEvent(
+        new MouseEvent('mousedown', {
+          clientX: 10,
+        }),
+      );
     expect(spy).toHaveBeenCalledTimes(0);
     expect(otherSpy).toHaveBeenCalledTimes(1);
 
     // simulate drag move
     jest.spyOn(instance, 'constrainValue' as any).mockImplementation(() => 14);
-    window.dispatchEvent(new MouseEvent('mousemove', {
-      clientX: 14,
-    }));
+    window.dispatchEvent(
+      new MouseEvent('mousemove', {
+        clientX: 14,
+      }),
+    );
     expect(spy).toHaveBeenCalledTimes(0);
     expect(otherSpy).toHaveBeenCalledTimes(2);
 
     // simulate drag end (without start)
-    window.dispatchEvent(new MouseEvent('mouseup', {
-      clientX: 14,
-    }));
+    window.dispatchEvent(
+      new MouseEvent('mouseup', {
+        clientX: 14,
+      }),
+    );
 
     expect(spy).toHaveBeenCalledTimes(1);
     expect(otherSpy).toHaveBeenCalledTimes(2);
   });
 
   it('should place thumbs and range properly on props change', () => {
-    const wrapper = mount(
-      <Range
-        min={0}
-        max={10}
-        step={1}
-        startValue={2}
-        finishValue={4}
-      />
-    );
+    const wrapper = mount(<Range min={0} max={10} step={1} startValue={2} finishValue={4} />);
 
     expect((wrapper.find('.thumb-base').at(0).prop as any)('style').left).toBe('20%');
     expect((wrapper.find('.thumb-base').at(1).prop('style') as any).left).toBe('40%');
@@ -113,17 +100,13 @@ describe('<Range />', () => {
   });
 
   it('should unsubscribe event listeners on unmount', () => {
-    const wrapper = mount(
-      <Range />
-    );
+    const wrapper = mount(<Range />);
 
     (wrapper.instance() as any).componentWillUnmount();
   });
 
   it('should handle drag start properly', () => {
-    const wrapper = mount(
-      <Range disabled />
-    );
+    const wrapper = mount(<Range disabled />);
     const instance = wrapper.instance();
     jest.spyOn(instance, 'updateActiveThumb' as any);
     jest.spyOn(instance, 'toggleGrabbed' as any);
@@ -142,9 +125,7 @@ describe('<Range />', () => {
   });
 
   it('should handle drag end properly', () => {
-    const wrapper = mount(
-      <Range />
-    );
+    const wrapper = mount(<Range />);
     const instance = wrapper.instance();
     jest.spyOn(instance, 'toggleGrabbed' as any);
     jest.spyOn(instance, 'fireEvent' as any);
@@ -167,9 +148,7 @@ describe('<Range />', () => {
 
   describe('constrainValue()', () => {
     it('should return value properly, INT step', () => {
-      const wrapper = mount(
-        <Range min={2.5} max={200.1} step={1} />
-      );
+      const wrapper = mount(<Range min={2.5} max={200.1} step={1} />);
       const instance = wrapper.instance();
 
       // эти значения идентичны тем, которые выдает <input type="range" />
@@ -178,9 +157,7 @@ describe('<Range />', () => {
       expect((instance as any).constrainValue(81 * 2.5)).toBe(199.5);
     });
     it('should return value properly, FLOAT step', () => {
-      const wrapper = mount(
-        <Range min={1} max={5} step={0.1} />
-      );
+      const wrapper = mount(<Range min={1} max={5} step={0.1} />);
       const instance = wrapper.instance();
 
       expect((instance as any).constrainValue(0.5)).toBe(1);
@@ -194,9 +171,7 @@ describe('<Range />', () => {
   });
 
   it('updateValues() should set start thumb value on drag start', () => {
-    const wrapper = mount(
-      <Range min={20} max={30} step={1} />
-    );
+    const wrapper = mount(<Range min={20} max={30} step={1} />);
     const instance = wrapper.instance();
 
     jest.spyOn((instance as any).start, 'set');
@@ -204,16 +179,19 @@ describe('<Range />', () => {
     expect((instance as any).start.set).toHaveBeenCalledTimes(0);
 
     // simulate drag start
-    wrapper.find('.range-container-base').getDOMNode().dispatchEvent(new MouseEvent('mousedown', {
-      clientX: -10,
-    }));
+    wrapper
+      .find('.range-container-base')
+      .getDOMNode()
+      .dispatchEvent(
+        new MouseEvent('mousedown', {
+          clientX: -10,
+        }),
+      );
     expect((instance as any).start.set).toHaveBeenCalledTimes(1);
   });
 
   it('updateValues() should set finish thumb value on drag start', () => {
-    const wrapper = mount(
-      <Range min={20} max={30} step={1} />
-    );
+    const wrapper = mount(<Range min={20} max={30} step={1} />);
     const instance = wrapper.instance();
 
     jest.spyOn((instance as any).finish, 'set');
@@ -221,16 +199,19 @@ describe('<Range />', () => {
     expect((instance as any).finish.set).toHaveBeenCalledTimes(0);
 
     // simulate drag start
-    wrapper.find('.range-container-base').getDOMNode().dispatchEvent(new MouseEvent('mousedown', {
-      clientX: 10,
-    }));
+    wrapper
+      .find('.range-container-base')
+      .getDOMNode()
+      .dispatchEvent(
+        new MouseEvent('mousedown', {
+          clientX: 10,
+        }),
+      );
     expect((instance as any).finish.set).toHaveBeenCalledTimes(1);
   });
 
   it('updateValues() should not set start/finish value', () => {
-    const wrapper = mount(
-      <Range min={20} max={30} step={1} />
-    );
+    const wrapper = mount(<Range min={20} max={30} step={1} />);
     const instance = wrapper.instance();
 
     jest.spyOn((instance as any).finish, 'set');
@@ -240,22 +221,27 @@ describe('<Range />', () => {
     expect((instance as any).finish.set).toHaveBeenCalledTimes(0);
 
     // simulate drag start
-    wrapper.find('.range-container-base').getDOMNode().dispatchEvent(new MouseEvent('mousedown', {
-      clientX: 10,
-    }));
+    wrapper
+      .find('.range-container-base')
+      .getDOMNode()
+      .dispatchEvent(
+        new MouseEvent('mousedown', {
+          clientX: 10,
+        }),
+      );
     expect((instance as any).finish.set).toHaveBeenCalledTimes(1);
 
     // simulate drag move
-    window.dispatchEvent(new MouseEvent('mousemove', {
-      clientX: 12,
-    }));
+    window.dispatchEvent(
+      new MouseEvent('mousemove', {
+        clientX: 12,
+      }),
+    );
     expect((instance as any).finish.set).toHaveBeenCalledTimes(2);
   });
 
   it('updateThumbElements() should not throw when elements is not defined', () => {
-    const wrapper = mount(
-      <Range min={20} max={30} step={1} />
-    );
+    const wrapper = mount(<Range min={20} max={30} step={1} />);
     const instance = wrapper.instance();
 
     wrapper.unmount();
@@ -264,9 +250,7 @@ describe('<Range />', () => {
   });
 
   it('updateRangeElement() should not throw when elements is not defined', () => {
-    const wrapper = mount(
-      <Range min={20} max={30} step={1} />
-    );
+    const wrapper = mount(<Range min={20} max={30} step={1} />);
     const instance = wrapper.instance();
 
     wrapper.unmount();

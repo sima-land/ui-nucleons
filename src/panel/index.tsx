@@ -5,27 +5,26 @@ import { COLORS, Token } from '../colors';
 import styles from './panel.module.scss';
 
 export interface PanelProps {
-
   /** Наименование цвета панели. */
-  color?: Token
+  color?: Token;
 
   /** Наименование цвета содержимого. */
-  contentColor?: Token
+  contentColor?: Token;
 
   /** Нужно ли стилизовать как inline-элемент. */
-  inline?: boolean
+  inline?: boolean;
 
   /** Компонент иконки. */
-  icon?: React.ComponentType<React.SVGAttributes<SVGSVGElement>>
+  icon?: React.ComponentType<React.SVGAttributes<SVGSVGElement>>;
 
   /** CSS-класс корневого элемента. */
-  className?: string
+  className?: string;
 
   /** Содержимое в виде строки с html-версткой. */
-  html?: string
+  html?: string;
 
   /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string
+  'data-testid'?: string;
 }
 
 const cx = classnames.bind(styles);
@@ -45,18 +44,11 @@ export const Panel: React.FC<PanelProps> = ({
   html,
   'data-testid': testId = 'panel',
 }) => {
-  const contentProps = html
-    ? { dangerouslySetInnerHTML: { __html: html } }
-    : { children };
+  const contentProps = html ? { dangerouslySetInnerHTML: { __html: html } } : { children };
 
   return (
     <div
-      className={cx(
-        'panel',
-        inline && 'inline',
-        bgColor(panelColor),
-        className
-      )}
+      className={cx('panel', inline && 'inline', bgColor(panelColor), className)}
       data-testid={testId}
     >
       {Icon && (
@@ -68,10 +60,7 @@ export const Panel: React.FC<PanelProps> = ({
           aria-hidden='true'
         />
       )}
-      <div
-        {...contentProps}
-        className={cx('content', color(contentColor))}
-      />
+      <div {...contentProps} className={cx('content', color(contentColor))} />
     </div>
   );
 };

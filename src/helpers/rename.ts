@@ -9,10 +9,8 @@ type ObjectKey = string | number | symbol;
  * @param source Объект.
  * @return Новый объект.
  */
-export const rename = curry((fromKey: ObjectKey, toKey: ObjectKey, source: any) => assoc(
-  toKey,
-  prop(fromKey, source),
-  omit([fromKey], source)
-));
+export const rename = curry((fromKey: ObjectKey, toKey: ObjectKey, source: any) =>
+  assoc(toKey, prop(fromKey, source), omit([fromKey], source)),
+);
 
 export default rename;

@@ -4,18 +4,17 @@ import classnames from 'classnames/bind';
 import classes from './loading-overlay.module.scss';
 
 export interface LoadingOverlayProps {
-
   /** Пользовательский CSS-класс корневого элемента. */
-  className?: string
+  className?: string;
 
   /** Нужно ли заполнять родительский элемент с помощью `position: absolute`. */
-  fill?: boolean
+  fill?: boolean;
 
   /** Свойства компонента Spinner. */
-  spinnerProps?: SpinnerProps
+  spinnerProps?: SpinnerProps;
 
   /** Пользовательские стили. */
-  style?: React.CSSProperties
+  style?: React.CSSProperties;
 }
 
 const cx = classnames.bind(classes);
@@ -25,11 +24,13 @@ const cx = classnames.bind(classes);
  * @param props Свойства.
  * @return Элемент.
  */
-export const LoadingOverlay = ({ style, className, spinnerProps = {}, fill = true }: LoadingOverlayProps) => (
-  <div
-    className={cx('loading-overlay', fill && 'fill', className)}
-    style={style}
-  >
+export const LoadingOverlay = ({
+  style,
+  className,
+  spinnerProps = {},
+  fill = true,
+}: LoadingOverlayProps) => (
+  <div className={cx('loading-overlay', fill && 'fill', className)} style={style}>
     <Spinner {...spinnerProps} />
   </div>
 );

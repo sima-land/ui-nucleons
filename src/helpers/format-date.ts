@@ -12,29 +12,29 @@ import ruLocale from 'date-fns/locale/ru';
  * @param options.invalidPlaceholder Вернется в случае невалидности даты.
  * @return Функция для форматирования даты.
  */
-export const createDateFormatter = ({
-  formatFrom = ['yyyy-MM-dd', 'dd.MM.yyyy'],
-  formatTo = 'dd MMMM yyyy',
-  invalidPlaceholder = '',
-}: {
-  formatFrom?: string | string[];
-  formatTo?: string | ((d: Date) => string);
-  invalidPlaceholder?: any;
-} = {}) => (dateString: string) => {
-  const date = parseMultiple(dateString, formatFrom, new Date());
+export const createDateFormatter =
+  ({
+    formatFrom = ['yyyy-MM-dd', 'dd.MM.yyyy'],
+    formatTo = 'dd MMMM yyyy',
+    invalidPlaceholder = '',
+  }: {
+    formatFrom?: string | string[];
+    formatTo?: string | ((d: Date) => string);
+    invalidPlaceholder?: any;
+  } = {}) =>
+  (dateString: string) => {
+    const date = parseMultiple(dateString, formatFrom, new Date());
 
-  let result = invalidPlaceholder;
+    let result = invalidPlaceholder;
 
-  if (isValid(date)) {
-    result = format(
-      date,
-      isFunction(formatTo) ? formatTo(new Date(date.getTime())) : formatTo,
-      { locale: ruLocale },
-    );
-  }
+    if (isValid(date)) {
+      result = format(date, isFunction(formatTo) ? formatTo(new Date(date.getTime())) : formatTo, {
+        locale: ruLocale,
+      });
+    }
 
-  return result;
-};
+    return result;
+  };
 
 /**
  * Работает аналогично "date-fns/parse", но позволяет передать множество форматов в виде массива.

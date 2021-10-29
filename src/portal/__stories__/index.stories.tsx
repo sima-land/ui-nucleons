@@ -51,7 +51,9 @@ export const Primary = () => {
             <div style={styles.modal}>
               <h2 style={styles.title}>Тестовое окно </h2>
               <p>Монтировано в конце body в специальном div</p>
-              <Button size='s' onClick={() => toggleModal(false)}>Закрыть</Button>
+              <Button size='s' onClick={() => toggleModal(false)}>
+                Закрыть
+              </Button>
             </div>
           </div>
         </Portal>

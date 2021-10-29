@@ -4,9 +4,7 @@ import { BorderedLayout } from '..';
 
 describe('<BoBorderedLayoutrder />', () => {
   it('without props', () => {
-    const wrapper = mount(
-      <BorderedLayout>Hello, world</BorderedLayout>
-    );
+    const wrapper = mount(<BorderedLayout>Hello, world</BorderedLayout>);
 
     expect(wrapper).toMatchSnapshot();
 

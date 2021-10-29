@@ -22,9 +22,10 @@ const getDateIntervalData = (startDate: string, endDate: string) => {
   let isInterval;
 
   if (isValid(start) && isValid(end) && !isEqual(start, end)) {
-    const startFormattedDate = getMonth(start) === getMonth(end)
-      ? format(start, 'd', formatOptions)
-      : format(start, 'd MMMM', formatOptions);
+    const startFormattedDate =
+      getMonth(start) === getMonth(end)
+        ? format(start, 'd', formatOptions)
+        : format(start, 'd MMMM', formatOptions);
 
     date = `${startFormattedDate} – ${format(end, 'd MMMM', formatOptions)}`;
     isInterval = true;

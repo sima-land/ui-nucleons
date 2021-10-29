@@ -14,9 +14,11 @@ describe('<WithHint />', () => {
             data-testid='test-opener'
             onMouseEnter={() => toggle(true)}
             onMouseLeave={() => toggle(false)}
-          >Opener</div>
+          >
+            Opener
+          </div>
         )}
-      </WithHint>
+      </WithHint>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -50,9 +52,11 @@ describe('<WithHint />', () => {
             data-testid='test-opener'
             onMouseEnter={() => toggle(true)}
             onMouseLeave={() => toggle(false)}
-          >Opener</div>
+          >
+            Opener
+          </div>
         )}
-      </WithHint>
+      </WithHint>,
     );
 
     expect(wrapper.find('[data-testid="hint"]')).toHaveLength(0);
@@ -87,9 +91,11 @@ describe('<WithHint />', () => {
             data-testid='test-opener'
             onMouseEnter={() => toggle(true)}
             onMouseLeave={() => toggle(false)}
-          >Opener</div>
+          >
+            Opener
+          </div>
         )}
-      </WithHint>
+      </WithHint>,
     );
 
     expect(wrapper.find('[data-testid="hint"]')).toHaveLength(0);
@@ -131,9 +137,7 @@ describe('useTempHint', () => {
   jest.useFakeTimers();
 
   it('should works', () => {
-    const wrapper = mount(
-      <TestComponent />
-    );
+    const wrapper = mount(<TestComponent />);
 
     expect(wrapper.text()).toBe('hidden');
 
@@ -153,9 +157,7 @@ describe('useTempHint', () => {
   });
 
   it('should recreate timer', () => {
-    const wrapper = mount(
-      <TestComponent />
-    );
+    const wrapper = mount(<TestComponent />);
 
     expect(wrapper.text()).toBe('hidden');
 
@@ -201,9 +203,7 @@ describe('useTempHint', () => {
   });
 
   it('should provide "onClose" prop', () => {
-    const wrapper = mount(
-      <TestComponent />
-    );
+    const wrapper = mount(<TestComponent />);
 
     expect(wrapper.text()).toBe('hidden');
 

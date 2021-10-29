@@ -1,18 +1,21 @@
 import { getStars } from '../utils';
 
 describe('getStars', () => {
-  const demo = (n: number) => getStars(n, 5).map(item => {
-    switch (item) {
-      case 'empty':
-        return '__';
-      case 'half':
-        return '[_';
-      case 'full':
-        return '[]';
-      default:
-        return '__';
-    }
-  }).join(' ');
+  const demo = (n: number) =>
+    getStars(n, 5)
+      .map(item => {
+        switch (item) {
+          case 'empty':
+            return '__';
+          case 'half':
+            return '[_';
+          case 'full':
+            return '[]';
+          default:
+            return '__';
+        }
+      })
+      .join(' ');
 
   it('should works', () => {
     expect(demo(0.1)).toBe('__ __ __ __ __');

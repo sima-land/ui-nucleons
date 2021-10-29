@@ -6,9 +6,7 @@ import { TextField } from '../../text-field';
 
 describe('MaskedField', () => {
   it('should renders properly', () => {
-    const wrapper = mount(
-      <MaskedField mask='__ __ №______' />
-    );
+    const wrapper = mount(<MaskedField mask='__ __ №______' />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -16,9 +14,7 @@ describe('MaskedField', () => {
   it('should pass mask state to onBlur callback', () => {
     const spy = jest.fn();
 
-    const wrapper = mount(
-      <MaskedField mask='____' onBlur={spy} />
-    );
+    const wrapper = mount(<MaskedField mask='____' onBlur={spy} />);
 
     expect(spy).toHaveBeenCalledTimes(0);
 
@@ -42,17 +38,13 @@ describe('MaskedField', () => {
   it('should handle ref prop', () => {
     const spy = jest.fn();
 
-    mount(
-      <MaskedField ref={spy} mask='____' onBlur={spy} />
-    );
+    mount(<MaskedField ref={spy} mask='____' onBlur={spy} />);
 
     expect(spy.mock.calls[0][0].nodeName).toBe('INPUT');
   });
 
   it('should handle mask prop change', () => {
-    const wrapper = mount(
-      <MaskedField mask='__-__' value='112233' />
-    );
+    const wrapper = mount(<MaskedField mask='__-__' value='112233' />);
 
     expect((wrapper.find('input').getDOMNode() as any).value).toBe('11-22');
 

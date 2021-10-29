@@ -26,10 +26,7 @@ describe('BreakpointQuery', () => {
 });
 
 describe('createRegistry', () => {
-  const listeners: Record<
-    string,
-    Array<(e: MediaElementAudioSourceOptions) => void>
-  > = {};
+  const listeners: Record<string, Array<(e: MediaElementAudioSourceOptions) => void>> = {};
 
   jest.spyOn(window, 'matchMedia').mockImplementation(
     query =>
@@ -58,21 +55,15 @@ describe('createRegistry', () => {
 
     expect(matchMedia).toBeCalledTimes(2); // for each unique query
 
-    expect((matchMedia as jest.Mock).mock.calls[0][0]).toBe(
-      '(min-width: 840px)',
-    );
-    expect((matchMedia as jest.Mock).mock.calls[1][0]).toBe(
-      '(max-width: 1023px)',
-    );
+    expect((matchMedia as jest.Mock).mock.calls[0][0]).toBe('(min-width: 840px)');
+    expect((matchMedia as jest.Mock).mock.calls[1][0]).toBe('(max-width: 1023px)');
 
     listeners['(min-width: 840px)'].forEach(fn => fn({ matches: true } as any));
     expect(spy1).toBeCalledTimes(1);
     expect(spy2).toBeCalledTimes(1);
     expect(spy3).toBeCalledTimes(0);
 
-    listeners['(max-width: 1023px)'].forEach(fn =>
-      fn({ matches: true } as any),
-    );
+    listeners['(max-width: 1023px)'].forEach(fn => fn({ matches: true } as any));
     expect(spy1).toBeCalledTimes(1);
     expect(spy2).toBeCalledTimes(1);
     expect(spy3).toBeCalledTimes(1);

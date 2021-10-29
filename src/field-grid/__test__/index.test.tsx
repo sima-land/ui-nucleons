@@ -8,13 +8,9 @@ describe('FieldGrid', () => {
     const wrapper = mount(
       <FieldGrid>
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
         </FieldGrid.Row>
-      </FieldGrid>
+      </FieldGrid>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -24,20 +20,12 @@ describe('FieldGrid', () => {
     const wrapper = mount(
       <FieldGrid>
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
         </FieldGrid.Row>
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
         </FieldGrid.Row>
-      </FieldGrid>
+      </FieldGrid>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -47,18 +35,10 @@ describe('FieldGrid', () => {
     const wrapper = mount(
       <FieldGrid>
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
         </FieldGrid.Row>
-      </FieldGrid>
+      </FieldGrid>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -68,23 +48,11 @@ describe('FieldGrid', () => {
     const wrapper = mount(
       <FieldGrid>
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
         </FieldGrid.Row>
-      </FieldGrid>
+      </FieldGrid>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -94,36 +62,16 @@ describe('FieldGrid', () => {
     const wrapper = mount(
       <FieldGrid>
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
         </FieldGrid.Row>
 
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
         </FieldGrid.Row>
-      </FieldGrid>
+      </FieldGrid>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -133,62 +81,26 @@ describe('FieldGrid', () => {
     const wrapper = mount(
       <FieldGrid>
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' classes={{}} />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' classes={{}} />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
         </FieldGrid.Row>
 
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
         </FieldGrid.Row>
 
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
         </FieldGrid.Row>
 
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField multiline defaultValue='Field value' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField multiline defaultValue='Field value' />} />
         </FieldGrid.Row>
-      </FieldGrid>
+      </FieldGrid>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -199,17 +111,13 @@ describe('FieldGrid', () => {
       <FieldGrid>
         <FieldGrid.Row>
           <FieldGrid.Cell
-            renderField={fieldProps => (
-              <TextField {...fieldProps} defaultValue='Foo' />
-            )}
+            renderField={fieldProps => <TextField {...fieldProps} defaultValue='Foo' />}
           />
           <FieldGrid.Cell
-            renderField={fieldProps => (
-              <TextField {...fieldProps} defaultValue='Bar' />
-            )}
+            renderField={fieldProps => <TextField {...fieldProps} defaultValue='Bar' />}
           />
         </FieldGrid.Row>
-      </FieldGrid>
+      </FieldGrid>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -220,19 +128,15 @@ describe('FieldGrid', () => {
       <FieldGrid>
         <FieldGrid.Row>
           <FieldGrid.Cell
-            renderField={fieldProps => (
-              <TextField {...fieldProps} defaultValue='Foo' />
-            )}
+            renderField={fieldProps => <TextField {...fieldProps} defaultValue='Foo' />}
           />
           <FieldGrid.Cell
-            renderField={fieldProps => (
-              <TextField {...fieldProps} defaultValue='Bar' />
-            )}
+            renderField={fieldProps => <TextField {...fieldProps} defaultValue='Bar' />}
           />
           {null as any}
         </FieldGrid.Row>
         {null as any}
-      </FieldGrid>
+      </FieldGrid>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -242,13 +146,9 @@ describe('FieldGrid', () => {
     const wrapper = mount(
       <FieldGrid rootProps={{ title: 'hello' }}>
         <FieldGrid.Row>
-          <FieldGrid.Cell
-            field={(
-              <TextField defaultValue='Field value' />
-            )}
-          />
+          <FieldGrid.Cell field={<TextField defaultValue='Field value' />} />
         </FieldGrid.Row>
-      </FieldGrid>
+      </FieldGrid>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -264,7 +164,7 @@ describe('FieldGrid', () => {
         <FieldGrid.Row>
           <FieldGrid.Cell field={undefined as any} renderField={undefined} />
         </FieldGrid.Row>
-      </FieldGrid>
+      </FieldGrid>,
     );
 
     expect(wrapper).toMatchSnapshot();

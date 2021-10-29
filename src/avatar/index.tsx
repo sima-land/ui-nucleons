@@ -7,36 +7,35 @@ import { getMonogram } from './utils';
 import { color as colorClass } from '../styling/colors';
 
 export interface AvatarProps {
+  /** Цвет аватара без картинки. */
+  bgColor?: Token;
 
   /** Цвет аватара без картинки. */
-  bgColor?: Token
-
-  /** Цвет аватара без картинки. */
-  bgOpacity?: number
+  bgOpacity?: number;
 
   /** Класс. */
-  className?: string
+  className?: string;
 
   /** Ссылка на картинку. */
-  imageUrl?: string
+  imageUrl?: string;
 
   /** Монограмма без картинки. */
-  monogram?: string
+  monogram?: string;
 
   /** Размер аватара. */
-  size?: number
+  size?: number;
 
   /** Стиль элементов rect/image, формирующего маску "super ellipse". */
-  style?: React.CSSProperties
+  style?: React.CSSProperties;
 
   /** Цвет текста без картинки. */
-  textColor?: Token
+  textColor?: Token;
 
   /** Текст без картинки. */
-  title?: string
+  title?: string;
 
   /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string
+  'data-testid'?: string;
 }
 
 const cx = classnames.bind(classes);
@@ -83,37 +82,28 @@ export const Avatar = ({
   return (
     <div
       data-testid={testId}
-      className={cx(
-        'root',
-        `size-${size}`,
-        colorClass(textColor),
-        className
-      )}
-      style={{
-        ...style,
-        '--avatar-color': !needImage ? COLORS.get(bgColor) : undefined,
-        '--avatar-color-opacity': bgOpacity,
-      } as any}
+      className={cx('root', `size-${size}`, colorClass(textColor), className)}
+      style={
+        {
+          ...style,
+          '--avatar-color': !needImage ? COLORS.get(bgColor) : undefined,
+          '--avatar-color-opacity': bgOpacity,
+        } as any
+      }
     >
       {/* инициалы/иконка */}
       {!needImage && (
         <>
-          {
-            monogram
-              ? (
-                <span className={cx('monogram')}>
-                  {monogram.slice(0, 2).toUpperCase()}
-                </span>
-              )
-              : (
-                <PersonSVG
-                  fill={COLORS.get(textColor)}
-                  width={ICON_SIZES[size]}
-                  height={ICON_SIZES[size]}
-                  className={cx('icon')}
-                />
-              )
-          }
+          {monogram ? (
+            <span className={cx('monogram')}>{monogram.slice(0, 2).toUpperCase()}</span>
+          ) : (
+            <PersonSVG
+              fill={COLORS.get(textColor)}
+              width={ICON_SIZES[size]}
+              height={ICON_SIZES[size]}
+              className={cx('icon')}
+            />
+          )}
         </>
       )}
 

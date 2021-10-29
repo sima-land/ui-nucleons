@@ -19,14 +19,14 @@ describe('isMainMouseButton', () => {
 
 describe('getEventClientPos', () => {
   it('should works properly', () => {
+    expect(getEventClientPos(new MouseEvent('click', { clientX: 12, clientY: 23 }))).toEqual(
+      Point(12, 23),
+    );
     expect(
-      getEventClientPos(new MouseEvent('click', { clientX: 12, clientY: 23 }))
-    ).toEqual(Point(12, 23));
-    expect(
-      getEventClientPos(new TouchEvent('click', { touches: [{ clientX: 34, clientY: 45 } as Touch] }))
+      getEventClientPos(
+        new TouchEvent('click', { touches: [{ clientX: 34, clientY: 45 } as Touch] }),
+      ),
     ).toEqual(Point(34, 45));
-    expect(
-      getEventClientPos(new TouchEvent('click', { touches: [] }))
-    ).toEqual(Point(0, 0));
+    expect(getEventClientPos(new TouchEvent('click', { touches: [] }))).toEqual(Point(0, 0));
   });
 });

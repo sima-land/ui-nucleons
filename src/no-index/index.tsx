@@ -2,9 +2,8 @@ import React from 'react';
 import { NoIndexMark } from '../no-index-mark';
 
 export interface NoIndexProps {
-
   /** Содержимое. */
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
 /**

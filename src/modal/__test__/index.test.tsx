@@ -27,13 +27,9 @@ describe('<Modal />', () => {
   it('should render overlap content', () => {
     const wrapper = mount(
       <Modal>
-        <Modal.Body>
-          This is modal body
-        </Modal.Body>
-        <Modal.Overlap>
-          Test is modal overlap content
-        </Modal.Overlap>
-      </Modal>
+        <Modal.Body>This is modal body</Modal.Body>
+        <Modal.Overlap>Test is modal overlap content</Modal.Overlap>
+      </Modal>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -45,10 +41,8 @@ describe('<Modal />', () => {
     const wrapper = mount(
       <Modal onClose={spy}>
         <Modal.Header title='Test title' onClose={spy} />
-        <Modal.Body>
-          Test modal content
-        </Modal.Body>
-      </Modal>
+        <Modal.Body>Test modal content</Modal.Body>
+      </Modal>,
     );
 
     act(() => {
@@ -84,7 +78,11 @@ describe('<Modal />', () => {
 
       // с mount нельзя подменить currentTarget: https://github.com/enzymejs/enzyme/issues/1943
       findOverlay(wrapper).simulate('mousedown', { button: 0, target: overlayEl });
-      findOverlay(wrapper).simulate('mouseup', { button: 0, target: overlayEl, currentTarget: overlayEl });
+      findOverlay(wrapper).simulate('mouseup', {
+        button: 0,
+        target: overlayEl,
+        currentTarget: overlayEl,
+      });
     });
     wrapper.update();
     expect(spy).toHaveBeenCalledTimes(1);
@@ -104,34 +102,28 @@ describe('<Modal />', () => {
         <Modal.Footer>
           <button>Hello</button>
         </Modal.Footer>
-      </Modal>
+      </Modal>,
     );
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should do not use disable/enable body scrolling by default', () => {
-    mount(
-      <Modal />
-    );
+    mount(<Modal />);
 
     expect((useBodyScrollLock as any).mock.calls[0][1]).toBe(false);
   });
 
   it('should render different sizes properly', () => {
     (['s', 'm', 'l', 'xl', 'fullscreen'] as const).forEach(size => {
-      const wrapper = mount(
-        <Modal size={size} />
-      );
+      const wrapper = mount(<Modal size={size} />);
 
       expect(wrapper).toMatchSnapshot();
     });
   });
 
   it('should renders in portal', () => {
-    const wrapper = mount(
-      <Modal inPortal />
-    );
+    const wrapper = mount(<Modal inPortal />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -142,7 +134,7 @@ describe('<Modal />', () => {
     const wrapper = mount(
       <Modal>
         <Modal.Header onBack={spy} />
-      </Modal>
+      </Modal>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -168,7 +160,7 @@ describe('<Modal />', () => {
             },
           }}
         />
-      </Modal>
+      </Modal>,
     );
 
     expect(wrapper.find(TopBar).find('button[data-testid="modal:close"]')).toHaveLength(1);
@@ -176,9 +168,7 @@ describe('<Modal />', () => {
   });
 
   it('should handle "height" prop', () => {
-    const wrapper = mount(
-      <Modal height={480} />
-    );
+    const wrapper = mount(<Modal height={480} />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -187,7 +177,7 @@ describe('<Modal />', () => {
     const wrapper = mount(
       <Modal size='fullscreen'>
         <Modal.Footer>Test footer</Modal.Footer>
-      </Modal>
+      </Modal>,
     );
 
     expect(wrapper).toMatchSnapshot();

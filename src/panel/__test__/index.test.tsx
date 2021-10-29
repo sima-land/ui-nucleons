@@ -5,9 +5,7 @@ import InformationSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information
 
 describe('<Panel />', () => {
   it('should renders without props', () => {
-    const wrapper = mount(
-      <Panel />
-    );
+    const wrapper = mount(<Panel />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -21,7 +19,7 @@ describe('<Panel />', () => {
         icon={InformationSVG}
         className='test-class'
         children='Hello, world!'
-      />
+      />,
     );
 
     expect(wrapper).toMatchSnapshot();

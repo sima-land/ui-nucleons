@@ -14,9 +14,7 @@ export const Primary = () => {
 
   return (
     <>
-      <button onClick={() => toggleShow(!shown)}>
-        Toggle loading overlay
-      </button>
+      <button onClick={() => toggleShow(!shown)}>Toggle loading overlay</button>
 
       <div
         style={{
@@ -27,9 +25,7 @@ export const Primary = () => {
           marginTop: 20,
         }}
       >
-        {shown && (
-          <LoadingOverlay />
-        )}
+        {shown && <LoadingOverlay />}
       </div>
     </>
   );

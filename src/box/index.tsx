@@ -5,82 +5,84 @@ import * as Spacing from '../styling/sizes';
 import { bgColor as getBgColorClass } from '../styling/colors';
 import { COLORS, Token } from '../colors';
 
-type CustomElement = { className: string, children?: React.ReactNode, style?: React.CSSProperties }
-& React.RefAttributes<any>;
+type CustomElement = {
+  className: string;
+  children?: React.ReactNode;
+  style?: React.CSSProperties;
+} & React.RefAttributes<any>;
 
 export interface BoxProps {
-
   /** Значение свойства "alignItems". */
-  alignItems?: 'start' | 'end' | 'center' | 'baseline' | 'stretch'
+  alignItems?: 'start' | 'end' | 'center' | 'baseline' | 'stretch';
 
   /** Содержимое блока. */
-  children?: React.ReactNode
+  children?: React.ReactNode;
 
   /** Название цвета из дизайн-системы. */
-  color?: Token
+  color?: Token;
 
   /** Объект для указания inline-стилей. */
-  dangerouslySetInlineStyle?: { __style: React.CSSProperties }
+  dangerouslySetInlineStyle?: { __style: React.CSSProperties };
 
   /** Значение css-свойства "direction". */
-  direction?: 'row' | 'column'
+  direction?: 'row' | 'column';
 
   /** Значение css-свойства "display". */
-  display?: 'block' | 'none' | 'flex' | 'inline' | 'inline-block'
+  display?: 'block' | 'none' | 'flex' | 'inline' | 'inline-block';
 
   /** Элемент, который будет использован как блок. */
-  element?: string | React.ComponentType<CustomElement>
+  element?: string | React.ComponentType<CustomElement>;
 
   /** Формирует значение css-свойства "flex". */
-  flex?: 'shrink' | 'grow' | 'none'
+  flex?: 'shrink' | 'grow' | 'none';
 
   /** Значение свойства "justifyContent". */
-  justifyContent?: 'start' | 'end' | 'center' | 'between' | 'around'
+  justifyContent?: 'start' | 'end' | 'center' | 'between' | 'around';
 
   /** Внешние отступы. */
-  margin?: number
+  margin?: number;
 
   /** Внешний отступ снизу. */
-  marginBottom?: number
+  marginBottom?: number;
 
   /** Внешний отступ слева. */
-  marginLeft?: number
+  marginLeft?: number;
 
   /** Внешний отступ справа. */
-  marginRight?: number
+  marginRight?: number;
 
   /** Внешний отступ сверху. */
-  marginTop?: number
+  marginTop?: number;
 
   /** Внешний отступ по вертикали. */
-  marginX?: number
+  marginX?: number;
 
   /** Внешний отступ по горизонтали. */
-  marginY?: number
+  marginY?: number;
 
   /** Внутренние отступы. */
-  padding?: number
+  padding?: number;
 
   /** Внутренний отступ снизу. */
-  paddingBottom?: number
+  paddingBottom?: number;
 
   /** Внутренний отступ слева. */
-  paddingLeft?: number
+  paddingLeft?: number;
 
   /** Внутренний отступ справа. */
-  paddingRight?: number
+  paddingRight?: number;
 
   /** Внутренний отступ сверху. */
-  paddingTop?: number
+  paddingTop?: number;
 
   /** Внутренний отступ по вертикали. */
-  paddingX?: number
+  paddingX?: number;
 
   /** Внутренний отступ по горизонтали. */
-  paddingY?: number
+  paddingY?: number;
 
   /** Формирует значение css-свойства "flex-wrap". */
-  wrap?: boolean
+  wrap?: boolean;
 }
 
 const cx = classnames.bind(classes);
@@ -89,55 +91,30 @@ const cx = classnames.bind(classes);
  * Возможные значения свойства "display".
  * @enum {string}
  */
-const DISPLAY = new Set([
-  'block',
-  'none',
-  'flex',
-  'inline',
-  'inline-block',
-]);
+const DISPLAY = new Set(['block', 'none', 'flex', 'inline', 'inline-block']);
 
 /**
  * Возможные значения свойства "flex".
  * @enum {string}
  */
-const FLEX = new Set([
-  'shrink',
-  'grow',
-  'none',
-]);
+const FLEX = new Set(['shrink', 'grow', 'none']);
 
 /**
  * Возможные значения свойства "direction".
  * @enum {string}
  */
-const DIRECTION = new Set([
-  'row',
-  'column',
-]);
+const DIRECTION = new Set(['row', 'column']);
 
 /**
  * Возможные значения свойства "alignItems".
  * @enum {string}
  */
-const ALIGN_ITEMS = new Set([
-  'start',
-  'end',
-  'center',
-  'baseline',
-  'stretch',
-]);
+const ALIGN_ITEMS = new Set(['start', 'end', 'center', 'baseline', 'stretch']);
 
 /**
  * Возможные значения свойства "justifyContent".
  */
-const JUSTIFY_CONTENT = new Set([
-  'start',
-  'end',
-  'center',
-  'between',
-  'around',
-]);
+const JUSTIFY_CONTENT = new Set(['start', 'end', 'center', 'between', 'around']);
 
 /**
  * Компонент блока, реализующего оформление в соответствии с дизайн-системой.
@@ -231,7 +208,7 @@ export const Box = ({
         paddingLeft,
         paddingX,
         paddingY,
-      })
+      }),
     )}
     children={children}
   />
@@ -258,13 +235,13 @@ const getMarginClasses = ({
   marginX,
   marginY,
 }: {
-  margin?: number
-  marginTop?: number
-  marginBottom?: number
-  marginLeft?: number
-  marginRight?: number
-  marginX?: number
-  marginY?: number
+  margin?: number;
+  marginTop?: number;
+  marginBottom?: number;
+  marginLeft?: number;
+  marginRight?: number;
+  marginX?: number;
+  marginY?: number;
 }) => {
   const result = [];
   const isValid = Spacing.isMargin;
@@ -277,22 +254,25 @@ const getMarginClasses = ({
   const hasMarginLeft = isValid(marginLeft);
   const hasMarginRight = isValid(marginRight);
 
-  hasMargin && result.push(
-    !hasMarginTop && !hasMarginY && Spacing.marginTop(margin),
-    !hasMarginBottom && !hasMarginY && Spacing.marginBottom(margin),
+  hasMargin &&
+    result.push(
+      !hasMarginTop && !hasMarginY && Spacing.marginTop(margin),
+      !hasMarginBottom && !hasMarginY && Spacing.marginBottom(margin),
 
-    !hasMarginLeft && !hasMarginX && Spacing.marginLeft(margin),
-    !hasMarginRight && !hasMarginX && Spacing.marginRight(margin)
-  );
+      !hasMarginLeft && !hasMarginX && Spacing.marginLeft(margin),
+      !hasMarginRight && !hasMarginX && Spacing.marginRight(margin),
+    );
 
-  hasMarginX && result.push(
-    !hasMarginLeft && Spacing.marginLeft(marginX),
-    !hasMarginRight && Spacing.marginRight(marginX)
-  );
-  hasMarginY && result.push(
-    !hasMarginTop && Spacing.marginTop(marginY),
-    !hasMarginBottom && Spacing.marginBottom(marginY)
-  );
+  hasMarginX &&
+    result.push(
+      !hasMarginLeft && Spacing.marginLeft(marginX),
+      !hasMarginRight && Spacing.marginRight(marginX),
+    );
+  hasMarginY &&
+    result.push(
+      !hasMarginTop && Spacing.marginTop(marginY),
+      !hasMarginBottom && Spacing.marginBottom(marginY),
+    );
 
   hasMarginTop && result.push(Spacing.marginTop(marginTop));
   hasMarginRight && result.push(Spacing.marginRight(marginRight));
@@ -323,13 +303,13 @@ const getPaddingClasses = ({
   paddingX,
   paddingY,
 }: {
-  padding?: number
-  paddingTop?: number
-  paddingBottom?: number
-  paddingLeft?: number
-  paddingRight?: number
-  paddingX?: number
-  paddingY?: number
+  padding?: number;
+  paddingTop?: number;
+  paddingBottom?: number;
+  paddingLeft?: number;
+  paddingRight?: number;
+  paddingX?: number;
+  paddingY?: number;
 }) => {
   const result = [];
   const isValid = Spacing.isPadding;
@@ -342,22 +322,25 @@ const getPaddingClasses = ({
   const hasPaddingLeft = isValid(paddingLeft);
   const hasPaddingRight = isValid(paddingRight);
 
-  hasPadding && result.push(
-    !hasPaddingTop && !hasPaddingY && Spacing.paddingTop(padding),
-    !hasPaddingBottom && !hasPaddingY && Spacing.paddingBottom(padding),
+  hasPadding &&
+    result.push(
+      !hasPaddingTop && !hasPaddingY && Spacing.paddingTop(padding),
+      !hasPaddingBottom && !hasPaddingY && Spacing.paddingBottom(padding),
 
-    !hasPaddingLeft && !hasPaddingX && Spacing.paddingLeft(padding),
-    !hasPaddingRight && !hasPaddingX && Spacing.paddingRight(padding)
-  );
+      !hasPaddingLeft && !hasPaddingX && Spacing.paddingLeft(padding),
+      !hasPaddingRight && !hasPaddingX && Spacing.paddingRight(padding),
+    );
 
-  hasPaddingX && result.push(
-    !hasPaddingLeft && Spacing.paddingLeft(paddingX),
-    !hasPaddingRight && Spacing.paddingRight(paddingX)
-  );
-  hasPaddingY && result.push(
-    !hasPaddingTop && Spacing.paddingTop(paddingY),
-    !hasPaddingBottom && Spacing.paddingBottom(paddingY)
-  );
+  hasPaddingX &&
+    result.push(
+      !hasPaddingLeft && Spacing.paddingLeft(paddingX),
+      !hasPaddingRight && Spacing.paddingRight(paddingX),
+    );
+  hasPaddingY &&
+    result.push(
+      !hasPaddingTop && Spacing.paddingTop(paddingY),
+      !hasPaddingBottom && Spacing.paddingBottom(paddingY),
+    );
 
   hasPaddingTop && result.push(Spacing.paddingTop(paddingTop));
   hasPaddingRight && result.push(Spacing.paddingRight(paddingRight));

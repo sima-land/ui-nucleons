@@ -5,14 +5,9 @@ import { Link } from '..';
 describe('<Link />', () => {
   it('calls helpers with right params and renders correctly without external', () => {
     const wrapper = mount(
-      <Link
-        className='testClass'
-        href='/cart/'
-        color='gray38'
-        target='_blank'
-      >
+      <Link className='testClass' href='/cart/' color='gray38' target='_blank'>
         Test link
-      </Link>
+      </Link>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -22,7 +17,7 @@ describe('<Link />', () => {
     const wrapper = mount(
       <Link pseudo color='gray38'>
         Test link
-      </Link>
+      </Link>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -32,7 +27,7 @@ describe('<Link />', () => {
     const wrapper = mount(
       <Link href='/cabinet/' color='brand-blue'>
         Test link
-      </Link>
+      </Link>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -44,13 +39,9 @@ describe('<Link />', () => {
     const onMouseLeaveSpy = jest.fn();
 
     const wrapper = mount(
-      <Link
-        onClick={onClickSpy}
-        onMouseEnter={onMouseEnterSpy}
-        onMouseLeave={onMouseLeaveSpy}
-      >
+      <Link onClick={onClickSpy} onMouseEnter={onMouseEnterSpy} onMouseLeave={onMouseLeaveSpy}>
         Test link
-      </Link>
+      </Link>,
     );
 
     wrapper.simulate('click');
@@ -67,7 +58,7 @@ describe('<Link />', () => {
     const wrapper = mount(
       <Link href='www.test.com' noIndex>
         Test link
-      </Link>
+      </Link>,
     );
 
     expect(wrapper.find('a').prop('dangerouslySetInnerHTML')).toBeDefined();
@@ -75,11 +66,7 @@ describe('<Link />', () => {
   });
 
   it('should render regular (indexing) content properly', () => {
-    const wrapper = mount(
-      <Link href='www.test.com'>
-        Test link
-      </Link>
-    );
+    const wrapper = mount(<Link href='www.test.com'>Test link</Link>);
 
     expect(wrapper.text()).toEqual('Test link');
     expect(wrapper.prop('dangerouslySetInnerHTML')).not.toBeDefined();
@@ -87,16 +74,16 @@ describe('<Link />', () => {
   });
 
   it('render render pseudo link properly', () => {
-    const wrapper = mount(
-      <Link pseudo>Test link</Link>
-    );
+    const wrapper = mount(<Link pseudo>Test link</Link>);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('render render pseudo link disabled properly', () => {
     const wrapper = mount(
-      <Link pseudo disabled>Test link</Link>
+      <Link pseudo disabled>
+        Test link
+      </Link>,
     );
 
     expect(wrapper).toMatchSnapshot();

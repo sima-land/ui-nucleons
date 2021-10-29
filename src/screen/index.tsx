@@ -8,64 +8,63 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { LayerProvider, useLayer } from '../helpers/layer';
 
 interface AdvancedCallbackData extends CallbackData {
-  rootElement: OrNil<HTMLDivElement>
+  rootElement: OrNil<HTMLDivElement>;
 }
 
 export interface ScreenProps {
-
   /** Содержимое. */
-  children?: React.ReactNode
+  children?: React.ReactNode;
 
   /** Реф контента. */
-  contentRef?: ScreenLayoutProps['childrenRef']
+  contentRef?: ScreenLayoutProps['childrenRef'];
 
   /** Содержимое подвала. */
-  footer?: any
+  footer?: any;
 
   /** Отступ от нижней границы для срабатывания onFullScroll. */
-  fullScrollThreshold?: number
+  fullScrollThreshold?: number;
 
   /** Нужно ли выводить вместо содержимого состояние загрузки. */
-  loading?: boolean
+  loading?: boolean;
 
   /** Определяет область отображаемую как загружающуюся. */
-  loadingArea?: 'content' | 'full'
+  loadingArea?: 'content' | 'full';
 
   /** Свойства компонента LoadingOverlay. */
-  loadingOverlayProps?: LoadingOverlayProps
+  loadingOverlayProps?: LoadingOverlayProps;
 
   /** Свойства компонента NavBar. */
-  navBarProps?: ScreenLayoutProps['navBarProps']
+  navBarProps?: ScreenLayoutProps['navBarProps'];
 
   /** Сработает при клике на кнопку "назад". */
-  onBack?: (data: AdvancedCallbackData) => void
+  onBack?: (data: AdvancedCallbackData) => void;
 
   /** Сработает при кнопке на крест. */
-  onClose?: (data: AdvancedCallbackData) => void
+  onClose?: (data: AdvancedCallbackData) => void;
 
   /** Сработает при полной прокрутке контента. */
-  onFullScroll?: ScreenLayoutProps['onFullScroll']
+  onFullScroll?: ScreenLayoutProps['onFullScroll'];
 
   /** Подзаголовок. */
-  subtitle?: string
+  subtitle?: string;
 
   /** Заголовок. */
-  title?: string
+  title?: string;
 
   /** Нужно ли выводить кнопку "назад". */
-  withBackButton?: boolean
+  withBackButton?: boolean;
 
   /** Нужно ли выводить закрывающий крест. */
-  withCloseButton?: boolean
+  withCloseButton?: boolean;
 
   /** Нужно ли рисовать черту между шапкой и основным содержимым. */
-  withDivideHeader?: boolean
+  withDivideHeader?: boolean;
 
   /** Нужно ли выводить кнопку "назад". */
-  withHeader?: boolean
+  withHeader?: boolean;
 
   /** Нужно ли выводить Layer (при SSR необходимо указать false). */
-  inPortal?: boolean
+  inPortal?: boolean;
 }
 
 /**
@@ -99,66 +98,65 @@ export const Screen: React.FC<ScreenProps> = ({
   const innerContentRef = useRef<HTMLDivElement>(null);
 
   // включаем прокрутку body при размонтировании
-  useEffect(() => () => {
-    innerContentRef.current && enableBodyScroll(innerContentRef.current);
-  }, []);
+  useEffect(
+    () => () => {
+      innerContentRef.current && enableBodyScroll(innerContentRef.current);
+    },
+    [],
+  );
 
   return (
     <Wrapper>
-      <div
-        ref={rootRef}
-        className={cx('screen', 'full-width')}
-        style={{ zIndex: layer }}
-      >
-        {
-          loading && loadingArea === 'full'
-            ? <LoadingOverlay {...loadingOverlayProps} />
-            : (
-              <LayerProvider value={layer}>
-                <ScreenLayout
-                  title={title}
-                  subtitle={subtitle}
-                  withHeader={withHeader}
-                  withDivideHeader={withDivideHeader}
-                  withBackButton={withBackButton}
-                  withCloseButton={withCloseButton}
-                  children={
-                    loading && loadingArea === 'content'
-                      ? (
-                        <LoadingOverlay
-                          {...loadingOverlayProps}
-                          {...loadingArea === 'content' && {
-                            fill: false,
-                            style: { height: '100%' },
-                          }}
-                        />
-                      )
-                      : children
-                  }
-                  childrenRef={element => {
-                    setRefValue(contentRef as any, element);
-                    takeScrollableElement(innerContentRef, element);
-                  }}
-                  footer={footer}
-                  onBack={({ contentElement }) => {
-                    onBack && onBack({
-                      rootElement: rootRef.current,
-                      contentElement,
-                    });
-                  }}
-                  onClose={({ contentElement }) => {
-                    onClose && onClose({
-                      rootElement: rootRef.current,
-                      contentElement,
-                    });
-                  }}
-                  onFullScroll={onFullScroll}
-                  fullScrollThreshold={fullScrollThreshold}
-                  navBarProps={navBarProps}
-                />
-              </LayerProvider>
-            )
-        }
+      <div ref={rootRef} className={cx('screen', 'full-width')} style={{ zIndex: layer }}>
+        {loading && loadingArea === 'full' ? (
+          <LoadingOverlay {...loadingOverlayProps} />
+        ) : (
+          <LayerProvider value={layer}>
+            <ScreenLayout
+              title={title}
+              subtitle={subtitle}
+              withHeader={withHeader}
+              withDivideHeader={withDivideHeader}
+              withBackButton={withBackButton}
+              withCloseButton={withCloseButton}
+              children={
+                loading && loadingArea === 'content' ? (
+                  <LoadingOverlay
+                    {...loadingOverlayProps}
+                    {...(loadingArea === 'content' && {
+                      fill: false,
+                      style: { height: '100%' },
+                    })}
+                  />
+                ) : (
+                  children
+                )
+              }
+              childrenRef={element => {
+                setRefValue(contentRef as any, element);
+                takeScrollableElement(innerContentRef, element);
+              }}
+              footer={footer}
+              onBack={({ contentElement }) => {
+                onBack &&
+                  onBack({
+                    rootElement: rootRef.current,
+                    contentElement,
+                  });
+              }}
+              onClose={({ contentElement }) => {
+                onClose &&
+                  onClose({
+                    rootElement: rootRef.current,
+                    contentElement,
+                  });
+              }}
+              onFullScroll={onFullScroll}
+              fullScrollThreshold={fullScrollThreshold}
+              navBarProps={navBarProps}
+            />
+          </LayerProvider>
+        )}
       </div>
     </Wrapper>
   );
@@ -169,7 +167,10 @@ export const Screen: React.FC<ScreenProps> = ({
  * @param ref Ref-контейнер.
  * @param value Значение для записи.
  */
-export const setRefValue = (ref: React.RefCallback<any> | React.MutableRefObject<any>, value: any) => {
+export const setRefValue = (
+  ref: React.RefCallback<any> | React.MutableRefObject<any>,
+  value: any,
+) => {
   if (isFunction(ref)) {
     ref(value);
   } else if (ref) {
@@ -184,7 +185,7 @@ export const setRefValue = (ref: React.RefCallback<any> | React.MutableRefObject
  */
 export const takeScrollableElement = (
   ref: React.MutableRefObject<OrNil<HTMLDivElement>>,
-  element?: HTMLDivElement | null
+  element?: HTMLDivElement | null,
 ) => {
   if (element && element !== ref.current) {
     // если элемент изменился - включаем прокрутку для старого

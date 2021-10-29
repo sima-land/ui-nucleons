@@ -1,9 +1,8 @@
 import React from 'react';
 
 export interface NoIndexMarkProps {
-
   /** Флаг закрывающегося тэга. */
-  closing?: boolean
+  closing?: boolean;
 }
 
 /**

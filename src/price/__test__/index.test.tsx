@@ -4,12 +4,7 @@ import { mount } from 'enzyme';
 
 describe('Price', () => {
   it('should renders correctly', () => {
-    const wrapper = mount(
-      <Price
-        value='123.45'
-        currencyGrapheme='₽'
-      />
-    );
+    const wrapper = mount(<Price value='123.45' currencyGrapheme='₽' />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -22,7 +17,7 @@ describe('Price', () => {
         crossedOut
         graphemeBefore
         className='test-class'
-      />
+      />,
     );
 
     expect(wrapper).toMatchSnapshot();

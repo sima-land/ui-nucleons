@@ -17,13 +17,21 @@ describe('scrollToChild', () => {
     child = document.createElement('div');
     parent = document.createElement('div');
 
-    parent.getBoundingClientRect = jest.fn(() => getBoundingClientRect(20, 20, 20, 20)) as unknown as () => DOMRect;
-    child.getBoundingClientRect = jest.fn(() => getBoundingClientRect(10, 10, 10, 10)) as unknown as () => DOMRect;
+    parent.getBoundingClientRect = jest.fn(() =>
+      getBoundingClientRect(20, 20, 20, 20),
+    ) as unknown as () => DOMRect;
+    child.getBoundingClientRect = jest.fn(() =>
+      getBoundingClientRect(10, 10, 10, 10),
+    ) as unknown as () => DOMRect;
 
     scrollToChild(parent, child);
 
-    parent.getBoundingClientRect = jest.fn(() => getBoundingClientRect(20, 20, 20, 20)) as unknown as () => DOMRect;
-    child.getBoundingClientRect = jest.fn(() => getBoundingClientRect(110, 110, 110, 110)) as unknown as () => DOMRect;
+    parent.getBoundingClientRect = jest.fn(() =>
+      getBoundingClientRect(20, 20, 20, 20),
+    ) as unknown as () => DOMRect;
+    child.getBoundingClientRect = jest.fn(() =>
+      getBoundingClientRect(110, 110, 110, 110),
+    ) as unknown as () => DOMRect;
 
     scrollToChild(parent, child);
 
@@ -35,8 +43,12 @@ describe('scrollToChild', () => {
     child = document.createElement('div');
     parent = document.createElement('div');
 
-    parent.getBoundingClientRect = jest.fn(() => getBoundingClientRect(0, 0, 150, 150)) as unknown as () => DOMRect;
-    child.getBoundingClientRect = jest.fn(() => getBoundingClientRect(0, 0, 100, 100)) as unknown as () => DOMRect;
+    parent.getBoundingClientRect = jest.fn(() =>
+      getBoundingClientRect(0, 0, 150, 150),
+    ) as unknown as () => DOMRect;
+    child.getBoundingClientRect = jest.fn(() =>
+      getBoundingClientRect(0, 0, 100, 100),
+    ) as unknown as () => DOMRect;
 
     scrollToChild(parent, child);
 

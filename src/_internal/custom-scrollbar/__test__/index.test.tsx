@@ -6,12 +6,7 @@ describe('CustomScrollbar', () => {
   it('should handle onFullScroll/fullScrollThreshold', () => {
     const spy = jest.fn();
 
-    const wrapper = mount(
-      <CustomScrollbar
-        onFullScroll={spy}
-        fullScrollThreshold={120}
-      />
-    );
+    const wrapper = mount(<CustomScrollbar onFullScroll={spy} fullScrollThreshold={120} />);
 
     expect(wrapper).toMatchSnapshot();
   });

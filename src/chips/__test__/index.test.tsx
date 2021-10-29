@@ -22,7 +22,7 @@ describe('Chips', () => {
         ]}
         onItemClick={spy}
         isItemChecked={item => item.children === 'Пакеты пищевые'}
-      />
+      />,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -45,7 +45,7 @@ describe('Chips', () => {
           { children: 'Спортивные кружки' },
           { children: 'Пакеты пищевые' },
         ]}
-      />
+      />,
     );
 
     act(() => {
@@ -62,7 +62,7 @@ describe('Chips', () => {
           { children: 'Спортивные кружки' },
           { children: 'Пакеты пищевые' },
         ].map(item => ({ ...item, href: 'www.foo-bar.com' }))}
-      />
+      />,
     );
 
     act(() => {
@@ -79,7 +79,7 @@ describe('Chips', () => {
           { children: 'Спортивные кружки' },
           { children: 'Пакеты пищевые' },
         ].map(item => ({ ...item, withCross: true }))}
-      />
+      />,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -92,7 +92,7 @@ describe('Chips', () => {
           { href: 'https://www.foo.com', children: 'Foo', target: '_blank' },
           { href: 'https://www.bar.com', children: 'Bar', target: '_parent' },
         ]}
-      />
+      />,
     );
 
     expect(wrapper.find('a[data-testid="chips:item"]')).toHaveLength(2);

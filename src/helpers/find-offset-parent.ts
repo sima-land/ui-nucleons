@@ -7,9 +7,10 @@ const findOffsetParent = (element: HTMLElement) => {
   let parent: Element | null = element.offsetParent || document.body;
 
   if (getComputedStyle(parent).position === 'static') {
-    parent = getComputedStyle(document.documentElement).position === 'static'
-      ? null
-      : document.documentElement;
+    parent =
+      getComputedStyle(document.documentElement).position === 'static'
+        ? null
+        : document.documentElement;
   }
 
   return parent;

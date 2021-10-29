@@ -7,7 +7,7 @@
  */
 export const isFullyScrolled = (
   element?: HTMLElement | undefined | null,
-  { threshold = 0 }: { threshold?: number } = {}
+  { threshold = 0 }: { threshold?: number } = {},
 ) => {
   let result = false;
 

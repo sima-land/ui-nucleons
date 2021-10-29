@@ -23,6 +23,7 @@ jobs:
         run: |
           yarn lint:styles
           yarn lint:scripts
+          yarn prettier:check
           yarn type-check
 
       - name: Test

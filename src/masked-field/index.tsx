@@ -3,20 +3,19 @@ import { TextField, TextFieldProps } from '../text-field';
 import { InputMask } from '@krutoo/input-mask/dist/dom';
 
 export interface MaskState {
-  value: string
-  cleanValue: string
+  value: string;
+  cleanValue: string;
 }
 
 export interface MaskedFieldProps extends Omit<TextFieldProps, 'value' | 'onBlur' | 'multiple'> {
-
   /** Маска. */
-  mask: string
+  mask: string;
 
   /** Значение. */
-  value?: string
+  value?: string;
 
   /** Обработчик blur. */
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>, s: MaskState) => void
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>, s: MaskState) => void;
 }
 
 const maskCommons = { placeholder: '_', pattern: /\d/ };
@@ -28,47 +27,43 @@ const maskCommons = { placeholder: '_', pattern: /\d/ };
  * @param props.value Значение.
  * @param props.onBlur Сработает при событии blur.
  */
-export const MaskedField = forwardRef<HTMLInputElement | undefined, MaskedFieldProps>(function MaskedField ({
-  mask,
-  value = '',
-  onBlur,
-  ...restOptions
-}, ref) {
-  const [inputMask, setInputMask] = useState<any>();
-  const [inputState, setInputState] = useState<MaskState>({ value, cleanValue: '' });
-  const innerRef = useRef<HTMLInputElement>();
+export const MaskedField = forwardRef<HTMLInputElement | undefined, MaskedFieldProps>(
+  function MaskedField({ mask, value = '', onBlur, ...restOptions }, ref) {
+    const [inputMask, setInputMask] = useState<any>();
+    const [inputState, setInputState] = useState<MaskState>({ value, cleanValue: '' });
+    const innerRef = useRef<HTMLInputElement>();
 
-  useImperativeHandle(ref, () => innerRef.current);
+    useImperativeHandle(ref, () => innerRef.current);
 
-  useEffect(() => {
-    const im = InputMask(innerRef.current as any, {
-      ...maskCommons,
-      mask,
-      onChange: setInputState,
-    });
+    useEffect(() => {
+      const im = InputMask(innerRef.current as any, {
+        ...maskCommons,
+        mask,
+        onChange: setInputState,
+      });
 
-    im.setValue(value as string);
-    setInputMask(im);
+      im.setValue(value as string);
+      setInputMask(im);
 
-    return () => im.disable();
-  }, [mask]);
+      return () => im.disable();
+    }, [mask]);
 
-  useEffect(() => {
-    inputMask && inputMask.setValue(value);
-  }, [value, inputMask]);
+    useEffect(() => {
+      inputMask && inputMask.setValue(value);
+    }, [value, inputMask]);
 
-  return (
-    <TextField
-      {...restOptions}
-      ref={innerRef}
-      multiline={false}
-      restPlaceholder={{
-        value: mask.slice(inputState.value.length),
-        shiftValue: inputState.value,
-      }}
-
-      // получаем данные маски только по событию "blur"
-      onBlur={e => onBlur?.(e, inputState)}
-    />
-  );
-});
+    return (
+      <TextField
+        {...restOptions}
+        ref={innerRef}
+        multiline={false}
+        restPlaceholder={{
+          value: mask.slice(inputState.value.length),
+          shiftValue: inputState.value,
+        }}
+        // получаем данные маски только по событию "blur"
+        onBlur={e => onBlur?.(e, inputState)}
+      />
+    );
+  },
+);

@@ -14,35 +14,42 @@ export default {
   },
 };
 
-const Divider = () => (<div style={{ height: 64 }} />);
+const Divider = () => <div style={{ height: 64 }} />;
 
 export const Primary = () => (
   <>
     <h3>Вместе с DropdownItem</h3>
     <Dropdown style={{ width: 320 }}>
-      {Array(4).fill(0).map((a, i) => (
-        <DropdownItem size='s' key={i}>
-          Item №{i + 1}
-        </DropdownItem>
-      ))}
+      {Array(4)
+        .fill(0)
+        .map((a, i) => (
+          <DropdownItem size='s' key={i}>
+            Item №{i + 1}
+          </DropdownItem>
+        ))}
     </Dropdown>
 
     <Divider />
 
     <h3>Вместе с DropdownItem и прокруткой</h3>
     <Dropdown style={{ width: 320 }}>
-      {Array(25).fill(0).map((a, i) => (
-        <DropdownItem size='l' key={i}>
-          <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div style={{ flexGrow: 1 }}>
-              Item №{i + 1}
+      {Array(25)
+        .fill(0)
+        .map((a, i) => (
+          <DropdownItem size='l' key={i}>
+            <div
+              style={{
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <div style={{ flexGrow: 1 }}>Item №{i + 1}</div>
+              <div style={{ color: '#aaa' }}>#{i + 1}</div>
             </div>
-            <div style={{ color: '#aaa' }}>
-              #{i + 1}
-            </div>
-          </div>
-        </DropdownItem>
-      ))}
+          </DropdownItem>
+        ))}
     </Dropdown>
 
     <Divider />
@@ -68,7 +75,9 @@ export const Example = () => {
       </Link>
 
       {shown && (
-        <Dropdown style={{ marginTop: 8, position: 'absolute', top: '100%', left: 0, whiteSpace: 'nowrap' }}>
+        <Dropdown
+          style={{ marginTop: 8, position: 'absolute', top: '100%', left: 0, whiteSpace: 'nowrap' }}
+        >
           <DropdownItem>Сначала новые</DropdownItem>
           <DropdownItem>Сначала старые</DropdownItem>
           <DropdownItem>Сначала с низкой оценкой</DropdownItem>

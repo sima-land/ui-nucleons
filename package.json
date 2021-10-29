@@ -95,6 +95,8 @@
     "lint:scripts": "eslint --cache src/ --ext .js,.jsx,.ts,.tsx",
     "lint:styles": "stylelint 'src/**/*.{css,scss}'",
     "storybook": "start-storybook -p 9009 -c .storybook",
-    "storybook:build": "build-storybook --no-dll --quiet --loglevel error -o build-storybook"
+    "storybook:build": "build-storybook --no-dll --quiet --loglevel error -o build-storybook",
+    "prettier": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,css,scss}\" --loglevel error",
+    "prettier:check": "prettier --check \"./src/**/*.{js,jsx,ts,tsx,css,scss}\" --loglevel error"
   }
 }

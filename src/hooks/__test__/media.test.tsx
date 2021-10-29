@@ -8,9 +8,7 @@ describe('useMedia', () => {
   const TestComponent = () => {
     const matches = useMedia('(min-width: 320px)');
 
-    return (
-      <>{matches ? 'foo' : 'bar'}</>
-    );
+    return <>{matches ? 'foo' : 'bar'}</>;
   };
 
   const matchMedia = window.matchMedia;
@@ -18,7 +16,7 @@ describe('useMedia', () => {
   const FakeMatchMedia = {
     callbacks: [],
 
-    create (arg: any) {
+    create(arg: any) {
       matchMedia(arg);
 
       return {
@@ -32,7 +30,7 @@ describe('useMedia', () => {
       };
     },
 
-    dispatchChange ({ matches }: any) {
+    dispatchChange({ matches }: any) {
       this.callbacks.forEach(fn => {
         (fn as any)({ matches, __fake: true });
       });

@@ -44,12 +44,7 @@ export const Primary = () => (
     {propsVariants.map((variant, index) => (
       <Fragment key={index}>
         <h3>{variant.title}</h3>
-        <Avatar
-          key={index}
-          {...variant.props}
-          bgColor='additional-teal'
-          textColor='white'
-        />
+        <Avatar key={index} {...variant.props} bgColor='additional-teal' textColor='white' />
       </Fragment>
     ))}
 
@@ -60,11 +55,7 @@ export const Primary = () => (
         {[40, 48, 56, 64, 72, 80, 104].map((size, index) => (
           <Fragment key={index}>
             <h4>size={size}</h4>
-            <Avatar
-              key={`${index}-${variantIndex}`}
-              {...variant.props}
-              size={size as any}
-            />
+            <Avatar key={`${index}-${variantIndex}`} {...variant.props} size={size as any} />
           </Fragment>
         ))}
       </Fragment>
@@ -79,10 +70,7 @@ export const DifferentImages = () => (
       .fill(0)
       .map((zero, index) => (
         <Fragment key={index}>
-          <Avatar
-            key={index}
-            imageUrl={`https://picsum.photos/${200 + index * 50}`}
-          />
+          <Avatar key={index} imageUrl={`https://picsum.photos/${200 + index * 50}`} />
           <br />
         </Fragment>
       ))}
@@ -101,11 +89,7 @@ export const DeferredImageURLChange = () => {
         <Avatar imageUrl={imageUrl} />
       </div>
 
-      <button
-        onClick={() =>
-          setImageUrl(`https://picsum.photos/${200 + random(10, 20)}`)
-        }
-      >
+      <button onClick={() => setImageUrl(`https://picsum.photos/${200 + random(10, 20)}`)}>
         Set URL
       </button>
     </>

@@ -5,9 +5,7 @@ import { act } from 'react-dom/test-utils';
 
 describe('Plate', () => {
   it('should renders without props', () => {
-    const wrapper = mount(
-      <Plate />
-    );
+    const wrapper = mount(<Plate />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -17,15 +15,9 @@ describe('Plate', () => {
     const spy = jest.fn();
 
     const wrapper = mount(
-      <Plate
-        ref={ref}
-        shadow='z3'
-        rounds='m'
-        className='test-class'
-        onClick={spy}
-      >
+      <Plate ref={ref} shadow='z3' rounds='m' className='test-class' onClick={spy}>
         Test
-      </Plate>
+      </Plate>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -58,7 +50,7 @@ describe('Plate', () => {
         data-testid='test-plate'
       >
         Test
-      </Plate>
+      </Plate>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -78,11 +70,7 @@ describe('Plate', () => {
   });
 
   it('should renders with small rounds', () => {
-    const wrapper = mount(
-      <Plate rounds='s'>
-        Test
-      </Plate>
-    );
+    const wrapper = mount(<Plate rounds='s'>Test</Plate>);
 
     expect(wrapper).toMatchSnapshot();
   });

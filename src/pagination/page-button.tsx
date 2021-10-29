@@ -1,10 +1,11 @@
 import React from 'react';
 import { cx } from './utils';
 
-export interface PageButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
-  rounded?: 'all' | 'none' | 'left' | 'right'
-  className?: string
-  selected?: boolean
+export interface PageButtonProps
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
+  rounded?: 'all' | 'none' | 'left' | 'right';
+  className?: string;
+  selected?: boolean;
 }
 
 /**
@@ -30,7 +31,7 @@ export const PageButton: React.FC<PageButtonProps> = ({
       rounded === 'all' && 'rounds-all',
       rounded === 'left' && 'rounds-left',
       rounded === 'right' && 'rounds-right',
-      className
+      className,
     )}
   />
 );

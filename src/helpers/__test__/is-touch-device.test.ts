@@ -10,7 +10,7 @@ describe('isTouchDevice()"', () => {
     expect(isTouchDevice()).toBeTruthy();
   });
 
-  it ('return correctly when window is undefined', () => {
+  it('return correctly when window is undefined', () => {
     const w = (global as typeof global & { window: any }).window;
 
     Object.defineProperty(global as typeof global & { window: any }, 'window', {

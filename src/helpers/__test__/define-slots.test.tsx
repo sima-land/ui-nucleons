@@ -3,15 +3,9 @@ import { render } from 'react-dom';
 import { defineSlots } from '../define-slots';
 
 describe('defineSlots', () => {
-  const Foo = () => (
-    <div>[Foo]</div>
-  );
-  const Bar = () => (
-    <div>[Bar]</div>
-  );
-  const Baz = () => (
-    <div>[Baz]</div>
-  );
+  const Foo = () => <div>[Foo]</div>;
+  const Bar = () => <div>[Bar]</div>;
+  const Baz = () => <div>[Baz]</div>;
 
   const TestComponent: React.FC = ({ children }) => {
     const slots = defineSlots(children, {
@@ -41,10 +35,7 @@ describe('defineSlots', () => {
   });
 
   it('should handle empty children', () => {
-    render(
-      <TestComponent />,
-      container
-    );
+    render(<TestComponent />, container);
 
     expect(container.textContent).toBe('');
   });
@@ -58,7 +49,7 @@ describe('defineSlots', () => {
         <Baz />
         <span>IgnoredSpan</span>
       </TestComponent>,
-      container
+      container,
     );
 
     expect(container.textContent).toBe('[Foo][Bar][Baz]');

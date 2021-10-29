@@ -14,9 +14,7 @@ type Size = 's' | 'l';
 
 type Direction = 'up' | 'right' | 'down' | 'left';
 
-type IconSet = Readonly<
-  Record<Direction, React.ComponentType<React.SVGAttributes<SVGSVGElement>>>
->;
+type IconSet = Readonly<Record<Direction, React.ComponentType<React.SVGAttributes<SVGSVGElement>>>>;
 
 export interface ArrowButtonProps
   extends Omit<JSX.IntrinsicElements['button'], 'size' | 'children'> {

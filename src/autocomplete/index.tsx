@@ -13,30 +13,29 @@ import styles from './autocomplete.module.scss';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 
 export interface AutocompleteProps extends Omit<TextFieldProps, 'ref' | 'value' | 'defaultValue'> {
-
   /** Значение по умолчанию. */
-  defaultValue?: string
+  defaultValue?: string;
 
   /** Элементы меню. */
-  items?: any[]
+  items?: any[];
 
   /** Размер элемента меню. */
-  itemSize?: DropdownItemProps['size']
+  itemSize?: DropdownItemProps['size'];
 
   /** Нужно ли выводить состояние загрузки списка. */
-  loading?: boolean
+  loading?: boolean;
 
   /** Сработает при выборе. */
-  onSelect?: (item: any) => void
+  onSelect?: (item: any) => void;
 
   /** Пресет (со стрелкой или без). */
-  preset?: 'default' | 'filled-only-list'
+  preset?: 'default' | 'filled-only-list';
 
   /** Выведет содержимое элемента. */
-  renderItem?: (item: any) => React.ReactNode
+  renderItem?: (item: any) => React.ReactNode;
 
   /** Значение. */
-  value?: string
+  value?: string;
 }
 
 const cx = classnames.bind(styles);
@@ -79,13 +78,12 @@ export const Autocomplete = ({
   const [realValue, setRealValue] = useState<string | undefined>(value || defaultValue);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const canShowDropdown = preset === 'filled-only-list'
-    ? needDropdown && realValue && realValue.length > 0
-    : needDropdown;
+  const canShowDropdown =
+    preset === 'filled-only-list'
+      ? needDropdown && realValue && realValue.length > 0
+      : needDropdown;
 
-  const endAdornment = preset === 'default'
-    ? <DownSVG fill={COLORS.get('gray38')} />
-    : undefined;
+  const endAdornment = preset === 'default' ? <DownSVG fill={COLORS.get('gray38')} /> : undefined;
 
   useOutsideClick(rootRef, () => {
     toggleDropdown(false);
@@ -106,10 +104,11 @@ export const Autocomplete = ({
     if (menu && osInstance && activeIndex !== null) {
       const child = menu.querySelectorAll('[role="menuitem"]')[activeIndex];
 
-      child && osInstance.scroll({
-        el: child as HTMLElement,
-        scroll: { y: 'ifneeded' },
-      });
+      child &&
+        osInstance.scroll({
+          el: child as HTMLElement,
+          scroll: { y: 'ifneeded' },
+        });
     }
   }, [activeIndex]);
 
@@ -175,39 +174,34 @@ export const Autocomplete = ({
           role='menu'
           customScrollbarProps={{ osComponentRef }}
         >
-          {loading
-            ? (
-              <DropdownLoading data-testid='autocomplete:loading-area' />
-            )
-            : (
-              <>
-                {
-                  items && items.length > 0
-                    ? items.map((item, index) => (
-                      <DropdownItem
-                        size={itemSize}
-                        key={index}
-                        role='menuitem'
-                        checked={index === activeIndex}
-                        onClick={() => {
-                          onSelect && onSelect(item);
-                          setActiveIndex(null);
-                          toggleDropdown(false);
-                          fieldRef.current && fieldRef.current.focus();
-                        }}
-                      >
-                        {renderItem(item)}
-                      </DropdownItem>
-                    ))
-                    : (
-                      <DropdownItem size='m' noHover>
-                        Не найдено
-                      </DropdownItem>
-                    )
-                }
-              </>
-            )
-          }
+          {loading ? (
+            <DropdownLoading data-testid='autocomplete:loading-area' />
+          ) : (
+            <>
+              {items && items.length > 0 ? (
+                items.map((item, index) => (
+                  <DropdownItem
+                    size={itemSize}
+                    key={index}
+                    role='menuitem'
+                    checked={index === activeIndex}
+                    onClick={() => {
+                      onSelect && onSelect(item);
+                      setActiveIndex(null);
+                      toggleDropdown(false);
+                      fieldRef.current && fieldRef.current.focus();
+                    }}
+                  >
+                    {renderItem(item)}
+                  </DropdownItem>
+                ))
+              ) : (
+                <DropdownItem size='m' noHover>
+                  Не найдено
+                </DropdownItem>
+              )}
+            </>
+          )}
         </Dropdown>
       )}
     </div>

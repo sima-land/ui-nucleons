@@ -4,10 +4,7 @@ import { act } from 'react-dom/test-utils';
 import { useIdentityRef } from '../identity';
 
 describe('useIdentityRef', () => {
-  const TestComponent = ({ value, callback }: {
-    value: any,
-    callback: (v: any) => void
-  }) => {
+  const TestComponent = ({ value, callback }: { value: any; callback: (v: any) => void }) => {
     const ref = useIdentityRef(value);
 
     useEffect(() => {

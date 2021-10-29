@@ -4,9 +4,7 @@ import { LoadingOverlay } from '..';
 
 describe('<LoadingOverlay />', () => {
   it('should renders without props', () => {
-    const wrapper = mount(
-      <LoadingOverlay />
-    );
+    const wrapper = mount(<LoadingOverlay />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -17,16 +15,14 @@ describe('<LoadingOverlay />', () => {
         style={{ borderRadius: 12 }}
         className='test-class'
         spinnerProps={{ size: 'small' }}
-      />
+      />,
     );
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should handle "fill" prop', () => {
-    const wrapper = mount(
-      <LoadingOverlay fill />
-    );
+    const wrapper = mount(<LoadingOverlay fill />);
 
     expect(wrapper).toMatchSnapshot();
   });

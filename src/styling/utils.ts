@@ -10,11 +10,9 @@ import classnames from 'classnames/bind';
 export const ClassGetter = <T = string | number>(
   classes: Record<string, string>,
   isValidKey: (s: T) => boolean,
-  prefix = ''
+  prefix = '',
 ) => {
   const cx = classnames.bind(classes);
 
-  return (value: T) => isValidKey(value)
-    ? cx(`${prefix}${value}`)
-    : undefined;
+  return (value: T) => (isValidKey(value) ? cx(`${prefix}${value}`) : undefined);
 };

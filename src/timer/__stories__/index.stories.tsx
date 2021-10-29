@@ -10,23 +10,17 @@ export default {
   },
 };
 
-export const Primary = () => (
-  <Timer
-    date={formatISO(addMonths(new Date(), 1))}
-  />
-);
+export const Primary = () => <Timer date={formatISO(addMonths(new Date(), 1))} />;
 
 export const Styling = () => {
-  const TimerPart: React.FC<{ label: string, value: number }> = ({ label, value }) => (
+  const TimerPart: React.FC<{ label: string; value: number }> = ({ label, value }) => (
     <div style={{ textAlign: 'center' }}>
       <div>{`${value}`.padStart(2, '0')}</div>
       <div style={{ fontSize: 14, fontWeight: 'normal' }}>{label}</div>
     </div>
   );
 
-  const Divider = () => (
-    <div style={{ margin: '0 12px' }}>:</div>
-  );
+  const Divider = () => <div style={{ margin: '0 12px' }}>:</div>;
 
   return (
     <Timer

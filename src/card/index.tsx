@@ -9,10 +9,10 @@ import { defineSlots } from '../helpers/define-slots';
 export type CardProps = PlateProps;
 
 export interface CardComponent {
-  (props: CardProps): JSX.Element
-  Header: typeof CardHeader
-  Content: typeof CardContent
-  Footer: typeof CardFooter
+  (props: CardProps): JSX.Element;
+  Header: typeof CardHeader;
+  Content: typeof CardContent;
+  Footer: typeof CardFooter;
 }
 
 /**

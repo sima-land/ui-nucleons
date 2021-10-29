@@ -4,11 +4,7 @@ import { ArrowButton } from '..';
 
 describe('<ArrowButton />', () => {
   it('should renders correctly', () => {
-    const { container } = render(
-      <ArrowButton
-        aria-label='Вперед'
-      />
-    );
+    const { container } = render(<ArrowButton aria-label='Вперед' />);
 
     expect(container).toMatchSnapshot();
   });
@@ -17,12 +13,7 @@ describe('<ArrowButton />', () => {
     const spy = jest.fn();
 
     const result = render(
-      <ArrowButton
-        size='l'
-        direction='left'
-        aria-label='Назад'
-        onClick={spy}
-      />
+      <ArrowButton size='l' direction='left' aria-label='Назад' onClick={spy} />,
     );
 
     expect(result.container).toMatchSnapshot();

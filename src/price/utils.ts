@@ -20,9 +20,7 @@ export const formatPrice = (
     formatInteger(number),
 
     // дробная часть
-    Number.isFinite(number) &&
-      !Number.isInteger(number) &&
-      `,${formatFractional(number)}`,
+    Number.isFinite(number) && !Number.isInteger(number) && `,${formatFractional(number)}`,
 
     // графема после
     grapheme && !graphemeBefore && ` ${grapheme}`,

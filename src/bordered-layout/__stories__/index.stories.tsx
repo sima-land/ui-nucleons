@@ -13,9 +13,7 @@ export const Primary = () => {
   const Demo: React.FC<BorderedLayoutProps> = ({ children, ...props }) => (
     <div style={{ margin: '32px 0' }}>
       <BorderedLayout {...props}>
-        <div style={{ padding: '16px 0' }}>
-          {children}
-        </div>
+        <div style={{ padding: '16px 0' }}>{children}</div>
       </BorderedLayout>
     </div>
   );
@@ -26,13 +24,9 @@ export const Primary = () => {
         Граница сверху и снизу
       </Demo>
 
-      <Demo top>
-        Граница сверху
-      </Demo>
+      <Demo top>Граница сверху</Demo>
 
-      <Demo bottom>
-        Граница снизу
-      </Demo>
+      <Demo bottom>Граница снизу</Demo>
     </>
   );
 };

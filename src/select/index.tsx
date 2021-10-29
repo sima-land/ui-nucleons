@@ -13,27 +13,26 @@ import { DropdownLoading } from '../_internal/dropdown-loading';
 type Size = 's' | 'm' | 'l' | 'xl';
 
 export interface SelectProps extends Omit<TextFieldProps, 'style'> {
-
   /** Нужно ли выводить состояние загрузки списка. */
-  loading?: boolean
+  loading?: boolean;
 
   /** Сработает при открытии/закрытии меню. */
-  onMenuToggle?: (opened: boolean) => void
+  onMenuToggle?: (opened: boolean) => void;
 
   /** Сработает при выборе. */
-  onSelect?: (option: any) => void
+  onSelect?: (option: any) => void;
 
   /** Список опций. */
-  options: any[]
+  options: any[];
 
   /** Размер для DropdownItem. */
-  optionSize?: Size
+  optionSize?: Size;
 
   /** Вернет содержимое опции. */
-  renderOption?: (option: any) => React.ReactNode
+  renderOption?: (option: any) => React.ReactNode;
 
   /** Стили. */
-  style?: React.CSSProperties
+  style?: React.CSSProperties;
 }
 
 const cx = classnames.bind(styles);
@@ -70,11 +69,7 @@ export const Select: React.FC<SelectProps> = ({
   }, [opened]);
 
   return (
-    <div
-      style={style}
-      className={cx('root', className)}
-      data-testid={dataTestId}
-    >
+    <div style={style} className={cx('root', className)} data-testid={dataTestId}>
       <TextField
         {...restProps}
         readOnly
@@ -96,11 +91,7 @@ export const Select: React.FC<SelectProps> = ({
           e.key === 'Enter' && toggleMenu(true);
         }}
         className={cx('field')}
-        endAdornment={(
-          <ArrowSVG
-            fill={COLORS.get('gray38')}
-          />
-        )}
+        endAdornment={<ArrowSVG fill={COLORS.get('gray38')} />}
       />
 
       {opened && (loading || options.length > 0) && (
@@ -121,11 +112,10 @@ export const Select: React.FC<SelectProps> = ({
             }
           }}
         >
-          {loading
-            ? (
-              <DropdownLoading data-testid='select:loading-area' />
-            )
-            : options.map((option, index) => (
+          {loading ? (
+            <DropdownLoading data-testid='select:loading-area' />
+          ) : (
+            options.map((option, index) => (
               <DropdownItem
                 size={optionSize}
                 key={index}
@@ -138,7 +128,7 @@ export const Select: React.FC<SelectProps> = ({
                 {renderOption(option)}
               </DropdownItem>
             ))
-          }
+          )}
         </Dropdown>
       )}
     </div>

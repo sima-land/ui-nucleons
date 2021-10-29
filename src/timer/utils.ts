@@ -11,10 +11,8 @@ const UNITS = ['day', 'hour', 'minute', 'second'] as const;
  * @param distance Оставшееся время.
  * @return Отформатированное время.
  */
-export const formatDistance = ({ days, hours, minutes, seconds }: Distance): string => [
-  days,
-  ...[hours % 24, minutes % 60, seconds % 60].map(s => `${s}`.padStart(2, '0')),
-].join(':');
+export const formatDistance = ({ days, hours, minutes, seconds }: Distance): string =>
+  [days, ...[hours % 24, minutes % 60, seconds % 60].map(s => `${s}`.padStart(2, '0'))].join(':');
 
 /**
  * Возвращает объект с данными об оставшемся времени от текущего момента.
@@ -27,11 +25,13 @@ export const getDistanceToNow = (dateString: string): Distance => {
   let result = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
   if (isValid(date) && !isAfter(new Date(), date)) {
-    const [days, hours, minutes, seconds] = UNITS.map(
-      unit => parseInt(formatDistanceToNowStrict(date, {
-        unit,
-        roundingMethod: 'floor',
-      }).replace(/\D/g, ''))
+    const [days, hours, minutes, seconds] = UNITS.map(unit =>
+      parseInt(
+        formatDistanceToNowStrict(date, {
+          unit,
+          roundingMethod: 'floor',
+        }).replace(/\D/g, ''),
+      ),
     );
 
     result = { days, hours, minutes, seconds };

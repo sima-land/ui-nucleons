@@ -29,7 +29,9 @@ export const Primary = () => {
         caption='Test caption'
       />
       <div style={{ marginTop: 8 }}>
-        <Link pseudo onClick={() => selectOption('')}>Сбросить</Link>
+        <Link pseudo onClick={() => selectOption('')}>
+          Сбросить
+        </Link>
       </div>
     </>
   );
@@ -67,7 +69,9 @@ export const WithLoading = () => {
             selectOption('');
             toggleReady(false);
           }}
-        >Сбросить (+данные)</Link>
+        >
+          Сбросить (+данные)
+        </Link>
       </div>
     </>
   );

@@ -9,7 +9,7 @@ describe('<TouchSlider />', () => {
         <div>Foo</div>
         <div>Bar</div>
         <div>Baz</div>
-      </TouchSlider>
+      </TouchSlider>,
     );
 
     expect(wrapper).toMatchSnapshot();

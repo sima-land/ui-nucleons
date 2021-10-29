@@ -24,12 +24,12 @@ const placeItems = ({
   itemsCount,
   offset = 0,
 }: {
-  containerEl: HTMLElement
-  itemsSelector: string
-  vertical: boolean
-  itemSize: number
-  itemsCount: number
-  offset: number
+  containerEl: HTMLElement;
+  itemsSelector: string;
+  vertical: boolean;
+  itemSize: number;
+  itemsCount: number;
+  offset: number;
 }) => {
   // подменяем размер элемента-контейнера
   defineProp(containerEl, vertical ? 'scrollHeight' : 'scrollWidth', itemSize * itemsCount);
@@ -37,14 +37,17 @@ const placeItems = ({
 
   // подменяем размеры всех элементов карусели
   containerEl.querySelectorAll(itemsSelector).forEach((itemEl, index) => {
-    jest.spyOn(itemEl, 'getBoundingClientRect').mockImplementation(() => ({
-      width: itemSize,
-      height: itemSize,
-      left: vertical ? 0 : (index * itemSize) + offset,
-      right: vertical ? itemSize : ((index * itemSize) + itemSize) + offset,
-      top: !vertical ? 0 : (index * itemSize) + offset,
-      bottom: !vertical ? itemSize : ((index * itemSize) + itemSize) + offset,
-    }) as any);
+    jest.spyOn(itemEl, 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          width: itemSize,
+          height: itemSize,
+          left: vertical ? 0 : index * itemSize + offset,
+          right: vertical ? itemSize : index * itemSize + itemSize + offset,
+          top: !vertical ? 0 : index * itemSize + offset,
+          bottom: !vertical ? itemSize : index * itemSize + itemSize + offset,
+        } as any),
+    );
   });
 };
 
@@ -57,16 +60,15 @@ const FakeElement = {
     return el;
   },
 
-  withRect: (rect: any) => FakeElement.create({
-    getBoundingClientRect: () => rect,
-  }),
+  withRect: (rect: any) =>
+    FakeElement.create({
+      getBoundingClientRect: () => rect,
+    }),
 };
 
 describe('<Carousel />', () => {
   it('should enable autoplay on mount', () => {
-    const wrapper = mount<Carousel>(
-      <Carousel autoplay />
-    );
+    const wrapper = mount<Carousel>(<Carousel autoplay />);
     const instance = wrapper.instance();
 
     jest.spyOn(instance, 'enableAutoplay');
@@ -82,9 +84,7 @@ describe('<Carousel />', () => {
   });
 
   it('should toggle autoplay on update', () => {
-    const wrapper = mount<Carousel>(
-      <Carousel />
-    );
+    const wrapper = mount<Carousel>(<Carousel />);
     const instance = wrapper.instance();
 
     jest.spyOn(instance, 'enableAutoplay');
@@ -103,9 +103,7 @@ describe('<Carousel />', () => {
   });
 
   it('should enable auto move on drag end', () => {
-    const wrapper = mount<Carousel>(
-      <Carousel autoplay />
-    );
+    const wrapper = mount<Carousel>(<Carousel autoplay />);
     const instance = wrapper.instance();
 
     jest.spyOn(instance, 'canDrag').mockImplementation(() => true);
@@ -117,9 +115,7 @@ describe('<Carousel />', () => {
   });
 
   it('should disable auto move on mouse enter', () => {
-    const wrapper = mount<Carousel>(
-      <Carousel autoplay autoplayHoverPause />
-    );
+    const wrapper = mount<Carousel>(<Carousel autoplay autoplayHoverPause />);
     const instance = wrapper.instance();
 
     jest.spyOn(instance, 'toggleAutoMove');
@@ -131,9 +127,7 @@ describe('<Carousel />', () => {
   });
 
   it('should not disable auto move on mouse enter', () => {
-    const wrapper = mount<Carousel>(
-      <Carousel autoplay autoplayHoverPause={false} />
-    );
+    const wrapper = mount<Carousel>(<Carousel autoplay autoplayHoverPause={false} />);
     const instance = wrapper.instance();
 
     jest.spyOn(instance, 'toggleAutoMove');
@@ -144,13 +138,13 @@ describe('<Carousel />', () => {
   });
 
   it('should enable auto move on mouse leave', () => {
-    const wrapper = mount<Carousel>(
-      <Carousel autoplay autoplayHoverPause />
-    );
+    const wrapper = mount<Carousel>(<Carousel autoplay autoplayHoverPause />);
     const instance = wrapper.instance();
 
     // simulate drag start
-    (wrapper.find(Draggable) as any).prop('onDragStart')(new DraggableEvent({ offset: Point(), client: Point() }));
+    (wrapper.find(Draggable) as any).prop('onDragStart')(
+      new DraggableEvent({ offset: Point(), client: Point() }),
+    );
 
     jest.spyOn(instance, 'toggleAutoMove');
     expect(instance.toggleAutoMove).toHaveBeenCalledTimes(0);
@@ -162,13 +156,13 @@ describe('<Carousel />', () => {
   });
 
   it('should not enable auto move on mouse leave', () => {
-    const wrapper = mount<Carousel>(
-      <Carousel autoplay autoplayHoverPause={false} />
-    );
+    const wrapper = mount<Carousel>(<Carousel autoplay autoplayHoverPause={false} />);
     const instance = wrapper.instance();
 
     // simulate drag start
-    (wrapper.find(Draggable) as any).prop('onDragStart')(new DraggableEvent({ offset: Point(), client: Point() }));
+    (wrapper.find(Draggable) as any).prop('onDragStart')(
+      new DraggableEvent({ offset: Point(), client: Point() }),
+    );
 
     jest.spyOn(instance, 'toggleAutoMove');
     expect(instance.toggleAutoMove).toHaveBeenCalledTimes(0);
@@ -181,9 +175,7 @@ describe('<Carousel />', () => {
   it('should register timer by setInterval', () => {
     jest.useFakeTimers();
 
-    const wrapper = mount<Carousel>(
-      <Carousel autoplay autoplayTimeout={1000} />
-    );
+    const wrapper = mount<Carousel>(<Carousel autoplay autoplayTimeout={1000} />);
     const instance = wrapper.instance();
     jest.spyOn(instance, 'moveForward');
 
@@ -194,11 +186,7 @@ describe('<Carousel />', () => {
 
   it('scrollToItem should use defaults correctly', () => {
     const spy = jest.fn();
-    const wrapper = mount<Carousel>(
-      <Carousel
-        items={[1, 2, 3]}
-      />
-    );
+    const wrapper = mount<Carousel>(<Carousel items={[1, 2, 3]} />);
     const instance = wrapper.instance();
 
     jest.spyOn(instance, 'toggleDragTransition');
@@ -218,37 +206,21 @@ describe('<Carousel />', () => {
 
   it('onReady should pass currentIndex when component did mounted', () => {
     const spy = jest.fn();
-    mount(
-      <Carousel
-        items={[1, 2, 3]}
-        targetIndex={2}
-        onReady={spy}
-      />
-    );
+    mount(<Carousel items={[1, 2, 3]} targetIndex={2} onReady={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(2);
   });
 
   it('onChangeTargetIndex should pass currentIndex when set new index', () => {
     const spy = jest.fn();
-    const wrapper = mount<Carousel>(
-      <Carousel
-        items={[1, 2, 3]}
-        onChangeTargetIndex={spy}
-      />
-    );
+    const wrapper = mount<Carousel>(<Carousel items={[1, 2, 3]} onChangeTargetIndex={spy} />);
     wrapper.instance().setCurrentIndex(3);
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(3);
   });
 
   it('should handle window "resize" event', () => {
-    const wrapper = mount<Carousel>(
-      <Carousel
-        items={[1, 2, 3]}
-        infinite={false}
-      />
-    );
+    const wrapper = mount<Carousel>(<Carousel items={[1, 2, 3]} infinite={false} />);
 
     jest.spyOn(wrapper.instance(), 'toggleDragTransition');
     jest.spyOn(wrapper.instance(), 'scrollToItem');
@@ -266,12 +238,7 @@ describe('<Carousel />', () => {
   });
 
   it('should call "offWindowResize" on unmount', () => {
-    const wrapper = mount<Carousel>(
-      <Carousel
-        items={[1, 2, 3]}
-        infinite={false}
-      />
-    );
+    const wrapper = mount<Carousel>(<Carousel items={[1, 2, 3]} infinite={false} />);
 
     const spy = jest.spyOn(wrapper.instance(), 'offWindowResize');
 
@@ -289,32 +256,20 @@ describe('Carousel: finite mode', () => {
   });
 
   it('should render without props', () => {
-    const wrapper = mount<Carousel>(
-      <Carousel
-        infinite={false}
-      />
-    );
+    const wrapper = mount<Carousel>(<Carousel infinite={false} />);
     expect(wrapper.find(`.${classes['carousel-wrapper']}`)).toHaveLength(1);
   });
 
   it('should handle "vertical" props', () => {
-    const wrapper = mount<Carousel>(
-      <Carousel
-        vertical
-        infinite={false}
-      />
+    const wrapper = mount<Carousel>(<Carousel vertical infinite={false} />);
+    expect(wrapper.find(`.${classes['carousel-items-container']}`).prop('className')).toContain(
+      classes.vertical,
     );
-    expect(wrapper.find(`.${classes['carousel-items-container']}`).prop('className')).toContain(classes.vertical);
     expect(wrapper.find(Draggable).prop('axis')).toBe('y');
   });
 
   it('should update current index in state on "targetIndex" prop change', () => {
-    const wrapper = mount<Carousel>(
-      <Carousel
-        targetIndex={0}
-        infinite={false}
-      />
-    );
+    const wrapper = mount<Carousel>(<Carousel targetIndex={0} infinite={false} />);
     const testInstance = wrapper.instance();
 
     jest.spyOn(testInstance, 'setCurrentIndex');
@@ -340,84 +295,112 @@ describe('Carousel: finite mode', () => {
   });
 
   it('should unsubscribe from "resize" event before unmount', () => {
-    const wrapper = mount<Carousel>(
-      <Carousel />
-    );
+    const wrapper = mount<Carousel>(<Carousel />);
 
     wrapper.unmount();
   });
 
   it('isAllItemsVisible() should works properly', () => {
     const wrapper = mount<Carousel>(
-      <Carousel
-        vertical={false}
-        infinite={false}
-        items={[1, 2, 4, 5, 6, 7, 8, 9]}
-      />
+      <Carousel vertical={false} infinite={false} items={[1, 2, 4, 5, 6, 7, 8, 9]} />,
     );
     const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement as HTMLElement;
     const containerEl = wrapper.instance().containerRef.current as HTMLElement as HTMLElement;
 
     // horizontal & not all visible
-    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-      top: 0,
-      left: 0,
-      width: 100,
-      height: 20,
-      right: 100,
-      bottom: 20,
-    }) as any);
-    jest.spyOn(containerEl.firstElementChild as HTMLElement, 'getBoundingClientRect').mockImplementation(() => ({
-      left: 0,
-    }) as any);
-    jest.spyOn(containerEl.children[7], 'getBoundingClientRect').mockImplementation(() => ({
-      right: 200,
-    }) as any);
+    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          top: 0,
+          left: 0,
+          width: 100,
+          height: 20,
+          right: 100,
+          bottom: 20,
+        } as any),
+    );
+    jest
+      .spyOn(containerEl.firstElementChild as HTMLElement, 'getBoundingClientRect')
+      .mockImplementation(
+        () =>
+          ({
+            left: 0,
+          } as any),
+      );
+    jest.spyOn(containerEl.children[7], 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          right: 200,
+        } as any),
+    );
     expect(wrapper.instance().isAllItemsVisible()).toBe(false);
 
     // horizontal & all visible
-    jest.spyOn(containerEl.firstElementChild as HTMLElement, 'getBoundingClientRect').mockImplementation(() => ({
-      left: 0,
-    }) as any);
-    jest.spyOn(containerEl.children[7], 'getBoundingClientRect').mockImplementation(() => ({
-      right: 80,
-    }) as any);
+    jest
+      .spyOn(containerEl.firstElementChild as HTMLElement, 'getBoundingClientRect')
+      .mockImplementation(
+        () =>
+          ({
+            left: 0,
+          } as any),
+      );
+    jest.spyOn(containerEl.children[7], 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          right: 80,
+        } as any),
+    );
     expect(wrapper.instance().isAllItemsVisible()).toBe(true);
 
     // vertical & not all visible
     wrapper.setProps({ vertical: true });
-    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-      top: 0,
-      left: 0,
-      width: 40,
-      height: 200,
-      right: 40,
-      bottom: 200,
-    }) as any);
-    jest.spyOn(containerEl.firstElementChild as HTMLElement, 'getBoundingClientRect').mockImplementation(() => ({
-      top: 0,
-    }) as any);
-    jest.spyOn(containerEl.children[7], 'getBoundingClientRect').mockImplementation(() => ({
-      bottom: 240,
-    }) as any);
+    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          top: 0,
+          left: 0,
+          width: 40,
+          height: 200,
+          right: 40,
+          bottom: 200,
+        } as any),
+    );
+    jest
+      .spyOn(containerEl.firstElementChild as HTMLElement, 'getBoundingClientRect')
+      .mockImplementation(
+        () =>
+          ({
+            top: 0,
+          } as any),
+      );
+    jest.spyOn(containerEl.children[7], 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          bottom: 240,
+        } as any),
+    );
     expect(wrapper.instance().isAllItemsVisible()).toBe(false);
 
     // vertical & all visible
-    jest.spyOn(containerEl.firstElementChild as HTMLElement, 'getBoundingClientRect').mockImplementation(() => ({
-      top: 0,
-    }) as any);
-    jest.spyOn(containerEl.children[7], 'getBoundingClientRect').mockImplementation(() => ({
-      bottom: 80,
-    }) as any);
+    jest
+      .spyOn(containerEl.firstElementChild as HTMLElement, 'getBoundingClientRect')
+      .mockImplementation(
+        () =>
+          ({
+            top: 0,
+          } as any),
+      );
+    jest.spyOn(containerEl.children[7], 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          bottom: 80,
+        } as any),
+    );
     expect(wrapper.instance().isAllItemsVisible()).toBe(true);
   });
 
   it('onDragStart() should works properly', () => {
-    const wrapper = mount<Carousel>(
-      <Carousel
-        infinite={false}
-      />
-    );
+    const wrapper = mount<Carousel>(<Carousel infinite={false} />);
     jest.spyOn(wrapper.instance(), 'saveDragStartData');
     jest.spyOn(wrapper.instance(), 'toggleDragTransition');
 
@@ -430,24 +413,22 @@ describe('Carousel: finite mode', () => {
 
   it('moveForward() should works properly', () => {
     const wrapper = mount<Carousel>(
-      <Carousel
-        vertical={false}
-        items={[...Array(17).keys()]}
-        withControls
-        infinite={false}
-      />
+      <Carousel vertical={false} items={[...Array(17).keys()]} withControls infinite={false} />,
     );
     const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement as HTMLElement;
     const containerEl = wrapper.instance().containerRef.current as HTMLElement as HTMLElement;
 
-    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-      top: 0,
-      left: 0,
-      width: 100,
-      height: 20,
-      right: 100,
-      bottom: 20,
-    }) as any);
+    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          top: 0,
+          left: 0,
+          width: 100,
+          height: 20,
+          right: 100,
+          bottom: 20,
+        } as any),
+    );
     defineProp(containerEl, 'scrollWidth', 500);
     wrapper.setProps({ targetIndex: 0 });
 
@@ -488,24 +469,29 @@ describe('Carousel: finite mode', () => {
         items={[...Array(itemsCount).keys()]}
         withControls
         renderItem={item => (
-          <div key={item} className='test-item'>{item}</div>
+          <div key={item} className='test-item'>
+            {item}
+          </div>
         )}
-      />
+      />,
     );
     const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement as HTMLElement;
     const containerEl = wrapper.instance().containerRef.current as HTMLElement as HTMLElement;
 
-    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-      top: 0,
-      left: 0,
-      width: 100,
-      height: 20,
-      right: 100,
-      bottom: 20,
-    }) as any);
+    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          top: 0,
+          left: 0,
+          width: 100,
+          height: 20,
+          right: 100,
+          bottom: 20,
+        } as any),
+    );
 
     // смещаем элементы так, чтобы последний элемент был вплотную к правой границе карусели
-    const offset = 100 - (itemSize * itemsCount);
+    const offset = 100 - itemSize * itemsCount;
     placeItems({
       containerEl,
       itemsSelector: '.test-item',
@@ -530,24 +516,29 @@ describe('Carousel: finite mode', () => {
         items={[...Array(itemsCount).keys()]}
         withControls
         renderItem={item => (
-          <div key={item} className='test-item'>{item}</div>
+          <div key={item} className='test-item'>
+            {item}
+          </div>
         )}
-      />
+      />,
     );
     const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement as HTMLElement;
     const containerEl = wrapper.instance().containerRef.current as HTMLElement as HTMLElement;
 
-    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-      top: 0,
-      left: 0,
-      width: 100,
-      height: 20,
-      right: 100,
-      bottom: 20,
-    }) as any);
+    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          top: 0,
+          left: 0,
+          width: 100,
+          height: 20,
+          right: 100,
+          bottom: 20,
+        } as any),
+    );
 
     // смещаем элементы так, чтобы последний элемент был вплотную к правой границе карусели
-    const offset = 100 - (itemSize * itemsCount);
+    const offset = 100 - itemSize * itemsCount;
     placeItems({
       containerEl,
       itemsSelector: '.test-item',
@@ -572,25 +563,30 @@ describe('Carousel: finite mode', () => {
         items={[...Array(itemsCount).keys()]}
         withControls
         renderItem={item => (
-          <div key={item} className='test-item'>{item}</div>
+          <div key={item} className='test-item'>
+            {item}
+          </div>
         )}
         infinite={false}
-      />
+      />,
     );
     const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
     const containerEl = wrapper.instance().containerRef.current as HTMLElement;
 
-    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-      top: 0,
-      left: 0,
-      width: 100,
-      height: 20,
-      right: 100,
-      bottom: 20,
-    }) as any);
+    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          top: 0,
+          left: 0,
+          width: 100,
+          height: 20,
+          right: 100,
+          bottom: 20,
+        } as any),
+    );
 
     // смещаем элементы так, чтобы последний элемент был вплотную к правой границе карусели
-    const offset = 100 - (itemSize * itemsCount);
+    const offset = 100 - itemSize * itemsCount;
     placeItems({
       containerEl,
       itemsSelector: '.test-item',
@@ -611,10 +607,12 @@ describe('Carousel: finite mode', () => {
         items={[...Array(12).keys()]}
         withControls
         renderItem={item => (
-          <div key={item} className='test-item'>{item}</div>
+          <div key={item} className='test-item'>
+            {item}
+          </div>
         )}
         infinite={false}
-      />
+      />,
     );
 
     jest.spyOn(wrapper.instance(), 'setCurrentIndex');
@@ -635,22 +633,27 @@ describe('Carousel: finite mode', () => {
           items={[...Array(itemsCount).keys()]}
           withControls
           renderItem={item => (
-            <div key={item} className='test-item'>{item}</div>
+            <div key={item} className='test-item'>
+              {item}
+            </div>
           )}
           infinite={false}
-        />
+        />,
       );
 
       const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
       const containerEl = wrapper.instance().containerRef.current as HTMLElement;
-      jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-        top: 0,
-        left: 0,
-        width: visibleItemsCount * itemSize,
-        height: itemSize,
-        right: visibleItemsCount * itemSize,
-        bottom: itemSize,
-      }) as any);
+      jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+        () =>
+          ({
+            top: 0,
+            left: 0,
+            width: visibleItemsCount * itemSize,
+            height: itemSize,
+            right: visibleItemsCount * itemSize,
+            bottom: itemSize,
+          } as any),
+      );
       const endOffset = -(5.5 * itemSize); // переместили мышкой на 5.5 элементов вперед (влево)
       placeItems({
         containerEl,
@@ -678,23 +681,28 @@ describe('Carousel: finite mode', () => {
           items={[...Array(itemsCount).keys()]}
           withControls
           renderItem={item => (
-            <div key={item} className='test-item'>{item}</div>
+            <div key={item} className='test-item'>
+              {item}
+            </div>
           )}
-        />
+        />,
       );
 
       const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
       const containerEl = wrapper.instance().containerRef.current as HTMLElement;
 
-      jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-        top: 0,
-        left: 0,
-        width: visibleItemsCount * itemSize,
-        height: itemSize,
-        right: visibleItemsCount * itemSize,
-        bottom: itemSize,
-      }) as any);
-      const endOffset = (itemsCount * 2) * itemSize; // переместили мышкой за пределы области галереи
+      jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+        () =>
+          ({
+            top: 0,
+            left: 0,
+            width: visibleItemsCount * itemSize,
+            height: itemSize,
+            right: visibleItemsCount * itemSize,
+            bottom: itemSize,
+          } as any),
+      );
+      const endOffset = itemsCount * 2 * itemSize; // переместили мышкой за пределы области галереи
       placeItems({
         containerEl,
         itemsSelector: '.test-item',
@@ -720,10 +728,12 @@ describe('Carousel: finite mode', () => {
           items={[...Array(itemsCount).keys()]}
           withControls
           renderItem={item => (
-            <div key={item} className='test-item'>{item}</div>
+            <div key={item} className='test-item'>
+              {item}
+            </div>
           )}
           infinite={false}
-        />
+        />,
       );
       const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
       const containerEl = wrapper.instance().containerRef.current as HTMLElement;
@@ -733,14 +743,17 @@ describe('Carousel: finite mode', () => {
       const startOffset = -(startIndex * itemSize); // переместили мышкой на 4.3 элементов назад (вправо)
       wrapper.instance().currentIndex = startIndex;
       wrapper.setState({ currentOffset: -(startIndex * itemSize) });
-      jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-        top: 0,
-        left: 0,
-        width: visibleItemsCount * itemSize,
-        height: itemSize,
-        right: visibleItemsCount * itemSize,
-        bottom: itemSize,
-      }) as any);
+      jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+        () =>
+          ({
+            top: 0,
+            left: 0,
+            width: visibleItemsCount * itemSize,
+            height: itemSize,
+            right: visibleItemsCount * itemSize,
+            bottom: itemSize,
+          } as any),
+      );
       defineProp(containerEl, 'scrollWidth', itemSize * itemsCount);
 
       // переместили мышкой так чтобы 2 элемент был чуть правее левой границы viewport'а
@@ -770,22 +783,27 @@ describe('Carousel: finite mode', () => {
           items={[...Array(itemsCount).keys()]}
           withControls
           renderItem={item => (
-            <div key={item} className='test-item'>{item}</div>
+            <div key={item} className='test-item'>
+              {item}
+            </div>
           )}
           infinite={false}
-        />
+        />,
       );
 
       const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
       const containerEl = wrapper.instance().containerRef.current as HTMLElement;
-      jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-        top: 0,
-        left: 0,
-        width: visibleItemsCount * itemSize,
-        height: itemSize,
-        right: visibleItemsCount * itemSize,
-        bottom: itemSize,
-      }) as any);
+      jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+        () =>
+          ({
+            top: 0,
+            left: 0,
+            width: visibleItemsCount * itemSize,
+            height: itemSize,
+            right: visibleItemsCount * itemSize,
+            bottom: itemSize,
+          } as any),
+      );
       const endOffset = -(3.2 * itemSize); // переместили мышкой на 3.5 элементов вперед (вниз)
       placeItems({
         containerEl,
@@ -812,10 +830,12 @@ describe('Carousel: finite mode', () => {
           items={[...Array(itemsCount).keys()]}
           withControls
           renderItem={item => (
-            <div key={item} className='test-item'>{item}</div>
+            <div key={item} className='test-item'>
+              {item}
+            </div>
           )}
           infinite={false}
-        />
+        />,
       );
       const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
       const containerEl = wrapper.instance().containerRef.current as HTMLElement;
@@ -825,14 +845,17 @@ describe('Carousel: finite mode', () => {
       const startOffset = -(startIndex * itemSize); // переместили мышкой на 4.3 элементов назад (вправо)
       wrapper.instance().currentIndex = startIndex;
       wrapper.setState({ currentOffset: -(startIndex * itemSize) });
-      jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-        top: 0,
-        left: 0,
-        width: itemSize,
-        height: visibleItemsCount * itemSize,
-        right: itemSize,
-        bottom: visibleItemsCount * itemSize,
-      }) as any);
+      jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+        () =>
+          ({
+            top: 0,
+            left: 0,
+            width: itemSize,
+            height: visibleItemsCount * itemSize,
+            right: itemSize,
+            bottom: visibleItemsCount * itemSize,
+          } as any),
+      );
       defineProp(containerEl, 'scrollHeight', itemSize * itemsCount);
 
       // переместили мышкой так чтобы 2 элемент был чуть левее левой границы viewport'а
@@ -862,23 +885,28 @@ describe('Carousel: finite mode', () => {
           items={[...Array(itemsCount).keys()]}
           withControls
           renderItem={item => (
-            <div key={item} className='test-item'>{item}</div>
+            <div key={item} className='test-item'>
+              {item}
+            </div>
           )}
           infinite={false}
-        />
+        />,
       );
 
       const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
       const containerEl = wrapper.instance().containerRef.current as HTMLElement;
-      jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-        top: 0,
-        left: 0,
-        width: visibleItemsCount * itemSize,
-        height: itemSize,
-        right: visibleItemsCount * itemSize,
-        bottom: itemSize,
-      }) as any);
-      const endOffset = (itemsCount * 2) * itemSize; // переместили мышкой за пределы области галереи
+      jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+        () =>
+          ({
+            top: 0,
+            left: 0,
+            width: visibleItemsCount * itemSize,
+            height: itemSize,
+            right: visibleItemsCount * itemSize,
+            bottom: itemSize,
+          } as any),
+      );
+      const endOffset = itemsCount * 2 * itemSize; // переместили мышкой за пределы области галереи
       placeItems({
         containerEl,
         itemsSelector: '.test-item',
@@ -904,23 +932,28 @@ describe('Carousel: finite mode', () => {
           items={[...Array(itemsCount).keys()]}
           withControls
           renderItem={item => (
-            <div key={item} className='test-item'>{item}</div>
+            <div key={item} className='test-item'>
+              {item}
+            </div>
           )}
           infinite={false}
-        />
+        />,
       );
 
       const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
       const containerEl = wrapper.instance().containerRef.current as HTMLElement;
-      jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-        top: 0,
-        left: 0,
-        width: visibleItemsCount * itemSize,
-        height: itemSize,
-        right: visibleItemsCount * itemSize,
-        bottom: itemSize,
-      }) as any);
-      const endOffset = -((itemsCount * 3) * itemSize); // переместили мышкой за пределы области галереи
+      jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+        () =>
+          ({
+            top: 0,
+            left: 0,
+            width: visibleItemsCount * itemSize,
+            height: itemSize,
+            right: visibleItemsCount * itemSize,
+            bottom: itemSize,
+          } as any),
+      );
+      const endOffset = -(itemsCount * 3 * itemSize); // переместили мышкой за пределы области галереи
       placeItems({
         containerEl,
         itemsSelector: '.test-item',
@@ -953,21 +986,26 @@ describe('Carousel: infinite mode', () => {
         items={[...Array(itemsCount).keys()]}
         withControls
         renderItem={(item, index) => (
-          <div key={index} className='test-item'>{item}</div>
+          <div key={index} className='test-item'>
+            {item}
+          </div>
         )}
-      />
+      />,
     );
     const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
     const containerEl = wrapper.instance().containerRef.current as HTMLElement;
 
-    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-      top: 0,
-      left: 0,
-      width: 100,
-      height: 20,
-      right: 100,
-      bottom: 20,
-    }) as any);
+    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          top: 0,
+          left: 0,
+          width: 100,
+          height: 20,
+          right: 100,
+          bottom: 20,
+        } as any),
+    );
 
     // смещаем элементы
     const initialIndex = itemsCount + 1;
@@ -1002,21 +1040,26 @@ describe('Carousel: infinite mode', () => {
         items={[...Array(itemsCount).keys()]}
         withControls
         renderItem={(item, index) => (
-          <div key={index} className='test-item'>{item}</div>
+          <div key={index} className='test-item'>
+            {item}
+          </div>
         )}
-      />
+      />,
     );
     const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
     const containerEl = wrapper.instance().containerRef.current as HTMLElement;
 
-    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-      top: 0,
-      left: 0,
-      width: 100,
-      height: 20,
-      right: 100,
-      bottom: 20,
-    }) as any);
+    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          top: 0,
+          left: 0,
+          width: 100,
+          height: 20,
+          right: 100,
+          bottom: 20,
+        } as any),
+    );
 
     // смещаем элементы
     const initialIndex = itemsCount - 1;
@@ -1050,21 +1093,26 @@ describe('Carousel: infinite mode', () => {
         items={[...Array(itemsCount).keys()]}
         withControls
         renderItem={(item, index) => (
-          <div key={index} className='test-item'>{item}</div>
+          <div key={index} className='test-item'>
+            {item}
+          </div>
         )}
-      />
+      />,
     );
     const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
     const containerEl = wrapper.instance().containerRef.current as HTMLElement;
 
-    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-      top: 0,
-      left: 0,
-      width: 100,
-      height: 20,
-      right: 100,
-      bottom: 20,
-    }) as any);
+    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          top: 0,
+          left: 0,
+          width: 100,
+          height: 20,
+          right: 100,
+          bottom: 20,
+        } as any),
+    );
 
     // смещаем элементы
     const initialIndex = 0;
@@ -1098,21 +1146,26 @@ describe('Carousel: infinite mode', () => {
         items={[...Array(itemsCount).keys()]}
         withControls
         renderItem={(item, index) => (
-          <div key={index} className='test-item'>{item}</div>
+          <div key={index} className='test-item'>
+            {item}
+          </div>
         )}
-      />
+      />,
     );
     const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
     const containerEl = wrapper.instance().containerRef.current as HTMLElement;
 
-    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-      top: 0,
-      left: 0,
-      width: 100,
-      height: 20,
-      right: 100,
-      bottom: 20,
-    }) as any);
+    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          top: 0,
+          left: 0,
+          width: 100,
+          height: 20,
+          right: 100,
+          bottom: 20,
+        } as any),
+    );
 
     // смещаем элементы
     const initialIndex = itemsCount + 2;
@@ -1146,21 +1199,26 @@ describe('Carousel: infinite mode', () => {
         items={[...Array(itemsCount).keys()]}
         withControls
         renderItem={(item, index) => (
-          <div key={index} className='test-item'>{item}</div>
+          <div key={index} className='test-item'>
+            {item}
+          </div>
         )}
-      />
+      />,
     );
     const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
     const containerEl = wrapper.instance().containerRef.current as HTMLElement;
 
-    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-      top: 0,
-      left: 0,
-      width: 100,
-      height: 20,
-      right: 100,
-      bottom: 20,
-    }) as any);
+    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          top: 0,
+          left: 0,
+          width: 100,
+          height: 20,
+          right: 100,
+          bottom: 20,
+        } as any),
+    );
 
     // смещаем элементы
     const initialIndex = itemsCount - 1;
@@ -1192,25 +1250,30 @@ describe('Carousel: infinite mode', () => {
         items={[...Array(itemsCount).keys()]}
         withControls
         renderItem={(item, index) => (
-          <div key={index} className='test-item'>{item}</div>
+          <div key={index} className='test-item'>
+            {item}
+          </div>
         )}
-      />
+      />,
     );
     const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
     const containerEl = wrapper.instance().containerRef.current as HTMLElement;
 
     // формируем viewport
-    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-      top: 0,
-      left: 0,
-      width: 20,
-      height: 100,
-      right: 20,
-      bottom: 100,
-    }) as any);
+    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          top: 0,
+          left: 0,
+          width: 20,
+          height: 100,
+          right: 20,
+          bottom: 100,
+        } as any),
+    );
 
     // формируем позицию и размеры элементов карусели
-    const dragOffset = -(itemSize * ((itemsCount * 3) + 1));
+    const dragOffset = -(itemSize * (itemsCount * 3 + 1));
 
     placeItems({
       containerEl,
@@ -1227,14 +1290,18 @@ describe('Carousel: infinite mode', () => {
     });
 
     // имитируем перетаскивание
-    (wrapper.find(Draggable).prop('onDragStart') as any)(new DraggableEvent({
-      offset: Point(0, 0),
-      client: Point(0, 0),
-    }));
-    (wrapper.find(Draggable).prop('onDragMove') as any)(new DraggableEvent({
-      offset: Point(dragOffset, 0),
-      client: Point(dragOffset, 0),
-    }));
+    (wrapper.find(Draggable).prop('onDragStart') as any)(
+      new DraggableEvent({
+        offset: Point(0, 0),
+        client: Point(0, 0),
+      }),
+    );
+    (wrapper.find(Draggable).prop('onDragMove') as any)(
+      new DraggableEvent({
+        offset: Point(dragOffset, 0),
+        client: Point(dragOffset, 0),
+      }),
+    );
 
     expect((wrapper.find(Draggable).instance() as any).currentOffset).toEqual({
       x: -990,
@@ -1256,21 +1323,24 @@ describe('Carousel: infinite mode', () => {
             {item}
           </div>
         )}
-      />
+      />,
     );
     const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
     const containerEl = wrapper.instance().containerRef.current as HTMLElement;
 
     // формируем viewport
     wrapper.setState({ isAllItemsVisible: false });
-    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-      top: 0,
-      left: 0,
-      width: 100,
-      height: 20,
-      right: 100,
-      bottom: 20,
-    }) as any);
+    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          top: 0,
+          left: 0,
+          width: 100,
+          height: 20,
+          right: 100,
+          bottom: 20,
+        } as any),
+    );
 
     // формируем позицию и размеры элементов карусели
     const dragOffset = 10;
@@ -1291,17 +1361,21 @@ describe('Carousel: infinite mode', () => {
     });
 
     // имитируем перетаскивание
-    (wrapper.find(Draggable).prop('onDragStart') as any)(new DraggableEvent({
-      offset: Point(0, 0),
-      client: Point(0, 0),
-    }));
+    (wrapper.find(Draggable).prop('onDragStart') as any)(
+      new DraggableEvent({
+        offset: Point(0, 0),
+        client: Point(0, 0),
+      }),
+    );
 
     // подменяю результат потому что в jest + jsdom + enzyme все подменяется на ходу
     jest.spyOn(wrapper.instance(), 'findRealItemsStartBound').mockImplementation(() => 90000);
-    (wrapper.find(Draggable).prop('onDragMove') as any)(new DraggableEvent({
-      offset: Point(dragOffset, 0),
-      client: Point(dragOffset, 0),
-    }));
+    (wrapper.find(Draggable).prop('onDragMove') as any)(
+      new DraggableEvent({
+        offset: Point(dragOffset, 0),
+        client: Point(dragOffset, 0),
+      }),
+    );
 
     expect((wrapper.find(Draggable).instance() as any).currentOffset).toEqual({
       x: -110,
@@ -1323,7 +1397,7 @@ describe('Carousel: infinite mode', () => {
             {item}
           </div>
         )}
-      />
+      />,
     );
 
     const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
@@ -1331,14 +1405,17 @@ describe('Carousel: infinite mode', () => {
 
     // формируем viewport
     wrapper.setState({ isAllItemsVisible: false });
-    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(() => ({
-      top: 0,
-      left: 0,
-      width: 20,
-      height: 100,
-      right: 20,
-      bottom: 100,
-    }) as any);
+    jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          top: 0,
+          left: 0,
+          width: 20,
+          height: 100,
+          right: 20,
+          bottom: 100,
+        } as any),
+    );
 
     // формируем позицию и размеры элементов карусели
     const dragOffset = 10;
@@ -1359,17 +1436,23 @@ describe('Carousel: infinite mode', () => {
     });
 
     // имитируем перетаскивание
-    (wrapper.find(Draggable).prop('onDragStart') as any)(new DraggableEvent({
-      offset: Point(0, 0),
-      client: Point(0, 0),
-    }));
+    (wrapper.find(Draggable).prop('onDragStart') as any)(
+      new DraggableEvent({
+        offset: Point(0, 0),
+        client: Point(0, 0),
+      }),
+    );
 
     // подменяю результат потому что в jest + jsdom + enzyme все подменяется на ходу
-    jest.spyOn(wrapper.instance(), 'findRealItemsStartBound' as any).mockImplementation(() => -90000);
-    (wrapper.find(Draggable).prop('onDragMove') as any)(new DraggableEvent({
-      offset: Point(0, dragOffset),
-      client: Point(0, dragOffset),
-    }));
+    jest
+      .spyOn(wrapper.instance(), 'findRealItemsStartBound' as any)
+      .mockImplementation(() => -90000);
+    (wrapper.find(Draggable).prop('onDragMove') as any)(
+      new DraggableEvent({
+        offset: Point(0, dragOffset),
+        client: Point(0, dragOffset),
+      }),
+    );
 
     expect((wrapper.find(Draggable).instance() as any).currentOffset).toEqual({
       x: 0,
@@ -1380,101 +1463,117 @@ describe('Carousel: infinite mode', () => {
   // дальше тесты написаны исключительно на mock'ах для покрытия
   describe('findRealItemsStartBound', () => {
     it('should return NaN', () => {
-      expect(Carousel.prototype.findRealItemsStartBound.call({
-        infinite: false,
-        listElement: null,
-      })).toEqual(NaN);
-      expect(Carousel.prototype.findRealItemsStartBound.call({
-        infinite: false,
-        props: { vertical: false, items: [] },
-        listElement: { children: [] },
-      })).toEqual(NaN);
+      expect(
+        Carousel.prototype.findRealItemsStartBound.call({
+          infinite: false,
+          listElement: null,
+        }),
+      ).toEqual(NaN);
+      expect(
+        Carousel.prototype.findRealItemsStartBound.call({
+          infinite: false,
+          props: { vertical: false, items: [] },
+          listElement: { children: [] },
+        }),
+      ).toEqual(NaN);
     });
 
     it('should return left bound of first item in container children', () => {
-      expect(Carousel.prototype.findRealItemsStartBound.call({
-        infinite: false,
-        props: { vertical: false, items: [1] },
-        listElement: {
-          children: [
-            FakeElement.withRect({ top: 12, left: 23 }),
-          ],
-        },
-      })).toEqual(23);
+      expect(
+        Carousel.prototype.findRealItemsStartBound.call({
+          infinite: false,
+          props: { vertical: false, items: [1] },
+          listElement: {
+            children: [FakeElement.withRect({ top: 12, left: 23 })],
+          },
+        }),
+      ).toEqual(23);
     });
 
     it('should return top bound of first item in container children', () => {
-      expect(Carousel.prototype.findRealItemsStartBound.call({
-        infinite: false,
-        props: { vertical: true, items: [1] },
-        listElement: {
-          children: [
-            FakeElement.withRect({ top: 12, left: 23 }),
-          ],
-        },
-      })).toEqual(12);
+      expect(
+        Carousel.prototype.findRealItemsStartBound.call({
+          infinite: false,
+          props: { vertical: true, items: [1] },
+          listElement: {
+            children: [FakeElement.withRect({ top: 12, left: 23 })],
+          },
+        }),
+      ).toEqual(12);
     });
 
     it('should return top bound of first non clone item in container children', () => {
-      expect(Carousel.prototype.findRealItemsStartBound.call({
-        infinite: true,
-        props: { vertical: true, items: [1] },
-        listElement: {
-          children: [
-            FakeElement.withRect({ top: 12, left: 23 }),
-            FakeElement.withRect({ top: 34, left: 45 }),
-            FakeElement.withRect({ top: 56, left: 67 }),
-          ],
-        },
-      })).toEqual(34);
+      expect(
+        Carousel.prototype.findRealItemsStartBound.call({
+          infinite: true,
+          props: { vertical: true, items: [1] },
+          listElement: {
+            children: [
+              FakeElement.withRect({ top: 12, left: 23 }),
+              FakeElement.withRect({ top: 34, left: 45 }),
+              FakeElement.withRect({ top: 56, left: 67 }),
+            ],
+          },
+        }),
+      ).toEqual(34);
     });
   });
 
   describe('getRealItemsSize', () => {
     it('should return 0', () => {
-      expect(Carousel.prototype.getRealItemsSize.call({
-        props: { vertical: false },
-        listElement: null,
-      })).toBe(0);
+      expect(
+        Carousel.prototype.getRealItemsSize.call({
+          props: { vertical: false },
+          listElement: null,
+        }),
+      ).toBe(0);
     });
     it('should return result by container children bounds', () => {
-      expect(Carousel.prototype.getRealItemsSize.call({
-        props: { items: [1, 2], vertical: false },
-        listElement: {
-          children: [
-            FakeElement.withRect({ left: 23 }),
-            FakeElement.withRect({ right: 45 }),
-          ],
-        },
-      })).toBe(22);
+      expect(
+        Carousel.prototype.getRealItemsSize.call({
+          props: { items: [1, 2], vertical: false },
+          listElement: {
+            children: [FakeElement.withRect({ left: 23 }), FakeElement.withRect({ right: 45 })],
+          },
+        }),
+      ).toBe(22);
     });
 
     it('should return result by container children bounds (vertical)', () => {
-      expect(Carousel.prototype.getRealItemsSize.call({
-        props: { items: [1, 2], vertical: true },
-        listElement: {
-          children: [
-            FakeElement.withRect({ top: 11 }),
-            FakeElement.withRect({ bottom: 44 }),
-          ],
-        },
-      })).toBe(33);
+      expect(
+        Carousel.prototype.getRealItemsSize.call({
+          props: { items: [1, 2], vertical: true },
+          listElement: {
+            children: [FakeElement.withRect({ top: 11 }), FakeElement.withRect({ bottom: 44 })],
+          },
+        }),
+      ).toBe(33);
     });
   });
 
   describe('scrollToItem', () => {
     it('should work without second argument', () => {
-      expect(() => Carousel.prototype.scrollToItem.call({
-        props: { vertical: false },
-        listElement: { children: [] },
-      }, 0 as any)).not.toThrow();
+      expect(() =>
+        Carousel.prototype.scrollToItem.call(
+          {
+            props: { vertical: false },
+            listElement: { children: [] },
+          },
+          0 as any,
+        ),
+      ).not.toThrow();
     });
 
     it('should work without second argument prop needTransition', () => {
-      expect(() => Carousel.prototype.scrollToItem.call({
-        props: { vertical: false },
-        listElement: { children: [] },
-      }, 0 as any)).not.toThrow();
+      expect(() =>
+        Carousel.prototype.scrollToItem.call(
+          {
+            props: { vertical: false },
+            listElement: { children: [] },
+          },
+          0 as any,
+        ),
+      ).not.toThrow();
     });
   });
 });

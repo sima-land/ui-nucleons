@@ -38,9 +38,7 @@ export const Primary = () => {
 
 export const Links = () => (
   <>
-    <Chips
-      items={ITEMS.map(children => ({ children, href: 'https://ya.ru' }))}
-    />
+    <Chips items={ITEMS.map(children => ({ children, href: 'https://ya.ru' }))} />
   </>
 );
 
@@ -63,33 +61,45 @@ export const TruncatedText = () => (
   <div style={{ width: '200px' }}>
     <h3>Regular:</h3>
     <Chips
-      items={[{
-        children: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro, quos unde asperiores dolorum.',
-      }]}
+      items={[
+        {
+          children:
+            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro, quos unde asperiores dolorum.',
+        },
+      ]}
     />
 
     <h3>With cross:</h3>
     <Chips
-      items={[{
-        withCross: true,
-        children: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro, quos unde asperiores dolorum.',
-      }]}
+      items={[
+        {
+          withCross: true,
+          children:
+            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro, quos unde asperiores dolorum.',
+        },
+      ]}
     />
 
     <h3>Checked:</h3>
     <Chips
-      items={[{
-        children: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro, quos unde asperiores dolorum.',
-      }]}
+      items={[
+        {
+          children:
+            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro, quos unde asperiores dolorum.',
+        },
+      ]}
       isItemChecked={() => true}
     />
 
     <h3>Checked with cross:</h3>
     <Chips
-      items={[{
-        withCross: true,
-        children: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro, quos unde asperiores dolorum.',
-      }]}
+      items={[
+        {
+          withCross: true,
+          children:
+            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro, quos unde asperiores dolorum.',
+        },
+      ]}
       isItemChecked={() => true}
     />
   </div>

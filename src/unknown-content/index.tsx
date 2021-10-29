@@ -3,9 +3,8 @@ import classnames from 'classnames';
 import styles from './unknown-content.module.scss';
 
 export interface UnknownContentProps extends React.HTMLAttributes<HTMLDivElement> {
-
   /** Строка с html-версткой. */
-  markup: string
+  markup: string;
 }
 
 /**

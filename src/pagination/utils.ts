@@ -17,10 +17,10 @@ export const cx = classnames.bind(classes);
  * @param content Содержимое кнопки.
  * @return Список кнопок.
  */
-export const PageButton = (
-  value: number,
-  content: string | number = value,
-): IPageButton => ({ value, content });
+export const PageButton = (value: number, content: string | number = value): IPageButton => ({
+  value,
+  content,
+});
 
 /**
  * Возвращает список кнопок навигации.
@@ -40,9 +40,7 @@ export const getPageButtons = ({
   total: number;
   buttonKeys?: { more: string | number };
 }): IPageButton[] => {
-  const list = getCorrectRangeNumbers({ current, range: 5, total }).map(v =>
-    PageButton(v),
-  );
+  const list = getCorrectRangeNumbers({ current, range: 5, total }).map(v => PageButton(v));
 
   if (list.length > 0 && total > 5) {
     // если находимся в середине множества (многоточия с обоих сторон) - диапазон уменьшается до 4
@@ -59,9 +57,7 @@ export const getPageButtons = ({
           PageButton(1),
 
           // не выводим многоточие когда вместо него можно поставить одно число
-          list[0].value === 3
-            ? PageButton(2)
-            : PageButton(list[0].value - 1, buttonKeys.more),
+          list[0].value === 3 ? PageButton(2) : PageButton(list[0].value - 1, buttonKeys.more),
         );
       }
     }
@@ -95,11 +91,7 @@ export const getPageButtons = ({
  * @param props.total Максимальное значение.
  * @return Список номеров.
  */
-export const getCorrectRangeNumbers = ({
-  current,
-  range: rangeSize,
-  total,
-}: State): number[] => {
+export const getCorrectRangeNumbers = ({ current, range: rangeSize, total }: State): number[] => {
   let result = [
     ...getRangeNumbers({
       current,
@@ -127,11 +119,7 @@ export const getCorrectRangeNumbers = ({
  * @param props.total Максимальное значение.
  * @return Список номеров.
  */
-export const getRangeNumbers = ({
-  current,
-  range: rangeSize,
-  total,
-}: State): number[] => {
+export const getRangeNumbers = ({ current, range: rangeSize, total }: State): number[] => {
   const pageNumbers = [];
   const readyRange = Math.min(rangeSize, total) || 0;
   const halfRange = Math.floor(readyRange / 2);

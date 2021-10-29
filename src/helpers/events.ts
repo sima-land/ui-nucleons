@@ -2,10 +2,10 @@ import React from 'react';
 import Point from './point';
 
 export type EventWithPosition<T extends HTMLElement = HTMLElement> =
-| MouseEvent
-| TouchEvent
-| React.MouseEvent<T>
-| React.TouchEvent<T>;
+  | MouseEvent
+  | TouchEvent
+  | React.MouseEvent<T>
+  | React.TouchEvent<T>;
 
 /**
  * Проверяет, является ли событие событием нажатия основной кнопки мыши.

@@ -4,17 +4,13 @@ import { Spinner } from '..';
 
 describe('<Spinner />', () => {
   it('should render component', () => {
-    const component = mount(
-      <Spinner />
-    );
+    const component = mount(<Spinner />);
 
     expect(component).toMatchSnapshot();
   });
 
   it('should render component with different sizes', () => {
-    const component = mount(
-      <Spinner />
-    );
+    const component = mount(<Spinner />);
 
     expect(component.find('svg').hasClass('size-medium')).toBe(true);
     expect(component).toMatchSnapshot();
@@ -37,9 +33,7 @@ describe('<Spinner />', () => {
   });
 
   it('should render component with different colors', () => {
-    const component = mount(
-      <Spinner />
-    );
+    const component = mount(<Spinner />);
 
     expect(component).toMatchSnapshot();
 

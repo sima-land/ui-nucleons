@@ -3,18 +3,12 @@ import { Tabs } from '..';
 import { mount } from 'enzyme';
 
 describe('<Tabs />', () => {
-  const items = [
-    'item 1',
-    'item 2',
-    'item 3',
-  ];
+  const items = ['item 1', 'item 2', 'item 3'];
   const getItemNameMock = jest.fn(item => item);
   const isSelectedItemMock = jest.fn(item => item === 'item 2');
 
   it('renders correctly without params', () => {
-    const wrapper = mount(
-      <Tabs />
-    );
+    const wrapper = mount(<Tabs />);
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -26,7 +20,7 @@ describe('<Tabs />', () => {
         getItemName={getItemNameMock}
         isSelectedItem={isSelectedItemMock}
         onSelectItem={onSelectItemMock}
-      />
+      />,
     );
     expect(getItemNameMock).toHaveBeenCalledTimes(3);
     expect(getItemNameMock.mock.calls[0][0]).toEqual(items[0]);
@@ -56,7 +50,7 @@ describe('<Tabs />', () => {
         getItemName={({ name }) => name}
         isSelectedItem={({ selected }) => selected}
         isDisabledItem={({ blocked }) => blocked}
-      />
+      />,
     );
 
     const tabs = wrapper.find('.tab-item');
@@ -72,7 +66,7 @@ describe('<Tabs />', () => {
         isSelectedItem={isSelectedItemMock}
         view='round'
         gapSize='s'
-      />
+      />,
     );
     expect(wrapper).toMatchSnapshot();
   });
@@ -85,7 +79,7 @@ describe('<Tabs />', () => {
         isSelectedItem={isSelectedItemMock}
         underline
         stretch
-      />
+      />,
     );
     expect(wrapper).toMatchSnapshot();
   });
@@ -93,12 +87,7 @@ describe('<Tabs />', () => {
   it('should handle onSelect missing', () => {
     const spy = jest.fn();
 
-    const wrapper = mount(
-      <Tabs
-        items={items}
-        onSelectItem={spy}
-      />
-    );
+    const wrapper = mount(<Tabs items={items} onSelectItem={spy} />);
 
     expect(spy).toBeCalledTimes(0);
 

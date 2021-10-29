@@ -8,25 +8,27 @@ import LeftSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/left';
 import RightSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/right';
 
 interface RenderButtonProps extends PageButtonProps {
-  type?: 'prev' | 'next' | 'more'
-  isFirst?: boolean
-  isLast?: boolean
-  page?: number
-  selected?: boolean
+  type?: 'prev' | 'next' | 'more';
+  isFirst?: boolean;
+  isLast?: boolean;
+  page?: number;
+  selected?: boolean;
 }
 
 export interface BasePaginationProps {
-  total: number
-  current: number
-  onButtonClick?: (n: number) => void
-  isButtonSelected?: (n: string | number) => boolean
-  renderButton?: (p: RenderButtonProps, i?: number) => React.ReactNode
-  needPrevButton?: (data: { current: number, total: number }) => boolean
-  needNextButton?: (data: { current: number, total: number }) => boolean
-  calculateButtons?: typeof getPageButtons
+  total: number;
+  current: number;
+  onButtonClick?: (n: number) => void;
+  isButtonSelected?: (n: string | number) => boolean;
+  renderButton?: (p: RenderButtonProps, i?: number) => React.ReactNode;
+  needPrevButton?: (data: { current: number; total: number }) => boolean;
+  needNextButton?: (data: { current: number; total: number }) => boolean;
+  calculateButtons?: typeof getPageButtons;
 }
 
-const DEFAULTS: Required<Omit<BasePaginationProps, 'total' | 'current' | 'onButtonClick' | 'isButtonSelected'>> = {
+const DEFAULTS: Required<
+  Omit<BasePaginationProps, 'total' | 'current' | 'onButtonClick' | 'isButtonSelected'>
+> = {
   renderButton: ({ type, isFirst, isLast, ...restProps }, index) => (
     <PageButton
       key={index}
@@ -83,36 +85,39 @@ export const BasePagination: React.FC<BasePaginationProps> = ({
 
   return (
     <div className={cx('base-pagination-wrapper')}>
-      {needPrevButton({ current, total }) && renderButton({
-        'aria-label': 'Назад',
-        type: BUTTON_TYPES.prev,
-        children: BUTTON_CONTENTS.prev,
-        onClick: () => onButtonClick && onButtonClick(current - 1),
-        page: current - 1,
-      })}
+      {needPrevButton({ current, total }) &&
+        renderButton({
+          'aria-label': 'Назад',
+          type: BUTTON_TYPES.prev,
+          children: BUTTON_CONTENTS.prev,
+          onClick: () => onButtonClick && onButtonClick(current - 1),
+          page: current - 1,
+        })}
 
-      {pageButtons.map(({ content, value }, index) => renderButton({
-        type: content === BUTTON_TYPES.more
-          ? BUTTON_TYPES.more
-          : undefined,
-        isFirst: index === 0,
-        isLast: index === pageButtons.length - 1,
-        children: has(BUTTON_CONTENTS, content)
-          ? (BUTTON_CONTENTS as any)[content]
-          : content,
-        selected: isButtonSelected(content),
-        'aria-label': `Перейти на страницу ${value}`,
-        onClick: () => onButtonClick && onButtonClick(value),
-        page: value,
-      }, index))}
+      {pageButtons.map(({ content, value }, index) =>
+        renderButton(
+          {
+            type: content === BUTTON_TYPES.more ? BUTTON_TYPES.more : undefined,
+            isFirst: index === 0,
+            isLast: index === pageButtons.length - 1,
+            children: has(BUTTON_CONTENTS, content) ? (BUTTON_CONTENTS as any)[content] : content,
+            selected: isButtonSelected(content),
+            'aria-label': `Перейти на страницу ${value}`,
+            onClick: () => onButtonClick && onButtonClick(value),
+            page: value,
+          },
+          index,
+        ),
+      )}
 
-      {needNextButton({ current, total }) && renderButton({
-        'aria-label': 'Вперед',
-        type: BUTTON_TYPES.next,
-        children: BUTTON_CONTENTS.next,
-        onClick: () => onButtonClick && onButtonClick(current + 1),
-        page: current + 1,
-      })}
+      {needNextButton({ current, total }) &&
+        renderButton({
+          'aria-label': 'Вперед',
+          type: BUTTON_TYPES.next,
+          children: BUTTON_CONTENTS.next,
+          onClick: () => onButtonClick && onButtonClick(current + 1),
+          page: current + 1,
+        })}
     </div>
   );
 };

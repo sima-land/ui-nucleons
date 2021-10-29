@@ -14,8 +14,8 @@ const PureSomeComponent: React.FC<{ addObserve: any }> = ({ addObserve }) => {
   return (
     <div className='component-wrapper'>
       <div>
-        Если проскроллить вниз, то в зоне видимости появится элемент подписанный
-        на Intersection Observer.
+        Если проскроллить вниз, то в зоне видимости появится элемент подписанный на Intersection
+        Observer.
       </div>
 
       <div
@@ -35,12 +35,9 @@ const PureSomeComponent: React.FC<{ addObserve: any }> = ({ addObserve }) => {
 
 const SomeComponent = withInViewportObserver(PureSomeComponent);
 
-const SomeComponentWithCustomOptions = withInViewportObserver(
-  PureSomeComponent,
-  {
-    rootMargin: '150px 0px 150px 0px',
-  }
-);
+const SomeComponentWithCustomOptions = withInViewportObserver(PureSomeComponent, {
+  rootMargin: '150px 0px 150px 0px',
+});
 
 export default {
   title: 'deprecated/withInViewportObserver',

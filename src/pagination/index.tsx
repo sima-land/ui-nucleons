@@ -2,18 +2,17 @@ import React from 'react';
 import { BasePagination, BasePaginationProps } from './base-pagination';
 
 export interface PaginationProps {
-
   /** Общее количество страниц. */
-  total: number
+  total: number;
 
   /** Индекс текущей страницы. */
-  current: number
+  current: number;
 
   /** Сработает при выборе страницы. */
-  onChange?: (data: { value: number }) => void
+  onChange?: (data: { value: number }) => void;
 
   /** Функция возвращающая компонент кнопки. */
-  renderButton?: BasePaginationProps['renderButton']
+  renderButton?: BasePaginationProps['renderButton'];
 }
 
 /**
@@ -32,9 +31,7 @@ export const Pagination: React.FC<PaginationProps> = ({
     current={current}
     renderButton={renderButton}
     onButtonClick={content => {
-      Number.isFinite(content)
-        && onChange
-        && onChange({ value: content });
+      Number.isFinite(content) && onChange && onChange({ value: content });
     }}
   />
 );

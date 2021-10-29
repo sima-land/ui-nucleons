@@ -4,9 +4,8 @@ import classnames from 'classnames/bind';
 import styles from './touch-slider.module.scss';
 
 export interface TouchSliderProps {
-
   /** Прокручиваемое содержимое. */
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
 const cx = classnames.bind(styles);
@@ -19,9 +18,7 @@ const cx = classnames.bind(styles);
 export const TouchSlider: React.FC<TouchSliderProps> = ({ children }) => (
   <MobileLayout>
     <div className={cx('outer', 'invisible-scroll')}>
-      <div className={cx('inner')}>
-        {children}
-      </div>
+      <div className={cx('inner')}>{children}</div>
     </div>
   </MobileLayout>
 );

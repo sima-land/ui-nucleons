@@ -8,13 +8,13 @@ import styles from './rating.module.scss';
 export type StarSize = 's' | 'm';
 
 export interface RatingProps extends React.HTMLAttributes<HTMLDivElement> {
-  size?: StarSize
+  size?: StarSize;
 
   /** Значение рейтинга. */
-  value: number
+  value: number;
 
   /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string
+  'data-testid'?: string;
 }
 
 const cx = classnames.bind(styles);
@@ -48,11 +48,9 @@ export const Rating = ({
  * @param props Свойства.
  * @return Элемент.
  */
-const Star = ({ type, size = 's' }: { type: StarType, size?: StarSize }) => (
+const Star = ({ type, size = 's' }: { type: StarType; size?: StarSize }) => (
   <div className={cx('star', `size-${size}`)}>
-    {type === 'empty' && (
-      <StarSVG className={cx('svg')} />
-    )}
+    {type === 'empty' && <StarSVG className={cx('svg')} />}
 
     {type === 'half' && (
       <>
@@ -61,8 +59,6 @@ const Star = ({ type, size = 's' }: { type: StarType, size?: StarSize }) => (
       </>
     )}
 
-    {type === 'full' && (
-      <StarSVG className={cx('svg', 'full')} />
-    )}
+    {type === 'full' && <StarSVG className={cx('svg', 'full')} />}
   </div>
 );

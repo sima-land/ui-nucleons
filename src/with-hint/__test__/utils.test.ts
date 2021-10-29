@@ -10,7 +10,7 @@ class FakeDOMRect {
   bottom: number;
   left: number;
 
-  constructor (x: number, y: number, w: number, h: number) {
+  constructor(x: number, y: number, w: number, h: number) {
     this.x = x;
     this.y = y;
     this.width = w;
@@ -27,12 +27,12 @@ describe('PlaceAt', () => {
     style: Record<string, any>;
     bounds: FakeDOMRect;
 
-    constructor (...args: ConstructorParameters<typeof FakeDOMRect>) {
+    constructor(...args: ConstructorParameters<typeof FakeDOMRect>) {
       this.style = {};
       this.bounds = new FakeDOMRect(...args);
     }
 
-    getBoundingClientRect () {
+    getBoundingClientRect() {
       return this.bounds;
     }
   }

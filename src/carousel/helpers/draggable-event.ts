@@ -1,8 +1,8 @@
 import { IPoint } from '../../helpers/point';
 
 interface Data {
-  offset: IPoint
-  client: IPoint
+  offset: IPoint;
+  client: IPoint;
 }
 
 /**
@@ -19,7 +19,7 @@ export default class DraggableEvent implements Data {
    * @param props.offset Смещение контента.
    * @param props.client Клиентская позиция.
    */
-  constructor (props: Data) {
+  constructor(props: Data) {
     this.prevented = false;
     this.offset = props.offset;
     this.client = props.client;
@@ -28,7 +28,7 @@ export default class DraggableEvent implements Data {
   /**
    * Помечает событие как отмененное.
    */
-  preventDefault () {
+  preventDefault() {
     this.prevented = true;
   }
 }
