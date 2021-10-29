@@ -37,7 +37,7 @@ const AVAILABLE_COLORS: Color[] = ['brand-blue', 'white'];
 /**
  * Компонент спиннера.
  * @param props Свойства.
- * @return Компонент.
+ * @return Элемент.
  */
 export const Spinner = ({
   size = 'medium',

@@ -8,37 +8,37 @@ type ItOrArray<T> = T[] | T;
 type CellSize = 'full' | 'half' | 'third';
 
 interface CommonCellProps {
-  size?: CellSize
-  rounds?: TextFieldProps['rounds']
+  size?: CellSize;
+  rounds?: TextFieldProps['rounds'];
 }
 
 type OnlyOneRequired<T, K extends keyof T = keyof T> = {
-  [key in K]?: Required<Pick<T, key>> & Partial<Record<Exclude<K, key>, undefined>>
+  [key in K]?: Required<Pick<T, key>> & Partial<Record<Exclude<K, key>, undefined>>;
 }[K];
 
-export type CellProps = CommonCellProps & OnlyOneRequired<{
-  field: React.ReactElement<Pick<TextFieldProps, 'rounds' | 'caption' | 'classes' | 'className'>>,
-  renderField: (props: Pick<TextFieldProps, 'rounds' | 'caption'>) => React.ReactNode
-}>;
+export type CellProps = CommonCellProps &
+  OnlyOneRequired<{
+    field: React.ReactElement<Pick<TextFieldProps, 'rounds' | 'caption' | 'classes' | 'className'>>;
+    renderField: (props: Pick<TextFieldProps, 'rounds' | 'caption'>) => React.ReactNode;
+  }>;
 
 export interface RowProps {
-  isFirst?: boolean
-  isLast?: boolean
-  children: ItOrArray<React.ReactElement<CellProps, typeof Cell>>
+  isFirst?: boolean;
+  isLast?: boolean;
+  children: ItOrArray<React.ReactElement<CellProps, typeof Cell>>;
 }
 
 export interface FieldGridProps {
-
   /** Содержимое. */
-  children: ItOrArray<React.ReactElement<RowProps, typeof Row>>
+  children: ItOrArray<React.ReactElement<RowProps, typeof Row>>;
 
   /** Свойства корневого элемента. */
-  rootProps?: React.HTMLAttributes<HTMLDivElement>
+  rootProps?: React.HTMLAttributes<HTMLDivElement>;
 }
 
 export interface FieldGridComponent extends React.FC<FieldGridProps> {
-  Row: typeof Row
-  Cell: typeof Cell
+  Row: typeof Row;
+  Cell: typeof Cell;
 }
 
 const cx = classnames.bind(classes);
@@ -59,17 +59,19 @@ const TypeCheck = {
  * @param props Свойства.
  * @param props.children Содержимое, дочерними элементами могут быть только FieldGrid.Row.
  * @param props.rootProps Свойства корневого элемента.
- * @return Компонент сетки полей.
+ * @return Элемент.
  */
 export const FieldGrid: FieldGridComponent = ({ children, rootProps }) => {
   const rows = Children.toArray(children).filter(TypeCheck.isRow) as React.ReactElement<RowProps>[];
 
   return (
     <div {...rootProps} className={cx('container', rootProps?.className)}>
-      {rows.map((row, index) => cloneElement(row, {
-        isFirst: index === 0,
-        isLast: index === rows.length - 1,
-      }))}
+      {rows.map((row, index) =>
+        cloneElement(row, {
+          isFirst: index === 0,
+          isLast: index === rows.length - 1,
+        }),
+      )}
     </div>
   );
 };
@@ -136,7 +138,7 @@ const Row: React.FC<RowProps> = ({ isFirst: isFirstRow, isLast: isLastRow, child
  * @param props.rounds Скругления для поля (будет задан автоматически).
  * @param props.field Поле.
  * @param props.renderField Должна вернуть поле получив свойства для него.
- * @return Компонент ряда для сетки полей.
+ * @return Элемент.
  */
 const Cell: React.FC<CellProps> = ({ size, rounds, field, renderField }) => {
   let content: React.ReactNode;
@@ -155,11 +157,7 @@ const Cell: React.FC<CellProps> = ({ size, rounds, field, renderField }) => {
     });
   }
 
-  return (
-    <div className={cx('cell', `size-${size}`)}>
-      {content}
-    </div>
-  );
+  return <div className={cx('cell', `size-${size}`)}>{content}</div>;
 };
 
 FieldGrid.Row = Row;

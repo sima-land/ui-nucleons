@@ -58,7 +58,7 @@ const ICON_SIZES: Readonly<Record<Size, number>> = {
 /**
  * Компонент аватара.
  * @param props Свойства компонента.
- * @return Компонент.
+ * @return Элемент.
  */
 export const Avatar = ({
   size: sizeProp = 72,

@@ -28,7 +28,7 @@ export const colorKey = Symbol.for('user-avatar:color-key');
 /**
  * Компонент аватара пользователя (не сотрудника).
  * @param props Свойства. Поддерживаются свойства Avatar.
- * @return Компонент.
+ * @return Элемент.
  */
 export const UserAvatar = (props: UserAvatarProps) => {
   const [color, setColor] = useState<typeof COLORS[number]>();
@@ -39,12 +39,5 @@ export const UserAvatar = (props: UserAvatarProps) => {
     setColor((window as any)[colorKey]);
   }, []);
 
-  return (
-    <Avatar
-      {...props}
-      bgColor={color}
-      bgOpacity={color ? 0.48 : 0}
-      textColor='white'
-    />
-  );
+  return <Avatar {...props} bgColor={color} bgOpacity={color ? 0.48 : 0} textColor='white' />;
 };
