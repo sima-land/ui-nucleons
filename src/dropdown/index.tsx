@@ -6,17 +6,17 @@ import classnames from 'classnames/bind';
 import styles from './dropdown.module.scss';
 
 interface DropdownStyle extends React.CSSProperties {
-  '--dropdown-max-height'?: string
+  '--dropdown-max-height'?: string;
 }
 
 export interface DropdownProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'style'> {
-  style?: DropdownStyle
+  style?: DropdownStyle;
 
   /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string
+  'data-testid'?: string;
 
   /** Свойства компонента CustomScrollbar. */
-  customScrollbarProps?: Omit<CustomScrollbarProps, 'className' | 'overflow' | 'children'>
+  customScrollbarProps?: Omit<CustomScrollbarProps, 'className' | 'overflow' | 'children'>;
 }
 
 const cx = classnames.bind(styles);
@@ -24,13 +24,10 @@ const cx = classnames.bind(styles);
 /**
  * Компонент выпадающего блока с контентом, например списком.
  */
-export const Dropdown = forwardRef<HTMLDivElement | null, DropdownProps>(function Dropdown ({
-  className,
-  children,
-  'data-testid': testId = 'dropdown',
-  customScrollbarProps,
-  ...restProps
-}, ref) {
+export const Dropdown = forwardRef<HTMLDivElement | null, DropdownProps>(function Dropdown(
+  { className, children, 'data-testid': testId = 'dropdown', customScrollbarProps, ...restProps },
+  ref,
+) {
   return (
     <div
       ref={ref}

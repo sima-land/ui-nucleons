@@ -8,30 +8,29 @@ import { LayerProvider, useLayer } from '../helpers/layer';
 import { WithBodyScrollLock, useBodyScrollLock } from '../_internal/body-scroll';
 
 export interface AlertProps extends WithBodyScrollLock {
-
   /** Основное содержимое. */
-  children?: React.ReactNode
+  children?: React.ReactNode;
 
   /** Класс для блока всего содержимого. */
-  className?: string
+  className?: string;
 
   /** Содержимое "подвала". */
-  footer?: React.ReactNode
+  footer?: React.ReactNode;
 
   /** Нужно ли выводить в Layer. */
-  inPortal?: boolean
+  inPortal?: boolean;
 
   /** Свойства компонента NavBar. */
-  navBarProps?: NavBarProps
+  navBarProps?: NavBarProps;
 
   /** Заголовок. */
-  title?: string
+  title?: string;
 
   /** Нужна ли полоса между шапкой и основным содержимым. */
-  withDivideNavBar?: boolean
+  withDivideNavBar?: boolean;
 
   /** Нужна ли шапка. */
-  withNavBar?: boolean
+  withNavBar?: boolean;
 }
 
 const cx = classnames.bind(classes);
@@ -91,15 +90,9 @@ const AlertInner = ({
           />
         )}
 
-        <div className={cx('main')}>
-          {children}
-        </div>
+        <div className={cx('main')}>{children}</div>
 
-        {Boolean(footer) && (
-          <div className={InnerBorder.top}>
-            {footer}
-          </div>
-        )}
+        {Boolean(footer) && <div className={InnerBorder.top}>{footer}</div>}
       </div>
     </div>
   );

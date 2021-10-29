@@ -4,9 +4,7 @@ import { Dropdown } from '..';
 
 describe('Dropdown', () => {
   it('should render without props', () => {
-    const wrapper = mount(
-      <Dropdown />
-    );
+    const wrapper = mount(<Dropdown />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -15,7 +13,7 @@ describe('Dropdown', () => {
     const wrapper = mount(
       <Dropdown className='hello' role='test-role'>
         Hello, world!
-      </Dropdown>
+      </Dropdown>,
     );
 
     expect(wrapper).toMatchSnapshot();

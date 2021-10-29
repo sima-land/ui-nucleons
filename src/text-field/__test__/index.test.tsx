@@ -17,33 +17,25 @@ jest.mock('../../helpers/fit-element-height', () => {
 
 describe('<TextField />', () => {
   it('should render without props', () => {
-    const wrapper = mount(
-      <TextField />
-    );
+    const wrapper = mount(<TextField />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should handle "disabled" prop', () => {
-    const wrapper = mount(
-      <TextField disabled />
-    );
+    const wrapper = mount(<TextField disabled />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should handle "focused" prop', () => {
-    const wrapper = mount(
-      <TextField focused />
-    );
+    const wrapper = mount(<TextField focused />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should handle "variant" prop', () => {
-    const wrapper = mount(
-      <TextField variant='desktop' />
-    );
+    const wrapper = mount(<TextField variant='desktop' />);
 
     expect(wrapper).toMatchSnapshot();
 
@@ -53,9 +45,7 @@ describe('<TextField />', () => {
   });
 
   it('should handle adornment props', () => {
-    const wrapper = mount(
-      <TextField startAdornment='Name: ' />
-    );
+    const wrapper = mount(<TextField startAdornment='Name: ' />);
 
     expect(wrapper).toMatchSnapshot();
 
@@ -66,7 +56,13 @@ describe('<TextField />', () => {
 
   it('should handle "caption" prop', () => {
     const wrapper = mount(
-      <TextField caption={(<span>Hello <b>World</b>!</span>)} />
+      <TextField
+        caption={
+          <span>
+            Hello <b>World</b>!
+          </span>
+        }
+      />,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -77,9 +73,7 @@ describe('<TextField />', () => {
   });
 
   it('should handle "label" prop', () => {
-    const wrapper = mount(
-      <TextField label='The best label in our world!' />
-    );
+    const wrapper = mount(<TextField label='The best label in our world!' />);
 
     expect(wrapper).toMatchSnapshot();
 
@@ -96,12 +90,7 @@ describe('<TextField />', () => {
       onClick: jest.fn(),
     };
 
-    const wrapper = mount(
-      <TextField
-        label='Test label'
-        {...callbacks}
-      />
-    );
+    const wrapper = mount(<TextField label='Test label' {...callbacks} />);
 
     Object.values(callbacks).forEach(callback => {
       expect(callback).toHaveBeenCalledTimes(0);
@@ -138,13 +127,17 @@ describe('<TextField />', () => {
       jest.spyOn(wrapper.find(BaseInput).find('input').getDOMNode() as any, 'focus');
     });
 
-    expect((wrapper.find(BaseInput).find('input').getDOMNode() as any).focus).toHaveBeenCalledTimes(0);
+    expect((wrapper.find(BaseInput).find('input').getDOMNode() as any).focus).toHaveBeenCalledTimes(
+      0,
+    );
 
     act(() => {
       wrapper.find('.input-block').simulate('click');
     });
 
-    expect((wrapper.find(BaseInput).find('input').getDOMNode() as any).focus).toHaveBeenCalledTimes(1);
+    expect((wrapper.find(BaseInput).find('input').getDOMNode() as any).focus).toHaveBeenCalledTimes(
+      1,
+    );
     expect(callbacks.onClick).toHaveBeenCalledTimes(1);
     expect(callbacks.onBlur).toHaveBeenCalledTimes(1);
     expect(callbacks.onChange).toHaveBeenCalledTimes(1);
@@ -153,12 +146,7 @@ describe('<TextField />', () => {
   it('should handle "onClick" prop missing', () => {
     const spy = jest.fn();
 
-    const wrapper = mount(
-      <TextField
-        label='Test label'
-        onClick={spy}
-      />
-    );
+    const wrapper = mount(<TextField label='Test label' onClick={spy} />);
 
     expect(spy).toHaveBeenCalledTimes(0);
 
@@ -179,13 +167,7 @@ describe('<TextField />', () => {
   it('should handle "multiline" prop', () => {
     const spy = jest.fn();
 
-    const wrapper = mount(
-      <TextField
-        multiline
-        onInput={spy}
-        baseInputProps={{ rows: 3 }}
-      />
-    );
+    const wrapper = mount(<TextField multiline onInput={spy} baseInputProps={{ rows: 3 }} />);
 
     expect(wrapper).toMatchSnapshot();
 
@@ -206,17 +188,13 @@ describe('<TextField />', () => {
     const spy = jest.fn();
 
     ['', undefined].forEach(testValue => {
-      const wrapper = mount(
-        <TextField label='Label' value={testValue} onChange={spy} />
-      );
+      const wrapper = mount(<TextField label='Label' value={testValue} onChange={spy} />);
 
       expect(wrapper.find('label.label').prop('className')).toContain('as-placeholder');
     });
 
     ['text', 123].forEach(testValue => {
-      const wrapper = mount(
-        <TextField label='Label' value={testValue} onChange={spy} />
-      );
+      const wrapper = mount(<TextField label='Label' value={testValue} onChange={spy} />);
 
       expect(wrapper.find('label.label').prop('className')).not.toContain('as-placeholder');
     });
@@ -224,9 +202,7 @@ describe('<TextField />', () => {
   it('should handle ref prop', () => {
     const fakeRef = jest.fn();
 
-    mount(
-      <TextField ref={fakeRef} />
-    );
+    mount(<TextField ref={fakeRef} />);
 
     expect(fakeRef).toHaveBeenCalled();
     expect(fakeRef.mock.calls[0][0].nodeName).toBe('INPUT');

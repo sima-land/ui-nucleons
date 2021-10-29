@@ -12,52 +12,53 @@ type IconPosition = 'start' | 'end';
 type Appearance = 'button' | 'link' | 'container';
 
 interface CustomProps<T extends Appearance = Appearance> {
-
   /** Определяет внешний вид кнопки. */
-  viewType?: ViewType
+  viewType?: ViewType;
 
   /** Определяет тип корневого элемента. */
-  appearance?: T
+  appearance?: T;
 
   /** Иконка. */
-  icon?: React.ComponentType<React.SVGAttributes<SVGSVGElement>>
+  icon?: React.ComponentType<React.SVGAttributes<SVGSVGElement>>;
 
   /** Позиция иконки. */
-  iconPosition?: IconPosition
+  iconPosition?: IconPosition;
 
   /** Размер. */
-  size?: Size
+  size?: Size;
 
   /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string
+  'data-testid'?: string;
 }
 
 type ExcludeKeys<T> = Omit<T, 'ref' | keyof CustomProps>;
 
-export type Props = (
-  CustomProps<'button'> & ExcludeKeys<JSX.IntrinsicElements['button']>
-  | CustomProps<'link'> & ExcludeKeys<JSX.IntrinsicElements['a']>
-  | CustomProps<'container'> & ExcludeKeys<JSX.IntrinsicElements['div']>
-);
+export type Props =
+  | (CustomProps<'button'> & ExcludeKeys<JSX.IntrinsicElements['button']>)
+  | (CustomProps<'link'> & ExcludeKeys<JSX.IntrinsicElements['a']>)
+  | (CustomProps<'container'> & ExcludeKeys<JSX.IntrinsicElements['div']>);
 
 const cx = classnames.bind(classes);
 
 /**
- * Компонент кнопки.
+ * Компонент кнопки, стилизованной по дизайн-гайдам.
  * @param props Свойства.
- * @return Компонент кнопки.
+ * @return Элемент.
  */
-export const Button = forwardRef<any, Props>(function Button ({
-  children,
-  className,
-  viewType = 'primary',
-  appearance = 'button',
-  size = 'm',
-  icon: Icon,
-  iconPosition = 'start',
-  'data-testid': testId = 'button',
-  ...restProps
-}, ref) {
+export const Button = forwardRef<any, Props>(function Button(
+  {
+    children,
+    className,
+    viewType = 'primary',
+    appearance = 'button',
+    size = 'm',
+    icon: Icon,
+    iconPosition = 'start',
+    'data-testid': testId = 'button',
+    ...restProps
+  },
+  ref,
+) {
   const [Element, moreProps] = resolveAppearance(appearance);
 
   const readyClassName = computeClassName({
@@ -71,30 +72,22 @@ export const Button = forwardRef<any, Props>(function Button ({
 
   return (
     <Element
-      {...restProps as any}
-      {...moreProps as any}
+      {...(restProps as any)}
+      {...(moreProps as any)}
       data-testid={testId}
       ref={ref}
       className={readyClassName}
-      children={(
+      children={
         <>
           {Icon && iconPosition === 'start' && (
-            <Icon
-              width={24}
-              height={24}
-              className={cx('icon', children && 'icon-start')}
-            />
+            <Icon width={24} height={24} className={cx('icon', children && 'icon-start')} />
           )}
           {children}
           {Icon && iconPosition === 'end' && (
-            <Icon
-              width={24}
-              height={24}
-              className={cx('icon', children && 'icon-end')}
-            />
+            <Icon width={24} height={24} className={cx('icon', children && 'icon-end')} />
           )}
         </>
-      )}
+      }
     />
   );
 });
@@ -118,20 +111,21 @@ export const computeClassName = ({
   withContent,
   className,
 }: {
-  size: Size
-  viewType: ViewType
-  iconPosition: IconPosition
-  withIcon: boolean
-  withContent: boolean
-  className?: string
-}) => cx([
-  className,
-  'button-base',
-  viewType === 'secondary' ? 'button-secondary' : 'button-primary',
-  `button-${size}`,
-  withContent && !withIcon && `text-button-${size}`,
-  withContent && withIcon && `button-${size}-with-${iconPosition}-icon`,
-]);
+  size: Size;
+  viewType: ViewType;
+  iconPosition: IconPosition;
+  withIcon: boolean;
+  withContent: boolean;
+  className?: string;
+}) =>
+  cx([
+    className,
+    'button-base',
+    viewType === 'secondary' ? 'button-secondary' : 'button-primary',
+    `button-${size}`,
+    withContent && !withIcon && `text-button-${size}`,
+    withContent && withIcon && `button-${size}-with-${iconPosition}-icon`,
+  ]);
 
 /**
  * Возвращает кортеж с именем элемента и свойствами компонента по ключу.
@@ -139,8 +133,8 @@ export const computeClassName = ({
  * @return Кортеж с именем элемента и свойствами.
  */
 export const resolveAppearance = cond<
-'button' | 'link' | 'container',
-['button' | 'div' | 'a', null | { role: 'button' }]
+  'button' | 'link' | 'container',
+  ['button' | 'div' | 'a', null | { role: 'button' }]
 >([
   [eq('link'), always(['a', null])],
   [eq('container'), always(['div', { role: 'button' }])],

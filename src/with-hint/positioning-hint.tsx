@@ -8,7 +8,7 @@ import { useLayer } from '../helpers/layer';
 const cx = classnames.bind(styles);
 
 interface Props extends HintProps {
-  openerRef: React.RefObject<Element | undefined | null>
+  openerRef: React.RefObject<Element | undefined | null>;
 }
 
 /**
@@ -16,11 +16,7 @@ interface Props extends HintProps {
  * @param props Свойства.
  * @return Элемент.
  */
-export const PositioningHint = ({
-  children,
-  direction,
-  openerRef,
-}: Props) => {
+export const PositioningHint = ({ children, direction, openerRef }: Props) => {
   const layer = useLayer();
   const ref = useRef<HTMLDivElement | null>(null);
 

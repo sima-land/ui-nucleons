@@ -42,13 +42,15 @@ describe('<Button />', () => {
 
 describe('computeClassName()', () => {
   it('should handle all props', () => {
-    expect(computeClassName({
-      size: 's',
-      viewType: 'secondary',
-      iconPosition: 'end',
-      withIcon: true,
-      withContent: true,
-      className: 'custom-button',
-    })).toBe('custom-button button-base button-secondary button-s button-s-with-end-icon');
+    expect(
+      computeClassName({
+        size: 's',
+        viewType: 'secondary',
+        iconPosition: 'end',
+        withIcon: true,
+        withContent: true,
+        className: 'custom-button',
+      }),
+    ).toBe('custom-button button-base button-secondary button-s button-s-with-end-icon');
   });
 });

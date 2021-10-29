@@ -1,4 +1,7 @@
-export interface IPoint { x: number, y: number }
+export interface IPoint {
+  x: number;
+  y: number;
+}
 
 /**
  * Возвращает объект представляющий точку в двухмерном пространстве.

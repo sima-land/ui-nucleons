@@ -9,7 +9,5 @@
 }
 
 .inner {
-  max-height: calc(
-    var(--dropdown-max-height, 304px) - 16px
-  ); // вычитаем padding корневого элемента
+  max-height: calc(var(--dropdown-max-height, 304px) - 16px); // вычитаем padding корневого элемента
 }

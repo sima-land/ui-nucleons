@@ -27,19 +27,12 @@ export const Primary = () => {
   return (
     <>
       <h3>Regular</h3>
-      <BaseInput
-        defaultValue='Text'
-        style={styles}
-      />
+      <BaseInput defaultValue='Text' style={styles} />
 
       <div style={{ height: 32 }} />
 
       <h3>Multiline</h3>
-      <BaseInput
-        multiline
-        defaultValue={longValue}
-        style={styles}
-      />
+      <BaseInput multiline defaultValue={longValue} style={styles} />
     </>
   );
 };

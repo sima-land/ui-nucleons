@@ -10,12 +10,7 @@ describe('<Clean.Button />', () => {
   });
 
   it('should handle props', () => {
-    const wrapper = mount(
-      <Clean.Button
-        href='https://site.com'
-        children='Go to site'
-      />
-    );
+    const wrapper = mount(<Clean.Button href='https://site.com' children='Go to site' />);
 
     expect(wrapper.find('button')).toHaveLength(0);
     expect(wrapper.find('a')).toHaveLength(1);
@@ -43,7 +38,7 @@ describe('<Clean.Group />', () => {
         <Clean.Button>Bar</Clean.Button>
         <Clean.Button href='https://www.abc.xyz'>XYZ</Clean.Button>
         <button>Just button</button>
-      </Clean.Group>
+      </Clean.Group>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -53,7 +48,7 @@ describe('<Clean.Group />', () => {
     const wrapper = mount(
       <Clean.Group>
         <Clean.Button>One button</Clean.Button>
-      </Clean.Group>
+      </Clean.Group>,
     );
 
     expect(wrapper).toMatchSnapshot();

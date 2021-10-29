@@ -2,30 +2,35 @@ import React, { createRef, Component } from 'react';
 import Point, { IPoint } from '../helpers/point';
 import DraggableEvent from './helpers/draggable-event';
 import { getTransitionStyle, getTranslateStyle } from '../helpers/styles';
-import { isMainMouseButton, isTouchEvent, getEventClientPos, EventWithPosition } from '../helpers/events';
+import {
+  isMainMouseButton,
+  isTouchEvent,
+  getEventClientPos,
+  EventWithPosition,
+} from '../helpers/events';
 import classnames from 'classnames/bind';
 import classes from './draggable.module.scss';
 import on from '../helpers/on';
 
 export interface Control {
-  isGrabbed: () => boolean
-  setOffset: typeof Draggable.prototype.setOffset
-  toggleTransition: typeof Draggable.prototype.toggleTransition
+  isGrabbed: () => boolean;
+  setOffset: typeof Draggable.prototype.setOffset;
+  toggleTransition: typeof Draggable.prototype.toggleTransition;
 }
 
-export type Delta2d = { dx: number, dy: number };
+export type Delta2d = { dx: number; dy: number };
 
 export type DraggableEventHandler = (e: DraggableEvent) => void;
 
 export interface DraggableProps {
-  axis?: 'x' | 'y'
-  active?: boolean
-  onDragStart?: DraggableEventHandler
-  onDragMove?: DraggableEventHandler
-  onDragEnd?: DraggableEventHandler
-  takeControl?: (c: Control) => void
-  transitionDuration?: number
-  containerProps?: React.HTMLProps<HTMLDivElement>
+  axis?: 'x' | 'y';
+  active?: boolean;
+  onDragStart?: DraggableEventHandler;
+  onDragMove?: DraggableEventHandler;
+  onDragEnd?: DraggableEventHandler;
+  takeControl?: (c: Control) => void;
+  transitionDuration?: number;
+  containerProps?: React.HTMLProps<HTMLDivElement>;
 }
 
 type Cb = () => void;
@@ -53,7 +58,7 @@ export default class Draggable extends Component<DraggableProps> {
    * Конструктор компонента области, которую можно прокручивать перетаскиванием.
    * @param props Свойства.
    */
-  constructor (props: DraggableProps) {
+  constructor(props: DraggableProps) {
     super(props);
 
     this.isGrabbed = false;
@@ -71,7 +76,7 @@ export default class Draggable extends Component<DraggableProps> {
    * Запускает инициализацию обработки глобальных событий.
    * Запускает передачу управления родительскому компоненту.
    */
-  componentDidMount () {
+  componentDidMount() {
     this.initGlobalListeners();
     this.passControl();
   }
@@ -79,10 +84,10 @@ export default class Draggable extends Component<DraggableProps> {
   /**
    * Инициализирует обработчики глобальных событий.
    */
-  initGlobalListeners () {
+  initGlobalListeners() {
     // eslint-disable-next-line require-jsdoc
-    const listen = (fn: (e: MouseEvent | TouchEvent) => void) =>
-      (eventName: string) => on<MouseEvent | TouchEvent>(window, eventName, fn);
+    const listen = (fn: (e: MouseEvent | TouchEvent) => void) => (eventName: string) =>
+      on<MouseEvent | TouchEvent>(window, eventName, fn);
 
     const moveHandler = this.handleMove.bind(this);
     const moveEndHandler = this.handleMoveEnd.bind(this);
@@ -96,20 +101,21 @@ export default class Draggable extends Component<DraggableProps> {
   /**
    * Передает управление родительскому компоненту через "takeControl".
    */
-  passControl () {
+  passControl() {
     const { takeControl } = this.props;
 
-    takeControl && takeControl({
-      isGrabbed: () => this.isGrabbed,
-      setOffset: this.setOffset.bind(this),
-      toggleTransition: this.toggleTransition.bind(this),
-    });
+    takeControl &&
+      takeControl({
+        isGrabbed: () => this.isGrabbed,
+        setOffset: this.setOffset.bind(this),
+        toggleTransition: this.toggleTransition.bind(this),
+      });
   }
 
   /**
    * Выполняет отписку от глобальных событий.
    */
-  componentWillUnmount () {
+  componentWillUnmount() {
     (this.offList as Cb[]).forEach(fn => fn());
   }
 
@@ -117,7 +123,7 @@ export default class Draggable extends Component<DraggableProps> {
    * Сохраняет данные захвата по событию клика/прикосновения.
    * @param event Событие передвижения.
    */
-  startCapture (event: EventWithPosition) {
+  startCapture(event: EventWithPosition) {
     const { x, y } = this.currentOffset;
     const { active = true, onDragStart } = this.props;
     const isTouch = isTouchEvent(event);
@@ -131,10 +137,13 @@ export default class Draggable extends Component<DraggableProps> {
         (window.getSelection() as Selection).removeAllRanges();
       }
 
-      onDragStart && onDragStart(new DraggableEvent({
-        offset: Point(x, y),
-        client: getEventClientPos(event),
-      }));
+      onDragStart &&
+        onDragStart(
+          new DraggableEvent({
+            offset: Point(x, y),
+            client: getEventClientPos(event),
+          }),
+        );
     }
   }
 
@@ -142,7 +151,7 @@ export default class Draggable extends Component<DraggableProps> {
    * Обновляет смещение и все данные при необходимости.
    * @param event Событие передвижения.
    */
-  handleMove (event: MouseEvent | TouchEvent) {
+  handleMove(event: MouseEvent | TouchEvent) {
     const { axis, onDragMove } = this.props;
 
     if (this.isGrabbed) {
@@ -177,7 +186,7 @@ export default class Draggable extends Component<DraggableProps> {
    * Запускает соответствующий callback.
    * @param event Событие окончания захвата.
    */
-  handleMoveEnd (event: MouseEvent | TouchEvent) {
+  handleMoveEnd(event: MouseEvent | TouchEvent) {
     const { x: clientX, y: clientY } = this.clientPosition;
     const { x, y } = this.currentOffset;
     const { onDragEnd } = this.props;
@@ -185,10 +194,12 @@ export default class Draggable extends Component<DraggableProps> {
     if (this.isGrabbed && onDragEnd) {
       !isTouchEvent(event) && event.preventDefault();
 
-      onDragEnd(new DraggableEvent({
-        offset: Point(x, y),
-        client: Point(clientX, clientY),
-      }));
+      onDragEnd(
+        new DraggableEvent({
+          offset: Point(x, y),
+          client: Point(clientX, clientY),
+        }),
+      );
     }
 
     this.toggleGrabbed(false);
@@ -198,7 +209,7 @@ export default class Draggable extends Component<DraggableProps> {
    * Предотвращает клик если было произведено смещение мышью.
    * @param event Событие окончания захвата.
    */
-  handleClick (event: React.MouseEvent<HTMLDivElement>) {
+  handleClick(event: React.MouseEvent<HTMLDivElement>) {
     if (this.needPreventClick) {
       event.preventDefault();
       this.togglePreventClickNeed(false);
@@ -210,7 +221,7 @@ export default class Draggable extends Component<DraggableProps> {
    * @param event Touch- или mouse-событие.
    * @return Разница.
    */
-  getClientDelta (event: MouseEvent | TouchEvent): Delta2d {
+  getClientDelta(event: MouseEvent | TouchEvent): Delta2d {
     const eventPos = getEventClientPos(event);
 
     return {
@@ -223,7 +234,7 @@ export default class Draggable extends Component<DraggableProps> {
    * Переключает состояние активности захвата движения.
    * @param active Активен ли захват движения.
    */
-  toggleGrabbed (active: boolean) {
+  toggleGrabbed(active: boolean) {
     this.isGrabbed = Boolean(active);
   }
 
@@ -231,16 +242,14 @@ export default class Draggable extends Component<DraggableProps> {
    * Переключает состояние плавного перехода через CSS-свойство "transition".
    * @param active Нужен ли плавный переход.
    */
-  toggleTransition (active: boolean) {
+  toggleTransition(active: boolean) {
     const { transitionDuration: duration = 320 } = this.props;
     const { current: draggableEl } = this.draggableRef;
 
     if (draggableEl && this.hasTransition !== Boolean(active)) {
       this.hasTransition = Boolean(active);
 
-      draggableEl.style.transition = active
-        ? getTransitionStyle(duration, 'transform')
-        : '';
+      draggableEl.style.transition = active ? getTransitionStyle(duration, 'transform') : '';
     }
   }
 
@@ -248,7 +257,7 @@ export default class Draggable extends Component<DraggableProps> {
    * Сохраняет данные позиции на экземпляре.
    * @param event Событие.
    */
-  saveClientPosition (event: EventWithPosition) {
+  saveClientPosition(event: EventWithPosition) {
     const eventPos = getEventClientPos(event);
 
     this.clientPosition.x = eventPos.x;
@@ -259,7 +268,7 @@ export default class Draggable extends Component<DraggableProps> {
    * Переключает состояние необходимости предотвратить клик.
    * @param needPrevent Активен ли захват движения.
    */
-  togglePreventClickNeed (needPrevent: boolean) {
+  togglePreventClickNeed(needPrevent: boolean) {
     this.needPreventClick = Boolean(needPrevent);
   }
 
@@ -269,7 +278,7 @@ export default class Draggable extends Component<DraggableProps> {
    * @param x Смещение по оси абсцисс.
    * @param y Смещение по оси ординат.
    */
-  setOffset (x: number, y: number) {
+  setOffset(x: number, y: number) {
     const { current: draggableEl } = this.draggableRef;
 
     this.currentOffset.x = x || 0;
@@ -282,21 +291,14 @@ export default class Draggable extends Component<DraggableProps> {
    * Рендер.
    * @inheritdoc
    */
-  render () {
-    const {
-      children,
-      containerProps = {},
-      transitionDuration: duration = 320,
-    } = this.props;
+  render() {
+    const { children, containerProps = {}, transitionDuration: duration = 320 } = this.props;
     const { x, y } = this.currentOffset;
 
     return (
       <div
         {...containerProps}
-        className={cx(
-          'draggable-container',
-          containerProps.className
-        )}
+        className={cx('draggable-container', containerProps.className)}
         onClick={this.handleClick}
         onMouseDown={this.startCapture}
         onTouchStart={this.startCapture}
@@ -305,9 +307,7 @@ export default class Draggable extends Component<DraggableProps> {
           ref={this.draggableRef}
           style={{
             transform: getTranslateStyle(x, y),
-            transition: this.hasTransition
-              ? getTransitionStyle(duration, 'transform')
-              : '',
+            transition: this.hasTransition ? getTransitionStyle(duration, 'transform') : '',
           }}
           className={cx('draggable')}
           children={children}

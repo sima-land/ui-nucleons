@@ -4,33 +4,25 @@ import { DropdownItem, DropdownItemProps } from '..';
 
 describe('DropdownItem', () => {
   it('should render without props', () => {
-    const wrapper = mount(
-      <DropdownItem />
-    );
+    const wrapper = mount(<DropdownItem />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should render as disabled', () => {
-    const wrapper = mount(
-      <DropdownItem disabled />
-    );
+    const wrapper = mount(<DropdownItem disabled />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should render as checked', () => {
-    const wrapper = mount(
-      <DropdownItem checked />
-    );
+    const wrapper = mount(<DropdownItem checked />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should render with no hover effect', () => {
-    const wrapper = mount(
-      <DropdownItem noHover />
-    );
+    const wrapper = mount(<DropdownItem noHover />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -39,7 +31,7 @@ describe('DropdownItem', () => {
     const wrapper = mount(
       <DropdownItem className='hello' role='test-role' size='l'>
         Hello, world!
-      </DropdownItem>
+      </DropdownItem>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -49,9 +41,7 @@ describe('DropdownItem', () => {
     const SIZES: Array<DropdownItemProps['size']> = ['s', 'm', 'l', 'xl'];
 
     SIZES.forEach(size => {
-      const wrapper = mount(
-        <DropdownItem size={size} />
-      );
+      const wrapper = mount(<DropdownItem size={size} />);
 
       expect(wrapper).toMatchSnapshot();
     });

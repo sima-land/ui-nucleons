@@ -20,18 +20,11 @@ describe('useScrollDisable', () => {
 
     useBodyScrollLock(ref, withScrollDisable);
 
-    return (
-      <div ref={ref}>Test component</div>
-    );
+    return <div ref={ref}>Test component</div>;
   };
 
   it('should handle "withScrollDisable" and "scrollDisableOptions" options', () => {
-    const wrapper = mount(
-      <TestComponent
-        withScrollDisable
-        scrollDisableOptions={{}}
-      />
-    );
+    const wrapper = mount(<TestComponent withScrollDisable scrollDisableOptions={{}} />);
 
     expect(disableBodyScroll).toHaveBeenCalledTimes(1);
     expect(enableBodyScroll).toHaveBeenCalledTimes(0);

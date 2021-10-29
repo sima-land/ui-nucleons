@@ -9,10 +9,7 @@ describe('useBreakpoint', () => {
     return <div>{matches ? 'YES' : 'NO'}</div>;
   };
 
-  const listeners: Record<
-    string,
-    Array<(e: MediaElementAudioSourceOptions) => void>
-  > = {};
+  const listeners: Record<string, Array<(e: MediaElementAudioSourceOptions) => void>> = {};
 
   beforeEach(() => {
     jest.spyOn(window, 'matchMedia').mockImplementation(
@@ -44,9 +41,7 @@ describe('useBreakpoint', () => {
     expect(wrapper.text()).toBe('NO');
 
     act(() => {
-      listeners['(max-width: 719px)'].forEach(fn =>
-        fn({ matches: true } as any),
-      );
+      listeners['(max-width: 719px)'].forEach(fn => fn({ matches: true } as any));
     });
     wrapper.update();
 

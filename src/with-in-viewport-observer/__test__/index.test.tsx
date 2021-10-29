@@ -42,22 +42,14 @@ describe('withInViewportObserver', () => {
 
   it('should translate addObserve to component', () => {
     const TestComponent = withInViewportObserver(TestSpan);
-    const wrapper = mount(
-      <TestComponent />
-    );
+    const wrapper = mount(<TestComponent />);
     expect(wrapper.find(TestSpan).prop('addObserve')).toBeInstanceOf(Function);
   });
 
   it('should pass props with correct name', () => {
-    const TestComponent = withInViewportObserver(
-      TestSpan,
-      {},
-      'testPropName'
-    );
+    const TestComponent = withInViewportObserver(TestSpan, {}, 'testPropName');
 
-    const wrapper = mount(
-      <TestComponent />
-    );
+    const wrapper = mount(<TestComponent />);
 
     expect(wrapper.find(TestSpan).prop('testPropName')).toBeInstanceOf(Function);
   });

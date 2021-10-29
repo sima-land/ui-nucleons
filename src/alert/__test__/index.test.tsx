@@ -15,9 +15,7 @@ jest.mock('../../_internal/body-scroll', () => {
 
 describe('<Alert />', () => {
   it('should renders without props', () => {
-    const wrapper = mount(
-      <Alert />
-    );
+    const wrapper = mount(<Alert />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -33,7 +31,7 @@ describe('<Alert />', () => {
         children='Main content'
         footer='Footer content'
         inPortal={false}
-      />
+      />,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -42,19 +40,13 @@ describe('<Alert />', () => {
   it('should disable/enable body scroll', () => {
     expect(useBodyScrollLock).toBeCalledTimes(0);
 
-    mount(
-      <Alert
-        withScrollDisable
-      />
-    );
+    mount(<Alert withScrollDisable />);
 
     expect(useBodyScrollLock).toBeCalledTimes(1);
   });
 
   it('should do not use disable/enable body scrolling by default', () => {
-    mount(
-      <Alert />
-    );
+    mount(<Alert />);
 
     expect((useBodyScrollLock as any).mock.calls[0][1]).toBe(false);
   });

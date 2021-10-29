@@ -5,21 +5,14 @@ import { UploadArea } from '../area';
 
 describe('UploadArea', () => {
   it('should renders correctly', () => {
-    const wrapper = mount(
-      <UploadArea />
-    );
+    const wrapper = mount(<UploadArea />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should handle props', () => {
     const wrapper = mount(
-      <UploadArea
-        formats='PDF, JPG, PNG'
-        fileRole='скан'
-        sizeLimit='4 Mb'
-        countLimit={12}
-      />
+      <UploadArea formats='PDF, JPG, PNG' fileRole='скан' sizeLimit='4 Mb' countLimit={12} />,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -30,12 +23,7 @@ describe('UploadArea', () => {
       const spy = jest.fn();
 
       const wrapper = mount(
-        <UploadArea
-          formats='PDF, JPG, PNG'
-          fileRole='скан'
-          sizeLimit='4 Mb'
-          onSelect={spy}
-        />
+        <UploadArea formats='PDF, JPG, PNG' fileRole='скан' sizeLimit='4 Mb' onSelect={spy} />,
       );
 
       expect(wrapper).toMatchSnapshot();
@@ -50,13 +38,7 @@ describe('UploadArea', () => {
   });
 
   it('should handle "dragleave" event', () => {
-    const wrapper = mount(
-      <UploadArea
-        formats='PDF, JPG, PNG'
-        fileRole='скан'
-        sizeLimit='4 Mb'
-      />
-    );
+    const wrapper = mount(<UploadArea formats='PDF, JPG, PNG' fileRole='скан' sizeLimit='4 Mb' />);
 
     // highlight
     act(() => {
@@ -85,21 +67,18 @@ describe('UploadArea', () => {
         sizeLimit='4 Mb'
         onSelect={spy}
         countLimit={5}
-      />
+      />,
     );
 
     expect(spy).toBeCalledTimes(0);
 
     // drop two files
     act(() => {
-      Simulate.drop(
-        wrapper.find('.root').getDOMNode(),
-        {
-          dataTransfer: {
-            files: [{ fakeFile: true }, { fakeFile: true }],
-          },
-        } as any
-      );
+      Simulate.drop(wrapper.find('.root').getDOMNode(), {
+        dataTransfer: {
+          files: [{ fakeFile: true }, { fakeFile: true }],
+        },
+      } as any);
     });
     wrapper.update();
 
@@ -110,14 +89,11 @@ describe('UploadArea', () => {
 
     // drop two files again
     act(() => {
-      Simulate.drop(
-        wrapper.find('.root').getDOMNode(),
-        {
-          dataTransfer: {
-            files: [{ fakeFile: true }, { fakeFile: true }],
-          },
-        } as any
-      );
+      Simulate.drop(wrapper.find('.root').getDOMNode(), {
+        dataTransfer: {
+          files: [{ fakeFile: true }, { fakeFile: true }],
+        },
+      } as any);
     });
     wrapper.update();
 
@@ -128,14 +104,11 @@ describe('UploadArea', () => {
     wrapper.setProps({ onSelect: undefined });
 
     act(() => {
-      Simulate.drop(
-        wrapper.find('.root').getDOMNode(),
-        {
-          dataTransfer: {
-            files: [{ fakeFile: true }, { fakeFile: true }],
-          },
-        } as any
-      );
+      Simulate.drop(wrapper.find('.root').getDOMNode(), {
+        dataTransfer: {
+          files: [{ fakeFile: true }, { fakeFile: true }],
+        },
+      } as any);
     });
     wrapper.update();
 
@@ -146,12 +119,7 @@ describe('UploadArea', () => {
     const spy = jest.fn();
 
     const wrapper = mount(
-      <UploadArea
-        formats='PDF, JPG, PNG'
-        fileRole='скан'
-        sizeLimit='4 Mb'
-        onSelect={spy}
-      />
+      <UploadArea formats='PDF, JPG, PNG' fileRole='скан' sizeLimit='4 Mb' onSelect={spy} />,
     );
 
     expect(spy).toBeCalledTimes(0);
@@ -203,9 +171,7 @@ describe('UploadArea', () => {
         failed: true,
       },
     ].forEach(props => {
-      const wrapper = mount(
-        <UploadArea {...props} />
-      );
+      const wrapper = mount(<UploadArea {...props} />);
 
       expect(wrapper).toMatchSnapshot();
     });

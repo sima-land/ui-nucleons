@@ -11,38 +11,37 @@ import classnames from 'classnames/bind';
 import classes from './range.module.scss';
 
 interface CallbackData {
-  startValue: number
-  finishValue: number
+  startValue: number;
+  finishValue: number;
 }
 
 export interface RangeProps {
-
   /** Начальная граница. */
-  min?: number
+  min?: number;
 
   /** Конечная граница. */
-  max?: number
+  max?: number;
 
   /** Шаг. */
-  step?: number
+  step?: number;
 
   /** Значение начального ползунка. */
-  startValue?: number
+  startValue?: number;
 
   /** Значение конечного ползунка. */
-  finishValue?: number
+  finishValue?: number;
 
   /** Сработает при изменении. */
-  onChange?: (data: CallbackData) => void
+  onChange?: (data: CallbackData) => void;
 
   /** Сработает при перетаскивании. */
-  onSlide?: (data: CallbackData) => void
+  onSlide?: (data: CallbackData) => void;
 
   /** Отключен ли компонент. */
-  disabled?: boolean
+  disabled?: boolean;
 
   /** Свойства контейнера. */
-  wrapperProps?: React.HTMLAttributes<HTMLDivElement>
+  wrapperProps?: React.HTMLAttributes<HTMLDivElement>;
 }
 
 const cx = classnames.bind(classes);
@@ -54,7 +53,8 @@ const cx = classnames.bind(classes);
  * @param value Значение для расчета доли.
  * @return Доля, которую занимает значение.
  */
-const getFraction = (start: number, end: number, value: number) => ((value - start) / (end - start)) || 0;
+const getFraction = (start: number, end: number, value: number) =>
+  (value - start) / (end - start) || 0;
 
 /**
  * Возвращает процент от диапазона, заданную числом.
@@ -82,13 +82,8 @@ export class Range extends Component<RangeProps> {
    * Конструктор.
    * @param props Свойства.
    */
-  constructor (props: RangeProps) {
-    const {
-      min = 0,
-      max = 1,
-      startValue = min,
-      finishValue = max,
-    } = props;
+  constructor(props: RangeProps) {
+    const { min = 0, max = 1, startValue = min, finishValue = max } = props;
 
     super(props);
 
@@ -111,7 +106,7 @@ export class Range extends Component<RangeProps> {
   }
 
   /** @inheritdoc */
-  componentDidMount () {
+  componentDidMount() {
     const { current: containerElem } = this.containerRef;
 
     this.unsubscribers = [
@@ -129,14 +124,11 @@ export class Range extends Component<RangeProps> {
   }
 
   /** @inheritdoc */
-  componentDidUpdate (prevProps: RangeProps) {
+  componentDidUpdate(prevProps: RangeProps) {
     const propKeys: Array<keyof RangeProps> = ['min', 'max', 'step', 'startValue', 'finishValue'];
 
     if (propKeys.some(key => !Object.is(this.props[key], prevProps[key]))) {
-      const {
-        startValue = this.start.get(),
-        finishValue = this.finish.get(),
-      } = this.props;
+      const { startValue = this.start.get(), finishValue = this.finish.get() } = this.props;
 
       // конечное значение имеет приоритет - делаем стартовое зависимым от конечного
       const readyStart = this.constrainValue(Math.min(startValue as number, finishValue as number));
@@ -148,7 +140,7 @@ export class Range extends Component<RangeProps> {
   }
 
   /** @inheritdoc */
-  componentWillUnmount () {
+  componentWillUnmount() {
     (this.unsubscribers as any[]).forEach(fn => fn());
   }
 
@@ -156,7 +148,7 @@ export class Range extends Component<RangeProps> {
    * Обрабатывает событие как начало слежения за указателем/пальцем.
    * @param event Событие.
    */
-  handleDragStart (event: MouseEvent | TouchEvent) {
+  handleDragStart(event: MouseEvent | TouchEvent) {
     if (!this.props.disabled) {
       this.updateActiveThumb(event);
       this.toggleGrabbed(true);
@@ -167,7 +159,7 @@ export class Range extends Component<RangeProps> {
   /**
    * Завершает слежение за указателем/пальцем.
    */
-  handleDragEnd () {
+  handleDragEnd() {
     if (this.isGrabbed) {
       this.toggleGrabbed(false);
       this.fireEvent('change');
@@ -178,7 +170,7 @@ export class Range extends Component<RangeProps> {
    * Обновляет позицию ползунков и выделенный диапазон.
    * Запускает событие 'slide'.
    */
-  handleValueChange () {
+  handleValueChange() {
     this.updateThumbElements();
     this.updateRangeElement();
     this.fireEvent('slide');
@@ -189,7 +181,7 @@ export class Range extends Component<RangeProps> {
    * @param value Значение.
    * @return Вписанное значение.
    */
-  constrainValue (value: number) {
+  constrainValue(value: number) {
     const { min = 0, max = 1, step = 0.1 } = this.props;
     let result = clamp(value, min, max);
     result -= min;
@@ -206,7 +198,9 @@ export class Range extends Component<RangeProps> {
     }
     result += min;
 
-    if (result > max) { result -= step; }
+    if (result > max) {
+      result -= step;
+    }
 
     return result;
   }
@@ -215,7 +209,7 @@ export class Range extends Component<RangeProps> {
    * Обновляет значения начала/конца диапазона по событию.
    * @param event Событие.
    */
-  updateValues (event: MouseEvent | TouchEvent) {
+  updateValues(event: MouseEvent | TouchEvent) {
     if (this.isGrabbed) {
       const { min = 0, max = 1 } = this.props;
       const thumbEl = this.activeThumbEl;
@@ -224,19 +218,17 @@ export class Range extends Component<RangeProps> {
 
       const wrappedX = Math.max(start, Math.min(getEventClientPos(event).x, end));
       const fraction = getFraction(left, right, wrappedX);
-      const value = this.constrainValue(min + (fraction * (max - min)));
+      const value = this.constrainValue(min + fraction * (max - min));
 
       // проверяем, является ползунок стартовым или конечным
-      thumbEl === this.startThumbRef.current
-        ? this.start.set(value)
-        : this.finish.set(value);
+      thumbEl === this.startThumbRef.current ? this.start.set(value) : this.finish.set(value);
     }
   }
 
   /**
    * Обновляет позицию кнопок.
    */
-  updateThumbElements () {
+  updateThumbElements() {
     const { startThumbRef, finishThumbRef } = this;
 
     if (startThumbRef.current && finishThumbRef.current) {
@@ -250,7 +242,7 @@ export class Range extends Component<RangeProps> {
   /**
    * Обновляет позицию и размер элемента отражающего выбранный диапазон.
    */
-  updateRangeElement () {
+  updateRangeElement() {
     const { current: rangeElement } = this.rangeRef;
 
     if (rangeElement) {
@@ -264,7 +256,7 @@ export class Range extends Component<RangeProps> {
    * Возвращает текущие значения в процентах.
    * @return Начальное и конечное значения в процентах.
    */
-  getPercents (): [number, number] {
+  getPercents(): [number, number] {
     const { min = 0, max = 1 } = this.props;
     let start = 0;
     let finish = 0;
@@ -281,7 +273,7 @@ export class Range extends Component<RangeProps> {
    * Обновляет данные выбранной кнопки по событию.
    * @param event Событие.
    */
-  updateActiveThumb (event: MouseEvent|TouchEvent) {
+  updateActiveThumb(event: MouseEvent | TouchEvent) {
     const { abs } = Math;
     const clientX = getEventClientPos(event).x;
     const startX = centerOf(boundsOf(this.startThumbRef.current as any) as any).x;
@@ -296,9 +288,9 @@ export class Range extends Component<RangeProps> {
       isStartActive = abs(startX - clientX) < abs(finishX - clientX);
     }
 
-    this.activeThumbEl = (isStartActive
-      ? this.startThumbRef.current
-      : this.finishThumbRef.current) as any;
+    this.activeThumbEl = (
+      isStartActive ? this.startThumbRef.current : this.finishThumbRef.current
+    ) as any;
 
     this.activeBounds = isStartActive
       ? [(boundsOf(this.containerRef.current as any) as any).left, finishX]
@@ -309,7 +301,7 @@ export class Range extends Component<RangeProps> {
    * Переключает состояние слежения за курсором/пальцем.
    * @param isGrabbed Активно ли слежение.
    */
-  toggleGrabbed (isGrabbed: boolean) {
+  toggleGrabbed(isGrabbed: boolean) {
     this.isGrabbed = Boolean(isGrabbed);
   }
 
@@ -317,23 +309,28 @@ export class Range extends Component<RangeProps> {
    * Отправляет событие целевому обработчику.
    * @param eventName Имя события.
    */
-  fireEvent (eventName: string) {
+  fireEvent(eventName: string) {
     const { onChange, onSlide } = this.props;
     let handleEvent;
 
     switch (eventName) {
-      case 'change': handleEvent = onChange; break;
-      case 'slide': handleEvent = onSlide; break;
+      case 'change':
+        handleEvent = onChange;
+        break;
+      case 'slide':
+        handleEvent = onSlide;
+        break;
     }
 
-    handleEvent && handleEvent({
-      startValue: this.start.get() as number,
-      finishValue: this.finish.get() as number,
-    });
+    handleEvent &&
+      handleEvent({
+        startValue: this.start.get() as number,
+        finishValue: this.finish.get() as number,
+      });
   }
 
   /** @inheritdoc */
-  render () {
+  render() {
     const [start, finish] = this.getPercents();
 
     return (
@@ -343,23 +340,13 @@ export class Range extends Component<RangeProps> {
           'range-wrapper-base',
           'range-wrapper-styled',
           this.props.disabled && 'disabled',
-          this.props.wrapperProps?.className
+          this.props.wrapperProps?.className,
         )}
       >
-        <div
-          className={cx(
-            'track-base',
-            'available-base',
-            'available-styled'
-          )}
-        />
+        <div className={cx('track-base', 'available-base', 'available-styled')} />
         <div
           ref={this.rangeRef as any}
-          className={cx(
-            'track-base',
-            'selected-base',
-            'selected-styled'
-          )}
+          className={cx('track-base', 'selected-base', 'selected-styled')}
           style={{
             left: `${start}%`,
             width: `${finish - start}%`,
@@ -367,10 +354,7 @@ export class Range extends Component<RangeProps> {
         />
         <div
           ref={this.containerRef as any}
-          className={cx(
-            'range-container-base',
-            'range-container-styled'
-          )}
+          className={cx('range-container-base', 'range-container-styled')}
         >
           <button
             type='button'

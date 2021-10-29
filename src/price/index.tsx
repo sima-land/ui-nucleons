@@ -4,24 +4,23 @@ import classes from './price.module.scss';
 import classnames from 'classnames/bind';
 
 export interface PriceProps {
-
   /** Класс/стили цены. */
-  className?: string
+  className?: string;
 
   /** Отображать цену 'старой' - серой и зачеркнутой. */
-  crossedOut?: boolean
+  crossedOut?: boolean;
 
   /** Графема валюты пользователя. */
-  currencyGrapheme?: string
+  currencyGrapheme?: string;
 
   /** Отобразить знак валюты перед ценой. */
-  graphemeBefore?: boolean
+  graphemeBefore?: boolean;
 
   /** Цена. */
-  value: number | string
+  value: number | string;
 
   /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string
+  'data-testid'?: string;
 }
 
 const cx = classnames.bind(classes);

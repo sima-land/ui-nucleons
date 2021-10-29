@@ -5,9 +5,7 @@ import { Avatar } from '../index';
 
 describe('<Avatar />', () => {
   it('should renders without props', () => {
-    const wrapper = mount(
-      <Avatar />
-    );
+    const wrapper = mount(<Avatar />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -21,7 +19,7 @@ describe('<Avatar />', () => {
         title='Hello World'
         bgColor='additional-teal'
         style={{ clipPath: 'url(#fake-id)' }}
-      />
+      />,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -36,42 +34,26 @@ describe('<Avatar />', () => {
   });
 
   it('should render without image', () => {
-    const wrapper = mount(
-      <Avatar
-        size={40}
-        title='Hello World'
-      />
-    );
+    const wrapper = mount(<Avatar size={40} title='Hello World' />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should render without image and title', () => {
-    const wrapper = mount(
-      <Avatar size={64} />
-    );
+    const wrapper = mount(<Avatar size={64} />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should handle wrong size', () => {
-    const wrapper = mount(
-      <Avatar
-        size={49.92}
-        title='Jason'
-      />
-    );
+    const wrapper = mount(<Avatar size={49.92} title='Jason' />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should handle image error', () => {
     const wrapper = mount(
-      <Avatar
-        size={49.92}
-        title='John Doe'
-        imageUrl='https://www.images.com/random/'
-      />
+      <Avatar size={49.92} title='John Doe' imageUrl='https://www.images.com/random/' />,
     );
 
     expect(wrapper.find('img')).toHaveLength(1);
@@ -86,11 +68,7 @@ describe('<Avatar />', () => {
 
   it('should handle imageUrl change', () => {
     const wrapper = mount(
-      <Avatar
-        size={49.92}
-        title='John Doe'
-        imageUrl='https://www.images.com/random/'
-      />
+      <Avatar size={49.92} title='John Doe' imageUrl='https://www.images.com/random/' />,
     );
 
     expect(wrapper.find('img')).toHaveLength(1);

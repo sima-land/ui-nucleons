@@ -34,13 +34,11 @@ export function makeInViewportObserverHOC(observersDataList: any) {
      * @param props Свойства для оборачиваемого компонента.
      * @return Компонент высшего порядка.
      */
-    const Wrapper: React.FC<Omit<T, K> & { [key in K]?: any }> = (
-      props: any,
-    ) => <Component {...{ [propName]: addObserve }} {...props} />;
+    const Wrapper: React.FC<Omit<T, K> & { [key in K]?: any }> = (props: any) => (
+      <Component {...{ [propName]: addObserve }} {...props} />
+    );
 
-    Wrapper.displayName = `withInViewportObserver(${
-      Component.displayName || Component.name
-    })`;
+    Wrapper.displayName = `withInViewportObserver(${Component.displayName || Component.name})`;
 
     return Wrapper;
   };

@@ -21,7 +21,7 @@ export const SizeS = () => {
 
   const styles: Record<'root' | 'image' | 'title' | 'message', React.CSSProperties> = {
     root: {
-      padding: '0 40px',
+      padding: '0 40px 40px 40px',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',

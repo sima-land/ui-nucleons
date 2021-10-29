@@ -27,11 +27,7 @@ describe('<PhoneInput />', () => {
 
   it('should call onCountrySelect on change country', () => {
     const onCountrySelect = jest.fn();
-    const wrapper = mount(
-      <PhoneInput
-        onCountrySelect={onCountrySelect}
-      />
-    );
+    const wrapper = mount(<PhoneInput onCountrySelect={onCountrySelect} />);
 
     expect(onCountrySelect).not.toHaveBeenCalled();
     wrapper.find('[data-testid="phone-input:dropdown-opener"]').simulate('click');
@@ -67,9 +63,7 @@ describe('<PhoneInput />', () => {
   it('should pass mask state to onBlur callback', () => {
     const spy = jest.fn();
 
-    const wrapper = mount(
-      <PhoneInput onBlur={spy} />
-    );
+    const wrapper = mount(<PhoneInput onBlur={spy} />);
 
     expect(spy).toHaveBeenCalledTimes(0);
 
@@ -83,9 +77,7 @@ describe('<PhoneInput />', () => {
   });
 
   it('should define initial mask properly', () => {
-    const wrapper = mount(
-      <PhoneInput value='375112223344' />
-    );
+    const wrapper = mount(<PhoneInput value='375112223344' />);
 
     expect(wrapper.find(MaskedField).prop('mask')).toBe(countries.belarus.mask);
   });
@@ -93,9 +85,7 @@ describe('<PhoneInput />', () => {
   it('should handle "value" prop change', () => {
     const spy = jest.fn();
 
-    const wrapper = mount(
-      <PhoneInput value='375112223344' onBlur={spy} />
-    );
+    const wrapper = mount(<PhoneInput value='375112223344' onBlur={spy} />);
 
     act(() => {
       wrapper.find(TextField).find('input').simulate('blur');
@@ -120,23 +110,16 @@ describe('<PhoneInput />', () => {
     const changeSpy = jest.fn();
     const blurSpy = jest.fn();
 
-    const wrapper = mount(
-      <PhoneInput
-        value='0000000'
-        onBlur={blurSpy}
-        onChange={changeSpy}
-      />
-    );
+    const wrapper = mount(<PhoneInput value='0000000' onBlur={blurSpy} onChange={changeSpy} />);
 
     expect(wrapper).toMatchSnapshot();
     expect(blurSpy).toBeCalledTimes(0);
     expect(changeSpy).toBeCalledTimes(0);
 
     act(() => {
-      Simulate.change(
-        wrapper.find('input').getDOMNode(),
-        { target: { value: '000sss111' } as HTMLInputElement }
-      );
+      Simulate.change(wrapper.find('input').getDOMNode(), {
+        target: { value: '000sss111' } as HTMLInputElement,
+      });
     });
 
     expect(blurSpy).toBeCalledTimes(0);
@@ -144,10 +127,9 @@ describe('<PhoneInput />', () => {
     expect(changeSpy.mock.calls[0][0].target.value).toBe('000111');
 
     act(() => {
-      Simulate.blur(
-        wrapper.find('input').getDOMNode(),
-        { target: { value: '000111' } as HTMLInputElement }
-      );
+      Simulate.blur(wrapper.find('input').getDOMNode(), {
+        target: { value: '000111' } as HTMLInputElement,
+      });
     });
 
     expect(blurSpy).toBeCalledTimes(1);

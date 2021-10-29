@@ -24,9 +24,7 @@ class TestProductPreviewsWidget extends React.Component<Props> {
   }
 
   render() {
-    return (
-      <div ref={this.widgetRef as React.LegacyRef<HTMLDivElement>}>content</div>
-    );
+    return <div ref={this.widgetRef as React.LegacyRef<HTMLDivElement>}>content</div>;
   }
 }
 
@@ -117,9 +115,7 @@ describe('wrapObserverHandle()', () => {
 });
 
 describe('initAddObserve', () => {
-  const spy = jest
-    .spyOn(window, 'IntersectionObserver')
-    .mockImplementation(jest.fn());
+  const spy = jest.spyOn(window, 'IntersectionObserver').mockImplementation(jest.fn());
 
   beforeEach(() => {
     jest.clearAllMocks();

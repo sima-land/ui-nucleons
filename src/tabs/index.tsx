@@ -21,7 +21,7 @@ const cx = classnames.bind(styles);
  * @param props.className Внешние классы.
  * @return Элемент.
  */
-export function Tabs <T = any> ({
+export function Tabs<T = any>({
   items,
   getItemName = identity,
   onSelectItem,
@@ -34,16 +34,16 @@ export function Tabs <T = any> ({
   className,
   'data-testid': dataTestId = 'tabs',
 }: { items?: T[] } & {
-  getItemName?: (i: T) => string
-  onSelectItem?: (i: T) => void
-  isSelectedItem?: (i: T) => boolean | undefined
-  isDisabledItem?: (i: T) => boolean | undefined
-  view?: 'clean' | 'round'
-  underline?: boolean
-  stretch?: boolean
-  gapSize?: 's' | 'm'
-  className?: string
-  'data-testid'?: string
+  getItemName?: (i: T) => string;
+  onSelectItem?: (i: T) => void;
+  isSelectedItem?: (i: T) => boolean | undefined;
+  isDisabledItem?: (i: T) => boolean | undefined;
+  view?: 'clean' | 'round';
+  underline?: boolean;
+  stretch?: boolean;
+  gapSize?: 's' | 'm';
+  className?: string;
+  'data-testid'?: string;
 }) {
   return (
     <ul
@@ -56,20 +56,17 @@ export function Tabs <T = any> ({
           underline,
           stretch,
         },
-        className
+        className,
       )}
     >
       {items?.map((item, index) => (
         <li
           key={index}
           onClick={() => onSelectItem?.(item)}
-          className={cx(
-            'tab-item',
-            {
-              selected: isSelectedItem(item),
-              disabled: isDisabledItem(item),
-            }
-          )}
+          className={cx('tab-item', {
+            selected: isSelectedItem(item),
+            disabled: isDisabledItem(item),
+          })}
           data-testid='tab'
         >
           {getItemName(item)}

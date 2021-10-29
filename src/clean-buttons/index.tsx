@@ -4,13 +4,12 @@ import classes from './clean-buttons.module.scss';
 import { Link, LinkProps } from '../link';
 
 export interface CleanButtonProps extends LinkProps {
-  asLink?: boolean
+  asLink?: boolean;
 }
 
 export interface CleanGroupProps {
-
   /** Содержимое. */
-  children?: React.ReactElement<CleanButtonProps> | React.ReactElement<CleanButtonProps>[]
+  children?: React.ReactElement<CleanButtonProps> | React.ReactElement<CleanButtonProps>[];
 }
 
 const cx = classnames.bind(classes);
@@ -22,10 +21,8 @@ const cx = classnames.bind(classes);
  */
 const CleanGroup: React.FC<CleanGroupProps> = ({ children }) => (
   <div className={cx('clean-group')}>
-    {Children.toArray(children).map(
-      item => isValidElement(item) && item.type === CleanButton
-        ? item
-        : null
+    {Children.toArray(children).map(item =>
+      isValidElement(item) && item.type === CleanButton ? item : null,
     )}
   </div>
 );
@@ -39,17 +36,8 @@ const CleanGroup: React.FC<CleanGroupProps> = ({ children }) => (
  * @param props.asLink Нужно ли выводить кнопку как ссылку.
  * @return Элемент.
  */
-const CleanButton = ({
-  href,
-  asLink = Boolean(href),
-  ...restProps
-}: CleanButtonProps) => (
-  <Link
-    pseudo={asLink}
-    className={cx('clean-button')}
-    href={href}
-    {...restProps}
-  />
+const CleanButton = ({ href, asLink = Boolean(href), ...restProps }: CleanButtonProps) => (
+  <Link pseudo={asLink} className={cx('clean-button')} href={href} {...restProps} />
 );
 
 export const Clean = {

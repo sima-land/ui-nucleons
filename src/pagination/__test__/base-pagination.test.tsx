@@ -6,20 +6,13 @@ import { PageButton } from '../page-button';
 
 describe('<BasePagination />', () => {
   it('should render correctly', () => {
-    const wrapper = mount(
-      <BasePagination current={3} total={12} />
-    );
+    const wrapper = mount(<BasePagination current={3} total={12} />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should handle "total" and "current" props', () => {
-    const wrapper = mount(
-      <BasePagination
-        current={1}
-        total={100}
-      />
-    );
+    const wrapper = mount(<BasePagination current={1} total={100} />);
 
     expect(wrapper.find(PageButton).at(0).prop('children')).toBe(1);
     expect(wrapper.find(PageButton).at(0).prop('selected')).toBe(true);
@@ -44,13 +37,7 @@ describe('<BasePagination />', () => {
 
   it('should handle "onButtonClick" prop', () => {
     const spy = jest.fn();
-    const wrapper = mount(
-      <BasePagination
-        current={3}
-        total={100}
-        onButtonClick={spy}
-      />
-    );
+    const wrapper = mount(<BasePagination current={3} total={100} onButtonClick={spy} />);
 
     // arrow prev
     expect(wrapper.find(PageButton).at(0).prop('children')).toBe(BUTTON_CONTENTS.prev);

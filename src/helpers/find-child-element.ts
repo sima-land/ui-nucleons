@@ -19,20 +19,16 @@ const findChildElement = ({
   isSuitable,
   needBreakLoop = identity,
 }: {
-  target: HTMLElement
-  startIndex?: number
-  increment?: number
-  defaultResult?: number
-  isSuitable?: (el: Element) => boolean
-  needBreakLoop?: (passed: boolean) => boolean
+  target: HTMLElement;
+  startIndex?: number;
+  increment?: number;
+  defaultResult?: number;
+  isSuitable?: (el: Element) => boolean;
+  needBreakLoop?: (passed: boolean) => boolean;
 }): number => {
   let result = defaultResult;
 
-  if (
-    target
-    && target.children
-    && isSuitable !== undefined
-  ) {
+  if (target && target.children && isSuitable !== undefined) {
     const { children } = target;
 
     for (let i = startIndex; i >= 0 && i < children.length; i += increment) {

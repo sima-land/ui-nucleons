@@ -3,20 +3,11 @@ import { WithHint, useTempHint } from '..';
 import { Button } from '../../button';
 import { Modal } from '../../modal';
 
-const styles: Record<string, React.CSSProperties> = {
+const styles: Record<'root' | 'modalContent', React.CSSProperties> = {
   root: {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-  },
-  opener: {
-    padding: 8,
-    fontSize: 18,
-    display: 'inline-flex',
-    background: '#eee',
-    cursor: 'pointer',
-    borderRadius: 4,
-    marginTop: 48,
   },
   modalContent: {
     position: 'relative',
@@ -38,17 +29,23 @@ export const Primary = () => (
       <WithHint
         key={direction}
         direction={direction}
-        hint={<>Первая строчка.<br />И вторая строчка.</>}
+        hint={
+          <>
+            Первая строчка.
+            <br />И вторая строчка.
+          </>
+        }
       >
         {(ref, toggle) => (
-          <div
+          <Button
+            viewType='secondary'
             ref={ref as any}
             onMouseEnter={() => toggle(true)}
             onMouseLeave={() => toggle(false)}
-            style={styles.opener}
+            style={{ marginBottom: '32px' }}
           >
             Наведи на меня
-          </div>
+          </Button>
         )}
       </WithHint>
     ))}
@@ -73,9 +70,9 @@ export const AutoCloseHook = () => {
     <div style={styles.root}>
       <WithHint hint={data} {...bind}>
         {ref => (
-          <div ref={ref as any} style={styles.opener} onClick={fakeFetch}>
+          <Button ref={ref as any} onClick={fakeFetch} style={{ marginTop: '48px' }}>
             Нажми на меня
-          </div>
+          </Button>
         )}
       </WithHint>
     </div>
@@ -117,13 +114,9 @@ export const InScrolledParent = () => {
 
               <WithHint hint='Проверочный хинт!' direction='right' {...bind}>
                 {ref => (
-                  <div
-                    ref={ref as any}
-                    onClick={() => toggle(true)}
-                    style={{ ...styles.opener, marginBottom: 48 }}
-                  >
+                  <Button ref={ref as any} onClick={() => toggle(true)}>
                     Нажми на меня
-                  </div>
+                  </Button>
                 )}
               </WithHint>
 
@@ -149,13 +142,9 @@ export const InDocumentWithScroll = () => {
 
       <WithHint hint='Проверочный хинт!' direction='right' {...bind}>
         {ref => (
-          <div
-            ref={ref as any}
-            onClick={() => toggle(true)}
-            style={{ ...styles.opener, marginBottom: 48 }}
-          >
+          <Button ref={ref as any} onClick={() => toggle(true)}>
             Нажми на меня
-          </div>
+          </Button>
         )}
       </WithHint>
 

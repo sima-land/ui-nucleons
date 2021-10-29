@@ -67,12 +67,7 @@ export const TopBar = ({
 
   return (
     <div
-      className={cx(
-        'root',
-        `size-${size}`,
-        className,
-        divided && InnerBorder.bottom,
-      )}
+      className={cx('root', `size-${size}`, className, divided && InnerBorder.bottom)}
       style={{ height: `${TOP_BAR_HEIGHT[size]}px` }}
     >
       {hasStart ? <IconButton {...start} /> : stub}
@@ -80,9 +75,7 @@ export const TopBar = ({
 
       <div className={cx('main-section')}>
         <div className={cx('title', 'ellipsis')}>{title}</div>
-        {Boolean(subtitle) && (
-          <div className={cx('subtitle', 'ellipsis')}>{subtitle}</div>
-        )}
+        {Boolean(subtitle) && <div className={cx('subtitle', 'ellipsis')}>{subtitle}</div>}
       </div>
 
       {hasEndSecondary ? <IconButton {...endSecondary} /> : secondaryStub}

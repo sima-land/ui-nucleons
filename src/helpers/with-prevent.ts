@@ -5,10 +5,12 @@ import React from 'react';
  * @param callback Функция перехвата события.
  * @return Декорированная функция.
  */
-const withPrevent = <T extends Event | React.SyntheticEvent>(callback?: (e: T) => void) => (event: T) => {
-  event.preventDefault();
-  event.stopPropagation();
-  callback?.(event);
-};
+const withPrevent =
+  <T extends Event | React.SyntheticEvent>(callback?: (e: T) => void) =>
+  (event: T) => {
+    event.preventDefault();
+    event.stopPropagation();
+    callback?.(event);
+  };
 
 export default withPrevent;

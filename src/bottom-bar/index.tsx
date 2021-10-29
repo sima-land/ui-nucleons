@@ -6,15 +6,14 @@ import { MediumRounds } from '../styling/shapes';
 type BottomBarSize = 's' | 'm' | 'l';
 
 export interface BottomBarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'size'> {
-
   /** Размер (высота). */
-  size?: BottomBarSize
+  size?: BottomBarSize;
 
   /** Нужна ли разделительная черта сверху. */
-  divided?: boolean
+  divided?: boolean;
 
   /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string
+  'data-testid'?: string;
 }
 
 const cx = classNames.bind(styles);

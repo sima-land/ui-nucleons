@@ -11,9 +11,13 @@ export const useKeydown = (targetKey: string, callback: undefined | (() => void)
 
   ref.current = callback;
 
-  useEffect(() => on<KeyboardEvent>(document, 'keydown', ({ key }) => {
-    const fn = ref.current;
+  useEffect(
+    () =>
+      on<KeyboardEvent>(document, 'keydown', ({ key }) => {
+        const fn = ref.current;
 
-    key === targetKey && fn && fn();
-  }), [targetKey]);
+        key === targetKey && fn && fn();
+      }),
+    [targetKey],
+  );
 };

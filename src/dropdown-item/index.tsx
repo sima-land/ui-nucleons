@@ -5,21 +5,20 @@ import styles from './dropdown-item.module.scss';
 const cx = classnames.bind(styles);
 
 export interface DropdownItemProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'size'> {
-
   /** Отображать элемент как отмеченный или нет. */
-  checked?: boolean
+  checked?: boolean;
 
   /** Отключен ли элемент. */
-  disabled?: boolean
+  disabled?: boolean;
 
   /** Нужно ли отключить эффект при наведении. */
-  noHover?: boolean
+  noHover?: boolean;
 
   /** Размер. */
-  size?: 's' | 'm' | 'l' | 'xl'
+  size?: 's' | 'm' | 'l' | 'xl';
 
   /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string
+  'data-testid'?: string;
 }
 
 /**
@@ -49,7 +48,7 @@ export const DropdownItem = ({
       checked && 'checked',
       disabled && 'disabled',
       noHover && 'no-hover',
-      className
+      className,
     )}
     data-testid={testId}
   >

@@ -4,9 +4,7 @@ import { Card } from '..';
 
 describe('Card', () => {
   it('should renders without props', () => {
-    const wrapper = mount(
-      <Card />
-    );
+    const wrapper = mount(<Card />);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -17,7 +15,7 @@ describe('Card', () => {
         <Card.Content>[content]</Card.Content>
         <Card.Footer>[footer]</Card.Footer>
         <Card.Header>[header]</Card.Header>
-      </Card>
+      </Card>,
     );
 
     expect(wrapper).toMatchSnapshot();

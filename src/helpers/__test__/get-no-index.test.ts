@@ -5,8 +5,9 @@ describe('getNoIndex() return correctly', () => {
     expect(getNoIndex('Test string')?.__html).toEqual('<!--noindex-->Test string<!--/noindex-->');
   });
   it('with html tags', () => {
-    expect(getNoIndex('<p>Test <span>string</span></p>')?.__html)
-      .toEqual('<!--noindex--><p>Test <span>string</span></p><!--/noindex-->');
+    expect(getNoIndex('<p>Test <span>string</span></p>')?.__html).toEqual(
+      '<!--noindex--><p>Test <span>string</span></p><!--/noindex-->',
+    );
   });
   it('with number', () => {
     expect(getNoIndex(123)?.__html).toEqual('<!--noindex-->123<!--/noindex-->');

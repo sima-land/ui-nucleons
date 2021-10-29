@@ -9,7 +9,7 @@ describe('Select', () => {
     act(() => {
       Simulate.keyDown(
         wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-        { key: 'Enter' }
+        { key: 'Enter' },
       );
     });
     wrapper.update();
@@ -38,7 +38,7 @@ describe('Select', () => {
         onSelect={selectSpy}
         onClick={clickSpy}
         renderOption={option => option.toUpperCase()}
-      />
+      />,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -61,7 +61,7 @@ describe('Select', () => {
           'Печатный каталог PDF',
         ]}
         onClick={clickSpy}
-      />
+      />,
     );
 
     expect(clickSpy).toHaveBeenCalledTimes(0);
@@ -86,7 +86,7 @@ describe('Select', () => {
           'Фото товаров JPG + прайс-лист XLS',
           'Печатный каталог PDF',
         ]}
-      />
+      />,
     );
 
     act(() => {
@@ -99,7 +99,7 @@ describe('Select', () => {
     act(() => {
       Simulate.blur(
         wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-        { relatedTarget: document.createElement('div') }
+        { relatedTarget: document.createElement('div') },
       );
     });
     wrapper.update();
@@ -119,7 +119,7 @@ describe('Select', () => {
           'Фото товаров JPG + прайс-лист XLS',
           'Печатный каталог PDF',
         ]}
-      />
+      />,
     );
 
     expect(findMenu(wrapper)).toHaveLength(0);
@@ -140,7 +140,7 @@ describe('Select', () => {
           'Печатный каталог PDF',
         ]}
         loading
-      />
+      />,
     );
 
     expect(findMenu(wrapper)).toHaveLength(0);
@@ -162,7 +162,7 @@ describe('Select', () => {
           'Фото товаров JPG + прайс-лист XLS',
           'Печатный каталог PDF',
         ]}
-      />
+      />,
     );
 
     expect(findMenu(wrapper)).toHaveLength(0);
@@ -170,10 +170,7 @@ describe('Select', () => {
     expect(findMenu(wrapper)).toHaveLength(1);
 
     act(() => {
-      Simulate.keyDown(
-        findMenu(wrapper).getDOMNode(),
-        { key: 'Enter' }
-      );
+      Simulate.keyDown(findMenu(wrapper).getDOMNode(), { key: 'Enter' });
     });
     wrapper.update();
     expect(findMenu(wrapper)).toHaveLength(0);
@@ -191,7 +188,7 @@ describe('Select', () => {
           'Фото товаров JPG + прайс-лист XLS',
           'Печатный каталог PDF',
         ]}
-      />
+      />,
     );
 
     expect(findMenu(wrapper)).toHaveLength(0);
@@ -199,10 +196,7 @@ describe('Select', () => {
     expect(findMenu(wrapper)).toHaveLength(1);
 
     act(() => {
-      Simulate.keyDown(
-        findMenu(wrapper).getDOMNode(),
-        { key: 'E' }
-      );
+      Simulate.keyDown(findMenu(wrapper).getDOMNode(), { key: 'E' });
     });
     wrapper.update();
     expect(findMenu(wrapper)).toHaveLength(1);
@@ -220,7 +214,7 @@ describe('Select', () => {
           'Фото товаров JPG + прайс-лист XLS',
           'Печатный каталог PDF',
         ]}
-      />
+      />,
     );
 
     expect(findMenu(wrapper)).toHaveLength(0);
@@ -250,7 +244,7 @@ describe('Select', () => {
         ]}
         optionSize='m'
         onSelect={selectSpy}
-      />
+      />,
     );
 
     expect(selectSpy).toBeCalledTimes(0);
@@ -260,9 +254,7 @@ describe('Select', () => {
     expect(selectSpy).toBeCalledTimes(0);
 
     act(() => {
-      Simulate.click(
-        wrapper.find('div[role="menuitem"]').at(2).getDOMNode()
-      );
+      Simulate.click(wrapper.find('div[role="menuitem"]').at(2).getDOMNode());
     });
     wrapper.update();
 

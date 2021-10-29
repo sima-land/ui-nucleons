@@ -8,31 +8,34 @@ import { useDragAndDrop, getFilesPreparer } from './utils';
 import { upperFirst } from 'lodash';
 import getDeclination from '../helpers/get-declination';
 
-export interface UploadAreaProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect' | 'multiple'> {
-
+export interface UploadAreaProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect' | 'multiple'> {
   /** Ограничение на количество файлов. */
-  countLimit?: number
+  countLimit?: number;
 
   /** Есть ли ошибки валидации. */
-  failed?: boolean
+  failed?: boolean;
 
   /** Роль файлов. */
-  fileRole?: string
+  fileRole?: string;
 
   /** Форматы. */
-  formats?: string
+  formats?: string;
 
   /** Ограничение на количество файлов. */
-  multiple?: boolean
+  multiple?: boolean;
 
   /** Сработает при выборе или перетаскивании файлов, получив список и событие. */
-  onSelect?: (list: File[], e: React.DragEvent<HTMLDivElement> | React.ChangeEvent<HTMLInputElement>) => void
+  onSelect?: (
+    list: File[],
+    e: React.DragEvent<HTMLDivElement> | React.ChangeEvent<HTMLInputElement>,
+  ) => void;
 
   /** Ограничение на размер. */
-  sizeLimit?: string
+  sizeLimit?: string;
 
   /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string
+  'data-testid'?: string;
 }
 
 const cx = classnames.bind(styles);
@@ -56,12 +59,14 @@ export const UploadArea: React.FC<UploadAreaProps> = ({
 }) => {
   const secondaryInfo = upperFirst(
     [
-      countLimit && countLimit > 0 && `${countLimit} ${getDeclination(countLimit, ['файл', 'файла', 'файлов'])}`,
+      countLimit &&
+        countLimit > 0 &&
+        `${countLimit} ${getDeclination(countLimit, ['файл', 'файла', 'файлов'])}`,
       formats && `формат ${formats}`,
       `до ${sizeLimit}`,
     ]
       .filter(Boolean)
-      .join(', ')
+      .join(', '),
   );
 
   const prepareFiles = getFilesPreparer({ multiple, countLimit });
@@ -81,8 +86,7 @@ export const UploadArea: React.FC<UploadAreaProps> = ({
 
       <div className={cx('info-column')}>
         <div className={cx('info', 'primary')}>
-          Перетащите или
-          {' '}
+          Перетащите или{' '}
           <label>
             <input
               type='file'
@@ -102,9 +106,7 @@ export const UploadArea: React.FC<UploadAreaProps> = ({
           </label>
         </div>
 
-        <div className={cx('info', 'secondary', { failed })}>
-          {secondaryInfo}
-        </div>
+        <div className={cx('info', 'secondary', { failed })}>{secondaryInfo}</div>
       </div>
     </div>
   );

@@ -8,10 +8,8 @@ describe('CardHeader', () => {
   it('should render just children inside', () => {
     const wrapper = mount(
       <CardContext.Provider value={{}}>
-        <CardHeader>
-          Just children
-        </CardHeader>
-      </CardContext.Provider>
+        <CardHeader>Just children</CardHeader>
+      </CardContext.Provider>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -24,7 +22,7 @@ describe('CardHeader', () => {
         <CardHeader divided>
           <TopBar />
         </CardHeader>
-      </CardContext.Provider>
+      </CardContext.Provider>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -36,7 +34,7 @@ describe('CardHeader', () => {
         <CardHeader divided>
           <TopBar />
         </CardHeader>
-      </CardContext.Provider>
+      </CardContext.Provider>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -48,7 +46,7 @@ describe('CardContent', () => {
     const wrapper = mount(
       <CardContent className='test-class' style={{ width: 1080 }}>
         Just content
-      </CardContent>
+      </CardContent>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -62,7 +60,7 @@ describe('CardFooter', () => {
     const wrapper = mount(
       <CardFooter divided className='test-footer' style={{ width: 1920 }}>
         Just content
-      </CardFooter>
+      </CardFooter>,
     );
 
     expect(wrapper).toMatchSnapshot();

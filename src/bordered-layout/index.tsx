@@ -5,15 +5,14 @@ import { InnerBorder } from '../styling/borders';
 import styles from './bordered-layout.module.scss';
 
 export interface BorderedLayoutProps {
-
   /** Флаг добавления рамки сверху. */
-  top?: boolean
+  top?: boolean;
 
   /** Флаг добавления рамки снизу. */
-  bottom?: boolean
+  bottom?: boolean;
 
   /** Содержимое. */
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
 const cx = classnames.bind(styles);
@@ -21,7 +20,7 @@ const cx = classnames.bind(styles);
 /**
  * Выводит содержимое по мобильному layout'у с вертикальными полосками.
  * @param props Свойства компонента.
- * @return Компонент добавления рамки.
+ * @return Элемент.
  */
 export const BorderedLayout = ({ top, bottom, children }: BorderedLayoutProps) => {
   let borderClass;
@@ -36,9 +35,7 @@ export const BorderedLayout = ({ top, bottom, children }: BorderedLayoutProps) =
 
   return (
     <MobileLayout disabledOn={['mxs', 'ms']}>
-      <div className={cx('inner', borderClass)}>
-        {children}
-      </div>
+      <div className={cx('inner', borderClass)}>{children}</div>
     </MobileLayout>
   );
 };

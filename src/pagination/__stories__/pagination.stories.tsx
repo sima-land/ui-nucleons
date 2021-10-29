@@ -16,11 +16,7 @@ export const Primary = () => {
     return (
       <div style={{ marginBottom: 20 }}>
         <h4 style={{ marginBottom: 10 }}>Page count: {total}</h4>
-        <Pagination
-          total={total}
-          current={currentPage}
-          onChange={({ value }) => setPage(value)}
-        />
+        <Pagination total={total} current={currentPage} onChange={({ value }) => setPage(value)} />
       </div>
     );
   };

@@ -25,6 +25,8 @@ jobs:
         run: |
           yarn lint:scripts
           yarn lint:styles
+          yarn prettier:check
+          yarn type-check
 
       - name: Test
         run: yarn coverage

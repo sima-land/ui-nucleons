@@ -24,20 +24,14 @@ beforeEach(() => {
 
 describe('Timer', () => {
   it('should render properly without props', () => {
-    const wrapper = mount(
-      <Timer date='' />
-    );
+    const wrapper = mount(<Timer date='' />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should pass props', () => {
     const wrapper = mount(
-      <Timer
-        date='2030-03-08'
-        timeout={500}
-        format={({ days }) => `Осталось дней: ${days}`}
-      />
+      <Timer date='2030-03-08' timeout={500} format={({ days }) => `Осталось дней: ${days}`} />,
     );
 
     expect(wrapper).toMatchSnapshot();

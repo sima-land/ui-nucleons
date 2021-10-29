@@ -46,11 +46,13 @@ export const addObserve = (
  * @param addObserveFunc Функция подписки компонента на обсервер.
  * @return Функция подиски на обсервер.
  */
-export const wrapAddObserve = (
-  container: ObserverContainer,
-  addObserveFunc: (c: ObserverContainer, t: HTMLElement, cb: Callback) => void,
-) => (target: HTMLElement, onIntersection: Callback) =>
-  addObserveFunc(container, target, onIntersection);
+export const wrapAddObserve =
+  (
+    container: ObserverContainer,
+    addObserveFunc: (c: ObserverContainer, t: HTMLElement, cb: Callback) => void,
+  ) =>
+  (target: HTMLElement, onIntersection: Callback) =>
+    addObserveFunc(container, target, onIntersection);
 
 /**
  * Пробрасывает контейнер с экземпляром обсервера в обработчик события обсервера.
@@ -58,10 +60,13 @@ export const wrapAddObserve = (
  * @param handler Обработчик, в который нужно добавить контейнер.
  * @return Функция обработчик события обсервера.
  */
-export const wrapObserverHandle = (
-  container: ObserverContainer,
-  handler: (c: ObserverContainer, es: IntersectionObserverEntry[]) => void,
-) => (entries: IntersectionObserverEntry[]) => handler(container, entries);
+export const wrapObserverHandle =
+  (
+    container: ObserverContainer,
+    handler: (c: ObserverContainer, es: IntersectionObserverEntry[]) => void,
+  ) =>
+  (entries: IntersectionObserverEntry[]) =>
+    handler(container, entries);
 
 /**
  * Создает экземпляр IntersectionObserver и возвращает функцию подписки на него.

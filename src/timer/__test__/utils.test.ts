@@ -44,9 +44,9 @@ describe('getDistanceToNow', () => {
 describe('formatDistance', () => {
   it('should format distance properly', () => {
     const days = 11;
-    const hours = (days * 24) + 2;
-    const minutes = (hours * 60) + 3;
-    const seconds = (minutes * 60) + 4;
+    const hours = days * 24 + 2;
+    const minutes = hours * 60 + 3;
+    const seconds = minutes * 60 + 4;
 
     const result = formatDistance({
       days,

@@ -35,7 +35,9 @@ describe('findOffsetParent', () => {
       offsetParent: { __fakeStyles: { position: 'static' } },
     } as unknown as FakeDiv;
 
-    (document.documentElement as HTMLElement & { __fakeStyles: any }).__fakeStyles = { position: 'static' };
+    (document.documentElement as HTMLElement & { __fakeStyles: any }).__fakeStyles = {
+      position: 'static',
+    };
 
     expect(findOffsetParent(fakeDiv as HTMLElement)).toBe(null);
   });
@@ -45,7 +47,9 @@ describe('findOffsetParent', () => {
       offsetParent: { __fakeStyles: { position: 'static' } },
     };
 
-    (document.documentElement as HTMLElement & { __fakeStyles: any }).__fakeStyles = { position: 'relative' };
+    (document.documentElement as HTMLElement & { __fakeStyles: any }).__fakeStyles = {
+      position: 'relative',
+    };
 
     expect(findOffsetParent(fakeDiv as unknown as HTMLElement)).toBe(document.documentElement);
   });

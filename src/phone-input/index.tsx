@@ -14,25 +14,25 @@ import classes from './phone-input.module.scss';
 import { defineCountry } from './utils';
 
 interface PhoneInputStyle extends React.CSSProperties {
-  '--phone-input-width'?: number | string
+  '--phone-input-width'?: number | string;
 }
 
-export interface PhoneInputProps extends Omit<TextFieldProps, 'onChange' | 'onBlur' | 'value' | 'ref' | 'style'> {
-
+export interface PhoneInputProps
+  extends Omit<TextFieldProps, 'onChange' | 'onBlur' | 'value' | 'ref' | 'style'> {
   /** Сработает при "blur". */
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>, s: MaskState & { ready?: boolean }) => void
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>, s: MaskState & { ready?: boolean }) => void;
 
   /** Сработает при изменении поля. Не рекомендуется использовать. */
-  onChange?: React.ChangeEventHandler<HTMLInputElement>
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 
   /** Срабатывает при изменении страны. */
-  onCountrySelect?: (c: Country) => void
+  onCountrySelect?: (c: Country) => void;
 
   /** Значение. */
-  value?: string
+  value?: string;
 
   /** Стили. */
-  style?: PhoneInputStyle
+  style?: PhoneInputStyle;
 }
 
 const cx = classnames.bind(classes);
@@ -43,7 +43,8 @@ const cx = classnames.bind(classes);
  * @param country Данные страны.
  * @return Значение без кода.
  */
-const formatValue = (value: string, country: Country) => value.replace(/\D/g, '').slice(country.codeChars.length);
+const formatValue = (value: string, country: Country) =>
+  value.replace(/\D/g, '').slice(country.codeChars.length);
 
 /**
  * Компонент поля ввода номера телефона.
@@ -92,62 +93,47 @@ export const PhoneInput = ({
           togglePopup(true);
         }}
       >
-        <img
-          alt=''
-          width={24}
-          height={24}
-          src={country.imageSrc}
-        />
-        <AdornmentSVG
-          fill={COLORS.get('gray38')}
-          className={marginLeft(1) as string}
-        />
+        <img alt='' width={24} height={24} src={country.imageSrc} />
+        <AdornmentSVG fill={COLORS.get('gray38')} className={marginLeft(1) as string} />
       </div>
     ),
   };
 
   return (
-    <div
-      data-testid={testId}
-      style={style}
-      className={cx('root', className)}
-    >
-      {
-        country.id === IDS.other
-          ? (
-            <TextField
-              {...commonFieldProps}
-              onChange={(e: any) => {
-                e.target.value = e.target.value.replace(/\D/g, '').slice(0, 20);
-                onChange && onChange(e as React.ChangeEvent<HTMLInputElement>);
-              }}
-              onBlur={e => {
-                onBlur && onBlur(e, {
-                  value: e.target.value,
-                  cleanValue: e.target.value,
-                  ready: e.target.value.length > 0,
-                });
-              }}
-            />
-          ) : (
-            <MaskedField
-              {...commonFieldProps}
+    <div data-testid={testId} style={style} className={cx('root', className)}>
+      {country.id === IDS.other ? (
+        <TextField
+          {...commonFieldProps}
+          onChange={(e: any) => {
+            e.target.value = e.target.value.replace(/\D/g, '').slice(0, 20);
+            onChange && onChange(e as React.ChangeEvent<HTMLInputElement>);
+          }}
+          onBlur={e => {
+            onBlur &&
+              onBlur(e, {
+                value: e.target.value,
+                cleanValue: e.target.value,
+                ready: e.target.value.length > 0,
+              });
+          }}
+        />
+      ) : (
+        <MaskedField
+          {...commonFieldProps}
+          // убираем код страны, так как он уже зашит в маску
+          value={cleanValue}
+          mask={country.mask}
+          onBlur={(event, state) => {
+            onBlur &&
+              onBlur(event, {
+                ...state,
 
-              // убираем код страны, так как он уже зашит в маску
-              value={cleanValue}
-
-              mask={country.mask}
-              onBlur={(event, state) => {
-                onBlur && onBlur(event, {
-                  ...state,
-
-                  // вставляем код страны обратно в чистое значение
-                  cleanValue: `${country.codeChars}${state.cleanValue}`,
-                });
-              }}
-            />
-          )
-      }
+                // вставляем код страны обратно в чистое значение
+                cleanValue: `${country.codeChars}${state.cleanValue}`,
+              });
+          }}
+        />
+      )}
 
       {isPopupOpen && (
         <Dropdown
@@ -156,31 +142,24 @@ export const PhoneInput = ({
           className={cx('popup')}
           data-testid='phone-input:dropdown'
         >
-          {countriesList.map(
-            (item, index) => item.id === country.id
-              ? null
-              : (
-                <DropdownItem
-                  key={index}
-                  size='l'
-                  role='menuitem'
-                  className={cx('popup-item')}
-                  onClick={() => {
-                    togglePopup(false);
-                    setCountry(item);
-                    onCountrySelect && onCountrySelect(item);
-                  }}
-                >
-                  <img
-                    alt=''
-                    width={24}
-                    height={24}
-                    src={item.imageSrc}
-                  />
-                  <span className={cx('item-name')}>{item.name}</span>
-                  <span className={cx('item-code')}>{item.code}</span>
-                </DropdownItem>
-              )
+          {countriesList.map((item, index) =>
+            item.id === country.id ? null : (
+              <DropdownItem
+                key={index}
+                size='l'
+                role='menuitem'
+                className={cx('popup-item')}
+                onClick={() => {
+                  togglePopup(false);
+                  setCountry(item);
+                  onCountrySelect && onCountrySelect(item);
+                }}
+              >
+                <img alt='' width={24} height={24} src={item.imageSrc} />
+                <span className={cx('item-name')}>{item.name}</span>
+                <span className={cx('item-code')}>{item.code}</span>
+              </DropdownItem>
+            ),
           )}
         </Dropdown>
       )}

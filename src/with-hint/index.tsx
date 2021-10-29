@@ -6,25 +6,24 @@ import { onParentScroll } from './utils';
 
 type ChildrenFn = (
   ref: React.RefObject<Element>,
-  toggle: (opened: boolean) => void
+  toggle: (opened: boolean) => void,
 ) => React.ReactNode;
 
 export interface WithHintProps {
-
   /** Содержимое хинта. */
-  hint: React.ReactNode
+  hint: React.ReactNode;
 
   /** С какой стороны появляется хинт. */
-  direction?: HintProps['direction']
+  direction?: HintProps['direction'];
 
   /** Нужно ли показывать хинт. */
-  shown?: boolean
+  shown?: boolean;
 
   /** Контент, содержащий элемент, рядом с которым будет показан хинт. */
-  children: ChildrenFn
+  children: ChildrenFn;
 
   /** Срабатывает при закрытии. */
-  onClose?: () => void
+  onClose?: () => void;
 }
 
 /**
@@ -60,11 +59,7 @@ export const WithHint = ({
 
       {shown && hint && (
         <Portal>
-          <PositioningHint
-            openerRef={openerRef}
-            direction={direction}
-            children={hint}
-          />
+          <PositioningHint openerRef={openerRef} direction={direction} children={hint} />
         </Portal>
       )}
     </>

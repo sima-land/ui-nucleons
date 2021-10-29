@@ -158,14 +158,9 @@ export const DifferentValues = () => (
     {testValues.map((testValue, index) => (
       <div key={index} style={{ marginTop: 32 }}>
         <h3>
-          Значение <code>value</code>:{' '}
-          {String(testValue) || JSON.stringify(testValue)}
+          Значение <code>value</code>: {String(testValue) || JSON.stringify(testValue)}
         </h3>
-        <TextField
-          {...baseProps}
-          label='Label'
-          defaultValue={testValue as any}
-        />
+        <TextField {...baseProps} label='Label' defaultValue={testValue as any} />
       </div>
     ))}
   </>
@@ -189,11 +184,7 @@ export const Rounds = () => (
       'topRight',
     ].map(variant => (
       <div style={{ marginBottom: 32 }} key={variant}>
-        <TextField
-          {...baseProps}
-          label={`rounds="${variant}"`}
-          rounds={variant as any}
-        />
+        <TextField {...baseProps} label={`rounds="${variant}"`} rounds={variant as any} />
       </div>
     ))}
   </>
@@ -229,10 +220,7 @@ export const ValuePropChange = () => {
 
   return (
     <>
-      <p>
-        Label должен подниматься и опускаться в зависимости от того введено
-        значение или нет
-      </p>
+      <p>Label должен подниматься и опускаться в зависимости от того введено значение или нет</p>
 
       <p>
         <button onClick={() => setValue('Some text')}>Заполнить</button>{' '}
@@ -256,15 +244,10 @@ export const ValuePropChangeMultiline = () => {
 
   return (
     <>
-      <p>
-        Label должен подниматься и опускаться в зависимости от того введено
-        значение или нет
-      </p>
+      <p>Label должен подниматься и опускаться в зависимости от того введено значение или нет</p>
 
       <p>
-        <button onClick={() => setValue([longValue, longValue].join('\n'))}>
-          Заполнить
-        </button>{' '}
+        <button onClick={() => setValue([longValue, longValue].join('\n'))}>Заполнить</button>{' '}
         <button onClick={() => setValue('')}>Очистить</button>
       </p>
 

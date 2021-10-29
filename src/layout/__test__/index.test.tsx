@@ -8,7 +8,7 @@ describe('Layouts', () => {
       const wrapper = mount(
         <Layout className='test-class' style={{ height: 128 }}>
           Hello, world!
-        </Layout>
+        </Layout>,
       );
 
       expect(wrapper).toMatchSnapshot();
@@ -18,18 +18,14 @@ describe('Layouts', () => {
       const wrapper = mount(
         <Layout element='main' className='test-class' style={{ height: 128 }}>
           Hello, world!
-        </Layout>
+        </Layout>,
       );
 
       expect(wrapper).toMatchSnapshot();
     });
 
     it('should handle "disabledOn" prop', () => {
-      const wrapper = mount(
-        <Layout disabledOn={['xl', 'xs']}>
-          Hello, world!
-        </Layout>
-      );
+      const wrapper = mount(<Layout disabledOn={['xl', 'xs']}>Hello, world!</Layout>);
 
       expect(wrapper).toMatchSnapshot();
     });

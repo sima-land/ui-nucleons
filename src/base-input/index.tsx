@@ -1,9 +1,4 @@
-import React, {
-  useRef,
-  useEffect,
-  useImperativeHandle,
-  forwardRef,
-} from 'react';
+import React, { useRef, useEffect, useImperativeHandle, forwardRef } from 'react';
 import classnames from 'classnames/bind';
 import classes from './base-input.module.scss';
 import { fitElementHeight } from '../helpers/fit-element-height';
@@ -37,7 +32,7 @@ export type BaseInputProps = CustomProps &
 /**
  * Компонент поля ввода.
  * @param props Свойства. Поддерживаются свойства элемента input.
- * @return Компонент поля ввода.
+ * @return Элемент.
  */
 export const BaseInput = forwardRef<
   HTMLTextAreaElement | HTMLInputElement | undefined,
@@ -77,15 +72,10 @@ export const BaseInput = forwardRef<
     : { shiftValue: value, ...(restPlaceholderProp as any) };
 
   return (
-    <div
-      style={style}
-      className={cx('reset', 'root', disabled && 'disabled', className)}
-    >
+    <div style={style} className={cx('reset', 'root', disabled && 'disabled', className)}>
       {!multiline && Boolean(restPlaceholder.value) && (
         <span aria-hidden className={cx('fake-text')}>
-          <span className={cx('invisible-value')}>
-            {restPlaceholder.shiftValue}
-          </span>
+          <span className={cx('invisible-value')}>{restPlaceholder.shiftValue}</span>
           <span className={cx('placeholder')}>{restPlaceholder.value}</span>
         </span>
       )}

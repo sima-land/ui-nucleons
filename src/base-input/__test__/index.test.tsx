@@ -84,11 +84,7 @@ describe('<BaseInput />', () => {
 
   it('should handle "restPlaceholder" prop', () => {
     const wrapper = mount(
-      <BaseInput
-        value='Hello'
-        restPlaceholder=', World!'
-        onChange={jest.fn()}
-      />,
+      <BaseInput value='Hello' restPlaceholder=', World!' onChange={jest.fn()} />,
     );
 
     expect(wrapper).toMatchSnapshot();

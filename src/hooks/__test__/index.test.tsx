@@ -2,11 +2,7 @@ import React, { useRef } from 'react';
 import { render } from 'react-dom';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
-import {
-  useIsTouchDevice,
-  useInfiniteScroll,
-  useOutsideClick,
-} from '../index';
+import { useIsTouchDevice, useInfiniteScroll, useOutsideClick } from '../index';
 
 jest.mock('../../helpers/is-touch-device', () => {
   const original = jest.requireActual('../../helpers/is-touch-device');
@@ -30,7 +26,13 @@ describe('useInfiniteScroll()', () => {
     container = null;
   });
 
-  const TestComponent = ({ withList = true, onFullScroll }: { withList?: boolean, onFullScroll?: () => void }) => {
+  const TestComponent = ({
+    withList = true,
+    onFullScroll,
+  }: {
+    withList?: boolean;
+    onFullScroll?: () => void;
+  }) => {
     const listRef = useRef() as React.MutableRefObject<HTMLUListElement>;
 
     useInfiniteScroll(listRef, {
@@ -94,9 +96,7 @@ describe('useInfiniteScroll()', () => {
   });
 
   it('should unsubscribe on unmount', () => {
-    const wrapper = mount(
-      <TestComponent />
-    );
+    const wrapper = mount(<TestComponent />);
 
     let listElement: HTMLUListElement | null = null;
 
@@ -107,7 +107,9 @@ describe('useInfiniteScroll()', () => {
 
     wrapper.unmount();
 
-    expect((listElement as unknown as HTMLUListElement).removeEventListener).toHaveBeenCalledTimes(1);
+    expect((listElement as unknown as HTMLUListElement).removeEventListener).toHaveBeenCalledTimes(
+      1,
+    );
   });
 });
 
@@ -127,21 +129,16 @@ describe('useIsTouchDevice', () => {
   const TestComponent = () => {
     const touch = useIsTouchDevice();
 
-    return (
-      <>
-        {touch && (
-          <span>Visible on touch</span>
-        )}
-      </>
-    );
+    return <>{touch && <span>Visible on touch</span>}</>;
   };
 
   it('should works with touch', () => {
     act(() => {
       render(<TestComponent />, container);
     });
-    expect(((container as HTMLDivElement).querySelector('span') as HTMLSpanElement).textContent)
-      .toBe('Visible on touch');
+    expect(
+      ((container as HTMLDivElement).querySelector('span') as HTMLSpanElement).textContent,
+    ).toBe('Visible on touch');
   });
 });
 
@@ -151,9 +148,7 @@ describe('useOutsideClick', () => {
 
     useOutsideClick(ref, callback);
 
-    return (
-      <div ref={ref} />
-    );
+    return <div ref={ref} />;
   };
 
   let container: HTMLDivElement | null;

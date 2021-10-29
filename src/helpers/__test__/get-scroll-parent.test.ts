@@ -22,10 +22,12 @@ describe('getScrollParent', () => {
 
     expect(getScrollParent(null)).toBe(document.body);
     expect(getScrollParent(undefined)).toBe(document.body);
-    expect(getScrollParent({
-      parentElement: document.body,
-      __fakeStyles: { overflowX: '', overflowY: '', overflow: '' },
-    } as unknown as HTMLElement)).toBe(document.body);
+    expect(
+      getScrollParent({
+        parentElement: document.body,
+        __fakeStyles: { overflowX: '', overflowY: '', overflow: '' },
+      } as unknown as HTMLElement),
+    ).toBe(document.body);
   });
 
   it('should return parentElement', () => {

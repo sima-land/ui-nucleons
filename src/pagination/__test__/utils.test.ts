@@ -31,12 +31,22 @@ describe('getCorrectRangeNumbers()', () => {
     expect(getCorrectRangeNumbers({ current: 4, range: 5, total: 99 })).toEqual([1, 2, 3, 4, 5]);
 
     expect(getCorrectRangeNumbers({ current: 5, range: 5, total: 99 })).toEqual([3, 4, 5, 6, 7]);
-    expect(getCorrectRangeNumbers({ current: 95, range: 5, total: 99 })).toEqual([93, 94, 95, 96, 97]);
+    expect(getCorrectRangeNumbers({ current: 95, range: 5, total: 99 })).toEqual([
+      93, 94, 95, 96, 97,
+    ]);
 
-    expect(getCorrectRangeNumbers({ current: 96, range: 5, total: 99 })).toEqual([95, 96, 97, 98, 99]);
-    expect(getCorrectRangeNumbers({ current: 97, range: 5, total: 99 })).toEqual([95, 96, 97, 98, 99]);
-    expect(getCorrectRangeNumbers({ current: 98, range: 5, total: 99 })).toEqual([95, 96, 97, 98, 99]);
-    expect(getCorrectRangeNumbers({ current: 99, range: 5, total: 99 })).toEqual([95, 96, 97, 98, 99]);
+    expect(getCorrectRangeNumbers({ current: 96, range: 5, total: 99 })).toEqual([
+      95, 96, 97, 98, 99,
+    ]);
+    expect(getCorrectRangeNumbers({ current: 97, range: 5, total: 99 })).toEqual([
+      95, 96, 97, 98, 99,
+    ]);
+    expect(getCorrectRangeNumbers({ current: 98, range: 5, total: 99 })).toEqual([
+      95, 96, 97, 98, 99,
+    ]);
+    expect(getCorrectRangeNumbers({ current: 99, range: 5, total: 99 })).toEqual([
+      95, 96, 97, 98, 99,
+    ]);
   });
 });
 
@@ -198,9 +208,7 @@ describe('getPageButtons', () => {
   });
 
   it('should handle "buttonKeys" prop', () => {
-    expect(
-      getPageButtons({ current: 30, total: 60, buttonKeys: { more: 'test' } })
-    ).toEqual([
+    expect(getPageButtons({ current: 30, total: 60, buttonKeys: { more: 'test' } })).toEqual([
       PageButton(1),
       PageButton(28, 'test'),
       PageButton(29),

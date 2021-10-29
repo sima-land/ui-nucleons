@@ -7,11 +7,8 @@ import { isNumber } from 'lodash';
  * @param easing Функция плавности.
  * @return Значение CSS-свойства "transition".
  */
-export const getTransitionStyle = (
-  duration = 0,
-  property = 'all',
-  easing = 'ease-out'
-) => `${property} ${isNumber(duration) ? duration : 0}ms ${easing}`;
+export const getTransitionStyle = (duration = 0, property = 'all', easing = 'ease-out') =>
+  `${property} ${isNumber(duration) ? duration : 0}ms ${easing}`;
 
 /**
  * Возвращает строку значения CSS-свойства с трансформацией смещения.

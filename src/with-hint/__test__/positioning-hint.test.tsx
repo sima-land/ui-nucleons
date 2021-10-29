@@ -11,7 +11,7 @@ describe('<WithHint />', () => {
     const wrapper = mount(
       <PositioningHint openerRef={openerRef} direction='top'>
         Hello, world!
-      </PositioningHint>
+      </PositioningHint>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -25,7 +25,7 @@ describe('<WithHint />', () => {
     const wrapper = mount(
       <PositioningHint openerRef={openerRef} direction='top'>
         Hello, world!
-      </PositioningHint>
+      </PositioningHint>,
     );
 
     expect(wrapper).toMatchSnapshot();

@@ -12,7 +12,7 @@ const on = <T extends Event | React.SyntheticEvent>(
   target: EventTarget,
   eventNames: string,
   callback: (e: T) => void,
-  options?: boolean | EventListenerOptions | AddEventListenerOptions | undefined
+  options?: boolean | EventListenerOptions | AddEventListenerOptions | undefined,
 ) => {
   const eventNamesList = eventNames.split(' ');
 
@@ -24,9 +24,10 @@ const on = <T extends Event | React.SyntheticEvent>(
     target.addEventListener(eventName, wrapped, options);
   });
 
-  return () => void eventNamesList.forEach(eventName => {
-    target.removeEventListener(eventName, wrapped, options);
-  });
+  return () =>
+    void eventNamesList.forEach(eventName => {
+      target.removeEventListener(eventName, wrapped, options);
+    });
 };
 
 export default on;

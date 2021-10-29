@@ -2,9 +2,15 @@ import React, { Fragment } from 'react';
 import { Box, BoxProps } from '..';
 
 const testJustifyItems = [
-  <Box padding={4} margin={4} key={1} color='additional-red'>First</Box>,
-  <Box padding={4} margin={4} key={2} color='additional-green'>Second</Box>,
-  <Box padding={4} margin={4} key={3} color='additional-light-blue'>Third</Box>,
+  <Box padding={4} margin={4} key={1} color='additional-red'>
+    First
+  </Box>,
+  <Box padding={4} margin={4} key={2} color='additional-green'>
+    Second
+  </Box>,
+  <Box padding={4} margin={4} key={3} color='additional-light-blue'>
+    Third
+  </Box>,
 ];
 
 const testAlignItems = [
@@ -67,11 +73,7 @@ export default {
   },
 };
 
-export const Primary = () => (
-  <Box>
-    Box without props is just a &quot;div&quot;
-  </Box>
-);
+export const Primary = () => <Box>Box without props is just a &quot;div&quot;</Box>;
 
 export const MarginsAndPaddings = () => (
   <div style={{ width: 320 }}>

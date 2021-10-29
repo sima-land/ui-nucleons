@@ -9,22 +9,12 @@ export type Weight = 400 | 600 | 700;
 
 export const SIZES = new Set<Size>([12, 14, 16, 20, 24, 32, 48, 64]);
 
-export const LINE_HEIGHTS = new Set<LineHeight>([
-  16, 20, 24, 28, 32, 40, 60, 80,
-]);
+export const LINE_HEIGHTS = new Set<LineHeight>([16, 20, 24, 28, 32, 40, 60, 80]);
 
 export const WEIGHTS = new Set<Weight>([400, 600, 700]);
 
 export const size = ClassGetter(classes, SIZES.has.bind(SIZES), 'size-');
 
-export const lineHeight = ClassGetter(
-  classes,
-  LINE_HEIGHTS.has.bind(LINE_HEIGHTS),
-  'line-height-',
-);
+export const lineHeight = ClassGetter(classes, LINE_HEIGHTS.has.bind(LINE_HEIGHTS), 'line-height-');
 
-export const weight = ClassGetter(
-  classes,
-  WEIGHTS.has.bind(WEIGHTS),
-  'weight-',
-);
+export const weight = ClassGetter(classes, WEIGHTS.has.bind(WEIGHTS), 'weight-');

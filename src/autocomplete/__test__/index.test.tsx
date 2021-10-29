@@ -7,9 +7,8 @@ import { TextField } from '../../text-field';
 describe('Autocomplete', () => {
   const findMenu = (w: ReactWrapper) => w.find('div[data-testid="autocomplete:menu"]');
 
-  const findMenuItems = (w: ReactWrapper) => w
-    .find('div[data-testid="autocomplete:menu"]')
-    .find('div[role="menuitem"]');
+  const findMenuItems = (w: ReactWrapper) =>
+    w.find('div[data-testid="autocomplete:menu"]').find('div[role="menuitem"]');
 
   const isCheckedItem = (w: ReactWrapper) => w.getDOMNode().classList.contains('checked');
 
@@ -37,7 +36,7 @@ describe('Autocomplete', () => {
           'Ukraine',
         ]}
         renderItem={item => item.toUpperCase()}
-      />
+      />,
     );
 
     expect(wrapper.getDOMNode()).toMatchSnapshot();
@@ -57,16 +56,7 @@ describe('Autocomplete', () => {
 
   it('should handle "renderItem" prop missing', () => {
     const wrapper = mount(
-      <Autocomplete
-        value='Hello'
-        items={[
-          'aaaa',
-          'bbbb',
-          'cccc',
-          'dddd',
-          'eeee',
-        ]}
-      />
+      <Autocomplete value='Hello' items={['aaaa', 'bbbb', 'cccc', 'dddd', 'eeee']} />,
     );
 
     openMenu(wrapper);
@@ -77,17 +67,7 @@ describe('Autocomplete', () => {
     const spy = jest.fn();
 
     const wrapper = mount(
-      <Autocomplete
-        value='ffff'
-        items={[
-          'aaaa',
-          'bbbb',
-          'cccc',
-          'dddd',
-          'eeee',
-        ]}
-        onChange={spy}
-      />
+      <Autocomplete value='ffff' items={['aaaa', 'bbbb', 'cccc', 'dddd', 'eeee']} onChange={spy} />,
     );
 
     expect(findMenu(wrapper)).toHaveLength(0);
@@ -96,7 +76,7 @@ describe('Autocomplete', () => {
     act(() => {
       Simulate.change(
         wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-        { target: { value: 'jjjj' } as any }
+        { target: { value: 'jjjj' } as any },
       );
     });
     wrapper.update();
@@ -106,31 +86,13 @@ describe('Autocomplete', () => {
   });
 
   it('should handle defaultValue', () => {
-    const wrapper = mount(
-      <Autocomplete
-        defaultValue='dddd'
-        items={[
-          'aaaa',
-          'bbbb',
-          'cccc',
-        ]}
-      />
-    );
+    const wrapper = mount(<Autocomplete defaultValue='dddd' items={['aaaa', 'bbbb', 'cccc']} />);
 
     expect(wrapper.getDOMNode()).toMatchSnapshot();
   });
 
   it('should handle outside click', () => {
-    const wrapper = mount(
-      <Autocomplete
-        defaultValue='dddd'
-        items={[
-          'aaaa',
-          'bbbb',
-          'cccc',
-        ]}
-      />
-    );
+    const wrapper = mount(<Autocomplete defaultValue='dddd' items={['aaaa', 'bbbb', 'cccc']} />);
 
     openMenu(wrapper);
     expect(findMenu(wrapper)).toHaveLength(1);
@@ -149,16 +111,9 @@ describe('Autocomplete', () => {
     const wrapper = mount(
       <Autocomplete
         defaultValue='0000'
-        items={[
-          'aaaa',
-          'bbbb',
-          'cccc',
-          'dddd',
-          'eeee',
-          'ffff',
-        ]}
+        items={['aaaa', 'bbbb', 'cccc', 'dddd', 'eeee', 'ffff']}
         onSelect={spy}
-      />
+      />,
     );
 
     openMenu(wrapper);
@@ -177,15 +132,7 @@ describe('Autocomplete', () => {
       const spy = jest.fn();
 
       const wrapper = mount(
-        <Autocomplete
-          value='dddd'
-          items={[
-            'aaaa',
-            'bbbb',
-            'cccc',
-          ]}
-          onKeyDown={spy}
-        />
+        <Autocomplete value='dddd' items={['aaaa', 'bbbb', 'cccc']} onKeyDown={spy} />,
       );
 
       openMenu(wrapper);
@@ -194,7 +141,7 @@ describe('Autocomplete', () => {
       act(() => {
         Simulate.keyDown(
           wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-          { key: 'ArrowDown' }
+          { key: 'ArrowDown' },
         );
       });
       wrapper.update();
@@ -206,23 +153,14 @@ describe('Autocomplete', () => {
     });
 
     it('ArrowDown: with active item', () => {
-      const wrapper = mount(
-        <Autocomplete
-          value='dddd'
-          items={[
-            'aaaa',
-            'bbbb',
-            'cccc',
-          ]}
-        />
-      );
+      const wrapper = mount(<Autocomplete value='dddd' items={['aaaa', 'bbbb', 'cccc']} />);
 
       openMenu(wrapper);
 
       act(() => {
         Simulate.keyDown(
           wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-          { key: 'ArrowDown' }
+          { key: 'ArrowDown' },
         );
       });
       wrapper.update();
@@ -231,7 +169,7 @@ describe('Autocomplete', () => {
       act(() => {
         Simulate.keyDown(
           wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-          { key: 'ArrowDown' }
+          { key: 'ArrowDown' },
         );
       });
       wrapper.update();
@@ -242,23 +180,14 @@ describe('Autocomplete', () => {
     });
 
     it('ArrowUp', () => {
-      const wrapper = mount(
-        <Autocomplete
-          value='dddd'
-          items={[
-            'aaaa',
-            'bbbb',
-            'cccc',
-          ]}
-        />
-      );
+      const wrapper = mount(<Autocomplete value='dddd' items={['aaaa', 'bbbb', 'cccc']} />);
 
       openMenu(wrapper);
 
       act(() => {
         Simulate.keyDown(
           wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-          { key: 'ArrowUp' }
+          { key: 'ArrowUp' },
         );
       });
       wrapper.update();
@@ -272,20 +201,12 @@ describe('Autocomplete', () => {
       const spy = jest.fn();
 
       const wrapper = mount(
-        <Autocomplete
-          value='dddd'
-          items={[
-            'aaaa',
-            'bbbb',
-            'cccc',
-          ]}
-          onSelect={spy}
-        />
+        <Autocomplete value='dddd' items={['aaaa', 'bbbb', 'cccc']} onSelect={spy} />,
       );
 
       act(() => {
         Simulate.focus(
-          wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode()
+          wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
         );
       });
       wrapper.update();
@@ -293,7 +214,7 @@ describe('Autocomplete', () => {
       act(() => {
         Simulate.keyDown(
           wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-          { key: 'Enter' }
+          { key: 'Enter' },
         );
       });
       wrapper.update();
@@ -305,21 +226,13 @@ describe('Autocomplete', () => {
       const spy = jest.fn();
 
       const wrapper = mount(
-        <Autocomplete
-          value='dddd'
-          items={[
-            'aaaa',
-            'bbbb',
-            'cccc',
-          ]}
-          onSelect={spy}
-        />
+        <Autocomplete value='dddd' items={['aaaa', 'bbbb', 'cccc']} onSelect={spy} />,
       );
 
       // focus
       act(() => {
         Simulate.focus(
-          wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode()
+          wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
         );
       });
       wrapper.update();
@@ -328,7 +241,7 @@ describe('Autocomplete', () => {
       act(() => {
         Simulate.keyDown(
           wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-          { key: 'ArrowDown' }
+          { key: 'ArrowDown' },
         );
       });
       wrapper.update();
@@ -339,7 +252,7 @@ describe('Autocomplete', () => {
       act(() => {
         Simulate.keyDown(
           wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-          { key: 'Enter' }
+          { key: 'Enter' },
         );
       });
       wrapper.update();
@@ -350,20 +263,14 @@ describe('Autocomplete', () => {
     it('Enter: no items', () => {
       const spy = jest.fn();
 
-      const wrapper = mount(
-        <Autocomplete
-          value='dddd'
-          items={undefined}
-          onSelect={spy}
-        />
-      );
+      const wrapper = mount(<Autocomplete value='dddd' items={undefined} onSelect={spy} />);
 
       openMenu(wrapper);
 
       // focus
       act(() => {
         Simulate.focus(
-          wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode()
+          wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
         );
       });
       wrapper.update();
@@ -372,7 +279,7 @@ describe('Autocomplete', () => {
       act(() => {
         Simulate.keyDown(
           wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-          { key: 'Enter' }
+          { key: 'Enter' },
         );
       });
       wrapper.update();
@@ -384,12 +291,7 @@ describe('Autocomplete', () => {
   it('should handle onClick prop', () => {
     const spy = jest.fn();
 
-    const wrapper = mount(
-      <Autocomplete
-        items={undefined}
-        onClick={spy}
-      />
-    );
+    const wrapper = mount(<Autocomplete items={undefined} onClick={spy} />);
 
     expect(spy).toBeCalledTimes(0);
 

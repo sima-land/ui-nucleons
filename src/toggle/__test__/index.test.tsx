@@ -6,24 +6,18 @@ import { Toggle } from '..';
 
 describe('<Toggle />', () => {
   it('should work without props', () => {
-    const wrapper = mount(
-      <Toggle />
-    );
+    const wrapper = mount(<Toggle />);
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should handle "defaultChecked" prop', () => {
-    const wrapper = mount(
-      <Toggle defaultChecked />
-    );
+    const wrapper = mount(<Toggle defaultChecked />);
 
     expect(wrapper.find('input').prop('defaultChecked')).toBe(true);
   });
 
   it('should handle "checked" prop', () => {
-    const wrapper = mount(
-      <Toggle checked onChange={jest.fn()} />
-    );
+    const wrapper = mount(<Toggle checked onChange={jest.fn()} />);
 
     expect(wrapper.find('input').prop('checked')).toBe(true);
 
@@ -37,9 +31,7 @@ describe('<Toggle />', () => {
 
   it('should handle "onChange" prop', () => {
     const spy = jest.fn();
-    const wrapper = mount(
-      <Toggle onChange={spy} />
-    );
+    const wrapper = mount(<Toggle onChange={spy} />);
 
     expect(spy).toHaveBeenCalledTimes(0);
 
@@ -55,9 +47,7 @@ describe('<Toggle />', () => {
     const ref = React.createRef();
     const container = document.createElement('div');
 
-    const wrapper = (
-      <Toggle ref={ref as any} />
-    );
+    const wrapper = <Toggle ref={ref as any} />;
 
     act(() => {
       render(wrapper, container);

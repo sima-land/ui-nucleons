@@ -9,29 +9,23 @@ describe('<Layer />', () => {
     defaultWithPortal = false,
     children,
     portalProps,
-  }: { defaultWithPortal?: boolean, children?: React.ReactNode, portalProps?: PortalProps }) => {
+  }: {
+    defaultWithPortal?: boolean;
+    children?: React.ReactNode;
+    portalProps?: PortalProps;
+  }) => {
     const [withPortal, togglePortal] = useState(defaultWithPortal);
 
     return (
       <div className='test-app'>
         <button onClick={() => togglePortal(!withPortal)}>Toggle layer</button>
-        {withPortal && (
-          <Portal {...portalProps}>
-            {children}
-          </Portal>
-        )}
+        {withPortal && <Portal {...portalProps}>{children}</Portal>}
       </div>
     );
   };
 
   it('should render children into created element', () => {
-    const wrapper = mount(
-      <TestComponent
-        children={(
-          <h2 className='test-title'>New layer</h2>
-        )}
-      />
-    );
+    const wrapper = mount(<TestComponent children={<h2 className='test-title'>New layer</h2>} />);
 
     // mount layer
     act(() => {
@@ -64,14 +58,12 @@ describe('<Layer />', () => {
       render(
         <TestComponent
           defaultWithPortal
-          children={(
-            <h2 className='test-title'>New layer</h2>
-          )}
+          children={<h2 className='test-title'>New layer</h2>}
           portalProps={{
             defineRoot: () => otherContainer,
           }}
         />,
-        container
+        container,
       );
     });
 

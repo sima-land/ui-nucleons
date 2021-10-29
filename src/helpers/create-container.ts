@@ -1,7 +1,7 @@
 export interface Container<T> {
-  get: () => T | undefined
-  set: (v: T) => void
-  setObserver: (fn: Observer<T> | null) => void
+  get: () => T | undefined;
+  set: (v: T) => void;
+  setObserver: (fn: Observer<T> | null) => void;
 }
 
 type Observer<T> = (prev: T | undefined, next: T | undefined) => void;

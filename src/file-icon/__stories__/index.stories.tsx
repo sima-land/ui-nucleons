@@ -11,15 +11,7 @@ export default {
 
 export const Primary = () => (
   <div style={{ display: 'flex' }}>
-    {[
-      'doc',
-      'xls',
-      'pdf',
-      'jpg',
-      'xml',
-      'zip',
-      'unk',
-    ].map(fileType => (
+    {['doc', 'xls', 'pdf', 'jpg', 'xml', 'zip', 'unk'].map(fileType => (
       <div key={fileType} style={{ marginRight: 12 }}>
         <FileIcon type={fileType as any} />
       </div>

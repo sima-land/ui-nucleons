@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { DropdownItem, DropdownItemProps } from '..';
 
 export default {
@@ -6,70 +6,34 @@ export default {
   component: DropdownItem,
   parameters: {
     layout: 'padded',
+    backgrounds: { default: 'custom:gray' },
   },
 };
 
-const SIZES: Array<DropdownItemProps['size']> = ['s', 'm', 'l', 'xl'];
+const ITEMS: DropdownItemProps[] = [
+  { children: 'One' },
+  { children: 'Two' },
+  { children: 'Three (No hover)', noHover: true },
+  { children: 'Four' },
+  { children: 'Five' },
+  { children: 'Six (Disabled)', disabled: true },
+  { children: 'Seven' },
+];
+
+const SIZES: Array<Required<DropdownItemProps>['size']> = ['s', 'm', 'l', 'xl'];
 
 export const Primary = () => (
   <>
-    <h3>Размеры</h3>
-    <div
-      style={{
-        float: 'left',
-        display: 'flex',
-        alignItems: 'center',
-        padding: 16,
-        border: '1px dashed #ccc',
-      }}
-    >
-      {SIZES.map(size => (
-        <DropdownItem key={size} size={size} style={{ width: 100 }}>
-          Hello
-        </DropdownItem>
-      ))}
-    </div>
-  </>
-);
+    {SIZES.map(size => (
+      <Fragment key={size}>
+        <h4>{size.toUpperCase()}</h4>
 
-export const NoHover = () => (
-  <>
-    <h3>Размеры</h3>
-    <div
-      style={{
-        float: 'left',
-        display: 'flex',
-        alignItems: 'center',
-        padding: 16,
-        border: '1px dashed #ccc',
-      }}
-    >
-      {SIZES.map(size => (
-        <DropdownItem key={size} size={size} style={{ width: 100 }} noHover>
-          Hello
-        </DropdownItem>
-      ))}
-    </div>
-  </>
-);
-
-export const Disabled = () => (
-  <>
-    <h3>Размеры</h3>
-    <div
-      style={{
-        float: 'left',
-        display: 'flex',
-        alignItems: 'center',
-        padding: 16,
-        border: '1px dashed #ccc',
-      }}
-    >
-      {SIZES.map(size => (
-        <DropdownItem key={size} size={size} style={{ width: 100 }} disabled>
-          Hello
-        </DropdownItem>
-      ))}
-    </div>
+        <div style={{ background: '#fff', marginBottom: '20px', width: '480px' }}>
+          {ITEMS.map((props, index) => (
+            <DropdownItem key={index} size={size} {...props} />
+          ))}
+        </div>
+      </Fragment>
+    ))}
   </>
 );

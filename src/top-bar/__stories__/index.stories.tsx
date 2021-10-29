@@ -1,32 +1,47 @@
 import React, { Fragment } from 'react';
 import { TopBar } from '..';
-import { sizes, shortTitles, longTitles, allButtons, startButtons, endButtons } from '../__test__/test-props';
+import {
+  sizes,
+  shortTitles,
+  longTitles,
+  allButtons,
+  startButtons,
+  endButtons,
+} from '../__test__/test-props';
 
 const propsList = [
   ...sizes.map(size => ({ size, ...shortTitles })),
   ...sizes.map(size => ({ size, ...longTitles })),
 
-  // with start icon
+  // start icon
   ...sizes.map(size => ({ size, ...shortTitles, buttonsProps: { start: allButtons.start } })),
   ...sizes.map(size => ({ size, ...longTitles, buttonsProps: { start: allButtons.start } })),
 
-  // with end icon
+  // end icon
   ...sizes.map(size => ({ size, ...shortTitles, buttonsProps: { end: allButtons.end } })),
   ...sizes.map(size => ({ size, ...longTitles, buttonsProps: { end: allButtons.end } })),
 
-  // with start icons
+  // start icons
   ...sizes.map(size => ({ size, ...shortTitles, buttonsProps: startButtons })),
   ...sizes.map(size => ({ size, ...longTitles, buttonsProps: startButtons })),
 
-  // with end icons
+  // end icons
   ...sizes.map(size => ({ size, ...shortTitles, buttonsProps: endButtons })),
   ...sizes.map(size => ({ size, ...longTitles, buttonsProps: endButtons })),
 
-  // with icons on both sides
-  ...sizes.map(size => ({ size, ...shortTitles, buttonsProps: { start: allButtons.start, end: allButtons.end } })),
-  ...sizes.map(size => ({ size, ...longTitles, buttonsProps: { start: allButtons.start, end: allButtons.end } })),
+  // primary icons on both sides
+  ...sizes.map(size => ({
+    size,
+    ...shortTitles,
+    buttonsProps: { start: allButtons.start, end: allButtons.end },
+  })),
+  ...sizes.map(size => ({
+    size,
+    ...longTitles,
+    buttonsProps: { start: allButtons.start, end: allButtons.end },
+  })),
 
-  // with secondary icons on both sides
+  // secondary icons on both sides
   ...sizes.map(size => ({ size, ...shortTitles, buttonsProps: allButtons })),
   ...sizes.map(size => ({ size, ...longTitles, buttonsProps: allButtons })),
 ];
@@ -35,17 +50,17 @@ export default {
   title: 'desktop/TopBar',
   component: TopBar,
   parameters: {
-    layout: 'fullscreen',
+    layout: 'padded',
+    backgrounds: { default: 'custom:gray' },
   },
 };
 
 export const Primary = () => (
-  <div style={{ background: '#ccc', padding: 32 }}>
+  <>
     {propsList.map((props, index) => (
-      <Fragment key={index}>
-        <TopBar {...props as any} />
-        <div style={{ height: 32 }} />
-      </Fragment>
+      <div key={index} style={{ maxWidth: '720px', margin: '0 auto 32px' }}>
+        <TopBar {...(props as any)} />
+      </div>
     ))}
-  </div>
+  </>
 );

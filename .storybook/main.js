@@ -5,6 +5,7 @@ module.exports = {
   addons: [
     '@storybook/addon-actions',
     '@storybook/addon-storysource',
+    '@storybook/addon-backgrounds',
     {
       name: '@storybook/addon-docs',
       options: {

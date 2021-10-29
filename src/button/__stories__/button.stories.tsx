@@ -50,7 +50,7 @@ export const Primary = () => (
                   {contents.map((content, index) => (
                     <Fragment key={index}>
                       <Button
-                        {...(state ? { [state]: true } : {}) as any}
+                        {...((state ? { [state]: true } : {}) as any)}
                         size={size as any}
                         viewType={viewType as any}
                         onClick={action(`${viewType} [size="${size}"] button was clicked!`)}

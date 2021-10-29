@@ -1,5 +1,8 @@
 import React from 'react';
-import { OverlayScrollbarsComponent, OverlayScrollbarsComponentProps } from 'overlayscrollbars-react';
+import {
+  OverlayScrollbarsComponent,
+  OverlayScrollbarsComponentProps,
+} from 'overlayscrollbars-react';
 import classnames from 'classnames/bind';
 import styles from './custom-scrollbar.module.scss';
 import 'overlayscrollbars/css/OverlayScrollbars.css';
@@ -7,30 +10,29 @@ import 'overlayscrollbars/css/OverlayScrollbars.css';
 type Options = NonNullable<OverlayScrollbarsComponentProps['options']>;
 
 export interface CustomScrollbarProps {
-
   /** Стили. */
-  style?: React.CSSProperties
+  style?: React.CSSProperties;
 
   /** Класс. */
-  className?: string
+  className?: string;
 
   /** Содержимое. */
-  children?: React.ReactNode
+  children?: React.ReactNode;
 
   /** Опции переполнения. */
-  overflow?: Options['overflowBehavior']
+  overflow?: Options['overflowBehavior'];
 
   /** Необходимо поставить true если нужно использовать внутри flexbox-родителя. */
-  inFlexBox?: boolean
+  inFlexBox?: boolean;
 
   /** Сработает при полной прокрутке. */
-  onFullScroll?: () => void
+  onFullScroll?: () => void;
 
   /** Запас для определения полной прокрутки. */
-  fullScrollThreshold?: number
+  fullScrollThreshold?: number;
 
   /** Реф для экземпляра компонента OverlayScrollbarsComponent. */
-  osComponentRef?: React.LegacyRef<OverlayScrollbarsComponent>
+  osComponentRef?: React.LegacyRef<OverlayScrollbarsComponent>;
 }
 
 const cx = classnames.bind(styles);
@@ -58,8 +60,8 @@ export const CustomScrollbar = ({
       overflowBehavior: overflow,
       callbacks: onFullScroll
         ? {
-          onScrollStop: HandleFullScroll(onFullScroll, fullScrollThreshold),
-        }
+            onScrollStop: HandleFullScroll(onFullScroll, fullScrollThreshold),
+          }
         : undefined,
     }}
   >
@@ -73,13 +75,12 @@ export const CustomScrollbar = ({
  * @param threshold Запас.
  * @return Обработчик.
  */
-export const HandleFullScroll = (
-  callback: () => void,
-  threshold = 16
-) => (event: UIEvent | undefined) => {
-  const el = event?.target;
+export const HandleFullScroll =
+  (callback: () => void, threshold = 16) =>
+  (event: UIEvent | undefined) => {
+    const el = event?.target;
 
-  el instanceof Element
-    && el.scrollTop >= el.scrollHeight - el.clientHeight - threshold
-    && callback();
-};
+    el instanceof Element &&
+      el.scrollTop >= el.scrollHeight - el.clientHeight - threshold &&
+      callback();
+  };
