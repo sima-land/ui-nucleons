@@ -1,6 +1,6 @@
 import { addons } from '@storybook/addons';
 import { create } from '@storybook/theming';
-import brandImage from './logo.png';
+import brandImage from './logo.svg';
 
 addons.setConfig({
   theme: create({

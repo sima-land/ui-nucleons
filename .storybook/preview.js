@@ -21,4 +21,17 @@ export const parameters = {
       </>
     ),
   },
+  backgrounds: {
+    default: 'white',
+    values: [
+      {
+        name: 'white',
+        value: '#fff',
+      },
+      {
+        name: 'custom:gray',
+        value: '#ccc',
+      },
+    ],
+  },
 };
