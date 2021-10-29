@@ -1,5 +1,6 @@
 import React from 'react';
 import { Spinner } from '..';
+import { upperFirst } from 'lodash';
 
 export default {
   title: 'common/Spinner',
@@ -17,20 +18,12 @@ const styles = {
 
 export const Primary = () => (
   <>
-    <div style={styles.demo}>
-      <h3>size=&apos;small&apos;</h3>
-      <Spinner size='small' />
-    </div>
-
-    <div style={styles.demo}>
-      <h3>size=&apos;medium&apos;</h3>
-      <Spinner size='medium' />
-    </div>
-
-    <div style={styles.demo}>
-      <h3>size=&apos;large&apos;</h3>
-      <Spinner size='large' />
-    </div>
+    {(['small', 'medium', 'large'] as const).map(size => (
+      <div key={size} style={styles.demo}>
+        <h4>{upperFirst(size)}</h4>
+        <Spinner size={size} />
+      </div>
+    ))}
   </>
 );
 
