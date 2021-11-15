@@ -6,6 +6,7 @@ import { Timer } from '..';
 import { getDistanceToNow } from '../utils';
 
 jest.useFakeTimers();
+jest.spyOn(global, 'clearInterval');
 
 jest.mock('../utils', () => {
   const original = jest.requireActual('../utils');
