@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`UnknownContent should handle "children" prop 1`] = `"<div class=\\"root\\"><h1>Primary title</h1><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, blanditiis!</p><h2>Secondary title</h2><p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis, ullam?</p></div>"`;
+
 exports[`UnknownContent should renders properly 1`] = `
 "<div class=\\"root\\">
       <h2>Для физических лиц</h2>
