@@ -40,6 +40,7 @@ export const Primary = () => {
 
       {shown && (
         <Alert
+          onClose={() => toggle(false)}
           withScrollDisable
           children={
             <Box marginTop={24} marginBottom={16} display='flex' justifyContent='center'>
