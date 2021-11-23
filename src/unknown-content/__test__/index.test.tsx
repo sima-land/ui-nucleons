@@ -3,6 +3,16 @@ import { render } from 'react-dom';
 import { UnknownContent } from '..';
 
 describe('UnknownContent', () => {
+  it('should handle no content', () => {
+    const container = document.createElement('div');
+
+    document.body.append(container);
+
+    render(<UnknownContent />, container);
+
+    expect(container.querySelector('div')?.innerHTML).toBe('');
+  });
+
   it('should renders properly', () => {
     const markup = `
       <h2>Для физических лиц</h2>
@@ -50,6 +60,27 @@ describe('UnknownContent', () => {
     document.body.append(container);
 
     render(<UnknownContent markup={markup} />, container);
+
+    expect(container.innerHTML).toMatchSnapshot();
+  });
+
+  it('should handle "children" prop', () => {
+    const container = document.createElement('div');
+
+    document.body.append(container);
+
+    render(
+      <UnknownContent>
+        <h1>Primary title</h1>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, blanditiis!</p>
+
+        <h2>Secondary title</h2>
+
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis, ullam?</p>
+      </UnknownContent>,
+      container,
+    );
 
     expect(container.innerHTML).toMatchSnapshot();
   });

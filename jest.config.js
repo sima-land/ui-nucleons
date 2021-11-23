@@ -1,6 +1,7 @@
 module.exports = {
   preset: 'ts-jest/presets/js-with-babel',
   globalSetup: '<rootDir>/.jest/global-setup.js',
+  testEnvironment: 'jsdom',
   setupFiles: [
     './.jest/setup.js',
   ],

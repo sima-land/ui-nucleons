@@ -1,4 +1,5 @@
 @use '../colors';
+@use '../breakpoints';
 
 .root {
   color: colors.$gray87;
@@ -12,80 +13,6 @@
     padding: 0;
   }
 
-  // оформление заголовков
-  h1 {
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 40px;
-  }
-  h2 {
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 32px;
-  }
-  h3 {
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 28px;
-  }
-  h4 {
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
-  }
-  h5 {
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 20px;
-  }
-
-  // отступы от заголовков
-  * + h2 {
-    margin-top: 80px;
-  }
-  * + h3 {
-    margin-top: 64px;
-  }
-  * + h4 {
-    margin-top: 24px;
-  }
-  h1 + * {
-    margin-top: 80px;
-  }
-  h2 + * {
-    margin-top: 32px;
-  }
-  h3 + * {
-    margin-top: 24px;
-  }
-  h4 + * {
-    margin-top: 16px;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    + img,
-    + video {
-      margin-top: 48px;
-    }
-  }
-  h1 + h2 {
-    margin-top: 80px;
-  }
-  h2 + h3 {
-    margin-top: 24px;
-  }
-  h3 + h4 {
-    margin-top: 24px;
-  }
-
-  // абзацы
-  p + p {
-    margin-top: 16px;
-  }
-
   // ссылки
   a {
     color: colors.$brand-blue;
@@ -95,65 +22,250 @@
     }
   }
 
+  // параграф
+  p {
+    margin-bottom: 24px;
+  }
+
   // курсив
   i,
   em {
     font-style: normal; // да, вот так по гайдам
-    color: colors.$gray38;
   }
 
-  // таблицы
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 32px 0;
-    thead {
-      color: colors.$gray38;
-      td {
-        padding-top: 0;
-      }
-    }
-    td {
-      border: 0;
-      padding: 24px 0;
+  // заголовки
+  h1 {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 32px;
+  }
+  h2 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    margin-bottom: 24px;
+  }
+  h3 {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 24px;
+  }
+  h4 {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: colors.$gray38;
+    margin-bottom: 16px;
+  }
+  h5 {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: colors.$gray38;
+    margin-bottom: 24px;
+  }
+  h6 {
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 24px;
+  }
 
-      // накидываем именно сюда чтобы работало в Safari
-      box-shadow: inset 0 -1px 0 colors.$gray12;
-      &:not(:last-child) {
-        padding-right: 48px;
-      }
+  @include breakpoints.up('xs') {
+    h1 {
+      font-weight: bold;
+      font-size: 32px;
+      line-height: 40px;
+      margin-bottom: 32px;
     }
-    tbody td:nth-child(2) {
-      font-weight: 600; // @todo это видимо для какой-то конкретной таблицы было сделано, надо бы убрать
+    h2 {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 32px;
+      margin-bottom: 24px;
+    }
+    h3 {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 28px;
+      margin-bottom: 24px;
+    }
+    h4 {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      color: colors.$gray38;
+      margin-bottom: 16px;
+    }
+    h5 {
+      font-size: 14px;
+      line-height: 20px;
+      color: colors.$gray38;
+      margin-bottom: 24px;
+    }
+    h6 {
+      font-size: 12px;
+      line-height: 16px;
     }
   }
 
   // списки
+  ol,
+  ul {
+    margin-bottom: 24px;
+    li + li {
+      margin-top: 16px;
+    }
+  }
+  ol {
+    display: block;
+    counter-reset: ordered-list;
+    list-style: none;
+    li {
+      display: flex;
+      flex-direction: row;
+      list-style-position: inside;
+      counter-increment: ordered-list;
+    }
+    li::before {
+      content: counter(ordered-list) '.';
+      display: block;
+      flex-grow: 0;
+      margin-right: 12px;
+    }
+  }
   ul {
     list-style: none;
-    li + li {
-      margin-top: 16px;
+    li {
+      display: flex;
+      flex-direction: row;
+      list-style-position: inside;
+      counter-increment: ordered-list;
     }
     li::before {
-      display: inline-block;
+      display: block;
       content: '—';
-      margin-right: 10px;
+      margin-right: 12px;
     }
   }
-  ol {
-    list-style-position: inside;
-    li::before {
+
+  // таблицы
+  table {
+    width: 100%;
+    margin-bottom: 40px;
+    border-collapse: collapse;
+  }
+  @include breakpoints.up('xs') {
+    table {
+      thead {
+        color: colors.$gray38;
+        font-size: 14px;
+        line-height: 20px;
+        td,
+        th {
+          padding-top: 0;
+        }
+      }
+      td {
+        border: 0;
+        padding: 24px 0;
+
+        // накидываем именно сюда чтобы работало в Safari
+        box-shadow: inset 0 -1px 0 colors.$gray12;
+        &:not(:last-child) {
+          padding-right: 32px;
+        }
+      }
+    }
+  }
+  @include breakpoints.down('xs') {
+    table,
+    tr,
+    th,
+    td,
+    thead,
+    tbody {
+      display: block;
+    }
+    table {
+      box-shadow: inset 0 1px 0 colors.$gray12;
+    }
+    thead {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+    tr {
+      padding: 32px 0;
+      box-shadow: inset 0 -1px 0 colors.$gray12;
+    }
+    td + td {
+      margin-top: 24px;
+    }
+    td::before {
+      content: attr(data-table-column-title);
+      display: block;
+      font-size: 14px;
+      line-height: 20px;
+      color: colors.$gray38;
+      margin-bottom: 8px;
+    }
+  }
+
+  // медиа
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+    margin-bottom: 32px;
+  }
+  @include breakpoints.up('xs') {
+    margin-bottom: 40px;
+  }
+
+  // цитата
+  blockquote {
+    position: relative;
+    display: block;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    padding-left: 40px;
+    &::before {
       content: '';
-      width: 8px;
-      display: inline-block;
+      position: absolute;
+      left: 0;
+
+      /* stylelint-disable-next-line function-url-quotes */
+      background-image: url('data:image/svg+xml,%3Csvg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Crect width="32" height="32"/%3E%3Cpath d="M15.1665 5.33301H8.36963L2.6665 26.0361H12.1196L15.1665 5.33301ZM28.9165 5.33301H22.1196L16.4165 26.0361H25.8696L28.9165 5.33301Z" fill="%23E0E0E0"/%3E%3C/svg%3E%0A');
+      width: 32px;
+      height: 32px;
     }
-    li + li {
+    @include breakpoints.up('xs') {
+      font-size: 20px;
+      line-height: 28px;
+      padding-left: 72px;
+      &::before {
+        /* stylelint-disable-next-line function-url-quotes */
+        background-image: url('data:image/svg+xml,%3Csvg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Crect width="48" height="48"/%3E%3Cpath d="M22.75 8H12.5547L4 39.0547H18.1797L22.75 8ZM43.375 8H33.1797L24.625 39.0547H38.8047L43.375 8Z" fill="%23E0E0E0"/%3E%3C/svg%3E%0A');
+        width: 48px;
+        height: 48px;
+      }
+    }
+    * {
+      margin: 0;
+    }
+    cite {
+      display: block;
       margin-top: 16px;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 24px;
+      color: colors.$gray38;
     }
-  }
-  ul,
-  ol {
-    margin: 16px 0;
   }
 
   // горизонтальная черта
@@ -162,27 +274,9 @@
     width: 100%;
     height: 1px;
     background: colors.$gray12;
-  }
-  * + hr {
-    margin-top: 48px;
-  }
-
-  // цитата
-  blockquote {
-    display: block;
-    padding-left: 32px;
-    border-left: 4px solid colors.$brand-blue;
-    margin: 40px 0;
-  }
-
-  // @todo неопознанные стили оставшиеся при переносе из карточки товара, выяснить что это и зачем нужно
-  div {
-    font-weight: 600;
-    + p {
-      margin-top: 8px;
+    margin-bottom: 32px;
+    @include breakpoints.up('xs') {
+      margin-bottom: 40px;
     }
-  }
-  p + div {
-    margin-top: 16px;
   }
 }
