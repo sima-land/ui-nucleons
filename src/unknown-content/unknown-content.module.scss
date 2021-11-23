@@ -225,20 +225,58 @@
     margin-bottom: 40px;
   }
 
-  // @todo цитата
-  // blockquote {
-  //   display: block;
-  //   padding-left: 32px;
-  //   border-left: 4px solid colors.$brand-blue;
-  //   margin-bottom: 32px;
-  // }
+  // цитата
+  blockquote {
+    position: relative;
+    display: block;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    padding-left: 40px;
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
 
-  // @todo горизонтальная черта
-  // hr {
-  //   display: block;
-  //   width: 100%;
-  //   height: 1px;
-  //   background: colors.$gray12;
-  //   margin-bottom: 24px;
-  // }
+      /* stylelint-disable-next-line function-url-quotes */
+      background-image: url('data:image/svg+xml,%3Csvg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Crect width="32" height="32"/%3E%3Cpath d="M15.1665 5.33301H8.36963L2.6665 26.0361H12.1196L15.1665 5.33301ZM28.9165 5.33301H22.1196L16.4165 26.0361H25.8696L28.9165 5.33301Z" fill="%23E0E0E0"/%3E%3C/svg%3E%0A');
+      width: 32px;
+      height: 32px;
+    }
+    @include breakpoints.up('xs') {
+      font-size: 20px;
+      line-height: 28px;
+      padding-left: 72px;
+      &::before {
+        /* stylelint-disable-next-line function-url-quotes */
+        background-image: url('data:image/svg+xml,%3Csvg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Crect width="48" height="48"/%3E%3Cpath d="M22.75 8H12.5547L4 39.0547H18.1797L22.75 8ZM43.375 8H33.1797L24.625 39.0547H38.8047L43.375 8Z" fill="%23E0E0E0"/%3E%3C/svg%3E%0A');
+        width: 48px;
+        height: 48px;
+      }
+    }
+    * {
+      margin: 0;
+    }
+    cite {
+      display: block;
+      margin-top: 16px;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 24px;
+      color: colors.$gray38;
+    }
+  }
+
+  // горизонтальная черта
+  hr {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: colors.$gray12;
+    margin-bottom: 32px;
+    @include breakpoints.up('xs') {
+      margin-bottom: 40px;
+    }
+  }
 }

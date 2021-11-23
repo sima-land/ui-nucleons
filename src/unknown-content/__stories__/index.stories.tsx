@@ -25,6 +25,8 @@ export const Primary = () => (
         totam labore illo, obcaecati eligendi mollitia reprehenderit velit!
       </p>
 
+      <hr />
+
       <p>
         Lorem <b>ipsum dolor</b> sit<sup>sup</sup> amet<sub>sub</sub> consectetur adipisicing elit.
         Nihil dicta <a href='https://ya.ru'>praesentium</a> suscipit totam labore illo, obcaecati
@@ -92,6 +94,16 @@ export const Primary = () => (
 
       <img src='https://picsum.photos/1200/900' alt='' />
       <img src='https://picsum.photos/1200/600' alt='' />
+
+      <blockquote>
+        <p>
+          Бессилие эксплуатируемых классов в борьбе с эксплуататорами так же неизбежно порождает
+          веру в лучшую загробную жизнь, как бессилие дикаря в борьбе с природой порождает веру в
+          богов, чертей, в чудеса и т. п. Того, кто всю жизнь работает и нуждается, религия учит
+          смирению и терпению в земной жизни, утешая надеждой на небесную награду.{' '}
+        </p>
+        <cite>Владимир Ленин, председатель Совета народных комиссаров</cite>
+      </blockquote>
     </UnknownContent>
   </div>
 );
