@@ -2,7 +2,7 @@ import React, { Fragment, useRef } from 'react';
 import { Portal } from '../portal';
 import { NavBar, NavBarProps } from '../nav-bar';
 import classnames from 'classnames/bind';
-import classes from './alert.module.scss';
+import styles from './alert.module.scss';
 import { InnerBorder } from '../styling/borders';
 import { LayerProvider, useLayer } from '../helpers/layer';
 import { WithBodyScrollLock, useBodyScrollLock } from '../_internal/body-scroll';
@@ -31,9 +31,12 @@ export interface AlertProps extends WithBodyScrollLock {
 
   /** Нужна ли шапка. */
   withNavBar?: boolean;
+
+  /** Будет вызвана при закрытии окна нажатием на затемнение. */
+  onClose?: () => void;
 }
 
-const cx = classnames.bind(classes);
+const cx = classnames.bind(styles);
 
 /**
  * Компонент модального диалога.
@@ -68,6 +71,7 @@ const AlertInner = ({
   withNavBar = Boolean(title),
   withScrollDisable = false,
   scrollDisableOptions,
+  onClose,
 }: Omit<AlertProps, 'inPortal'>) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const layer = useLayer();
@@ -79,6 +83,8 @@ const AlertInner = ({
       ref={rootRef}
       className={cx('overlay')}
       style={{ zIndex: layer }} // z-index именно здесь из-за position: fixed
+      onClick={e => e.target === e.currentTarget && onClose?.()}
+      data-testid='alert:overlay'
     >
       <div className={cx('alert', className)} data-testid='alert'>
         {withNavBar && (

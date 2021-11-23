@@ -28,6 +28,8 @@ exports[`<Alert /> should handle props 1`] = `
   >
     <div
       className="overlay"
+      data-testid="alert:overlay"
+      onClick={[Function]}
       style={
         Object {
           "zIndex": 100,
@@ -92,6 +94,7 @@ exports[`<Alert /> should renders without props 1`] = `
         <div>
           <div
             class="overlay"
+            data-testid="alert:overlay"
             style="z-index: 100;"
           >
             <div
@@ -109,6 +112,8 @@ exports[`<Alert /> should renders without props 1`] = `
       <AlertInner>
         <div
           className="overlay"
+          data-testid="alert:overlay"
+          onClick={[Function]}
           style={
             Object {
               "zIndex": 100,
