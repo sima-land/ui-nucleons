@@ -62,4 +62,14 @@ describe('<Alert />', () => {
     });
     expect(spy).toBeCalledTimes(1);
   });
+
+  it('should handle overlay click without onClose callback', () => {
+    const wrapper = mount(<Alert onClose={undefined} />);
+
+    expect(() => {
+      act(() => {
+        wrapper.find('[data-testid="alert:overlay"]').simulate('click');
+      });
+    }).not.toThrow();
+  });
 });
