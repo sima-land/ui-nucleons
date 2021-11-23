@@ -48,9 +48,11 @@ describe('Chips', () => {
       />,
     );
 
-    act(() => {
-      Simulate.click(wrapper.find('a').at(0).getDOMNode());
-    });
+    expect(() => {
+      act(() => {
+        Simulate.click(wrapper.find('a').at(0).getDOMNode());
+      });
+    }).not.toThrow();
     wrapper.update();
   });
 
@@ -65,10 +67,7 @@ describe('Chips', () => {
       />,
     );
 
-    act(() => {
-      Simulate.click(wrapper.find('a').at(0).getDOMNode());
-    });
-    wrapper.update();
+    expect(wrapper.find('a').at(0).getDOMNode<HTMLAnchorElement>().href).toContain('foo-bar');
   });
 
   it('should render with cross', () => {

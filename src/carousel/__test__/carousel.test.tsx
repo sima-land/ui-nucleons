@@ -297,7 +297,9 @@ describe('Carousel: finite mode', () => {
   it('should unsubscribe from "resize" event before unmount', () => {
     const wrapper = mount<Carousel>(<Carousel />);
 
-    wrapper.unmount();
+    expect(() => {
+      wrapper.unmount();
+    }).not.toThrow();
   });
 
   it('isAllItemsVisible() should works properly', () => {

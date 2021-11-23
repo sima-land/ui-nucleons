@@ -158,12 +158,12 @@ declare module '*.svg' {
 - компонент интерфейса не должен иметь внешних отступов по умолчанию
 
 ### Консольные команды, необходимые в процессе разработки
-* ```yarn build``` - сборка компонентов в `./build` для публикации
-* ```yarn test``` - запуск тестов *Jest*
-* ```yarn lint:scripts``` - запуск линтера *ESLint*
-* ```yarn lint:styles``` - запуск линтера *styleLint*
-* ```yarn type-check``` - Проверка типов TS
-* ```yarn storybook``` - запуск *storybook*
+* ```npm run build``` - сборка компонентов в `./build` для публикации
+* ```npm run test``` - запуск тестов *Jest*
+* ```npm run lint:scripts``` - запуск линтера *ESLint*
+* ```npm run lint:styles``` - запуск линтера *styleLint*
+* ```npm run type-check``` - Проверка типов TS
+* ```npm run storybook``` - запуск *storybook*
 
 ### Структура библиотеки
 
