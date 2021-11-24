@@ -58,9 +58,9 @@ module.exports = async ({ config }) => {
       use: [
         {
           loader: 'file-loader',
-          query: {
+          options: {
             name: '[name].[ext]'
-          }
+          },
         }
       ],
     },
