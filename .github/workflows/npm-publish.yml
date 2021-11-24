@@ -16,24 +16,24 @@ jobs:
 
       - name: Install dependencies
         run: |
-          yarn install
+          npm ci
           npm i -g npm@7 --registry=https://registry.npmjs.org
 
       - name: Lint
         run: |
-          yarn lint:styles
-          yarn lint:scripts
-          yarn prettier:check
-          yarn type-check
+          npm run lint:styles
+          npm run lint:scripts
+          npm run prettier:check
+          npm run type-check
 
       - name: Test
-        run: yarn coverage
+        run: npm run coverage
 
       - name: Build package
         run: |
           npm --no-git-tag-version version ${GITHUB_REF#refs/*/}
           npm set-script prepare ""
-          yarn build
+          npm run build
 
       - name: Publish build
         run: npm publish ./build --access public

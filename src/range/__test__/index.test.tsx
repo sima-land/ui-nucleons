@@ -102,7 +102,9 @@ describe('<Range />', () => {
   it('should unsubscribe event listeners on unmount', () => {
     const wrapper = mount(<Range />);
 
-    (wrapper.instance() as any).componentWillUnmount();
+    expect(() => {
+      (wrapper.instance() as any).componentWillUnmount();
+    }).not.toThrow();
   });
 
   it('should handle drag start properly', () => {
