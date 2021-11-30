@@ -1,36 +1,12 @@
-import { Story } from '@storybook/react';
-import React from 'react';
-import { Tabs } from '..';
+import React, { useState } from 'react';
+import { Tabs, TabsProps, TabsItemProps } from '..';
 
-const items = [
-  { name: 'Active', active: true },
-  { name: 'Inactive' },
-  { name: 'Inactive' },
+const items: TabsItemProps[] = [
+  { name: 'First' },
+  { name: 'Second' },
   { name: 'Disabled', disabled: true },
+  { name: 'Last' },
 ];
-
-const Template: Story<any> = props => (
-  <>
-    <p>Базовый вид</p>
-    <Tabs {...props} />
-    <br />
-
-    <p>С узким зазором</p>
-    <Tabs {...props} gapSize='s' />
-    <br />
-
-    {props.type !== 'round' && (
-      <>
-        <p>С подчеркиванием</p>
-        <Tabs {...props} underline />
-        <br />
-      </>
-    )}
-
-    <p>На ширину контейнера</p>
-    <Tabs {...props} stretch />
-  </>
-);
 
 export default {
   title: 'common/Tabs',
@@ -40,13 +16,39 @@ export default {
   },
 };
 
-export const Primary = Template.bind(null, {
-  items,
-  getItemName: ({ name }: { name: any }) => name,
-});
+const Template = ({ tabsProps }: { tabsProps: TabsProps }) => {
+  const [current, setCurrent] = useState<number>(0);
 
-export const RoundView = Template.bind(null, {
-  view: 'round',
-  items,
-  getItemName: ({ name }: { name: any }) => name,
-});
+  const renderItems = () =>
+    items.map((item, index) => (
+      <Tabs.Item
+        key={index}
+        {...item}
+        selected={index === current}
+        onClick={() => setCurrent(index)}
+      />
+    ));
+
+  return (
+    <>
+      <h4>Базовый вид</h4>
+      <Tabs {...tabsProps}>{renderItems()}</Tabs>
+
+      <h4>С узким зазором</h4>
+      <Tabs {...tabsProps} gapSize='s'>
+        {renderItems()}
+      </Tabs>
+
+      <h4>На ширину контейнера</h4>
+      <Tabs {...tabsProps} stretch>
+        {renderItems()}
+      </Tabs>
+    </>
+  );
+};
+
+export const CleanView = () => <Template tabsProps={{ view: 'clean' }} />;
+
+export const CleanUnderlineView = () => <Template tabsProps={{ view: 'clean-underline' }} />;
+
+export const RoundView = () => <Template tabsProps={{ view: 'round' }} />;

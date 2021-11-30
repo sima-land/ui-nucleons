@@ -1,329 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Tabs /> calls getItemName, isSelectedItem and onSelect properly 1`] = `
-<Tabs
-  getItemName={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          "item 1",
-        ],
-        Array [
-          "item 2",
-        ],
-        Array [
-          "item 3",
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": "item 1",
-        },
-        Object {
-          "type": "return",
-          "value": "item 2",
-        },
-        Object {
-          "type": "return",
-          "value": "item 3",
-        },
-      ],
-    }
-  }
-  isSelectedItem={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          "item 1",
-        ],
-        Array [
-          "item 2",
-        ],
-        Array [
-          "item 3",
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": false,
-        },
-        Object {
-          "type": "return",
-          "value": true,
-        },
-        Object {
-          "type": "return",
-          "value": false,
-        },
-      ],
-    }
-  }
-  items={
-    Array [
-      "item 1",
-      "item 2",
-      "item 3",
-    ]
-  }
-  onSelectItem={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          "item 3",
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": undefined,
-        },
-      ],
-    }
-  }
->
+exports[`<Tabs /> should renders correctly 1`] = `
+<div>
   <ul
-    className="root view-clean gap-m"
+    class="root view-clean gap-m"
     data-testid="tabs"
   >
     <li
-      className="tab-item"
+      class="item"
       data-testid="tab"
-      key="0"
-      onClick={[Function]}
     >
-      item 1
+      One
     </li>
     <li
-      className="tab-item selected"
+      class="item disabled"
       data-testid="tab"
-      key="1"
-      onClick={[Function]}
     >
-      item 2
+      Two
     </li>
     <li
-      className="tab-item"
+      class="item selected"
       data-testid="tab"
-      key="2"
-      onClick={[Function]}
     >
-      item 3
+      Three
+    </li>
+    <li
+      class="item"
+      data-testid="tab"
+    >
+      Four
     </li>
   </ul>
-</Tabs>
-`;
-
-exports[`<Tabs /> renders correctly with round type and small gap 1`] = `
-<Tabs
-  gapSize="s"
-  getItemName={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          "item 1",
-        ],
-        Array [
-          "item 2",
-        ],
-        Array [
-          "item 3",
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": "item 1",
-        },
-        Object {
-          "type": "return",
-          "value": "item 2",
-        },
-        Object {
-          "type": "return",
-          "value": "item 3",
-        },
-      ],
-    }
-  }
-  isSelectedItem={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          "item 1",
-        ],
-        Array [
-          "item 2",
-        ],
-        Array [
-          "item 3",
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": false,
-        },
-        Object {
-          "type": "return",
-          "value": true,
-        },
-        Object {
-          "type": "return",
-          "value": false,
-        },
-      ],
-    }
-  }
-  items={
-    Array [
-      "item 1",
-      "item 2",
-      "item 3",
-    ]
-  }
-  view="round"
->
-  <ul
-    className="root view-round gap-s"
-    data-testid="tabs"
-  >
-    <li
-      className="tab-item"
-      data-testid="tab"
-      key="0"
-      onClick={[Function]}
-    >
-      item 1
-    </li>
-    <li
-      className="tab-item selected"
-      data-testid="tab"
-      key="1"
-      onClick={[Function]}
-    >
-      item 2
-    </li>
-    <li
-      className="tab-item"
-      data-testid="tab"
-      key="2"
-      onClick={[Function]}
-    >
-      item 3
-    </li>
-  </ul>
-</Tabs>
-`;
-
-exports[`<Tabs /> renders correctly with text type, underline and stretch 1`] = `
-<Tabs
-  getItemName={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          "item 1",
-        ],
-        Array [
-          "item 2",
-        ],
-        Array [
-          "item 3",
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": "item 1",
-        },
-        Object {
-          "type": "return",
-          "value": "item 2",
-        },
-        Object {
-          "type": "return",
-          "value": "item 3",
-        },
-      ],
-    }
-  }
-  isSelectedItem={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          "item 1",
-        ],
-        Array [
-          "item 2",
-        ],
-        Array [
-          "item 3",
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": false,
-        },
-        Object {
-          "type": "return",
-          "value": true,
-        },
-        Object {
-          "type": "return",
-          "value": false,
-        },
-      ],
-    }
-  }
-  items={
-    Array [
-      "item 1",
-      "item 2",
-      "item 3",
-    ]
-  }
-  stretch={true}
-  underline={true}
->
-  <ul
-    className="root view-clean gap-m underline stretch"
-    data-testid="tabs"
-  >
-    <li
-      className="tab-item"
-      data-testid="tab"
-      key="0"
-      onClick={[Function]}
-    >
-      item 1
-    </li>
-    <li
-      className="tab-item selected"
-      data-testid="tab"
-      key="1"
-      onClick={[Function]}
-    >
-      item 2
-    </li>
-    <li
-      className="tab-item"
-      data-testid="tab"
-      key="2"
-      onClick={[Function]}
-    >
-      item 3
-    </li>
-  </ul>
-</Tabs>
-`;
-
-exports[`<Tabs /> renders correctly without params 1`] = `
-<Tabs>
-  <ul
-    className="root view-clean gap-m"
-    data-testid="tabs"
-  />
-</Tabs>
+</div>
 `;

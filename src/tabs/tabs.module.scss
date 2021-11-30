@@ -10,6 +10,7 @@
   font-weight: 600;
   line-height: 24px;
   li {
+    display: block;
     margin: 0;
     &::before {
       content: none;
@@ -17,13 +18,14 @@
   }
   &.stretch {
     justify-items: stretch;
-    .tab-item {
+    .item {
       width: 100%;
     }
   }
-  &.view-clean {
+  &.view-clean,
+  &.view-clean-underline {
     height: 32px;
-    .tab-item {
+    .item {
       color: colors.$gray38;
       &.selected {
         position: relative;
@@ -49,22 +51,22 @@
         color: colors.$gray54;
       }
     }
-    &.underline {
-      height: 40px;
-      position: relative;
-      &::before {
-        position: absolute;
-        bottom: 0;
-        content: '';
-        height: 1px;
-        width: 100%;
-        background-color: colors.$gray12;
-      }
+  }
+  &.view-clean-underline {
+    height: 40px;
+    position: relative;
+    &::before {
+      position: absolute;
+      bottom: 0;
+      content: '';
+      height: 1px;
+      width: 100%;
+      background-color: colors.$gray12;
     }
   }
   &.view-round {
     height: 40px;
-    .tab-item {
+    .item {
       color: colors.$gray87;
       padding: 8px 16px;
       border-radius: 4px;
@@ -83,15 +85,15 @@
     }
   }
   &.gap-m {
-    --gap: 24px;
+    --tabs-gap: 24px;
   }
   &.gap-s {
-    --gap: 16px;
+    --tabs-gap: 16px;
   }
-  .tab-item {
+  .item {
     text-align: center;
     &:not(:last-child) {
-      margin-right: var(--gap);
+      margin-right: var(--tabs-gap);
     }
   }
 }
