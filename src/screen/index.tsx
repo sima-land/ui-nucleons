@@ -4,6 +4,7 @@ import { LoadingOverlay, LoadingOverlayProps } from '../loading-overlay';
 import { useBodyScrollLock } from '../_internal/body-scroll';
 import { LayerProvider, useLayer } from '../helpers/layer';
 import { defineSlots } from '../helpers/define-slots';
+import { useInfiniteScroll } from '../hooks';
 import styles from './screen.module.scss';
 
 export interface ScreenProps {
@@ -19,6 +20,12 @@ export interface ScreenProps {
   /** Свойства компонента LoadingOverlay. */
   loadingOverlayProps?: LoadingOverlayProps;
 
+  /** Будет вызвана при полной прокрутке содержимого экрана. */
+  onFullScroll?: () => void;
+
+  /** Отступ от нижней границы содержимого экрана, после которого начинает срабатывать onFullScroll. */
+  fullScrollThreshold?: number;
+
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
 }
@@ -33,12 +40,13 @@ export const Screen = ({
   loading,
   loadingArea = 'full',
   loadingOverlayProps,
+  onFullScroll,
+  fullScrollThreshold = 320,
   'data-testid': testId = 'screen',
 }: ScreenProps) => {
-  const layer = useLayer() + 300; // 300 из-за монолита
-  const rootRef = useRef<HTMLDivElement>(null);
+  const fullLoading = loading && loadingArea === 'full';
 
-  useBodyScrollLock(rootRef, true);
+  const layer = useLayer() + 300; // 300 из-за монолита
 
   const { header, body, footer } = defineSlots(children, {
     header: HeaderSlot,
@@ -46,25 +54,35 @@ export const Screen = ({
     footer: FooterSlot,
   });
 
-  return (
-    <div ref={rootRef} className={styles.root} style={{ zIndex: layer }} data-testid={testId}>
-      {loading && loadingArea === 'full' ? (
-        <LoadingOverlay {...loadingOverlayProps} />
-      ) : (
-        <LayerProvider value={layer}>
-          {header}
+  // при блокировке прокрутки нужно передавать элемент которому нужно сохранить возможность прокрутки
+  // https://github.com/willmcpo/body-scroll-lock/blame/79c4cf2c956eb7d5cf8d54a03d12751bc6ac8aa3/README.md#L52
+  // поэтому используем внутренний ref и useImperativeHandle
+  const bodyRef = useRef<HTMLDivElement>(null);
 
-          {loading && loadingArea === 'content' ? (
-            <Screen.Body>
-              <LoadingOverlay {...loadingOverlayProps} fill={false} style={{ height: '100%' }} />
-            </Screen.Body>
+  useBodyScrollLock(bodyRef, true);
+
+  useInfiniteScroll(bodyRef, { onFullScroll, threshold: fullScrollThreshold });
+
+  return (
+    <div className={styles.root} style={{ zIndex: layer }} data-testid={testId}>
+      <LayerProvider value={layer}>
+        {!fullLoading && header}
+
+        {/* ВАЖНО: элемент с bodyRef должен выводиться всегда, т.к. он нужен для блокировки прокрутки */}
+        <div ref={bodyRef} className={styles.body} data-testid='screen:body'>
+          {loading ? (
+            <LoadingOverlay {...loadingOverlayProps} fill={false} style={{ height: '100%' }} />
           ) : (
             body
           )}
+        </div>
 
-          {footer}
-        </LayerProvider>
-      )}
+        {!fullLoading && footer && (
+          <div className={styles.footer} data-testid='screen:footer'>
+            {footer}
+          </div>
+        )}
+      </LayerProvider>
     </div>
   );
 };

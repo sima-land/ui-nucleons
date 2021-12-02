@@ -1,9 +1,8 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { NavBar, NavBarProps } from '../nav-bar';
 import { get } from 'lodash';
 import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
 import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
-import styles from './screen.module.scss';
 
 export interface HeaderSlotProps extends NavBarProps {
   /** Нужна ли разделительная полоса внизу шапки экрана. */
@@ -69,23 +68,14 @@ export const HeaderSlot = ({
 
 /**
  * Слот основного контента экрана.
+ * @param props Свойства.
+ * @return Элемент.
  */
-// eslint-disable-next-line @typescript-eslint/ban-types
-export const BodySlot = forwardRef<HTMLDivElement, React.PropsWithChildren<{}>>(
-  ({ children }, ref) => (
-    <div ref={ref} className={styles.body} data-testid='screen:body'>
-      {children}
-    </div>
-  ),
-);
+export const BodySlot: React.FC = ({ children }) => <>{children}</>;
 
 /**
  * Слот футера экрана.
  * @param props Свойства.
  * @return Элемент.
  */
-export const FooterSlot: React.FC = ({ children }) => (
-  <div className={styles.footer} data-testid='screen:footer'>
-    {children}
-  </div>
-);
+export const FooterSlot: React.FC = ({ children }) => <>{children}</>;

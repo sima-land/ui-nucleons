@@ -20,38 +20,54 @@ exports[`<Screen /> should handle "loading/loadingOverlayProps" props 1`] = `
       }
     }
   >
-    <LoadingOverlay
-      spinnerProps={
-        Object {
-          "size": "medium",
-        }
-      }
+    <div
+      className="body"
+      data-testid="screen:body"
     >
-      <div
-        className="loading-overlay fill"
+      <LoadingOverlay
+        fill={false}
+        spinnerProps={
+          Object {
+            "size": "medium",
+          }
+        }
+        style={
+          Object {
+            "height": "100%",
+          }
+        }
       >
-        <Spinner
-          size="medium"
+        <div
+          className="loading-overlay"
+          style={
+            Object {
+              "height": "100%",
+            }
+          }
         >
-          <div>
-            <svg
-              className="spinner size-medium"
-              height={48}
-              stroke="#1f84db"
-              viewBox="0 0 48 48"
-              width={48}
-            >
-              <circle
-                className="circle"
-                cx={24}
-                cy={24}
-                r={23}
-              />
-            </svg>
-          </div>
-        </Spinner>
-      </div>
-    </LoadingOverlay>
+          <Spinner
+            size="medium"
+          >
+            <div>
+              <svg
+                className="spinner size-medium"
+                height={48}
+                stroke="#1f84db"
+                viewBox="0 0 48 48"
+                width={48}
+              >
+                <circle
+                  className="circle"
+                  cx={24}
+                  cy={24}
+                  r={23}
+                />
+              </svg>
+            </div>
+          </Spinner>
+        </div>
+      </LoadingOverlay>
+    </div>
   </div>
 </Screen>
 `;
@@ -112,61 +128,59 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
         </div>
       </NavBar>
     </HeaderSlot>
-    <ForwardRef>
-      <div
-        className="body"
-        data-testid="screen:body"
+    <div
+      className="body"
+      data-testid="screen:body"
+    >
+      <LoadingOverlay
+        fill={false}
+        style={
+          Object {
+            "height": "100%",
+          }
+        }
       >
-        <LoadingOverlay
-          fill={false}
+        <div
+          className="loading-overlay"
           style={
             Object {
               "height": "100%",
             }
           }
         >
-          <div
-            className="loading-overlay"
-            style={
-              Object {
-                "height": "100%",
-              }
-            }
-          >
-            <Spinner>
-              <div>
-                <svg
-                  className="spinner size-medium"
-                  height={48}
-                  stroke="#1f84db"
-                  viewBox="0 0 48 48"
-                  width={48}
-                >
-                  <circle
-                    className="circle"
-                    cx={24}
-                    cy={24}
-                    r={23}
-                  />
-                </svg>
-              </div>
-            </Spinner>
-          </div>
-        </LoadingOverlay>
-      </div>
-    </ForwardRef>
-    <FooterSlot
-      key=".2"
+          <Spinner>
+            <div>
+              <svg
+                className="spinner size-medium"
+                height={48}
+                stroke="#1f84db"
+                viewBox="0 0 48 48"
+                width={48}
+              >
+                <circle
+                  className="circle"
+                  cx={24}
+                  cy={24}
+                  r={23}
+                />
+              </svg>
+            </div>
+          </Spinner>
+        </div>
+      </LoadingOverlay>
+    </div>
+    <div
+      className="footer"
+      data-testid="screen:footer"
     >
-      <div
-        className="footer"
-        data-testid="screen:footer"
+      <FooterSlot
+        key=".2"
       >
         <p>
           Footer content
         </p>
-      </div>
-    </FooterSlot>
+      </FooterSlot>
+    </div>
   </div>
 </Screen>
 `;
@@ -224,30 +238,30 @@ exports[`<Screen /> should renders correctly 1`] = `
         </div>
       </NavBar>
     </HeaderSlot>
-    <ForwardRef
-      key=".1"
+    <div
+      className="body"
+      data-testid="screen:body"
     >
-      <div
-        className="body"
-        data-testid="screen:body"
+      <BodySlot
+        key=".1"
       >
         <p>
           Body
         </p>
-      </div>
-    </ForwardRef>
-    <FooterSlot
-      key=".2"
+      </BodySlot>
+    </div>
+    <div
+      className="footer"
+      data-testid="screen:footer"
     >
-      <div
-        className="footer"
-        data-testid="screen:footer"
+      <FooterSlot
+        key=".2"
       >
         <p>
           Footer
         </p>
-      </div>
-    </FooterSlot>
+      </FooterSlot>
+    </div>
   </div>
 </Screen>
 `;
@@ -336,6 +350,10 @@ exports[`<Screen /> should renders without close button 1`] = `
         </div>
       </NavBar>
     </HeaderSlot>
+    <div
+      className="body"
+      data-testid="screen:body"
+    />
   </div>
 </Screen>
 `;
