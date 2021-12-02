@@ -11,59 +11,129 @@ exports[`<Screen /> should handle "loading/loadingOverlayProps" props 1`] = `
     }
   }
 >
-  <Portal>
-    <Portal
-      containerInfo={
-        <div>
-          <div
-            class="screen full-width"
-            style="z-index: 300;"
-          >
-            <div
-              class="loading-overlay fill"
-            >
-              <div>
-                <svg
-                  class="spinner size-medium"
-                  height="48"
-                  stroke="#1f84db"
-                  viewBox="0 0 48 48"
-                  width="48"
-                >
-                  <circle
-                    class="circle"
-                    cx="24"
-                    cy="24"
-                    r="23"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div
+    className="root"
+    data-testid="screen"
+    style={
+      Object {
+        "zIndex": 300,
+      }
+    }
+  >
+    <LoadingOverlay
+      spinnerProps={
+        Object {
+          "size": "medium",
+        }
       }
     >
       <div
-        className="screen full-width"
-        style={
+        className="loading-overlay fill"
+      >
+        <Spinner
+          size="medium"
+        >
+          <div>
+            <svg
+              className="spinner size-medium"
+              height={48}
+              stroke="#1f84db"
+              viewBox="0 0 48 48"
+              width={48}
+            >
+              <circle
+                className="circle"
+                cx={24}
+                cy={24}
+                r={23}
+              />
+            </svg>
+          </div>
+        </Spinner>
+      </div>
+    </LoadingOverlay>
+  </div>
+</Screen>
+`;
+
+exports[`<Screen /> should handle "loadingArea" prop 1`] = `
+<Screen
+  loading={true}
+  loadingArea="content"
+>
+  <div
+    className="root"
+    data-testid="screen"
+    style={
+      Object {
+        "zIndex": 300,
+      }
+    }
+  >
+    <HeaderSlot
+      divided={true}
+      key=".0"
+      subtitle="Subtitle"
+      title="Title"
+    >
+      <NavBar
+        bottomBordered={true}
+        buttons={
           Object {
-            "zIndex": 300,
+            "end": undefined,
+            "start": undefined,
           }
         }
+        subtitle="Subtitle"
+        title="Title"
       >
-        <LoadingOverlay
-          spinnerProps={
+        <div
+          className="nav-bar inner-border-bottom"
+          style={
             Object {
-              "size": "medium",
+              "height": "56px",
             }
           }
         >
           <div
-            className="loading-overlay fill"
+            className="main"
           >
-            <Spinner
-              size="medium"
+            <div
+              className="title truncate"
             >
+              Title
+            </div>
+            <div
+              className="subtitle truncate"
+            >
+              Subtitle
+            </div>
+          </div>
+        </div>
+      </NavBar>
+    </HeaderSlot>
+    <ForwardRef>
+      <div
+        className="body"
+        data-testid="screen:body"
+      >
+        <LoadingOverlay
+          fill={false}
+          style={
+            Object {
+              "height": "100%",
+            }
+          }
+        >
+          <div
+            className="loading-overlay"
+            style={
+              Object {
+                "height": "100%",
+              }
+            }
+          >
+            <Spinner>
               <div>
                 <svg
                   className="spinner size-medium"
@@ -84,1065 +154,188 @@ exports[`<Screen /> should handle "loading/loadingOverlayProps" props 1`] = `
           </div>
         </LoadingOverlay>
       </div>
-    </Portal>
-  </Portal>
-</Screen>
-`;
-
-exports[`<Screen /> should handle "loadingArea" prop 1`] = `
-<Screen
-  loading={true}
-  loadingArea="content"
->
-  <Portal>
-    <Portal
-      containerInfo={
-        <div>
-          <div
-            class="screen full-width"
-            style="z-index: 300;"
-          >
-            <div
-              class="nav-bar inner-border-bottom"
-              style="height: 56px;"
-            >
-              <div
-                class="button-groups"
-              >
-                <div
-                  class="group"
-                >
-                  <button
-                    aria-hidden="true"
-                    class="button icon stub"
-                    type="button"
-                  />
-                </div>
-              </div>
-              <div
-                class="main"
-              />
-              <div
-                class="button-groups end"
-              >
-                <div
-                  class="group"
-                >
-                  <button
-                    aria-hidden="false"
-                    aria-label="Закрыть"
-                    class="button icon"
-                    data-testid="screen:close"
-                    type="button"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="svg"
-                      fill="#212121"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      width="24"
-                    >
-                      <path
-                        clip-rule="evenodd"
-                        d="M20.707 3.293a1 1 0 010 1.414l-16 16a1 1 0 01-1.414-1.414l16-16a1 1 0 011.414 0z"
-                        fill-rule="evenodd"
-                      />
-                      <path
-                        clip-rule="evenodd"
-                        d="M3.293 3.293a1 1 0 011.414 0l16 16a1 1 0 01-1.414 1.414l-16-16a1 1 0 010-1.414z"
-                        fill-rule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div
-              class="content full-width"
-            >
-              <div
-                class="loading-overlay"
-                style="height: 100%;"
-              >
-                <div>
-                  <svg
-                    class="spinner size-medium"
-                    height="48"
-                    stroke="#1f84db"
-                    viewBox="0 0 48 48"
-                    width="48"
-                  >
-                    <circle
-                      class="circle"
-                      cx="24"
-                      cy="24"
-                      r="23"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      }
+    </ForwardRef>
+    <FooterSlot
+      key=".2"
     >
       <div
-        className="screen full-width"
-        style={
-          Object {
-            "zIndex": 300,
-          }
-        }
+        className="footer"
+        data-testid="screen:footer"
       >
-        <ScreenLayout
-          childrenRef={[Function]}
-          fullScrollThreshold={320}
-          onBack={[Function]}
-          onClose={[Function]}
-          withBackButton={false}
-          withCloseButton={true}
-          withDivideHeader={true}
-          withHeader={true}
-        >
-          <NavBar
-            bottomBordered={true}
-            buttons={
-              Object {
-                "end": Object {
-                  "aria-label": "Закрыть",
-                  "data-testid": "screen:close",
-                  "icon": Object {
-                    "$$typeof": Symbol(react.forward_ref),
-                    "render": [Function],
-                  },
-                  "onClick": [Function],
-                },
-                "start": undefined,
-              }
-            }
-          >
-            <div
-              className="nav-bar inner-border-bottom"
-              style={
-                Object {
-                  "height": "56px",
-                }
-              }
-            >
-              <div
-                className="button-groups"
-              >
-                <div
-                  className="group"
-                >
-                  <NavButton
-                    aria-label="Закрыть"
-                    data-testid="screen:close"
-                    icon={
-                      Object {
-                        "$$typeof": Symbol(react.forward_ref),
-                        "render": [Function],
-                      }
-                    }
-                    onClick={[Function]}
-                    stub={true}
-                  >
-                    <button
-                      aria-hidden={true}
-                      className="button icon stub"
-                      type="button"
-                    />
-                  </NavButton>
-                </div>
-              </div>
-              <div
-                className="main"
-              />
-              <div
-                className="button-groups end"
-              >
-                <div
-                  className="group"
-                >
-                  <NavButton
-                    aria-label="Закрыть"
-                    data-testid="screen:close"
-                    icon={
-                      Object {
-                        "$$typeof": Symbol(react.forward_ref),
-                        "render": [Function],
-                      }
-                    }
-                    onClick={[Function]}
-                  >
-                    <button
-                      aria-hidden={false}
-                      aria-label="Закрыть"
-                      className="button icon"
-                      data-testid="screen:close"
-                      onClick={[Function]}
-                      type="button"
-                    >
-                      <ForwardRef(CrossSVG)
-                        aria-hidden="true"
-                        className="svg"
-                        fill="#212121"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          className="svg"
-                          fill="#212121"
-                          height={24}
-                          viewBox="0 0 24 24"
-                          width={24}
-                        >
-                          <path
-                            clipRule="evenodd"
-                            d="M20.707 3.293a1 1 0 010 1.414l-16 16a1 1 0 01-1.414-1.414l16-16a1 1 0 011.414 0z"
-                            fillRule="evenodd"
-                          />
-                          <path
-                            clipRule="evenodd"
-                            d="M3.293 3.293a1 1 0 011.414 0l16 16a1 1 0 01-1.414 1.414l-16-16a1 1 0 010-1.414z"
-                            fillRule="evenodd"
-                          />
-                        </svg>
-                      </ForwardRef(CrossSVG)>
-                    </button>
-                  </NavButton>
-                </div>
-              </div>
-            </div>
-          </NavBar>
-          <div
-            className="content full-width"
-          >
-            <LoadingOverlay
-              fill={false}
-              style={
-                Object {
-                  "height": "100%",
-                }
-              }
-            >
-              <div
-                className="loading-overlay"
-                style={
-                  Object {
-                    "height": "100%",
-                  }
-                }
-              >
-                <Spinner>
-                  <div>
-                    <svg
-                      className="spinner size-medium"
-                      height={48}
-                      stroke="#1f84db"
-                      viewBox="0 0 48 48"
-                      width={48}
-                    >
-                      <circle
-                        className="circle"
-                        cx={24}
-                        cy={24}
-                        r={23}
-                      />
-                    </svg>
-                  </div>
-                </Spinner>
-              </div>
-            </LoadingOverlay>
-          </div>
-        </ScreenLayout>
+        <p>
+          Footer content
+        </p>
       </div>
-    </Portal>
-  </Portal>
+    </FooterSlot>
+  </div>
 </Screen>
 `;
 
-exports[`<Screen /> should handle props 1`] = `
-<Screen
-  footer="Test footer"
-  onBack={[MockFunction]}
-  onClose={[MockFunction]}
-  subtitle="Test subtitle"
-  title="Test title"
-  withBackButton={true}
-  withCloseButton={true}
->
-  <Portal>
-    <Portal
-      containerInfo={
-        <div>
-          <div
-            class="screen full-width"
-            style="z-index: 300;"
-          >
-            <div
-              class="nav-bar inner-border-bottom"
-              style="height: 56px;"
-            >
-              <div
-                class="button-groups"
-              >
-                <div
-                  class="group"
-                >
-                  <button
-                    aria-hidden="false"
-                    aria-label="Вернуться назад"
-                    class="button icon"
-                    data-testid="screen:back"
-                    type="button"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="svg"
-                      fill="#212121"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      width="24"
-                    >
-                      <path
-                        clip-rule="evenodd"
-                        d="M11.707 3.293a1 1 0 010 1.414L4.414 12l7.293 7.293a1 1 0 01-1.414 1.414l-8-8a1 1 0 010-1.414l8-8a1 1 0 011.414 0z"
-                        fill-rule="evenodd"
-                      />
-                      <path
-                        clip-rule="evenodd"
-                        d="M3 12a1 1 0 011-1h17a1 1 0 110 2H4a1 1 0 01-1-1z"
-                        fill-rule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                </div>
-                <div
-                  class="group"
-                >
-                  <button
-                    aria-hidden="true"
-                    class="button icon stub"
-                    type="button"
-                  />
-                </div>
-              </div>
-              <div
-                class="main"
-              >
-                <div
-                  class="title truncate"
-                >
-                  Test title
-                </div>
-                <div
-                  class="subtitle truncate"
-                >
-                  Test subtitle
-                </div>
-              </div>
-              <div
-                class="button-groups end"
-              >
-                <div
-                  class="group"
-                >
-                  <button
-                    aria-hidden="false"
-                    aria-label="Закрыть Test title"
-                    class="button icon"
-                    data-testid="screen:close"
-                    type="button"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="svg"
-                      fill="#212121"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      width="24"
-                    >
-                      <path
-                        clip-rule="evenodd"
-                        d="M20.707 3.293a1 1 0 010 1.414l-16 16a1 1 0 01-1.414-1.414l16-16a1 1 0 011.414 0z"
-                        fill-rule="evenodd"
-                      />
-                      <path
-                        clip-rule="evenodd"
-                        d="M3.293 3.293a1 1 0 011.414 0l16 16a1 1 0 01-1.414 1.414l-16-16a1 1 0 010-1.414z"
-                        fill-rule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                </div>
-                <div
-                  class="group"
-                >
-                  <button
-                    aria-hidden="true"
-                    class="button icon stub"
-                    type="button"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              class="content full-width"
-            >
-              Test content
-            </div>
-            <div
-              class="footer full-width"
-            >
-              Test footer
-            </div>
-          </div>
-        </div>
-      }
-    >
-      <div
-        className="screen full-width"
-        style={
-          Object {
-            "zIndex": 300,
-          }
-        }
-      >
-        <ScreenLayout
-          childrenRef={[Function]}
-          footer="Test footer"
-          fullScrollThreshold={320}
-          onBack={[Function]}
-          onClose={[Function]}
-          subtitle="Test subtitle"
-          title="Test title"
-          withBackButton={true}
-          withCloseButton={true}
-          withDivideHeader={true}
-          withHeader={true}
-        >
-          <NavBar
-            bottomBordered={true}
-            buttons={
-              Object {
-                "end": Object {
-                  "aria-label": "Закрыть Test title",
-                  "data-testid": "screen:close",
-                  "icon": Object {
-                    "$$typeof": Symbol(react.forward_ref),
-                    "render": [Function],
-                  },
-                  "onClick": [Function],
-                },
-                "start": Object {
-                  "aria-label": "Вернуться назад",
-                  "data-testid": "screen:back",
-                  "icon": Object {
-                    "$$typeof": Symbol(react.forward_ref),
-                    "render": [Function],
-                  },
-                  "onClick": [Function],
-                },
-              }
-            }
-            subtitle="Test subtitle"
-            title="Test title"
-          >
-            <div
-              className="nav-bar inner-border-bottom"
-              style={
-                Object {
-                  "height": "56px",
-                }
-              }
-            >
-              <div
-                className="button-groups"
-              >
-                <div
-                  className="group"
-                >
-                  <NavButton
-                    aria-label="Вернуться назад"
-                    data-testid="screen:back"
-                    icon={
-                      Object {
-                        "$$typeof": Symbol(react.forward_ref),
-                        "render": [Function],
-                      }
-                    }
-                    onClick={[Function]}
-                  >
-                    <button
-                      aria-hidden={false}
-                      aria-label="Вернуться назад"
-                      className="button icon"
-                      data-testid="screen:back"
-                      onClick={[Function]}
-                      type="button"
-                    >
-                      <ForwardRef(ArrowLeftSVG)
-                        aria-hidden="true"
-                        className="svg"
-                        fill="#212121"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          className="svg"
-                          fill="#212121"
-                          height={24}
-                          viewBox="0 0 24 24"
-                          width={24}
-                        >
-                          <path
-                            clipRule="evenodd"
-                            d="M11.707 3.293a1 1 0 010 1.414L4.414 12l7.293 7.293a1 1 0 01-1.414 1.414l-8-8a1 1 0 010-1.414l8-8a1 1 0 011.414 0z"
-                            fillRule="evenodd"
-                          />
-                          <path
-                            clipRule="evenodd"
-                            d="M3 12a1 1 0 011-1h17a1 1 0 110 2H4a1 1 0 01-1-1z"
-                            fillRule="evenodd"
-                          />
-                        </svg>
-                      </ForwardRef(ArrowLeftSVG)>
-                    </button>
-                  </NavButton>
-                </div>
-                <div
-                  className="group"
-                >
-                  <NavButton
-                    aria-label="Закрыть Test title"
-                    data-testid="screen:close"
-                    icon={
-                      Object {
-                        "$$typeof": Symbol(react.forward_ref),
-                        "render": [Function],
-                      }
-                    }
-                    onClick={[Function]}
-                    stub={true}
-                  >
-                    <button
-                      aria-hidden={true}
-                      className="button icon stub"
-                      type="button"
-                    />
-                  </NavButton>
-                </div>
-              </div>
-              <div
-                className="main"
-              >
-                <div
-                  className="title truncate"
-                >
-                  Test title
-                </div>
-                <div
-                  className="subtitle truncate"
-                >
-                  Test subtitle
-                </div>
-              </div>
-              <div
-                className="button-groups end"
-              >
-                <div
-                  className="group"
-                >
-                  <NavButton
-                    aria-label="Закрыть Test title"
-                    data-testid="screen:close"
-                    icon={
-                      Object {
-                        "$$typeof": Symbol(react.forward_ref),
-                        "render": [Function],
-                      }
-                    }
-                    onClick={[Function]}
-                  >
-                    <button
-                      aria-hidden={false}
-                      aria-label="Закрыть Test title"
-                      className="button icon"
-                      data-testid="screen:close"
-                      onClick={[Function]}
-                      type="button"
-                    >
-                      <ForwardRef(CrossSVG)
-                        aria-hidden="true"
-                        className="svg"
-                        fill="#212121"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          className="svg"
-                          fill="#212121"
-                          height={24}
-                          viewBox="0 0 24 24"
-                          width={24}
-                        >
-                          <path
-                            clipRule="evenodd"
-                            d="M20.707 3.293a1 1 0 010 1.414l-16 16a1 1 0 01-1.414-1.414l16-16a1 1 0 011.414 0z"
-                            fillRule="evenodd"
-                          />
-                          <path
-                            clipRule="evenodd"
-                            d="M3.293 3.293a1 1 0 011.414 0l16 16a1 1 0 01-1.414 1.414l-16-16a1 1 0 010-1.414z"
-                            fillRule="evenodd"
-                          />
-                        </svg>
-                      </ForwardRef(CrossSVG)>
-                    </button>
-                  </NavButton>
-                </div>
-                <div
-                  className="group"
-                >
-                  <NavButton
-                    aria-label="Вернуться назад"
-                    data-testid="screen:back"
-                    icon={
-                      Object {
-                        "$$typeof": Symbol(react.forward_ref),
-                        "render": [Function],
-                      }
-                    }
-                    onClick={[Function]}
-                    stub={true}
-                  >
-                    <button
-                      aria-hidden={true}
-                      className="button icon stub"
-                      type="button"
-                    />
-                  </NavButton>
-                </div>
-              </div>
-            </div>
-          </NavBar>
-          <div
-            className="content full-width"
-          >
-            Test content
-          </div>
-          <div
-            className="footer full-width"
-          >
-            Test footer
-          </div>
-        </ScreenLayout>
-      </div>
-    </Portal>
-  </Portal>
-</Screen>
-`;
-
-exports[`<Screen /> should render without props 1`] = `
+exports[`<Screen /> should renders correctly 1`] = `
 <Screen>
-  <Portal>
-    <Portal
-      containerInfo={
-        <div>
-          <div
-            class="screen full-width"
-            style="z-index: 300;"
-          >
-            <div
-              class="nav-bar inner-border-bottom"
-              style="height: 56px;"
-            >
-              <div
-                class="button-groups"
-              >
-                <div
-                  class="group"
-                >
-                  <button
-                    aria-hidden="true"
-                    class="button icon stub"
-                    type="button"
-                  />
-                </div>
-              </div>
-              <div
-                class="main"
-              />
-              <div
-                class="button-groups end"
-              >
-                <div
-                  class="group"
-                >
-                  <button
-                    aria-hidden="false"
-                    aria-label="Закрыть"
-                    class="button icon"
-                    data-testid="screen:close"
-                    type="button"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="svg"
-                      fill="#212121"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      width="24"
-                    >
-                      <path
-                        clip-rule="evenodd"
-                        d="M20.707 3.293a1 1 0 010 1.414l-16 16a1 1 0 01-1.414-1.414l16-16a1 1 0 011.414 0z"
-                        fill-rule="evenodd"
-                      />
-                      <path
-                        clip-rule="evenodd"
-                        d="M3.293 3.293a1 1 0 011.414 0l16 16a1 1 0 01-1.414 1.414l-16-16a1 1 0 010-1.414z"
-                        fill-rule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div
-              class="content full-width"
-            />
-          </div>
-        </div>
+  <div
+    className="root"
+    data-testid="screen"
+    style={
+      Object {
+        "zIndex": 300,
       }
+    }
+  >
+    <HeaderSlot
+      divided={true}
+      key=".0"
+      subtitle="Subtitle"
+      title="Title"
     >
-      <div
-        className="screen full-width"
-        style={
+      <NavBar
+        bottomBordered={true}
+        buttons={
           Object {
-            "zIndex": 300,
+            "end": undefined,
+            "start": undefined,
           }
         }
+        subtitle="Subtitle"
+        title="Title"
       >
-        <ScreenLayout
-          childrenRef={[Function]}
-          fullScrollThreshold={320}
-          onBack={[Function]}
-          onClose={[Function]}
-          withBackButton={false}
-          withCloseButton={true}
-          withDivideHeader={true}
-          withHeader={true}
-        >
-          <NavBar
-            bottomBordered={true}
-            buttons={
-              Object {
-                "end": Object {
-                  "aria-label": "Закрыть",
-                  "data-testid": "screen:close",
-                  "icon": Object {
-                    "$$typeof": Symbol(react.forward_ref),
-                    "render": [Function],
-                  },
-                  "onClick": [Function],
-                },
-                "start": undefined,
-              }
+        <div
+          className="nav-bar inner-border-bottom"
+          style={
+            Object {
+              "height": "56px",
             }
+          }
+        >
+          <div
+            className="main"
           >
             <div
-              className="nav-bar inner-border-bottom"
-              style={
-                Object {
-                  "height": "56px",
-                }
-              }
+              className="title truncate"
             >
-              <div
-                className="button-groups"
-              >
-                <div
-                  className="group"
-                >
-                  <NavButton
-                    aria-label="Закрыть"
-                    data-testid="screen:close"
-                    icon={
-                      Object {
-                        "$$typeof": Symbol(react.forward_ref),
-                        "render": [Function],
-                      }
-                    }
-                    onClick={[Function]}
-                    stub={true}
-                  >
-                    <button
-                      aria-hidden={true}
-                      className="button icon stub"
-                      type="button"
-                    />
-                  </NavButton>
-                </div>
-              </div>
-              <div
-                className="main"
-              />
-              <div
-                className="button-groups end"
-              >
-                <div
-                  className="group"
-                >
-                  <NavButton
-                    aria-label="Закрыть"
-                    data-testid="screen:close"
-                    icon={
-                      Object {
-                        "$$typeof": Symbol(react.forward_ref),
-                        "render": [Function],
-                      }
-                    }
-                    onClick={[Function]}
-                  >
-                    <button
-                      aria-hidden={false}
-                      aria-label="Закрыть"
-                      className="button icon"
-                      data-testid="screen:close"
-                      onClick={[Function]}
-                      type="button"
-                    >
-                      <ForwardRef(CrossSVG)
-                        aria-hidden="true"
-                        className="svg"
-                        fill="#212121"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          className="svg"
-                          fill="#212121"
-                          height={24}
-                          viewBox="0 0 24 24"
-                          width={24}
-                        >
-                          <path
-                            clipRule="evenodd"
-                            d="M20.707 3.293a1 1 0 010 1.414l-16 16a1 1 0 01-1.414-1.414l16-16a1 1 0 011.414 0z"
-                            fillRule="evenodd"
-                          />
-                          <path
-                            clipRule="evenodd"
-                            d="M3.293 3.293a1 1 0 011.414 0l16 16a1 1 0 01-1.414 1.414l-16-16a1 1 0 010-1.414z"
-                            fillRule="evenodd"
-                          />
-                        </svg>
-                      </ForwardRef(CrossSVG)>
-                    </button>
-                  </NavButton>
-                </div>
-              </div>
+              Title
             </div>
-          </NavBar>
-          <div
-            className="content full-width"
-          />
-        </ScreenLayout>
+            <div
+              className="subtitle truncate"
+            >
+              Subtitle
+            </div>
+          </div>
+        </div>
+      </NavBar>
+    </HeaderSlot>
+    <ForwardRef
+      key=".1"
+    >
+      <div
+        className="body"
+        data-testid="screen:body"
+      >
+        <p>
+          Body
+        </p>
       </div>
-    </Portal>
-  </Portal>
+    </ForwardRef>
+    <FooterSlot
+      key=".2"
+    >
+      <div
+        className="footer"
+        data-testid="screen:footer"
+      >
+        <p>
+          Footer
+        </p>
+      </div>
+    </FooterSlot>
+  </div>
 </Screen>
 `;
 
 exports[`<Screen /> should renders without close button 1`] = `
-<Screen
-  navBarProps={
-    Object {
-      "buttons": Object {
-        "end": Object {
-          "text": "cross replacer",
-        },
-      },
-    }
-  }
-  subtitle="Test subtitle"
-  title="Test title"
-  withCloseButton={false}
->
-  <Portal>
-    <Portal
-      containerInfo={
-        <div>
-          <div
-            class="screen full-width"
-            style="z-index: 300;"
-          >
-            <div
-              class="nav-bar inner-border-bottom"
-              style="height: 56px;"
-            >
-              <div
-                class="button-groups"
-              >
-                <div
-                  class="group"
-                >
-                  <button
-                    aria-hidden="true"
-                    class="button stub"
-                    type="button"
-                  >
-                    cross replacer
-                  </button>
-                </div>
-              </div>
-              <div
-                class="main"
-              >
-                <div
-                  class="title truncate"
-                >
-                  Test title
-                </div>
-                <div
-                  class="subtitle truncate"
-                >
-                  Test subtitle
-                </div>
-              </div>
-              <div
-                class="button-groups end"
-              >
-                <div
-                  class="group"
-                >
-                  <button
-                    aria-hidden="false"
-                    class="button"
-                    type="button"
-                  >
-                    cross replacer
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div
-              class="content full-width"
-            />
-          </div>
-        </div>
+<Screen>
+  <div
+    className="root"
+    data-testid="screen"
+    style={
+      Object {
+        "zIndex": 300,
       }
+    }
+  >
+    <HeaderSlot
+      buttons={
+        Object {
+          "end": Object {
+            "text": "cross replacer",
+          },
+        }
+      }
+      key=".0"
     >
-      <div
-        className="screen full-width"
-        style={
+      <NavBar
+        buttons={
           Object {
-            "zIndex": 300,
+            "end": Object {
+              "text": "cross replacer",
+            },
+            "start": undefined,
           }
         }
       >
-        <ScreenLayout
-          childrenRef={[Function]}
-          fullScrollThreshold={320}
-          navBarProps={
+        <div
+          className="nav-bar"
+          style={
             Object {
-              "buttons": Object {
-                "end": Object {
-                  "text": "cross replacer",
-                },
-              },
+              "height": "56px",
             }
           }
-          onBack={[Function]}
-          onClose={[Function]}
-          subtitle="Test subtitle"
-          title="Test title"
-          withBackButton={false}
-          withCloseButton={false}
-          withDivideHeader={true}
-          withHeader={true}
         >
-          <NavBar
-            bottomBordered={true}
-            buttons={
-              Object {
-                "end": Object {
-                  "text": "cross replacer",
-                },
-                "start": undefined,
-              }
-            }
-            subtitle="Test subtitle"
-            title="Test title"
+          <div
+            className="button-groups"
           >
             <div
-              className="nav-bar inner-border-bottom"
-              style={
-                Object {
-                  "height": "56px",
-                }
-              }
+              className="group"
             >
-              <div
-                className="button-groups"
+              <NavButton
+                stub={true}
+                text="cross replacer"
               >
-                <div
-                  className="group"
+                <button
+                  aria-hidden={true}
+                  className="button stub"
+                  type="button"
                 >
-                  <NavButton
-                    stub={true}
-                    text="cross replacer"
-                  >
-                    <button
-                      aria-hidden={true}
-                      className="button stub"
-                      type="button"
-                    >
-                      cross replacer
-                    </button>
-                  </NavButton>
-                </div>
-              </div>
-              <div
-                className="main"
-              >
-                <div
-                  className="title truncate"
-                >
-                  Test title
-                </div>
-                <div
-                  className="subtitle truncate"
-                >
-                  Test subtitle
-                </div>
-              </div>
-              <div
-                className="button-groups end"
-              >
-                <div
-                  className="group"
-                >
-                  <NavButton
-                    text="cross replacer"
-                  >
-                    <button
-                      aria-hidden={false}
-                      className="button"
-                      type="button"
-                    >
-                      cross replacer
-                    </button>
-                  </NavButton>
-                </div>
-              </div>
+                  cross replacer
+                </button>
+              </NavButton>
             </div>
-          </NavBar>
+          </div>
           <div
-            className="content full-width"
+            className="main"
           />
-        </ScreenLayout>
-      </div>
-    </Portal>
-  </Portal>
+          <div
+            className="button-groups end"
+          >
+            <div
+              className="group"
+            >
+              <NavButton
+                text="cross replacer"
+              >
+                <button
+                  aria-hidden={false}
+                  className="button"
+                  type="button"
+                >
+                  cross replacer
+                </button>
+              </NavButton>
+            </div>
+          </div>
+        </div>
+      </NavBar>
+    </HeaderSlot>
+  </div>
 </Screen>
 `;

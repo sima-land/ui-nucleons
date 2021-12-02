@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import { isTouchDevice } from '../helpers/is-touch-device';
 import { isFunction } from 'lodash';
 import on from '../helpers/on';
+import { useIdentityRef } from './identity';
 
 /**
  * При монтировании проверяет, поддерживает ли устройство touch события.
@@ -23,6 +24,7 @@ export const useIsTouchDevice = () => {
  * @param options Опции.
  * @param options.onFullScroll Сработает при событии полной прокрутки.
  * @param options.threshold Отступ от конца списка по которому событие должно срабатывать.
+ * @param moreDeps Зависимости эффекта (нужны, когда ref заполняется не на этапе render'а).
  */
 export const useInfiniteScroll = (
   ref: React.MutableRefObject<HTMLElement | undefined | null>,
@@ -33,22 +35,23 @@ export const useInfiniteScroll = (
     onFullScroll?: (event: UIEvent) => void;
     threshold?: number;
   },
+  moreDeps?: React.DependencyList,
 ) => {
+  const callbackRef = useIdentityRef(onFullScroll);
+
   useEffect(() => {
-    const { current: element } = ref;
+    const element = ref.current;
 
     if (element) {
-      return on<UIEvent>(element, 'scroll', (event: UIEvent) => {
+      return on<UIEvent>(element, 'scroll', event => {
         const { scrollTop, clientHeight, scrollHeight } = event.target as HTMLElement;
         const bottom = threshold + scrollTop + clientHeight;
         const isFullyScrolled = bottom >= scrollHeight;
 
-        if (isFullyScrolled && onFullScroll) {
-          onFullScroll(event);
-        }
+        isFullyScrolled && callbackRef.current?.(event);
       }) as () => void;
     }
-  }, [ref.current, threshold, onFullScroll]);
+  }, [ref, threshold, ...(moreDeps || [])]);
 };
 
 /**
