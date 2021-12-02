@@ -95,6 +95,18 @@ describe('useInfiniteScroll()', () => {
     expect(HTMLUListElement.prototype.addEventListener).toHaveBeenCalledTimes(1);
   });
 
+  it('should works withhout onFullScroll', () => {
+    act(() => {
+      render(<TestComponent withList />, container);
+    });
+
+    const listEl = (container as HTMLDivElement).querySelector('.test-list') as HTMLUListElement;
+
+    expect(() => {
+      listEl.dispatchEvent(new Event('scroll'));
+    }).not.toThrow();
+  });
+
   it('should unsubscribe on unmount', () => {
     const wrapper = mount(<TestComponent />);
 

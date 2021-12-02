@@ -1,28 +1,15 @@
-import React, { Fragment, useRef, useEffect } from 'react';
-import { Portal } from '../portal';
-import { isFunction } from 'lodash';
-import { ScreenLayout, ScreenLayoutProps, CallbackData } from './screen-layout';
-import { cx, OrNil } from './utils';
+import React, { useRef } from 'react';
+import { HeaderSlot, BodySlot, FooterSlot } from './slots';
 import { LoadingOverlay, LoadingOverlayProps } from '../loading-overlay';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import { useBodyScrollLock } from '../_internal/body-scroll';
 import { LayerProvider, useLayer } from '../helpers/layer';
-
-interface AdvancedCallbackData extends CallbackData {
-  rootElement: OrNil<HTMLDivElement>;
-}
+import { defineSlots } from '../helpers/define-slots';
+import { useInfiniteScroll } from '../hooks';
+import styles from './screen.module.scss';
 
 export interface ScreenProps {
   /** Содержимое. */
   children?: React.ReactNode;
-
-  /** Реф контента. */
-  contentRef?: ScreenLayoutProps['childrenRef'];
-
-  /** Содержимое подвала. */
-  footer?: any;
-
-  /** Отступ от нижней границы для срабатывания onFullScroll. */
-  fullScrollThreshold?: number;
 
   /** Нужно ли выводить вместо содержимого состояние загрузки. */
   loading?: boolean;
@@ -33,38 +20,14 @@ export interface ScreenProps {
   /** Свойства компонента LoadingOverlay. */
   loadingOverlayProps?: LoadingOverlayProps;
 
-  /** Свойства компонента NavBar. */
-  navBarProps?: ScreenLayoutProps['navBarProps'];
+  /** Будет вызвана при полной прокрутке содержимого экрана. */
+  onFullScroll?: () => void;
 
-  /** Сработает при клике на кнопку "назад". */
-  onBack?: (data: AdvancedCallbackData) => void;
+  /** Отступ от нижней границы содержимого экрана, после которого начинает срабатывать onFullScroll. */
+  fullScrollThreshold?: number;
 
-  /** Сработает при кнопке на крест. */
-  onClose?: (data: AdvancedCallbackData) => void;
-
-  /** Сработает при полной прокрутке контента. */
-  onFullScroll?: ScreenLayoutProps['onFullScroll'];
-
-  /** Подзаголовок. */
-  subtitle?: string;
-
-  /** Заголовок. */
-  title?: string;
-
-  /** Нужно ли выводить кнопку "назад". */
-  withBackButton?: boolean;
-
-  /** Нужно ли выводить закрывающий крест. */
-  withCloseButton?: boolean;
-
-  /** Нужно ли рисовать черту между шапкой и основным содержимым. */
-  withDivideHeader?: boolean;
-
-  /** Нужно ли выводить кнопку "назад". */
-  withHeader?: boolean;
-
-  /** Нужно ли выводить Layer (при SSR необходимо указать false). */
-  inPortal?: boolean;
+  /** Идентификатор для систем автоматизированного тестирования. */
+  'data-testid'?: string;
 }
 
 /**
@@ -72,129 +35,58 @@ export interface ScreenProps {
  * @param props Свойства.
  * @return Элемент.
  */
-export const Screen: React.FC<ScreenProps> = ({
+export const Screen = ({
   children,
-  contentRef,
-  footer,
-  fullScrollThreshold = 320,
-  loading = false,
+  loading,
   loadingArea = 'full',
   loadingOverlayProps,
-  navBarProps,
-  onBack,
-  onClose,
   onFullScroll,
-  subtitle,
-  title,
-  withBackButton = false,
-  withCloseButton = true,
-  withDivideHeader = true,
-  withHeader = true,
-  inPortal = true,
-}) => {
-  const Wrapper = inPortal ? Portal : Fragment;
-  const layer = useLayer() + 300; // 300 из-за монолита
-  const rootRef = useRef<HTMLDivElement>(null);
-  const innerContentRef = useRef<HTMLDivElement>(null);
+  fullScrollThreshold = 320,
+  'data-testid': testId = 'screen',
+}: ScreenProps) => {
+  const fullLoading = loading && loadingArea === 'full';
 
-  // включаем прокрутку body при размонтировании
-  useEffect(
-    () => () => {
-      innerContentRef.current && enableBodyScroll(innerContentRef.current);
-    },
-    [],
-  );
+  const layer = useLayer() + 300; // 300 из-за монолита
+
+  const { header, body, footer } = defineSlots(children, {
+    header: HeaderSlot,
+    body: BodySlot,
+    footer: FooterSlot,
+  });
+
+  // при блокировке прокрутки нужно передавать элемент которому нужно сохранить возможность прокрутки
+  // https://github.com/willmcpo/body-scroll-lock/blame/79c4cf2c956eb7d5cf8d54a03d12751bc6ac8aa3/README.md#L52
+  // поэтому используем внутренний ref и useImperativeHandle
+  const bodyRef = useRef<HTMLDivElement>(null);
+
+  useBodyScrollLock(bodyRef, true);
+
+  useInfiniteScroll(bodyRef, { onFullScroll, threshold: fullScrollThreshold });
 
   return (
-    <Wrapper>
-      <div ref={rootRef} className={cx('screen', 'full-width')} style={{ zIndex: layer }}>
-        {loading && loadingArea === 'full' ? (
-          <LoadingOverlay {...loadingOverlayProps} />
-        ) : (
-          <LayerProvider value={layer}>
-            <ScreenLayout
-              title={title}
-              subtitle={subtitle}
-              withHeader={withHeader}
-              withDivideHeader={withDivideHeader}
-              withBackButton={withBackButton}
-              withCloseButton={withCloseButton}
-              children={
-                loading && loadingArea === 'content' ? (
-                  <LoadingOverlay
-                    {...loadingOverlayProps}
-                    {...(loadingArea === 'content' && {
-                      fill: false,
-                      style: { height: '100%' },
-                    })}
-                  />
-                ) : (
-                  children
-                )
-              }
-              childrenRef={element => {
-                setRefValue(contentRef as any, element);
-                takeScrollableElement(innerContentRef, element);
-              }}
-              footer={footer}
-              onBack={({ contentElement }) => {
-                onBack &&
-                  onBack({
-                    rootElement: rootRef.current,
-                    contentElement,
-                  });
-              }}
-              onClose={({ contentElement }) => {
-                onClose &&
-                  onClose({
-                    rootElement: rootRef.current,
-                    contentElement,
-                  });
-              }}
-              onFullScroll={onFullScroll}
-              fullScrollThreshold={fullScrollThreshold}
-              navBarProps={navBarProps}
-            />
-          </LayerProvider>
+    <div className={styles.root} style={{ zIndex: layer }} data-testid={testId}>
+      <LayerProvider value={layer}>
+        {!fullLoading && header}
+
+        {/* ВАЖНО: элемент с bodyRef должен выводиться всегда, т.к. он нужен для блокировки прокрутки */}
+        <div ref={bodyRef} className={styles.body} data-testid='screen:body'>
+          {loading ? (
+            <LoadingOverlay {...loadingOverlayProps} fill={false} style={{ height: '100%' }} />
+          ) : (
+            body
+          )}
+        </div>
+
+        {!fullLoading && footer && (
+          <div className={styles.footer} data-testid='screen:footer'>
+            {footer}
+          </div>
         )}
-      </div>
-    </Wrapper>
+      </LayerProvider>
+    </div>
   );
 };
 
-/**
- * Записывает переданное значение в ref контента.
- * @param ref Ref-контейнер.
- * @param value Значение для записи.
- */
-export const setRefValue = (
-  ref: React.RefCallback<any> | React.MutableRefObject<any>,
-  value: any,
-) => {
-  if (isFunction(ref)) {
-    ref(value);
-  } else if (ref) {
-    ref.current = value;
-  }
-};
-
-/**
- * Записывает полученный элемент в ref и отключает прокрутку.
- * @param ref Ref-контейнер.
- * @param element Элемент для записи.
- */
-export const takeScrollableElement = (
-  ref: React.MutableRefObject<OrNil<HTMLDivElement>>,
-  element?: HTMLDivElement | null,
-) => {
-  if (element && element !== ref.current) {
-    // если элемент изменился - включаем прокрутку для старого
-    ref.current && enableBodyScroll(ref.current);
-
-    // сохраняем новый элемент
-    ref.current = element;
-
-    // отключаем прокрутку для нового элемента
-    disableBodyScroll(element);
-  }
-};
+Screen.Header = HeaderSlot;
+Screen.Body = BodySlot;
+Screen.Footer = FooterSlot;

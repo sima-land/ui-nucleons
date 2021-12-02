@@ -1,10 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
-import { Screen, takeScrollableElement, setRefValue } from '../index';
+import { Screen } from '..';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import { ScreenLayout } from '../screen-layout';
-import { Portal } from '../../portal';
 
 jest.mock('body-scroll-lock', () => {
   const original = jest.requireActual('body-scroll-lock');
@@ -18,10 +16,38 @@ jest.mock('body-scroll-lock', () => {
 });
 
 describe('<Screen />', () => {
-  it('should render without props', () => {
-    const wrapper = mount(<Screen />);
+  it('should renders correctly', () => {
+    const wrapper = mount(
+      <Screen>
+        <Screen.Header divided title='Title' subtitle='Subtitle' />
+        <Screen.Body>
+          <p>Body</p>
+        </Screen.Body>
+        <Screen.Footer>
+          <p>Footer</p>
+        </Screen.Footer>
+      </Screen>,
+    );
 
     expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('[data-testid="screen"]')).toHaveLength(1);
+  });
+
+  it('should handle header title missing', () => {
+    const wrapper = mount(
+      <Screen>
+        <Screen.Header onClose={jest.fn()} />
+        <Screen.Body>
+          <p>Body</p>
+        </Screen.Body>
+        <Screen.Footer>
+          <p>Footer</p>
+        </Screen.Footer>
+      </Screen>,
+    );
+
+    expect(wrapper.find('button[data-testid="screen:close"]')).toHaveLength(1);
+    expect(wrapper.find('button[aria-label="Закрыть"]')).toHaveLength(1);
   });
 
   it('should handle props', () => {
@@ -32,19 +58,18 @@ describe('<Screen />', () => {
     expect(disableBodyScroll).toHaveBeenCalledTimes(0);
 
     const wrapper = mount(
-      <Screen
-        title='Test title'
-        subtitle='Test subtitle'
-        onBack={spy}
-        onClose={otherSpy}
-        withBackButton
-        withCloseButton
-        children='Test content'
-        footer='Test footer'
-      />,
+      <Screen>
+        <Screen.Header
+          title='Test title'
+          subtitle='Test subtitle'
+          onBack={spy}
+          onClose={otherSpy}
+        />
+        <Screen.Body>Body content</Screen.Body>
+        <Screen.Footer>Test footer</Screen.Footer>
+      </Screen>,
     );
 
-    expect(wrapper).toMatchSnapshot();
     expect(disableBodyScroll).toHaveBeenCalledTimes(1);
 
     expect(spy).toHaveBeenCalledTimes(0);
@@ -68,34 +93,18 @@ describe('<Screen />', () => {
 
   it('should renders without close button', () => {
     const wrapper = mount(
-      <Screen
-        title='Test title'
-        subtitle='Test subtitle'
-        onClose={undefined}
-        withCloseButton={false}
-        navBarProps={{
-          buttons: {
+      <Screen>
+        <Screen.Header
+          buttons={{
             end: { text: 'cross replacer' },
-          },
-        }}
-      />,
+          }}
+        />
+      </Screen>,
     );
 
     expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should handle "onFullScroll" prop', () => {
-    const spyScroll = jest.fn();
-
-    const wrapper = mount(<Screen onFullScroll={spyScroll} />);
-
-    expect(spyScroll).toHaveBeenCalledTimes(0);
-
-    act(() => {
-      wrapper.find(ScreenLayout).find('.content').getDOMNode().dispatchEvent(new Event('scroll'));
-    });
-
-    expect(spyScroll).toHaveBeenCalledTimes(1);
+    expect(wrapper.find('button[data-testid="screen:back"]')).toHaveLength(0);
+    expect(wrapper.find('button[data-testid="screen:close"]')).toHaveLength(0);
   });
 
   it('should handle "loading/loadingOverlayProps" props', () => {
@@ -107,62 +116,24 @@ describe('<Screen />', () => {
   });
 
   it('should handle "loadingArea" prop', () => {
-    const wrapper = mount(<Screen loading loadingArea='content' />);
+    const wrapper = mount(
+      <Screen loading loadingArea='content'>
+        <Screen.Header divided title='Title' subtitle='Subtitle' />
+        <Screen.Body>
+          <p>Body loaded content</p>
+        </Screen.Body>
+        <Screen.Footer>
+          <p>Footer content</p>
+        </Screen.Footer>
+      </Screen>,
+    );
 
     expect(wrapper).toMatchSnapshot();
-  });
-});
 
-describe('createTakeScrollableElement()', () => {
-  it('result should save element to ref and disable body scroll', () => {
-    const elementRef = { current: null };
-    const fakeElement = document.createElement('div');
+    expect(wrapper.find('[data-testid="screen:body"]')).toHaveLength(1);
+    expect(wrapper.find('[data-testid="screen:body"]').text()).not.toContain('Body loaded content');
 
-    takeScrollableElement(elementRef, fakeElement);
-
-    expect(elementRef.current).toBe(fakeElement);
-    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
-    expect(disableBodyScroll).toHaveBeenCalledTimes(1);
-  });
-
-  it('result should enable body scroll', () => {
-    const elementRef = { current: { old: true } };
-    const fakeElement = document.createElement('div');
-
-    takeScrollableElement(elementRef as any, fakeElement);
-
-    expect(elementRef.current).toBe(fakeElement);
-    expect(enableBodyScroll).toHaveBeenCalledTimes(1);
-    expect(disableBodyScroll).toHaveBeenCalledTimes(1);
-  });
-});
-
-describe('setRefElement()', () => {
-  it('should call ref function with element', () => {
-    const elementRef = jest.fn();
-    const fakeElement = document.createElement('div');
-
-    setRefValue(elementRef, fakeElement);
-
-    expect(elementRef).toHaveBeenCalledWith(fakeElement);
-  });
-  it('should ref current element', () => {
-    const elementRef = { current: null };
-    const fakeElement = document.createElement('div');
-
-    setRefValue(elementRef, fakeElement);
-
-    expect(elementRef.current).toBe(fakeElement);
-  });
-
-  it('should render Layer', () => {
-    const wrapper = mount(<Screen />);
-    expect(wrapper.find(Portal)).toHaveLength(1);
-  });
-
-  it('should not render Layer', () => {
-    const wrapper = mount(<Screen inPortal={false} />);
-
-    expect(wrapper.find(Portal)).toHaveLength(0);
+    expect(wrapper.find('[data-testid="screen:footer"]')).toHaveLength(1);
+    expect(wrapper.find('[data-testid="screen:footer"]').text()).toContain('Footer content');
   });
 });
