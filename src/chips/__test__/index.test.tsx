@@ -1,101 +1,103 @@
 import React from 'react';
 import { act, Simulate } from 'react-dom/test-utils';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { Chips } from '..';
+import type { ChipsItemProps } from '../item';
 
 describe('Chips', () => {
-  it('should renders correctly', () => {
+  it('should renders correctly', async () => {
     const spy = jest.fn();
 
-    const wrapper = mount(
-      <Chips
-        items={[
-          { children: 'Ручка для пакета' },
-          { children: 'Спортивные кружки' },
-          { children: 'Пакеты пищевые' },
-          { children: 'Пакеты для заморозки' },
-          { children: 'Домашние животные' },
-          { children: 'Дикие звери' },
-          { children: 'Крафт пакеты' },
-          { children: 'Интерьер' },
-          { children: 'Зоотовары' },
-        ]}
-        onItemClick={spy}
-        isItemChecked={item => item.children === 'Пакеты пищевые'}
-      />,
+    const items: ChipsItemProps[] = [
+      { children: 'Ручка для пакета' },
+      { children: 'Спортивные кружки' },
+      { children: 'Пакеты пищевые' },
+      { children: 'Пакеты для заморозки' },
+      { children: 'Домашние животные', checked: true },
+      { children: 'Дикие звери' },
+      { children: 'Крафт пакеты' },
+      { children: 'Интерьер' },
+      { children: 'Зоотовары' },
+    ];
+
+    const { container, findAllByTestId } = render(
+      <Chips>
+        {items.map((item, index) => (
+          <Chips.Item key={index} {...item} onClick={spy} />
+        ))}
+      </Chips>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
+    expect(await findAllByTestId('chips')).toHaveLength(1);
 
     expect(spy).toBeCalledTimes(0);
 
-    act(() => {
-      Simulate.click(wrapper.find('a').at(4).getDOMNode());
+    await act(async () => {
+      Simulate.click((await findAllByTestId('chips:item'))[4]);
     });
-    wrapper.update();
 
     expect(spy).toBeCalledTimes(1);
   });
 
-  it('should handle undefined "onItemClick" prop', () => {
-    const wrapper = mount(
-      <Chips
-        items={[
-          { children: 'Ручка для пакета' },
-          { children: 'Спортивные кружки' },
-          { children: 'Пакеты пищевые' },
-        ]}
-      />,
+  it('should handle items with "href" property', async () => {
+    const items: ChipsItemProps[] = [
+      { children: 'Ручка для пакета' },
+      { children: 'Спортивные кружки' },
+      { children: 'Пакеты пищевые' },
+    ].map(item => ({ ...item, href: 'www.foo-bar.com' }));
+
+    const { container } = render(
+      <Chips>
+        {items.map((item, index) => (
+          <Chips.Item key={index} {...item} />
+        ))}
+      </Chips>,
     );
 
-    expect(() => {
-      act(() => {
-        Simulate.click(wrapper.find('a').at(0).getDOMNode());
-      });
-    }).not.toThrow();
-    wrapper.update();
-  });
-
-  it('should handle items with "href" property', () => {
-    const wrapper = mount(
-      <Chips
-        items={[
-          { children: 'Ручка для пакета' },
-          { children: 'Спортивные кружки' },
-          { children: 'Пакеты пищевые' },
-        ].map(item => ({ ...item, href: 'www.foo-bar.com' }))}
-      />,
-    );
-
-    expect(wrapper.find('a').at(0).getDOMNode<HTMLAnchorElement>().href).toContain('foo-bar');
+    expect(
+      container.querySelector<HTMLAnchorElement>('a[data-testid="chips:item"]')?.href,
+    ).toContain('foo-bar');
   });
 
   it('should render with cross', () => {
-    const wrapper = mount(
-      <Chips
-        items={[
-          { children: 'Ручка для пакета' },
-          { children: 'Спортивные кружки' },
-          { children: 'Пакеты пищевые' },
-        ].map(item => ({ ...item, withCross: true }))}
-      />,
+    const items: ChipsItemProps[] = [
+      { children: 'Ручка для пакета' },
+      { children: 'Спортивные кружки' },
+      { children: 'Пакеты пищевые' },
+    ].map(item => ({ ...item, withCross: true }));
+
+    const { container } = render(
+      <Chips>
+        {items.map((item, index) => (
+          <Chips.Item key={index} {...item} />
+        ))}
+      </Chips>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
-  it('should provide able to pass target props to anchor', () => {
-    const wrapper = mount(
-      <Chips
-        items={[
-          { href: 'https://www.foo.com', children: 'Foo', target: '_blank' },
-          { href: 'https://www.bar.com', children: 'Bar', target: '_parent' },
-        ]}
-      />,
+  it('should provide able to pass target props to anchor', async () => {
+    const items: ChipsItemProps[] = [
+      { href: 'https://www.foo.com', children: 'Foo', target: '_blank' },
+      { href: 'https://www.bar.com', children: 'Bar', target: '_parent' },
+    ];
+
+    const { container } = render(
+      <Chips>
+        {items.map((item, index) => (
+          <Chips.Item key={index} {...item} />
+        ))}
+      </Chips>,
     );
 
-    expect(wrapper.find('a[data-testid="chips:item"]')).toHaveLength(2);
-    expect(wrapper.find('a[data-testid="chips:item"]').at(0).prop('target')).toBe('_blank');
-    expect(wrapper.find('a[data-testid="chips:item"]').at(1).prop('target')).toBe('_parent');
+    const chips = container.querySelectorAll<HTMLAnchorElement>('a[data-testid="chips:item"]');
+
+    expect(chips).toHaveLength(2);
+
+    chips.forEach((elem, index) => {
+      expect(elem.target).toBe(items[index].target);
+    });
   });
 });

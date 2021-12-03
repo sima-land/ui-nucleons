@@ -1,270 +1,183 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Chips should render with cross 1`] = `
-<Chips
-  items={
-    Array [
-      Object {
-        "children": "Ручка для пакета",
-        "withCross": true,
-      },
-      Object {
-        "children": "Спортивные кружки",
-        "withCross": true,
-      },
-      Object {
-        "children": "Пакеты пищевые",
-        "withCross": true,
-      },
-    ]
-  }
->
+<div>
   <div
-    className="list"
+    class="list"
     data-testid="chips"
   >
     <a
-      className="item"
+      class="item"
       data-testid="chips:item"
-      key="0"
-      onClick={[Function]}
       role="button"
     >
       <span
-        className="text"
+        class="text"
       >
         Ручка для пакета
       </span>
-      <ForwardRef(CrossSVG)
-        className="cross-svg"
+      <svg
+        class="cross-svg"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
       >
-        <svg
-          className="cross-svg"
-          height={16}
-          viewBox="0 0 16 16"
-          width={16}
-        >
-          <path
-            d="M12.707 4.707a1 1 0 00-1.414-1.414L8 6.586 4.707 3.293a1 1 0 00-1.414 1.414L6.586 8l-3.293 3.293a1 1 0 101.414 1.414L8 9.414l3.293 3.293a1 1 0 001.414-1.414L9.414 8l3.293-3.293z"
-          />
-        </svg>
-      </ForwardRef(CrossSVG)>
+        <path
+          d="M12.707 4.707a1 1 0 00-1.414-1.414L8 6.586 4.707 3.293a1 1 0 00-1.414 1.414L6.586 8l-3.293 3.293a1 1 0 101.414 1.414L8 9.414l3.293 3.293a1 1 0 001.414-1.414L9.414 8l3.293-3.293z"
+        />
+      </svg>
     </a>
     <a
-      className="item"
+      class="item"
       data-testid="chips:item"
-      key="1"
-      onClick={[Function]}
       role="button"
     >
       <span
-        className="text"
+        class="text"
       >
         Спортивные кружки
       </span>
-      <ForwardRef(CrossSVG)
-        className="cross-svg"
+      <svg
+        class="cross-svg"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
       >
-        <svg
-          className="cross-svg"
-          height={16}
-          viewBox="0 0 16 16"
-          width={16}
-        >
-          <path
-            d="M12.707 4.707a1 1 0 00-1.414-1.414L8 6.586 4.707 3.293a1 1 0 00-1.414 1.414L6.586 8l-3.293 3.293a1 1 0 101.414 1.414L8 9.414l3.293 3.293a1 1 0 001.414-1.414L9.414 8l3.293-3.293z"
-          />
-        </svg>
-      </ForwardRef(CrossSVG)>
+        <path
+          d="M12.707 4.707a1 1 0 00-1.414-1.414L8 6.586 4.707 3.293a1 1 0 00-1.414 1.414L6.586 8l-3.293 3.293a1 1 0 101.414 1.414L8 9.414l3.293 3.293a1 1 0 001.414-1.414L9.414 8l3.293-3.293z"
+        />
+      </svg>
     </a>
     <a
-      className="item"
+      class="item"
       data-testid="chips:item"
-      key="2"
-      onClick={[Function]}
       role="button"
     >
       <span
-        className="text"
+        class="text"
       >
         Пакеты пищевые
       </span>
-      <ForwardRef(CrossSVG)
-        className="cross-svg"
+      <svg
+        class="cross-svg"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
       >
-        <svg
-          className="cross-svg"
-          height={16}
-          viewBox="0 0 16 16"
-          width={16}
-        >
-          <path
-            d="M12.707 4.707a1 1 0 00-1.414-1.414L8 6.586 4.707 3.293a1 1 0 00-1.414 1.414L6.586 8l-3.293 3.293a1 1 0 101.414 1.414L8 9.414l3.293 3.293a1 1 0 001.414-1.414L9.414 8l3.293-3.293z"
-          />
-        </svg>
-      </ForwardRef(CrossSVG)>
+        <path
+          d="M12.707 4.707a1 1 0 00-1.414-1.414L8 6.586 4.707 3.293a1 1 0 00-1.414 1.414L6.586 8l-3.293 3.293a1 1 0 101.414 1.414L8 9.414l3.293 3.293a1 1 0 001.414-1.414L9.414 8l3.293-3.293z"
+        />
+      </svg>
     </a>
   </div>
-</Chips>
+</div>
 `;
 
 exports[`Chips should renders correctly 1`] = `
-<Chips
-  isItemChecked={[Function]}
-  items={
-    Array [
-      Object {
-        "children": "Ручка для пакета",
-      },
-      Object {
-        "children": "Спортивные кружки",
-      },
-      Object {
-        "children": "Пакеты пищевые",
-      },
-      Object {
-        "children": "Пакеты для заморозки",
-      },
-      Object {
-        "children": "Домашние животные",
-      },
-      Object {
-        "children": "Дикие звери",
-      },
-      Object {
-        "children": "Крафт пакеты",
-      },
-      Object {
-        "children": "Интерьер",
-      },
-      Object {
-        "children": "Зоотовары",
-      },
-    ]
-  }
-  onItemClick={[MockFunction]}
->
+<div>
   <div
-    className="list"
+    class="list"
     data-testid="chips"
   >
     <a
-      className="item"
+      class="item"
       data-testid="chips:item"
-      key="0"
-      onClick={[Function]}
       role="button"
     >
       <span
-        className="text"
+        class="text"
       >
         Ручка для пакета
       </span>
     </a>
     <a
-      className="item"
+      class="item"
       data-testid="chips:item"
-      key="1"
-      onClick={[Function]}
       role="button"
     >
       <span
-        className="text"
+        class="text"
       >
         Спортивные кружки
       </span>
     </a>
     <a
-      className="item checked"
+      class="item"
       data-testid="chips:item"
-      key="2"
-      onClick={[Function]}
       role="button"
     >
       <span
-        className="text"
+        class="text"
       >
         Пакеты пищевые
       </span>
     </a>
     <a
-      className="item"
+      class="item"
       data-testid="chips:item"
-      key="3"
-      onClick={[Function]}
       role="button"
     >
       <span
-        className="text"
+        class="text"
       >
         Пакеты для заморозки
       </span>
     </a>
     <a
-      className="item"
+      class="item checked"
       data-testid="chips:item"
-      key="4"
-      onClick={[Function]}
       role="button"
     >
       <span
-        className="text"
+        class="text"
       >
         Домашние животные
       </span>
     </a>
     <a
-      className="item"
+      class="item"
       data-testid="chips:item"
-      key="5"
-      onClick={[Function]}
       role="button"
     >
       <span
-        className="text"
+        class="text"
       >
         Дикие звери
       </span>
     </a>
     <a
-      className="item"
+      class="item"
       data-testid="chips:item"
-      key="6"
-      onClick={[Function]}
       role="button"
     >
       <span
-        className="text"
+        class="text"
       >
         Крафт пакеты
       </span>
     </a>
     <a
-      className="item"
+      class="item"
       data-testid="chips:item"
-      key="7"
-      onClick={[Function]}
       role="button"
     >
       <span
-        className="text"
+        class="text"
       >
         Интерьер
       </span>
     </a>
     <a
-      className="item"
+      class="item"
       data-testid="chips:item"
-      key="8"
-      onClick={[Function]}
       role="button"
     >
       <span
-        className="text"
+        class="text"
       >
         Зоотовары
       </span>
     </a>
   </div>
-</Chips>
+</div>
 `;

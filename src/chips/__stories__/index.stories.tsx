@@ -26,20 +26,24 @@ export const Primary = () => {
   const [checked, toggle] = useReducer(reducer, { 2: true });
 
   return (
-    <>
-      <Chips
-        items={ITEMS.map((children, id) => ({ children, id }))}
-        isItemChecked={item => checked[item.id]}
-        onItemClick={item => toggle(item.id)}
-      />
-    </>
+    <Chips>
+      {ITEMS.map((children, id) => (
+        <Chips.Item key={id} checked={checked[id]} onClick={() => toggle(id)}>
+          {children}
+        </Chips.Item>
+      ))}
+    </Chips>
   );
 };
 
 export const Links = () => (
-  <>
-    <Chips items={ITEMS.map(children => ({ children, href: 'https://ya.ru' }))} />
-  </>
+  <Chips>
+    {ITEMS.map((children, id) => (
+      <Chips.Item key={id} href='https://www.sima-land.ru'>
+        {children}
+      </Chips.Item>
+    ))}
+  </Chips>
 );
 
 export const WithCross = () => {
@@ -48,59 +52,44 @@ export const WithCross = () => {
 
   return (
     <>
-      <Chips
-        items={ITEMS.map((children, id) => ({ children, id, withCross: true }))}
-        isItemChecked={item => checked[item.id]}
-        onItemClick={item => toggle(item.id)}
-      />
+      <Chips>
+        {ITEMS.map((children, id) => (
+          <Chips.Item key={id} withCross checked={checked[id]} onClick={() => toggle(id)}>
+            {children}
+          </Chips.Item>
+        ))}
+      </Chips>
     </>
   );
 };
 
-export const TruncatedText = () => (
-  <div style={{ width: '200px' }}>
-    <h3>Regular:</h3>
-    <Chips
-      items={[
-        {
-          children:
-            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro, quos unde asperiores dolorum.',
-        },
-      ]}
-    />
+export const TruncatedText = () => {
+  const longText =
+    'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro, quos unde asperiores dolorum.';
 
-    <h3>With cross:</h3>
-    <Chips
-      items={[
-        {
-          withCross: true,
-          children:
-            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro, quos unde asperiores dolorum.',
-        },
-      ]}
-    />
+  return (
+    <div style={{ width: '240px' }}>
+      <h3>Базовый вид:</h3>
+      <Chips>
+        <Chips.Item>{longText}</Chips.Item>
+      </Chips>
 
-    <h3>Checked:</h3>
-    <Chips
-      items={[
-        {
-          children:
-            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro, quos unde asperiores dolorum.',
-        },
-      ]}
-      isItemChecked={() => true}
-    />
+      <h3>С крестиком:</h3>
+      <Chips>
+        <Chips.Item withCross>{longText}</Chips.Item>
+      </Chips>
 
-    <h3>Checked with cross:</h3>
-    <Chips
-      items={[
-        {
-          withCross: true,
-          children:
-            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro, quos unde asperiores dolorum.',
-        },
-      ]}
-      isItemChecked={() => true}
-    />
-  </div>
-);
+      <h3>Активный:</h3>
+      <Chips>
+        <Chips.Item checked>{longText}</Chips.Item>
+      </Chips>
+
+      <h3>Активный с крестиком:</h3>
+      <Chips>
+        <Chips.Item checked withCross>
+          {longText}
+        </Chips.Item>
+      </Chips>
+    </div>
+  );
+};
