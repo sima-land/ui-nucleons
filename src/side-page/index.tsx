@@ -4,7 +4,7 @@ import { useCloseHandler } from '../modal/utils';
 import { useLayer } from '../helpers/layer';
 import { useBodyScrollLock, WithBodyScrollLock } from '../_internal/body-scroll';
 import { SidePageBody, SidePageFooter, SidePageHeader } from './slots';
-import CSSTransition from 'react-transition-group/CSSTransition';
+import CSSTransition, { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 import classnames from 'classnames/bind';
 import styles from './side-page.module.scss';
 
@@ -23,6 +23,24 @@ export interface SidePageProps extends WithBodyScrollLock {
 
   /** Сработает при закрытии. */
   onClose?: () => void;
+
+  /** Обработчик "onEntering" для CSSTransition. */
+  onEntering?: CSSTransitionProps['onEntering'];
+
+  /** Обработчик "onEnter" для CSSTransition. */
+  onEnter?: CSSTransitionProps['onEnter'];
+
+  /** Обработчик "onEntered" для CSSTransition. */
+  onEntered?: CSSTransitionProps['onEntered'];
+
+  /** Обработчик "onExiting" для CSSTransition. */
+  onExiting?: CSSTransitionProps['onExiting'];
+
+  /** Обработчик "onExited" для CSSTransition. */
+  onExited?: CSSTransitionProps['onExited'];
+
+  /** Обработчик "onExit" для CSSTransition. */
+  onExit?: CSSTransitionProps['onExit'];
 }
 
 const cx = classnames.bind(styles);
@@ -39,7 +57,17 @@ const transitionClasses = {
  * @param props Свойства.
  * @return Элемент.
  */
-export const SidePage = ({ shown, withTransitions, ...restProps }: SidePageProps) => {
+export const SidePage = ({
+  shown,
+  withTransitions,
+  onEnter,
+  onEntering,
+  onEntered,
+  onExit,
+  onExiting,
+  onExited,
+  ...restProps
+}: SidePageProps) => {
   const transitionDuration = withTransitions ? 300 : 0;
 
   return (
@@ -48,6 +76,12 @@ export const SidePage = ({ shown, withTransitions, ...restProps }: SidePageProps
       timeout={transitionDuration}
       classNames={transitionClasses}
       unmountOnExit
+      onEntering={onEntering}
+      onEnter={onEnter}
+      onEntered={onEntered}
+      onExit={onExit}
+      onExiting={onExiting}
+      onExited={onExited}
     >
       {transitionStatus => (
         <SidePageInner {...restProps} {...{ transitionStatus, transitionDuration }} />

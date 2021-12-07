@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useReducer, useEffect, useRef } from 'react';
 import { SidePage, SidePageProps } from '..';
 import { Button } from '../../button';
 import { Panel } from '../../panel';
@@ -253,5 +253,54 @@ export const NoTransitions = () => {
         />
       </SidePage>
     </>
+  );
+};
+
+export const LazyLoading = () => {
+  const [shown, toggle] = useState<boolean>(false);
+
+  return (
+    <>
+      <Button onClick={() => toggle(true)}>Показать</Button>
+
+      <SidePage size='s' withTransitions shown={shown} onClose={() => toggle(false)}>
+        <SidePage.Header divided title='Ленивая загрузка' onClose={() => toggle(false)} />
+        <SidePage.Body>
+          <LazyLoadingList />
+        </SidePage.Body>
+      </SidePage>
+    </>
+  );
+};
+
+const LazyLoadingList = () => {
+  const [size, setSize] = useState<number>(25);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      const observer = new IntersectionObserver(
+        ([entry]) => entry.isIntersecting && setSize(s => Math.min(300, s + 25)),
+      );
+
+      observer.observe(ref.current);
+
+      return () => observer.disconnect();
+    }
+  }, []);
+
+  return (
+    <div style={{ padding: '32px' }}>
+      <div>
+        {times(size).map(index => (
+          <p key={index}>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, itaque quas illum
+            iusto quam veniam saepe ut id repudiandae excepturi? Consectetur distinctio illo
+            consequuntur totam aliquid doloremque iure quidem laborum.
+          </p>
+        ))}
+      </div>
+      <div ref={ref} />
+    </div>
   );
 };
