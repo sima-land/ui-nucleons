@@ -1,0 +1,17 @@
+.root {
+  display: inline-flex;
+  position: relative;
+}
+
+.stroke {
+  overflow: visible;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.svg {
+  display: block;
+  position: relative;
+}
