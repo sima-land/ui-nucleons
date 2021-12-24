@@ -220,9 +220,9 @@
     display: block;
     max-width: 100%;
     margin-bottom: 32px;
-  }
-  @include breakpoints.up('xs') {
-    margin-bottom: 40px;
+    @include breakpoints.up('xs') {
+      margin-bottom: 40px;
+    }
   }
 
   // цитата
