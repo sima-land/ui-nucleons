@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { forwardRef, useRef, useImperativeHandle, useContext } from 'react';
 import { NavBar, NavBarProps } from '../nav-bar';
 import { get } from 'lodash';
 import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
 import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
+import { useBodyScrollLock, allowTouchMove } from '../_internal/body-scroll';
+import { useInfiniteScroll } from '../hooks';
+import { LoadingOverlay } from '../loading-overlay';
+import { ScreenContext } from './utils';
+import styles from './screen.module.scss';
 
 export interface HeaderSlotProps extends NavBarProps {
   /** Нужна ли разделительная полоса внизу шапки экрана. */
@@ -68,10 +73,35 @@ export const HeaderSlot = ({
 
 /**
  * Слот основного контента экрана.
- * @param props Свойства.
- * @return Элемент.
  */
-export const BodySlot: React.FC = ({ children }) => <>{children}</>;
+export const BodySlot = forwardRef<HTMLDivElement | null, { children?: React.ReactNode }>(
+  function BodySlot({ children }, outerRef) {
+    const { loading, loadingOverlayProps, onFullScroll, fullScrollThreshold } =
+      useContext(ScreenContext);
+
+    // при блокировке прокрутки нужно передавать элемент, которому нужно сохранить возможность прокрутки
+    // https://github.com/willmcpo/body-scroll-lock/blame/79c4cf2c956eb7d5cf8d54a03d12751bc6ac8aa3/README.md#L52
+    // поэтому используем внутренний ref и useImperativeHandle
+    const ref = useRef<HTMLDivElement>(null);
+
+    useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(outerRef, () => ref.current);
+
+    useBodyScrollLock(ref, true, { allowTouchMove });
+
+    useInfiniteScroll(ref, { onFullScroll, threshold: fullScrollThreshold });
+
+    return (
+      // ВАЖНО: элемент с ref должен выводиться всегда (без условий), т.к. он нужен для блокировки прокрутки
+      <div ref={ref} className={styles.body} data-testid='screen:body'>
+        {loading ? (
+          <LoadingOverlay {...loadingOverlayProps} fill={false} style={{ height: '100%' }} />
+        ) : (
+          children
+        )}
+      </div>
+    );
+  },
+);
 
 /**
  * Слот футера экрана.

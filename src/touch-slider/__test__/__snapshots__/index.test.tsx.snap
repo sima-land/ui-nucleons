@@ -8,6 +8,7 @@ exports[`<TouchSlider /> should renders correctly 1`] = `
     >
       <div
         className="outer invisible-scroll"
+        data-bsl-ignore={true}
       >
         <div
           className="inner"

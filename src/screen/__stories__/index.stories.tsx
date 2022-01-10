@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { Screen, ScreenProps } from '..';
 import { Button } from '../../button';
@@ -6,7 +6,7 @@ import { Box } from '../../box';
 import { TouchSlider } from '../../touch-slider';
 import { MobileLayout } from '../../layout';
 import { times } from 'lodash';
-import on from '../../helpers/on';
+import { Bootstrap, useLoading } from './utils';
 
 export default {
   title: 'mobile/Screen',
@@ -16,22 +16,9 @@ export default {
   },
 };
 
-const useLoading = () => {
-  const [state, setState] = useState<'closed' | 'loading' | 'opened'>('closed');
-
-  const load = useCallback(() => {
-    if (state === 'closed') {
-      setState('loading');
-      setTimeout(() => setState('opened'), 1000);
-    }
-  }, [state]);
-
-  const reset = useCallback(() => {
-    setState('closed');
-  }, []);
-
-  return { state, load, reset } as const;
-};
+const actions = {
+  screenClosed: action('Screen: нажата кнопка закрытия'),
+} as const;
 
 const PageTemplate = ({ onButtonClick }: { onButtonClick: React.MouseEventHandler }) => (
   <MobileLayout>
@@ -56,7 +43,7 @@ const LoadingTemplate = ({ loadingArea }: Pick<ScreenProps, 'loadingArea'>) => {
   const { state, load, reset } = useLoading();
 
   return (
-    <>
+    <Bootstrap>
       <PageTemplate onButtonClick={load} />
 
       {state !== 'closed' && (
@@ -90,59 +77,61 @@ const LoadingTemplate = ({ loadingArea }: Pick<ScreenProps, 'loadingArea'>) => {
           </Screen.Footer>
         </Screen>
       )}
-    </>
+    </Bootstrap>
   );
 };
 
 export const Primary = () => (
-  <Screen>
-    <Screen.Header
-      divided
-      title='Довольно большой заголовок'
-      subtitle='И не менее большой подзаголовок здесь'
-      onBack={action('Screen: Нажата кнопка закрытия')}
-      onClose={action('Screen: Нажата кнопка возврата')}
-    />
-    <Screen.Body>
-      <MobileLayout>
-        {times(60).map(index => (
-          <div key={index} style={{ margin: '32px 0' }}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima necessitatibus culpa
-            magnam voluptas alias quia, dolorum ex et eligendi aperiam beatae illum fugit, ipsum
-            expedita obcaecati optio! Dolores, illum odit.
-          </div>
-        ))}
-      </MobileLayout>
-    </Screen.Body>
-    <Screen.Footer>
-      <MobileLayout>
-        <Button
-          style={{ width: '100%', margin: '12px 0' }}
-          onClick={() => {
-            action('Screen: Нажата кнопка в футере')();
-          }}
-        >
-          Сделать что-то
-        </Button>
-      </MobileLayout>
-    </Screen.Footer>
-  </Screen>
+  <Bootstrap>
+    <Screen>
+      <Screen.Header
+        divided
+        title='Довольно большой заголовок'
+        subtitle='И не менее большой подзаголовок здесь'
+        onBack={action('Screen: Нажата кнопка возврата')}
+        onClose={actions.screenClosed}
+      />
+      <Screen.Body>
+        <MobileLayout>
+          {times(60).map(index => (
+            <div key={index} style={{ margin: '32px 0' }}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima necessitatibus culpa
+              magnam voluptas alias quia, dolorum ex et eligendi aperiam beatae illum fugit, ipsum
+              expedita obcaecati optio! Dolores, illum odit.
+            </div>
+          ))}
+        </MobileLayout>
+      </Screen.Body>
+      <Screen.Footer>
+        <MobileLayout>
+          <Button
+            style={{ width: '100%', margin: '12px 0' }}
+            onClick={() => action('Screen: Нажата кнопка в футере')()}
+          >
+            Сделать что-то
+          </Button>
+        </MobileLayout>
+      </Screen.Footer>
+    </Screen>
+  </Bootstrap>
 );
 
 export const NoHeaderFooter = () => (
-  <Screen>
-    <Screen.Body>
-      <MobileLayout>
-        {times(100).map(index => (
-          <Box key={index} padding={4}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima necessitatibus culpa
-            magnam voluptas alias quia, dolorum ex et eligendi aperiam beatae illum fugit, ipsum
-            expedita obcaecati optio! Dolores, illum odit.
-          </Box>
-        ))}
-      </MobileLayout>
-    </Screen.Body>
-  </Screen>
+  <Bootstrap>
+    <Screen>
+      <Screen.Body>
+        <MobileLayout>
+          {times(100).map(index => (
+            <Box key={index} padding={4}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima necessitatibus culpa
+              magnam voluptas alias quia, dolorum ex et eligendi aperiam beatae illum fugit, ipsum
+              expedita obcaecati optio! Dolores, illum odit.
+            </Box>
+          ))}
+        </MobileLayout>
+      </Screen.Body>
+    </Screen>
+  </Bootstrap>
 );
 
 export const LoadingAreaFull = () => <LoadingTemplate loadingArea='full' />;
@@ -153,7 +142,7 @@ export const FullScrollAfterLoading = () => {
   const { state, load, reset } = useLoading();
 
   return (
-    <>
+    <Bootstrap>
       <PageTemplate onButtonClick={load} />
 
       {state !== 'closed' && (
@@ -180,49 +169,34 @@ export const FullScrollAfterLoading = () => {
           </Screen.Body>
         </Screen>
       )}
-    </>
+    </Bootstrap>
   );
 };
 
 export const BodyScrollLock = () => {
+  const bodyRef = useRef<HTMLDivElement>(null);
   const [opened, toggle] = useState<boolean>(false);
 
-  useEffect(() => {
-    document.documentElement.style.setProperty('--vh', `${window.visualViewport.height / 100}px`);
-
-    return on(window, 'resize', () => {
-      document.documentElement.style.setProperty('--vh', `${window.visualViewport.height / 100}px`);
-    });
-  }, []);
-
   return (
-    <>
-      <MobileLayout>
-        <Button onClick={() => toggle(true)}>Показать экран</Button>
-
-        <div style={{ marginTop: '24px' }}>
-          {times(32).map(index => (
-            <p key={index}>
-              Здесь много текста чтобы убедиться что после прокрутки и закрытия экрана фоновый
-              контент не был прокручен
-            </p>
-          ))}
-        </div>
-      </MobileLayout>
+    <Bootstrap>
+      <PageTemplate onButtonClick={() => toggle(true)} />
 
       {opened && (
         <Screen>
           <Screen.Header
             divided
             title='Пример блокировки прокрутки body'
-            onClose={() => toggle(false)}
+            onClose={() => {
+              actions.screenClosed(`scrollTop = ${bodyRef.current?.scrollTop}`);
+              toggle(false);
+            }}
           />
-          <Screen.Body>
+          <Screen.Body ref={bodyRef}>
             <MobileLayout>
               {times(24).map(index => (
                 <p key={index}>
                   Можно немного прокрутить этот экран вниз чтобы проверить, что, при его открытии,
-                  горизонтальная прокрутка дочернего элемента на iOS работает не совсем как надо.
+                  горизонтальная прокрутка дочернего элемента на iOS работает как надо.
                 </p>
               ))}
             </MobileLayout>
@@ -256,6 +230,6 @@ export const BodyScrollLock = () => {
           </Screen.Body>
         </Screen>
       )}
-    </>
+    </Bootstrap>
   );
 };

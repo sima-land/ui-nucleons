@@ -1,5 +1,6 @@
 import React from 'react';
 import { MobileLayout } from '../layout';
+import { BSL_IGNORE_ATTR } from '../constants';
 import classnames from 'classnames/bind';
 import styles from './touch-slider.module.scss';
 
@@ -17,7 +18,7 @@ const cx = classnames.bind(styles);
  */
 export const TouchSlider: React.FC<TouchSliderProps> = ({ children }) => (
   <MobileLayout>
-    <div className={cx('outer', 'invisible-scroll')}>
+    <div className={cx('outer', 'invisible-scroll')} {...{ [BSL_IGNORE_ATTR]: true }}>
       <div className={cx('inner')}>{children}</div>
     </div>
   </MobileLayout>

@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import { mount } from 'enzyme';
 import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
-import { useBodyScrollLock, WithBodyScrollLock } from '../body-scroll';
+import { useBodyScrollLock, WithBodyScrollLock, allowTouchMove } from '../body-scroll';
+import { BSL_IGNORE_ATTR } from '../../constants';
 
 jest.mock('body-scroll-lock', () => {
   const original = jest.requireActual('body-scroll-lock');
@@ -33,5 +34,44 @@ describe('useScrollDisable', () => {
 
     expect(disableBodyScroll).toHaveBeenCalledTimes(1);
     expect(enableBodyScroll).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('allowTouchMove', () => {
+  let container: HTMLDivElement;
+
+  beforeEach(() => {
+    container = document.createElement('div');
+    document.body.append(container);
+  });
+
+  afterEach(() => {
+    container.remove();
+  });
+
+  it('should works with marked element', () => {
+    container.innerHTML = `
+      <div ${BSL_IGNORE_ATTR}="true">
+        <div id="test-target">Target</div>
+      </div>
+    `;
+
+    document.body.append(container);
+
+    const target = document.body.querySelector('#test-target') as any;
+
+    expect(allowTouchMove(target)).toBe(true);
+  });
+
+  it('should works without marked element', () => {
+    container.innerHTML = `
+      <div>
+        <div id="test-target">Target</div>
+      </div>
+    `;
+
+    const target = document.body.querySelector('#test-target') as any;
+
+    expect(allowTouchMove(target)).toBe(false);
   });
 });
