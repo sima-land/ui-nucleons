@@ -1,5 +1,6 @@
 import { disableBodyScroll, enableBodyScroll, BodyScrollOptions } from 'body-scroll-lock';
 import { useEffect } from 'react';
+import { BSL_IGNORE_ATTR } from '../constants';
 
 export interface WithBodyScrollLock {
   /** Нужно ли выключать прокрутку body. */
@@ -29,4 +30,23 @@ export const useBodyScrollLock = (
       return () => enableBodyScroll(element);
     }
   }, [needDisable, options]);
+};
+
+/**
+ * Проверяет необходимость блокировки дочерних элементов в прокручиваемом элементе.
+ * @param startEl Начальный элемент.
+ * @return Нужно ли позволить перетаскивание элемента.
+ */
+export const allowTouchMove: Required<BodyScrollOptions>['allowTouchMove'] = (startEl): boolean => {
+  let el: HTMLElement | Element | null = startEl;
+
+  while (el && el !== document.body) {
+    if (el.getAttribute(BSL_IGNORE_ATTR) !== null) {
+      return true;
+    }
+
+    el = el.parentElement;
+  }
+
+  return false;
 };

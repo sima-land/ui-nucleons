@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import { Screen } from '..';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import { render } from '@testing-library/react';
 
 jest.mock('body-scroll-lock', () => {
   const original = jest.requireActual('body-scroll-lock');
@@ -18,7 +19,7 @@ jest.mock('body-scroll-lock', () => {
 describe('<Screen />', () => {
   it('should renders correctly', () => {
     const wrapper = mount(
-      <Screen>
+      <Screen fullScrollThreshold={100}>
         <Screen.Header divided title='Title' subtitle='Subtitle' />
         <Screen.Body>
           <p>Body</p>
@@ -99,6 +100,7 @@ describe('<Screen />', () => {
             end: { text: 'cross replacer' },
           }}
         />
+        <Screen.Body />
       </Screen>,
     );
 
@@ -109,7 +111,9 @@ describe('<Screen />', () => {
 
   it('should handle "loading/loadingOverlayProps" props', () => {
     const wrapper = mount(
-      <Screen loading loadingOverlayProps={{ spinnerProps: { size: 'medium' } }} />,
+      <Screen loading loadingOverlayProps={{ spinnerProps: { size: 'medium' } }}>
+        <Screen.Body />
+      </Screen>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -135,5 +139,54 @@ describe('<Screen />', () => {
 
     expect(wrapper.find('[data-testid="screen:footer"]')).toHaveLength(1);
     expect(wrapper.find('[data-testid="screen:footer"]').text()).toContain('Footer content');
+  });
+
+  it('should handle "data-testid"', () => {
+    const { queryAllByTestId } = render(
+      <Screen data-testid='my-screen'>
+        <Screen.Header divided title='Title' subtitle='Subtitle' />
+        <Screen.Body>
+          <p>Body loaded content</p>
+        </Screen.Body>
+        <Screen.Footer>
+          <p>Footer content</p>
+        </Screen.Footer>
+      </Screen>,
+    );
+
+    expect(queryAllByTestId('screen')).toHaveLength(0);
+    expect(queryAllByTestId('my-screen')).toHaveLength(1);
+  });
+
+  it('should handle ref on body slot', () => {
+    const ref = createRef<HTMLDivElement>();
+
+    render(
+      <Screen data-testid='my-screen'>
+        <Screen.Header divided title='Title' subtitle='Subtitle' />
+        <Screen.Body ref={ref}>
+          <p>Body loaded content</p>
+        </Screen.Body>
+        <Screen.Footer>
+          <p>Footer content</p>
+        </Screen.Footer>
+      </Screen>,
+    );
+
+    expect(ref.current instanceof HTMLDivElement).toBe(true);
+  });
+
+  it('should throw exception when body slot is missing', () => {
+    expect(() => {
+      render(
+        <Screen>
+          <Screen.Header title='No body test' />
+        </Screen>,
+      );
+    }).toThrow(
+      Error(
+        'Looks like you are trying to render <Screen /> without <Screen.Body /> slot, but it is required',
+      ),
+    );
   });
 });

@@ -5,7 +5,7 @@ import classnames from 'classnames/bind';
 import styles from './alert.module.scss';
 import { InnerBorder } from '../styling/borders';
 import { LayerProvider, useLayer } from '../helpers/layer';
-import { WithBodyScrollLock, useBodyScrollLock } from '../_internal/body-scroll';
+import { WithBodyScrollLock, useBodyScrollLock, allowTouchMove } from '../_internal/body-scroll';
 
 export interface AlertProps extends WithBodyScrollLock {
   /** Основное содержимое. */
@@ -76,7 +76,7 @@ const AlertInner = ({
   const rootRef = useRef<HTMLDivElement>(null);
   const layer = useLayer();
 
-  useBodyScrollLock(rootRef, withScrollDisable, scrollDisableOptions);
+  useBodyScrollLock(rootRef, withScrollDisable, { allowTouchMove, ...scrollDisableOptions });
 
   return (
     <div
