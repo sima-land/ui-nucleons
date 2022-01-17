@@ -24,4 +24,18 @@ describe('<ArrowButton />', () => {
 
     expect(spy).toBeCalledTimes(1);
   });
+
+  it('should handle "data-testid"', function () {
+    const { queryAllByTestId } = render(
+      <ArrowButton
+        size='l'
+        direction='left'
+        aria-label='Назад'
+        data-testid='specific-arrow-button'
+      />,
+    );
+
+    expect(queryAllByTestId('arrow-button')).toHaveLength(0);
+    expect(queryAllByTestId('specific-arrow-button')).toHaveLength(1);
+  });
 });

@@ -1,152 +1,197 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Rating /> renders correctly without params 1`] = `
-<Rating
-  className="test-class"
-  value={3.4}
->
+exports[`<Rating /> should handle size prop missing 1`] = `
+<div>
   <div
-    className="root test-class"
-    data-rating={3.4}
+    class="root"
+    data-rating="3.4"
     data-testid="rating"
   >
-    <Star
-      key="0"
-      type="full"
+    <div
+      class="star size-s"
     >
-      <div
-        className="star size-s"
+      <svg
+        class="svg full"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <SvgStar
-          className="svg full"
-        >
-          <svg
-            className="svg full"
-            height={24}
-            viewBox="0 0 24 24"
-            width={24}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-            />
-          </svg>
-        </SvgStar>
-      </div>
-    </Star>
-    <Star
-      key="1"
-      type="full"
+        <path
+          d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
+        />
+      </svg>
+    </div>
+    <div
+      class="star size-s"
     >
-      <div
-        className="star size-s"
+      <svg
+        class="svg full"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <SvgStar
-          className="svg full"
-        >
-          <svg
-            className="svg full"
-            height={24}
-            viewBox="0 0 24 24"
-            width={24}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-            />
-          </svg>
-        </SvgStar>
-      </div>
-    </Star>
-    <Star
-      key="2"
-      type="full"
+        <path
+          d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
+        />
+      </svg>
+    </div>
+    <div
+      class="star size-s"
     >
-      <div
-        className="star size-s"
+      <svg
+        class="svg full"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <SvgStar
-          className="svg full"
-        >
-          <svg
-            className="svg full"
-            height={24}
-            viewBox="0 0 24 24"
-            width={24}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-            />
-          </svg>
-        </SvgStar>
-      </div>
-    </Star>
-    <Star
-      key="3"
-      type="half"
+        <path
+          d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
+        />
+      </svg>
+    </div>
+    <div
+      class="star size-s"
     >
-      <div
-        className="star size-s"
+      <svg
+        class="svg"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <SvgStar
-          className="svg"
-        >
-          <svg
-            className="svg"
-            height={24}
-            viewBox="0 0 24 24"
-            width={24}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-            />
-          </svg>
-        </SvgStar>
-        <SvgStar
-          className="svg half"
-          preserveAspectRatio="xMinYMin slice"
-        >
-          <svg
-            className="svg half"
-            height={24}
-            preserveAspectRatio="xMinYMin slice"
-            viewBox="0 0 24 24"
-            width={24}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-            />
-          </svg>
-        </SvgStar>
-      </div>
-    </Star>
-    <Star
-      key="4"
-      type="empty"
+        <path
+          d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
+        />
+      </svg>
+      <svg
+        class="svg half"
+        height="24"
+        preserveAspectRatio="xMinYMin slice"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
+        />
+      </svg>
+    </div>
+    <div
+      class="star size-s"
     >
-      <div
-        className="star size-s"
+      <svg
+        class="svg"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <SvgStar
-          className="svg"
-        >
-          <svg
-            className="svg"
-            height={24}
-            viewBox="0 0 24 24"
-            width={24}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
-            />
-          </svg>
-        </SvgStar>
-      </div>
-    </Star>
+        <path
+          d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
+        />
+      </svg>
+    </div>
   </div>
-</Rating>
+</div>
+`;
+
+exports[`<Rating /> should renders correctly 1`] = `
+<div>
+  <div
+    class="root test-class"
+    data-rating="3.4"
+    data-testid="rating"
+  >
+    <div
+      class="star size-m"
+    >
+      <svg
+        class="svg full"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
+        />
+      </svg>
+    </div>
+    <div
+      class="star size-m"
+    >
+      <svg
+        class="svg full"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
+        />
+      </svg>
+    </div>
+    <div
+      class="star size-m"
+    >
+      <svg
+        class="svg full"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
+        />
+      </svg>
+    </div>
+    <div
+      class="star size-m"
+    >
+      <svg
+        class="svg"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
+        />
+      </svg>
+      <svg
+        class="svg half"
+        height="24"
+        preserveAspectRatio="xMinYMin slice"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
+        />
+      </svg>
+    </div>
+    <div
+      class="star size-m"
+    >
+      <svg
+        class="svg"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11.304 2.318a.75.75 0 011.392 0l2.567 6.393 6.874.466a.75.75 0 01.43 1.324l-5.287 4.417 1.68 6.681a.75.75 0 01-1.125.818L12 18.754l-5.835 3.663A.75.75 0 015.04 21.6l1.681-6.68L1.433 10.5a.75.75 0 01.43-1.324l6.874-.466 2.567-6.393z"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
 `;

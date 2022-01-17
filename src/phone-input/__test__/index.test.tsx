@@ -7,6 +7,7 @@ import { Dropdown } from '../../dropdown';
 import { DropdownItem } from '../../dropdown-item';
 import { MaskedField } from '../../masked-field';
 import { countries } from '../presets';
+import { render } from '@testing-library/react';
 
 describe('<PhoneInput />', () => {
   it('should render without props', () => {
@@ -137,5 +138,11 @@ describe('<PhoneInput />', () => {
     expect(blurSpy.mock.calls[0][1].ready).toBe(true);
     expect(blurSpy.mock.calls[0][1].value).toBe('000111');
     expect(blurSpy.mock.calls[0][1].cleanValue).toBe('000111');
+  });
+
+  it('should handle "label"', () => {
+    const { getByTestId } = render(<PhoneInput value='0000000' label='My Phone' />);
+
+    expect(getByTestId('text-field:label').textContent).toBe('My Phone');
   });
 });

@@ -1,32 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Price should handle props 1`] = `
-<Price
-  className="test-class"
-  crossedOut={true}
-  currencyGrapheme="$"
-  graphemeBefore={true}
-  value="1234567.89"
->
+<div>
   <span
-    className="root test-class crossed-out"
+    class="root test-class crossed-out"
     data-testid="price"
   >
     $ 1 234 567,89
   </span>
-</Price>
+</div>
 `;
 
 exports[`Price should renders correctly 1`] = `
-<Price
-  currencyGrapheme="₽"
-  value="123.45"
->
+<div>
   <span
-    className="root"
+    class="root"
     data-testid="price"
   >
     123,45 ₽
   </span>
-</Price>
+</div>
 `;

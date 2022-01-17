@@ -1,6 +1,7 @@
 import React from 'react';
 import { act, Simulate } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { Avatar } from '../index';
 
 describe('<Avatar />', () => {
@@ -76,5 +77,12 @@ describe('<Avatar />', () => {
     wrapper.setProps({ imageUrl: 'https://www.images.com/other/' });
 
     expect(wrapper.find('img')).toHaveLength(1);
+  });
+
+  it('should handle "data-testid"', async function () {
+    const { queryAllByTestId } = render(<Avatar size={40} data-testid='specific-avatar' />);
+
+    expect(queryAllByTestId('avatar')).toHaveLength(0);
+    expect(queryAllByTestId('specific-avatar')).toHaveLength(1);
   });
 });

@@ -50,6 +50,7 @@ exports[`Select should render loading state 1`] = `
           >
             <label
               className="label focused variant-desktop filled"
+              data-testid="text-field:label"
             >
               Формат каталога
             </label>
@@ -308,6 +309,7 @@ exports[`Select should renders correctly 1`] = `
           >
             <label
               className="label variant-desktop filled"
+              data-testid="text-field:label"
             >
               Формат каталога
             </label>
@@ -449,6 +451,7 @@ exports[`Select should renders correctly 2`] = `
           >
             <label
               className="label focused variant-desktop filled"
+              data-testid="text-field:label"
             >
               Формат каталога
             </label>

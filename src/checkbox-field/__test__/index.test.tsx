@@ -2,6 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { Checkbox } from '../../checkbox';
 import { CheckboxField } from '..';
+import { render } from '@testing-library/react';
 
 describe('<CheckboxField />', () => {
   it('should handle "label" prop', () => {
@@ -71,5 +72,14 @@ describe('<CheckboxField />', () => {
     );
 
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should handle "data-testid"', () => {
+    const { queryAllByTestId } = render(
+      <CheckboxField label='Hello' data-testid='my-checkbox-field' />,
+    );
+
+    expect(queryAllByTestId('checkbox-field')).toHaveLength(0);
+    expect(queryAllByTestId('my-checkbox-field')).toHaveLength(1);
   });
 });

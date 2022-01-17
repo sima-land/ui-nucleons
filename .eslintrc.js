@@ -4,11 +4,7 @@ module.exports = {
   extends: require.resolve('@sima-land/linters/eslint'),
   overrides: [
     {
-      files: [
-        './**/__stories__/**/*',
-        './**/__stories__/**/*',
-        './**/*.test.*',
-      ],
+      files: ['./**/__stories__/**/*', './**/__stories__/**/*', './**/*.test.*'],
       rules: {
         'require-jsdoc': 'off',
         'jsdoc/require-jsdoc': 'off',

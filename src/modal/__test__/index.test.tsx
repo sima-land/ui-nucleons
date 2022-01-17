@@ -5,6 +5,7 @@ import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
 import { act } from 'react-dom/test-utils';
 import { TopBar } from '../../top-bar';
 import { useBodyScrollLock } from '../../_internal/body-scroll';
+import { render } from '@testing-library/react';
 
 jest.mock('../../_internal/body-scroll', () => {
   const original = jest.requireActual('../../_internal/body-scroll');
@@ -181,5 +182,16 @@ describe('<Modal />', () => {
     );
 
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should handle "data-testid"', () => {
+    const { container } = render(
+      <Modal data-testid='some-modal'>
+        <Modal.Body>Main Content</Modal.Body>
+      </Modal>,
+    );
+
+    expect(container.querySelectorAll('[data-testid="modal"]')).toHaveLength(0);
+    expect(container.querySelectorAll('[data-testid="some-modal"]')).toHaveLength(1);
   });
 });

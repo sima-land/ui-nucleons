@@ -234,6 +234,7 @@ exports[`<TextField /> should handle "label" prop 1`] = `
       >
         <label
           className="label variant-desktop as-placeholder"
+          data-testid="text-field:label"
         >
           The best label in our world!
         </label>
@@ -285,6 +286,7 @@ exports[`<TextField /> should handle "label" prop 2`] = `
       >
         <label
           className="label disabled failed variant-mobile as-placeholder"
+          data-testid="text-field:label"
         >
           The best label in our world!
         </label>

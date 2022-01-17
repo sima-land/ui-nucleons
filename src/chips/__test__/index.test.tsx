@@ -100,4 +100,16 @@ describe('Chips', () => {
       expect(elem.target).toBe(items[index].target);
     });
   });
+
+  it('should handle "data-testid"', () => {
+    const { queryAllByTestId } = render(
+      <Chips data-testid='custom-chips'>
+        <Chips.Item>Hello</Chips.Item>
+        <Chips.Item>World</Chips.Item>
+      </Chips>,
+    );
+
+    expect(queryAllByTestId('chips')).toHaveLength(0);
+    expect(queryAllByTestId('custom-chips')).toHaveLength(1);
+  });
 });

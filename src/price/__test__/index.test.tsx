@@ -1,16 +1,16 @@
 import React from 'react';
 import { Price } from '..';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 
 describe('Price', () => {
   it('should renders correctly', () => {
-    const wrapper = mount(<Price value='123.45' currencyGrapheme='₽' />);
+    const { container } = render(<Price value='123.45' currencyGrapheme='₽' />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('should handle props', () => {
-    const wrapper = mount(
+    const { container } = render(
       <Price
         value='1234567.89'
         currencyGrapheme='$'
@@ -20,6 +20,13 @@ describe('Price', () => {
       />,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
+  });
+
+  it('should handle "data-testid"', () => {
+    const { queryAllByTestId } = render(<Price value='100.200' data-testid='main-price' />);
+
+    expect(queryAllByTestId('price')).toHaveLength(0);
+    expect(queryAllByTestId('main-price')).toHaveLength(1);
   });
 });

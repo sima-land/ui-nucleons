@@ -1,11 +1,10 @@
 module.exports = {
-  preset: 'ts-jest/presets/js-with-babel',
   globalSetup: '<rootDir>/.jest/global-setup.js',
   testEnvironment: 'jsdom',
-  setupFiles: [
-    './.jest/setup.js',
-  ],
+  setupFiles: ['./.jest/setup.js'],
   transform: {
+    '^.+\\.(t|j)sx?$': 'babel-jest',
+
     // svg заменяем на React-компоненты
     '\\.svg$': '<rootDir>/.jest/transforms/svg.js',
 
@@ -26,12 +25,7 @@ module.exports = {
   snapshotSerializers: ['enzyme-to-json/serializer'],
   testPathIgnorePatterns: ['<rootDir>/.yarn-cache/', '<rootDir>/node_modules/'],
   modulePathIgnorePatterns: ['<rootDir>/.yarn-cache/', '<rootDir>/build/'],
-  coveragePathIgnorePatterns: [
-    '\\.css$',
-    '\\.scss$',
-    '\\.svg$',
-    '/.jest/',
-  ],
+  coveragePathIgnorePatterns: ['\\.css$', '\\.scss$', '\\.svg$', '/.jest/'],
   clearMocks: true,
   coverageThreshold: {
     global: {
