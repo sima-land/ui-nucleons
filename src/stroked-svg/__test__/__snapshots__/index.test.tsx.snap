@@ -41,7 +41,7 @@ exports[`StrokedSVG should renders correctly 1`] = `
       class="stroke"
       height="24"
       stroke="#f5f5f5"
-      stroke-width="3px"
+      stroke-width="2px"
       viewBox="0 0 24 24"
       width="24"
     >
