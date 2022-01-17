@@ -25,7 +25,7 @@ const cx = classnames.bind(styles);
  * @return Элемент.
  */
 export const Rating = ({
-  size,
+  size = 's',
   value,
   className,
   'data-testid': testId = 'rating',
@@ -48,7 +48,7 @@ export const Rating = ({
  * @param props Свойства.
  * @return Элемент.
  */
-const Star = ({ type, size = 's' }: { type: StarType; size?: StarSize }) => (
+const Star = ({ type, size }: { type: StarType; size: StarSize }) => (
   <div className={cx('star', `size-${size}`)}>
     {type === 'empty' && <StarSVG className={cx('svg')} />}
 

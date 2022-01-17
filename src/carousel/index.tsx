@@ -406,7 +406,7 @@ export class Carousel extends Component<CarouselProps, State> {
   }
 
   /**
-   * Выполняет прокрутка в бесконечном режиме.
+   * Выполняет прокрутку в бесконечном режиме.
    * @param step Количество элементов для прокрутки.
    * @param forward Нужно выполнить прокрутку вперед?
    */

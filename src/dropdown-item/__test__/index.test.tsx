@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { DropdownItem, DropdownItemProps } from '..';
+import { render } from '@testing-library/react';
 
 describe('DropdownItem', () => {
   it('should render without props', () => {
@@ -45,5 +46,12 @@ describe('DropdownItem', () => {
 
       expect(wrapper).toMatchSnapshot();
     });
+  });
+
+  it('should handle "data-testid"', () => {
+    const { queryAllByTestId } = render(<DropdownItem size='s' data-testid='custom-item' />);
+
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
+    expect(queryAllByTestId('custom-item')).toHaveLength(1);
   });
 });

@@ -227,6 +227,7 @@ export const TextField = forwardRef<
                 labelAsPlaceholder && 'as-placeholder',
               )}
               children={label}
+              data-testid='text-field:label'
             />
           )}
           <div className={cx('input-wrapper')}>

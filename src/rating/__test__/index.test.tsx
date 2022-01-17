@@ -1,11 +1,24 @@
+import { render } from '@testing-library/react';
 import React from 'react';
 import { Rating } from '..';
-import { mount } from 'enzyme';
 
 describe('<Rating />', () => {
-  it('renders correctly without params', () => {
-    const wrapper = mount(<Rating value={3.4} className='test-class' />);
+  it('should renders correctly', () => {
+    const { container } = render(<Rating size='m' value={3.4} className='test-class' />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
+  });
+
+  it('should handle size prop missing', () => {
+    const { container } = render(<Rating value={3.4} />);
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it('should handle "data-testid"', () => {
+    const { queryAllByTestId } = render(<Rating value={4} data-testid='product-rating' />);
+
+    expect(queryAllByTestId('rating')).toHaveLength(0);
+    expect(queryAllByTestId('product-rating')).toHaveLength(1);
   });
 });

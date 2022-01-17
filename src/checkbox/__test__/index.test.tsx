@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { Checkbox } from '..';
 
 describe('<Checkbox />', () => {
@@ -55,5 +56,12 @@ describe('<Checkbox />', () => {
     const wrapper = mount(<Checkbox className='test-class-name' />);
 
     expect(wrapper.find('.root').prop('className')).toContain('test-class-name');
+  });
+
+  it('should handle "data-testid"', () => {
+    const { queryAllByTestId } = render(<Checkbox data-testid='my-specific-checkbox' />);
+
+    expect(queryAllByTestId('checkbox')).toHaveLength(0);
+    expect(queryAllByTestId('my-specific-checkbox')).toHaveLength(1);
   });
 });

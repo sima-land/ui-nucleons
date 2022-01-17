@@ -6,7 +6,6 @@ coverage
 # Configs
 .jest/
 .storybook/
-*config.*
 *.yaml
 *.yml
 
