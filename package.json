@@ -87,13 +87,13 @@
     "build:main": "tsc --project tsconfig.build.json",
     "build:after": "node dist.js",
     "build": "npm run build:before && npm run build:main && npm run build:after",
-    "test": "jest",
+    "test": "BROWSERSLIST_ENV=\"test\" npx jest",
+    "coverage": "jest --clearCache && BROWSERSLIST_ENV=\"test\" npx jest --coverage",
     "type-check": "tsc -p . --noEmit",
-    "coverage": "jest --clearCache && jest --coverage",
     "lint:scripts": "eslint --cache src/ --ext .js,.jsx,.ts,.tsx",
     "lint:styles": "stylelint 'src/**/*.{css,scss}'",
-    "storybook": "start-storybook -p 9009 -c .storybook",
-    "storybook:build": "build-storybook --quiet --loglevel error -o build-storybook",
+    "storybook": "BROWSERSLIST_ENV=\"storybook\" npx start-storybook -p 9009 -c .storybook",
+    "storybook:build": "BROWSERSLIST_ENV=\"storybook\" npx build-storybook --quiet --loglevel error -o build-storybook",
     "prettier": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,css,scss}\" --loglevel error",
     "prettier:check": "prettier --check \"./src/**/*.{js,jsx,ts,tsx,css,scss}\" --loglevel error"
   }

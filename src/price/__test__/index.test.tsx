@@ -4,9 +4,9 @@ import { render } from '@testing-library/react';
 
 describe('Price', () => {
   it('should renders correctly', () => {
-    const wrapper = render(<Price value='123.45' currencyGrapheme='₽' />);
+    const { container } = render(<Price value='123.45' currencyGrapheme='₽' />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('should handle props', () => {
