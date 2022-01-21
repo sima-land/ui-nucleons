@@ -1,7 +1,8 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { Simulate } from 'react-dom/test-utils';
 import { SidePage } from '..';
+import { WithHint } from '../../with-hint';
 
 describe('SidePage', () => {
   it('should renders correctly', async function () {
@@ -61,5 +62,26 @@ describe('SidePage', () => {
     expect(onClose).toBeCalledTimes(0);
     Simulate.click(getByTestId('side-page:close'));
     expect(onClose).toBeCalledTimes(1);
+  });
+
+  it('should provide layer', async () => {
+    const { findByTestId } = render(
+      <SidePage shown>
+        <SidePage.Header title='Test title' />
+        <SidePage.Body>
+          <WithHint hint='Test hint'>
+            {(ref, toggle) => (
+              <button ref={ref as any} data-testid='test-hint-opener' onClick={() => toggle(true)}>
+                Opener
+              </button>
+            )}
+          </WithHint>
+        </SidePage.Body>
+      </SidePage>,
+    );
+
+    fireEvent.click(await findByTestId('test-hint-opener'));
+
+    expect((await findByTestId('hint')).style.zIndex).toBe('101');
   });
 });

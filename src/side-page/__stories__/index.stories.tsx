@@ -7,6 +7,7 @@ import { UploadArea } from '../../upload/area';
 import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information';
 import imageUrl from './image.png';
 import { times } from 'lodash';
+import { WithHint } from '../../with-hint';
 
 export default {
   title: 'desktop/SidePage',
@@ -302,5 +303,44 @@ const LazyLoadingList = () => {
       </div>
       <div ref={ref} />
     </div>
+  );
+};
+
+export const Hints = () => {
+  const [shown, toggleSidePage] = useState<boolean>(false);
+
+  const styles: Record<'root', React.CSSProperties> = {
+    root: {
+      padding: '40px',
+      display: 'flex',
+    },
+  };
+
+  return (
+    <>
+      <Button onClick={() => toggleSidePage(true)}>Показать</Button>
+
+      <SidePage size='s' shown={shown} withTransitions onClose={() => toggleSidePage(false)}>
+        <SidePage.Header divided title='Проверка хинтов' onClose={() => toggleSidePage(false)} />
+
+        <SidePage.Body>
+          <div style={styles.root}>
+            <WithHint hint='Тестовый хинт!' direction='right'>
+              {(ref, toggleHint) => (
+                <Button
+                  size='s'
+                  viewType='secondary'
+                  ref={ref as any}
+                  onMouseEnter={() => toggleHint(true)}
+                  onMouseLeave={() => toggleHint(false)}
+                >
+                  Наведи на меня
+                </Button>
+              )}
+            </WithHint>
+          </div>
+        </SidePage.Body>
+      </SidePage>
+    </>
   );
 };
