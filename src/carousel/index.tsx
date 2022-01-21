@@ -149,7 +149,7 @@ export class Carousel extends Component<CarouselProps, State> {
    * @param index Индекс.
    * @return Элемент списка.
    */
-  static defaultRenderItem(item: any, index: React.Key) {
+  static defaultRenderItem(item: any, index: number) {
     return <div key={index}>{String(item)}</div>;
   }
 

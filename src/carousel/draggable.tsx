@@ -299,7 +299,8 @@ export default class Draggable extends Component<DraggableProps> {
       <div
         {...containerProps}
         className={cx('draggable-container', containerProps.className)}
-        onClick={this.handleClick}
+        // обрабатываем захват чтобы при обработке клика на дочернем элементе defaultPrevented уже был true
+        onClickCapture={this.handleClick}
         onMouseDown={this.startCapture}
         onTouchStart={this.startCapture}
       >
