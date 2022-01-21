@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { defineSlots } from '../helpers/define-slots';
 import { useCloseHandler } from '../modal/utils';
-import { useLayer } from '../helpers/layer';
+import { useLayer, LayerProvider } from '../helpers/layer';
 import { useBodyScrollLock, WithBodyScrollLock } from '../_internal/body-scroll';
 import { SidePageBody, SidePageFooter, SidePageHeader } from './slots';
 import CSSTransition, { CSSTransitionProps } from 'react-transition-group/CSSTransition';
@@ -133,11 +133,13 @@ const SidePageInner = ({
       style={overlayStyles}
       {...(transitionStatus !== 'entering' && overlayBind)} // чтобы не было моментального закрытия на double click
     >
-      <div className={cx('main', `size-${size}`)}>
-        {header}
-        <div className={cx('body')}>{body}</div>
-        {footer}
-      </div>
+      <LayerProvider value={layer}>
+        <div className={cx('main', `size-${size}`)}>
+          {header}
+          <div className={cx('body')}>{body}</div>
+          {footer}
+        </div>
+      </LayerProvider>
     </div>
   );
 };
