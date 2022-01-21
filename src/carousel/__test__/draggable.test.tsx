@@ -257,7 +257,7 @@ describe('<Draggable />', () => {
     testClickEvent = new Event('click');
     jest.spyOn(testClickEvent, 'preventDefault');
     expect(testClickEvent.preventDefault).toHaveBeenCalledTimes(0);
-    (draggableContainer.prop('onClick') as any)(testClickEvent);
+    (draggableContainer.prop('onClickCapture') as any)(testClickEvent);
     expect(testClickEvent.preventDefault).toHaveBeenCalledTimes(0);
 
     // simulate drag (mouse down + move)
@@ -268,7 +268,7 @@ describe('<Draggable />', () => {
     testClickEvent = new Event('click');
     jest.spyOn(testClickEvent, 'preventDefault');
     expect(testClickEvent.preventDefault).toHaveBeenCalledTimes(0);
-    (draggableContainer.prop('onClick') as any)(testClickEvent);
+    (draggableContainer.prop('onClickCapture') as any)(testClickEvent);
     expect(testClickEvent.preventDefault).toHaveBeenCalledTimes(1);
   });
 

@@ -236,3 +236,35 @@ export const Vertical = () => (
     />
   </>
 );
+
+export const PreventLinkClickOnDrag = () => (
+  <div style={{ maxWidth: '1024px', margin: '24px auto' }}>
+    <Carousel
+      containerProps={{ style: { width: '100%' } }}
+      items={[0, 10, 100, 1003, 1024, 1026, 1031, 1044, 1053]}
+      renderItem={(id, index) => (
+        <a
+          key={index}
+          href='https://www.sima-land.ru'
+          style={{
+            display: 'block',
+            flexShrink: 0,
+            width: '200px',
+            height: '320px',
+            marginLeft: index ? '16px' : 0,
+            borderRadius: '8px',
+            overflow: 'hidden',
+            background: '#eee',
+          }}
+          target='_blank'
+          rel='noreferrer'
+        >
+          <img
+            src={`https://picsum.photos/id/${id}/320`}
+            style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </a>
+      )}
+    />
+  </div>
+);
