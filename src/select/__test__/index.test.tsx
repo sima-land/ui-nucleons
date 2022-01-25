@@ -46,7 +46,7 @@ describe('Select', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should handle TextField click', () => {
+  it('should handle TextField block click', () => {
     const clickSpy = jest.fn();
 
     const wrapper = mount(
@@ -74,7 +74,7 @@ describe('Select', () => {
     expect(clickSpy).toHaveBeenCalledTimes(1);
   });
 
-  it('should handle TextField blur', () => {
+  it('should handle TextField mousedown', () => {
     const wrapper = mount(
       <Select
         label='Формат каталога'
@@ -90,16 +90,17 @@ describe('Select', () => {
     );
 
     act(() => {
-      Simulate.click(wrapper.find(TextField).find('[data-testid="text-field:block"]').getDOMNode());
+      Simulate.mouseDown(
+        wrapper.find(TextField).find('[data-testid="text-field:block"]').getDOMNode(),
+      );
     });
     wrapper.update();
 
     expect(wrapper.find('div[data-testid="select:menu"]')).toHaveLength(1);
 
     act(() => {
-      Simulate.blur(
-        wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-        { relatedTarget: document.createElement('div') },
+      Simulate.mouseDown(
+        wrapper.find(TextField).find('[data-testid="text-field:block"]').getDOMNode(),
       );
     });
     wrapper.update();

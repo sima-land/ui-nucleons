@@ -9,6 +9,7 @@ import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/up';
 import styles from './select.module.scss';
 import { COLORS } from '../colors';
 import { DropdownLoading } from '../_internal/dropdown-loading';
+import { useOutsideClick } from '../hooks';
 
 type Size = 's' | 'm' | 'l' | 'xl';
 
@@ -42,7 +43,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export const Select: React.FC<SelectProps> = ({
+export const Select = ({
   options,
   optionSize,
   onSelect,
@@ -56,41 +57,51 @@ export const Select: React.FC<SelectProps> = ({
   renderOption = String,
   'data-testid': dataTestId,
   ...restProps
-}) => {
-  const fieldRef = useRef<HTMLInputElement>(null);
+}: SelectProps) => {
+  const rootRef = useRef<HTMLDivElement>(null);
+  const fieldRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const [opened, toggleMenu] = useState(false);
+  const [opened, toggleMenu] = useState<boolean>(false);
 
   const ArrowSVG = opened ? UpSVG : DownSVG;
 
   useEffect(() => {
-    opened && (menuRef.current as any).focus();
+    opened && menuRef.current && menuRef.current.focus();
     onMenuToggle && onMenuToggle(opened);
   }, [opened]);
 
+  useOutsideClick(rootRef, toggleMenu.bind(null, false));
+
   return (
-    <div style={style} className={cx('root', className)} data-testid={dataTestId}>
+    <div ref={rootRef} style={style} className={cx('root', className)} data-testid={dataTestId}>
       <TextField
-        {...restProps}
-        readOnly
+        blockProps={{
+          ref: fieldRef,
+          tabIndex: 0,
+          onMouseDown: () => {
+            toggleMenu(a => !a);
+          },
+          onKeyDown: e => {
+            e.key === 'Enter' && toggleMenu(true);
+          },
+          onClick: e => {
+            e.preventDefault();
+            onClick && onClick(e);
+          },
+        }}
+        className={styles.field}
         data-testid='select:field'
-        ref={fieldRef}
-        variant='desktop'
         label={label}
+        focused={opened}
+        baseInputProps={{
+          // чтобы не ловить фокус на поле
+          style: { pointerEvents: 'none' },
+          tabIndex: -1,
+        }}
         value={value}
         multiline={false}
-        focused={opened}
-        onClick={e => {
-          toggleMenu(o => !o);
-          onClick && onClick(e);
-        }}
-        onBlur={({ relatedTarget }) => {
-          relatedTarget !== menuRef.current && toggleMenu(false);
-        }}
-        onKeyDown={(e: React.KeyboardEvent) => {
-          e.key === 'Enter' && toggleMenu(true);
-        }}
-        className={cx('field')}
+        variant='desktop'
+        readOnly
         endAdornment={<ArrowSVG fill={COLORS.get('gray38')} />}
       />
 
@@ -99,17 +110,18 @@ export const Select: React.FC<SelectProps> = ({
           {...placeDropdown(restProps.size)}
           ref={menuRef as any}
           data-testid='select:menu'
+          role='menu'
           tabIndex={-1}
           className={cx('menu')}
-          onBlur={() => {
-            toggleMenu(false);
-          }}
-          role='menu'
-          onKeyDown={(event: React.KeyboardEvent) => {
+          onKeyDown={event => {
             if (event.key === 'Enter') {
               toggleMenu(false);
               fieldRef.current && fieldRef.current.focus();
             }
+          }}
+          onBlur={() => {
+            toggleMenu(false);
+            fieldRef.current && fieldRef.current.focus();
           }}
         >
           {loading ? (

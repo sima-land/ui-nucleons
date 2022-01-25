@@ -1,5 +1,5 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
-import { isNil, isFunction } from 'lodash';
+import { isNil } from 'lodash';
 import { Box } from '../box';
 import { BaseInput, BaseInputProps } from '../base-input';
 import { SmallRounds } from '../styling/shapes';
@@ -82,6 +82,9 @@ export interface TextFieldProps
   /** Вариант отображения. */
   variant?: Variant;
 
+  /** Свойства элемента-блока. */
+  blockProps?: React.HTMLProps<HTMLDivElement>;
+
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
 }
@@ -160,6 +163,7 @@ export const TextField = forwardRef<
     className,
     restPlaceholder,
     style,
+    blockProps,
     'data-testid': dataTestId,
   },
   ref,
@@ -200,14 +204,20 @@ export const TextField = forwardRef<
           multiline && 'multiline',
           withLabel && 'with-label',
           variant === 'desktop' && rounds !== 'none' && SmallRounds[rounds],
+          blockProps?.className,
         )}
         onClick={event => {
           const input = baseInputRef.current;
 
           onClick?.(event);
 
-          input && !disabled && input !== document.activeElement && input.focus();
+          input &&
+            !disabled &&
+            !event.defaultPrevented &&
+            input !== document.activeElement &&
+            input.focus();
         }}
+        {...blockProps}
       >
         {/* start adornment column */}
         {!multiline && Boolean(startAdornment) && (
@@ -250,12 +260,12 @@ export const TextField = forwardRef<
               readOnly={readOnly}
               disabled={disabled}
               onFocus={(event: any) => {
-                isFunction(onFocus) && onFocus(event);
+                onFocus && onFocus(event);
                 toggleHasValue(Boolean(event.target.value));
                 toggleFocused(true);
               }}
               onBlur={(event: any) => {
-                isFunction(onBlur) && onBlur(event);
+                onBlur && onBlur(event);
                 toggleHasValue(Boolean(event.target.value));
                 toggleFocused(false);
               }}

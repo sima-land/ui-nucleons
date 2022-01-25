@@ -19,6 +19,72 @@ exports[`Select should render loading state 1`] = `
     className="root"
   >
     <ForwardRef(TextField)
+      baseInputProps={
+        Object {
+          "style": Object {
+            "pointerEvents": "none",
+          },
+          "tabIndex": -1,
+        }
+      }
+      blockProps={
+        Object {
+          "onClick": [Function],
+          "onKeyDown": [Function],
+          "onMouseDown": [Function],
+          "ref": Object {
+            "current": <div
+              class="reset input-block focused variant-desktop size-l with-label rounds-sm__all"
+              data-testid="text-field:block"
+              tabindex="0"
+            >
+              <div
+                class="main-column"
+              >
+                <label
+                  class="label focused variant-desktop filled"
+                  data-testid="text-field:label"
+                >
+                  Формат каталога
+                </label>
+                <div
+                  class="input-wrapper"
+                >
+                  <div
+                    class="reset root base-input focused variant-desktop size-l"
+                    style="pointer-events: none;"
+                  >
+                    <input
+                      class="field reset"
+                      data-testid="text-field:field"
+                      readonly=""
+                      tabindex="-1"
+                      value="Карточки товаров JPG"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="display-flex align-items-center M-l__4"
+              >
+                <svg
+                  fill="#9e9e9e"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M12.753 9.659a1 1 0 01-1.412.094L8 6.829 4.659 9.753a1 1 0 01-1.317-1.506l4-3.5a1 1 0 011.317 0l4 3.5a1 1 0 01.094 1.412z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>,
+          },
+          "tabIndex": 0,
+        }
+      }
       className="field"
       data-testid="select:field"
       endAdornment={
@@ -29,9 +95,6 @@ exports[`Select should render loading state 1`] = `
       focused={true}
       label="Формат каталога"
       multiline={false}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onKeyDown={[Function]}
       readOnly={true}
       value="Карточки товаров JPG"
       variant="desktop"
@@ -44,6 +107,9 @@ exports[`Select should render loading state 1`] = `
           className="reset input-block focused variant-desktop size-l with-label rounds-sm__all"
           data-testid="text-field:block"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          tabIndex={0}
         >
           <div
             className="main-column"
@@ -63,12 +129,22 @@ exports[`Select should render loading state 1`] = `
                 multiline={false}
                 onBlur={[Function]}
                 onFocus={[Function]}
-                onKeyDown={[Function]}
                 readOnly={true}
+                style={
+                  Object {
+                    "pointerEvents": "none",
+                  }
+                }
+                tabIndex={-1}
                 value="Карточки товаров JPG"
               >
                 <div
                   className="reset root base-input focused variant-desktop size-l"
+                  style={
+                    Object {
+                      "pointerEvents": "none",
+                    }
+                  }
                 >
                   <input
                     className="field reset"
@@ -76,8 +152,8 @@ exports[`Select should render loading state 1`] = `
                     onBlur={[Function]}
                     onFocus={[Function]}
                     onInput={[Function]}
-                    onKeyDown={[Function]}
                     readOnly={true}
+                    tabIndex={-1}
                     value="Карточки товаров JPG"
                   />
                 </div>
@@ -278,6 +354,72 @@ exports[`Select should renders correctly 1`] = `
     className="root"
   >
     <ForwardRef(TextField)
+      baseInputProps={
+        Object {
+          "style": Object {
+            "pointerEvents": "none",
+          },
+          "tabIndex": -1,
+        }
+      }
+      blockProps={
+        Object {
+          "onClick": [Function],
+          "onKeyDown": [Function],
+          "onMouseDown": [Function],
+          "ref": Object {
+            "current": <div
+              class="reset input-block variant-desktop size-l with-label rounds-sm__all"
+              data-testid="text-field:block"
+              tabindex="0"
+            >
+              <div
+                class="main-column"
+              >
+                <label
+                  class="label variant-desktop filled"
+                  data-testid="text-field:label"
+                >
+                  Формат каталога
+                </label>
+                <div
+                  class="input-wrapper"
+                >
+                  <div
+                    class="reset root base-input variant-desktop size-l"
+                    style="pointer-events: none;"
+                  >
+                    <input
+                      class="field reset"
+                      data-testid="text-field:field"
+                      readonly=""
+                      tabindex="-1"
+                      value="Карточки товаров JPG"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="display-flex align-items-center M-l__4"
+              >
+                <svg
+                  fill="#9e9e9e"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M3.247 6.342a1 1 0 011.412-.095L8 9.171l3.341-2.924a1 1 0 011.318 1.506l-4 3.5a1 1 0 01-1.317 0l-4-3.5a1 1 0 01-.095-1.411z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>,
+          },
+          "tabIndex": 0,
+        }
+      }
       className="field"
       data-testid="select:field"
       endAdornment={
@@ -288,9 +430,6 @@ exports[`Select should renders correctly 1`] = `
       focused={false}
       label="Формат каталога"
       multiline={false}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onKeyDown={[Function]}
       readOnly={true}
       value="Карточки товаров JPG"
       variant="desktop"
@@ -303,6 +442,9 @@ exports[`Select should renders correctly 1`] = `
           className="reset input-block variant-desktop size-l with-label rounds-sm__all"
           data-testid="text-field:block"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          tabIndex={0}
         >
           <div
             className="main-column"
@@ -322,12 +464,22 @@ exports[`Select should renders correctly 1`] = `
                 multiline={false}
                 onBlur={[Function]}
                 onFocus={[Function]}
-                onKeyDown={[Function]}
                 readOnly={true}
+                style={
+                  Object {
+                    "pointerEvents": "none",
+                  }
+                }
+                tabIndex={-1}
                 value="Карточки товаров JPG"
               >
                 <div
                   className="reset root base-input variant-desktop size-l"
+                  style={
+                    Object {
+                      "pointerEvents": "none",
+                    }
+                  }
                 >
                   <input
                     className="field reset"
@@ -335,8 +487,8 @@ exports[`Select should renders correctly 1`] = `
                     onBlur={[Function]}
                     onFocus={[Function]}
                     onInput={[Function]}
-                    onKeyDown={[Function]}
                     readOnly={true}
+                    tabIndex={-1}
                     value="Карточки товаров JPG"
                   />
                 </div>
@@ -420,6 +572,72 @@ exports[`Select should renders correctly 2`] = `
     className="root"
   >
     <ForwardRef(TextField)
+      baseInputProps={
+        Object {
+          "style": Object {
+            "pointerEvents": "none",
+          },
+          "tabIndex": -1,
+        }
+      }
+      blockProps={
+        Object {
+          "onClick": [Function],
+          "onKeyDown": [Function],
+          "onMouseDown": [Function],
+          "ref": Object {
+            "current": <div
+              class="reset input-block focused variant-desktop size-l with-label rounds-sm__all"
+              data-testid="text-field:block"
+              tabindex="0"
+            >
+              <div
+                class="main-column"
+              >
+                <label
+                  class="label focused variant-desktop filled"
+                  data-testid="text-field:label"
+                >
+                  Формат каталога
+                </label>
+                <div
+                  class="input-wrapper"
+                >
+                  <div
+                    class="reset root base-input focused variant-desktop size-l"
+                    style="pointer-events: none;"
+                  >
+                    <input
+                      class="field reset"
+                      data-testid="text-field:field"
+                      readonly=""
+                      tabindex="-1"
+                      value="Карточки товаров JPG"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="display-flex align-items-center M-l__4"
+              >
+                <svg
+                  fill="#9e9e9e"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M12.753 9.659a1 1 0 01-1.412.094L8 6.829 4.659 9.753a1 1 0 01-1.317-1.506l4-3.5a1 1 0 011.317 0l4 3.5a1 1 0 01.094 1.412z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>,
+          },
+          "tabIndex": 0,
+        }
+      }
       className="field"
       data-testid="select:field"
       endAdornment={
@@ -430,9 +648,6 @@ exports[`Select should renders correctly 2`] = `
       focused={true}
       label="Формат каталога"
       multiline={false}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onKeyDown={[Function]}
       readOnly={true}
       value="Карточки товаров JPG"
       variant="desktop"
@@ -445,6 +660,9 @@ exports[`Select should renders correctly 2`] = `
           className="reset input-block focused variant-desktop size-l with-label rounds-sm__all"
           data-testid="text-field:block"
           onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          tabIndex={0}
         >
           <div
             className="main-column"
@@ -464,12 +682,22 @@ exports[`Select should renders correctly 2`] = `
                 multiline={false}
                 onBlur={[Function]}
                 onFocus={[Function]}
-                onKeyDown={[Function]}
                 readOnly={true}
+                style={
+                  Object {
+                    "pointerEvents": "none",
+                  }
+                }
+                tabIndex={-1}
                 value="Карточки товаров JPG"
               >
                 <div
                   className="reset root base-input focused variant-desktop size-l"
+                  style={
+                    Object {
+                      "pointerEvents": "none",
+                    }
+                  }
                 >
                   <input
                     className="field reset"
@@ -477,8 +705,8 @@ exports[`Select should renders correctly 2`] = `
                     onBlur={[Function]}
                     onFocus={[Function]}
                     onInput={[Function]}
-                    onKeyDown={[Function]}
                     readOnly={true}
+                    tabIndex={-1}
                     value="Карточки товаров JPG"
                   />
                 </div>
