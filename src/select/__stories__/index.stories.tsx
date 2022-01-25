@@ -11,23 +11,26 @@ export default {
 };
 
 export const Primary = () => {
-  const [currentOption, selectOption] = useState('Кайгородцева Анна');
+  const options = [
+    'ООО "Лаваш-Сервис"',
+    'Кайгородцева Анна',
+    'ИП Кайгородцев Максимелиан',
+    'Fourth Service',
+  ];
+
+  const [currentOption, selectOption] = useState('');
 
   return (
     <>
       <Select
         label='Название организации / ФИО'
         value={currentOption}
-        options={[
-          'ООО "Лаваш-Сервис"',
-          'Кайгородцева Анна',
-          'ИП Кайгородцев Максимелиан',
-          'Fourth Service',
-        ]}
+        options={options}
         optionSize='m'
         onSelect={selectOption}
         caption='Test caption'
       />
+
       <div style={{ marginTop: 8 }}>
         <Link pseudo onClick={() => selectOption('')}>
           Сбросить
