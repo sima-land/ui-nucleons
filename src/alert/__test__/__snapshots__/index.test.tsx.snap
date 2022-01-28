@@ -1,136 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Alert /> should handle props 1`] = `
-<Alert
-  className="test-class"
-  footer="Footer content"
-  inPortal={false}
-  navBarProps={
-    Object {
-      "subtitle": "Subtitle text",
-    }
-  }
-  title="Hello, world!"
-  withDivideNavBar={false}
-  withNavBar={true}
->
-  <AlertInner
-    className="test-class"
-    footer="Footer content"
-    navBarProps={
-      Object {
-        "subtitle": "Subtitle text",
-      }
-    }
-    title="Hello, world!"
-    withDivideNavBar={false}
-    withNavBar={true}
+<div>
+  <div
+    class="overlay"
+    data-testid="alert:overlay"
+    style="z-index: 100;"
   >
     <div
-      className="overlay"
-      data-testid="alert:overlay"
-      onClick={[Function]}
-      style={
-        Object {
-          "zIndex": 100,
-        }
-      }
+      class="alert test-class"
+      data-testid="alert"
     >
       <div
-        className="alert test-class"
-        data-testid="alert"
+        class="nav-bar header"
+        style="height: 56px;"
       >
-        <NavBar
-          bottomBordered={false}
-          className="header"
-          subtitle="Subtitle text"
-          title="Hello, world!"
+        <div
+          class="main"
         >
           <div
-            className="nav-bar header"
-            style={
-              Object {
-                "height": "56px",
-              }
-            }
+            class="title truncate"
           >
-            <div
-              className="main"
-            >
-              <div
-                className="title truncate"
-              >
-                Hello, world!
-              </div>
-              <div
-                className="subtitle truncate"
-              >
-                Subtitle text
-              </div>
-            </div>
+            Hello, world!
           </div>
-        </NavBar>
-        <div
-          className="main"
-        >
-          Main content
-        </div>
-        <div
-          className="inner-border-top"
-        >
-          Footer content
+          <div
+            class="subtitle truncate"
+          >
+            Subtitle text
+          </div>
         </div>
       </div>
+      <div
+        class="main"
+      >
+        Main content
+      </div>
+      <div
+        class="inner-border-top"
+      >
+        Footer content
+      </div>
     </div>
-  </AlertInner>
-</Alert>
+  </div>
+</div>
 `;
 
 exports[`<Alert /> should renders without props 1`] = `
-<Alert>
-  <Portal>
-    <Portal
-      containerInfo={
-        <div>
-          <div
-            class="overlay"
-            data-testid="alert:overlay"
-            style="z-index: 100;"
-          >
-            <div
-              class="alert"
-              data-testid="alert"
-            >
-              <div
-                class="main"
-              />
-            </div>
-          </div>
-        </div>
-      }
+<div>
+  <div
+    class="overlay"
+    data-testid="alert:overlay"
+    style="z-index: 100;"
+  >
+    <div
+      class="alert"
+      data-testid="alert"
     >
-      <AlertInner>
-        <div
-          className="overlay"
-          data-testid="alert:overlay"
-          onClick={[Function]}
-          style={
-            Object {
-              "zIndex": 100,
-            }
-          }
-        >
-          <div
-            className="alert"
-            data-testid="alert"
-          >
-            <div
-              className="main"
-            />
-          </div>
-        </div>
-      </AlertInner>
-    </Portal>
-  </Portal>
-</Alert>
+      <div
+        class="main"
+      />
+    </div>
+  </div>
+</div>
 `;

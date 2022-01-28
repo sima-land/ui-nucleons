@@ -1,5 +1,4 @@
-import React, { Fragment, useRef } from 'react';
-import { Portal } from '../portal';
+import React, { useRef } from 'react';
 import { NavBar, NavBarProps } from '../nav-bar';
 import classnames from 'classnames/bind';
 import styles from './alert.module.scss';
@@ -16,9 +15,6 @@ export interface AlertProps extends WithBodyScrollLock {
 
   /** Содержимое "подвала". */
   footer?: React.ReactNode;
-
-  /** Нужно ли выводить в Layer. */
-  inPortal?: boolean;
 
   /** Свойства компонента NavBar. */
   navBarProps?: NavBarProps;
@@ -43,25 +39,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export const Alert = ({ inPortal = true, ...restProps }: AlertProps) => {
-  const layer = useLayer() + 100;
-  const Wrapper = inPortal ? Portal : Fragment;
-
-  return (
-    <LayerProvider value={layer}>
-      <Wrapper>
-        <AlertInner {...restProps} />
-      </Wrapper>
-    </LayerProvider>
-  );
-};
-
-/**
- * Промежуточный компонент, необходимый для того чтобы не передавать реф для блокировки прокрутки через портал.
- * @param props Свойства.
- * @return Элемент.
- */
-const AlertInner = ({
+export const Alert = ({
   children,
   className,
   footer,
@@ -72,34 +50,36 @@ const AlertInner = ({
   withScrollDisable = false,
   scrollDisableOptions,
   onClose,
-}: Omit<AlertProps, 'inPortal'>) => {
+}: AlertProps) => {
+  const layer = useLayer() + 100;
   const rootRef = useRef<HTMLDivElement>(null);
-  const layer = useLayer();
 
   useBodyScrollLock(rootRef, withScrollDisable, { allowTouchMove, ...scrollDisableOptions });
 
   return (
-    <div
-      ref={rootRef}
-      className={cx('overlay')}
-      style={{ zIndex: layer }} // z-index именно здесь из-за position: fixed
-      onClick={e => e.target === e.currentTarget && onClose?.()}
-      data-testid='alert:overlay'
-    >
-      <div className={cx('alert', className)} data-testid='alert'>
-        {withNavBar && (
-          <NavBar
-            {...navBarProps}
-            title={title}
-            bottomBordered={withDivideNavBar}
-            className={cx('header')}
-          />
-        )}
+    <LayerProvider value={layer}>
+      <div
+        ref={rootRef}
+        className={cx('overlay')}
+        style={{ zIndex: layer }} // z-index именно здесь из-за position: fixed
+        onClick={e => e.target === e.currentTarget && onClose?.()}
+        data-testid='alert:overlay'
+      >
+        <div className={cx('alert', className)} data-testid='alert'>
+          {withNavBar && (
+            <NavBar
+              {...navBarProps}
+              title={title}
+              bottomBordered={withDivideNavBar}
+              className={cx('header')}
+            />
+          )}
 
-        <div className={cx('main')}>{children}</div>
+          <div className={cx('main')}>{children}</div>
 
-        {Boolean(footer) && <div className={InnerBorder.top}>{footer}</div>}
+          {Boolean(footer) && <div className={InnerBorder.top}>{footer}</div>}
+        </div>
       </div>
-    </div>
+    </LayerProvider>
   );
 };

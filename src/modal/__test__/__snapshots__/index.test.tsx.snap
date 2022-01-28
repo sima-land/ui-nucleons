@@ -1,763 +1,526 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Modal /> renders correct without close button and customClasses 1`] = `
-<Modal>
-  <ModalInner>
+<div>
+  <div
+    class="overlay"
+    data-testid="modal:overlay"
+    style="z-index: 100;"
+  >
     <div
-      className="overlay"
-      data-testid="modal:overlay"
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      style={
-        Object {
-          "zIndex": 100,
-        }
-      }
+      class="modal size-m shadow-z4"
+      data-testid="modal"
+      style="--header-height: 0px; --footer-height: 16px;"
     >
       <div
-        className="modal size-m shadow-z4"
-        data-testid="modal"
-        style={
-          Object {
-            "--footer-height": "16px",
-            "--header-height": "0px",
-            "--modal-height": undefined,
-          }
-        }
-      >
-        <div
-          className="footer-stub"
-        />
-      </div>
+        class="footer-stub"
+      />
     </div>
-  </ModalInner>
-</Modal>
+  </div>
+</div>
 `;
 
 exports[`<Modal /> should handle "height" prop 1`] = `
-<Modal
-  height={480}
->
-  <ModalInner
-    height={480}
+<div>
+  <div
+    class="overlay"
+    data-testid="modal:overlay"
+    style="z-index: 100;"
   >
     <div
-      className="overlay"
-      data-testid="modal:overlay"
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      style={
-        Object {
-          "zIndex": 100,
-        }
-      }
+      class="modal size-m shadow-z4"
+      data-testid="modal"
+      style="--modal-height: 480px; --header-height: 0px; --footer-height: 16px;"
     >
       <div
-        className="modal size-m shadow-z4"
-        data-testid="modal"
-        style={
-          Object {
-            "--footer-height": "16px",
-            "--header-height": "0px",
-            "--modal-height": "480px",
-          }
-        }
-      >
-        <div
-          className="footer-stub"
-        />
-      </div>
+        class="footer-stub"
+      />
     </div>
-  </ModalInner>
-</Modal>
+  </div>
+</div>
 `;
 
 exports[`<Modal /> should handle extended props 1`] = `
-<Modal>
-  <ModalInner>
-    <div
-      className="overlay"
-      data-testid="modal:overlay"
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      style={
-        Object {
-          "zIndex": 100,
-        }
-      }
-    >
-      <div
-        className="modal size-m shadow-z4"
-        data-testid="modal"
-        style={
-          Object {
-            "--footer-height": "72px",
-            "--header-height": "64px",
-            "--modal-height": undefined,
-          }
-        }
-      >
-        <ModalHeader
-          key=".0"
-          size="s"
-          subtitle="Subtitle"
-          title="Title"
-        >
-          <TopBar
-            buttonsProps={Object {}}
-            className="header"
-            size="s"
-            subtitle="Subtitle"
-            title="Title"
-          >
-            <div
-              className="root size-s header"
-              style={
-                Object {
-                  "height": "64px",
-                }
-              }
-            >
-              <div
-                className="main-section"
-              >
-                <div
-                  className="title ellipsis"
-                >
-                  Title
-                </div>
-                <div
-                  className="subtitle ellipsis"
-                >
-                  Subtitle
-                </div>
-              </div>
-            </div>
-          </TopBar>
-        </ModalHeader>
-        <ModalBody
-          key=".1"
-        >
-          <CustomScrollbar
-            className="body"
-            inFlexBox={true}
-            overflow={
-              Object {
-                "x": "h",
-                "y": "s",
-              }
-            }
-          >
-            <OverlayScrollbarsComponent
-              className="custom-scrollbar body os-host-flexbox"
-              options={
-                Object {
-                  "callbacks": undefined,
-                  "overflowBehavior": Object {
-                    "x": "h",
-                    "y": "s",
-                  },
-                }
-              }
-            >
-              <div
-                className="os-host"
-              >
-                <div
-                  className="os-resize-observer-host"
-                />
-                <div
-                  className="os-padding"
-                >
-                  <div
-                    className="os-viewport"
-                  >
-                    <div
-                      className="os-content"
-                    >
-                      <div
-                        className="main"
-                      >
-                        Main Content
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="os-scrollbar os-scrollbar-horizontal "
-                >
-                  <div
-                    className="os-scrollbar-track"
-                  >
-                    <div
-                      className="os-scrollbar-handle"
-                    />
-                  </div>
-                </div>
-                <div
-                  className="os-scrollbar os-scrollbar-vertical"
-                >
-                  <div
-                    className="os-scrollbar-track"
-                  >
-                    <div
-                      className="os-scrollbar-handle"
-                    />
-                  </div>
-                </div>
-                <div
-                  className="os-scrollbar-corner"
-                />
-              </div>
-            </OverlayScrollbarsComponent>
-          </CustomScrollbar>
-        </ModalBody>
-        <ModalFooter
-          key=".2"
-        >
-          <BottomBar>
-            <div
-              className="root rounds-md__b"
-              data-testid="bottom-bar"
-              style={
-                Object {
-                  "height": "72px",
-                }
-              }
-            >
-              <button>
-                Hello
-              </button>
-            </div>
-          </BottomBar>
-        </ModalFooter>
-      </div>
-    </div>
-  </ModalInner>
-</Modal>
-`;
-
-exports[`<Modal /> should render TopBar with back button 1`] = `
-<Modal>
-  <ModalInner>
-    <div
-      className="overlay"
-      data-testid="modal:overlay"
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      style={
-        Object {
-          "zIndex": 100,
-        }
-      }
-    >
-      <div
-        className="modal size-m shadow-z4"
-        data-testid="modal"
-        style={
-          Object {
-            "--footer-height": "16px",
-            "--header-height": "64px",
-            "--modal-height": undefined,
-          }
-        }
-      >
-        <ModalHeader
-          key=".0"
-          onBack={[MockFunction]}
-          size="s"
-        >
-          <TopBar
-            buttonsProps={
-              Object {
-                "start": Object {
-                  "data-testid": "modal:back",
-                  "icon": <ForwardRef(ArrowLeftSVG) />,
-                  "onClick": [MockFunction],
-                },
-              }
-            }
-            className="header"
-            size="s"
-          >
-            <div
-              className="root size-s header"
-              style={
-                Object {
-                  "height": "64px",
-                }
-              }
-            >
-              <IconButton
-                data-testid="modal:back"
-                icon={<ForwardRef(ArrowLeftSVG) />}
-                onClick={[MockFunction]}
-              >
-                <button
-                  className="icon-button"
-                  data-testid="modal:back"
-                  onClick={[MockFunction]}
-                  type="button"
-                >
-                  <ForwardRef(ArrowLeftSVG)>
-                    <svg
-                      height={24}
-                      viewBox="0 0 24 24"
-                      width={24}
-                    >
-                      <path
-                        clipRule="evenodd"
-                        d="M11.707 3.293a1 1 0 010 1.414L4.414 12l7.293 7.293a1 1 0 01-1.414 1.414l-8-8a1 1 0 010-1.414l8-8a1 1 0 011.414 0z"
-                        fillRule="evenodd"
-                      />
-                      <path
-                        clipRule="evenodd"
-                        d="M3 12a1 1 0 011-1h17a1 1 0 110 2H4a1 1 0 01-1-1z"
-                        fillRule="evenodd"
-                      />
-                    </svg>
-                  </ForwardRef(ArrowLeftSVG)>
-                </button>
-              </IconButton>
-              <div
-                className="main-section"
-              >
-                <div
-                  className="title ellipsis"
-                />
-              </div>
-              <div
-                className="icon-button stub"
-              />
-            </div>
-          </TopBar>
-        </ModalHeader>
-        <div
-          className="footer-stub"
-        />
-      </div>
-    </div>
-  </ModalInner>
-</Modal>
-`;
-
-exports[`<Modal /> should render different sizes properly 1`] = `
-<Modal
-  size="s"
->
-  <ModalInner
-    size="s"
+<div>
+  <div
+    class="overlay"
+    data-testid="modal:overlay"
+    style="z-index: 100;"
   >
     <div
-      className="overlay"
-      data-testid="modal:overlay"
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      style={
-        Object {
-          "zIndex": 100,
-        }
-      }
+      class="modal size-m shadow-z4"
+      data-testid="modal"
+      style="--header-height: 64px; --footer-height: 72px;"
     >
       <div
-        className="modal size-s shadow-z4"
-        data-testid="modal"
-        style={
-          Object {
-            "--footer-height": "16px",
-            "--header-height": "0px",
-            "--modal-height": undefined,
-          }
-        }
+        class="root size-s header"
+        style="height: 64px;"
       >
         <div
-          className="footer-stub"
-        />
-      </div>
-    </div>
-  </ModalInner>
-</Modal>
-`;
-
-exports[`<Modal /> should render different sizes properly 2`] = `
-<Modal
-  size="m"
->
-  <ModalInner
-    size="m"
-  >
-    <div
-      className="overlay"
-      data-testid="modal:overlay"
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      style={
-        Object {
-          "zIndex": 100,
-        }
-      }
-    >
-      <div
-        className="modal size-m shadow-z4"
-        data-testid="modal"
-        style={
-          Object {
-            "--footer-height": "16px",
-            "--header-height": "0px",
-            "--modal-height": undefined,
-          }
-        }
-      >
-        <div
-          className="footer-stub"
-        />
-      </div>
-    </div>
-  </ModalInner>
-</Modal>
-`;
-
-exports[`<Modal /> should render different sizes properly 3`] = `
-<Modal
-  size="l"
->
-  <ModalInner
-    size="l"
-  >
-    <div
-      className="overlay"
-      data-testid="modal:overlay"
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      style={
-        Object {
-          "zIndex": 100,
-        }
-      }
-    >
-      <div
-        className="modal size-l shadow-z4"
-        data-testid="modal"
-        style={
-          Object {
-            "--footer-height": "16px",
-            "--header-height": "0px",
-            "--modal-height": undefined,
-          }
-        }
-      >
-        <div
-          className="footer-stub"
-        />
-      </div>
-    </div>
-  </ModalInner>
-</Modal>
-`;
-
-exports[`<Modal /> should render different sizes properly 4`] = `
-<Modal
-  size="xl"
->
-  <ModalInner
-    size="xl"
-  >
-    <div
-      className="overlay"
-      data-testid="modal:overlay"
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      style={
-        Object {
-          "zIndex": 100,
-        }
-      }
-    >
-      <div
-        className="modal size-xl shadow-z4"
-        data-testid="modal"
-        style={
-          Object {
-            "--footer-height": "16px",
-            "--header-height": "0px",
-            "--modal-height": undefined,
-          }
-        }
-      >
-        <div
-          className="footer-stub"
-        />
-      </div>
-    </div>
-  </ModalInner>
-</Modal>
-`;
-
-exports[`<Modal /> should render different sizes properly 5`] = `
-<Modal
-  size="fullscreen"
->
-  <ModalInner
-    size="fullscreen"
-  >
-    <div
-      className="overlay"
-      data-testid="modal:overlay"
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      style={
-        Object {
-          "zIndex": 100,
-        }
-      }
-    >
-      <div
-        className="modal size-fullscreen"
-        data-testid="modal"
-        style={
-          Object {
-            "--footer-height": "0px",
-            "--header-height": "0px",
-            "--modal-height": undefined,
-          }
-        }
-      />
-    </div>
-  </ModalInner>
-</Modal>
-`;
-
-exports[`<Modal /> should render overlap content 1`] = `
-<Modal>
-  <ModalInner>
-    <div
-      className="overlay"
-      data-testid="modal:overlay"
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      style={
-        Object {
-          "zIndex": 100,
-        }
-      }
-    >
-      <div
-        className="modal size-m shadow-z4"
-        data-testid="modal"
-        style={
-          Object {
-            "--footer-height": "16px",
-            "--header-height": "0px",
-            "--modal-height": undefined,
-          }
-        }
-      >
-        <ModalBody
-          key=".0"
+          class="main-section"
         >
-          <CustomScrollbar
-            className="body"
-            inFlexBox={true}
-            overflow={
-              Object {
-                "x": "h",
-                "y": "s",
-              }
-            }
+          <div
+            class="title ellipsis"
           >
-            <OverlayScrollbarsComponent
-              className="custom-scrollbar body os-host-flexbox"
-              options={
-                Object {
-                  "callbacks": undefined,
-                  "overflowBehavior": Object {
-                    "x": "h",
-                    "y": "s",
-                  },
-                }
-              }
-            >
-              <div
-                className="os-host"
-              >
-                <div
-                  className="os-resize-observer-host"
-                />
-                <div
-                  className="os-padding"
-                >
-                  <div
-                    className="os-viewport"
-                  >
-                    <div
-                      className="os-content"
-                    >
-                      <div
-                        className="main"
-                      >
-                        This is modal body
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="os-scrollbar os-scrollbar-horizontal "
-                >
-                  <div
-                    className="os-scrollbar-track"
-                  >
-                    <div
-                      className="os-scrollbar-handle"
-                    />
-                  </div>
-                </div>
-                <div
-                  className="os-scrollbar os-scrollbar-vertical"
-                >
-                  <div
-                    className="os-scrollbar-track"
-                  >
-                    <div
-                      className="os-scrollbar-handle"
-                    />
-                  </div>
-                </div>
-                <div
-                  className="os-scrollbar-corner"
-                />
-              </div>
-            </OverlayScrollbarsComponent>
-          </CustomScrollbar>
-        </ModalBody>
-        <div
-          className="footer-stub"
-        />
-        <div
-          className="overlap"
-        >
-          <ModalOverlap
-            key=".1"
+            Title
+          </div>
+          <div
+            class="subtitle ellipsis"
           >
-            Test is modal overlap content
-          </ModalOverlap>
+            Subtitle
+          </div>
         </div>
       </div>
-    </div>
-  </ModalInner>
-</Modal>
-`;
-
-exports[`<Modal /> should renders in portal 1`] = `
-<Modal
-  inPortal={true}
->
-  <Portal>
-    <Portal
-      containerInfo={
-        <div>
+      <div
+        class="os-host os-host-foreign os-theme-dark os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden custom-scrollbar body os-host-flexbox"
+      >
+        <div
+          class="os-resize-observer-host"
+        >
           <div
-            class="overlay"
-            data-testid="modal:overlay"
-            style="z-index: 100;"
+            class="os-resize-observer"
+            style="right: 0px;"
           >
             <div
-              class="modal size-m shadow-z4"
-              data-testid="modal"
-              style="--header-height: 0px; --footer-height: 16px;"
+              class="os-resize-observer-item"
+              dir="ltr"
+              style="top: -2px; right: 0px; bottom: 0px; left: -2px;"
             >
               <div
-                class="footer-stub"
-              />
+                class="os-resize-observer-item"
+              >
+                <div
+                  class="os-resize-observer-item-final"
+                  style="width: 3333333px; height: 3333333px;"
+                />
+              </div>
+              <div
+                class="os-resize-observer-item"
+              >
+                <div
+                  class="os-resize-observer-item-final"
+                  style="width: 200%; height: 200%"
+                />
+              </div>
             </div>
           </div>
         </div>
-      }
-    >
-      <ModalInner>
         <div
-          className="overlay"
-          data-testid="modal:overlay"
-          onMouseDown={[Function]}
-          onMouseUp={[Function]}
-          style={
-            Object {
-              "zIndex": 100,
-            }
-          }
+          class="os-size-auto-observer"
+          style="height: calc(100% + 1px); float: left;"
         >
           <div
-            className="modal size-m shadow-z4"
-            data-testid="modal"
-            style={
-              Object {
-                "--footer-height": "16px",
-                "--header-height": "0px",
-                "--modal-height": undefined,
-              }
-            }
+            class="os-resize-observer"
           >
             <div
-              className="footer-stub"
+              class="os-resize-observer-item"
+              dir="ltr"
+              style="top: -2px; right: 0px; bottom: 0px; left: -2px;"
+            >
+              <div
+                class="os-resize-observer-item"
+              >
+                <div
+                  class="os-resize-observer-item-final"
+                  style="width: 3333333px; height: 3333333px;"
+                />
+              </div>
+              <div
+                class="os-resize-observer-item"
+              >
+                <div
+                  class="os-resize-observer-item-final"
+                  style="width: 200%; height: 200%"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="os-content-glue"
+          style="margin: 0px 0px 0px 0px; width: -1px; height: -1px;"
+        />
+        <div
+          class="os-padding"
+        >
+          <div
+            class="os-viewport os-viewport-native-scrollbars-overlaid"
+            style=""
+          >
+            <div
+              class="os-content-arrange"
+            />
+            <div
+              class="os-content"
+              style="padding: 0px 0px 0px 0px; height: 100%; width: 100%;"
+            >
+              <div
+                class="main"
+              >
+                Main Content
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable"
+        >
+          <div
+            class="os-scrollbar-track os-scrollbar-track-off"
+          >
+            <div
+              class="os-scrollbar-handle"
+              style="transform: translate(0px, 0);"
             />
           </div>
         </div>
-      </ModalInner>
-    </Portal>
-  </Portal>
-</Modal>
+        <div
+          class="os-scrollbar os-scrollbar-vertical os-scrollbar-unusable"
+        >
+          <div
+            class="os-scrollbar-track os-scrollbar-track-off"
+          >
+            <div
+              class="os-scrollbar-handle"
+              style="transform: translate(0, 0px);"
+            />
+          </div>
+        </div>
+        <div
+          class="os-scrollbar-corner"
+        />
+      </div>
+      <div
+        class="root rounds-md__b"
+        data-testid="bottom-bar"
+        style="height: 72px;"
+      >
+        <button>
+          Hello
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Modal /> should render TopBar with back button 1`] = `
+<div>
+  <div
+    class="overlay"
+    data-testid="modal:overlay"
+    style="z-index: 100;"
+  >
+    <div
+      class="modal size-m shadow-z4"
+      data-testid="modal"
+      style="--header-height: 64px; --footer-height: 16px;"
+    >
+      <div
+        class="root size-s header"
+        style="height: 64px;"
+      >
+        <button
+          class="icon-button"
+          data-testid="modal:back"
+          type="button"
+        >
+          <svg
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M11.707 3.293a1 1 0 010 1.414L4.414 12l7.293 7.293a1 1 0 01-1.414 1.414l-8-8a1 1 0 010-1.414l8-8a1 1 0 011.414 0z"
+              fill-rule="evenodd"
+            />
+            <path
+              clip-rule="evenodd"
+              d="M3 12a1 1 0 011-1h17a1 1 0 110 2H4a1 1 0 01-1-1z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <div
+          class="main-section"
+        >
+          <div
+            class="title ellipsis"
+          />
+        </div>
+        <div
+          class="icon-button stub"
+        />
+      </div>
+      <div
+        class="footer-stub"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Modal /> should render different sizes properly 1`] = `
+<div>
+  <div
+    class="overlay"
+    data-testid="modal:overlay"
+    style="z-index: 100;"
+  >
+    <div
+      class="modal size-s shadow-z4"
+      data-testid="modal"
+      style="--header-height: 0px; --footer-height: 16px;"
+    >
+      <div
+        class="footer-stub"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Modal /> should render different sizes properly 2`] = `
+<div>
+  <div
+    class="overlay"
+    data-testid="modal:overlay"
+    style="z-index: 100;"
+  >
+    <div
+      class="modal size-m shadow-z4"
+      data-testid="modal"
+      style="--header-height: 0px; --footer-height: 16px;"
+    >
+      <div
+        class="footer-stub"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Modal /> should render different sizes properly 3`] = `
+<div>
+  <div
+    class="overlay"
+    data-testid="modal:overlay"
+    style="z-index: 100;"
+  >
+    <div
+      class="modal size-l shadow-z4"
+      data-testid="modal"
+      style="--header-height: 0px; --footer-height: 16px;"
+    >
+      <div
+        class="footer-stub"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Modal /> should render different sizes properly 4`] = `
+<div>
+  <div
+    class="overlay"
+    data-testid="modal:overlay"
+    style="z-index: 100;"
+  >
+    <div
+      class="modal size-xl shadow-z4"
+      data-testid="modal"
+      style="--header-height: 0px; --footer-height: 16px;"
+    >
+      <div
+        class="footer-stub"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Modal /> should render different sizes properly 5`] = `
+<div>
+  <div
+    class="overlay"
+    data-testid="modal:overlay"
+    style="z-index: 100;"
+  >
+    <div
+      class="modal size-fullscreen"
+      data-testid="modal"
+      style="--header-height: 0px; --footer-height: 0px;"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Modal /> should render overlap content 1`] = `
+<div>
+  <div
+    class="overlay"
+    data-testid="modal:overlay"
+    style="z-index: 100;"
+  >
+    <div
+      class="modal size-m shadow-z4"
+      data-testid="modal"
+      style="--header-height: 0px; --footer-height: 16px;"
+    >
+      <div
+        class="os-host os-host-foreign os-theme-dark os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden custom-scrollbar body os-host-flexbox"
+      >
+        <div
+          class="os-resize-observer-host"
+        >
+          <div
+            class="os-resize-observer"
+            style="right: 0px;"
+          >
+            <div
+              class="os-resize-observer-item"
+              dir="ltr"
+              style="top: -2px; right: 0px; bottom: 0px; left: -2px;"
+            >
+              <div
+                class="os-resize-observer-item"
+              >
+                <div
+                  class="os-resize-observer-item-final"
+                  style="width: 3333333px; height: 3333333px;"
+                />
+              </div>
+              <div
+                class="os-resize-observer-item"
+              >
+                <div
+                  class="os-resize-observer-item-final"
+                  style="width: 200%; height: 200%"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="os-size-auto-observer"
+          style="height: calc(100% + 1px); float: left;"
+        >
+          <div
+            class="os-resize-observer"
+          >
+            <div
+              class="os-resize-observer-item"
+              dir="ltr"
+              style="top: -2px; right: 0px; bottom: 0px; left: -2px;"
+            >
+              <div
+                class="os-resize-observer-item"
+              >
+                <div
+                  class="os-resize-observer-item-final"
+                  style="width: 3333333px; height: 3333333px;"
+                />
+              </div>
+              <div
+                class="os-resize-observer-item"
+              >
+                <div
+                  class="os-resize-observer-item-final"
+                  style="width: 200%; height: 200%"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="os-content-glue"
+          style="margin: 0px 0px 0px 0px; width: -1px; height: -1px;"
+        />
+        <div
+          class="os-padding"
+        >
+          <div
+            class="os-viewport os-viewport-native-scrollbars-overlaid"
+            style=""
+          >
+            <div
+              class="os-content-arrange"
+            />
+            <div
+              class="os-content"
+              style="padding: 0px 0px 0px 0px; height: 100%; width: 100%;"
+            >
+              <div
+                class="main"
+              >
+                This is modal body
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable"
+        >
+          <div
+            class="os-scrollbar-track os-scrollbar-track-off"
+          >
+            <div
+              class="os-scrollbar-handle"
+              style="transform: translate(0px, 0);"
+            />
+          </div>
+        </div>
+        <div
+          class="os-scrollbar os-scrollbar-vertical os-scrollbar-unusable"
+        >
+          <div
+            class="os-scrollbar-track os-scrollbar-track-off"
+          >
+            <div
+              class="os-scrollbar-handle"
+              style="transform: translate(0, 0px);"
+            />
+          </div>
+        </div>
+        <div
+          class="os-scrollbar-corner"
+        />
+      </div>
+      <div
+        class="footer-stub"
+      />
+      <div
+        class="overlap"
+      >
+        Test is modal overlap content
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`<Modal /> should renders with fullscreen size and footer 1`] = `
-<Modal
-  size="fullscreen"
->
-  <ModalInner
-    size="fullscreen"
+<div>
+  <div
+    class="overlay"
+    data-testid="modal:overlay"
+    style="z-index: 100;"
   >
     <div
-      className="overlay"
-      data-testid="modal:overlay"
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      style={
-        Object {
-          "zIndex": 100,
-        }
-      }
+      class="modal size-fullscreen"
+      data-testid="modal"
+      style="--header-height: 0px; --footer-height: 72px;"
     >
       <div
-        className="modal size-fullscreen"
-        data-testid="modal"
-        style={
-          Object {
-            "--footer-height": "72px",
-            "--header-height": "0px",
-            "--modal-height": undefined,
-          }
-        }
+        class="root rounds-md__b"
+        data-testid="bottom-bar"
+        style="height: 80px;"
       >
-        <ModalFooter
-          key=".0"
-          size="l"
-        >
-          <BottomBar
-            size="l"
-          >
-            <div
-              className="root rounds-md__b"
-              data-testid="bottom-bar"
-              style={
-                Object {
-                  "height": "80px",
-                }
-              }
-            >
-              Test footer
-            </div>
-          </BottomBar>
-        </ModalFooter>
+        Test footer
       </div>
     </div>
-  </ModalInner>
-</Modal>
+  </div>
+</div>
 `;

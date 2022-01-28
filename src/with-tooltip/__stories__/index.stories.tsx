@@ -199,7 +199,7 @@ export const InScrollParent = () => (
 );
 
 export const ShortInModal = () => (
-  <Modal size='s' inPortal>
+  <Modal size='s'>
     <Modal.Header divided title='Тултип в модальном окне' subtitle='Без прокрутки' />
     <Modal.Body>
       <div
@@ -221,7 +221,7 @@ export const ShortInModal = () => (
 );
 
 export const LongInModal = () => (
-  <Modal size='s' inPortal>
+  <Modal size='s'>
     <Modal.Header divided title='Тултип в модальном окне' subtitle='Без прокрутки' />
     <Modal.Body>
       <div
@@ -264,7 +264,7 @@ export const InModalWithScroll = () => (
 );
 
 export const InModalWithPortal = () => (
-  <Modal size='s' inPortal>
+  <Modal size='s'>
     <Modal.Header divided title='Тултип в модальном окне' subtitle='С прокруткой' />
     <Modal.Body>
       <div style={{ height: '400px', padding: '20px' }}>
