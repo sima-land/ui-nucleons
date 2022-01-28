@@ -17,7 +17,7 @@ const Template: Story<ModalProps> = props => {
       <Button onClick={() => toggleModal(true)}>Показать окно</Button>
 
       {opened && (
-        <Modal inPortal onClose={() => toggleModal(false)} {...props} withScrollDisable>
+        <Modal onClose={() => toggleModal(false)} {...props} withScrollDisable>
           <Modal.Header divided title='Модальное окно' />
           <Modal.Body>
             <div style={{ padding: 24 }}>Содержимое модального окна</div>
@@ -68,7 +68,7 @@ export const SizeXL = Template.bind(null, {
 });
 
 export const Fullscreen: Story = () => (
-  <Modal size='fullscreen' inPortal>
+  <Modal size='fullscreen'>
     <Modal.Header divided title='Полноэкранное модальное окно' />
     <Modal.Body>
       <div style={{ height: '100%', background: '#eee' }}>
@@ -91,7 +91,7 @@ export const Fullscreen: Story = () => (
 );
 
 export const WithoutBars: Story = () => (
-  <Modal size='s' height={320} inPortal>
+  <Modal size='s' height={320}>
     <Modal.Body>
       <div style={{ padding: 24 }}>Содержимое модального окна</div>
     </Modal.Body>
@@ -128,7 +128,7 @@ export const DynamicHeight: Story<ModalProps> = () => {
 };
 
 export const WithScroll: Story = () => (
-  <Modal size='s' height={360} inPortal>
+  <Modal size='s' height={360}>
     <Modal.Header divided title='Проверка прокрутки' />
     <Modal.Body>
       <div style={{ padding: 24 }}>
@@ -146,7 +146,7 @@ export const WithScroll: Story = () => (
 );
 
 export const WithOverlapContent: Story = () => (
-  <Modal size='l' inPortal>
+  <Modal size='l'>
     <Modal.Header divided title='Со стрелочками рядом с окном' />
     <Modal.Body>
       <div style={{ padding: 24 }}>

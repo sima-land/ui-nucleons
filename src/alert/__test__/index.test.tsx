@@ -1,6 +1,5 @@
 import React from 'react';
-import { act } from 'react-dom/test-utils';
-import { mount } from 'enzyme';
+import { render, fireEvent } from '@testing-library/react';
 import { Alert } from '..';
 import { useBodyScrollLock } from '../../_internal/body-scroll';
 
@@ -16,13 +15,13 @@ jest.mock('../../_internal/body-scroll', () => {
 
 describe('<Alert />', () => {
   it('should renders without props', () => {
-    const wrapper = mount(<Alert />);
+    const { container } = render(<Alert />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('should handle props', () => {
-    const wrapper = mount(
+    const { container } = render(
       <Alert
         title='Hello, world!'
         withNavBar
@@ -31,45 +30,40 @@ describe('<Alert />', () => {
         className='test-class'
         children='Main content'
         footer='Footer content'
-        inPortal={false}
       />,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('should disable/enable body scroll', () => {
     expect(useBodyScrollLock).toBeCalledTimes(0);
 
-    mount(<Alert withScrollDisable />);
+    render(<Alert withScrollDisable />);
 
     expect(useBodyScrollLock).toBeCalledTimes(1);
   });
 
   it('should do not use disable/enable body scrolling by default', () => {
-    mount(<Alert />);
+    render(<Alert />);
 
     expect((useBodyScrollLock as any).mock.calls[0][1]).toBe(false);
   });
 
   it('should call onClose callback on overlay click', () => {
     const spy = jest.fn();
-    const wrapper = mount(<Alert onClose={spy} />);
+    const { getByTestId } = render(<Alert onClose={spy} />);
 
     expect(spy).toBeCalledTimes(0);
-    act(() => {
-      wrapper.find('[data-testid="alert:overlay"]').simulate('click');
-    });
+    fireEvent.click(getByTestId('alert:overlay'));
     expect(spy).toBeCalledTimes(1);
   });
 
   it('should handle overlay click without onClose callback', () => {
-    const wrapper = mount(<Alert onClose={undefined} />);
+    const { getByTestId } = render(<Alert onClose={undefined} />);
 
     expect(() => {
-      act(() => {
-        wrapper.find('[data-testid="alert:overlay"]').simulate('click');
-      });
+      fireEvent.click(getByTestId('alert:overlay'));
     }).not.toThrow();
   });
 });

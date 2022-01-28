@@ -1,9 +1,8 @@
-import React, { cloneElement, Fragment, useRef } from 'react';
+import React, { cloneElement, useRef } from 'react';
 import { TopBarSize, TOP_BAR_HEIGHT } from '../top-bar';
 import { BottomBarProps, BOTTOM_BAR_DEFAULTS, BOTTOM_BAR_HEIGHT } from '../bottom-bar';
 import { useCloseHandler } from './utils';
 import { BoxShadow } from '../styling/shadows';
-import { Portal } from '../portal';
 import { isNumber } from 'lodash';
 import { ModalBody, ModalFooter, ModalHeader, ModalHeaderProps, ModalOverlap } from './slots';
 import { LayerProvider, useLayer } from '../helpers/layer';
@@ -36,9 +35,6 @@ export interface ModalProps extends WithBodyScrollLock {
   /** Размер окна. */
   size?: ModalSize;
 
-  /** Нужно ли выводить элемент в портале (для SSR следует указывать false). */
-  inPortal?: boolean;
-
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
 }
@@ -58,22 +54,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export const Modal: ModalComponent = ({ inPortal, ...restProps }) => {
-  const Wrapper = inPortal ? Portal : Fragment;
-
-  return (
-    <Wrapper>
-      <ModalInner {...restProps} />
-    </Wrapper>
-  );
-};
-
-/**
- * Внутренний компонент для того чтобы не прокидывать реф через портал.
- * @param props Свойства.
- * @return Элемент.
- */
-const ModalInner = ({
+export const Modal: ModalComponent = ({
   children,
   height,
   onClose,
@@ -81,7 +62,7 @@ const ModalInner = ({
   size = 'm',
   withScrollDisable = false,
   'data-testid': testId = 'modal',
-}: Omit<ModalProps, 'inPortal'>) => {
+}) => {
   const layer = useLayer() + 100;
 
   const rootRef = useRef<HTMLDivElement>(null);
