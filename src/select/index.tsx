@@ -56,6 +56,7 @@ export const Select = ({
   onMenuToggle,
   renderOption = String,
   'data-testid': dataTestId,
+  size,
   ...restProps
 }: SelectProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -75,6 +76,8 @@ export const Select = ({
   return (
     <div ref={rootRef} style={style} className={cx('root', className)} data-testid={dataTestId}>
       <TextField
+        {...restProps}
+        size={size}
         blockProps={{
           ref: fieldRef,
           tabIndex: 0,
@@ -107,7 +110,7 @@ export const Select = ({
 
       {opened && (loading || options.length > 0) && (
         <Dropdown
-          {...placeDropdown(restProps.size)}
+          {...placeDropdown(size)}
           ref={menuRef as any}
           data-testid='select:menu'
           role='menu'

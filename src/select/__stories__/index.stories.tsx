@@ -42,6 +42,68 @@ export const Primary = () => {
 
 Primary.storyName = 'Использование';
 
+export const SizeS = () => {
+  const options = [
+    'ООО "Лаваш-Сервис"',
+    'Кайгородцева Анна',
+    'ИП Кайгородцев Максимелиан',
+    'Fourth Service',
+  ];
+
+  const [currentOption, selectOption] = useState('');
+
+  return (
+    <>
+      <Select
+        label='Название организации / ФИО'
+        value={currentOption}
+        options={options}
+        optionSize='m'
+        onSelect={selectOption}
+        caption='Test caption'
+        size='s'
+      />
+
+      <div style={{ marginTop: 8 }}>
+        <Link pseudo onClick={() => selectOption('')}>
+          Сбросить
+        </Link>
+      </div>
+    </>
+  );
+};
+
+export const SizeXS = () => {
+  const options = [
+    'ООО "Лаваш-Сервис"',
+    'Кайгородцева Анна',
+    'ИП Кайгородцев Максимелиан',
+    'Fourth Service',
+  ];
+
+  const [currentOption, selectOption] = useState('');
+
+  return (
+    <>
+      <Select
+        label='Название организации / ФИО'
+        value={currentOption}
+        options={options}
+        optionSize='m'
+        onSelect={selectOption}
+        caption='Test caption'
+        size='xs'
+      />
+
+      <div style={{ marginTop: 8 }}>
+        <Link pseudo onClick={() => selectOption('')}>
+          Сбросить
+        </Link>
+      </div>
+    </>
+  );
+};
+
 export const WithLoading = () => {
   const [currentOption, selectOption] = useState('');
   const [ready, toggleReady] = useState(false);
