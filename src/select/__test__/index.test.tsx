@@ -3,6 +3,8 @@ import { mount, ReactWrapper } from 'enzyme';
 import { act, Simulate } from 'react-dom/test-utils';
 import { Select } from '..';
 import { TextField } from '../../text-field';
+import { render, fireEvent } from '@testing-library/react';
+import GoogleSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/google';
 
 describe('Select', () => {
   const openMenu = (wrapper: ReactWrapper) => {
@@ -260,5 +262,37 @@ describe('Select', () => {
     wrapper.update();
 
     expect(selectSpy).toBeCalledTimes(1);
+  });
+
+  it('should handle ReactNode in "endAdornment" prop', () => {
+    const { getAllByTestId } = render(
+      <Select
+        label='Формат каталога'
+        value='AAAA'
+        options={['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE']}
+        endAdornment={<GoogleSVG data-testid='google-svg' />}
+      />,
+    );
+
+    expect(getAllByTestId('google-svg')).toHaveLength(1);
+  });
+
+  it('should handle function in "endAdornment" prop', () => {
+    const { getAllByTestId, getByTestId } = render(
+      <Select
+        label='Формат каталога'
+        value='AAAA'
+        options={['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE']}
+        endAdornment={opened => (
+          <GoogleSVG data-testid={`google-svg-${opened ? 'opened' : 'closed'}`} />
+        )}
+      />,
+    );
+
+    expect(getAllByTestId('google-svg-closed')).toHaveLength(1);
+
+    fireEvent.mouseDown(getByTestId('text-field:block'));
+
+    expect(getAllByTestId('google-svg-opened')).toHaveLength(1);
   });
 });
