@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
-import { Select } from '..';
+import { Select, renderDefaultArrow } from '..';
 import { Link } from '../../link';
+import GoogleSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/google';
+import VkSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/vk';
+import InstagramSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/instagram';
+import TelegramSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/telegram';
+import TwitterSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/twitter';
+import { COLORS } from '../../colors';
 
 export default {
   title: 'desktop/Select',
@@ -55,7 +61,7 @@ export const SizeS = () => {
   return (
     <>
       <Select
-        label='Название организации / ФИО'
+        placeholder='Название организации / ФИО'
         value={currentOption}
         options={options}
         optionSize='m'
@@ -73,6 +79,8 @@ export const SizeS = () => {
   );
 };
 
+SizeS.storyName = 'Размер S';
+
 export const SizeXS = () => {
   const options = [
     'ООО "Лаваш-Сервис"',
@@ -86,7 +94,7 @@ export const SizeXS = () => {
   return (
     <>
       <Select
-        label='Название организации / ФИО'
+        placeholder='Название организации / ФИО'
         value={currentOption}
         options={options}
         optionSize='m'
@@ -103,6 +111,8 @@ export const SizeXS = () => {
     </>
   );
 };
+
+SizeXS.storyName = 'Размер XS';
 
 export const WithLoading = () => {
   const [currentOption, selectOption] = useState('');
@@ -143,3 +153,40 @@ export const WithLoading = () => {
 };
 
 WithLoading.storyName = 'С загрузкой';
+
+interface SocialOption {
+  Icon: React.ComponentType<React.SVGAttributes<SVGSVGElement>>;
+  name: string;
+}
+
+export const CustomIcon = () => {
+  const options: Array<SocialOption> = [
+    { Icon: GoogleSVG, name: 'Google' },
+    { Icon: VkSVG, name: 'VK' },
+    { Icon: InstagramSVG, name: 'Instagram' },
+    { Icon: TelegramSVG, name: 'Telegram' },
+    { Icon: TwitterSVG, name: 'Twitter' },
+  ];
+
+  const [currentOption, selectOption] = useState<SocialOption>(options[0]);
+  const Icon = currentOption.Icon;
+
+  return (
+    <>
+      <Select
+        label='Название организации / ФИО'
+        value={currentOption.name}
+        options={options}
+        renderOption={option => option.name}
+        optionSize='m'
+        onSelect={selectOption}
+        caption='Test caption'
+        endAdornment={opened =>
+          opened ? renderDefaultArrow(opened) : <Icon fill={COLORS.get('gray38')} />
+        }
+      />
+    </>
+  );
+};
+
+CustomIcon.storyName = 'Особая иконка';

@@ -13,7 +13,7 @@ import { useOutsideClick } from '../hooks';
 
 type Size = 's' | 'm' | 'l' | 'xl';
 
-export interface SelectProps extends Omit<TextFieldProps, 'style'> {
+export interface SelectProps extends Omit<TextFieldProps, 'style' | 'endAdornment'> {
   /** Нужно ли выводить состояние загрузки списка. */
   loading?: boolean;
 
@@ -34,9 +34,21 @@ export interface SelectProps extends Omit<TextFieldProps, 'style'> {
 
   /** Стили. */
   style?: React.CSSProperties;
+
+  endAdornment?: TextFieldProps['endAdornment'] | ((opened: boolean) => React.ReactNode);
 }
 
 const cx = classnames.bind(styles);
+
+/**
+ * Выводит иконку стрелки для поля Select по умолчанию.
+ * @param opened Открыт ли список опций.
+ * @return Элемент.
+ */
+export const renderDefaultArrow = (opened: boolean) => {
+  const ArrowSVG = opened ? UpSVG : DownSVG;
+  return <ArrowSVG fill={COLORS.get('gray38')} />;
+};
 
 /**
  * Поле выбора из списка.
@@ -57,14 +69,13 @@ export const Select = ({
   renderOption = String,
   'data-testid': dataTestId,
   size,
+  endAdornment = renderDefaultArrow,
   ...restProps
 }: SelectProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const fieldRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const [opened, toggleMenu] = useState<boolean>(false);
-
-  const ArrowSVG = opened ? UpSVG : DownSVG;
 
   useEffect(() => {
     opened && menuRef.current && menuRef.current.focus();
@@ -105,7 +116,7 @@ export const Select = ({
         multiline={false}
         variant='desktop'
         readOnly
-        endAdornment={<ArrowSVG fill={COLORS.get('gray38')} />}
+        endAdornment={typeof endAdornment === 'function' ? endAdornment(opened) : endAdornment}
       />
 
       {opened && (loading || options.length > 0) && (
