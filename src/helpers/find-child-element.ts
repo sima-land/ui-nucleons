@@ -19,7 +19,7 @@ const findChildElement = ({
   isSuitable,
   needBreakLoop = identity,
 }: {
-  target: HTMLElement;
+  target?: HTMLElement | null | undefined;
   startIndex?: number;
   increment?: number;
   defaultResult?: number;

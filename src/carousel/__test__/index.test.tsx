@@ -1554,28 +1554,58 @@ describe('Carousel: infinite mode', () => {
   });
 
   describe('scrollToItem', () => {
-    it('should work without second argument', () => {
-      expect(() =>
-        Carousel.prototype.scrollToItem.call(
-          {
-            props: { vertical: false },
-            listElement: { children: [] },
-          },
-          0 as any,
-        ),
-      ).not.toThrow();
-    });
+    it('should handle viewport/lst element missing', () => {
+      const instance = new Carousel({});
 
-    it('should work without second argument prop needTransition', () => {
-      expect(() =>
-        Carousel.prototype.scrollToItem.call(
-          {
-            props: { vertical: false },
-            listElement: { children: [] },
-          },
-          0 as any,
-        ),
-      ).not.toThrow();
+      expect(() => {
+        instance.scrollToItem();
+      }).not.toThrow();
+    });
+  });
+
+  describe('makeFurthestSiblingChecker', () => {
+    it('should handle viewport missing', () => {
+      const checker = Carousel.makeFurthestSiblingChecker({
+        vertical: true,
+        viewport: undefined,
+      });
+
+      const element = document.createElement('div');
+
+      expect(checker(element)).toBe(false);
+    });
+  });
+
+  describe('makeNearestSiblingChecker', () => {
+    it('should handle viewport missing', () => {
+      const checker = Carousel.makeNearestSiblingChecker({
+        vertical: true,
+        backward: false,
+        viewport: undefined,
+      });
+
+      const element = document.createElement('div');
+
+      expect(checker(element)).toBe(false);
+    });
+  });
+
+  describe('getViewportSize', () => {
+    it('should handle viewport element missing', () => {
+      const instance = new Carousel({});
+
+      expect(instance.getViewportSize()).toBe(0);
+    });
+  });
+
+  describe('correctInfiniteOffset', () => {
+    it('should handle viewport/lst element missing', () => {
+      const instance = new Carousel({});
+      const event = new DraggableEvent({ client: Point(0, 0), offset: Point(0, 0) });
+
+      expect(() => {
+        instance.correctInfiniteOffset(event);
+      }).not.toThrow();
     });
   });
 });

@@ -78,6 +78,10 @@ interface ControlData {
   vertical?: boolean;
 }
 
+interface ElementPredicate {
+  (sibling: Element): boolean;
+}
+
 const CLONE_FACTOR = 3;
 
 const cx = classnames.bind(styles);
@@ -191,11 +195,18 @@ export class Carousel extends Component<CarouselProps, State> {
     viewport,
   }: {
     vertical: boolean;
-    viewport: DOMRect;
-  }) {
-    return vertical
-      ? (sibling: Element) => boundsOf(sibling).top >= viewport.top
-      : (sibling: Element) => boundsOf(sibling).left >= viewport.left;
+    viewport?: DOMRect | null;
+  }): ElementPredicate {
+    // eslint-disable-next-line require-jsdoc
+    let checker: ElementPredicate = () => false;
+
+    if (viewport) {
+      checker = vertical
+        ? (sibling: Element) => boundsOf(sibling).top >= viewport.top
+        : (sibling: Element) => boundsOf(sibling).left >= viewport.left;
+    }
+
+    return checker;
   }
 
   /**
@@ -213,14 +224,21 @@ export class Carousel extends Component<CarouselProps, State> {
   }: {
     backward: boolean;
     vertical: boolean;
-    viewport: DOMRect;
-  }) {
+    viewport?: DOMRect | null;
+  }): ElementPredicate {
     const verticalBoundKey = backward ? 'bottom' : 'top';
     const horizontalBoundKey = backward ? 'right' : 'left';
 
-    return vertical
-      ? (sibling: Element) => viewport.top < boundsOf(sibling)[verticalBoundKey]
-      : (sibling: Element) => viewport.left < boundsOf(sibling)[horizontalBoundKey];
+    // eslint-disable-next-line require-jsdoc
+    let checker: ElementPredicate = () => false;
+
+    if (viewport) {
+      checker = vertical
+        ? (sibling: Element) => viewport.top < boundsOf(sibling)[verticalBoundKey]
+        : (sibling: Element) => viewport.left < boundsOf(sibling)[horizontalBoundKey];
+    }
+
+    return checker;
   }
 
   /**
@@ -365,9 +383,9 @@ export class Carousel extends Component<CarouselProps, State> {
 
     this.toggleDragTransition(true);
     this.setCurrentIndex(
-      newIndex < size((this.listElement as any).children)
+      newIndex < size(this.listElement?.children)
         ? newIndex
-        : maxIndexOf((this.listElement as any).children),
+        : maxIndexOf(this.listElement?.children),
     );
   }
 
@@ -386,14 +404,14 @@ export class Carousel extends Component<CarouselProps, State> {
    */
   moveBackwardFinite(step: number) {
     const newIndex = findChildElement({
-      target: this.listElement as any,
+      target: this.listElement,
       startIndex: this.currentIndex,
       defaultResult: this.currentIndex,
       increment: -1,
 
       // ищем элемент который находится ниже/правее чем верхняя/левая граница viewport'а
       isSuitable: Carousel.makeFurthestSiblingChecker({
-        viewport: this.getViewport() as DOMRect,
+        viewport: this.getViewport(),
         vertical: Boolean(this.props.vertical),
       }),
 
@@ -415,13 +433,12 @@ export class Carousel extends Component<CarouselProps, State> {
     const { currentOffset } = this.state;
     const { items, vertical } = this.props;
     const realItemsCount = size(items);
+    const listEl = this.listElement;
+    const needMoveForward = forward && currentIndex >= realItemsCount;
+    const needMoveBackward = !forward && currentIndex < realItemsCount;
 
-    if (
-      (forward && currentIndex >= realItemsCount) ||
-      (!forward && currentIndex < realItemsCount)
-    ) {
-      const itemsSize =
-        (this.listElement as any)[vertical ? 'scrollHeight' : 'scrollWidth'] / CLONE_FACTOR;
+    if (listEl && (needMoveForward || needMoveBackward)) {
+      const itemsSize = listEl[vertical ? 'scrollHeight' : 'scrollWidth'] / CLONE_FACTOR;
       const newOffset = currentOffset + (forward ? itemsSize : -itemsSize);
       const newIndex = currentIndex + (forward ? -realItemsCount : realItemsCount);
 
@@ -467,28 +484,30 @@ export class Carousel extends Component<CarouselProps, State> {
     const { offset, client } = dragEvent;
     const { dragStartClient } = this;
     const { forward, backward } = this.defineDirection(dragStartClient, client);
-    const viewport = this.getViewport() as DOMRect;
+    const viewport = this.getViewport();
+    const listEl = this.listElement;
+    const lastItem = this.listElement?.lastElementChild;
 
-    const offsetValue = offset[vertical ? 'y' : 'x'];
-    const lastItem = (this.listElement as HTMLElement).lastElementChild as HTMLElement;
-    const lastItemStartBound = boundsOf(lastItem)[vertical ? 'top' : 'left'];
-    const viewportStartBound = viewport[vertical ? 'top' : 'left'];
-    const viewportEndBound = viewport[vertical ? 'bottom' : 'right'];
-    const itemsSize =
-      (this.listElement as HTMLElement)[vertical ? 'scrollHeight' : 'scrollWidth'] / CLONE_FACTOR;
+    if (viewport && listEl && lastItem) {
+      const offsetValue = offset[vertical ? 'y' : 'x'];
+      const lastItemStartBound = boundsOf(lastItem)?.[vertical ? 'top' : 'left'];
+      const viewportStartBound = viewport[vertical ? 'top' : 'left'];
+      const viewportEndBound = viewport[vertical ? 'bottom' : 'right'];
+      const itemsSize = listEl[vertical ? 'scrollHeight' : 'scrollWidth'] / CLONE_FACTOR;
 
-    if (forward && lastItemStartBound < viewportEndBound) {
-      const newOffset = offsetValue + itemsSize;
+      if (forward && lastItemStartBound < viewportEndBound) {
+        const newOffset = offsetValue + itemsSize;
 
-      dragEvent.preventDefault();
-      this.setCurrentOffset(newOffset, { withStateUpdate: false });
-      this.saveDragStartData(dragEvent);
-    } else if (backward && viewportStartBound < this.findRealItemsStartBound()) {
-      const newOffset = offsetValue - itemsSize;
+        dragEvent.preventDefault();
+        this.setCurrentOffset(newOffset, { withStateUpdate: false });
+        this.saveDragStartData(dragEvent);
+      } else if (backward && viewportStartBound < this.findRealItemsStartBound()) {
+        const newOffset = offsetValue - itemsSize;
 
-      dragEvent.preventDefault();
-      this.setCurrentOffset(newOffset, { withStateUpdate: false });
-      this.saveDragStartData(dragEvent);
+        dragEvent.preventDefault();
+        this.setCurrentOffset(newOffset, { withStateUpdate: false });
+        this.saveDragStartData(dragEvent);
+      }
     }
   }
 
@@ -526,11 +545,11 @@ export class Carousel extends Component<CarouselProps, State> {
 
       // ищем элемент, который находится ближе всего к начальной границе viewport'а
       const newIndex = findChildElement({
-        target: this.listElement as any,
+        target: this.listElement,
         startIndex: backward ? lastIndex : 0,
         increment: backward ? -1 : +1,
         isSuitable: Carousel.makeNearestSiblingChecker({
-          viewport: this.getViewport() as any,
+          viewport: this.getViewport(),
           vertical: Boolean(this.props.vertical),
           backward,
         }),
@@ -554,7 +573,7 @@ export class Carousel extends Component<CarouselProps, State> {
    * @param end Точка.
    * @return Информация.
    */
-  defineDirection(start: IPoint, end: IPoint) {
+  defineDirection(start: IPoint, end: IPoint): { forward: boolean; backward: boolean } {
     const { vertical } = this.props;
     const key = vertical ? 'y' : 'x';
     const delta = start[key] - end[key];
@@ -584,29 +603,30 @@ export class Carousel extends Component<CarouselProps, State> {
    * @param options.needTransition Нужна ли плавная анимация прокрутки.
    */
   scrollToItem({ targetIndex = this.currentIndex, needTransition = true } = {}) {
-    const targetItemEl = (this.listElement as HTMLElement).children[targetIndex];
+    const listEl = this.listElement;
+    const viewport = this.getViewport();
+    const targetItemEl = this.listElement?.children[targetIndex];
 
-    if (targetItemEl) {
+    if (viewport && listEl && targetItemEl) {
       this.toggleDragTransition(needTransition);
 
       if (this.isAllItemsVisible()) {
         this.setCurrentOffset(0);
       } else {
         const { vertical } = this.props;
-        const viewport = this.getViewport() as DOMRect;
         const targetItemPos = getRelativePos(targetItemEl);
         const viewportEndBound = vertical ? viewport.bottom : viewport.right;
         const nextItemsEndBound = vertical
-          ? viewport.top + (this.listElement as HTMLElement).scrollHeight - targetItemPos.y
-          : viewport.left + (this.listElement as HTMLElement).scrollWidth - targetItemPos.x;
+          ? viewport.top + listEl.scrollHeight - targetItemPos.y
+          : viewport.left + listEl.scrollWidth - targetItemPos.x;
 
         if (nextItemsEndBound >= viewportEndBound) {
           const itemBound = vertical ? targetItemPos.y : targetItemPos.x;
           this.setCurrentOffset(-itemBound);
         } else {
           const maxItemsEndBound = vertical
-            ? viewport.top + (this.listElement as HTMLElement).scrollHeight
-            : viewport.left + (this.listElement as HTMLElement).scrollWidth;
+            ? viewport.top + listEl.scrollHeight
+            : viewport.left + listEl.scrollWidth;
           this.setCurrentOffset(viewportEndBound - maxItemsEndBound);
         }
       }
@@ -630,14 +650,15 @@ export class Carousel extends Component<CarouselProps, State> {
    */
   defineMinOffset() {
     const { vertical } = this.props;
+    const viewport = this.getViewport();
+    const listEl = this.listElement;
     let minOffset = NaN;
 
-    if (this.listElement) {
-      const viewport = this.getViewport() as DOMRect;
+    if (viewport && listEl) {
       const viewportEndBound = vertical ? viewport.bottom : viewport.right;
       const maxItemsEndBound = vertical
-        ? viewport.top + this.listElement.scrollHeight
-        : viewport.left + this.listElement.scrollWidth;
+        ? viewport.top + listEl.scrollHeight
+        : viewport.left + listEl.scrollWidth;
       minOffset = viewportEndBound - maxItemsEndBound;
     }
 
@@ -649,12 +670,13 @@ export class Carousel extends Component<CarouselProps, State> {
    * @return Длина/ширина списка элементов.
    */
   getRealItemsSize() {
+    const listEl = this.listElement;
     let result = 0;
 
-    if (this.listElement) {
+    if (listEl) {
       const { items, vertical } = this.props;
-      const firstChild = this.listElement.children[0];
-      const lastChild = this.listElement.children[size(items) - 1];
+      const firstChild = listEl.children[0];
+      const lastChild = listEl.children[size(items) - 1];
 
       if (firstChild && lastChild) {
         const startBound = boundsOf(firstChild)[vertical ? 'top' : 'left'];
@@ -671,16 +693,17 @@ export class Carousel extends Component<CarouselProps, State> {
    * Возвращает длину/ширину области видимости карусели (в зависимости от ориентации).
    * @return Длина/ширина области видимости.
    */
-  getViewportSize() {
+  getViewportSize(): number {
     const { vertical } = this.props;
-    return (this.getViewport() as DOMRect)[vertical ? 'height' : 'width'];
+    const viewport = this.getViewport();
+    return viewport ? viewport[vertical ? 'height' : 'width'] : 0;
   }
 
   /**
    * Возвращает данные прямоугольной области видимости карусели.
    * @return Данные прямоугольной области видимости карусели.
    */
-  getViewport() {
+  getViewport(): DOMRect | null {
     return boundsOf(this.wrapperRef.current);
   }
 
@@ -690,7 +713,7 @@ export class Carousel extends Component<CarouselProps, State> {
    * @param dragEvent.offset Смещение.
    * @param dragEvent.client Позиция.
    */
-  saveDragStartData({ offset, client }: { offset: IPoint; client: IPoint }) {
+  saveDragStartData({ offset, client }: DraggableEvent) {
     this.dragStartOffset = offset;
     this.dragStartClient = client;
   }
@@ -718,10 +741,7 @@ export class Carousel extends Component<CarouselProps, State> {
     this.isGrabbed = isGrabbed;
   }
 
-  /**
-   * Рендер.
-   * @inheritDoc
-   */
+  /** @inheritdoc */
   render() {
     const { currentOffset, isAllItemsVisible } = this.state;
     const {
