@@ -30,7 +30,9 @@ exports[`<TextField /> should handle "caption" prop 1`] = `
             className="base-input variant-desktop size-l"
             data-testid="text-field:field"
             onBlur={[Function]}
+            onChange={[Function]}
             onFocus={[Function]}
+            onInput={[Function]}
           >
             <div
               className="reset root base-input variant-desktop size-l"
@@ -39,6 +41,7 @@ exports[`<TextField /> should handle "caption" prop 1`] = `
                 className="field reset"
                 data-testid="text-field:field"
                 onBlur={[Function]}
+                onChange={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
               />
@@ -96,7 +99,9 @@ exports[`<TextField /> should handle "caption" prop 2`] = `
             data-testid="text-field:field"
             disabled={true}
             onBlur={[Function]}
+            onChange={[Function]}
             onFocus={[Function]}
+            onInput={[Function]}
           >
             <div
               className="reset root disabled base-input disabled failed variant-mobile size-l"
@@ -106,6 +111,7 @@ exports[`<TextField /> should handle "caption" prop 2`] = `
                 data-testid="text-field:field"
                 disabled={true}
                 onBlur={[Function]}
+                onChange={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
               />
@@ -152,7 +158,9 @@ exports[`<TextField /> should handle "disabled" prop 1`] = `
             data-testid="text-field:field"
             disabled={true}
             onBlur={[Function]}
+            onChange={[Function]}
             onFocus={[Function]}
+            onInput={[Function]}
           >
             <div
               className="reset root disabled base-input disabled variant-desktop size-l"
@@ -162,6 +170,7 @@ exports[`<TextField /> should handle "disabled" prop 1`] = `
                 data-testid="text-field:field"
                 disabled={true}
                 onBlur={[Function]}
+                onChange={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
               />
@@ -196,7 +205,9 @@ exports[`<TextField /> should handle "focused" prop 1`] = `
             className="base-input focused variant-desktop size-l"
             data-testid="text-field:field"
             onBlur={[Function]}
+            onChange={[Function]}
             onFocus={[Function]}
+            onInput={[Function]}
           >
             <div
               className="reset root base-input focused variant-desktop size-l"
@@ -205,6 +216,7 @@ exports[`<TextField /> should handle "focused" prop 1`] = `
                 className="field reset"
                 data-testid="text-field:field"
                 onBlur={[Function]}
+                onChange={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
               />
@@ -245,7 +257,9 @@ exports[`<TextField /> should handle "label" prop 1`] = `
             className="base-input variant-desktop size-l"
             data-testid="text-field:field"
             onBlur={[Function]}
+            onChange={[Function]}
             onFocus={[Function]}
+            onInput={[Function]}
           >
             <div
               className="reset root base-input variant-desktop size-l"
@@ -254,6 +268,7 @@ exports[`<TextField /> should handle "label" prop 1`] = `
                 className="field reset"
                 data-testid="text-field:field"
                 onBlur={[Function]}
+                onChange={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
               />
@@ -298,7 +313,9 @@ exports[`<TextField /> should handle "label" prop 2`] = `
             data-testid="text-field:field"
             disabled={true}
             onBlur={[Function]}
+            onChange={[Function]}
             onFocus={[Function]}
+            onInput={[Function]}
           >
             <div
               className="reset root disabled base-input disabled failed variant-mobile size-l"
@@ -308,6 +325,7 @@ exports[`<TextField /> should handle "label" prop 2`] = `
                 data-testid="text-field:field"
                 disabled={true}
                 onBlur={[Function]}
+                onChange={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
               />
@@ -349,8 +367,9 @@ exports[`<TextField /> should handle "multiline" prop 1`] = `
             data-testid="text-field:field"
             multiline={true}
             onBlur={[Function]}
+            onChange={[Function]}
             onFocus={[Function]}
-            onInput={[MockFunction]}
+            onInput={[Function]}
             rows={3}
           >
             <div
@@ -360,6 +379,7 @@ exports[`<TextField /> should handle "multiline" prop 1`] = `
                 className="field reset multiline"
                 data-testid="text-field:field"
                 onBlur={[Function]}
+                onChange={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
                 rows={3}
@@ -395,7 +415,9 @@ exports[`<TextField /> should handle "variant" prop 1`] = `
             className="base-input variant-desktop size-l"
             data-testid="text-field:field"
             onBlur={[Function]}
+            onChange={[Function]}
             onFocus={[Function]}
+            onInput={[Function]}
           >
             <div
               className="reset root base-input variant-desktop size-l"
@@ -404,6 +426,7 @@ exports[`<TextField /> should handle "variant" prop 1`] = `
                 className="field reset"
                 data-testid="text-field:field"
                 onBlur={[Function]}
+                onChange={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
               />
@@ -438,7 +461,9 @@ exports[`<TextField /> should handle "variant" prop 2`] = `
             className="base-input variant-mobile size-l"
             data-testid="text-field:field"
             onBlur={[Function]}
+            onChange={[Function]}
             onFocus={[Function]}
+            onInput={[Function]}
           >
             <div
               className="reset root base-input variant-mobile size-l"
@@ -447,6 +472,7 @@ exports[`<TextField /> should handle "variant" prop 2`] = `
                 className="field reset"
                 data-testid="text-field:field"
                 onBlur={[Function]}
+                onChange={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
               />
@@ -492,7 +518,9 @@ exports[`<TextField /> should handle adornment props 1`] = `
             className="base-input variant-desktop size-l"
             data-testid="text-field:field"
             onBlur={[Function]}
+            onChange={[Function]}
             onFocus={[Function]}
+            onInput={[Function]}
           >
             <div
               className="reset root base-input variant-desktop size-l"
@@ -501,6 +529,7 @@ exports[`<TextField /> should handle adornment props 1`] = `
                 className="field reset"
                 data-testid="text-field:field"
                 onBlur={[Function]}
+                onChange={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
               />
@@ -536,7 +565,9 @@ exports[`<TextField /> should handle adornment props 2`] = `
             className="base-input variant-desktop size-l"
             data-testid="text-field:field"
             onBlur={[Function]}
+            onChange={[Function]}
             onFocus={[Function]}
+            onInput={[Function]}
           >
             <div
               className="reset root base-input variant-desktop size-l"
@@ -545,6 +576,7 @@ exports[`<TextField /> should handle adornment props 2`] = `
                 className="field reset"
                 data-testid="text-field:field"
                 onBlur={[Function]}
+                onChange={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
               />
@@ -588,7 +620,9 @@ exports[`<TextField /> should render without props 1`] = `
             className="base-input variant-desktop size-l"
             data-testid="text-field:field"
             onBlur={[Function]}
+            onChange={[Function]}
             onFocus={[Function]}
+            onInput={[Function]}
           >
             <div
               className="reset root base-input variant-desktop size-l"
@@ -597,6 +631,7 @@ exports[`<TextField /> should render without props 1`] = `
                 className="field reset"
                 data-testid="text-field:field"
                 onBlur={[Function]}
+                onChange={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
               />

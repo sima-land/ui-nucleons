@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TextField } from '..';
 import RightSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/right.js';
 import { COLORS } from '../../colors';
+import { Button } from '../../button';
 
 const baseProps = { style: { width: '100%' } };
 
@@ -165,6 +166,7 @@ export const DifferentValues = () => (
     ))}
   </>
 );
+
 export const Rounds = () => (
   <>
     <h2>Скругления</h2>
@@ -189,6 +191,7 @@ export const Rounds = () => (
     ))}
   </>
 );
+
 export const RestPlaceholder = () => {
   const [value, setValue] = useState('');
 
@@ -262,4 +265,51 @@ export const ValuePropChangeMultiline = () => {
   );
 };
 
-ValuePropChange.storyName = 'service: Multiline value prop change';
+ValuePropChangeMultiline.storyName = 'service: Multiline value prop change';
+
+export const Autofill = () => {
+  const styles: React.CSSProperties = {
+    display: 'block',
+    width: '240px',
+    marginBottom: '16px',
+  };
+
+  const [shown, toggle] = useState<boolean>();
+
+  return !shown ? (
+    <Button onClick={() => toggle(true)}>Открыть форму</Button>
+  ) : (
+    <form
+      action='/login'
+      method='POST'
+      onSubmit={e => {
+        e.preventDefault();
+        window.location.assign('');
+      }}
+    >
+      <TextField
+        label='Email'
+        defaultValue=''
+        style={styles}
+        name='email'
+        type='email'
+        autoComplete='email'
+      />
+
+      <TextField
+        label='Password'
+        defaultValue=''
+        style={styles}
+        name='password'
+        type='password'
+        autoComplete='password'
+      />
+
+      <Button size='s' type='submit'>
+        Submit
+      </Button>
+    </form>
+  );
+};
+
+Autofill.storyName = 'service: Autofill';

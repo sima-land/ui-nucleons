@@ -33,7 +33,9 @@ exports[`MaskedField should renders properly 1`] = `
               data-testid="text-field:field"
               multiline={false}
               onBlur={[Function]}
+              onChange={[Function]}
               onFocus={[Function]}
+              onInput={[Function]}
               restPlaceholder={
                 Object {
                   "shiftValue": "",
@@ -61,6 +63,7 @@ exports[`MaskedField should renders properly 1`] = `
                   className="field reset"
                   data-testid="text-field:field"
                   onBlur={[Function]}
+                  onChange={[Function]}
                   onFocus={[Function]}
                   onInput={[Function]}
                 />
