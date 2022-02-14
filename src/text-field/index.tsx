@@ -165,6 +165,10 @@ export const TextField = forwardRef<
     style,
     blockProps,
     'data-testid': dataTestId,
+    type,
+    name,
+    autoComplete,
+    id,
   },
   ref,
 ) {
@@ -236,6 +240,7 @@ export const TextField = forwardRef<
                 hasValue && 'filled',
                 labelAsPlaceholder && 'as-placeholder',
               )}
+              htmlFor={id}
               children={label}
               data-testid='text-field:label'
             />
@@ -243,6 +248,10 @@ export const TextField = forwardRef<
           <div className={cx('input-wrapper')}>
             <BaseInput
               {...baseInputProps}
+              type={type}
+              id={id}
+              name={name}
+              autoComplete={autoComplete}
               data-testid='text-field:field'
               multiline={multiline}
               ref={baseInputRef}
@@ -269,8 +278,14 @@ export const TextField = forwardRef<
                 toggleHasValue(Boolean(event.target.value));
                 toggleFocused(false);
               }}
-              onInput={onInput}
-              onChange={onChange}
+              onInput={(event: any) => {
+                onInput?.(event);
+                toggleHasValue(Boolean(event.target.value));
+              }}
+              onChange={(event: any) => {
+                onChange?.(event);
+                toggleHasValue(Boolean(event.target.value));
+              }}
               onKeyDown={onKeyDown}
               onKeyUp={onKeyUp}
             />
