@@ -4,6 +4,7 @@ import { act } from 'react-dom/test-utils';
 import { TextField } from '..';
 import { BaseInput } from '../../base-input';
 import { fitElementHeight } from '../../helpers/fit-element-height';
+import { render } from '@testing-library/react';
 
 jest.mock('../../helpers/fit-element-height', () => {
   const original = jest.requireActual('../../helpers/fit-element-height');
@@ -206,5 +207,17 @@ describe('<TextField />', () => {
 
     expect(fakeRef).toHaveBeenCalled();
     expect(fakeRef.mock.calls[0][0].nodeName).toBe('INPUT');
+  });
+  it('should handle blockProps prop', () => {
+    const { getByTestId } = render(
+      <TextField
+        value='Hello'
+        onChange={jest.fn()}
+        blockProps={{ className: 'test-block-class', id: 'test-block-id' }}
+      />,
+    );
+
+    expect(getByTestId('text-field:block').id).toBe('test-block-id');
+    expect(getByTestId('text-field:block').className).toContain('test-block-class');
   });
 });

@@ -7,7 +7,7 @@ import { Dropdown } from '../../dropdown';
 import { DropdownItem } from '../../dropdown-item';
 import { MaskedField } from '../../masked-field';
 import { countries } from '../presets';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 describe('<PhoneInput />', () => {
   it('should render without props', () => {
@@ -144,5 +144,48 @@ describe('<PhoneInput />', () => {
     const { getByTestId } = render(<PhoneInput value='0000000' label='My Phone' />);
 
     expect(getByTestId('text-field:label').textContent).toBe('My Phone');
+  });
+
+  it('should handle field block click: opener click case', () => {
+    const { getByTestId } = render(<PhoneInput value='' onBlur={jest.fn()} />);
+
+    const event = new MouseEvent('click', { bubbles: true });
+    jest.spyOn(event, 'preventDefault');
+
+    expect(event.preventDefault).toBeCalledTimes(0);
+    fireEvent(getByTestId('phone-input:dropdown-opener'), event);
+    expect(event.preventDefault).toBeCalledTimes(1);
+  });
+
+  it('should handle field block click: inside opener click case', () => {
+    const { container } = render(<PhoneInput value='' onBlur={jest.fn()} />);
+
+    const event = new MouseEvent('click', { bubbles: true });
+    jest.spyOn(event, 'preventDefault');
+
+    expect(event.preventDefault).toBeCalledTimes(0);
+    fireEvent(
+      container.querySelector('[data-testid="phone-input:dropdown-opener"] > img') as any,
+      event,
+    );
+    expect(event.preventDefault).toBeCalledTimes(1);
+  });
+
+  it('should handle field block click: block click case', () => {
+    const { getByTestId, queryAllByTestId } = render(<PhoneInput value='' onBlur={jest.fn()} />);
+
+    // show dropdown menu
+    expect(queryAllByTestId('phone-input:dropdown')).toHaveLength(0);
+    fireEvent.click(getByTestId('phone-input:dropdown-opener'));
+    expect(queryAllByTestId('phone-input:dropdown')).toHaveLength(1);
+
+    const event = new MouseEvent('click', { bubbles: true });
+    jest.spyOn(event, 'preventDefault');
+
+    expect(queryAllByTestId('phone-input:dropdown')).toHaveLength(1);
+    expect(event.preventDefault).toBeCalledTimes(0);
+    fireEvent(getByTestId('text-field:block'), event);
+    expect(queryAllByTestId('phone-input:dropdown')).toHaveLength(0);
+    expect(event.preventDefault).toBeCalledTimes(0);
   });
 });

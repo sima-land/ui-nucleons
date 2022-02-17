@@ -98,10 +98,10 @@ export const Select = ({
           onKeyDown: e => {
             e.key === 'Enter' && toggleMenu(true);
           },
-          onClick: e => {
-            e.preventDefault();
-            onClick && onClick(e);
-          },
+        }}
+        onClick={e => {
+          e.preventDefault();
+          onClick && onClick(e);
         }}
         className={styles.field}
         data-testid='select:field'

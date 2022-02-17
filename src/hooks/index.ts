@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
+import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { isTouchDevice } from '../helpers/is-touch-device';
-import { isFunction } from 'lodash';
 import on from '../helpers/on';
 import { useIdentityRef } from './identity';
 
@@ -63,22 +62,19 @@ export const useOutsideClick = (
   elementRef: React.MutableRefObject<HTMLElement | undefined | null>,
   callback: (e: MouseEvent) => void,
 ) => {
-  const callbackRef = useRef(callback);
-
-  callbackRef.current = callback;
+  const callbackRef = useIdentityRef(callback);
 
   useEffect(
     () =>
-      on(document.documentElement, 'click', (event: MouseEvent) => {
+      on<MouseEvent>(document.documentElement, 'click', event => {
         const { current: element } = elementRef;
         const { current: handleClick } = callbackRef;
 
         element &&
           element !== event.target &&
-          !element.contains(event.target as HTMLElement) &&
-          isFunction(handleClick) &&
-          handleClick(event);
-      }) as () => void,
+          !element.contains(event.target as Node) &&
+          handleClick?.(event);
+      }),
     [],
   );
 };

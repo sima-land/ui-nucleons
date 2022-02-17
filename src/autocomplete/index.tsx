@@ -74,19 +74,17 @@ export const Autocomplete = ({
   const rootRef = useRef<HTMLDivElement>(null);
   const fieldRef = useRef<HTMLInputElement>();
   const menuRef = useRef<HTMLDivElement>();
-  const [needDropdown, toggleDropdown] = useState(false);
+  const [withMenu, toggleMenu] = useState(false);
   const [realValue, setRealValue] = useState<string | undefined>(value || defaultValue);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const canShowDropdown =
-    preset === 'filled-only-list'
-      ? needDropdown && realValue && realValue.length > 0
-      : needDropdown;
+    preset === 'filled-only-list' ? withMenu && realValue && realValue.length > 0 : withMenu;
 
   const endAdornment = preset === 'default' ? <DownSVG fill={COLORS.get('gray38')} /> : undefined;
 
   useOutsideClick(rootRef, () => {
-    toggleDropdown(false);
+    toggleMenu(false);
   });
 
   useEffect(() => {
@@ -104,9 +102,9 @@ export const Autocomplete = ({
     if (menu && osInstance && activeIndex !== null) {
       const child = menu.querySelectorAll('[role="menuitem"]')[activeIndex];
 
-      child &&
+      child instanceof HTMLElement &&
         osInstance.scroll({
-          el: child as HTMLElement,
+          el: child,
           scroll: { y: 'ifneeded' },
         });
     }
@@ -122,18 +120,18 @@ export const Autocomplete = ({
       <TextField
         {...restProps}
         ref={fieldRef}
-        focused={needDropdown}
+        focused={withMenu}
         endAdornment={endAdornment}
         data-testid='autocomplete:field'
         variant='desktop'
         value={value}
         multiline={false}
         onClick={e => {
-          toggleDropdown(true);
+          toggleMenu(true);
           onClick && onClick(e);
         }}
         onChange={(e: any) => {
-          toggleDropdown(true);
+          toggleMenu(true);
           setRealValue(e.target.value);
           setActiveIndex(0);
           onChange && onChange(e);
@@ -154,7 +152,7 @@ export const Autocomplete = ({
             case 'Enter':
               if (items && !isNull(activeIndex) && items.length > activeIndex) {
                 onSelect && onSelect(items[activeIndex]);
-                toggleDropdown(false);
+                toggleMenu(false);
               }
               break;
           }
@@ -188,7 +186,7 @@ export const Autocomplete = ({
                     onClick={() => {
                       onSelect && onSelect(item);
                       setActiveIndex(null);
-                      toggleDropdown(false);
+                      toggleMenu(false);
                       fieldRef.current && fieldRef.current.focus();
                     }}
                   >
