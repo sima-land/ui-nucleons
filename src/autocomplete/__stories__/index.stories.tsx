@@ -63,7 +63,7 @@ export const Loading = () => {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div style={{ '--dropdown-max-height': '100px' }}>
+    <>
       <Autocomplete
         preset='filled-only-list'
         value={value}
@@ -81,6 +81,6 @@ export const Loading = () => {
         }}
         onSelect={setValue}
       />
-    </div>
+    </>
   );
 };
