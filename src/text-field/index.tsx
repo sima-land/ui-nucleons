@@ -83,7 +83,7 @@ export interface TextFieldProps
   variant?: Variant;
 
   /** Свойства элемента-блока. */
-  blockProps?: React.HTMLProps<HTMLDivElement>;
+  blockProps?: Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'>;
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
@@ -192,12 +192,13 @@ export const TextField = forwardRef<
 
   useImperativeHandle(ref, () => baseInputRef.current);
 
-  useEffect(() => toggleHasValue(Boolean((baseInputRef.current as any).value)));
+  useEffect(() => toggleHasValue(Boolean(baseInputRef.current?.value)));
 
   return (
     <div data-testid={dataTestId} className={cx('root', className, classes.root)} style={style}>
       {/* field row */}
       <div
+        {...blockProps}
         data-testid='text-field:block'
         className={cx(
           'reset',
@@ -221,7 +222,6 @@ export const TextField = forwardRef<
             input !== document.activeElement &&
             input.focus();
         }}
-        {...blockProps}
       >
         {/* start adornment column */}
         {!multiline && Boolean(startAdornment) && (

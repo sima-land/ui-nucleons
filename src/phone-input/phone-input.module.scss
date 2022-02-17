@@ -17,7 +17,14 @@
   cursor: pointer;
 }
 
-.popup {
+.arrow {
+  display: block;
+  fill: colors.$gray38;
+  margin-left: 4px;
+  pointer-events: none; // игнорируем клики т.к. после них элемент стрелки подменяется и считается что он сработал вне элемента родителя
+}
+
+.menu {
   position: absolute;
   width: 100%;
   top: 56px;
@@ -25,7 +32,7 @@
   z-index: 2;
 }
 
-.popup-item {
+.menu-item {
   font-size: 16px;
   line-height: 24px;
   .item-name {

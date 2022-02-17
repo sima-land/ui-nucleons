@@ -24,8 +24,7 @@ exports[`<PhoneInput /> Other: should render just text field with able to input 
             width={24}
           />
           <ForwardRef(DownSVG)
-            className="M-l__1"
-            fill="#9e9e9e"
+            className="arrow"
           />
         </div>
       }
@@ -33,6 +32,7 @@ exports[`<PhoneInput /> Other: should render just text field with able to input 
       multiline={false}
       onBlur={[Function]}
       onChange={[Function]}
+      onClick={[Function]}
     >
       <div
         className="root field"
@@ -98,12 +98,10 @@ exports[`<PhoneInput /> Other: should render just text field with able to input 
                   width={24}
                 />
                 <ForwardRef(DownSVG)
-                  className="M-l__1"
-                  fill="#9e9e9e"
+                  className="arrow"
                 >
                   <svg
-                    className="M-l__1"
-                    fill="#9e9e9e"
+                    className="arrow"
                     height={16}
                     viewBox="0 0 16 16"
                     width={16}
@@ -145,8 +143,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
             width={24}
           />
           <ForwardRef(DownSVG)
-            className="M-l__1"
-            fill="#9e9e9e"
+            className="arrow"
           />
         </div>
       }
@@ -154,6 +151,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
       mask="+7 (___) ___-__-__"
       multiline={false}
       onBlur={[Function]}
+      onClick={[Function]}
       value=""
     >
       <ForwardRef(TextField)
@@ -171,14 +169,14 @@ exports[`<PhoneInput /> should render without props 1`] = `
               width={24}
             />
             <ForwardRef(DownSVG)
-              className="M-l__1"
-              fill="#9e9e9e"
+              className="arrow"
             />
           </div>
         }
         label="Телефон"
         multiline={false}
         onBlur={[Function]}
+        onClick={[Function]}
         restPlaceholder={
           Object {
             "shiftValue": "+7 (",
@@ -271,12 +269,10 @@ exports[`<PhoneInput /> should render without props 1`] = `
                     width={24}
                   />
                   <ForwardRef(DownSVG)
-                    className="M-l__1"
-                    fill="#9e9e9e"
+                    className="arrow"
                   >
                     <svg
-                      className="M-l__1"
-                      fill="#9e9e9e"
+                      className="arrow"
                       height={16}
                       viewBox="0 0 16 16"
                       width={16}

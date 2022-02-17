@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import classnames from 'classnames/bind';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/down';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/up';
 import { Dropdown } from '../dropdown';
@@ -8,17 +7,16 @@ import { TextField, TextFieldProps } from '../text-field';
 import { MaskedField, MaskState } from '../masked-field';
 import { useOutsideClick } from '../hooks';
 import { IDS, countriesList, Country } from './presets';
-import { marginLeft } from '../styling/sizes';
-import { COLORS } from '../colors';
-import classes from './phone-input.module.scss';
 import { defineCountry } from './utils';
+import classnames from 'classnames/bind';
+import styles from './phone-input.module.scss';
 
 interface PhoneInputStyle extends React.CSSProperties {
   '--phone-input-width'?: number | string;
 }
 
 export interface PhoneInputProps
-  extends Omit<TextFieldProps, 'onChange' | 'onBlur' | 'value' | 'ref' | 'style'> {
+  extends Omit<TextFieldProps, 'onChange' | 'onBlur' | 'value' | 'ref' | 'style' | 'multiline'> {
   /** Сработает при "blur". */
   onBlur?: (e: React.FocusEvent<HTMLInputElement>, s: MaskState & { ready?: boolean }) => void;
 
@@ -35,7 +33,7 @@ export interface PhoneInputProps
   style?: PhoneInputStyle;
 }
 
-const cx = classnames.bind(classes);
+const cx = classnames.bind(styles);
 
 /**
  * Удаляет из значения код переданной страны.
@@ -43,7 +41,7 @@ const cx = classnames.bind(classes);
  * @param country Данные страны.
  * @return Значение без кода.
  */
-const formatValue = (value: string, country: Country) =>
+const formatValue = (value: string, country: Country): string =>
   value.replace(/\D/g, '').slice(country.codeChars.length);
 
 /**
@@ -65,48 +63,61 @@ export const PhoneInput = ({
   // маску определяем автоматически только при старте
   const [country, setCountry] = useState(defineCountry(value));
   const [cleanValue, setCleanValue] = useState(formatValue(value, country));
-  const [isPopupOpen, togglePopup] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [withMenu, toggleMenu] = useState<boolean>(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const openerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setCleanValue(formatValue(value, country));
   }, [value]);
 
-  useOutsideClick(dropdownRef, event => {
-    event.stopPropagation();
-    togglePopup(false);
+  useOutsideClick(rootRef, () => {
+    toggleMenu(false);
   });
 
-  const AdornmentSVG = isPopupOpen ? UpSVG : DownSVG;
+  const AdornmentSVG = withMenu ? UpSVG : DownSVG;
 
-  const commonFieldProps = {
+  const commonFieldProps: TextFieldProps = {
     ...restProps,
     label,
     multiline: false,
     className: cx('field'),
     endAdornment: (
       <div
+        ref={openerRef}
         className={cx('adornment')}
         data-testid='phone-input:dropdown-opener'
-        onClick={event => {
-          event.stopPropagation();
-          togglePopup(true);
+        onClick={() => {
+          toggleMenu(true);
         }}
       >
         <img alt='' width={24} height={24} src={country.imageSrc} />
-        <AdornmentSVG fill={COLORS.get('gray38')} className={marginLeft(1) as string} />
+        <AdornmentSVG className={cx('arrow')} />
       </div>
     ),
+    onClick: event => {
+      const opener = openerRef.current;
+
+      if (
+        opener instanceof Node &&
+        event.target instanceof Node &&
+        (opener === event.target || opener.contains(event.target))
+      ) {
+        event.preventDefault(); // чтобы не фокусировалось на поле
+      } else {
+        toggleMenu(false);
+      }
+    },
   };
 
   return (
-    <div data-testid={testId} style={style} className={cx('root', className)}>
+    <div ref={rootRef} data-testid={testId} style={style} className={cx('root', className)}>
       {country.id === IDS.other ? (
         <TextField
           {...commonFieldProps}
           onChange={(e: any) => {
             e.target.value = e.target.value.replace(/\D/g, '').slice(0, 20);
-            onChange && onChange(e as React.ChangeEvent<HTMLInputElement>);
+            onChange && onChange(e);
           }}
           onBlur={e => {
             onBlur &&
@@ -135,22 +146,17 @@ export const PhoneInput = ({
         />
       )}
 
-      {isPopupOpen && (
-        <Dropdown
-          ref={dropdownRef as any}
-          role='menu'
-          className={cx('popup')}
-          data-testid='phone-input:dropdown'
-        >
+      {withMenu && (
+        <Dropdown role='menu' className={cx('menu')} data-testid='phone-input:dropdown'>
           {countriesList.map((item, index) =>
             item.id === country.id ? null : (
               <DropdownItem
                 key={index}
                 size='l'
                 role='menuitem'
-                className={cx('popup-item')}
+                className={cx('menu-item')}
                 onClick={() => {
-                  togglePopup(false);
+                  toggleMenu(false);
                   setCountry(item);
                   onCountrySelect && onCountrySelect(item);
                 }}
