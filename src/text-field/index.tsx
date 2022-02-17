@@ -83,7 +83,7 @@ export interface TextFieldProps
   variant?: Variant;
 
   /** Свойства элемента-блока. */
-  blockProps?: Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'>;
+  blockProps?: Omit<React.HTMLProps<HTMLDivElement>, 'onClick'>;
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
