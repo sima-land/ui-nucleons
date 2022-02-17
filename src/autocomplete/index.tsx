@@ -81,7 +81,8 @@ export const Autocomplete = ({
   const canShowDropdown =
     preset === 'filled-only-list' ? withMenu && realValue && realValue.length > 0 : withMenu;
 
-  const endAdornment = preset === 'default' ? <DownSVG fill={COLORS.get('gray38')} /> : undefined;
+  const endAdornment =
+    preset === 'default' ? <DownSVG fill={COLORS.get('basic-gray38')} /> : undefined;
 
   useOutsideClick(rootRef, () => {
     toggleMenu(false);

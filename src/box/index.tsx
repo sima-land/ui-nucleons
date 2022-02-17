@@ -89,25 +89,21 @@ const cx = classnames.bind(classes);
 
 /**
  * Возможные значения свойства "display".
- * @enum {string}
  */
 const DISPLAY = new Set(['block', 'none', 'flex', 'inline', 'inline-block']);
 
 /**
  * Возможные значения свойства "flex".
- * @enum {string}
  */
 const FLEX = new Set(['shrink', 'grow', 'none']);
 
 /**
  * Возможные значения свойства "direction".
- * @enum {string}
  */
 const DIRECTION = new Set(['row', 'column']);
 
 /**
  * Возможные значения свойства "alignItems".
- * @enum {string}
  */
 const ALIGN_ITEMS = new Set(['start', 'end', 'center', 'baseline', 'stretch']);
 
@@ -119,30 +115,6 @@ const JUSTIFY_CONTENT = new Set(['start', 'end', 'center', 'between', 'around'])
 /**
  * Компонент блока, реализующего оформление в соответствии с дизайн-системой.
  * @param props Свойства.
- * @param props.alignItems Значение свойства "alignItems".
- * @param props.children Содержимое блока.
- * @param props.color Название цвета из дизайн-системы.
- * @param props.dangerouslySetInlineStyle Объект для указания inline-стилей.
- * @param props.direction Значение css-свойства "direction".
- * @param props.display Значение css-свойства "display".
- * @param props.element Элемент, который будет использован как блок.
- * @param props.flex Формирует значение css-свойства "flex".
- * @param props.justifyContent Значение свойства "justifyContent".
- * @param props.margin Внешние отступы.
- * @param props.marginBottom Внешний отступ снизу.
- * @param props.marginLeft Внешний отступ слева.
- * @param props.marginRight Внешний отступ справа.
- * @param props.marginTop Внешний отступ сверху.
- * @param props.marginX Внешний отступ по вертикали.
- * @param props.marginY Внешний отступ по горизонтали.
- * @param props.padding Внутренние отступы.
- * @param props.paddingBottom Внутренний отступ снизу.
- * @param props.paddingLeft Внутренний отступ слева.
- * @param props.paddingRight Внутренний отступ справа.
- * @param props.paddingTop Внутренний отступ сверху.
- * @param props.paddingX Внутренний отступ по вертикали.
- * @param props.paddingY Внутренний отступ по горизонтали.
- * @param props.wrap Формирует значение css-свойства "flex-wrap".
  * @return Элемент.
  */
 export const Box = ({

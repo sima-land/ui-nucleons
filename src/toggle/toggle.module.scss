@@ -12,13 +12,13 @@
 .input {
   display: none;
   &:checked + .switch {
-    background: colors.$brand-blue;
+    background: colors.$basic-blue;
     &::after {
       left: calc(100% - 22px);
     }
   }
   &:disabled + .switch {
-    background: colors.$gray4;
+    background: colors.$basic-gray4;
   }
 }
 
@@ -28,7 +28,7 @@
   width: 44px;
   height: 24px;
   border-radius: 12px;
-  background: colors.$gray12;
+  background: colors.$basic-gray12;
   transition: background 0.16s ease-in-out;
   &::after {
     content: '';

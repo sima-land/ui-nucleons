@@ -3,7 +3,7 @@
 exports[`<Panel /> should handle props 1`] = `
 <Panel
   className="test-class"
-  color="white"
+  color="basic-white"
   contentColor="additional-red"
   icon={
     Object {
@@ -14,7 +14,7 @@ exports[`<Panel /> should handle props 1`] = `
   inline={true}
 >
   <div
-    className="panel inline bg-color__white test-class"
+    className="panel inline bg-color__basic-white test-class"
     data-testid="panel"
   >
     <ForwardRef(InformationSVG)
@@ -54,7 +54,7 @@ exports[`<Panel /> should handle props 1`] = `
 exports[`<Panel /> should handle props 2`] = `
 <Panel
   className="test-class"
-  color="white"
+  color="basic-white"
   contentColor="additional-red"
   html="Lorem <i>ipsum</i> <b>dolor</b> sit."
   icon={
@@ -66,7 +66,7 @@ exports[`<Panel /> should handle props 2`] = `
   inline={true}
 >
   <div
-    className="panel inline bg-color__white test-class"
+    className="panel inline bg-color__basic-white test-class"
     data-testid="panel"
   >
     <ForwardRef(InformationSVG)
@@ -109,11 +109,11 @@ exports[`<Panel /> should handle props 2`] = `
 exports[`<Panel /> should renders without props 1`] = `
 <Panel>
   <div
-    className="panel bg-color__gray4"
+    className="panel bg-color__basic-gray4"
     data-testid="panel"
   >
     <div
-      className="content color__gray87"
+      className="content color__basic-gray87"
     />
   </div>
 </Panel>

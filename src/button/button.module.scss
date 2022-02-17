@@ -19,8 +19,8 @@
     border: 0;
   }
   &:disabled {
-    color: colors.$gray24;
-    background-color: colors.$gray8;
+    color: colors.$basic-gray24;
+    background-color: colors.$basic-gray8;
   }
 }
 
@@ -80,7 +80,7 @@
 
 // action types
 .button-primary {
-  background-color: colors.$brand-blue;
+  background-color: colors.$basic-blue;
   color: #fff;
   &:hover:not(:disabled) {
     cursor: pointer;
@@ -89,10 +89,10 @@
 }
 
 .button-secondary {
-  background-color: colors.$gray8;
-  color: colors.$gray87;
+  background-color: colors.$basic-gray8;
+  color: colors.$basic-gray87;
   &:hover:not(:disabled) {
     cursor: pointer;
-    background-color: colors.$gray12;
+    background-color: colors.$basic-gray12;
   }
 }

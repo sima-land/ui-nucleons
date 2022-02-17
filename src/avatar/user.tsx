@@ -10,13 +10,12 @@ const COLORS: ReadonlyArray<Token> = [
   'additional-red',
   'additional-teal',
   'additional-green',
-  'additional-grass',
   'additional-light-green',
   'additional-amber',
   'additional-purple',
   'additional-violet',
   'additional-deep-purple',
-  'additional-blue',
+  'additional-electric-blue',
   'additional-light-blue',
   'additional-cyan',
   'additional-blue-gray',
@@ -39,5 +38,5 @@ export const UserAvatar = (props: UserAvatarProps) => {
     setColor((window as any)[colorKey]);
   }, []);
 
-  return <Avatar {...props} bgColor={color} bgOpacity={color ? 0.48 : 0} textColor='white' />;
+  return <Avatar {...props} bgColor={color} bgOpacity={color ? 0.48 : 0} textColor='basic-white' />;
 };

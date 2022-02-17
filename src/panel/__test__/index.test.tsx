@@ -14,7 +14,7 @@ describe('<Panel />', () => {
   it('should handle props', () => {
     const wrapper = mount(
       <Panel
-        color='white'
+        color='basic-white'
         contentColor='additional-red'
         inline
         icon={InformationSVG}

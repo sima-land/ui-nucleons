@@ -16,12 +16,12 @@ $sizes: (
   &:not(.disabled):not(.no-hover).checked,
   &:not(.disabled):not(.no-hover):hover {
     cursor: pointer;
-    background: colors.$gray4;
+    background: colors.$basic-gray4;
   }
 }
 
 .disabled {
-  color: colors.$gray24;
+  color: colors.$basic-gray24;
 }
 
 @each $key, $size in $sizes {

@@ -26,10 +26,10 @@
   &.view-clean-underline {
     height: 32px;
     .item {
-      color: colors.$gray38;
+      color: colors.$basic-gray38;
       &.selected {
         position: relative;
-        color: colors.$gray87;
+        color: colors.$basic-gray87;
         &::before {
           content: '';
           position: absolute;
@@ -38,17 +38,17 @@
           left: 0;
           right: 0;
           bottom: 0;
-          background-color: colors.$brand-blue;
+          background-color: colors.$basic-blue;
           border-top-left-radius: 4px;
           border-top-right-radius: 4px;
         }
       }
       &.disabled {
-        color: colors.$gray12;
+        color: colors.$basic-gray12;
       }
       &:not(.selected):not(.disabled):hover {
         cursor: pointer;
-        color: colors.$gray54;
+        color: colors.$basic-gray54;
       }
     }
   }
@@ -61,26 +61,26 @@
       content: '';
       height: 1px;
       width: 100%;
-      background-color: colors.$gray12;
+      background-color: colors.$basic-gray12;
     }
   }
   &.view-round {
     height: 40px;
     .item {
-      color: colors.$gray87;
+      color: colors.$basic-gray87;
       padding: 8px 16px;
       border-radius: 4px;
-      background-color: colors.$gray4;
+      background-color: colors.$basic-gray4;
       &.selected {
-        background-color: colors.$brand-blue;
-        color: colors.$white;
+        background-color: colors.$basic-blue;
+        color: colors.$basic-white;
       }
       &.disabled {
-        color: colors.$gray24;
+        color: colors.$basic-gray24;
       }
       &:not(.selected):not(.disabled):hover {
         cursor: pointer;
-        background-color: colors.$gray8;
+        background-color: colors.$basic-gray8;
       }
     }
   }

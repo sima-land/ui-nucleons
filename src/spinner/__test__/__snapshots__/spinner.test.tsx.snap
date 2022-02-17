@@ -50,7 +50,7 @@ exports[`<Spinner /> should render component with different colors 2`] = `
     <svg
       className="spinner size-medium"
       height={48}
-      stroke="#fff"
+      stroke="#1f84db"
       viewBox="0 0 48 48"
       width={48}
     >

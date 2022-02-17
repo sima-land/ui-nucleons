@@ -5,7 +5,7 @@ import { Link } from '..';
 describe('<Link />', () => {
   it('calls helpers with right params and renders correctly without external', () => {
     const wrapper = mount(
-      <Link className='testClass' href='/cart/' color='gray38' target='_blank'>
+      <Link className='testClass' href='/cart/' color='basic-gray38' target='_blank'>
         Test link
       </Link>,
     );
@@ -15,7 +15,7 @@ describe('<Link />', () => {
 
   it('calls helpers and renders correctly with pseudo', () => {
     const wrapper = mount(
-      <Link pseudo color='gray38'>
+      <Link pseudo color='basic-gray38'>
         Test link
       </Link>,
     );
@@ -25,7 +25,7 @@ describe('<Link />', () => {
 
   it('calls helpers and renders correctly with external', () => {
     const wrapper = mount(
-      <Link href='/cabinet/' color='brand-blue'>
+      <Link href='/cabinet/' color='basic-blue'>
         Test link
       </Link>,
     );

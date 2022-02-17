@@ -155,7 +155,7 @@ export const NavButton: React.FC<ButtonProps> = ({
     aria-hidden={stub}
   >
     {Icon && !stub ? (
-      <Icon fill={COLORS.get('gray87')} className={cx('svg')} aria-hidden='true' />
+      <Icon fill={COLORS.get('basic-gray87')} className={cx('svg')} aria-hidden='true' />
     ) : (
       text
     )}

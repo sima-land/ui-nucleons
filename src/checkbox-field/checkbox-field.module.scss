@@ -10,14 +10,14 @@
   .label {
     display: block;
     cursor: pointer;
-    color: colors.$gray87;
+    color: colors.$basic-gray87;
     font-size: 16px;
     line-height: 24px;
   }
   .info {
     display: block;
     cursor: pointer;
-    color: colors.$gray38;
+    color: colors.$basic-gray38;
     font-size: 14px;
     line-height: 20px;
   }
@@ -50,7 +50,7 @@
   &.disabled {
     .label,
     .info {
-      color: colors.$gray24;
+      color: colors.$basic-gray24;
     }
   }
 }

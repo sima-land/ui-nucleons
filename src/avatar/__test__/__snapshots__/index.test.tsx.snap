@@ -10,11 +10,11 @@ exports[`<Avatar /> should handle props 1`] = `
       "clipPath": "url(#fake-id)",
     }
   }
-  textColor="white"
+  textColor="basic-white"
   title="Hello World"
 >
   <div
-    className="root size-40 color__white"
+    className="root size-40 color__basic-white"
     data-testid="avatar"
     style={
       Object {
@@ -48,11 +48,11 @@ exports[`<Avatar /> should handle props 2`] = `
       "clipPath": "url(#fake-id)",
     }
   }
-  textColor="white"
+  textColor="basic-white"
   title="Hello World"
 >
   <div
-    className="root size-40 color__white"
+    className="root size-40 color__basic-white"
     data-testid="avatar"
     style={
       Object {
@@ -87,11 +87,11 @@ exports[`<Avatar /> should handle props 3`] = `
       "clipPath": "url(#fake-id)",
     }
   }
-  textColor="white"
+  textColor="basic-white"
   title="Hello World"
 >
   <div
-    className="root size-40 color__white"
+    className="root size-40 color__basic-white"
     data-testid="avatar"
     style={
       Object {
@@ -120,7 +120,7 @@ exports[`<Avatar /> should handle wrong size 1`] = `
   title="Jason"
 >
   <div
-    className="root size-72 color__gray87"
+    className="root size-72 color__basic-gray87"
     data-testid="avatar"
     style={
       Object {
@@ -144,7 +144,7 @@ exports[`<Avatar /> should render without image 1`] = `
   title="Hello World"
 >
   <div
-    className="root size-40 color__gray87"
+    className="root size-40 color__basic-gray87"
     data-testid="avatar"
     style={
       Object {
@@ -167,7 +167,7 @@ exports[`<Avatar /> should render without image and title 1`] = `
   size={64}
 >
   <div
-    className="root size-64 color__gray87"
+    className="root size-64 color__basic-gray87"
     data-testid="avatar"
     style={
       Object {
@@ -206,7 +206,7 @@ exports[`<Avatar /> should render without image and title 1`] = `
 exports[`<Avatar /> should renders without props 1`] = `
 <Avatar>
   <div
-    className="root size-72 color__gray87"
+    className="root size-72 color__basic-gray87"
     data-testid="avatar"
     style={
       Object {

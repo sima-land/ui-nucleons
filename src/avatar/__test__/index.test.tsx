@@ -16,7 +16,7 @@ describe('<Avatar />', () => {
       <Avatar
         size={40}
         imageUrl='www.images.com'
-        textColor='white'
+        textColor='basic-white'
         title='Hello World'
         bgColor='additional-teal'
         style={{ clipPath: 'url(#fake-id)' }}

@@ -13,12 +13,12 @@
   outline: 0;
   box-sizing: border-box;
   transition: box-shadow 200ms ease-out;
-  color: colors.$gray87;
+  color: colors.$basic-gray87;
   &:not(:disabled):hover {
     cursor: pointer;
   }
   &:disabled {
-    color: colors.$gray24;
+    color: colors.$basic-gray24;
   }
   &.size-s {
     width: 32px;

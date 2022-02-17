@@ -69,7 +69,7 @@ export const Example = () => {
 
   return (
     <div style={{ position: 'relative', fontSize: '16px' }}>
-      <Link color='gray87' onClick={() => toggle(!shown)} style={{ display: 'flex' }}>
+      <Link color='basic-gray87' onClick={() => toggle(!shown)} style={{ display: 'flex' }}>
         <span style={{ lineHeight: '24px' }}>Сначала новые</span>
         <Icon fill='currentColor' style={{ margin: '4px 0 4px 4px', display: 'block' }} />
       </Link>

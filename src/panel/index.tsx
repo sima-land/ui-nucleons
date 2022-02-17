@@ -35,8 +35,8 @@ const cx = classnames.bind(styles);
  * @return Элемент.
  */
 export const Panel: React.FC<PanelProps> = ({
-  color: panelColor = 'gray4',
-  contentColor = 'gray87',
+  color: panelColor = 'basic-gray4',
+  contentColor = 'basic-gray87',
   inline = false,
   icon: Icon,
   className,

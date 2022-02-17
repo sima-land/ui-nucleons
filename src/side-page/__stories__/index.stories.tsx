@@ -100,7 +100,7 @@ export const SizeM = () => {
 
         <SidePage.Body>
           <div style={styles.root}>
-            <Panel color='gray4' icon={InfoSVG}>
+            <Panel color='basic-gray4' icon={InfoSVG}>
               Обнаружили брак или не нашли часть товара в заказе? Отзыв не решит проблему. Оставьте
               претензию, и мы поможем.
             </Panel>

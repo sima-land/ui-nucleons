@@ -37,7 +37,7 @@
     top: 50%;
     left: 50%;
     border-radius: 50%;
-    background: colors.$gray12;
+    background: colors.$basic-gray12;
 
     // используем 10 чтобы проще считать коэффициенты масштабирования
     // ВАЖНО: не надо использовать здесь число больше чем размер родителя с overflow:hidden - моргает в Safari
@@ -49,6 +49,6 @@
     transition: transform 0.3s, background 0.3s;
   }
   &.active::after {
-    background: colors.$gray38;
+    background: colors.$basic-gray38;
   }
 }

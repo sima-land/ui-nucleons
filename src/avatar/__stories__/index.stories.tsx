@@ -44,7 +44,7 @@ export const Primary = () => (
     {propsVariants.map((variant, index) => (
       <Fragment key={index}>
         <h3>{variant.title}</h3>
-        <Avatar key={index} {...variant.props} bgColor='additional-teal' textColor='white' />
+        <Avatar key={index} {...variant.props} bgColor='additional-teal' textColor='basic-white' />
       </Fragment>
     ))}
 
