@@ -30,6 +30,6 @@ export const Primary = () => (
 export const ColorVariants = () => (
   <div style={{ ...styles.demo, background: '#1f84db', padding: 20, paddingTop: 6 }}>
     <h3 style={{ color: 'white' }}>color=&apos;white&apos;</h3>
-    <Spinner color='white' />
+    <Spinner color='basic-white' />
   </div>
 );

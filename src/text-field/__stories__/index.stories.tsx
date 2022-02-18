@@ -51,7 +51,7 @@ export const Primary = () => (
                 defaultValue='Text'
                 variant='desktop'
                 caption='Caption'
-                endAdornment={<RightSVG fill={COLORS.get('gray24')} />}
+                endAdornment={<RightSVG fill={COLORS.get('basic-gray24')} />}
               />
               {sizeName === 'l' && (
                 <>
@@ -64,7 +64,7 @@ export const Primary = () => (
                     defaultValue='Text'
                     variant='desktop'
                     caption='Caption'
-                    endAdornment={<RightSVG fill={COLORS.get('gray24')} />}
+                    endAdornment={<RightSVG fill={COLORS.get('basic-gray24')} />}
                   />
                 </>
               )}
@@ -93,7 +93,7 @@ export const Primary = () => (
             defaultValue='Text'
             variant='mobile'
             caption='Caption'
-            endAdornment={<RightSVG fill={COLORS.get('gray24')} />}
+            endAdornment={<RightSVG fill={COLORS.get('basic-gray24')} />}
           />
           <div style={{ height: 32 }} />
           <TextField
@@ -103,7 +103,7 @@ export const Primary = () => (
             defaultValue='Text'
             variant='mobile'
             caption='Caption'
-            endAdornment={<RightSVG fill={COLORS.get('gray24')} />}
+            endAdornment={<RightSVG fill={COLORS.get('basic-gray24')} />}
           />
         </div>
       ))}

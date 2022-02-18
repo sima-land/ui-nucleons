@@ -59,6 +59,7 @@
     "enzyme-to-json": "^3.6.2",
     "eslint": "^7.31.0",
     "file-loader": "^6.2.0",
+    "handlebars": "^4.7.7",
     "husky": "^7.0.4",
     "jest": "^27.3.1",
     "jest-css-modules-transform": "^4.3.0",
@@ -83,6 +84,7 @@
   },
   "scripts": {
     "prepare": "husky install",
+    "export:colors": "node .template/build.mjs",
     "build:before": "rimraf build",
     "build:main": "tsc --project tsconfig.build.json",
     "build:after": "node dist.js",

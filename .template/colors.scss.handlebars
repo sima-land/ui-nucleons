@@ -1,0 +1,9 @@
+{{#each colorsByGroups}}
+// {{@key}}
+{{#each this}}
+${{@../key}}-{{@key}}: {{this}};
+{{/each}}
+{{#unless @last}}
+
+{{/unless}}
+{{/each}}

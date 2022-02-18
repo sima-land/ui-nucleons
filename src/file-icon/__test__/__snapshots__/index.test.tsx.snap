@@ -49,7 +49,7 @@ exports[`<FileIcon /> should render known file type icons 2`] = `
   >
     <path
       d="M6 5C6 3.89543 6.89543 3 8 3H20L26 9V27C26 28.1046 25.1046 29 24 29H8C6.89543 29 6 28.1046 6 27V5Z"
-      fill="#66cb2f"
+      fill="#64dd17"
       opacity="0.88"
     />
     <path

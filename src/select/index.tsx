@@ -47,7 +47,7 @@ const cx = classnames.bind(styles);
  */
 export const renderDefaultArrow = (opened: boolean) => {
   const ArrowSVG = opened ? UpSVG : DownSVG;
-  return <ArrowSVG fill={COLORS.get('gray38')} />;
+  return <ArrowSVG fill={COLORS.get('basic-gray38')} />;
 };
 
 /**

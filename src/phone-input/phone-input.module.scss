@@ -19,7 +19,7 @@
 
 .arrow {
   display: block;
-  fill: colors.$gray38;
+  fill: colors.$basic-gray38;
   margin-left: 4px;
   pointer-events: none; // игнорируем клики т.к. после них элемент стрелки подменяется и считается что он сработал вне элемента родителя
 }
@@ -36,11 +36,11 @@
   font-size: 16px;
   line-height: 24px;
   .item-name {
-    color: colors.$gray87;
+    color: colors.$basic-gray87;
     flex-grow: 1;
     margin-left: 16px;
   }
   .item-code {
-    color: colors.$gray38;
+    color: colors.$basic-gray38;
   }
 }

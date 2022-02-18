@@ -3,8 +3,8 @@ import { COLORS } from '../colors';
 import UnknownSVG from './unknown.svg';
 
 const VARIANTS = {
-  doc: { fill: COLORS.get('additional-blue') },
-  xls: { fill: COLORS.get('additional-grass') },
+  doc: { fill: COLORS.get('additional-electric-blue') },
+  xls: { fill: COLORS.get('additional-light-green') },
   pdf: { fill: COLORS.get('additional-deep-red') },
   jpg: { fill: COLORS.get('additional-deep-orange') },
   xml: { fill: COLORS.get('additional-deep-purple') },

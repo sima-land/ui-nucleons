@@ -1,0 +1,14 @@
+const collection = {
+  {{#each colorsByGroups}}
+  // {{@key}}
+  {{#each this}}
+  '{{@../key}}-{{@key}}': '{{this}}',
+  {{/each}}
+  {{#unless @last}}
+
+  {{/unless}}
+  {{/each}}
+} as const;
+
+export type Token = keyof typeof collection;
+export const COLORS = new Map(Object.entries(collection)) as Map<Token, string>;

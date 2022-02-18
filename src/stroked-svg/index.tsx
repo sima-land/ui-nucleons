@@ -7,10 +7,10 @@ export interface StrokedSVGProps extends Omit<React.HTMLAttributes<HTMLDivElemen
   /** Компонент, выводящий svg-элемент. */
   component: React.ComponentType<React.SVGAttributes<SVGSVGElement>>;
 
-  /** Ширина внешней обводки. */
+  /** Цвет внешней обводки. */
   stroke?: string;
 
-  /** Цвет внешней обводки. */
+  /** Ширина внешней обводки. */
   strokeWidth?: number;
 
   /** Цвет заливки. */
@@ -27,7 +27,7 @@ export const StrokedSVG = forwardRef<HTMLDivElement, StrokedSVGProps>(
     {
       component: Tag,
       fill,
-      stroke = COLORS.get('gray4'),
+      stroke = COLORS.get('basic-gray4'),
       strokeWidth = 1,
       className,
       ...restProps

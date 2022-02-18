@@ -4,13 +4,13 @@
   display: flex;
   align-items: center;
   border-radius: 8px;
-  border: 1px dashed colors.$gray24;
+  border: 1px dashed colors.$basic-gray24;
   height: 104px;
   max-width: 100%;
   overflow: hidden;
   padding: 0 40px;
   &.active {
-    border: 2px solid colors.$brand-blue;
+    border: 2px solid colors.$basic-blue;
     padding: 0 39px;
   }
 }
@@ -29,13 +29,13 @@
     &.primary {
       font-size: 16px;
       line-height: 24px;
-      color: colors.$gray87;
+      color: colors.$basic-gray87;
     }
     &.secondary {
       margin-top: 4px;
       font-size: 14px;
       line-height: 20px;
-      color: colors.$gray38;
+      color: colors.$basic-gray38;
       &.failed {
         color: colors.$additional-deep-red;
       }

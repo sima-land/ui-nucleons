@@ -1,10 +1,10 @@
 import React from 'react';
 import { has } from 'lodash';
 import classnames from 'classnames/bind';
-import { COLORS } from '../colors';
+import { COLORS, Token } from '../colors';
 import classes from './spinner.module.scss';
 
-type Color = 'brand-blue' | 'white';
+type SpinnerColor = Extract<Token, 'basic-blue' | 'basic-white'>;
 
 type Size = 'small' | 'medium' | 'large';
 
@@ -13,7 +13,7 @@ export interface SpinnerProps {
   size?: Size;
 
   /** Цвет. */
-  color?: Color;
+  color?: SpinnerColor;
 
   /** Класс. */
   className?: string;
@@ -30,9 +30,9 @@ export const DIAMETERS: Record<Size, number> = {
   large: 80,
 } as const;
 
-const DEFAULT_COLOR: Color = 'brand-blue';
+const DEFAULT_COLOR: SpinnerColor = 'basic-blue';
 
-const AVAILABLE_COLORS: Color[] = ['brand-blue', 'white'];
+const AVAILABLE_COLORS: SpinnerColor[] = ['basic-blue', 'basic-white'];
 
 /**
  * Компонент спиннера.

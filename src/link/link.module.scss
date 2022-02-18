@@ -17,27 +17,27 @@
 
 // ниже двойные классы для высокой специфичности в монолите
 .link.disabled {
-  color: colors.$gray24;
+  color: colors.$basic-gray24;
   pointer-events: none;
 }
 
 .link:not(.disabled).brand-blue {
-  color: colors.$brand-blue;
+  color: colors.$basic-blue;
   &:hover {
-    color: colors.$brand-deep-blue;
+    color: colors.$additional-deep-blue;
   }
 }
 
 .link:not(.disabled).gray87 {
-  color: colors.$gray87;
+  color: colors.$basic-gray87;
   &:hover {
-    color: colors.$gray54;
+    color: colors.$basic-gray54;
   }
 }
 
 .link:not(.disabled).gray38 {
-  color: colors.$gray38;
+  color: colors.$basic-gray38;
   &:hover {
-    color: colors.$gray54;
+    color: colors.$basic-gray54;
   }
 }

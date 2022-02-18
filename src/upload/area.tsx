@@ -82,7 +82,7 @@ export const UploadArea: React.FC<UploadAreaProps> = ({
       className={cx('root', { active }, className)}
       data-testid={testId}
     >
-      <UploadSVG fill={COLORS.get('gray24')} />
+      <UploadSVG fill={COLORS.get('basic-gray24')} />
 
       <div className={cx('info-column')}>
         <div className={cx('info', 'primary')}>

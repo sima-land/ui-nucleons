@@ -182,7 +182,7 @@ export const CustomIcon = () => {
         onSelect={selectOption}
         caption='Test caption'
         endAdornment={opened =>
-          opened ? renderDefaultArrow(opened) : <Icon fill={COLORS.get('gray38')} />
+          opened ? renderDefaultArrow(opened) : <Icon fill={COLORS.get('basic-gray38')} />
         }
       />
     </>

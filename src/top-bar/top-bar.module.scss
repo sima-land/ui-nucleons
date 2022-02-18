@@ -25,7 +25,7 @@
   .subtitle {
     font-size: 12px;
     line-height: 16px;
-    color: colors.$gray38;
+    color: colors.$basic-gray38;
   }
   .icon-button {
     + .icon-button {
@@ -84,10 +84,10 @@
   flex-shrink: 0;
   overflow: hidden;
   background: transparent;
-  color: colors.$gray87;
+  color: colors.$basic-gray87;
   &:not(.stub):hover {
     cursor: pointer;
-    color: colors.$gray54;
+    color: colors.$basic-gray54;
   }
   > svg {
     fill: currentColor;

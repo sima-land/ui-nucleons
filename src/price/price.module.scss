@@ -5,7 +5,7 @@
   display: inline-block;
   white-space: nowrap;
   &.crossed-out {
-    color: colors.$gray38;
+    color: colors.$basic-gray38;
     text-decoration: line-through;
   }
 }

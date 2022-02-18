@@ -4,9 +4,9 @@ import { marginBottom, marginRight } from '../../styling/sizes';
 import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information';
 
 const variants: PanelProps[] = [
-  { color: 'gray4' },
-  { color: 'additional-deep-red', contentColor: 'white' },
-  { color: 'additional-teal', contentColor: 'white' },
+  { color: 'basic-gray4' },
+  { color: 'additional-deep-red', contentColor: 'basic-white' },
+  { color: 'additional-teal', contentColor: 'basic-white' },
   { color: 'additional-yellow' },
 ];
 

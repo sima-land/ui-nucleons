@@ -21,14 +21,14 @@
 }
 
 .title {
-  color: colors.$gray87;
+  color: colors.$basic-gray87;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
 }
 
 .subtitle {
-  color: colors.$gray38;
+  color: colors.$basic-gray38;
   font-size: 12px;
   line-height: 16px;
   margin-top: -4px;
@@ -60,7 +60,7 @@
   background: transparent;
   border: 0;
   box-sizing: border-box;
-  color: colors.$brand-blue;
+  color: colors.$basic-blue;
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;

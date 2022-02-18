@@ -2,11 +2,11 @@
 
 exports[`<Link /> calls helpers and renders correctly with external 1`] = `
 <ForwardRef(Link)
-  color="brand-blue"
+  color="basic-blue"
   href="/cabinet/"
 >
   <a
-    className="link brand-blue"
+    className="link basic-blue"
     data-testid="anchor"
     href="/cabinet/"
   >
@@ -17,11 +17,11 @@ exports[`<Link /> calls helpers and renders correctly with external 1`] = `
 
 exports[`<Link /> calls helpers and renders correctly with pseudo 1`] = `
 <ForwardRef(Link)
-  color="gray38"
+  color="basic-gray38"
   pseudo={true}
 >
   <a
-    className="link gray38"
+    className="link basic-gray38"
     data-testid="anchor"
     role="button"
     tabIndex={0}
@@ -34,12 +34,12 @@ exports[`<Link /> calls helpers and renders correctly with pseudo 1`] = `
 exports[`<Link /> calls helpers with right params and renders correctly without external 1`] = `
 <ForwardRef(Link)
   className="testClass"
-  color="gray38"
+  color="basic-gray38"
   href="/cart/"
   target="_blank"
 >
   <a
-    className="link testClass gray38"
+    className="link testClass basic-gray38"
     data-testid="anchor"
     href="/cart/"
     target="_blank"

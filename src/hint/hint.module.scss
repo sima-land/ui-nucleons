@@ -15,7 +15,7 @@
     height: 0;
     border-style: solid;
     border-width: 4px 4px 0;
-    border-color: colors.$gray76 transparent transparent transparent;
+    border-color: colors.$basic-gray76 transparent transparent transparent;
   }
   &.right::before {
     content: '';
@@ -24,7 +24,7 @@
     height: 0;
     border-style: solid;
     border-width: 4px 4px 4px 0;
-    border-color: transparent colors.$gray76 transparent transparent;
+    border-color: transparent colors.$basic-gray76 transparent transparent;
   }
   &.bottom::before {
     content: '';
@@ -33,7 +33,7 @@
     height: 0;
     border-style: solid;
     border-width: 0 4px 4px;
-    border-color: transparent transparent colors.$gray76 transparent;
+    border-color: transparent transparent colors.$basic-gray76 transparent;
   }
   &.left::after {
     content: '';
@@ -42,13 +42,13 @@
     height: 0;
     border-style: solid;
     border-width: 4px 0 4px 4px;
-    border-color: transparent transparent transparent colors.$gray76;
+    border-color: transparent transparent transparent colors.$basic-gray76;
   }
 }
 
 .body {
   align-items: center;
-  background: colors.$gray76;
+  background: colors.$basic-gray76;
   border-radius: 4px;
   color: #fff;
   display: flex;

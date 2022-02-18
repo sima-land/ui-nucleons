@@ -10,10 +10,10 @@ $track-bound: 16px;
 
 .custom-scrollbar :global(.os-scrollbar-handle) {
   border-radius: 2px !important;
-  background: colors.$gray12 !important;
+  background: colors.$basic-gray12 !important;
   &:hover,
   &:global(.active) {
-    background: colors.$gray24 !important;
+    background: colors.$basic-gray24 !important;
   }
 }
 

@@ -19,11 +19,11 @@ exports[`UserAvatar should handle props 1`] = `
         "clipPath": "url(#fake-id)",
       }
     }
-    textColor="white"
+    textColor="basic-white"
     title="Hello World"
   >
     <div
-      className="root size-40 color__white"
+      className="root size-40 color__basic-white"
       data-testid="avatar"
       style={
         Object {
@@ -62,11 +62,11 @@ exports[`UserAvatar should handle props 2`] = `
         "clipPath": "url(#fake-id)",
       }
     }
-    textColor="white"
+    textColor="basic-white"
     title="Hello World"
   >
     <div
-      className="root size-40 color__white"
+      className="root size-40 color__basic-white"
       data-testid="avatar"
       style={
         Object {
@@ -91,10 +91,10 @@ exports[`UserAvatar should renders without props 1`] = `
   <Avatar
     bgColor="additional-deep-red"
     bgOpacity={0.48}
-    textColor="white"
+    textColor="basic-white"
   >
     <div
-      className="root size-72 color__white"
+      className="root size-72 color__basic-white"
       data-testid="avatar"
       style={
         Object {
@@ -105,13 +105,13 @@ exports[`UserAvatar should renders without props 1`] = `
     >
       <ForwardRef(PersonSVG)
         className="icon"
-        fill="#fff"
+        fill="#ffffff"
         height={24}
         width={24}
       >
         <svg
           className="icon"
-          fill="#fff"
+          fill="#ffffff"
           height={24}
           viewBox="0 0 24 24"
           width={24}

@@ -81,7 +81,7 @@ export const MarginsAndPaddings = () => (
     {testMarginPropsList.map((marginProps, index) => (
       <Fragment key={index}>
         <Box display='flex' color='additional-amber'>
-          <Box flex='grow' color='brand-sky' padding={2} {...marginProps}>
+          <Box flex='grow' color='basic-white' padding={2} {...marginProps}>
             {JSON.stringify(marginProps, null, 2)}
           </Box>
         </Box>
@@ -92,8 +92,8 @@ export const MarginsAndPaddings = () => (
     <h2>Padding</h2>
     {testPaddingPropsList.map((paddingProps, index) => (
       <Fragment key={index}>
-        <Box display='flex' color='additional-grass' {...paddingProps}>
-          <Box flex='grow' color='brand-sky' padding={2}>
+        <Box display='flex' color='additional-lime' {...paddingProps}>
+          <Box flex='grow' color='basic-white' padding={2}>
             {JSON.stringify(paddingProps, null, 2)}
           </Box>
         </Box>
@@ -184,7 +184,7 @@ export const FlexProp = () => {
       padding={4}
       display='flex'
       flex={flex}
-      color='gray24'
+      color='basic-gray24'
       children={`flex='${flex}'`}
     />
   );

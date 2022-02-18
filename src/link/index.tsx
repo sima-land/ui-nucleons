@@ -6,7 +6,7 @@ import styles from './link.module.scss';
 
 export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   /** Цвет (название токена). */
-  color?: Extract<Token, 'brand-blue' | 'gray87' | 'gray38'>;
+  color?: Extract<Token, 'basic-blue' | 'basic-gray87' | 'basic-gray38'>;
 
   /** Нужно ли оборачивать содержимое комментариями no-index. */
   noIndex?: boolean;
@@ -27,7 +27,7 @@ const cx = classnames.bind(styles);
  * Возвращает объект со свойствами, формирующими содержимое.
  * @param children Содержимое линка.
  * @param noIndex Флаг запрета индексации.
- * @return Объект со свойствами, формирующими содержимое..
+ * @return Объект со свойствами, формирующими содержимое.
  */
 const getContentProps = (children: React.ReactNode, noIndex?: boolean) =>
   noIndex ? { dangerouslySetInnerHTML: getNoIndex(children) } : { children };

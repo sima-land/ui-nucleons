@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import React from 'react';
-import { Link } from '..';
+import { Link, LinkProps } from '..';
 
 export default {
   title: 'common/Link',
@@ -11,12 +11,18 @@ export default {
 };
 
 export const Primary = () => {
+  const colors: Array<Required<LinkProps>['color']> = [
+    'basic-blue',
+    'basic-gray87',
+    'basic-gray38',
+  ];
+
   const onClick = () => action('click')(new Date());
 
   return (
     <>
       <div style={{ display: 'flex', fontSize: 18 }}>
-        {(['brand-blue', 'gray87', 'gray38'] as const).map(color => (
+        {colors.map(color => (
           <div key={color} style={{ marginRight: 48 }}>
             <Link href='https://ya.ru' color={color}>
               Ссылка

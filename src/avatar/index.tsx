@@ -62,9 +62,9 @@ const ICON_SIZES: Readonly<Record<Size, number>> = {
 export const Avatar = ({
   size: sizeProp = 72,
   imageUrl,
-  bgColor = 'gray4',
+  bgColor = 'basic-gray4',
   bgOpacity = 1,
-  textColor = 'gray87',
+  textColor = 'basic-gray87',
   title,
   monogram = getMonogram(title),
   className,
