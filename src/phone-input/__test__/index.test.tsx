@@ -54,6 +54,7 @@ describe('<PhoneInput />', () => {
     wrapper.update();
     expect(wrapper.find(Dropdown)).toHaveLength(1);
 
+    // outside click
     act(() => {
       document.documentElement.dispatchEvent(new MouseEvent('click'));
     });
@@ -187,5 +188,17 @@ describe('<PhoneInput />', () => {
     fireEvent(getByTestId('text-field:block'), event);
     expect(queryAllByTestId('phone-input:dropdown')).toHaveLength(0);
     expect(event.preventDefault).toBeCalledTimes(0);
+  });
+
+  it('should open and close dropdown by click on opener', () => {
+    const { getByTestId, queryAllByTestId } = render(<PhoneInput value='' onBlur={jest.fn()} />);
+
+    // show dropdown menu
+    expect(queryAllByTestId('phone-input:dropdown')).toHaveLength(0);
+    fireEvent.click(getByTestId('phone-input:dropdown-opener'));
+    expect(queryAllByTestId('phone-input:dropdown')).toHaveLength(1);
+
+    fireEvent.click(getByTestId('phone-input:dropdown-opener'));
+    expect(queryAllByTestId('phone-input:dropdown')).toHaveLength(0);
   });
 });
