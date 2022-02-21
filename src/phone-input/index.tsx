@@ -88,7 +88,7 @@ export const PhoneInput = ({
         className={cx('adornment')}
         data-testid='phone-input:dropdown-opener'
         onClick={() => {
-          toggleMenu(true);
+          toggleMenu(a => !a);
         }}
       >
         <img alt='' width={24} height={24} src={country.imageSrc} />
