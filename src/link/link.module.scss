@@ -21,21 +21,21 @@
   pointer-events: none;
 }
 
-.link:not(.disabled).brand-blue {
+.link:not(.disabled).basic-blue {
   color: colors.$basic-blue;
   &:hover {
     color: colors.$additional-deep-blue;
   }
 }
 
-.link:not(.disabled).gray87 {
+.link:not(.disabled).basic-gray87 {
   color: colors.$basic-gray87;
   &:hover {
     color: colors.$basic-gray54;
   }
 }
 
-.link:not(.disabled).gray38 {
+.link:not(.disabled).basic-gray38 {
   color: colors.$basic-gray38;
   &:hover {
     color: colors.$basic-gray54;

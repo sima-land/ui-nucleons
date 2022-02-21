@@ -55,7 +55,7 @@ exports[`<Link /> render render pseudo link disabled properly 1`] = `
   pseudo={true}
 >
   <a
-    className="link brand-blue disabled"
+    className="link basic-blue disabled"
     data-testid="anchor"
     role="button"
   >
@@ -69,7 +69,7 @@ exports[`<Link /> render render pseudo link properly 1`] = `
   pseudo={true}
 >
   <a
-    className="link brand-blue"
+    className="link basic-blue"
     data-testid="anchor"
     role="button"
     tabIndex={0}
