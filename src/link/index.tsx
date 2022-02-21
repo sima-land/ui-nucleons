@@ -42,7 +42,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
   {
     children,
     className,
-    color = 'brand-blue',
+    color = 'basic-blue',
     disabled,
     noIndex = false,
     pseudo,

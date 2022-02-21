@@ -10,7 +10,7 @@ exports[`<Clean.Button /> should handle props 1`] = `
     pseudo={true}
   >
     <a
-      className="link clean-button brand-blue"
+      className="link clean-button basic-blue"
       data-testid="anchor"
       href="https://site.com"
       role="button"
@@ -33,7 +33,7 @@ exports[`<Clean.Button /> should handle props 2`] = `
     pseudo={true}
   >
     <a
-      className="link clean-button brand-blue"
+      className="link clean-button basic-blue"
       data-testid="anchor"
       href={null}
       role="button"
@@ -52,7 +52,7 @@ exports[`<Clean.Button /> should render without props 1`] = `
     pseudo={false}
   >
     <a
-      className="link clean-button brand-blue"
+      className="link clean-button basic-blue"
       data-testid="anchor"
     />
   </ForwardRef(Link)>
@@ -72,7 +72,7 @@ exports[`<Clean.Group /> should handle props (1) 1`] = `
         pseudo={false}
       >
         <a
-          className="link clean-button brand-blue"
+          className="link clean-button basic-blue"
           data-testid="anchor"
         >
           Foo
@@ -87,7 +87,7 @@ exports[`<Clean.Group /> should handle props (1) 1`] = `
         pseudo={false}
       >
         <a
-          className="link clean-button brand-blue"
+          className="link clean-button basic-blue"
           data-testid="anchor"
         >
           Bar
@@ -104,7 +104,7 @@ exports[`<Clean.Group /> should handle props (1) 1`] = `
         pseudo={true}
       >
         <a
-          className="link clean-button brand-blue"
+          className="link clean-button basic-blue"
           data-testid="anchor"
           href="https://www.abc.xyz"
           role="button"
@@ -131,7 +131,7 @@ exports[`<Clean.Group /> should handle props (2) 1`] = `
         pseudo={false}
       >
         <a
-          className="link clean-button brand-blue"
+          className="link clean-button basic-blue"
           data-testid="anchor"
         >
           One button
