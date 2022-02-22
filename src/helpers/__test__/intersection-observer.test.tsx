@@ -15,7 +15,7 @@ type Props = {
   onIntersection: Callback;
 };
 
-class TestProductPreviewsWidget extends React.Component<Props> {
+class BaseTestComponent extends React.Component<Props> {
   widgetRef = React.createRef();
 
   componentDidMount() {
@@ -89,7 +89,7 @@ describe('wrapAddObserve()', () => {
       },
     ];
     const hoc = makeInViewportObserverHOC(observersList as any);
-    const TestComponent = hoc(TestProductPreviewsWidget);
+    const TestComponent = hoc(BaseTestComponent);
     mount(<TestComponent />);
     expect(add).toBeCalledTimes(1);
   });

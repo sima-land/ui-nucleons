@@ -12,6 +12,7 @@ import on from '../helpers/on';
 import classnames from 'classnames/bind';
 import DraggableEvent from './helpers/draggable-event';
 import styles from './carousel.module.scss';
+import isBrowser from '../helpers/is-browser';
 
 export interface CarouselProps {
   /** Список элементов. */
@@ -704,7 +705,7 @@ export class Carousel extends Component<CarouselProps, State> {
    * @return Данные прямоугольной области видимости карусели.
    */
   getViewport(): DOMRect | null {
-    return boundsOf(this.wrapperRef.current);
+    return isBrowser() ? boundsOf(this.wrapperRef.current) : null;
   }
 
   /**
