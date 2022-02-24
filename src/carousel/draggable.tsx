@@ -33,8 +33,6 @@ export interface DraggableProps {
   containerProps?: React.HTMLProps<HTMLDivElement>;
 }
 
-type Cb = () => void;
-
 const cx = classnames.bind(classes);
 
 const EVENT_NAMES = {
@@ -52,7 +50,7 @@ export default class Draggable extends Component<DraggableProps> {
   currentOffset: IPoint;
   clientPosition: IPoint;
   draggableRef: React.RefObject<HTMLDivElement>;
-  offList: Array<Cb>;
+  offList: Array<VoidFunction>;
 
   /**
    * Конструктор компонента области, которую можно прокручивать перетаскиванием.
@@ -67,7 +65,7 @@ export default class Draggable extends Component<DraggableProps> {
     this.currentOffset = Point();
     this.clientPosition = Point();
     this.draggableRef = createRef();
-    this.handleClick = this.handleClick.bind(this);
+    this.handleClickCapture = this.handleClickCapture.bind(this);
     this.startCapture = this.startCapture.bind(this);
     this.offList = [];
   }
@@ -116,7 +114,7 @@ export default class Draggable extends Component<DraggableProps> {
    * Выполняет отписку от глобальных событий.
    */
   componentWillUnmount() {
-    (this.offList as Cb[]).forEach(fn => fn());
+    (this.offList as VoidFunction[]).forEach(fn => fn());
   }
 
   /**
@@ -209,7 +207,7 @@ export default class Draggable extends Component<DraggableProps> {
    * Предотвращает клик если было произведено смещение мышью.
    * @param event Событие окончания захвата.
    */
-  handleClick(event: React.MouseEvent<HTMLDivElement>) {
+  handleClickCapture(event: React.MouseEvent<HTMLDivElement>) {
     if (this.needPreventClick) {
       event.preventDefault();
       this.togglePreventClickNeed(false);
@@ -300,7 +298,7 @@ export default class Draggable extends Component<DraggableProps> {
         {...containerProps}
         className={cx('draggable-container', containerProps.className)}
         // обрабатываем захват чтобы при обработке клика на дочернем элементе defaultPrevented уже был true
-        onClickCapture={this.handleClick}
+        onClickCapture={this.handleClickCapture}
         onMouseDown={this.startCapture}
         onTouchStart={this.startCapture}
       >
