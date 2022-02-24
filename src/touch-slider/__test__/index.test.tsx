@@ -1,10 +1,10 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { TouchSlider } from '..';
 
 describe('<TouchSlider />', () => {
   it('should renders correctly', () => {
-    const wrapper = mount(
+    const { container } = render(
       <TouchSlider>
         <div>Foo</div>
         <div>Bar</div>
@@ -12,6 +12,6 @@ describe('<TouchSlider />', () => {
       </TouchSlider>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

@@ -1,22 +1,24 @@
+@use '../breakpoints';
+@use '../utils';
+
 .outer {
   display: flex;
   overflow: hidden;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  --slider-gutter: calc((100vw - var(--l-width)) / 2);
-  margin: 0 calc(-1 * var(--slider-gutter));
+  @include utils.hidden-scrollbars;
 }
 
 .inner {
   display: flex;
-  padding: 0 var(--slider-gutter);
 }
 
-.invisible-scroll {
-  scrollbar-width: none; // Firefox
-  overflow: -moz-scrollbars-none; // old Firefox
-  -ms-overflow-style: none; // IE, old Edge
-  &::-webkit-scrollbar {
-    display: none; // Chrome, Safari, Opera
+@include breakpoints.down('mm') {
+  .outer {
+    --slider-gutter: calc((100vw - var(--l-width)) / 2);
+    margin: 0 calc(-1 * var(--slider-gutter));
+  }
+  .inner {
+    padding: 0 var(--slider-gutter);
   }
 }

@@ -55,7 +55,7 @@ export const Primary = () => (
         {[40, 48, 56, 64, 72, 80, 104].map((size, index) => (
           <Fragment key={index}>
             <h4>size={size}</h4>
-            <Avatar key={`${index}-${variantIndex}`} {...variant.props} size={size as any} />
+            <Avatar key={`${index}-${variantIndex}`} {...variant.props} size={size} />
           </Fragment>
         ))}
       </Fragment>

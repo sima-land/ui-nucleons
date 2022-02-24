@@ -9,38 +9,50 @@ export default {
   },
 };
 
-export const Primary = () => {
-  const Content = () => (
-    <div style={{ background: 'rgb(207, 232, 252)' }}>
-      <h2>Контент ограниченный layout`ом</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum!</p>
-    </div>
-  );
+const SomeContent = () => (
+  <div style={{ background: 'rgb(207, 232, 252)' }}>
+    <h2>Контент ограниченный layout`ом</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum!</p>
+  </div>
+);
 
-  return (
-    <>
+export const Primary = () => (
+  <>
+    <DesktopLayout>
       <h2>Простой пример</h2>
-      <DesktopLayout>
-        <Content />
-      </DesktopLayout>
+    </DesktopLayout>
 
+    <DesktopLayout>
+      <SomeContent />
+    </DesktopLayout>
+  </>
+);
+
+Primary.storyName = 'Простой пример';
+
+export const DisableOnBreakpoint = () => (
+  <>
+    <DesktopLayout>
       <h2>Отключение на определенных разрешениях</h2>
       <p>Необходимо изменить ширину окна для эффекта</p>
-      <DesktopLayout disabledOn={['mxs', 'ms', 'mm', 'ml', 'xs']}>
-        <Content />
-      </DesktopLayout>
-      <DesktopLayout disabledOn={['s']}>
-        <Content />
-      </DesktopLayout>
-      <DesktopLayout disabledOn={['m']}>
-        <Content />
-      </DesktopLayout>
-      <DesktopLayout disabledOn={['l']}>
-        <Content />
-      </DesktopLayout>
-      <DesktopLayout disabledOn={['xl']}>
-        <Content />
-      </DesktopLayout>
-    </>
-  );
-};
+    </DesktopLayout>
+
+    <DesktopLayout disabledOn={['mxs', 'ms', 'mm', 'ml', 'xs']}>
+      <SomeContent />
+    </DesktopLayout>
+    <DesktopLayout disabledOn={['s']}>
+      <SomeContent />
+    </DesktopLayout>
+    <DesktopLayout disabledOn={['m']}>
+      <SomeContent />
+    </DesktopLayout>
+    <DesktopLayout disabledOn={['l']}>
+      <SomeContent />
+    </DesktopLayout>
+    <DesktopLayout disabledOn={['xl']}>
+      <SomeContent />
+    </DesktopLayout>
+  </>
+);
+
+DisableOnBreakpoint.storyName = "Отключение не определённом breakpoint'е";
