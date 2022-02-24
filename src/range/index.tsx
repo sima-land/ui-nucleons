@@ -74,7 +74,7 @@ export class Range extends Component<RangeProps> {
   start: Container<number>;
   finish: Container<number>;
   activeBounds: [number, number];
-  unsubscribers?: Array<() => void>;
+  unsubscribeList?: Array<() => void>;
   activeThumbEl?: HTMLElement;
   isGrabbed?: boolean;
 
@@ -109,7 +109,7 @@ export class Range extends Component<RangeProps> {
   componentDidMount() {
     const { current: containerElem } = this.containerRef;
 
-    this.unsubscribers = [
+    this.unsubscribeList = [
       on(window, 'mousemove', this.updateValues),
       on(window, 'touchmove', this.updateValues),
       on(window, 'mouseup', this.handleDragEnd),
@@ -141,7 +141,7 @@ export class Range extends Component<RangeProps> {
 
   /** @inheritdoc */
   componentWillUnmount() {
-    (this.unsubscribers as any[]).forEach(fn => fn());
+    (this.unsubscribeList as any[]).forEach(fn => fn());
   }
 
   /**
