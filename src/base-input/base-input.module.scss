@@ -1,3 +1,5 @@
+@use '../utils';
+
 .reset {
   border: 0;
   box-sizing: border-box;
@@ -38,14 +40,7 @@
   }
   &.multiline {
     resize: none;
-
-    // скрытие полосы прокрутки
-    scrollbar-width: none; // Firefox
-    overflow: -moz-scrollbars-none; // old Firefox
-    -ms-overflow-style: none; // IE, old Edge
-    &::-webkit-scrollbar {
-      display: none; // Chrome, Safari, Opera
-    }
+    @include utils.hidden-scrollbars;
   }
 }
 

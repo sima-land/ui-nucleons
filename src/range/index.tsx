@@ -74,7 +74,7 @@ export class Range extends Component<RangeProps> {
   start: Container<number>;
   finish: Container<number>;
   activeBounds: [number, number];
-  unsubscribeList?: Array<() => void>;
+  unsubscribeList: Array<() => void>;
   activeThumbEl?: HTMLElement;
   isGrabbed?: boolean;
 
@@ -95,6 +95,7 @@ export class Range extends Component<RangeProps> {
     this.rangeRef = createRef();
     this.startThumbRef = createRef();
     this.finishThumbRef = createRef();
+    this.unsubscribeList = [];
 
     this.start = createContainer(readyStart);
     this.finish = createContainer(readyFinish);
@@ -141,7 +142,7 @@ export class Range extends Component<RangeProps> {
 
   /** @inheritdoc */
   componentWillUnmount() {
-    (this.unsubscribeList as any[]).forEach(fn => fn());
+    this.unsubscribeList.forEach(fn => fn());
   }
 
   /**

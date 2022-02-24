@@ -10,19 +10,21 @@ import RightSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/arrow-right'
 import DownSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/arrow-down';
 import LeftSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/arrow-left';
 
-type Size = 's' | 'l';
+export type ArrowButtonSize = 's' | 'l';
 
-type Direction = 'up' | 'right' | 'down' | 'left';
+export type ArrowDirection = 'up' | 'right' | 'down' | 'left';
 
-type IconSet = Readonly<Record<Direction, React.ComponentType<React.SVGAttributes<SVGSVGElement>>>>;
+type IconSet = Readonly<
+  Record<ArrowDirection, React.ComponentType<React.SVGAttributes<SVGSVGElement>>>
+>;
 
 export interface ArrowButtonProps
   extends Omit<JSX.IntrinsicElements['button'], 'size' | 'children'> {
   /** Размер. */
-  size?: Size;
+  size?: ArrowButtonSize;
 
   /** Направление (отвечает за иконку). */
-  direction?: Direction;
+  direction?: ArrowDirection;
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
@@ -30,7 +32,7 @@ export interface ArrowButtonProps
 
 const cx = classnames.bind(classes);
 
-const ICONS: Readonly<Record<Size, IconSet>> = {
+const ICONS: Readonly<Record<ArrowButtonSize, IconSet>> = {
   s: {
     up: UpSmallSVG,
     right: RightSmallSVG,

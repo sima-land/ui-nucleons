@@ -1,7 +1,6 @@
 import React from 'react';
 import { MobileLayout } from '../layout';
 import { BSL_IGNORE_ATTR } from '../constants';
-import classnames from 'classnames/bind';
 import styles from './touch-slider.module.scss';
 
 export interface TouchSliderProps {
@@ -9,17 +8,16 @@ export interface TouchSliderProps {
   children?: React.ReactNode;
 }
 
-const cx = classnames.bind(styles);
-
 /**
  * Компонент блока, прокручиваемого по горизонтали. Реализует отступы MobileLayout.
+ * Предназначен для использования на странице без дополнительных отступов по горизонтали.
  * @param props Свойства.
  * @return Элемент.
  */
 export const TouchSlider: React.FC<TouchSliderProps> = ({ children }) => (
   <MobileLayout>
-    <div className={cx('outer', 'invisible-scroll')} {...{ [BSL_IGNORE_ATTR]: true }}>
-      <div className={cx('inner')}>{children}</div>
+    <div className={styles.outer} {...{ [BSL_IGNORE_ATTR]: true }}>
+      <div className={styles.inner}>{children}</div>
     </div>
   </MobileLayout>
 );

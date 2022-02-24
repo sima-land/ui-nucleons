@@ -1,10 +1,10 @@
 import React from 'react';
-import { ArrowButton } from '..';
+import { ArrowButton, ArrowButtonSize, ArrowDirection } from '..';
 import { action } from '@storybook/addon-actions';
 
-const sizes = ['l', 's'];
+const sizes: ArrowButtonSize[] = ['l', 's'];
 
-const directions = ['up', 'right', 'down', 'left'];
+const directions: ArrowDirection[] = ['up', 'right', 'down', 'left'];
 
 export default {
   title: 'desktop/ArrowButton',
@@ -23,8 +23,8 @@ export const Primary = () => (
           <div key={direction} style={{ display: 'inline-block', paddingRight: 32 }}>
             <ArrowButton
               aria-label={direction}
-              size={size as any}
-              direction={direction as any}
+              size={size}
+              direction={direction}
               onClick={() => action('onClick')(`${size}, ${direction}`)}
             />
           </div>
@@ -44,8 +44,8 @@ export const Disabled = () => (
             <ArrowButton
               disabled
               aria-label={direction}
-              size={size as any}
-              direction={direction as any}
+              size={size}
+              direction={direction}
               onClick={() => action('onClick')(`${size}, ${direction}`)}
             />
           </div>

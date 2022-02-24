@@ -1,8 +1,17 @@
 import React from 'react';
+import { Story } from '@storybook/react';
+import { times } from 'lodash';
 import { TouchSlider } from '..';
+import { COLORS } from '../../colors';
 import { MobileLayout } from '../../layout';
 
-const phrase = 'этот текст будет прокручиваться на touch устройствах';
+export default {
+  title: 'mobile/TouchSlider',
+  component: TouchSlider,
+  parameters: {
+    layout: 'fullscreen',
+  },
+};
 
 const Placeholder = () => (
   <div
@@ -15,39 +24,30 @@ const Placeholder = () => (
   />
 );
 
-export default {
-  title: 'mobile/TouchSlider',
-  component: TouchSlider,
-  parameters: {
-    layout: 'fullscreen',
-  },
-};
-
-export const Primary = () => (
+export const Primary: Story = () => (
   <>
     <MobileLayout>
       <Placeholder />
     </MobileLayout>
 
     <TouchSlider>
-      {phrase.split(' ').map((word, i) => (
+      {times(20).map(index => (
         <div
-          key={i}
+          key={index}
           style={{
-            flexShrink: 0,
             width: 200,
             height: 100,
             fontSize: 20,
-            background: '#e82e5c',
+            background: COLORS.get('additional-pink'),
             color: '#fff',
             borderRadius: 8,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            marginLeft: i > 0 ? 8 : 0,
+            marginLeft: index > 0 ? 8 : 0,
           }}
         >
-          {word}
+          {index + 1}
         </div>
       ))}
     </TouchSlider>
@@ -57,3 +57,5 @@ export const Primary = () => (
     </MobileLayout>
   </>
 );
+
+Primary.storyName = 'Простой пример';
