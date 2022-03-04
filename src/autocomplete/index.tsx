@@ -3,14 +3,12 @@ import { Dropdown } from '../dropdown';
 import { DropdownItem, DropdownItemProps } from '../dropdown-item';
 import { TextField, TextFieldProps } from '../text-field';
 import { placeDropdown } from '../_internal/utils/dropdown';
-import classnames from 'classnames/bind';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/down';
-import { COLORS } from '../colors';
-import { useOutsideClick } from '../hooks';
+import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/up';
 import { DropdownLoading } from '../_internal/dropdown-loading';
-import { isNull } from 'lodash';
-import styles from './autocomplete.module.scss';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+import classnames from 'classnames/bind';
+import styles from './autocomplete.module.scss';
 
 export interface AutocompleteProps extends Omit<TextFieldProps, 'ref' | 'value' | 'defaultValue'> {
   /** Значение по умолчанию. */
@@ -43,14 +41,6 @@ const cx = classnames.bind(styles);
 /**
  * Поле ввода с подсказками.
  * @param props Свойства.
- * @param props.defaultValue Значение по умолчанию.
- * @param props.items Элементы меню.
- * @param props.itemSize Размер элемента меню.
- * @param props.loading Нужно ли выводить состояние загрузки списка.
- * @param props.onSelect Сработает при выборе.
- * @param props.preset Пресет (со стрелкой или без).
- * @param props.renderItem Выведет содержимое элемента.
- * @param props.value Значение.
  * @return Элемент.
  */
 export const Autocomplete = ({
@@ -58,7 +48,6 @@ export const Autocomplete = ({
   itemSize,
   onSelect,
   onChange,
-  onClick,
   onKeyDown,
   style,
   className,
@@ -71,22 +60,23 @@ export const Autocomplete = ({
   ...restProps
 }: AutocompleteProps) => {
   const osComponentRef = useRef<OverlayScrollbarsComponent>(null);
-  const rootRef = useRef<HTMLDivElement>(null);
-  const fieldRef = useRef<HTMLInputElement>();
-  const menuRef = useRef<HTMLDivElement>();
+  const fieldRef = useRef<HTMLInputElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+
   const [withMenu, toggleMenu] = useState(false);
   const [realValue, setRealValue] = useState<string | undefined>(value || defaultValue);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const canShowDropdown =
+  const needMenu =
     preset === 'filled-only-list' ? withMenu && realValue && realValue.length > 0 : withMenu;
 
-  const endAdornment =
-    preset === 'default' ? <DownSVG fill={COLORS.get('basic-gray38')} /> : undefined;
+  const arrowIcon = needMenu ? (
+    <UpSVG className={cx('arrow')} data-testid='autocomplete:arrow-up' />
+  ) : (
+    <DownSVG className={cx('arrow')} data-testid='autocomplete:arrow-down' />
+  );
 
-  useOutsideClick(rootRef, () => {
-    toggleMenu(false);
-  });
+  const endAdornment = preset === 'default' ? arrowIcon : undefined;
 
   useEffect(() => {
     setRealValue(value);
@@ -112,12 +102,7 @@ export const Autocomplete = ({
   }, [activeIndex]);
 
   return (
-    <div
-      ref={rootRef as any}
-      style={style}
-      className={cx('root', className)}
-      data-testid={dataTestId}
-    >
+    <div style={style} className={cx('root', className)} data-testid={dataTestId}>
       <TextField
         {...restProps}
         ref={fieldRef}
@@ -125,49 +110,55 @@ export const Autocomplete = ({
         endAdornment={endAdornment}
         data-testid='autocomplete:field'
         variant='desktop'
-        value={value}
+        value={realValue}
         multiline={false}
-        onClick={e => {
-          toggleMenu(true);
-          onClick && onClick(e);
-        }}
-        onChange={(e: any) => {
-          toggleMenu(true);
-          setRealValue(e.target.value);
-          setActiveIndex(0);
-          onChange && onChange(e);
-        }}
         className={cx('field')}
-        onKeyDown={(e: React.KeyboardEvent) => {
+        onFocus={() => {
+          toggleMenu(true);
+          setActiveIndex(null);
+        }}
+        onBlur={() => {
+          toggleMenu(false);
+        }}
+        onChange={(event: any) => {
+          toggleMenu(true);
+          setRealValue(event.target.value);
+          setActiveIndex(0);
+          onChange?.(event);
+        }}
+        onKeyDown={(event: React.KeyboardEvent) => {
           const size = items?.length || 0;
 
-          let nextIndex;
+          let nextIndex: number | undefined;
 
-          switch (e.key) {
+          switch (event.key) {
             case 'ArrowDown':
-              nextIndex = (!isNull(activeIndex) ? size + activeIndex + 1 : 0) % size;
+              nextIndex = (activeIndex !== null ? size + activeIndex + 1 : 0) % size;
               break;
             case 'ArrowUp':
               nextIndex = (size + Number(activeIndex) - 1) % size;
               break;
             case 'Enter':
-              if (items && !isNull(activeIndex) && items.length > activeIndex) {
+              if (items && activeIndex !== null && items.length > activeIndex) {
                 onSelect && onSelect(items[activeIndex]);
                 toggleMenu(false);
               }
               break;
           }
 
-          Number.isFinite(nextIndex) && setActiveIndex(nextIndex as number);
+          if (typeof nextIndex === 'number') {
+            event.preventDefault(); // не даём каретке в поле перемещаться
+            setActiveIndex(nextIndex);
+          }
 
-          onKeyDown && onKeyDown(e as any);
+          onKeyDown?.(event as any);
         }}
       />
 
-      {canShowDropdown && (
+      {needMenu && (
         <Dropdown
           {...placeDropdown(restProps.size)}
-          ref={menuRef as any}
+          ref={menuRef}
           data-testid='autocomplete:menu'
           className={cx('menu')}
           role='menu'
@@ -184,11 +175,14 @@ export const Autocomplete = ({
                     key={index}
                     role='menuitem'
                     checked={index === activeIndex}
+                    onMouseDown={event => {
+                      // чтобы при нажатии на опцию предотвратить blur на поле
+                      event.preventDefault();
+                    }}
                     onClick={() => {
-                      onSelect && onSelect(item);
+                      onSelect?.(item);
                       setActiveIndex(null);
                       toggleMenu(false);
-                      fieldRef.current && fieldRef.current.focus();
                     }}
                   >
                     {renderItem(item)}

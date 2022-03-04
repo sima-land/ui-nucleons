@@ -1,6 +1,12 @@
+@use '../colors';
+
 .root {
   position: relative;
   width: var(--width, 320px);
+}
+
+.arrow {
+  fill: colors.$basic-gray38;
 }
 
 .field {

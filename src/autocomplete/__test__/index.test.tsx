@@ -1,114 +1,177 @@
 import React from 'react';
-import { mount, ReactWrapper } from 'enzyme';
-import { act, Simulate } from 'react-dom/test-utils';
+import {
+  render,
+  fireEvent,
+  createEvent,
+  getByTestId,
+  queryAllByTestId,
+  getAllByTestId,
+} from '@testing-library/react';
 import { Autocomplete } from '..';
-import { TextField } from '../../text-field';
 
 describe('Autocomplete', () => {
-  const findMenu = (w: ReactWrapper) => w.find('div[data-testid="autocomplete:menu"]');
+  const findMenuItems = (container: HTMLElement) => getAllByTestId(container, 'dropdown-item');
 
-  const findMenuItems = (w: ReactWrapper) =>
-    w.find('div[data-testid="autocomplete:menu"]').find('div[role="menuitem"]');
+  const isCheckedItem = (item: HTMLElement) => item.classList.contains('checked');
 
-  const isCheckedItem = (w: ReactWrapper) => w.getDOMNode().classList.contains('checked');
-
-  const openMenu = (w: ReactWrapper) => {
-    act(() => {
-      Simulate.click(w.find(TextField).find('[data-testid="text-field:block"]').getDOMNode());
-    });
-    w.update();
+  const focusOnField = (container: HTMLElement) => {
+    fireEvent.focus(getByTestId(container, 'text-field:field'));
   };
 
   it('should renders correctly', () => {
-    const wrapper = mount(
+    const items = [
+      'U.S.',
+      'France',
+      'China',
+      'Cambodia',
+      'Chile',
+      'Canada',
+      'Poland',
+      'Russia',
+      'Belarus',
+      'Ukraine',
+    ];
+    const renderItem = (item: string) => item.toUpperCase();
+
+    const { container } = render(
+      <Autocomplete value='Hello' items={items} renderItem={renderItem} />,
+    );
+
+    expect(queryAllByTestId(container, 'autocomplete:field')).toHaveLength(1);
+    expect(queryAllByTestId(container, 'autocomplete:menu')).toHaveLength(0);
+    expect(queryAllByTestId(container, 'dropdown-item')).toHaveLength(0);
+    expect(queryAllByTestId(container, 'autocomplete:arrow-down')).toHaveLength(1);
+    expect(queryAllByTestId(container, 'autocomplete:arrow-up')).toHaveLength(0);
+
+    // with menu opened
+    focusOnField(container);
+    expect(queryAllByTestId(container, 'autocomplete:field')).toHaveLength(1);
+    expect(queryAllByTestId(container, 'autocomplete:menu')).toHaveLength(1);
+    expect(queryAllByTestId(container, 'dropdown-item')).toHaveLength(items.length);
+    expect(queryAllByTestId(container, 'autocomplete:arrow-down')).toHaveLength(0);
+    expect(queryAllByTestId(container, 'autocomplete:arrow-up')).toHaveLength(1);
+  });
+
+  it('should renders correctly with preset "filled-only-list"', () => {
+    const items = ['Foo', 'Bar', 'Baz'];
+    const renderItem = (item: string) => item.toUpperCase();
+
+    const { container } = render(
       <Autocomplete
         value='Hello'
-        items={[
-          'U.S.',
-          'France',
-          'China',
-          'Cambodia',
-          'Chile',
-          'Canada',
-          'Poland',
-          'Russia',
-          'Belarus',
-          'Ukraine',
-        ]}
-        renderItem={item => item.toUpperCase()}
+        items={items}
+        renderItem={renderItem}
+        preset='filled-only-list'
       />,
     );
 
-    expect(wrapper.getDOMNode()).toMatchSnapshot();
-
-    // preset "filled-only-list"
-    wrapper.setProps({ preset: 'filled-only-list' });
-    expect(wrapper.getDOMNode()).toMatchSnapshot();
+    expect(queryAllByTestId(container, 'autocomplete:field')).toHaveLength(1);
+    expect(queryAllByTestId(container, 'autocomplete:menu')).toHaveLength(0);
+    expect(queryAllByTestId(container, 'dropdown-item')).toHaveLength(0);
+    expect(queryAllByTestId(container, 'autocomplete:arrow-down')).toHaveLength(0);
+    expect(queryAllByTestId(container, 'autocomplete:arrow-up')).toHaveLength(0);
 
     // with menu opened
-    openMenu(wrapper);
-    expect(wrapper.getDOMNode()).toMatchSnapshot();
+    focusOnField(container);
+    expect(queryAllByTestId(container, 'autocomplete:field')).toHaveLength(1);
+    expect(queryAllByTestId(container, 'autocomplete:menu')).toHaveLength(1);
+    expect(queryAllByTestId(container, 'dropdown-item')).toHaveLength(items.length);
+    expect(queryAllByTestId(container, 'autocomplete:arrow-down')).toHaveLength(0);
+    expect(queryAllByTestId(container, 'autocomplete:arrow-up')).toHaveLength(0);
+  });
 
-    // loading state
-    wrapper.setProps({ loading: true });
-    expect(wrapper.getDOMNode()).toMatchSnapshot();
+  it('should render loading state', () => {
+    const items = ['Foo', 'Bar', 'Baz'];
+    const renderItem = (item: string) => item.toUpperCase();
+
+    const { container } = render(
+      <Autocomplete
+        value='Hello'
+        items={items}
+        renderItem={renderItem}
+        preset='filled-only-list'
+        loading
+      />,
+    );
+
+    expect(queryAllByTestId(container, 'autocomplete:field')).toHaveLength(1);
+    expect(queryAllByTestId(container, 'autocomplete:menu')).toHaveLength(0);
+    expect(queryAllByTestId(container, 'dropdown-item')).toHaveLength(0);
+    expect(queryAllByTestId(container, 'autocomplete:loading-area')).toHaveLength(0);
+
+    // with menu opened
+    focusOnField(container);
+    expect(queryAllByTestId(container, 'autocomplete:field')).toHaveLength(1);
+    expect(queryAllByTestId(container, 'autocomplete:menu')).toHaveLength(1);
+    expect(queryAllByTestId(container, 'dropdown-item')).toHaveLength(0);
+    expect(queryAllByTestId(container, 'autocomplete:loading-area')).toHaveLength(1);
+  });
+
+  it('should call preventDefault on menu item mouse down event', () => {
+    const items = ['aaaa', 'bbbb', 'cccc', 'dddd', 'eeee'];
+    const { container } = render(<Autocomplete value='Hello' items={items} />);
+
+    focusOnField(container);
+
+    expect(queryAllByTestId(container, 'dropdown-item')).toHaveLength(5);
+
+    // prepare fake event
+    const mouseDownEvent = createEvent.mouseDown(findMenuItems(container)[0]);
+
+    expect(mouseDownEvent.defaultPrevented).toBe(false);
+    fireEvent(findMenuItems(container)[0], mouseDownEvent);
+    expect(mouseDownEvent.defaultPrevented).toBe(true);
   });
 
   it('should handle "renderItem" prop missing', () => {
-    const wrapper = mount(
-      <Autocomplete value='Hello' items={['aaaa', 'bbbb', 'cccc', 'dddd', 'eeee']} />,
-    );
+    const items = ['aaaa', 'bbbb', 'cccc', 'dddd', 'eeee'];
+    const { container } = render(<Autocomplete value='Hello' items={items} />);
 
-    openMenu(wrapper);
-    expect(wrapper.getDOMNode()).toMatchSnapshot();
+    focusOnField(container);
+    getAllByTestId(container, 'dropdown-item').forEach((menuItem, index) => {
+      expect(menuItem.textContent).toBe(items[index]);
+    });
   });
 
   it('should handle field change event', () => {
+    const items = ['aaaa', 'bbbb', 'cccc', 'dddd', 'eeee'];
     const spy = jest.fn();
 
-    const wrapper = mount(
-      <Autocomplete value='ffff' items={['aaaa', 'bbbb', 'cccc', 'dddd', 'eeee']} onChange={spy} />,
-    );
+    const { container } = render(<Autocomplete value='ffff' items={items} onChange={spy} />);
 
-    expect(findMenu(wrapper)).toHaveLength(0);
+    expect(queryAllByTestId(container, 'autocomplete:menu')).toHaveLength(0);
     expect(spy).toBeCalledTimes(0);
 
-    act(() => {
-      Simulate.change(
-        wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-        { target: { value: 'jjjj' } as any },
-      );
-    });
-    wrapper.update();
+    fireEvent.change(getByTestId(container, 'text-field:field'), { target: { value: 'jjjj' } });
 
-    expect(findMenu(wrapper)).toHaveLength(1);
+    expect(queryAllByTestId(container, 'autocomplete:menu')).toHaveLength(1);
     expect(spy).toBeCalledTimes(1);
   });
 
-  it('should handle defaultValue', () => {
-    const wrapper = mount(<Autocomplete defaultValue='dddd' items={['aaaa', 'bbbb', 'cccc']} />);
+  it('should handle "defaultValue" prop', () => {
+    const { container } = render(
+      <Autocomplete defaultValue='dddd' items={['aaaa', 'bbbb', 'cccc']} />,
+    );
 
-    expect(wrapper.getDOMNode()).toMatchSnapshot();
+    expect(getByTestId<HTMLInputElement>(container, 'text-field:field').value).toBe('dddd');
   });
 
-  it('should handle outside click', () => {
-    const wrapper = mount(<Autocomplete defaultValue='dddd' items={['aaaa', 'bbbb', 'cccc']} />);
+  it('should hide menu on field blur', () => {
+    const { container } = render(
+      <Autocomplete defaultValue='dddd' items={['aaaa', 'bbbb', 'cccc']} />,
+    );
 
-    openMenu(wrapper);
-    expect(findMenu(wrapper)).toHaveLength(1);
+    fireEvent.focus(getByTestId(container, 'text-field:field'));
+    expect(queryAllByTestId(container, 'autocomplete:menu')).toHaveLength(1);
 
-    act(() => {
-      document.documentElement.dispatchEvent(new MouseEvent('click'));
-    });
-    wrapper.update();
-
-    expect(findMenu(wrapper)).toHaveLength(0);
+    fireEvent.blur(getByTestId(container, 'text-field:field'));
+    expect(queryAllByTestId(container, 'autocomplete:menu')).toHaveLength(0);
   });
 
   it('should handle menu item click', () => {
     const spy = jest.fn();
 
-    const wrapper = mount(
+    const { container } = render(
       <Autocomplete
         defaultValue='0000'
         items={['aaaa', 'bbbb', 'cccc', 'dddd', 'eeee', 'ffff']}
@@ -116,14 +179,13 @@ describe('Autocomplete', () => {
       />,
     );
 
-    openMenu(wrapper);
+    focusOnField(container);
+    expect(queryAllByTestId(container, 'autocomplete:menu')).toHaveLength(1);
+    expect(queryAllByTestId(container, 'dropdown-item')).toHaveLength(6);
+    expect(spy).toBeCalledTimes(0);
 
-    act(() => {
-      Simulate.click(findMenuItems(wrapper).at(4).getDOMNode());
-    });
-    wrapper.update();
-
-    expect(findMenu(wrapper)).toHaveLength(0);
+    fireEvent.click(getAllByTestId(container, 'dropdown-item')[4]);
+    expect(queryAllByTestId(container, 'autocomplete:menu')).toHaveLength(0);
     expect(spy).toBeCalledTimes(1);
   });
 
@@ -131,171 +193,103 @@ describe('Autocomplete', () => {
     it('ArrowDown: no active item', () => {
       const spy = jest.fn();
 
-      const wrapper = mount(
+      const { container } = render(
         <Autocomplete value='dddd' items={['aaaa', 'bbbb', 'cccc']} onKeyDown={spy} />,
       );
 
-      openMenu(wrapper);
+      focusOnField(container);
       expect(spy).toBeCalledTimes(0);
 
-      act(() => {
-        Simulate.keyDown(
-          wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-          { key: 'ArrowDown' },
-        );
-      });
-      wrapper.update();
-
+      fireEvent.keyDown(getByTestId(container, 'text-field:field'), { key: 'ArrowDown' });
       expect(spy).toBeCalledTimes(1);
-      expect(isCheckedItem(findMenuItems(wrapper).at(0))).toBe(true);
-      expect(isCheckedItem(findMenuItems(wrapper).at(1))).toBe(false);
-      expect(isCheckedItem(findMenuItems(wrapper).at(2))).toBe(false);
+      expect(isCheckedItem(findMenuItems(container)[0])).toBe(true);
+      expect(isCheckedItem(findMenuItems(container)[1])).toBe(false);
+      expect(isCheckedItem(findMenuItems(container)[2])).toBe(false);
     });
 
     it('ArrowDown: with active item', () => {
-      const wrapper = mount(<Autocomplete value='dddd' items={['aaaa', 'bbbb', 'cccc']} />);
+      const { container } = render(<Autocomplete value='dddd' items={['aaaa', 'bbbb', 'cccc']} />);
 
-      openMenu(wrapper);
-
-      act(() => {
-        Simulate.keyDown(
-          wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-          { key: 'ArrowDown' },
-        );
-      });
-      wrapper.update();
+      focusOnField(container);
 
       // second press
-      act(() => {
-        Simulate.keyDown(
-          wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-          { key: 'ArrowDown' },
-        );
-      });
-      wrapper.update();
+      fireEvent.keyDown(getByTestId(container, 'text-field:field'), { key: 'ArrowDown' });
 
-      expect(isCheckedItem(findMenuItems(wrapper).at(0))).toBe(false);
-      expect(isCheckedItem(findMenuItems(wrapper).at(1))).toBe(true);
-      expect(isCheckedItem(findMenuItems(wrapper).at(2))).toBe(false);
+      // second press
+      fireEvent.keyDown(getByTestId(container, 'text-field:field'), { key: 'ArrowDown' });
+
+      expect(isCheckedItem(findMenuItems(container)[0])).toBe(false);
+      expect(isCheckedItem(findMenuItems(container)[1])).toBe(true);
+      expect(isCheckedItem(findMenuItems(container)[2])).toBe(false);
     });
 
     it('ArrowUp', () => {
-      const wrapper = mount(<Autocomplete value='dddd' items={['aaaa', 'bbbb', 'cccc']} />);
+      const { container } = render(<Autocomplete value='dddd' items={['aaaa', 'bbbb', 'cccc']} />);
 
-      openMenu(wrapper);
+      focusOnField(container);
+      fireEvent.keyDown(getByTestId(container, 'text-field:field'), { key: 'ArrowUp' });
 
-      act(() => {
-        Simulate.keyDown(
-          wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-          { key: 'ArrowUp' },
-        );
-      });
-      wrapper.update();
-
-      expect(isCheckedItem(findMenuItems(wrapper).at(0))).toBe(false);
-      expect(isCheckedItem(findMenuItems(wrapper).at(1))).toBe(false);
-      expect(isCheckedItem(findMenuItems(wrapper).at(2))).toBe(true);
+      expect(isCheckedItem(findMenuItems(container)[0])).toBe(false);
+      expect(isCheckedItem(findMenuItems(container)[1])).toBe(false);
+      expect(isCheckedItem(findMenuItems(container)[2])).toBe(true);
     });
 
     it('Enter: no active item', () => {
       const spy = jest.fn();
 
-      const wrapper = mount(
+      const { container } = render(
         <Autocomplete value='dddd' items={['aaaa', 'bbbb', 'cccc']} onSelect={spy} />,
       );
 
-      act(() => {
-        Simulate.focus(
-          wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-        );
-      });
-      wrapper.update();
+      focusOnField(container);
+      expect(spy).toBeCalledTimes(0);
 
-      act(() => {
-        Simulate.keyDown(
-          wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-          { key: 'Enter' },
-        );
-      });
-      wrapper.update();
-
+      fireEvent.keyDown(getByTestId(container, 'text-field:field'), { key: 'Enter' });
       expect(spy).toBeCalledTimes(0);
     });
 
     it('Enter: with active item', () => {
       const spy = jest.fn();
 
-      const wrapper = mount(
+      const { container } = render(
         <Autocomplete value='dddd' items={['aaaa', 'bbbb', 'cccc']} onSelect={spy} />,
       );
 
       // focus
-      act(() => {
-        Simulate.focus(
-          wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-        );
-      });
-      wrapper.update();
+      focusOnField(container);
+      expect(spy).toBeCalledTimes(0);
 
       // mark first as active
-      act(() => {
-        Simulate.keyDown(
-          wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-          { key: 'ArrowDown' },
-        );
-      });
-      wrapper.update();
-
+      fireEvent.keyDown(getByTestId(container, 'text-field:field'), { key: 'ArrowDown' });
       expect(spy).toBeCalledTimes(0);
 
       // press enter
-      act(() => {
-        Simulate.keyDown(
-          wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-          { key: 'Enter' },
-        );
-      });
-      wrapper.update();
-
+      fireEvent.keyDown(getByTestId(container, 'text-field:field'), { key: 'Enter' });
       expect(spy).toBeCalledTimes(1);
     });
 
     it('Enter: no items', () => {
       const spy = jest.fn();
 
-      const wrapper = mount(<Autocomplete value='dddd' items={undefined} onSelect={spy} />);
-
-      openMenu(wrapper);
+      const { container } = render(<Autocomplete value='dddd' items={undefined} onSelect={spy} />);
 
       // focus
-      act(() => {
-        Simulate.focus(
-          wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-        );
-      });
-      wrapper.update();
+      focusOnField(container);
+      expect(spy).toBeCalledTimes(0);
 
       // press enter
-      act(() => {
-        Simulate.keyDown(
-          wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-          { key: 'Enter' },
-        );
-      });
-      wrapper.update();
-
+      fireEvent.keyDown(getByTestId(container, 'text-field:field'), { key: 'Enter' });
       expect(spy).toBeCalledTimes(0);
     });
   });
 
   it('should handle onClick prop', () => {
     const spy = jest.fn();
-
-    const wrapper = mount(<Autocomplete items={undefined} onClick={spy} />);
+    const { container } = render(<Autocomplete items={undefined} onClick={spy} />);
 
     expect(spy).toBeCalledTimes(0);
 
-    openMenu(wrapper);
+    fireEvent.click(getByTestId(container, 'text-field:block'));
 
     expect(spy).toBeCalledTimes(1);
   });
