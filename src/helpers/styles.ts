@@ -15,7 +15,6 @@ export const getTransitionStyle = (duration = 0, property = 'all', easing = 'eas
  *
  * Использовать только "translate3d" для смещения.
  * @see https://stackoverflow.com/a/22312917
- *
  * @param x Смещение по оси x в пикселях.
  * @param y Смещение по оси y в пикселях.
  * @param z Смещение по оси z в пикселях.

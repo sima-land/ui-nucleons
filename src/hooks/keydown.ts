@@ -1,4 +1,5 @@
-import { useRef, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useIdentityRef } from './identity';
 import on from '../helpers/on';
 
 /**
@@ -6,18 +7,19 @@ import on from '../helpers/on';
  * @param targetKey Клавиша, для которой отслеживается нажатие.
  * @param callback Обработчик нажатия.
  */
-export const useKeydown = (targetKey: string, callback: undefined | (() => void)) => {
-  const ref = useRef(callback);
-
-  ref.current = callback;
+export function useKeydown(
+  targetKey: string,
+  callback: undefined | ((event: KeyboardEvent) => void),
+) {
+  const ref = useIdentityRef(callback);
 
   useEffect(
     () =>
-      on<KeyboardEvent>(document, 'keydown', ({ key }) => {
-        const fn = ref.current;
+      on<KeyboardEvent>(document, 'keydown', event => {
+        const handler = ref.current;
 
-        key === targetKey && fn && fn();
+        (event.key === targetKey || event.code === targetKey) && handler?.(event);
       }),
     [targetKey],
   );
-};
+}

@@ -8,7 +8,7 @@ import { useIdentityRef } from './identity';
  * @return True - если поддерживает, false - если нет.
  */
 export const useIsTouchDevice = () => {
-  const [isTouch, setTouch] = useState(false);
+  const [isTouch, setTouch] = useState<boolean>(false);
 
   useEffect(() => {
     setTouch(isTouchDevice());
@@ -68,12 +68,12 @@ export const useOutsideClick = (
     () =>
       on<MouseEvent>(document.documentElement, 'click', event => {
         const { current: element } = elementRef;
-        const { current: handleClick } = callbackRef;
+        const { current: handler } = callbackRef;
 
         element &&
           element !== event.target &&
           !element.contains(event.target as Node) &&
-          handleClick?.(event);
+          handler?.(event);
       }),
     [],
   );

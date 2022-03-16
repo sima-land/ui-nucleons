@@ -1,14 +1,18 @@
 module.exports = {
-  plugins: [
-    '@svgr/plugin-svgo',
-    '@svgr/plugin-jsx',
-  ],
+  plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
+  svgo: true,
   svgoConfig: {
     plugins: [
-      { removeViewBox: false },
-      { cleanupIDs: false },
-      { mergePaths: true },
-      { collapseGroups: false },
+      {
+        name: 'preset-default',
+        params: {
+          overrides: {
+            removeViewBox: false,
+            cleanupIDs: false,
+            collapseGroups: false,
+          },
+        },
+      },
     ],
   },
 };
