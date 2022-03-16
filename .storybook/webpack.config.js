@@ -1,20 +1,18 @@
-
 const svgrOptions = require('../svgr.config');
 
-const isSvgRule = rule => Array.isArray(rule.test)
-  ? rule.test.some(item => item.test('.svg'))
-  : rule.test.test('.svg');
+const isSvgRule = rule =>
+  Array.isArray(rule.test) ? rule.test.some(item => item.test('.svg')) : rule.test.test('.svg');
 
 module.exports = async ({ config }) => {
-  const baseRules = config.module.rules.map(
-    rule => isSvgRule(rule)
+  const baseRules = config.module.rules.map(rule =>
+    isSvgRule(rule)
       ? {
-        ...rule,
+          ...rule,
 
-        // исключаем svg так как он будет обрабатываться другим загрузчиком (ниже)
-        exclude: /\.svg$/
-      }
-      : rule
+          // исключаем svg так как он будет обрабатываться другим загрузчиком (ниже)
+          exclude: /\.svg$/,
+        }
+      : rule,
   );
 
   const rules = [
@@ -23,15 +21,8 @@ module.exports = async ({ config }) => {
     // scss
     {
       test: /\.scss$/,
-      exclude: [
-        /node_modules/,
-        /\.module\.scss$/,
-      ],
-      use: [
-        'style-loader',
-        'css-loader',
-        'sass-loader',
-      ],
+      exclude: [/node_modules/, /\.module\.scss$/],
+      use: ['style-loader', 'css-loader', 'sass-loader'],
     },
 
     // css-модули
@@ -52,18 +43,7 @@ module.exports = async ({ config }) => {
       ],
     },
 
-    {
-      test: /\.(woff|woff2|eot|ttf)$/,
-      exclude: /node_modules/,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]'
-          },
-        }
-      ],
-    },
+    // svg как React-компоненты
     {
       test: /\.svg$/,
       use: [

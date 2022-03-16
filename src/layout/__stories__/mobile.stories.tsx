@@ -37,19 +37,19 @@ export const DisableOnBreakpoint = () => (
       <p>Необходимо изменить ширину окна для эффекта</p>
     </MobileLayout>
 
-    <MobileLayout disabledOn={['mxs', 'ms', 'mm', 'ml', 'xs']}>
+    <MobileLayout disabledOn={['s', 'm', 'l', 'xl']}>
       <SomeContent />
     </MobileLayout>
-    <MobileLayout disabledOn={['s']}>
+    <MobileLayout disabledOn={['xs']}>
       <SomeContent />
     </MobileLayout>
-    <MobileLayout disabledOn={['m']}>
+    <MobileLayout disabledOn={['ml']}>
       <SomeContent />
     </MobileLayout>
-    <MobileLayout disabledOn={['l']}>
+    <MobileLayout disabledOn={['mm']}>
       <SomeContent />
     </MobileLayout>
-    <MobileLayout disabledOn={['xl']}>
+    <MobileLayout disabledOn={['ms']}>
       <SomeContent />
     </MobileLayout>
   </>

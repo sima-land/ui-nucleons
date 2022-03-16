@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { CSSProperties, useState } from 'react';
 import { BaseInput } from '..';
 
 export default {
@@ -10,7 +10,7 @@ export default {
 };
 
 export const Primary = () => {
-  const styles = {
+  const style: CSSProperties = {
     border: '1px solid #000',
     display: 'flex',
     width: 200,
@@ -26,19 +26,19 @@ export const Primary = () => {
 
   return (
     <>
-      <h3>Regular</h3>
-      <BaseInput defaultValue='Text' style={styles} />
+      <h3>Поле ввода</h3>
+      <BaseInput defaultValue='Text' style={style} />
 
       <div style={{ height: 32 }} />
 
-      <h3>Multiline</h3>
-      <BaseInput multiline defaultValue={longValue} style={styles} />
+      <h3>Многострочное поле</h3>
+      <BaseInput multiline defaultValue={longValue} style={style} />
     </>
   );
 };
 
 export const RestPlaceholder = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string>('');
 
   return (
     <>

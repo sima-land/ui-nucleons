@@ -1,17 +1,16 @@
 import React, { useRef, useEffect, useImperativeHandle, forwardRef } from 'react';
-import classnames from 'classnames/bind';
-import classes from './base-input.module.scss';
 import { fitElementHeight } from '../helpers/fit-element-height';
-import { isString } from 'lodash';
+import classnames from 'classnames/bind';
+import styles from './base-input.module.scss';
 
-const cx = classnames.bind(classes);
+const cx = classnames.bind(styles);
 
 interface RestPlaceholder {
   value: string;
   shiftValue?: string;
 }
 
-interface Styles extends React.CSSProperties {
+interface BaseInputStyle extends React.CSSProperties {
   '--placeholder-color'?: string;
 }
 
@@ -22,7 +21,7 @@ export interface CustomProps {
   restPlaceholder?: string | RestPlaceholder;
 
   /** Стили. */
-  style?: Styles;
+  style?: BaseInputStyle;
 }
 
 export type BaseInputProps = CustomProps &
@@ -67,9 +66,10 @@ export const BaseInput = forwardRef<
       });
   });
 
-  const restPlaceholder: RestPlaceholder = isString(restPlaceholderProp)
-    ? { shiftValue: value, value: restPlaceholderProp }
-    : { shiftValue: value, ...(restPlaceholderProp as any) };
+  const restPlaceholder: RestPlaceholder =
+    typeof restPlaceholderProp === 'string'
+      ? { shiftValue: value, value: restPlaceholderProp }
+      : { shiftValue: value, ...(restPlaceholderProp as any) };
 
   return (
     <div style={style} className={cx('reset', 'root', disabled && 'disabled', className)}>
