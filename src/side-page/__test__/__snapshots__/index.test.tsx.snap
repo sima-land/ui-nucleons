@@ -33,9 +33,9 @@ exports[`SidePage should renders correctly 2`] = `
         </h1>
       </div>
       <div
-        class="root rounds-md__b footer"
+        class="root rounds-md__b footer padded"
         data-testid="bottom-bar"
-        style="height: 72px;"
+        style="height: 80px;"
       >
         <p>
           Test footer
