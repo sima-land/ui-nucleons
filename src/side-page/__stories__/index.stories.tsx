@@ -8,6 +8,7 @@ import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information';
 import imageUrl from './image.png';
 import { times } from 'lodash';
 import { WithHint } from '../../with-hint';
+import { Clean } from '../../clean-buttons';
 
 export default {
   title: 'desktop/SidePage',
@@ -72,6 +73,8 @@ export const SizeS = () => {
   );
 };
 
+SizeS.storyName = 'Размер S';
+
 export const SizeM = () => {
   const [shown, toggle] = useState<boolean>(false);
 
@@ -131,6 +134,8 @@ export const SizeM = () => {
   );
 };
 
+SizeM.storyName = 'Размер M';
+
 export const BodyScrollLock = () => {
   const [shown, toggle] = useState<boolean>(false);
 
@@ -172,6 +177,8 @@ export const BodyScrollLock = () => {
     </>
   );
 };
+
+BodyScrollLock.storyName = 'Блокировка прокрутки страницы';
 
 const Step1 = (props: SidePageProps & { onNext: () => void }) => (
   <SidePage size='s' {...props}>
@@ -238,6 +245,8 @@ export const Transitions = () => {
   );
 };
 
+Transitions.storyName = 'С анимациями';
+
 export const NoTransitions = () => {
   const [shown, toggle] = useState<boolean>(false);
 
@@ -257,6 +266,8 @@ export const NoTransitions = () => {
   );
 };
 
+NoTransitions.storyName = 'Без анимаций';
+
 export const LazyLoading = () => {
   const [shown, toggle] = useState<boolean>(false);
 
@@ -273,6 +284,8 @@ export const LazyLoading = () => {
     </>
   );
 };
+
+LazyLoading.storyName = 'Пример "бесконечной" прокрутки';
 
 const LazyLoadingList = () => {
   const [size, setSize] = useState<number>(25);
@@ -306,7 +319,7 @@ const LazyLoadingList = () => {
   );
 };
 
-export const Hints = () => {
+export const WithHints = () => {
   const [shown, toggleSidePage] = useState<boolean>(false);
 
   const styles: Record<'root', React.CSSProperties> = {
@@ -344,3 +357,39 @@ export const Hints = () => {
     </>
   );
 };
+
+WithHints.storyName = 'Пример с хинтами внутри';
+
+export const WithCleanButtons = () => {
+  const [shown, toggleSidePage] = useState<boolean>(false);
+
+  const styles: Record<'root', React.CSSProperties> = {
+    root: {
+      padding: '40px',
+      display: 'flex',
+    },
+  };
+
+  return (
+    <>
+      <Button onClick={() => toggleSidePage(true)}>Показать</Button>
+
+      <SidePage size='s' shown={shown} withTransitions onClose={() => toggleSidePage(false)}>
+        <SidePage.Header divided title='Особый футер' onClose={() => toggleSidePage(false)} />
+
+        <SidePage.Body>
+          <div style={styles.root}>Пример использования прозрачных кнопок в футере...</div>
+        </SidePage.Body>
+
+        <SidePage.Footer divided padded={false}>
+          <Clean.Group>
+            <Clean.Button>Эники</Clean.Button>
+            <Clean.Button>Бэники</Clean.Button>
+          </Clean.Group>
+        </SidePage.Footer>
+      </SidePage>
+    </>
+  );
+};
+
+WithCleanButtons.storyName = 'Прозрачные кнопки в футере';

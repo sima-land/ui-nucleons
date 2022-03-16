@@ -1,10 +1,7 @@
+import React, { Fragment } from 'react';
 import { action } from '@storybook/addon-actions';
-import React from 'react';
 import { Clean } from '..';
-
-const DisplayWrapper: React.FC = ({ children }) => (
-  <div style={{ background: '#fff' }}>{children}</div>
-);
+import { CleanButtonSize } from '../types';
 
 export default {
   title: 'common/Clean.Group',
@@ -15,28 +12,44 @@ export default {
   },
 };
 
-const Action = (value: any) => () => action('click')(value);
+const handleClick = ({ target }: React.MouseEvent) => {
+  action('click')((target as HTMLAnchorElement).textContent);
+};
+
+const DisplayWrapper: React.FC = ({ children }) => (
+  <div style={{ background: '#fff' }}>{children}</div>
+);
 
 export const Primary = () => (
   <div style={{ margin: 'auto', maxWidth: 720 }}>
-    <h3>Single button</h3>
+    <h3>Одна кнопка</h3>
 
     <DisplayWrapper>
       <Clean.Group>
-        <Clean.Button onClick={Action('Single')}>Single button</Clean.Button>
+        <Clean.Button onClick={handleClick}>Single button</Clean.Button>
       </Clean.Group>
     </DisplayWrapper>
 
-    <h3>Just buttons</h3>
+    <h3>Две кнопки</h3>
 
     <DisplayWrapper>
       <Clean.Group>
-        <Clean.Button onClick={Action('Hello')}>Hello</Clean.Button>
-        <Clean.Button onClick={Action('World')}>World</Clean.Button>
+        <Clean.Button onClick={handleClick}>Hello</Clean.Button>
+        <Clean.Button onClick={handleClick}>World</Clean.Button>
       </Clean.Group>
     </DisplayWrapper>
 
-    <h3>Buttons as links</h3>
+    <h3>Три кнопки</h3>
+
+    <DisplayWrapper>
+      <Clean.Group>
+        <Clean.Button onClick={handleClick}>Foo</Clean.Button>
+        <Clean.Button onClick={handleClick}>Bar</Clean.Button>
+        <Clean.Button onClick={handleClick}>Baz</Clean.Button>
+      </Clean.Group>
+    </DisplayWrapper>
+
+    <h3>Ссылки</h3>
 
     <DisplayWrapper>
       <Clean.Group>
@@ -46,3 +59,28 @@ export const Primary = () => (
     </DisplayWrapper>
   </div>
 );
+
+Primary.storyName = 'Простой пример';
+
+export const Sizes = () => {
+  const sizes: CleanButtonSize[] = ['s', 'm', 'l'];
+
+  return (
+    <div style={{ margin: 'auto', maxWidth: 720 }}>
+      {sizes.map(size => (
+        <Fragment key={size}>
+          <h3>{size.toUpperCase()}</h3>
+          <DisplayWrapper>
+            <Clean.Group size={size}>
+              <Clean.Button onClick={handleClick}>Foo</Clean.Button>
+              <Clean.Button onClick={handleClick}>Bar</Clean.Button>
+              <Clean.Button onClick={handleClick}>Baz</Clean.Button>
+            </Clean.Group>
+          </DisplayWrapper>
+        </Fragment>
+      ))}
+    </div>
+  );
+};
+
+Sizes.storyName = 'Размеры';

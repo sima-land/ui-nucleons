@@ -1,151 +1,90 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Clean.Button /> should handle props 1`] = `
-<CleanButton
-  href="https://site.com"
->
-  <ForwardRef(Link)
-    className="clean-button"
+exports[`Clean.Button should handle props 1`] = `
+<DocumentFragment>
+  <a
+    class="link button size-s basic-blue"
+    data-testid="anchor"
     href="https://site.com"
-    pseudo={true}
   >
-    <a
-      className="link clean-button basic-blue"
-      data-testid="anchor"
-      href="https://site.com"
-      role="button"
-      tabIndex={0}
-    >
-      Go to site
-    </a>
-  </ForwardRef(Link)>
-</CleanButton>
+    Go to site
+  </a>
+</DocumentFragment>
 `;
 
-exports[`<Clean.Button /> should handle props 2`] = `
-<CleanButton
-  asLink={true}
-  href={null}
->
-  <ForwardRef(Link)
-    className="clean-button"
-    href={null}
-    pseudo={true}
-  >
-    <a
-      className="link clean-button basic-blue"
-      data-testid="anchor"
-      href={null}
-      role="button"
-      tabIndex={0}
-    >
-      Go to site
-    </a>
-  </ForwardRef(Link)>
-</CleanButton>
-`;
-
-exports[`<Clean.Button /> should render without props 1`] = `
-<CleanButton>
-  <ForwardRef(Link)
-    className="clean-button"
-    pseudo={false}
-  >
-    <a
-      className="link clean-button basic-blue"
-      data-testid="anchor"
-    />
-  </ForwardRef(Link)>
-</CleanButton>
-`;
-
-exports[`<Clean.Group /> should handle props (1) 1`] = `
-<CleanGroup>
-  <div
-    className="clean-group"
-  >
-    <CleanButton
-      key=".0"
-    >
-      <ForwardRef(Link)
-        className="clean-button"
-        pseudo={false}
-      >
-        <a
-          className="link clean-button basic-blue"
-          data-testid="anchor"
-        >
-          Foo
-        </a>
-      </ForwardRef(Link)>
-    </CleanButton>
-    <CleanButton
-      key=".1"
-    >
-      <ForwardRef(Link)
-        className="clean-button"
-        pseudo={false}
-      >
-        <a
-          className="link clean-button basic-blue"
-          data-testid="anchor"
-        >
-          Bar
-        </a>
-      </ForwardRef(Link)>
-    </CleanButton>
-    <CleanButton
-      href="https://www.abc.xyz"
-      key=".2"
-    >
-      <ForwardRef(Link)
-        className="clean-button"
-        href="https://www.abc.xyz"
-        pseudo={true}
-      >
-        <a
-          className="link clean-button basic-blue"
-          data-testid="anchor"
-          href="https://www.abc.xyz"
-          role="button"
-          tabIndex={0}
-        >
-          XYZ
-        </a>
-      </ForwardRef(Link)>
-    </CleanButton>
-  </div>
-</CleanGroup>
-`;
-
-exports[`<Clean.Group /> should handle props (2) 1`] = `
-<CleanGroup>
-  <div
-    className="clean-group"
-  >
-    <CleanButton
-      key=".0"
-    >
-      <ForwardRef(Link)
-        className="clean-button"
-        pseudo={false}
-      >
-        <a
-          className="link clean-button basic-blue"
-          data-testid="anchor"
-        >
-          One button
-        </a>
-      </ForwardRef(Link)>
-    </CleanButton>
-  </div>
-</CleanGroup>
-`;
-
-exports[`<Clean.Group /> should render without props 1`] = `
-<CleanGroup>
-  <div
-    className="clean-group"
+exports[`Clean.Button should handle props 2`] = `
+<DocumentFragment>
+  <a
+    class="link button size-s basic-blue"
+    data-testid="anchor"
   />
-</CleanGroup>
+</DocumentFragment>
+`;
+
+exports[`Clean.Button should render without props 1`] = `
+<DocumentFragment>
+  <a
+    class="link button size-s basic-blue"
+    data-testid="anchor"
+    role="button"
+    tabindex="0"
+  />
+</DocumentFragment>
+`;
+
+exports[`Clean.Group should render multiple buttons 1`] = `
+<DocumentFragment>
+  <div
+    class="group"
+  >
+    <a
+      class="link button size-s basic-blue"
+      data-testid="anchor"
+      role="button"
+      tabindex="0"
+    >
+      Foo
+    </a>
+    <a
+      class="link button size-s basic-blue"
+      data-testid="anchor"
+      role="button"
+      tabindex="0"
+    >
+      Bar
+    </a>
+    <a
+      class="link button size-s basic-blue"
+      data-testid="anchor"
+      href="https://www.abc.xyz"
+    >
+      XYZ
+    </a>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Clean.Group should render single button 1`] = `
+<DocumentFragment>
+  <div
+    class="group"
+  >
+    <a
+      class="link button size-s basic-blue"
+      data-testid="anchor"
+      role="button"
+      tabindex="0"
+    >
+      One button
+    </a>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Clean.Group should render without props 1`] = `
+<DocumentFragment>
+  <div
+    class="group"
+  />
+</DocumentFragment>
 `;

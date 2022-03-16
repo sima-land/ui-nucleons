@@ -1,6 +1,21 @@
 @use '../colors';
 
-.clean-button {
+.group {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  width: 100%;
+  .button {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    + .button {
+      border-left: 1px solid colors.$basic-gray12;
+    }
+  }
+}
+
+.button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,21 +26,17 @@
 
   font-size: 16px;
   line-height: 24px;
-  height: 64px;
   overflow: hidden;
 }
 
-.clean-group {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow: hidden;
-  width: 100%;
-  .clean-button {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 0;
-    + .clean-button {
-      border-left: 1px solid colors.$basic-gray12;
-    }
-  }
+.size-s {
+  height: 64px;
+}
+
+.size-m {
+  height: 72px;
+}
+
+.size-l {
+  height: 80px;
 }
