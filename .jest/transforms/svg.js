@@ -7,8 +7,6 @@ module.exports = {
   process: (src, filename) => {
     const code = svgr.transform.sync(src, svgrOptions, { filePath: filename });
 
-    console.log(code);
-
     return babel.transformSync(code, {
       filename,
       presets: [babelJestPreset],
