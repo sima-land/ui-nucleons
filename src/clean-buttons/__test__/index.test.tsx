@@ -1,38 +1,41 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { Clean } from '../index';
+import { CleanGroupSizeContext } from '../utils';
 
-describe('<Clean.Button />', () => {
+describe('Clean.Button', () => {
   it('should render without props', () => {
-    const wrapper = mount(<Clean.Button />);
+    const { asFragment } = render(<Clean.Button />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('should handle props', () => {
-    const wrapper = mount(<Clean.Button href='https://site.com' children='Go to site' />);
+    const { asFragment, rerender, queryAllByRole, container } = render(
+      <Clean.Button href='https://site.com' children='Go to site' />,
+    );
 
-    expect(wrapper.find('button')).toHaveLength(0);
-    expect(wrapper.find('a')).toHaveLength(1);
-    expect(wrapper).toMatchSnapshot();
+    expect(queryAllByRole('button')).toHaveLength(0);
+    expect(container.querySelectorAll('a')).toHaveLength(1);
+    expect(asFragment()).toMatchSnapshot();
 
-    wrapper.setProps({ href: null, asLink: true });
+    rerender(<Clean.Button href={undefined} asLink />);
 
-    expect(wrapper.find('button')).toHaveLength(0);
-    expect(wrapper.find('a')).toHaveLength(1);
-    expect(wrapper).toMatchSnapshot();
+    expect(queryAllByRole('button')).toHaveLength(0);
+    expect(container.querySelectorAll('a')).toHaveLength(1);
+    expect(asFragment()).toMatchSnapshot();
   });
 });
 
-describe('<Clean.Group />', () => {
+describe('Clean.Group', () => {
   it('should render without props', () => {
-    const wrapper = mount(<Clean.Group />);
+    const { asFragment } = render(<Clean.Group />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
-  it('should handle props (1)', () => {
-    const wrapper = mount(
+  it('should render multiple buttons', () => {
+    const { asFragment } = render(
       <Clean.Group>
         <Clean.Button>Foo</Clean.Button>
         <Clean.Button>Bar</Clean.Button>
@@ -41,16 +44,54 @@ describe('<Clean.Group />', () => {
       </Clean.Group>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
-  it('should handle props (2)', () => {
-    const wrapper = mount(
+  it('should render single button', () => {
+    const { asFragment } = render(
       <Clean.Group>
         <Clean.Button>One button</Clean.Button>
       </Clean.Group>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('should handle size prop', () => {
+    const { container } = render(
+      <Clean.Group size='m'>
+        <Clean.Button>One</Clean.Button>
+        <Clean.Button>Two</Clean.Button>
+      </Clean.Group>,
+    );
+
+    expect(container.querySelectorAll('.size-m')).toHaveLength(2);
+  });
+
+  it('should handle size from context', () => {
+    const { container } = render(
+      <CleanGroupSizeContext.Provider value='l'>
+        <Clean.Group>
+          <Clean.Button>One</Clean.Button>
+          <Clean.Button>Two</Clean.Button>
+        </Clean.Group>
+      </CleanGroupSizeContext.Provider>,
+    );
+
+    expect(container.querySelectorAll('.size-l')).toHaveLength(2);
+  });
+
+  it('property should take precedence over the value from the context', () => {
+    const { container } = render(
+      <CleanGroupSizeContext.Provider value='l'>
+        <Clean.Group size='s'>
+          <Clean.Button>One</Clean.Button>
+          <Clean.Button>Two</Clean.Button>
+        </Clean.Group>
+      </CleanGroupSizeContext.Provider>,
+    );
+
+    expect(container.querySelectorAll('.size-s')).toHaveLength(2);
+    expect(container.querySelectorAll('.size-l')).toHaveLength(0);
   });
 });
