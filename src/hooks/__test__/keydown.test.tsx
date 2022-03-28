@@ -35,7 +35,7 @@ describe('useKeydown', () => {
     }).not.toThrowError();
   });
 
-  it('callback arugment must be an event', () => {
+  it('callback argument must be an event', () => {
     const spy = jest.fn();
 
     render(<TestComponent spy={spy} />);
