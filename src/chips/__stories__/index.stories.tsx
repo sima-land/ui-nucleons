@@ -38,8 +38,8 @@ export const Primary = () => {
 
 export const Links = () => (
   <Chips>
-    {ITEMS.map((children, id) => (
-      <Chips.Item key={id} href='https://www.sima-land.ru'>
+    {ITEMS.map((children, index) => (
+      <Chips.Item key={index} href='https://www.sima-land.ru' checked={index % 2 === 0}>
         {children}
       </Chips.Item>
     ))}

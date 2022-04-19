@@ -29,10 +29,6 @@ $gutter: 8px;
   font-weight: 600;
   line-height: 16px;
   text-decoration: none;
-  &.checked {
-    background: colors.$basic-gray76;
-    color: colors.$basic-white;
-  }
 
   // переопределяем стили монолита
   &,
@@ -52,6 +48,8 @@ $gutter: 8px;
     color: colors.$basic-gray87;
   }
   &.checked {
+    background: colors.$basic-gray76;
+    color: colors.$basic-white;
     &:hover,
     &:active {
       background: colors.$basic-gray66;
