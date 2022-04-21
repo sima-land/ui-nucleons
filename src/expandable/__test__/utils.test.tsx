@@ -111,4 +111,36 @@ describe('defineViewState', () => {
     expect(viewState.phase).toBe('ready');
     expect(viewState.lastVisibleIndex).toBe(3);
   });
+
+  it('should not compute when some ref is empty', () => {
+    const viewState = defineViewState(
+      { current: null },
+      { current: document.createElement('div') },
+    );
+
+    expect(viewState.phase).toBe('ready');
+    expect(viewState.lastVisibleIndex).toBe(-1);
+  });
+
+  it('should not compute when opener ref has no parentNode', () => {
+    const viewState = defineViewState(
+      { current: document.createElement('div') },
+      { current: document.createElement('div') },
+    );
+
+    expect(viewState.phase).toBe('ready');
+    expect(viewState.lastVisibleIndex).toBe(-1);
+  });
+
+  it('should not compute when last visible is not found', () => {
+    const container = document.createElement('div');
+    const opener = document.createElement('div');
+
+    container.append(opener);
+
+    const viewState = defineViewState({ current: container }, { current: opener });
+
+    expect(viewState.phase).toBe('ready');
+    expect(viewState.lastVisibleIndex).toBe(-1);
+  });
 });

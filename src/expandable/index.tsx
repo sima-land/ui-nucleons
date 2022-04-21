@@ -43,14 +43,12 @@ const ItemContext = createContext<{ hidden?: boolean; invisible?: boolean }>({})
 function ExpandableGroup({
   gap = 8,
   itemHeight = 32,
-  lineLimit: lineLimitProp = 2,
+  lineLimit = 2,
   defaultExpanded = false,
   children,
   onExpand,
   opener = data => <>Ещё {data.hiddenCount}</>,
 }: ExpandableGroupProps) {
-  const lineLimit = Number.isFinite(lineLimitProp) && lineLimitProp > 1 ? lineLimitProp : 1;
-
   const containerRef = useRef<HTMLDivElement>(null);
   const openerRef = useRef<HTMLDivElement>(null);
 
@@ -61,13 +59,13 @@ function ExpandableGroup({
     const needHideItems = viewState.lastVisibleIndex !== -1 && !expanded;
     const isDisplayed = !needHideItems || index < viewState.lastVisibleIndex;
 
-    if (isValidElement(child) && child.type === ExpandableItem) {
+    isValidElement(child) &&
+      child.type === ExpandableItem &&
       result.push(
         <ItemContext.Provider key={index} value={{ hidden: !isDisplayed }}>
           {cloneElement(child, { hidden: !isDisplayed })}
         </ItemContext.Provider>,
       );
-    }
 
     return result;
   }, []);
