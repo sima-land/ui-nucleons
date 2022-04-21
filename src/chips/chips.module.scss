@@ -1,11 +1,11 @@
 @use '../colors';
 
-$gutter: 8px;
-
 .list {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 (-$gutter) (-$gutter) 0;
+  --chips-gutter: 8px;
+  margin-right: calc(-1 * var(--chips-gutter));
+  margin-bottom: calc(-1 * var(--chips-gutter));
 }
 
 .item {
@@ -15,7 +15,10 @@ $gutter: 8px;
   display: flex;
   align-items: center;
   height: 32px;
-  margin: 0 $gutter $gutter 0;
+
+  // по умолчанию 0 чтобы вне Chips отступов не было
+  margin-right: var(--chips-gutter, 0);
+  margin-bottom: var(--chips-gutter, 0);
   overflow: hidden;
   outline: 0;
   border: 0;

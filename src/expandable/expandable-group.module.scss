@@ -1,0 +1,18 @@
+.root {
+  overflow: hidden;
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  max-width: 100%;
+  &.hidden {
+    display: none;
+  }
+  &.invisible {
+    opacity: 0;
+  }
+}
