@@ -9,6 +9,7 @@ import React, {
   MouseEventHandler,
   createContext,
   useContext,
+  CSSProperties,
 } from 'react';
 import { useViewState } from './utils';
 import classnames from 'classnames/bind';
@@ -24,6 +25,8 @@ export interface ExpandableGroupProps {
   children?: ReactNode;
   opener?: (data: { hiddenCount: number }) => ReactNode;
   onExpand?: () => void;
+  className?: string;
+  style?: CSSProperties;
 }
 
 export interface GroupItemProps {
@@ -48,6 +51,8 @@ function ExpandableGroup({
   children,
   onExpand,
   opener = data => <>Ещё {data.hiddenCount}</>,
+  className,
+  style,
 }: ExpandableGroupProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const openerRef = useRef<HTMLDivElement>(null);
@@ -74,8 +79,9 @@ function ExpandableGroup({
     <GroupContext.Provider value={{ gap, itemHeight }}>
       <div
         ref={containerRef}
-        className={styles.root}
+        className={cx('root', className)}
         style={{
+          ...style,
           maxHeight: expanded ? undefined : `${itemHeight * lineLimit + gap * (lineLimit - 1)}px`,
         }}
       >
