@@ -176,7 +176,7 @@ export class Carousel extends Component<CarouselProps, State> {
     return (
       <ArrowButton
         {...props}
-        className={cx('control', vertical && 'vertical', type)}
+        className={cx('control', vertical && 'vertical', type, props.className)}
         direction={type === 'forward' ? forward : backward}
         onClick={onUse}
         disabled={!canUse}

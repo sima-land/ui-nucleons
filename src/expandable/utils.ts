@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useState } from 'react';
+import { RefObject, useEffect, useRef, useState } from 'react';
 import { useIsomorphicLayoutEffect } from '../hooks';
 import on from '../helpers/on';
 
@@ -22,6 +22,7 @@ export function useViewState(
   containerRef: RefObject<HTMLElement>,
   openerRef: RefObject<HTMLElement>,
 ): ViewState {
+  const prevPhaseRef = useRef<ViewState['phase'] | null>(null);
   const [viewState, setViewState] = useState<ViewState>(initialViewState);
 
   useEffect(() => {
@@ -36,7 +37,17 @@ export function useViewState(
     if (viewState.phase === 'default') {
       setViewState(defineViewState(containerRef, openerRef));
     }
-  }, [viewState.phase, containerRef, openerRef]);
+
+    // если произошел рендер и на предыдущем рендере уже все было готово - сбрасываем состояние
+    if (viewState.phase === 'ready' && prevPhaseRef.current === 'ready') {
+      setViewState({
+        phase: 'default',
+        lastVisibleIndex: -1,
+      });
+    }
+
+    prevPhaseRef.current = viewState.phase;
+  });
 
   return viewState;
 }

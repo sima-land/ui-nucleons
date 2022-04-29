@@ -31,6 +31,16 @@ describe('useViewState', () => {
     fireEvent.resize(window);
     expect(spy).toBeCalledTimes(4);
   });
+
+  it('should reset state on rerender', () => {
+    const spy = jest.fn();
+
+    const { rerender } = render(<TestComponent takeViewState={spy} />);
+    expect(spy).toBeCalledTimes(2);
+
+    rerender(<TestComponent takeViewState={spy} />);
+    expect(spy).toBeCalledTimes(4);
+  });
 });
 
 describe('defineViewState', () => {
