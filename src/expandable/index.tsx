@@ -89,7 +89,7 @@ function ExpandableGroup({
           {items}
 
           {!expanded && (
-            <ItemContext.Provider value={{ invisible: viewState.lastVisibleIndex === -1 }}>
+            <ItemContext.Provider value={{ invisible: false }}>
               <ExpandableItem
                 ref={openerRef}
                 onClick={() => {

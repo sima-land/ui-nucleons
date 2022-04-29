@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Expandable } from '..';
 import { Chips } from '../../chips';
 import { Link } from '../../link';
+import { Tabs } from '../../tabs';
 
 export default {
   title: 'common/Expandable',
@@ -34,15 +35,39 @@ export const Primary = () => {
     );
   }
 
+  const tabs = ['description', 'categories'] as const;
+
+  const [tab, setTab] = useState<typeof tabs[number]>(tabs[0]);
+
   return (
     <div style={{ maxWidth: '1024px', margin: '0 auto' }}>
-      <Expandable.Group itemHeight={32} gap={8} opener={data => <Opener {...data} />}>
-        {items.map((item, index) => (
-          <Expandable.Item key={index}>
-            <Chips.Item>{item}</Chips.Item>
-          </Expandable.Item>
-        ))}
-      </Expandable.Group>
+      <div style={{ marginBottom: '20px', textTransform: 'capitalize' }}>
+        <Tabs view='clean-underline'>
+          {tabs.map(tabName => (
+            <Tabs.Item
+              key={tabName}
+              selected={tab === tabName}
+              onClick={() => setTab(tabName)}
+              name={tabName}
+            />
+          ))}
+        </Tabs>
+      </div>
+
+      <div style={{ display: tab === 'description' ? undefined : 'none' }}>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta cupiditate a harum. Ipsum,
+        quia! Quod accusamus non in dignissimos eum!
+      </div>
+
+      <div style={{ display: tab === 'categories' ? undefined : 'none' }}>
+        <Expandable.Group itemHeight={32} gap={8} opener={data => <Opener {...data} />}>
+          {items.map((item, index) => (
+            <Expandable.Item key={index}>
+              <Chips.Item>{item}</Chips.Item>
+            </Expandable.Item>
+          ))}
+        </Expandable.Group>
+      </div>
     </div>
   );
 };
