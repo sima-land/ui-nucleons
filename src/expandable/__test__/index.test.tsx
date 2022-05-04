@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { Expandable } from '..';
 import { useViewState, ViewState } from '../utils';
@@ -88,5 +88,50 @@ describe('Expandable.Group', () => {
     expect(() => {
       fireEvent.click(getByTestId('expandable:opener'));
     }).not.toThrow();
+  });
+
+  it('should handle "expanded" prop', () => {
+    const { rerender, queryAllByTestId } = render(
+      <Expandable.Group expanded>
+        <Expandable.Item>Foo</Expandable.Item>
+        <Expandable.Item>Bar</Expandable.Item>
+        <Expandable.Item>Baz</Expandable.Item>
+      </Expandable.Group>,
+    );
+
+    expect(queryAllByTestId('expandable:opener')).toHaveLength(0);
+
+    rerender(
+      <Expandable.Group expanded={false}>
+        <Expandable.Item>Foo</Expandable.Item>
+        <Expandable.Item>Bar</Expandable.Item>
+        <Expandable.Item>Baz</Expandable.Item>
+      </Expandable.Group>,
+    );
+
+    expect(queryAllByTestId('expandable:opener')).toHaveLength(1);
+  });
+
+  it('should ignore invalid children', () => {
+    const spy = jest.fn();
+
+    function TestComponent() {
+      useEffect(spy, []);
+
+      spy();
+
+      return <div>Hello</div>;
+    }
+
+    render(
+      <Expandable.Group expanded>
+        <Expandable.Item>Foo</Expandable.Item>
+        <Expandable.Item>Bar</Expandable.Item>
+        <Expandable.Item>Baz</Expandable.Item>
+        <TestComponent />
+      </Expandable.Group>,
+    );
+
+    expect(spy).toBeCalledTimes(0);
   });
 });

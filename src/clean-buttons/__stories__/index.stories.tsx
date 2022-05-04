@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import { action } from '@storybook/addon-actions';
-import { Clean } from '..';
+import { Clean, CleanGroup } from '..';
 import { CleanButtonSize } from '../types';
 
 export default {
   title: 'common/Clean.Group',
-  component: Clean.Group,
+  component: CleanGroup,
   parameters: {
     layout: 'padded',
     backgrounds: { default: 'custom:gray' },

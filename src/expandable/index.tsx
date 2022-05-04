@@ -10,6 +10,7 @@ import React, {
   createContext,
   useContext,
   CSSProperties,
+  useEffect,
 } from 'react';
 import { useViewState } from './utils';
 import classnames from 'classnames/bind';
@@ -18,15 +19,35 @@ import styles from './expandable-group.module.scss';
 const cx = classnames.bind(styles);
 
 export interface ExpandableGroupProps {
+  /** Расстояние между элементами группы в пикселях. */
   gap?: number;
+
+  /** Высота каждого элемента группы в пикселях. */
   itemHeight?: number;
+
+  /** Развернут ли список по умолчанию. */
   defaultExpanded?: boolean;
+
+  /** Количество строк в свернутом состоянии группы. */
   lineLimit?: number;
+
+  /** Содержимое. */
   children?: ReactNode;
+
+  /** Функция, возвращающая содержимое кнопки разворачивания списка. */
   opener?: (data: { hiddenCount: number }) => ReactNode;
+
+  /** Сработает при разворачивании списка. */
   onExpand?: () => void;
+
+  /** CSS-класс корневого элемента. */
   className?: string;
+
+  /** Стили корневого элемента. */
   style?: CSSProperties;
+
+  /** Нужно ли выводить список развернутым. */
+  expanded?: boolean;
 }
 
 export interface GroupItemProps {
@@ -43,7 +64,7 @@ const ItemContext = createContext<{ hidden?: boolean; invisible?: boolean }>({})
  * @param props Свойства.
  * @return Элемент.
  */
-function ExpandableGroup({
+export function ExpandableGroup({
   gap = 8,
   itemHeight = 32,
   lineLimit = 2,
@@ -53,6 +74,7 @@ function ExpandableGroup({
   opener = data => <>Ещё {data.hiddenCount}</>,
   className,
   style,
+  expanded: expandedProp,
 }: ExpandableGroupProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const openerRef = useRef<HTMLDivElement>(null);
@@ -60,20 +82,25 @@ function ExpandableGroup({
   const [expanded, setExpanded] = useState<boolean>(defaultExpanded);
   const viewState = useViewState(containerRef, openerRef);
 
+  const needHideItems = viewState.lastVisibleIndex !== -1 && !expanded;
+
   const items = Children.toArray(children).reduce<ReactNode[]>((result, child, index) => {
-    const needHideItems = viewState.lastVisibleIndex !== -1 && !expanded;
     const isDisplayed = !needHideItems || index < viewState.lastVisibleIndex;
 
-    isValidElement(child) &&
-      child.type === ExpandableItem &&
+    if (isValidElement(child) && child.type === ExpandableItem) {
       result.push(
         <ItemContext.Provider key={index} value={{ hidden: !isDisplayed }}>
           {cloneElement(child, { hidden: !isDisplayed })}
         </ItemContext.Provider>,
       );
+    }
 
     return result;
   }, []);
+
+  useEffect(() => {
+    expandedProp !== undefined && setExpanded(expandedProp);
+  }, [expandedProp]);
 
   return (
     <GroupContext.Provider value={{ gap, itemHeight }}>
@@ -85,7 +112,10 @@ function ExpandableGroup({
           maxHeight: expanded ? undefined : `${itemHeight * lineLimit + gap * (lineLimit - 1)}px`,
         }}
       >
-        <div className={styles.inner} style={{ marginRight: `${-gap}px` }}>
+        <div
+          className={styles.inner}
+          style={{ marginRight: `${-gap}px`, marginBottom: `${-gap}px` }}
+        >
           {items}
 
           {!expanded && (

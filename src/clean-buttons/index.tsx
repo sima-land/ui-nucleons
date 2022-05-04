@@ -27,7 +27,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-const CleanGroup: React.FC<CleanGroupProps> = ({ size: sizeFromProps, children }) => {
+export const CleanGroup: React.FC<CleanGroupProps> = ({ size: sizeFromProps, children }) => {
   const sizeFromContext = useContext(CleanGroupSizeContext);
 
   // значение из пропсов имеет приоритет
