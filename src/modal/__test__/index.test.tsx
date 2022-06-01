@@ -3,6 +3,7 @@ import { Modal } from '..';
 import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
 import { useBodyScrollLock } from '../../_internal/body-scroll';
 import { render, fireEvent } from '@testing-library/react';
+import { BSL_IGNORE_ATTR } from '../../constants';
 
 jest.mock('../../_internal/body-scroll', () => {
   const original = jest.requireActual('../../_internal/body-scroll');
@@ -156,5 +157,15 @@ describe('<Modal />', () => {
 
     expect(container.querySelectorAll('[data-testid="modal"]')).toHaveLength(0);
     expect(container.querySelectorAll('[data-testid="some-modal"]')).toHaveLength(1);
+  });
+
+  it('should has attribute for BSL work', () => {
+    const { container } = render(
+      <Modal data-testid='some-modal'>
+        <Modal.Body>Main Content</Modal.Body>
+      </Modal>,
+    );
+
+    expect(container.querySelectorAll(`[${BSL_IGNORE_ATTR}]`)).toHaveLength(1);
   });
 });

@@ -6,10 +6,10 @@ import { BoxShadow } from '../styling/shadows';
 import { isNumber } from 'lodash';
 import { ModalBody, ModalFooter, ModalHeader, ModalHeaderProps, ModalOverlap } from './slots';
 import { LayerProvider, useLayer } from '../helpers/layer';
+import { defineSlots } from '../helpers/define-slots';
+import { WithBodyScrollLock, useBodyScrollLock, allowTouchMove } from '../_internal/body-scroll';
 import classnames from 'classnames/bind';
 import styles from './modal.module.scss';
-import { defineSlots } from '../helpers/define-slots';
-import { WithBodyScrollLock, useBodyScrollLock } from '../_internal/body-scroll';
 
 type ModalSize = 's' | 'm' | 'l' | 'xl' | 'fullscreen';
 
@@ -58,7 +58,7 @@ export const Modal: ModalComponent = ({
   children,
   height,
   onClose,
-  scrollDisableOptions = { reserveScrollBarGap: true },
+  scrollDisableOptions,
   size = 'm',
   withScrollDisable = false,
   'data-testid': testId = 'modal',
@@ -94,7 +94,14 @@ export const Modal: ModalComponent = ({
     '--footer-height': `${footerHeight}px`,
   };
 
-  useBodyScrollLock(rootRef, withScrollDisable, scrollDisableOptions);
+  useBodyScrollLock(rootRef, withScrollDisable, {
+    // defaults
+    reserveScrollBarGap: true,
+    allowTouchMove,
+
+    // defined options
+    ...scrollDisableOptions,
+  });
 
   return (
     <div

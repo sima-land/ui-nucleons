@@ -156,6 +156,7 @@ exports[`<Modal /> should handle extended props 1`] = `
             >
               <div
                 class="main"
+                data-bsl-ignore="true"
               >
                 Main Content
               </div>
@@ -454,6 +455,7 @@ exports[`<Modal /> should render overlap content 1`] = `
             >
               <div
                 class="main"
+                data-bsl-ignore="true"
               >
                 This is modal body
               </div>
