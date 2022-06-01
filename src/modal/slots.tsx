@@ -6,6 +6,7 @@ import { BottomBar, BottomBarProps } from '../bottom-bar';
 import { CustomScrollbar } from '../_internal/custom-scrollbar';
 import styles from './modal.module.scss';
 import { ViewportContext } from '../context/viewport';
+import { BSL_IGNORE_ATTR } from '../constants';
 
 export interface ModalHeaderProps extends TopBarProps {
   onBack?: () => void;
@@ -66,7 +67,7 @@ export const ModalBody = ({
       fullScrollThreshold={fullScrollThreshold}
     >
       <ViewportContext.Provider value={ref}>
-        <div className={styles.main} ref={ref}>
+        <div className={styles.main} ref={ref} {...{ [BSL_IGNORE_ATTR]: true }}>
           {children}
         </div>
       </ViewportContext.Provider>
