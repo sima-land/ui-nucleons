@@ -1,100 +1,111 @@
-import { RefObject, useEffect, useRef, useState } from 'react';
+import { RefObject, useCallback, useEffect, useState } from 'react';
 import { useIsomorphicLayoutEffect } from '../hooks';
 import on from '../helpers/on';
+import styles from './expandable-group.module.scss';
 
 export interface ViewState {
-  phase: 'default' | 'ready';
   lastVisibleIndex: number;
 }
 
-export const initialViewState: ViewState = {
-  phase: 'default',
-  lastVisibleIndex: -1,
-} as const;
-
 /**
  * Хук состояния группы элементов ограниченных несколькими строками с возможностью показать все.
- * @param containerRef Ref элемента-контейнера.
- * @param openerRef Ref элемента кнопки, показывающей всю группу.
- * @return Состояние.
+ * @param options.expanded Развернут ли список.
+ * @param options.wrapperRef Реф элемента, формирующего ограничение по высоте.
+ * @param options.containerRef Реф элемента, содержащего список.
+ * @param options.openerRef Реф элемента "открывашки".
+ * @return Рассчитанные данные: кол-во скрытых элементов.
  */
-export function useViewState(
-  containerRef: RefObject<HTMLElement>,
-  openerRef: RefObject<HTMLElement>,
-): ViewState {
-  const prevPhaseRef = useRef<ViewState['phase'] | null>(null);
-  const [viewState, setViewState] = useState<ViewState>(initialViewState);
+export function useExpandable({
+  expanded,
+  wrapperRef,
+  containerRef,
+  openerRef,
+}: {
+  expanded: boolean;
+  wrapperRef: RefObject<HTMLElement>;
+  containerRef: RefObject<HTMLElement>;
+  openerRef: RefObject<HTMLElement>;
+}) {
+  const [hiddenCount, setHiddenCount] = useState(0);
 
-  useEffect(() => {
-    const off = on(window, 'resize', () => {
-      setViewState(initialViewState);
-    });
+  const calc = useCallback(() => {
+    const wrapperEl = wrapperRef.current;
+    const containerEl = containerRef.current;
+    const openerEl = openerRef.current;
 
-    return off;
-  }, []);
+    if (expanded) {
+      if (containerEl) {
+        for (const item of containerEl.children) {
+          item.classList.remove(styles.hidden);
+        }
+      }
+    } else {
+      if (wrapperEl && containerEl && openerEl) {
+        const items = [...containerEl.children].filter(child => child !== openerEl);
 
-  useIsomorphicLayoutEffect(() => {
-    if (viewState.phase === 'default') {
-      setViewState(defineViewState(containerRef, openerRef));
+        // делаем все элементы списка видимыми чтобы правильно считать размеры
+        for (const item of items) {
+          item.classList.remove(styles.hidden);
+        }
+
+        // определяем какие элементы не влезли в ограничение по высоте
+        const state = defineViewState(wrapperEl, items, openerEl);
+
+        // делаем невидимыми элементы списка которые не влезли
+        for (const [index, item] of items.entries()) {
+          if (item !== openerEl && index >= state.lastVisibleIndex) {
+            item.classList.add(styles.hidden);
+          }
+        }
+
+        setHiddenCount(items.length - state.lastVisibleIndex);
+      }
     }
+  }, [expanded]);
 
-    // если произошел рендер и на предыдущем рендере уже все было готово - сбрасываем состояние
-    if (viewState.phase === 'ready' && prevPhaseRef.current === 'ready') {
-      setViewState({
-        phase: 'default',
-        lastVisibleIndex: -1,
-      });
-    }
+  // пересчитываем после каждого rerender'а
+  useIsomorphicLayoutEffect(calc);
 
-    prevPhaseRef.current = viewState.phase;
-  });
+  // пересчитываем при resize
+  useEffect(() => on(window, 'resize', calc), [calc]);
 
-  return viewState;
+  return { hiddenCount };
 }
 
 /**
  * Определяет индекс последнего видимого элемента для свернутого списка.
- * @param containerRef Ref элемента-контейнера.
- * @param openerRef Ref элемента кнопки, показывающей весь список.
+ * @param wrapper Элемент, формирующий ограничение по высоте.
+ * @param items Элементы, все кроме "закрывашки".
+ * @param opener Элемент "закрывашки".
  * @return Состояние.
  */
 export function defineViewState(
-  containerRef: RefObject<HTMLElement>,
-  openerRef: RefObject<HTMLElement>,
+  wrapper: HTMLElement,
+  items: Element[],
+  opener: HTMLElement,
 ): ViewState {
-  const state: ViewState = {
-    phase: 'ready',
-    lastVisibleIndex: -1,
-  };
+  const state: ViewState = { lastVisibleIndex: -1 };
 
-  const container = containerRef.current;
-  const opener = openerRef.current;
+  const parentRect = wrapper.getBoundingClientRect();
 
-  if (container && opener && opener.parentNode) {
-    const parentRect = container.getBoundingClientRect();
-    const childList = [...opener.parentNode.children];
+  const firstHiddenNodeIndex = items.findIndex(child => {
+    const childRect = child.getBoundingClientRect();
+    return childRect.top - parentRect.top >= parentRect.height;
+  });
 
-    const firstHiddenNodeIndex = childList
-      .filter(child => child !== opener)
-      .findIndex(child => {
-        const childRect = child.getBoundingClientRect();
-        return childRect.top - parentRect.top >= parentRect.height;
-      });
+  if (firstHiddenNodeIndex !== -1) {
+    const lastVisibleIndex = firstHiddenNodeIndex - 1;
+    const lastVisible = items[lastVisibleIndex];
 
-    if (firstHiddenNodeIndex !== -1) {
-      const lastVisibleIndex = firstHiddenNodeIndex - 1;
-      const lastVisible = childList[lastVisibleIndex];
+    if (lastVisible) {
+      const rightBound = lastVisible.getBoundingClientRect().right;
+      const rightContainerBound = wrapper.getBoundingClientRect().right;
 
-      if (lastVisible) {
-        const rightBound = lastVisible.getBoundingClientRect().right;
-        const rightContainerBound = container.getBoundingClientRect().right;
+      // проверяем, хватает ли кнопке места (с запасом в половину) после последнего видимого дочернего элемента
+      const isOpenerFit: boolean = rightContainerBound - rightBound >= opener.clientWidth * 1.5;
 
-        // проверяем, хватает ли кнопке места (с запасом в половину) после последнего видимого дочернего элемента
-        const isOpenerFit: boolean = rightContainerBound - rightBound >= opener.clientWidth * 1.5;
-
-        // если хватает места - ставим кнопку после последнего, иначе - вместо
-        state.lastVisibleIndex = lastVisibleIndex + Number(isOpenerFit);
-      }
+      // если хватает места - ставим кнопку после последнего, иначе - вместо
+      state.lastVisibleIndex = lastVisibleIndex + Number(isOpenerFit);
     }
   }
 

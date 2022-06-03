@@ -1,41 +1,8 @@
 import React, { useEffect } from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { Expandable } from '..';
-import { useViewState, ViewState } from '../utils';
-
-jest.mock('../utils', () => {
-  const original = jest.requireActual('../utils');
-
-  return {
-    ...original,
-    useViewState: jest.fn(original.useViewState),
-  };
-});
 
 describe('Expandable.Group', () => {
-  it('should mark item as hidden when it is hidden by overflow', () => {
-    const definedViewState: ViewState = {
-      phase: 'ready',
-      lastVisibleIndex: 2,
-    };
-
-    (useViewState as jest.Mock<ViewState>).mockReturnValue(definedViewState);
-
-    const { getAllByTestId } = render(
-      <Expandable.Group>
-        <Expandable.Item>Foo</Expandable.Item>
-        <Expandable.Item>Bar</Expandable.Item>
-        <Expandable.Item>Baz</Expandable.Item>
-      </Expandable.Group>,
-    );
-
-    expect(getAllByTestId('expandable:item')[0].classList.contains('hidden')).toBe(false);
-    expect(getAllByTestId('expandable:item')[1].classList.contains('hidden')).toBe(false);
-    expect(getAllByTestId('expandable:item')[2].classList.contains('hidden')).toBe(true);
-
-    (useViewState as jest.Mock<ViewState>).mockClear();
-  });
-
   it('should hide opener by default when "defaultExpanded" is true', () => {
     const { queryAllByTestId } = render(
       <Expandable.Group defaultExpanded>
