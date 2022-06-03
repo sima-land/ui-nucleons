@@ -1,6 +1,5 @@
 import React, {
   Children,
-  cloneElement,
   isValidElement,
   forwardRef,
   useRef,
@@ -12,7 +11,7 @@ import React, {
   CSSProperties,
   useEffect,
 } from 'react';
-import { useViewState } from './utils';
+import { useExpandable } from './utils';
 import classnames from 'classnames/bind';
 import styles from './expandable-group.module.scss';
 
@@ -57,7 +56,6 @@ export interface GroupItemProps {
 }
 
 const GroupContext = createContext<{ gap: number; itemHeight: number }>({ gap: 8, itemHeight: 32 });
-const ItemContext = createContext<{ hidden?: boolean; invisible?: boolean }>({});
 
 /**
  * Группа элементов с ограничением на число выводимых строк и возможностью показать все.
@@ -76,77 +74,84 @@ export function ExpandableGroup({
   style,
   expanded: expandedProp,
 }: ExpandableGroupProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const openerRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLUListElement>(null);
+  const openerRef = useRef<HTMLLIElement>(null);
 
+  const [mounted, setMounted] = useState<boolean>(false);
   const [expanded, setExpanded] = useState<boolean>(defaultExpanded);
-  const viewState = useViewState(containerRef, openerRef);
 
-  const needHideItems = viewState.lastVisibleIndex !== -1 && !expanded;
-
-  const items = Children.toArray(children).reduce<ReactNode[]>((result, child, index) => {
-    const isDisplayed = !needHideItems || index < viewState.lastVisibleIndex;
-
+  const items = Children.toArray(children).reduce<ReactNode[]>((result, child) => {
     if (isValidElement(child) && child.type === ExpandableItem) {
-      result.push(
-        <ItemContext.Provider key={index} value={{ hidden: !isDisplayed }}>
-          {cloneElement(child, { hidden: !isDisplayed })}
-        </ItemContext.Provider>,
-      );
+      result.push(child);
     }
 
     return result;
   }, []);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
     expandedProp !== undefined && setExpanded(expandedProp);
   }, [expandedProp]);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const { hiddenCount } = useExpandable({
+    expanded,
+    wrapperRef,
+    containerRef,
+    openerRef,
+  });
 
   return (
     <GroupContext.Provider value={{ gap, itemHeight }}>
       <div
-        ref={containerRef}
+        ref={wrapperRef}
         className={cx('root', className)}
         style={{
           ...style,
           maxHeight: expanded ? undefined : `${itemHeight * lineLimit + gap * (lineLimit - 1)}px`,
         }}
       >
-        <div
+        <ul
+          ref={containerRef}
           className={styles.inner}
           style={{ marginRight: `${-gap}px`, marginBottom: `${-gap}px` }}
         >
           {items}
 
-          {!expanded && (
-            <ItemContext.Provider value={{ invisible: false }}>
-              <ExpandableItem
-                ref={openerRef}
-                onClick={() => {
-                  setExpanded(true);
-                  onExpand?.();
-                }}
-                data-testid='expandable:opener'
-              >
-                {opener({ hiddenCount: items.length - viewState.lastVisibleIndex })}
-              </ExpandableItem>
-            </ItemContext.Provider>
+          {/* ВАЖНО: выводим "открывашку" только после монтирования (для SEO) */}
+          {mounted && !expanded && (
+            <ExpandableItem
+              ref={openerRef}
+              onClick={() => {
+                setExpanded(true);
+                onExpand?.();
+              }}
+              data-testid='expandable:opener'
+            >
+              {opener({ hiddenCount })}
+            </ExpandableItem>
           )}
-        </div>
+        </ul>
       </div>
     </GroupContext.Provider>
   );
 }
 
-const ExpandableItem = forwardRef<HTMLDivElement, GroupItemProps>(
+const ExpandableItem = forwardRef<HTMLLIElement, GroupItemProps>(
   ({ children, onClick, 'data-testid': testId = 'expandable:item' }, ref) => {
     const { gap, itemHeight } = useContext(GroupContext);
-    const { invisible, hidden } = useContext(ItemContext);
 
     return (
-      <div
+      <li
         ref={ref}
-        className={cx('item', { hidden, invisible })}
+        className={cx('item')}
         data-testid={testId}
         onClick={onClick}
         style={{
@@ -155,7 +160,7 @@ const ExpandableItem = forwardRef<HTMLDivElement, GroupItemProps>(
         }}
       >
         {children}
-      </div>
+      </li>
     );
   },
 );

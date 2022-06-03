@@ -1,80 +1,65 @@
-import React, { useEffect, useRef } from 'react';
-import { fireEvent, render } from '@testing-library/react';
-import { useViewState, defineViewState, ViewState } from '../utils';
+import React, { useRef } from 'react';
+import { render } from '@testing-library/react';
+import { useExpandable, defineViewState } from '../utils';
 
-describe('useViewState', () => {
-  const TestComponent = ({ takeViewState }: { takeViewState?: (state: ViewState) => void }) => {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const openerRef = useRef<HTMLButtonElement>(null);
-    const viewState = useViewState(containerRef, openerRef);
+function createElement({ x = 0, y = 0, width = 0, height = 0 }: DOMRectInit = {}): HTMLElement {
+  const element = document.createElement('div');
 
-    useEffect(() => {
-      takeViewState?.(viewState);
-    }, [viewState]);
-
-    return (
-      <div ref={containerRef}>
-        <button>Foo</button>
-        <button>Bar</button>
-        <button>Baz</button>
-        <button ref={openerRef}>Opener</button>
-      </div>
-    );
+  const rect: DOMRect = {
+    x,
+    y,
+    width,
+    height,
+    get top() {
+      return y;
+    },
+    get right() {
+      return x + width;
+    },
+    get left() {
+      return x;
+    },
+    get bottom() {
+      return y + height;
+    },
+    toJSON() {
+      return JSON.stringify(rect);
+    },
   };
 
-  it('should reset state on resize', () => {
-    const spy = jest.fn();
+  jest.spyOn(element, 'getBoundingClientRect').mockImplementation(() => rect);
 
-    render(<TestComponent takeViewState={spy} />);
-    expect(spy).toBeCalledTimes(2);
+  return element;
+}
 
-    fireEvent.resize(window);
-    expect(spy).toBeCalledTimes(4);
+describe('useExpandable', () => {
+  it('should do nothing when expanded && container is undefined', () => {
+    function TestComponent() {
+      const wrapperRef = useRef<HTMLElement>(null);
+      const containerRef = useRef<HTMLElement>(null);
+      const openerRef = useRef<HTMLElement>(null);
+
+      useExpandable({
+        expanded: true,
+        wrapperRef,
+        containerRef,
+        openerRef,
+      });
+
+      return <>Hello</>;
+    }
+
+    expect(() => {
+      render(<TestComponent />);
+    }).not.toThrow();
   });
 
-  it('should reset state on rerender', () => {
-    const spy = jest.fn();
+  it('should hide items depends on view state', () => {
+    const wrapper = createElement({
+      width: 300,
+      height: 100,
+    });
 
-    const { rerender } = render(<TestComponent takeViewState={spy} />);
-    expect(spy).toBeCalledTimes(2);
-
-    rerender(<TestComponent takeViewState={spy} />);
-    expect(spy).toBeCalledTimes(4);
-  });
-});
-
-describe('defineViewState', () => {
-  function createElement({ x = 0, y = 0, width = 0, height = 0 }: DOMRectInit = {}): HTMLElement {
-    const element = document.createElement('div');
-
-    const rect: DOMRect = {
-      x,
-      y,
-      width,
-      height,
-      get top() {
-        return y;
-      },
-      get right() {
-        return x + width;
-      },
-      get left() {
-        return x;
-      },
-      get bottom() {
-        return y + height;
-      },
-      toJSON() {
-        return JSON.stringify(rect);
-      },
-    };
-
-    jest.spyOn(element, 'getBoundingClientRect').mockImplementation(() => rect);
-
-    return element;
-  }
-
-  it('one item is hidden', () => {
     const container = createElement({
       width: 300,
       height: 100,
@@ -116,30 +101,77 @@ describe('defineViewState', () => {
 
     container.append(item1, item2, item3, item4, opener);
 
-    const viewState = defineViewState({ current: container }, { current: opener });
+    function TestComponent() {
+      const wrapperRef = useRef<HTMLElement>(wrapper);
+      const containerRef = useRef<HTMLElement>(container);
+      const openerRef = useRef<HTMLElement>(opener);
 
-    expect(viewState.phase).toBe('ready');
+      useExpandable({
+        expanded: false,
+        wrapperRef,
+        containerRef,
+        openerRef,
+      });
+
+      return <>World</>;
+    }
+
+    render(<TestComponent />);
+
+    expect(item1.classList.contains('hidden')).toBe(false);
+    expect(item2.classList.contains('hidden')).toBe(false);
+    expect(item3.classList.contains('hidden')).toBe(false);
+    expect(item4.classList.contains('hidden')).toBe(true);
+    expect(opener.classList.contains('hidden')).toBe(false);
+  });
+});
+
+describe('defineViewState', () => {
+  it('one item is hidden', () => {
+    const wrapper = createElement({
+      width: 300,
+      height: 100,
+    });
+
+    // строка 1
+    const item1 = createElement({
+      x: 0,
+      y: 0,
+      width: 100,
+      height: 100,
+    });
+    const item2 = createElement({
+      x: 100,
+      y: 0,
+      width: 100,
+      height: 100,
+    });
+    const item3 = createElement({
+      x: 200,
+      y: 0,
+      width: 100,
+      height: 100,
+    });
+
+    // строка 2
+    const item4 = createElement({
+      x: 0,
+      y: 100,
+      width: 100,
+      height: 100,
+    });
+    const opener = createElement({
+      x: 0,
+      y: 200,
+      width: 100,
+      height: 100,
+    });
+
+    wrapper.append(item1, item2, item3, item4, opener);
+
+    const viewState = defineViewState(wrapper, [item1, item2, item3, item4], opener);
+
     expect(viewState.lastVisibleIndex).toBe(3);
-  });
-
-  it('should not compute when some ref is empty', () => {
-    const viewState = defineViewState(
-      { current: null },
-      { current: document.createElement('div') },
-    );
-
-    expect(viewState.phase).toBe('ready');
-    expect(viewState.lastVisibleIndex).toBe(-1);
-  });
-
-  it('should not compute when opener ref has no parentNode', () => {
-    const viewState = defineViewState(
-      { current: document.createElement('div') },
-      { current: document.createElement('div') },
-    );
-
-    expect(viewState.phase).toBe('ready');
-    expect(viewState.lastVisibleIndex).toBe(-1);
   });
 
   it('should not compute when last visible is not found', () => {
@@ -148,9 +180,8 @@ describe('defineViewState', () => {
 
     container.append(opener);
 
-    const viewState = defineViewState({ current: container }, { current: opener });
+    const viewState = defineViewState(container, [], opener);
 
-    expect(viewState.phase).toBe('ready');
     expect(viewState.lastVisibleIndex).toBe(-1);
   });
 });
