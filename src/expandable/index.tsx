@@ -47,6 +47,8 @@ export interface ExpandableGroupProps {
 
   /** Нужно ли выводить список развернутым. */
   expanded?: boolean;
+
+  openerWidth?: number;
 }
 
 export interface GroupItemProps {
@@ -55,7 +57,7 @@ export interface GroupItemProps {
   'data-testid'?: string;
 }
 
-const GroupContext = createContext<{ gap: number; itemHeight: number }>({ gap: 8, itemHeight: 32 });
+const ItemContext = createContext<{ invisible?: boolean; opener?: boolean }>({});
 
 /**
  * Группа элементов с ограничением на число выводимых строк и возможностью показать все.
@@ -73,6 +75,7 @@ export function ExpandableGroup({
   className,
   style,
   expanded: expandedProp,
+  openerWidth = 72,
 }: ExpandableGroupProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLUListElement>(null);
@@ -97,36 +100,34 @@ export function ExpandableGroup({
     expandedProp !== undefined && setExpanded(expandedProp);
   }, [expandedProp]);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   const { hiddenCount } = useExpandable({
     expanded,
     wrapperRef,
     containerRef,
     openerRef,
+    gap,
   });
 
   return (
-    <GroupContext.Provider value={{ gap, itemHeight }}>
-      <div
-        ref={wrapperRef}
-        className={cx('root', className)}
-        style={{
+    <div
+      ref={wrapperRef}
+      className={cx('root', className)}
+      style={
+        {
           ...style,
           maxHeight: expanded ? undefined : `${itemHeight * lineLimit + gap * (lineLimit - 1)}px`,
-        }}
-      >
-        <ul
-          ref={containerRef}
-          className={styles.inner}
-          style={{ marginRight: `${-gap}px`, marginBottom: `${-gap}px` }}
-        >
-          {items}
+          '--expandable-item-height': `${itemHeight}px`,
+          '--expandable-opener-width': `${openerWidth}px`,
+          '--expandable-gap': `${gap}px`,
+        } as any
+      }
+    >
+      <ul ref={containerRef} className={styles.inner}>
+        {items}
 
-          {/* ВАЖНО: выводим "открывашку" только после монтирования (для SEO) */}
-          {mounted && !expanded && (
+        {/* ВАЖНО: выводим "открывашку" только после монтирования (для SEO) */}
+        {mounted && !expanded && (
+          <ItemContext.Provider value={{ invisible: hiddenCount === 0, opener: true }}>
             <ExpandableItem
               ref={openerRef}
               onClick={() => {
@@ -137,28 +138,19 @@ export function ExpandableGroup({
             >
               {opener({ hiddenCount })}
             </ExpandableItem>
-          )}
-        </ul>
-      </div>
-    </GroupContext.Provider>
+          </ItemContext.Provider>
+        )}
+      </ul>
+    </div>
   );
 }
 
 const ExpandableItem = forwardRef<HTMLLIElement, GroupItemProps>(
   ({ children, onClick, 'data-testid': testId = 'expandable:item' }, ref) => {
-    const { gap, itemHeight } = useContext(GroupContext);
+    const context = useContext(ItemContext);
 
     return (
-      <li
-        ref={ref}
-        className={cx('item')}
-        data-testid={testId}
-        onClick={onClick}
-        style={{
-          height: `${itemHeight}px`,
-          margin: `0 ${gap}px ${gap}px 0`,
-        }}
-      >
+      <li ref={ref} className={cx('item', context)} data-testid={testId} onClick={onClick}>
         {children}
       </li>
     );

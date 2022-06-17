@@ -41,6 +41,23 @@ export function Primary() {
 
 Primary.storyName = 'Простой пример';
 
+export function AllVisible() {
+  return (
+    <Main>
+      <p>Все элементы влезут при разрешении {'<'} 930px</p>
+      <Expandable.Group lineLimit={4} itemHeight={32} gap={8} opener={data => <Opener {...data} />}>
+        {categories.map((item, index) => (
+          <Expandable.Item key={index}>
+            <Chips.Item>{item}</Chips.Item>
+          </Expandable.Item>
+        ))}
+      </Expandable.Group>
+    </Main>
+  );
+}
+
+AllVisible.storyName = 'Все элементы влазят';
+
 export function WithClosing() {
   const [opened, setOpened] = useState(false);
 
@@ -54,7 +71,12 @@ export function WithClosing() {
 
   return (
     <Main>
-      <Expandable.Group expanded={opened} onExpand={open} opener={data => <Opener {...data} />}>
+      <Expandable.Group
+        lineLimit={4}
+        expanded={opened}
+        onExpand={open}
+        opener={data => <Opener {...data} />}
+      >
         {categories.map((item, index) => (
           <Expandable.Item key={index}>
             <Chips.Item>{item}</Chips.Item>
