@@ -19,10 +19,10 @@ export interface StepperProps
   canSubtract?: boolean;
 
   /** Сработает при добавлении. */
-  onAdd?: React.MouseEventHandler<SVGSVGElement>;
+  onAdd?: React.MouseEventHandler;
 
   /** Сработает при вычитании. */
-  onSubtract?: React.MouseEventHandler<SVGSVGElement>;
+  onSubtract?: React.MouseEventHandler;
 
   /** Размер. */
   size?: Size;
@@ -79,11 +79,13 @@ export const Stepper = forwardRef<HTMLInputElement, StepperProps>(
           className,
         )}
       >
-        <MinusSVG
-          data-testid='stepper:minus'
+        <button
           className={cx('button', { hidden: !canSubtract })}
+          data-testid='stepper:minus'
           onClick={canSubtract && !disabled && !readOnly ? onSubtract : undefined}
-        />
+        >
+          <MinusSVG />
+        </button>
         <input
           {...inputProps}
           ref={ref}
@@ -102,11 +104,13 @@ export const Stepper = forwardRef<HTMLInputElement, StepperProps>(
             onBlur?.(e);
           }}
         />
-        <PlusSVG
-          data-testid='stepper:plus'
+        <button
           className={cx('button', { hidden: !canAdd })}
+          data-testid='stepper:plus'
           onClick={canAdd && !disabled && !readOnly ? onAdd : undefined}
-        />
+        >
+          <PlusSVG />
+        </button>
       </div>
     );
   },

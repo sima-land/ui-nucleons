@@ -3,18 +3,19 @@
 .root {
   display: flex;
   align-items: center;
-  border: 1px solid colors.$basic-gray12;
+  border: 1px solid colors.$basic-gray8;
   border-radius: 4px;
   color: colors.$basic-gray87;
-  background: #fff;
+  background: colors.$basic-gray8;
   &.focused:not(.disabled) {
     border-color: colors.$basic-blue;
   }
   &.disabled {
     color: colors.$basic-gray24;
-    border-color: colors.$basic-gray12;
+    border-color: colors.$basic-gray4;
+    background: colors.$basic-gray4;
     .button {
-      fill: colors.$basic-gray12;
+      fill: colors.$basic-gray24;
     }
   }
   &.readonly {
@@ -26,14 +27,14 @@
     border-color: colors.$additional-deep-red;
   }
   &.size-s {
+    --stepper-button-width: 24px;
     width: var(--stepper-width, 122px);
     height: 40px;
-    padding: 0 8px;
   }
   &.size-m {
+    --stepper-button-width: 32px;
     width: var(--stepper-width, 160px);
     height: 48px;
-    padding: 0 16px;
   }
 }
 
@@ -42,7 +43,7 @@
   padding: 0;
 
   // не надо делать transparent: https://stackoverflow.com/q/43483363/13166471
-  background: #fff;
+  background: inherit;
   outline: 0;
   width: 0;
   flex-grow: 1;
@@ -56,8 +57,21 @@
 }
 
 .button {
-  fill: colors.$basic-gray38;
+  display: flex;
+  align-items: center;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  width: var(--stepper-button-width);
+  height: 100%;
+  fill: colors.$basic-gray87;
   flex-shrink: 0;
+  &:first-child {
+    justify-content: flex-end;
+  }
+  &:last-child {
+    justify-content: flex-start;
+  }
   &:not(.hidden) {
     cursor: pointer;
   }
