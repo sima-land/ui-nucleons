@@ -40,6 +40,7 @@ describe('useExpandable', () => {
       const openerRef = useRef<HTMLElement>(null);
 
       useExpandable({
+        gap: 10,
         expanded: true,
         wrapperRef,
         containerRef,
@@ -107,6 +108,7 @@ describe('useExpandable', () => {
       const openerRef = useRef<HTMLElement>(opener);
 
       useExpandable({
+        gap: 0,
         expanded: false,
         wrapperRef,
         containerRef,
@@ -169,7 +171,7 @@ describe('defineViewState', () => {
 
     wrapper.append(item1, item2, item3, item4, opener);
 
-    const viewState = defineViewState(wrapper, [item1, item2, item3, item4], opener);
+    const viewState = defineViewState(wrapper, [item1, item2, item3, item4], opener, 0);
 
     expect(viewState.lastVisibleIndex).toBe(3);
   });
@@ -180,7 +182,7 @@ describe('defineViewState', () => {
 
     container.append(opener);
 
-    const viewState = defineViewState(container, [], opener);
+    const viewState = defineViewState(container, [], opener, 0);
 
     expect(viewState.lastVisibleIndex).toBe(-1);
   });
