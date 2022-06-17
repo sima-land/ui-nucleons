@@ -3,7 +3,7 @@
 .root {
   display: flex;
   align-items: center;
-  border: 1px solid colors.$basic-gray8;
+  border: 1px solid transparent;
   border-radius: 4px;
   color: colors.$basic-gray87;
   background: colors.$basic-gray8;
@@ -24,7 +24,8 @@
     }
   }
   &.failed:not(.disabled):not(.focused) {
-    border-color: colors.$additional-deep-red;
+    border-color: transparent;
+    color: colors.$additional-deep-red;
   }
   &.size-s {
     --stepper-button-width: 24px;
