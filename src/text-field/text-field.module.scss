@@ -91,7 +91,7 @@ input.reset {
       box-shadow: inset 0 -1px colors.$basic-blue;
     }
     &.failed:not(:disabled) {
-      box-shadow: inset 0 -1px colors.$additional-red;
+      box-shadow: inset 0 -1px colors.$additional-deep-red;
     }
     &:not(.multiline) {
       height: 48px;
@@ -158,12 +158,12 @@ input.reset {
     }
     &.failed.focused,
     &.failed.filled {
-      color: colors.$additional-red;
+      color: colors.$additional-deep-red;
     }
   }
   &.variant-desktop {
     &.failed:not(.focused):not(.filled) {
-      color: colors.$additional-red;
+      color: colors.$additional-deep-red;
     }
   }
 }
@@ -190,7 +190,7 @@ input.reset {
     text-overflow: ellipsis;
   }
   &.variant-desktop.failed {
-    color: colors.$additional-red;
+    color: colors.$additional-deep-red;
     --placeholder-color: #{colors.$additional-deep-red};
   }
 }
@@ -200,6 +200,6 @@ input.reset {
   line-height: 16px;
   color: colors.$basic-gray38;
   &.failed {
-    color: colors.$additional-red;
+    color: colors.$additional-deep-red;
   }
 }
