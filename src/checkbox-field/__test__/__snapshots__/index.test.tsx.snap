@@ -17,30 +17,32 @@ exports[`<CheckboxField /> should handle "failed" prop 1`] = `
           className="root"
         >
           <input
-            checked={false}
             className="input"
             data-testid="checkbox"
-            onChange={[Function]}
             type="checkbox"
           />
-          <SvgUnchecked>
-            <svg
-              fill="none"
-              height={16}
-              viewBox="0 0 16 16"
-              width={16}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                height={15}
-                rx={1.5}
-                stroke="#9E9E9E"
-                width={15}
-                x={0.5}
-                y={0.5}
-              />
-            </svg>
-          </SvgUnchecked>
+          <svg
+            fill="none"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+          >
+            <rect
+              className="square"
+              height="15"
+              rx="1.5"
+              width="15"
+              x="0.5"
+              y="0.5"
+            />
+            <path
+              className="mark"
+              clipRule="evenodd"
+              d="M10.8 5.21967L6.4 9.18934L5.36569 8.21967C5.05327 7.92678 4.54673 7.92678 4.23431 8.21967C3.9219 8.51256 3.9219 8.98744 4.23431 9.28033L5.83431 10.7803C6.14673 11.0732 6.65327 11.0732 6.96569 10.7803L11.7657 6.28033C12.0781 5.98744 12.0781 5.51256 11.7657 5.21967C11.4533 4.92678 11.1124 4.92678 10.8 5.21967Z"
+              fill="white"
+              fillRule="evenodd"
+            />
+          </svg>
         </span>
       </Checkbox>
     </div>
@@ -144,28 +146,28 @@ exports[`<CheckboxField /> should match snapshot 1`] = `
             onChange={[Function]}
             type="checkbox"
           />
-          <SvgDisabledChecked>
-            <svg
-              fill="none"
-              height={16}
-              viewBox="0 0 16 16"
-              width={16}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                fill="#E0E0E0"
-                height={16}
-                rx={2}
-                width={16}
-              />
-              <path
-                clipRule="evenodd"
-                d="M10.8 5.22 6.4 9.19l-1.034-.97a.838.838 0 0 0-1.132 0 .717.717 0 0 0 0 1.06l1.6 1.5a.838.838 0 0 0 1.132 0l4.8-4.5a.717.717 0 0 0 0-1.06c-.313-.293-.654-.293-.966 0Z"
-                fill="#F5F5F5"
-                fillRule="evenodd"
-              />
-            </svg>
-          </SvgDisabledChecked>
+          <svg
+            fill="none"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+          >
+            <rect
+              className="square"
+              height="15"
+              rx="1.5"
+              width="15"
+              x="0.5"
+              y="0.5"
+            />
+            <path
+              className="mark"
+              clipRule="evenodd"
+              d="M10.8 5.21967L6.4 9.18934L5.36569 8.21967C5.05327 7.92678 4.54673 7.92678 4.23431 8.21967C3.9219 8.51256 3.9219 8.98744 4.23431 9.28033L5.83431 10.7803C6.14673 11.0732 6.65327 11.0732 6.96569 10.7803L11.7657 6.28033C12.0781 5.98744 12.0781 5.51256 11.7657 5.21967C11.4533 4.92678 11.1124 4.92678 10.8 5.21967Z"
+              fill="white"
+              fillRule="evenodd"
+            />
+          </svg>
         </span>
       </Checkbox>
     </div>

@@ -1,3 +1,5 @@
+@use '../colors';
+
 .root {
   position: relative;
   display: inline-block;
@@ -17,4 +19,23 @@
   opacity: 0;
   margin: 0;
   padding: 0;
+  &:not(:checked) + svg .mark {
+    display: none;
+  }
+  &:not(:checked) + svg .square {
+    fill: #fff;
+    stroke: colors.$basic-gray24;
+  }
+  &:checked + svg .square {
+    fill: colors.$basic-blue;
+    stroke: colors.$basic-blue;
+  }
+  &:disabled:not(:checked) + svg .square {
+    fill: colors.$basic-gray4;
+    stroke: colors.$basic-gray24;
+  }
+  &:disabled:checked + svg .square {
+    fill: colors.$basic-gray12;
+    stroke: colors.$basic-gray12;
+  }
 }
