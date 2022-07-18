@@ -1,61 +1,55 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { Checkbox } from '..';
 
 describe('<Checkbox />', () => {
   it('should render without props', () => {
-    const wrapper = mount(<Checkbox />);
+    const { getByRole, queryAllByRole } = render(<Checkbox />);
 
-    expect(wrapper.find('input')).toHaveLength(1);
-    expect(wrapper.find('input').prop('type')).toBe('checkbox');
+    expect(queryAllByRole('checkbox')).toHaveLength(1);
+    expect(getByRole('checkbox').getAttribute('type')).toBe('checkbox');
   });
 
   it('should renders as disabled', () => {
-    const wrapper = mount(<Checkbox disabled />);
+    const { getByRole } = render(<Checkbox disabled />);
 
-    expect(wrapper.find('input')).toHaveLength(1);
-    expect(wrapper.find('input').prop('disabled')).toBe(true);
+    expect((getByRole('checkbox') as HTMLInputElement).disabled).toBe(true);
   });
 
   it('should handle "defaultChecked" prop', () => {
-    const wrapper = mount(<Checkbox defaultChecked />);
+    const { getByRole } = render(<Checkbox defaultChecked />);
 
-    expect(wrapper.find('input').prop('checked')).toBe(true);
+    expect((getByRole('checkbox') as HTMLInputElement).checked).toBe(true);
   });
 
   it('should handle "id" property', () => {
-    const wrapper = mount(<Checkbox id='test-checkbox' />);
+    const { getByRole } = render(<Checkbox id='test-checkbox' />);
 
-    expect(wrapper.find('input').prop('id')).toBe('test-checkbox');
+    expect(getByRole('checkbox').id).toBe('test-checkbox');
   });
 
   it('should handle "onChange" property', () => {
     const spy = jest.fn();
 
-    const wrapper = mount(<Checkbox onChange={spy} />);
+    const { getByRole, rerender } = render(<Checkbox onChange={spy} />);
 
     expect(spy).toHaveBeenCalledTimes(0);
 
-    wrapper.find('input').simulate('change');
+    fireEvent.click(getByRole('checkbox'));
     expect(spy).toHaveBeenCalledTimes(1);
 
-    wrapper.setProps({ onChange: null });
-    expect(() => wrapper.find('input').simulate('change')).not.toThrow();
-  });
-
-  it('should renders correctly with props', () => {
-    const spy = jest.fn();
-    const wrapper = mount(<Checkbox checked onChange={spy} />);
-
-    expect(wrapper).toMatchSnapshot();
-    expect(wrapper.find('.checkbox-container.error')).toHaveLength(0);
+    rerender(<Checkbox onChange={undefined} />);
+    expect(() => {
+      fireEvent.change(getByRole('checkbox'));
+    }).not.toThrow();
   });
 
   it('should pass "className" prop', () => {
-    const wrapper = mount(<Checkbox className='test-class-name' />);
+    const { container } = render(<Checkbox className='test-class-name' />);
 
-    expect(wrapper.find('.root').prop('className')).toContain('test-class-name');
+    expect((container.querySelector('.root') as HTMLElement).className).toContain(
+      'test-class-name',
+    );
   });
 
   it('should handle "data-testid"', () => {
