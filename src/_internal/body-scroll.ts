@@ -1,6 +1,6 @@
 import { disableBodyScroll, enableBodyScroll, BodyScrollOptions } from 'body-scroll-lock';
-import { useEffect } from 'react';
 import { BSL_IGNORE_ATTR } from '../constants';
+import { useIsomorphicLayoutEffect } from '../hooks';
 
 export interface WithBodyScrollLock {
   /** Нужно ли выключать прокрутку body. */
@@ -21,7 +21,7 @@ export const useBodyScrollLock = (
   needDisable: boolean | undefined,
   options?: BodyScrollOptions,
 ): void => {
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const element = ref.current;
 
     if (element && needDisable) {

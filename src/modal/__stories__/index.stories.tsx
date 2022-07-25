@@ -184,3 +184,80 @@ export const WithOverlapContent: Story = () => (
     </Modal.Overlap>
   </Modal>
 );
+
+interface StepProps {
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+}
+
+function FirstStep({ setStep }: StepProps) {
+  return (
+    <Modal size='s' withScrollDisable>
+      <Modal.Header divided title='Первый шаг' />
+      <Modal.Body>
+        <div style={{ height: '300px' }}></div>
+      </Modal.Body>
+      <Modal.Footer divided size='s'>
+        <Clean.Group>
+          <Clean.Button onClick={() => setStep(s => s + 1)}>Дальше</Clean.Button>
+        </Clean.Group>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
+function SecondStep({ setStep }: StepProps) {
+  return (
+    <Modal size='m' withScrollDisable>
+      <Modal.Header divided title='Второй шаг' />
+      <Modal.Body>
+        <div style={{ height: '300px' }}></div>
+      </Modal.Body>
+      <Modal.Footer divided size='s'>
+        <Clean.Group>
+          <Clean.Button onClick={() => setStep(s => s - 1)}>Назад</Clean.Button>
+          <Clean.Button onClick={() => setStep(s => s + 1)}>Далее</Clean.Button>
+        </Clean.Group>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
+function ThirdStep({ setStep }: StepProps) {
+  return (
+    <Modal size='l' withScrollDisable>
+      <Modal.Header divided title='Третий шаг' />
+      <Modal.Body>
+        <div style={{ height: '300px' }}></div>
+      </Modal.Body>
+
+      <Modal.Footer divided size='s'>
+        <Clean.Group>
+          <Clean.Button onClick={() => setStep(-1)}>Готово</Clean.Button>
+        </Clean.Group>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
+export function Toggle() {
+  const [step, setStep] = useState<number>(-1);
+
+  return (
+    <>
+      <Button size='s' onClick={() => setStep(1)}>
+        Открыть
+      </Button>
+
+      {/* для проверки блокировки прокрутки */}
+      <div style={{ height: '6000px', background: '#eee' }} />
+
+      <>
+        {step === 1 && <FirstStep setStep={setStep} />}
+        {step === 2 && <SecondStep setStep={setStep} />}
+        {step === 3 && <ThirdStep setStep={setStep} />}
+      </>
+    </>
+  );
+}
+
+Toggle.storyName = 'Блокировка прокрутки при переключении окон';
