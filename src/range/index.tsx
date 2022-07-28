@@ -359,15 +359,19 @@ export class Range extends Component<RangeProps> {
         >
           <button
             type='button'
+            aria-label='Начальное значение диапазона'
             ref={this.startThumbRef as any}
             className={cx('thumb-base', 'thumb-styled')}
             style={{ left: `${start}%` }}
+            data-testid='range:thumb-start'
           />
           <button
             type='button'
+            aria-label='Конечное значение диапазона'
             ref={this.finishThumbRef as any}
             className={cx('thumb-base', 'thumb-styled')}
             style={{ left: `${finish}%` }}
+            data-testid='range:thumb-end'
           />
         </div>
       </div>
