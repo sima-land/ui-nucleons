@@ -25,6 +25,7 @@ exports[`<Screen /> should handle "loading/loadingOverlayProps" props 1`] = `
     >
       <div
         className="body"
+        data-bsl-ignore={true}
         data-testid="screen:body"
       >
         <LoadingOverlay
@@ -137,6 +138,7 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
     >
       <div
         className="body"
+        data-bsl-ignore={true}
         data-testid="screen:body"
       >
         <LoadingOverlay
@@ -253,6 +255,7 @@ exports[`<Screen /> should renders correctly 1`] = `
     >
       <div
         className="body"
+        data-bsl-ignore={true}
         data-testid="screen:body"
       >
         <p>
@@ -365,6 +368,7 @@ exports[`<Screen /> should renders without close button 1`] = `
     >
       <div
         className="body"
+        data-bsl-ignore={true}
         data-testid="screen:body"
       />
     </ForwardRef(BodySlot)>

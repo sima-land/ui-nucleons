@@ -8,6 +8,7 @@ import { useInfiniteScroll } from '../hooks';
 import { LoadingOverlay } from '../loading-overlay';
 import { ScreenContext } from './utils';
 import styles from './screen.module.scss';
+import { BSL_IGNORE_ATTR } from '../constants';
 
 export interface HeaderSlotProps extends NavBarProps {
   /** Нужна ли разделительная полоса внизу шапки экрана. */
@@ -92,7 +93,12 @@ export const BodySlot = forwardRef<HTMLDivElement | null, { children?: React.Rea
 
     return (
       // ВАЖНО: элемент с ref должен выводиться всегда (без условий), т.к. он нужен для блокировки прокрутки
-      <div ref={ref} className={styles.body} data-testid='screen:body'>
+      <div
+        ref={ref}
+        className={styles.body}
+        data-testid='screen:body'
+        {...{ [BSL_IGNORE_ATTR]: true }}
+      >
         {loading ? (
           <LoadingOverlay {...loadingOverlayProps} fill={false} style={{ height: '100%' }} />
         ) : (
