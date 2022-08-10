@@ -4,6 +4,7 @@ import { act } from 'react-dom/test-utils';
 import { Screen } from '..';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { render } from '@testing-library/react';
+import { BSL_IGNORE_ATTR } from '../../constants';
 
 jest.mock('body-scroll-lock', () => {
   const original = jest.requireActual('body-scroll-lock');
@@ -188,5 +189,17 @@ describe('<Screen />', () => {
         'Looks like you are trying to render <Screen /> without <Screen.Body /> slot, but it is required',
       ),
     );
+  });
+
+  it('body slot should have data attribute for BSL', () => {
+    const { getByTestId } = render(
+      <Screen data-testid='my-screen'>
+        <Screen.Body>
+          <p>Body loaded content</p>
+        </Screen.Body>
+      </Screen>,
+    );
+
+    expect(getByTestId('screen:body').getAttribute(BSL_IGNORE_ATTR)).toBe('true');
   });
 });
