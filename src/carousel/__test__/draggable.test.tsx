@@ -324,4 +324,14 @@ describe('<Draggable />', () => {
     (wrapper.instance() as any).toggleGrabbed(false);
     expect(spy.mock.calls[0][0].isGrabbed()).toBe(false);
   });
+
+  it('isTransitionEnabled() should return value properly', () => {
+    const fake = {
+      hasTransition: false,
+    };
+
+    expect(Draggable.prototype.isTransitionEnabled.call(fake)).toBe(false);
+    fake.hasTransition = true;
+    expect(Draggable.prototype.isTransitionEnabled.call(fake)).toBe(true);
+  });
 });

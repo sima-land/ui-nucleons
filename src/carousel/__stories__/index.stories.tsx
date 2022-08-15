@@ -249,7 +249,7 @@ export const PreventLinkClickOnDrag = () => (
           style={{
             display: 'block',
             flexShrink: 0,
-            width: '200px',
+            width: 'calc(50% - 8px)',
             height: '320px',
             marginLeft: index ? '16px' : 0,
             borderRadius: '8px',
