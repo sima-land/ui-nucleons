@@ -8,7 +8,6 @@ import maxIndexOf from '../helpers/max-index-of';
 import getRelativePos from '../helpers/get-relative-pos';
 import findChildElement from '../helpers/find-child-element';
 import { ArrowButton, ArrowButtonProps } from '../arrow-button';
-import on from '../helpers/on';
 import classnames from 'classnames/bind';
 import DraggableEvent from './helpers/draggable-event';
 import styles from './carousel.module.scss';
@@ -99,6 +98,7 @@ export class Carousel extends Component<CarouselProps, State> {
   dragStartOffset: IPoint;
   currentIndex: number;
   containerRef: React.RefObject<HTMLDivElement>;
+  rootElementRef: React.RefObject<HTMLDivElement>;
   wrapperRef: React.RefObject<HTMLDivElement>;
   timerId?: number;
   canAutoMove?: boolean;
@@ -109,6 +109,7 @@ export class Carousel extends Component<CarouselProps, State> {
   toggleDragTransition: Control['toggleTransition'];
   setDragOffset: Control['setOffset'];
   isGrabbed: Control['isGrabbed'];
+  isTransitionEnabled: Control['isTransitionEnabled'];
 
   /**
    * Конструктор.
@@ -130,6 +131,7 @@ export class Carousel extends Component<CarouselProps, State> {
     };
 
     // refs
+    this.rootElementRef = createRef<HTMLDivElement>(); // для слежки за изменением размера
     this.containerRef = createRef<HTMLDivElement>(); // для определения размеров списка элементов
     this.wrapperRef = createRef<HTMLDivElement>(); // для определения viewport'а карусели
 
@@ -146,6 +148,7 @@ export class Carousel extends Component<CarouselProps, State> {
     this.toggleDragTransition = noop;
     this.setDragOffset = noop;
     this.isGrabbed = stubFalse;
+    this.isTransitionEnabled = stubFalse;
   }
 
   /**
@@ -258,12 +261,7 @@ export class Carousel extends Component<CarouselProps, State> {
   componentDidMount() {
     const { autoplay, onReady } = this.props;
 
-    this.offWindowResize = on(window, 'resize', () => {
-      this.toggleDragTransition(false);
-      this.scrollToItem({ needTransition: false });
-      this.updateItemsVisibility();
-      this.toggleDragTransition(true);
-    });
+    this.observeResize(window.ResizeObserver);
 
     this.toggleMounted(true);
     this.forceUpdate(() => {
@@ -273,6 +271,30 @@ export class Carousel extends Component<CarouselProps, State> {
 
     autoplay && this.enableAutoplay();
     onReady && onReady(this.currentIndex);
+  }
+
+  /**
+   * Подписывается на изменение размера корневого элемента.
+   * @param Observer Класс ResizeObserver.
+   */
+  observeResize(Observer?: typeof ResizeObserver) {
+    if (Observer && this.rootElementRef.current) {
+      const observer = new Observer(() => this.handleResize());
+      observer.observe(this.rootElementRef.current);
+      this.offWindowResize = () => observer.disconnect();
+    }
+  }
+
+  /**
+   * Корректирует смещение при изменении размеров.
+   */
+  handleResize() {
+    const wasEnabled = this.isTransitionEnabled();
+
+    wasEnabled && this.toggleDragTransition(false);
+    this.scrollToItem({ needTransition: false });
+    this.updateItemsVisibility();
+    wasEnabled && this.toggleDragTransition(true);
   }
 
   /**
@@ -734,12 +756,13 @@ export class Carousel extends Component<CarouselProps, State> {
 
   /**
    * Получает управление от Draggable.
-   * @param draggableControls Функции управления Draggable.
+   * @param control Функции управления Draggable.
    */
-  takeDragControl({ isGrabbed, setOffset, toggleTransition }: Control) {
-    this.toggleDragTransition = toggleTransition;
-    this.setDragOffset = setOffset;
-    this.isGrabbed = isGrabbed;
+  takeDragControl(control: Control) {
+    this.toggleDragTransition = control.toggleTransition;
+    this.setDragOffset = control.setOffset;
+    this.isGrabbed = control.isGrabbed;
+    this.isTransitionEnabled = control.isTransitionEnabled;
   }
 
   /** @inheritdoc */
@@ -759,6 +782,7 @@ export class Carousel extends Component<CarouselProps, State> {
 
     return (
       <div
+        ref={this.rootElementRef}
         {...containerProps}
         className={cx('carousel-wrapper', containerProps.className)}
         onMouseEnter={() => {

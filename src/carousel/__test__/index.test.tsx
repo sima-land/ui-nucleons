@@ -6,7 +6,6 @@ import DraggableEvent from '../helpers/draggable-event';
 import classes from '../carousel.module.scss';
 import Point from '../../helpers/point';
 import { ArrowButton } from '../../arrow-button';
-import { act } from 'react-dom/test-utils';
 
 const defineProp = (object: Record<any, any>, key: any, value: any) => {
   Object.defineProperty(object, key, {
@@ -219,22 +218,134 @@ describe('<Carousel />', () => {
     expect(spy).toHaveBeenCalledWith(3);
   });
 
-  it('should handle window "resize" event', () => {
-    const wrapper = mount<Carousel>(<Carousel items={[1, 2, 3]} infinite={false} />);
+  it('should call observeResize on mount', () => {
+    const fakeInstance = {
+      props: {},
+      toggleMounted: jest.fn(),
+      forceUpdate: jest.fn(),
+      observeResize: jest.fn(),
+      handleResize: jest.fn(),
+    };
 
-    jest.spyOn(wrapper.instance(), 'toggleDragTransition');
-    jest.spyOn(wrapper.instance(), 'scrollToItem');
-    jest.spyOn(wrapper.instance(), 'updateItemsVisibility');
-    jest.spyOn(wrapper.instance(), 'toggleDragTransition');
+    Carousel.prototype.componentDidMount.call(fakeInstance);
 
-    act(() => {
-      window.dispatchEvent(new Event('resize'));
-    });
+    expect(fakeInstance.observeResize).toBeCalledTimes(1);
+  });
 
-    expect(wrapper.instance().toggleDragTransition).toBeCalled();
-    expect(wrapper.instance().scrollToItem).toBeCalled();
-    expect(wrapper.instance().updateItemsVisibility).toBeCalled();
-    expect(wrapper.instance().toggleDragTransition).toBeCalled();
+  it('observeResize() should use observer', () => {
+    const fakeInstance = {
+      props: {},
+      toggleMounted: jest.fn(),
+      forceUpdate: jest.fn(),
+      observeResize: jest.fn(),
+      handleResize: jest.fn(),
+      offWindowResize: jest.fn(),
+      rootElementRef: {
+        current: document.createElement('div'),
+      },
+    };
+
+    let callback: unknown = null;
+    const observeSpy = jest.fn();
+    const unobserveSpy = jest.fn();
+    const disconnectSpy = jest.fn();
+
+    class FakeObserver {
+      constructor(callbackArg: any) {
+        callback = callbackArg;
+      }
+      observe(...args: any[]) {
+        observeSpy(...args);
+      }
+      unobserve(...args: any[]) {
+        unobserveSpy(...args);
+      }
+      disconnect() {
+        disconnectSpy();
+      }
+    }
+
+    Carousel.prototype.observeResize.call(fakeInstance, FakeObserver);
+
+    // проверяем, что выполняется только подписка
+    expect(observeSpy).toBeCalledTimes(1);
+    expect(observeSpy).toBeCalledWith(fakeInstance.rootElementRef.current);
+    expect(unobserveSpy).toBeCalledTimes(0);
+    expect(disconnectSpy).toBeCalledTimes(0);
+
+    //
+    fakeInstance.offWindowResize();
+
+    expect(observeSpy).toBeCalledTimes(1);
+    expect(unobserveSpy).toBeCalledTimes(0);
+    expect(disconnectSpy).toBeCalledTimes(1);
+
+    // проверяем, что передается нужный callback
+    expect(fakeInstance.handleResize).toBeCalledTimes(0);
+    typeof callback === 'function' && callback();
+    expect(fakeInstance.handleResize).toBeCalledTimes(1);
+  });
+
+  it('observeResize() should do nothing when ref is emtpy or class not provided', () => {
+    const fakeInstance = {
+      props: {},
+      toggleMounted: jest.fn(),
+      forceUpdate: jest.fn(),
+      observeResize: jest.fn(),
+      handleResize: jest.fn(),
+      offWindowResize: jest.fn(),
+      rootElementRef: {
+        current: null,
+      },
+    };
+
+    const observeSpy = jest.fn();
+    const unobserveSpy = jest.fn();
+    const disconnectSpy = jest.fn();
+
+    class FakeObserver {
+      observe(...args: any[]) {
+        observeSpy(...args);
+      }
+      unobserve(...args: any[]) {
+        unobserveSpy(...args);
+      }
+      disconnect() {
+        disconnectSpy();
+      }
+    }
+
+    Carousel.prototype.observeResize.call(fakeInstance, FakeObserver);
+
+    expect(observeSpy).toBeCalledTimes(0);
+    expect(unobserveSpy).toBeCalledTimes(0);
+    expect(disconnectSpy).toBeCalledTimes(0);
+
+    Carousel.prototype.observeResize.call(fakeInstance, undefined);
+
+    expect(observeSpy).toBeCalledTimes(0);
+    expect(unobserveSpy).toBeCalledTimes(0);
+    expect(disconnectSpy).toBeCalledTimes(0);
+  });
+
+  it('handleResize() should correct offset without transition', () => {
+    const fakeInstance = {
+      toggleDragTransition: jest.fn(),
+      isTransitionEnabled: () => true,
+      scrollToItem: jest.fn(),
+      updateItemsVisibility: jest.fn(),
+    };
+
+    expect(fakeInstance.toggleDragTransition).toBeCalledTimes(0);
+    expect(fakeInstance.scrollToItem).toBeCalledTimes(0);
+    expect(fakeInstance.updateItemsVisibility).toBeCalledTimes(0);
+
+    Carousel.prototype.handleResize.call(fakeInstance);
+
+    expect(fakeInstance.toggleDragTransition).toBeCalledTimes(2);
+    expect(fakeInstance.scrollToItem).toBeCalledTimes(1);
+    expect(fakeInstance.scrollToItem).toBeCalledWith({ needTransition: false });
+    expect(fakeInstance.updateItemsVisibility).toBeCalledTimes(1);
   });
 
   it('should call "offWindowResize" on unmount', () => {

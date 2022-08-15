@@ -4,7 +4,6 @@ build-storybook
 coverage
 
 # Configs
-.jest/
 *.yaml
 *.yml
 

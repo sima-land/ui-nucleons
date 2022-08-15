@@ -16,6 +16,7 @@ export interface Control {
   isGrabbed: () => boolean;
   setOffset: typeof Draggable.prototype.setOffset;
   toggleTransition: typeof Draggable.prototype.toggleTransition;
+  isTransitionEnabled: () => boolean;
 }
 
 export type Delta2d = { dx: number; dy: number };
@@ -107,6 +108,7 @@ export default class Draggable extends Component<DraggableProps> {
         isGrabbed: () => this.isGrabbed,
         setOffset: this.setOffset.bind(this),
         toggleTransition: this.toggleTransition.bind(this),
+        isTransitionEnabled: this.isTransitionEnabled.bind(this),
       });
   }
 
@@ -249,6 +251,14 @@ export default class Draggable extends Component<DraggableProps> {
 
       draggableEl.style.transition = active ? getTransitionStyle(duration, 'transform') : '';
     }
+  }
+
+  /**
+   * Возвращает true, если css свойство transition активно, false в противном случае.
+   * @return Активно ли css свойство transition.
+   */
+  isTransitionEnabled(): boolean {
+    return this.hasTransition;
   }
 
   /**
