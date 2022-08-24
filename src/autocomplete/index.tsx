@@ -121,7 +121,6 @@ export const Autocomplete = ({
           toggleMenu(false);
         }}
         onChange={(event: any) => {
-          toggleMenu(true);
           setRealValue(event.target.value);
           setActiveIndex(0);
           onChange?.(event);

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Autocomplete } from '..';
+import { Button } from '../../button';
+import { PhoneInput } from '../../phone-input';
+import { TextField } from '../../text-field';
 
 export default {
   title: 'desktop/Autocomplete',
@@ -84,3 +87,36 @@ export const Loading = () => {
     </>
   );
 };
+
+export function TestChromeAutofill() {
+  const [shown, setShown] = useState(false);
+  const [value, setValue] = useState('');
+
+  return (
+    <>
+      {!shown && <Button onClick={() => setShown(true)}>Показать форму</Button>}
+
+      {shown && (
+        <>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            <PhoneInput />
+
+            <Autocomplete
+              preset='filled-only-list'
+              value={value}
+              label='Email'
+              placeholder='some@email.com'
+              items={testItems.filter(s => s.toLowerCase().includes(value.toLowerCase()))}
+              onChange={e => setValue(e.target.value)}
+              onSelect={setValue}
+            />
+
+            <TextField type='password' style={{ width: '320px' }} />
+          </div>
+        </>
+      )}
+    </>
+  );
+}
+
+TestChromeAutofill.storyName = 'service: Chrome autofill';
