@@ -133,7 +133,8 @@ describe('Autocomplete', () => {
     });
   });
 
-  it('should handle field change event', () => {
+  // @todo раньше фиксировалось тестами что должно показаться меню при change без focus, при новых проблемах разобраться
+  it('should not open menu on change without focus', () => {
     const items = ['aaaa', 'bbbb', 'cccc', 'dddd', 'eeee'];
     const spy = jest.fn();
 
@@ -144,7 +145,7 @@ describe('Autocomplete', () => {
 
     fireEvent.change(getByTestId(container, 'text-field:field'), { target: { value: 'jjjj' } });
 
-    expect(queryAllByTestId(container, 'autocomplete:menu')).toHaveLength(1);
+    expect(queryAllByTestId(container, 'autocomplete:menu')).toHaveLength(0);
     expect(spy).toBeCalledTimes(1);
   });
 
