@@ -19,6 +19,7 @@
   opacity: 0;
   margin: 0;
   padding: 0;
+  cursor: pointer;
   &:not(:checked) + svg .mark {
     display: none;
   }
