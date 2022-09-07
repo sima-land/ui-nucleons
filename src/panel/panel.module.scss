@@ -51,7 +51,9 @@
   flex-grow: 0;
   flex-shrink: 0;
   svg {
-    fill: currentColor;
+    display: inline-block;
+    fill: currentColor; // чтобы иконка подхватывала цвет текста панели
+    vertical-align: -2px; // чтобы иконка выравнивалась по линии первой строки текста
   }
 }
 
