@@ -9,6 +9,9 @@
   font-weight: inherit; // @todo выяснить можно ли это убрать
   cursor: default;
   border-bottom-color: transparent;
+  &.underline {
+    text-decoration: underline;
+  }
 }
 
 .link:hover {
@@ -39,5 +42,12 @@
   color: colors.$basic-gray38;
   &:hover {
     color: colors.$basic-gray54;
+  }
+}
+
+.link:not(.disabled).basic-white {
+  color: colors.$basic-white;
+  &:hover {
+    color: colors.$basic-gray4;
   }
 }

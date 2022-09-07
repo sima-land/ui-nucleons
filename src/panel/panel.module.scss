@@ -1,29 +1,68 @@
-.panel {
+@use '../colors';
+
+.root {
   display: flex;
+  align-items: flex-start;
   padding: 16px;
   font-size: 14px;
   line-height: 20px;
   border-radius: 4px;
   overflow: hidden;
   box-sizing: border-box;
-  &.inline {
-    display: inline-flex;
+  &.type-info .unknown-content {
+    a {
+      color: colors.$basic-blue;
+      text-decoration: underline;
+      &:hover {
+        color: colors.$additional-deep-blue;
+      }
+    }
+  }
+  &.type-error .unknown-content {
+    a {
+      color: colors.$basic-white;
+      text-decoration: underline;
+      &:hover {
+        color: colors.$basic-gray4;
+      }
+    }
+  }
+  &.type-success .unknown-content {
+    a {
+      color: colors.$basic-white;
+      text-decoration: underline;
+      &:hover {
+        color: colors.$basic-gray4;
+      }
+    }
+  }
+  &.type-warning .unknown-content {
+    a {
+      color: colors.$basic-gray87;
+      text-decoration: underline;
+      &:hover {
+        color: colors.$basic-gray54;
+      }
+    }
   }
 }
 
-.icon {
+.adornment {
   flex-grow: 0;
   flex-shrink: 0;
+  svg {
+    fill: currentColor;
+  }
 }
 
-.content {
+.main {
   flex-grow: 1;
 }
 
-.icon + .content {
+.adornment + .main {
   margin-left: 16px;
 }
 
-.rotate-180 {
-  transform: rotate(180deg);
+.main + .adornment {
+  margin-left: 16px;
 }
