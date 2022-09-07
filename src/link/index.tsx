@@ -6,7 +6,7 @@ import styles from './link.module.scss';
 
 export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   /** Цвет (название токена). */
-  color?: Extract<Token, 'basic-blue' | 'basic-gray87' | 'basic-gray38'>;
+  color?: Extract<Token, 'basic-blue' | 'basic-gray87' | 'basic-gray38' | 'basic-white'>;
 
   /** Нужно ли оборачивать содержимое комментариями no-index. */
   noIndex?: boolean;
@@ -19,6 +19,9 @@ export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement>
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
+
+  /** Нужно ли подчеркивание. */
+  underline?: boolean;
 }
 
 const cx = classnames.bind(styles);
@@ -48,6 +51,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
     pseudo,
     role,
     tabIndex,
+    underline,
     'data-testid': testId = 'anchor',
     ...restProps
   },
@@ -66,7 +70,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
       {...restProps}
       data-testid={testId}
       ref={ref}
-      className={cx('link', className, color, { disabled })}
+      className={cx('link', className, color, { disabled, underline })}
       {...getContentProps(children, noIndex)}
     />
   );

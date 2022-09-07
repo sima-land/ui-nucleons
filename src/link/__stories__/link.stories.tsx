@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { Link, LinkProps } from '..';
 
 export default {
@@ -10,38 +10,54 @@ export default {
   },
 };
 
-export const Primary = () => {
+export function Primary() {
   const colors: Array<Required<LinkProps>['color']> = [
     'basic-blue',
     'basic-gray87',
     'basic-gray38',
+    'basic-white',
   ];
 
-  const onClick = () => action('click')(new Date());
+  function onClick() {
+    action('click')(new Date());
+  }
+
+  const styles: Record<'root' | 'item', CSSProperties> = {
+    root: {
+      display: 'flex',
+      fontSize: 16,
+    },
+    item: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 16,
+      padding: 20,
+    },
+  };
 
   return (
-    <>
-      <div style={{ display: 'flex', fontSize: 18 }}>
-        {colors.map(color => (
-          <div key={color} style={{ marginRight: 48 }}>
-            <Link href='https://ya.ru' color={color}>
-              Ссылка
-            </Link>
+    <div style={styles.root}>
+      {colors.map(color => (
+        <div
+          key={color}
+          style={{
+            ...styles.item,
+            background: color === 'basic-white' ? '#000' : '#fff',
+          }}
+        >
+          <Link color={color} href='https://ya.ru'>
+            Ссылка
+          </Link>
 
-            <div style={{ marginBottom: 20 }} />
+          <Link color={color} pseudo onClick={onClick}>
+            Псевдо-ссылка
+          </Link>
 
-            <Link pseudo color={color} onClick={onClick}>
-              Псевдо-ссылка
-            </Link>
-
-            <div style={{ marginBottom: 20 }} />
-
-            <Link pseudo disabled color={color} onClick={onClick}>
-              Псевдо-ссылка (disabled)
-            </Link>
-          </div>
-        ))}
-      </div>
-    </>
+          <Link color={color} pseudo disabled onClick={onClick}>
+            Псевдо-ссылка (disabled)
+          </Link>
+        </div>
+      ))}
+    </div>
   );
-};
+}
