@@ -1,23 +1,8 @@
-import React from 'react';
-import { Panel, PanelProps } from '..';
-import { marginBottom, marginRight } from '../../styling/sizes';
-import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information';
-
-const variants: PanelProps[] = [
-  { color: 'basic-gray4' },
-  { color: 'additional-deep-red', contentColor: 'basic-white' },
-  { color: 'additional-teal', contentColor: 'basic-white' },
-  { color: 'additional-yellow' },
-];
-
-const longText = [
-  'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  'Qui, dolorum? Voluptatibus ea blanditiis accusamus error',
-  'accusantium beatae eum ratione aperiam temporibus magni',
-  'non ipsum maiores officia nisi est dignissimos provident?',
-].join(' ');
-
-const markup = 'Lorem <i>ipsum</i> <b>dolor</b> sit.';
+import React, { useState } from 'react';
+import { Panel, PanelType, LINK_COLOR_BY_TYPE } from '..';
+import InformationSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information';
+import LockSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/lock';
+import { Link } from '../../link';
 
 export default {
   title: 'common/Panel',
@@ -27,57 +12,79 @@ export default {
   },
 };
 
-export const Primary = () => (
-  <>
-    <h3>Inline</h3>
-    {variants.map((props, index) => (
-      <Panel key={index} {...props} inline className={marginRight(4) as string}>
-        Lorem ipsum
+const panelTypes: PanelType[] = ['info', 'error', 'success', 'warning'];
+
+function PanelTypeField({ onChange }: { onChange: (type: PanelType) => void }) {
+  return (
+    <div>
+      <label>
+        <span>Type </span>
+        <select onChange={e => onChange(e.target.value as any)}>
+          {panelTypes.map(item => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))}
+        </select>
+      </label>
+    </div>
+  );
+}
+
+export function Primary() {
+  const [type, setType] = useState<PanelType>(panelTypes[0]);
+
+  const content = (
+    <>
+      Lorem ipsum dolor sit, amet{' '}
+      <Link color={LINK_COLOR_BY_TYPE[type]} underline href='https://www.sima-land.ru'>
+        consectetur
+      </Link>{' '}
+      adipisicing elit. Dolore, aliquam. Mollitia?
+    </>
+  );
+
+  return (
+    <div style={{ width: 360, display: 'flex', gap: 20, flexDirection: 'column' }}>
+      <PanelTypeField onChange={setType} />
+
+      <Panel type={type}>{content}</Panel>
+
+      <Panel type={type} adornmentStart={<InformationSVG />}>
+        {content}
       </Panel>
-    ))}
 
-    <h3>Inline (with icon)</h3>
-    {variants.map((props, index) => (
-      <Panel key={index} {...props} inline className={marginRight(4) as string} icon={InfoSVG}>
-        Lorem ipsum
+      <Panel type={type} adornmentEnd={<LockSVG />}>
+        {content}
       </Panel>
-    ))}
 
-    <h3>Inline (with icon and markup)</h3>
-    {variants.map((props, index) => (
-      <Panel
-        key={index}
-        {...props}
-        inline
-        className={marginRight(4) as string}
-        icon={InfoSVG}
-        html={markup}
-      />
-    ))}
-
-    <h3>Block</h3>
-    {variants.map((props, index) => (
-      <Panel key={index} {...props} className={marginBottom(5) as string}>
-        {longText}
+      <Panel type={type} adornmentStart={<InformationSVG />} adornmentEnd={<LockSVG />}>
+        {content}
       </Panel>
-    ))}
+    </div>
+  );
+}
 
-    <h3>Block (with icon)</h3>
-    {variants.map((props, index) => (
-      <Panel key={index} {...props} className={marginBottom(5) as string} icon={InfoSVG}>
-        {longText}
+Primary.storyName = 'Простой пример';
+
+export function UnknownContent() {
+  const [type, setType] = useState<PanelType>(panelTypes[0]);
+
+  const markup = `
+      Lorem ipsum dolor sit, amet
+      <a href='https://www.sima-land.ru'>consectetur</a>
+      adipisicing elit. Dolore, aliquam. Mollitia?
+    `;
+
+  return (
+    <div style={{ width: 360, display: 'flex', gap: 20, flexDirection: 'column' }}>
+      <PanelTypeField onChange={setType} />
+
+      <Panel type={type} adornmentStart={<InformationSVG />}>
+        <Panel.UnknownContent markup={markup} />
       </Panel>
-    ))}
+    </div>
+  );
+}
 
-    <h3>Block (with icon and markup)</h3>
-    {variants.map((props, index) => (
-      <Panel
-        key={index}
-        {...props}
-        className={marginBottom(5) as string}
-        icon={InfoSVG}
-        html={markup}
-      />
-    ))}
-  </>
-);
+UnknownContent.storyName = 'HTML-содержимое';

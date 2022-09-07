@@ -1,27 +1,27 @@
-import React from 'react';
-import classnames from 'classnames/bind';
+import React, { ReactNode } from 'react';
 import { color, bgColor } from '../styling/colors';
-import { COLORS, Token } from '../colors';
+import type { Token } from '../colors';
+import type { LinkProps } from '../link';
+import classnames from 'classnames/bind';
 import styles from './panel.module.scss';
 
+export type PanelType = 'info' | 'error' | 'success' | 'warning';
+
 export interface PanelProps {
-  /** Наименование цвета панели. */
-  color?: Token;
+  /** Тип панели. Влияет на отображение. */
+  type?: PanelType;
 
-  /** Наименование цвета содержимого. */
-  contentColor?: Token;
+  /** Иконка перед основным контентом. */
+  adornmentStart?: ReactNode;
 
-  /** Нужно ли стилизовать как inline-элемент. */
-  inline?: boolean;
-
-  /** Компонент иконки. */
-  icon?: React.ComponentType<React.SVGAttributes<SVGSVGElement>>;
+  /** Иконка после основного контента. */
+  adornmentEnd?: ReactNode;
 
   /** CSS-класс корневого элемента. */
   className?: string;
 
-  /** Содержимое в виде строки с html-версткой. */
-  html?: string;
+  /** Содержимое. */
+  children?: ReactNode;
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
@@ -29,38 +29,69 @@ export interface PanelProps {
 
 const cx = classnames.bind(styles);
 
+const PANEL_COLORS_BY_TYPE: Record<PanelType, { textColor: Token; panelColor: Token }> = {
+  info: {
+    textColor: 'basic-gray87',
+    panelColor: 'basic-gray4',
+  },
+  error: {
+    textColor: 'basic-white',
+    panelColor: 'additional-deep-red',
+  },
+  success: {
+    textColor: 'basic-white',
+    panelColor: 'additional-teal',
+  },
+  warning: {
+    textColor: 'basic-gray87',
+    panelColor: 'additional-yellow',
+  },
+};
+
+export const LINK_COLOR_BY_TYPE: Record<PanelType, LinkProps['color']> = {
+  info: 'basic-blue',
+  error: 'basic-white',
+  success: 'basic-white',
+  warning: 'basic-gray87',
+};
+
 /**
  * Компонент панели с информацией.
  * @param props Свойства.
  * @return Элемент.
  */
-export const Panel: React.FC<PanelProps> = ({
-  color: panelColor = 'basic-gray4',
-  contentColor = 'basic-gray87',
-  inline = false,
-  icon: Icon,
+export function Panel({
+  type = 'info',
+  adornmentStart,
+  adornmentEnd,
   className,
   children,
-  html,
   'data-testid': testId = 'panel',
-}) => {
-  const contentProps = html ? { dangerouslySetInnerHTML: { __html: html } } : { children };
+}: PanelProps) {
+  const textColor = PANEL_COLORS_BY_TYPE[type].textColor;
+  const panelColor = PANEL_COLORS_BY_TYPE[type].panelColor;
 
   return (
     <div
-      className={cx('panel', inline && 'inline', bgColor(panelColor), className)}
+      className={cx('root', `type-${type}`, bgColor(panelColor), color(textColor), className)}
       data-testid={testId}
     >
-      {Icon && (
-        <Icon
-          fill={COLORS.get(contentColor)}
-          width={16}
-          height={20}
-          className={cx('icon')}
-          aria-hidden='true'
-        />
-      )}
-      <div {...contentProps} className={cx('content', color(contentColor))} />
+      {adornmentStart && <div className={cx('adornment')}>{adornmentStart}</div>}
+
+      <div className={cx('main')}>{children}</div>
+
+      {adornmentEnd && <div className={cx('adornment')}>{adornmentEnd}</div>}
     </div>
   );
-};
+}
+
+/**
+ * Компонент для вывода неизвестной html-верстки, стилизованной по гайдам Panel.
+ * @param props Свойства.
+ * @return Элемент.
+ */
+function PanelUnknownContent({ markup }: { markup: string }) {
+  return <div className={cx('unknown-content')} dangerouslySetInnerHTML={{ __html: markup }} />;
+}
+
+Panel.UnknownContent = PanelUnknownContent;

@@ -1,39 +1,40 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { Panel } from '..';
-import InformationSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information.js';
 import { render } from '@testing-library/react';
+import { Panel } from '..';
+import LockSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/lock';
+import InformationSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information';
 
 describe('<Panel />', () => {
   it('should renders without props', () => {
-    const wrapper = mount(<Panel />);
+    const { container } = render(<Panel />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('should handle props', () => {
-    const wrapper = mount(
-      <Panel
-        color='basic-white'
-        contentColor='additional-red'
-        inline
-        icon={InformationSVG}
-        className='test-class'
-        children='Hello, world!'
-      />,
+    const { container } = render(
+      <Panel adornmentStart={<InformationSVG />} adornmentEnd={<LockSVG />} className='test-class'>
+        Hello, world!
+      </Panel>,
     );
 
-    expect(wrapper).toMatchSnapshot();
-
-    wrapper.setProps({
-      children: null,
-      html: 'Lorem <i>ipsum</i> <b>dolor</b> sit.',
-    });
-
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
-  it('should handle "data-testid"', () => {
+  it('should handle unknown content', () => {
+    const markup = 'Lorem <i data-testid="ipsum">ipsum</i> <b>dolor</b> sit.';
+
+    const { container, queryAllByTestId } = render(
+      <Panel className='test-class'>
+        <Panel.UnknownContent markup={markup} />
+      </Panel>,
+    );
+
+    expect(container).toMatchSnapshot();
+    expect(queryAllByTestId('ipsum')).toHaveLength(1);
+  });
+
+  it('should handle "data-testid" prop', () => {
     const { container } = render(<Panel data-testid='other-panel'>Hello, world!</Panel>);
 
     expect(container.querySelectorAll('[data-testid="modal"]')).toHaveLength(0);
