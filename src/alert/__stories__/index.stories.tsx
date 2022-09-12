@@ -13,7 +13,7 @@ export default {
   },
 };
 
-export const Primary = () => {
+export function Primary() {
   const [shown, toggle] = useState<boolean>(true);
 
   return (
@@ -59,25 +59,31 @@ export const Primary = () => {
       )}
     </>
   );
-};
+}
 
-export const WithHeader = () => (
-  <Alert
-    title='Тестовый диалог'
-    withDivideNavBar
-    children={
-      <Box marginY={16} display='flex' justifyContent='center'>
-        <Text align='center'>
-          Тестовое сообщение.
-          <br />И еще немного текста здесь.
-        </Text>
-      </Box>
-    }
-    footer={
-      <Clean.Group>
-        <Clean.Button>Отмена</Clean.Button>
-        <Clean.Button>Ок</Clean.Button>
-      </Clean.Group>
-    }
-  />
-);
+Primary.storyName = 'Простой пример';
+
+export function WithHeader() {
+  return (
+    <Alert
+      title='Тестовый диалог'
+      withDivideNavBar
+      children={
+        <Box marginY={16} display='flex' justifyContent='center'>
+          <Text align='center'>
+            Тестовое сообщение.
+            <br />И еще немного текста здесь.
+          </Text>
+        </Box>
+      }
+      footer={
+        <Clean.Group>
+          <Clean.Button>Отмена</Clean.Button>
+          <Clean.Button>Ок</Clean.Button>
+        </Clean.Group>
+      }
+    />
+  );
+}
+
+WithHeader.storyName = 'С шапкой';

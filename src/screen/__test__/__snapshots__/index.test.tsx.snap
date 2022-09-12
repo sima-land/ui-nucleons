@@ -97,19 +97,20 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
       subtitle="Subtitle"
       title="Title"
     >
-      <NavBar
-        bottomBordered={true}
+      <TopBar
         buttons={
           Object {
             "end": undefined,
             "start": undefined,
           }
         }
+        divided={true}
+        size="s"
         subtitle="Subtitle"
         title="Title"
       >
         <div
-          className="nav-bar inner-border-bottom"
+          className="root size-s inner-border-bottom"
           style={
             Object {
               "height": "56px",
@@ -120,18 +121,18 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
             className="main"
           >
             <div
-              className="title truncate"
+              className="title"
             >
               Title
             </div>
             <div
-              className="subtitle truncate"
+              className="subtitle"
             >
               Subtitle
             </div>
           </div>
         </div>
-      </NavBar>
+      </TopBar>
     </HeaderSlot>
     <ForwardRef(BodySlot)
       key=".1"
@@ -214,19 +215,20 @@ exports[`<Screen /> should renders correctly 1`] = `
       subtitle="Subtitle"
       title="Title"
     >
-      <NavBar
-        bottomBordered={true}
+      <TopBar
         buttons={
           Object {
             "end": undefined,
             "start": undefined,
           }
         }
+        divided={true}
+        size="s"
         subtitle="Subtitle"
         title="Title"
       >
         <div
-          className="nav-bar inner-border-bottom"
+          className="root size-s inner-border-bottom"
           style={
             Object {
               "height": "56px",
@@ -237,18 +239,18 @@ exports[`<Screen /> should renders correctly 1`] = `
             className="main"
           >
             <div
-              className="title truncate"
+              className="title"
             >
               Title
             </div>
             <div
-              className="subtitle truncate"
+              className="subtitle"
             >
               Subtitle
             </div>
           </div>
         </div>
-      </NavBar>
+      </TopBar>
     </HeaderSlot>
     <ForwardRef(BodySlot)
       key=".1"
@@ -300,7 +302,7 @@ exports[`<Screen /> should renders without close button 1`] = `
       }
       key=".0"
     >
-      <NavBar
+      <TopBar
         buttons={
           Object {
             "end": Object {
@@ -309,9 +311,10 @@ exports[`<Screen /> should renders without close button 1`] = `
             "start": undefined,
           }
         }
+        size="s"
       >
         <div
-          className="nav-bar"
+          className="root size-s no-subtitle"
           style={
             Object {
               "height": "56px",
@@ -319,49 +322,57 @@ exports[`<Screen /> should renders without close button 1`] = `
           }
         >
           <div
-            className="button-groups"
+            className="side"
           >
-            <div
-              className="group"
+            <ButtonGroup
+              end={true}
+              stub={true}
             >
-              <NavButton
-                stub={true}
-                text="cross replacer"
+              <div
+                className="button-group stub end"
               >
-                <button
-                  aria-hidden={true}
-                  className="button stub"
-                  type="button"
+                <TopBarButton
+                  text="cross replacer"
                 >
-                  cross replacer
-                </button>
-              </NavButton>
-            </div>
+                  <button
+                    aria-hidden={true}
+                    className="button stub"
+                    type="button"
+                  >
+                    cross replacer
+                  </button>
+                </TopBarButton>
+              </div>
+            </ButtonGroup>
           </div>
           <div
             className="main"
           />
           <div
-            className="button-groups end"
+            className="side"
           >
-            <div
-              className="group"
+            <ButtonGroup
+              end={true}
             >
-              <NavButton
-                text="cross replacer"
+              <div
+                className="button-group end"
               >
-                <button
-                  aria-hidden={false}
-                  className="button"
-                  type="button"
+                <TopBarButton
+                  text="cross replacer"
                 >
-                  cross replacer
-                </button>
-              </NavButton>
-            </div>
+                  <button
+                    className="button"
+                    data-testid="top-bar:button"
+                    type="button"
+                  >
+                    cross replacer
+                  </button>
+                </TopBarButton>
+              </div>
+            </ButtonGroup>
           </div>
         </div>
-      </NavBar>
+      </TopBar>
     </HeaderSlot>
     <ForwardRef(BodySlot)
       key=".1"

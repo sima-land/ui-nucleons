@@ -1,592 +1,469 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<TopBar /> should handle "size" prop 1`] = `
-<TopBar
-  size="s"
-  subtitle="Modal subtitle"
-  title="Modal title"
->
-  <div
-    className="root size-s"
-    style={
-      Object {
-        "height": "64px",
-      }
-    }
-  >
-    <div
-      className="main-section"
-    >
-      <div
-        className="title ellipsis"
-      >
-        Modal title
-      </div>
-      <div
-        className="subtitle ellipsis"
-      >
-        Modal subtitle
-      </div>
-    </div>
-  </div>
-</TopBar>
-`;
-
-exports[`<TopBar /> should handle "size" prop 2`] = `
-<TopBar
-  size="m"
-  subtitle="Modal subtitle"
-  title="Modal title"
->
-  <div
-    className="root size-m"
-    style={
-      Object {
-        "height": "80px",
-      }
-    }
-  >
-    <div
-      className="main-section"
-    >
-      <div
-        className="title ellipsis"
-      >
-        Modal title
-      </div>
-      <div
-        className="subtitle ellipsis"
-      >
-        Modal subtitle
-      </div>
-    </div>
-  </div>
-</TopBar>
-`;
-
 exports[`<TopBar /> should render as divided 1`] = `
-<TopBar
-  divided={true}
->
+<div>
   <div
-    className="root size-m inner-border-bottom"
-    style={
-      Object {
-        "height": "80px",
-      }
-    }
+    class="root size-m inner-border-bottom no-subtitle"
+    style="height: 64px;"
   >
     <div
-      className="main-section"
-    >
-      <div
-        className="title ellipsis"
-      />
-    </div>
+      class="main"
+    />
   </div>
-</TopBar>
+</div>
 `;
 
 exports[`<TopBar /> should render without props 1`] = `
-<TopBar>
+<div>
   <div
-    className="root size-m"
-    style={
-      Object {
-        "height": "80px",
-      }
-    }
+    class="root size-m no-subtitle"
+    style="height: 64px;"
   >
     <div
-      className="main-section"
-    >
-      <div
-        className="title ellipsis"
-      />
-    </div>
+      class="main"
+    />
   </div>
-</TopBar>
-`;
-
-exports[`<TopBar /> should renders with all icons 1`] = `
-<TopBar
-  buttonsProps={
-    Object {
-      "end": Object {
-        "icon": <ForwardRef(CrossSVG) />,
-        "onClick": [MockFunction],
-      },
-      "endSecondary": Object {
-        "icon": <ForwardRef(PersonSVG) />,
-        "onClick": [MockFunction],
-      },
-      "start": Object {
-        "icon": <ForwardRef(ArrowLeftSVG) />,
-        "onClick": [MockFunction],
-      },
-      "startSecondary": Object {
-        "icon": <ForwardRef(PersonSVG) />,
-        "onClick": [MockFunction],
-      },
-    }
-  }
->
-  <div
-    className="root size-m"
-    style={
-      Object {
-        "height": "80px",
-      }
-    }
-  >
-    <IconButton
-      icon={<ForwardRef(ArrowLeftSVG) />}
-      onClick={[MockFunction]}
-    >
-      <button
-        className="icon-button"
-        onClick={[MockFunction]}
-        type="button"
-      >
-        <ForwardRef(ArrowLeftSVG)>
-          <svg
-            height={24}
-            viewBox="0 0 24 24"
-            width={24}
-          >
-            <path
-              clipRule="evenodd"
-              d="M11.707 3.293a1 1 0 010 1.414L4.414 12l7.293 7.293a1 1 0 01-1.414 1.414l-8-8a1 1 0 010-1.414l8-8a1 1 0 011.414 0z"
-              fillRule="evenodd"
-            />
-            <path
-              clipRule="evenodd"
-              d="M3 12a1 1 0 011-1h17a1 1 0 110 2H4a1 1 0 01-1-1z"
-              fillRule="evenodd"
-            />
-          </svg>
-        </ForwardRef(ArrowLeftSVG)>
-      </button>
-    </IconButton>
-    <IconButton
-      icon={<ForwardRef(PersonSVG) />}
-      onClick={[MockFunction]}
-    >
-      <button
-        className="icon-button"
-        onClick={[MockFunction]}
-        type="button"
-      >
-        <ForwardRef(PersonSVG)>
-          <svg
-            height={24}
-            viewBox="0 0 24 24"
-            width={24}
-          >
-            <path
-              d="M6.936 14.149a1 1 0 01-.585 1.287c-1.69.634-2.512 1.774-2.93 2.765a5.66 5.66 0 00-.37 1.305 4.584 4.584 0 00-.05.482V20.009l.005.085c.007.08.02.19.048.315.055.248.142.451.248.578A1.088 1.088 0 003.47 21H20.53a1.088 1.088 0 00.168-.013c.106-.127.193-.33.248-.578a2.473 2.473 0 00.053-.4V19.988a4.575 4.575 0 00-.05-.481 5.66 5.66 0 00-.37-1.306c-.418-.99-1.24-2.13-2.93-2.765a1 1 0 01.702-1.872c2.31.866 3.488 2.476 4.07 3.86.289.685.432 1.313.504 1.773a6.581 6.581 0 01.073.725l.002.05V20L22 20l1 .001v.03a2.904 2.904 0 01-.013.236 4.49 4.49 0 01-.088.573c-.095.431-.306 1.074-.806 1.584-.51.518-1.181.576-1.563.576H3.47c-.382 0-1.053-.058-1.562-.576-.501-.51-.712-1.153-.807-1.584a4.474 4.474 0 01-.1-.809v-.019L1 20.005v-.003S1 20 2 20l-1-.001V19.972a3.002 3.002 0 01.01-.216 7.662 7.662 0 01.568-2.331c.583-1.385 1.761-2.995 4.07-3.861a1 1 0 011.288.585z"
-            />
-            <path
-              clipRule="evenodd"
-              d="M12 3C9.878 3 8 4.923 8 7.5S9.878 12 12 12s4-1.923 4-4.5S14.122 3 12 3zM6 7.5C6 4.002 8.599 1 12 1s6 3.002 6 6.5-2.599 6.5-6 6.5-6-3.002-6-6.5z"
-              fillRule="evenodd"
-            />
-          </svg>
-        </ForwardRef(PersonSVG)>
-      </button>
-    </IconButton>
-    <div
-      className="main-section"
-    >
-      <div
-        className="title ellipsis"
-      />
-    </div>
-    <IconButton
-      icon={<ForwardRef(PersonSVG) />}
-      onClick={[MockFunction]}
-    >
-      <button
-        className="icon-button"
-        onClick={[MockFunction]}
-        type="button"
-      >
-        <ForwardRef(PersonSVG)>
-          <svg
-            height={24}
-            viewBox="0 0 24 24"
-            width={24}
-          >
-            <path
-              d="M6.936 14.149a1 1 0 01-.585 1.287c-1.69.634-2.512 1.774-2.93 2.765a5.66 5.66 0 00-.37 1.305 4.584 4.584 0 00-.05.482V20.009l.005.085c.007.08.02.19.048.315.055.248.142.451.248.578A1.088 1.088 0 003.47 21H20.53a1.088 1.088 0 00.168-.013c.106-.127.193-.33.248-.578a2.473 2.473 0 00.053-.4V19.988a4.575 4.575 0 00-.05-.481 5.66 5.66 0 00-.37-1.306c-.418-.99-1.24-2.13-2.93-2.765a1 1 0 01.702-1.872c2.31.866 3.488 2.476 4.07 3.86.289.685.432 1.313.504 1.773a6.581 6.581 0 01.073.725l.002.05V20L22 20l1 .001v.03a2.904 2.904 0 01-.013.236 4.49 4.49 0 01-.088.573c-.095.431-.306 1.074-.806 1.584-.51.518-1.181.576-1.563.576H3.47c-.382 0-1.053-.058-1.562-.576-.501-.51-.712-1.153-.807-1.584a4.474 4.474 0 01-.1-.809v-.019L1 20.005v-.003S1 20 2 20l-1-.001V19.972a3.002 3.002 0 01.01-.216 7.662 7.662 0 01.568-2.331c.583-1.385 1.761-2.995 4.07-3.861a1 1 0 011.288.585z"
-            />
-            <path
-              clipRule="evenodd"
-              d="M12 3C9.878 3 8 4.923 8 7.5S9.878 12 12 12s4-1.923 4-4.5S14.122 3 12 3zM6 7.5C6 4.002 8.599 1 12 1s6 3.002 6 6.5-2.599 6.5-6 6.5-6-3.002-6-6.5z"
-              fillRule="evenodd"
-            />
-          </svg>
-        </ForwardRef(PersonSVG)>
-      </button>
-    </IconButton>
-    <IconButton
-      icon={<ForwardRef(CrossSVG) />}
-      onClick={[MockFunction]}
-    >
-      <button
-        className="icon-button"
-        onClick={[MockFunction]}
-        type="button"
-      >
-        <ForwardRef(CrossSVG)>
-          <svg
-            height={24}
-            viewBox="0 0 24 24"
-            width={24}
-          >
-            <path
-              clipRule="evenodd"
-              d="M20.707 3.293a1 1 0 010 1.414l-16 16a1 1 0 01-1.414-1.414l16-16a1 1 0 011.414 0z"
-              fillRule="evenodd"
-            />
-            <path
-              clipRule="evenodd"
-              d="M3.293 3.293a1 1 0 011.414 0l16 16a1 1 0 01-1.414 1.414l-16-16a1 1 0 010-1.414z"
-              fillRule="evenodd"
-            />
-          </svg>
-        </ForwardRef(CrossSVG)>
-      </button>
-    </IconButton>
-  </div>
-</TopBar>
+</div>
 `;
 
 exports[`<TopBar /> should renders with end icon 1`] = `
-<TopBar
-  buttonsProps={
-    Object {
-      "end": Object {
-        "icon": <ForwardRef(CrossSVG) />,
-      },
-    }
-  }
->
+<div>
   <div
-    className="root size-m"
-    style={
-      Object {
-        "height": "80px",
-      }
-    }
+    class="root size-m no-subtitle"
+    style="height: 64px;"
   >
     <div
-      className="icon-button stub"
-    />
-    <div
-      className="main-section"
+      class="side"
     >
       <div
-        className="title ellipsis"
-      />
-    </div>
-    <IconButton
-      icon={<ForwardRef(CrossSVG) />}
-    >
-      <button
-        className="icon-button"
-        type="button"
+        class="button-group stub end"
       >
-        <ForwardRef(CrossSVG)>
+        <button
+          aria-hidden="true"
+          class="button iconic stub"
+          type="button"
+        />
+      </div>
+    </div>
+    <div
+      class="main"
+    />
+    <div
+      class="side"
+    >
+      <div
+        class="button-group end"
+      >
+        <button
+          class="button iconic"
+          data-testid="top-bar:button"
+          type="button"
+        >
           <svg
-            height={24}
+            height="24"
             viewBox="0 0 24 24"
-            width={24}
+            width="24"
           >
             <path
-              clipRule="evenodd"
-              d="M20.707 3.293a1 1 0 010 1.414l-16 16a1 1 0 01-1.414-1.414l16-16a1 1 0 011.414 0z"
-              fillRule="evenodd"
+              clip-rule="evenodd"
+              d="M3.336 12.747a1 1 0 01-.083-1.411l8-9a1 1 0 011.494 0l8 9a1 1 0 01-1.494 1.328L12 4.505l-7.253 8.16a1 1 0 01-1.411.082z"
+              fill-rule="evenodd"
             />
             <path
-              clipRule="evenodd"
-              d="M3.293 3.293a1 1 0 011.414 0l16 16a1 1 0 01-1.414 1.414l-16-16a1 1 0 010-1.414z"
-              fillRule="evenodd"
+              clip-rule="evenodd"
+              d="M12 22a1 1 0 01-1-1V4a1 1 0 112 0v17a1 1 0 01-1 1z"
+              fill-rule="evenodd"
             />
           </svg>
-        </ForwardRef(CrossSVG)>
-      </button>
-    </IconButton>
+        </button>
+      </div>
+    </div>
   </div>
-</TopBar>
+</div>
 `;
 
 exports[`<TopBar /> should renders with end icons 1`] = `
-<TopBar
-  buttonsProps={
-    Object {
-      "end": Object {
-        "icon": <ForwardRef(CrossSVG) />,
-      },
-      "endSecondary": Object {
-        "icon": <ForwardRef(PersonSVG) />,
-      },
-    }
-  }
->
+<div>
   <div
-    className="root size-m"
-    style={
-      Object {
-        "height": "80px",
-      }
-    }
+    class="root size-m no-subtitle"
+    style="height: 64px;"
   >
     <div
-      className="icon-button stub"
-    />
-    <div
-      className="icon-button stub"
-    />
-    <div
-      className="main-section"
+      class="side"
     >
       <div
-        className="title ellipsis"
-      />
+        class="button-group stub end"
+      >
+        <button
+          aria-hidden="true"
+          class="button iconic stub"
+          type="button"
+        />
+        <button
+          aria-hidden="true"
+          class="button iconic stub"
+          type="button"
+        />
+      </div>
     </div>
-    <IconButton
-      icon={<ForwardRef(PersonSVG) />}
+    <div
+      class="main"
+    />
+    <div
+      class="side"
     >
-      <button
-        className="icon-button"
-        type="button"
+      <div
+        class="button-group end"
       >
-        <ForwardRef(PersonSVG)>
+        <button
+          class="button iconic"
+          data-testid="top-bar:button"
+          type="button"
+        >
           <svg
-            height={24}
+            height="24"
             viewBox="0 0 24 24"
-            width={24}
+            width="24"
           >
             <path
-              d="M6.936 14.149a1 1 0 01-.585 1.287c-1.69.634-2.512 1.774-2.93 2.765a5.66 5.66 0 00-.37 1.305 4.584 4.584 0 00-.05.482V20.009l.005.085c.007.08.02.19.048.315.055.248.142.451.248.578A1.088 1.088 0 003.47 21H20.53a1.088 1.088 0 00.168-.013c.106-.127.193-.33.248-.578a2.473 2.473 0 00.053-.4V19.988a4.575 4.575 0 00-.05-.481 5.66 5.66 0 00-.37-1.306c-.418-.99-1.24-2.13-2.93-2.765a1 1 0 01.702-1.872c2.31.866 3.488 2.476 4.07 3.86.289.685.432 1.313.504 1.773a6.581 6.581 0 01.073.725l.002.05V20L22 20l1 .001v.03a2.904 2.904 0 01-.013.236 4.49 4.49 0 01-.088.573c-.095.431-.306 1.074-.806 1.584-.51.518-1.181.576-1.563.576H3.47c-.382 0-1.053-.058-1.562-.576-.501-.51-.712-1.153-.807-1.584a4.474 4.474 0 01-.1-.809v-.019L1 20.005v-.003S1 20 2 20l-1-.001V19.972a3.002 3.002 0 01.01-.216 7.662 7.662 0 01.568-2.331c.583-1.385 1.761-2.995 4.07-3.861a1 1 0 011.288.585z"
+              clip-rule="evenodd"
+              d="M3.293 12.293a1 1 0 011.414 0L12 19.586l7.293-7.293a1 1 0 011.414 1.414l-8 8a1 1 0 01-1.414 0l-8-8a1 1 0 010-1.414z"
+              fill-rule="evenodd"
             />
             <path
-              clipRule="evenodd"
-              d="M12 3C9.878 3 8 4.923 8 7.5S9.878 12 12 12s4-1.923 4-4.5S14.122 3 12 3zM6 7.5C6 4.002 8.599 1 12 1s6 3.002 6 6.5-2.599 6.5-6 6.5-6-3.002-6-6.5z"
-              fillRule="evenodd"
+              clip-rule="evenodd"
+              d="M12 21a1 1 0 01-1-1V3a1 1 0 112 0v17a1 1 0 01-1 1z"
+              fill-rule="evenodd"
             />
           </svg>
-        </ForwardRef(PersonSVG)>
-      </button>
-    </IconButton>
-    <IconButton
-      icon={<ForwardRef(CrossSVG) />}
-    >
-      <button
-        className="icon-button"
-        type="button"
-      >
-        <ForwardRef(CrossSVG)>
+        </button>
+        <button
+          class="button iconic"
+          data-testid="top-bar:button"
+          type="button"
+        >
           <svg
-            height={24}
+            height="24"
             viewBox="0 0 24 24"
-            width={24}
+            width="24"
           >
             <path
-              clipRule="evenodd"
-              d="M20.707 3.293a1 1 0 010 1.414l-16 16a1 1 0 01-1.414-1.414l16-16a1 1 0 011.414 0z"
-              fillRule="evenodd"
+              clip-rule="evenodd"
+              d="M3.336 12.747a1 1 0 01-.083-1.411l8-9a1 1 0 011.494 0l8 9a1 1 0 01-1.494 1.328L12 4.505l-7.253 8.16a1 1 0 01-1.411.082z"
+              fill-rule="evenodd"
             />
             <path
-              clipRule="evenodd"
-              d="M3.293 3.293a1 1 0 011.414 0l16 16a1 1 0 01-1.414 1.414l-16-16a1 1 0 010-1.414z"
-              fillRule="evenodd"
+              clip-rule="evenodd"
+              d="M12 22a1 1 0 01-1-1V4a1 1 0 112 0v17a1 1 0 01-1 1z"
+              fill-rule="evenodd"
             />
           </svg>
-        </ForwardRef(CrossSVG)>
-      </button>
-    </IconButton>
+        </button>
+      </div>
+    </div>
   </div>
-</TopBar>
+</div>
+`;
+
+exports[`<TopBar /> should renders with end text button 1`] = `
+<div>
+  <div
+    class="root size-m no-subtitle"
+    style="height: 64px;"
+  >
+    <div
+      class="side"
+    >
+      <div
+        class="button-group stub end"
+      >
+        <button
+          aria-hidden="true"
+          class="button stub"
+          type="button"
+        >
+          World
+        </button>
+      </div>
+    </div>
+    <div
+      class="main"
+    />
+    <div
+      class="side"
+    >
+      <div
+        class="button-group end"
+      >
+        <button
+          class="button"
+          data-testid="top-bar:button"
+          type="button"
+        >
+          World
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<TopBar /> should renders with mixed buttons 1`] = `
+<div>
+  <div
+    class="root size-m no-subtitle"
+    style="height: 64px;"
+  >
+    <div
+      class="side"
+    >
+      <div
+        class="button-group"
+      >
+        <button
+          class="button"
+          data-testid="top-bar:button"
+          type="button"
+        >
+          World
+        </button>
+      </div>
+      <div
+        class="button-group stub end"
+      >
+        <button
+          aria-hidden="true"
+          class="button iconic stub"
+          type="button"
+        />
+      </div>
+    </div>
+    <div
+      class="main"
+    />
+    <div
+      class="side"
+    >
+      <div
+        class="button-group end"
+      >
+        <button
+          class="button iconic"
+          data-testid="top-bar:button"
+          type="button"
+        >
+          <svg
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M3.336 12.747a1 1 0 01-.083-1.411l8-9a1 1 0 011.494 0l8 9a1 1 0 01-1.494 1.328L12 4.505l-7.253 8.16a1 1 0 01-1.411.082z"
+              fill-rule="evenodd"
+            />
+            <path
+              clip-rule="evenodd"
+              d="M12 22a1 1 0 01-1-1V4a1 1 0 112 0v17a1 1 0 01-1 1z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="button-group stub"
+      >
+        <button
+          aria-hidden="true"
+          class="button stub"
+          type="button"
+        >
+          World
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`<TopBar /> should renders with start icon 1`] = `
-<TopBar
-  buttonsProps={
-    Object {
-      "start": Object {
-        "icon": <ForwardRef(ArrowLeftSVG) />,
-      },
-    }
-  }
->
+<div>
   <div
-    className="root size-m"
-    style={
-      Object {
-        "height": "80px",
-      }
-    }
+    class="root size-m no-subtitle"
+    style="height: 64px;"
   >
-    <IconButton
-      icon={<ForwardRef(ArrowLeftSVG) />}
-    >
-      <button
-        className="icon-button"
-        type="button"
-      >
-        <ForwardRef(ArrowLeftSVG)>
-          <svg
-            height={24}
-            viewBox="0 0 24 24"
-            width={24}
-          >
-            <path
-              clipRule="evenodd"
-              d="M11.707 3.293a1 1 0 010 1.414L4.414 12l7.293 7.293a1 1 0 01-1.414 1.414l-8-8a1 1 0 010-1.414l8-8a1 1 0 011.414 0z"
-              fillRule="evenodd"
-            />
-            <path
-              clipRule="evenodd"
-              d="M3 12a1 1 0 011-1h17a1 1 0 110 2H4a1 1 0 01-1-1z"
-              fillRule="evenodd"
-            />
-          </svg>
-        </ForwardRef(ArrowLeftSVG)>
-      </button>
-    </IconButton>
     <div
-      className="main-section"
+      class="side"
     >
       <div
-        className="title ellipsis"
-      />
+        class="button-group"
+      >
+        <button
+          class="button iconic"
+          data-testid="top-bar:button"
+          type="button"
+        >
+          <svg
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M3.336 12.747a1 1 0 01-.083-1.411l8-9a1 1 0 011.494 0l8 9a1 1 0 01-1.494 1.328L12 4.505l-7.253 8.16a1 1 0 01-1.411.082z"
+              fill-rule="evenodd"
+            />
+            <path
+              clip-rule="evenodd"
+              d="M12 22a1 1 0 01-1-1V4a1 1 0 112 0v17a1 1 0 01-1 1z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
     <div
-      className="icon-button stub"
+      class="main"
     />
+    <div
+      class="side"
+    >
+      <div
+        class="button-group stub"
+      >
+        <button
+          aria-hidden="true"
+          class="button iconic stub"
+          type="button"
+        />
+      </div>
+    </div>
   </div>
-</TopBar>
+</div>
 `;
 
 exports[`<TopBar /> should renders with start icons 1`] = `
-<TopBar
-  buttonsProps={
-    Object {
-      "start": Object {
-        "icon": <ForwardRef(ArrowLeftSVG) />,
-      },
-      "startSecondary": Object {
-        "icon": <ForwardRef(PersonSVG) />,
-      },
-    }
-  }
->
+<div>
   <div
-    className="root size-m"
-    style={
-      Object {
-        "height": "80px",
-      }
-    }
+    class="root size-m no-subtitle"
+    style="height: 64px;"
   >
-    <IconButton
-      icon={<ForwardRef(ArrowLeftSVG) />}
-    >
-      <button
-        className="icon-button"
-        type="button"
-      >
-        <ForwardRef(ArrowLeftSVG)>
-          <svg
-            height={24}
-            viewBox="0 0 24 24"
-            width={24}
-          >
-            <path
-              clipRule="evenodd"
-              d="M11.707 3.293a1 1 0 010 1.414L4.414 12l7.293 7.293a1 1 0 01-1.414 1.414l-8-8a1 1 0 010-1.414l8-8a1 1 0 011.414 0z"
-              fillRule="evenodd"
-            />
-            <path
-              clipRule="evenodd"
-              d="M3 12a1 1 0 011-1h17a1 1 0 110 2H4a1 1 0 01-1-1z"
-              fillRule="evenodd"
-            />
-          </svg>
-        </ForwardRef(ArrowLeftSVG)>
-      </button>
-    </IconButton>
-    <IconButton
-      icon={<ForwardRef(PersonSVG) />}
-    >
-      <button
-        className="icon-button"
-        type="button"
-      >
-        <ForwardRef(PersonSVG)>
-          <svg
-            height={24}
-            viewBox="0 0 24 24"
-            width={24}
-          >
-            <path
-              d="M6.936 14.149a1 1 0 01-.585 1.287c-1.69.634-2.512 1.774-2.93 2.765a5.66 5.66 0 00-.37 1.305 4.584 4.584 0 00-.05.482V20.009l.005.085c.007.08.02.19.048.315.055.248.142.451.248.578A1.088 1.088 0 003.47 21H20.53a1.088 1.088 0 00.168-.013c.106-.127.193-.33.248-.578a2.473 2.473 0 00.053-.4V19.988a4.575 4.575 0 00-.05-.481 5.66 5.66 0 00-.37-1.306c-.418-.99-1.24-2.13-2.93-2.765a1 1 0 01.702-1.872c2.31.866 3.488 2.476 4.07 3.86.289.685.432 1.313.504 1.773a6.581 6.581 0 01.073.725l.002.05V20L22 20l1 .001v.03a2.904 2.904 0 01-.013.236 4.49 4.49 0 01-.088.573c-.095.431-.306 1.074-.806 1.584-.51.518-1.181.576-1.563.576H3.47c-.382 0-1.053-.058-1.562-.576-.501-.51-.712-1.153-.807-1.584a4.474 4.474 0 01-.1-.809v-.019L1 20.005v-.003S1 20 2 20l-1-.001V19.972a3.002 3.002 0 01.01-.216 7.662 7.662 0 01.568-2.331c.583-1.385 1.761-2.995 4.07-3.861a1 1 0 011.288.585z"
-            />
-            <path
-              clipRule="evenodd"
-              d="M12 3C9.878 3 8 4.923 8 7.5S9.878 12 12 12s4-1.923 4-4.5S14.122 3 12 3zM6 7.5C6 4.002 8.599 1 12 1s6 3.002 6 6.5-2.599 6.5-6 6.5-6-3.002-6-6.5z"
-              fillRule="evenodd"
-            />
-          </svg>
-        </ForwardRef(PersonSVG)>
-      </button>
-    </IconButton>
     <div
-      className="main-section"
+      class="side"
     >
       <div
-        className="title ellipsis"
-      />
+        class="button-group"
+      >
+        <button
+          class="button iconic"
+          data-testid="top-bar:button"
+          type="button"
+        >
+          <svg
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M3.336 12.747a1 1 0 01-.083-1.411l8-9a1 1 0 011.494 0l8 9a1 1 0 01-1.494 1.328L12 4.505l-7.253 8.16a1 1 0 01-1.411.082z"
+              fill-rule="evenodd"
+            />
+            <path
+              clip-rule="evenodd"
+              d="M12 22a1 1 0 01-1-1V4a1 1 0 112 0v17a1 1 0 01-1 1z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <button
+          class="button iconic"
+          data-testid="top-bar:button"
+          type="button"
+        >
+          <svg
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M3.293 12.293a1 1 0 011.414 0L12 19.586l7.293-7.293a1 1 0 011.414 1.414l-8 8a1 1 0 01-1.414 0l-8-8a1 1 0 010-1.414z"
+              fill-rule="evenodd"
+            />
+            <path
+              clip-rule="evenodd"
+              d="M12 21a1 1 0 01-1-1V3a1 1 0 112 0v17a1 1 0 01-1 1z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
     <div
-      className="icon-button stub"
+      class="main"
     />
     <div
-      className="icon-button stub"
-    />
+      class="side"
+    >
+      <div
+        class="button-group stub"
+      >
+        <button
+          aria-hidden="true"
+          class="button iconic stub"
+          type="button"
+        />
+        <button
+          aria-hidden="true"
+          class="button iconic stub"
+          type="button"
+        />
+      </div>
+    </div>
   </div>
-</TopBar>
+</div>
 `;
 
-exports[`<TopBar /> should renders with title and subtitle 1`] = `
-<TopBar
-  subtitle="Modal subtitle"
-  title="Modal title"
->
+exports[`<TopBar /> should renders with start text button 1`] = `
+<div>
   <div
-    className="root size-m"
-    style={
-      Object {
-        "height": "80px",
-      }
-    }
+    class="root size-m no-subtitle"
+    style="height: 64px;"
   >
     <div
-      className="main-section"
+      class="side"
     >
       <div
-        className="title ellipsis"
+        class="button-group"
       >
-        Modal title
+        <button
+          class="button"
+          data-testid="top-bar:button"
+          type="button"
+        >
+          Hello
+        </button>
       </div>
+    </div>
+    <div
+      class="main"
+    />
+    <div
+      class="side"
+    >
       <div
-        className="subtitle ellipsis"
+        class="button-group stub"
       >
-        Modal subtitle
+        <button
+          aria-hidden="true"
+          class="button stub"
+          type="button"
+        >
+          Hello
+        </button>
       </div>
     </div>
   </div>
-</TopBar>
+</div>
 `;

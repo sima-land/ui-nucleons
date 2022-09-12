@@ -53,19 +53,19 @@ exports[`<Modal /> should handle extended props 1`] = `
       style="--header-height: 64px; --footer-height: 72px;"
     >
       <div
-        class="root size-s header"
+        class="root size-m header"
         style="height: 64px;"
       >
         <div
-          class="main-section"
+          class="main"
         >
           <div
-            class="title ellipsis"
+            class="title"
           >
             Title
           </div>
           <div
-            class="subtitle ellipsis"
+            class="subtitle"
           >
             Subtitle
           </div>
@@ -218,41 +218,55 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
       style="--header-height: 64px; --footer-height: 16px;"
     >
       <div
-        class="root size-s header"
+        class="root size-m header no-subtitle"
         style="height: 64px;"
       >
-        <button
-          class="icon-button"
-          data-testid="modal:back"
-          type="button"
-        >
-          <svg
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
-          >
-            <path
-              clip-rule="evenodd"
-              d="M11.707 3.293a1 1 0 010 1.414L4.414 12l7.293 7.293a1 1 0 01-1.414 1.414l-8-8a1 1 0 010-1.414l8-8a1 1 0 011.414 0z"
-              fill-rule="evenodd"
-            />
-            <path
-              clip-rule="evenodd"
-              d="M3 12a1 1 0 011-1h17a1 1 0 110 2H4a1 1 0 01-1-1z"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </button>
         <div
-          class="main-section"
+          class="side"
         >
           <div
-            class="title ellipsis"
-          />
+            class="button-group"
+          >
+            <button
+              class="button iconic"
+              data-testid="modal:back"
+              type="button"
+            >
+              <svg
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M11.707 3.293a1 1 0 010 1.414L4.414 12l7.293 7.293a1 1 0 01-1.414 1.414l-8-8a1 1 0 010-1.414l8-8a1 1 0 011.414 0z"
+                  fill-rule="evenodd"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M3 12a1 1 0 011-1h17a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
         <div
-          class="icon-button stub"
+          class="main"
         />
+        <div
+          class="side"
+        >
+          <div
+            class="button-group stub"
+          >
+            <button
+              aria-hidden="true"
+              class="button iconic stub"
+              type="button"
+            />
+          </div>
+        </div>
       </div>
       <div
         class="footer-stub"

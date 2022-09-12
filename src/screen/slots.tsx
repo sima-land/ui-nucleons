@@ -1,5 +1,4 @@
 import React, { forwardRef, useRef, useImperativeHandle, useContext } from 'react';
-import { NavBar, NavBarProps } from '../nav-bar';
 import { get } from 'lodash';
 import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
 import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
@@ -9,17 +8,9 @@ import { LoadingOverlay } from '../loading-overlay';
 import { ScreenContext } from './utils';
 import styles from './screen.module.scss';
 import { BSL_IGNORE_ATTR } from '../constants';
+import { TopBar, TopBarProps } from '../top-bar';
 
-export interface HeaderSlotProps extends NavBarProps {
-  /** Нужна ли разделительная полоса внизу шапки экрана. */
-  divided?: boolean;
-
-  /** Заголовок. */
-  title?: string;
-
-  /** Подзаголовок. */
-  subtitle?: string;
-
+export interface HeaderSlotProps extends TopBarProps {
   /** Будет вызвана при нажатии на кнопку-стрелку. */
   onBack?: () => void;
 
@@ -41,18 +32,19 @@ export const HeaderSlot = ({
   onClose,
   ...restProps
 }: HeaderSlotProps) => (
-  <NavBar
+  <TopBar
     {...restProps}
+    size='s'
     title={title}
     subtitle={subtitle}
-    bottomBordered={divided}
+    divided={divided}
     buttons={{
       ...buttons,
       start: onBack
         ? {
             // ВАЖНО: не подмешиваем свойства из buttons.start
             // чтобы не распылять конфигурацию одной и той же кнопки по нескольким местам
-            icon: ArrowLeftSVG,
+            icon: <ArrowLeftSVG />,
             onClick: onBack,
             'aria-label': 'Вернуться назад',
             'data-testid': 'screen:back',
@@ -62,7 +54,7 @@ export const HeaderSlot = ({
         ? {
             // ВАЖНО: не подмешиваем свойства из buttons.end
             // чтобы не распылять конфигурацию одной и той же кнопки по нескольким местам
-            icon: CrossSVG,
+            icon: <CrossSVG />,
             onClick: onClose,
             'aria-label': `Закрыть ${title || ''}`.trim(),
             'data-testid': 'screen:close',

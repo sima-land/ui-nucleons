@@ -119,7 +119,7 @@ describe('<Modal />', () => {
       <Modal>
         <Modal.Header
           onClose={jest.fn()}
-          buttonsProps={{
+          buttons={{
             start: {
               icon: <ArrowLeftSVG data-testid='custom-top-bar-btn' />,
             },

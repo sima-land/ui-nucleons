@@ -21,8 +21,8 @@ export interface ModalHeaderProps extends TopBarProps {
 export const ModalHeader = ({ onBack, onClose, ...topBarProps }: ModalHeaderProps) => (
   <TopBar
     {...topBarProps}
-    buttonsProps={{
-      ...topBarProps.buttonsProps,
+    buttons={{
+      ...topBarProps.buttons,
       ...(onBack && {
         start: {
           'data-testid': 'modal:back',

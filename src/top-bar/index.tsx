@@ -1,23 +1,28 @@
-import React from 'react';
+import React, { createContext, ReactNode, useContext } from 'react';
 import classnames from 'classnames/bind';
-import { has } from 'lodash';
 import classes from './top-bar.module.scss';
 import { InnerBorder } from '../styling/borders';
 
-export type TopBarSize = 's' | 'm';
+export type TopBarSize = 's' | 'm' | 'xl';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface TopBarButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Иконка. */
   icon?: React.ReactNode;
+
+  /** Текст. */
+  text?: string;
+
+  /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
 }
 
 export interface TopBarProps {
   /** Свойства кнопок. */
-  buttonsProps?: {
-    start?: ButtonProps;
-    startSecondary?: ButtonProps;
-    end?: ButtonProps;
-    endSecondary?: ButtonProps;
+  buttons?: {
+    start?: TopBarButtonProps;
+    startSecondary?: TopBarButtonProps;
+    end?: TopBarButtonProps;
+    endSecondary?: TopBarButtonProps;
   };
 
   /** CSS-класс корневого элемента. */
@@ -38,8 +43,9 @@ export interface TopBarProps {
 
 // некоторым компонентам нужно знать конкретную высоту, делаем единый источник
 export const TOP_BAR_HEIGHT: Readonly<Record<TopBarSize, number>> = {
-  s: 64,
-  m: 80,
+  s: 56,
+  m: 64,
+  xl: 80,
 };
 
 const cx = classnames.bind(classes);
@@ -49,51 +55,120 @@ const cx = classnames.bind(classes);
  * @param props Свойства.
  * @return Элемент.
  */
-export const TopBar = ({
+export function TopBar({
   divided,
   size = 'm',
   title,
   subtitle,
-  buttonsProps: { start, startSecondary, end, endSecondary } = {},
+  buttons: { start, startSecondary, end, endSecondary } = {},
   className,
-}: TopBarProps) => {
-  const hasStart = has(start, 'icon');
-  const hasStartSecondary = has(startSecondary, 'icon');
-  const hasEnd = has(end, 'icon');
-  const hasEndSecondary = has(endSecondary, 'icon');
+}: TopBarProps) {
+  const hasStartButtons = start || startSecondary;
+  const hasEndButtons = end || endSecondary;
+  const hasButtons = hasStartButtons || hasEndButtons;
 
-  const stub = hasStart || hasEnd ? iconStub : null;
-  const secondaryStub = hasStartSecondary || hasEndSecondary ? iconStub : null;
+  const rootClasses = cx(
+    'root',
+    `size-${size}`,
+    className,
+    divided && InnerBorder.bottom,
+    !subtitle && 'no-subtitle',
+  );
 
   return (
-    <div
-      className={cx('root', `size-${size}`, className, divided && InnerBorder.bottom)}
-      style={{ height: `${TOP_BAR_HEIGHT[size]}px` }}
-    >
-      {hasStart ? <IconButton {...start} /> : stub}
-      {hasStartSecondary ? <IconButton {...startSecondary} /> : secondaryStub}
+    <div className={rootClasses} style={{ height: `${TOP_BAR_HEIGHT[size]}px` }}>
+      {hasButtons && (
+        <div className={cx('side')}>
+          {hasStartButtons && (
+            <ButtonGroup>
+              {start && <TopBarButton {...start} />}
+              {startSecondary && <TopBarButton {...startSecondary} />}
+            </ButtonGroup>
+          )}
+          {hasEndButtons && (
+            <ButtonGroup stub end>
+              {endSecondary && <TopBarButton {...endSecondary} />}
+              {end && <TopBarButton {...end} />}
+            </ButtonGroup>
+          )}
+        </div>
+      )}
 
-      <div className={cx('main-section')}>
-        <div className={cx('title', 'ellipsis')}>{title}</div>
-        {Boolean(subtitle) && <div className={cx('subtitle', 'ellipsis')}>{subtitle}</div>}
+      {/* центральный блок */}
+      <div className={cx('main')}>
+        {title && <div className={cx('title')}>{title}</div>}
+        {subtitle && <div className={cx('subtitle')}>{subtitle}</div>}
       </div>
 
-      {hasEndSecondary ? <IconButton {...endSecondary} /> : secondaryStub}
-      {hasEnd ? <IconButton {...end} /> : stub}
+      {hasButtons && (
+        <div className={cx('side')}>
+          {hasEndButtons && (
+            <ButtonGroup end>
+              {endSecondary && <TopBarButton {...endSecondary} />}
+              {end && <TopBarButton {...end} />}
+            </ButtonGroup>
+          )}
+          {hasStartButtons && (
+            <ButtonGroup stub>
+              {start && <TopBarButton {...start} />}
+              {startSecondary && <TopBarButton {...startSecondary} />}
+            </ButtonGroup>
+          )}
+        </div>
+      )}
     </div>
   );
-};
+}
+
+export const ButtonGroupContext = createContext<{ stub?: boolean }>({ stub: false });
+
+/**
+ * Компонент группы кнопок.
+ * @param props Свойства.
+ * @return Элемент.
+ */
+function ButtonGroup({
+  children,
+  stub,
+  end,
+}: {
+  children: ReactNode;
+  stub?: boolean;
+  end?: boolean;
+}) {
+  return (
+    <ButtonGroupContext.Provider value={{ stub }}>
+      <div className={cx('button-group', { stub, end })}>{children}</div>
+    </ButtonGroupContext.Provider>
+  );
+}
 
 /**
  * Компонент кнопки-иконки.
- * @param props Свойства. Поддерживаются свойства button.
- * @param props.icon Иконка.
+ * @param props Свойства.
  * @return Элемент.
  */
-export const IconButton = ({ icon, ...buttonProps }: ButtonProps) => (
-  <button {...buttonProps} type='button' className={cx('icon-button')}>
-    {icon}
-  </button>
-);
+function TopBarButton({
+  text,
+  icon,
+  className,
+  'data-testid': testId = 'top-bar:button',
+  ...buttonProps
+}: TopBarButtonProps) {
+  const { stub } = useContext(ButtonGroupContext);
 
-const iconStub = <div className={cx('icon-button', 'stub')} />;
+  return (
+    <button
+      {...(!stub && {
+        // игнорируем атрибуты и свойства для заглушек
+        ...buttonProps,
+        'data-testid': testId,
+      })}
+      type='button'
+      className={cx('button', icon && 'iconic', stub && 'stub', className)}
+      aria-hidden={stub}
+    >
+      {icon && !stub ? icon : text}
+    </button>
+  );
+}
