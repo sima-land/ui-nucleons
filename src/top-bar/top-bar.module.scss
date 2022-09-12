@@ -1,95 +1,153 @@
 @use '../colors';
 
 .root {
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
   background: #fff;
-  overflow: hidden;
-  box-sizing: border-box;
-  .main-section {
-    display: flex;
-    width: 0;
-    flex-direction: column;
-    justify-content: center;
-    flex-grow: 1;
-    flex-shrink: 1;
-    text-align: center;
-    box-sizing: border-box;
-  }
-  .title {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-  }
-  .subtitle {
-    font-size: 12px;
-    line-height: 16px;
-    color: colors.$basic-gray38;
-  }
-  .icon-button {
-    + .icon-button {
-      margin-left: 24px;
-    }
-  }
+  --top-bar-title-size: 16px;
+  --top-bar-title-height: 24px;
   &.size-s {
-    .main-section {
-      margin: 0 24px;
-    }
-    .icon-button {
-      &:first-child {
-        margin-left: 24px;
-      }
-      &:last-child {
-        margin-right: 24px;
-      }
-    }
+    --top-bar-gutter: 16px;
+    --top-bar-icon-button-width: 52px;
   }
   &.size-m {
-    .main-section {
-      margin: 0 40px;
-    }
-    .title {
-      font-size: 20px;
-      line-height: 28px;
-    }
-    .icon-button {
-      &:first-child {
-        margin-left: 40px;
-      }
-      &:last-child {
-        margin-right: 40px;
-      }
+    --top-bar-gutter: 24px;
+    --top-bar-icon-button-width: 60px;
+  }
+  &.size-xl {
+    --top-bar-gutter: 40px;
+    --top-bar-icon-button-width: 76px;
+    &.no-subtitle {
+      --top-bar-title-size: 20px;
+      --top-bar-title-height: 28px;
     }
   }
 }
 
-.ellipsis {
-  white-space: nowrap;
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+.title {
+  color: colors.$basic-gray87;
+  font-size: var(--top-bar-title-size);
+  line-height: var(--top-bar-title-height);
+  font-weight: 600;
+}
+
+.subtitle {
+  color: colors.$basic-gray38;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  margin-top: -4px;
+}
+
+.title,
+.subtitle {
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.icon-button {
+.side {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-group {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  width: 24px;
-  height: 24px;
-  flex-grow: 0;
-  flex-shrink: 0;
-  overflow: hidden;
-  background: transparent;
-  color: colors.$basic-gray87;
-  &:not(.stub):hover {
-    cursor: pointer;
-    color: colors.$basic-gray54;
+  width: 100%;
+  &:not(.end) {
+    .iconic {
+      &:first-child:last-child {
+        justify-content: flex-start;
+        padding-left: var(--top-bar-gutter);
+      }
+      &:not(:last-child):first-child {
+        justify-content: flex-start;
+        padding-left: var(--top-bar-gutter);
+      }
+      &:not(:first-child):last-child {
+        justify-content: flex-end;
+        padding-right: var(--top-bar-gutter);
+      }
+    }
   }
-  > svg {
+  &.end {
+    justify-content: flex-end;
+    .iconic {
+      &:first-child:last-child {
+        justify-content: flex-end;
+        padding-right: var(--top-bar-gutter);
+      }
+      &:not(:last-child):first-child {
+        justify-content: flex-start;
+        padding-left: var(--top-bar-gutter);
+      }
+      &:not(:first-child):last-child {
+        justify-content: flex-end;
+        padding-right: var(--top-bar-gutter);
+      }
+    }
+    :not(.iconic) {
+      justify-content: flex-end;
+    }
+  }
+  &:not(.stub) {
+    height: 100%;
+  }
+}
+
+.button {
+  background: transparent;
+  // background: #09ab8b48;
+  border: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  margin: 0;
+  outline: 0;
+  text-align: inherit;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  &:hover {
+    cursor: pointer;
+  }
+  &.iconic {
+    width: var(--top-bar-icon-button-width);
+    &:hover {
+      color: colors.$basic-gray54;
+    }
+  }
+  &:not(.iconic) {
+    color: colors.$basic-blue;
+    width: 100%;
+    padding: 0 var(--top-bar-gutter);
+    &:hover {
+      color: colors.$additional-deep-blue;
+    }
+  }
+  &.stub {
+    height: 0;
+    overflow: hidden;
+  }
+  svg {
+    // чтобы выравнивались по центру по вертикали
+    display: block;
+    flex-shrink: 0;
     fill: currentColor;
   }
 }

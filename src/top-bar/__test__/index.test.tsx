@@ -1,82 +1,167 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { TopBar } from '..';
-import { mapValues } from 'lodash';
-import * as TestProps from './test-props';
+import { render, fireEvent } from '@testing-library/react';
+import { TopBar, TopBarProps } from '..';
+import ArrowUpSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-up';
+import ArrowRightSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-right';
+import ArrowDownSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-down';
+import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
 
 describe('<TopBar />', () => {
   it('should render without props', () => {
-    const wrapper = mount(<TopBar />);
+    const { container } = render(<TopBar />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('should render as divided', () => {
-    const wrapper = mount(<TopBar divided />);
+    const { container } = render(<TopBar divided />);
 
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should renders with title and subtitle', () => {
-    const wrapper = mount(<TopBar {...TestProps.shortTitles} />);
-
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should handle "size" prop', () => {
-    const wrapper = mount(<TopBar {...TestProps.shortTitles} />);
-
-    TestProps.sizes.forEach(size => {
-      wrapper.setProps({ size });
-      expect(wrapper).toMatchSnapshot();
-    });
+    expect(container).toMatchSnapshot();
   });
 
   it('should renders with start icon', () => {
-    const wrapper = mount(<TopBar buttonsProps={{ start: TestProps.allButtons.start }} />);
+    const { container } = render(
+      <TopBar
+        buttons={{
+          start: {
+            icon: <ArrowUpSVG />,
+          },
+        }}
+      />,
+    );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('should renders with end icon', () => {
-    const wrapper = mount(<TopBar buttonsProps={{ end: TestProps.allButtons.end }} />);
+    const { container } = render(
+      <TopBar
+        buttons={{
+          end: {
+            icon: <ArrowUpSVG />,
+          },
+        }}
+      />,
+    );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('should renders with start icons', () => {
-    const wrapper = mount(<TopBar buttonsProps={TestProps.startButtons} />);
+    const { container } = render(
+      <TopBar
+        buttons={{
+          start: {
+            icon: <ArrowUpSVG />,
+          },
+          startSecondary: {
+            icon: <ArrowDownSVG />,
+          },
+        }}
+      />,
+    );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('should renders with end icons', () => {
-    const wrapper = mount(<TopBar buttonsProps={TestProps.endButtons} />);
+    const { container } = render(
+      <TopBar
+        buttons={{
+          end: {
+            icon: <ArrowUpSVG />,
+          },
+          endSecondary: {
+            icon: <ArrowDownSVG />,
+          },
+        }}
+      />,
+    );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('should renders with all icons', () => {
-    const buttonProps = mapValues(TestProps.allButtons, p => ({ ...p, onClick: jest.fn() }));
+    const buttons: Required<Required<TopBarProps>['buttons']> = {
+      start: {
+        icon: <ArrowUpSVG />,
+        onClick: jest.fn(),
+      },
+      startSecondary: {
+        icon: <ArrowRightSVG />,
+        onClick: jest.fn(),
+      },
+      end: {
+        icon: <ArrowDownSVG />,
+        onClick: jest.fn(),
+      },
+      endSecondary: {
+        icon: <ArrowLeftSVG />,
+        onClick: jest.fn(),
+      },
+    };
 
-    const wrapper = mount(<TopBar buttonsProps={buttonProps} />);
-
-    expect(wrapper).toMatchSnapshot();
+    const { getAllByTestId } = render(<TopBar buttons={buttons} />);
 
     // start
-    wrapper.find('.icon-button').at(0).simulate('click');
-    expect(buttonProps.start.onClick).toBeCalledTimes(1);
+    fireEvent.click(getAllByTestId('top-bar:button')[0]);
+    expect(buttons.start.onClick).toBeCalledTimes(1);
 
     // start secondary
-    wrapper.find('.icon-button').at(1).simulate('click');
-    expect(buttonProps.startSecondary.onClick).toBeCalledTimes(1);
+    fireEvent.click(getAllByTestId('top-bar:button')[1]);
+    expect(buttons.startSecondary.onClick).toBeCalledTimes(1);
 
     // end
-    wrapper.find('.icon-button').at(2).simulate('click');
-    expect(buttonProps.endSecondary.onClick).toBeCalledTimes(1);
+    fireEvent.click(getAllByTestId('top-bar:button')[2]);
+    expect(buttons.endSecondary.onClick).toBeCalledTimes(1);
 
     // end secondary
-    wrapper.find('.icon-button').at(3).simulate('click');
-    expect(buttonProps.end.onClick).toBeCalledTimes(1);
+    fireEvent.click(getAllByTestId('top-bar:button')[3]);
+    expect(buttons.end.onClick).toBeCalledTimes(1);
+  });
+
+  it('should renders with start text button', () => {
+    const { container } = render(
+      <TopBar
+        buttons={{
+          start: {
+            text: 'Hello',
+          },
+        }}
+      />,
+    );
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it('should renders with end text button', () => {
+    const { container } = render(
+      <TopBar
+        buttons={{
+          end: {
+            text: 'World',
+          },
+        }}
+      />,
+    );
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it('should renders with mixed buttons', () => {
+    const { container } = render(
+      <TopBar
+        buttons={{
+          start: {
+            text: 'World',
+          },
+          end: {
+            icon: <ArrowUpSVG />,
+          },
+        }}
+      />,
+    );
+
+    expect(container).toMatchSnapshot();
   });
 });
