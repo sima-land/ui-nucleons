@@ -12,8 +12,8 @@ exports[`<Alert /> should handle props 1`] = `
       data-testid="alert"
     >
       <div
-        class="root size-m header"
-        style="height: 64px;"
+        class="root size-s header"
+        style="height: 56px;"
       >
         <div
           class="main"
