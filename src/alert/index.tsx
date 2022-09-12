@@ -68,6 +68,7 @@ export const Alert = ({
         <div className={cx('alert', className)} data-testid='alert'>
           {withNavBar && (
             <TopBar
+              size='s'
               {...navBarProps}
               title={title}
               divided={withDivideNavBar}
