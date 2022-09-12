@@ -12,14 +12,14 @@ exports[`SidePage should renders correctly 2`] = `
       class="main size-m"
     >
       <div
-        class="root size-m header"
+        class="root size-xl header no-subtitle"
         style="height: 80px;"
       >
         <div
-          class="main-section"
+          class="main"
         >
           <div
-            class="title ellipsis"
+            class="title"
           >
             Test title
           </div>

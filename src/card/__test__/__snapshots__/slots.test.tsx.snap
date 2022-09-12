@@ -56,20 +56,16 @@ exports[`CardHeader should handle TopBar as children 1`] = `
       className="inner-border-bottom rounds-md__t"
     >
       <div
-        className="root size-m inner-border-bottom rounds-md__t"
+        className="root size-m inner-border-bottom rounds-md__t no-subtitle"
         style={
           Object {
-            "height": "80px",
+            "height": "64px",
           }
         }
       >
         <div
-          className="main-section"
-        >
-          <div
-            className="title ellipsis"
-          />
-        </div>
+          className="main"
+        />
       </div>
     </TopBar>
   </div>
@@ -87,20 +83,16 @@ exports[`CardHeader should handle small rounds 1`] = `
       className="inner-border-bottom rounds-sm__t"
     >
       <div
-        className="root size-m inner-border-bottom rounds-sm__t"
+        className="root size-m inner-border-bottom rounds-sm__t no-subtitle"
         style={
           Object {
-            "height": "80px",
+            "height": "64px",
           }
         }
       >
         <div
-          className="main-section"
-        >
-          <div
-            className="title ellipsis"
-          />
-        </div>
+          className="main"
+        />
       </div>
     </TopBar>
   </div>

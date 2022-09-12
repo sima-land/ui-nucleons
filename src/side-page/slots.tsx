@@ -20,10 +20,10 @@ export const SidePageHeader = ({
 }) => (
   <TopBar
     {...topBarProps}
-    size='m'
+    size='xl'
     className={styles.header}
-    buttonsProps={{
-      ...topBarProps.buttonsProps,
+    buttons={{
+      ...topBarProps.buttons,
       ...(onBack && {
         start: {
           'data-testid': 'side-page:back',

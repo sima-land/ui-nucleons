@@ -12,19 +12,19 @@ exports[`<Alert /> should handle props 1`] = `
       data-testid="alert"
     >
       <div
-        class="nav-bar header"
-        style="height: 56px;"
+        class="root size-m header"
+        style="height: 64px;"
       >
         <div
           class="main"
         >
           <div
-            class="title truncate"
+            class="title"
           >
             Hello, world!
           </div>
           <div
-            class="subtitle truncate"
+            class="subtitle"
           >
             Subtitle text
           </div>

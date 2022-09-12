@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
-import { NavBar, NavBarProps } from '../nav-bar';
 import classnames from 'classnames/bind';
 import styles from './alert.module.scss';
 import { InnerBorder } from '../styling/borders';
 import { LayerProvider, useLayer } from '../helpers/layer';
 import { WithBodyScrollLock, useBodyScrollLock, allowTouchMove } from '../_internal/body-scroll';
+import { TopBar, TopBarProps } from '../top-bar';
 
 export interface AlertProps extends WithBodyScrollLock {
   /** Основное содержимое. */
@@ -17,7 +17,7 @@ export interface AlertProps extends WithBodyScrollLock {
   footer?: React.ReactNode;
 
   /** Свойства компонента NavBar. */
-  navBarProps?: NavBarProps;
+  navBarProps?: TopBarProps;
 
   /** Заголовок. */
   title?: string;
@@ -67,10 +67,10 @@ export const Alert = ({
       >
         <div className={cx('alert', className)} data-testid='alert'>
           {withNavBar && (
-            <NavBar
+            <TopBar
               {...navBarProps}
               title={title}
-              bottomBordered={withDivideNavBar}
+              divided={withDivideNavBar}
               className={cx('header')}
             />
           )}

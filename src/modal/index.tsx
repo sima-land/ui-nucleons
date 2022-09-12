@@ -78,7 +78,7 @@ export const Modal: ModalComponent = ({
     overlap: ModalOverlap,
   });
 
-  const topBarSize: TopBarSize = fullscreen ? 'm' : 's';
+  const topBarSize: TopBarSize = fullscreen ? 'xl' : 'm';
 
   const headerHeight: number = header ? TOP_BAR_HEIGHT[topBarSize] : 0;
 
