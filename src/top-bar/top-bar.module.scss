@@ -32,6 +32,11 @@
   justify-content: center;
   overflow: hidden;
   text-align: center;
+
+  // когда нет кнопок
+  &:first-child:last-child {
+    margin: 0 var(--top-bar-gutter);
+  }
 }
 
 .title {
@@ -109,7 +114,6 @@
 
 .button {
   background: transparent;
-  // background: #09ab8b48;
   border: 0;
   box-sizing: border-box;
   font-family: inherit;
