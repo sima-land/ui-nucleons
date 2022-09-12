@@ -27,7 +27,6 @@ export function Primary() {
           onSelect={option => setSize(option as any)}
           renderOption={option => option.toUpperCase()}
           value={`Size: ${size.toUpperCase()}`}
-          style={{ '--width': '200px' }}
         />
       </Plate>
 
