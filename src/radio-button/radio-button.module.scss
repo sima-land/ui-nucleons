@@ -1,0 +1,46 @@
+@use '../colors';
+
+.root {
+  display: inline-block;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  vertical-align: -2px;
+}
+
+.circle {
+  --radio-border-width: 1px;
+  --radio-border-color: #{colors.$basic-gray38};
+  --radio-color: #fff;
+  display: block;
+  pointer-events: none;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  background: var(--radio-color);
+  box-shadow: inset 0 0 0 var(--radio-border-width) var(--radio-border-color);
+}
+
+.input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  &:checked + .circle {
+    --radio-border-width: 6px;
+    --radio-border-color: #{colors.$basic-blue};
+  }
+  &:not(:checked):disabled + .circle {
+    --radio-border-color: #{colors.$basic-gray24};
+    --radio-color: #{colors.$basic-gray4};
+  }
+  &:checked:disabled + .circle {
+    --radio-border-width: 6px;
+    --radio-border-color: #{colors.$basic-gray24};
+    --radio-color: #{colors.$basic-gray4};
+  }
+}
