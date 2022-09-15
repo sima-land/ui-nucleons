@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { LoadingOverlay } from '..';
 
 export default {
-  title: 'service/LoadingOverlay',
+  title: 'deprecated/LoadingOverlay',
   component: LoadingOverlay,
   parameters: {
     layout: 'padded',

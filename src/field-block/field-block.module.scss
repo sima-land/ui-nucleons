@@ -1,0 +1,130 @@
+@use '../colors';
+
+.root {
+  font-size: 16px;
+  line-height: 24px;
+  width: var(--field-width, 240px);
+  color: var(--field-primary-text-color);
+  --field-primary-text-color: #{colors.$basic-gray87};
+  --field-label-text-color: #{colors.$basic-gray38};
+  --field-background: #fff;
+  --field-border-color: #{colors.$basic-gray12};
+  --field-caption-color: #{colors.$basic-gray38};
+  &.size-xs {
+    font-size: 14px;
+    line-height: 20px;
+    --field-height: 32px;
+    --field-gutter-horizontal: 12px;
+    --field-gutter-adornment: 8px;
+    --field-gutter-vertical: 6px;
+  }
+  &.size-s {
+    --field-height: 40px;
+    --field-gutter-horizontal: 12px;
+    --field-gutter-adornment: 8px;
+    --field-gutter-vertical: 8px;
+  }
+  &.size-l {
+    --field-height: 56px;
+    --field-gutter-horizontal: 16px;
+    --field-gutter-adornment: 12px;
+    --field-gutter-vertical: 8px;
+    &.no-label {
+      .main-col {
+        padding: 8px 0;
+      }
+    }
+  }
+  &.focused {
+    --field-border-color: #{colors.$basic-blue};
+  }
+  &.failed:not(.disabled) {
+    --field-caption-color: #{colors.$additional-deep-red};
+    &:not(.focused) {
+      --field-main-text-color: #{colors.$additional-deep-red};
+      &.label-as-placeholder {
+        --field-label-text-color: #{colors.$additional-deep-red};
+      }
+    }
+  }
+  &.disabled {
+    --field-primary-text-color: #{colors.$basic-gray24};
+    --field-main-text-color: #{colors.$basic-gray24};
+    --field-label-text-color: #{colors.$basic-gray24};
+    --field-background: #{colors.$basic-gray2};
+    --field-border-color: #{colors.$basic-gray12};
+  }
+  &.label-as-placeholder {
+    .label {
+      // размер шрифта 12px увеличиваем до 16px
+      transform: scale(calc(4 / 3)) translateY(7px);
+    }
+    .main {
+      opacity: 0;
+    }
+  }
+}
+
+.block {
+  border-radius: 4px;
+  outline: 0;
+  display: flex;
+  align-items: flex-start;
+  padding: var(--field-gutter-vertical) var(--field-gutter-horizontal);
+  width: 100%;
+  background: var(--field-background);
+  box-shadow: inset 0 0 0 1px var(--field-border-color);
+  &.fixed-height {
+    height: var(--field-height);
+  }
+  &:not(.fixed-height) {
+    min-height: var(--field-height);
+  }
+}
+
+.label {
+  margin-bottom: auto;
+  transform-origin: 0 0;
+  transition: transform 0.2s ease-in-out;
+  height: 16px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--field-label-text-color, var(--field-primary-text-color));
+}
+
+.col {
+  min-height: calc(var(--field-height) - (2 * var(--field-gutter-vertical)));
+}
+
+.main-col {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0; // чтобы не выбивал соседей за пределы блока
+}
+
+.adornment-col {
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  &.start {
+    margin-right: var(--field-gutter-adornment);
+  }
+  &.end {
+    margin-left: var(--field-gutter-adornment);
+  }
+}
+
+.main {
+  max-width: 100%;
+  white-space: nowrap;
+  color: var(--field-main-text-color, var(--field-primary-text-color));
+}
+
+.caption {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--field-caption-color);
+}

@@ -11,14 +11,23 @@
 
 .input {
   display: none;
-  &:checked + .switch {
-    background: colors.$basic-blue;
-    &::after {
-      left: calc(100% - 22px);
-    }
+  &:not(:checked) + .switch {
+    --toggle-slider-position: 2px;
   }
-  &:disabled + .switch {
-    background: colors.$basic-gray4;
+  &:checked + .switch {
+    --toggle-slider-position: calc(100% - 22px);
+  }
+  &:not(:checked):not(:disabled) + .switch {
+    --toggle-primary-color: #{colors.$basic-gray12};
+  }
+  &:checked:not(:disabled) + .switch {
+    --toggle-primary-color: #{colors.$basic-blue};
+  }
+  &:not(:checked):disabled + .switch {
+    --toggle-primary-color: #{colors.$basic-gray4};
+  }
+  &:checked:disabled + .switch {
+    --toggle-primary-color: #{colors.$basic-gray24};
   }
 }
 
@@ -28,13 +37,13 @@
   width: 44px;
   height: 24px;
   border-radius: 12px;
-  background: colors.$basic-gray12;
+  background: var(--toggle-primary-color);
   transition: background 0.16s ease-in-out;
   &::after {
     content: '';
     position: absolute;
     top: 2px;
-    left: 2px;
+    left: var(--toggle-slider-position);
     display: block;
     width: 20px;
     height: 20px;
