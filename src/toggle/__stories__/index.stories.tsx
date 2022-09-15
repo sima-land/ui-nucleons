@@ -11,15 +11,16 @@ export default {
 
 export const Primary = () => (
   <>
-    {[
-      { label: 'Default' },
-      { label: 'Checked', checked: true },
-      { label: 'Disabled', disabled: true },
-    ].map(({ label, ...props }, index) => (
-      <React.Fragment key={index}>
-        <h3>{label}</h3>
-        <Toggle {...props} onChange={() => void 0} />
-      </React.Fragment>
-    ))}
+    <h3>Default</h3>
+    <Toggle />
+
+    <h3>Checked</h3>
+    <Toggle defaultChecked />
+
+    <h3>Disabled</h3>
+    <Toggle disabled />
+
+    <h3>Disabled + checked</h3>
+    <Toggle disabled defaultChecked />
   </>
 );

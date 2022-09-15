@@ -21,6 +21,7 @@ const cx = classnames.bind(classes);
 
 /**
  * Компонент перекрытия для отображения состояния загрузки.
+ * @deprecated
  * @param props Свойства.
  * @return Элемент.
  */
