@@ -2,7 +2,7 @@ import React from 'react';
 import { MobileLayout } from '..';
 
 export default {
-  title: 'Layouts/MobileLayout',
+  title: 'deprecated/MobileLayout',
   component: MobileLayout,
   parameters: {
     layout: 'fullscreen',

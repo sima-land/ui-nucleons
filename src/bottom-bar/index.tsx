@@ -4,7 +4,7 @@ import styles from './bottom-bar.module.scss';
 import { MediumRounds } from '../styling/shapes';
 import { CleanGroupSizeContext } from '../clean-buttons/utils';
 
-type BottomBarSize = 's' | 'm' | 'l';
+export type BottomBarSize = 's' | 'm' | 'l';
 
 export interface BottomBarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'size'> {
   /** Размер (высота). */

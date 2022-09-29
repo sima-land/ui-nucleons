@@ -15,10 +15,11 @@
       }
     }
   }
-  @include breakpoints.up('mxs') {
-    --l-width: calc(100vw - (var(--l-gutter) * 2));
-    --l-gutter: 16px;
-  }
+}
+
+.mobile {
+  --l-gutter: 16px;
+  --l-width: calc(100vw - (2 * var(--l-gutter)));
   @include breakpoints.up('mm') {
     --l-width: 656px;
     --l-gutter: auto;
@@ -28,9 +29,15 @@
     --l-gutter: auto;
   }
   @include breakpoints.up('xs') {
-    --l-width: calc(100vw - (var(--l-gutter) * 2));
-    --l-gutter: 64px;
+    --l-width: 792px;
+    --l-gutter: auto;
   }
+}
+
+.desktop {
+  min-width: 896px;
+  --l-gutter: 64px;
+  --l-width: calc(100vw - (2 * var(--l-gutter)));
   @include breakpoints.up('l') {
     --l-width: 1472px;
     --l-gutter: auto;

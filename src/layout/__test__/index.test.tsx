@@ -1,33 +1,63 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { DesktopLayout, MobileLayout } from '..';
+import { render } from '@testing-library/react';
+import { Layout, DesktopLayout, MobileLayout } from '..';
 
-describe('Layouts', () => {
-  [DesktopLayout, MobileLayout].forEach(Layout => {
+describe('Layout', () => {
+  it('should renders correctly', () => {
+    const { container } = render(
+      <Layout className='test-class' style={{ height: 128 }}>
+        Hello, world!
+      </Layout>,
+    );
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it('should handle "element" prop', () => {
+    const { container } = render(
+      <Layout element='main' className='test-class' style={{ height: 128 }}>
+        Hello, world!
+      </Layout>,
+    );
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it('should handle "disabledOn" prop', () => {
+    const { container } = render(<Layout disabledOn={['xl', 'xs']}>Hello, world!</Layout>);
+
+    expect(container).toMatchSnapshot();
+  });
+});
+
+describe('Layouts (legacy)', () => {
+  [DesktopLayout, MobileLayout].forEach(LayoutComponent => {
     it('should renders correctly', () => {
-      const wrapper = mount(
-        <Layout className='test-class' style={{ height: 128 }}>
+      const { container } = render(
+        <LayoutComponent className='test-class' style={{ height: 128 }}>
           Hello, world!
-        </Layout>,
+        </LayoutComponent>,
       );
 
-      expect(wrapper).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     it('should handle "element" prop', () => {
-      const wrapper = mount(
-        <Layout element='main' className='test-class' style={{ height: 128 }}>
+      const { container } = render(
+        <LayoutComponent element='main' className='test-class' style={{ height: 128 }}>
           Hello, world!
-        </Layout>,
+        </LayoutComponent>,
       );
 
-      expect(wrapper).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     it('should handle "disabledOn" prop', () => {
-      const wrapper = mount(<Layout disabledOn={['xl', 'xs']}>Hello, world!</Layout>);
+      const { container } = render(
+        <LayoutComponent disabledOn={['xl', 'xs']}>Hello, world!</LayoutComponent>,
+      );
 
-      expect(wrapper).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
   });
 });

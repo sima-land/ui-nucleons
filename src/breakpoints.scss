@@ -22,7 +22,7 @@ $map: (
 
 @mixin down($breakpoint) {
   @if map-has-key($map, $breakpoint) {
-    @media (max-width: map-get($map, $breakpoint) - 1px) {
+    @media (max-width: (map-get($map, $breakpoint) - 1px)) {
       @content;
     }
   } @else {

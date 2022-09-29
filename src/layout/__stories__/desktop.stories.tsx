@@ -2,7 +2,7 @@ import React from 'react';
 import { DesktopLayout } from '..';
 
 export default {
-  title: 'Layouts/DesktopLayout',
+  title: 'deprecated/DesktopLayout',
   component: DesktopLayout,
   parameters: {
     layout: 'fullscreen',
