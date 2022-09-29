@@ -1,16 +1,7 @@
 import React, { forwardRef } from 'react';
+import { LayoutProps } from './types';
 import classnames from 'classnames/bind';
-import classes from './layout.module.scss';
-
-type Breakpoint = 'mxs' | 'ms' | 'mm' | 'ml' | 'xs' | 's' | 'm' | 'l' | 'xl';
-
-export interface LayoutProps extends React.HTMLAttributes<HTMLElement> {
-  /** Тэг. */
-  element?: string;
-
-  /** Список точек остановки на которых необходимо отключить ограничение ширины. */
-  disabledOn?: Array<Breakpoint>;
-}
+import classes from './legacy.module.scss';
 
 const cx = classnames.bind(classes);
 

@@ -1,5 +1,7 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, createContext } from 'react';
+import { BottomBarSize } from '../bottom-bar';
 import { useIdentityRef } from '../hooks/identity';
+import { TopBarSize } from '../top-bar';
 
 /**
  * Вызывает callback только если клик был начат и закончен по одному и тому же элементу.
@@ -28,3 +30,8 @@ export const useCloseHandler = (callback?: () => void) => {
 
   return { onMouseUp, onMouseDown };
 };
+
+export const ModalContext = createContext<{
+  topBarSize?: TopBarSize;
+  bottomBarSize?: BottomBarSize;
+}>({});

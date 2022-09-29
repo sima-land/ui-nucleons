@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, ReactNode, useContext, useState } from 'react';
 import { useIsomorphicLayoutEffect } from '..';
 import isBrowser from '../../helpers/is-browser';
 import { Registry } from './types';
@@ -7,11 +7,12 @@ import { BreakpointQuery, createRegistry } from './utils';
 const Context = createContext<Registry | null>(null);
 
 /**
- * Провайдер, необходимый для использования useBreakpoint.
+ * Провайдер, предоставляющий контекст для использования хуком useBreakpoint.
+ * Не является обязательным, используется в целях оптимизации.
  * @param props Свойства.
  * @return Элемент.
  */
-export const BreakpointProvider: React.FC = ({ children }) => {
+export function BreakpointProvider({ children }: { children: ReactNode }) {
   const [contextValue, setRegistry] = useState<Registry | null>(null);
 
   useIsomorphicLayoutEffect(() => {
@@ -19,32 +20,41 @@ export const BreakpointProvider: React.FC = ({ children }) => {
   }, []);
 
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;
-};
+}
 
 /**
  * Хук обработки медиа-запроса на основе breakpoint'а дизайн-системы.
  * @param query Запрос, например "xs+".
  * @return Соответствует ли ширина экрана заданному запросу.
  */
-export const useBreakpoint = (query: string): boolean => {
+export function useBreakpoint(query: string): boolean {
   if (!BreakpointQuery.isValid(query)) {
     throw Error(`useBreakpoint: Invalid query, "${query}"`);
   }
 
-  const registry = useContext(Context);
+  const [, setRegistry] = useState<Registry | null>(null);
+  const registryFromContext = useContext(Context);
   const [matches, setMatches] = useState<boolean>(false);
 
   useIsomorphicLayoutEffect(() => {
-    if (registry) {
-      const subscription = registry.subscribe(query, e => {
-        setMatches(e.matches);
-      });
+    let registry: Registry;
 
-      setMatches(subscription.matches);
-
-      return subscription.unsubscribe;
+    if (registryFromContext) {
+      registry = registryFromContext;
+    } else {
+      registry = createRegistry();
     }
-  }, [registry]);
+
+    setRegistry(registryFromContext);
+
+    const subscription = registry.subscribe(query, e => {
+      setMatches(e.matches);
+    });
+
+    setMatches(subscription.matches);
+
+    return subscription.unsubscribe;
+  }, [registryFromContext]);
 
   return matches;
-};
+}

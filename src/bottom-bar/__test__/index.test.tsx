@@ -1,9 +1,25 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { BottomBar } from '..';
+import { BottomBar, BOTTOM_BAR_DEFAULTS, BOTTOM_BAR_HEIGHT } from '..';
 import { Clean } from '../../clean-buttons';
 
 describe('BottomBar', () => {
+  it('should handle "size" prop missing', () => {
+    const { queryAllByTestId, getByTestId } = render(
+      <BottomBar>
+        <Clean.Group>
+          <Clean.Button>Кнопка</Clean.Button>
+          <Clean.Button>Ещё кнопка</Clean.Button>
+        </Clean.Group>
+      </BottomBar>,
+    );
+
+    expect(queryAllByTestId('bottom-bar')).toHaveLength(1);
+    expect(getByTestId('bottom-bar').style.height).toBe(
+      `${BOTTOM_BAR_HEIGHT[BOTTOM_BAR_DEFAULTS.size]}px`,
+    );
+  });
+
   it('should handle "data-testid"', () => {
     const { queryAllByTestId } = render(
       <BottomBar size='s' data-testid='my-bottom-bar'>

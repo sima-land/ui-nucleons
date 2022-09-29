@@ -10,7 +10,7 @@ exports[`<Modal /> renders correct without close button and customClasses 1`] = 
     <div
       class="modal size-m shadow-z4"
       data-testid="modal"
-      style="--header-height: 0px; --footer-height: 16px;"
+      style="--modal-header-height: 0px; --modal-footer-height: 16px;"
     >
       <div
         class="footer-stub"
@@ -30,7 +30,7 @@ exports[`<Modal /> should handle "height" prop 1`] = `
     <div
       class="modal size-m shadow-z4"
       data-testid="modal"
-      style="--modal-height: 480px; --header-height: 0px; --footer-height: 16px;"
+      style="--modal-height: 480px; --modal-header-height: 0px; --modal-footer-height: 16px;"
     >
       <div
         class="footer-stub"
@@ -50,7 +50,7 @@ exports[`<Modal /> should handle extended props 1`] = `
     <div
       class="modal size-m shadow-z4"
       data-testid="modal"
-      style="--header-height: 64px; --footer-height: 72px;"
+      style="--modal-header-height: 64px; --modal-footer-height: 72px;"
     >
       <div
         class="root size-m header"
@@ -192,7 +192,7 @@ exports[`<Modal /> should handle extended props 1`] = `
         />
       </div>
       <div
-        class="root rounds-md__b"
+        class="root rounds-md__b footer"
         data-testid="bottom-bar"
         style="height: 72px;"
       >
@@ -215,7 +215,7 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
     <div
       class="modal size-m shadow-z4"
       data-testid="modal"
-      style="--header-height: 64px; --footer-height: 16px;"
+      style="--modal-header-height: 64px; --modal-footer-height: 16px;"
     >
       <div
         class="root size-m header no-subtitle"
@@ -286,7 +286,7 @@ exports[`<Modal /> should render different sizes properly 1`] = `
     <div
       class="modal size-s shadow-z4"
       data-testid="modal"
-      style="--header-height: 0px; --footer-height: 16px;"
+      style="--modal-header-height: 0px; --modal-footer-height: 16px;"
     >
       <div
         class="footer-stub"
@@ -306,7 +306,7 @@ exports[`<Modal /> should render different sizes properly 2`] = `
     <div
       class="modal size-m shadow-z4"
       data-testid="modal"
-      style="--header-height: 0px; --footer-height: 16px;"
+      style="--modal-header-height: 0px; --modal-footer-height: 16px;"
     >
       <div
         class="footer-stub"
@@ -326,7 +326,7 @@ exports[`<Modal /> should render different sizes properly 3`] = `
     <div
       class="modal size-l shadow-z4"
       data-testid="modal"
-      style="--header-height: 0px; --footer-height: 16px;"
+      style="--modal-header-height: 0px; --modal-footer-height: 16px;"
     >
       <div
         class="footer-stub"
@@ -346,7 +346,7 @@ exports[`<Modal /> should render different sizes properly 4`] = `
     <div
       class="modal size-xl shadow-z4"
       data-testid="modal"
-      style="--header-height: 0px; --footer-height: 16px;"
+      style="--modal-header-height: 0px; --modal-footer-height: 16px;"
     >
       <div
         class="footer-stub"
@@ -366,7 +366,7 @@ exports[`<Modal /> should render different sizes properly 5`] = `
     <div
       class="modal size-fullscreen"
       data-testid="modal"
-      style="--header-height: 0px; --footer-height: 0px;"
+      style="--modal-header-height: 0px; --modal-footer-height: 16px;"
     />
   </div>
 </div>
@@ -382,7 +382,7 @@ exports[`<Modal /> should render overlap content 1`] = `
     <div
       class="modal size-m shadow-z4"
       data-testid="modal"
-      style="--header-height: 0px; --footer-height: 16px;"
+      style="--modal-header-height: 0px; --modal-footer-height: 16px;"
     >
       <div
         class="os-host os-host-foreign os-theme-dark os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden custom-scrollbar body os-host-flexbox"
@@ -527,10 +527,10 @@ exports[`<Modal /> should renders with fullscreen size and footer 1`] = `
     <div
       class="modal size-fullscreen"
       data-testid="modal"
-      style="--header-height: 0px; --footer-height: 72px;"
+      style="--modal-header-height: 0px; --modal-footer-height: 80px;"
     >
       <div
-        class="root rounds-md__b"
+        class="root rounds-md__b footer"
         data-testid="bottom-bar"
         style="height: 80px;"
       >

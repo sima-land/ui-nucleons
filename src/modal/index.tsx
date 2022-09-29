@@ -1,22 +1,23 @@
-import React, { cloneElement, useRef } from 'react';
+import React, { useRef } from 'react';
 import { TopBarSize, TOP_BAR_HEIGHT } from '../top-bar';
-import { BottomBarProps, BOTTOM_BAR_DEFAULTS, BOTTOM_BAR_HEIGHT } from '../bottom-bar';
-import { useCloseHandler } from './utils';
+import { BottomBarSize, BOTTOM_BAR_HEIGHT } from '../bottom-bar';
+import { ModalContext, useCloseHandler } from './utils';
 import { BoxShadow } from '../styling/shadows';
 import { isNumber } from 'lodash';
-import { ModalBody, ModalFooter, ModalHeader, ModalHeaderProps, ModalOverlap } from './slots';
+import { ModalBody, ModalFooter, ModalHeader, ModalOverlap } from './slots';
 import { LayerProvider, useLayer } from '../helpers/layer';
 import { defineSlots } from '../helpers/define-slots';
 import { WithBodyScrollLock, useBodyScrollLock, allowTouchMove } from '../_internal/body-scroll';
 import classnames from 'classnames/bind';
 import styles from './modal.module.scss';
+import { useBreakpoint } from '../hooks/breakpoint';
 
-type ModalSize = 's' | 'm' | 'l' | 'xl' | 'fullscreen';
+export type ModalSize = 's' | 'm' | 'l' | 'xl' | 'fullscreen';
 
 interface ModalStyle extends React.CSSProperties {
   '--modal-height'?: string;
-  '--header-height': string;
-  '--footer-height': string;
+  '--modal-header-height': string;
+  '--modal-footer-height': string;
 }
 
 export interface ModalProps extends WithBodyScrollLock {
@@ -69,6 +70,8 @@ export const Modal: ModalComponent = ({
 
   const bind = useCloseHandler(onClose);
 
+  const isMobile = useBreakpoint('xs-');
+
   const fullscreen = size === 'fullscreen';
 
   const { header, content, footer, overlap } = defineSlots(children, {
@@ -78,20 +81,16 @@ export const Modal: ModalComponent = ({
     overlap: ModalOverlap,
   });
 
-  const topBarSize: TopBarSize = fullscreen ? 'xl' : 'm';
+  const topBarSize: TopBarSize = !isMobile && fullscreen ? 'xl' : 'm';
+  const bottomBarSize: BottomBarSize = !isMobile && fullscreen ? 'l' : 'm';
 
   const headerHeight: number = header ? TOP_BAR_HEIGHT[topBarSize] : 0;
-
-  const footerStubHeight: number = fullscreen ? 0 : 16;
-
-  const footerHeight: number = footer
-    ? BOTTOM_BAR_HEIGHT[footer.props.size || BOTTOM_BAR_DEFAULTS.size]
-    : footerStubHeight;
+  const footerHeight: number = footer ? BOTTOM_BAR_HEIGHT[bottomBarSize] : 16;
 
   const style: ModalStyle = {
     '--modal-height': isNumber(height) ? `${Math.min(696, height)}px` : undefined,
-    '--header-height': `${headerHeight}px`,
-    '--footer-height': `${footerHeight}px`,
+    '--modal-header-height': `${headerHeight}px`,
+    '--modal-footer-height': `${footerHeight}px`,
   };
 
   useBodyScrollLock(rootRef, withScrollDisable, {
@@ -116,21 +115,17 @@ export const Modal: ModalComponent = ({
         style={style}
         data-testid={testId}
       >
-        {header &&
-          cloneElement<ModalHeaderProps>(header, {
-            size: topBarSize,
-          })}
+        <ModalContext.Provider value={{ topBarSize, bottomBarSize }}>
+          {header}
 
-        <LayerProvider value={layer}>{content}</LayerProvider>
+          <LayerProvider value={layer}>{content}</LayerProvider>
 
-        {footer &&
-          cloneElement<BottomBarProps>(footer, {
-            size: fullscreen ? 'l' : footer.props.size,
-          })}
+          {footer}
 
-        {!footer && !fullscreen && <div className={cx('footer-stub')} />}
+          {!footer && !fullscreen && <div className={cx('footer-stub')} />}
 
-        {!fullscreen && overlap && <div className={cx('overlap')}>{overlap}</div>}
+          {!fullscreen && overlap && <div className={cx('overlap')}>{overlap}</div>}
+        </ModalContext.Provider>
       </div>
     </div>
   );

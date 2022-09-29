@@ -1,125 +1,98 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Layouts should handle "disabledOn" prop 1`] = `
-<DesktopLayout
-  disabledOn={
-    Array [
-      "xl",
-      "xs",
-    ]
-  }
->
+exports[`Layout should handle "disabledOn" prop 1`] = `
+<div>
   <div
-    className="layout desktop disabled-xl disabled-xs"
+    class="layout disabled-xl disabled-xs"
   >
     Hello, world!
   </div>
-</DesktopLayout>
+</div>
 `;
 
-exports[`Layouts should handle "disabledOn" prop 2`] = `
-<MobileLayout
-  disabledOn={
-    Array [
-      "xl",
-      "xs",
-    ]
-  }
->
+exports[`Layout should handle "element" prop 1`] = `
+<div>
   <div
-    className="layout mobile disabled-xl disabled-xs"
+    class="layout test-class "
+    element="main"
+    style="height: 128px;"
   >
     Hello, world!
   </div>
-</MobileLayout>
+</div>
 `;
 
-exports[`Layouts should handle "element" prop 1`] = `
-<DesktopLayout
-  className="test-class"
-  element="main"
-  style={
-    Object {
-      "height": 128,
-    }
-  }
->
+exports[`Layout should renders correctly 1`] = `
+<div>
+  <div
+    class="layout test-class "
+    style="height: 128px;"
+  >
+    Hello, world!
+  </div>
+</div>
+`;
+
+exports[`Layouts (legacy) should handle "disabledOn" prop 1`] = `
+<div>
+  <div
+    class="layout desktop disabled-xl disabled-xs"
+  >
+    Hello, world!
+  </div>
+</div>
+`;
+
+exports[`Layouts (legacy) should handle "disabledOn" prop 2`] = `
+<div>
+  <div
+    class="layout mobile disabled-xl disabled-xs"
+  >
+    Hello, world!
+  </div>
+</div>
+`;
+
+exports[`Layouts (legacy) should handle "element" prop 1`] = `
+<div>
   <main
-    className="layout desktop test-class "
-    style={
-      Object {
-        "height": 128,
-      }
-    }
+    class="layout desktop test-class "
+    style="height: 128px;"
   >
     Hello, world!
   </main>
-</DesktopLayout>
+</div>
 `;
 
-exports[`Layouts should handle "element" prop 2`] = `
-<MobileLayout
-  className="test-class"
-  element="main"
-  style={
-    Object {
-      "height": 128,
-    }
-  }
->
+exports[`Layouts (legacy) should handle "element" prop 2`] = `
+<div>
   <main
-    className="layout mobile test-class "
-    style={
-      Object {
-        "height": 128,
-      }
-    }
+    class="layout mobile test-class "
+    style="height: 128px;"
   >
     Hello, world!
   </main>
-</MobileLayout>
+</div>
 `;
 
-exports[`Layouts should renders correctly 1`] = `
-<DesktopLayout
-  className="test-class"
-  style={
-    Object {
-      "height": 128,
-    }
-  }
->
+exports[`Layouts (legacy) should renders correctly 1`] = `
+<div>
   <div
-    className="layout desktop test-class "
-    style={
-      Object {
-        "height": 128,
-      }
-    }
+    class="layout desktop test-class "
+    style="height: 128px;"
   >
     Hello, world!
   </div>
-</DesktopLayout>
+</div>
 `;
 
-exports[`Layouts should renders correctly 2`] = `
-<MobileLayout
-  className="test-class"
-  style={
-    Object {
-      "height": 128,
-    }
-  }
->
+exports[`Layouts (legacy) should renders correctly 2`] = `
+<div>
   <div
-    className="layout mobile test-class "
-    style={
-      Object {
-        "height": 128,
-      }
-    }
+    class="layout mobile test-class "
+    style="height: 128px;"
   >
     Hello, world!
   </div>
-</MobileLayout>
+</div>
 `;
