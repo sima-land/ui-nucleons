@@ -3,12 +3,13 @@ import { BreakpointProvider, useBreakpoint } from '..';
 
 export default {
   title: 'hooks/useBreakpoint',
+  component: useBreakpoint,
   parameters: {
     layout: 'padded',
   },
 };
 
-const DemoBlock = ({ query }: { query: string }) => {
+function DemoBlock({ query }: { query: string }) {
   const matches = useBreakpoint(query);
 
   const styles: React.CSSProperties = {
@@ -27,11 +28,15 @@ const DemoBlock = ({ query }: { query: string }) => {
       {matches ? '✅' : '❌'} {query}
     </div>
   );
-};
+}
 
-export const Primary = () => (
-  <BreakpointProvider>
-    <DemoBlock query='xs+' />
-    <DemoBlock query='xs-' />
-  </BreakpointProvider>
-);
+export function Primary() {
+  return (
+    <BreakpointProvider>
+      <DemoBlock query='xs+' />
+      <DemoBlock query='xs-' />
+    </BreakpointProvider>
+  );
+}
+
+Primary.storyName = 'Простой пример';

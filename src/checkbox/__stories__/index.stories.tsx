@@ -28,7 +28,7 @@ export function Primary() {
       <h3>Disabled</h3>
       <Checkbox disabled />
 
-      <h3>Disabled & checked</h3>
+      <h3>Disabled + checked</h3>
       <Checkbox checked disabled />
     </>
   );

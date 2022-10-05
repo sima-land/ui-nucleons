@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 import { UserAvatar } from '../user';
 import dogPng from './dog.png';
+import { someImageUrl } from '../../../.storybook/utils';
 
 const variants = [
   {
     title: 'С картинкой',
-    props: { imageUrl: 'https://picsum.photos/200' },
+    props: { imageUrl: someImageUrl([200, 200]) },
   },
   {
     title: 'С картинкой (PNG)',
@@ -29,13 +30,17 @@ export default {
   },
 };
 
-export const Primary = () => (
-  <>
-    {variants.map((variant, index) => (
-      <Fragment key={index}>
-        <h3>{variant.title}</h3>
-        <UserAvatar key={index} {...variant.props} />
-      </Fragment>
-    ))}
-  </>
-);
+export function Primary() {
+  return (
+    <>
+      {variants.map((variant, index) => (
+        <Fragment key={index}>
+          <h3>{variant.title}</h3>
+          <UserAvatar key={index} {...variant.props} />
+        </Fragment>
+      ))}
+    </>
+  );
+}
+
+Primary.storyName = 'Простой пример';

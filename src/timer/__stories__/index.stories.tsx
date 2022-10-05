@@ -10,10 +10,14 @@ export default {
   },
 };
 
-export const Primary = () => <Timer date={formatISO(addMonths(new Date(), 1))} />;
+export function Primary() {
+  return <Timer date={formatISO(addMonths(new Date(), 1))} />;
+}
 
-export const Styling = () => {
-  const TimerPart: React.FC<{ label: string; value: number }> = ({ label, value }) => (
+Primary.storyName = 'Простой пример';
+
+export function Styling() {
+  const TimerPart = ({ label, value }: { label: string; value: number }) => (
     <div style={{ textAlign: 'center' }}>
       <div>{`${value}`.padStart(2, '0')}</div>
       <div style={{ fontSize: 14, fontWeight: 'normal' }}>{label}</div>
@@ -37,4 +41,6 @@ export const Styling = () => {
       )}
     />
   );
-};
+}
+
+Styling.storyName = 'Стилизация';

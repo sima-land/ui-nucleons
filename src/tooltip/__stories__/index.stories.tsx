@@ -24,6 +24,14 @@ export default {
   },
 };
 
-export const Primary = () => <Tooltip onClose={() => action('onClose')()}>{shortText}</Tooltip>;
+export function Primary() {
+  return <Tooltip onClose={() => action('onClose')()}>{shortText}</Tooltip>;
+}
 
-export const LargeContent = () => <Tooltip onClose={() => action('onClose')()}>{longText}</Tooltip>;
+Primary.storyName = 'Простой пример';
+
+export function LargeContent() {
+  return <Tooltip onClose={() => action('onClose')()}>{longText}</Tooltip>;
+}
+
+LargeContent.storyName = 'Много текста';

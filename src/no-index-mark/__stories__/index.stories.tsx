@@ -9,16 +9,20 @@ export default {
   },
 };
 
-export const Primary = () => (
-  <>
-    <NoIndexMark />
-    &quot;Кто б ни были входящие сюда,
-    <br />
-    Оставьте здесь надежду навсегда!&quot;
-    <br />
-    Написано над адскими вратами
-    <br />
-    Зловещими и черными чертами
-    <NoIndexMark closing />
-  </>
-);
+export function Primary() {
+  return (
+    <>
+      <NoIndexMark />
+      &quot;Кто б ни были входящие сюда,
+      <br />
+      Оставьте здесь надежду навсегда!&quot;
+      <br />
+      Написано над адскими вратами
+      <br />
+      Зловещими и черными чертами
+      <NoIndexMark closing />
+    </>
+  );
+}
+
+Primary.storyName = 'Простой пример';

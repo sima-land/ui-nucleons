@@ -5,7 +5,6 @@
     "allowJs": true,
     "jsx": "react",
     "outDir": "./build/",
-    "rootDir": "./src/",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -20,7 +19,8 @@
     ]
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    "./.storybook/utils.ts",
   ],
   "exclude": [
     "build",

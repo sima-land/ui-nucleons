@@ -12,24 +12,32 @@ export default {
   },
 };
 
-export const Primary = () => (
-  <>
-    {[...prettyValues, ...values].map((value, index) => (
-      <div key={index} style={{ display: 'flex', marginBottom: 16 }}>
-        <div style={{ width: 48 }}>{value}</div>
-        <Rating value={value} />
-      </div>
-    ))}
-  </>
-);
+export function Primary() {
+  return (
+    <>
+      {[...prettyValues, ...values].map((value, index) => (
+        <div key={index} style={{ display: 'flex', marginBottom: 16 }}>
+          <div style={{ width: 48 }}>{value}</div>
+          <Rating value={value} />
+        </div>
+      ))}
+    </>
+  );
+}
 
-export const MediumSize = () => (
-  <>
-    {[...prettyValues, ...values].map((value, index) => (
-      <div key={index} style={{ display: 'flex', marginBottom: 16 }}>
-        <div style={{ width: 48 }}>{value}</div>
-        <Rating size='m' value={value} />
-      </div>
-    ))}
-  </>
-);
+Primary.storyName = 'Простой пример';
+
+export function MediumSize() {
+  return (
+    <>
+      {[...prettyValues, ...values].map((value, index) => (
+        <div key={index} style={{ display: 'flex', marginBottom: 16 }}>
+          <div style={{ width: 48 }}>{value}</div>
+          <Rating size='m' value={value} />
+        </div>
+      ))}
+    </>
+  );
+}
+
+MediumSize.storyName = 'Размер M';

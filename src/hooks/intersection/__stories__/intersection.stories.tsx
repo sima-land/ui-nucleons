@@ -4,9 +4,24 @@ import { useIntersection } from '..';
 
 export default {
   title: 'hooks/useIntersection',
+  component: useIntersection,
   parameters: {
     layout: 'padded',
   },
+};
+
+const gridStyle: CSSProperties = {
+  maxWidth: '1024px',
+  margin: '0 auto',
+  display: 'grid',
+  gridTemplateColumns: 'repeat(4, 1fr)',
+  gap: '8px',
+  padding: '8px',
+};
+
+const titleStyle: CSSProperties = {
+  gridRow: '1',
+  gridColumn: '1 / 5',
 };
 
 function Square() {
@@ -35,21 +50,7 @@ function Square() {
   return <div ref={ref} style={style} />;
 }
 
-export const Primary = () => {
-  const gridStyle: CSSProperties = {
-    maxWidth: '1024px',
-    margin: '0 auto',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
-    gap: '8px',
-    padding: '8px',
-  };
-
-  const titleStyle: CSSProperties = {
-    gridRow: '1',
-    gridColumn: '1 / 5',
-  };
-
+export function Primary() {
   return (
     <>
       <div style={gridStyle}>
@@ -60,4 +61,6 @@ export const Primary = () => {
       </div>
     </>
   );
-};
+}
+
+Primary.storyName = 'Простой пример';

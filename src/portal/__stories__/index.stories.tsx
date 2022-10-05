@@ -33,7 +33,7 @@ export default {
   },
 };
 
-export const Primary = () => {
+export function Primary() {
   const [isModalOpen, toggleModal] = useState<boolean>(false);
 
   return (
@@ -60,4 +60,6 @@ export const Primary = () => {
       )}
     </>
   );
-};
+}
+
+Primary.storyName = 'Простой пример';

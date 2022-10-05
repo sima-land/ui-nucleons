@@ -9,7 +9,7 @@ export default {
   },
 };
 
-export const Primary = () => {
+export function Primary() {
   const Demo: React.FC<BorderedLayoutProps> = ({ children, ...props }) => (
     <div style={{ margin: '32px 0' }}>
       <BorderedLayout {...props}>
@@ -29,4 +29,6 @@ export const Primary = () => {
       <Demo bottom>Граница снизу</Demo>
     </>
   );
-};
+}
+
+Primary.storyName = 'Простой пример';

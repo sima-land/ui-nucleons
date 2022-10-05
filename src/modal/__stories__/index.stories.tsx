@@ -28,7 +28,7 @@ function LotOfText({ lines = 20 }: { lines: number }) {
   );
 }
 
-const SizeTemplate = (props: ModalProps) => {
+function SizeTemplate(props: ModalProps) {
   const [opened, toggleModal] = useState<boolean>(true);
 
   return (
@@ -57,33 +57,29 @@ const SizeTemplate = (props: ModalProps) => {
       )}
     </>
   );
-};
+}
 
-export const SizeS = SizeTemplate.bind(null, {
-  size: 's',
-  height: 300,
-}) as any;
+export function SizeS() {
+  return <SizeTemplate size='s' height={300} />;
+}
 
 SizeS.storyName = 'Размер S';
 
-export const SizeM = SizeTemplate.bind(null, {
-  size: 'm',
-  height: 400,
-}) as any;
+export function SizeM() {
+  return <SizeTemplate size='m' height={400} />;
+}
 
 SizeM.storyName = 'Размер M';
 
-export const SizeL = SizeTemplate.bind(null, {
-  size: 'l',
-  height: 500,
-}) as any;
+export function SizeL() {
+  return <SizeTemplate size='l' height={500} />;
+}
 
 SizeL.storyName = 'Размер L';
 
-export const SizeXL = SizeTemplate.bind(null, {
-  size: 'xl',
-  height: 600,
-}) as any;
+export function SizeXL() {
+  return <SizeTemplate size='xl' height={600} />;
+}
 
 SizeXL.storyName = 'Размер XL';
 
@@ -124,7 +120,7 @@ export function Fullscreen() {
   );
 }
 
-Fullscreen.storyName = 'На весь экран';
+Fullscreen.storyName = 'Размер fullscreen';
 
 export function WithoutBars() {
   return (
@@ -137,56 +133,6 @@ export function WithoutBars() {
 }
 
 WithoutBars.storyName = 'Без шапки и подвала';
-
-export function TestDynamicHeight() {
-  const [count, setCount] = useState<number>(1);
-
-  function increment() {
-    setCount(count + 1);
-  }
-
-  function decrement() {
-    setCount(count - 1);
-  }
-
-  function onFullScroll() {
-    action('FULLY SCROLLED')();
-  }
-
-  return (
-    <Modal>
-      <Modal.Header divided title='Проверка высоты' />
-      <Modal.Body onFullScroll={onFullScroll}>
-        <div style={{ padding: '32px' }} onClick={increment}>
-          <LotOfText lines={count} />
-        </div>
-      </Modal.Body>
-      <Modal.Footer divided>
-        <Clean.Group>
-          <Clean.Button onClick={decrement}>Убрать</Clean.Button>
-          <Clean.Button onClick={increment}>Добавить</Clean.Button>
-        </Clean.Group>
-      </Modal.Footer>
-    </Modal>
-  );
-}
-
-TestDynamicHeight.storyName = 'Тест: динамическая высота';
-
-export function WithScroll() {
-  return (
-    <Modal size='s' height={360}>
-      <Modal.Header divided title='Проверка прокрутки' />
-      <Modal.Body>
-        <div style={{ padding: 24 }}>
-          <LotOfText lines={100} />
-        </div>
-      </Modal.Body>
-    </Modal>
-  );
-}
-
-WithScroll.storyName = 'Тест: внутренняя прокрутка';
 
 export function WithOverlapContent() {
   const [count, setCount] = useState(99);
@@ -310,4 +256,54 @@ export function TestToggle() {
   );
 }
 
-TestToggle.storyName = 'Блокировка прокрутки при переключении окон';
+TestToggle.storyName = 'Тест: блокировка прокрутки при переключении окон';
+
+export function TestDynamicHeight() {
+  const [count, setCount] = useState<number>(1);
+
+  function increment() {
+    setCount(count + 1);
+  }
+
+  function decrement() {
+    setCount(count - 1);
+  }
+
+  function onFullScroll() {
+    action('FULLY SCROLLED')();
+  }
+
+  return (
+    <Modal>
+      <Modal.Header divided title='Проверка высоты' />
+      <Modal.Body onFullScroll={onFullScroll}>
+        <div style={{ padding: '32px' }} onClick={increment}>
+          <LotOfText lines={count} />
+        </div>
+      </Modal.Body>
+      <Modal.Footer divided>
+        <Clean.Group>
+          <Clean.Button onClick={decrement}>Убрать</Clean.Button>
+          <Clean.Button onClick={increment}>Добавить</Clean.Button>
+        </Clean.Group>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
+TestDynamicHeight.storyName = 'Тест: динамическая высота';
+
+export function TestWithScroll() {
+  return (
+    <Modal size='s' height={360}>
+      <Modal.Header divided title='Проверка прокрутки' />
+      <Modal.Body>
+        <div style={{ padding: 24 }}>
+          <LotOfText lines={100} />
+        </div>
+      </Modal.Body>
+    </Modal>
+  );
+}
+
+TestWithScroll.storyName = 'Тест: внутренняя прокрутка';

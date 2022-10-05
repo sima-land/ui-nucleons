@@ -22,18 +22,22 @@ const ITEMS: DropdownItemProps[] = [
 
 const SIZES: Array<Required<DropdownItemProps>['size']> = ['s', 'm', 'l', 'xl'];
 
-export const Primary = () => (
-  <>
-    {SIZES.map(size => (
-      <Fragment key={size}>
-        <h4>{size.toUpperCase()}</h4>
+export function Primary() {
+  return (
+    <>
+      {SIZES.map(size => (
+        <Fragment key={size}>
+          <h4>{size.toUpperCase()}</h4>
 
-        <div style={{ background: '#fff', marginBottom: '20px', width: '480px' }}>
-          {ITEMS.map((props, index) => (
-            <DropdownItem key={index} size={size} {...props} />
-          ))}
-        </div>
-      </Fragment>
-    ))}
-  </>
-);
+          <div style={{ background: '#fff', marginBottom: '20px', width: '480px' }}>
+            {ITEMS.map((props, index) => (
+              <DropdownItem key={index} size={size} {...props} />
+            ))}
+          </div>
+        </Fragment>
+      ))}
+    </>
+  );
+}
+
+Primary.storyName = 'Простой пример';

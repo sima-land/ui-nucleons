@@ -4,7 +4,7 @@ import { Chips } from '../../chips';
 import { Link } from '../../link';
 
 export default {
-  title: 'common/Expandable',
+  title: 'service/Expandable',
   component: ExpandableGroup,
   parameters: {
     layout: 'padded',

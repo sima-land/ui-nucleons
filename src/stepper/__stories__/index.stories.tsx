@@ -9,7 +9,7 @@ export default {
   },
 };
 
-const Template: React.FC<StepperProps> = props => {
+function Template(props: StepperProps) {
   const [value, setValue] = useState('');
   const [withControls, toggleControls] = useState(false);
   const amount = parseInt(value || '0');
@@ -48,8 +48,16 @@ const Template: React.FC<StepperProps> = props => {
       <Stepper {...props} {...control} value={value} failed />
     </>
   );
-};
+}
 
-export const Primary = Template.bind(null, { size: 'm' });
+export function Primary() {
+  return <Template size='m' />;
+}
 
-export const SmallSize = Template.bind(null, { size: 's' });
+Primary.storyName = 'Простой пример';
+
+export function SmallSize() {
+  return <Template size='s' />;
+}
+
+SmallSize.storyName = 'Размер S';

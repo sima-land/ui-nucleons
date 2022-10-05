@@ -32,6 +32,17 @@ function PanelTypeField({ onChange }: { onChange: (type: PanelType) => void }) {
 }
 
 export function Primary() {
+  return (
+    <Panel style={{ maxWidth: '400px' }}>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, unde. Minus aut saepe
+      voluptatum et.
+    </Panel>
+  );
+}
+
+Primary.storyName = 'Простой пример';
+
+export function JsxContent() {
   const [type, setType] = useState<PanelType>(panelTypes[0]);
 
   const content = (
@@ -65,7 +76,7 @@ export function Primary() {
   );
 }
 
-Primary.storyName = 'Простой пример';
+JsxContent.storyName = 'Различное наполнение';
 
 export function UnknownContent() {
   const [type, setType] = useState<PanelType>(panelTypes[0]);

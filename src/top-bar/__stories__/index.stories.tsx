@@ -214,3 +214,5 @@ export function Primary() {
     </div>
   );
 }
+
+Primary.storyName = 'Простой пример';

@@ -25,7 +25,7 @@ const longValue = [
 const testValues = ['test', 123, '', null, undefined] as const;
 
 export default {
-  title: 'common/TextField',
+  title: 'deprecated/TextField',
   component: TextField,
   parameters: {
     layout: 'padded',

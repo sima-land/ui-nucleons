@@ -47,3 +47,5 @@ export function Primary() {
     </form>
   );
 }
+
+Primary.storyName = 'Простой пример';
