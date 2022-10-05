@@ -20,49 +20,51 @@ const DisplayWrapper: React.FC = ({ children }) => (
   <div style={{ background: '#fff' }}>{children}</div>
 );
 
-export const Primary = () => (
-  <div style={{ margin: 'auto', maxWidth: 720 }}>
-    <h3>Одна кнопка</h3>
+export function Primary() {
+  return (
+    <div style={{ margin: 'auto', maxWidth: 720 }}>
+      <h3>Одна кнопка</h3>
 
-    <DisplayWrapper>
-      <Clean.Group>
-        <Clean.Button onClick={handleClick}>Single button</Clean.Button>
-      </Clean.Group>
-    </DisplayWrapper>
+      <DisplayWrapper>
+        <Clean.Group>
+          <Clean.Button onClick={handleClick}>Single button</Clean.Button>
+        </Clean.Group>
+      </DisplayWrapper>
 
-    <h3>Две кнопки</h3>
+      <h3>Две кнопки</h3>
 
-    <DisplayWrapper>
-      <Clean.Group>
-        <Clean.Button onClick={handleClick}>Hello</Clean.Button>
-        <Clean.Button onClick={handleClick}>World</Clean.Button>
-      </Clean.Group>
-    </DisplayWrapper>
+      <DisplayWrapper>
+        <Clean.Group>
+          <Clean.Button onClick={handleClick}>Hello</Clean.Button>
+          <Clean.Button onClick={handleClick}>World</Clean.Button>
+        </Clean.Group>
+      </DisplayWrapper>
 
-    <h3>Три кнопки</h3>
+      <h3>Три кнопки</h3>
 
-    <DisplayWrapper>
-      <Clean.Group>
-        <Clean.Button onClick={handleClick}>Foo</Clean.Button>
-        <Clean.Button onClick={handleClick}>Bar</Clean.Button>
-        <Clean.Button onClick={handleClick}>Baz</Clean.Button>
-      </Clean.Group>
-    </DisplayWrapper>
+      <DisplayWrapper>
+        <Clean.Group>
+          <Clean.Button onClick={handleClick}>Foo</Clean.Button>
+          <Clean.Button onClick={handleClick}>Bar</Clean.Button>
+          <Clean.Button onClick={handleClick}>Baz</Clean.Button>
+        </Clean.Group>
+      </DisplayWrapper>
 
-    <h3>Ссылки</h3>
+      <h3>Ссылки</h3>
 
-    <DisplayWrapper>
-      <Clean.Group>
-        <Clean.Button href='https://ya.ru'>Yandex</Clean.Button>
-        <Clean.Button href='https://google.com'>Google</Clean.Button>
-      </Clean.Group>
-    </DisplayWrapper>
-  </div>
-);
+      <DisplayWrapper>
+        <Clean.Group>
+          <Clean.Button href='https://ya.ru'>Yandex</Clean.Button>
+          <Clean.Button href='https://google.com'>Google</Clean.Button>
+        </Clean.Group>
+      </DisplayWrapper>
+    </div>
+  );
+}
 
 Primary.storyName = 'Простой пример';
 
-export const Sizes = () => {
+export function Sizes() {
   const sizes: CleanButtonSize[] = ['s', 'm', 'l'];
 
   return (
@@ -81,6 +83,6 @@ export const Sizes = () => {
       ))}
     </div>
   );
-};
+}
 
 Sizes.storyName = 'Размеры';

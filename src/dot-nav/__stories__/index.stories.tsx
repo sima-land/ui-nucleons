@@ -47,7 +47,8 @@ export default {
     layout: 'padded',
   },
 };
-const DemoBlock = ({ total = 1, size }: { total: number; size?: DotNavSize }) => {
+
+function DemoBlock({ total = 1, size }: { total: number; size?: DotNavSize }) {
   const [current, setCurrent] = useState<number>(total - 1);
 
   return (
@@ -72,24 +73,32 @@ const DemoBlock = ({ total = 1, size }: { total: number; size?: DotNavSize }) =>
       </div>
     </div>
   );
-};
+}
 
-export const Primary = () => (
-  <>
-    {times(10)
-      .map(i => i + 1)
-      .map(index => (
-        <DemoBlock key={index} total={index} />
-      ))}
-  </>
-);
+export function Primary() {
+  return (
+    <>
+      {times(10)
+        .map(i => i + 1)
+        .map(index => (
+          <DemoBlock key={index} total={index} />
+        ))}
+    </>
+  );
+}
 
-export const LargeSize = () => (
-  <>
-    {times(10)
-      .map(i => i + 1)
-      .map(index => (
-        <DemoBlock key={index} total={index} size='l' />
-      ))}
-  </>
-);
+Primary.storyName = 'Простой пример';
+
+export function LargeSize() {
+  return (
+    <>
+      {times(10)
+        .map(i => i + 1)
+        .map(index => (
+          <DemoBlock key={index} total={index} size='l' />
+        ))}
+    </>
+  );
+}
+
+LargeSize.storyName = 'Размер L';

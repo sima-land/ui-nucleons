@@ -9,8 +9,8 @@ export default {
   },
 };
 
-export const Primary = () => {
-  const TestSection = ({ total = 100 }) => {
+export function Primary() {
+  function TestSection({ total = 100 }) {
     const [currentPage, setPage] = useState(1);
 
     return (
@@ -19,7 +19,7 @@ export const Primary = () => {
         <Pagination total={total} current={currentPage} onChange={({ value }) => setPage(value)} />
       </div>
     );
-  };
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
@@ -38,4 +38,6 @@ export const Primary = () => {
       <TestSection total={999} />
     </div>
   );
-};
+}
+
+Primary.storyName = 'Простой пример';

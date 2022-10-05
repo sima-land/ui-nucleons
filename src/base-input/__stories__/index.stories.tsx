@@ -9,7 +9,7 @@ export default {
   },
 };
 
-export const Primary = () => {
+export function Primary() {
   const style: CSSProperties = {
     border: '1px solid #000',
     display: 'flex',
@@ -35,9 +35,11 @@ export const Primary = () => {
       <BaseInput multiline defaultValue={longValue} style={style} />
     </>
   );
-};
+}
 
-export const RestPlaceholder = () => {
+Primary.storyName = 'Простой пример';
+
+export function RestPlaceholder() {
   const [value, setValue] = useState<string>('');
 
   return (
@@ -57,4 +59,6 @@ export const RestPlaceholder = () => {
       />
     </>
   );
-};
+}
+
+RestPlaceholder.storyName = 'Остаточный placeholder';

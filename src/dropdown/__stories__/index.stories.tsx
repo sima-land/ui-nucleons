@@ -14,56 +14,64 @@ export default {
   },
 };
 
-const Divider = () => <div style={{ height: 64 }} />;
+function Divider() {
+  return <div style={{ height: 64 }} />;
+}
 
-export const Primary = () => (
-  <>
-    <h3>Вместе с DropdownItem</h3>
-    <Dropdown style={{ width: 320 }}>
-      {Array(4)
-        .fill(0)
-        .map((a, i) => (
-          <DropdownItem size='s' key={i}>
-            Item №{i + 1}
-          </DropdownItem>
-        ))}
-    </Dropdown>
+export function Primary() {
+  return (
+    <>
+      <h3>Вместе с DropdownItem</h3>
+      <Dropdown style={{ width: 320 }}>
+        {Array(4)
+          .fill(0)
+          .map((a, i) => (
+            <DropdownItem size='s' key={i}>
+              Item №{i + 1}
+            </DropdownItem>
+          ))}
+      </Dropdown>
 
-    <Divider />
+      <Divider />
 
-    <h3>Вместе с DropdownItem и прокруткой</h3>
-    <Dropdown style={{ width: 320 }}>
-      {Array(25)
-        .fill(0)
-        .map((a, i) => (
-          <DropdownItem size='l' key={i}>
-            <div
-              style={{
-                width: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <div style={{ flexGrow: 1 }}>Item №{i + 1}</div>
-              <div style={{ color: '#aaa' }}>#{i + 1}</div>
-            </div>
-          </DropdownItem>
-        ))}
-    </Dropdown>
+      <h3>Вместе с DropdownItem и прокруткой</h3>
+      <Dropdown style={{ width: 320 }}>
+        {Array(25)
+          .fill(0)
+          .map((a, i) => (
+            <DropdownItem size='l' key={i}>
+              <div
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <div style={{ flexGrow: 1 }}>Item №{i + 1}</div>
+                <div style={{ color: '#aaa' }}>#{i + 1}</div>
+              </div>
+            </DropdownItem>
+          ))}
+      </Dropdown>
 
-    <Divider />
+      <Divider />
 
-    <h3>Вместе со Spinner</h3>
-    <Dropdown style={{ width: 320 }}>
-      <div style={{ height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Spinner size='small' />
-      </div>
-    </Dropdown>
-  </>
-);
+      <h3>Вместе со Spinner</h3>
+      <Dropdown style={{ width: 320 }}>
+        <div
+          style={{ height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        >
+          <Spinner size='small' />
+        </div>
+      </Dropdown>
+    </>
+  );
+}
 
-export const Example = () => {
+Primary.storyName = 'Простой пример';
+
+export function Example() {
   const [shown, toggle] = useState<boolean>(false);
   const Icon = shown ? UpSVG : DownSVG;
 
@@ -85,4 +93,6 @@ export const Example = () => {
       )}
     </div>
   );
-};
+}
+
+Example.storyName = 'С открывающим элементом';

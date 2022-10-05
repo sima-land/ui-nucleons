@@ -20,7 +20,8 @@
     ]
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    "./.storybook/utils.ts",
   ],
   "exclude": [
     "build",

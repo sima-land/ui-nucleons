@@ -16,7 +16,7 @@ export default {
   },
 };
 
-const Template = ({ tabsProps }: { tabsProps: TabsProps }) => {
+function Template(props: TabsProps) {
   const [current, setCurrent] = useState<number>(0);
 
   const renderItems = () =>
@@ -32,23 +32,35 @@ const Template = ({ tabsProps }: { tabsProps: TabsProps }) => {
   return (
     <>
       <h4>Базовый вид</h4>
-      <Tabs {...tabsProps}>{renderItems()}</Tabs>
+      <Tabs {...props}>{renderItems()}</Tabs>
 
       <h4>С узким зазором</h4>
-      <Tabs {...tabsProps} gapSize='s'>
+      <Tabs {...props} gapSize='s'>
         {renderItems()}
       </Tabs>
 
       <h4>На ширину контейнера</h4>
-      <Tabs {...tabsProps} stretch>
+      <Tabs {...props} stretch>
         {renderItems()}
       </Tabs>
     </>
   );
-};
+}
 
-export const CleanView = () => <Template tabsProps={{ view: 'clean' }} />;
+export function CleanView() {
+  return <Template view='clean' />;
+}
 
-export const CleanUnderlineView = () => <Template tabsProps={{ view: 'clean-underline' }} />;
+CleanView.storyName = 'Вид: clean';
 
-export const RoundView = () => <Template tabsProps={{ view: 'round' }} />;
+export function CleanUnderlineView() {
+  return <Template view='clean-underline' />;
+}
+
+CleanUnderlineView.storyName = 'Вид: clean-underline';
+
+export function RoundView() {
+  return <Template view='round' />;
+}
+
+RoundView.storyName = 'Вид: round';

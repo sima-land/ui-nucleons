@@ -18,7 +18,7 @@ export default {
   },
 };
 
-export const SizeS = () => {
+export function SizeS() {
   const [shown, toggle] = useState<boolean>(false);
 
   const styles: Record<'root' | 'image' | 'title' | 'message', React.CSSProperties> = {
@@ -71,11 +71,11 @@ export const SizeS = () => {
       </SidePage>
     </>
   );
-};
+}
 
 SizeS.storyName = 'Размер S';
 
-export const SizeM = () => {
+export function SizeM() {
   const [shown, toggle] = useState<boolean>(false);
 
   const styles: Record<'root' | 'footer' | 'button', React.CSSProperties> = {
@@ -132,11 +132,11 @@ export const SizeM = () => {
       </SidePage>
     </>
   );
-};
+}
 
 SizeM.storyName = 'Размер M';
 
-export const BodyScrollLock = () => {
+export function BodyScrollLock() {
   const [shown, toggle] = useState<boolean>(false);
 
   return (
@@ -176,35 +176,41 @@ export const BodyScrollLock = () => {
       </SidePage>
     </>
   );
-};
+}
 
-BodyScrollLock.storyName = 'Блокировка прокрутки страницы';
+BodyScrollLock.storyName = 'Тест: Блокировка прокрутки страницы';
 
-const Step1 = (props: SidePageProps & { onNext: () => void }) => (
-  <SidePage size='s' {...props}>
-    <SidePage.Header divided title='Шаг 1' onClose={props.onClose} />
-    <SidePage.Footer divided>
-      <Button onClick={props.onNext}>Дальше</Button>
-    </SidePage.Footer>
-  </SidePage>
-);
+function Step1(props: SidePageProps & { onNext: () => void }) {
+  return (
+    <SidePage size='s' {...props}>
+      <SidePage.Header divided title='Шаг 1' onClose={props.onClose} />
+      <SidePage.Footer divided>
+        <Button onClick={props.onNext}>Дальше</Button>
+      </SidePage.Footer>
+    </SidePage>
+  );
+}
 
-const Step2 = (props: SidePageProps & { onBack: () => void; onNext: () => void }) => (
-  <SidePage size='s' {...props}>
-    <SidePage.Header divided title='Шаг 2' onClose={props.onClose} onBack={props.onBack} />
-    <SidePage.Footer divided>
-      <Button onClick={props.onNext}>Дальше</Button>
-    </SidePage.Footer>
-  </SidePage>
-);
+function Step2(props: SidePageProps & { onBack: () => void; onNext: () => void }) {
+  return (
+    <SidePage size='s' {...props}>
+      <SidePage.Header divided title='Шаг 2' onClose={props.onClose} onBack={props.onBack} />
+      <SidePage.Footer divided>
+        <Button onClick={props.onNext}>Дальше</Button>
+      </SidePage.Footer>
+    </SidePage>
+  );
+}
 
-const Step3 = (props: SidePageProps & { onBack: () => void }) => (
-  <SidePage size='s' {...props}>
-    <SidePage.Header divided title='Шаг 3' onClose={props.onClose} onBack={props.onBack} />
-  </SidePage>
-);
+function Step3(props: SidePageProps & { onBack: () => void }) {
+  return (
+    <SidePage size='s' {...props}>
+      <SidePage.Header divided title='Шаг 3' onClose={props.onClose} onBack={props.onBack} />
+    </SidePage>
+  );
+}
 
-export const Transitions = () => {
+export function Transitions() {
   const [[currentStep, previousStep], setStep] = useReducer(
     ([prev]: number[], next: number) => [next, prev],
     [0, 0],
@@ -243,11 +249,11 @@ export const Transitions = () => {
       />
     </>
   );
-};
+}
 
 Transitions.storyName = 'С анимациями';
 
-export const NoTransitions = () => {
+export function NoTransitions() {
   const [shown, toggle] = useState<boolean>(false);
 
   return (
@@ -264,11 +270,11 @@ export const NoTransitions = () => {
       </SidePage>
     </>
   );
-};
+}
 
 NoTransitions.storyName = 'Без анимаций';
 
-export const LazyLoading = () => {
+export function LazyLoading() {
   const [shown, toggle] = useState<boolean>(false);
 
   return (
@@ -283,7 +289,7 @@ export const LazyLoading = () => {
       </SidePage>
     </>
   );
-};
+}
 
 LazyLoading.storyName = 'Пример "бесконечной" прокрутки';
 
@@ -319,7 +325,7 @@ const LazyLoadingList = () => {
   );
 };
 
-export const WithHints = () => {
+export function WithHints() {
   const [shown, toggleSidePage] = useState<boolean>(false);
 
   const styles: Record<'root', React.CSSProperties> = {
@@ -356,11 +362,11 @@ export const WithHints = () => {
       </SidePage>
     </>
   );
-};
+}
 
 WithHints.storyName = 'Пример с хинтами внутри';
 
-export const WithCleanButtons = () => {
+export function WithCleanButtons() {
   const [shown, toggleSidePage] = useState<boolean>(false);
 
   const styles: Record<'root', React.CSSProperties> = {
@@ -390,6 +396,6 @@ export const WithCleanButtons = () => {
       </SidePage>
     </>
   );
-};
+}
 
 WithCleanButtons.storyName = 'Прозрачные кнопки в футере';

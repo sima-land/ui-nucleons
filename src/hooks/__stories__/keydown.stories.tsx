@@ -4,12 +4,13 @@ import { useKeydown } from '../keydown';
 
 export default {
   title: 'hooks/useKeydown',
+  component: useKeydown,
   parameters: {
     layout: 'padded',
   },
 };
 
-export const Primary = () => {
+export function Primary() {
   const [count, setCount] = useState<number>(0);
   const key = 'Space';
 
@@ -22,6 +23,6 @@ export const Primary = () => {
       Клавиша {key} была нажата {count} {getDeclination(count, ['раз', 'раза', 'раз'])}
     </>
   );
-};
+}
 
 Primary.storyName = 'Простой пример';

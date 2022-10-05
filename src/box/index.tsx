@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames/bind';
 import classes from './box.module.scss';
 import * as Spacing from '../styling/sizes';
-import { bgColor as getBgColorClass } from '../styling/colors';
+import { bgColor } from '../styling/colors';
 import { COLORS, Token } from '../colors';
 
 type CustomElement = {
@@ -157,7 +157,7 @@ export const Box = ({
       direction && DIRECTION.has(direction) && `direction-${direction}`,
       alignItems && ALIGN_ITEMS.has(alignItems) && `align-items-${alignItems}`,
       justifyContent && JUSTIFY_CONTENT.has(justifyContent) && `justify-content-${justifyContent}`,
-      color && COLORS.has(color) && getBgColorClass(color),
+      color && COLORS.has(color) && bgColor(color),
       wrap && 'flex-wrap',
 
       // margins

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PhoneInput } from '..';
 
-const DemoForm = ({ initialValue = '' }) => {
+function DemoForm({ initialValue = '' }) {
   const [value, setValue] = useState(initialValue);
   const [error, setError] = useState<string | null>(null);
 
@@ -23,7 +23,7 @@ const DemoForm = ({ initialValue = '' }) => {
       }}
     />
   );
-};
+}
 
 export default {
   title: 'desktop/PhoneInput',
@@ -33,18 +33,22 @@ export default {
   },
 };
 
-export const Primary = () => (
-  <>
-    <h3>Пустое значение (Россия, по умолчанию)</h3>
-    <DemoForm initialValue='' />
+export function Primary() {
+  return (
+    <>
+      <h3>Пустое значение (Россия, по умолчанию)</h3>
+      <DemoForm initialValue='' />
 
-    <h3>Известная страна (Беларусь)</h3>
-    <DemoForm initialValue='375112223344' />
+      <h3>Известная страна (Беларусь)</h3>
+      <DemoForm initialValue='375112223344' />
 
-    <h3>Известная страна (Казахстан)</h3>
-    <DemoForm initialValue='76005002040' />
+      <h3>Известная страна (Казахстан)</h3>
+      <DemoForm initialValue='76005002040' />
 
-    <h3>Неизвестная страна (Другое)</h3>
-    <DemoForm initialValue='55566667777' />
-  </>
-);
+      <h3>Неизвестная страна (Другое)</h3>
+      <DemoForm initialValue='55566667777' />
+    </>
+  );
+}
+
+Primary.storyName = 'Простой пример';

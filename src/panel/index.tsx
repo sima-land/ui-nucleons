@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { CSSProperties, ReactNode } from 'react';
 import { color, bgColor } from '../styling/colors';
 import type { Token } from '../colors';
 import type { LinkProps } from '../link';
@@ -19,6 +19,9 @@ export interface PanelProps {
 
   /** CSS-класс корневого элемента. */
   className?: string;
+
+  /** Стили корневого элемента панели. */
+  style?: CSSProperties;
 
   /** Содержимое. */
   children?: ReactNode;
@@ -65,6 +68,7 @@ export function Panel({
   adornmentStart,
   adornmentEnd,
   className,
+  style,
   children,
   'data-testid': testId = 'panel',
 }: PanelProps) {
@@ -75,6 +79,7 @@ export function Panel({
     <div
       className={cx('root', `type-${type}`, bgColor(panelColor), color(textColor), className)}
       data-testid={testId}
+      style={style}
     >
       {adornmentStart && <div className={cx('adornment')}>{adornmentStart}</div>}
 

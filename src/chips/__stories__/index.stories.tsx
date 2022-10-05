@@ -21,7 +21,7 @@ export default {
   },
 };
 
-export const Primary = () => {
+export function Primary() {
   const reducer = (ids: Record<number, boolean>, id: number) => ({ ...ids, [id]: !ids[id] });
   const [checked, toggle] = useReducer(reducer, { 2: true });
 
@@ -34,19 +34,25 @@ export const Primary = () => {
       ))}
     </Chips>
   );
-};
+}
 
-export const Links = () => (
-  <Chips>
-    {ITEMS.map((children, index) => (
-      <Chips.Item key={index} href='https://www.sima-land.ru' checked={index % 2 === 0}>
-        {children}
-      </Chips.Item>
-    ))}
-  </Chips>
-);
+Primary.storyName = 'Простой пример';
 
-export const WithCross = () => {
+export function Links() {
+  return (
+    <Chips>
+      {ITEMS.map((children, index) => (
+        <Chips.Item key={index} href='https://www.sima-land.ru' checked={index % 2 === 0}>
+          {children}
+        </Chips.Item>
+      ))}
+    </Chips>
+  );
+}
+
+Links.storyName = 'Чипсы-ссылки';
+
+export function WithCross() {
   const reducer = (ids: Record<number, boolean>, id: number) => ({ ...ids, [id]: !ids[id] });
   const [checked, toggle] = useReducer(reducer, { 2: true });
 
@@ -61,9 +67,11 @@ export const WithCross = () => {
       </Chips>
     </>
   );
-};
+}
 
-export const TruncatedText = () => {
+WithCross.displayName = 'С крестиком';
+
+export function TruncatedText() {
   const longText =
     'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro, quos unde asperiores dolorum.';
 
@@ -92,4 +100,6 @@ export const TruncatedText = () => {
       </Chips>
     </div>
   );
-};
+}
+
+TruncatedText.displayName = 'Обрезка текста';

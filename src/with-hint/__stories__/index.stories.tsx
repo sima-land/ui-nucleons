@@ -23,36 +23,40 @@ export default {
   },
 };
 
-export const Primary = () => (
-  <div style={styles.root}>
-    {(['right', 'bottom', 'left', 'top'] as const).map(direction => (
-      <WithHint
-        key={direction}
-        direction={direction}
-        hint={
-          <>
-            Первая строчка.
-            <br />И вторая строчка.
-          </>
-        }
-      >
-        {(ref, toggle) => (
-          <Button
-            viewType='secondary'
-            ref={ref as any}
-            onMouseEnter={() => toggle(true)}
-            onMouseLeave={() => toggle(false)}
-            style={{ marginBottom: '32px' }}
-          >
-            Наведи на меня
-          </Button>
-        )}
-      </WithHint>
-    ))}
-  </div>
-);
+export function Primary() {
+  return (
+    <div style={styles.root}>
+      {(['right', 'bottom', 'left', 'top'] as const).map(direction => (
+        <WithHint
+          key={direction}
+          direction={direction}
+          hint={
+            <>
+              Первая строчка.
+              <br />И вторая строчка.
+            </>
+          }
+        >
+          {(ref, toggle) => (
+            <Button
+              viewType='secondary'
+              ref={ref as any}
+              onMouseEnter={() => toggle(true)}
+              onMouseLeave={() => toggle(false)}
+              style={{ marginBottom: '32px' }}
+            >
+              Наведи на меня
+            </Button>
+          )}
+        </WithHint>
+      ))}
+    </div>
+  );
+}
 
-export const AutoCloseHook = () => {
+Primary.storyName = 'Простой пример';
+
+export function AutoCloseHook() {
   const [data, setData] = useState<string>();
   const [bind, toggle] = useTempHint();
 
@@ -77,9 +81,11 @@ export const AutoCloseHook = () => {
       </WithHint>
     </div>
   );
-};
+}
 
-export const InScrolledParent = () => {
+AutoCloseHook.storyName = 'Утилита: useTempHint';
+
+export function InScrolledParent() {
   const [modalOpened, toggleModal] = useState<boolean>(true);
   const [bind, toggle] = useTempHint();
 
@@ -129,9 +135,11 @@ export const InScrolledParent = () => {
       )}
     </>
   );
-};
+}
 
-export const InDocumentWithScroll = () => {
+InScrolledParent.storyName = 'Тест: родительский элемент имеет прокрутку';
+
+export function InDocumentWithScroll() {
   const [bind, toggle] = useTempHint();
 
   return (
@@ -153,4 +161,6 @@ export const InDocumentWithScroll = () => {
       ))}
     </>
   );
-};
+}
+
+InDocumentWithScroll.storyName = 'Тест: страница имеет прокрутку';

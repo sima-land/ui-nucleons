@@ -10,7 +10,7 @@ export default {
   },
 };
 
-export const Primary = () => {
+export function Primary() {
   const ID = 'some-string-here';
 
   return (
@@ -27,4 +27,6 @@ export const Primary = () => {
       <SuperEllipseClipPath id={ID} />
     </>
   );
-};
+}
+
+Primary.storyName = 'Простой пример';

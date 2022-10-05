@@ -9,12 +9,16 @@ export default {
   },
 };
 
-export const Primary = () => (
-  <>
-    <MaskedField style={{ width: 320 }} label='Контактный телефон' mask='+7 (___) ___-__-__' />
+export function Primary() {
+  return (
+    <>
+      <MaskedField style={{ width: 320 }} label='Контактный телефон' mask='+7 (___) ___-__-__' />
 
-    <div style={{ height: 32 }} />
+      <div style={{ height: 32 }} />
 
-    <MaskedField style={{ width: 320 }} label='Серия и номер паспорта' mask='__ __ №______' />
-  </>
-);
+      <MaskedField style={{ width: 320 }} label='Серия и номер паспорта' mask='__ __ №______' />
+    </>
+  );
+}
+
+Primary.storyName = 'Простой пример';

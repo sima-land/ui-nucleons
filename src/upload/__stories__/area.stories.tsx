@@ -51,17 +51,21 @@ const variants = [
   },
 ];
 
-export const Primary = () => (
-  <div style={{ width: 540 }}>
-    {variants.map((v, i) => (
-      <div key={i} style={{ marginBottom: 16 }}>
-        <UploadArea
-          {...v}
-          onSelect={(files, e) => {
-            action(`"${e.type}" event`)(files);
-          }}
-        />
-      </div>
-    ))}
-  </div>
-);
+export function Primary() {
+  return (
+    <div style={{ width: 540 }}>
+      {variants.map((v, i) => (
+        <div key={i} style={{ marginBottom: 16 }}>
+          <UploadArea
+            {...v}
+            onSelect={(files, e) => {
+              action(`"${e.type}" event`)(files);
+            }}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+Primary.storyName = 'Простой пример';

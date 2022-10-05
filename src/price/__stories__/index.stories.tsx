@@ -24,33 +24,45 @@ export default {
   },
 };
 
-export const Primary = () => (
-  <>
-    {values.map((value, index) => (
-      <div key={index} style={{ fontSize: 24, marginBottom: 16 }}>
-        <span style={{ display: 'inline-block', minWidth: '200px' }}>{value}</span>
-        <Price value={value} currencyGrapheme='₽' />
-      </div>
-    ))}
-  </>
-);
+export function Primary() {
+  return (
+    <>
+      {values.map((value, index) => (
+        <div key={index} style={{ fontSize: 24, marginBottom: 16 }}>
+          <span style={{ display: 'inline-block', minWidth: '200px' }}>{value}</span>
+          <Price value={value} currencyGrapheme='₽' />
+        </div>
+      ))}
+    </>
+  );
+}
 
-export const CrossedOut = () => (
-  <>
-    {values.map((value, index) => (
-      <div key={index} style={{ fontSize: 24, marginBottom: 16 }}>
-        <Price value={value} currencyGrapheme='₽' crossedOut />
-      </div>
-    ))}
-  </>
-);
+Primary.storyName = 'Простой пример';
 
-export const GraphemeBefore = () => (
-  <>
-    {values.map((value, index) => (
-      <div key={index} style={{ fontSize: 24, marginBottom: 16 }}>
-        <Price value={value} currencyGrapheme='$' graphemeBefore />
-      </div>
-    ))}
-  </>
-);
+export function CrossedOut() {
+  return (
+    <>
+      {values.map((value, index) => (
+        <div key={index} style={{ fontSize: 24, marginBottom: 16 }}>
+          <Price value={value} currencyGrapheme='₽' crossedOut />
+        </div>
+      ))}
+    </>
+  );
+}
+
+CrossedOut.storyName = 'Зачеркнутая цена';
+
+export function GraphemeBefore() {
+  return (
+    <>
+      {values.map((value, index) => (
+        <div key={index} style={{ fontSize: 24, marginBottom: 16 }}>
+          <Price value={value} currencyGrapheme='$' graphemeBefore />
+        </div>
+      ))}
+    </>
+  );
+}
+
+GraphemeBefore.storyName = 'Графема впереди';

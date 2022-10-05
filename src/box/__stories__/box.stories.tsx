@@ -66,73 +66,85 @@ const testPaddingPropsList = [
 ];
 
 export default {
-  title: 'common/Box',
+  title: 'service/Box',
   component: Box,
   parameters: {
     layout: 'padded',
   },
 };
 
-export const Primary = () => <Box>Box without props is just a &quot;div&quot;</Box>;
+export function Primary() {
+  return <Box>Box without props is just a &quot;div&quot;</Box>;
+}
 
-export const MarginsAndPaddings = () => (
-  <div style={{ width: 320 }}>
-    <h2>Margin</h2>
-    {testMarginPropsList.map((marginProps, index) => (
-      <Fragment key={index}>
-        <Box display='flex' color='additional-amber'>
-          <Box flex='grow' color='basic-white' padding={2} {...marginProps}>
-            {JSON.stringify(marginProps, null, 2)}
+Primary.storyName = 'Простой пример';
+
+export function MarginsAndPaddings() {
+  return (
+    <div style={{ width: 320 }}>
+      <h2>Margin</h2>
+      {testMarginPropsList.map((marginProps, index) => (
+        <Fragment key={index}>
+          <Box display='flex' color='additional-amber'>
+            <Box flex='grow' color='basic-white' padding={2} {...marginProps}>
+              {JSON.stringify(marginProps, null, 2)}
+            </Box>
           </Box>
-        </Box>
-        <div style={{ height: 32 }} />
-      </Fragment>
-    ))}
+          <div style={{ height: 32 }} />
+        </Fragment>
+      ))}
 
-    <h2>Padding</h2>
-    {testPaddingPropsList.map((paddingProps, index) => (
-      <Fragment key={index}>
-        <Box display='flex' color='additional-lime' {...paddingProps}>
-          <Box flex='grow' color='basic-white' padding={2}>
-            {JSON.stringify(paddingProps, null, 2)}
+      <h2>Padding</h2>
+      {testPaddingPropsList.map((paddingProps, index) => (
+        <Fragment key={index}>
+          <Box display='flex' color='additional-lime' {...paddingProps}>
+            <Box flex='grow' color='basic-white' padding={2}>
+              {JSON.stringify(paddingProps, null, 2)}
+            </Box>
           </Box>
-        </Box>
-        <div style={{ height: 32 }} />
-      </Fragment>
-    ))}
-  </div>
-);
+          <div style={{ height: 32 }} />
+        </Fragment>
+      ))}
+    </div>
+  );
+}
 
-export const JustifyContent = () => (
-  <>
-    <h3>start</h3>
-    <Box display='flex' justifyContent='start'>
-      {testJustifyItems}
-    </Box>
+MarginsAndPaddings.storyName = 'Внутренние и внешние отступы';
 
-    <h3>end</h3>
-    <Box display='flex' justifyContent='end'>
-      {testJustifyItems}
-    </Box>
+export function JustifyContent() {
+  return (
+    <>
+      <h3>start</h3>
+      <Box display='flex' justifyContent='start'>
+        {testJustifyItems}
+      </Box>
 
-    <h3>center</h3>
-    <Box display='flex' justifyContent='center'>
-      {testJustifyItems}
-    </Box>
+      <h3>end</h3>
+      <Box display='flex' justifyContent='end'>
+        {testJustifyItems}
+      </Box>
 
-    <h3>space-between</h3>
-    <Box display='flex' justifyContent='between'>
-      {testJustifyItems}
-    </Box>
+      <h3>center</h3>
+      <Box display='flex' justifyContent='center'>
+        {testJustifyItems}
+      </Box>
 
-    <h3>space-around</h3>
-    <Box display='flex' justifyContent='around'>
-      {testJustifyItems}
-    </Box>
-  </>
-);
+      <h3>space-between</h3>
+      <Box display='flex' justifyContent='between'>
+        {testJustifyItems}
+      </Box>
 
-export const AlignItems = () => {
+      <h3>space-around</h3>
+      <Box display='flex' justifyContent='around'>
+        {testJustifyItems}
+      </Box>
+    </>
+  );
+}
+
+JustifyContent.storyName = 'flex: Позиционирование контента по главной оси';
+
+export function AlignItems() {
   const renderBox = (alignItems: BoxProps['alignItems']) => (
     <Box
       padding={2}
@@ -161,23 +173,29 @@ export const AlignItems = () => {
       {renderBox('stretch')}
     </>
   );
-};
+}
 
-export const Direction = () => (
-  <>
-    <h3>row</h3>
-    <Box display='flex' direction='row'>
-      {testJustifyItems}
-    </Box>
+AlignItems.storyName = 'flex: Позиционирование контента перпендикулярно главной оси';
 
-    <h3>column</h3>
-    <Box display='flex' direction='column'>
-      {testJustifyItems}
-    </Box>
-  </>
-);
+export function Direction() {
+  return (
+    <>
+      <h3>row</h3>
+      <Box display='flex' direction='row'>
+        {testJustifyItems}
+      </Box>
 
-export const FlexProp = () => {
+      <h3>column</h3>
+      <Box display='flex' direction='column'>
+        {testJustifyItems}
+      </Box>
+    </>
+  );
+}
+
+Direction.storyName = 'flex: Определение главно оси';
+
+export function FlexProp() {
   const renderBox = (flex: BoxProps['flex']) => (
     <Box
       margin={4}
@@ -210,4 +228,6 @@ export const FlexProp = () => {
       </Box>
     </>
   );
-};
+}
+
+FlexProp.storyName = 'Свойство "display"';

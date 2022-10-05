@@ -25,7 +25,7 @@ const testItems = [
   'Ukraine',
 ];
 
-export const PresetDefault = () => {
+export function Primary() {
   const [value, setValue] = useState('');
 
   return (
@@ -41,9 +41,11 @@ export const PresetDefault = () => {
       />
     </>
   );
-};
+}
 
-export const PresetFilledOnlyList = () => {
+Primary.storyName = 'Простой пример';
+
+export function PresetFilledOnlyList() {
   const [value, setValue] = useState('');
 
   return (
@@ -59,9 +61,11 @@ export const PresetFilledOnlyList = () => {
       />
     </>
   );
-};
+}
 
-export const Loading = () => {
+PresetFilledOnlyList.storyName = 'Список только при заполнении';
+
+export function Loading() {
   const [value, setValue] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -86,7 +90,9 @@ export const Loading = () => {
       />
     </>
   );
-};
+}
+
+Loading.storyName = 'Загрузка';
 
 export function TestChromeAutofill() {
   const [shown, setShown] = useState(false);
@@ -119,4 +125,4 @@ export function TestChromeAutofill() {
   );
 }
 
-TestChromeAutofill.storyName = 'service: Chrome autofill';
+TestChromeAutofill.storyName = 'Тест: предварительно заполнение браузером';

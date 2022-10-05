@@ -9,7 +9,7 @@ import { times } from 'lodash';
 import { Bootstrap, useLoading } from './utils';
 
 export default {
-  title: 'mobile/Screen',
+  title: 'deprecated/Screen',
   component: Screen,
   parameters: {
     layout: 'padded',
