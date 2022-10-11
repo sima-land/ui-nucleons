@@ -3,7 +3,7 @@
 exports[`FiledBlock should handle size prop 1`] = `
 <div>
   <div
-    class="root size-xs no-label"
+    class="root size-s no-label"
     data-testid="field"
   >
     <div
