@@ -17,22 +17,26 @@ const styles: React.CSSProperties = {
   marginBottom: 32,
 };
 
-export const Primary = () => (
-  <>
-    <Plate shadow='z1' rounds='s' style={styles}>
-      Plate это просто div с возможностью легко задавать тень и скругления...
-    </Plate>
+export function Primary() {
+  return (
+    <>
+      <Plate shadow='z1' rounds='s' style={styles}>
+        Plate это просто div с возможностью легко задавать тень и скругления...
+      </Plate>
 
-    <Plate shadow='z2' rounds='s' style={styles}>
-      Plate это просто div с возможностью легко задавать тень и скругления...
-    </Plate>
+      <Plate shadow='z2' rounds='s' style={styles}>
+        Plate это просто div с возможностью легко задавать тень и скругления...
+      </Plate>
 
-    <Plate shadow='z3' rounds='m' style={styles}>
-      Plate это просто div с возможностью легко задавать тень и скругления...
-    </Plate>
+      <Plate shadow='z3' rounds='m' style={styles}>
+        Plate это просто div с возможностью легко задавать тень и скругления...
+      </Plate>
 
-    <Plate shadow='z4' rounds='m' style={styles}>
-      Plate это просто div с возможностью легко задавать тень и скругления...
-    </Plate>
-  </>
-);
+      <Plate shadow='z4' rounds='m' style={styles}>
+        Plate это просто div с возможностью легко задавать тень и скругления...
+      </Plate>
+    </>
+  );
+}
+
+Primary.storyName = 'Простой пример';
