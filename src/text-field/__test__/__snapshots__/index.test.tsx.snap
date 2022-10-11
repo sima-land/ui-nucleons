@@ -36,6 +36,7 @@ exports[`<TextField /> should handle "caption" prop 1`] = `
           >
             <div
               className="reset root base-input variant-desktop size-l"
+              data-testid="base-input:root"
             >
               <input
                 className="field reset"
@@ -105,6 +106,7 @@ exports[`<TextField /> should handle "caption" prop 2`] = `
           >
             <div
               className="reset root disabled base-input disabled failed variant-mobile size-l"
+              data-testid="base-input:root"
             >
               <input
                 className="field reset"
@@ -164,6 +166,7 @@ exports[`<TextField /> should handle "disabled" prop 1`] = `
           >
             <div
               className="reset root disabled base-input disabled variant-desktop size-l"
+              data-testid="base-input:root"
             >
               <input
                 className="field reset"
@@ -211,6 +214,7 @@ exports[`<TextField /> should handle "focused" prop 1`] = `
           >
             <div
               className="reset root base-input focused variant-desktop size-l"
+              data-testid="base-input:root"
             >
               <input
                 className="field reset"
@@ -263,6 +267,7 @@ exports[`<TextField /> should handle "label" prop 1`] = `
           >
             <div
               className="reset root base-input variant-desktop size-l"
+              data-testid="base-input:root"
             >
               <input
                 className="field reset"
@@ -319,6 +324,7 @@ exports[`<TextField /> should handle "label" prop 2`] = `
           >
             <div
               className="reset root disabled base-input disabled failed variant-mobile size-l"
+              data-testid="base-input:root"
             >
               <input
                 className="field reset"
@@ -374,6 +380,7 @@ exports[`<TextField /> should handle "multiline" prop 1`] = `
           >
             <div
               className="reset root base-input variant-desktop size-l"
+              data-testid="base-input:root"
             >
               <textarea
                 className="field reset multiline"
@@ -421,6 +428,7 @@ exports[`<TextField /> should handle "variant" prop 1`] = `
           >
             <div
               className="reset root base-input variant-desktop size-l"
+              data-testid="base-input:root"
             >
               <input
                 className="field reset"
@@ -467,6 +475,7 @@ exports[`<TextField /> should handle "variant" prop 2`] = `
           >
             <div
               className="reset root base-input variant-mobile size-l"
+              data-testid="base-input:root"
             >
               <input
                 className="field reset"
@@ -524,6 +533,7 @@ exports[`<TextField /> should handle adornment props 1`] = `
           >
             <div
               className="reset root base-input variant-desktop size-l"
+              data-testid="base-input:root"
             >
               <input
                 className="field reset"
@@ -571,6 +581,7 @@ exports[`<TextField /> should handle adornment props 2`] = `
           >
             <div
               className="reset root base-input variant-desktop size-l"
+              data-testid="base-input:root"
             >
               <input
                 className="field reset"
@@ -626,6 +637,7 @@ exports[`<TextField /> should render without props 1`] = `
           >
             <div
               className="reset root base-input variant-desktop size-l"
+              data-testid="base-input:root"
             >
               <input
                 className="field reset"

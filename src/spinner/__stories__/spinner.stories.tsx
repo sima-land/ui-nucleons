@@ -29,6 +29,8 @@ export function Primary() {
   );
 }
 
+Primary.storyName = 'Простой пример';
+
 export function ColorVariants() {
   return (
     <div style={{ ...styles.demo, background: '#1f84db', padding: 20, paddingTop: 6 }}>
@@ -37,3 +39,5 @@ export function ColorVariants() {
     </div>
   );
 }
+
+ColorVariants.storyName = 'Варианты цветов';

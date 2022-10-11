@@ -72,7 +72,11 @@ export const BaseInput = forwardRef<
       : { shiftValue: value, ...(restPlaceholderProp as any) };
 
   return (
-    <div style={style} className={cx('reset', 'root', disabled && 'disabled', className)}>
+    <div
+      data-testid='base-input:root'
+      style={style}
+      className={cx('reset', 'root', disabled && 'disabled', className)}
+    >
       {!multiline && Boolean(restPlaceholder.value) && (
         <span aria-hidden className={cx('fake-text')}>
           <span className={cx('invisible-value')}>{restPlaceholder.shiftValue}</span>
@@ -80,6 +84,7 @@ export const BaseInput = forwardRef<
         </span>
       )}
       <Element
+        data-testid='base-input:field'
         {...props}
         rows={multiline ? rows : undefined}
         ref={inputRef as any}

@@ -6,7 +6,7 @@ exports[`Card should renders with slots 1`] = `
     className="root"
   >
     <div
-      className="bg-color__basic-white root shadow-z1 rounds-sm__all"
+      className="root root shadow-z1 rounds-sm__all"
       data-testid="plate"
     >
       <Card.Header
@@ -47,7 +47,7 @@ exports[`Card should renders without props 1`] = `
     className="root"
   >
     <div
-      className="bg-color__basic-white root shadow-z1 rounds-sm__all"
+      className="root root shadow-z1 rounds-sm__all"
       data-testid="plate"
     />
   </ForwardRef(Plate)>

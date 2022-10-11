@@ -52,7 +52,9 @@ exports[`<Screen /> should handle "loading/loadingOverlayProps" props 1`] = `
             <Spinner
               size="medium"
             >
-              <div>
+              <div
+                data-testid="spinner"
+              >
                 <svg
                   className="spinner size-medium"
                   height={48}
@@ -159,7 +161,9 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
             }
           >
             <Spinner>
-              <div>
+              <div
+                data-testid="spinner"
+              >
                 <svg
                   className="spinner size-medium"
                   height={48}

@@ -8,6 +8,7 @@ exports[`<BaseInput /> should handle "restPlaceholder" prop 1`] = `
 >
   <div
     className="reset root"
+    data-testid="base-input:root"
   >
     <span
       aria-hidden={true}
@@ -26,6 +27,7 @@ exports[`<BaseInput /> should handle "restPlaceholder" prop 1`] = `
     </span>
     <input
       className="field reset"
+      data-testid="base-input:field"
       onChange={[MockFunction]}
       onInput={[Function]}
       value="Hello"
@@ -47,6 +49,7 @@ exports[`<BaseInput /> should handle "restPlaceholder" prop 2`] = `
 >
   <div
     className="reset root"
+    data-testid="base-input:root"
   >
     <span
       aria-hidden={true}
@@ -65,6 +68,7 @@ exports[`<BaseInput /> should handle "restPlaceholder" prop 2`] = `
     </span>
     <input
       className="field reset"
+      data-testid="base-input:field"
       onChange={[MockFunction]}
       onInput={[Function]}
       value=""
@@ -77,9 +81,11 @@ exports[`<BaseInput /> should render without props 1`] = `
 <ForwardRef(BaseInput)>
   <div
     className="reset root"
+    data-testid="base-input:root"
   >
     <input
       className="field reset"
+      data-testid="base-input:field"
       onInput={[Function]}
     />
   </div>

@@ -45,6 +45,7 @@ exports[`MaskedField should renders properly 1`] = `
             >
               <div
                 className="reset root base-input variant-desktop size-l"
+                data-testid="base-input:root"
               >
                 <span
                   aria-hidden={true}
