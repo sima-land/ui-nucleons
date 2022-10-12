@@ -12,7 +12,7 @@ describe('FiledBlock', () => {
   });
 
   it('should handle size prop', () => {
-    const { container, rerender } = render(<FieldBlock size='xs' />);
+    const { container, rerender } = render(<FieldBlock size='s' />);
 
     expect(container).toMatchSnapshot();
 
@@ -32,7 +32,7 @@ describe('FiledBlock', () => {
     rerender(<FieldBlock size='s' label='Some label' />);
     expect(queryAllByTestId('field:label')).toHaveLength(0);
 
-    rerender(<FieldBlock size='xs' label='Some label' />);
+    rerender(<FieldBlock size='m' label='Some label' />);
     expect(queryAllByTestId('field:label')).toHaveLength(0);
   });
 

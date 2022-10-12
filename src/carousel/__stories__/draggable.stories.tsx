@@ -26,3 +26,5 @@ export function Primary() {
     </Draggable>
   );
 }
+
+Primary.storyName = 'Простой пример';

@@ -1,29 +1,68 @@
-import React, { ReactNode, HTMLAttributes, LabelHTMLAttributes, Ref } from 'react';
+import React, { ReactNode, HTMLAttributes, LabelHTMLAttributes, Ref, CSSProperties } from 'react';
 import classNames from 'classnames/bind';
 import styles from './field-block.module.scss';
 
-export type FieldBlockSize = 'xs' | 's' | 'l';
+export type FieldBlockSize = 's' | 'm' | 'l';
 
 type NoChildren<T extends { children?: any }> = Omit<T, 'children'>;
 
+interface FieldBlockStyle extends CSSProperties {
+  '--field-width'?: string;
+}
+
 export interface FieldBlockProps {
+  /** Отключенное состояние. */
   disabled?: boolean;
+
+  /** Состояние с ошибкой. */
   failed?: boolean;
+
+  /** Состояние фокуса. */
   focused?: boolean;
+
+  /** Подпись под полем. */
   caption?: string;
+
+  /** Ярлык в поле. */
   label?: string;
+
+  /** Выводить ярлык вместо placeholder или введенного значения. */
   labelAsPlaceholder?: boolean;
-  size?: FieldBlockSize;
-  fixedHeight?: boolean;
-  rootProps?: NoChildren<HTMLAttributes<HTMLDivElement>>;
-  rootRef?: Ref<HTMLDivElement>;
-  blockProps?: NoChildren<HTMLAttributes<HTMLDivElement>>;
+
+  /** Опции элемента ярлыка. */
   labelProps?: NoChildren<LabelHTMLAttributes<HTMLLabelElement>>;
+
+  /** Размер. */
+  size?: FieldBlockSize;
+
+  /** Фиксировать высоту. */
+  fixedHeight?: boolean;
+
+  /** Опции корневого элемента. */
+  rootProps?: Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'children'> & {
+    style?: FieldBlockStyle;
+  };
+
+  /** Ref корневого элемента. */
+  rootRef?: Ref<HTMLDivElement>;
+
+  /** Опции элемента блока поля. */
+  blockProps?: NoChildren<HTMLAttributes<HTMLDivElement>>;
+
+  /** Ref элемента блока поля. */
   blockRef?: Ref<HTMLDivElement>;
+
+  /** Украшение перед основным содержимым. */
   adornmentStart?: ReactNode;
+
+  /** Украшение после основного содержимого. */
   adornmentEnd?: ReactNode;
-  value?: ReactNode;
-  valueProps?: NoChildren<HTMLAttributes<HTMLDivElement>>;
+
+  /** Основное содержимое. */
+  main?: ReactNode;
+
+  /** Опции основного содержимого. */
+  mainProps?: NoChildren<HTMLAttributes<HTMLDivElement>>;
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
@@ -31,15 +70,25 @@ export interface FieldBlockProps {
 
 const cx = classNames.bind(styles);
 
+export const FIELD_BLOCK_HEIGHT: Record<FieldBlockSize, number> = {
+  s: 32,
+  m: 40,
+  l: 56,
+} as const;
+
+export const FIELD_BLOCK_DEFAULTS = {
+  size: 'l',
+} as const;
+
 /**
  * Блок поля по дизайн-гайдам.
  * @param props Свойства.
  * @return Элемент.
  */
 export function FieldBlock({
-  size = 'l',
-  value,
-  valueProps,
+  size = FIELD_BLOCK_DEFAULTS.size,
+  main,
+  mainProps,
   disabled,
   failed,
   focused,
@@ -75,7 +124,7 @@ export function FieldBlock({
 
   return (
     <div {...rootProps} ref={rootRef} className={rootClassName} data-testid={testId}>
-      <div {...blockProps} ref={blockRef} className={blockClassName}>
+      <div {...blockProps} ref={blockRef} className={blockClassName} data-testid='field:block'>
         {adornmentStart && (
           <div className={cx('col', 'adornment-col', 'start')} data-testid='field:adornment-start'>
             {adornmentStart}
@@ -94,8 +143,8 @@ export function FieldBlock({
           )}
 
           {/* основной контент выводим без условий */}
-          <div {...valueProps} className={cx('main', valueProps?.className)}>
-            {value}
+          <div {...mainProps} className={cx('main', mainProps?.className)}>
+            {main}
           </div>
         </div>
 

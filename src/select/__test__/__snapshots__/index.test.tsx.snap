@@ -51,6 +51,7 @@ exports[`Select should render loading state 1`] = `
                 >
                   <div
                     class="reset root base-input focused variant-desktop size-l"
+                    data-testid="base-input:root"
                     style="pointer-events: none;"
                   >
                     <input
@@ -142,6 +143,7 @@ exports[`Select should render loading state 1`] = `
               >
                 <div
                   className="reset root base-input focused variant-desktop size-l"
+                  data-testid="base-input:root"
                   style={
                     Object {
                       "pointerEvents": "none",
@@ -264,7 +266,9 @@ exports[`Select should render loading state 1`] = `
                         <Spinner
                           size="small"
                         >
-                          <div>
+                          <div
+                            data-testid="spinner"
+                          >
                             <svg
                               className="spinner size-small"
                               height={20}
@@ -389,6 +393,7 @@ exports[`Select should renders correctly 1`] = `
                 >
                   <div
                     class="reset root base-input variant-desktop size-l"
+                    data-testid="base-input:root"
                     style="pointer-events: none;"
                   >
                     <input
@@ -480,6 +485,7 @@ exports[`Select should renders correctly 1`] = `
               >
                 <div
                   className="reset root base-input variant-desktop size-l"
+                  data-testid="base-input:root"
                   style={
                     Object {
                       "pointerEvents": "none",
@@ -610,6 +616,7 @@ exports[`Select should renders correctly 2`] = `
                 >
                   <div
                     class="reset root base-input focused variant-desktop size-l"
+                    data-testid="base-input:root"
                     style="pointer-events: none;"
                   >
                     <input
@@ -701,6 +708,7 @@ exports[`Select should renders correctly 2`] = `
               >
                 <div
                   className="reset root base-input focused variant-desktop size-l"
+                  data-testid="base-input:root"
                   style={
                     Object {
                       "pointerEvents": "none",

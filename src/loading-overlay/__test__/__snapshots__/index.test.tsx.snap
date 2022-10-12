@@ -8,7 +8,9 @@ exports[`<LoadingOverlay /> should handle "fill" prop 1`] = `
     className="loading-overlay fill"
   >
     <Spinner>
-      <div>
+      <div
+        data-testid="spinner"
+      >
         <svg
           className="spinner size-medium"
           height={48}
@@ -54,7 +56,9 @@ exports[`<LoadingOverlay /> should handle props 1`] = `
     <Spinner
       size="small"
     >
-      <div>
+      <div
+        data-testid="spinner"
+      >
         <svg
           className="spinner size-small"
           height={20}
@@ -81,7 +85,9 @@ exports[`<LoadingOverlay /> should renders without props 1`] = `
     className="loading-overlay fill"
   >
     <Spinner>
-      <div>
+      <div
+        data-testid="spinner"
+      >
         <svg
           className="spinner size-medium"
           height={48}

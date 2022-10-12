@@ -10,7 +10,7 @@
   --field-background: #fff;
   --field-border-color: #{colors.$basic-gray12};
   --field-caption-color: #{colors.$basic-gray38};
-  &.size-xs {
+  &.size-s {
     font-size: 14px;
     line-height: 20px;
     --field-height: 32px;
@@ -18,7 +18,7 @@
     --field-gutter-adornment: 8px;
     --field-gutter-vertical: 6px;
   }
-  &.size-s {
+  &.size-m {
     --field-height: 40px;
     --field-gutter-horizontal: 12px;
     --field-gutter-adornment: 8px;

@@ -79,6 +79,7 @@ exports[`FieldGrid should handle "renderField" prop 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -136,6 +137,7 @@ exports[`FieldGrid should handle "renderField" prop 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -225,6 +227,7 @@ exports[`FieldGrid should handle "rootProps" prop 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -313,6 +316,7 @@ exports[`FieldGrid should handle "rootProps" prop 2`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -385,6 +389,7 @@ exports[`FieldGrid should handle invalid children 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -442,6 +447,7 @@ exports[`FieldGrid should handle invalid children 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -525,6 +531,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -592,6 +599,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -659,6 +667,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -732,6 +741,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -799,6 +809,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -866,6 +877,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -939,6 +951,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -1006,6 +1019,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -1082,6 +1096,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <textarea
                           className="field reset multiline"
@@ -1165,6 +1180,7 @@ exports[`FieldGrid should render single row with one cell 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -1247,6 +1263,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -1314,6 +1331,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -1381,6 +1399,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -1463,6 +1482,7 @@ exports[`FieldGrid should render single row with two cells 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -1530,6 +1550,7 @@ exports[`FieldGrid should render single row with two cells 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -1612,6 +1633,7 @@ exports[`FieldGrid should render two rows 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -1679,6 +1701,7 @@ exports[`FieldGrid should render two rows 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -1752,6 +1775,7 @@ exports[`FieldGrid should render two rows 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -1819,6 +1843,7 @@ exports[`FieldGrid should render two rows 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -1886,6 +1911,7 @@ exports[`FieldGrid should render two rows 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -1968,6 +1994,7 @@ exports[`FieldGrid should render two rows with one cell 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"
@@ -2041,6 +2068,7 @@ exports[`FieldGrid should render two rows with one cell 1`] = `
                     >
                       <div
                         className="reset root base-input variant-desktop size-l"
+                        data-testid="base-input:root"
                       >
                         <input
                           className="field reset"

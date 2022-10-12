@@ -3,11 +3,12 @@
 exports[`FiledBlock should handle size prop 1`] = `
 <div>
   <div
-    class="root size-xs no-label"
+    class="root size-s no-label"
     data-testid="field"
   >
     <div
       class="block fixed-height"
+      data-testid="field:block"
     >
       <div
         class="col main-col"
@@ -29,6 +30,7 @@ exports[`FiledBlock should handle size prop 2`] = `
   >
     <div
       class="block fixed-height"
+      data-testid="field:block"
     >
       <div
         class="col main-col"
@@ -50,6 +52,7 @@ exports[`FiledBlock should handle size prop 3`] = `
   >
     <div
       class="block fixed-height"
+      data-testid="field:block"
     >
       <div
         class="col main-col"
@@ -71,6 +74,7 @@ exports[`FiledBlock should render adornments 1`] = `
   >
     <div
       class="block fixed-height"
+      data-testid="field:block"
     >
       <div
         class="col main-col"
@@ -92,6 +96,7 @@ exports[`FiledBlock should render adornments 2`] = `
   >
     <div
       class="block fixed-height"
+      data-testid="field:block"
     >
       <div
         class="col adornment-col start"
@@ -129,6 +134,7 @@ exports[`FiledBlock should render adornments 3`] = `
   >
     <div
       class="block fixed-height"
+      data-testid="field:block"
     >
       <div
         class="col adornment-col start"
@@ -185,6 +191,7 @@ exports[`FiledBlock should render caption 1`] = `
   >
     <div
       class="block fixed-height"
+      data-testid="field:block"
     >
       <div
         class="col main-col"
@@ -206,6 +213,7 @@ exports[`FiledBlock should render caption 2`] = `
   >
     <div
       class="block fixed-height"
+      data-testid="field:block"
     >
       <div
         class="col main-col"
@@ -233,6 +241,7 @@ exports[`FiledBlock should renders correctly 1`] = `
   >
     <div
       class="block fixed-height"
+      data-testid="field:block"
     >
       <div
         class="col main-col"

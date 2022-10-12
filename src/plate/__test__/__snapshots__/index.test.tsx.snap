@@ -9,7 +9,7 @@ exports[`Plate should handle "data-testid" prop 1`] = `
   shadow="z3"
 >
   <div
-    className="bg-color__basic-white test-class shadow-z3 rounds-md__all"
+    className="root test-class shadow-z3 rounds-md__all"
     data-testid="test-plate"
     onClick={[MockFunction]}
   >
@@ -26,7 +26,7 @@ exports[`Plate should handle props 1`] = `
   shadow="z3"
 >
   <div
-    className="bg-color__basic-white test-class shadow-z3 rounds-md__all"
+    className="root test-class shadow-z3 rounds-md__all"
     data-testid="plate"
     onClick={[MockFunction]}
   >
@@ -40,7 +40,7 @@ exports[`Plate should renders with small rounds 1`] = `
   rounds="s"
 >
   <div
-    className="bg-color__basic-white shadow-z1 rounds-sm__all"
+    className="root shadow-z1 rounds-sm__all"
     data-testid="plate"
   >
     Test
@@ -51,7 +51,7 @@ exports[`Plate should renders with small rounds 1`] = `
 exports[`Plate should renders without props 1`] = `
 <ForwardRef(Plate)>
   <div
-    className="bg-color__basic-white shadow-z1 rounds-sm__all"
+    className="root shadow-z1 rounds-sm__all"
     data-testid="plate"
   />
 </ForwardRef(Plate)>

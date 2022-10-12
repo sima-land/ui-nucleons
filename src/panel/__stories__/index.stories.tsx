@@ -3,6 +3,7 @@ import { Panel, PanelType, LINK_COLOR_BY_TYPE } from '..';
 import InformationSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information';
 import LockSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/lock';
 import { Link } from '../../link';
+import { Sandbox } from '../../../.storybook/utils';
 
 export default {
   title: 'common/Panel',
@@ -13,23 +14,6 @@ export default {
 };
 
 const panelTypes: PanelType[] = ['info', 'error', 'success', 'warning'];
-
-function PanelTypeField({ onChange }: { onChange: (type: PanelType) => void }) {
-  return (
-    <div>
-      <label>
-        <span>Type </span>
-        <select onChange={e => onChange(e.target.value as any)}>
-          {panelTypes.map(item => (
-            <option key={item} value={item}>
-              {item}
-            </option>
-          ))}
-        </select>
-      </label>
-    </div>
-  );
-}
 
 export function Primary() {
   return (
@@ -56,23 +40,32 @@ export function JsxContent() {
   );
 
   return (
-    <div style={{ width: 360, display: 'flex', gap: 20, flexDirection: 'column' }}>
-      <PanelTypeField onChange={setType} />
+    <Sandbox
+      controls={[
+        {
+          type: 'select',
+          label: 'Тип',
+          bind: [type, setType],
+          options: panelTypes,
+        },
+      ]}
+    >
+      <div style={{ width: 360, display: 'flex', gap: 20, flexDirection: 'column' }}>
+        <Panel type={type}>{content}</Panel>
 
-      <Panel type={type}>{content}</Panel>
+        <Panel type={type} adornmentStart={<InformationSVG />}>
+          {content}
+        </Panel>
 
-      <Panel type={type} adornmentStart={<InformationSVG />}>
-        {content}
-      </Panel>
+        <Panel type={type} adornmentEnd={<LockSVG />}>
+          {content}
+        </Panel>
 
-      <Panel type={type} adornmentEnd={<LockSVG />}>
-        {content}
-      </Panel>
-
-      <Panel type={type} adornmentStart={<InformationSVG />} adornmentEnd={<LockSVG />}>
-        {content}
-      </Panel>
-    </div>
+        <Panel type={type} adornmentStart={<InformationSVG />} adornmentEnd={<LockSVG />}>
+          {content}
+        </Panel>
+      </div>
+    </Sandbox>
   );
 }
 
@@ -88,13 +81,22 @@ export function UnknownContent() {
     `;
 
   return (
-    <div style={{ width: 360, display: 'flex', gap: 20, flexDirection: 'column' }}>
-      <PanelTypeField onChange={setType} />
-
-      <Panel type={type} adornmentStart={<InformationSVG />}>
-        <Panel.UnknownContent markup={markup} />
-      </Panel>
-    </div>
+    <Sandbox
+      controls={[
+        {
+          type: 'select',
+          label: 'Тип',
+          bind: [type, setType],
+          options: panelTypes,
+        },
+      ]}
+    >
+      <div style={{ width: 360, display: 'flex', gap: 20, flexDirection: 'column' }}>
+        <Panel type={type} adornmentStart={<InformationSVG />}>
+          <Panel.UnknownContent markup={markup} />
+        </Panel>
+      </div>
+    </Sandbox>
   );
 }
 

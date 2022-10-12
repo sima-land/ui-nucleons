@@ -65,6 +65,7 @@ exports[`<PhoneInput /> Other: should render just text field with able to input 
               >
                 <div
                   className="reset root base-input variant-desktop size-l"
+                  data-testid="base-input:root"
                 >
                   <input
                     className="field reset"
@@ -221,6 +222,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
                 >
                   <div
                     className="reset root base-input variant-desktop size-l"
+                    data-testid="base-input:root"
                   >
                     <span
                       aria-hidden={true}

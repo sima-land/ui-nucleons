@@ -1,15 +1,15 @@
 import React, { forwardRef } from 'react';
-import { bgColor } from '../styling/colors';
 import { BoxShadow } from '../styling/shadows';
 import { SmallRounds, MediumRounds } from '../styling/shapes';
 import classnames from 'classnames';
+import styles from './plate.module.scss';
 
 export interface PlateProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Тень. */
-  shadow?: keyof typeof BoxShadow;
+  shadow?: keyof typeof BoxShadow | null;
 
-  /** Скругление. */
-  rounds?: 's' | 'm';
+  /** Скругление углов. */
+  rounds?: 's' | 'm' | null;
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
@@ -34,9 +34,9 @@ export const Plate = forwardRef<HTMLDivElement | null, PlateProps>(function Plat
     <div
       ref={ref}
       className={classnames(
-        bgColor('basic-white'),
+        styles.root,
         className,
-        BoxShadow[shadow],
+        shadow && BoxShadow[shadow],
         rounds === 's' && SmallRounds.all,
         rounds === 'm' && MediumRounds.all,
       )}

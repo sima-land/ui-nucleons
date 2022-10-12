@@ -16,7 +16,7 @@ export default {
   },
 };
 
-export const Primary = () => {
+export function Primary() {
   const options = [
     'ООО "Лаваш-Сервис"',
     'Кайгородцева Анна',
@@ -44,11 +44,11 @@ export const Primary = () => {
       </div>
     </>
   );
-};
+}
 
-Primary.storyName = 'Использование';
+Primary.storyName = 'Простой пример';
 
-export const SizeS = () => {
+export function SizeS() {
   const options = [
     'ООО "Лаваш-Сервис"',
     'Кайгородцева Анна',
@@ -77,11 +77,11 @@ export const SizeS = () => {
       </div>
     </>
   );
-};
+}
 
 SizeS.storyName = 'Размер S';
 
-export const SizeXS = () => {
+export function SizeXS() {
   const options = [
     'ООО "Лаваш-Сервис"',
     'Кайгородцева Анна',
@@ -110,11 +110,11 @@ export const SizeXS = () => {
       </div>
     </>
   );
-};
+}
 
 SizeXS.storyName = 'Размер XS';
 
-export const WithLoading = () => {
+export function WithLoading() {
   const [currentOption, selectOption] = useState('');
   const [ready, toggleReady] = useState(false);
 
@@ -150,7 +150,7 @@ export const WithLoading = () => {
       </div>
     </>
   );
-};
+}
 
 WithLoading.storyName = 'С загрузкой';
 
@@ -159,7 +159,7 @@ interface SocialOption {
   name: string;
 }
 
-export const CustomIcon = () => {
+export function CustomIcon() {
   const options: Array<SocialOption> = [
     { Icon: GoogleSVG, name: 'Google' },
     { Icon: VkSVG, name: 'VK' },
@@ -187,6 +187,6 @@ export const CustomIcon = () => {
       />
     </>
   );
-};
+}
 
 CustomIcon.storyName = 'Особая иконка';

@@ -1,0 +1,20 @@
+@use '../colors';
+
+.main {
+  display: flex;
+  width: 100%;
+}
+
+.input {
+  min-width: 0;
+  width: 0;
+  flex-grow: 1;
+  background: inherit;
+  font: inherit;
+  line-height: inherit;
+}
+
+.clear-button {
+  fill: colors.$basic-gray38;
+  cursor: pointer;
+}
