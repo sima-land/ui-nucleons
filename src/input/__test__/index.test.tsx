@@ -49,10 +49,10 @@ describe('Input', () => {
     expect(ref.current instanceof HTMLInputElement).toBe(true);
   });
 
-  it('should handle "onClick" prop', () => {
+  it('should handle "buttonProps.onClick" prop', () => {
     const spy = jest.fn();
 
-    const { getByTestId } = render(<Input onClick={spy} />);
+    const { getByTestId } = render(<Input blockProps={{ onClick: spy }} />);
 
     expect(spy).toBeCalledTimes(0);
     fireEvent.click(getByTestId('field:block'));
@@ -64,7 +64,9 @@ describe('Input', () => {
     const focusSpy = jest.fn();
     const mouseDownSpy = jest.fn();
 
-    const { getByTestId } = render(<Input inputRef={inputRef} onMouseDown={mouseDownSpy} />);
+    const { getByTestId } = render(
+      <Input inputRef={inputRef} blockProps={{ onMouseDown: mouseDownSpy }} />,
+    );
 
     inputRef.current?.addEventListener('focus', focusSpy);
     expect(mouseDownSpy).toBeCalledTimes(0);
@@ -81,7 +83,9 @@ describe('Input', () => {
     const focusSpy = jest.fn();
     const mouseDownSpy = jest.fn((e: MouseEvent) => e.preventDefault());
 
-    const { getByTestId } = render(<Input inputRef={inputRef} onMouseDown={mouseDownSpy} />);
+    const { getByTestId } = render(
+      <Input inputRef={inputRef} blockProps={{ onMouseDown: mouseDownSpy }} />,
+    );
 
     inputRef.current?.addEventListener('focus', focusSpy);
     expect(mouseDownSpy).toBeCalledTimes(0);

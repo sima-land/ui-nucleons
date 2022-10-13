@@ -38,21 +38,19 @@
   &.focused {
     --field-border-color: #{colors.$basic-blue};
   }
-  &.failed:not(.disabled) {
-    --field-caption-color: #{colors.$additional-deep-red};
-    &:not(.focused) {
-      --field-main-text-color: #{colors.$additional-deep-red};
-      &.label-as-placeholder {
-        --field-label-text-color: #{colors.$additional-deep-red};
-      }
-    }
-  }
   &.disabled {
     --field-primary-text-color: #{colors.$basic-gray24};
     --field-main-text-color: #{colors.$basic-gray24};
     --field-label-text-color: #{colors.$basic-gray24};
     --field-background: #{colors.$basic-gray2};
     --field-border-color: #{colors.$basic-gray12};
+  }
+  &.failed {
+    --field-caption-color: #{colors.$additional-deep-red};
+    --field-main-text-color: #{colors.$additional-deep-red};
+    &.label-as-placeholder {
+      --field-label-text-color: #{colors.$additional-deep-red};
+    }
   }
   &.label-as-placeholder {
     .label {
@@ -83,7 +81,6 @@
 }
 
 .label {
-  margin-bottom: auto;
   transform-origin: 0 0;
   transition: transform 0.2s ease-in-out;
   height: 16px;

@@ -35,8 +35,8 @@ export function DifferentStates() {
 
   const props: InputProps = {
     size,
-    disabled: state === 'disabled',
-    failed: state === 'failed',
+    disabled: state.includes('disabled'),
+    failed: state.includes('failed'),
   };
 
   return (
@@ -52,7 +52,7 @@ export function DifferentStates() {
           type: 'select',
           label: 'Состояние',
           bind: [state, setState],
-          options: ['default', 'failed', 'disabled'],
+          options: ['default', 'failed', 'disabled', 'failed+disabled'],
         },
       ]}
     >
