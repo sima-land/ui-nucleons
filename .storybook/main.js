@@ -2,7 +2,7 @@ module.exports = {
   core: {
     builder: 'webpack5',
   },
-  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: ['./index.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@storybook/addon-actions',
     '@storybook/addon-storysource',
@@ -10,6 +10,7 @@ module.exports = {
     {
       name: '@storybook/addon-docs',
       options: {
+        transcludeMarkdown: true,
         sourceLoaderOptions: {
           injectStoryParameters: false,
         },
