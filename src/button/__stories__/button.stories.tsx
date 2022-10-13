@@ -1,29 +1,7 @@
-import React, { Fragment } from 'react';
-import { action } from '@storybook/addon-actions';
-import { Button } from '..';
+import React, { useState } from 'react';
+import { Button, ButtonProps, ButtonSize, ButtonViewType } from '..';
 import PlusSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/plus';
-
-const types = ['primary', 'secondary'];
-const sizes = ['s', 'm'];
-const states = [undefined, 'disabled'];
-
-const contents = [
-  {
-    icon: PlusSVG,
-  },
-  {
-    children: 'Действие',
-  },
-  {
-    icon: PlusSVG,
-    children: 'Действие',
-  },
-  {
-    icon: PlusSVG,
-    iconPosition: 'end',
-    children: 'Действие',
-  },
-];
+import { Sandbox } from '../../../.storybook/utils';
 
 export default {
   title: 'common/Button',
@@ -36,39 +14,65 @@ export default {
 export function Primary() {
   return (
     <>
-      {types.map(viewType => (
-        <Fragment key={viewType}>
-          <h2>Action type: {viewType}</h2>
-
-          {sizes.map(size => (
-            <Fragment key={size}>
-              <h3>Size: {size}</h3>
-              {states.map((state, stateIndex) => (
-                <Fragment key={stateIndex}>
-                  <h4>State: {state || 'normal'}</h4>
-
-                  <div style={{ display: 'flex' }}>
-                    {contents.map((content, index) => (
-                      <Fragment key={index}>
-                        <Button
-                          {...((state ? { [state]: true } : {}) as any)}
-                          size={size as any}
-                          viewType={viewType as any}
-                          onClick={action(`${viewType} [size="${size}"] button was clicked!`)}
-                          {...content}
-                        />
-                        <div style={{ width: 8, height: 8 }}></div>
-                      </Fragment>
-                    ))}
-                  </div>
-                </Fragment>
-              ))}
-            </Fragment>
-          ))}
-        </Fragment>
-      ))}
+      <Button size='s' icon={PlusSVG} onClick={() => alert('Спасибо!')}>
+        Нажми на меня
+      </Button>
     </>
   );
 }
 
 Primary.storyName = 'Простой пример';
+
+export function DifferentStates() {
+  const [size, setSize] = useState<ButtonSize>('s');
+  const [viewType, setViewType] = useState<ButtonViewType>('primary');
+  const [state, setState] = useState<'default' | 'disabled'>('default');
+
+  const props: ButtonProps = {
+    size,
+    viewType,
+    disabled: state === 'disabled',
+    onClick: () => alert('Клик по кнопке прошёл успешно'),
+  };
+
+  return (
+    <Sandbox
+      controls={[
+        {
+          type: 'select',
+          label: 'Размер',
+          options: ['s', 'm'],
+          bind: [size, setSize],
+        },
+        {
+          type: 'select',
+          label: 'Тип действия',
+          options: ['primary', 'secondary'],
+          bind: [viewType, setViewType],
+        },
+        {
+          type: 'select',
+          label: 'Состояние',
+          options: ['default', 'disabled'],
+          bind: [state, setState],
+        },
+      ]}
+    >
+      <div style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
+        <Button {...props} icon={PlusSVG} />
+
+        <Button {...props}>Действие</Button>
+
+        <Button {...props} icon={PlusSVG}>
+          Действие
+        </Button>
+
+        <Button {...props} icon={PlusSVG} iconPosition='end'>
+          Действие
+        </Button>
+      </div>
+    </Sandbox>
+  );
+}
+
+DifferentStates.storyName = 'Различные состояния';

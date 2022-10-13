@@ -3,9 +3,9 @@ import { always, cond, eq, stubTrue } from 'lodash/fp';
 import classnames from 'classnames/bind';
 import classes from './button.module.scss';
 
-type Size = 's' | 'm';
+export type ButtonSize = 's' | 'm';
 
-type ViewType = 'primary' | 'secondary';
+export type ButtonViewType = 'primary' | 'secondary';
 
 type IconPosition = 'start' | 'end';
 
@@ -13,7 +13,7 @@ type Appearance = 'button' | 'link' | 'container';
 
 interface CustomProps<T extends Appearance = Appearance> {
   /** Определяет внешний вид кнопки. */
-  viewType?: ViewType;
+  viewType?: ButtonViewType;
 
   /** Определяет тип корневого элемента. */
   appearance?: T;
@@ -25,7 +25,7 @@ interface CustomProps<T extends Appearance = Appearance> {
   iconPosition?: IconPosition;
 
   /** Размер. */
-  size?: Size;
+  size?: ButtonSize;
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
@@ -33,7 +33,7 @@ interface CustomProps<T extends Appearance = Appearance> {
 
 type ExcludeKeys<T> = Omit<T, 'ref' | keyof CustomProps>;
 
-export type Props =
+export type ButtonProps =
   | (CustomProps<'button'> & ExcludeKeys<JSX.IntrinsicElements['button']>)
   | (CustomProps<'link'> & ExcludeKeys<JSX.IntrinsicElements['a']>)
   | (CustomProps<'container'> & ExcludeKeys<JSX.IntrinsicElements['div']>);
@@ -45,7 +45,7 @@ const cx = classnames.bind(classes);
  * @param props Свойства.
  * @return Элемент.
  */
-export const Button = forwardRef<any, Props>(function Button(
+export const Button = forwardRef<any, ButtonProps>(function Button(
   {
     children,
     className,
@@ -111,8 +111,8 @@ export const computeClassName = ({
   withContent,
   className,
 }: {
-  size: Size;
-  viewType: ViewType;
+  size: ButtonSize;
+  viewType: ButtonViewType;
   iconPosition: IconPosition;
   withIcon: boolean;
   withContent: boolean;
