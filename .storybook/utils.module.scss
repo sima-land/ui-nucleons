@@ -21,6 +21,7 @@
       align-items: flex-start;
       .field {
         min-width: 160px;
+        -webkit-appearance: menulist-button; // чтобы в Safari работало свойство "height"
         height: 32px;
         font-size: 16px;
         text-transform: capitalize;

@@ -1,5 +1,5 @@
 import { upperFirst } from 'lodash';
-import React, { ReactNode, useState } from 'react';
+import React, { CSSProperties, ReactNode, useState } from 'react';
 import styles from './utils.module.scss';
 
 type SizeParam = number | [number, number];
@@ -35,6 +35,7 @@ export function someImageUrl(params: SizeParam | OptionsParam): string {
 
 interface ControlSelect {
   type: 'select';
+  hidden?: boolean;
   label: string;
   options: Array<string>;
   bind: [string, (nextValue: any) => void];
@@ -42,6 +43,7 @@ interface ControlSelect {
 
 interface ControlToggle {
   type: 'toggle';
+  hidden?: boolean;
   label: string;
   bind: [boolean, (nextValue: any) => void];
 }
@@ -54,25 +56,31 @@ interface ControlToggle {
 export function Sandbox({
   controls = [],
   children,
+  areaStyle,
 }: {
   children?: ReactNode;
   controls?: Array<ControlToggle | ControlSelect>;
+  areaStyle?: CSSProperties;
 }) {
   return (
     <div className={styles.sandbox}>
       <div className={styles.controls}>
-        {controls.map((control, index) => {
-          switch (control.type) {
-            case 'select':
-              return <SandboxSelect key={index} {...control} />;
-            case 'toggle':
-              return <SandboxToggle key={index} {...control} />;
-            default:
-              return null;
-          }
-        })}
+        {controls
+          .filter(c => !c.hidden)
+          .map((control, index) => {
+            switch (control.type) {
+              case 'select':
+                return <SandboxSelect key={index} {...control} />;
+              case 'toggle':
+                return <SandboxToggle key={index} {...control} />;
+              default:
+                return null;
+            }
+          })}
       </div>
-      <div className={styles.area}>{children}</div>
+      <div className={styles.area} style={areaStyle}>
+        {children}
+      </div>
     </div>
   );
 }
