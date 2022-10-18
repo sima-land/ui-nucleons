@@ -4,9 +4,14 @@ import classnames from 'classnames/bind';
 import { Token } from '../colors';
 import styles from './link.module.scss';
 
+export type LinkColor = Extract<
+  Token,
+  'basic-blue' | 'basic-gray87' | 'basic-gray38' | 'basic-white'
+>;
+
 export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   /** Цвет (название токена). */
-  color?: Extract<Token, 'basic-blue' | 'basic-gray87' | 'basic-gray38' | 'basic-white'>;
+  color?: LinkColor;
 
   /** Нужно ли оборачивать содержимое комментариями no-index. */
   noIndex?: boolean;

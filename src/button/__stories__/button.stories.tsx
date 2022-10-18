@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button, ButtonProps, ButtonSize, ButtonViewType } from '..';
 import PlusSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/plus';
+import Placeholder16SVG from '@sima-land/ui-quarks/icons/16x16/Stroked/placeholder';
+import Placeholder24SVG from '@sima-land/ui-quarks/icons/24x24/Stroked/placeholder';
 import { Sandbox } from '../../../.storybook/utils';
 
 export default {
@@ -31,9 +33,12 @@ export function DifferentStates() {
   const props: ButtonProps = {
     size,
     viewType,
-    disabled: state === 'disabled',
+    disabled: state.includes('disabled'),
+    loading: state.includes('loading'),
     onClick: () => alert('Клик по кнопке прошёл успешно'),
   };
+
+  const IconSVG = size === 'xs' ? Placeholder16SVG : Placeholder24SVG;
 
   return (
     <Sandbox
@@ -41,7 +46,7 @@ export function DifferentStates() {
         {
           type: 'select',
           label: 'Размер',
-          options: ['s', 'm'],
+          options: ['xs', 's', 'm'],
           bind: [size, setSize],
         },
         {
@@ -53,21 +58,21 @@ export function DifferentStates() {
         {
           type: 'select',
           label: 'Состояние',
-          options: ['default', 'disabled'],
+          options: ['default', 'disabled', 'loading', 'loading+disabled'],
           bind: [state, setState],
         },
       ]}
     >
       <div style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
-        <Button {...props} icon={PlusSVG} />
+        <Button {...props} icon={IconSVG} />
 
         <Button {...props}>Действие</Button>
 
-        <Button {...props} icon={PlusSVG}>
+        <Button {...props} icon={IconSVG}>
           Действие
         </Button>
 
-        <Button {...props} icon={PlusSVG} iconPosition='end'>
+        <Button {...props} icon={IconSVG} iconPosition='end'>
           Действие
         </Button>
       </div>

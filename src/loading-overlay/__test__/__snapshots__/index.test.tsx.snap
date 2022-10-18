@@ -11,20 +11,27 @@ exports[`<LoadingOverlay /> should handle "fill" prop 1`] = `
       <div
         data-testid="spinner"
       >
-        <svg
-          className="spinner size-medium"
-          height={48}
-          stroke="#1f84db"
-          viewBox="0 0 48 48"
-          width={48}
+        <SpinnerSVG
+          color="basic-blue"
+          data-testid={null}
+          size="m"
         >
-          <circle
-            className="circle"
-            cx={24}
-            cy={24}
-            r={23}
-          />
-        </svg>
+          <svg
+            className="spinner size-m"
+            data-testid={null}
+            height={48}
+            stroke="#1f84db"
+            viewBox="0 0 48 48"
+            width={48}
+          >
+            <circle
+              className="circle"
+              cx={24}
+              cy={24}
+              r={23}
+            />
+          </svg>
+        </SpinnerSVG>
       </div>
     </Spinner>
   </div>
@@ -59,20 +66,27 @@ exports[`<LoadingOverlay /> should handle props 1`] = `
       <div
         data-testid="spinner"
       >
-        <svg
-          className="spinner size-small"
-          height={20}
-          stroke="#1f84db"
-          viewBox="0 0 20 20"
-          width={20}
+        <SpinnerSVG
+          color="basic-blue"
+          data-testid={null}
+          size="small"
         >
-          <circle
-            className="circle"
-            cx={10}
-            cy={10}
-            r={9}
-          />
-        </svg>
+          <svg
+            className="spinner size-small"
+            data-testid={null}
+            height={20}
+            stroke="#1f84db"
+            viewBox="0 0 20 20"
+            width={20}
+          >
+            <circle
+              className="circle"
+              cx={10}
+              cy={10}
+              r={9}
+            />
+          </svg>
+        </SpinnerSVG>
       </div>
     </Spinner>
   </div>
@@ -88,20 +102,27 @@ exports[`<LoadingOverlay /> should renders without props 1`] = `
       <div
         data-testid="spinner"
       >
-        <svg
-          className="spinner size-medium"
-          height={48}
-          stroke="#1f84db"
-          viewBox="0 0 48 48"
-          width={48}
+        <SpinnerSVG
+          color="basic-blue"
+          data-testid={null}
+          size="m"
         >
-          <circle
-            className="circle"
-            cx={24}
-            cy={24}
-            r={23}
-          />
-        </svg>
+          <svg
+            className="spinner size-m"
+            data-testid={null}
+            height={48}
+            stroke="#1f84db"
+            viewBox="0 0 48 48"
+            width={48}
+          >
+            <circle
+              className="circle"
+              cx={24}
+              cy={24}
+              r={23}
+            />
+          </svg>
+        </SpinnerSVG>
       </div>
     </Spinner>
   </div>

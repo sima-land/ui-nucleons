@@ -1,17 +1,25 @@
-import React, { forwardRef } from 'react';
-import { always, cond, eq, stubTrue } from 'lodash/fp';
+import React, {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  ComponentType,
+  forwardRef,
+  HTMLAttributes,
+  ReactElement,
+  SVGAttributes,
+} from 'react';
+import { SpinnerSVG } from '../spinner';
 import classnames from 'classnames/bind';
-import classes from './button.module.scss';
+import styles from './button.module.scss';
 
-export type ButtonSize = 's' | 'm';
+export type ButtonSize = 'xs' | 's' | 'm';
 
 export type ButtonViewType = 'primary' | 'secondary';
 
-type IconPosition = 'start' | 'end';
+export type ButtonAppearance = 'button' | 'link' | 'container';
 
-type Appearance = 'button' | 'link' | 'container';
+export type ButtonIconPosition = 'start' | 'end';
 
-interface CustomProps<T extends Appearance = Appearance> {
+interface CommonProps<T extends ButtonAppearance = ButtonAppearance> {
   /** Определяет внешний вид кнопки. */
   viewType?: ButtonViewType;
 
@@ -19,26 +27,36 @@ interface CustomProps<T extends Appearance = Appearance> {
   appearance?: T;
 
   /** Иконка. */
-  icon?: React.ComponentType<React.SVGAttributes<SVGSVGElement>>;
+  icon?: ComponentType<SVGAttributes<SVGSVGElement>>;
 
-  /** Позиция иконки. */
-  iconPosition?: IconPosition;
+  /** Позиция иконки относительно текста. */
+  iconPosition?: ButtonIconPosition;
 
   /** Размер. */
   size?: ButtonSize;
+
+  /** Нужно ли отображать состояние загрузки. */
+  loading?: boolean;
+
+  /** Отключенное состояние. */
+  disabled?: boolean;
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
 }
 
-type ExcludeKeys<T> = Omit<T, 'ref' | keyof CustomProps>;
+type AsButtonProps = CommonProps &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof CommonProps> & { appearance?: 'button' };
 
-export type ButtonProps =
-  | (CustomProps<'button'> & ExcludeKeys<JSX.IntrinsicElements['button']>)
-  | (CustomProps<'link'> & ExcludeKeys<JSX.IntrinsicElements['a']>)
-  | (CustomProps<'container'> & ExcludeKeys<JSX.IntrinsicElements['div']>);
+type AsAnchorProps = CommonProps &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof CommonProps> & { appearance: 'link' };
 
-const cx = classnames.bind(classes);
+type AsContainerProps = CommonProps &
+  Omit<HTMLAttributes<HTMLDivElement>, keyof CommonProps> & { appearance: 'container' };
+
+export type ButtonProps = AsButtonProps | AsAnchorProps | AsContainerProps;
+
+const cx = classnames.bind(styles);
 
 /**
  * Компонент кнопки, стилизованной по дизайн-гайдам.
@@ -47,96 +65,78 @@ const cx = classnames.bind(classes);
  */
 export const Button = forwardRef<any, ButtonProps>(function Button(
   {
-    children,
-    className,
     viewType = 'primary',
-    appearance = 'button',
-    size = 'm',
     icon: Icon,
     iconPosition = 'start',
+    size = 'm',
+    loading,
+    disabled,
+    className,
+    children,
     'data-testid': testId = 'button',
     ...restProps
   },
   ref,
 ) {
-  const [Element, moreProps] = resolveAppearance(appearance);
+  const hasIcon = Boolean(Icon);
+  const hasText = Boolean(children);
 
-  const readyClassName = computeClassName({
+  const rootClassName = cx(
+    'root',
+    `size-${size}`,
+    `view-${viewType}`,
+    loading && 'loading',
+    disabled && 'disabled',
+    hasIcon && !hasText && 'icon-only',
+    hasText && hasIcon && iconPosition === 'start' && 'icon-start',
+    hasText && hasIcon && iconPosition === 'end' && 'icon-end',
     className,
-    size,
-    viewType,
-    withIcon: Boolean(Icon),
-    withContent: Boolean(children) && children !== 0,
-    iconPosition,
-  });
-
-  return (
-    <Element
-      {...(restProps as any)}
-      {...(moreProps as any)}
-      data-testid={testId}
-      ref={ref}
-      className={readyClassName}
-      children={
-        <>
-          {Icon && iconPosition === 'start' && (
-            <Icon width={24} height={24} className={cx('icon', children && 'icon-start')} />
-          )}
-          {children}
-          {Icon && iconPosition === 'end' && (
-            <Icon width={24} height={24} className={cx('icon', children && 'icon-end')} />
-          )}
-        </>
-      }
-    />
   );
+
+  const content = (
+    <>
+      {/* выводим контент даже в состоянии loading (под спиннером) чтобы ширина не "скакала" */}
+      {Icon && iconPosition === 'start' && <Icon className={cx('icon')} />}
+      {children}
+      {Icon && iconPosition === 'end' && <Icon className={cx('icon')} />}
+
+      {loading && (
+        <SpinnerSVG
+          size='s'
+          color={disabled || viewType === 'secondary' ? 'basic-gray38' : 'basic-white'}
+          className={cx('spinner')}
+        />
+      )}
+    </>
+  );
+
+  let result: ReactElement | null = null;
+
+  if (restProps.appearance === 'container') {
+    result = (
+      <div {...restProps} ref={ref} className={rootClassName} role='button' data-testid={testId}>
+        {content}
+      </div>
+    );
+  } else if (restProps.appearance === 'link') {
+    result = (
+      <a {...restProps} ref={ref} className={rootClassName} data-testid={testId}>
+        {content}
+      </a>
+    );
+  } else {
+    result = (
+      <button
+        {...restProps}
+        ref={ref}
+        className={rootClassName}
+        disabled={disabled}
+        data-testid={testId}
+      >
+        {content}
+      </button>
+    );
+  }
+
+  return result;
 });
-
-/**
- * Возвращает строку с классами для стилизации кнопки.
- * @param props Опции.
- * @param props.actionType Определяет внешний вид кнопки.
- * @param props.size Определяет размер.
- * @param props.iconPosition Положение иконки.
- * @param props.withIcon Показывать ли иконку.
- * @param props.withContent Есть ли контент.
- * @param props.className Дополнительный класс.
- * @return Строка с классами.
- */
-export const computeClassName = ({
-  size,
-  viewType,
-  iconPosition,
-  withIcon,
-  withContent,
-  className,
-}: {
-  size: ButtonSize;
-  viewType: ButtonViewType;
-  iconPosition: IconPosition;
-  withIcon: boolean;
-  withContent: boolean;
-  className?: string;
-}) =>
-  cx([
-    className,
-    'button-base',
-    viewType === 'secondary' ? 'button-secondary' : 'button-primary',
-    `button-${size}`,
-    withContent && !withIcon && `text-button-${size}`,
-    withContent && withIcon && `button-${size}-with-${iconPosition}-icon`,
-  ]);
-
-/**
- * Возвращает кортеж с именем элемента и свойствами компонента по ключу.
- * @param appearance Ключ.
- * @return Кортеж с именем элемента и свойствами.
- */
-export const resolveAppearance = cond<
-  'button' | 'link' | 'container',
-  ['button' | 'div' | 'a', null | { role: 'button' }]
->([
-  [eq('link'), always(['a', null])],
-  [eq('container'), always(['div', { role: 'button' }])],
-  [stubTrue, always(['button', null])],
-]);
