@@ -1,99 +1,115 @@
 @use '../colors';
 
-.button-base {
+.root {
+  position: relative;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-wrap: nowrap;
   border-radius: 4px;
-  font: inherit;
-  font-size: 16px;
+  font-family: inherit;
   font-weight: 600;
   box-sizing: border-box;
+  padding: 0;
+  padding-left: var(--button-left-gutter, var(--button-gutter));
+  padding-right: var(--button-right-gutter, var(--button-gutter));
   border: 0;
   outline: 0;
   text-decoration: none;
   overflow: hidden;
+  font-size: var(--button-font-size);
+  background: var(--button-background);
+  color: var(--button-color);
+  min-width: var(--button-min-size);
+  height: var(--button-min-size);
+  --button-icon-gutter: 12px;
   &::-moz-focus-inner {
     border: 0;
   }
-  &:disabled {
+  // @todo disabled для ссылок?
+  &:disabled,
+  &.disabled {
+    pointer-events: none;
     color: colors.$basic-gray24;
     background-color: colors.$basic-gray8;
   }
+  &.loading {
+    color: transparent;
+    > :not(.spinner) {
+      opacity: 0;
+      pointer-events: 0;
+    }
+  }
 }
 
+// sizes
+.size-xs {
+  --button-min-size: 32px;
+  --button-font-size: 14px;
+  --button-line-height: 20px;
+  --button-gutter: 12px;
+}
+
+.size-s {
+  --button-min-size: 40px;
+  --button-font-size: 16px;
+  --button-line-height: 24px;
+  --button-gutter: 20px;
+}
+
+.size-m {
+  --button-min-size: 48px;
+  --button-font-size: 16px;
+  --button-line-height: 24px;
+  --button-gutter: 24px;
+}
+
+// content
+.icon-only {
+  --button-left-gutter: 0;
+  --button-right-gutter: 0;
+  --button-icon-gutter: 0;
+}
+
+.icon-start {
+  --button-left-gutter: 0;
+}
+
+.icon-end {
+  --button-right-gutter: 0;
+}
+
+// view variants
+.view-primary {
+  --button-background: #{colors.$basic-blue};
+  --button-color: #fff;
+  &:hover:not(:disabled) {
+    cursor: pointer;
+    --button-background: #1b74c1;
+  }
+}
+
+.view-secondary {
+  --button-background: #{colors.$basic-gray8};
+  --button-color: #{colors.$basic-gray87};
+  &:hover:not(:disabled) {
+    cursor: pointer;
+    --button-background: #{colors.$basic-gray12};
+  }
+}
+
+// icons
 .icon {
+  margin: 0 var(--button-icon-gutter);
   flex-shrink: 0;
   fill: currentColor;
 }
 
-// small
-.button-s {
-  padding: 0 8px;
-  min-width: 40px;
-  height: 40px;
-}
-
-.text-button-s {
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.button-s-with-start-icon {
-  padding-left: 12px;
-  padding-right: 20px;
-}
-
-.button-s-with-end-icon {
-  padding-left: 20px;
-  padding-right: 12px;
-}
-
-// medium
-.button-m {
-  padding: 0 12px;
-  min-width: 48px;
-  height: 48px;
-}
-
-.text-button-m {
-  padding-left: 24px;
-  padding-right: 24px;
-}
-
-.button-m-with-start-icon {
-  padding-right: 24px;
-}
-
-.button-m-with-end-icon {
-  padding-left: 24px;
-}
-
-.icon-start {
-  margin: 0 12px 0 0;
-}
-
-.icon-end {
-  margin: 0 0 0 12px;
-}
-
-// action types
-.button-primary {
-  background-color: colors.$basic-blue;
-  color: #fff;
-  &:hover:not(:disabled) {
-    cursor: pointer;
-    background-color: #1b74c1;
-  }
-}
-
-.button-secondary {
-  background-color: colors.$basic-gray8;
-  color: colors.$basic-gray87;
-  &:hover:not(:disabled) {
-    cursor: pointer;
-    background-color: colors.$basic-gray12;
-  }
+// spinner
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

@@ -1,47 +1,63 @@
 import React from 'react';
-import { Button, computeClassName } from '../index';
-import { shallow } from 'enzyme';
+import { Button } from '..';
 import { render } from '@testing-library/react';
-import SearchSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/search.js';
-import PlusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/plus.js';
+import SearchSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/search';
+import PlusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/plus';
 
 describe('<Button />', () => {
   it('should renders without props', () => {
-    const wrapper = shallow(<Button>Кнопка</Button>);
+    const { container, queryAllByTestId } = render(<Button>Кнопка</Button>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(queryAllByTestId('button')).toHaveLength(1);
+    expect(container.querySelectorAll('button')).toHaveLength(1);
+    expect(container.querySelector('button')?.className).toContain('view-primary');
   });
 
   it('should render secondary button', () => {
-    const wrapper = shallow(<Button viewType='secondary'>Отмена</Button>);
+    const { getByTestId } = render(<Button viewType='secondary'>Отмена</Button>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(getByTestId('button').className).toContain('view-secondary');
   });
 
-  it('should render icon button', () => {
-    const wrapper = shallow(<Button icon={PlusSVG} />);
+  it('should render iconic button', () => {
+    const { getByTestId, rerender } = render(<Button icon={PlusSVG} />);
 
-    expect(wrapper).toMatchSnapshot();
-    wrapper.setProps({ iconPosition: 'end' });
-    expect(wrapper).toMatchSnapshot();
+    expect(getByTestId('button').className).toContain('icon-only');
+    rerender(<Button icon={PlusSVG} iconPosition='end' />);
+    expect(getByTestId('button').className).toContain('icon-only');
   });
 
   it('should handle "size" prop', () => {
-    const wrapper = shallow(<Button size='s'>Отмена</Button>);
+    const { getByTestId, rerender } = render(<Button>Отмена</Button>);
+    expect(getByTestId('button').className).toContain('size-m');
 
-    expect(wrapper).toMatchSnapshot();
-    wrapper.setProps({ size: 'medium' });
-    expect(wrapper).toMatchSnapshot();
+    rerender(<Button size='xs'>Отмена</Button>);
+    expect(getByTestId('button').className).toContain('size-xs');
+
+    rerender(<Button size='s'>Отмена</Button>);
+    expect(getByTestId('button').className).toContain('size-s');
+
+    rerender(<Button size='m'>Отмена</Button>);
+    expect(getByTestId('button').className).toContain('size-m');
   });
 
   it('should handle "icon" and "iconPosition" props', () => {
-    const wrapper = shallow(<Button icon={SearchSVG}>Икать</Button>);
+    const { getByTestId, rerender } = render(<Button icon={SearchSVG}>Икать</Button>);
+    expect(getByTestId('button').className).toContain('icon-start');
 
-    expect(wrapper).toMatchSnapshot();
-    wrapper.setProps({ iconPosition: 'end' });
-    expect(wrapper).toMatchSnapshot();
-    wrapper.setProps({ iconPosition: 'start' });
-    expect(wrapper).toMatchSnapshot();
+    rerender(
+      <Button icon={SearchSVG} iconPosition='end'>
+        Искать
+      </Button>,
+    );
+    expect(getByTestId('button').className).toContain('icon-end');
+
+    rerender(
+      <Button icon={SearchSVG} iconPosition='start'>
+        Искать
+      </Button>,
+    );
+    expect(getByTestId('button').className).toContain('icon-start');
   });
 
   it('should handle "data-testid"', () => {
@@ -52,19 +68,32 @@ describe('<Button />', () => {
     expect(queryAllByTestId('button')).toHaveLength(0);
     expect(queryAllByTestId('my-specific-button')).toHaveLength(1);
   });
-});
 
-describe('computeClassName()', () => {
-  it('should handle all props', () => {
-    expect(
-      computeClassName({
-        size: 's',
-        viewType: 'secondary',
-        iconPosition: 'end',
-        withIcon: true,
-        withContent: true,
-        className: 'custom-button',
-      }),
-    ).toBe('custom-button button-base button-secondary button-s button-s-with-end-icon');
+  it('should handle "loading" prop', () => {
+    const { container, getByTestId, queryAllByTestId } = render(
+      <Button loading icon={SearchSVG}>
+        Some text here
+      </Button>,
+    );
+
+    expect(getByTestId('button').textContent).toContain('Some text here');
+    expect(container.querySelectorAll('svg')).toHaveLength(2);
+    expect(queryAllByTestId('spinner')).toHaveLength(1);
+  });
+
+  it('should handle "appearance" prop', () => {
+    const { getByTestId, rerender } = render(<Button>Some text here</Button>);
+
+    expect(getByTestId('button').tagName).toBe('BUTTON');
+
+    rerender(
+      <Button appearance='link' href='#hello'>
+        Some text here
+      </Button>,
+    );
+    expect(getByTestId('button').tagName).toBe('A');
+
+    rerender(<Button appearance='container'>Some text here</Button>);
+    expect(getByTestId('button').tagName).toBe('DIV');
   });
 });
