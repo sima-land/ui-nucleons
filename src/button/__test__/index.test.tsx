@@ -3,6 +3,7 @@ import { Button } from '..';
 import { render } from '@testing-library/react';
 import SearchSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/search';
 import PlusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/plus';
+import { COLORS } from '../../colors';
 
 describe('<Button />', () => {
   it('should renders without props', () => {
@@ -95,5 +96,34 @@ describe('<Button />', () => {
 
     rerender(<Button appearance='container'>Some text here</Button>);
     expect(getByTestId('button').tagName).toBe('DIV');
+  });
+
+  it('should handle "disabled" prop', () => {
+    const { getByTestId } = render(<Button disabled>Some text here</Button>);
+
+    expect(getByTestId('button').className).toContain('disabled');
+    expect((getByTestId('button') as HTMLButtonElement).disabled).toBe(true);
+  });
+
+  it('should handle "loading" prop with other props', () => {
+    const { getByTestId, rerender } = render(<Button loading>Some text here</Button>);
+
+    expect(getByTestId('spinner').getAttribute('stroke')).toBe(COLORS.get('basic-white'));
+
+    rerender(
+      <Button loading disabled>
+        Some text here
+      </Button>,
+    );
+
+    expect(getByTestId('spinner').getAttribute('stroke')).toBe(COLORS.get('basic-gray38'));
+
+    rerender(
+      <Button loading viewType='secondary'>
+        Some text here
+      </Button>,
+    );
+
+    expect(getByTestId('spinner').getAttribute('stroke')).toBe(COLORS.get('basic-gray38'));
   });
 });

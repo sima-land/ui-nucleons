@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { Spinner, DIAMETERS } from '..';
+import { Spinner, DIAMETERS, SpinnerSVG } from '..';
 import { COLORS } from '../../colors';
 
 describe('Spinner', () => {
@@ -43,5 +43,21 @@ describe('Spinner', () => {
 
     rerender(<Spinner color='basic-gray87' />);
     expect(container.querySelector('svg')?.getAttribute('stroke')).toBe(COLORS.get('basic-gray87'));
+  });
+
+  it('should use default color for invalid token in "color" prop', () => {
+    const { container } = render(<Spinner color={'invalid' as any} />);
+    expect(container.querySelector('svg')?.getAttribute('stroke')).toBe(COLORS.get('basic-blue'));
+  });
+});
+
+describe('SpinnerSVG', () => {
+  it('should render component', () => {
+    const { queryAllByTestId, getByTestId } = render(<SpinnerSVG />);
+
+    expect(queryAllByTestId('spinner')).toHaveLength(1);
+    expect(getByTestId('spinner') instanceof SVGSVGElement).toBe(true);
+    expect(getByTestId('spinner').getAttribute('stroke')).toBe(COLORS.get('basic-blue'));
+    expect(getByTestId('spinner').classList).toContain('size-m');
   });
 });
