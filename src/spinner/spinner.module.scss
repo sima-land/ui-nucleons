@@ -1,10 +1,18 @@
 $pi: 3.141592653589793;
 $sizes: (
+  s: 20,
+  m: 48,
+  l: 80,
+  // legacy, @todo удалить со временем:
   small: 20,
   medium: 48,
   large: 80,
 );
 $durations: (
+  s: 600ms,
+  m: 750ms,
+  l: 950ms,
+  // legacy, @todo удалить со временем:
   small: 600ms,
   medium: 750ms,
   large: 950ms,
