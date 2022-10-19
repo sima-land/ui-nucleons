@@ -9,7 +9,7 @@ import TwitterSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/twitter';
 import { COLORS } from '../../colors';
 
 export default {
-  title: 'desktop/Select',
+  title: 'deprecated/Select',
   component: Select,
   parameters: {
     layout: 'padded',
