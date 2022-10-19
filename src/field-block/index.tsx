@@ -6,9 +6,14 @@ export type FieldBlockSize = 's' | 'm' | 'l';
 
 type NoChildren<T extends { children?: any }> = Omit<T, 'children'>;
 
-interface FieldBlockStyle extends CSSProperties {
+export interface FieldBlockStyle extends CSSProperties {
   '--field-width'?: string;
+  '--field-main-text-color'?: string;
 }
+
+type WithStyle<T extends { style?: CSSProperties }> = Omit<T, 'style'> & {
+  style?: FieldBlockStyle;
+};
 
 export interface FieldBlockProps {
   /** Отключенное состояние. */
@@ -39,15 +44,13 @@ export interface FieldBlockProps {
   fixedHeight?: boolean;
 
   /** Опции корневого элемента. */
-  rootProps?: Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'children'> & {
-    style?: FieldBlockStyle;
-  };
+  rootProps?: NoChildren<WithStyle<HTMLAttributes<HTMLDivElement>>>;
 
   /** Ref корневого элемента. */
   rootRef?: Ref<HTMLDivElement>;
 
   /** Опции элемента блока поля. */
-  blockProps?: NoChildren<HTMLAttributes<HTMLDivElement>>;
+  blockProps?: NoChildren<WithStyle<HTMLAttributes<HTMLDivElement>>>;
 
   /** Ref элемента блока поля. */
   blockRef?: Ref<HTMLDivElement>;
@@ -62,7 +65,7 @@ export interface FieldBlockProps {
   main?: ReactNode;
 
   /** Опции основного содержимого. */
-  mainProps?: NoChildren<HTMLAttributes<HTMLDivElement>>;
+  mainProps?: NoChildren<WithStyle<HTMLAttributes<HTMLDivElement>>>;
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
@@ -105,7 +108,7 @@ export function FieldBlock({
   adornmentEnd,
   'data-testid': testId = 'field',
 }: FieldBlockProps) {
-  const needLabel = Boolean(label) && size === 'l';
+  const needLabel = Boolean(label) && (size === 'l' || labelAsPlaceholder);
 
   const rootClassName = cx(
     'root',

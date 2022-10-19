@@ -4,6 +4,8 @@ import styles from './dropdown-item.module.scss';
 
 const cx = classnames.bind(styles);
 
+export type DropdownItemSize = 's' | 'm' | 'l' | 'xl';
+
 export interface DropdownItemProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'size'> {
   /** Отображать элемент как отмеченный или нет. */
   checked?: boolean;
@@ -15,22 +17,21 @@ export interface DropdownItemProps extends Omit<React.HTMLAttributes<HTMLDivElem
   noHover?: boolean;
 
   /** Размер. */
-  size?: 's' | 'm' | 'l' | 'xl';
+  size?: DropdownItemSize;
+
+  /** Строковое значение, ассоциированное с элементом списка. */
+  value?: string;
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
 }
 
 /**
- * Компонент элемента выпадающего списка.
+ * Элемент выпадающего списка.
  * @param props Свойства.
- * @param props.checked Отображать элемент как отмеченный или нет.
- * @param props.disabled Отключен ли элемент.
- * @param props.noHover Нужно ли отключить эффект при наведении.
- * @param props.size Размер.
  * @return Элемент.
  */
-export const DropdownItem = ({
+export function DropdownItem({
   size = 'm',
   children,
   className,
@@ -39,19 +40,21 @@ export const DropdownItem = ({
   checked,
   'data-testid': testId = 'dropdown-item',
   ...restProps
-}: DropdownItemProps) => (
-  <div
-    {...restProps}
-    className={cx(
-      'root',
-      `size-${size}`,
-      checked && 'checked',
-      disabled && 'disabled',
-      noHover && 'no-hover',
-      className,
-    )}
-    data-testid={testId}
-  >
-    {children}
-  </div>
-);
+}: DropdownItemProps) {
+  return (
+    <div
+      {...restProps}
+      className={cx(
+        'root',
+        `size-${size}`,
+        checked && 'checked',
+        disabled && 'disabled',
+        noHover && 'no-hover',
+        className,
+      )}
+      data-testid={testId}
+    >
+      {children}
+    </div>
+  );
+}
