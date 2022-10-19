@@ -98,4 +98,24 @@ describe('TextButton', () => {
     rerender(<TextButton iconGutter={4}>Foo Bar</TextButton>);
     expect(getByTestId('text-button').className).toContain('icon-gutter-4');
   });
+
+  it('should handle "as" prop', () => {
+    const { container, getByTestId, rerender } = render(<TextButton>My Button</TextButton>);
+    expect(container.querySelectorAll('button')).toHaveLength(1);
+    expect(getByTestId('text-button') instanceof HTMLButtonElement).toBe(true);
+
+    rerender(<TextButton as='button'>My Button</TextButton>);
+    expect(container.querySelectorAll('button')).toHaveLength(1);
+    expect(getByTestId('text-button') instanceof HTMLButtonElement).toBe(true);
+
+    rerender(<TextButton as='anchor'>My Button</TextButton>);
+    expect(container.querySelectorAll('a')).toHaveLength(1);
+    expect(getByTestId('text-button') instanceof HTMLAnchorElement).toBe(true);
+  });
+
+  it('should handle "underline" prop', () => {
+    const { getByTestId } = render(<TextButton underline>My Button</TextButton>);
+
+    expect(getByTestId('text-button').className).toContain('underline');
+  });
 });
