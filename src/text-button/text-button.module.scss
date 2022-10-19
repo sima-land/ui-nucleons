@@ -1,0 +1,96 @@
+@use '../colors';
+
+.root {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  white-space: nowrap;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.root,
+.root:link,
+.root:visited,
+.root:hover,
+.root:active {
+  cursor: default;
+  text-decoration: none;
+  border-bottom-color: transparent;
+  &.underline {
+    box-shadow: inset 0 -1px 0 0 currentColor;
+  }
+}
+
+.root:hover {
+  cursor: pointer;
+}
+
+.size-s {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.size-m {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.icon-gutter-4 {
+  --text-button-icon-gutter: 4px;
+}
+
+.icon-gutter-8 {
+  --text-button-icon-gutter: 8px;
+}
+
+// ниже двойные классы для высокой специфичности в монолите
+.root.disabled {
+  color: colors.$basic-gray24;
+  pointer-events: none;
+}
+
+.root:not(.disabled).color-basic-blue {
+  color: colors.$basic-blue;
+  &:hover {
+    color: colors.$additional-deep-blue;
+  }
+}
+
+.root:not(.disabled).color-basic-gray87 {
+  color: colors.$basic-gray87;
+  &:hover {
+    color: colors.$basic-gray54;
+  }
+}
+
+.root:not(.disabled).color-basic-gray38 {
+  color: colors.$basic-gray38;
+  &:hover {
+    color: colors.$basic-gray54;
+  }
+}
+
+.root:not(.disabled).color-basic-white {
+  color: colors.$basic-white;
+  &:hover {
+    color: colors.$basic-gray4;
+  }
+}
+
+// иконки
+.icon-start,
+.icon-end {
+  flex-shrink: 0;
+  fill: currentColor;
+}
+
+.icon-start {
+  margin-right: var(--text-button-icon-gutter);
+}
+
+.icon-end {
+  margin-left: var(--text-button-icon-gutter);
+}
