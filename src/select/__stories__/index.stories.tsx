@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import { Select, renderDefaultArrow } from '..';
-import { Link } from '../../link';
-import GoogleSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/google';
-import VkSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/vk';
-import InstagramSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/instagram';
-import TelegramSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/telegram';
-import TwitterSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/twitter';
-import { COLORS } from '../../colors';
+import { Select, SelectProps } from '..';
+import { Sandbox } from '../../../.storybook/utils';
+import { DropdownItem } from '../../dropdown-item';
+import { FieldBlockProps } from '../../field-block';
+
+type SelectOpener = Extract<Required<SelectProps['opener']>, 'field-block' | 'text-button'>;
 
 export default {
-  title: 'desktop/Select',
+  title: 'common/Select',
   component: Select,
   parameters: {
     layout: 'padded',
@@ -17,176 +15,94 @@ export default {
 };
 
 export function Primary() {
-  const options = [
-    'ООО "Лаваш-Сервис"',
-    'Кайгородцева Анна',
-    'ИП Кайгородцев Максимелиан',
-    'Fourth Service',
-  ];
+  const [value, setValue] = useState<string>('');
+  const options: string[] = ['Один', 'Два', 'Три', 'Четыре', 'Пять'];
 
-  const [currentOption, selectOption] = useState('');
+  const style = {
+    '--dropdown-width': '320px',
+  };
 
   return (
-    <>
-      <Select
-        label='Название организации / ФИО'
-        value={currentOption}
-        options={options}
-        optionSize='m'
-        onSelect={selectOption}
-        caption='Test caption'
-      />
-
-      <div style={{ marginTop: 8 }}>
-        <Link pseudo onClick={() => selectOption('')}>
-          Сбросить
-        </Link>
-      </div>
-    </>
+    <Select
+      label='Номер'
+      style={style}
+      value={value}
+      onChange={e => setValue(e.value)}
+      fieldBlockProps={{ caption: 'Простой пример' }}
+    >
+      {options.map((option, index) => (
+        <DropdownItem key={index} value={option}>
+          {option}
+        </DropdownItem>
+      ))}
+    </Select>
   );
 }
 
 Primary.storyName = 'Простой пример';
 
-export function SizeS() {
-  const options = [
-    'ООО "Лаваш-Сервис"',
-    'Кайгородцева Анна',
-    'ИП Кайгородцев Максимелиан',
-    'Fourth Service',
-  ];
+export function DifferentStates() {
+  const [value, setValue] = useState<string>('');
+  const [opener, setOpener] = useState<SelectOpener>('field-block');
+  const [menuAlign, setMenuAlign] = useState<SelectProps['menuAlign']>('left');
+  const [fieldSize, setFieldSize] = useState<FieldBlockProps['size']>('l');
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const [currentOption, selectOption] = useState('');
+  const options: string[] = ['Один', 'Два', 'Три', 'Четыре', 'Пять'];
 
-  return (
-    <>
-      <Select
-        placeholder='Название организации / ФИО'
-        value={currentOption}
-        options={options}
-        optionSize='m'
-        onSelect={selectOption}
-        caption='Test caption'
-        size='s'
-      />
-
-      <div style={{ marginTop: 8 }}>
-        <Link pseudo onClick={() => selectOption('')}>
-          Сбросить
-        </Link>
-      </div>
-    </>
-  );
-}
-
-SizeS.storyName = 'Размер S';
-
-export function SizeXS() {
-  const options = [
-    'ООО "Лаваш-Сервис"',
-    'Кайгородцева Анна',
-    'ИП Кайгородцев Максимелиан',
-    'Fourth Service',
-  ];
-
-  const [currentOption, selectOption] = useState('');
+  const style = {
+    '--dropdown-width': '320px',
+  };
 
   return (
-    <>
-      <Select
-        placeholder='Название организации / ФИО'
-        value={currentOption}
-        options={options}
-        optionSize='m'
-        onSelect={selectOption}
-        caption='Test caption'
-        size='xs'
-      />
-
-      <div style={{ marginTop: 8 }}>
-        <Link pseudo onClick={() => selectOption('')}>
-          Сбросить
-        </Link>
-      </div>
-    </>
-  );
-}
-
-SizeXS.storyName = 'Размер XS';
-
-export function WithLoading() {
-  const [currentOption, selectOption] = useState('');
-  const [ready, toggleReady] = useState(false);
-
-  return (
-    <>
-      <Select
-        loading={!ready}
-        label='Формат каталога'
-        value={currentOption}
-        onMenuToggle={opened => {
-          opened && !ready && setTimeout(() => toggleReady(true), 1200);
-        }}
-        options={[
-          'Прайс-лист XML',
-          'Прайс-лист YML',
-          'Карточки товаров JPG',
-          'Фото товаров JPG + прайс-лист XLS',
-          'Печатный каталог PDF',
-        ]}
-        optionSize='m'
-        onSelect={selectOption}
-      />
-      <div style={{ marginTop: 8 }}>
-        <Link
-          pseudo
-          onClick={() => {
-            selectOption('');
-            toggleReady(false);
-          }}
+    <Sandbox
+      controls={[
+        {
+          type: 'select',
+          label: 'Открывающий элемент',
+          options: ['field-block', 'text-button'],
+          bind: [opener, setOpener],
+        },
+        {
+          type: 'select',
+          label: 'Выравнивание меню',
+          options: ['left', 'right'],
+          bind: [menuAlign as any, setMenuAlign],
+        },
+        {
+          type: 'select',
+          hidden: opener !== 'field-block',
+          label: 'Размер поля',
+          options: ['l', 'm', 's'],
+          bind: [fieldSize as any, setFieldSize],
+        },
+        {
+          type: 'toggle',
+          label: 'Загрузка',
+          bind: [loading, setLoading],
+        },
+      ]}
+    >
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Select
+          style={style}
+          label='Номер'
+          menuAlign={menuAlign}
+          value={value}
+          onChange={e => setValue(e.value)}
+          opener={opener}
+          fieldBlockProps={{ size: fieldSize, caption: 'Простой пример' }}
+          loading={loading}
         >
-          Сбросить (+данные)
-        </Link>
+          {options.map((option, index) => (
+            <DropdownItem key={index} value={option}>
+              {option}
+            </DropdownItem>
+          ))}
+        </Select>
       </div>
-    </>
+    </Sandbox>
   );
 }
 
-WithLoading.storyName = 'С загрузкой';
-
-interface SocialOption {
-  Icon: React.ComponentType<React.SVGAttributes<SVGSVGElement>>;
-  name: string;
-}
-
-export function CustomIcon() {
-  const options: Array<SocialOption> = [
-    { Icon: GoogleSVG, name: 'Google' },
-    { Icon: VkSVG, name: 'VK' },
-    { Icon: InstagramSVG, name: 'Instagram' },
-    { Icon: TelegramSVG, name: 'Telegram' },
-    { Icon: TwitterSVG, name: 'Twitter' },
-  ];
-
-  const [currentOption, selectOption] = useState<SocialOption>(options[0]);
-  const Icon = currentOption.Icon;
-
-  return (
-    <>
-      <Select
-        label='Название организации / ФИО'
-        value={currentOption.name}
-        options={options}
-        renderOption={option => option.name}
-        optionSize='m'
-        onSelect={selectOption}
-        caption='Test caption'
-        endAdornment={opened =>
-          opened ? renderDefaultArrow(opened) : <Icon fill={COLORS.get('basic-gray38')} />
-        }
-      />
-    </>
-  );
-}
-
-CustomIcon.storyName = 'Особая иконка';
+DifferentStates.storyName = 'Различные состояния';

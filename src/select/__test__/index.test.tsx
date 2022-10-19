@@ -1,298 +1,341 @@
-import React from 'react';
-import { mount, ReactWrapper } from 'enzyme';
-import { act, Simulate } from 'react-dom/test-utils';
+import React, { useContext } from 'react';
+import { fireEvent, render } from '@testing-library/react';
 import { Select } from '..';
-import { TextField } from '../../text-field';
-import { render, fireEvent } from '@testing-library/react';
-import GoogleSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/google';
+import { DropdownItem } from '../../dropdown-item';
+import { SelectOpenerProps } from '../types';
+import { SelectContext } from '../utils';
 
 describe('Select', () => {
-  const openMenu = (wrapper: ReactWrapper) => {
-    act(() => {
-      Simulate.keyDown(
-        wrapper.find(TextField).find('input[data-testid="text-field:field"]').getDOMNode(),
-        { key: 'Enter' },
-      );
-    });
-    wrapper.update();
-  };
-
-  const findMenu = (wrapper: ReactWrapper) => wrapper.find('div[data-testid="select:menu"]');
-
-  it('should renders correctly', () => {
-    const menuToggleSpy = jest.fn();
-    const selectSpy = jest.fn();
-    const clickSpy = jest.fn();
-
-    const wrapper = mount(
-      <Select
-        label='Формат каталога'
-        value='Карточки товаров JPG'
-        onMenuToggle={menuToggleSpy}
-        options={[
-          'Прайс-лист XML',
-          'Прайс-лист YML',
-          'Карточки товаров JPG',
-          'Фото товаров JPG + прайс-лист XLS',
-          'Печатный каталог PDF',
-        ]}
-        optionSize='m'
-        onSelect={selectSpy}
-        onClick={clickSpy}
-        renderOption={option => option.toUpperCase()}
-      />,
+  it('should handle mouse control on opener - FieldBlock', () => {
+    const { queryAllByTestId, getByTestId } = render(
+      <Select>
+        <DropdownItem value='1'>One</DropdownItem>
+        <DropdownItem value='2'>Two</DropdownItem>
+        <DropdownItem value='3'>Three</DropdownItem>
+      </Select>,
     );
 
-    expect(wrapper).toMatchSnapshot();
-    openMenu(wrapper);
-    expect(wrapper).toMatchSnapshot();
+    // initial state
+    expect(queryAllByTestId('select')).toHaveLength(1);
+    expect(queryAllByTestId('field')).toHaveLength(1);
+    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
+
+    // opener click
+    fireEvent.mouseDown(getByTestId('field:block'));
+    expect(queryAllByTestId('select')).toHaveLength(1);
+    expect(queryAllByTestId('field')).toHaveLength(1);
+    expect(queryAllByTestId('dropdown')).toHaveLength(1);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
+
+    // opener click again
+    fireEvent.mouseDown(getByTestId('field:block'));
+    expect(queryAllByTestId('select')).toHaveLength(1);
+    expect(queryAllByTestId('field')).toHaveLength(1);
+    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
   });
 
-  it('should handle TextField block click', () => {
-    const clickSpy = jest.fn();
-
-    const wrapper = mount(
-      <Select
-        label='Формат каталога'
-        value='Карточки товаров JPG'
-        options={[
-          'Прайс-лист XML',
-          'Прайс-лист YML',
-          'Карточки товаров JPG',
-          'Фото товаров JPG + прайс-лист XLS',
-          'Печатный каталог PDF',
-        ]}
-        onClick={clickSpy}
-      />,
+  it('should handle mouse control on opener - TextButton', () => {
+    const { queryAllByTestId, getByTestId } = render(
+      <Select opener='text-button'>
+        <DropdownItem value='1'>Foo</DropdownItem>
+        <DropdownItem value='2'>Bar</DropdownItem>
+      </Select>,
     );
 
-    expect(clickSpy).toHaveBeenCalledTimes(0);
+    // initial state
+    expect(queryAllByTestId('select')).toHaveLength(1);
+    expect(queryAllByTestId('text-button')).toHaveLength(1);
+    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
 
-    act(() => {
-      Simulate.click(wrapper.find(TextField).find('[data-testid="text-field:block"]').getDOMNode());
-    });
-    wrapper.update();
+    // opener click
+    fireEvent.mouseDown(getByTestId('text-button'));
+    expect(queryAllByTestId('select')).toHaveLength(1);
+    expect(queryAllByTestId('text-button')).toHaveLength(1);
+    expect(queryAllByTestId('dropdown')).toHaveLength(1);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(2);
 
-    expect(clickSpy).toHaveBeenCalledTimes(1);
+    // opener click again
+    fireEvent.mouseDown(getByTestId('text-button'));
+    expect(queryAllByTestId('select')).toHaveLength(1);
+    expect(queryAllByTestId('text-button')).toHaveLength(1);
+    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
   });
 
-  it('should handle TextField mousedown', () => {
-    const wrapper = mount(
-      <Select
-        label='Формат каталога'
-        value='Карточки товаров JPG'
-        options={[
-          'Прайс-лист XML',
-          'Прайс-лист YML',
-          'Карточки товаров JPG',
-          'Фото товаров JPG + прайс-лист XLS',
-          'Печатный каталог PDF',
-        ]}
-      />,
+  it('should handle keyboard control on opener - FieldBlock', () => {
+    const { queryAllByTestId, getByTestId } = render(
+      <Select>
+        <DropdownItem value='1'>One</DropdownItem>
+        <DropdownItem value='2'>Two</DropdownItem>
+        <DropdownItem value='3'>Three</DropdownItem>
+      </Select>,
     );
 
-    act(() => {
-      Simulate.mouseDown(
-        wrapper.find(TextField).find('[data-testid="text-field:block"]').getDOMNode(),
-      );
-    });
-    wrapper.update();
+    // initial state
+    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
 
-    expect(wrapper.find('div[data-testid="select:menu"]')).toHaveLength(1);
+    // opener focus
+    fireEvent.focus(getByTestId('field:block'));
+    expect(queryAllByTestId('dropdown')).toHaveLength(0);
 
-    act(() => {
-      Simulate.mouseDown(
-        wrapper.find(TextField).find('[data-testid="text-field:block"]').getDOMNode(),
-      );
-    });
-    wrapper.update();
+    // opener enter keydown
+    fireEvent.keyDown(getByTestId('field:block'), { key: 'Enter' });
+    expect(queryAllByTestId('dropdown')).toHaveLength(1);
 
-    expect(wrapper.find('div[data-testid="select:menu"]')).toHaveLength(0);
+    // menu blur
+    fireEvent.blur(getByTestId('dropdown'));
+    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+
+    // opener focus + enter keydown
+    fireEvent.focus(getByTestId('field:block'));
+    fireEvent.keyDown(getByTestId('field:block'), { key: 'Enter' });
+    expect(queryAllByTestId('dropdown')).toHaveLength(1);
+
+    // opener enter keydown again
+    fireEvent.keyDown(getByTestId('field:block'), { key: 'Enter' });
+    expect(queryAllByTestId('dropdown')).toHaveLength(0);
   });
 
-  it('should handle TextField enter key down', () => {
-    const wrapper = mount(
-      <Select
-        label='Формат каталога'
-        value='Карточки товаров JPG'
-        options={[
-          'Прайс-лист XML',
-          'Прайс-лист YML',
-          'Карточки товаров JPG',
-          'Фото товаров JPG + прайс-лист XLS',
-          'Печатный каталог PDF',
-        ]}
-      />,
+  it('should handle keyboard control on opener - TextButton', () => {
+    const { queryAllByTestId, getByTestId } = render(
+      <Select opener='text-button'>
+        <DropdownItem value='1'>One</DropdownItem>
+        <DropdownItem value='2'>Two</DropdownItem>
+        <DropdownItem value='3'>Three</DropdownItem>
+      </Select>,
     );
 
-    expect(findMenu(wrapper)).toHaveLength(0);
-    openMenu(wrapper);
-    expect(findMenu(wrapper)).toHaveLength(1);
+    // initial state
+    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
+
+    // opener focus
+    fireEvent.focus(getByTestId('text-button'));
+    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+
+    // opener enter keydown
+    fireEvent.keyDown(getByTestId('text-button'), { key: 'Enter' });
+    expect(queryAllByTestId('dropdown')).toHaveLength(1);
+
+    // menu blur
+    fireEvent.blur(getByTestId('dropdown'));
+    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+
+    // opener focus + enter keydown
+    fireEvent.focus(getByTestId('text-button'));
+    fireEvent.keyDown(getByTestId('text-button'), { key: 'Enter' });
+    expect(queryAllByTestId('dropdown')).toHaveLength(1);
+
+    // opener enter keydown again
+    fireEvent.keyDown(getByTestId('text-button'), { key: 'Enter' });
+    expect(queryAllByTestId('dropdown')).toHaveLength(0);
   });
 
   it('should render loading state', () => {
-    const wrapper = mount(
-      <Select
-        label='Формат каталога'
-        value='Карточки товаров JPG'
-        options={[
-          'Прайс-лист XML',
-          'Прайс-лист YML',
-          'Карточки товаров JPG',
-          'Фото товаров JPG + прайс-лист XLS',
-          'Печатный каталог PDF',
-        ]}
-        loading
-      />,
+    const { queryAllByTestId, getByTestId } = render(
+      <Select loading>
+        <DropdownItem value='1'>One</DropdownItem>
+        <DropdownItem value='2'>Two</DropdownItem>
+        <DropdownItem value='3'>Three</DropdownItem>
+      </Select>,
     );
 
-    expect(findMenu(wrapper)).toHaveLength(0);
-    openMenu(wrapper);
-    expect(findMenu(wrapper)).toHaveLength(1);
+    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+    expect(queryAllByTestId('spinner')).toHaveLength(0);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
 
-    expect(wrapper).toMatchSnapshot();
+    fireEvent.mouseDown(getByTestId('field:block'));
+    expect(queryAllByTestId('dropdown')).toHaveLength(1);
+    expect(queryAllByTestId('spinner')).toHaveLength(1);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
   });
 
-  it('should handle menu enter key down', () => {
-    const wrapper = mount(
-      <Select
-        label='Формат каталога'
-        value='Карточки товаров JPG'
-        options={[
-          'Прайс-лист XML',
-          'Прайс-лист YML',
-          'Карточки товаров JPG',
-          'Фото товаров JPG + прайс-лист XLS',
-          'Печатный каталог PDF',
-        ]}
-      />,
+  it('should handle menu keyboard control', () => {
+    const spy = jest.fn();
+
+    const { queryAllByTestId, getByTestId } = render(
+      <Select onChange={spy}>
+        <DropdownItem value='1'>One</DropdownItem>
+        <DropdownItem value='2'>Two</DropdownItem>
+        <DropdownItem value='3'>Three</DropdownItem>
+      </Select>,
     );
 
-    expect(findMenu(wrapper)).toHaveLength(0);
-    openMenu(wrapper);
-    expect(findMenu(wrapper)).toHaveLength(1);
+    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
 
-    act(() => {
-      Simulate.keyDown(findMenu(wrapper).getDOMNode(), { key: 'Enter' });
-    });
-    wrapper.update();
-    expect(findMenu(wrapper)).toHaveLength(0);
+    // show menu
+    fireEvent.mouseDown(getByTestId('field:block'));
+    expect(queryAllByTestId('dropdown')).toHaveLength(1);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
+
+    // make options active: 1, 2, 3, 1, 3, 2
+    fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowDown' });
+    fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowDown' });
+    fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowDown' });
+    fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowDown' });
+    fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowUp' });
+    fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowUp' });
+    fireEvent.keyDown(getByTestId('dropdown'), { key: 'Enter' });
+    expect(spy).toBeCalledTimes(1);
+    expect(spy.mock.calls[0][0]).toEqual({ value: '2' });
   });
 
-  it('should handle menu not enter key down', () => {
-    const wrapper = mount(
-      <Select
-        label='Формат каталога'
-        value='Карточки товаров JPG'
-        options={[
-          'Прайс-лист XML',
-          'Прайс-лист YML',
-          'Карточки товаров JPG',
-          'Фото товаров JPG + прайс-лист XLS',
-          'Печатный каталог PDF',
-        ]}
-      />,
+  it('should handle menu mouse control', () => {
+    const spy = jest.fn();
+
+    const { queryAllByTestId, getByTestId } = render(
+      <Select onChange={spy}>
+        <DropdownItem value='1'>One</DropdownItem>
+        <DropdownItem value='2'>Two</DropdownItem>
+        <DropdownItem value='3'>Three</DropdownItem>
+      </Select>,
     );
 
-    expect(findMenu(wrapper)).toHaveLength(0);
-    openMenu(wrapper);
-    expect(findMenu(wrapper)).toHaveLength(1);
+    expect(spy).toBeCalledTimes(0);
+    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
 
-    act(() => {
-      Simulate.keyDown(findMenu(wrapper).getDOMNode(), { key: 'E' });
-    });
-    wrapper.update();
-    expect(findMenu(wrapper)).toHaveLength(1);
+    fireEvent.mouseDown(getByTestId('field:block'));
+    expect(spy).toBeCalledTimes(0);
+    expect(queryAllByTestId('dropdown')).toHaveLength(1);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
+
+    fireEvent.click(queryAllByTestId('dropdown-item')[1]);
+    expect(spy).toBeCalledTimes(1);
+    expect(spy.mock.calls[0][0]).toEqual({ value: '2' });
+    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
   });
 
-  it('should handle menu blur', () => {
-    const wrapper = mount(
-      <Select
-        label='Формат каталога'
-        value='Карточки товаров JPG'
-        options={[
-          'Прайс-лист XML',
-          'Прайс-лист YML',
-          'Карточки товаров JPG',
-          'Фото товаров JPG + прайс-лист XLS',
-          'Печатный каталог PDF',
-        ]}
-      />,
+  it('should handle options without defined value', () => {
+    const spy = jest.fn();
+
+    const { queryAllByTestId, getByTestId } = render(
+      <Select onChange={spy}>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Select>,
     );
 
-    expect(findMenu(wrapper)).toHaveLength(0);
-    openMenu(wrapper);
-    expect(findMenu(wrapper)).toHaveLength(1);
+    // open menu
+    fireEvent.mouseDown(getByTestId('field:block'));
+    expect(spy).toBeCalledTimes(0);
+    expect(queryAllByTestId('dropdown')).toHaveLength(1);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
 
-    act(() => {
-      Simulate.blur(findMenu(wrapper).getDOMNode());
-    });
-    wrapper.update();
-    expect(findMenu(wrapper)).toHaveLength(0);
+    // click on third option
+    fireEvent.click(queryAllByTestId('dropdown-item')[2]);
+    expect(spy).toBeCalledTimes(1);
+    expect(spy.mock.calls[0][0]).toEqual({ value: 'Baz' });
   });
 
-  it('should handle menu item select', () => {
-    const selectSpy = jest.fn();
-
-    const wrapper = mount(
-      <Select
-        label='Формат каталога'
-        value='Карточки товаров JPG'
-        options={[
-          'Прайс-лист XML',
-          'Прайс-лист YML',
-          'Карточки товаров JPG',
-          'Фото товаров JPG + прайс-лист XLS',
-          'Печатный каталог PDF',
-        ]}
-        optionSize='m'
-        onSelect={selectSpy}
-      />,
+  it('should handle blur on opener', () => {
+    const { getByTestId } = render(
+      <Select>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Select>,
     );
 
-    expect(selectSpy).toBeCalledTimes(0);
+    fireEvent.focus(getByTestId('field:block'));
 
-    openMenu(wrapper);
-
-    expect(selectSpy).toBeCalledTimes(0);
-
-    act(() => {
-      Simulate.click(wrapper.find('div[role="menuitem"]').at(2).getDOMNode());
-    });
-    wrapper.update();
-
-    expect(selectSpy).toBeCalledTimes(1);
+    expect(() => {
+      fireEvent.blur(getByTestId('field:block'));
+    }).not.toThrow();
   });
 
-  it('should handle ReactNode in "endAdornment" prop', () => {
-    const { getAllByTestId } = render(
-      <Select
-        label='Формат каталога'
-        value='AAAA'
-        options={['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE']}
-        endAdornment={<GoogleSVG data-testid='google-svg' />}
-      />,
+  it('should handle menu enter keydown without active options', () => {
+    const spy = jest.fn();
+
+    const { getByTestId, queryAllByTestId } = render(
+      <Select onChange={spy}>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Select>,
     );
 
-    expect(getAllByTestId('google-svg')).toHaveLength(1);
+    // show menu
+    fireEvent.mouseDown(getByTestId('field:block'));
+    expect(queryAllByTestId('dropdown')).toHaveLength(1);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
+
+    // enter without active options
+    fireEvent.keyDown(getByTestId('dropdown'), { key: 'Enter' });
+    expect(spy).toBeCalledTimes(0);
   });
 
-  it('should handle function in "endAdornment" prop', () => {
-    const { getAllByTestId, getByTestId } = render(
-      <Select
-        label='Формат каталога'
-        value='AAAA'
-        options={['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE']}
-        endAdornment={opened => (
-          <GoogleSVG data-testid={`google-svg-${opened ? 'opened' : 'closed'}`} />
-        )}
-      />,
+  it('should handle custom opener', () => {
+    const spy = jest.fn();
+
+    function CustomOpener({
+      openerRef,
+      onFocus,
+      onBlur,
+      onKeyDown,
+      onMouseDown,
+    }: SelectOpenerProps) {
+      return (
+        <div
+          ref={openerRef as any}
+          tabIndex={0}
+          role='combobox'
+          data-testid='custom-opener'
+          {...{
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onMouseDown,
+          }}
+        >
+          My Opener
+        </div>
+      );
+    }
+
+    const { getByTestId, queryAllByTestId } = render(
+      <Select opener={CustomOpener} onChange={spy}>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Select>,
     );
 
-    expect(getAllByTestId('google-svg-closed')).toHaveLength(1);
+    // show menu
+    fireEvent.mouseDown(getByTestId('custom-opener'));
+    expect(queryAllByTestId('dropdown')).toHaveLength(1);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
 
-    fireEvent.mouseDown(getByTestId('text-field:block'));
+    // click on third option
+    fireEvent.click(queryAllByTestId('dropdown-item')[2]);
+    expect(spy).toBeCalledTimes(1);
+    expect(spy.mock.calls[0][0]).toEqual({ value: 'Baz' });
+  });
+});
 
-    expect(getAllByTestId('google-svg-opened')).toHaveLength(1);
+describe('SelectContext', () => {
+  it('should provide defaults', () => {
+    function TestComponent() {
+      const { setDropdownProps } = useContext(SelectContext);
+
+      return (
+        <div data-testid='test-component' onClick={() => setDropdownProps({ id: 'some-id' })}>
+          Hello
+        </div>
+      );
+    }
+
+    const { getByTestId } = render(<TestComponent />);
+
+    expect(() => {
+      fireEvent.click(getByTestId('test-component'));
+    }).not.toThrow();
   });
 });

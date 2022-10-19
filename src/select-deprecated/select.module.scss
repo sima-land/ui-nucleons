@@ -1,0 +1,26 @@
+.root {
+  position: relative;
+  width: var(--width, 320px);
+}
+
+.field {
+  width: 100%;
+}
+
+.field,
+.field * {
+  cursor: pointer;
+}
+
+.adornment {
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.menu {
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  z-index: 2;
+}
