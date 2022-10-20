@@ -12,7 +12,7 @@ import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { Dropdown, DropdownProps } from '../dropdown';
 import { DropdownItem, DropdownItemProps } from '../dropdown-item';
 import { DropdownLoading } from '../_internal/dropdown-loading';
-import { isMenuItem, SelectContext, SelectFieldBlock, SelectTextButton } from './utils';
+import { MenuItem, SelectContext, SelectFieldBlock, SelectTextButton } from './utils';
 import { SelectOpenerProps, SelectProps } from './types';
 import classNames from 'classnames/bind';
 import styles from './select.module.scss';
@@ -48,7 +48,7 @@ export function Select({
   const [focused, setFocused] = useState<boolean>(false);
   const [checkedIndex, setCheckedIndex] = useState<number>(-1);
   const [dropdownProps, setDropdownProps] = useState<DropdownProps | null>(null);
-  const options = Children.toArray(children).filter(isMenuItem);
+  const options = Children.toArray(children).filter(MenuItem.is);
   const isInitialRender = useRef<boolean>(true);
   const onMenuToggleRef = useIdentityRef(onMenuToggle);
 
@@ -88,12 +88,7 @@ export function Select({
 
   const selectItem = useCallback(
     (item: ReactElement<DropdownItemProps>) => {
-      const { value: itemValue, children: itemChildren } = item.props;
-
-      // нативный select преобразует содержимое option к строке если не указан value, делаем также
-      const result = typeof itemValue === 'string' ? itemValue : String(itemChildren);
-
-      onChange?.({ value: result });
+      onChange?.({ value: MenuItem.getValue(item) });
     },
     [onChange],
   );
@@ -114,14 +109,16 @@ export function Select({
         }
         case 'ArrowUp':
           setCheckedIndex(n => {
-            const next = n - 1;
-            return next >= 0 ? next : options.length - 1;
+            const [linkedList, currentIndex] = MenuItem.asLinkedList(options, n);
+            const nextIndex = linkedList.prev(currentIndex);
+            return typeof nextIndex === 'undefined' ? -1 : nextIndex;
           });
           break;
         case 'ArrowDown':
           setCheckedIndex(n => {
-            const next = n + 1;
-            return next < options.length ? next : 0;
+            const [linkedList, currentIndex] = MenuItem.asLinkedList(options, n);
+            const nextIndex = linkedList.next(currentIndex);
+            return typeof nextIndex === 'undefined' ? -1 : nextIndex;
           });
           break;
       }
@@ -192,12 +189,13 @@ export function Select({
             options.map((item, index) => (
               <DropdownItem
                 checked={checkedIndex === index}
+                selected={value === MenuItem.getValue(item)}
                 {...item.props}
                 key={index}
                 role='option'
                 data-select-role='option'
                 // @todo вызывать callback из пропсов DropdownItem если понадобится
-                onClick={handleOptionClick(item)}
+                onClick={item.props.disabled ? undefined : handleOptionClick(item)}
               />
             ))
           )}

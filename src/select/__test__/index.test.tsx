@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { Select } from '..';
 import { DropdownItem } from '../../dropdown-item';
 import { SelectOpenerProps } from '../types';
-import { SelectContext } from '../utils';
 
 describe('Select', () => {
   it('should handle mouse control on opener - FieldBlock', () => {
@@ -344,24 +343,25 @@ describe('Select', () => {
     expect(queryAllByTestId('dropdown')).toHaveLength(0);
     expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
   });
-});
 
-describe('SelectContext', () => {
-  it('should provide defaults', () => {
-    function TestComponent() {
-      const { setDropdownProps } = useContext(SelectContext);
+  it('should handle ArrowUp/ArrowDown keydown for all disabled options', () => {
+    const { queryAllByTestId, getByTestId } = render(
+      <Select>
+        <DropdownItem disabled>Foo</DropdownItem>
+        <DropdownItem disabled>Bar</DropdownItem>
+        <DropdownItem disabled>Baz</DropdownItem>
+      </Select>,
+    );
 
-      return (
-        <div data-testid='test-component' onClick={() => setDropdownProps({ id: 'some-id' })}>
-          Hello
-        </div>
-      );
-    }
+    // open menu
+    fireEvent.mouseDown(getByTestId('select:opener'));
+    expect(queryAllByTestId('dropdown')).toHaveLength(1);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
 
-    const { getByTestId } = render(<TestComponent />);
-
+    // keydown
     expect(() => {
-      fireEvent.click(getByTestId('test-component'));
+      fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowDown' });
+      fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowUp' });
     }).not.toThrow();
   });
 });
