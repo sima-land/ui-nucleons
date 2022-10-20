@@ -22,14 +22,14 @@ describe('Select', () => {
     expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
 
     // opener click
-    fireEvent.mouseDown(getByTestId('field:block'));
+    fireEvent.mouseDown(getByTestId('select:opener'));
     expect(queryAllByTestId('select')).toHaveLength(1);
     expect(queryAllByTestId('field')).toHaveLength(1);
     expect(queryAllByTestId('dropdown')).toHaveLength(1);
     expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
 
     // opener click again
-    fireEvent.mouseDown(getByTestId('field:block'));
+    fireEvent.mouseDown(getByTestId('select:opener'));
     expect(queryAllByTestId('select')).toHaveLength(1);
     expect(queryAllByTestId('field')).toHaveLength(1);
     expect(queryAllByTestId('dropdown')).toHaveLength(0);
@@ -46,21 +46,21 @@ describe('Select', () => {
 
     // initial state
     expect(queryAllByTestId('select')).toHaveLength(1);
-    expect(queryAllByTestId('text-button')).toHaveLength(1);
+    expect(queryAllByTestId('select:opener')).toHaveLength(1);
     expect(queryAllByTestId('dropdown')).toHaveLength(0);
     expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
 
     // opener click
-    fireEvent.mouseDown(getByTestId('text-button'));
+    fireEvent.mouseDown(getByTestId('select:opener'));
     expect(queryAllByTestId('select')).toHaveLength(1);
-    expect(queryAllByTestId('text-button')).toHaveLength(1);
+    expect(queryAllByTestId('select:opener')).toHaveLength(1);
     expect(queryAllByTestId('dropdown')).toHaveLength(1);
     expect(queryAllByTestId('dropdown-item')).toHaveLength(2);
 
     // opener click again
-    fireEvent.mouseDown(getByTestId('text-button'));
+    fireEvent.mouseDown(getByTestId('select:opener'));
     expect(queryAllByTestId('select')).toHaveLength(1);
-    expect(queryAllByTestId('text-button')).toHaveLength(1);
+    expect(queryAllByTestId('select:opener')).toHaveLength(1);
     expect(queryAllByTestId('dropdown')).toHaveLength(0);
     expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
   });
@@ -79,11 +79,11 @@ describe('Select', () => {
     expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
 
     // opener focus
-    fireEvent.focus(getByTestId('field:block'));
+    fireEvent.focus(getByTestId('select:opener'));
     expect(queryAllByTestId('dropdown')).toHaveLength(0);
 
     // opener enter keydown
-    fireEvent.keyDown(getByTestId('field:block'), { key: 'Enter' });
+    fireEvent.keyDown(getByTestId('select:opener'), { key: 'Enter' });
     expect(queryAllByTestId('dropdown')).toHaveLength(1);
 
     // menu blur
@@ -91,12 +91,12 @@ describe('Select', () => {
     expect(queryAllByTestId('dropdown')).toHaveLength(0);
 
     // opener focus + enter keydown
-    fireEvent.focus(getByTestId('field:block'));
-    fireEvent.keyDown(getByTestId('field:block'), { key: 'Enter' });
+    fireEvent.focus(getByTestId('select:opener'));
+    fireEvent.keyDown(getByTestId('select:opener'), { key: 'Enter' });
     expect(queryAllByTestId('dropdown')).toHaveLength(1);
 
     // opener enter keydown again
-    fireEvent.keyDown(getByTestId('field:block'), { key: 'Enter' });
+    fireEvent.keyDown(getByTestId('select:opener'), { key: 'Enter' });
     expect(queryAllByTestId('dropdown')).toHaveLength(0);
   });
 
@@ -114,11 +114,11 @@ describe('Select', () => {
     expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
 
     // opener focus
-    fireEvent.focus(getByTestId('text-button'));
+    fireEvent.focus(getByTestId('select:opener'));
     expect(queryAllByTestId('dropdown')).toHaveLength(0);
 
     // opener enter keydown
-    fireEvent.keyDown(getByTestId('text-button'), { key: 'Enter' });
+    fireEvent.keyDown(getByTestId('select:opener'), { key: 'Enter' });
     expect(queryAllByTestId('dropdown')).toHaveLength(1);
 
     // menu blur
@@ -126,12 +126,12 @@ describe('Select', () => {
     expect(queryAllByTestId('dropdown')).toHaveLength(0);
 
     // opener focus + enter keydown
-    fireEvent.focus(getByTestId('text-button'));
-    fireEvent.keyDown(getByTestId('text-button'), { key: 'Enter' });
+    fireEvent.focus(getByTestId('select:opener'));
+    fireEvent.keyDown(getByTestId('select:opener'), { key: 'Enter' });
     expect(queryAllByTestId('dropdown')).toHaveLength(1);
 
     // opener enter keydown again
-    fireEvent.keyDown(getByTestId('text-button'), { key: 'Enter' });
+    fireEvent.keyDown(getByTestId('select:opener'), { key: 'Enter' });
     expect(queryAllByTestId('dropdown')).toHaveLength(0);
   });
 
@@ -148,7 +148,7 @@ describe('Select', () => {
     expect(queryAllByTestId('spinner')).toHaveLength(0);
     expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
 
-    fireEvent.mouseDown(getByTestId('field:block'));
+    fireEvent.mouseDown(getByTestId('select:opener'));
     expect(queryAllByTestId('dropdown')).toHaveLength(1);
     expect(queryAllByTestId('spinner')).toHaveLength(1);
     expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
@@ -169,7 +169,7 @@ describe('Select', () => {
     expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
 
     // show menu
-    fireEvent.mouseDown(getByTestId('field:block'));
+    fireEvent.mouseDown(getByTestId('select:opener'));
     expect(queryAllByTestId('dropdown')).toHaveLength(1);
     expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
 
@@ -200,7 +200,7 @@ describe('Select', () => {
     expect(queryAllByTestId('dropdown')).toHaveLength(0);
     expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
 
-    fireEvent.mouseDown(getByTestId('field:block'));
+    fireEvent.mouseDown(getByTestId('select:opener'));
     expect(spy).toBeCalledTimes(0);
     expect(queryAllByTestId('dropdown')).toHaveLength(1);
     expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
@@ -224,7 +224,7 @@ describe('Select', () => {
     );
 
     // open menu
-    fireEvent.mouseDown(getByTestId('field:block'));
+    fireEvent.mouseDown(getByTestId('select:opener'));
     expect(spy).toBeCalledTimes(0);
     expect(queryAllByTestId('dropdown')).toHaveLength(1);
     expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
@@ -244,10 +244,10 @@ describe('Select', () => {
       </Select>,
     );
 
-    fireEvent.focus(getByTestId('field:block'));
+    fireEvent.focus(getByTestId('select:opener'));
 
     expect(() => {
-      fireEvent.blur(getByTestId('field:block'));
+      fireEvent.blur(getByTestId('select:opener'));
     }).not.toThrow();
   });
 
@@ -263,7 +263,7 @@ describe('Select', () => {
     );
 
     // show menu
-    fireEvent.mouseDown(getByTestId('field:block'));
+    fireEvent.mouseDown(getByTestId('select:opener'));
     expect(queryAllByTestId('dropdown')).toHaveLength(1);
     expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
 
@@ -317,6 +317,32 @@ describe('Select', () => {
     fireEvent.click(queryAllByTestId('dropdown-item')[2]);
     expect(spy).toBeCalledTimes(1);
     expect(spy.mock.calls[0][0]).toEqual({ value: 'Baz' });
+  });
+
+  it('should hide menu when it is shown and select becomes disabled', () => {
+    const { queryAllByTestId, getByTestId, rerender } = render(
+      <Select>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Select>,
+    );
+
+    // open menu
+    fireEvent.mouseDown(getByTestId('select:opener'));
+    expect(queryAllByTestId('dropdown')).toHaveLength(1);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
+
+    // rerender with disabled prop
+    rerender(
+      <Select disabled>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Select>,
+    );
+    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
   });
 });
 

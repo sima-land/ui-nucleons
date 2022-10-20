@@ -50,7 +50,10 @@ export interface FieldBlockProps {
   rootRef?: Ref<HTMLDivElement>;
 
   /** Опции элемента блока поля. */
-  blockProps?: NoChildren<WithStyle<HTMLAttributes<HTMLDivElement>>>;
+  blockProps?: NoChildren<WithStyle<HTMLAttributes<HTMLDivElement>>> & {
+    /** Идентификатор для систем автоматизированного тестирования. */
+    'data-testid'?: string;
+  };
 
   /** Ref элемента блока поля. */
   blockRef?: Ref<HTMLDivElement>;
@@ -127,7 +130,8 @@ export function FieldBlock({
 
   return (
     <div {...rootProps} ref={rootRef} className={rootClassName} data-testid={testId}>
-      <div {...blockProps} ref={blockRef} className={blockClassName} data-testid='field:block'>
+      {/* @todo придумать как вынести блок в компонент FieldBox чтобы использовать в отрыве от root/caption  */}
+      <div data-testid='field:block' {...blockProps} ref={blockRef} className={blockClassName}>
         {adornmentStart && (
           <div className={cx('col', 'adornment-col', 'start')} data-testid='field:adornment-start'>
             {adornmentStart}
