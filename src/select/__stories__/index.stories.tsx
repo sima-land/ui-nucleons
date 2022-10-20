@@ -18,7 +18,6 @@ export default {
 
 export function Primary() {
   const [value, setValue] = useState<string>('');
-  const options: string[] = ['Один', 'Два', 'Три', 'Четыре', 'Пять'];
 
   const style = {
     '--dropdown-width': '320px',
@@ -32,11 +31,13 @@ export function Primary() {
       onChange={e => setValue(e.value)}
       fieldBlockProps={{ caption: 'Простой пример' }}
     >
-      {options.map((option, index) => (
-        <DropdownItem key={index} value={option}>
-          {option}
-        </DropdownItem>
-      ))}
+      <DropdownItem>Ноль</DropdownItem>
+      <DropdownItem>Один</DropdownItem>
+      <DropdownItem>Два</DropdownItem>
+      <DropdownItem disabled>Три</DropdownItem>
+      <DropdownItem>Четыре</DropdownItem>
+      <DropdownItem>Пять</DropdownItem>
+      <DropdownItem>Шесть</DropdownItem>
     </Select>
   );
 }
@@ -51,8 +52,6 @@ export function DifferentStates() {
   const [buttonSize, setButtonSize] = useState<TextButtonSize>('m');
   const [loading, setLoading] = useState<boolean>(false);
   const [state, setState] = useState<'default' | 'disabled'>('default');
-
-  const options: string[] = ['Один', 'Два', 'Три', 'Четыре', 'Пять'];
 
   const selectProps: SelectProps = {
     value,
@@ -120,11 +119,13 @@ export function DifferentStates() {
     >
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Select {...selectProps}>
-          {options.map((option, index) => (
-            <DropdownItem key={index} value={option}>
-              {option}
-            </DropdownItem>
-          ))}
+          <DropdownItem disabled>Ноль</DropdownItem>
+          <DropdownItem>Один</DropdownItem>
+          <DropdownItem>Два</DropdownItem>
+          <DropdownItem disabled>Три</DropdownItem>
+          <DropdownItem>Четыре</DropdownItem>
+          <DropdownItem>Пять</DropdownItem>
+          <DropdownItem disabled>Шесть</DropdownItem>
         </Select>
       </div>
     </Sandbox>
@@ -132,3 +133,23 @@ export function DifferentStates() {
 }
 
 DifferentStates.storyName = 'Различные состояния';
+
+export function TestAllDisabled() {
+  return (
+    <div style={{ display: 'flex', gap: 20, justifyContent: 'center' }}>
+      <Select fieldBlockProps={{ size: 's' }}>
+        <DropdownItem disabled>Один</DropdownItem>
+        <DropdownItem disabled>Два</DropdownItem>
+        <DropdownItem disabled>Три</DropdownItem>
+      </Select>
+
+      <select style={{ width: 240, height: 32 }}>
+        <option disabled>Один</option>
+        <option disabled>Два</option>
+        <option disabled>Три</option>
+      </select>
+    </div>
+  );
+}
+
+TestAllDisabled.storyName = 'Тест: Все опции недоступны';
