@@ -73,7 +73,8 @@ export function SelectFieldBlock({
       blockProps={{
         ...fieldBlockProps?.blockProps,
         role: 'combobox',
-        tabIndex: 0,
+        tabIndex: disabled ? undefined : 0,
+        'data-testid': 'select:opener',
 
         // @todo если будет необходимо - вызывать callback'и из blockProps по событиям
         onFocus,
@@ -110,19 +111,20 @@ export function SelectTextButton({
 
   return (
     <TextButton
-      endIcon={ArrowSVG}
       iconGutter={4}
-      {...(textButtonProps as any)}
-      appearance='button'
+      endIcon={ArrowSVG}
+      {...{
+        ...textButtonProps,
+        appearance: 'button',
+      }}
       disabled={disabled}
       buttonRef={openerRef as any}
       role='combobox'
-      tabIndex={0}
       onFocus={onFocus}
       onBlur={onBlur}
       onMouseDown={onMouseDown}
       onKeyDown={onKeyDown}
-      className={cx('text-button')}
+      data-testid='select:opener'
     >
       {value || label}
     </TextButton>

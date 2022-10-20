@@ -27,6 +27,8 @@ export interface SelectOpenerProps {
   onKeyDown: KeyboardEventHandler<HTMLElement>;
 }
 
+export type SelectMenuAlign = 'left' | 'right';
+
 export interface SelectProps {
   /** Опции. */
   children?: ReactNode;
@@ -56,7 +58,7 @@ export interface SelectProps {
   value?: ReactNode;
 
   /** Направления выпадания меню опций. */
-  menuAlign?: 'left' | 'right';
+  menuAlign?: SelectMenuAlign;
 
   /** Ярлык. */
   label?: string;

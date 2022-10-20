@@ -840,7 +840,15 @@ exports[`Select should renders correctly 2`] = `
                         onClick={[Function]}
                         role="menuitem"
                       >
-                        ПРАЙС-ЛИСТ XML
+                        <div
+                          className="col col-center"
+                        >
+                          <div
+                            className="row-main"
+                          >
+                            ПРАЙС-ЛИСТ XML
+                          </div>
+                        </div>
                       </div>
                     </DropdownItem>
                     <DropdownItem
@@ -855,7 +863,15 @@ exports[`Select should renders correctly 2`] = `
                         onClick={[Function]}
                         role="menuitem"
                       >
-                        ПРАЙС-ЛИСТ YML
+                        <div
+                          className="col col-center"
+                        >
+                          <div
+                            className="row-main"
+                          >
+                            ПРАЙС-ЛИСТ YML
+                          </div>
+                        </div>
                       </div>
                     </DropdownItem>
                     <DropdownItem
@@ -870,7 +886,15 @@ exports[`Select should renders correctly 2`] = `
                         onClick={[Function]}
                         role="menuitem"
                       >
-                        КАРТОЧКИ ТОВАРОВ JPG
+                        <div
+                          className="col col-center"
+                        >
+                          <div
+                            className="row-main"
+                          >
+                            КАРТОЧКИ ТОВАРОВ JPG
+                          </div>
+                        </div>
                       </div>
                     </DropdownItem>
                     <DropdownItem
@@ -885,7 +909,15 @@ exports[`Select should renders correctly 2`] = `
                         onClick={[Function]}
                         role="menuitem"
                       >
-                        ФОТО ТОВАРОВ JPG + ПРАЙС-ЛИСТ XLS
+                        <div
+                          className="col col-center"
+                        >
+                          <div
+                            className="row-main"
+                          >
+                            ФОТО ТОВАРОВ JPG + ПРАЙС-ЛИСТ XLS
+                          </div>
+                        </div>
                       </div>
                     </DropdownItem>
                     <DropdownItem
@@ -900,7 +932,15 @@ exports[`Select should renders correctly 2`] = `
                         onClick={[Function]}
                         role="menuitem"
                       >
-                        ПЕЧАТНЫЙ КАТАЛОГ PDF
+                        <div
+                          className="col col-center"
+                        >
+                          <div
+                            className="row-main"
+                          >
+                            ПЕЧАТНЫЙ КАТАЛОГ PDF
+                          </div>
+                        </div>
                       </div>
                     </DropdownItem>
                   </div>

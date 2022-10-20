@@ -1,18 +1,24 @@
 @use '../colors';
 
-$sizes: (
-  s: 40px,
-  m: 48px,
-  l: 56px,
-  xl: 72px,
-);
-
 .root {
   display: flex;
-  align-items: center;
-  padding: 0 24px;
+  padding: var(--menu-item-gutter-y) 16px;
   font-size: 16px;
   line-height: 24px;
+  min-height: var(--menu-item-min-height);
+  max-height: var(--menu-item-max-height);
+  background: #fff;
+  overflow: hidden;
+  --menu-item-primary-color: #{colors.$basic-gray87};
+  --menu-item-secondary-color: #{colors.$basic-gray38};
+  --menu-item-main-weight: 400;
+  &.selected {
+    --menu-item-primary-weight: 600;
+  }
+  &.disabled {
+    --menu-item-primary-color: #{colors.$basic-gray24};
+    --menu-item-secondary-color: #{colors.$basic-gray24};
+  }
   &:not(.disabled):not(.no-hover).checked,
   &:not(.disabled):not(.no-hover):hover {
     cursor: pointer;
@@ -20,12 +26,71 @@ $sizes: (
   }
 }
 
-.disabled {
-  color: colors.$basic-gray24;
+// sizes
+.size-s {
+  --menu-item-min-height: 40px;
+  --menu-item-max-height: 64px;
+  --menu-item-gutter-y: 8px;
 }
 
-@each $key, $size in $sizes {
-  .size-#{$key} {
-    height: $size;
-  }
+.size-m {
+  --menu-item-min-height: 48px;
+  --menu-item-max-height: 72px;
+  --menu-item-gutter-y: 12px;
+}
+
+.size-l {
+  --menu-item-min-height: 56px;
+  --menu-item-max-height: 80px;
+  --menu-item-gutter-y: 16px;
+}
+
+.size-xl {
+  --menu-item-min-height: 72px;
+  --menu-item-max-height: 116px;
+  --menu-item-gutter-y: 12px;
+}
+
+// items
+.col + .col {
+  margin-left: 12px;
+}
+
+.col-start {
+  color: var(--menu-item-primary-color);
+}
+
+.col-center {
+  flex-grow: 1;
+}
+
+.row-main {
+  color: var(--menu-item-primary-color);
+  font-weight: var(--menu-item-primary-weight);
+  max-height: 48px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.row-comment {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 20px;
+  max-height: 40px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.col-end,
+.row-comment {
+  color: var(--menu-item-secondary-color);
+}
+
+.icon {
+  display: block;
+  fill: currentColor;
 }

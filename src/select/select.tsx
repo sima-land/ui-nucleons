@@ -16,6 +16,7 @@ import { isMenuItem, SelectContext, SelectFieldBlock, SelectTextButton } from '.
 import { SelectOpenerProps, SelectProps } from './types';
 import classNames from 'classnames/bind';
 import styles from './select.module.scss';
+import { useIdentityRef } from '../hooks/identity';
 
 const cx = classNames.bind(styles);
 
@@ -49,21 +50,28 @@ export function Select({
   const [dropdownProps, setDropdownProps] = useState<DropdownProps | null>(null);
   const options = Children.toArray(children).filter(isMenuItem);
   const isInitialRender = useRef<boolean>(true);
+  const onMenuToggleRef = useIdentityRef(onMenuToggle);
 
   useEffect(() => {
-    const menu = menuRef.current;
+    if (disabled) {
+      setOpened(false);
+      setFocused(false);
+      openerRef.current?.blur();
+    } else {
+      const menu = menuRef.current;
 
-    if (menu && opened) {
-      menu.focus();
-    }
+      if (menu && opened) {
+        menu.focus();
+      }
 
-    if (!isInitialRender.current) {
-      // @todo вызывать на unmount при необходимости
-      onMenuToggle?.({ opened });
+      if (!isInitialRender.current) {
+        // @todo вызывать на unmount при необходимости
+        onMenuToggleRef.current?.({ opened });
+      }
     }
 
     isInitialRender.current = false;
-  }, [opened]);
+  }, [opened, disabled]);
 
   useEffect(() => {
     const menu = menuRef.current;
@@ -146,16 +154,16 @@ export function Select({
     failed,
     disabled,
     onFocus: () => {
-      setFocused(true);
+      !disabled && setFocused(true);
     },
     onBlur: () => {
       setFocused(false);
     },
     onMouseDown: () => {
-      setOpened(a => !a);
+      !disabled && setOpened(a => !a);
     },
     onKeyDown: e => {
-      e.key === 'Enter' && setOpened(a => !a);
+      !disabled && e.key === 'Enter' && setOpened(a => !a);
     },
   };
 
