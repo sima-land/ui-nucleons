@@ -6,15 +6,16 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { BaseInput, BaseInputProps } from '../base-input';
+import { BaseInput, BaseInputProps } from '../base-input-deprecated';
 import { FieldBlock, FieldBlockProps } from '../field-block';
 import { definePlaceholderColor, useFieldMouseDown, useFilledState } from './utils';
+import { triggerInput } from '../helpers/events';
 import Cross16SVG from '@sima-land/ui-quarks/icons/16x16/Filled/cross';
 import Cross24SVG from '@sima-land/ui-quarks/icons/24x24/Filled/cross';
 import classNames from 'classnames/bind';
 import styles from './input.module.scss';
 
-type HtmlInputProps = Pick<
+type HTMLInputProps = Pick<
   InputHTMLAttributes<HTMLInputElement>,
   | 'autoComplete'
   | 'autoFocus'
@@ -33,7 +34,12 @@ type HtmlInputProps = Pick<
   | 'value'
 >;
 
-export interface InputProps extends HtmlInputProps, FieldBlockProps {
+export type InputType = Extract<
+  InputHTMLAttributes<HTMLInputElement>['type'],
+  'text' | 'password' | 'search' | 'email' | 'tel' | 'number'
+>;
+
+export interface InputProps extends HTMLInputProps, FieldBlockProps {
   /** Ref элемента input. */
   inputRef?: Ref<HTMLInputElement>;
 
@@ -41,16 +47,19 @@ export interface InputProps extends HtmlInputProps, FieldBlockProps {
   baseInputProps?: BaseInputProps;
 
   /** Тип поля. */
-  type?: Extract<
-    InputHTMLAttributes<HTMLInputElement>['type'],
-    'text' | 'password' | 'search' | 'email' | 'tel' | 'number'
-  >;
+  type?: InputType;
 
   /** Нужно ли выводить кнопку очистки поля. */
   clearable?: boolean;
 
   /** Сработает при очистке поля. */
   onClear?: MouseEventHandler<SVGSVGElement>;
+
+  /** Значение. */
+  value?: string;
+
+  /** Значение по умолчанию. */
+  defaultValue?: string;
 }
 
 const cx = classNames.bind(styles);
@@ -125,7 +134,10 @@ export function Input({
               role='button'
               aria-label='Очистить поле'
               className={cx('clear-button')}
-              onClick={onClear}
+              onClick={e => {
+                ref.current && triggerInput(ref.current, '');
+                onClear?.(e);
+              }}
             />
           ),
         })}

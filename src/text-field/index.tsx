@@ -1,7 +1,7 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
 import { isNil } from 'lodash';
 import { Box } from '../box';
-import { BaseInput, BaseInputProps } from '../base-input';
+import { BaseInput, BaseInputProps } from '../base-input-deprecated';
 import { SmallRounds } from '../styling/shapes';
 import classnames from 'classnames/bind';
 import styles from './text-field.module.scss';

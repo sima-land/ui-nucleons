@@ -1,5 +1,5 @@
 import React, { TextareaHTMLAttributes, Ref, useImperativeHandle, useRef, useState } from 'react';
-import { BaseInput, BaseInputProps } from '../base-input';
+import { BaseInput, BaseInputProps } from '../base-input-deprecated';
 import { FieldBlock, FieldBlockProps } from '../field-block';
 import { definePlaceholderColor, useFieldMouseDown, useFilledState } from '../input/utils';
 import classNames from 'classnames/bind';
