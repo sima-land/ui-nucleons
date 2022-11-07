@@ -59,6 +59,7 @@
 
         // размер шрифта 12px увеличиваем до 14px
         transform: scale(calc(7 / 6)) translateY(1px);
+        max-width: calc(100% * (6 / 7));
       }
     }
     &.size-m {
@@ -67,12 +68,14 @@
 
         // размер шрифта 12px увеличиваем до 16px
         transform: scale(calc(4 / 3)) translateY(1px);
+        max-width: calc(100% * (3 / 4));
       }
     }
     &.size-l {
       .label {
         // размер шрифта 12px увеличиваем до 16px
         transform: scale(calc(4 / 3)) translateY(7px);
+        max-width: calc(100% * (3 / 4));
       }
     }
     .main {
@@ -99,8 +102,9 @@
 }
 
 .label {
+  max-width: 100%;
   transform-origin: 0 0;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, max-width 0.2s ease-in-out;
   height: 16px;
   font-size: 12px;
   line-height: 16px;
@@ -108,6 +112,7 @@
   user-select: none;
   pointer-events: none;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .col {
