@@ -5,7 +5,7 @@ import { PhoneInput } from '../../phone-input';
 import { TextField } from '../../text-field';
 
 export default {
-  title: 'desktop/Autocomplete',
+  title: 'deprecated/Autocomplete',
   component: Autocomplete,
   parameters: {
     layout: 'padded',

@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import { TextField } from '..';
-import { BaseInput } from '../../base-input';
+import { BaseInput } from '../../base-input-deprecated';
 import { fitElementHeight } from '../../helpers/fit-element-height';
 import { render } from '@testing-library/react';
 
