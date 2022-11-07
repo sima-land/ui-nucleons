@@ -107,6 +107,7 @@
   color: var(--field-label-text-color, var(--field-primary-text-color));
   user-select: none;
   pointer-events: none;
+  white-space: nowrap;
 }
 
 .col {

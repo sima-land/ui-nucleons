@@ -4,7 +4,7 @@ import { DropdownItem } from '../../dropdown-item';
 import { Spinner } from '../../spinner';
 
 export default {
-  title: 'desktop/Dropdown',
+  title: 'common/Dropdown',
   component: Dropdown,
   parameters: {
     layout: 'padded',

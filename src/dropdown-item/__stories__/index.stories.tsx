@@ -4,7 +4,7 @@ import PlaceholderSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/placeholder
 import { Sandbox } from '../../../.storybook/utils';
 
 export default {
-  title: 'desktop/DropdownItem',
+  title: 'common/DropdownItem',
   component: DropdownItem,
   parameters: {
     layout: 'padded',
