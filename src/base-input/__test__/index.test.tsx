@@ -1,9 +1,46 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { BaseInput } from '..';
 import { RestPlaceholder } from '../base-input';
+import { fitElementHeight } from '../../helpers/fit-element-height';
+
+jest.mock('../../helpers/fit-element-height', () => {
+  const original = jest.requireActual('../../helpers/fit-element-height');
+
+  return {
+    ...original,
+    __esModule: true,
+    fitElementHeight: jest.fn(),
+  };
+});
 
 describe('BaseInput', () => {
+  it('should fill inputRef', () => {
+    const ref = createRef<HTMLInputElement | null>();
+
+    render(<BaseInput inputRef={ref} />);
+
+    expect(ref.current instanceof HTMLInputElement).toBe(true);
+  });
+
+  it('should fill textareaRef', () => {
+    const ref = createRef<HTMLTextAreaElement | null>();
+
+    render(<BaseInput multiline textareaRef={ref} />);
+
+    expect(ref.current instanceof HTMLTextAreaElement).toBe(true);
+  });
+
+  it('should fit textarea height to content height', () => {
+    const { getByTestId } = render(<BaseInput multiline defaultValue='Some text' />);
+    expect(fitElementHeight).toBeCalledTimes(1);
+
+    fireEvent.input(getByTestId('base-input:field'), {
+      target: { value: 'Some other value' },
+    });
+    expect(fitElementHeight).toBeCalledTimes(2);
+  });
+
   it('should render rest placeholder', () => {
     const { container, getByTestId } = render(<BaseInput value='hello' restPlaceholder=' world' />);
 

@@ -23,10 +23,10 @@ export interface CommonProps {
   className?: string;
 
   /** Ref элемента input. Будет заполнен только при multiline=false. */
-  inputRef?: Ref<HTMLInputElement>;
+  inputRef?: Ref<HTMLInputElement | null>;
 
   /** Ref элемента textarea. Будет заполнен только при multiline=true. */
-  textareaRef?: Ref<HTMLTextAreaElement>;
+  textareaRef?: Ref<HTMLTextAreaElement | null>;
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
