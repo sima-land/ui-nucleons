@@ -56,6 +56,7 @@ const TypeCheck = {
 
 /**
  * Компонент сетки полей.
+ * @deprecated
  * @param props Свойства.
  * @param props.children Содержимое, дочерними элементами могут быть только FieldGrid.Row.
  * @param props.rootProps Свойства корневого элемента.

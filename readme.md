@@ -5,6 +5,7 @@
 ## Использование
 
 Установка
+
 ```bash
 # npm
 npm i -S @sima-land/ui-nucleons
@@ -14,21 +15,26 @@ yarn add @sima-land/ui-nucleons
 ```
 
 ### Настройка сборки и запуска тестов
+
 Компоненты библиотеки используют:
+
 - импорты стилей
 - импорты стилей как css-модулей (каждый такой файл промаркирован в виде `%filename%.module.scss`)
 - импорты svg-файлов как react-компоненты
 
 #### Для работы с Webpack необходимо (как вариант):
+
 - добавить необходимые пакеты `@svgr/*`
 - сконфигурировать обработку svg, css, scss файлов
 
 ##### Добавление пакетов `@svgr/*`:
+
 ```bash
 npm install --save-dev @svgr/core @svgr/plugin-svgo @svgr/webpack
 ```
 
 ##### Конфигурация webpack
+
 ```js
 // webpack.config.js
 const svgrOptions = require('../../svgr.config'); // опции SVGR (скопировать из данного проекта)
@@ -51,10 +57,7 @@ module.exports = {
       {
         test: /\.(css|scss)$/,
         exclude: /\.module\.(css|scss)$/,
-        use: [
-          'css-loader',
-          'postcss-loader',
-        ],
+        use: ['css-loader', 'postcss-loader'],
       },
 
       // обработка css-модулей
@@ -84,6 +87,7 @@ module.exports = {
 ##### Добавить обработку SVG
 
 - добавить файл "трансформера" вида:
+
 ```js
 const babel = require('@babel/core');
 const babelJestPreset = require('babel-preset-jest');
@@ -101,11 +105,13 @@ module.exports = {
   },
 };
 ```
+
 - задействовать его в конфигурации Jest
 
 ##### Добавить поддержку стилей
 
 В конфигурации Jest:
+
 ```js
 module.exports = {
   transform: {
@@ -158,25 +164,27 @@ declare module '*.svg' {
 - компонент интерфейса не должен иметь внешних отступов по умолчанию
 
 ### Консольные команды, необходимые в процессе разработки
-* ```npm run build``` - сборка компонентов в `./build` для публикации
-* ```npm run test``` - запуск тестов *Jest*
-* ```npm run lint:scripts``` - запуск линтера *ESLint*
-* ```npm run lint:styles``` - запуск линтера *styleLint*
-* ```npm run type-check``` - Проверка типов TS
-* ```npm run storybook``` - запуск *storybook*
+
+- `npm run build` - сборка компонентов в `./build` для публикации
+- `npm run test` - запуск тестов _Jest_
+- `npm run lint:scripts` - запуск линтера _ESLint_
+- `npm run lint:styles` - запуск линтера _styleLint_
+- `npm run type-check` - Проверка типов TS
+- `npm run storybook` - запуск _storybook_
 
 ### Структура библиотеки
 
 `src/` - директория со всеми компонентами библиотеки
-* `something/` - директория с компонентом
-    * `__stories__/`
-        * `index.stories.tsx` - описание компонента для storybook
-    * `__test__/`
-        * `index.test.tsx` - unit-тесты
-    * `index.tsx` - файл, с именованными экспортами компонента и интерфейса
-* `helpers/` - общие вспомогательные функции (для использования вне библиотеки)
-* `hooks/` - общие react-хуки (для использования вне библиотеки)
-* `_internal/` - внутренние скрипты для использования только в рамках данной библиотеки
+
+- `something/` - директория с компонентом
+  - `__stories__/`
+    - `index.stories.tsx` - описание компонента для storybook
+  - `__test__/`
+    - `index.test.tsx` - unit-тесты
+  - `index.tsx` - файл, с именованными экспортами компонента и интерфейса
+- `helpers/` - общие вспомогательные функции (для использования вне библиотеки)
+- `hooks/` - общие react-хуки (для использования вне библиотеки)
+- `_internal/` - внутренние скрипты для использования только в рамках данной библиотеки
 
 ## Работа компонентов, использующих информацию о viewport
 

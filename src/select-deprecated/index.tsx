@@ -52,6 +52,7 @@ export const renderDefaultArrow = (opened: boolean) => {
 
 /**
  * Поле выбора из списка.
+ * @deprecated
  * @param props Свойства.
  * @return Элемент.
  */

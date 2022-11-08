@@ -40,6 +40,7 @@ const cx = classnames.bind(styles);
 
 /**
  * Поле ввода с подсказками.
+ * @deprecated
  * @param props Свойства.
  * @return Элемент.
  */

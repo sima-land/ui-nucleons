@@ -30,6 +30,7 @@ export type BaseInputProps = CustomProps &
 
 /**
  * Компонент поля ввода.
+ * @deprecated
  * @param props Свойства. Поддерживаются свойства элемента input.
  * @return Элемент.
  */

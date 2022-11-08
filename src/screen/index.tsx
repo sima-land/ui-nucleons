@@ -18,6 +18,7 @@ export interface ScreenProps extends ScreenInnerProps {
 
 /**
  * Экран.
+ * @deprecated
  * @param props Свойства.
  * @return Элемент.
  */
