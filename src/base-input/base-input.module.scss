@@ -1,0 +1,66 @@
+@use '../utils';
+
+.reset {
+  border: 0;
+  box-sizing: border-box;
+  font: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+}
+
+.root {
+  position: relative;
+  background-color: transparent;
+  width: 0;
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.field {
+  width: 0;
+  flex-grow: 1;
+  display: block;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  z-index: 1;
+  text-overflow: inherit;
+  background: inherit;
+  &::placeholder {
+    opacity: 1;
+    color: var(--placeholder-color);
+  }
+  &::-ms-clear {
+    // отключаем системный крестик в IE
+    display: none;
+    height: 0;
+    width: 0;
+  }
+  &.multiline {
+    resize: none;
+    @include utils.hidden-scrollbars;
+  }
+}
+
+.rest-placeholder {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  overflow: hidden;
+  z-index: 0;
+  .shift-part {
+    color: transparent;
+  }
+  .main-part {
+    color: var(--placeholder-color);
+  }
+}

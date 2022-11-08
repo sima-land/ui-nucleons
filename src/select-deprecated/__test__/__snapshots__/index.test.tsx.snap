@@ -263,35 +263,25 @@ exports[`Select should render loading state 1`] = `
                         className="root"
                         data-testid="select:loading-area"
                       >
-                        <Spinner
+                        <SpinnerSVG
                           size="s"
                         >
-                          <div
+                          <svg
+                            className="spinner size-s"
                             data-testid="spinner"
+                            height={20}
+                            stroke="#1f84db"
+                            viewBox="0 0 20 20"
+                            width={20}
                           >
-                            <SpinnerSVG
-                              color="basic-blue"
-                              data-testid={null}
-                              size="s"
-                            >
-                              <svg
-                                className="spinner size-s"
-                                data-testid={null}
-                                height={20}
-                                stroke="#1f84db"
-                                viewBox="0 0 20 20"
-                                width={20}
-                              >
-                                <circle
-                                  className="circle"
-                                  cx={10}
-                                  cy={10}
-                                  r={9}
-                                />
-                              </svg>
-                            </SpinnerSVG>
-                          </div>
-                        </Spinner>
+                            <circle
+                              className="circle"
+                              cx={10}
+                              cy={10}
+                              r={9}
+                            />
+                          </svg>
+                        </SpinnerSVG>
                       </div>
                     </DropdownLoading>
                   </div>
