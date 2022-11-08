@@ -127,6 +127,7 @@ const modifiersToClasses = ({
 
 /**
  * Компонент текстового поля.
+ * @deprecated
  * @param props Свойства.
  * @return Элемент.
  */

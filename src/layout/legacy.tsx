@@ -32,8 +32,10 @@ const createLayout = (specificClass: string, displayName: string) => {
   return Component;
 };
 
+/** @deprecated */
 const DesktopLayout = createLayout('desktop', 'DesktopLayout');
 
+/** @deprecated */
 const MobileLayout = createLayout('mobile', 'MobileLayout');
 
 export { DesktopLayout, MobileLayout };
