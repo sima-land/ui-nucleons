@@ -2,7 +2,6 @@ import React, {
   Children,
   KeyboardEventHandler,
   MouseEventHandler,
-  ReactElement,
   useCallback,
   useEffect,
   useRef,
@@ -10,13 +9,15 @@ import React, {
 } from 'react';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { Dropdown, DropdownProps } from '../dropdown';
-import { DropdownItem, DropdownItemProps } from '../dropdown-item';
+import { DropdownItem } from '../dropdown-item';
 import { DropdownLoading } from '../_internal/dropdown-loading';
-import { MenuItem, SelectContext, SelectFieldBlock, SelectTextButton } from './utils';
+import { SelectContext, SelectFieldBlock, SelectTextButton } from './utils';
 import { SelectOpenerProps, SelectProps } from './types';
 import classNames from 'classnames/bind';
 import styles from './select.module.scss';
 import { useIdentityRef } from '../hooks/identity';
+import { DropdownItemUtils } from '../dropdown-item/utils';
+import { DropdownItemElement } from '../dropdown-item/types';
 
 const cx = classNames.bind(styles);
 
@@ -31,7 +32,7 @@ export function Select({
   disabled,
   failed,
   loading,
-  onChange,
+  onValueChange,
   onMenuToggle,
   style,
   value,
@@ -48,7 +49,7 @@ export function Select({
   const [focused, setFocused] = useState<boolean>(false);
   const [checkedIndex, setCheckedIndex] = useState<number>(-1);
   const [dropdownProps, setDropdownProps] = useState<DropdownProps | null>(null);
-  const options = Children.toArray(children).filter(MenuItem.is);
+  const options = Children.toArray(children).filter(DropdownItemUtils.is);
   const isInitialRender = useRef<boolean>(true);
   const onMenuToggleRef = useIdentityRef(onMenuToggle);
 
@@ -87,10 +88,10 @@ export function Select({
   }, [checkedIndex]);
 
   const selectItem = useCallback(
-    (item: ReactElement<DropdownItemProps>) => {
-      onChange?.({ value: MenuItem.getValue(item) });
+    (item: DropdownItemElement) => {
+      onValueChange?.(DropdownItemUtils.getValue(item));
     },
-    [onChange],
+    [onValueChange],
   );
 
   const handleMenuKeyDown = useCallback<KeyboardEventHandler>(
@@ -109,15 +110,13 @@ export function Select({
         }
         case 'ArrowUp':
           setCheckedIndex(n => {
-            const [linkedList, currentIndex] = MenuItem.asLinkedList(options, n);
-            const nextIndex = linkedList.prev(currentIndex);
+            const nextIndex = DropdownItemUtils.asLoopedIterator(options, n).prev();
             return typeof nextIndex === 'undefined' ? -1 : nextIndex;
           });
           break;
         case 'ArrowDown':
           setCheckedIndex(n => {
-            const [linkedList, currentIndex] = MenuItem.asLinkedList(options, n);
-            const nextIndex = linkedList.next(currentIndex);
+            const nextIndex = DropdownItemUtils.asLoopedIterator(options, n).next();
             return typeof nextIndex === 'undefined' ? -1 : nextIndex;
           });
           break;
@@ -132,7 +131,7 @@ export function Select({
   }, []);
 
   const handleOptionClick = useCallback(
-    (item: ReactElement<DropdownItemProps>): MouseEventHandler<HTMLDivElement> =>
+    (item: DropdownItemElement): MouseEventHandler<HTMLDivElement> =>
       event => {
         item.props.onClick?.(event);
         selectItem(item);
@@ -164,6 +163,7 @@ export function Select({
     },
   };
 
+  // @todo переделать на floating-ui без корневого элемента?
   return (
     <div className={cx('root', className)} style={style} data-testid='select'>
       <SelectContext.Provider value={{ fieldBlockProps, textButtonProps, setDropdownProps }}>
@@ -189,12 +189,11 @@ export function Select({
             options.map((item, index) => (
               <DropdownItem
                 checked={checkedIndex === index}
-                selected={value === MenuItem.getValue(item)}
+                selected={value === DropdownItemUtils.getValue(item)}
                 {...item.props}
                 key={index}
                 role='option'
                 data-select-role='option'
-                // @todo вызывать callback из пропсов DropdownItem если понадобится
                 onClick={item.props.disabled ? undefined : handleOptionClick(item)}
               />
             ))

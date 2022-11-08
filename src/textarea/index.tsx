@@ -30,6 +30,12 @@ export interface TextareaProps extends HTMLTextareaProps, FieldBlockProps {
 
   /** Свойства BaseInputProps. */
   baseInputProps?: BaseInputAsTextareaProps;
+
+  /** Стили корневого элемента. */
+  style?: Required<FieldBlockProps>['rootProps']['style'];
+
+  /** CSS-класс корневого элемента. */
+  className?: Required<FieldBlockProps>['rootProps']['className'];
 }
 
 const cx = classNames.bind(styles);
@@ -43,6 +49,10 @@ export function Textarea({
   // specific Textarea props
   textareaRef,
   baseInputProps,
+
+  // root props
+  style,
+  className,
 
   // textarea element props (popular)
   autoComplete,
@@ -83,6 +93,11 @@ export function Textarea({
   return (
     <FieldBlock
       {...restProps}
+      rootProps={{
+        ...restProps.rootProps,
+        style,
+        className,
+      }}
       data-testid={testId}
       caption={caption}
       disabled={disabled}

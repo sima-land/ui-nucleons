@@ -157,7 +157,7 @@ describe('Select', () => {
     const spy = jest.fn();
 
     const { queryAllByTestId, getByTestId } = render(
-      <Select onChange={spy}>
+      <Select onValueChange={spy}>
         <DropdownItem value='1'>One</DropdownItem>
         <DropdownItem value='2'>Two</DropdownItem>
         <DropdownItem value='3'>Three</DropdownItem>
@@ -181,14 +181,14 @@ describe('Select', () => {
     fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowUp' });
     fireEvent.keyDown(getByTestId('dropdown'), { key: 'Enter' });
     expect(spy).toBeCalledTimes(1);
-    expect(spy.mock.calls[0][0]).toEqual({ value: '2' });
+    expect(spy.mock.calls[0][0]).toEqual('2');
   });
 
   it('should handle menu mouse control', () => {
     const spy = jest.fn();
 
     const { queryAllByTestId, getByTestId } = render(
-      <Select onChange={spy}>
+      <Select onValueChange={spy}>
         <DropdownItem value='1'>One</DropdownItem>
         <DropdownItem value='2'>Two</DropdownItem>
         <DropdownItem value='3'>Three</DropdownItem>
@@ -206,7 +206,7 @@ describe('Select', () => {
 
     fireEvent.click(queryAllByTestId('dropdown-item')[1]);
     expect(spy).toBeCalledTimes(1);
-    expect(spy.mock.calls[0][0]).toEqual({ value: '2' });
+    expect(spy.mock.calls[0][0]).toEqual('2');
     expect(queryAllByTestId('dropdown')).toHaveLength(0);
     expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
   });
@@ -215,7 +215,7 @@ describe('Select', () => {
     const spy = jest.fn();
 
     const { queryAllByTestId, getByTestId } = render(
-      <Select onChange={spy}>
+      <Select onValueChange={spy}>
         <DropdownItem>Foo</DropdownItem>
         <DropdownItem>Bar</DropdownItem>
         <DropdownItem>Baz</DropdownItem>
@@ -231,7 +231,7 @@ describe('Select', () => {
     // click on third option
     fireEvent.click(queryAllByTestId('dropdown-item')[2]);
     expect(spy).toBeCalledTimes(1);
-    expect(spy.mock.calls[0][0]).toEqual({ value: 'Baz' });
+    expect(spy.mock.calls[0][0]).toEqual('Baz');
   });
 
   it('should handle blur on opener', () => {
@@ -254,7 +254,7 @@ describe('Select', () => {
     const spy = jest.fn();
 
     const { getByTestId, queryAllByTestId } = render(
-      <Select onChange={spy}>
+      <Select onValueChange={spy}>
         <DropdownItem>Foo</DropdownItem>
         <DropdownItem>Bar</DropdownItem>
         <DropdownItem>Baz</DropdownItem>
@@ -300,7 +300,7 @@ describe('Select', () => {
     }
 
     const { getByTestId, queryAllByTestId } = render(
-      <Select opener={CustomOpener} onChange={spy}>
+      <Select opener={CustomOpener} onValueChange={spy}>
         <DropdownItem>Foo</DropdownItem>
         <DropdownItem>Bar</DropdownItem>
         <DropdownItem>Baz</DropdownItem>
@@ -315,7 +315,7 @@ describe('Select', () => {
     // click on third option
     fireEvent.click(queryAllByTestId('dropdown-item')[2]);
     expect(spy).toBeCalledTimes(1);
-    expect(spy.mock.calls[0][0]).toEqual({ value: 'Baz' });
+    expect(spy.mock.calls[0][0]).toEqual('Baz');
   });
 
   it('should hide menu when it is shown and select becomes disabled', () => {

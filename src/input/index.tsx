@@ -60,6 +60,12 @@ export interface InputProps extends HTMLInputProps, FieldBlockProps {
 
   /** Значение по умолчанию. */
   defaultValue?: string;
+
+  /** Стили корневого элемента. */
+  style?: Required<FieldBlockProps>['rootProps']['style'];
+
+  /** CSS-класс корневого элемента. */
+  className?: Required<FieldBlockProps>['rootProps']['className'];
 }
 
 const cx = classNames.bind(styles);
@@ -75,6 +81,10 @@ export function Input({
   baseInputProps,
   clearable,
   onClear,
+
+  // root props
+  style,
+  className,
 
   // input element props (popular)
   autoComplete,
@@ -118,6 +128,11 @@ export function Input({
   return (
     <FieldBlock
       {...restProps}
+      rootProps={{
+        ...restProps.rootProps,
+        style,
+        className,
+      }}
       data-testid={testId}
       caption={caption}
       disabled={disabled}
