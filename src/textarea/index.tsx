@@ -1,5 +1,5 @@
 import React, { TextareaHTMLAttributes, Ref, useImperativeHandle, useRef, useState } from 'react';
-import { BaseInput, BaseInputProps } from '../base-input-deprecated';
+import { BaseInput, BaseInputAsTextareaProps } from '../base-input';
 import { FieldBlock, FieldBlockProps } from '../field-block';
 import { definePlaceholderColor, useFieldMouseDown, useFilledState } from '../input/utils';
 import classNames from 'classnames/bind';
@@ -29,7 +29,7 @@ export interface TextareaProps extends HTMLTextareaProps, FieldBlockProps {
   textareaRef?: Ref<HTMLTextAreaElement>;
 
   /** Свойства BaseInputProps. */
-  baseInputProps?: BaseInputProps;
+  baseInputProps?: BaseInputAsTextareaProps;
 }
 
 const cx = classNames.bind(styles);
@@ -66,6 +66,7 @@ export function Textarea({
   failed,
   caption,
   blockProps,
+  'data-testid': testId = 'textarea',
   ...restProps
 }: TextareaProps) {
   const ref = useRef<HTMLTextAreaElement>(null);
@@ -82,6 +83,7 @@ export function Textarea({
   return (
     <FieldBlock
       {...restProps}
+      data-testid={testId}
       caption={caption}
       disabled={disabled}
       failed={failed}
@@ -98,8 +100,7 @@ export function Textarea({
       main={
         <BaseInput
           {...baseInputProps}
-          ref={ref}
-          data-testid='textarea:textarea-element'
+          textareaRef={ref}
           multiline
           className={cx('textarea', baseInputProps?.className)}
           style={{

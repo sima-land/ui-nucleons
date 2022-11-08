@@ -8,13 +8,13 @@ describe('Textarea', () => {
   it('should render default value', () => {
     const { getByTestId } = render(<Textarea defaultValue='Hello' />);
 
-    expect(getByTestId('textarea:textarea-element').textContent).toBe('Hello');
+    expect(getByTestId('base-input:field').textContent).toBe('Hello');
   });
 
   it('should render value', () => {
     const { getByTestId } = render(<Textarea value='World' onChange={jest.fn()} />);
 
-    expect(getByTestId('textarea:textarea-element').textContent).toBe('World');
+    expect(getByTestId('base-input:field').textContent).toBe('World');
   });
 
   it('should render caption', () => {
@@ -54,7 +54,7 @@ describe('Textarea', () => {
     const { getByTestId } = render(<Textarea onBlur={spy} />);
 
     expect(spy).toBeCalledTimes(0);
-    fireEvent.blur(getByTestId('textarea:textarea-element'));
+    fireEvent.blur(getByTestId('base-input:field'));
     expect(spy).toBeCalledTimes(1);
   });
 
@@ -100,7 +100,7 @@ describe('Textarea', () => {
     const { getByTestId, rerender } = render(<Textarea failed disabled={false} />);
 
     function placeholderColor() {
-      return getByTestId('base-input:root').style.getPropertyValue('--placeholder-color');
+      return getByTestId('base-input').style.getPropertyValue('--placeholder-color');
     }
 
     expect(placeholderColor()).toBe(COLORS.get('additional-deep-red'));
@@ -120,7 +120,7 @@ describe('Textarea', () => {
     const { getByTestId } = render(<Textarea onInput={spy} />);
 
     expect(spy).toBeCalledTimes(0);
-    fireEvent.input(getByTestId('textarea:textarea-element'), { target: { value: 'New value' } });
+    fireEvent.input(getByTestId('base-input:field'), { target: { value: 'New value' } });
     expect(spy).toBeCalledTimes(1);
   });
 
@@ -130,7 +130,21 @@ describe('Textarea', () => {
     const { getByTestId } = render(<Textarea onChange={spy} />);
 
     expect(spy).toBeCalledTimes(0);
-    fireEvent.change(getByTestId('textarea:textarea-element'), { target: { value: 'New value' } });
+    fireEvent.change(getByTestId('base-input:field'), { target: { value: 'New value' } });
     expect(spy).toBeCalledTimes(1);
+  });
+
+  it('should properly set "data-testid" to elements', () => {
+    const { container, rerender } = render(<Textarea />);
+    const find = (s: string) => container.querySelectorAll(s);
+
+    expect(find('[data-testid="textarea"] textarea')).toHaveLength(1);
+    expect(find('[data-testid="textarea"] [data-testid="base-input"] textarea')).toHaveLength(1);
+    expect(find('[data-testid="textarea"] [data-testid="base-input:field"]')).toHaveLength(1);
+
+    rerender(<Textarea data-testid='message' />);
+    expect(find('[data-testid="message"] textarea')).toHaveLength(1);
+    expect(find('[data-testid="message"] [data-testid="base-input"] textarea')).toHaveLength(1);
+    expect(find('[data-testid="message"] [data-testid="base-input:field"]')).toHaveLength(1);
   });
 });

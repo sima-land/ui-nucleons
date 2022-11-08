@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { BaseInput, BaseInputProps } from '../base-input-deprecated';
+import { BaseInput, BaseInputAsInputProps } from '../base-input';
 import { FieldBlock, FieldBlockProps } from '../field-block';
 import { definePlaceholderColor, useFieldMouseDown, useFilledState } from './utils';
 import { triggerInput } from '../helpers/events';
@@ -44,7 +44,7 @@ export interface InputProps extends HTMLInputProps, FieldBlockProps {
   inputRef?: Ref<HTMLInputElement>;
 
   /** Свойства BaseInputProps. */
-  baseInputProps?: BaseInputProps;
+  baseInputProps?: BaseInputAsInputProps;
 
   /** Тип поля. */
   type?: InputType;
@@ -99,6 +99,7 @@ export function Input({
   failed,
   caption,
   blockProps,
+  'data-testid': testId = 'input',
   ...restProps
 }: InputProps) {
   const ref = useRef<HTMLInputElement>(null);
@@ -117,6 +118,7 @@ export function Input({
   return (
     <FieldBlock
       {...restProps}
+      data-testid={testId}
       caption={caption}
       disabled={disabled}
       failed={failed}
@@ -148,8 +150,7 @@ export function Input({
       main={
         <BaseInput
           {...baseInputProps}
-          ref={ref}
-          data-testid='input:input-element'
+          inputRef={ref}
           multiline={false}
           className={cx('input', baseInputProps?.className)}
           style={{
