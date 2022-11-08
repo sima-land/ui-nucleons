@@ -6,6 +6,3 @@ coverage
 # Configs
 *.yaml
 *.yml
-
-# Other
-*.md
