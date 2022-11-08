@@ -36,7 +36,9 @@ export const CleanGroup: React.FC<CleanGroupProps> = ({ size: sizeFromProps, chi
   return (
     <div className={cx('group')}>
       {Children.toArray(children).map(item =>
-        isValidElement(item) && item.type === CleanButton ? cloneElement(item, { size }) : null,
+        isValidElement<CleanButtonProps>(item) && item.type === CleanButton
+          ? cloneElement(item, { size })
+          : null,
       )}
     </div>
   );

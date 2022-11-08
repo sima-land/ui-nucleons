@@ -3,11 +3,15 @@ import on from '../../helpers/on';
 
 const useViewportVars = () => {
   useEffect(() => {
-    document.documentElement.style.setProperty('--vh', `${window.visualViewport.height / 100}px`);
+    const height = window.visualViewport?.height ?? window.innerHeight;
 
-    return on(window, 'resize', () => {
-      document.documentElement.style.setProperty('--vh', `${window.visualViewport.height / 100}px`);
-    });
+    const define = () => {
+      document.documentElement.style.setProperty('--vh', `${height / 100}px`);
+    };
+
+    define();
+
+    return on(window, 'resize', define);
   }, []);
 };
 

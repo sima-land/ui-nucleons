@@ -22,7 +22,7 @@ export const CardHeader: React.FC<CardHeaderProps> = ({ children, divided }) => 
 
   return (
     <div className={classnames(divided && InnerBorder.bottom)}>
-      {isValidElement(children) && children.type === TopBar
+      {isValidElement<TopBarProps>(children) && children.type === TopBar
         ? cloneElement<TopBarProps>(children, {
             className: classnames(
               children.props.className,
