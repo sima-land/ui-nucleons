@@ -46,7 +46,7 @@ export interface SelectProps {
   loading?: boolean;
 
   /** Сработает при выборе опции. */
-  onChange?: (event: { value: string }) => void;
+  onValueChange?: (value: string) => void;
 
   /** Сработает при открытии/закрытии меню. */
   onMenuToggle?: (state: { opened: boolean }) => void;

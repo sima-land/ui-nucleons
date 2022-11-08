@@ -8,13 +8,13 @@ describe('Input', () => {
   it('should render default value', () => {
     const { getByTestId } = render(<Input defaultValue='Hello' />);
 
-    expect(getByTestId('input:input-element').getAttribute('value')).toBe('Hello');
+    expect(getByTestId('base-input:field').getAttribute('value')).toBe('Hello');
   });
 
   it('should render value', () => {
     const { getByTestId } = render(<Input value='World' onChange={jest.fn()} />);
 
-    expect(getByTestId('input:input-element').getAttribute('value')).toBe('World');
+    expect(getByTestId('base-input:field').getAttribute('value')).toBe('World');
   });
 
   it('should render caption', () => {
@@ -101,7 +101,7 @@ describe('Input', () => {
     const { getByTestId, rerender } = render(<Input failed disabled={false} />);
 
     function placeholderColor() {
-      return getByTestId('base-input:root').style.getPropertyValue('--placeholder-color');
+      return getByTestId('base-input').style.getPropertyValue('--placeholder-color');
     }
 
     expect(placeholderColor()).toBe(COLORS.get('additional-deep-red'));
@@ -123,13 +123,13 @@ describe('Input', () => {
 
     expect(queryAllByTestId('input:clear-button')).toHaveLength(0);
 
-    fireEvent.focus(getByTestId('input:input-element'));
+    fireEvent.focus(getByTestId('base-input:field'));
     expect(queryAllByTestId('input:clear-button')).toHaveLength(1);
 
-    fireEvent.blur(getByTestId('input:input-element'));
+    fireEvent.blur(getByTestId('base-input:field'));
     expect(queryAllByTestId('input:clear-button')).toHaveLength(0);
 
-    fireEvent.focus(getByTestId('input:input-element'));
+    fireEvent.focus(getByTestId('base-input:field'));
     expect(spy).toBeCalledTimes(0);
     fireEvent.click(getByTestId('input:clear-button'), { bubbles: true });
     expect(spy).toBeCalledTimes(1);
@@ -139,7 +139,7 @@ describe('Input', () => {
     const { rerender, getByTestId, queryAllByTestId } = render(
       <Input defaultValue='Something' clearable size='s' />,
     );
-    fireEvent.focus(getByTestId('input:input-element'));
+    fireEvent.focus(getByTestId('base-input:field'));
     expect(queryAllByTestId('input:clear-button')).toHaveLength(1);
     expect(getByTestId('input:clear-button')).toMatchSnapshot();
 
@@ -154,7 +154,7 @@ describe('Input', () => {
     const { getByTestId } = render(<Input onInput={spy} />);
 
     expect(spy).toBeCalledTimes(0);
-    fireEvent.input(getByTestId('input:input-element'), { target: { value: 'New value' } });
+    fireEvent.input(getByTestId('base-input:field'), { target: { value: 'New value' } });
     expect(spy).toBeCalledTimes(1);
   });
 
@@ -164,7 +164,21 @@ describe('Input', () => {
     const { getByTestId } = render(<Input onChange={spy} />);
 
     expect(spy).toBeCalledTimes(0);
-    fireEvent.change(getByTestId('input:input-element'), { target: { value: 'New value' } });
+    fireEvent.change(getByTestId('base-input:field'), { target: { value: 'New value' } });
     expect(spy).toBeCalledTimes(1);
+  });
+
+  it('should properly set "data-testid" to elements', () => {
+    const { container, rerender } = render(<Input />);
+    const find = (s: string) => container.querySelectorAll(s);
+
+    expect(find('[data-testid="input"] input')).toHaveLength(1);
+    expect(find('[data-testid="input"] [data-testid="base-input"] input')).toHaveLength(1);
+    expect(find('[data-testid="input"] [data-testid="base-input:field"]')).toHaveLength(1);
+
+    rerender(<Input data-testid='email' />);
+    expect(find('[data-testid="email"] input')).toHaveLength(1);
+    expect(find('[data-testid="email"] [data-testid="base-input"] input')).toHaveLength(1);
+    expect(find('[data-testid="email"] [data-testid="base-input:field"]')).toHaveLength(1);
   });
 });

@@ -28,7 +28,7 @@ export function Primary() {
       label='Номер'
       style={style}
       value={value}
-      onChange={e => setValue(e.value)}
+      onValueChange={setValue}
       fieldBlockProps={{ caption: 'Простой пример' }}
     >
       <DropdownItem>Ноль</DropdownItem>
@@ -55,9 +55,7 @@ export function DifferentStates() {
 
   const selectProps: SelectProps = {
     value,
-    onChange: e => {
-      setValue(e.value);
-    },
+    onValueChange: setValue,
     opener,
     label: 'Номер',
     loading,
