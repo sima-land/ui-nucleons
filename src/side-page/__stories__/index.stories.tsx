@@ -2,7 +2,7 @@ import React, { useState, useReducer, useEffect, useRef } from 'react';
 import { SidePage, SidePageProps } from '..';
 import { Button } from '../../button';
 import { Panel } from '../../panel';
-import { TextField } from '../../text-field';
+import { Textarea } from '../../textarea';
 import { UploadArea } from '../../upload/area';
 import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information';
 import imageUrl from './image.png';
@@ -108,7 +108,7 @@ export function SizeM() {
               претензию, и мы поможем.
             </Panel>
 
-            <TextField multiline label='Комментарий' style={{ width: '100%', marginTop: '40px' }} />
+            <Textarea label='Комментарий' style={{ width: '100%', marginTop: '40px' }} />
 
             <UploadArea
               fileRole='фото'
