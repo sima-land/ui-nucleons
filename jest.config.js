@@ -2,6 +2,7 @@ module.exports = {
   globalSetup: '<rootDir>/.jest/global-setup.js',
   testEnvironment: 'jsdom',
   setupFiles: ['./.jest/setup.js'],
+  testMatch: ['**/?(*.)+(test).[jt]s?(x)'],
   transform: {
     '^.+\\.(t|j)sx?$': 'babel-jest',
 
