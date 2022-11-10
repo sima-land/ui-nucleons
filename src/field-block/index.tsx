@@ -150,7 +150,7 @@ export function FieldBlock({
           )}
 
           {/* основной контент выводим без условий */}
-          <div {...mainProps} className={cx('main', mainProps?.className)}>
+          <div {...mainProps} className={cx('main', mainProps?.className)} data-testid='field:main'>
             {main}
           </div>
         </div>
