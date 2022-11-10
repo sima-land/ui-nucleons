@@ -1,40 +1,44 @@
 import type {
-  ComponentType,
   FocusEventHandler,
-  KeyboardEventHandler,
-  MouseEventHandler,
+  HTMLAttributes,
+  ReactElement,
   ReactNode,
+  Ref,
   RefObject,
 } from 'react';
-import type { FieldBlockProps, FieldBlockStyle } from '../field-block';
-import type { TextButtonProps } from '../text-button';
+import type { DropdownProps } from '../dropdown';
+import type { DropdownItemElement } from '../dropdown-item/types';
+import type { FieldBlockStyle } from '../field-block';
 
 export interface SelectStyle extends FieldBlockStyle {
   '--dropdown-width'?: string | number;
 }
 
-export interface SelectOpenerProps {
-  openerRef: RefObject<HTMLElement>;
+export interface SelectOpenerBinding {
   label?: string;
-  value: ReactNode;
-  opened: boolean;
-  focused: boolean;
   failed?: boolean;
   disabled?: boolean;
-  onFocus: FocusEventHandler<HTMLElement>;
-  onBlur: FocusEventHandler<HTMLElement>;
-  onMouseDown: MouseEventHandler<HTMLElement>;
-  onKeyDown: KeyboardEventHandler<HTMLElement>;
+  value: ReactNode;
+  opened: boolean;
+  menuFocused: boolean;
+  openerRef: RefObject<HTMLElement>;
+  onMouseDown?: HTMLAttributes<HTMLElement>['onMouseDown'];
+  onKeyDown?: HTMLAttributes<HTMLElement>['onKeyDown'];
 }
 
-export type SelectMenuAlign = 'left' | 'right';
+export interface SelectMenuProps extends DropdownProps {
+  menuRef?: Ref<HTMLDivElement | null>;
+  openerRef: RefObject<HTMLElement | null>;
+  value?: ReactNode;
+  children?: ReactNode;
+  loading?: boolean;
+  onBlur?: FocusEventHandler;
+  onItemSelect?: (item: DropdownItemElement) => void;
+}
 
 export interface SelectProps {
   /** Опции. */
   children?: ReactNode;
-
-  /** CSS-класс корневого элемента. */
-  className?: string;
 
   /** Отключенное состояние. */
   disabled?: boolean;
@@ -51,24 +55,15 @@ export interface SelectProps {
   /** Сработает при открытии/закрытии меню. */
   onMenuToggle?: (state: { opened: boolean }) => void;
 
-  /** Стили корневого элемента. */
-  style?: SelectStyle;
-
   /** Значение, выводимое в качестве выбранного. При отсутствии будет выведен label. */
   value?: ReactNode;
-
-  /** Направления выпадания меню опций. */
-  menuAlign?: SelectMenuAlign;
 
   /** Ярлык. */
   label?: string;
 
   /** Открывающий элемент. */
-  opener?: 'field-block' | 'text-button' | ComponentType<SelectOpenerProps>;
+  opener?: ReactElement;
 
-  /** Опции FieldBlock. */
-  fieldBlockProps?: FieldBlockProps;
-
-  /** Опции TextButton. */
-  textButtonProps?: TextButtonProps;
+  /** Опции Dropdown. */
+  dropdownProps?: Pick<DropdownProps, 'className' | 'style'>;
 }

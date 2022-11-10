@@ -1,25 +1,12 @@
-import React, {
-  Children,
-  KeyboardEventHandler,
-  MouseEventHandler,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
-import { Dropdown, DropdownProps } from '../dropdown';
-import { DropdownItem } from '../dropdown-item';
-import { DropdownLoading } from '../_internal/dropdown-loading';
-import { SelectContext, SelectFieldBlock, SelectTextButton } from './utils';
-import { SelectOpenerProps, SelectProps } from './types';
-import classNames from 'classnames/bind';
-import styles from './select.module.scss';
+import React, { isValidElement, useEffect, useRef, useState } from 'react';
+import { SelectContext } from './utils';
+import { SelectMenuProps, SelectOpenerBinding, SelectProps } from './types';
 import { useIdentityRef } from '../hooks/identity';
 import { DropdownItemUtils } from '../dropdown-item/utils';
-import { DropdownItemElement } from '../dropdown-item/types';
-
-const cx = classNames.bind(styles);
+import { FloatingPortal } from '@floating-ui/react-dom-interactions';
+import { SelectMenu } from './parts/menu';
+import { SelectFieldBlock } from './parts/block';
+import { SelectTextButton } from './parts/button';
 
 /**
  * Поле выбора из списка.
@@ -28,178 +15,107 @@ const cx = classNames.bind(styles);
  */
 export function Select({
   children,
-  className,
   disabled,
   failed,
   loading,
   onValueChange,
   onMenuToggle,
-  style,
   value,
-  menuAlign = 'left',
   label,
-  opener: Opener = 'field-block',
-  fieldBlockProps,
-  textButtonProps,
+  opener = <SelectFieldBlock />,
+  dropdownProps,
 }: SelectProps) {
+  // @todo добавить defaultValue при необходимости
+  const [needMenu, setNeedMenu] = useState<boolean>(false);
+  const [menuElement, setMenuElement] = useState<HTMLElement | null>(null);
+  const [menuFocused, setMenuFocused] = useState<boolean>(false);
   const openerRef = useRef<HTMLElement>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const osComponentRef = useRef<OverlayScrollbarsComponent>(null);
-  const [opened, setOpened] = useState<boolean>(false);
-  const [focused, setFocused] = useState<boolean>(false);
-  const [checkedIndex, setCheckedIndex] = useState<number>(-1);
-  const [dropdownProps, setDropdownProps] = useState<DropdownProps | null>(null);
-  const options = Children.toArray(children).filter(DropdownItemUtils.is);
-  const isInitialRender = useRef<boolean>(true);
   const onMenuToggleRef = useIdentityRef(onMenuToggle);
+  const menuShown = needMenu && menuElement !== null;
 
   useEffect(() => {
     if (disabled) {
-      setOpened(false);
-      setFocused(false);
-      openerRef.current?.blur();
-    } else {
-      const menu = menuRef.current;
-
-      if (menu && opened) {
-        menu.focus();
-      }
-
-      if (!isInitialRender.current) {
-        // @todo вызывать на unmount при необходимости
-        onMenuToggleRef.current?.({ opened });
-      }
+      setNeedMenu(false);
     }
 
-    isInitialRender.current = false;
-  }, [opened, disabled]);
-
-  useEffect(() => {
-    const menu = menuRef.current;
-    const selector = '[data-select-role="option"]';
-    const targetOption = menu?.querySelectorAll(selector)[checkedIndex];
-
-    if (targetOption instanceof HTMLElement) {
-      osComponentRef.current?.osInstance()?.scroll({
-        el: targetOption,
-        scroll: { y: 'ifneeded' },
-      });
+    if (!disabled && menuElement) {
+      menuElement.focus();
     }
-  }, [checkedIndex]);
 
-  const selectItem = useCallback(
-    (item: DropdownItemElement) => {
-      onValueChange?.(DropdownItemUtils.getValue(item));
-    },
-    [onValueChange],
-  );
+    onMenuToggleRef.current?.({ opened: menuShown });
+  }, [menuElement, disabled]);
 
-  const handleMenuKeyDown = useCallback<KeyboardEventHandler>(
-    event => {
-      switch (event.key) {
-        case 'Enter': {
-          const item = options[checkedIndex];
-
-          if (item) {
-            selectItem(item);
-          }
-
-          setCheckedIndex(-1);
-          openerRef.current?.focus();
-          break;
-        }
-        case 'ArrowUp':
-          setCheckedIndex(n => {
-            const nextIndex = DropdownItemUtils.asLoopedIterator(options, n).prev();
-            return typeof nextIndex === 'undefined' ? -1 : nextIndex;
-          });
-          break;
-        case 'ArrowDown':
-          setCheckedIndex(n => {
-            const nextIndex = DropdownItemUtils.asLoopedIterator(options, n).next();
-            return typeof nextIndex === 'undefined' ? -1 : nextIndex;
-          });
-          break;
-      }
-    },
-    [checkedIndex],
-  );
-
-  const handleMenuBlur = useCallback(() => {
-    setOpened(false);
-    setFocused(false);
-  }, []);
-
-  const handleOptionClick = useCallback(
-    (item: DropdownItemElement): MouseEventHandler<HTMLDivElement> =>
-      event => {
-        item.props.onClick?.(event);
-        selectItem(item);
-        setOpened(false);
-        openerRef.current?.focus();
-      },
-    [],
-  );
-
-  const openerData: SelectOpenerProps = {
+  const openerBinding: SelectOpenerBinding = {
     label,
     openerRef,
     value,
-    opened,
-    focused, // @todo возможно не стоит хранить состояние focused не в Select а в компонентах "открывашек"
+    opened: menuShown,
     failed,
     disabled,
-    onFocus: () => {
-      !disabled && setFocused(true);
-    },
-    onBlur: () => {
-      setFocused(false);
-    },
-    onMouseDown: () => {
-      !disabled && setOpened(a => !a);
+    menuFocused,
+    onMouseDown: event => {
+      if (!disabled) {
+        !menuElement && event.preventDefault();
+        setNeedMenu(a => !a);
+      }
     },
     onKeyDown: e => {
-      !disabled && e.key === 'Enter' && setOpened(a => !a);
+      if (!disabled) {
+        switch (e.code) {
+          case 'Enter':
+          case 'ArrowUp':
+          case 'ArrowDown':
+            setNeedMenu(true);
+            break;
+        }
+      }
     },
   };
 
-  // @todo переделать на floating-ui без корневого элемента?
+  const menuProps: SelectMenuProps = {
+    ...dropdownProps,
+    menuRef: setMenuElement,
+    openerRef,
+    value,
+    loading,
+    onFocus: () => {
+      setMenuFocused(true);
+    },
+    onBlur: () => {
+      setNeedMenu(false);
+      setMenuFocused(false);
+    },
+    onKeyDown: event => {
+      switch (event.code) {
+        case 'Enter':
+        case 'Escape':
+          openerRef.current?.focus();
+          break;
+        case 'Tab':
+          event.preventDefault();
+          openerRef.current?.focus();
+          break;
+      }
+    },
+    onItemSelect: item => {
+      onValueChange?.(DropdownItemUtils.getValue(item));
+      setNeedMenu(false);
+      openerRef.current?.focus();
+    },
+  };
+
   return (
-    <div className={cx('root', className)} style={style} data-testid='select'>
-      <SelectContext.Provider value={{ fieldBlockProps, textButtonProps, setDropdownProps }}>
-        {Opener === 'field-block' && <SelectFieldBlock {...openerData} />}
-        {Opener === 'text-button' && <SelectTextButton {...openerData} />}
-        {typeof Opener === 'function' && <Opener {...openerData} />}
+    <>
+      <SelectContext.Provider value={openerBinding}>
+        {isValidElement(opener) && opener}
       </SelectContext.Provider>
 
-      {opened && (
-        <Dropdown
-          {...dropdownProps}
-          ref={menuRef}
-          customScrollbarProps={{ osComponentRef }}
-          className={cx('menu', `align-${menuAlign}`)}
-          tabIndex={0}
-          role='listbox'
-          onBlur={handleMenuBlur}
-          onKeyDown={handleMenuKeyDown}
-        >
-          {loading ? (
-            <DropdownLoading data-testid='select:loading-area' />
-          ) : (
-            options.map((item, index) => (
-              <DropdownItem
-                checked={checkedIndex === index}
-                selected={value === DropdownItemUtils.getValue(item)}
-                {...item.props}
-                key={index}
-                role='option'
-                data-select-role='option'
-                onClick={item.props.disabled ? undefined : handleOptionClick(item)}
-              />
-            ))
-          )}
-        </Dropdown>
-      )}
-    </div>
+      <FloatingPortal id=''>
+        {needMenu && <SelectMenu {...menuProps}>{children}</SelectMenu>}
+      </FloatingPortal>
+    </>
   );
 }
+
+Select.FieldBlock = SelectFieldBlock;
+Select.TextButton = SelectTextButton;
