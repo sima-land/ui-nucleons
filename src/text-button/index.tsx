@@ -46,19 +46,19 @@ interface CommonProps {
   'data-testid'?: string;
 }
 
-type AsButtonProps = CommonProps &
+export type TextButtonAsButtonProps = CommonProps &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof CommonProps> & {
     /** Какой элемент выводить в качестве текстовой кнопки. */
     as?: 'button';
   };
 
-type AsAnchorProps = CommonProps &
+export type TextButtonAsAnchorProps = CommonProps &
   Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof CommonProps> & {
     /** Какой элемент выводить в качестве текстовой кнопки. */
     as: 'anchor';
   };
 
-export type TextButtonProps = AsButtonProps | AsAnchorProps;
+export type TextButtonProps = TextButtonAsButtonProps | TextButtonAsAnchorProps;
 
 const cx = classNames.bind(styles);
 

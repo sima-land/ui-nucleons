@@ -1,0 +1,39 @@
+import { useFloating, flip, autoUpdate } from '@floating-ui/react-dom';
+import { useImperativeHandle, RefObject, CSSProperties } from 'react';
+import { useLayer } from '../helpers/layer';
+
+/**
+ * Хук для позиционирования Dropdown рядом с открывающим элементом.
+ * @param dropdownRef Ref Dropdown.
+ * @param openerRef Ref открывающего элемента.
+ * @return Пропсы для Dropdown.
+ */
+export function useFloatingDropdown(
+  dropdownRef: RefObject<Element | null>,
+  openerRef: RefObject<Element | null>,
+): { style: CSSProperties } {
+  const layer = useLayer();
+  const { reference, floating, x, y, strategy } = useFloating({
+    whileElementsMounted: autoUpdate,
+    placement: 'bottom-start',
+    middleware: [flip()],
+  });
+
+  useImperativeHandle<Element | null, Element | null>(floating, () => dropdownRef.current);
+  useImperativeHandle<Element | null, Element | null>(reference, () => openerRef.current);
+
+  const openerWidth: string | undefined = openerRef.current
+    ? `${openerRef.current.getBoundingClientRect().width}px`
+    : undefined;
+
+  const style: CSSProperties = {
+    position: strategy,
+    top: y ?? 0,
+    left: x ?? 0,
+    minWidth: openerWidth,
+    '--opener-width': openerWidth, // для стилизации
+    zIndex: layer + 2,
+  } as CSSProperties;
+
+  return { style };
+}

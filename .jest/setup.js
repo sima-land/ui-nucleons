@@ -17,4 +17,10 @@ if (typeof window !== 'undefined') {
         removeEventListener: () => {},
       };
     };
+
+  window.ResizeObserver = class ResizeObserver {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  };
 }
