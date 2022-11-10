@@ -20,7 +20,7 @@ describe('Textarea', () => {
   it('should render caption', () => {
     const { getByTestId } = render(<Textarea caption='Some caption here' />);
 
-    expect(getByTestId('field:caption').textContent).toBe('Some caption here');
+    expect(getByTestId('field-block:caption').textContent).toBe('Some caption here');
   });
 
   it('should render start adornment', () => {
@@ -28,7 +28,7 @@ describe('Textarea', () => {
       <Textarea adornmentStart={<PlaceholderSVG data-testid='icon-start' />} />,
     );
 
-    expect(queryAllByTestId('field:adornment-start')).toHaveLength(1);
+    expect(queryAllByTestId('field-block:adornment-start')).toHaveLength(1);
     expect(queryAllByTestId('icon-start')).toHaveLength(1);
   });
 
@@ -37,7 +37,7 @@ describe('Textarea', () => {
       <Textarea adornmentEnd={<PlaceholderSVG data-testid='icon-end' />} />,
     );
 
-    expect(queryAllByTestId('field:adornment-end')).toHaveLength(1);
+    expect(queryAllByTestId('field-block:adornment-end')).toHaveLength(1);
     expect(queryAllByTestId('icon-end')).toHaveLength(1);
   });
 
@@ -71,7 +71,7 @@ describe('Textarea', () => {
     expect(mouseDownSpy).toBeCalledTimes(0);
     expect(focusSpy).toBeCalledTimes(0);
 
-    fireEvent.mouseDown(getByTestId('field:block'));
+    fireEvent.mouseDown(getByTestId('field-block:block'));
 
     expect(mouseDownSpy).toBeCalledTimes(1);
     expect(focusSpy).toBeCalledTimes(1);
@@ -90,7 +90,7 @@ describe('Textarea', () => {
     expect(mouseDownSpy).toBeCalledTimes(0);
     expect(focusSpy).toBeCalledTimes(0);
 
-    fireEvent.mouseDown(getByTestId('field:block'));
+    fireEvent.mouseDown(getByTestId('field-block:block'));
 
     expect(mouseDownSpy).toBeCalledTimes(1);
     expect(focusSpy).toBeCalledTimes(0);

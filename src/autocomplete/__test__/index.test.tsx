@@ -277,9 +277,9 @@ describe('Autocomplete', () => {
     expect(helpers.findMenu()).toHaveLength(0);
     expect(helpers.findMenuItems()).toHaveLength(0);
 
-    const event = createEvent.mouseDown(getByTestId(container, 'field:block'));
+    const event = createEvent.mouseDown(getByTestId(container, 'field-block:block'));
 
-    fireEvent(getByTestId(container, 'field:block'), event);
+    fireEvent(getByTestId(container, 'field-block:block'), event);
     expect(spy).toBeCalledTimes(1);
     expect(helpers.findField()).toHaveLength(1);
     expect(helpers.findMenu()).toHaveLength(1);
@@ -300,7 +300,7 @@ describe('Autocomplete', () => {
     expect(helpers.findMenuItems()).toHaveLength(0);
 
     // click for show menu
-    fireEvent.mouseDown(getByTestId(container, 'field:block'));
+    fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
     expect(helpers.findField()).toHaveLength(1);
     expect(helpers.findMenu()).toHaveLength(1);
     expect(helpers.findMenuItems()).toHaveLength(3);

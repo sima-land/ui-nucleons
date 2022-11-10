@@ -18,7 +18,7 @@ describe('SelectTextButton', () => {
     expect(spy).toBeCalledTimes(0);
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
 
-    fireEvent.keyDown(getByTestId(container, 'select:opener'), { code: 'Enter' });
+    fireEvent.keyDown(getByTestId(container, 'text-button'), { code: 'Enter' });
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
     expect(spy).toBeCalledTimes(1);
   });

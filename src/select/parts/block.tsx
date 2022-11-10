@@ -49,7 +49,6 @@ export function SelectFieldBlock(props: FieldBlockProps) {
         role: 'combobox',
         tabIndex: binding.disabled ? undefined : 0,
         className: classNames(styles.block, props.blockProps?.className),
-        'data-testid': 'select:opener',
       }}
       focused={focused || binding.opened}
       labelAsPlaceholder={!binding.value}
