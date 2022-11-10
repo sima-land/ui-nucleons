@@ -1,12 +1,12 @@
-import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import React, { useContext } from 'react';
+import { fireEvent, render, getByTestId, queryAllByTestId } from '@testing-library/react';
 import { Select } from '..';
 import { DropdownItem } from '../../dropdown-item';
-import { SelectOpenerProps } from '../types';
+import { SelectContext } from '../utils';
 
 describe('Select', () => {
   it('should handle mouse control on opener - FieldBlock', () => {
-    const { queryAllByTestId, getByTestId } = render(
+    const { baseElement, container } = render(
       <Select>
         <DropdownItem value='1'>One</DropdownItem>
         <DropdownItem value='2'>Two</DropdownItem>
@@ -15,57 +15,51 @@ describe('Select', () => {
     );
 
     // initial state
-    expect(queryAllByTestId('select')).toHaveLength(1);
-    expect(queryAllByTestId('field')).toHaveLength(1);
-    expect(queryAllByTestId('dropdown')).toHaveLength(0);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
+    expect(queryAllByTestId(container, 'field')).toHaveLength(1);
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
 
     // opener click
-    fireEvent.mouseDown(getByTestId('select:opener'));
-    expect(queryAllByTestId('select')).toHaveLength(1);
-    expect(queryAllByTestId('field')).toHaveLength(1);
-    expect(queryAllByTestId('dropdown')).toHaveLength(1);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
+    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    expect(queryAllByTestId(container, 'field')).toHaveLength(1);
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(3);
 
     // opener click again
-    fireEvent.mouseDown(getByTestId('select:opener'));
-    expect(queryAllByTestId('select')).toHaveLength(1);
-    expect(queryAllByTestId('field')).toHaveLength(1);
-    expect(queryAllByTestId('dropdown')).toHaveLength(0);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
+    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    expect(queryAllByTestId(container, 'field')).toHaveLength(1);
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
   });
 
   it('should handle mouse control on opener - TextButton', () => {
-    const { queryAllByTestId, getByTestId } = render(
-      <Select opener='text-button'>
+    const { baseElement, container } = render(
+      <Select opener={<Select.TextButton />}>
         <DropdownItem value='1'>Foo</DropdownItem>
         <DropdownItem value='2'>Bar</DropdownItem>
       </Select>,
     );
 
     // initial state
-    expect(queryAllByTestId('select')).toHaveLength(1);
-    expect(queryAllByTestId('select:opener')).toHaveLength(1);
-    expect(queryAllByTestId('dropdown')).toHaveLength(0);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
+    expect(queryAllByTestId(container, 'select:opener')).toHaveLength(1);
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
 
     // opener click
-    fireEvent.mouseDown(getByTestId('select:opener'));
-    expect(queryAllByTestId('select')).toHaveLength(1);
-    expect(queryAllByTestId('select:opener')).toHaveLength(1);
-    expect(queryAllByTestId('dropdown')).toHaveLength(1);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(2);
+    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    expect(queryAllByTestId(container, 'select:opener')).toHaveLength(1);
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(2);
 
     // opener click again
-    fireEvent.mouseDown(getByTestId('select:opener'));
-    expect(queryAllByTestId('select')).toHaveLength(1);
-    expect(queryAllByTestId('select:opener')).toHaveLength(1);
-    expect(queryAllByTestId('dropdown')).toHaveLength(0);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
+    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    expect(queryAllByTestId(container, 'select:opener')).toHaveLength(1);
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
   });
 
   it('should handle keyboard control on opener - FieldBlock', () => {
-    const { queryAllByTestId, getByTestId } = render(
+    const { baseElement, container } = render(
       <Select>
         <DropdownItem value='1'>One</DropdownItem>
         <DropdownItem value='2'>Two</DropdownItem>
@@ -74,34 +68,34 @@ describe('Select', () => {
     );
 
     // initial state
-    expect(queryAllByTestId('dropdown')).toHaveLength(0);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
 
     // opener focus
-    fireEvent.focus(getByTestId('select:opener'));
-    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+    fireEvent.focus(getByTestId(container, 'select:opener'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
 
     // opener enter keydown
-    fireEvent.keyDown(getByTestId('select:opener'), { key: 'Enter' });
-    expect(queryAllByTestId('dropdown')).toHaveLength(1);
+    fireEvent.keyDown(getByTestId(container, 'select:opener'), { code: 'Enter' });
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
 
     // menu blur
-    fireEvent.blur(getByTestId('dropdown'));
-    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+    fireEvent.blur(getByTestId(baseElement, 'dropdown'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
 
     // opener focus + enter keydown
-    fireEvent.focus(getByTestId('select:opener'));
-    fireEvent.keyDown(getByTestId('select:opener'), { key: 'Enter' });
-    expect(queryAllByTestId('dropdown')).toHaveLength(1);
+    fireEvent.focus(getByTestId(container, 'select:opener'));
+    fireEvent.keyDown(getByTestId(container, 'select:opener'), { code: 'Enter' });
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
 
-    // opener enter keydown again
-    fireEvent.keyDown(getByTestId('select:opener'), { key: 'Enter' });
-    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+    // enter keydown again
+    fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'Enter' });
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
   });
 
   it('should handle keyboard control on opener - TextButton', () => {
-    const { queryAllByTestId, getByTestId } = render(
-      <Select opener='text-button'>
+    const { baseElement, container } = render(
+      <Select opener={<Select.FieldBlock />}>
         <DropdownItem value='1'>One</DropdownItem>
         <DropdownItem value='2'>Two</DropdownItem>
         <DropdownItem value='3'>Three</DropdownItem>
@@ -109,33 +103,33 @@ describe('Select', () => {
     );
 
     // initial state
-    expect(queryAllByTestId('dropdown')).toHaveLength(0);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
 
     // opener focus
-    fireEvent.focus(getByTestId('select:opener'));
-    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+    fireEvent.focus(getByTestId(container, 'select:opener'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
 
     // opener enter keydown
-    fireEvent.keyDown(getByTestId('select:opener'), { key: 'Enter' });
-    expect(queryAllByTestId('dropdown')).toHaveLength(1);
+    fireEvent.keyDown(getByTestId(container, 'select:opener'), { code: 'Enter' });
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
 
     // menu blur
-    fireEvent.blur(getByTestId('dropdown'));
-    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+    fireEvent.blur(getByTestId(baseElement, 'dropdown'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
 
     // opener focus + enter keydown
-    fireEvent.focus(getByTestId('select:opener'));
-    fireEvent.keyDown(getByTestId('select:opener'), { key: 'Enter' });
-    expect(queryAllByTestId('dropdown')).toHaveLength(1);
+    fireEvent.focus(getByTestId(container, 'select:opener'));
+    fireEvent.keyDown(getByTestId(container, 'select:opener'), { code: 'Enter' });
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
 
-    // opener enter keydown again
-    fireEvent.keyDown(getByTestId('select:opener'), { key: 'Enter' });
-    expect(queryAllByTestId('dropdown')).toHaveLength(0);
+    // enter keydown again
+    fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'Enter' });
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
   });
 
   it('should render loading state', () => {
-    const { queryAllByTestId, getByTestId } = render(
+    const { baseElement, container } = render(
       <Select loading>
         <DropdownItem value='1'>One</DropdownItem>
         <DropdownItem value='2'>Two</DropdownItem>
@@ -143,20 +137,20 @@ describe('Select', () => {
       </Select>,
     );
 
-    expect(queryAllByTestId('dropdown')).toHaveLength(0);
-    expect(queryAllByTestId('spinner')).toHaveLength(0);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'spinner')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
 
-    fireEvent.mouseDown(getByTestId('select:opener'));
-    expect(queryAllByTestId('dropdown')).toHaveLength(1);
-    expect(queryAllByTestId('spinner')).toHaveLength(1);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
+    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(queryAllByTestId(baseElement, 'spinner')).toHaveLength(1);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
   });
 
   it('should handle menu keyboard control', () => {
     const spy = jest.fn();
 
-    const { queryAllByTestId, getByTestId } = render(
+    const { baseElement, container } = render(
       <Select onValueChange={spy}>
         <DropdownItem value='1'>One</DropdownItem>
         <DropdownItem value='2'>Two</DropdownItem>
@@ -164,22 +158,22 @@ describe('Select', () => {
       </Select>,
     );
 
-    expect(queryAllByTestId('dropdown')).toHaveLength(0);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
 
     // show menu
-    fireEvent.mouseDown(getByTestId('select:opener'));
-    expect(queryAllByTestId('dropdown')).toHaveLength(1);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
+    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(3);
 
     // make options active: 1, 2, 3, 1, 3, 2
-    fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowDown' });
-    fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowDown' });
-    fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowDown' });
-    fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowDown' });
-    fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowUp' });
-    fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowUp' });
-    fireEvent.keyDown(getByTestId('dropdown'), { key: 'Enter' });
+    fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'ArrowDown' });
+    fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'ArrowDown' });
+    fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'ArrowDown' });
+    fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'ArrowDown' });
+    fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'ArrowUp' });
+    fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'ArrowUp' });
+    fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'Enter' });
     expect(spy).toBeCalledTimes(1);
     expect(spy.mock.calls[0][0]).toEqual('2');
   });
@@ -187,7 +181,7 @@ describe('Select', () => {
   it('should handle menu mouse control', () => {
     const spy = jest.fn();
 
-    const { queryAllByTestId, getByTestId } = render(
+    const { baseElement, container } = render(
       <Select onValueChange={spy}>
         <DropdownItem value='1'>One</DropdownItem>
         <DropdownItem value='2'>Two</DropdownItem>
@@ -196,25 +190,25 @@ describe('Select', () => {
     );
 
     expect(spy).toBeCalledTimes(0);
-    expect(queryAllByTestId('dropdown')).toHaveLength(0);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
 
-    fireEvent.mouseDown(getByTestId('select:opener'));
+    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
     expect(spy).toBeCalledTimes(0);
-    expect(queryAllByTestId('dropdown')).toHaveLength(1);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(3);
 
-    fireEvent.click(queryAllByTestId('dropdown-item')[1]);
+    fireEvent.click(queryAllByTestId(baseElement, 'dropdown-item')[1]);
     expect(spy).toBeCalledTimes(1);
     expect(spy.mock.calls[0][0]).toEqual('2');
-    expect(queryAllByTestId('dropdown')).toHaveLength(0);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
   });
 
   it('should handle options without defined value', () => {
     const spy = jest.fn();
 
-    const { queryAllByTestId, getByTestId } = render(
+    const { baseElement, container } = render(
       <Select onValueChange={spy}>
         <DropdownItem>Foo</DropdownItem>
         <DropdownItem>Bar</DropdownItem>
@@ -223,37 +217,21 @@ describe('Select', () => {
     );
 
     // open menu
-    fireEvent.mouseDown(getByTestId('select:opener'));
+    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
     expect(spy).toBeCalledTimes(0);
-    expect(queryAllByTestId('dropdown')).toHaveLength(1);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(3);
 
     // click on third option
-    fireEvent.click(queryAllByTestId('dropdown-item')[2]);
+    fireEvent.click(queryAllByTestId(baseElement, 'dropdown-item')[2]);
     expect(spy).toBeCalledTimes(1);
     expect(spy.mock.calls[0][0]).toEqual('Baz');
-  });
-
-  it('should handle blur on opener', () => {
-    const { getByTestId } = render(
-      <Select>
-        <DropdownItem>Foo</DropdownItem>
-        <DropdownItem>Bar</DropdownItem>
-        <DropdownItem>Baz</DropdownItem>
-      </Select>,
-    );
-
-    fireEvent.focus(getByTestId('select:opener'));
-
-    expect(() => {
-      fireEvent.blur(getByTestId('select:opener'));
-    }).not.toThrow();
   });
 
   it('should handle menu enter keydown without active options', () => {
     const spy = jest.fn();
 
-    const { getByTestId, queryAllByTestId } = render(
+    const { baseElement, container } = render(
       <Select onValueChange={spy}>
         <DropdownItem>Foo</DropdownItem>
         <DropdownItem>Bar</DropdownItem>
@@ -262,45 +240,37 @@ describe('Select', () => {
     );
 
     // show menu
-    fireEvent.mouseDown(getByTestId('select:opener'));
-    expect(queryAllByTestId('dropdown')).toHaveLength(1);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
+    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(3);
 
     // enter without active options
-    fireEvent.keyDown(getByTestId('dropdown'), { key: 'Enter' });
+    fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'Enter' });
     expect(spy).toBeCalledTimes(0);
   });
 
   it('should handle custom opener', () => {
     const spy = jest.fn();
 
-    function CustomOpener({
-      openerRef,
-      onFocus,
-      onBlur,
-      onKeyDown,
-      onMouseDown,
-    }: SelectOpenerProps) {
+    function CustomOpener() {
+      const binding = useContext(SelectContext);
+
       return (
         <div
-          ref={openerRef as any}
+          ref={binding.openerRef as any}
           tabIndex={0}
           role='combobox'
           data-testid='custom-opener'
-          {...{
-            onFocus,
-            onBlur,
-            onKeyDown,
-            onMouseDown,
-          }}
+          onKeyDown={binding.onKeyDown}
+          onMouseDown={binding.onMouseDown}
         >
           My Opener
         </div>
       );
     }
 
-    const { getByTestId, queryAllByTestId } = render(
-      <Select opener={CustomOpener} onValueChange={spy}>
+    const { baseElement, container } = render(
+      <Select opener={<CustomOpener />} onValueChange={spy}>
         <DropdownItem>Foo</DropdownItem>
         <DropdownItem>Bar</DropdownItem>
         <DropdownItem>Baz</DropdownItem>
@@ -308,18 +278,18 @@ describe('Select', () => {
     );
 
     // show menu
-    fireEvent.mouseDown(getByTestId('custom-opener'));
-    expect(queryAllByTestId('dropdown')).toHaveLength(1);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
+    fireEvent.mouseDown(getByTestId(container, 'custom-opener'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(3);
 
     // click on third option
-    fireEvent.click(queryAllByTestId('dropdown-item')[2]);
+    fireEvent.click(queryAllByTestId(baseElement, 'dropdown-item')[2]);
     expect(spy).toBeCalledTimes(1);
     expect(spy.mock.calls[0][0]).toEqual('Baz');
   });
 
   it('should hide menu when it is shown and select becomes disabled', () => {
-    const { queryAllByTestId, getByTestId, rerender } = render(
+    const { baseElement, container, rerender } = render(
       <Select>
         <DropdownItem>Foo</DropdownItem>
         <DropdownItem>Bar</DropdownItem>
@@ -328,9 +298,9 @@ describe('Select', () => {
     );
 
     // open menu
-    fireEvent.mouseDown(getByTestId('select:opener'));
-    expect(queryAllByTestId('dropdown')).toHaveLength(1);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
+    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(3);
 
     // rerender with disabled prop
     rerender(
@@ -340,12 +310,12 @@ describe('Select', () => {
         <DropdownItem>Baz</DropdownItem>
       </Select>,
     );
-    expect(queryAllByTestId('dropdown')).toHaveLength(0);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
   });
 
   it('should handle ArrowUp/ArrowDown keydown for all disabled options', () => {
-    const { queryAllByTestId, getByTestId } = render(
+    const { baseElement, container } = render(
       <Select>
         <DropdownItem disabled>Foo</DropdownItem>
         <DropdownItem disabled>Bar</DropdownItem>
@@ -354,14 +324,93 @@ describe('Select', () => {
     );
 
     // open menu
-    fireEvent.mouseDown(getByTestId('select:opener'));
-    expect(queryAllByTestId('dropdown')).toHaveLength(1);
-    expect(queryAllByTestId('dropdown-item')).toHaveLength(3);
+    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(3);
 
     // keydown
     expect(() => {
-      fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowDown' });
-      fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowUp' });
+      fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'ArrowDown' });
+      fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'ArrowUp' });
     }).not.toThrow();
+  });
+
+  it('should handle mousedown when its disabled', () => {
+    const { baseElement, container, rerender } = render(
+      <Select opener={<Select.FieldBlock />} disabled={false}>
+        <DropdownItem disabled>Foo</DropdownItem>
+        <DropdownItem disabled>Bar</DropdownItem>
+        <DropdownItem disabled>Baz</DropdownItem>
+      </Select>,
+    );
+
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+
+    // mousedown for open
+    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+
+    // rerender as disabled
+    rerender(
+      <Select opener={<Select.FieldBlock />} disabled>
+        <DropdownItem disabled>Foo</DropdownItem>
+        <DropdownItem disabled>Bar</DropdownItem>
+        <DropdownItem disabled>Baz</DropdownItem>
+      </Select>,
+    );
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+
+    // mousedown with disabled
+    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+  });
+
+  it('should handle keydown when its disabled', () => {
+    const { baseElement, container, rerender } = render(
+      <Select opener={<Select.FieldBlock />} disabled={false}>
+        <DropdownItem disabled>Foo</DropdownItem>
+        <DropdownItem disabled>Bar</DropdownItem>
+        <DropdownItem disabled>Baz</DropdownItem>
+      </Select>,
+    );
+
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+
+    // keyDown for open
+    fireEvent.keyDown(getByTestId(container, 'select:opener'), { code: 'Enter' });
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+
+    // rerender as disabled
+    rerender(
+      <Select opener={<Select.FieldBlock />} disabled>
+        <DropdownItem disabled>Foo</DropdownItem>
+        <DropdownItem disabled>Bar</DropdownItem>
+        <DropdownItem disabled>Baz</DropdownItem>
+      </Select>,
+    );
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+
+    // keyDown with disabled
+    fireEvent.keyDown(getByTestId(container, 'select:opener'), { code: 'Enter' });
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+  });
+
+  it('should handle Tab keydown on dropdown properly', () => {
+    const { baseElement, container } = render(
+      <Select>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+      </Select>,
+    );
+
+    // open menu
+    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+
+    expect(document.activeElement).toBe(getByTestId(baseElement, 'dropdown'));
+
+    // tab keydown
+    fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'Tab' });
+    expect(document.activeElement).toBe(getByTestId(container, 'select:opener'));
   });
 });
