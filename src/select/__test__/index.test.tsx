@@ -15,19 +15,19 @@ describe('Select', () => {
     );
 
     // initial state
-    expect(queryAllByTestId(container, 'field')).toHaveLength(1);
+    expect(queryAllByTestId(container, 'field-block')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
 
     // opener click
-    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
-    expect(queryAllByTestId(container, 'field')).toHaveLength(1);
+    fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
+    expect(queryAllByTestId(container, 'field-block')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(3);
 
     // opener click again
-    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
-    expect(queryAllByTestId(container, 'field')).toHaveLength(1);
+    fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
+    expect(queryAllByTestId(container, 'field-block')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
   });
@@ -41,19 +41,19 @@ describe('Select', () => {
     );
 
     // initial state
-    expect(queryAllByTestId(container, 'select:opener')).toHaveLength(1);
+    expect(queryAllByTestId(container, 'text-button')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
 
     // opener click
-    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
-    expect(queryAllByTestId(container, 'select:opener')).toHaveLength(1);
+    fireEvent.mouseDown(getByTestId(container, 'text-button'));
+    expect(queryAllByTestId(container, 'text-button')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(2);
 
     // opener click again
-    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
-    expect(queryAllByTestId(container, 'select:opener')).toHaveLength(1);
+    fireEvent.mouseDown(getByTestId(container, 'text-button'));
+    expect(queryAllByTestId(container, 'text-button')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
   });
@@ -72,11 +72,11 @@ describe('Select', () => {
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
 
     // opener focus
-    fireEvent.focus(getByTestId(container, 'select:opener'));
+    fireEvent.focus(getByTestId(container, 'field-block:block'));
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
 
     // opener enter keydown
-    fireEvent.keyDown(getByTestId(container, 'select:opener'), { code: 'Enter' });
+    fireEvent.keyDown(getByTestId(container, 'field-block:block'), { code: 'Enter' });
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
 
     // menu blur
@@ -84,8 +84,8 @@ describe('Select', () => {
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
 
     // opener focus + enter keydown
-    fireEvent.focus(getByTestId(container, 'select:opener'));
-    fireEvent.keyDown(getByTestId(container, 'select:opener'), { code: 'Enter' });
+    fireEvent.focus(getByTestId(container, 'field-block:block'));
+    fireEvent.keyDown(getByTestId(container, 'field-block:block'), { code: 'Enter' });
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
 
     // enter keydown again
@@ -95,7 +95,7 @@ describe('Select', () => {
 
   it('should handle keyboard control on opener - TextButton', () => {
     const { baseElement, container } = render(
-      <Select opener={<Select.FieldBlock />}>
+      <Select opener={<Select.TextButton />}>
         <DropdownItem value='1'>One</DropdownItem>
         <DropdownItem value='2'>Two</DropdownItem>
         <DropdownItem value='3'>Three</DropdownItem>
@@ -107,11 +107,11 @@ describe('Select', () => {
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
 
     // opener focus
-    fireEvent.focus(getByTestId(container, 'select:opener'));
+    fireEvent.focus(getByTestId(container, 'text-button'));
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
 
     // opener enter keydown
-    fireEvent.keyDown(getByTestId(container, 'select:opener'), { code: 'Enter' });
+    fireEvent.keyDown(getByTestId(container, 'text-button'), { code: 'Enter' });
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
 
     // menu blur
@@ -119,8 +119,8 @@ describe('Select', () => {
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
 
     // opener focus + enter keydown
-    fireEvent.focus(getByTestId(container, 'select:opener'));
-    fireEvent.keyDown(getByTestId(container, 'select:opener'), { code: 'Enter' });
+    fireEvent.focus(getByTestId(container, 'text-button'));
+    fireEvent.keyDown(getByTestId(container, 'text-button'), { code: 'Enter' });
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
 
     // enter keydown again
@@ -141,7 +141,7 @@ describe('Select', () => {
     expect(queryAllByTestId(baseElement, 'spinner')).toHaveLength(0);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
 
-    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'spinner')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
@@ -162,7 +162,7 @@ describe('Select', () => {
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
 
     // show menu
-    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(3);
 
@@ -193,7 +193,7 @@ describe('Select', () => {
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
 
-    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
     expect(spy).toBeCalledTimes(0);
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(3);
@@ -217,7 +217,7 @@ describe('Select', () => {
     );
 
     // open menu
-    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
     expect(spy).toBeCalledTimes(0);
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(3);
@@ -240,7 +240,7 @@ describe('Select', () => {
     );
 
     // show menu
-    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(3);
 
@@ -288,7 +288,7 @@ describe('Select', () => {
     expect(spy.mock.calls[0][0]).toEqual('Baz');
   });
 
-  it('should hide menu when it is shown and select becomes disabled', () => {
+  it('should hide menu when its shown and select becomes disabled', () => {
     const { baseElement, container, rerender } = render(
       <Select>
         <DropdownItem>Foo</DropdownItem>
@@ -298,7 +298,7 @@ describe('Select', () => {
     );
 
     // open menu
-    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(3);
 
@@ -324,7 +324,7 @@ describe('Select', () => {
     );
 
     // open menu
-    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(3);
 
@@ -347,7 +347,7 @@ describe('Select', () => {
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
 
     // mousedown for open
-    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
 
     // rerender as disabled
@@ -361,7 +361,7 @@ describe('Select', () => {
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
 
     // mousedown with disabled
-    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
   });
 
@@ -377,7 +377,7 @@ describe('Select', () => {
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
 
     // keyDown for open
-    fireEvent.keyDown(getByTestId(container, 'select:opener'), { code: 'Enter' });
+    fireEvent.keyDown(getByTestId(container, 'field-block:block'), { code: 'Enter' });
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
 
     // rerender as disabled
@@ -391,7 +391,7 @@ describe('Select', () => {
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
 
     // keyDown with disabled
-    fireEvent.keyDown(getByTestId(container, 'select:opener'), { code: 'Enter' });
+    fireEvent.keyDown(getByTestId(container, 'field-block:block'), { code: 'Enter' });
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
   });
 
@@ -404,13 +404,13 @@ describe('Select', () => {
     );
 
     // open menu
-    fireEvent.mouseDown(getByTestId(container, 'select:opener'));
+    fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
 
     expect(document.activeElement).toBe(getByTestId(baseElement, 'dropdown'));
 
     // tab keydown
     fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'Tab' });
-    expect(document.activeElement).toBe(getByTestId(container, 'select:opener'));
+    expect(document.activeElement).toBe(getByTestId(container, 'field-block:block'));
   });
 });

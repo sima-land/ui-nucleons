@@ -50,10 +50,7 @@ export interface FieldBlockProps {
   rootRef?: Ref<HTMLDivElement>;
 
   /** Опции элемента блока поля. */
-  blockProps?: NoChildren<WithStyle<HTMLAttributes<HTMLDivElement>>> & {
-    /** Идентификатор для систем автоматизированного тестирования. */
-    'data-testid'?: string;
-  };
+  blockProps?: NoChildren<WithStyle<HTMLAttributes<HTMLDivElement>>>;
 
   /** Ref элемента блока поля. */
   blockRef?: Ref<HTMLDivElement>;
@@ -109,7 +106,7 @@ export function FieldBlock({
   blockProps,
   adornmentStart,
   adornmentEnd,
-  'data-testid': testId = 'field',
+  'data-testid': testId = 'field-block',
 }: FieldBlockProps) {
   const needLabel = Boolean(label) && (size === 'l' || labelAsPlaceholder);
 
@@ -131,9 +128,17 @@ export function FieldBlock({
   return (
     <div {...rootProps} ref={rootRef} className={rootClassName} data-testid={testId}>
       {/* @todo придумать как вынести блок в компонент FieldBox чтобы использовать в отрыве от root/caption  */}
-      <div data-testid='field:block' {...blockProps} ref={blockRef} className={blockClassName}>
+      <div
+        {...blockProps}
+        ref={blockRef}
+        className={blockClassName}
+        data-testid='field-block:block'
+      >
         {adornmentStart && (
-          <div className={cx('col', 'adornment-col', 'start')} data-testid='field:adornment-start'>
+          <div
+            className={cx('col', 'adornment-col', 'start')}
+            data-testid='field-block:adornment-start'
+          >
             {adornmentStart}
           </div>
         )}
@@ -143,27 +148,34 @@ export function FieldBlock({
             <label
               {...labelProps}
               className={cx('label', labelProps?.className)}
-              data-testid='field:label'
+              data-testid='field-block:label'
             >
               {label}
             </label>
           )}
 
           {/* основной контент выводим без условий */}
-          <div {...mainProps} className={cx('main', mainProps?.className)} data-testid='field:main'>
+          <div
+            {...mainProps}
+            className={cx('main', mainProps?.className)}
+            data-testid='field-block:main'
+          >
             {main}
           </div>
         </div>
 
         {adornmentEnd && (
-          <div className={cx('col', 'adornment-col', 'end')} data-testid='field:adornment-end'>
+          <div
+            className={cx('col', 'adornment-col', 'end')}
+            data-testid='field-block:adornment-end'
+          >
             {adornmentEnd}
           </div>
         )}
       </div>
 
       {caption && (
-        <div className={cx('caption')} data-testid='field:caption'>
+        <div className={cx('caption')} data-testid='field-block:caption'>
           {caption}
         </div>
       )}

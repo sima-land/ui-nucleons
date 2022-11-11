@@ -34,7 +34,6 @@ export function SelectTextButton(props: TextButtonAsButtonProps) {
       disabled={binding.disabled}
       buttonRef={binding.openerRef as any}
       role='combobox'
-      data-testid='select:opener'
     >
       {binding.value || binding.label}
     </TextButton>
