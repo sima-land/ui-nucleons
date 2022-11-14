@@ -4,10 +4,10 @@
  * @param fn Обработчик.
  * @return Интерфейс отписки.
  */
-export const subscribe = (
+export function subscribe(
   mql: MediaQueryList,
   fn: (e: MediaQueryListEvent) => void,
-): { unsubscribe: () => void } => {
+): { unsubscribe: () => void } {
   if (mql.addEventListener) {
     mql.addEventListener('change', fn);
   } else if (mql.addListener) {
@@ -23,4 +23,4 @@ export const subscribe = (
       }
     },
   };
-};
+}

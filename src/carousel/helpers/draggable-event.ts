@@ -8,7 +8,7 @@ interface Data {
 /**
  * Нестандартное событие перетаскивания.
  */
-export default class DraggableEvent implements Data {
+export class DraggableEvent implements Data {
   prevented: boolean;
   offset: IPoint;
   client: IPoint;
@@ -32,3 +32,5 @@ export default class DraggableEvent implements Data {
     this.prevented = true;
   }
 }
+
+export default DraggableEvent;

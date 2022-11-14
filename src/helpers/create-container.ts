@@ -11,7 +11,7 @@ type Observer<T> = (prev: T | undefined, next: T | undefined) => void;
  * @param initialValue Начальное значение в контейнере.
  * @return Контейнер.
  */
-const createContainer = <T = any>(initialValue?: T): Container<T> => {
+export function createContainer<T = any>(initialValue?: T): Container<T> {
   let value: T | undefined = initialValue;
   let observe: Observer<T> | null;
 
@@ -41,6 +41,6 @@ const createContainer = <T = any>(initialValue?: T): Container<T> => {
   };
 
   return { get, set, setObserver };
-};
+}
 
 export default createContainer;

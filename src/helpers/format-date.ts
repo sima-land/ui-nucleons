@@ -12,17 +12,16 @@ import ruLocale from 'date-fns/locale/ru';
  * @param options.invalidPlaceholder Вернется в случае невалидности даты.
  * @return Функция для форматирования даты.
  */
-export const createDateFormatter =
-  ({
-    formatFrom = ['yyyy-MM-dd', 'dd.MM.yyyy'],
-    formatTo = 'dd MMMM yyyy',
-    invalidPlaceholder = '',
-  }: {
-    formatFrom?: string | string[];
-    formatTo?: string | ((d: Date) => string);
-    invalidPlaceholder?: any;
-  } = {}) =>
-  (dateString: string) => {
+export function createDateFormatter({
+  formatFrom = ['yyyy-MM-dd', 'dd.MM.yyyy'],
+  formatTo = 'dd MMMM yyyy',
+  invalidPlaceholder = '',
+}: {
+  formatFrom?: string | string[];
+  formatTo?: string | ((d: Date) => string);
+  invalidPlaceholder?: any;
+} = {}) {
+  return (dateString: string) => {
     const date = parseMultiple(dateString, formatFrom, new Date());
 
     let result = invalidPlaceholder;
@@ -35,6 +34,7 @@ export const createDateFormatter =
 
     return result;
   };
+}
 
 /**
  * Работает аналогично "date-fns/parse", но позволяет передать множество форматов в виде массива.
@@ -44,7 +44,7 @@ export const createDateFormatter =
  * @param options Опции "date-fns/parse".
  * @return Дата.
  */
-export const parseMultiple = (
+export function parseMultiple(
   dateString: string,
   formatString: string | string[],
   referenceDate: Date,
@@ -55,7 +55,7 @@ export const parseMultiple = (
     useAdditionalWeekYearTokens?: boolean;
     useAdditionalDayOfYearTokens?: boolean;
   },
-): Date => {
+): Date {
   let result;
 
   if (Array.isArray(formatString)) {
@@ -70,6 +70,6 @@ export const parseMultiple = (
   }
 
   return result as Date;
-};
+}
 
 export const formatDate = createDateFormatter();

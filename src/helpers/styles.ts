@@ -1,5 +1,3 @@
-import { isNumber } from 'lodash';
-
 /**
  * Возвращает строку значения CSS-свойства "transition".
  * @param duration Длительность перехода в миллисекундах.
@@ -7,8 +5,9 @@ import { isNumber } from 'lodash';
  * @param easing Функция плавности.
  * @return Значение CSS-свойства "transition".
  */
-export const getTransitionStyle = (duration = 0, property = 'all', easing = 'ease-out') =>
-  `${property} ${isNumber(duration) ? duration : 0}ms ${easing}`;
+export function getTransitionStyle(duration = 0, property = 'all', easing = 'ease-out'): string {
+  return `${property} ${Number.isFinite(duration) ? duration : 0}ms ${easing}`;
+}
 
 /**
  * Возвращает строку значения CSS-свойства с трансформацией смещения.
@@ -20,4 +19,6 @@ export const getTransitionStyle = (duration = 0, property = 'all', easing = 'eas
  * @param z Смещение по оси z в пикселях.
  * @return Значение CSS-свойства с трансформацией смещения.
  */
-export const getTranslateStyle = (x = 0, y = 0, z = 0) => `translate3d(${x}px, ${y}px, ${z}px)`;
+export function getTranslateStyle(x = 0, y = 0, z = 0): string {
+  return `translate3d(${x}px, ${y}px, ${z}px)`;
+}

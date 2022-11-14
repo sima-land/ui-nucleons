@@ -3,7 +3,7 @@
  * @param element Элемент.
  * @return Правильный offsetParent.
  */
-const findOffsetParent = (element: HTMLElement) => {
+export function findOffsetParent(element: HTMLElement) {
   let parent: Element | null = element.offsetParent || document.body;
 
   if (getComputedStyle(parent).position === 'static') {
@@ -14,6 +14,4 @@ const findOffsetParent = (element: HTMLElement) => {
   }
 
   return parent;
-};
-
-export { findOffsetParent };
+}

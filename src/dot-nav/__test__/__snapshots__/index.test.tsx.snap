@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<DotsNav /> should handle "current" change 1`] = `
+exports[`DotNav should handle "current" change 1`] = `
 <DotNav
   current={0}
   total={9}
@@ -108,7 +108,7 @@ exports[`<DotsNav /> should handle "current" change 1`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "current" change 2`] = `
+exports[`DotNav should handle "current" change 2`] = `
 <DotNav
   current={0}
   total={9}
@@ -216,7 +216,7 @@ exports[`<DotsNav /> should handle "current" change 2`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "current" change 3`] = `
+exports[`DotNav should handle "current" change 3`] = `
 <DotNav
   current={1}
   total={9}
@@ -324,7 +324,7 @@ exports[`<DotsNav /> should handle "current" change 3`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "current" change 4`] = `
+exports[`DotNav should handle "current" change 4`] = `
 <DotNav
   current={2}
   total={9}
@@ -432,7 +432,7 @@ exports[`<DotsNav /> should handle "current" change 4`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "current" change 5`] = `
+exports[`DotNav should handle "current" change 5`] = `
 <DotNav
   current={3}
   total={9}
@@ -540,7 +540,7 @@ exports[`<DotsNav /> should handle "current" change 5`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "current" change 6`] = `
+exports[`DotNav should handle "current" change 6`] = `
 <DotNav
   current={4}
   total={9}
@@ -648,7 +648,7 @@ exports[`<DotsNav /> should handle "current" change 6`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "current" change 7`] = `
+exports[`DotNav should handle "current" change 7`] = `
 <DotNav
   current={5}
   total={9}
@@ -756,7 +756,7 @@ exports[`<DotsNav /> should handle "current" change 7`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "current" change 8`] = `
+exports[`DotNav should handle "current" change 8`] = `
 <DotNav
   current={6}
   total={9}
@@ -864,7 +864,7 @@ exports[`<DotsNav /> should handle "current" change 8`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "current" change 9`] = `
+exports[`DotNav should handle "current" change 9`] = `
 <DotNav
   current={7}
   total={9}
@@ -972,7 +972,7 @@ exports[`<DotsNav /> should handle "current" change 9`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "current" change 10`] = `
+exports[`DotNav should handle "current" change 10`] = `
 <DotNav
   current={8}
   total={9}
@@ -1080,7 +1080,7 @@ exports[`<DotsNav /> should handle "current" change 10`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "current" change 11`] = `
+exports[`DotNav should handle "current" change 11`] = `
 <DotNav
   current={8}
   total={9}
@@ -1188,7 +1188,7 @@ exports[`<DotsNav /> should handle "current" change 11`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "current" change 12`] = `
+exports[`DotNav should handle "current" change 12`] = `
 <DotNav
   current={7}
   total={9}
@@ -1296,7 +1296,7 @@ exports[`<DotsNav /> should handle "current" change 12`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "current" change 13`] = `
+exports[`DotNav should handle "current" change 13`] = `
 <DotNav
   current={6}
   total={9}
@@ -1404,7 +1404,7 @@ exports[`<DotsNav /> should handle "current" change 13`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "current" change 14`] = `
+exports[`DotNav should handle "current" change 14`] = `
 <DotNav
   current={5}
   total={9}
@@ -1512,7 +1512,7 @@ exports[`<DotsNav /> should handle "current" change 14`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "current" change 15`] = `
+exports[`DotNav should handle "current" change 15`] = `
 <DotNav
   current={4}
   total={9}
@@ -1620,7 +1620,7 @@ exports[`<DotsNav /> should handle "current" change 15`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "current" change 16`] = `
+exports[`DotNav should handle "current" change 16`] = `
 <DotNav
   current={3}
   total={9}
@@ -1728,7 +1728,7 @@ exports[`<DotsNav /> should handle "current" change 16`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "current" change 17`] = `
+exports[`DotNav should handle "current" change 17`] = `
 <DotNav
   current={2}
   total={9}
@@ -1836,7 +1836,7 @@ exports[`<DotsNav /> should handle "current" change 17`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "current" change 18`] = `
+exports[`DotNav should handle "current" change 18`] = `
 <DotNav
   current={1}
   total={9}
@@ -1944,7 +1944,7 @@ exports[`<DotsNav /> should handle "current" change 18`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "current" change 19`] = `
+exports[`DotNav should handle "current" change 19`] = `
 <DotNav
   current={0}
   total={9}
@@ -2052,7 +2052,7 @@ exports[`<DotsNav /> should handle "current" change 19`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "size" prop 1`] = `
+exports[`DotNav should handle "size" prop 1`] = `
 <DotNav
   current={0}
   size="l"
@@ -2161,7 +2161,7 @@ exports[`<DotsNav /> should handle "size" prop 1`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "size" prop 2`] = `
+exports[`DotNav should handle "size" prop 2`] = `
 <DotNav
   current={0}
   size="l"
@@ -2270,7 +2270,7 @@ exports[`<DotsNav /> should handle "size" prop 2`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "size" prop 3`] = `
+exports[`DotNav should handle "size" prop 3`] = `
 <DotNav
   current={1}
   size="l"
@@ -2379,7 +2379,7 @@ exports[`<DotsNav /> should handle "size" prop 3`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "size" prop 4`] = `
+exports[`DotNav should handle "size" prop 4`] = `
 <DotNav
   current={2}
   size="l"
@@ -2488,7 +2488,7 @@ exports[`<DotsNav /> should handle "size" prop 4`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "size" prop 5`] = `
+exports[`DotNav should handle "size" prop 5`] = `
 <DotNav
   current={3}
   size="l"
@@ -2597,7 +2597,7 @@ exports[`<DotsNav /> should handle "size" prop 5`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "size" prop 6`] = `
+exports[`DotNav should handle "size" prop 6`] = `
 <DotNav
   current={4}
   size="l"
@@ -2706,7 +2706,7 @@ exports[`<DotsNav /> should handle "size" prop 6`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "size" prop 7`] = `
+exports[`DotNav should handle "size" prop 7`] = `
 <DotNav
   current={5}
   size="l"
@@ -2815,7 +2815,7 @@ exports[`<DotsNav /> should handle "size" prop 7`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "size" prop 8`] = `
+exports[`DotNav should handle "size" prop 8`] = `
 <DotNav
   current={6}
   size="l"
@@ -2924,7 +2924,7 @@ exports[`<DotsNav /> should handle "size" prop 8`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "size" prop 9`] = `
+exports[`DotNav should handle "size" prop 9`] = `
 <DotNav
   current={7}
   size="l"
@@ -3033,116 +3033,7 @@ exports[`<DotsNav /> should handle "size" prop 9`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "size" prop 10`] = `
-<DotNav
-  current={8}
-  size="l"
-  total={9}
->
-  <div
-    className="root size-l"
-    style={
-      Object {
-        "height": 14,
-        "width": 94,
-      }
-    }
-  >
-    <div
-      className="item distant"
-      key="0"
-      onClick={[Function]}
-      style={
-        Object {
-          "left": "-100px",
-        }
-      }
-    />
-    <div
-      className="item distant"
-      key="1"
-      onClick={[Function]}
-      style={
-        Object {
-          "left": "-80px",
-        }
-      }
-    />
-    <div
-      className="item distant"
-      key="2"
-      onClick={[Function]}
-      style={
-        Object {
-          "left": "-60px",
-        }
-      }
-    />
-    <div
-      className="item distant"
-      key="3"
-      onClick={[Function]}
-      style={
-        Object {
-          "left": "-40px",
-        }
-      }
-    />
-    <div
-      className="item distant"
-      key="4"
-      onClick={[Function]}
-      style={
-        Object {
-          "left": "-20px",
-        }
-      }
-    />
-    <div
-      className="item distant"
-      key="5"
-      onClick={[Function]}
-      style={
-        Object {
-          "left": "0px",
-        }
-      }
-    />
-    <div
-      className="item"
-      key="6"
-      onClick={[Function]}
-      style={
-        Object {
-          "left": "20px",
-        }
-      }
-    />
-    <div
-      className="item"
-      key="7"
-      onClick={[Function]}
-      style={
-        Object {
-          "left": "40px",
-        }
-      }
-    />
-    <div
-      className="item active"
-      key="8"
-      onClick={[Function]}
-      style={
-        Object {
-          "left": "60px",
-        }
-      }
-    />
-  </div>
-</DotNav>
-`;
-
-exports[`<DotsNav /> should handle "size" prop 11`] = `
+exports[`DotNav should handle "size" prop 10`] = `
 <DotNav
   current={8}
   size="l"
@@ -3251,7 +3142,116 @@ exports[`<DotsNav /> should handle "size" prop 11`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "size" prop 12`] = `
+exports[`DotNav should handle "size" prop 11`] = `
+<DotNav
+  current={8}
+  size="l"
+  total={9}
+>
+  <div
+    className="root size-l"
+    style={
+      Object {
+        "height": 14,
+        "width": 94,
+      }
+    }
+  >
+    <div
+      className="item distant"
+      key="0"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-100px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="1"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-80px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="2"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-60px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="3"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-40px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="4"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "-20px",
+        }
+      }
+    />
+    <div
+      className="item distant"
+      key="5"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "0px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="6"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "20px",
+        }
+      }
+    />
+    <div
+      className="item"
+      key="7"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "40px",
+        }
+      }
+    />
+    <div
+      className="item active"
+      key="8"
+      onClick={[Function]}
+      style={
+        Object {
+          "left": "60px",
+        }
+      }
+    />
+  </div>
+</DotNav>
+`;
+
+exports[`DotNav should handle "size" prop 12`] = `
 <DotNav
   current={7}
   size="l"
@@ -3360,7 +3360,7 @@ exports[`<DotsNav /> should handle "size" prop 12`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "size" prop 13`] = `
+exports[`DotNav should handle "size" prop 13`] = `
 <DotNav
   current={6}
   size="l"
@@ -3469,7 +3469,7 @@ exports[`<DotsNav /> should handle "size" prop 13`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "size" prop 14`] = `
+exports[`DotNav should handle "size" prop 14`] = `
 <DotNav
   current={5}
   size="l"
@@ -3578,7 +3578,7 @@ exports[`<DotsNav /> should handle "size" prop 14`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "size" prop 15`] = `
+exports[`DotNav should handle "size" prop 15`] = `
 <DotNav
   current={4}
   size="l"
@@ -3687,7 +3687,7 @@ exports[`<DotsNav /> should handle "size" prop 15`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "size" prop 16`] = `
+exports[`DotNav should handle "size" prop 16`] = `
 <DotNav
   current={3}
   size="l"
@@ -3796,7 +3796,7 @@ exports[`<DotsNav /> should handle "size" prop 16`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "size" prop 17`] = `
+exports[`DotNav should handle "size" prop 17`] = `
 <DotNav
   current={2}
   size="l"
@@ -3905,7 +3905,7 @@ exports[`<DotsNav /> should handle "size" prop 17`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "size" prop 18`] = `
+exports[`DotNav should handle "size" prop 18`] = `
 <DotNav
   current={1}
   size="l"
@@ -4014,7 +4014,7 @@ exports[`<DotsNav /> should handle "size" prop 18`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle "size" prop 19`] = `
+exports[`DotNav should handle "size" prop 19`] = `
 <DotNav
   current={0}
   size="l"
@@ -4123,7 +4123,7 @@ exports[`<DotsNav /> should handle "size" prop 19`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should handle props 1`] = `
+exports[`DotNav should handle props 1`] = `
 <DotNav
   current={2}
   onSelect={[MockFunction]}
@@ -4262,7 +4262,7 @@ exports[`<DotsNav /> should handle props 1`] = `
 </DotNav>
 `;
 
-exports[`<DotsNav /> should renders without props 1`] = `
+exports[`DotNav should renders without props 1`] = `
 <DotNav>
   <div
     className="root size-s"

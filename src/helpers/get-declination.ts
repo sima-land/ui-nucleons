@@ -4,7 +4,7 @@
  * @param titles Массив со склонениями слова. Например: ['отзыв', 'отзыва', 'отзывов'].
  * @return Слово в нужном склонении.
  */
-export default function getDeclination(number: number, titles: string[]) {
+export function getDeclination(number: number, titles: string[]) {
   const cases = [2, 0, 1, 1, 1, 2];
   const positiveNumber = Math.abs(number);
   const index =
@@ -14,3 +14,5 @@ export default function getDeclination(number: number, titles: string[]) {
 
   return titles[index];
 }
+
+export default getDeclination;

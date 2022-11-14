@@ -9,6 +9,8 @@ export interface IPoint {
  * @param y Координата по оси Y.
  * @return Объект представляющий точку.
  */
-const Point = (x = 0, y = 0): IPoint => ({ x, y });
+export function Point(x = 0, y = 0): IPoint {
+  return { x, y };
+}
 
 export default Point;

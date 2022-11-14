@@ -4,7 +4,7 @@
  * @param parent Элемент, относительно которого необходимо определить позицию.
  * @return Относительная позиция элемента.
  */
-const getRelativePos = (target: Element, parent = target.parentElement) => {
+export function getRelativePos(target: Element, parent = target.parentElement) {
   const targetBounds = target.getBoundingClientRect();
   const parentBounds = parent?.getBoundingClientRect();
 
@@ -12,6 +12,6 @@ const getRelativePos = (target: Element, parent = target.parentElement) => {
     x: targetBounds.left - (parentBounds?.left || 0),
     y: targetBounds.top - (parentBounds?.top || 0),
   };
-};
+}
 
 export default getRelativePos;
