@@ -5,7 +5,7 @@ import boundsOf from './bounds-of';
  * @param parent Родительский элемент.
  * @param child Дочерний элемент.
  */
-export const scrollToChild = (parent: HTMLElement, child: Element) => {
+export function scrollToChild(parent: HTMLElement, child: Element) {
   const [parentRect, childRect] = [parent, child].map(boundsOf) as DOMRect[];
 
   // ВАЖНО: не надо использовать offsetTop здесь, offsetParent может не соответствовать указанному родителю
@@ -14,4 +14,6 @@ export const scrollToChild = (parent: HTMLElement, child: Element) => {
   } else if (childRect.top < parentRect.top) {
     parent.scrollTop -= parentRect.top - childRect.top;
   }
-};
+
+  // @todo доделать для OverlayScrollbars?
+}

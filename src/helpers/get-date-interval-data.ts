@@ -14,7 +14,7 @@ const formatOptions = { locale: ruLocale };
  * @param endDate Конечная дата.
  * @return Объект с данными сформированного интервала.
  */
-const getDateIntervalData = (startDate: string, endDate: string) => {
+export function getDateIntervalData(startDate: string, endDate: string) {
   const start = parse(startDate, inputFormat, new Date());
   const end = parse(endDate, inputFormat, new Date());
 
@@ -35,6 +35,6 @@ const getDateIntervalData = (startDate: string, endDate: string) => {
   }
 
   return { date, isInterval };
-};
+}
 
 export default getDateIntervalData;

@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 import { DotNav } from '..';
 import { times } from 'lodash';
 
-describe('<DotsNav />', () => {
+describe('DotNav', () => {
   it('should renders without props', () => {
     const wrapper = mount(<DotNav />);
 

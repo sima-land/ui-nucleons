@@ -1,9 +1,8 @@
-import { toString } from 'lodash';
-
 /**
  * Возвращает объект с исходной строкой в тэге <!--noindex--> для запрета отслеживания контента поисковиками.
- * @param str Исходная строка.
+ * @param content Исходная строка.
  * @return Объект, содержащий обернутую строку, для использования c атрибутом dangerouslySetInnerHTML.
  */
-export const getNoIndex = (str: any) =>
-  str ? { __html: `<!--noindex-->${toString(str)}<!--/noindex-->` } : undefined;
+export function getNoIndex(content: unknown) {
+  return content ? { __html: `<!--noindex-->${String(content)}<!--/noindex-->` } : undefined;
+}

@@ -12,10 +12,12 @@ export type Slots<M extends SlotsDict> = {
  * @param type Тип.
  * @return Результат.
  */
-const isComponentOfType = <T extends React.ElementType>(
+function isComponentOfType<T extends React.ElementType>(
   value: React.ReactElement,
   type: T,
-): value is React.ReactElement<any, T> => value.type === type;
+): value is React.ReactElement<any, T> {
+  return value.type === type;
+}
 
 /**
  * Распределяет дочерние элементы по слотам.
@@ -23,7 +25,7 @@ const isComponentOfType = <T extends React.ElementType>(
  * @param dict Словарь типов элементов.
  * @return Дочерние элементы разбитые по слотам.
  */
-export const defineSlots = <T extends SlotsDict>(children: React.ReactNode, dict: T): Slots<T> => {
+export function defineSlots<T extends SlotsDict>(children: React.ReactNode, dict: T): Slots<T> {
   const allKeys: Array<keyof T> = Object.keys(dict);
 
   const slots: Slots<T> = Children.toArray(children).reduce<Slots<T>>((result, item) => {
@@ -40,4 +42,4 @@ export const defineSlots = <T extends SlotsDict>(children: React.ReactNode, dict
   }, {} as any);
 
   return slots;
-};
+}

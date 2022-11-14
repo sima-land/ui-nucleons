@@ -1,17 +1,17 @@
 import React, { Component, createRef } from 'react';
-import Draggable, { Control } from './draggable';
+import { Draggable, Control } from './draggable';
 import { inRange, isEqual, noop, size, stubFalse } from 'lodash';
 import { eq } from 'lodash/fp';
-import boundsOf from '../helpers/bounds-of';
-import Point, { IPoint } from '../helpers/point';
-import maxIndexOf from '../helpers/max-index-of';
-import getRelativePos from '../helpers/get-relative-pos';
-import findChildElement from '../helpers/find-child-element';
+import { boundsOf } from '../helpers/bounds-of';
+import { Point, IPoint } from '../helpers/point';
+import { maxIndexOf } from '../helpers/max-index-of';
+import { getRelativePos } from '../helpers/get-relative-pos';
+import { findChildIndex } from '../helpers/find-child-element';
 import { ArrowButton, ArrowButtonProps } from '../arrow-button';
+import { DraggableEvent } from './helpers/draggable-event';
+import { isBrowser } from '../helpers/is-browser';
 import classnames from 'classnames/bind';
-import DraggableEvent from './helpers/draggable-event';
 import styles from './carousel.module.scss';
-import isBrowser from '../helpers/is-browser';
 
 export interface CarouselProps {
   /** Список элементов. */
@@ -426,7 +426,7 @@ export class Carousel extends Component<CarouselProps, State> {
    * @param step На сколько элементов надо прокрутить карусель.
    */
   moveBackwardFinite(step: number) {
-    const newIndex = findChildElement({
+    const newIndex = findChildIndex({
       target: this.listElement,
       startIndex: this.currentIndex,
       defaultResult: this.currentIndex,
@@ -567,7 +567,7 @@ export class Carousel extends Component<CarouselProps, State> {
       const edgeIndex = backward ? 0 : lastIndex;
 
       // ищем элемент, который находится ближе всего к начальной границе viewport'а
-      const newIndex = findChildElement({
+      const newIndex = findChildIndex({
         target: this.listElement,
         startIndex: backward ? lastIndex : 0,
         increment: backward ? -1 : +1,

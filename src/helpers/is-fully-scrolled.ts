@@ -5,10 +5,10 @@
  * @param options.threshold Отступ от конца.
  * @return Прокручен ли переданный элемент до конца по вертикали.
  */
-export const isFullyScrolled = (
+export function isFullyScrolled(
   element?: HTMLElement | undefined | null,
   { threshold = 0 }: { threshold?: number } = {},
-) => {
+) {
   let result = false;
 
   if (element) {
@@ -19,4 +19,4 @@ export const isFullyScrolled = (
   }
 
   return result;
-};
+}

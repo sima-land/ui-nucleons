@@ -1,5 +1,5 @@
 import React from 'react';
-import Point from './point';
+import { Point } from './point';
 
 export type EventWithPosition<T extends HTMLElement = HTMLElement> =
   | MouseEvent
@@ -9,28 +9,34 @@ export type EventWithPosition<T extends HTMLElement = HTMLElement> =
 
 /**
  * Проверяет, является ли событие событием нажатия основной кнопки мыши.
- * @param e Событие.
+ * @param event Событие.
  * @return Является ли.
  */
-export const isMainMouseButton = (e: any) => e?.button === 0;
+export function isMainMouseButton(event: any) {
+  return event?.button === 0;
+}
 
 /**
  * Проверяет, является ли переданное событие touch-событием.
- * @param e Событие.
- * @return Является ли.
+ * @param event Событие.
+ * @return Является ли переданное событие touch-событием.
  */
-export const isTouchEvent = (e: any): e is TouchEvent | React.TouchEvent => Boolean(e?.touches);
+export function isTouchEvent(event: any): event is TouchEvent | React.TouchEvent {
+  return Boolean(event?.touches);
+}
 
 /**
  * Берет данные позиции из события.
- * @param e Touch- или Mouse-событие.
+ * @param event Touch- или Mouse-событие.
  * @return Данные позиции.
  */
-export const getEventClientPos = <T extends HTMLElement = HTMLElement>(e: EventWithPosition<T>) => {
-  const source = isTouchEvent(e) ? e.touches[0] : e;
+export function getEventClientPos<T extends HTMLElement = HTMLElement>(
+  event: EventWithPosition<T>,
+) {
+  const source = isTouchEvent(event) ? event.touches[0] : event;
 
   return Point(source?.clientX, source?.clientY);
-};
+}
 
 /**
  * Вызывает событие input на элементе input/textarea/select.
@@ -42,7 +48,7 @@ export const getEventClientPos = <T extends HTMLElement = HTMLElement>(e: EventW
 export function triggerInput(
   element: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement,
   value: string,
-) {
+): void {
   const constructors = [HTMLInputElement, HTMLSelectElement, HTMLTextAreaElement] as const;
 
   let constructor:

@@ -8,12 +8,12 @@ import React from 'react';
  * @param options Опции подписки.
  * @return Функция отписки.
  */
-const on = <T extends Event | React.SyntheticEvent>(
+export function on<T extends Event | React.SyntheticEvent>(
   target: EventTarget,
   eventNames: string,
   callback: (e: T) => void,
   options?: boolean | EventListenerOptions | AddEventListenerOptions | undefined,
-) => {
+) {
   const eventNamesList = eventNames.split(' ');
 
   // обернуто чтобы прокинуть T
@@ -28,6 +28,6 @@ const on = <T extends Event | React.SyntheticEvent>(
     void eventNamesList.forEach(eventName => {
       target.removeEventListener(eventName, wrapped, options);
     });
-};
+}
 
 export default on;

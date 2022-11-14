@@ -1,16 +1,16 @@
-import React from 'react';
+import { SyntheticEvent } from 'react';
 
 /**
- * Декорирует переданную функцию-обработчик события останавливая его при перехвате.
- * @param callback Функция перехвата события.
- * @return Декорированная функция.
+ * Декорирует переданную функцию-обработчик события вызывая preventDefault и stopPropagation.
+ * @param callback Функция-обработчик.
+ * @return Декорированная функция-обработчик.
  */
-const withPrevent =
-  <T extends Event | React.SyntheticEvent>(callback?: (e: T) => void) =>
-  (event: T) => {
+export function withEventMute<T extends Event | SyntheticEvent>(callback?: (event: T) => void) {
+  return (event: T) => {
     event.preventDefault();
-    event.stopPropagation();
+    event.stopPropagation(); // @todo придумать как вынести
     callback?.(event);
   };
+}
 
-export default withPrevent;
+export default withEventMute;

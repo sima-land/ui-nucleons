@@ -1,5 +1,3 @@
-import { identity } from 'lodash';
-
 /**
  * Выполняет цикл для поиска родственного элемента по заданным условиям.
  * @param props Свойства.
@@ -9,15 +7,15 @@ import { identity } from 'lodash';
  * @param props.defaultResult Результат в случае если ни один элемент не прошел проверку.
  * @param props.isSuitable Должна определить удовлетворяет ли элемент условию.
  * @param props.needBreakLoop Должна определить нужно ли останавливать цикл.
- * @return Родственный элемент.
+ * @return Индекс дочернего элемента.
  */
-const findChildElement = ({
+export function findChildIndex({
   target,
   startIndex = 0,
   increment = 1,
   defaultResult = -1,
   isSuitable,
-  needBreakLoop = identity,
+  needBreakLoop = a => a,
 }: {
   target?: HTMLElement | null | undefined;
   startIndex?: number;
@@ -25,7 +23,7 @@ const findChildElement = ({
   defaultResult?: number;
   isSuitable?: (el: Element) => boolean;
   needBreakLoop?: (passed: boolean) => boolean;
-}): number => {
+}): number {
   let result = defaultResult;
 
   if (target && target.children && isSuitable !== undefined) {
@@ -45,6 +43,6 @@ const findChildElement = ({
   }
 
   return result;
-};
+}
 
-export default findChildElement;
+export default findChildIndex;

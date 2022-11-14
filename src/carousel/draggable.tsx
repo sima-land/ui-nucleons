@@ -44,7 +44,7 @@ const EVENT_NAMES = {
 /**
  * Компонент области, которую можно прокручивать перетаскиванием.
  */
-export default class Draggable extends Component<DraggableProps> {
+export class Draggable extends Component<DraggableProps> {
   isGrabbed: boolean;
   hasTransition: boolean;
   needPreventClick: boolean;
@@ -325,3 +325,5 @@ export default class Draggable extends Component<DraggableProps> {
     );
   }
 }
+
+export default Draggable;

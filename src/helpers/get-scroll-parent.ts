@@ -1,4 +1,4 @@
-// не надо использовать глобальный поиск здесь, чтобы regex не сохранял lastIndex
+// ВАЖНО: не надо использовать глобальный поиск здесь, чтобы regex не сохранял lastIndex
 const regex = /(auto|scroll)/;
 
 /**
@@ -6,7 +6,7 @@ const regex = /(auto|scroll)/;
  * @param element Элемент.
  * @return Имеет ли элемент возможность прокручиваться.
  */
-const isScrollable = (element: HTMLElement | undefined | null) => {
+function isScrollable(element: HTMLElement | undefined | null): boolean {
   let result = false;
 
   if (element) {
@@ -15,14 +15,14 @@ const isScrollable = (element: HTMLElement | undefined | null) => {
   }
 
   return result;
-};
+}
 
 /**
  * Возвращает ближайший родительский элемент с возможностью прокрутки.
  * @param element Элемент.
  * @return Ближайший родительский элемент с возможностью прокрутки.
  */
-const getScrollParent = (element: Element | undefined | null): HTMLElement => {
+export function getScrollParent(element: Element | undefined | null): HTMLElement {
   let result;
 
   if (!element || element === document.body) {
@@ -36,6 +36,4 @@ const getScrollParent = (element: Element | undefined | null): HTMLElement => {
   }
 
   return result as HTMLElement;
-};
-
-export { getScrollParent };
+}

@@ -11,8 +11,8 @@ export const LayerProvider = LayerContext.Provider;
  * Хук, возвращающий индекс текущего "слоя".
  * @return Индекс.
  */
-export const useLayer = () => {
+export function useLayer() {
   const currentLayer = useContext(LayerContext);
 
   return currentLayer;
-};
+}

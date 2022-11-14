@@ -3,7 +3,7 @@
  * @param list Список.
  * @return Максимальный индекс.
  */
-const maxIndexOf = (list?: ArrayLike<any> | null) => {
+export function maxIndexOf(list?: ArrayLike<any> | null) {
   let maxIndex = -1;
 
   if (list) {
@@ -11,6 +11,6 @@ const maxIndexOf = (list?: ArrayLike<any> | null) => {
   }
 
   return maxIndex;
-};
+}
 
 export default maxIndexOf;
