@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { isTouchDevice } from '../helpers/is-touch-device';
-import on from '../helpers/on';
+import { on } from '../helpers/on';
 import { useIdentityRef } from './identity';
 
 /**
  * При монтировании проверяет, поддерживает ли устройство touch события.
  * @return True - если поддерживает, false - если нет.
  */
-export const useIsTouchDevice = () => {
+export function useIsTouchDevice() {
   const [isTouch, setTouch] = useState<boolean>(false);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export const useIsTouchDevice = () => {
   }, []);
 
   return isTouch;
-};
+}
 
 /**
  * Реализует подписку на событие полной прокрутки списка.
@@ -25,7 +25,7 @@ export const useIsTouchDevice = () => {
  * @param options.threshold Отступ от конца списка по которому событие должно срабатывать.
  * @param moreDeps Зависимости эффекта (нужны, когда ref заполняется не на этапе render'а).
  */
-export const useInfiniteScroll = (
+export function useInfiniteScroll(
   ref: React.MutableRefObject<HTMLElement | undefined | null>,
   {
     onFullScroll,
@@ -35,7 +35,7 @@ export const useInfiniteScroll = (
     threshold?: number;
   },
   moreDeps?: React.DependencyList,
-) => {
+) {
   const callbackRef = useIdentityRef(onFullScroll);
 
   useEffect(() => {
@@ -51,17 +51,17 @@ export const useInfiniteScroll = (
       }) as () => void;
     }
   }, [ref, threshold, ...(moreDeps || [])]);
-};
+}
 
 /**
  * Запускает переданный обработчик при клике вне элемента.
  * @param elementRef Ref элемента, клик вне которого нужно обработать.
  * @param callback Сработает при клике вне элемента.
  */
-export const useOutsideClick = (
+export function useOutsideClick(
   elementRef: React.MutableRefObject<HTMLElement | undefined | null>,
   callback: (e: MouseEvent) => void,
-) => {
+) {
   const callbackRef = useIdentityRef(callback);
 
   useEffect(
@@ -77,7 +77,7 @@ export const useOutsideClick = (
       }),
     [],
   );
-};
+}
 
 /**
  * Нужен для того чтобы не получать ошибку при использовании в SSR с NodeJS.

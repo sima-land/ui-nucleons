@@ -1,9 +1,9 @@
 import React, { Children, cloneElement, isValidElement, useContext } from 'react';
-import classnames from 'classnames/bind';
 import { Link, LinkProps } from '../link';
-import styles from './clean-buttons.module.scss';
 import { CleanButtonSize } from './types';
 import { CleanGroupSizeContext } from './utils';
+import classnames from 'classnames/bind';
+import styles from './clean-buttons.module.scss';
 
 export interface CleanButtonProps extends LinkProps {
   asLink?: boolean;
@@ -27,7 +27,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export const CleanGroup: React.FC<CleanGroupProps> = ({ size: sizeFromProps, children }) => {
+export function CleanGroup({ size: sizeFromProps, children }: CleanGroupProps) {
   const sizeFromContext = useContext(CleanGroupSizeContext);
 
   // значение из пропсов имеет приоритет
@@ -42,22 +42,27 @@ export const CleanGroup: React.FC<CleanGroupProps> = ({ size: sizeFromProps, chi
       )}
     </div>
   );
-};
+}
 
 /**
  * Компонент прозрачной кнопки.
  * @param props Свойства.
  * @return Элемент.
  */
-const CleanButton = ({
+export function CleanButton({
   size = 's',
   href,
   asLink = Boolean(href),
   ...restProps
-}: CleanButtonProps) => (
-  <Link pseudo={!asLink} className={cx('button', `size-${size}`)} href={href} {...restProps} />
-);
+}: CleanButtonProps) {
+  return (
+    <Link pseudo={!asLink} className={cx('button', `size-${size}`)} href={href} {...restProps} />
+  );
+}
 
+/**
+ * @deprecated Нужно использовать `import { CleanGroup, CleanButton }`.
+ */
 export const Clean = {
   Group: CleanGroup,
   Button: CleanButton,
