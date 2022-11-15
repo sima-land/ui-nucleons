@@ -29,6 +29,7 @@ export function getTranslateStyle(x = 0, y = 0, z = 0): string {
  * @param element Элемент на котором будет задана css-переменная.
  */
 export function setViewportHeightUnit(element: HTMLElement) {
+  const { visualViewport } = window;
   const height = visualViewport ? visualViewport.height * visualViewport.scale : window.innerHeight;
 
   element.style.setProperty('--vh', `${height / 100}px`);

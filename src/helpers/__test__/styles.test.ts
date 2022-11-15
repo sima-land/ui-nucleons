@@ -25,4 +25,17 @@ describe('setViewportHeightUnit', () => {
     setViewportHeightUnit(element);
     expect(element.style.getPropertyValue('--vh')).toBe('7.68px');
   });
+
+  it('should set property when visualViewport is null', () => {
+    const original = window.visualViewport;
+    window.visualViewport = null;
+
+    const element = document.createElement('div');
+
+    expect(element.style.getPropertyValue('--vh')).toBe('');
+    setViewportHeightUnit(element);
+    expect(element.style.getPropertyValue('--vh')).toBe('7.68px');
+
+    window.visualViewport = original;
+  });
 });
