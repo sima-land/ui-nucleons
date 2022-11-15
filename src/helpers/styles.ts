@@ -22,3 +22,15 @@ export function getTransitionStyle(duration = 0, property = 'all', easing = 'eas
 export function getTranslateStyle(x = 0, y = 0, z = 0): string {
   return `translate3d(${x}px, ${y}px, ${z}px)`;
 }
+
+/**
+ * Устанавливает на переданный элемент css-переменную "--vh".
+ * Значение переменной является аналогом `1vh` с учетом особенностей viewport'а мобильный устройств.
+ * @param element Элемент на котором будет задана css-переменная.
+ */
+export function setViewportHeightUnit(element: HTMLElement) {
+  const { visualViewport } = window;
+  const height = visualViewport ? visualViewport.height * visualViewport.scale : window.innerHeight;
+
+  element.style.setProperty('--vh', `${height / 100}px`);
+}

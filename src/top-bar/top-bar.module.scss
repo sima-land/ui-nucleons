@@ -131,6 +131,7 @@
     cursor: pointer;
   }
   &.iconic {
+    color: colors.$basic-gray87;
     width: var(--top-bar-icon-button-width);
     &:hover {
       color: colors.$basic-gray54;

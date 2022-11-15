@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Clean.Button should handle props 1`] = `
+exports[`CleanButton should handle props 1`] = `
 <DocumentFragment>
   <a
     class="link button size-s basic-blue"
@@ -12,7 +12,7 @@ exports[`Clean.Button should handle props 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Clean.Button should handle props 2`] = `
+exports[`CleanButton should handle props 2`] = `
 <DocumentFragment>
   <a
     class="link button size-s basic-blue"
@@ -21,7 +21,7 @@ exports[`Clean.Button should handle props 2`] = `
 </DocumentFragment>
 `;
 
-exports[`Clean.Button should render without props 1`] = `
+exports[`CleanButton should render without props 1`] = `
 <DocumentFragment>
   <a
     class="link button size-s basic-blue"
@@ -32,7 +32,7 @@ exports[`Clean.Button should render without props 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Clean.Group should render multiple buttons 1`] = `
+exports[`CleanGroup should render multiple buttons 1`] = `
 <DocumentFragment>
   <div
     class="group"
@@ -64,7 +64,7 @@ exports[`Clean.Group should render multiple buttons 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Clean.Group should render single button 1`] = `
+exports[`CleanGroup should render single button 1`] = `
 <DocumentFragment>
   <div
     class="group"
@@ -81,7 +81,7 @@ exports[`Clean.Group should render single button 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Clean.Group should render without props 1`] = `
+exports[`CleanGroup should render without props 1`] = `
 <DocumentFragment>
   <div
     class="group"
