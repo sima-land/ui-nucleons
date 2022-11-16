@@ -1,6 +1,7 @@
 import { upperFirst } from 'lodash';
 import React, { CSSProperties, ReactNode, useState } from 'react';
 import styles from './utils.module.scss';
+import { loremIpsum } from 'lorem-ipsum';
 
 type SizeParam = number | [number, number];
 type OptionsParam = { w?: number; h?: number; id?: number };
@@ -146,5 +147,38 @@ function ControlLabel({ htmlFor, children }: { htmlFor: string; children?: React
     <label htmlFor={htmlFor} className={styles.label}>
       {children}
     </label>
+  );
+}
+
+/**
+ * Выводит текст-рыбу.
+ * @param props Свойства.
+ * @return Элемент.
+ */
+export function LoremIpsum({
+  paragraphCount = 1,
+  sentenceCount = 20,
+}: {
+  paragraphCount?: number;
+  sentenceCount?: number;
+}) {
+  const [result] = useState<string[]>(() =>
+    Array(paragraphCount)
+      .fill(0)
+      .map(() =>
+        loremIpsum({
+          format: 'plain',
+          sentenceLowerBound: sentenceCount,
+          sentenceUpperBound: sentenceCount,
+        }),
+      ),
+  );
+
+  return (
+    <>
+      {result.map((content, index) => (
+        <p key={index}>{content}</p>
+      ))}
+    </>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Select, SelectProps } from '..';
-import { Sandbox } from '../../../.storybook/utils';
-import { Clean } from '../../clean-buttons';
+import { LoremIpsum, Sandbox } from '../../../.storybook/utils';
+import { CleanGroup, CleanButton } from '../../clean-buttons';
 import { DropdownItem } from '../../dropdown-item';
 import { FieldBlockSize } from '../../field-block';
 import { Modal } from '../../modal';
@@ -212,23 +212,12 @@ TestAllDisabled.storyName = 'Тест: Все опции недоступны';
 export function TestInModal() {
   const [value, setValue] = useState<string>('');
 
-  const LotOfText = () => (
-    <div>
-      {[...Array(10).keys()].map(index => (
-        <p key={index}>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem impedit magnam
-          recusandae, sed nihil autem odit delectus laborum explicabo deserunt!
-        </p>
-      ))}
-    </div>
-  );
-
   return (
     <Modal>
       <Modal.Header title='Тест' divided />
       <Modal.Body>
         <div style={{ padding: 16 }}>
-          <LotOfText />
+          <LoremIpsum paragraphCount={10} />
 
           <Select value={value} onValueChange={setValue} dropdownProps={{ style: { width: 320 } }}>
             <DropdownItem>Ноль</DropdownItem>
@@ -244,13 +233,13 @@ export function TestInModal() {
             <DropdownItem>Десять</DropdownItem>
           </Select>
 
-          <LotOfText />
+          <LoremIpsum paragraphCount={10} />
         </div>
       </Modal.Body>
       <Modal.Footer divided>
-        <Clean.Group>
-          <Clean.Button>Ясно</Clean.Button>
-        </Clean.Group>
+        <CleanGroup>
+          <CleanButton>Ясно</CleanButton>
+        </CleanGroup>
       </Modal.Footer>
     </Modal>
   );
