@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Card } from '..';
-import { Clean } from '../../clean-buttons';
+import { Card, CardContent } from '..';
 import { TopBar } from '../../top-bar';
-import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
+import { BottomBar } from '../../bottom-bar';
+import { CleanGroup, CleanButton } from '../../clean-buttons';
+import { Button } from '../../button';
 import { PhoneInput } from '../../phone-input';
 import { DropdownItem } from '../../dropdown-item';
 import { CustomScrollbar } from '../../_internal/custom-scrollbar';
-import { Button } from '../../button';
+import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
 
 export default {
   title: 'common/Card',
@@ -22,17 +23,16 @@ export function Primary() {
       <h3>Пример верстки по макетам</h3>
 
       <Card rounds='m' shadow='z4' style={{ width: 352, height: 436 }}>
-        <Card.Header divided>
-          <TopBar
-            size='s'
-            title='Заказ звонка'
-            buttons={{
-              end: { icon: <CrossSVG /> },
-            }}
-          />
-        </Card.Header>
+        <TopBar
+          divided
+          size='s'
+          title='Заказ звонка'
+          buttons={{
+            end: { icon: <CrossSVG /> },
+          }}
+        />
 
-        <Card.Content
+        <CardContent
           style={{
             padding: 24,
             display: 'flex',
@@ -45,13 +45,13 @@ export function Primary() {
           <br />
           на этот номер
           <PhoneInput style={{ marginTop: 24, '--phone-input-width': 304 }} />
-        </Card.Content>
+        </CardContent>
 
-        <Card.Footer divided>
-          <Clean.Group>
-            <Clean.Button>Отправить</Clean.Button>
-          </Clean.Group>
-        </Card.Footer>
+        <BottomBar divided>
+          <CleanGroup>
+            <CleanButton>Отправить</CleanButton>
+          </CleanGroup>
+        </BottomBar>
       </Card>
     </>
   );
@@ -79,18 +79,18 @@ export function ComboDropdown() {
       </div>
 
       <Card rounds='m' shadow='z4' style={{ width: 352, maxHeight: 304, minHeight: 112 }}>
-        <Card.Content>
+        <CardContent>
           <CustomScrollbar inFlexBox overflow={{ x: 'h', y: 's' }} className='scrollable'>
             {[...Array(count).keys()].map(index => (
               <DropdownItem key={index}>Hello #{index + 1}</DropdownItem>
             ))}
           </CustomScrollbar>
-        </Card.Content>
-        <Card.Footer divided>
-          <Clean.Group>
-            <Clean.Button>Отправить</Clean.Button>
-          </Clean.Group>
-        </Card.Footer>
+        </CardContent>
+        <BottomBar divided>
+          <CleanGroup>
+            <CleanButton>Отправить</CleanButton>
+          </CleanGroup>
+        </BottomBar>
       </Card>
     </>
   );

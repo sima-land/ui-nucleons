@@ -2,9 +2,12 @@ import React from 'react';
 import { Plate, PlateProps } from '../plate';
 import { CardContent, CardFooter, CardHeader } from './slots';
 import { CardContext } from './utils';
+import { defineSlots } from '../helpers/define-slots';
+import { TopBar } from '../top-bar';
+import { BottomBar } from '../bottom-bar';
+import { MediumRounds, SmallRounds } from '../styling/shapes';
 import classnames from 'classnames';
 import styles from './card.module.scss';
-import { defineSlots } from '../helpers/define-slots';
 
 export type CardProps = PlateProps;
 
@@ -21,23 +24,49 @@ export interface CardComponent {
  * @return Элемент.
  */
 export const Card: CardComponent = ({ children, className, rounds, ...restProps }) => {
-  const { header, content, footer } = defineSlots(children, {
-    header: CardHeader,
+  const { header, content, footer, topBar, bottomBar } = defineSlots(children, {
+    topBar: TopBar,
     content: CardContent,
+    bottomBar: BottomBar,
+    header: CardHeader,
     footer: CardFooter,
   });
 
   return (
     <CardContext.Provider value={{ rounds }}>
       <Plate {...restProps} rounds={rounds} className={classnames(styles.root, className)}>
-        {header}
+        {!topBar && header}
+        {topBar && (
+          <TopBar
+            {...topBar.props}
+            className={classnames(
+              topBar.props.className,
+              rounds === 's' && SmallRounds.top,
+              rounds === 'm' && MediumRounds.top,
+            )}
+          />
+        )}
         {content}
-        {footer}
+        {bottomBar && <BottomBar {...bottomBar.props} />}
+        {!bottomBar && footer}
       </Plate>
     </CardContext.Provider>
   );
 };
 
+/**
+ * @deprecated Нужно использовать TopBar.
+ */
 Card.Header = CardHeader;
+
+/**
+ * @deprecated Нужно использовать `import { CardContent }`.
+ */
 Card.Content = CardContent;
+
+/**
+ * @deprecated Нужно использовать BottomBar.
+ */
 Card.Footer = CardFooter;
+
+export { CardContent };

@@ -39,6 +39,9 @@ export interface TopBarProps {
 
   /** Нужна ли разделительная черта снизу. */
   divided?: boolean;
+
+  /** Идентификатор для систем автоматизированного тестирования. */
+  'data-testid'?: string;
 }
 
 // некоторым компонентам нужно знать конкретную высоту, делаем единый источник
@@ -62,6 +65,7 @@ export function TopBar({
   subtitle,
   buttons: { start, startSecondary, end, endSecondary } = {},
   className,
+  'data-testid': testId = 'top-bar',
 }: TopBarProps) {
   const hasStartButtons = start || startSecondary;
   const hasEndButtons = end || endSecondary;
@@ -76,7 +80,11 @@ export function TopBar({
   );
 
   return (
-    <div className={rootClasses} style={{ height: `${TOP_BAR_HEIGHT[size]}px` }}>
+    <div
+      className={rootClasses}
+      style={{ height: `${TOP_BAR_HEIGHT[size]}px` }}
+      data-testid={testId}
+    >
       {hasButtons && (
         <div className={cx('side')}>
           {hasStartButtons && (

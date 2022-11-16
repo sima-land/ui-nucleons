@@ -15,9 +15,10 @@ export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 /**
  * Компонент слота "шапки" карточки.
  * @param props Свойства.
+ * @deprecated Нужно использовать TopBar.
  * @return Элемент.
  */
-export const CardHeader: React.FC<CardHeaderProps> = ({ children, divided }) => {
+export function CardHeader({ children, divided }: CardHeaderProps) {
   const { rounds } = useContext(CardContext);
 
   return (
@@ -34,19 +35,31 @@ export const CardHeader: React.FC<CardHeaderProps> = ({ children, divided }) => 
         : children}
     </div>
   );
-};
+}
 
 CardHeader.displayName = 'Card.Header';
+
+export interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  scrollableRef?: React.Ref<HTMLDivElement>;
+}
 
 /**
  * Компонент слота основного контента карточки.
  * @param props Свойства.
  * @return Элемент.
  */
-export const CardContent: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
+export function CardContent({
+  children,
   className,
+  scrollableRef,
   ...restProps
-}) => <div {...restProps} className={classnames(styles.content, className)} />;
+}: CardContentProps) {
+  return (
+    <div {...restProps} ref={scrollableRef} className={classnames(styles.content, className)}>
+      {children}
+    </div>
+  );
+}
 
 CardContent.displayName = 'Card.Content';
 
@@ -57,10 +70,15 @@ export interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {
 /**
  * Компонент слота "подвала" карточки.
  * @param props Свойства.
+ * @deprecated Нужно использовать BottomBar.
  * @return Элемент.
  */
-export const CardFooter: React.FC<CardFooterProps> = ({ divided, className, ...restProps }) => (
-  <div {...restProps} className={classnames(className, divided && InnerBorder.top)} />
-);
+export function CardFooter({ children, divided, className, ...restProps }: CardFooterProps) {
+  return (
+    <div {...restProps} className={classnames(className, divided && InnerBorder.top)}>
+      {children}
+    </div>
+  );
+}
 
 CardFooter.displayName = 'Card.Footer';

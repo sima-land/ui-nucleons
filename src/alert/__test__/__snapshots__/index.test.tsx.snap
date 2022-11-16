@@ -13,6 +13,7 @@ exports[`<Alert /> should handle props 1`] = `
     >
       <div
         class="root size-s header"
+        data-testid="top-bar"
         style="height: 56px;"
       >
         <div

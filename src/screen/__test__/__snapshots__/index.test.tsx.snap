@@ -120,6 +120,7 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
       >
         <div
           className="root size-s inner-border-bottom"
+          data-testid="top-bar"
           style={
             Object {
               "height": "56px",
@@ -247,6 +248,7 @@ exports[`<Screen /> should renders correctly 1`] = `
       >
         <div
           className="root size-s inner-border-bottom"
+          data-testid="top-bar"
           style={
             Object {
               "height": "56px",
@@ -333,6 +335,7 @@ exports[`<Screen /> should renders without close button 1`] = `
       >
         <div
           className="root size-s no-subtitle"
+          data-testid="top-bar"
           style={
             Object {
               "height": "56px",

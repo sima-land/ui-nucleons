@@ -1,35 +1,36 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { CardContent, CardFooter, CardHeader } from '../slots';
 import { CardContext } from '../utils';
 import { TopBar } from '../../top-bar';
+import { MediumRounds, SmallRounds } from '../../styling/shapes';
 
 describe('CardHeader', () => {
   it('should render just children inside', () => {
-    const wrapper = mount(
+    const { container } = render(
       <CardContext.Provider value={{}}>
         <CardHeader>Just children</CardHeader>
       </CardContext.Provider>,
     );
 
-    expect(wrapper).toMatchSnapshot();
-    expect(wrapper.text()).toBe('Just children');
+    expect(container.textContent).toBe('Just children');
   });
 
-  it('should handle TopBar as children', () => {
-    const wrapper = mount(
+  it('should render TopBar with medium rounds', () => {
+    const { getByTestId, queryAllByTestId } = render(
       <CardContext.Provider value={{ rounds: 'm' }}>
         <CardHeader divided>
-          <TopBar />
+          <TopBar title='hello' />
         </CardHeader>
       </CardContext.Provider>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(queryAllByTestId('top-bar')).toHaveLength(1);
+    expect(getByTestId('top-bar').classList.contains(MediumRounds.top)).toBe(true);
   });
 
-  it('should handle small rounds', () => {
-    const wrapper = mount(
+  it('should render TopBar with small rounds', () => {
+    const { getByTestId, queryAllByTestId } = render(
       <CardContext.Provider value={{ rounds: 's' }}>
         <CardHeader divided>
           <TopBar />
@@ -37,34 +38,33 @@ describe('CardHeader', () => {
       </CardContext.Provider>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(queryAllByTestId('top-bar')).toHaveLength(1);
+    expect(getByTestId('top-bar').classList.contains(SmallRounds.top)).toBe(true);
   });
 });
 
 describe('CardContent', () => {
   it('should handle props', () => {
-    const wrapper = mount(
+    const { container } = render(
       <CardContent className='test-class' style={{ width: 1080 }}>
         Just content
       </CardContent>,
     );
 
-    expect(wrapper).toMatchSnapshot();
-    expect(wrapper.find('div').hasClass('test-class')).toBe(true);
-    expect(wrapper.find('div').prop('style')?.width).toBe(1080);
+    expect(container.querySelector('div')?.classList.contains('test-class')).toBe(true);
+    expect(container.querySelector('div')?.style.width).toBe('1080px');
   });
 });
 
 describe('CardFooter', () => {
   it('should handle props', () => {
-    const wrapper = mount(
+    const { container } = render(
       <CardFooter divided className='test-footer' style={{ width: 1920 }}>
         Just content
       </CardFooter>,
     );
 
-    expect(wrapper).toMatchSnapshot();
-    expect(wrapper.find('div').hasClass('test-footer')).toBe(true);
-    expect(wrapper.find('div').prop('style')?.width).toBe(1920);
+    expect(container.querySelector('div')?.classList.contains('test-footer')).toBe(true);
+    expect(container.querySelector('div')?.style.width).toBe('1920px');
   });
 });

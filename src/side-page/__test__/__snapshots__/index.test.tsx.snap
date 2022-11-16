@@ -13,6 +13,7 @@ exports[`SidePage should renders correctly 2`] = `
     >
       <div
         class="root size-xl header no-subtitle"
+        data-testid="top-bar"
         style="height: 80px;"
       >
         <div
