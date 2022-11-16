@@ -96,6 +96,7 @@
     "test": "BROWSERSLIST_ENV=\"test\" npx jest",
     "coverage": "jest --clearCache && BROWSERSLIST_ENV=\"test\" npx jest --coverage",
     "type-check": "tsc -p . --noEmit",
+    "lint": "npm run lint:scripts && npm run lint:styles",
     "lint:scripts": "eslint --cache src/ --ext .js,.jsx,.ts,.tsx",
     "lint:styles": "stylelint 'src/**/*.{css,scss}'",
     "storybook": "BROWSERSLIST_ENV=\"storybook\" npx start-storybook -p 9009 -c .storybook",

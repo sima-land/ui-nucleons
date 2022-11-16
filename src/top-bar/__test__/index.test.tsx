@@ -5,22 +5,17 @@ import ArrowUpSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-up';
 import ArrowRightSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-right';
 import ArrowDownSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-down';
 import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
+import { InnerBorder } from '../../styling/borders';
 
 describe('<TopBar />', () => {
-  it('should render without props', () => {
-    const { container } = render(<TopBar />);
-
-    expect(container).toMatchSnapshot();
-  });
-
   it('should render as divided', () => {
-    const { container } = render(<TopBar divided />);
+    const { getByTestId } = render(<TopBar divided />);
 
-    expect(container).toMatchSnapshot();
+    expect(getByTestId('top-bar').classList.contains(InnerBorder.bottom)).toBe(true);
   });
 
   it('should renders with start icon', () => {
-    const { container } = render(
+    const { getByTestId } = render(
       <TopBar
         buttons={{
           start: {
@@ -30,11 +25,11 @@ describe('<TopBar />', () => {
       />,
     );
 
-    expect(container).toMatchSnapshot();
+    expect(getByTestId('top-bar:button').querySelectorAll('svg')).toHaveLength(1);
   });
 
   it('should renders with end icon', () => {
-    const { container } = render(
+    const { getByTestId } = render(
       <TopBar
         buttons={{
           end: {
@@ -44,7 +39,7 @@ describe('<TopBar />', () => {
       />,
     );
 
-    expect(container).toMatchSnapshot();
+    expect(getByTestId('top-bar:button').querySelectorAll('svg')).toHaveLength(1);
   });
 
   it('should renders with start icons', () => {
@@ -61,7 +56,8 @@ describe('<TopBar />', () => {
       />,
     );
 
-    expect(container).toMatchSnapshot();
+    expect(container.querySelectorAll('[data-testid="top-bar:button"]')).toHaveLength(2);
+    expect(container.querySelectorAll('[data-testid="top-bar:button"] svg')).toHaveLength(2);
   });
 
   it('should renders with end icons', () => {
@@ -78,7 +74,8 @@ describe('<TopBar />', () => {
       />,
     );
 
-    expect(container).toMatchSnapshot();
+    expect(container.querySelectorAll('[data-testid="top-bar:button"]')).toHaveLength(2);
+    expect(container.querySelectorAll('[data-testid="top-bar:button"] svg')).toHaveLength(2);
   });
 
   it('should renders with all icons', () => {
@@ -131,7 +128,8 @@ describe('<TopBar />', () => {
       />,
     );
 
-    expect(container).toMatchSnapshot();
+    // содержит заглушку для формирования высоты поэтому текст дважды
+    expect(container.textContent).toBe('HelloHello');
   });
 
   it('should renders with end text button', () => {
@@ -145,11 +143,12 @@ describe('<TopBar />', () => {
       />,
     );
 
-    expect(container).toMatchSnapshot();
+    // содержит заглушку для формирования высоты поэтому текст дважды
+    expect(container.textContent).toBe('WorldWorld');
   });
 
   it('should renders with mixed buttons', () => {
-    const { container } = render(
+    const { getAllByTestId } = render(
       <TopBar
         buttons={{
           start: {
@@ -162,6 +161,7 @@ describe('<TopBar />', () => {
       />,
     );
 
-    expect(container).toMatchSnapshot();
+    expect(getAllByTestId('top-bar:button')[0].textContent).toBe('World');
+    expect(getAllByTestId('top-bar:button')[1].querySelectorAll('svg')).toHaveLength(1);
   });
 });
