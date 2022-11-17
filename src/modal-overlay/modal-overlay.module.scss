@@ -1,0 +1,13 @@
+@use '../utils';
+
+.root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100vw;
+  height: calc(var(--vh, 1vh) * 100);
+  background: rgba(0, 0, 0, 0.24);
+  overflow: auto;
+  @include utils.hidden-scrollbars;
+}

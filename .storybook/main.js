@@ -5,8 +5,8 @@ module.exports = {
   stories: ['./index.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@storybook/addon-actions',
-    '@storybook/addon-storysource',
-    '@storybook/addon-backgrounds',
+    !process.env.CI && '@storybook/addon-storysource',
+    !process.env.CI && '@storybook/addon-backgrounds',
     {
       name: '@storybook/addon-docs',
       options: {
@@ -16,14 +16,17 @@ module.exports = {
         },
       },
     },
-  ],
-  typescript: {
-    check: false,
-    checkOptions: {},
-    reactDocgen: 'react-docgen-typescript',
-    reactDocgenTypescriptOptions: {
-      shouldExtractLiteralValuesFromEnum: true,
-      propFilter: prop => !prop.parent || !/node_modules/.test(prop.parent.fileName),
-    },
-  },
+  ].filter(Boolean),
+
+  typescript: process.env.CI
+    ? undefined
+    : {
+        check: false,
+        checkOptions: {},
+        reactDocgen: 'react-docgen-typescript',
+        reactDocgenTypescriptOptions: {
+          shouldExtractLiteralValuesFromEnum: true,
+          propFilter: prop => !prop.parent || !/node_modules/.test(prop.parent.fileName),
+        },
+      },
 };
