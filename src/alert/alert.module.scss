@@ -1,34 +1,10 @@
-@use '../colors';
-
 .overlay {
-  position: fixed;
-
-  // для корректного отображения с динамическим viewport переменная --offsetTop должна быть доступна
-  top: var(--offsetTop, 0);
-  left: 0;
-  width: 100%;
-
-  // для корректного отображения с динамическим viewport переменная --vh должна быть доступна
-  height: calc(var(--vh, 1vh) * 100);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparentize(colors.$basic-gray87, 0.76);
 }
 
 .alert {
-  display: flex;
-  flex-direction: column;
   width: 288px;
-  background: #fff;
-  border-radius: 8px;
   max-height: 536px;
-}
-
-.header {
-  border-radius: 8px 8px 0 0;
-}
-
-.main {
-  flex-grow: 1;
 }
