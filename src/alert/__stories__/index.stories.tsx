@@ -4,7 +4,7 @@ import { TopBar } from '../../top-bar';
 import { BottomBar } from '../../bottom-bar';
 import { Button } from '../../button';
 import { CleanGroup, CleanButton } from '../../clean-buttons';
-import { LoremIpsum } from '../../../.storybook/utils';
+import { PageScrollLockDemo } from '../../../.storybook/utils';
 
 export default {
   title: 'common/Alert',
@@ -35,7 +35,7 @@ export function Primary() {
 Primary.storyName = 'Простой пример';
 
 export function TestPageScrollLock() {
-  const [shown, toggle] = useState<boolean>(true);
+  const [opened, toggle] = useState<boolean>(false);
 
   const style: CSSProperties = {
     height: '168px',
@@ -47,20 +47,14 @@ export function TestPageScrollLock() {
   };
 
   return (
-    <>
-      <h1>Пример страницы</h1>
-
-      <LoremIpsum paragraphCount={3} />
-
+    <PageScrollLockDemo>
       <Button size='s' onClick={() => toggle(true)}>
-        Показать
+        Показать Alert
       </Button>
 
-      <LoremIpsum paragraphCount={50} />
-
-      {shown && (
+      {opened && (
         <Alert onClose={() => toggle(false)} withScrollDisable>
-          <TopBar divided title='Пример' />
+          <TopBar divided title='Тест: Блокировка прокрутки страницы' />
 
           <AlertBody style={style}>
             <p>Какой-то текст без особого смысла здесь</p>
@@ -73,7 +67,7 @@ export function TestPageScrollLock() {
           </BottomBar>
         </Alert>
       )}
-    </>
+    </PageScrollLockDemo>
   );
 }
 

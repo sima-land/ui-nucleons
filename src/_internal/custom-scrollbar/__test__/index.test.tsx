@@ -1,6 +1,8 @@
+import { render } from '@testing-library/react';
 import { mount } from 'enzyme';
-import React from 'react';
-import { CustomScrollbar, HandleFullScroll } from '..';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+import React, { createRef, Ref, useImperativeHandle, useRef } from 'react';
+import { CustomScrollbar, HandleFullScroll, getViewport } from '..';
 
 describe('CustomScrollbar', () => {
   it('should handle onFullScroll/fullScrollThreshold', () => {
@@ -51,5 +53,31 @@ describe('HandleFullScroll', () => {
     handler(undefined);
 
     expect(spy).toHaveBeenCalledTimes(0);
+  });
+});
+
+describe('getViewport', () => {
+  it('should works', () => {
+    function TestComponent({ viewportRef }: { viewportRef: Ref<HTMLElement | null> }) {
+      const ref = useRef<OverlayScrollbarsComponent>(null);
+
+      useImperativeHandle(viewportRef, () => getViewport(ref.current));
+
+      return (
+        <CustomScrollbar osComponentRef={ref}>
+          <h1>Hello, world!</h1>
+        </CustomScrollbar>
+      );
+    }
+
+    const viewportRef = createRef<HTMLElement>();
+    render(<TestComponent viewportRef={viewportRef} />);
+
+    expect(viewportRef.current instanceof HTMLElement).toBe(true);
+  });
+
+  it('should return null', () => {
+    expect(getViewport(null)).toBe(null);
+    expect(getViewport(undefined)).toBe(null);
   });
 });

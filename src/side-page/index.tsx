@@ -1,14 +1,14 @@
-import React, { useRef } from 'react';
+import React, { CSSProperties, useRef } from 'react';
 import { defineSlots } from '../helpers/define-slots';
-import { useCloseHandler } from '../modal/utils';
-import { useLayer, LayerProvider } from '../helpers/layer';
-import { useBodyScrollLock, WithBodyScrollLock } from '../_internal/body-scroll';
+import { WithPageScrollLock, usePageScrollLock } from '../_internal/page-scroll-lock';
 import { SidePageBody, SidePageFooter, SidePageHeader } from './slots';
 import CSSTransition, { CSSTransitionProps } from 'react-transition-group/CSSTransition';
+import { ModalOverlay } from '../modal-overlay';
+import { useExactClick } from '../modal-overlay/utils';
 import classnames from 'classnames/bind';
 import styles from './side-page.module.scss';
 
-export interface SidePageProps extends WithBodyScrollLock {
+export interface SidePageProps extends WithPageScrollLock {
   /** Нужно ли показать компонент. */
   shown?: boolean;
 
@@ -99,7 +99,7 @@ const SidePageInner = ({
   size = 'm',
   children,
   onClose,
-  withScrollDisable,
+  withScrollDisable = false,
   scrollDisableOptions,
   transitionStatus,
   transitionDuration,
@@ -107,16 +107,13 @@ const SidePageInner = ({
   transitionStatus: string;
   transitionDuration: number;
 }) => {
-  const layer = useLayer() + 100;
-
-  const overlayBind = useCloseHandler(onClose);
+  const overlayClickBind = useExactClick(onClose);
 
   const ref = useRef<HTMLDivElement>(null);
 
   const overlayStyles = {
-    zIndex: layer, // z-index именно у overlay из-за position: fixed
     '--transition-duration': `${transitionDuration}ms`,
-  };
+  } as CSSProperties;
 
   const { header, body, footer } = defineSlots(children, {
     header: SidePage.Header,
@@ -124,23 +121,22 @@ const SidePageInner = ({
     footer: SidePage.Footer,
   });
 
-  useBodyScrollLock(ref, withScrollDisable, scrollDisableOptions);
+  usePageScrollLock(ref, { lockEnabled: withScrollDisable, ...scrollDisableOptions });
 
   return (
-    <div
-      ref={ref}
+    <ModalOverlay
       className={cx('overlay')}
       style={overlayStyles}
-      {...(transitionStatus !== 'entering' && overlayBind)} // чтобы не было моментального закрытия на double click
+      {...(transitionStatus !== 'entering' && overlayClickBind)} // чтобы не было моментального закрытия на double click
     >
-      <LayerProvider value={layer}>
-        <div className={cx('main', `size-${size}`)}>
-          {header}
-          <div className={cx('body')}>{body}</div>
-          {footer}
+      <div className={cx('main', `size-${size}`)}>
+        {header}
+        <div ref={ref} className={cx('body')}>
+          {body}
         </div>
-      </LayerProvider>
-    </div>
+        {footer}
+      </div>
+    </ModalOverlay>
   );
 };
 

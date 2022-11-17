@@ -1,10 +1,9 @@
 import React from 'react';
 import { TopBar, TopBarProps } from '../top-bar';
 import { BottomBar, BottomBarProps } from '../bottom-bar';
-import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
-import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
-import styles from './side-page.module.scss';
+import { presetButtons } from '../top-bar/utils';
 import classNames from 'classnames';
+import styles from './side-page.module.scss';
 
 /**
  * @param props Свойства.
@@ -13,6 +12,7 @@ import classNames from 'classnames';
 export const SidePageHeader = ({
   onBack,
   onClose,
+  buttons,
   ...topBarProps
 }: TopBarProps & {
   onBack?: () => void;
@@ -22,23 +22,7 @@ export const SidePageHeader = ({
     {...topBarProps}
     size='xl'
     className={styles.header}
-    buttons={{
-      ...topBarProps.buttons,
-      ...(onBack && {
-        start: {
-          'data-testid': 'side-page:back',
-          onClick: onBack,
-          icon: <ArrowLeftSVG />,
-        },
-      }),
-      ...(onClose && {
-        end: {
-          'data-testid': 'side-page:close',
-          onClick: onClose,
-          icon: <CrossSVG />,
-        },
-      }),
-    }}
+    buttons={presetButtons({ buttons, onBack, onClose })}
   />
 );
 

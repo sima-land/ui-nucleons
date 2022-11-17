@@ -40,12 +40,7 @@ describe('Alert', () => {
   it('should increment layer by 100', () => {
     function TestComponent() {
       const layer = useLayer();
-
-      return (
-        <div data-testid='test-component' data-layer={layer}>
-          Hello
-        </div>
-      );
+      return <div data-testid='test-component' data-layer={layer} />;
     }
 
     const { getByTestId } = render(

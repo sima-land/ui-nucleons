@@ -84,3 +84,14 @@ export const HandleFullScroll =
       el.scrollTop >= el.scrollHeight - el.clientHeight - threshold &&
       callback();
   };
+
+/**
+ * Получив OverlayScrollbarsComponent вернет элемент-viewport или null.
+ * @param component Экземпляр OverlayScrollbarsComponent.
+ * @return Элемент или null.
+ */
+export function getViewport(
+  component: OverlayScrollbarsComponent | undefined | null,
+): HTMLElement | null {
+  return component?.osInstance()?.getElements().viewport || null;
+}

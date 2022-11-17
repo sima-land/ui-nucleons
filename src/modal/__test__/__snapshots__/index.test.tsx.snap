@@ -3,9 +3,9 @@
 exports[`<Modal /> renders correct without close button and customClasses 1`] = `
 <div>
   <div
-    class="overlay"
-    data-testid="modal:overlay"
-    style="z-index: 100;"
+    class="root overlay"
+    data-testid="modal-overlay"
+    style="z-index: 100; --vh: 7.68px;"
   >
     <div
       class="modal size-m shadow-z4"
@@ -23,9 +23,9 @@ exports[`<Modal /> renders correct without close button and customClasses 1`] = 
 exports[`<Modal /> should handle "height" prop 1`] = `
 <div>
   <div
-    class="overlay"
-    data-testid="modal:overlay"
-    style="z-index: 100;"
+    class="root overlay"
+    data-testid="modal-overlay"
+    style="z-index: 100; --vh: 7.68px;"
   >
     <div
       class="modal size-m shadow-z4"
@@ -43,9 +43,9 @@ exports[`<Modal /> should handle "height" prop 1`] = `
 exports[`<Modal /> should handle extended props 1`] = `
 <div>
   <div
-    class="overlay"
-    data-testid="modal:overlay"
-    style="z-index: 100;"
+    class="root overlay"
+    data-testid="modal-overlay"
+    style="z-index: 100; --vh: 7.68px;"
   >
     <div
       class="modal size-m shadow-z4"
@@ -111,7 +111,6 @@ exports[`<Modal /> should handle extended props 1`] = `
             >
               <div
                 class="main"
-                data-bsl-ignore="true"
               >
                 Main Content
               </div>
@@ -163,9 +162,9 @@ exports[`<Modal /> should handle extended props 1`] = `
 exports[`<Modal /> should render TopBar with back button 1`] = `
 <div>
   <div
-    class="overlay"
-    data-testid="modal:overlay"
-    style="z-index: 100;"
+    class="root overlay"
+    data-testid="modal-overlay"
+    style="z-index: 100; --vh: 7.68px;"
   >
     <div
       class="modal size-m shadow-z4"
@@ -185,7 +184,7 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
           >
             <button
               class="button iconic"
-              data-testid="modal:back"
+              data-testid="top-bar:back"
               type="button"
             >
               <svg
@@ -235,9 +234,9 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
 exports[`<Modal /> should render different sizes properly 1`] = `
 <div>
   <div
-    class="overlay"
-    data-testid="modal:overlay"
-    style="z-index: 100;"
+    class="root overlay"
+    data-testid="modal-overlay"
+    style="z-index: 100; --vh: 7.68px;"
   >
     <div
       class="modal size-s shadow-z4"
@@ -255,9 +254,9 @@ exports[`<Modal /> should render different sizes properly 1`] = `
 exports[`<Modal /> should render different sizes properly 2`] = `
 <div>
   <div
-    class="overlay"
-    data-testid="modal:overlay"
-    style="z-index: 100;"
+    class="root overlay"
+    data-testid="modal-overlay"
+    style="z-index: 100; --vh: 7.68px;"
   >
     <div
       class="modal size-m shadow-z4"
@@ -275,9 +274,9 @@ exports[`<Modal /> should render different sizes properly 2`] = `
 exports[`<Modal /> should render different sizes properly 3`] = `
 <div>
   <div
-    class="overlay"
-    data-testid="modal:overlay"
-    style="z-index: 100;"
+    class="root overlay"
+    data-testid="modal-overlay"
+    style="z-index: 100; --vh: 7.68px;"
   >
     <div
       class="modal size-l shadow-z4"
@@ -295,9 +294,9 @@ exports[`<Modal /> should render different sizes properly 3`] = `
 exports[`<Modal /> should render different sizes properly 4`] = `
 <div>
   <div
-    class="overlay"
-    data-testid="modal:overlay"
-    style="z-index: 100;"
+    class="root overlay"
+    data-testid="modal-overlay"
+    style="z-index: 100; --vh: 7.68px;"
   >
     <div
       class="modal size-xl shadow-z4"
@@ -315,9 +314,9 @@ exports[`<Modal /> should render different sizes properly 4`] = `
 exports[`<Modal /> should render different sizes properly 5`] = `
 <div>
   <div
-    class="overlay"
-    data-testid="modal:overlay"
-    style="z-index: 100;"
+    class="root overlay"
+    data-testid="modal-overlay"
+    style="z-index: 100; --vh: 7.68px;"
   >
     <div
       class="modal size-fullscreen"
@@ -331,9 +330,9 @@ exports[`<Modal /> should render different sizes properly 5`] = `
 exports[`<Modal /> should render overlap content 1`] = `
 <div>
   <div
-    class="overlay"
-    data-testid="modal:overlay"
-    style="z-index: 100;"
+    class="root overlay"
+    data-testid="modal-overlay"
+    style="z-index: 100; --vh: 7.68px;"
   >
     <div
       class="modal size-m shadow-z4"
@@ -379,7 +378,6 @@ exports[`<Modal /> should render overlap content 1`] = `
             >
               <div
                 class="main"
-                data-bsl-ignore="true"
               >
                 This is modal body
               </div>
@@ -430,9 +428,9 @@ exports[`<Modal /> should render overlap content 1`] = `
 exports[`<Modal /> should renders with fullscreen size and footer 1`] = `
 <div>
   <div
-    class="overlay"
-    data-testid="modal:overlay"
-    style="z-index: 100;"
+    class="root overlay"
+    data-testid="modal-overlay"
+    style="z-index: 100; --vh: 7.68px;"
   >
     <div
       class="modal size-fullscreen"

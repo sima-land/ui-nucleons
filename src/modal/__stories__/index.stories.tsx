@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Modal, ModalProps } from '..';
 import { Button } from '../../button';
-import { Clean } from '../../clean-buttons';
+import { CleanGroup, CleanButton } from '../../clean-buttons';
 import { Layout } from '../../layout';
 import { Box } from '../../box';
-import { action } from '@storybook/addon-actions';
 import { ArrowButton } from '../../arrow-button';
+import { LoremIpsum, PageScrollLockDemo } from '../../../.storybook/utils';
 
 export default {
   title: 'common/Modal',
@@ -15,31 +15,18 @@ export default {
   },
 };
 
-function LotOfText({ lines = 20 }: { lines: number }) {
-  return (
-    <>
-      {[...Array(Math.max(lines, 0)).keys()].map(index => (
-        <p key={index}>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio consectetur ab ratione
-          magni laboriosam nemo, incidunt error aliquam deleniti cum?
-        </p>
-      ))}
-    </>
-  );
-}
-
 function SizeTemplate(props: ModalProps) {
   const [opened, toggleModal] = useState<boolean>(true);
 
   return (
     <>
-      <LotOfText lines={5} />
+      <LoremIpsum paragraphCount={5} />
 
       <Button size='s' onClick={() => toggleModal(true)}>
-        Показать окно
+        Показать Modal
       </Button>
 
-      <LotOfText lines={100} />
+      <LoremIpsum paragraphCount={100} />
 
       {opened && (
         <Modal {...props} withScrollDisable onClose={() => toggleModal(false)}>
@@ -48,10 +35,10 @@ function SizeTemplate(props: ModalProps) {
             <Box padding={6}>Содержимое модального окна</Box>
           </Modal.Body>
           <Modal.Footer divided>
-            <Clean.Group>
-              <Clean.Button>Кнопка</Clean.Button>
-              <Clean.Button>Ещё кнопка</Clean.Button>
-            </Clean.Group>
+            <CleanGroup>
+              <CleanButton>Кнопка</CleanButton>
+              <CleanButton>Ещё кнопка</CleanButton>
+            </CleanGroup>
           </Modal.Footer>
         </Modal>
       )}
@@ -181,6 +168,56 @@ export function WithOverlapContent() {
 
 WithOverlapContent.storyName = 'Контент рядом с окном';
 
+export function TestPageScrollLock() {
+  const [opened, toggle] = useState(false);
+  const [count, setCount] = useState<number>(5);
+
+  function increaseContent() {
+    setCount(count + 1);
+  }
+
+  function decreaseContent() {
+    setCount(Math.max(1, count - 1));
+  }
+
+  function show() {
+    toggle(false);
+  }
+
+  function hide() {
+    toggle(false);
+  }
+
+  return (
+    <PageScrollLockDemo>
+      <Button size='s' onClick={show}>
+        Показать Modal
+      </Button>
+
+      {opened && (
+        <Modal withScrollDisable onClose={hide}>
+          <Modal.Header divided title='Тест: Блокировка прокрутки страницы' onClose={hide} />
+
+          <Modal.Body>
+            <div style={{ padding: '24px' }} onClick={increaseContent}>
+              <LoremIpsum paragraphCount={count} />
+            </div>
+          </Modal.Body>
+
+          <Modal.Footer divided>
+            <CleanGroup>
+              <CleanButton onClick={decreaseContent}>Убрать</CleanButton>
+              <CleanButton onClick={increaseContent}>Добавить</CleanButton>
+            </CleanGroup>
+          </Modal.Footer>
+        </Modal>
+      )}
+    </PageScrollLockDemo>
+  );
+}
+
+TestPageScrollLock.storyName = 'Тест: блокировка прокрутки страницы';
+
 interface StepProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -193,9 +230,9 @@ function FirstStep({ setStep }: StepProps) {
         <div style={{ height: '300px' }}></div>
       </Modal.Body>
       <Modal.Footer divided>
-        <Clean.Group>
-          <Clean.Button onClick={() => setStep(s => s + 1)}>Дальше</Clean.Button>
-        </Clean.Group>
+        <CleanGroup>
+          <CleanButton onClick={() => setStep(s => s + 1)}>Дальше</CleanButton>
+        </CleanGroup>
       </Modal.Footer>
     </Modal>
   );
@@ -209,10 +246,10 @@ function SecondStep({ setStep }: StepProps) {
         <div style={{ height: '300px' }}></div>
       </Modal.Body>
       <Modal.Footer divided>
-        <Clean.Group>
-          <Clean.Button onClick={() => setStep(s => s - 1)}>Назад</Clean.Button>
-          <Clean.Button onClick={() => setStep(s => s + 1)}>Далее</Clean.Button>
-        </Clean.Group>
+        <CleanGroup>
+          <CleanButton onClick={() => setStep(s => s - 1)}>Назад</CleanButton>
+          <CleanButton onClick={() => setStep(s => s + 1)}>Далее</CleanButton>
+        </CleanGroup>
       </Modal.Footer>
     </Modal>
   );
@@ -227,9 +264,9 @@ function ThirdStep({ setStep }: StepProps) {
       </Modal.Body>
 
       <Modal.Footer divided>
-        <Clean.Group>
-          <Clean.Button onClick={() => setStep(-1)}>Готово</Clean.Button>
-        </Clean.Group>
+        <CleanGroup>
+          <CleanButton onClick={() => setStep(-1)}>Готово</CleanButton>
+        </CleanGroup>
       </Modal.Footer>
     </Modal>
   );
@@ -241,7 +278,7 @@ export function TestToggle() {
   return (
     <>
       <Button size='s' onClick={() => setStep(1)}>
-        Открыть
+        Показать Modal
       </Button>
 
       {/* для проверки блокировки прокрутки */}
@@ -257,53 +294,3 @@ export function TestToggle() {
 }
 
 TestToggle.storyName = 'Тест: блокировка прокрутки при переключении окон';
-
-export function TestDynamicHeight() {
-  const [count, setCount] = useState<number>(1);
-
-  function increment() {
-    setCount(count + 1);
-  }
-
-  function decrement() {
-    setCount(count - 1);
-  }
-
-  function onFullScroll() {
-    action('FULLY SCROLLED')();
-  }
-
-  return (
-    <Modal>
-      <Modal.Header divided title='Проверка высоты' />
-      <Modal.Body onFullScroll={onFullScroll}>
-        <div style={{ padding: '32px' }} onClick={increment}>
-          <LotOfText lines={count} />
-        </div>
-      </Modal.Body>
-      <Modal.Footer divided>
-        <Clean.Group>
-          <Clean.Button onClick={decrement}>Убрать</Clean.Button>
-          <Clean.Button onClick={increment}>Добавить</Clean.Button>
-        </Clean.Group>
-      </Modal.Footer>
-    </Modal>
-  );
-}
-
-TestDynamicHeight.storyName = 'Тест: динамическая высота';
-
-export function TestWithScroll() {
-  return (
-    <Modal size='s' height={360}>
-      <Modal.Header divided title='Проверка прокрутки' />
-      <Modal.Body>
-        <div style={{ padding: 24 }}>
-          <LotOfText lines={100} />
-        </div>
-      </Modal.Body>
-    </Modal>
-  );
-}
-
-TestWithScroll.storyName = 'Тест: внутренняя прокрутка';

@@ -1,14 +1,14 @@
-import React, { ReactNode, useContext, useRef } from 'react';
+import React, { ReactNode, useContext, useImperativeHandle, useRef } from 'react';
 import { TopBar, TopBarProps } from '../top-bar';
-import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
-import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
+import { presetButtons } from '../top-bar/utils';
 import { BottomBar, BottomBarProps } from '../bottom-bar';
-import { CustomScrollbar } from '../_internal/custom-scrollbar';
+import { CustomScrollbar, getViewport } from '../_internal/custom-scrollbar';
 import { ViewportContext } from '../context/viewport';
-import { BSL_IGNORE_ATTR } from '../constants';
 import { ModalContext } from './utils';
 import classNames from 'classnames/bind';
 import styles from './modal.module.scss';
+import { usePageScrollLock } from '../_internal/page-scroll-lock';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 
 const cx = classNames.bind(styles);
 
@@ -31,23 +31,7 @@ export function ModalHeader({ className, onBack, onClose, buttons, ...rest }: Mo
     <TopBar
       {...rest}
       size={topBarSize}
-      buttons={{
-        ...buttons,
-        ...(onBack && {
-          start: {
-            'data-testid': 'modal:back',
-            onClick: onBack,
-            icon: <ArrowLeftSVG />,
-          },
-        }),
-        ...(onClose && {
-          end: {
-            'data-testid': 'modal:close',
-            onClick: onClose,
-            icon: <CrossSVG />,
-          },
-        }),
-      }}
+      buttons={presetButtons({ buttons, onBack, onClose })}
       className={cx('header', className)}
     />
   );
@@ -67,18 +51,28 @@ export function ModalBody({
   fullScrollThreshold?: number;
   onFullScroll?: () => void;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const scrollableRef = useRef<HTMLElement>(null);
+  const osComponentRef = useRef<OverlayScrollbarsComponent>(null);
+  const { withScrollDisable, scrollDisableOptions } = useContext(ModalContext);
+
+  useImperativeHandle<HTMLElement | null, HTMLElement | null>(scrollableRef, () =>
+    getViewport(osComponentRef.current),
+  );
+
+  usePageScrollLock(scrollableRef, { lockEnabled: withScrollDisable, ...scrollDisableOptions });
 
   return (
     <CustomScrollbar
       inFlexBox
+      osComponentRef={osComponentRef}
       className={styles.body}
-      overflow={{ x: 'h', y: 's' }}
+      overflow={{ x: 'hidden', y: 'scroll' }}
       onFullScroll={onFullScroll}
       fullScrollThreshold={fullScrollThreshold}
     >
-      <ViewportContext.Provider value={ref}>
-        <div className={styles.main} ref={ref} {...{ [BSL_IGNORE_ATTR]: true }}>
+      <ViewportContext.Provider value={viewportRef}>
+        <div className={styles.main} ref={viewportRef}>
           {children}
         </div>
       </ViewportContext.Provider>

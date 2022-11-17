@@ -5,8 +5,9 @@ exports[`SidePage should renders correctly 1`] = `<div />`;
 exports[`SidePage should renders correctly 2`] = `
 <div>
   <div
-    class="overlay"
-    style="z-index: 100; --transition-duration: 300ms;"
+    class="root overlay"
+    data-testid="modal-overlay"
+    style="--transition-duration: 300ms; z-index: 100; --vh: 7.68px;"
   >
     <div
       class="main size-m"

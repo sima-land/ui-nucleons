@@ -1,8 +1,8 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { Simulate } from 'react-dom/test-utils';
 import { SidePage } from '..';
-import { WithHint } from '../../with-hint';
+import { LayerProvider, useLayer } from '../../helpers/layer';
 
 describe('SidePage', () => {
   it('should renders correctly', async function () {
@@ -56,32 +56,30 @@ describe('SidePage', () => {
     );
 
     expect(onBack).toBeCalledTimes(0);
-    Simulate.click(getByTestId('side-page:back'));
+    Simulate.click(getByTestId('top-bar:back'));
     expect(onBack).toBeCalledTimes(1);
 
     expect(onClose).toBeCalledTimes(0);
-    Simulate.click(getByTestId('side-page:close'));
+    Simulate.click(getByTestId('top-bar:close'));
     expect(onClose).toBeCalledTimes(1);
   });
 
-  it('should provide layer', async () => {
-    const { findByTestId } = render(
-      <SidePage shown>
-        <SidePage.Header title='Test title' />
-        <SidePage.Body>
-          <WithHint hint='Test hint'>
-            {(ref, toggle) => (
-              <button ref={ref as any} data-testid='test-hint-opener' onClick={() => toggle(true)}>
-                Opener
-              </button>
-            )}
-          </WithHint>
-        </SidePage.Body>
-      </SidePage>,
+  it('should increment layer by 100', () => {
+    function TestComponent() {
+      const layer = useLayer();
+      return <div data-testid='test-component' data-layer={layer} />;
+    }
+
+    const { getByTestId } = render(
+      <LayerProvider value={20}>
+        <SidePage shown>
+          <SidePage.Body>
+            <TestComponent />
+          </SidePage.Body>
+        </SidePage>
+      </LayerProvider>,
     );
 
-    fireEvent.click(await findByTestId('test-hint-opener'));
-
-    expect((await findByTestId('hint')).style.zIndex).toBe('101');
+    expect(getByTestId('test-component').getAttribute('data-layer')).toBe('120');
   });
 });
