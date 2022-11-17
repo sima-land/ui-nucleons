@@ -1,16 +1,17 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { TopBarSize, TOP_BAR_HEIGHT } from '../top-bar';
 import { BottomBarSize, BOTTOM_BAR_HEIGHT } from '../bottom-bar';
-import { ModalContext, useCloseHandler } from './utils';
+import { ModalContext } from './utils';
 import { BoxShadow } from '../styling/shadows';
 import { isNumber } from 'lodash';
 import { ModalBody, ModalFooter, ModalHeader, ModalOverlap } from './slots';
-import { LayerProvider, useLayer } from '../helpers/layer';
 import { defineSlots } from '../helpers/define-slots';
-import { WithBodyScrollLock, useBodyScrollLock, allowTouchMove } from '../_internal/body-scroll';
+import { WithPageScrollLock } from '../_internal/page-scroll-lock';
+import { useBreakpoint } from '../hooks/breakpoint';
+import { ModalOverlay } from '../modal-overlay';
 import classnames from 'classnames/bind';
 import styles from './modal.module.scss';
-import { useBreakpoint } from '../hooks/breakpoint';
+import { useExactClick } from '../modal-overlay/utils';
 
 export type ModalSize = 's' | 'm' | 'l' | 'xl' | 'fullscreen';
 
@@ -20,7 +21,7 @@ interface ModalStyle extends React.CSSProperties {
   '--modal-footer-height': string;
 }
 
-export interface ModalProps extends WithBodyScrollLock {
+export interface ModalProps extends WithPageScrollLock {
   /** Содержимое компонента. */
   children?: React.ReactNode;
 
@@ -64,11 +65,7 @@ export const Modal: ModalComponent = ({
   withScrollDisable = false,
   'data-testid': testId = 'modal',
 }) => {
-  const layer = useLayer() + 100;
-
-  const rootRef = useRef<HTMLDivElement>(null);
-
-  const bind = useCloseHandler(onClose);
+  const overlayClickBind = useExactClick(onClose);
 
   const isMobile = useBreakpoint('xs-');
 
@@ -93,32 +90,19 @@ export const Modal: ModalComponent = ({
     '--modal-footer-height': `${footerHeight}px`,
   };
 
-  useBodyScrollLock(rootRef, withScrollDisable, {
-    // defaults
-    reserveScrollBarGap: true,
-    allowTouchMove,
-
-    // defined options
-    ...scrollDisableOptions,
-  });
-
   return (
-    <div
-      ref={rootRef}
-      className={cx('overlay')}
-      data-testid='modal:overlay'
-      style={{ zIndex: layer }} // z-index именно здесь из-за position: fixed
-      {...bind}
-    >
+    <ModalOverlay className={cx('overlay')} {...overlayClickBind}>
       <div
         className={cx('modal', `size-${size}`, !fullscreen && BoxShadow.z4)}
         style={style}
         data-testid={testId}
       >
-        <ModalContext.Provider value={{ topBarSize, bottomBarSize }}>
+        <ModalContext.Provider
+          value={{ topBarSize, bottomBarSize, withScrollDisable, scrollDisableOptions }}
+        >
           {header}
 
-          <LayerProvider value={layer}>{content}</LayerProvider>
+          {content}
 
           {footer}
 
@@ -127,7 +111,7 @@ export const Modal: ModalComponent = ({
           {!fullscreen && overlap && <div className={cx('overlap')}>{overlap}</div>}
         </ModalContext.Provider>
       </div>
-    </div>
+    </ModalOverlay>
   );
 };
 

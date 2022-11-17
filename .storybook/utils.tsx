@@ -1,7 +1,15 @@
+import React, { CSSProperties, ReactNode, useEffect, useState } from 'react';
 import { upperFirst } from 'lodash';
-import React, { CSSProperties, ReactNode, useState } from 'react';
-import styles from './utils.module.scss';
 import { loremIpsum } from 'lorem-ipsum';
+import {
+  PageScrollLockAdapterFactory,
+  PageScrollProvider,
+} from '../src/_internal/page-scroll-lock';
+import { PageScrollLock as PageScrollLockInternal } from '../src/_internal/page-scroll-lock/adapters/ui-nucleons';
+import { PageScrollLock as PageScrollLockBSL } from '../src/_internal/page-scroll-lock/adapters/body-scroll-lock';
+import { Select } from '../src/select';
+import { DropdownItem } from '../src/dropdown-item';
+import styles from './utils.module.scss';
 
 type SizeParam = number | [number, number];
 type OptionsParam = { w?: number; h?: number; id?: number };
@@ -96,7 +104,7 @@ function SandboxSelect({ label, options, bind: [value, onChange] }: ControlSelec
 
   return (
     <div className={styles.select}>
-      <ControlLabel htmlFor={id}>{label}</ControlLabel>
+      <SandboxControlLabel htmlFor={id}>{label}</SandboxControlLabel>
       <div>
         <select
           className={styles.field}
@@ -132,7 +140,7 @@ function SandboxToggle({ label, bind: [value, onChange] }: ControlToggle) {
         checked={value}
         onChange={e => onChange?.(e.target.checked)}
       />
-      <ControlLabel htmlFor={id}>{label}</ControlLabel>
+      <SandboxControlLabel htmlFor={id}>{label}</SandboxControlLabel>
     </div>
   );
 }
@@ -142,7 +150,7 @@ function SandboxToggle({ label, bind: [value, onChange] }: ControlToggle) {
  * @param props Свойства.
  * @return Элемент.
  */
-function ControlLabel({ htmlFor, children }: { htmlFor: string; children?: ReactNode }) {
+function SandboxControlLabel({ htmlFor, children }: { htmlFor: string; children?: ReactNode }) {
   return (
     <label htmlFor={htmlFor} className={styles.label}>
       {children}
@@ -162,8 +170,9 @@ export function LoremIpsum({
   paragraphCount?: number;
   sentenceCount?: number;
 }) {
-  const [result] = useState<string[]>(() =>
-    Array(paragraphCount)
+  // eslint-disable-next-line require-jsdoc, jsdoc/require-jsdoc
+  function generate() {
+    return Array(paragraphCount)
       .fill(0)
       .map(() =>
         loremIpsum({
@@ -171,14 +180,68 @@ export function LoremIpsum({
           sentenceLowerBound: sentenceCount,
           sentenceUpperBound: sentenceCount,
         }),
-      ),
-  );
+      );
+  }
+
+  const [content, setContent] = useState<string[]>(generate);
+
+  useEffect(() => {
+    setContent(generate);
+  }, [paragraphCount, sentenceCount]);
 
   return (
     <>
-      {result.map((content, index) => (
-        <p key={index}>{content}</p>
+      {content.map((item, index) => (
+        <p key={index}>{item}</p>
       ))}
     </>
+  );
+}
+
+/**
+ * Тестовая страница большой высоты для проверки блокировки прокрутки.
+ * @param props Свойства.
+ * @return Элемент.
+ */
+export function PageScrollLockDemo({ children }: { children?: ReactNode }) {
+  const adapterNames = ['body-scroll-lock', 'ui-nucleons'] as const;
+  const [adapterName, setAdapterName] = useState<typeof adapterNames[number]>('body-scroll-lock');
+
+  let adapter: PageScrollLockAdapterFactory;
+
+  switch (adapterName) {
+    case 'ui-nucleons':
+      adapter = (_, options) => new PageScrollLockInternal(options);
+      break;
+    case 'body-scroll-lock':
+    default:
+      adapter = (element, options) => new PageScrollLockBSL(element, options);
+      break;
+  }
+
+  return (
+    <PageScrollProvider adapter={adapter}>
+      <h1>Пример страницы</h1>
+
+      <p>Это тестовая страница для проверки блокировки прокрутки с разными реализациями.</p>
+
+      <Select
+        opener={<Select.FieldBlock size='l' label='Реализация' />}
+        value={adapterName}
+        onValueChange={value => {
+          adapterNames.includes(value as any) && setAdapterName(value as any);
+        }}
+      >
+        {adapterNames.map((name, index) => (
+          <DropdownItem key={index} value={name}>
+            {name}
+          </DropdownItem>
+        ))}
+      </Select>
+
+      <div style={{ marginTop: '20px' }}>{children}</div>
+
+      <LoremIpsum paragraphCount={50} sentenceCount={50} />
+    </PageScrollProvider>
   );
 }

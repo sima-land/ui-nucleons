@@ -8,7 +8,8 @@ import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information';
 import imageUrl from './image.png';
 import { times } from 'lodash';
 import { WithHint } from '../../with-hint';
-import { Clean } from '../../clean-buttons';
+import { CleanGroup, CleanButton } from '../../clean-buttons';
+import { LoremIpsum, PageScrollLockDemo } from '../../../.storybook/utils';
 
 export default {
   title: 'desktop/SidePage',
@@ -388,10 +389,10 @@ export function WithCleanButtons() {
         </SidePage.Body>
 
         <SidePage.Footer divided padded={false}>
-          <Clean.Group>
-            <Clean.Button>Эники</Clean.Button>
-            <Clean.Button>Бэники</Clean.Button>
-          </Clean.Group>
+          <CleanGroup>
+            <CleanButton>Эники</CleanButton>
+            <CleanButton>Бэники</CleanButton>
+          </CleanGroup>
         </SidePage.Footer>
       </SidePage>
     </>
@@ -399,3 +400,57 @@ export function WithCleanButtons() {
 }
 
 WithCleanButtons.storyName = 'Прозрачные кнопки в футере';
+
+export function TestPageScrollLock() {
+  const styles: Record<'root', React.CSSProperties> = {
+    root: {
+      padding: '24px',
+    },
+  };
+
+  const [shown, toggle] = useState<boolean>(false);
+  const [contentSize, setContentSize] = useState<number>(5);
+
+  function increaseContent() {
+    setContentSize(n => n + 1);
+  }
+
+  function decreaseContent() {
+    setContentSize(n => Math.max(1, n - 1));
+  }
+
+  function show() {
+    toggle(true);
+  }
+
+  function hide() {
+    toggle(false);
+  }
+
+  return (
+    <PageScrollLockDemo>
+      <Button size='s' onClick={show}>
+        Показать SidePage
+      </Button>
+
+      <SidePage size='s' shown={shown} onClose={hide} withTransitions withScrollDisable>
+        <SidePage.Header divided title='Тест: Блокировка прокрутки страницы' onClose={hide} />
+
+        <SidePage.Body>
+          <div style={styles.root}>
+            <LoremIpsum paragraphCount={contentSize} />
+          </div>
+        </SidePage.Body>
+
+        <SidePage.Footer divided padded={false}>
+          <CleanGroup>
+            <CleanButton onClick={decreaseContent}>Убрать</CleanButton>
+            <CleanButton onClick={increaseContent}>Добавить</CleanButton>
+          </CleanGroup>
+        </SidePage.Footer>
+      </SidePage>
+    </PageScrollLockDemo>
+  );
+}
+
+TestPageScrollLock.storyName = 'Тест: блокировка прокрутки страницы';
