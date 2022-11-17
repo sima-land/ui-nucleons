@@ -15,7 +15,7 @@ jest.mock('body-scroll-lock', () => {
   };
 });
 
-describe('useScrollDisable', () => {
+describe('useBodyScrollLock', () => {
   const TestComponent = ({ withScrollDisable }: WithBodyScrollLock) => {
     const ref = useRef<HTMLDivElement>(null);
 
@@ -34,6 +34,18 @@ describe('useScrollDisable', () => {
 
     expect(disableBodyScroll).toHaveBeenCalledTimes(1);
     expect(enableBodyScroll).toHaveBeenCalledTimes(1);
+  });
+
+  it('should do nothing when "withScrollDisable" is falsy', () => {
+    const wrapper = mount(<TestComponent withScrollDisable={false} scrollDisableOptions={{}} />);
+
+    expect(disableBodyScroll).toHaveBeenCalledTimes(0);
+    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
+
+    wrapper.unmount();
+
+    expect(disableBodyScroll).toHaveBeenCalledTimes(0);
+    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
   });
 });
 
