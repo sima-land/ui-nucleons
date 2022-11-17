@@ -1,69 +1,63 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { Alert } from '..';
-import { useBodyScrollLock } from '../../_internal/body-scroll';
+import React, { createRef } from 'react';
+import { render } from '@testing-library/react';
+import { Alert, AlertBody } from '..';
+import { LayerProvider, useLayer } from '../../helpers/layer';
+import { TopBar } from '../../top-bar';
+import { BottomBar } from '../../bottom-bar';
 
-jest.mock('../../_internal/body-scroll', () => {
-  const original = jest.requireActual('../../_internal/body-scroll');
-
-  return {
-    ...original,
-    __esModule: true,
-    useBodyScrollLock: jest.fn(original.useBodyScrollLock),
-  };
-});
-
-describe('<Alert />', () => {
-  it('should renders without props', () => {
-    const { container } = render(<Alert />);
-
-    expect(container).toMatchSnapshot();
-  });
-
-  it('should handle props', () => {
+describe('Alert', () => {
+  it('should render TopBar/BottomBar', () => {
     const { container } = render(
-      <Alert
-        title='Hello, world!'
-        withNavBar
-        withDivideNavBar={false}
-        navBarProps={{ subtitle: 'Subtitle text' }}
-        className='test-class'
-        children='Main content'
-        footer='Footer content'
-      />,
+      <LayerProvider value={20}>
+        <Alert>
+          <AlertBody>[body]</AlertBody>
+          <BottomBar>[footer]</BottomBar>
+          <TopBar title='[header]' />
+        </Alert>
+      </LayerProvider>,
     );
 
-    expect(container).toMatchSnapshot();
+    expect(container.textContent).toBe('[header][body][footer]');
   });
 
-  it('should disable/enable body scroll', () => {
-    expect(useBodyScrollLock).toBeCalledTimes(0);
+  it('should handle AlertBody with scrollableRef properly', () => {
+    const ref = createRef<HTMLDivElement>();
 
-    render(<Alert withScrollDisable />);
+    const { getByTestId } = render(
+      <LayerProvider value={20}>
+        <Alert>
+          <AlertBody data-testid='hello' scrollableRef={ref}>
+            [body]
+          </AlertBody>
+        </Alert>
+      </LayerProvider>,
+    );
 
-    expect(useBodyScrollLock).toBeCalledTimes(1);
+    expect(ref.current instanceof HTMLDivElement).toBe(true);
+    expect(ref.current).toBe(getByTestId('hello'));
   });
 
-  it('should do not use disable/enable body scrolling by default', () => {
-    render(<Alert />);
+  it('should increment layer by 100', () => {
+    function TestComponent() {
+      const layer = useLayer();
 
-    expect((useBodyScrollLock as any).mock.calls[0][1]).toBe(false);
-  });
+      return (
+        <div data-testid='test-component' data-layer={layer}>
+          Hello
+        </div>
+      );
+    }
 
-  it('should call onClose callback on overlay click', () => {
-    const spy = jest.fn();
-    const { getByTestId } = render(<Alert onClose={spy} />);
+    const { getByTestId } = render(
+      <LayerProvider value={20}>
+        <Alert>
+          <AlertBody>
+            <TestComponent />
+          </AlertBody>
+        </Alert>
+      </LayerProvider>,
+    );
 
-    expect(spy).toBeCalledTimes(0);
-    fireEvent.click(getByTestId('alert:overlay'));
-    expect(spy).toBeCalledTimes(1);
-  });
-
-  it('should handle overlay click without onClose callback', () => {
-    const { getByTestId } = render(<Alert onClose={undefined} />);
-
-    expect(() => {
-      fireEvent.click(getByTestId('alert:overlay'));
-    }).not.toThrow();
+    expect(getByTestId('test-component').getAttribute('data-layer')).toBe('120');
   });
 });

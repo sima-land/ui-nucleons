@@ -1,35 +1,21 @@
-import React, { useRef } from 'react';
+import React, { useImperativeHandle, useRef } from 'react';
+import { WithPageScrollLock, usePageScrollLock } from '../_internal/page-scroll-lock';
+import { ModalOverlay } from '../modal-overlay';
+import { Card, CardContent } from '../card';
+import { TopBar } from '../top-bar';
+import { BottomBar } from '../bottom-bar';
+import { defineSlots } from '../helpers/define-slots';
+import { CardContentProps } from '../card/slots';
+import { useExactClick } from '../modal-overlay/utils';
 import classnames from 'classnames/bind';
 import styles from './alert.module.scss';
-import { InnerBorder } from '../styling/borders';
-import { LayerProvider, useLayer } from '../helpers/layer';
-import { WithBodyScrollLock, useBodyScrollLock, allowTouchMove } from '../_internal/body-scroll';
-import { TopBar, TopBarProps } from '../top-bar';
 
-export interface AlertProps extends WithBodyScrollLock {
+export interface AlertProps extends WithPageScrollLock {
   /** Основное содержимое. */
   children?: React.ReactNode;
 
-  /** Класс для блока всего содержимого. */
-  className?: string;
-
-  /** Содержимое "подвала". */
-  footer?: React.ReactNode;
-
-  /** Свойства компонента NavBar. */
-  navBarProps?: TopBarProps;
-
-  /** Заголовок. */
-  title?: string;
-
-  /** Нужна ли полоса между шапкой и основным содержимым. */
-  withDivideNavBar?: boolean;
-
-  /** Нужна ли шапка. */
-  withNavBar?: boolean;
-
   /** Будет вызвана при закрытии окна нажатием на затемнение. */
-  onClose?: () => void;
+  onClose?: VoidFunction;
 }
 
 const cx = classnames.bind(styles);
@@ -39,48 +25,49 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export const Alert = ({
+export function Alert({
   children,
-  className,
-  footer,
-  navBarProps,
-  title,
-  withDivideNavBar,
-  withNavBar = Boolean(title),
   withScrollDisable = false,
   scrollDisableOptions,
   onClose,
-}: AlertProps) => {
-  const layer = useLayer() + 100;
-  const rootRef = useRef<HTMLDivElement>(null);
+}: AlertProps) {
+  const scrollableRef = useRef<HTMLDivElement>(null);
 
-  useBodyScrollLock(rootRef, withScrollDisable, { allowTouchMove, ...scrollDisableOptions });
+  usePageScrollLock(scrollableRef, { lockEnabled: withScrollDisable, ...scrollDisableOptions });
+
+  const { topBar, body, bottomBar } = defineSlots(children, {
+    topBar: TopBar,
+    body: AlertBody,
+    bottomBar: BottomBar,
+  });
+
+  const overlayClickBind = useExactClick(onClose);
+
+  useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(
+    body?.props.scrollableRef,
+    () => scrollableRef.current,
+  );
 
   return (
-    <LayerProvider value={layer}>
-      <div
-        ref={rootRef}
-        className={cx('overlay')}
-        style={{ zIndex: layer }} // z-index именно здесь из-за position: fixed
-        onClick={e => e.target === e.currentTarget && onClose?.()}
-        data-testid='alert:overlay'
-      >
-        <div className={cx('alert', className)} data-testid='alert'>
-          {withNavBar && (
-            <TopBar
-              size='s'
-              {...navBarProps}
-              title={title}
-              divided={withDivideNavBar}
-              className={cx('header')}
-            />
-          )}
-
-          <div className={cx('main')}>{children}</div>
-
-          {Boolean(footer) && <div className={InnerBorder.top}>{footer}</div>}
-        </div>
-      </div>
-    </LayerProvider>
+    <ModalOverlay className={styles.overlay} {...overlayClickBind}>
+      <Card shadow='z4' rounds='m' className={cx('alert')} data-testid='alert'>
+        {topBar && <TopBar {...topBar.props} size='s' />}
+        {body && (
+          <CardContent {...body.props} scrollableRef={scrollableRef}>
+            {body}
+          </CardContent>
+        )}
+        {bottomBar && <BottomBar {...bottomBar.props} size='s' />}
+      </Card>
+    </ModalOverlay>
   );
-};
+}
+
+/**
+ * Основной контент Alert.
+ * @param props Свойства.
+ * @return Элемент.
+ */
+export function AlertBody({ children }: CardContentProps) {
+  return <>{children}</>;
+}
