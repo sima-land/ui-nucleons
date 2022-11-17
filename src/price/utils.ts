@@ -37,7 +37,7 @@ export const formatInteger = (value: number): string => {
   if (Number.isFinite(value)) {
     // если число меньше 0.0001 - округляем до 0.0001
     const valid = value === 0 ? 0 : Math.max(value, 0.0001);
-    const integer = valid.toString().replace(/\..*$/g, ''); // все числа до точки
+    const integer = toString(valid).replace(/\..*$/g, ''); // все числа до точки
 
     const separated = [];
     const list = integer.split('');
@@ -55,18 +55,31 @@ export const formatInteger = (value: number): string => {
 
 // eslint-disable-next-line require-jsdoc
 export const formatFractional = (value: number): string => {
-  let result = '';
+  let fractional = '';
 
   if (Number.isFinite(value) && !Number.isInteger(value)) {
-    if (value <= 0.0001) {
-      // если число меньше 0.0001 - округляем до 0.0001
-      result = '0001';
-    } else if (value < 0.01) {
-      result = value.toFixed(4).slice(-4);
-    } else {
-      result = value.toFixed(2).slice(-2);
-    }
+    fractional = toString(value).replace(/^.*\./g, '');
+  }
+
+  return fractional;
+};
+
+/**
+ * Округляет число и приводит его к строке по дизайн-гайдам цен.
+ * @param value Число.
+ * @return Отформатированное число.
+ */
+function toString(value: number): string {
+  let result: string;
+
+  if (value <= 0.0001) {
+    // если число меньше 0.0001 - округляем до 0.0001
+    result = '0.0001';
+  } else if (value < 0.01) {
+    result = value.toFixed(4);
+  } else {
+    result = value.toFixed(2);
   }
 
   return result;
-};
+}
