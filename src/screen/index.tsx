@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { HeaderSlot, BodySlot, FooterSlot } from './slots';
 import { LayerProvider, useLayer } from '../helpers/layer';
 import { defineSlots } from '../helpers/define-slots';
 import { ScreenContext, ScreenInnerProps } from './utils';
 import { WithPageScrollLock } from '../_internal/page-scroll-lock';
 import styles from './screen.module.scss';
+import { useViewportHeightUnit } from '../hooks/styles';
 
 export interface ScreenProps extends ScreenInnerProps, WithPageScrollLock {
   /** Содержимое. */
@@ -44,6 +45,10 @@ export const Screen = ({
     footer: FooterSlot,
   });
 
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useViewportHeightUnit(rootRef);
+
   if (!body) {
     throw Error(
       'Looks like you are trying to render <Screen /> without <Screen.Body /> slot, but it is required',
@@ -52,6 +57,7 @@ export const Screen = ({
 
   return (
     <div
+      ref={rootRef}
       className={styles.root}
       style={{
         zIndex: layer, // z-index именно здесь из-за position: fixed

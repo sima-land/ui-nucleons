@@ -6,7 +6,7 @@ import { Box } from '../../box';
 import { TouchSlider } from '../../touch-slider';
 import { MobileLayout } from '../../layout';
 import { times } from 'lodash';
-import { Bootstrap, useLoading } from './utils';
+import { useLoading } from './utils';
 import { LoremIpsum, PageScrollLockDemo } from '../../../.storybook/utils';
 
 export default {
@@ -53,7 +53,7 @@ const LoadingTemplate = ({ loadingArea }: Pick<ScreenProps, 'loadingArea'>) => {
   const { state, load, reset } = useLoading();
 
   return (
-    <Bootstrap>
+    <>
       <PageTemplate onButtonClick={load} />
 
       {state !== 'closed' && (
@@ -87,12 +87,12 @@ const LoadingTemplate = ({ loadingArea }: Pick<ScreenProps, 'loadingArea'>) => {
           </Screen.Footer>
         </Screen>
       )}
-    </Bootstrap>
+    </>
   );
 };
 
 export const Primary = () => (
-  <Bootstrap>
+  <>
     <Screen>
       <Screen.Header
         divided
@@ -123,11 +123,11 @@ export const Primary = () => (
         </MobileLayout>
       </Screen.Footer>
     </Screen>
-  </Bootstrap>
+  </>
 );
 
 export const Secondary = () => (
-  <Bootstrap>
+  <>
     <Screen>
       <Screen.Header
         divided
@@ -156,11 +156,11 @@ export const Secondary = () => (
         </MobileLayout>
       </Screen.Footer>
     </Screen>
-  </Bootstrap>
+  </>
 );
 
 export const NoHeaderFooter = () => (
-  <Bootstrap>
+  <>
     <Screen>
       <Screen.Body>
         <MobileLayout>
@@ -174,7 +174,7 @@ export const NoHeaderFooter = () => (
         </MobileLayout>
       </Screen.Body>
     </Screen>
-  </Bootstrap>
+  </>
 );
 
 export const LoadingAreaFull = () => <LoadingTemplate loadingArea='full' />;
@@ -185,7 +185,7 @@ export const FullScrollAfterLoading = () => {
   const { state, load, reset } = useLoading();
 
   return (
-    <Bootstrap>
+    <>
       <PageTemplate onButtonClick={load} />
 
       {state !== 'closed' && (
@@ -212,7 +212,7 @@ export const FullScrollAfterLoading = () => {
           </Screen.Body>
         </Screen>
       )}
-    </Bootstrap>
+    </>
   );
 };
 
