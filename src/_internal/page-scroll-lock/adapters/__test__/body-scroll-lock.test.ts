@@ -1,4 +1,4 @@
-import { PageScrollLock } from '../body-scroll-lock';
+import { PageScrollLock, allowTouchMove, BSL_IGNORE_ATTR } from '../body-scroll-lock';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 jest.mock('body-scroll-lock', () => {
@@ -41,5 +41,44 @@ describe('PageScrollLock', () => {
     expect(replacement.enableBodyScroll).toBeCalledTimes(1);
     expect(disableBodyScroll).toBeCalledTimes(1);
     expect(enableBodyScroll).toBeCalledTimes(1);
+  });
+});
+
+describe('allowTouchMove', () => {
+  let container: HTMLDivElement;
+
+  beforeEach(() => {
+    container = document.createElement('div');
+    document.body.append(container);
+  });
+
+  afterEach(() => {
+    container.remove();
+  });
+
+  it('should works with marked element', () => {
+    container.innerHTML = `
+      <div ${BSL_IGNORE_ATTR}="true">
+        <div id="test-target">Target</div>
+      </div>
+    `;
+
+    document.body.append(container);
+
+    const target = document.body.querySelector('#test-target') as any;
+
+    expect(allowTouchMove(target)).toBe(true);
+  });
+
+  it('should works without marked element', () => {
+    container.innerHTML = `
+      <div>
+        <div id="test-target">Target</div>
+      </div>
+    `;
+
+    const target = document.body.querySelector('#test-target') as any;
+
+    expect(allowTouchMove(target)).toBe(false);
   });
 });

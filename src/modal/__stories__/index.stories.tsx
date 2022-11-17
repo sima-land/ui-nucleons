@@ -181,7 +181,7 @@ export function TestPageScrollLock() {
   }
 
   function show() {
-    toggle(false);
+    toggle(true);
   }
 
   function hide() {

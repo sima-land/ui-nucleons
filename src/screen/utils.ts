@@ -1,7 +1,8 @@
 import { createContext } from 'react';
 import { LoadingOverlayProps } from '../loading-overlay';
+import { WithPageScrollLock } from '../_internal/page-scroll-lock';
 
-export interface ScreenInnerProps {
+export interface ScreenInnerProps extends WithPageScrollLock {
   /** Нужно ли выводить вместо содержимого состояние загрузки. */
   loading?: boolean;
 

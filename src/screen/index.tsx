@@ -3,9 +3,10 @@ import { HeaderSlot, BodySlot, FooterSlot } from './slots';
 import { LayerProvider, useLayer } from '../helpers/layer';
 import { defineSlots } from '../helpers/define-slots';
 import { ScreenContext, ScreenInnerProps } from './utils';
+import { WithPageScrollLock } from '../_internal/page-scroll-lock';
 import styles from './screen.module.scss';
 
-export interface ScreenProps extends ScreenInnerProps {
+export interface ScreenProps extends ScreenInnerProps, WithPageScrollLock {
   /** Содержимое. */
   children?: React.ReactNode;
 
@@ -29,6 +30,8 @@ export const Screen = ({
   loadingOverlayProps,
   onFullScroll,
   fullScrollThreshold = 320,
+  withScrollDisable,
+  scrollDisableOptions,
   'data-testid': testId = 'screen',
 }: ScreenProps) => {
   const fullLoading = loading && loadingArea === 'full';
@@ -48,7 +51,13 @@ export const Screen = ({
   }
 
   return (
-    <div className={styles.root} style={{ zIndex: layer }} data-testid={testId}>
+    <div
+      className={styles.root}
+      style={{
+        zIndex: layer, // z-index именно здесь из-за position: fixed
+      }}
+      data-testid={testId}
+    >
       <LayerProvider value={layer}>
         {!fullLoading && header}
 
@@ -58,6 +67,8 @@ export const Screen = ({
             loadingOverlayProps,
             onFullScroll,
             fullScrollThreshold,
+            withScrollDisable,
+            scrollDisableOptions,
           }}
         >
           {/* ВАЖНО: body должен выводиться всегда (без условий), т.к. он нужен для блокировки прокрутки */}

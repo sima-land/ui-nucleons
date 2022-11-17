@@ -42,7 +42,10 @@ export class PageScrollLock implements PageScrollLockAdapter {
 
   /** @inheritdoc */
   lock(): void {
-    this.lib.disableBodyScroll(this.element, this.options);
+    this.lib.disableBodyScroll(this.element, {
+      ...this.options,
+      allowTouchMove,
+    });
   }
 
   /** @inheritdoc */
@@ -50,3 +53,25 @@ export class PageScrollLock implements PageScrollLockAdapter {
     this.lib.enableBodyScroll(this.element);
   }
 }
+
+/**
+ * Проверяет необходимость блокировки дочерних элементов в прокручиваемом элементе.
+ * Необходима для того, чтобы в прокручиваемых контейнерах вложенные прокручиваемые элементы,
+ * имеющие специальный атрибут, прокручивались нормально.
+ * @see {@link https://github.com/willmcpo/body-scroll-lock#more-complex}
+ * @param startEl Начальный элемент.
+ * @return Нужно ли позволить перетаскивание элемента.
+ */
+export const allowTouchMove: Required<BodyScrollOptions>['allowTouchMove'] = (startEl): boolean => {
+  let el: HTMLElement | Element | null = startEl;
+
+  while (el && el !== document.body) {
+    if (el.getAttribute(BSL_IGNORE_ATTR) !== null) {
+      return true;
+    }
+
+    el = el.parentElement;
+  }
+
+  return false;
+};

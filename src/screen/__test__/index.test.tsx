@@ -2,20 +2,8 @@ import React, { createRef } from 'react';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import { Screen } from '..';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { render } from '@testing-library/react';
-import { BSL_IGNORE_ATTR } from '../../constants';
-
-jest.mock('body-scroll-lock', () => {
-  const original = jest.requireActual('body-scroll-lock');
-
-  return {
-    ...original,
-    __esModule: true,
-    disableBodyScroll: jest.fn(original.disableBodyScroll),
-    enableBodyScroll: jest.fn(original.enableBodyScroll),
-  };
-});
+import { LayerProvider, useLayer } from '../../helpers/layer';
 
 describe('<Screen />', () => {
   it('should renders correctly', () => {
@@ -56,9 +44,6 @@ describe('<Screen />', () => {
     const spy = jest.fn();
     const otherSpy = jest.fn();
 
-    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
-    expect(disableBodyScroll).toHaveBeenCalledTimes(0);
-
     const wrapper = mount(
       <Screen>
         <Screen.Header
@@ -71,8 +56,6 @@ describe('<Screen />', () => {
         <Screen.Footer>Test footer</Screen.Footer>
       </Screen>,
     );
-
-    expect(disableBodyScroll).toHaveBeenCalledTimes(1);
 
     expect(spy).toHaveBeenCalledTimes(0);
     act(() => {
@@ -87,10 +70,6 @@ describe('<Screen />', () => {
     });
     wrapper.update();
     expect(otherSpy).toHaveBeenCalledTimes(1);
-
-    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
-    wrapper.unmount();
-    expect(enableBodyScroll).toHaveBeenCalledTimes(1);
   });
 
   it('should renders without close button', () => {
@@ -191,15 +170,22 @@ describe('<Screen />', () => {
     );
   });
 
-  it('body slot should have data attribute for BSL', () => {
+  it('should increment layer by 300', () => {
+    function TestComponent() {
+      const layer = useLayer();
+      return <div data-testid='test-component' data-layer={layer} />;
+    }
+
     const { getByTestId } = render(
-      <Screen data-testid='my-screen'>
-        <Screen.Body>
-          <p>Body loaded content</p>
-        </Screen.Body>
-      </Screen>,
+      <LayerProvider value={20}>
+        <Screen>
+          <Screen.Body>
+            <TestComponent />
+          </Screen.Body>
+        </Screen>
+      </LayerProvider>,
     );
 
-    expect(getByTestId('screen:body').getAttribute(BSL_IGNORE_ATTR)).toBe('true');
+    expect(getByTestId('test-component').getAttribute('data-layer')).toBe('320');
   });
 });
