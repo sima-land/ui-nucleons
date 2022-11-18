@@ -1,19 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import on from '../../helpers/on';
-
-const useViewportVars = () => {
-  useEffect(() => {
-    const height = window.visualViewport?.height ?? window.innerHeight;
-
-    const define = () => {
-      document.documentElement.style.setProperty('--vh', `${height / 100}px`);
-    };
-
-    define();
-
-    return on(window, 'resize', define);
-  }, []);
-};
+import { useCallback, useState } from 'react';
 
 export const useLoading = () => {
   const [state, setState] = useState<'closed' | 'loading' | 'opened'>('closed');
@@ -30,10 +15,4 @@ export const useLoading = () => {
   }, []);
 
   return { state, load, reset } as const;
-};
-
-export const Bootstrap: React.FC = ({ children }) => {
-  useViewportVars();
-
-  return <>{children}</>;
 };

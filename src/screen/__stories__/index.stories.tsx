@@ -6,7 +6,8 @@ import { Box } from '../../box';
 import { TouchSlider } from '../../touch-slider';
 import { MobileLayout } from '../../layout';
 import { times } from 'lodash';
-import { Bootstrap, useLoading } from './utils';
+import { useLoading } from './utils';
+import { LoremIpsum, PageScrollLockDemo } from '../../../.storybook/utils';
 
 export default {
   title: 'deprecated/Screen',
@@ -23,6 +24,15 @@ const actions = {
 const PageTemplate = ({ onButtonClick }: { onButtonClick: React.MouseEventHandler }) => (
   <MobileLayout>
     <h1>Фоновая страница</h1>
+
+    <div style={{ marginBottom: '24px' }}>
+      {times(3).map(index => (
+        <p key={index}>
+          Здесь много текста чтобы убедиться что после прокрутки и закрытия экрана фоновый контент
+          не был прокручен
+        </p>
+      ))}
+    </div>
 
     <Button size='s' onClick={onButtonClick}>
       Показать экран
@@ -43,7 +53,7 @@ const LoadingTemplate = ({ loadingArea }: Pick<ScreenProps, 'loadingArea'>) => {
   const { state, load, reset } = useLoading();
 
   return (
-    <Bootstrap>
+    <>
       <PageTemplate onButtonClick={load} />
 
       {state !== 'closed' && (
@@ -77,12 +87,12 @@ const LoadingTemplate = ({ loadingArea }: Pick<ScreenProps, 'loadingArea'>) => {
           </Screen.Footer>
         </Screen>
       )}
-    </Bootstrap>
+    </>
   );
 };
 
 export const Primary = () => (
-  <Bootstrap>
+  <>
     <Screen>
       <Screen.Header
         divided
@@ -113,11 +123,44 @@ export const Primary = () => (
         </MobileLayout>
       </Screen.Footer>
     </Screen>
-  </Bootstrap>
+  </>
+);
+
+export const Secondary = () => (
+  <>
+    <Screen>
+      <Screen.Header
+        divided
+        title='Довольно большой заголовок'
+        subtitle='И не менее большой подзаголовок здесь'
+        onBack={action('Screen: Нажата кнопка возврата')}
+        onClose={actions.screenClosed}
+      />
+      <Screen.Body>
+        <MobileLayout>
+          <div style={{ margin: '32px 0' }}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima necessitatibus culpa
+            magnam voluptas alias quia, dolorum ex et eligendi aperiam beatae illum fugit, ipsum
+            expedita obcaecati optio! Dolores, illum odit.
+          </div>
+        </MobileLayout>
+      </Screen.Body>
+      <Screen.Footer>
+        <MobileLayout>
+          <Button
+            style={{ width: '100%', margin: '12px 0' }}
+            onClick={() => action('Screen: Нажата кнопка в футере')()}
+          >
+            Сделать что-то
+          </Button>
+        </MobileLayout>
+      </Screen.Footer>
+    </Screen>
+  </>
 );
 
 export const NoHeaderFooter = () => (
-  <Bootstrap>
+  <>
     <Screen>
       <Screen.Body>
         <MobileLayout>
@@ -131,7 +174,7 @@ export const NoHeaderFooter = () => (
         </MobileLayout>
       </Screen.Body>
     </Screen>
-  </Bootstrap>
+  </>
 );
 
 export const LoadingAreaFull = () => <LoadingTemplate loadingArea='full' />;
@@ -142,7 +185,7 @@ export const FullScrollAfterLoading = () => {
   const { state, load, reset } = useLoading();
 
   return (
-    <Bootstrap>
+    <>
       <PageTemplate onButtonClick={load} />
 
       {state !== 'closed' && (
@@ -169,37 +212,34 @@ export const FullScrollAfterLoading = () => {
           </Screen.Body>
         </Screen>
       )}
-    </Bootstrap>
+    </>
   );
 };
 
-export const BodyScrollLock = () => {
+export function TestPageScrollLock() {
   const bodyRef = useRef<HTMLDivElement>(null);
   const [opened, toggle] = useState<boolean>(false);
 
+  function close() {
+    actions.screenClosed(`scrollTop = ${bodyRef.current?.scrollTop}`);
+    toggle(false);
+  }
+
   return (
-    <Bootstrap>
-      <PageTemplate onButtonClick={() => toggle(true)} />
+    <PageScrollLockDemo>
+      <Button size='s' onClick={() => toggle(true)}>
+        Показать Screen
+      </Button>
 
       {opened && (
-        <Screen>
-          <Screen.Header
-            divided
-            title='Пример блокировки прокрутки body'
-            onClose={() => {
-              actions.screenClosed(`scrollTop = ${bodyRef.current?.scrollTop}`);
-              toggle(false);
-            }}
-          />
+        <Screen withScrollDisable>
+          <Screen.Header divided title='Тест блокировки прокрутки страницы' onClose={close} />
+
           <Screen.Body ref={bodyRef}>
             <MobileLayout>
-              {times(24).map(index => (
-                <p key={index}>
-                  Можно немного прокрутить этот экран вниз чтобы проверить, что, при его открытии,
-                  горизонтальная прокрутка дочернего элемента на iOS работает как надо.
-                </p>
-              ))}
+              <LoremIpsum paragraphCount={24} />
             </MobileLayout>
+
             <TouchSlider>
               {times(16).map(index => (
                 <div
@@ -220,16 +260,15 @@ export const BodyScrollLock = () => {
                 </div>
               ))}
             </TouchSlider>
+
             <MobileLayout>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa suscipit sed fugit
-                iure officiis! Impedit ea dolorum, magni blanditiis eaque veniam ratione eum.
-                Accusantium sed repellat, eius mollitia maxime fugit exercitationem sunt.
-              </p>
+              <LoremIpsum paragraphCount={3} />
             </MobileLayout>
           </Screen.Body>
         </Screen>
       )}
-    </Bootstrap>
+    </PageScrollLockDemo>
   );
-};
+}
+
+TestPageScrollLock.storyName = 'Тест: блокировка прокрутки страницы';

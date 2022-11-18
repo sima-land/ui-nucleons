@@ -6,8 +6,6 @@
   left: 0;
   display: flex;
   flex-direction: column;
-
-  // для корректного отображения с динамическим viewport переменная --vh должна быть доступна
   height: calc(var(--vh, 1vh) * 100);
   width: 100%;
   box-sizing: border-box;
