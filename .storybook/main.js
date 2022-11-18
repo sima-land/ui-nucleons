@@ -5,8 +5,8 @@ module.exports = {
   stories: ['./index.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@storybook/addon-actions',
-    !process.env.CI && '@storybook/addon-storysource',
-    !process.env.CI && '@storybook/addon-backgrounds',
+    !process.env.TEST_ENV && '@storybook/addon-storysource',
+    !process.env.TEST_ENV && '@storybook/addon-backgrounds',
     {
       name: '@storybook/addon-docs',
       options: {
@@ -18,7 +18,7 @@ module.exports = {
     },
   ].filter(Boolean),
 
-  typescript: process.env.CI
+  typescript: process.env.TEST_ENV
     ? undefined
     : {
         check: false,
