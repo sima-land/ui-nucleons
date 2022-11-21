@@ -1,4 +1,5 @@
 @use '../colors';
+@use './clean-buttons-util';
 
 .group {
   display: flex;
@@ -27,16 +28,17 @@
   font-size: 16px;
   line-height: 24px;
   overflow: hidden;
+  height: var(--clean-group-height);
 }
 
 .size-s {
-  height: 64px;
+  @include clean-buttons-util.size-s;
 }
 
 .size-m {
-  height: 72px;
+  @include clean-buttons-util.size-m;
 }
 
 .size-l {
-  height: 80px;
+  @include clean-buttons-util.size-l;
 }

@@ -15,7 +15,6 @@ exports[`SidePage should renders correctly 2`] = `
       <div
         class="root size-xl header no-subtitle"
         data-testid="top-bar"
-        style="height: 80px;"
       >
         <div
           class="main"
@@ -35,9 +34,8 @@ exports[`SidePage should renders correctly 2`] = `
         </h1>
       </div>
       <div
-        class="root rounds-md__b footer padded"
+        class="root size-l rounds-md__b footer"
         data-testid="bottom-bar"
-        style="height: 80px;"
       >
         <p>
           Test footer

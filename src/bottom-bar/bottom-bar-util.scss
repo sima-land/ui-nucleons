@@ -1,0 +1,20 @@
+@use '../clean-buttons/clean-buttons-util';
+
+$size-s-height: 64px;
+$size-m-height: 72px;
+$size-l-height: 80px;
+
+@mixin size-s {
+  --bottom-bar-height: #{$size-s-height};
+  @include clean-buttons-util.size-s;
+}
+
+@mixin size-m {
+  --bottom-bar-height: #{$size-m-height};
+  @include clean-buttons-util.size-m;
+}
+
+@mixin size-l {
+  --bottom-bar-height: #{$size-l-height};
+  @include clean-buttons-util.size-l;
+}

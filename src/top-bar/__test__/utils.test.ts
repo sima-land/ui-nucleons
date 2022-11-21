@@ -1,10 +1,10 @@
-import { presetButtons } from '../utils';
+import { navigationButtons } from '../utils';
 
-describe('presetButtons', () => {
+describe('navigationButtons', () => {
   it('should handle callbacks', () => {
     const onBack = jest.fn();
     const onClose = jest.fn();
-    const result = presetButtons({ onBack, onClose });
+    const result = navigationButtons({ onBack, onClose });
 
     expect(result?.start?.['data-testid']).toBe('top-bar:back');
     expect(result?.start?.onClick).toBe(onBack);

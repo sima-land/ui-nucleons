@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Button } from '../../button';
 import { BottomBar } from '..';
 import { Link } from '../../link';
-import { Clean } from '../../clean-buttons';
+import { CleanGroup, CleanButton } from '../../clean-buttons';
 
 export default {
   title: 'common/BottomBar',
@@ -13,19 +13,34 @@ export default {
   },
 };
 
-const DemoBlock: React.FC = ({ children }) => (
-  <div style={{ maxWidth: '800px', margin: '0 auto 32px' }}>{children}</div>
-);
+function DemoBlock({ children }: { children: ReactNode }) {
+  return <div style={{ maxWidth: '800px', margin: '0 auto 32px' }}>{children}</div>;
+}
 
 export function Primary() {
   return (
     <>
+      <BottomBar style={{ maxWidth: '480px' }}>
+        <CleanGroup>
+          <CleanButton>Отмена</CleanButton>
+          <CleanButton>Применить</CleanButton>
+        </CleanGroup>
+      </BottomBar>
+    </>
+  );
+}
+
+Primary.storyName = 'Простой пример';
+
+export function WithButtons() {
+  return (
+    <>
       <DemoBlock>
         <BottomBar size='s'>
-          <Clean.Group>
-            <Clean.Button>Кнопка</Clean.Button>
-            <Clean.Button>Ещё кнопка</Clean.Button>
-          </Clean.Group>
+          <CleanGroup>
+            <CleanButton>Кнопка</CleanButton>
+            <CleanButton>Ещё кнопка</CleanButton>
+          </CleanGroup>
         </BottomBar>
       </DemoBlock>
 
@@ -61,7 +76,32 @@ export function Primary() {
   );
 }
 
-Primary.storyName = 'Простой пример';
+WithButtons.storyName = 'С обычными кнопками';
+
+export function WithCleanButtons() {
+  const content = (
+    <CleanGroup>
+      <CleanButton>Кнопка</CleanButton>
+      <CleanButton>Ещё кнопка</CleanButton>
+    </CleanGroup>
+  );
+
+  return (
+    <>
+      <DemoBlock>
+        <BottomBar size='s'>{content}</BottomBar>
+      </DemoBlock>
+      <DemoBlock>
+        <BottomBar size='m'>{content}</BottomBar>
+      </DemoBlock>
+      <DemoBlock>
+        <BottomBar size='l'>{content}</BottomBar>
+      </DemoBlock>
+    </>
+  );
+}
+
+WithCleanButtons.storyName = 'С прозрачными кнопками';
 
 export function Divided() {
   return (

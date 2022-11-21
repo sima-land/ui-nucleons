@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { TopBar, TopBarProps } from '../top-bar';
 import { BottomBar, BottomBarProps } from '../bottom-bar';
-import { presetButtons } from '../top-bar/utils';
+import { navigationButtons } from '../top-bar/utils';
 import classNames from 'classnames';
 import styles from './side-page.module.scss';
 
@@ -9,7 +9,7 @@ import styles from './side-page.module.scss';
  * @param props Свойства.
  * @return Элемент.
  */
-export const SidePageHeader = ({
+export function SidePageHeader({
   onBack,
   onClose,
   buttons,
@@ -17,34 +17,29 @@ export const SidePageHeader = ({
 }: TopBarProps & {
   onBack?: () => void;
   onClose?: () => void;
-}) => (
-  <TopBar
-    {...topBarProps}
-    size='xl'
-    className={styles.header}
-    buttons={presetButtons({ buttons, onBack, onClose })}
-  />
-);
-
-SidePageHeader.displayName = 'SidePage.Header';
-
-/**
- * @param props Свойства.
- * @return Элемент.
- */
-export const SidePageBody = ({ children }: { children?: React.ReactNode }) => <>{children}</>;
-
-SidePageBody.displayName = 'SidePage.Body';
+}) {
+  return (
+    <TopBar
+      {...topBarProps}
+      size='xl'
+      className={styles.header}
+      buttons={navigationButtons({ buttons, onBack, onClose })}
+    />
+  );
+}
 
 /**
  * @param props Свойства.
  * @return Элемент.
  */
-export const SidePageFooter = ({
-  padded = true, // @todo по умолчанию true для обратной совместимости - убрать true в ближайшем мажоре
-  ...props
-}: BottomBarProps & { padded?: boolean }) => (
-  <BottomBar {...props} size='l' className={classNames(styles.footer, padded && styles.padded)} />
-);
+export function SidePageBody({ children }: { children?: ReactNode }) {
+  return <>{children}</>;
+}
 
-SidePageFooter.displayName = 'SidePage.Footer';
+/**
+ * @param props Свойства.
+ * @return Элемент.
+ */
+export function SidePageFooter({ ...props }: BottomBarProps) {
+  return <BottomBar {...props} size='l' className={classNames(styles.footer)} />;
+}
