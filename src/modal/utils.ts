@@ -1,11 +1,11 @@
 import { createContext } from 'react';
-import { BottomBarSize } from '../bottom-bar';
-import { TopBarSize } from '../top-bar';
+import { BottomBarProps } from '../bottom-bar';
+import { TopBarProps } from '../top-bar';
 import { WithPageScrollLock } from '../_internal/page-scroll-lock';
 
 export const ModalContext = createContext<
   WithPageScrollLock & {
-    topBarSize?: TopBarSize;
-    bottomBarSize?: BottomBarSize;
+    topBarSize?: TopBarProps['size'];
+    bottomBarSize?: BottomBarProps['size'];
   }
 >({});

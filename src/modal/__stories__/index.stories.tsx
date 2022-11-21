@@ -3,7 +3,6 @@ import { Modal, ModalProps } from '..';
 import { Button } from '../../button';
 import { CleanGroup, CleanButton } from '../../clean-buttons';
 import { Layout } from '../../layout';
-import { Box } from '../../box';
 import { ArrowButton } from '../../arrow-button';
 import { LoremIpsum, PageScrollLockDemo } from '../../../.storybook/utils';
 
@@ -20,19 +19,15 @@ function SizeTemplate(props: ModalProps) {
 
   return (
     <>
-      <LoremIpsum paragraphCount={5} />
-
       <Button size='s' onClick={() => toggleModal(true)}>
         Показать Modal
       </Button>
-
-      <LoremIpsum paragraphCount={100} />
 
       {opened && (
         <Modal {...props} withScrollDisable onClose={() => toggleModal(false)}>
           <Modal.Header divided title='Модальное окно' onClose={() => toggleModal(false)} />
           <Modal.Body>
-            <Box padding={6}>Содержимое модального окна</Box>
+            <div style={{ padding: '24px' }}>Содержимое модального окна</div>
           </Modal.Body>
           <Modal.Footer divided>
             <CleanGroup>
@@ -83,7 +78,7 @@ export function Fullscreen() {
             }}
           >
             <Layout>
-              <Box padding={6}>Содержимое модального окна</Box>
+              <div style={{ padding: '24px' }}>Содержимое модального окна</div>
             </Layout>
           </div>
         </Modal.Body>
