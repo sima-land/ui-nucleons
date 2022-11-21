@@ -1,57 +1,18 @@
-import React, { createContext, ReactNode, useContext } from 'react';
-import classnames from 'classnames/bind';
-import classes from './top-bar.module.scss';
+import React, { ReactNode, useContext } from 'react';
+import { TopBarButtonProps, TopBarProps, TopBarSize } from './types';
+import { TopBarButtonGroupContext } from './utils';
 import { InnerBorder } from '../styling/borders';
+import classnames from 'classnames/bind';
+import styles from './top-bar.module.scss';
 
-export type TopBarSize = 's' | 'm' | 'xl';
-
-interface TopBarButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  /** Иконка. */
-  icon?: React.ReactNode;
-
-  /** Текст. */
-  text?: string;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
-}
-
-export interface TopBarProps {
-  /** Свойства кнопок. */
-  buttons?: {
-    start?: TopBarButtonProps;
-    startSecondary?: TopBarButtonProps;
-    end?: TopBarButtonProps;
-    endSecondary?: TopBarButtonProps;
-  };
-
-  /** CSS-класс корневого элемента. */
-  className?: string;
-
-  /** Размер. */
-  size?: TopBarSize;
-
-  /** Подзаголовок. */
-  subtitle?: string;
-
-  /** Заголовок. */
-  title?: string;
-
-  /** Нужна ли разделительная черта снизу. */
-  divided?: boolean;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
-}
-
-// некоторым компонентам нужно знать конкретную высоту, делаем единый источник
+// некоторым компонентам нужно знать конкретную высоту
 export const TOP_BAR_HEIGHT: Readonly<Record<TopBarSize, number>> = {
   s: 56,
   m: 64,
   xl: 80,
 };
 
-const cx = classnames.bind(classes);
+const cx = classnames.bind(styles);
 
 /**
  * Компонент шапки модальных окон/экранов.
@@ -80,24 +41,20 @@ export function TopBar({
   );
 
   return (
-    <div
-      className={rootClasses}
-      style={{ height: `${TOP_BAR_HEIGHT[size]}px` }}
-      data-testid={testId}
-    >
+    <div className={rootClasses} data-testid={testId}>
       {hasButtons && (
         <div className={cx('side')}>
           {hasStartButtons && (
-            <ButtonGroup>
+            <TopBarButtonGroup>
               {start && <TopBarButton {...start} />}
               {startSecondary && <TopBarButton {...startSecondary} />}
-            </ButtonGroup>
+            </TopBarButtonGroup>
           )}
           {hasEndButtons && (
-            <ButtonGroup stub end>
+            <TopBarButtonGroup stub end>
               {endSecondary && <TopBarButton {...endSecondary} />}
               {end && <TopBarButton {...end} />}
-            </ButtonGroup>
+            </TopBarButtonGroup>
           )}
         </div>
       )}
@@ -111,16 +68,16 @@ export function TopBar({
       {hasButtons && (
         <div className={cx('side')}>
           {hasEndButtons && (
-            <ButtonGroup end>
+            <TopBarButtonGroup end>
               {endSecondary && <TopBarButton {...endSecondary} />}
               {end && <TopBarButton {...end} />}
-            </ButtonGroup>
+            </TopBarButtonGroup>
           )}
           {hasStartButtons && (
-            <ButtonGroup stub>
+            <TopBarButtonGroup stub>
               {start && <TopBarButton {...start} />}
               {startSecondary && <TopBarButton {...startSecondary} />}
-            </ButtonGroup>
+            </TopBarButtonGroup>
           )}
         </div>
       )}
@@ -128,14 +85,12 @@ export function TopBar({
   );
 }
 
-export const ButtonGroupContext = createContext<{ stub?: boolean }>({ stub: false });
-
 /**
  * Компонент группы кнопок.
  * @param props Свойства.
  * @return Элемент.
  */
-function ButtonGroup({
+function TopBarButtonGroup({
   children,
   stub,
   end,
@@ -145,9 +100,9 @@ function ButtonGroup({
   end?: boolean;
 }) {
   return (
-    <ButtonGroupContext.Provider value={{ stub }}>
+    <TopBarButtonGroupContext.Provider value={{ stub }}>
       <div className={cx('button-group', { stub, end })}>{children}</div>
-    </ButtonGroupContext.Provider>
+    </TopBarButtonGroupContext.Provider>
   );
 }
 
@@ -163,7 +118,7 @@ function TopBarButton({
   'data-testid': testId = 'top-bar:button',
   ...buttonProps
 }: TopBarButtonProps) {
-  const { stub } = useContext(ButtonGroupContext);
+  const { stub } = useContext(TopBarButtonGroupContext);
 
   return (
     <button

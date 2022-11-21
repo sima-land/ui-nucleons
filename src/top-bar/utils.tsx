@@ -1,14 +1,18 @@
-import React from 'react';
-import { TopBarProps } from '.';
+import React, { createContext } from 'react';
+import { TopBarProps } from './types';
 import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
 import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
+
+export const TopBarButtonGroupContext = createContext<{ stub?: boolean }>({
+  stub: false,
+});
 
 /**
  * Позволяет быстро определить кнопки-иконки "назад" и "закрыть" в TopBar.
  * @param props Свойства. При указании onBack/onClose будет выведена соответствующая кнопка иконка.
  * @return Опция buttons для TopBar.
  */
-export function presetButtons({
+export function navigationButtons({
   buttons,
   onBack,
   onClose,

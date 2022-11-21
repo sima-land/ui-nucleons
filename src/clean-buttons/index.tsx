@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, isValidElement, useContext } from 'react';
+import React, { Children, cloneElement, isValidElement, ReactNode, useContext } from 'react';
 import { Link, LinkProps } from '../link';
 import { CleanButtonSize } from './types';
 import { CleanGroupSizeContext } from './utils';
@@ -9,15 +9,15 @@ export interface CleanButtonProps extends LinkProps {
   asLink?: boolean;
 
   /** Размер (высота). */
-  size?: CleanButtonSize;
+  size?: CleanButtonSize | 'unset';
 }
 
 export interface CleanGroupProps {
   /** Размер (высота). */
-  size?: CleanButtonSize;
+  size?: CleanButtonSize | 'unset';
 
   /** Содержимое. */
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 const cx = classnames.bind(styles);
@@ -53,17 +53,25 @@ export function CleanButton({
   size = 's',
   href,
   asLink = Boolean(href),
-  ...restProps
+  'data-testid': testId = 'clean-button',
+  children,
+  className,
+  ...rest
 }: CleanButtonProps) {
   return (
-    <Link pseudo={!asLink} className={cx('button', `size-${size}`)} href={href} {...restProps} />
+    <Link
+      {...rest}
+      className={cx('button', `size-${size}`, className)}
+      pseudo={!asLink}
+      href={href}
+      data-testid={testId}
+    >
+      {children}
+    </Link>
   );
 }
 
 /**
  * @deprecated Нужно использовать `import { CleanGroup, CleanButton }`.
  */
-export const Clean = {
-  Group: CleanGroup,
-  Button: CleanButton,
-};
+export const Clean = { Group: CleanGroup, Button: CleanButton };

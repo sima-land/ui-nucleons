@@ -1,0 +1,15 @@
+$size-s-height: 64px;
+$size-m-height: 72px;
+$size-l-height: 80px;
+
+@mixin size-s {
+  --clean-group-height: #{$size-s-height};
+}
+
+@mixin size-m {
+  --clean-group-height: #{$size-m-height};
+}
+
+@mixin size-l {
+  --clean-group-height: #{$size-l-height};
+}

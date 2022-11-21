@@ -1,3 +1,4 @@
+@use './bottom-bar-util';
 @import '../styling/borders.module';
 
 .root {
@@ -6,6 +7,7 @@
   position: relative;
   background: #fff;
   overflow: hidden;
+  height: var(--bottom-bar-height);
 
   // чтобы разделитель был над контентом делаем через pseudo-элемент
   &.divided::after {
@@ -18,4 +20,16 @@
     pointer-events: none;
     @extend .inner-border-top;
   }
+}
+
+.size-s {
+  @include bottom-bar-util.size-s;
+}
+
+.size-m {
+  @include bottom-bar-util.size-m;
+}
+
+.size-l {
+  @include bottom-bar-util.size-l;
 }

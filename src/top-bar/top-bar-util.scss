@@ -1,0 +1,29 @@
+$size-s-height: 56px;
+$size-m-height: 64px;
+$size-xl-height: 80px;
+
+@mixin size-s {
+  --top-bar-height: #{$size-s-height};
+  --top-bar-title-size: 16px;
+  --top-bar-title-height: 24px;
+  --top-bar-gutter: 16px;
+  --top-bar-icon-button-width: 52px;
+}
+
+@mixin size-m {
+  --top-bar-height: #{$size-m-height};
+  --top-bar-title-size: 16px;
+  --top-bar-title-height: 24px;
+  --top-bar-gutter: 24px;
+  --top-bar-icon-button-width: 60px;
+}
+
+@mixin size-xl {
+  --top-bar-height: #{$size-xl-height};
+  --top-bar-title-size: 16px;
+  --top-bar-title-height: 24px;
+  --top-bar-gutter: 40px;
+  --top-bar-icon-button-width: 76px;
+  --top-bar-title-only-size: 20px;
+  --top-bar-title-only-height: 28px;
+}

@@ -1,27 +1,20 @@
 @use '../colors';
+@use './top-bar-util';
 
 .root {
   width: 100%;
   display: flex;
   justify-content: center;
   background: #fff;
-  --top-bar-title-size: 16px;
-  --top-bar-title-height: 24px;
+  height: var(--top-bar-height);
   &.size-s {
-    --top-bar-gutter: 16px;
-    --top-bar-icon-button-width: 52px;
+    @include top-bar-util.size-s;
   }
   &.size-m {
-    --top-bar-gutter: 24px;
-    --top-bar-icon-button-width: 60px;
+    @include top-bar-util.size-m;
   }
   &.size-xl {
-    --top-bar-gutter: 40px;
-    --top-bar-icon-button-width: 76px;
-    &.no-subtitle {
-      --top-bar-title-size: 20px;
-      --top-bar-title-height: 28px;
-    }
+    @include top-bar-util.size-xl;
   }
 }
 
@@ -44,6 +37,12 @@
   font-size: var(--top-bar-title-size);
   line-height: var(--top-bar-title-height);
   font-weight: 600;
+
+  // когда нет подзаголовка
+  &:first-child:last-child {
+    font-size: var(--top-bar-title-only-size, var(--top-bar-title-size));
+    line-height: var(--top-bar-title-only-height, var(--top-bar-title-height));
+  }
 }
 
 .subtitle {
