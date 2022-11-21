@@ -55,7 +55,6 @@ exports[`<Modal /> should handle extended props 1`] = `
       <div
         class="root size-m header"
         data-testid="top-bar"
-        style="height: 64px;"
       >
         <div
           class="main"
@@ -109,11 +108,7 @@ exports[`<Modal /> should handle extended props 1`] = `
               class="os-content"
               style="padding: 0px 0px 0px 0px; height: 100%; width: 100%;"
             >
-              <div
-                class="main"
-              >
-                Main Content
-              </div>
+              Main Content
             </div>
           </div>
         </div>
@@ -146,9 +141,8 @@ exports[`<Modal /> should handle extended props 1`] = `
         />
       </div>
       <div
-        class="root rounds-md__b footer"
+        class="root size-m rounds-md__b footer"
         data-testid="bottom-bar"
-        style="height: 72px;"
       >
         <button>
           Hello
@@ -174,7 +168,6 @@ exports[`<Modal /> should render TopBar with back button 1`] = `
       <div
         class="root size-m header no-subtitle"
         data-testid="top-bar"
-        style="height: 64px;"
       >
         <div
           class="side"
@@ -376,11 +369,7 @@ exports[`<Modal /> should render overlap content 1`] = `
               class="os-content"
               style="padding: 0px 0px 0px 0px; height: 100%; width: 100%;"
             >
-              <div
-                class="main"
-              >
-                This is modal body
-              </div>
+              This is modal body
             </div>
           </div>
         </div>
@@ -438,9 +427,8 @@ exports[`<Modal /> should renders with fullscreen size and footer 1`] = `
       style="--modal-header-height: 0px; --modal-footer-height: 80px;"
     >
       <div
-        class="root rounds-md__b footer"
+        class="root size-l rounds-md__b footer"
         data-testid="bottom-bar"
-        style="height: 80px;"
       >
         Test footer
       </div>

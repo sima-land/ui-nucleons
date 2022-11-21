@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { createRef, RefObject, useContext, useEffect } from 'react';
 import { Modal } from '..';
 import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
 import { render, fireEvent } from '@testing-library/react';
 import { usePageScrollLock } from '../../_internal/page-scroll-lock';
 import { LayerProvider, useLayer } from '../../helpers/layer';
+import { ViewportContext } from '../../context/viewport';
 
 jest.mock('../../_internal/page-scroll-lock', () => {
   const original = jest.requireActual('../../_internal/page-scroll-lock');
@@ -180,5 +181,31 @@ describe('<Modal />', () => {
     );
 
     expect(getByTestId('test-component').getAttribute('data-layer')).toBe('120');
+  });
+});
+
+describe('Modal.Body', () => {
+  it('should provide viewport data through context', async () => {
+    function TestComponent({ viewportRef }: { viewportRef: RefObject<HTMLElement | null> }) {
+      const ref = useContext(ViewportContext);
+
+      useEffect(() => {
+        (viewportRef as any).current = ref.current;
+      });
+
+      return <div>Hello, world!</div>;
+    }
+
+    const viewportRef = createRef<HTMLElement>();
+
+    render(
+      <Modal>
+        <Modal.Body>
+          <TestComponent viewportRef={viewportRef} />
+        </Modal.Body>
+      </Modal>,
+    );
+
+    expect(viewportRef.current instanceof HTMLElement).toBe(true);
   });
 });
