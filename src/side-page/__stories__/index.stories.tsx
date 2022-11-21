@@ -388,7 +388,7 @@ export function WithCleanButtons() {
           <div style={styles.root}>Пример использования прозрачных кнопок в футере...</div>
         </SidePage.Body>
 
-        <SidePage.Footer divided padded={false}>
+        <SidePage.Footer divided>
           <CleanGroup>
             <CleanButton>Эники</CleanButton>
             <CleanButton>Бэники</CleanButton>
@@ -442,7 +442,7 @@ export function TestPageScrollLock() {
           </div>
         </SidePage.Body>
 
-        <SidePage.Footer divided padded={false}>
+        <SidePage.Footer divided>
           <CleanGroup>
             <CleanButton onClick={decreaseContent}>Убрать</CleanButton>
             <CleanButton onClick={increaseContent}>Добавить</CleanButton>
