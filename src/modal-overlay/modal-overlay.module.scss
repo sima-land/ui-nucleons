@@ -1,4 +1,5 @@
 @use '../utils';
+@use './modal-overlay-util';
 
 .root {
   position: fixed;
@@ -7,7 +8,7 @@
   display: flex;
   width: 100vw;
   height: calc(var(--vh, 1vh) * 100);
-  background: rgba(0, 0, 0, 0.24);
+  background: modal-overlay-util.$overlay-color;
   overflow: auto;
   @include utils.hidden-scrollbars;
 }

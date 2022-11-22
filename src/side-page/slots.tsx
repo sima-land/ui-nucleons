@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import styles from './side-page.module.scss';
 
 /**
+ * Шапка SidePage.
  * @param props Свойства.
  * @return Элемент.
  */
@@ -21,7 +22,7 @@ export function SidePageHeader({
   return (
     <TopBar
       {...topBarProps}
-      size='xl'
+      size='unset'
       className={styles.header}
       buttons={navigationButtons({ buttons, onBack, onClose })}
     />
@@ -29,6 +30,7 @@ export function SidePageHeader({
 }
 
 /**
+ * Основной контент SidePage.
  * @param props Свойства.
  * @return Элемент.
  */
@@ -37,9 +39,10 @@ export function SidePageBody({ children }: { children?: ReactNode }) {
 }
 
 /**
+ * Подвал SidePage.
  * @param props Свойства.
  * @return Элемент.
  */
 export function SidePageFooter({ ...props }: BottomBarProps) {
-  return <BottomBar {...props} size='l' className={classNames(styles.footer)} />;
+  return <BottomBar {...props} size='unset' className={classNames(styles.footer)} />;
 }

@@ -4,20 +4,51 @@ import { Button } from '../../button';
 import { Panel } from '../../panel';
 import { Textarea } from '../../textarea';
 import { UploadArea } from '../../upload/area';
-import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information';
-import imageUrl from './image.png';
 import { times } from 'lodash';
 import { WithHint } from '../../with-hint';
 import { CleanGroup, CleanButton } from '../../clean-buttons';
 import { LoremIpsum, PageScrollLockDemo } from '../../../.storybook/utils';
+import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information';
+import imageSrc from './image.png';
 
 export default {
-  title: 'desktop/SidePage',
+  title: 'common/SidePage',
   component: SidePage,
   parameters: {
     layout: 'padded',
   },
 };
+
+export function Primary() {
+  const [shown, toggle] = useState(false);
+
+  return (
+    <>
+      <Button size='s' onClick={() => toggle(true)}>
+        Показать SidePage
+      </Button>
+
+      <SidePage shown={shown} size='s' withTransitions onClose={() => toggle(false)}>
+        <SidePage.Header divided title='Простой пример' onClose={() => toggle(false)} />
+
+        <SidePage.Body>
+          <div style={{ padding: '20px' }}>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe exercitationem, deserunt
+            recusandae aut tenetur ducimus distinctio quo perspiciatis provident quasi!
+          </div>
+        </SidePage.Body>
+
+        <SidePage.Footer divided>
+          <CleanGroup>
+            <CleanButton onClick={() => toggle(false)}>Закрыть</CleanButton>
+          </CleanGroup>
+        </SidePage.Footer>
+      </SidePage>
+    </>
+  );
+}
+
+Primary.storyName = 'Простой пример';
 
 export function SizeS() {
   const [shown, toggle] = useState<boolean>(false);
@@ -56,7 +87,7 @@ export function SizeS() {
 
         <SidePage.Body>
           <div style={styles.root}>
-            <img src={imageUrl} alt='' style={styles.image} />
+            <img src={imageSrc} alt='' style={styles.image} />
             <div style={styles.title}>Не удалось открыть условия акции</div>
             <div style={styles.message}>
               Проверьте ваше подключение к сети и попробуйте обновить страницу
@@ -64,7 +95,7 @@ export function SizeS() {
           </div>
         </SidePage.Body>
 
-        <SidePage.Footer divided>
+        <SidePage.Footer divided style={{ padding: '0 20px' }}>
           <Button style={{ width: '100%' }} onClick={() => toggle(false)}>
             Обновить
           </Button>
@@ -86,6 +117,7 @@ export function SizeM() {
       flexDirection: 'column',
     },
     footer: {
+      padding: '0 40px',
       width: '100%',
       display: 'flex',
       justifyContent: 'space-between',
@@ -120,15 +152,13 @@ export function SizeM() {
           </div>
         </SidePage.Body>
 
-        <SidePage.Footer divided>
-          <div style={styles.footer} onClick={() => toggle(false)}>
-            <Button style={styles.button} viewType='primary'>
-              Отправить
-            </Button>
-            <Button style={styles.button} viewType='secondary'>
-              Отмена
-            </Button>
-          </div>
+        <SidePage.Footer divided style={styles.footer}>
+          <Button style={styles.button} viewType='primary'>
+            Отправить
+          </Button>
+          <Button style={styles.button} viewType='secondary'>
+            Отмена
+          </Button>
         </SidePage.Footer>
       </SidePage>
     </>
@@ -137,55 +167,11 @@ export function SizeM() {
 
 SizeM.storyName = 'Размер M';
 
-export function BodyScrollLock() {
-  const [shown, toggle] = useState<boolean>(false);
-
-  return (
-    <>
-      {times(5).map(i => (
-        <p key={i}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At, nobis? Porro assumenda optio
-          quisquam quos sequi, soluta a repudiandae eius?
-        </p>
-      ))}
-
-      <Button size='s' onClick={() => toggle(true)}>
-        Показать
-      </Button>
-
-      {times(100).map(i => (
-        <p key={i}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At, nobis? Porro assumenda optio
-          quisquam quos sequi, soluta a repudiandae eius?
-        </p>
-      ))}
-
-      <SidePage
-        size='s'
-        shown={shown}
-        withTransitions
-        withScrollDisable
-        onClose={() => toggle(false)}
-      >
-        <SidePage.Header divided title='Пусто' onClose={() => toggle(false)} />
-        <SidePage.Body>
-          <div style={{ padding: '20px 40px' }}>
-            <h2>Тут прям пусто</h2>
-            <p>А прокрутка страницы должна заблокироваться...</p>
-          </div>
-        </SidePage.Body>
-      </SidePage>
-    </>
-  );
-}
-
-BodyScrollLock.storyName = 'Тест: Блокировка прокрутки страницы';
-
 function Step1(props: SidePageProps & { onNext: () => void }) {
   return (
     <SidePage size='s' {...props}>
       <SidePage.Header divided title='Шаг 1' onClose={props.onClose} />
-      <SidePage.Footer divided>
+      <SidePage.Footer divided style={{ padding: '20px' }}>
         <Button onClick={props.onNext}>Дальше</Button>
       </SidePage.Footer>
     </SidePage>
@@ -196,7 +182,7 @@ function Step2(props: SidePageProps & { onBack: () => void; onNext: () => void }
   return (
     <SidePage size='s' {...props}>
       <SidePage.Header divided title='Шаг 2' onClose={props.onClose} onBack={props.onBack} />
-      <SidePage.Footer divided>
+      <SidePage.Footer divided style={{ padding: '20px' }}>
         <Button onClick={props.onNext}>Дальше</Button>
       </SidePage.Footer>
     </SidePage>
