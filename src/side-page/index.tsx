@@ -1,9 +1,9 @@
-import React, { CSSProperties, useRef } from 'react';
+import React, { CSSProperties, ReactNode, useRef } from 'react';
 import { defineSlots } from '../helpers/define-slots';
 import { WithPageScrollLock, usePageScrollLock } from '../_internal/page-scroll-lock';
 import { SidePageBody, SidePageFooter, SidePageHeader } from './slots';
 import CSSTransition, { CSSTransitionProps } from 'react-transition-group/CSSTransition';
-import { ModalOverlay } from '../modal-overlay';
+import { ModalOverlay, ModalOverlayProps } from '../modal-overlay';
 import { useExactClick } from '../modal-overlay/utils';
 import classnames from 'classnames/bind';
 import styles from './side-page.module.scss';
@@ -19,7 +19,7 @@ export interface SidePageProps extends WithPageScrollLock {
   size?: 's' | 'm';
 
   /** Содержимое. */
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   /** Сработает при закрытии. */
   onClose?: () => void;
@@ -57,7 +57,7 @@ const transitionClasses = {
  * @param props Свойства.
  * @return Элемент.
  */
-export const SidePage = ({
+export function SidePage({
   shown,
   withTransitions,
   onEnter,
@@ -67,7 +67,7 @@ export const SidePage = ({
   onExiting,
   onExited,
   ...restProps
-}: SidePageProps) => {
+}: SidePageProps) {
   const transitionDuration = withTransitions ? 300 : 0;
 
   return (
@@ -88,14 +88,14 @@ export const SidePage = ({
       )}
     </CSSTransition>
   );
-};
+}
 
 /**
  * Фиктивный компонент, необходимый для того чтобы задействовать хук блокировки прокрутки внутри CSSTransition.
  * @param props Свойства.
  * @return Элемент.
  */
-const SidePageInner = ({
+function SidePageInner({
   size = 'm',
   children,
   onClose,
@@ -106,14 +106,12 @@ const SidePageInner = ({
 }: Omit<SidePageProps, 'shown' | 'withTransitions'> & {
   transitionStatus: string;
   transitionDuration: number;
-}) => {
+}) {
   const overlayClickBind = useExactClick(onClose);
 
   const ref = useRef<HTMLDivElement>(null);
 
-  const overlayStyles = {
-    '--transition-duration': `${transitionDuration}ms`,
-  } as CSSProperties;
+  usePageScrollLock(ref, { lockEnabled: withScrollDisable, ...scrollDisableOptions });
 
   const { header, body, footer } = defineSlots(children, {
     header: SidePage.Header,
@@ -121,15 +119,16 @@ const SidePageInner = ({
     footer: SidePage.Footer,
   });
 
-  usePageScrollLock(ref, { lockEnabled: withScrollDisable, ...scrollDisableOptions });
+  const overlayProps: ModalOverlayProps = {
+    style: { '--transition-duration': `${transitionDuration}ms` } as CSSProperties,
+
+    // условие нужно чтобы не было моментального закрытия на double click
+    ...(transitionStatus !== 'entering' && overlayClickBind),
+  };
 
   return (
-    <ModalOverlay
-      className={cx('overlay')}
-      style={overlayStyles}
-      {...(transitionStatus !== 'entering' && overlayClickBind)} // чтобы не было моментального закрытия на double click
-    >
-      <div className={cx('main', `size-${size}`)}>
+    <ModalOverlay {...overlayProps}>
+      <div className={cx('side-page', `size-${size}`)}>
         {header}
         <div ref={ref} className={cx('body')}>
           {body}
@@ -138,7 +137,7 @@ const SidePageInner = ({
       </div>
     </ModalOverlay>
   );
-};
+}
 
 SidePage.Header = SidePageHeader;
 SidePage.Body = SidePageBody;

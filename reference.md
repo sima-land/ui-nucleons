@@ -21,3 +21,106 @@
 - Классовым компонентам предпочитаем функциональные компоненты и хуки
 - Избегаем `forwardRef` для проброса элементов (часто лучше дать специальное имя, например `inputRef`)
 - Компонент больше 200 строк - повод задуматься о декомпозиции
+
+### Unit-тестирование
+
+- Поиск элемента по атрибуту `data-testid` лучше поиска по CSS-классу
+- Избегаем использование snaphshot'ов виртуального дерева так как пропсы компонентов могут быть рекурсивными объектами
+- Избегаем использование snaphshot'ов DOM так как они сильно связывают компоненты между собой
+
+### Кастомизация
+
+Компонент может поддерживать свойства, отвечающие за предусмотренные варианты стилизации.
+
+Пример кода такого компонента:
+
+```scss
+// my-component.module.scss
+.size-s {
+  height: 32px;
+}
+
+.size-m {
+  height: 48px;
+}
+```
+
+```tsx
+// my-component.tsx
+import classNames from 'classNames/bind';
+import styles from './my-component.module.scss';
+
+interface MyComponentProps {
+  size?: 's' | 'm';
+  className?: string;
+}
+
+const cx = classNames.bind(styles);
+
+export function MyComponent({ size, className }: MyComponentProps) {
+  return <div className={cx(`size-${size}`, className)}>My Component</div>;
+}
+```
+
+Стилизация может зависеть от медиа-выражений. Библиотека предоставляет хуки `useMedia` и `useBreakpoint`, но бывает необходимо вывести компонент в начальной верстке страницы (SSG, SSR) до запуска JS в браузере.
+
+Для решения этой задачи можно использовать следующий подход:
+
+1. Добавить scss-миксин для каждого варианта стилизации:
+
+   ```scss
+   // my-component-util.scss
+   @mixin size-s {
+     height: 32px;
+   }
+
+   @mixin size-s {
+     height: 48px;
+   }
+   ```
+
+1. Задействовать эти миксины при указании соответствующих значений:
+
+   ```scss
+   // my-component.module.scss
+   @use './my-component-util.scss';
+
+   .size-s {
+     @include my-component-util.size-s;
+   }
+
+   .size-m {
+     @include my-component-util.size-m;
+   }
+   ```
+
+1. Дополнить тип свойства новым значением `unset`, которое отключает использование scss-миксинов:
+
+   ```tsx
+   interface MyComponentProps {
+     size?: 's' | 'm' | 'unset';
+     className?: string;
+   }
+   ```
+
+1. Сделать scss-миксины доступными для использования за пределами исходного кода компонента.
+
+Таким образом в проекте, который использует `MyComponent`, можно поступить следующим образом:
+
+```tsx
+<MyComponent size='unset' className='custom'>
+```
+
+```scss
+@use '~/my-component/my-component-util';
+
+.custom {
+  @include my-component-utils.size-s;
+}
+
+@media (min-width: 480px) {
+  .custom {
+    @include my-component-utils.size-m;
+  }
+}
+```

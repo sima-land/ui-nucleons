@@ -5,15 +5,15 @@ exports[`SidePage should renders correctly 1`] = `<div />`;
 exports[`SidePage should renders correctly 2`] = `
 <div>
   <div
-    class="root overlay"
+    class="root"
     data-testid="modal-overlay"
     style="--transition-duration: 300ms; z-index: 100; --vh: 7.68px;"
   >
     <div
-      class="main size-m"
+      class="side-page size-m"
     >
       <div
-        class="root size-xl header no-subtitle"
+        class="root size-unset header no-subtitle"
         data-testid="top-bar"
       >
         <div
@@ -34,7 +34,7 @@ exports[`SidePage should renders correctly 2`] = `
         </h1>
       </div>
       <div
-        class="root size-l rounds-md__b footer"
+        class="root rounds-md__b footer"
         data-testid="bottom-bar"
       >
         <p>

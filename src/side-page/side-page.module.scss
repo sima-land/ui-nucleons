@@ -1,8 +1,10 @@
 @use '../colors';
+@use '../breakpoints';
+@use '../top-bar/top-bar-util';
+@use '../bottom-bar/bottom-bar-util';
+@use '../modal-overlay/modal-overlay-util';
 
-$overlay-color: rgba(0, 0, 0, 0.24);
-
-.main {
+.side-page {
   position: absolute;
   top: 0;
   right: 0;
@@ -11,18 +13,34 @@ $overlay-color: rgba(0, 0, 0, 0.24);
   display: flex;
   flex-direction: column;
   background: #fff;
-}
-
-.size-s {
-  max-width: 488px;
-}
-
-.size-m {
-  max-width: 968px;
+  @include breakpoints.down('xs') {
+    width: 100%;
+    .header {
+      @include top-bar-util.size-m;
+    }
+    .footer {
+      @include bottom-bar-util.size-m;
+    }
+  }
+  @include breakpoints.up('xs') {
+    &.size-s {
+      max-width: 488px;
+    }
+    &.size-m {
+      max-width: 968px;
+    }
+    .header {
+      @include top-bar-util.size-xl;
+    }
+    .footer {
+      @include bottom-bar-util.size-l;
+    }
+  }
 }
 
 .header {
   flex-shrink: 0;
+  width: 100%;
 }
 
 .body {
@@ -33,32 +51,29 @@ $overlay-color: rgba(0, 0, 0, 0.24);
 .footer {
   flex-shrink: 0;
   width: 100%;
-  &.padded {
-    padding: 0 40px;
-  }
 }
 
 // transitions
 .enter {
   background-color: transparent;
-  .main {
+  .side-page {
     transform: translateX(100%);
   }
 }
 
 .enter-active {
   transition: background-color var(--transition-duration) ease-in-out;
-  background-color: $overlay-color;
+  background-color: modal-overlay-util.$overlay-color;
   overflow: hidden;
-  .main {
+  .side-page {
     transition: transform var(--transition-duration) ease-in-out;
     transform: translateX(0);
   }
 }
 
 .exit {
-  background-color: $overlay-color;
-  .main {
+  background-color: modal-overlay-util.$overlay-color;
+  .side-page {
     transform: translateX(0);
   }
 }
@@ -67,7 +82,7 @@ $overlay-color: rgba(0, 0, 0, 0.24);
   transition: background-color var(--transition-duration) ease-in-out;
   background-color: transparent;
   overflow: hidden;
-  .main {
+  .side-page {
     transition: transform var(--transition-duration) ease-in-out;
     transform: translateX(100%);
   }
