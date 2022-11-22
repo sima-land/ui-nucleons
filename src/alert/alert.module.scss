@@ -7,4 +7,5 @@
 .alert {
   width: 288px;
   max-height: 536px;
+  margin: auto; // для корректной прокрутки во flex-контейнере
 }

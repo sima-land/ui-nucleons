@@ -1,10 +1,11 @@
 import React, { createRef, RefObject, useContext, useEffect } from 'react';
-import { Modal } from '..';
+import { Modal, ModalSize } from '..';
 import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
 import { render, fireEvent } from '@testing-library/react';
 import { usePageScrollLock } from '../../_internal/page-scroll-lock';
 import { LayerProvider, useLayer } from '../../helpers/layer';
 import { ViewportContext } from '../../context/viewport';
+import { ModalContext } from '../utils';
 
 jest.mock('../../_internal/page-scroll-lock', () => {
   const original = jest.requireActual('../../_internal/page-scroll-lock');
@@ -16,24 +17,20 @@ jest.mock('../../_internal/page-scroll-lock', () => {
   };
 });
 
-describe('<Modal />', () => {
-  it('renders correct without close button and customClasses', () => {
-    const { container } = render(<Modal>Test modal content</Modal>);
-    expect(container).toMatchSnapshot();
-  });
-
+describe('Modal', () => {
   it('should render overlap content', () => {
-    const { container } = render(
+    const { getByTestId } = render(
       <Modal>
         <Modal.Body>This is modal body</Modal.Body>
         <Modal.Overlap>Test is modal overlap content</Modal.Overlap>
       </Modal>,
     );
 
-    expect(container).toMatchSnapshot();
+    expect(getByTestId('modal').querySelectorAll('[data-testid="modal:overlap"]')).toHaveLength(1);
+    expect(getByTestId('modal:overlap').textContent).toBe('Test is modal overlap content');
   });
 
-  it('calls onClose properly', () => {
+  it('should call onClose properly', () => {
     const spy = jest.fn();
 
     const { getByTestId } = render(
@@ -68,21 +65,7 @@ describe('<Modal />', () => {
     expect(spy).toHaveBeenCalledTimes(2);
   });
 
-  it('should handle extended props', () => {
-    const { container } = render(
-      <Modal>
-        <Modal.Header title='Title' subtitle='Subtitle' />
-        <Modal.Body>Main Content</Modal.Body>
-        <Modal.Footer>
-          <button>Hello</button>
-        </Modal.Footer>
-      </Modal>,
-    );
-
-    expect(container).toMatchSnapshot();
-  });
-
-  it('should do not use disable/enable body scrolling by default', () => {
+  it('should do NOT disable/enable body scrolling by default', () => {
     render(
       <Modal>
         <Modal.Body>Hello</Modal.Body>
@@ -93,25 +76,25 @@ describe('<Modal />', () => {
   });
 
   it('should render different sizes properly', () => {
-    const { container, rerender } = render(<Modal />);
+    const SIZES: ReadonlyArray<ModalSize> = ['s', 'm', 'l', 'xl', 'fullscreen'];
+    const { getByTestId, rerender } = render(<Modal />);
 
-    (['s', 'm', 'l', 'xl', 'fullscreen'] as const).forEach(size => {
+    for (const size of SIZES) {
       rerender(<Modal size={size} />);
-      expect(container).toMatchSnapshot();
-    });
+      expect(getByTestId('modal').classList.contains(`size-${size}`)).toBe(true);
+    }
   });
 
   it('should render TopBar with back button', () => {
     const spy = jest.fn();
 
-    const { container, getByTestId } = render(
+    const { queryAllByTestId, getByTestId } = render(
       <Modal>
         <Modal.Header onBack={spy} />
       </Modal>,
     );
 
-    expect(container).toMatchSnapshot();
-
+    expect(queryAllByTestId('top-bar')).toHaveLength(1);
     expect(spy).toBeCalledTimes(0);
 
     fireEvent.click(getByTestId('top-bar:back'));
@@ -119,7 +102,24 @@ describe('<Modal />', () => {
     expect(spy).toBeCalledTimes(1);
   });
 
-  it('should render ith close and custom start button in top bar', () => {
+  it('should render TopBar with close button', () => {
+    const spy = jest.fn();
+
+    const { queryAllByTestId, getByTestId } = render(
+      <Modal>
+        <Modal.Header onClose={spy} />
+      </Modal>,
+    );
+
+    expect(queryAllByTestId('top-bar')).toHaveLength(1);
+    expect(spy).toBeCalledTimes(0);
+
+    fireEvent.click(getByTestId('top-bar:close'));
+
+    expect(spy).toBeCalledTimes(1);
+  });
+
+  it('should render close button and custom start button in TopBar', () => {
     const { getAllByTestId } = render(
       <Modal>
         <Modal.Header
@@ -138,22 +138,12 @@ describe('<Modal />', () => {
   });
 
   it('should handle "height" prop', () => {
-    const { container } = render(<Modal height={480} />);
+    const { getByTestId } = render(<Modal height={480} />);
 
-    expect(container).toMatchSnapshot();
+    expect(getByTestId('modal').style.getPropertyValue('--modal-height')).toBe('480px');
   });
 
-  it('should renders with fullscreen size and footer', () => {
-    const { container } = render(
-      <Modal size='fullscreen'>
-        <Modal.Footer>Test footer</Modal.Footer>
-      </Modal>,
-    );
-
-    expect(container).toMatchSnapshot();
-  });
-
-  it('should handle "data-testid"', () => {
+  it('should handle "data-testid" prop', () => {
     const { container } = render(
       <Modal data-testid='some-modal'>
         <Modal.Body>Main Content</Modal.Body>
@@ -164,7 +154,7 @@ describe('<Modal />', () => {
     expect(container.querySelectorAll('[data-testid="some-modal"]')).toHaveLength(1);
   });
 
-  it('should increment layer by 100', () => {
+  it('should increment layer of by 100', () => {
     function TestComponent() {
       const layer = useLayer();
       return <div data-testid='test-component' data-layer={layer} />;
@@ -181,6 +171,26 @@ describe('<Modal />', () => {
     );
 
     expect(getByTestId('test-component').getAttribute('data-layer')).toBe('120');
+  });
+
+  it('should render footer with provide BottomBar size', () => {
+    function TestComponent() {
+      const modalContext = useContext(ModalContext);
+      return <div data-testid='test-component' data-footer-size={modalContext.bottomBarSize} />;
+    }
+
+    const { getByTestId } = render(
+      <Modal>
+        <Modal.Body>
+          <h1>Hello!</h1>
+        </Modal.Body>
+        <Modal.Footer>
+          <TestComponent />
+        </Modal.Footer>
+      </Modal>,
+    );
+
+    expect(getByTestId('test-component').getAttribute('data-footer-size')).toBe('unset');
   });
 });
 

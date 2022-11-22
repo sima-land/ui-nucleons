@@ -1,24 +1,18 @@
 import React from 'react';
-import { TopBarSize, TOP_BAR_HEIGHT } from '../top-bar';
-import { BottomBarSize, BOTTOM_BAR_HEIGHT } from '../bottom-bar';
 import { ModalContext } from './utils';
-import { BoxShadow } from '../styling/shadows';
-import { isNumber } from 'lodash';
 import { ModalBody, ModalFooter, ModalHeader, ModalOverlap } from './slots';
-import { defineSlots } from '../helpers/define-slots';
-import { WithPageScrollLock } from '../_internal/page-scroll-lock';
-import { useBreakpoint } from '../hooks/breakpoint';
 import { ModalOverlay } from '../modal-overlay';
-import classnames from 'classnames/bind';
-import styles from './modal.module.scss';
+import { Plate } from '../plate';
+import { WithPageScrollLock } from '../_internal/page-scroll-lock';
+import { defineSlots } from '../helpers/define-slots';
 import { useExactClick } from '../modal-overlay/utils';
+import classNames from 'classnames/bind';
+import styles from './modal.module.scss';
 
 export type ModalSize = 's' | 'm' | 'l' | 'xl' | 'fullscreen';
 
 interface ModalStyle extends React.CSSProperties {
   '--modal-height'?: string;
-  '--modal-header-height': string;
-  '--modal-footer-height': string;
 }
 
 export interface ModalProps extends WithPageScrollLock {
@@ -41,22 +35,14 @@ export interface ModalProps extends WithPageScrollLock {
   'data-testid'?: string;
 }
 
-export interface ModalComponent {
-  (props: ModalProps): JSX.Element;
-  Header: typeof ModalHeader;
-  Body: typeof ModalBody;
-  Footer: typeof ModalFooter;
-  Overlap: typeof ModalOverlap;
-}
-
-const cx = classnames.bind(styles);
+const cx = classNames.bind(styles);
 
 /**
  * Компонент модального окна.
  * @param props Свойства.
  * @return Элемент.
  */
-export const Modal: ModalComponent = ({
+export function Modal({
   children,
   height,
   onClose,
@@ -64,10 +50,8 @@ export const Modal: ModalComponent = ({
   size = 'm',
   withScrollDisable = false,
   'data-testid': testId = 'modal',
-}) => {
+}: ModalProps) {
   const overlayClickBind = useExactClick(onClose);
-
-  const isMobile = useBreakpoint('xs-');
 
   const fullscreen = size === 'fullscreen';
 
@@ -78,27 +62,29 @@ export const Modal: ModalComponent = ({
     overlap: ModalOverlap,
   });
 
-  const topBarSize: TopBarSize = !isMobile && fullscreen ? 'xl' : 'm';
-  const bottomBarSize: BottomBarSize = !isMobile && fullscreen ? 'l' : 'm';
-
-  const headerHeight: number = header ? TOP_BAR_HEIGHT[topBarSize] : 0;
-  const footerHeight: number = footer ? BOTTOM_BAR_HEIGHT[bottomBarSize] : 16;
-
   const style: ModalStyle = {
-    '--modal-height': isNumber(height) ? `${Math.min(696, height)}px` : undefined,
-    '--modal-header-height': `${headerHeight}px`,
-    '--modal-footer-height': `${footerHeight}px`,
+    '--modal-height':
+      typeof height === 'number' && Number.isFinite(height)
+        ? `${Math.min(696, height)}px`
+        : undefined,
   };
 
   return (
     <ModalOverlay className={cx('overlay')} {...overlayClickBind}>
-      <div
-        className={cx('modal', `size-${size}`, !fullscreen && BoxShadow.z4)}
+      <Plate
+        rounds={null}
+        shadow={fullscreen ? null : 'z4'}
         style={style}
+        className={cx('modal', `size-${size}`, header && 'has-header', footer && 'has-footer')}
         data-testid={testId}
       >
         <ModalContext.Provider
-          value={{ topBarSize, bottomBarSize, withScrollDisable, scrollDisableOptions }}
+          value={{
+            withScrollDisable,
+            scrollDisableOptions,
+            topBarSize: 'unset',
+            bottomBarSize: 'unset',
+          }}
         >
           {header}
 
@@ -108,12 +94,16 @@ export const Modal: ModalComponent = ({
 
           {!footer && !fullscreen && <div className={cx('footer-stub')} />}
 
-          {!fullscreen && overlap && <div className={cx('overlap')}>{overlap}</div>}
+          {overlap && (
+            <div className={cx('overlap-content')} data-testid='modal:overlap'>
+              {overlap}
+            </div>
+          )}
         </ModalContext.Provider>
-      </div>
+      </Plate>
     </ModalOverlay>
   );
-};
+}
 
 Modal.Header = ModalHeader;
 Modal.Body = ModalBody;
