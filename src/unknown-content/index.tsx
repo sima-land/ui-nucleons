@@ -1,14 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { ReactNode, useEffect, useRef } from 'react';
+import { setTableRowLabels } from './utils';
 import classnames from 'classnames';
 import styles from './unknown-content.module.scss';
-import { setTableRowLabels } from './utils';
 
 export interface UnknownContentProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Строка с html-версткой. */
   markup?: string;
 
   /** Содержимое. */
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 /**
@@ -16,7 +16,7 @@ export interface UnknownContentProps extends React.HTMLAttributes<HTMLDivElement
  * @param props Свойства.
  * @return Элемент.
  */
-export const UnknownContent = ({ markup, children, className }: UnknownContentProps) => {
+export function UnknownContent({ markup, children, className }: UnknownContentProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -30,4 +30,4 @@ export const UnknownContent = ({ markup, children, className }: UnknownContentPr
       {...(children ? { children } : { dangerouslySetInnerHTML: { __html: markup || '' } })}
     />
   );
-};
+}

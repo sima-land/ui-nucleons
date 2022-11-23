@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import { SpinnerSVG } from '../../spinner';
 import styles from './index.module.scss';
 
-type DropdownLoadingProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'className' | 'children'>;
+type DropdownLoadingProps = Omit<HTMLAttributes<HTMLDivElement>, 'className' | 'children'>;
 
 /**
  * Плашка состояния загрузки для Dropdown.

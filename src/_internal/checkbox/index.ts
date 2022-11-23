@@ -1,4 +1,6 @@
-export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
+import { InputHTMLAttributes } from 'react';
+
+export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
 }

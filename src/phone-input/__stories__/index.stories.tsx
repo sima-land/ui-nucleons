@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PhoneInput } from '..';
+import { TextButton } from '../../text-button';
 
 function DemoForm({ initialValue = '' }) {
   const [value, setValue] = useState(initialValue);
@@ -52,3 +53,35 @@ export function Primary() {
 }
 
 Primary.storyName = 'Простой пример';
+
+export function Reset() {
+  const initialValue = '79991112233';
+  const [value, setValue] = useState(initialValue);
+  const [fieldKey, setFieldKey] = useState(() => Math.random());
+
+  function reset() {
+    setValue(initialValue);
+    setFieldKey(Math.random());
+  }
+
+  return (
+    <>
+      <PhoneInput
+        key={fieldKey}
+        value={value}
+        onBlur={(event, { cleanValue }) => {
+          setValue(cleanValue);
+        }}
+        onCountrySelect={() => {
+          setValue('');
+        }}
+      />
+
+      <TextButton size='s' onClick={reset} style={{ marginTop: '12px' }}>
+        Сбросить
+      </TextButton>
+    </>
+  );
+}
+
+Reset.storyName = 'Пример: сброс состояния';
