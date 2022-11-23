@@ -120,34 +120,38 @@
     }
   }
   ol {
-    display: block;
+    // ВАЖНО: экспериментально используем стили таблицы чтобы содержимое элемента списка не залезало под номер
+    // это не позволяет сделать отступ от номера 12px по гайдам - согласовано с дизайнерами
+    // при возникновении проблем пересмотреть подход
+    display: table;
+    border-spacing: 0 16px;
     counter-reset: ordered-list;
     list-style: none;
     li {
-      display: flex;
-      flex-direction: row;
-      list-style-position: inside;
+      display: table-row;
       counter-increment: ordered-list;
     }
     li::before {
       content: counter(ordered-list) '.';
-      display: block;
-      flex-grow: 0;
-      margin-right: 12px;
+      display: table-cell;
+
+      // ВАЖНО: 10 вместо 12 по гайдам - согласовано с дизайнерами
+      // уменьшили потому что при табличной стилизации отступ от номера формируется по самому длинному номеру
+      padding-right: 10px;
     }
   }
   ul {
+    display: table;
+    border-spacing: 0 16px;
     list-style: none;
     li {
-      display: flex;
-      flex-direction: row;
-      list-style-position: inside;
+      display: table-row;
       counter-increment: ordered-list;
     }
     li::before {
-      display: block;
       content: '—';
-      margin-right: 12px;
+      display: table-cell;
+      padding-right: 10px;
     }
   }
 
