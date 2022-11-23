@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties, ReactNode, Ref } from 'react';
 import {
   OverlayScrollbarsComponent,
   OverlayScrollbarsComponentProps,
@@ -11,13 +11,13 @@ type Options = NonNullable<OverlayScrollbarsComponentProps['options']>;
 
 export interface CustomScrollbarProps {
   /** Стили. */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 
   /** Класс. */
   className?: string;
 
   /** Содержимое. */
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   /** Опции переполнения. */
   overflow?: Options['overflowBehavior'];
@@ -32,7 +32,7 @@ export interface CustomScrollbarProps {
   fullScrollThreshold?: number;
 
   /** Реф для экземпляра компонента OverlayScrollbarsComponent. */
-  osComponentRef?: React.LegacyRef<OverlayScrollbarsComponent>;
+  osComponentRef?: Ref<OverlayScrollbarsComponent>;
 }
 
 const cx = classnames.bind(styles);
@@ -42,7 +42,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export const CustomScrollbar = ({
+export function CustomScrollbar({
   osComponentRef,
   style,
   className,
@@ -51,23 +51,25 @@ export const CustomScrollbar = ({
   inFlexBox = false,
   onFullScroll,
   fullScrollThreshold,
-}: CustomScrollbarProps) => (
-  <OverlayScrollbarsComponent
-    ref={osComponentRef}
-    style={style}
-    className={cx('custom-scrollbar', className, { 'os-host-flexbox': inFlexBox })}
-    options={{
-      overflowBehavior: overflow,
-      callbacks: onFullScroll
-        ? {
-            onScrollStop: HandleFullScroll(onFullScroll, fullScrollThreshold),
-          }
-        : undefined,
-    }}
-  >
-    {children}
-  </OverlayScrollbarsComponent>
-);
+}: CustomScrollbarProps) {
+  return (
+    <OverlayScrollbarsComponent
+      ref={osComponentRef}
+      style={style}
+      className={cx('custom-scrollbar', className, { 'os-host-flexbox': inFlexBox })}
+      options={{
+        overflowBehavior: overflow,
+        callbacks: onFullScroll
+          ? {
+              onScrollStop: HandleFullScroll(onFullScroll, fullScrollThreshold),
+            }
+          : undefined,
+      }}
+    >
+      {children}
+    </OverlayScrollbarsComponent>
+  );
+}
 
 /**
  * Возвращает обработчик прокрутки, который вызовет callback при полной прокрутке.
@@ -75,15 +77,15 @@ export const CustomScrollbar = ({
  * @param threshold Запас.
  * @return Обработчик.
  */
-export const HandleFullScroll =
-  (callback: () => void, threshold = 16) =>
-  (event: UIEvent | undefined) => {
+export function HandleFullScroll(callback: () => void, threshold = 16) {
+  return (event: UIEvent | undefined) => {
     const el = event?.target;
 
     el instanceof Element &&
       el.scrollTop >= el.scrollHeight - el.clientHeight - threshold &&
       callback();
   };
+}
 
 /**
  * Получив OverlayScrollbarsComponent вернет элемент-viewport или null.
