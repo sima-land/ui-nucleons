@@ -1,7 +1,7 @@
 import React from 'react';
 import { formatPrice } from './utils';
-import classes from './price.module.scss';
 import classnames from 'classnames/bind';
+import styles from './price.module.scss';
 
 export interface PriceProps {
   /** Класс/стили цены. */
@@ -23,21 +23,21 @@ export interface PriceProps {
   'data-testid'?: string;
 }
 
-const cx = classnames.bind(classes);
+const cx = classnames.bind(styles);
 
 /**
  * Цена товара с указанием знака валюты.
  * @param props Параметры компонента.
  * @return Элемент.
  */
-export const Price = ({
+export function Price({
   className,
   currencyGrapheme: grapheme,
   graphemeBefore,
   crossedOut,
   value,
   'data-testid': testId = 'price',
-}: PriceProps) => {
+}: PriceProps) {
   const content = formatPrice(value, grapheme, {
     graphemeBefore,
   });
@@ -47,4 +47,4 @@ export const Price = ({
       {content}
     </span>
   );
-};
+}

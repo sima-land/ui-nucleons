@@ -5,11 +5,11 @@
  * @param options Опции.
  * @return Отформатированная цена.
  */
-export const formatPrice = (
+export function formatPrice(
   value: number | string,
   grapheme?: string,
   { graphemeBefore }: { graphemeBefore?: boolean } = {},
-) => {
+) {
   const number = Number(value);
 
   return [
@@ -28,10 +28,10 @@ export const formatPrice = (
     .filter(Boolean)
     .map(s => (s as string).replace(/\s/g, '\u2009')) // заменяем все пробелы на полупробелы
     .join('');
-};
+}
 
-// eslint-disable-next-line require-jsdoc
-export const formatInteger = (value: number): string => {
+// eslint-disable-next-line require-jsdoc, jsdoc/require-jsdoc
+export function formatInteger(value: number): string {
   let result = '0';
 
   if (Number.isFinite(value)) {
@@ -51,10 +51,10 @@ export const formatInteger = (value: number): string => {
   }
 
   return result;
-};
+}
 
-// eslint-disable-next-line require-jsdoc
-export const formatFractional = (value: number): string => {
+// eslint-disable-next-line require-jsdoc, jsdoc/require-jsdoc
+export function formatFractional(value: number): string {
   let fractional = '';
 
   if (Number.isFinite(value) && !Number.isInteger(value)) {
@@ -62,7 +62,7 @@ export const formatFractional = (value: number): string => {
   }
 
   return fractional;
-};
+}
 
 /**
  * Округляет число и приводит его к строке по дизайн-гайдам цен.
