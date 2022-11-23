@@ -13,7 +13,6 @@ const styles: React.CSSProperties = {
   width: 320,
   height: 120,
   padding: 24,
-  margin: 'auto',
   marginBottom: 32,
 };
 

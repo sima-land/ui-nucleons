@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect, useRef } from 'react';
+import React, { useState, useReducer, useEffect, useRef, CSSProperties } from 'react';
 import { SidePage, SidePageProps } from '..';
 import { Button } from '../../button';
 import { Panel } from '../../panel';
@@ -53,7 +53,7 @@ Primary.storyName = 'Простой пример';
 export function SizeS() {
   const [shown, toggle] = useState<boolean>(false);
 
-  const styles: Record<'root' | 'image' | 'title' | 'message', React.CSSProperties> = {
+  const styles: Record<'root' | 'image' | 'title' | 'message', CSSProperties> = {
     root: {
       padding: '0 40px 40px 40px',
       display: 'flex',
@@ -110,7 +110,7 @@ SizeS.storyName = 'Размер S';
 export function SizeM() {
   const [shown, toggle] = useState<boolean>(false);
 
-  const styles: Record<'root' | 'footer' | 'button', React.CSSProperties> = {
+  const styles: Record<'root' | 'footer' | 'button', CSSProperties> = {
     root: {
       padding: '32px 40px',
       display: 'flex',
@@ -153,11 +153,11 @@ export function SizeM() {
         </SidePage.Body>
 
         <SidePage.Footer divided style={styles.footer}>
-          <Button style={styles.button} viewType='primary'>
-            Отправить
-          </Button>
           <Button style={styles.button} viewType='secondary'>
             Отмена
+          </Button>
+          <Button style={styles.button} viewType='primary'>
+            Отправить
           </Button>
         </SidePage.Footer>
       </SidePage>
@@ -315,7 +315,7 @@ const LazyLoadingList = () => {
 export function WithHints() {
   const [shown, toggleSidePage] = useState<boolean>(false);
 
-  const styles: Record<'root', React.CSSProperties> = {
+  const styles: Record<'root', CSSProperties> = {
     root: {
       padding: '40px',
       display: 'flex',
@@ -356,7 +356,7 @@ WithHints.storyName = 'Пример с хинтами внутри';
 export function WithCleanButtons() {
   const [shown, toggleSidePage] = useState<boolean>(false);
 
-  const styles: Record<'root', React.CSSProperties> = {
+  const styles: Record<'root', CSSProperties> = {
     root: {
       padding: '40px',
       display: 'flex',
@@ -388,7 +388,7 @@ export function WithCleanButtons() {
 WithCleanButtons.storyName = 'Прозрачные кнопки в футере';
 
 export function TestPageScrollLock() {
-  const styles: Record<'root', React.CSSProperties> = {
+  const styles: Record<'root', CSSProperties> = {
     root: {
       padding: '24px',
     },
