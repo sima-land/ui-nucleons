@@ -1,37 +1,58 @@
-import React, { useState, forwardRef } from 'react';
+import React, {
+  useState,
+  forwardRef,
+  CSSProperties,
+  InputHTMLAttributes,
+  MouseEventHandler,
+  useCallback,
+  useRef,
+  useImperativeHandle,
+} from 'react';
 import PlusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/plus';
 import MinusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/minus';
 import styles from './stepper.module.scss';
 import classnames from 'classnames/bind';
 
-type Size = 's' | 'm';
+/** Размер Stepper (влияет на высоту и минимальную ширину). */
+export type StepperSize = 's' | 'm';
 
-interface StepperCSS extends React.CSSProperties {
+/** Стили Stepper. */
+export interface StepperStyle extends CSSProperties {
+  /** Ширина. */
   '--stepper-width'?: string;
 }
 
 export interface StepperProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'style'> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'style'> {
   /** Нужно ли выводить кнопку добавления. */
   canAdd?: boolean;
 
   /** Нужно ли выводить кнопку вычитания. */
   canSubtract?: boolean;
 
+  /** Делает кнопку "+" отключенной. */
+  plusDisabled?: boolean;
+
+  /** Делает кнопку "-" отключенной. */
+  minusDisabled?: boolean;
+
+  /** Нужно ли предотвращать blur на поле при нажатии "+/-". */
+  buttonClickBehavior?: 'prevent-input-blur';
+
   /** Сработает при добавлении. */
-  onAdd?: React.MouseEventHandler;
+  onAdd?: MouseEventHandler;
 
   /** Сработает при вычитании. */
-  onSubtract?: React.MouseEventHandler;
+  onSubtract?: MouseEventHandler;
 
   /** Размер. */
-  size?: Size;
+  size?: StepperSize;
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
 
   /** Стили корневого элемента. */
-  style?: StepperCSS;
+  style?: StepperStyle;
 
   /** Нужно ли показывать состояние ошибки. */
   failed?: boolean;
@@ -40,78 +61,102 @@ export interface StepperProps
 const cx = classnames.bind(styles);
 
 /**
- * Компонент поля количества.
+ * Stepper - поле ввода количества.
  * @param props Свойства.
  * @return Элемент.
  */
-export const Stepper = forwardRef<HTMLInputElement, StepperProps>(
-  (
-    {
-      canAdd = true,
-      canSubtract = true,
-      className,
-      disabled,
-      readOnly,
-      onAdd,
-      onBlur,
-      onChange,
-      onFocus,
-      onSubtract,
-      size = 'm',
-      style,
-      value,
-      failed,
-      'data-testid': testId = 'stepper',
-      ...inputProps
-    },
-    ref,
-  ) => {
-    const [focused, setFocused] = useState(false);
-
-    return (
-      <div
-        data-testid={testId}
-        style={style}
-        className={cx(
-          'root',
-          `size-${size}`,
-          { disabled, focused, readonly: readOnly, failed },
-          className,
-        )}
-      >
-        <button
-          className={cx('button', { hidden: !canSubtract })}
-          data-testid='stepper:minus'
-          onClick={canSubtract && !disabled && !readOnly ? onSubtract : undefined}
-        >
-          <MinusSVG />
-        </button>
-        <input
-          {...inputProps}
-          ref={ref}
-          readOnly={readOnly}
-          data-testid='stepper:input'
-          className={cx('input')}
-          value={value}
-          disabled={disabled}
-          onChange={onChange}
-          onFocus={e => {
-            setFocused(true);
-            onFocus?.(e);
-          }}
-          onBlur={e => {
-            setFocused(false);
-            onBlur?.(e);
-          }}
-        />
-        <button
-          className={cx('button', { hidden: !canAdd })}
-          data-testid='stepper:plus'
-          onClick={canAdd && !disabled && !readOnly ? onAdd : undefined}
-        >
-          <PlusSVG />
-        </button>
-      </div>
-    );
+export const Stepper = forwardRef<HTMLInputElement, StepperProps>(function Stepper(
+  {
+    buttonClickBehavior,
+    canAdd = true,
+    canSubtract = true,
+    className,
+    disabled,
+    plusDisabled = disabled,
+    minusDisabled = disabled,
+    readOnly,
+    onAdd,
+    onBlur,
+    onChange,
+    onFocus,
+    onSubtract,
+    size = 'm',
+    style,
+    value,
+    failed,
+    'data-testid': testId = 'stepper',
+    ...inputProps
   },
-);
+  forwardedRef,
+) {
+  const ref = useRef<HTMLInputElement | null>(null);
+  const [focused, setFocused] = useState(false);
+
+  useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(
+    forwardedRef,
+    () => ref.current,
+  );
+
+  const noBlurOnMousedown = useCallback<MouseEventHandler>(
+    event => {
+      if (focused && event.target !== ref.current && buttonClickBehavior === 'prevent-input-blur') {
+        focused && event.preventDefault();
+      }
+    },
+    [focused, buttonClickBehavior],
+  );
+
+  const rootClassName = cx('root', `size-${size}`, { disabled, focused, failed }, className);
+
+  return (
+    <div
+      data-testid={testId}
+      style={style}
+      className={rootClassName}
+      onMouseDown={noBlurOnMousedown}
+    >
+      <button
+        tabIndex={-1}
+        hidden={!canSubtract}
+        disabled={minusDisabled ?? disabled ?? readOnly}
+        className={cx('button')}
+        data-testid='stepper:minus'
+        aria-label='Уменьшить'
+        onMouseDown={noBlurOnMousedown}
+        onClick={canSubtract && !minusDisabled && !disabled && !readOnly ? onSubtract : undefined}
+      >
+        <MinusSVG className={styles.svg} />
+      </button>
+      <input
+        {...inputProps}
+        ref={ref}
+        readOnly={readOnly}
+        data-testid='stepper:input'
+        className={cx('input')}
+        value={value}
+        disabled={disabled}
+        onChange={onChange}
+        onFocus={e => {
+          setFocused(true);
+          onFocus?.(e);
+        }}
+        onBlur={e => {
+          setFocused(false);
+          onBlur?.(e);
+        }}
+      />
+      <button
+        tabIndex={-1}
+        hidden={!canAdd}
+        disabled={plusDisabled ?? disabled ?? readOnly}
+        className={cx('button')}
+        data-testid='stepper:plus'
+        aria-label='Увеличить'
+        onMouseDown={noBlurOnMousedown}
+        onClick={canAdd && !plusDisabled && !disabled && !readOnly ? onAdd : undefined}
+      >
+        <PlusSVG className={styles.svg} />
+      </button>
+    </div>
+  );
+});

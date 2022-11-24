@@ -1,147 +1,220 @@
-import React from 'react';
-import { mount } from 'enzyme';
-import { act, Simulate } from 'react-dom/test-utils';
+import React, { createRef } from 'react';
+import { createEvent, fireEvent, render } from '@testing-library/react';
 import { Stepper } from '..';
 
 describe('<Stepper />', () => {
-  it('should render without props', () => {
-    const wrapper = mount(<Stepper />);
+  it('should handle ref prop', () => {
+    const ref = createRef<HTMLInputElement>();
+    const { getByTestId } = render(<Stepper ref={ref} />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(ref.current instanceof HTMLInputElement).toBe(true);
+    expect(getByTestId('stepper:input') === ref.current).toBe(true);
   });
 
-  it('should render as "read only"', () => {
-    const wrapper = mount(<Stepper readOnly />);
+  it('should render as "readonly"', () => {
+    const { getByTestId } = render(<Stepper readOnly />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect((getByTestId('stepper:input') as HTMLInputElement).readOnly).toBe(true);
+    expect((getByTestId('stepper:plus') as HTMLButtonElement).disabled).toBe(true);
+    expect((getByTestId('stepper:minus') as HTMLButtonElement).disabled).toBe(true);
+  });
+
+  it('should prevent blur on input when "buttonClickBehavior" prop is defined', () => {
+    const { getByTestId } = render(<Stepper buttonClickBehavior='prevent-input-blur' />);
+
+    const root = getByTestId('stepper');
+    const plus = getByTestId('stepper:plus');
+    const minus = getByTestId('stepper:minus');
+
+    fireEvent.focus(getByTestId('stepper:input'));
+
+    for (const el of [root, plus, minus]) {
+      const event = createEvent.mouseDown(getByTestId('stepper:minus'));
+
+      expect(event.defaultPrevented).toBe(false);
+      fireEvent(el, event);
+      expect(event.defaultPrevented).toBe(true);
+    }
+  });
+
+  it('should NOT prevent blur on input when "buttonClickBehavior" prop is not defined', () => {
+    const { getByTestId } = render(<Stepper buttonClickBehavior={undefined} />);
+
+    const root = getByTestId('stepper');
+    const plus = getByTestId('stepper:plus');
+    const minus = getByTestId('stepper:minus');
+
+    fireEvent.focus(getByTestId('stepper:input'));
+
+    for (const el of [root, plus, minus]) {
+      const event = createEvent.mouseDown(getByTestId('stepper:minus'));
+
+      expect(event.defaultPrevented).toBe(false);
+      fireEvent(el, event);
+      expect(event.defaultPrevented).toBe(false);
+    }
   });
 
   it('should render as "failed"', () => {
-    const wrapper = mount(<Stepper failed />);
+    const { getByTestId } = render(<Stepper failed />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(getByTestId('stepper').classList.contains('failed')).toBe(true);
   });
 
   it('should handle input props', () => {
+    const changeSpy = jest.fn();
     const focusSpy = jest.fn();
     const blurSpy = jest.fn();
 
-    const wrapper = mount(
-      <Stepper defaultValue={123} disabled onFocus={focusSpy} onBlur={blurSpy} />,
+    const { getByTestId } = render(
+      <Stepper
+        defaultValue={123}
+        disabled
+        onFocus={focusSpy}
+        onChange={changeSpy}
+        onBlur={blurSpy}
+      />,
     );
 
-    expect(blurSpy).toBeCalledTimes(0);
     expect(focusSpy).toBeCalledTimes(0);
-
-    act(() => {
-      Simulate.focus(wrapper.find('[data-testid="stepper:input"]').getDOMNode());
-    });
-    wrapper.update();
-
-    expect(focusSpy).toBeCalledTimes(1);
+    expect(changeSpy).toBeCalledTimes(0);
     expect(blurSpy).toBeCalledTimes(0);
 
-    act(() => {
-      Simulate.blur(wrapper.find('[data-testid="stepper:input"]').getDOMNode());
-    });
-    wrapper.update();
+    fireEvent.focus(getByTestId('stepper:input'));
 
     expect(focusSpy).toBeCalledTimes(1);
+    expect(changeSpy).toBeCalledTimes(0);
+    expect(blurSpy).toBeCalledTimes(0);
+
+    fireEvent.change(getByTestId('stepper:input'), { target: { value: 'next' } });
+
+    expect(focusSpy).toBeCalledTimes(1);
+    expect(changeSpy).toBeCalledTimes(1);
+    expect(blurSpy).toBeCalledTimes(0);
+
+    fireEvent.blur(getByTestId('stepper:input'));
+
+    expect(focusSpy).toBeCalledTimes(1);
+    expect(changeSpy).toBeCalledTimes(1);
     expect(blurSpy).toBeCalledTimes(1);
   });
 
   it('should handle "onFocus" missing', () => {
     const spy = jest.fn();
 
-    const wrapper = mount(<Stepper onFocus={spy} />);
-
+    const { getByTestId, rerender } = render(<Stepper onFocus={spy} />);
     expect(spy).toBeCalledTimes(0);
 
-    act(() => {
-      Simulate.focus(wrapper.find('[data-testid="stepper:input"]').getDOMNode());
-    });
-    wrapper.update();
+    fireEvent.focus(getByTestId('stepper:input'));
     expect(spy).toBeCalledTimes(1);
 
-    wrapper.setProps({ onFocus: undefined });
+    rerender(<Stepper onFocus={undefined} />);
+    expect(spy).toBeCalledTimes(1);
 
-    act(() => {
-      Simulate.focus(wrapper.find('[data-testid="stepper:input"]').getDOMNode());
-    });
-    wrapper.update();
+    fireEvent.focus(getByTestId('stepper:input'));
     expect(spy).toBeCalledTimes(1);
   });
 
   it('should handle "onBlur" missing', () => {
     const spy = jest.fn();
 
-    const wrapper = mount(<Stepper onBlur={spy} />);
-
+    const { getByTestId, rerender } = render(<Stepper onBlur={spy} />);
     expect(spy).toBeCalledTimes(0);
 
-    act(() => {
-      Simulate.blur(wrapper.find('[data-testid="stepper:input"]').getDOMNode());
-    });
-    wrapper.update();
+    fireEvent.blur(getByTestId('stepper:input'));
     expect(spy).toBeCalledTimes(1);
 
-    wrapper.setProps({ onBlur: undefined });
+    rerender(<Stepper onBlur={undefined} />);
+    expect(spy).toBeCalledTimes(1);
 
-    act(() => {
-      Simulate.blur(wrapper.find('[data-testid="stepper:input"]').getDOMNode());
-    });
-    wrapper.update();
+    fireEvent.blur(getByTestId('stepper:input'));
     expect(spy).toBeCalledTimes(1);
   });
 
   it('should handle "size" prop', () => {
-    const wrapper = mount(<Stepper />);
+    const { getByTestId, rerender } = render(<Stepper />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(getByTestId('stepper').classList.contains('size-s')).toBe(false);
+    expect(getByTestId('stepper').classList.contains('size-m')).toBe(true);
 
-    wrapper.setProps({ size: 'm' });
-    expect(wrapper).toMatchSnapshot();
+    rerender(<Stepper size='s' />);
+    expect(getByTestId('stepper').classList.contains('size-s')).toBe(true);
+    expect(getByTestId('stepper').classList.contains('size-m')).toBe(false);
 
-    wrapper.setProps({ size: 'm' });
-    expect(wrapper).toMatchSnapshot();
+    rerender(<Stepper size='m' />);
+    expect(getByTestId('stepper').classList.contains('size-s')).toBe(false);
+    expect(getByTestId('stepper').classList.contains('size-m')).toBe(true);
   });
 
-  it('should handle "onAdd/onSubtract/canAdd/canSubtract" props', () => {
-    const subtractSpy = jest.fn();
-    const addSpy = jest.fn();
+  it('Props "canAdd/canSubtract" should hide plus/minus buttons', () => {
+    const { queryAllByTestId, getByTestId, rerender } = render(<Stepper />);
 
-    const wrapper = mount(<Stepper onSubtract={subtractSpy} onAdd={addSpy} />);
+    expect(queryAllByTestId('stepper:plus')).toHaveLength(1);
+    expect((getByTestId('stepper:plus') as HTMLButtonElement).disabled).toBe(false);
+    expect((getByTestId('stepper:plus') as HTMLButtonElement).hidden).toBe(false);
+    expect(queryAllByTestId('stepper:minus')).toHaveLength(1);
+    expect((getByTestId('stepper:minus') as HTMLButtonElement).disabled).toBe(false);
+    expect((getByTestId('stepper:minus') as HTMLButtonElement).hidden).toBe(false);
 
-    expect(wrapper).toMatchSnapshot();
-    expect(subtractSpy).toHaveBeenCalledTimes(0);
-    expect(addSpy).toHaveBeenCalledTimes(0);
+    rerender(<Stepper canAdd canSubtract />);
 
-    act(() => {
-      wrapper.find('[data-testid="stepper:minus"]').first().simulate('click');
-    });
-    wrapper.update();
+    expect(queryAllByTestId('stepper:plus')).toHaveLength(1);
+    expect((getByTestId('stepper:plus') as HTMLButtonElement).disabled).toBe(false);
+    expect((getByTestId('stepper:plus') as HTMLButtonElement).hidden).toBe(false);
+    expect(queryAllByTestId('stepper:minus')).toHaveLength(1);
+    expect((getByTestId('stepper:minus') as HTMLButtonElement).disabled).toBe(false);
+    expect((getByTestId('stepper:minus') as HTMLButtonElement).hidden).toBe(false);
 
-    expect(subtractSpy).toHaveBeenCalledTimes(1);
-    expect(addSpy).toHaveBeenCalledTimes(0);
+    rerender(<Stepper canAdd={false} canSubtract />);
 
-    act(() => {
-      wrapper.find('[data-testid="stepper:plus"]').last().simulate('click');
-    });
-    wrapper.update();
+    expect((getByTestId('stepper:plus') as HTMLButtonElement).disabled).toBe(false);
+    expect((getByTestId('stepper:plus') as HTMLButtonElement).hidden).toBe(true);
+    expect(queryAllByTestId('stepper:minus')).toHaveLength(1);
+    expect((getByTestId('stepper:minus') as HTMLButtonElement).disabled).toBe(false);
+    expect((getByTestId('stepper:minus') as HTMLButtonElement).hidden).toBe(false);
 
-    expect(subtractSpy).toHaveBeenCalledTimes(1);
-    expect(addSpy).toHaveBeenCalledTimes(1);
+    rerender(<Stepper canAdd canSubtract={false} />);
 
-    // hide buttons
-    act(() => {
-      wrapper.setProps({ canAdd: false, canSubtract: false });
-    });
-    wrapper.update();
+    expect((getByTestId('stepper:plus') as HTMLButtonElement).disabled).toBe(false);
+    expect((getByTestId('stepper:plus') as HTMLButtonElement).hidden).toBe(false);
+    expect(queryAllByTestId('stepper:minus')).toHaveLength(1);
+    expect((getByTestId('stepper:minus') as HTMLButtonElement).disabled).toBe(false);
+    expect((getByTestId('stepper:minus') as HTMLButtonElement).hidden).toBe(true);
+  });
 
-    wrapper.find('[data-testid="stepper:minus"]').first().simulate('click');
-    expect(subtractSpy).toHaveBeenCalledTimes(1);
+  it('Props "plusDisabled/minusDisabled" should makre plus/minus buttons disabled', () => {
+    const { queryAllByTestId, getByTestId, rerender } = render(<Stepper />);
 
-    wrapper.find('[data-testid="stepper:plus"]').last().simulate('click');
-    expect(addSpy).toHaveBeenCalledTimes(1);
+    expect(queryAllByTestId('stepper:plus')).toHaveLength(1);
+    expect((getByTestId('stepper:plus') as HTMLButtonElement).disabled).toBe(false);
+    expect((getByTestId('stepper:plus') as HTMLButtonElement).hidden).toBe(false);
+    expect(queryAllByTestId('stepper:minus')).toHaveLength(1);
+    expect((getByTestId('stepper:minus') as HTMLButtonElement).disabled).toBe(false);
+    expect((getByTestId('stepper:minus') as HTMLButtonElement).hidden).toBe(false);
+
+    rerender(<Stepper plusDisabled={false} minusDisabled={false} />);
+
+    expect(queryAllByTestId('stepper:plus')).toHaveLength(1);
+    expect((getByTestId('stepper:plus') as HTMLButtonElement).disabled).toBe(false);
+    expect((getByTestId('stepper:plus') as HTMLButtonElement).hidden).toBe(false);
+    expect(queryAllByTestId('stepper:minus')).toHaveLength(1);
+    expect((getByTestId('stepper:minus') as HTMLButtonElement).disabled).toBe(false);
+    expect((getByTestId('stepper:minus') as HTMLButtonElement).hidden).toBe(false);
+
+    rerender(<Stepper plusDisabled minusDisabled={false} />);
+
+    expect((getByTestId('stepper:plus') as HTMLButtonElement).disabled).toBe(true);
+    expect((getByTestId('stepper:plus') as HTMLButtonElement).hidden).toBe(false);
+    expect(queryAllByTestId('stepper:minus')).toHaveLength(1);
+    expect((getByTestId('stepper:minus') as HTMLButtonElement).disabled).toBe(false);
+    expect((getByTestId('stepper:minus') as HTMLButtonElement).hidden).toBe(false);
+
+    rerender(<Stepper plusDisabled={false} minusDisabled />);
+
+    expect((getByTestId('stepper:plus') as HTMLButtonElement).disabled).toBe(false);
+    expect((getByTestId('stepper:plus') as HTMLButtonElement).hidden).toBe(false);
+    expect(queryAllByTestId('stepper:minus')).toHaveLength(1);
+    expect((getByTestId('stepper:minus') as HTMLButtonElement).disabled).toBe(true);
+    expect((getByTestId('stepper:minus') as HTMLButtonElement).hidden).toBe(false);
   });
 });

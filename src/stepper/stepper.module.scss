@@ -7,24 +7,15 @@
   border-radius: 4px;
   color: colors.$basic-gray87;
   background: colors.$basic-gray8;
-  &.focused:not(.disabled) {
+  &.focused {
     border-color: colors.$basic-blue;
   }
   &.disabled {
     color: colors.$basic-gray24;
     border-color: colors.$basic-gray4;
     background: colors.$basic-gray4;
-    .button {
-      fill: colors.$basic-gray24;
-    }
   }
-  &.readonly {
-    .button {
-      fill: colors.$basic-gray24;
-    }
-  }
-  &.failed:not(.disabled):not(.focused) {
-    border-color: transparent;
+  &.failed {
     color: colors.$additional-deep-red;
   }
   &.size-s {
@@ -65,7 +56,7 @@
   background: transparent;
   width: var(--stepper-button-width);
   height: 100%;
-  fill: colors.$basic-gray87;
+  color: colors.$basic-gray87;
   flex-shrink: 0;
   &:first-child {
     justify-content: flex-end;
@@ -73,11 +64,19 @@
   &:last-child {
     justify-content: flex-start;
   }
-  &:not(.hidden) {
+  &:not(.hidden):not(:disabled) {
     cursor: pointer;
   }
-  &.hidden {
-    opacity: 0;
+  &:disabled {
+    color: colors.$basic-gray24;
     pointer-events: none;
   }
+  &[hidden] {
+    pointer-events: none;
+    opacity: 0;
+  }
+}
+
+.svg {
+  fill: currentColor;
 }

@@ -1,63 +1,132 @@
-import React, { useState } from 'react';
-import { Stepper, StepperProps } from '..';
+import React, { ChangeEvent, useState } from 'react';
+import { Stepper, StepperProps, StepperSize } from '..';
+import { Sandbox } from '../../../.storybook/utils';
 
 export default {
-  title: 'desktop/Stepper',
+  title: 'common/Stepper',
   component: Stepper,
   parameters: {
     layout: 'padded',
   },
 };
 
-function Template(props: StepperProps) {
-  const [value, setValue] = useState('');
-  const [withControls, toggleControls] = useState(false);
-  const amount = parseInt(value || '0');
-  const max = 99;
+export function Primary() {
+  const [value, setValue] = useState<string>('0');
+  const number: number = parseInt(value) || 0;
+  const limit = 10;
 
-  const control: Partial<StepperProps> = {
-    canAdd: withControls && amount < max,
-    canSubtract: withControls && amount > 0,
-    onChange: e => {
-      setValue(e.target.value.replace(/\D/g, ''));
-    },
-    onAdd: () => {
-      setValue(String(Math.min(max, amount + 1)));
-    },
-    onSubtract: () => {
-      setValue(String(Math.max(0, amount - 1)));
-    },
-    onBlur: e => {
-      setValue(String(Math.min(max, Math.max(0, parseInt(e.target.value || '0')))));
-      toggleControls(Boolean(e.target.value));
-    },
-  };
+  function onAdd() {
+    setValue(`${number + 1}`);
+  }
+
+  function onSubtract() {
+    setValue(`${number - 1}`);
+  }
+
+  function onChange(event: ChangeEvent<HTMLInputElement>) {
+    const nextValue = event.target.value.replace(/\D/g, '');
+
+    if (nextValue === '') {
+      setValue('');
+    } else {
+      setValue(`${Math.min(limit, parseInt(nextValue))}`);
+    }
+  }
 
   return (
     <>
-      <h4>Default</h4>
-      <Stepper {...props} {...control} value={value} />
-
-      <h4>Disabled</h4>
-      <Stepper {...props} value={value} disabled />
-
-      <h4>Readonly</h4>
-      <Stepper {...props} value={value} readOnly />
-
-      <h4>Failed</h4>
-      <Stepper {...props} {...control} value={value} failed />
+      <Stepper
+        value={value}
+        onSubtract={onSubtract}
+        onChange={onChange}
+        onAdd={onAdd}
+        plusDisabled={number >= limit}
+        minusDisabled={number <= 0}
+        buttonClickBehavior='prevent-input-blur'
+      />
     </>
   );
 }
 
-export function Primary() {
-  return <Template size='m' />;
-}
-
 Primary.storyName = 'Простой пример';
 
-export function SmallSize() {
-  return <Template size='s' />;
+export function DifferentStates() {
+  const [size, setSize] = useState<StepperSize>('s');
+  const [value, setValue] = useState<string>('10');
+  const [state, setState] = useState<string>('default');
+  const [needHideDisabled, setNeedHideDisabled] = useState<boolean>(false);
+  const number: number = parseInt(value) || 0;
+  const limit = 15;
+
+  function onAdd() {
+    setValue(`${number + 1}`);
+  }
+
+  function onSubtract() {
+    setValue(`${number - 1}`);
+  }
+
+  function onChange(event: ChangeEvent<HTMLInputElement>) {
+    const nextValue = event.target.value.replace(/\D/g, '');
+
+    if (nextValue === '') {
+      setValue('');
+    } else {
+      setValue(`${Math.min(limit, parseInt(nextValue))}`);
+    }
+  }
+
+  const bindProps: StepperProps = {
+    value,
+    onSubtract,
+    onChange,
+    onAdd,
+    canAdd: !(needHideDisabled && number >= limit),
+    canSubtract: !(needHideDisabled && number <= 0),
+    plusDisabled: state.includes('disabled') || state.includes('readonly') || number >= limit,
+    minusDisabled: state.includes('disabled') || state.includes('readonly') || number <= 0,
+    buttonClickBehavior: 'prevent-input-blur',
+  };
+
+  const stateProps: StepperProps = {
+    size,
+    disabled: state.includes('disabled'),
+    readOnly: state.includes('readonly'),
+    failed: state.includes('failed'),
+  };
+
+  return (
+    <Sandbox
+      controls={[
+        {
+          type: 'select',
+          label: 'Состояние',
+          bind: [state, setState],
+          options: [
+            'default',
+            'failed',
+            'readonly',
+            'readonly + failed',
+            'disabled',
+            'disabled + failed',
+          ],
+        },
+        {
+          type: 'select',
+          label: 'Размер',
+          bind: [size, setSize],
+          options: ['s', 'm'],
+        },
+        {
+          type: 'toggle',
+          label: 'Скрывать недоступные кнопки',
+          bind: [needHideDisabled, setNeedHideDisabled],
+        },
+      ]}
+    >
+      <Stepper {...stateProps} {...bindProps} />
+    </Sandbox>
+  );
 }
 
-SmallSize.storyName = 'Размер S';
+DifferentStates.storyName = 'Различные состояния';
