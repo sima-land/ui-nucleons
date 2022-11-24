@@ -100,7 +100,7 @@ export const Stepper = forwardRef<HTMLInputElement, StepperProps>(function Stepp
   const noBlurOnMousedown = useCallback<MouseEventHandler>(
     event => {
       if (focused && event.target !== ref.current && buttonClickBehavior === 'prevent-input-blur') {
-        focused && event.preventDefault();
+        event.preventDefault();
       }
     },
     [focused, buttonClickBehavior],
@@ -116,7 +116,7 @@ export const Stepper = forwardRef<HTMLInputElement, StepperProps>(function Stepp
       onMouseDown={noBlurOnMousedown}
     >
       <button
-        tabIndex={-1}
+        tabIndex={-1} // по аналогии с <input type="number" />
         hidden={!canSubtract}
         disabled={minusDisabled ?? disabled ?? readOnly}
         className={cx('button')}
@@ -146,7 +146,7 @@ export const Stepper = forwardRef<HTMLInputElement, StepperProps>(function Stepp
         }}
       />
       <button
-        tabIndex={-1}
+        tabIndex={-1} // по аналогии с <input type="number" />
         hidden={!canAdd}
         disabled={plusDisabled ?? disabled ?? readOnly}
         className={cx('button')}

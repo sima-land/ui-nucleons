@@ -5,7 +5,7 @@ import { COLORS } from '../../colors';
 import { MobileLayout } from '../../layout';
 
 export default {
-  title: 'mobile/TouchSlider',
+  title: 'deprecated/TouchSlider',
   component: TouchSlider,
   parameters: {
     layout: 'fullscreen',
