@@ -8,7 +8,7 @@ import { someImageUrl } from '../../../.storybook/utils';
 const cx = classnames.bind(classes);
 
 export default {
-  title: 'desktop/Carousel',
+  title: 'common/Carousel',
   component: Carousel,
   parameters: {
     layout: 'padded',
