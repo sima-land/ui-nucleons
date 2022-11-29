@@ -1,0 +1,17 @@
+@mixin size-s {
+  --padding-x: 16px;
+  --padding-y: 20px;
+  --justify-content: flex-start;
+  --icon-size: 0;
+  --icon-display: none;
+  --min-height: calc(48px + (2 * var(--padding-y)));
+}
+
+@mixin size-m {
+  --padding-x: 60px;
+  --padding-y: 20px;
+  --justify-content: center;
+  --icon-size: 64px;
+  --icon-display: block;
+  --min-height: calc(var(--icon-size) + (2 * var(--padding-y)));
+}

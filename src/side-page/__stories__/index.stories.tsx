@@ -3,7 +3,7 @@ import { SidePage, SidePageProps } from '..';
 import { Button } from '../../button';
 import { Panel } from '../../panel';
 import { Textarea } from '../../textarea';
-import { UploadArea } from '../../upload/area';
+import { UploadArea } from '../../upload-area';
 import { times } from 'lodash';
 import { WithHint } from '../../with-hint';
 import { CleanGroup, CleanButton } from '../../clean-buttons';
