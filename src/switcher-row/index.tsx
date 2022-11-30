@@ -13,9 +13,6 @@ export interface SwitcherRowProps {
   /** Направление текста. */
   textAlign?: 'left' | 'right';
 
-  /** Состояние с ошибками валидации. */
-  failed?: boolean;
-
   /** Стили корневого элемента. */
   style?: CSSProperties;
 
@@ -40,7 +37,6 @@ export function SwitcherRow({
   children,
   className,
   style,
-  failed,
   textAlign,
   fieldPosition = 'start',
   'data-testid': testId = 'switcher-row',
@@ -54,6 +50,7 @@ export function SwitcherRow({
   });
 
   const input = toggle ?? checkbox ?? radio;
+  const failed = input?.props.failed;
   const disabled = input?.props.disabled;
   const fieldId = input?.props.id;
   const fieldColumn = input && <div className={cx('col', 'field-col')}>{input}</div>;
