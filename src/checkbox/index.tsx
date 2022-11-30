@@ -1,11 +1,11 @@
 import React, { forwardRef } from 'react';
+import { CheckboxInputProps } from '../types';
 import classnames from 'classnames/bind';
-import classes from './checkbox.module.scss';
-import { CheckboxProps } from '../_internal/checkbox';
+import styles from './checkbox.module.scss';
 
-export type { CheckboxProps };
+export type CheckboxProps = CheckboxInputProps;
 
-const cx = classnames.bind(classes);
+const cx = classnames.bind(styles);
 
 /**
  * Компонент стилизованного переключателя (input[type=checkbox]).

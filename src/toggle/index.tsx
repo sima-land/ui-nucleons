@@ -1,16 +1,16 @@
 import React, { forwardRef } from 'react';
+import { CheckboxInputProps } from '../types';
 import classnames from 'classnames/bind';
 import styles from './toggle.module.scss';
-import { CheckboxProps } from '../_internal/checkbox';
 
-export type ToggleProps = CheckboxProps;
+export type ToggleProps = CheckboxInputProps;
 
 const cx = classnames.bind(styles);
 
 /**
  * Компонент стилизованного переключателя (input[type=checkbox]).
  */
-export const Toggle = forwardRef<HTMLInputElement, CheckboxProps>(
+export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
   (
     {
       className,

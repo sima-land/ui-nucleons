@@ -84,6 +84,7 @@ export function DifferentStates() {
 
   const fieldProps = {
     id: 'example-field',
+    failed: state.includes('failed'),
     disabled: state.includes('disabled'),
   };
 
@@ -126,7 +127,6 @@ export function DifferentStates() {
       <SwitcherRow
         fieldPosition={fieldPosition}
         textAlign={textAlign}
-        failed={state.includes('failed')}
         style={{
           maxWidth: '400px',
           margin: 'auto',
