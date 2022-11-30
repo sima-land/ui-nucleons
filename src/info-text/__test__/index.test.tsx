@@ -39,5 +39,7 @@ describe('InfoText', () => {
     expect(spy).toBeCalledTimes(2);
     fireEvent.keyDown(getByTestId('info-text:icon'), { code: 'Space' });
     expect(spy).toBeCalledTimes(3);
+    fireEvent.keyDown(getByTestId('info-text:icon'), { code: 'OtherKey' });
+    expect(spy).toBeCalledTimes(3);
   });
 });
