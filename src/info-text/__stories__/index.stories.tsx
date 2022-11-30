@@ -11,9 +11,10 @@ export default {
 
 export function Primary() {
   return (
-    <div style={{ maxWidth: '800px', fontSize: '16px', lineHeight: '24px' }}>
+    <div style={{ maxWidth: '600px', fontSize: '16px', lineHeight: '24px' }}>
       <InfoText onIconClick={() => alert('Вау! Действительно может!')}>
-        Много много много текста в пару строк, а то и больше
+        Позволяет выводить в конце произвольного текста иконку. Иконка не переносится на следующую
+        строку без предыдущего слова и может обрабатывать действие при клике.
       </InfoText>
     </div>
   );

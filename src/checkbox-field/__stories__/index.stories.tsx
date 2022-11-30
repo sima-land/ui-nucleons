@@ -2,7 +2,7 @@ import React from 'react';
 import { CheckboxField, CheckboxFieldProps } from '..';
 
 export default {
-  title: 'common/CheckboxField',
+  title: 'deprecated/CheckboxField',
   component: CheckboxField,
   parameters: {
     layout: 'padded',

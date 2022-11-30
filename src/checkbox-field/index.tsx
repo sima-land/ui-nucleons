@@ -26,6 +26,9 @@ export interface CheckboxFieldProps extends React.InputHTMLAttributes<HTMLInputE
 
 const cx = classnames.bind(classes);
 
+/**
+ * @deprecated Теперь можно использовать SwitcherRow.
+ */
 export const CheckboxField = forwardRef<HTMLInputElement | null, CheckboxFieldProps>(
   function CheckboxField(
     {

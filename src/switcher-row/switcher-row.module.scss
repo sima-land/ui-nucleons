@@ -1,0 +1,55 @@
+@use '../colors';
+
+.root {
+  --label-color: #{colors.$basic-gray87};
+  --comment-color: #{colors.$basic-gray38};
+  display: flex;
+  flex-direction: row;
+  &.text-align-left {
+    text-align: left;
+  }
+  &.text-align-right {
+    text-align: right;
+  }
+  &.disabled {
+    --label-color: #{colors.$basic-gray24};
+    --comment-color: #{colors.$basic-gray24};
+  }
+  &.failed {
+    --label-color: #{colors.$additional-deep-red};
+  }
+}
+
+.col + .col {
+  margin-left: 12px;
+}
+
+.field-col {
+  flex-grow: 0;
+}
+
+.main-col {
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+.label {
+  display: block;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  color: var(--label-color);
+  &.for-toggle {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.comment {
+  display: block;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: var(--comment-color);
+}

@@ -8,7 +8,7 @@
 
 .icon {
   display: inline-block;
-  vertical-align: -0.125em; // я не понял почему это значение работает но оно ставит блок ровно по середине строки
+  vertical-align: -0.125em; // не понятно почему, но это значение ставит блок ровно по середине строки
   margin-left: 4px;
   fill: colors.$basic-gray38;
   &.button:hover,

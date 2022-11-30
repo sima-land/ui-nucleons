@@ -5,7 +5,7 @@
   position: relative;
   width: 16px;
   height: 16px;
-  vertical-align: -2px;
+  vertical-align: -0.125em; // не понятно почему, но это значение ставит блок ровно по середине строки
 }
 
 .circle {
