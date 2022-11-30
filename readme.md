@@ -57,7 +57,7 @@ module.exports = {
       {
         test: /\.(css|scss)$/,
         exclude: /\.module\.(css|scss)$/,
-        use: ['css-loader', 'postcss-loader'],
+        use: ['css-loader', 'sass-loader'],
       },
 
       // обработка css-модулей
@@ -73,7 +73,6 @@ module.exports = {
               },
             },
           },
-          'postcss-loader',
           'sass-loader',
         ],
       },
@@ -160,17 +159,8 @@ declare module '*.svg' {
 
 ### Принципы библиотеки
 
-- в библиотеке не должно быть HOC (компонентов высшего порядка - функций возвращающих компонент)
+- в библиотеке не должно быть HOC (компонентов высшего порядка - функций, возвращающих компонент)
 - компонент интерфейса не должен иметь внешних отступов по умолчанию
-
-### Консольные команды, необходимые в процессе разработки
-
-- `npm run build` - сборка компонентов в `./build` для публикации
-- `npm run test` - запуск тестов _Jest_
-- `npm run lint:scripts` - запуск линтера _ESLint_
-- `npm run lint:styles` - запуск линтера _styleLint_
-- `npm run type-check` - Проверка типов TS
-- `npm run storybook` - запуск _storybook_
 
 ### Структура библиотеки
 

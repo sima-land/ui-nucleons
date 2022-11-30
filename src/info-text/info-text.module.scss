@@ -1,0 +1,20 @@
+@use '../colors';
+
+.last {
+  white-space: nowrap;
+  line-height: inherit;
+  font-size: inherit;
+}
+
+.icon {
+  display: inline-block;
+  vertical-align: -0.125em; // не понятно почему, но это значение ставит блок ровно по середине строки
+  margin-left: 4px;
+  fill: colors.$basic-gray38;
+  &.button:hover,
+  &.button:focus-visible {
+    outline: 0;
+    fill: colors.$basic-gray54;
+    cursor: pointer;
+  }
+}

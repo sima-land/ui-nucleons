@@ -3,6 +3,7 @@
 .root {
   position: relative;
   display: inline-block;
+  vertical-align: -0.125em; // не понятно почему, но это значение ставит блок ровно по середине строки
   width: 16px;
   height: 16px;
   svg {

@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "private": false,
   "engines": {
-    "node": ">=14.15.5"
+    "node": ">=16.15.1"
   },
   "dependencies": {
     "@floating-ui/react-dom": "^1.0.0",
