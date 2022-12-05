@@ -164,12 +164,13 @@ export class Draggable extends Component<DraggableProps> {
         client: getEventClientPos(event),
       });
 
-      this.togglePreventClickNeed(true);
-
-      // prevent selection
       if (!isTouchEvent(event)) {
+        // предотвращаем выделение текста на странице
         event.preventDefault();
-        (window.getSelection() as Selection).removeAllRanges();
+        window.getSelection()?.removeAllRanges();
+
+        // предотвращаем клик только на НЕ touch-устройствах тк на них срабатывает клик при перетаскивании
+        this.togglePreventClickNeed(true);
       }
 
       onDragMove && onDragMove(customEvent);
