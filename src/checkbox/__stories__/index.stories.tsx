@@ -18,6 +18,8 @@ export function Primary() {
   );
 }
 
+Primary.storyName = 'Простой пример';
+
 export function TestInputProps() {
   function noop() {
     return void 0;

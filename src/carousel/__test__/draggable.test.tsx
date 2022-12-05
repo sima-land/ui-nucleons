@@ -1,8 +1,68 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { isFunction } from 'lodash';
 import Draggable from '../draggable';
 import DraggableEvent from '../helpers/draggable-event';
+import { IPoint } from '../../helpers/point';
+
+class StubDraggable extends Component implements Draggable {
+  isGrabbed = false;
+  hasTransition = false;
+  needPreventClick = false;
+  currentOffset: IPoint = { x: 0, y: 0 };
+  clientPosition: IPoint = { x: 0, y: 0 };
+  draggableRef: React.RefObject<HTMLDivElement> = { current: null };
+  offList: Array<VoidFunction> = [];
+
+  componentDidMount() {
+    return void 0;
+  }
+  componentWillUnmount() {
+    return void 0;
+  }
+  initGlobalListeners() {
+    return void 0;
+  }
+  passControl() {
+    return void 0;
+  }
+  startCapture() {
+    return void 0;
+  }
+  handleMove() {
+    return void 0;
+  }
+  handleMoveEnd() {
+    return void 0;
+  }
+  handleClickCapture() {
+    return void 0;
+  }
+  getClientDelta() {
+    return { dx: 0, dy: 0 };
+  }
+  isTransitionEnabled() {
+    return false;
+  }
+  saveClientPosition() {
+    return void 0;
+  }
+  toggleGrabbed() {
+    return void 0;
+  }
+  toggleTransition() {
+    return void 0;
+  }
+  togglePreventClickNeed() {
+    return void 0;
+  }
+  setOffset() {
+    return void 0;
+  }
+  render() {
+    return <></>;
+  }
+}
 
 /**
  * Возвращает поддельное событие мыши.
@@ -333,5 +393,22 @@ describe('<Draggable />', () => {
     expect(Draggable.prototype.isTransitionEnabled.call(fake)).toBe(false);
     fake.hasTransition = true;
     expect(Draggable.prototype.isTransitionEnabled.call(fake)).toBe(true);
+  });
+
+  it('should not change "prevent need click" state on drag when is not touch', () => {
+    const stub = new StubDraggable({});
+    const spy = jest.spyOn(stub, 'togglePreventClickNeed');
+    stub.isGrabbed = true;
+
+    expect(spy).toBeCalledTimes(0);
+
+    const touchEvent = new TouchEvent('touchmove');
+    Draggable.prototype.handleMove.call(stub, touchEvent);
+    expect(spy).toBeCalledTimes(0);
+
+    const mouseEvent = new MouseEvent('mousemove');
+    Draggable.prototype.handleMove.call(stub, mouseEvent);
+    expect(spy).toBeCalledTimes(1);
+    expect(spy).toBeCalledWith(true);
   });
 });

@@ -69,7 +69,7 @@ export function WithCross() {
   );
 }
 
-WithCross.displayName = 'С крестиком';
+WithCross.storyName = 'С крестиком';
 
 export function TruncatedText() {
   const longText =
@@ -102,4 +102,4 @@ export function TruncatedText() {
   );
 }
 
-TruncatedText.displayName = 'Обрезка текста';
+TruncatedText.storyName = 'Обрезка текста';

@@ -1,12 +1,6 @@
 import { subscribe } from '../../helpers/media-query-list';
-import {
-  Breakpoint,
-  ChangeHandler,
-  Direction,
-  Registry,
-  RegistryItem,
-  Subscription,
-} from './types';
+import { Breakpoint } from '../../types';
+import { ChangeHandler, Direction, Registry, RegistryItem, Subscription } from './types';
 
 const Resolution: Record<Breakpoint, number> = {
   mxs: 0,

@@ -1,5 +1,10 @@
 import type { InputHTMLAttributes } from 'react';
 
+/**
+ * Обозначение точки остановки в соответствии дизайн-гайдами.
+ */
+export type Breakpoint = 'mxs' | 'ms' | 'mm' | 'ml' | 'xs' | 's' | 'm' | 'l' | 'xl';
+
 /** Свойства компонента для маркировки атрибутом "data-testid". */
 export interface WithTestId {
   /** Идентификатор для систем автоматизированного тестирования. */
