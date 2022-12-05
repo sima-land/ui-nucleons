@@ -1,5 +1,3 @@
-export type Breakpoint = 'mxs' | 'ms' | 'mm' | 'ml' | 'xs' | 's' | 'm' | 'l' | 'xl';
-
 export type Direction = '+' | '-';
 
 export type ChangeHandler = (event: { matches: boolean }) => void;

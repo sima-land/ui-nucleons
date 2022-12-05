@@ -56,7 +56,7 @@ const TypeCheck = {
 
 /**
  * Компонент сетки полей.
- * @deprecated
+ * @deprecated В макетах больше не используются "склеивания" полей.
  * @param props Свойства.
  * @param props.children Содержимое, дочерними элементами могут быть только FieldGrid.Row.
  * @param props.rootProps Свойства корневого элемента.
