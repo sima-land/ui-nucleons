@@ -183,21 +183,21 @@ export function Input({
           required={required}
           type={type}
           value={value}
-          onFocus={(event: any) => {
+          onFocus={event => {
             onFocus?.(event);
             updateFilled(event);
             setFocused(true);
           }}
-          onBlur={(event: any) => {
+          onBlur={event => {
             onBlur?.(event);
             updateFilled(event);
             setFocused(false);
           }}
-          onInput={(event: any) => {
+          onInput={event => {
             onInput?.(event);
             updateFilled(event);
           }}
-          onChange={(event: any) => {
+          onChange={event => {
             onChange?.(event);
             updateFilled(event);
           }}

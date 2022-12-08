@@ -8,6 +8,24 @@
   "engines": {
     "node": ">=16.15.1"
   },
+  "scripts": {
+    "prepare": "husky install",
+    "export:colors": "node .template/build.mjs",
+    "build:before": "rimraf build",
+    "build:main": "tsc --project tsconfig.build.json",
+    "build:after": "node dist.mjs",
+    "build": "npm run build:before && npm run build:main && npm run build:after",
+    "test": "BROWSERSLIST_ENV=\"test\" npx jest",
+    "coverage": "jest --clearCache && BROWSERSLIST_ENV=\"test\" npx jest --coverage",
+    "type-check": "tsc -p . --noEmit",
+    "lint": "npm run lint:scripts && npm run lint:styles",
+    "lint:scripts": "eslint --cache src/ --ext .js,.jsx,.ts,.tsx",
+    "lint:styles": "stylelint 'src/**/*.{css,scss}'",
+    "storybook": "BROWSERSLIST_ENV=\"storybook\" npx start-storybook -p 9009 -c .storybook",
+    "storybook:build": "BROWSERSLIST_ENV=\"storybook\" npx build-storybook --quiet --loglevel error -o build-storybook",
+    "prettier": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,css,scss}\" --loglevel error",
+    "prettier:check": "prettier --check \"./src/**/*.{js,jsx,ts,tsx,css,scss}\" --loglevel error"
+  },
   "dependencies": {
     "@floating-ui/react-dom": "^1.0.0",
     "@floating-ui/react-dom-interactions": "^0.10.3",
@@ -86,23 +104,5 @@
   "peerDependencies": {
     "react": ">=17",
     "react-dom": ">=17"
-  },
-  "scripts": {
-    "prepare": "husky install",
-    "export:colors": "node .template/build.mjs",
-    "build:before": "rimraf build",
-    "build:main": "tsc --project tsconfig.build.json",
-    "build:after": "node dist.mjs",
-    "build": "npm run build:before && npm run build:main && npm run build:after",
-    "test": "BROWSERSLIST_ENV=\"test\" npx jest",
-    "coverage": "jest --clearCache && BROWSERSLIST_ENV=\"test\" npx jest --coverage",
-    "type-check": "tsc -p . --noEmit",
-    "lint": "npm run lint:scripts && npm run lint:styles",
-    "lint:scripts": "eslint --cache src/ --ext .js,.jsx,.ts,.tsx",
-    "lint:styles": "stylelint 'src/**/*.{css,scss}'",
-    "storybook": "BROWSERSLIST_ENV=\"storybook\" npx start-storybook -p 9009 -c .storybook",
-    "storybook:build": "BROWSERSLIST_ENV=\"storybook\" npx build-storybook --quiet --loglevel error -o build-storybook",
-    "prettier": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,css,scss}\" --loglevel error",
-    "prettier:check": "prettier --check \"./src/**/*.{js,jsx,ts,tsx,css,scss}\" --loglevel error"
   }
 }
