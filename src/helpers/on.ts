@@ -30,4 +30,7 @@ export function on<T extends Event | React.SyntheticEvent>(
     });
 }
 
+/**
+ * @deprecated Следует использовать именованный экспорт. Экспорт по умолчанию будет удалён в будущем.
+ */
 export default on;

@@ -327,4 +327,7 @@ export class Draggable extends Component<DraggableProps> {
   }
 }
 
+/**
+ * @deprecated Следует использовать именованный экспорт. Экспорт по умолчанию будет удалён в будущем.
+ */
 export default Draggable;

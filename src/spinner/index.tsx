@@ -4,7 +4,9 @@ import { COLORS, Token } from '../colors';
 import classnames from 'classnames/bind';
 import styles from './spinner.module.scss';
 
-/** @deprecated */
+/**
+ * @deprecated Следует использовать 's' | 'm' | 'l'.
+ */
 type SpinnerLegacySize = 'small' | 'medium' | 'large';
 
 export type SpinnerSize = 's' | 'm' | 'l';

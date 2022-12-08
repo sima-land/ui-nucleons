@@ -45,4 +45,7 @@ export function findChildIndex({
   return result;
 }
 
+/**
+ * @deprecated Следует использовать именованный экспорт. Экспорт по умолчанию будет удалён в будущем.
+ */
 export default findChildIndex;

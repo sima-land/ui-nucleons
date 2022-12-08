@@ -403,4 +403,16 @@ describe('Autocomplete', () => {
     expect(helpers.findMenu()).toHaveLength(1);
     expect(helpers.findMenuItems()).toHaveLength(2);
   });
+
+  it('should handle "onBlur" prop', () => {
+    const spy = jest.fn();
+
+    helpers.render(<Autocomplete onBlur={spy} />);
+
+    expect(spy).toBeCalledTimes(0);
+    fireEvent.focus(helpers.getInput());
+    expect(spy).toBeCalledTimes(0);
+    fireEvent.blur(helpers.getInput());
+    expect(spy).toBeCalledTimes(1);
+  });
 });

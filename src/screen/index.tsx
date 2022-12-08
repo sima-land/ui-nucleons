@@ -20,7 +20,7 @@ export interface ScreenProps extends ScreenInnerProps, WithPageScrollLock {
 
 /**
  * Экран.
- * @deprecated
+ * @deprecated На адаптивных страницах стоит использовать Modal.
  * @param props Свойства.
  * @return Элемент.
  */

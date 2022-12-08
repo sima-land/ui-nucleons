@@ -32,10 +32,14 @@ const createLayout = (specificClass: string, displayName: string) => {
   return Component;
 };
 
-/** @deprecated */
+/**
+ * @deprecated На адаптивных страницах стоит использовать Layout.
+ */
 const DesktopLayout = createLayout('desktop', 'DesktopLayout');
 
-/** @deprecated */
+/**
+ * @deprecated На адаптивных страницах стоит использовать Layout.
+ */
 const MobileLayout = createLayout('mobile', 'MobileLayout');
 
 export { DesktopLayout, MobileLayout };

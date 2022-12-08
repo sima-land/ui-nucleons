@@ -52,7 +52,7 @@ export const renderDefaultArrow = (opened: boolean) => {
 
 /**
  * Поле выбора из списка.
- * @deprecated
+ * @deprecated Следует использовать новую реализацию из "@sima-land/ui-nucleons/select".
  * @param props Свойства.
  * @return Элемент.
  */

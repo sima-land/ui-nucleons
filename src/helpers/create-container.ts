@@ -43,4 +43,7 @@ export function createContainer<T = any>(initialValue?: T): Container<T> {
   return { get, set, setObserver };
 }
 
+/**
+ * @deprecated Следует использовать именованный экспорт. Экспорт по умолчанию будет удалён в будущем.
+ */
 export default createContainer;

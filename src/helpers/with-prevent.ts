@@ -13,4 +13,7 @@ export function withEventMute<T extends Event | SyntheticEvent>(callback?: (even
   };
 }
 
+/**
+ * @deprecated Следует использовать именованный экспорт. Экспорт по умолчанию будет удалён в будущем.
+ */
 export default withEventMute;

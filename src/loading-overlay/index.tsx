@@ -21,7 +21,7 @@ const cx = classnames.bind(classes);
 
 /**
  * Компонент перекрытия для отображения состояния загрузки.
- * @deprecated
+ * @deprecated Следует использовать Spinner напрямую.
  * @param props Свойства.
  * @return Элемент.
  */

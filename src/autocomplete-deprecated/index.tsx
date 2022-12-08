@@ -40,7 +40,7 @@ const cx = classnames.bind(styles);
 
 /**
  * Поле ввода с подсказками.
- * @deprecated
+ * @deprecated Нужно использовать новую реализацию "@sima-land/ui-nucleons/autocomplete".
  * @param props Свойства.
  * @return Элемент.
  */

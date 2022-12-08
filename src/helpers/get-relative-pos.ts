@@ -14,4 +14,7 @@ export function getRelativePos(target: Element, parent = target.parentElement) {
   };
 }
 
+/**
+ * @deprecated Следует использовать именованный экспорт. Экспорт по умолчанию будет удалён в будущем.
+ */
 export default getRelativePos;

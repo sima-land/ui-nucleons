@@ -6,7 +6,7 @@ import { Sandbox } from '../../../.storybook/utils';
 import { FieldBlockSize } from '../../field-block';
 import { Modal } from '../../modal';
 import { ModalFooter } from '../../modal/slots';
-import { Clean } from '../../clean-buttons';
+import { CleanGroup, CleanButton } from '../../clean-buttons';
 
 export default {
   title: 'common/Autocomplete',
@@ -180,9 +180,9 @@ export function TestInModal() {
         </div>
       </Modal.Body>
       <ModalFooter divided>
-        <Clean.Group>
-          <Clean.Button>Ясно</Clean.Button>
-        </Clean.Group>
+        <CleanGroup>
+          <CleanButton>Ясно</CleanButton>
+        </CleanGroup>
       </ModalFooter>
     </Modal>
   );
