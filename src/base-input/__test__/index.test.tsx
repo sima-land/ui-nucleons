@@ -1,7 +1,6 @@
 import React, { createRef } from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { BaseInput } from '..';
-import { RestPlaceholder } from '../base-input';
 import { fitElementHeight } from '../../helpers/fit-element-height';
 
 jest.mock('../../helpers/fit-element-height', () => {
@@ -41,14 +40,14 @@ describe('BaseInput', () => {
     expect(fitElementHeight).toBeCalledTimes(2);
   });
 
-  it('should render rest placeholder', () => {
-    const { container, getByTestId } = render(<BaseInput value='hello' restPlaceholder=' world' />);
+  it('should render rest placeholder for controlled fields only (when value provided)', () => {
+    const { container, rerender } = render(
+      <BaseInput value='hello' onChange={jest.fn()} restPlaceholder=' world' />,
+    );
 
     expect(container.querySelector('.rest-placeholder')?.textContent).toBe('hello world');
 
-    const input = getByTestId('base-input:field') as HTMLInputElement;
-    input.value = 'some text';
-    fireEvent.input(getByTestId('base-input:field'));
+    rerender(<BaseInput value='some text' onChange={jest.fn()} restPlaceholder=' world' />);
 
     expect(container.querySelector('.rest-placeholder')?.textContent).toBe('some text world');
   });
@@ -57,6 +56,7 @@ describe('BaseInput', () => {
     const { container } = render(
       <BaseInput
         value='foo'
+        onChange={jest.fn()}
         restPlaceholder={{
           value: ' bar',
           shiftValue: 'foo',
@@ -103,23 +103,5 @@ describe('BaseInput', () => {
     rerender(<BaseInput multiline data-testid='foo-bar' />);
     expect(find('[data-testid="foo-bar"] textarea')).toHaveLength(1);
     expect(find('[data-testid="foo-bar"] [data-testid="base-input:field"]')).toHaveLength(1);
-  });
-});
-
-describe('RestPlaceholder', () => {
-  it('should handle element missing in inputRef', () => {
-    expect(() => {
-      render(
-        <RestPlaceholder
-          inputRef={{ current: null }}
-          value='hello'
-          defaultValue={undefined}
-          definition={{
-            value: 'hi',
-            shiftValue: 'hello',
-          }}
-        />,
-      );
-    }).not.toThrow();
   });
 });

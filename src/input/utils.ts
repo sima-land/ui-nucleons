@@ -1,4 +1,12 @@
-import { MouseEventHandler, RefObject, useCallback, useEffect, useState } from 'react';
+import {
+  EventHandler,
+  MouseEventHandler,
+  RefObject,
+  SyntheticEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import { COLORS } from '../colors';
 
 /**
@@ -47,7 +55,7 @@ export function definePlaceholderColor({
  * @return Кортеж: состояние; функция обновления состояния.
  */
 export function useFilledState(
-  ref: RefObject<HTMLInputElement | HTMLTextAreaElement>,
+  ref: RefObject<HTMLInputElement> | RefObject<HTMLTextAreaElement>,
   {
     value,
     defaultValue,
@@ -55,15 +63,12 @@ export function useFilledState(
     value: unknown;
     defaultValue: unknown;
   },
-): [boolean, MouseEventHandler<HTMLInputElement | HTMLTextAreaElement>] {
+): [boolean, EventHandler<SyntheticEvent<{ value: string }>>] {
   const [filled, setFilled] = useState<boolean>(() => defineFilled(value, defaultValue));
 
-  const updateFilled = useCallback<MouseEventHandler<HTMLInputElement | HTMLTextAreaElement>>(
-    event => {
-      setFilled(Boolean(event.currentTarget.value));
-    },
-    [],
-  );
+  const updateFilled = useCallback<EventHandler<SyntheticEvent<{ value: string }>>>(event => {
+    setFilled(Boolean(event.currentTarget.value));
+  }, []);
 
   useEffect(() => {
     setFilled(Boolean(ref.current?.value));

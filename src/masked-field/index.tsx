@@ -22,6 +22,7 @@ const maskCommons = { placeholder: '_', pattern: /\d/ };
 
 /**
  * Компонент текстового поля (TextField) с маской.
+ * @deprecated Теперь нужно использовать MaskedInput.
  * @param props Свойства.
  * @param props.mask Маска.
  * @param props.value Значение.

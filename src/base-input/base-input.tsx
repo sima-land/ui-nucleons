@@ -1,24 +1,18 @@
-import React, {
-  useRef,
-  useImperativeHandle,
-  useState,
-  useEffect,
-  ReactNode,
-  RefObject,
-  InputHTMLAttributes,
-} from 'react';
+import React, { useRef, useImperativeHandle, ReactNode } from 'react';
 import { fitElementHeight } from '../helpers/fit-element-height';
 import { useIsomorphicLayoutEffect } from '../hooks';
 import { BaseInputProps, RestPlaceholderDefinition } from './types';
 import { omitMultiline } from './utils';
-import on from '../helpers/on';
 import classnames from 'classnames/bind';
 import styles from './base-input.module.scss';
 
 const cx = classnames.bind(styles);
 
 /**
- * Поле ввода с возможностью задать остаточный placeholder и автоматическим подстраиванием под содержимое в режиме multiline.
+ * Поле ввода текста.
+ * Позволяет выводить "остаточный placeholder".
+ * Может выводиться в однострочном и многострочном режимах.
+ * В многострочном режиме автоматически подстраивает высоту под введенный текст.
  * @param props Свойства.
  * @return Элемент.
  */
@@ -38,6 +32,7 @@ export function BaseInput({
     textareaRef,
     () => textareaInnerRef.current,
   );
+
   useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(
     inputRef,
     () => inputInnerRef.current,
@@ -77,72 +72,26 @@ export function BaseInput({
     );
   }
 
+  let restPlaceholder: RestPlaceholderDefinition | null = null;
+
+  // скрываем rest placeholder для неконтролируемых полей
+  if (typeof props.value !== 'undefined') {
+    restPlaceholder =
+      typeof restPlaceholderProp === 'string'
+        ? { shiftValue: String(props.value), value: restPlaceholderProp }
+        : { shiftValue: String(props.value), value: '', ...restPlaceholderProp };
+  }
+
   return (
     <div style={style} className={cx('reset', 'root', className)} data-testid={testId}>
       {/* ВАЖНО: restPlaceholder может накладываться на placeholder - компонент позволяет это делать т.к. они могут быть связаны */}
-      {!props.multiline && (
-        <RestPlaceholder
-          inputRef={inputInnerRef}
-          value={props.value}
-          defaultValue={props.defaultValue}
-          definition={restPlaceholderProp}
-        />
+      {!props.multiline && restPlaceholder && (
+        <span aria-hidden className={cx('rest-placeholder')}>
+          <span className={cx('shift-part')}>{restPlaceholder.shiftValue}</span>
+          <span className={cx('main-part')}>{restPlaceholder.value}</span>
+        </span>
       )}
       {field}
     </div>
   );
-}
-
-/**
- * Остаточный placeholder. Выводится после введенного значения.
- * Полезен для отображения "масок".
- * @param props Свойства.
- * @return Элемент.
- */
-export function RestPlaceholder({
-  inputRef,
-  value,
-  defaultValue,
-  definition,
-}: {
-  inputRef: RefObject<HTMLInputElement | null>;
-  value: InputHTMLAttributes<HTMLInputElement>['value'];
-  defaultValue: InputHTMLAttributes<HTMLInputElement>['defaultValue'];
-  definition: BaseInputProps['restPlaceholder'];
-}) {
-  const [actualValue, setActualValue] = useState<string>(() => String(value ?? defaultValue ?? ''));
-
-  useEffect(() => {
-    const element = inputRef.current;
-
-    if (element) {
-      // ВАЖНО: не поднимать это состояние, зависящее от события input, на уровень самого поля - ломается ввод
-      // пример: https://codesandbox.io/s/react-strange-behavior-of-input-event-iq6915
-      return on(element, 'input', () => {
-        setActualValue(element.value);
-      });
-    }
-  }, [inputRef]);
-
-  useIsomorphicLayoutEffect(() => {
-    if (inputRef.current) {
-      setActualValue(inputRef.current.value);
-    }
-  });
-
-  if (typeof definition === 'undefined') {
-    return null;
-  } else {
-    const data: RestPlaceholderDefinition =
-      typeof definition === 'string'
-        ? { shiftValue: actualValue, value: definition }
-        : { shiftValue: actualValue, ...definition };
-
-    return (
-      <span aria-hidden className={cx('rest-placeholder')}>
-        <span className={cx('shift-part')}>{data.shiftValue}</span>
-        <span className={cx('main-part')}>{data.value}</span>
-      </span>
-    );
-  }
 }

@@ -2,7 +2,3 @@
 build
 build-storybook
 coverage
-
-# Configs
-*.yaml
-*.yml
