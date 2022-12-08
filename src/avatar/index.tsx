@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react';
 import classnames from 'classnames/bind';
 import { COLORS, Token } from '../colors';
 import PersonSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/person';
@@ -26,7 +26,7 @@ export interface AvatarProps {
   size?: number;
 
   /** Стиль элементов rect/image, формирующего маску "super ellipse". */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 
   /** Цвет текста без картинки. */
   textColor?: Token;
@@ -88,7 +88,7 @@ export const Avatar = ({
           ...style,
           '--avatar-color': !needImage ? COLORS.get(bgColor) : undefined,
           '--avatar-color-opacity': bgOpacity,
-        } as any
+        } as CSSProperties
       }
     >
       {/* инициалы/иконка */}

@@ -4,7 +4,7 @@ type ObjectKey = string | number | symbol;
 
 /**
  * Переименовывает свойство, возвращая новый объект.
- * @deprecated
+ * @deprecated Эта функция не относится напрямую к работе с UI и будет удалена в будущем.
  * @param fromKey Старый ключ.
  * @param toKey Новый ключ.
  * @param source Объект.
