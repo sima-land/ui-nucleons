@@ -10,18 +10,6 @@ exports[`Layout should handle "disabledOn" prop 1`] = `
 </div>
 `;
 
-exports[`Layout should handle "element" prop 1`] = `
-<div>
-  <div
-    class="layout test-class "
-    element="main"
-    style="height: 128px;"
-  >
-    Hello, world!
-  </div>
-</div>
-`;
-
 exports[`Layout should renders correctly 1`] = `
 <div>
   <div

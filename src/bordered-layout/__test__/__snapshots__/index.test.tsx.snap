@@ -4,7 +4,7 @@ exports[`<BoBorderedLayoutrder /> without props 1`] = `
 <BorderedLayout>
   <MobileLayout
     disabledOn={
-      Array [
+      [
         "mxs",
         "ms",
       ]
@@ -30,7 +30,7 @@ exports[`<BoBorderedLayoutrder /> without props 2`] = `
 >
   <MobileLayout
     disabledOn={
-      Array [
+      [
         "mxs",
         "ms",
       ]
@@ -56,7 +56,7 @@ exports[`<BoBorderedLayoutrder /> without props 3`] = `
 >
   <MobileLayout
     disabledOn={
-      Array [
+      [
         "mxs",
         "ms",
       ]
@@ -82,7 +82,7 @@ exports[`<BoBorderedLayoutrder /> without props 4`] = `
 >
   <MobileLayout
     disabledOn={
-      Array [
+      [
         "mxs",
         "ms",
       ]

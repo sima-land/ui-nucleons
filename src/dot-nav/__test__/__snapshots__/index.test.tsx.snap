@@ -8,7 +8,7 @@ exports[`DotNav should handle "current" change 1`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -19,7 +19,7 @@ exports[`DotNav should handle "current" change 1`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -29,7 +29,7 @@ exports[`DotNav should handle "current" change 1`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -39,7 +39,7 @@ exports[`DotNav should handle "current" change 1`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -49,7 +49,7 @@ exports[`DotNav should handle "current" change 1`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "56px",
         }
       }
@@ -59,7 +59,7 @@ exports[`DotNav should handle "current" change 1`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "70px",
         }
       }
@@ -69,7 +69,7 @@ exports[`DotNav should handle "current" change 1`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "84px",
         }
       }
@@ -79,7 +79,7 @@ exports[`DotNav should handle "current" change 1`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "98px",
         }
       }
@@ -89,7 +89,7 @@ exports[`DotNav should handle "current" change 1`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "112px",
         }
       }
@@ -99,7 +99,7 @@ exports[`DotNav should handle "current" change 1`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "126px",
         }
       }
@@ -116,7 +116,7 @@ exports[`DotNav should handle "current" change 2`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -127,7 +127,7 @@ exports[`DotNav should handle "current" change 2`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -137,7 +137,7 @@ exports[`DotNav should handle "current" change 2`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -147,7 +147,7 @@ exports[`DotNav should handle "current" change 2`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -157,7 +157,7 @@ exports[`DotNav should handle "current" change 2`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "56px",
         }
       }
@@ -167,7 +167,7 @@ exports[`DotNav should handle "current" change 2`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "70px",
         }
       }
@@ -177,7 +177,7 @@ exports[`DotNav should handle "current" change 2`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "84px",
         }
       }
@@ -187,7 +187,7 @@ exports[`DotNav should handle "current" change 2`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "98px",
         }
       }
@@ -197,7 +197,7 @@ exports[`DotNav should handle "current" change 2`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "112px",
         }
       }
@@ -207,7 +207,7 @@ exports[`DotNav should handle "current" change 2`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "126px",
         }
       }
@@ -224,7 +224,7 @@ exports[`DotNav should handle "current" change 3`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -235,7 +235,7 @@ exports[`DotNav should handle "current" change 3`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -245,7 +245,7 @@ exports[`DotNav should handle "current" change 3`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -255,7 +255,7 @@ exports[`DotNav should handle "current" change 3`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -265,7 +265,7 @@ exports[`DotNav should handle "current" change 3`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "56px",
         }
       }
@@ -275,7 +275,7 @@ exports[`DotNav should handle "current" change 3`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "70px",
         }
       }
@@ -285,7 +285,7 @@ exports[`DotNav should handle "current" change 3`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "84px",
         }
       }
@@ -295,7 +295,7 @@ exports[`DotNav should handle "current" change 3`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "98px",
         }
       }
@@ -305,7 +305,7 @@ exports[`DotNav should handle "current" change 3`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "112px",
         }
       }
@@ -315,7 +315,7 @@ exports[`DotNav should handle "current" change 3`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "126px",
         }
       }
@@ -332,7 +332,7 @@ exports[`DotNav should handle "current" change 4`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -343,7 +343,7 @@ exports[`DotNav should handle "current" change 4`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -353,7 +353,7 @@ exports[`DotNav should handle "current" change 4`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -363,7 +363,7 @@ exports[`DotNav should handle "current" change 4`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -373,7 +373,7 @@ exports[`DotNav should handle "current" change 4`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "56px",
         }
       }
@@ -383,7 +383,7 @@ exports[`DotNav should handle "current" change 4`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "70px",
         }
       }
@@ -393,7 +393,7 @@ exports[`DotNav should handle "current" change 4`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "84px",
         }
       }
@@ -403,7 +403,7 @@ exports[`DotNav should handle "current" change 4`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "98px",
         }
       }
@@ -413,7 +413,7 @@ exports[`DotNav should handle "current" change 4`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "112px",
         }
       }
@@ -423,7 +423,7 @@ exports[`DotNav should handle "current" change 4`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "126px",
         }
       }
@@ -440,7 +440,7 @@ exports[`DotNav should handle "current" change 5`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -451,7 +451,7 @@ exports[`DotNav should handle "current" change 5`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -461,7 +461,7 @@ exports[`DotNav should handle "current" change 5`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -471,7 +471,7 @@ exports[`DotNav should handle "current" change 5`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -481,7 +481,7 @@ exports[`DotNav should handle "current" change 5`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -491,7 +491,7 @@ exports[`DotNav should handle "current" change 5`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "56px",
         }
       }
@@ -501,7 +501,7 @@ exports[`DotNav should handle "current" change 5`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "70px",
         }
       }
@@ -511,7 +511,7 @@ exports[`DotNav should handle "current" change 5`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "84px",
         }
       }
@@ -521,7 +521,7 @@ exports[`DotNav should handle "current" change 5`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "98px",
         }
       }
@@ -531,7 +531,7 @@ exports[`DotNav should handle "current" change 5`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "112px",
         }
       }
@@ -548,7 +548,7 @@ exports[`DotNav should handle "current" change 6`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -559,7 +559,7 @@ exports[`DotNav should handle "current" change 6`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-14px",
         }
       }
@@ -569,7 +569,7 @@ exports[`DotNav should handle "current" change 6`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -579,7 +579,7 @@ exports[`DotNav should handle "current" change 6`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -589,7 +589,7 @@ exports[`DotNav should handle "current" change 6`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -599,7 +599,7 @@ exports[`DotNav should handle "current" change 6`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -609,7 +609,7 @@ exports[`DotNav should handle "current" change 6`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "56px",
         }
       }
@@ -619,7 +619,7 @@ exports[`DotNav should handle "current" change 6`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "70px",
         }
       }
@@ -629,7 +629,7 @@ exports[`DotNav should handle "current" change 6`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "84px",
         }
       }
@@ -639,7 +639,7 @@ exports[`DotNav should handle "current" change 6`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "98px",
         }
       }
@@ -656,7 +656,7 @@ exports[`DotNav should handle "current" change 7`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -667,7 +667,7 @@ exports[`DotNav should handle "current" change 7`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-28px",
         }
       }
@@ -677,7 +677,7 @@ exports[`DotNav should handle "current" change 7`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-14px",
         }
       }
@@ -687,7 +687,7 @@ exports[`DotNav should handle "current" change 7`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -697,7 +697,7 @@ exports[`DotNav should handle "current" change 7`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -707,7 +707,7 @@ exports[`DotNav should handle "current" change 7`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -717,7 +717,7 @@ exports[`DotNav should handle "current" change 7`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -727,7 +727,7 @@ exports[`DotNav should handle "current" change 7`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "56px",
         }
       }
@@ -737,7 +737,7 @@ exports[`DotNav should handle "current" change 7`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "70px",
         }
       }
@@ -747,7 +747,7 @@ exports[`DotNav should handle "current" change 7`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "84px",
         }
       }
@@ -764,7 +764,7 @@ exports[`DotNav should handle "current" change 8`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -775,7 +775,7 @@ exports[`DotNav should handle "current" change 8`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-42px",
         }
       }
@@ -785,7 +785,7 @@ exports[`DotNav should handle "current" change 8`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-28px",
         }
       }
@@ -795,7 +795,7 @@ exports[`DotNav should handle "current" change 8`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-14px",
         }
       }
@@ -805,7 +805,7 @@ exports[`DotNav should handle "current" change 8`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -815,7 +815,7 @@ exports[`DotNav should handle "current" change 8`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -825,7 +825,7 @@ exports[`DotNav should handle "current" change 8`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -835,7 +835,7 @@ exports[`DotNav should handle "current" change 8`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -845,7 +845,7 @@ exports[`DotNav should handle "current" change 8`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "56px",
         }
       }
@@ -855,7 +855,7 @@ exports[`DotNav should handle "current" change 8`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "70px",
         }
       }
@@ -872,7 +872,7 @@ exports[`DotNav should handle "current" change 9`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -883,7 +883,7 @@ exports[`DotNav should handle "current" change 9`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-56px",
         }
       }
@@ -893,7 +893,7 @@ exports[`DotNav should handle "current" change 9`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-42px",
         }
       }
@@ -903,7 +903,7 @@ exports[`DotNav should handle "current" change 9`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-28px",
         }
       }
@@ -913,7 +913,7 @@ exports[`DotNav should handle "current" change 9`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-14px",
         }
       }
@@ -923,7 +923,7 @@ exports[`DotNav should handle "current" change 9`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -933,7 +933,7 @@ exports[`DotNav should handle "current" change 9`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -943,7 +943,7 @@ exports[`DotNav should handle "current" change 9`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -953,7 +953,7 @@ exports[`DotNav should handle "current" change 9`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -963,7 +963,7 @@ exports[`DotNav should handle "current" change 9`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "56px",
         }
       }
@@ -980,7 +980,7 @@ exports[`DotNav should handle "current" change 10`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -991,7 +991,7 @@ exports[`DotNav should handle "current" change 10`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-70px",
         }
       }
@@ -1001,7 +1001,7 @@ exports[`DotNav should handle "current" change 10`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-56px",
         }
       }
@@ -1011,7 +1011,7 @@ exports[`DotNav should handle "current" change 10`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-42px",
         }
       }
@@ -1021,7 +1021,7 @@ exports[`DotNav should handle "current" change 10`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-28px",
         }
       }
@@ -1031,7 +1031,7 @@ exports[`DotNav should handle "current" change 10`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-14px",
         }
       }
@@ -1041,7 +1041,7 @@ exports[`DotNav should handle "current" change 10`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -1051,7 +1051,7 @@ exports[`DotNav should handle "current" change 10`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -1061,7 +1061,7 @@ exports[`DotNav should handle "current" change 10`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -1071,7 +1071,7 @@ exports[`DotNav should handle "current" change 10`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -1088,7 +1088,7 @@ exports[`DotNav should handle "current" change 11`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -1099,7 +1099,7 @@ exports[`DotNav should handle "current" change 11`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-70px",
         }
       }
@@ -1109,7 +1109,7 @@ exports[`DotNav should handle "current" change 11`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-56px",
         }
       }
@@ -1119,7 +1119,7 @@ exports[`DotNav should handle "current" change 11`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-42px",
         }
       }
@@ -1129,7 +1129,7 @@ exports[`DotNav should handle "current" change 11`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-28px",
         }
       }
@@ -1139,7 +1139,7 @@ exports[`DotNav should handle "current" change 11`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-14px",
         }
       }
@@ -1149,7 +1149,7 @@ exports[`DotNav should handle "current" change 11`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -1159,7 +1159,7 @@ exports[`DotNav should handle "current" change 11`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -1169,7 +1169,7 @@ exports[`DotNav should handle "current" change 11`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -1179,7 +1179,7 @@ exports[`DotNav should handle "current" change 11`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -1196,7 +1196,7 @@ exports[`DotNav should handle "current" change 12`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -1207,7 +1207,7 @@ exports[`DotNav should handle "current" change 12`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-70px",
         }
       }
@@ -1217,7 +1217,7 @@ exports[`DotNav should handle "current" change 12`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-56px",
         }
       }
@@ -1227,7 +1227,7 @@ exports[`DotNav should handle "current" change 12`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-42px",
         }
       }
@@ -1237,7 +1237,7 @@ exports[`DotNav should handle "current" change 12`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-28px",
         }
       }
@@ -1247,7 +1247,7 @@ exports[`DotNav should handle "current" change 12`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-14px",
         }
       }
@@ -1257,7 +1257,7 @@ exports[`DotNav should handle "current" change 12`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -1267,7 +1267,7 @@ exports[`DotNav should handle "current" change 12`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -1277,7 +1277,7 @@ exports[`DotNav should handle "current" change 12`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -1287,7 +1287,7 @@ exports[`DotNav should handle "current" change 12`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -1304,7 +1304,7 @@ exports[`DotNav should handle "current" change 13`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -1315,7 +1315,7 @@ exports[`DotNav should handle "current" change 13`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-70px",
         }
       }
@@ -1325,7 +1325,7 @@ exports[`DotNav should handle "current" change 13`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-56px",
         }
       }
@@ -1335,7 +1335,7 @@ exports[`DotNav should handle "current" change 13`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-42px",
         }
       }
@@ -1345,7 +1345,7 @@ exports[`DotNav should handle "current" change 13`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-28px",
         }
       }
@@ -1355,7 +1355,7 @@ exports[`DotNav should handle "current" change 13`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-14px",
         }
       }
@@ -1365,7 +1365,7 @@ exports[`DotNav should handle "current" change 13`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -1375,7 +1375,7 @@ exports[`DotNav should handle "current" change 13`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -1385,7 +1385,7 @@ exports[`DotNav should handle "current" change 13`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -1395,7 +1395,7 @@ exports[`DotNav should handle "current" change 13`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -1412,7 +1412,7 @@ exports[`DotNav should handle "current" change 14`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -1423,7 +1423,7 @@ exports[`DotNav should handle "current" change 14`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-56px",
         }
       }
@@ -1433,7 +1433,7 @@ exports[`DotNav should handle "current" change 14`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-42px",
         }
       }
@@ -1443,7 +1443,7 @@ exports[`DotNav should handle "current" change 14`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-28px",
         }
       }
@@ -1453,7 +1453,7 @@ exports[`DotNav should handle "current" change 14`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-14px",
         }
       }
@@ -1463,7 +1463,7 @@ exports[`DotNav should handle "current" change 14`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -1473,7 +1473,7 @@ exports[`DotNav should handle "current" change 14`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -1483,7 +1483,7 @@ exports[`DotNav should handle "current" change 14`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -1493,7 +1493,7 @@ exports[`DotNav should handle "current" change 14`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -1503,7 +1503,7 @@ exports[`DotNav should handle "current" change 14`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "56px",
         }
       }
@@ -1520,7 +1520,7 @@ exports[`DotNav should handle "current" change 15`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -1531,7 +1531,7 @@ exports[`DotNav should handle "current" change 15`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-42px",
         }
       }
@@ -1541,7 +1541,7 @@ exports[`DotNav should handle "current" change 15`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-28px",
         }
       }
@@ -1551,7 +1551,7 @@ exports[`DotNav should handle "current" change 15`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-14px",
         }
       }
@@ -1561,7 +1561,7 @@ exports[`DotNav should handle "current" change 15`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -1571,7 +1571,7 @@ exports[`DotNav should handle "current" change 15`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -1581,7 +1581,7 @@ exports[`DotNav should handle "current" change 15`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -1591,7 +1591,7 @@ exports[`DotNav should handle "current" change 15`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -1601,7 +1601,7 @@ exports[`DotNav should handle "current" change 15`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "56px",
         }
       }
@@ -1611,7 +1611,7 @@ exports[`DotNav should handle "current" change 15`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "70px",
         }
       }
@@ -1628,7 +1628,7 @@ exports[`DotNav should handle "current" change 16`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -1639,7 +1639,7 @@ exports[`DotNav should handle "current" change 16`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-28px",
         }
       }
@@ -1649,7 +1649,7 @@ exports[`DotNav should handle "current" change 16`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-14px",
         }
       }
@@ -1659,7 +1659,7 @@ exports[`DotNav should handle "current" change 16`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -1669,7 +1669,7 @@ exports[`DotNav should handle "current" change 16`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -1679,7 +1679,7 @@ exports[`DotNav should handle "current" change 16`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -1689,7 +1689,7 @@ exports[`DotNav should handle "current" change 16`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -1699,7 +1699,7 @@ exports[`DotNav should handle "current" change 16`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "56px",
         }
       }
@@ -1709,7 +1709,7 @@ exports[`DotNav should handle "current" change 16`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "70px",
         }
       }
@@ -1719,7 +1719,7 @@ exports[`DotNav should handle "current" change 16`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "84px",
         }
       }
@@ -1736,7 +1736,7 @@ exports[`DotNav should handle "current" change 17`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -1747,7 +1747,7 @@ exports[`DotNav should handle "current" change 17`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-14px",
         }
       }
@@ -1757,7 +1757,7 @@ exports[`DotNav should handle "current" change 17`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -1767,7 +1767,7 @@ exports[`DotNav should handle "current" change 17`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -1777,7 +1777,7 @@ exports[`DotNav should handle "current" change 17`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -1787,7 +1787,7 @@ exports[`DotNav should handle "current" change 17`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -1797,7 +1797,7 @@ exports[`DotNav should handle "current" change 17`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "56px",
         }
       }
@@ -1807,7 +1807,7 @@ exports[`DotNav should handle "current" change 17`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "70px",
         }
       }
@@ -1817,7 +1817,7 @@ exports[`DotNav should handle "current" change 17`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "84px",
         }
       }
@@ -1827,7 +1827,7 @@ exports[`DotNav should handle "current" change 17`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "98px",
         }
       }
@@ -1844,7 +1844,7 @@ exports[`DotNav should handle "current" change 18`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -1855,7 +1855,7 @@ exports[`DotNav should handle "current" change 18`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -1865,7 +1865,7 @@ exports[`DotNav should handle "current" change 18`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -1875,7 +1875,7 @@ exports[`DotNav should handle "current" change 18`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -1885,7 +1885,7 @@ exports[`DotNav should handle "current" change 18`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -1895,7 +1895,7 @@ exports[`DotNav should handle "current" change 18`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "56px",
         }
       }
@@ -1905,7 +1905,7 @@ exports[`DotNav should handle "current" change 18`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "70px",
         }
       }
@@ -1915,7 +1915,7 @@ exports[`DotNav should handle "current" change 18`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "84px",
         }
       }
@@ -1925,7 +1925,7 @@ exports[`DotNav should handle "current" change 18`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "98px",
         }
       }
@@ -1935,7 +1935,7 @@ exports[`DotNav should handle "current" change 18`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "112px",
         }
       }
@@ -1952,7 +1952,7 @@ exports[`DotNav should handle "current" change 19`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -1963,7 +1963,7 @@ exports[`DotNav should handle "current" change 19`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -1973,7 +1973,7 @@ exports[`DotNav should handle "current" change 19`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -1983,7 +1983,7 @@ exports[`DotNav should handle "current" change 19`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -1993,7 +1993,7 @@ exports[`DotNav should handle "current" change 19`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "56px",
         }
       }
@@ -2003,7 +2003,7 @@ exports[`DotNav should handle "current" change 19`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "70px",
         }
       }
@@ -2013,7 +2013,7 @@ exports[`DotNav should handle "current" change 19`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "84px",
         }
       }
@@ -2023,7 +2023,7 @@ exports[`DotNav should handle "current" change 19`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "98px",
         }
       }
@@ -2033,7 +2033,7 @@ exports[`DotNav should handle "current" change 19`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "112px",
         }
       }
@@ -2043,7 +2043,7 @@ exports[`DotNav should handle "current" change 19`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "126px",
         }
       }
@@ -2061,7 +2061,7 @@ exports[`DotNav should handle "size" prop 1`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -2072,7 +2072,7 @@ exports[`DotNav should handle "size" prop 1`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -2082,7 +2082,7 @@ exports[`DotNav should handle "size" prop 1`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -2092,7 +2092,7 @@ exports[`DotNav should handle "size" prop 1`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -2102,7 +2102,7 @@ exports[`DotNav should handle "size" prop 1`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "80px",
         }
       }
@@ -2112,7 +2112,7 @@ exports[`DotNav should handle "size" prop 1`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "100px",
         }
       }
@@ -2122,7 +2122,7 @@ exports[`DotNav should handle "size" prop 1`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "120px",
         }
       }
@@ -2132,7 +2132,7 @@ exports[`DotNav should handle "size" prop 1`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "140px",
         }
       }
@@ -2142,7 +2142,7 @@ exports[`DotNav should handle "size" prop 1`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "160px",
         }
       }
@@ -2152,7 +2152,7 @@ exports[`DotNav should handle "size" prop 1`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "180px",
         }
       }
@@ -2170,7 +2170,7 @@ exports[`DotNav should handle "size" prop 2`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -2181,7 +2181,7 @@ exports[`DotNav should handle "size" prop 2`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -2191,7 +2191,7 @@ exports[`DotNav should handle "size" prop 2`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -2201,7 +2201,7 @@ exports[`DotNav should handle "size" prop 2`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -2211,7 +2211,7 @@ exports[`DotNav should handle "size" prop 2`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "80px",
         }
       }
@@ -2221,7 +2221,7 @@ exports[`DotNav should handle "size" prop 2`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "100px",
         }
       }
@@ -2231,7 +2231,7 @@ exports[`DotNav should handle "size" prop 2`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "120px",
         }
       }
@@ -2241,7 +2241,7 @@ exports[`DotNav should handle "size" prop 2`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "140px",
         }
       }
@@ -2251,7 +2251,7 @@ exports[`DotNav should handle "size" prop 2`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "160px",
         }
       }
@@ -2261,7 +2261,7 @@ exports[`DotNav should handle "size" prop 2`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "180px",
         }
       }
@@ -2279,7 +2279,7 @@ exports[`DotNav should handle "size" prop 3`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -2290,7 +2290,7 @@ exports[`DotNav should handle "size" prop 3`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -2300,7 +2300,7 @@ exports[`DotNav should handle "size" prop 3`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -2310,7 +2310,7 @@ exports[`DotNav should handle "size" prop 3`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -2320,7 +2320,7 @@ exports[`DotNav should handle "size" prop 3`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "80px",
         }
       }
@@ -2330,7 +2330,7 @@ exports[`DotNav should handle "size" prop 3`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "100px",
         }
       }
@@ -2340,7 +2340,7 @@ exports[`DotNav should handle "size" prop 3`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "120px",
         }
       }
@@ -2350,7 +2350,7 @@ exports[`DotNav should handle "size" prop 3`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "140px",
         }
       }
@@ -2360,7 +2360,7 @@ exports[`DotNav should handle "size" prop 3`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "160px",
         }
       }
@@ -2370,7 +2370,7 @@ exports[`DotNav should handle "size" prop 3`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "180px",
         }
       }
@@ -2388,7 +2388,7 @@ exports[`DotNav should handle "size" prop 4`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -2399,7 +2399,7 @@ exports[`DotNav should handle "size" prop 4`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -2409,7 +2409,7 @@ exports[`DotNav should handle "size" prop 4`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -2419,7 +2419,7 @@ exports[`DotNav should handle "size" prop 4`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -2429,7 +2429,7 @@ exports[`DotNav should handle "size" prop 4`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "80px",
         }
       }
@@ -2439,7 +2439,7 @@ exports[`DotNav should handle "size" prop 4`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "100px",
         }
       }
@@ -2449,7 +2449,7 @@ exports[`DotNav should handle "size" prop 4`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "120px",
         }
       }
@@ -2459,7 +2459,7 @@ exports[`DotNav should handle "size" prop 4`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "140px",
         }
       }
@@ -2469,7 +2469,7 @@ exports[`DotNav should handle "size" prop 4`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "160px",
         }
       }
@@ -2479,7 +2479,7 @@ exports[`DotNav should handle "size" prop 4`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "180px",
         }
       }
@@ -2497,7 +2497,7 @@ exports[`DotNav should handle "size" prop 5`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -2508,7 +2508,7 @@ exports[`DotNav should handle "size" prop 5`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -2518,7 +2518,7 @@ exports[`DotNav should handle "size" prop 5`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -2528,7 +2528,7 @@ exports[`DotNav should handle "size" prop 5`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -2538,7 +2538,7 @@ exports[`DotNav should handle "size" prop 5`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -2548,7 +2548,7 @@ exports[`DotNav should handle "size" prop 5`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "80px",
         }
       }
@@ -2558,7 +2558,7 @@ exports[`DotNav should handle "size" prop 5`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "100px",
         }
       }
@@ -2568,7 +2568,7 @@ exports[`DotNav should handle "size" prop 5`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "120px",
         }
       }
@@ -2578,7 +2578,7 @@ exports[`DotNav should handle "size" prop 5`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "140px",
         }
       }
@@ -2588,7 +2588,7 @@ exports[`DotNav should handle "size" prop 5`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "160px",
         }
       }
@@ -2606,7 +2606,7 @@ exports[`DotNav should handle "size" prop 6`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -2617,7 +2617,7 @@ exports[`DotNav should handle "size" prop 6`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-20px",
         }
       }
@@ -2627,7 +2627,7 @@ exports[`DotNav should handle "size" prop 6`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -2637,7 +2637,7 @@ exports[`DotNav should handle "size" prop 6`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -2647,7 +2647,7 @@ exports[`DotNav should handle "size" prop 6`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -2657,7 +2657,7 @@ exports[`DotNav should handle "size" prop 6`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -2667,7 +2667,7 @@ exports[`DotNav should handle "size" prop 6`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "80px",
         }
       }
@@ -2677,7 +2677,7 @@ exports[`DotNav should handle "size" prop 6`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "100px",
         }
       }
@@ -2687,7 +2687,7 @@ exports[`DotNav should handle "size" prop 6`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "120px",
         }
       }
@@ -2697,7 +2697,7 @@ exports[`DotNav should handle "size" prop 6`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "140px",
         }
       }
@@ -2715,7 +2715,7 @@ exports[`DotNav should handle "size" prop 7`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -2726,7 +2726,7 @@ exports[`DotNav should handle "size" prop 7`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-40px",
         }
       }
@@ -2736,7 +2736,7 @@ exports[`DotNav should handle "size" prop 7`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-20px",
         }
       }
@@ -2746,7 +2746,7 @@ exports[`DotNav should handle "size" prop 7`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -2756,7 +2756,7 @@ exports[`DotNav should handle "size" prop 7`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -2766,7 +2766,7 @@ exports[`DotNav should handle "size" prop 7`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -2776,7 +2776,7 @@ exports[`DotNav should handle "size" prop 7`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -2786,7 +2786,7 @@ exports[`DotNav should handle "size" prop 7`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "80px",
         }
       }
@@ -2796,7 +2796,7 @@ exports[`DotNav should handle "size" prop 7`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "100px",
         }
       }
@@ -2806,7 +2806,7 @@ exports[`DotNav should handle "size" prop 7`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "120px",
         }
       }
@@ -2824,7 +2824,7 @@ exports[`DotNav should handle "size" prop 8`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -2835,7 +2835,7 @@ exports[`DotNav should handle "size" prop 8`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-60px",
         }
       }
@@ -2845,7 +2845,7 @@ exports[`DotNav should handle "size" prop 8`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-40px",
         }
       }
@@ -2855,7 +2855,7 @@ exports[`DotNav should handle "size" prop 8`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-20px",
         }
       }
@@ -2865,7 +2865,7 @@ exports[`DotNav should handle "size" prop 8`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -2875,7 +2875,7 @@ exports[`DotNav should handle "size" prop 8`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -2885,7 +2885,7 @@ exports[`DotNav should handle "size" prop 8`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -2895,7 +2895,7 @@ exports[`DotNav should handle "size" prop 8`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -2905,7 +2905,7 @@ exports[`DotNav should handle "size" prop 8`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "80px",
         }
       }
@@ -2915,7 +2915,7 @@ exports[`DotNav should handle "size" prop 8`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "100px",
         }
       }
@@ -2933,7 +2933,7 @@ exports[`DotNav should handle "size" prop 9`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -2944,7 +2944,7 @@ exports[`DotNav should handle "size" prop 9`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-80px",
         }
       }
@@ -2954,7 +2954,7 @@ exports[`DotNav should handle "size" prop 9`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-60px",
         }
       }
@@ -2964,7 +2964,7 @@ exports[`DotNav should handle "size" prop 9`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-40px",
         }
       }
@@ -2974,7 +2974,7 @@ exports[`DotNav should handle "size" prop 9`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-20px",
         }
       }
@@ -2984,7 +2984,7 @@ exports[`DotNav should handle "size" prop 9`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -2994,7 +2994,7 @@ exports[`DotNav should handle "size" prop 9`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -3004,7 +3004,7 @@ exports[`DotNav should handle "size" prop 9`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -3014,7 +3014,7 @@ exports[`DotNav should handle "size" prop 9`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -3024,7 +3024,7 @@ exports[`DotNav should handle "size" prop 9`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "80px",
         }
       }
@@ -3042,7 +3042,7 @@ exports[`DotNav should handle "size" prop 10`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -3053,7 +3053,7 @@ exports[`DotNav should handle "size" prop 10`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-100px",
         }
       }
@@ -3063,7 +3063,7 @@ exports[`DotNav should handle "size" prop 10`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-80px",
         }
       }
@@ -3073,7 +3073,7 @@ exports[`DotNav should handle "size" prop 10`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-60px",
         }
       }
@@ -3083,7 +3083,7 @@ exports[`DotNav should handle "size" prop 10`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-40px",
         }
       }
@@ -3093,7 +3093,7 @@ exports[`DotNav should handle "size" prop 10`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-20px",
         }
       }
@@ -3103,7 +3103,7 @@ exports[`DotNav should handle "size" prop 10`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -3113,7 +3113,7 @@ exports[`DotNav should handle "size" prop 10`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -3123,7 +3123,7 @@ exports[`DotNav should handle "size" prop 10`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -3133,7 +3133,7 @@ exports[`DotNav should handle "size" prop 10`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -3151,7 +3151,7 @@ exports[`DotNav should handle "size" prop 11`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -3162,7 +3162,7 @@ exports[`DotNav should handle "size" prop 11`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-100px",
         }
       }
@@ -3172,7 +3172,7 @@ exports[`DotNav should handle "size" prop 11`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-80px",
         }
       }
@@ -3182,7 +3182,7 @@ exports[`DotNav should handle "size" prop 11`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-60px",
         }
       }
@@ -3192,7 +3192,7 @@ exports[`DotNav should handle "size" prop 11`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-40px",
         }
       }
@@ -3202,7 +3202,7 @@ exports[`DotNav should handle "size" prop 11`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-20px",
         }
       }
@@ -3212,7 +3212,7 @@ exports[`DotNav should handle "size" prop 11`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -3222,7 +3222,7 @@ exports[`DotNav should handle "size" prop 11`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -3232,7 +3232,7 @@ exports[`DotNav should handle "size" prop 11`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -3242,7 +3242,7 @@ exports[`DotNav should handle "size" prop 11`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -3260,7 +3260,7 @@ exports[`DotNav should handle "size" prop 12`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -3271,7 +3271,7 @@ exports[`DotNav should handle "size" prop 12`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-100px",
         }
       }
@@ -3281,7 +3281,7 @@ exports[`DotNav should handle "size" prop 12`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-80px",
         }
       }
@@ -3291,7 +3291,7 @@ exports[`DotNav should handle "size" prop 12`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-60px",
         }
       }
@@ -3301,7 +3301,7 @@ exports[`DotNav should handle "size" prop 12`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-40px",
         }
       }
@@ -3311,7 +3311,7 @@ exports[`DotNav should handle "size" prop 12`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-20px",
         }
       }
@@ -3321,7 +3321,7 @@ exports[`DotNav should handle "size" prop 12`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -3331,7 +3331,7 @@ exports[`DotNav should handle "size" prop 12`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -3341,7 +3341,7 @@ exports[`DotNav should handle "size" prop 12`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -3351,7 +3351,7 @@ exports[`DotNav should handle "size" prop 12`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -3369,7 +3369,7 @@ exports[`DotNav should handle "size" prop 13`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -3380,7 +3380,7 @@ exports[`DotNav should handle "size" prop 13`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-100px",
         }
       }
@@ -3390,7 +3390,7 @@ exports[`DotNav should handle "size" prop 13`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-80px",
         }
       }
@@ -3400,7 +3400,7 @@ exports[`DotNav should handle "size" prop 13`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-60px",
         }
       }
@@ -3410,7 +3410,7 @@ exports[`DotNav should handle "size" prop 13`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-40px",
         }
       }
@@ -3420,7 +3420,7 @@ exports[`DotNav should handle "size" prop 13`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-20px",
         }
       }
@@ -3430,7 +3430,7 @@ exports[`DotNav should handle "size" prop 13`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -3440,7 +3440,7 @@ exports[`DotNav should handle "size" prop 13`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -3450,7 +3450,7 @@ exports[`DotNav should handle "size" prop 13`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -3460,7 +3460,7 @@ exports[`DotNav should handle "size" prop 13`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -3478,7 +3478,7 @@ exports[`DotNav should handle "size" prop 14`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -3489,7 +3489,7 @@ exports[`DotNav should handle "size" prop 14`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-80px",
         }
       }
@@ -3499,7 +3499,7 @@ exports[`DotNav should handle "size" prop 14`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-60px",
         }
       }
@@ -3509,7 +3509,7 @@ exports[`DotNav should handle "size" prop 14`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-40px",
         }
       }
@@ -3519,7 +3519,7 @@ exports[`DotNav should handle "size" prop 14`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-20px",
         }
       }
@@ -3529,7 +3529,7 @@ exports[`DotNav should handle "size" prop 14`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -3539,7 +3539,7 @@ exports[`DotNav should handle "size" prop 14`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -3549,7 +3549,7 @@ exports[`DotNav should handle "size" prop 14`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -3559,7 +3559,7 @@ exports[`DotNav should handle "size" prop 14`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -3569,7 +3569,7 @@ exports[`DotNav should handle "size" prop 14`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "80px",
         }
       }
@@ -3587,7 +3587,7 @@ exports[`DotNav should handle "size" prop 15`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -3598,7 +3598,7 @@ exports[`DotNav should handle "size" prop 15`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-60px",
         }
       }
@@ -3608,7 +3608,7 @@ exports[`DotNav should handle "size" prop 15`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-40px",
         }
       }
@@ -3618,7 +3618,7 @@ exports[`DotNav should handle "size" prop 15`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-20px",
         }
       }
@@ -3628,7 +3628,7 @@ exports[`DotNav should handle "size" prop 15`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -3638,7 +3638,7 @@ exports[`DotNav should handle "size" prop 15`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -3648,7 +3648,7 @@ exports[`DotNav should handle "size" prop 15`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -3658,7 +3658,7 @@ exports[`DotNav should handle "size" prop 15`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -3668,7 +3668,7 @@ exports[`DotNav should handle "size" prop 15`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "80px",
         }
       }
@@ -3678,7 +3678,7 @@ exports[`DotNav should handle "size" prop 15`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "100px",
         }
       }
@@ -3696,7 +3696,7 @@ exports[`DotNav should handle "size" prop 16`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -3707,7 +3707,7 @@ exports[`DotNav should handle "size" prop 16`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-40px",
         }
       }
@@ -3717,7 +3717,7 @@ exports[`DotNav should handle "size" prop 16`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-20px",
         }
       }
@@ -3727,7 +3727,7 @@ exports[`DotNav should handle "size" prop 16`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -3737,7 +3737,7 @@ exports[`DotNav should handle "size" prop 16`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -3747,7 +3747,7 @@ exports[`DotNav should handle "size" prop 16`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -3757,7 +3757,7 @@ exports[`DotNav should handle "size" prop 16`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -3767,7 +3767,7 @@ exports[`DotNav should handle "size" prop 16`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "80px",
         }
       }
@@ -3777,7 +3777,7 @@ exports[`DotNav should handle "size" prop 16`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "100px",
         }
       }
@@ -3787,7 +3787,7 @@ exports[`DotNav should handle "size" prop 16`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "120px",
         }
       }
@@ -3805,7 +3805,7 @@ exports[`DotNav should handle "size" prop 17`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -3816,7 +3816,7 @@ exports[`DotNav should handle "size" prop 17`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "-20px",
         }
       }
@@ -3826,7 +3826,7 @@ exports[`DotNav should handle "size" prop 17`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -3836,7 +3836,7 @@ exports[`DotNav should handle "size" prop 17`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -3846,7 +3846,7 @@ exports[`DotNav should handle "size" prop 17`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -3856,7 +3856,7 @@ exports[`DotNav should handle "size" prop 17`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -3866,7 +3866,7 @@ exports[`DotNav should handle "size" prop 17`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "80px",
         }
       }
@@ -3876,7 +3876,7 @@ exports[`DotNav should handle "size" prop 17`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "100px",
         }
       }
@@ -3886,7 +3886,7 @@ exports[`DotNav should handle "size" prop 17`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "120px",
         }
       }
@@ -3896,7 +3896,7 @@ exports[`DotNav should handle "size" prop 17`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "140px",
         }
       }
@@ -3914,7 +3914,7 @@ exports[`DotNav should handle "size" prop 18`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -3925,7 +3925,7 @@ exports[`DotNav should handle "size" prop 18`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "0px",
         }
       }
@@ -3935,7 +3935,7 @@ exports[`DotNav should handle "size" prop 18`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -3945,7 +3945,7 @@ exports[`DotNav should handle "size" prop 18`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -3955,7 +3955,7 @@ exports[`DotNav should handle "size" prop 18`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -3965,7 +3965,7 @@ exports[`DotNav should handle "size" prop 18`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "80px",
         }
       }
@@ -3975,7 +3975,7 @@ exports[`DotNav should handle "size" prop 18`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "100px",
         }
       }
@@ -3985,7 +3985,7 @@ exports[`DotNav should handle "size" prop 18`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "120px",
         }
       }
@@ -3995,7 +3995,7 @@ exports[`DotNav should handle "size" prop 18`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "140px",
         }
       }
@@ -4005,7 +4005,7 @@ exports[`DotNav should handle "size" prop 18`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "160px",
         }
       }
@@ -4023,7 +4023,7 @@ exports[`DotNav should handle "size" prop 19`] = `
   <div
     className="root size-l"
     style={
-      Object {
+      {
         "height": 14,
         "width": 94,
       }
@@ -4034,7 +4034,7 @@ exports[`DotNav should handle "size" prop 19`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "20px",
         }
       }
@@ -4044,7 +4044,7 @@ exports[`DotNav should handle "size" prop 19`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "40px",
         }
       }
@@ -4054,7 +4054,7 @@ exports[`DotNav should handle "size" prop 19`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "60px",
         }
       }
@@ -4064,7 +4064,7 @@ exports[`DotNav should handle "size" prop 19`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "80px",
         }
       }
@@ -4074,7 +4074,7 @@ exports[`DotNav should handle "size" prop 19`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "100px",
         }
       }
@@ -4084,7 +4084,7 @@ exports[`DotNav should handle "size" prop 19`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "120px",
         }
       }
@@ -4094,7 +4094,7 @@ exports[`DotNav should handle "size" prop 19`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "140px",
         }
       }
@@ -4104,7 +4104,7 @@ exports[`DotNav should handle "size" prop 19`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "160px",
         }
       }
@@ -4114,7 +4114,7 @@ exports[`DotNav should handle "size" prop 19`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "180px",
         }
       }
@@ -4132,7 +4132,7 @@ exports[`DotNav should handle props 1`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -4143,7 +4143,7 @@ exports[`DotNav should handle props 1`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "14px",
         }
       }
@@ -4153,7 +4153,7 @@ exports[`DotNav should handle props 1`] = `
       key="1"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }
@@ -4163,7 +4163,7 @@ exports[`DotNav should handle props 1`] = `
       key="2"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "42px",
         }
       }
@@ -4173,7 +4173,7 @@ exports[`DotNav should handle props 1`] = `
       key="3"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "56px",
         }
       }
@@ -4183,7 +4183,7 @@ exports[`DotNav should handle props 1`] = `
       key="4"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "70px",
         }
       }
@@ -4193,7 +4193,7 @@ exports[`DotNav should handle props 1`] = `
       key="5"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "84px",
         }
       }
@@ -4203,7 +4203,7 @@ exports[`DotNav should handle props 1`] = `
       key="6"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "98px",
         }
       }
@@ -4213,7 +4213,7 @@ exports[`DotNav should handle props 1`] = `
       key="7"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "112px",
         }
       }
@@ -4223,7 +4223,7 @@ exports[`DotNav should handle props 1`] = `
       key="8"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "126px",
         }
       }
@@ -4233,7 +4233,7 @@ exports[`DotNav should handle props 1`] = `
       key="9"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "140px",
         }
       }
@@ -4243,7 +4243,7 @@ exports[`DotNav should handle props 1`] = `
       key="10"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "154px",
         }
       }
@@ -4253,7 +4253,7 @@ exports[`DotNav should handle props 1`] = `
       key="11"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "168px",
         }
       }
@@ -4267,7 +4267,7 @@ exports[`DotNav should renders without props 1`] = `
   <div
     className="root size-s"
     style={
-      Object {
+      {
         "height": 14,
         "width": 70,
       }
@@ -4278,7 +4278,7 @@ exports[`DotNav should renders without props 1`] = `
       key="0"
       onClick={[Function]}
       style={
-        Object {
+        {
           "left": "28px",
         }
       }

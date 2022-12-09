@@ -46,7 +46,7 @@ exports[`<WithHint /> should renders correctly 2`] = `
       <PositioningHint
         direction="top"
         openerRef={
-          Object {
+          {
             "current": <div
               data-testid="test-opener"
             >
@@ -59,7 +59,7 @@ exports[`<WithHint /> should renders correctly 2`] = `
           className="hint hidden"
           direction="top"
           style={
-            Object {
+            {
               "zIndex": 1,
             }
           }
@@ -68,7 +68,7 @@ exports[`<WithHint /> should renders correctly 2`] = `
             className="root hint hidden top"
             data-testid="hint"
             style={
-              Object {
+              {
                 "zIndex": 1,
               }
             }

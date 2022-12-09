@@ -20,7 +20,7 @@ exports[`<PhoneInput /> Other: should render just text field with able to input 
           <img
             alt=""
             height={24}
-            src="/src/phone-input/images/other.png"
+            src="other.png"
             width={24}
           />
           <ForwardRef(DownSVG)
@@ -33,6 +33,7 @@ exports[`<PhoneInput /> Other: should render just text field with able to input 
       onBlur={[Function]}
       onChange={[Function]}
       onClick={[Function]}
+      value="0000000"
     >
       <div
         className="root field"
@@ -46,7 +47,7 @@ exports[`<PhoneInput /> Other: should render just text field with able to input 
             className="main-column"
           >
             <label
-              className="label variant-desktop as-placeholder"
+              className="label variant-desktop filled"
               data-testid="text-field:label"
             >
               Телефон
@@ -62,6 +63,7 @@ exports[`<PhoneInput /> Other: should render just text field with able to input 
                 onChange={[Function]}
                 onFocus={[Function]}
                 onInput={[Function]}
+                value="0000000"
               >
                 <div
                   className="reset root base-input variant-desktop size-l"
@@ -74,6 +76,7 @@ exports[`<PhoneInput /> Other: should render just text field with able to input 
                     onChange={[Function]}
                     onFocus={[Function]}
                     onInput={[Function]}
+                    value="0000000"
                   />
                 </div>
               </ForwardRef(BaseInput)>
@@ -95,7 +98,7 @@ exports[`<PhoneInput /> Other: should render just text field with able to input 
                 <img
                   alt=""
                   height={24}
-                  src="/src/phone-input/images/other.png"
+                  src="other.png"
                   width={24}
                 />
                 <ForwardRef(DownSVG)
@@ -140,7 +143,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
           <img
             alt=""
             height={24}
-            src="/src/phone-input/images/russia.png"
+            src="russia.png"
             width={24}
           />
           <ForwardRef(DownSVG)
@@ -166,7 +169,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
             <img
               alt=""
               height={24}
-              src="/src/phone-input/images/russia.png"
+              src="russia.png"
               width={24}
             />
             <ForwardRef(DownSVG)
@@ -179,7 +182,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
         onBlur={[Function]}
         onClick={[Function]}
         restPlaceholder={
-          Object {
+          {
             "shiftValue": "+7 (",
             "value": "___) ___-__-__",
           }
@@ -214,7 +217,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
                   onFocus={[Function]}
                   onInput={[Function]}
                   restPlaceholder={
-                    Object {
+                    {
                       "shiftValue": "+7 (",
                       "value": "___) ___-__-__",
                     }
@@ -267,7 +270,7 @@ exports[`<PhoneInput /> should render without props 1`] = `
                   <img
                     alt=""
                     height={24}
-                    src="/src/phone-input/images/russia.png"
+                    src="russia.png"
                     width={24}
                   />
                   <ForwardRef(DownSVG)

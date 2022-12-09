@@ -8,8 +8,8 @@ exports[`CustomScrollbar should handle onFullScroll/fullScrollThreshold 1`] = `
   <OverlayScrollbarsComponent
     className="custom-scrollbar"
     options={
-      Object {
-        "callbacks": Object {
+      {
+        "callbacks": {
           "onScrollStop": [Function],
         },
         "overflowBehavior": undefined,

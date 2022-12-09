@@ -4,7 +4,7 @@ exports[`<WithHint /> should not place itself when "openerRef" is empty 1`] = `
 <PositioningHint
   direction="top"
   openerRef={
-    Object {
+    {
       "current": null,
     }
   }
@@ -13,7 +13,7 @@ exports[`<WithHint /> should not place itself when "openerRef" is empty 1`] = `
     className="hint hidden"
     direction="top"
     style={
-      Object {
+      {
         "zIndex": 1,
       }
     }
@@ -22,7 +22,7 @@ exports[`<WithHint /> should not place itself when "openerRef" is empty 1`] = `
       className="root hint hidden top"
       data-testid="hint"
       style={
-        Object {
+        {
           "zIndex": 1,
         }
       }
@@ -41,7 +41,7 @@ exports[`<WithHint /> should renders correctly 1`] = `
 <PositioningHint
   direction="top"
   openerRef={
-    Object {
+    {
       "current": <div />,
     }
   }
@@ -50,7 +50,7 @@ exports[`<WithHint /> should renders correctly 1`] = `
     className="hint hidden"
     direction="top"
     style={
-      Object {
+      {
         "zIndex": 1,
       }
     }
@@ -59,7 +59,7 @@ exports[`<WithHint /> should renders correctly 1`] = `
       className="root hint hidden top"
       data-testid="hint"
       style={
-        Object {
+        {
           "zIndex": 1,
         }
       }

@@ -3,7 +3,7 @@
 exports[`FieldGrid should handle "field" and "renderField" props missing 1`] = `
 <FieldGrid
   rootProps={
-    Object {
+    {
       "title": "hello",
     }
   }
@@ -165,7 +165,7 @@ exports[`FieldGrid should handle "renderField" prop 1`] = `
 exports[`FieldGrid should handle "rootProps" prop 1`] = `
 <FieldGrid
   rootProps={
-    Object {
+    {
       "title": "hello",
     }
   }
@@ -195,7 +195,7 @@ exports[`FieldGrid should handle "rootProps" prop 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -255,7 +255,7 @@ exports[`FieldGrid should handle "rootProps" prop 1`] = `
 exports[`FieldGrid should handle "rootProps" prop 2`] = `
 <FieldGrid
   rootProps={
-    Object {
+    {
       "className": "test-class",
     }
   }
@@ -284,7 +284,7 @@ exports[`FieldGrid should handle "rootProps" prop 2`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -485,7 +485,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
       <Cell
         field={
           <ForwardRef(TextField)
-            classes={Object {}}
+            classes={{}}
             defaultValue="Field value"
           />
         }
@@ -499,7 +499,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -567,7 +567,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -635,7 +635,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -709,7 +709,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -777,7 +777,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -845,7 +845,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -919,7 +919,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -987,7 +987,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -1062,7 +1062,7 @@ exports[`FieldGrid should render multiple different rows 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -1148,7 +1148,7 @@ exports[`FieldGrid should render single row with one cell 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -1231,7 +1231,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -1299,7 +1299,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -1367,7 +1367,7 @@ exports[`FieldGrid should render single row with three cells 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -1450,7 +1450,7 @@ exports[`FieldGrid should render single row with two cells 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -1518,7 +1518,7 @@ exports[`FieldGrid should render single row with two cells 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -1601,7 +1601,7 @@ exports[`FieldGrid should render two rows 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -1669,7 +1669,7 @@ exports[`FieldGrid should render two rows 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -1743,7 +1743,7 @@ exports[`FieldGrid should render two rows 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -1811,7 +1811,7 @@ exports[`FieldGrid should render two rows 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -1879,7 +1879,7 @@ exports[`FieldGrid should render two rows 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -1962,7 +1962,7 @@ exports[`FieldGrid should render two rows with one cell 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }
@@ -2036,7 +2036,7 @@ exports[`FieldGrid should render two rows with one cell 1`] = `
           <ForwardRef(TextField)
             className="size-full"
             classes={
-              Object {
+              {
                 "blockFocused": "focused-field",
               }
             }

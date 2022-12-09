@@ -5,7 +5,7 @@ exports[`Select should render loading state 1`] = `
   label="Формат каталога"
   loading={true}
   options={
-    Array [
+    [
       "Прайс-лист XML",
       "Прайс-лист YML",
       "Карточки товаров JPG",
@@ -20,18 +20,18 @@ exports[`Select should render loading state 1`] = `
   >
     <ForwardRef(TextField)
       baseInputProps={
-        Object {
-          "style": Object {
+        {
+          "style": {
             "pointerEvents": "none",
           },
           "tabIndex": -1,
         }
       }
       blockProps={
-        Object {
+        {
           "onKeyDown": [Function],
           "onMouseDown": [Function],
-          "ref": Object {
+          "ref": {
             "current": <div
               class="reset input-block focused variant-desktop size-l with-label rounds-sm__all"
               data-testid="text-field:block"
@@ -134,7 +134,7 @@ exports[`Select should render loading state 1`] = `
                 onInput={[Function]}
                 readOnly={true}
                 style={
-                  Object {
+                  {
                     "pointerEvents": "none",
                   }
                 }
@@ -145,7 +145,7 @@ exports[`Select should render loading state 1`] = `
                   className="reset root base-input focused variant-desktop size-l"
                   data-testid="base-input:root"
                   style={
-                    Object {
+                    {
                       "pointerEvents": "none",
                     }
                   }
@@ -201,7 +201,7 @@ exports[`Select should render loading state 1`] = `
       onKeyDown={[Function]}
       role="menu"
       style={
-        Object {
+        {
           "top": "56px",
         }
       }
@@ -214,7 +214,7 @@ exports[`Select should render loading state 1`] = `
         onKeyDown={[Function]}
         role="menu"
         style={
-          Object {
+          {
             "top": "56px",
           }
         }
@@ -223,7 +223,7 @@ exports[`Select should render loading state 1`] = `
         <CustomScrollbar
           className="inner"
           overflow={
-            Object {
+            {
               "x": "h",
               "y": "s",
             }
@@ -232,9 +232,9 @@ exports[`Select should render loading state 1`] = `
           <OverlayScrollbarsComponent
             className="custom-scrollbar inner"
             options={
-              Object {
+              {
                 "callbacks": undefined,
-                "overflowBehavior": Object {
+                "overflowBehavior": {
                   "x": "h",
                   "y": "s",
                 },
@@ -327,13 +327,13 @@ exports[`Select should renders correctly 1`] = `
   onClick={[MockFunction]}
   onMenuToggle={
     [MockFunction] {
-      "calls": Array [
-        Array [
+      "calls": [
+        [
           false,
         ],
       ],
-      "results": Array [
-        Object {
+      "results": [
+        {
           "type": "return",
           "value": undefined,
         },
@@ -343,7 +343,7 @@ exports[`Select should renders correctly 1`] = `
   onSelect={[MockFunction]}
   optionSize="m"
   options={
-    Array [
+    [
       "Прайс-лист XML",
       "Прайс-лист YML",
       "Карточки товаров JPG",
@@ -359,18 +359,18 @@ exports[`Select should renders correctly 1`] = `
   >
     <ForwardRef(TextField)
       baseInputProps={
-        Object {
-          "style": Object {
+        {
+          "style": {
             "pointerEvents": "none",
           },
           "tabIndex": -1,
         }
       }
       blockProps={
-        Object {
+        {
           "onKeyDown": [Function],
           "onMouseDown": [Function],
-          "ref": Object {
+          "ref": {
             "current": <div
               class="reset input-block variant-desktop size-l with-label rounds-sm__all"
               data-testid="text-field:block"
@@ -473,7 +473,7 @@ exports[`Select should renders correctly 1`] = `
                 onInput={[Function]}
                 readOnly={true}
                 style={
-                  Object {
+                  {
                     "pointerEvents": "none",
                   }
                 }
@@ -484,7 +484,7 @@ exports[`Select should renders correctly 1`] = `
                   className="reset root base-input variant-desktop size-l"
                   data-testid="base-input:root"
                   style={
-                    Object {
+                    {
                       "pointerEvents": "none",
                     }
                   }
@@ -543,20 +543,20 @@ exports[`Select should renders correctly 2`] = `
   onClick={[MockFunction]}
   onMenuToggle={
     [MockFunction] {
-      "calls": Array [
-        Array [
+      "calls": [
+        [
           false,
         ],
-        Array [
+        [
           true,
         ],
       ],
-      "results": Array [
-        Object {
+      "results": [
+        {
           "type": "return",
           "value": undefined,
         },
-        Object {
+        {
           "type": "return",
           "value": undefined,
         },
@@ -566,7 +566,7 @@ exports[`Select should renders correctly 2`] = `
   onSelect={[MockFunction]}
   optionSize="m"
   options={
-    Array [
+    [
       "Прайс-лист XML",
       "Прайс-лист YML",
       "Карточки товаров JPG",
@@ -582,18 +582,18 @@ exports[`Select should renders correctly 2`] = `
   >
     <ForwardRef(TextField)
       baseInputProps={
-        Object {
-          "style": Object {
+        {
+          "style": {
             "pointerEvents": "none",
           },
           "tabIndex": -1,
         }
       }
       blockProps={
-        Object {
+        {
           "onKeyDown": [Function],
           "onMouseDown": [Function],
-          "ref": Object {
+          "ref": {
             "current": <div
               class="reset input-block focused variant-desktop size-l with-label rounds-sm__all"
               data-testid="text-field:block"
@@ -696,7 +696,7 @@ exports[`Select should renders correctly 2`] = `
                 onInput={[Function]}
                 readOnly={true}
                 style={
-                  Object {
+                  {
                     "pointerEvents": "none",
                   }
                 }
@@ -707,7 +707,7 @@ exports[`Select should renders correctly 2`] = `
                   className="reset root base-input focused variant-desktop size-l"
                   data-testid="base-input:root"
                   style={
-                    Object {
+                    {
                       "pointerEvents": "none",
                     }
                   }
@@ -763,7 +763,7 @@ exports[`Select should renders correctly 2`] = `
       onKeyDown={[Function]}
       role="menu"
       style={
-        Object {
+        {
           "top": "56px",
         }
       }
@@ -776,7 +776,7 @@ exports[`Select should renders correctly 2`] = `
         onKeyDown={[Function]}
         role="menu"
         style={
-          Object {
+          {
             "top": "56px",
           }
         }
@@ -785,7 +785,7 @@ exports[`Select should renders correctly 2`] = `
         <CustomScrollbar
           className="inner"
           overflow={
-            Object {
+            {
               "x": "h",
               "y": "s",
             }
@@ -794,9 +794,9 @@ exports[`Select should renders correctly 2`] = `
           <OverlayScrollbarsComponent
             className="custom-scrollbar inner"
             options={
-              Object {
+              {
                 "callbacks": undefined,
-                "overflowBehavior": Object {
+                "overflowBehavior": {
                   "x": "h",
                   "y": "s",
                 },

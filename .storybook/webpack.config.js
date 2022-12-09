@@ -1,7 +1,11 @@
+/* eslint-disable require-jsdoc, jsdoc/require-jsdoc */
 const svgrOptions = require('../svgr.config');
 
-const isSvgRule = rule =>
-  Array.isArray(rule.test) ? rule.test.some(item => item.test('.svg')) : rule.test.test('.svg');
+function isSvgRule(rule) {
+  return Array.isArray(rule.test)
+    ? rule.test.some(item => item.test('.svg'))
+    : rule.test.test('.svg');
+}
 
 module.exports = async ({ config }) => {
   const baseRules = config.module.rules.map(rule =>

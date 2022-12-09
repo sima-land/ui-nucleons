@@ -347,7 +347,7 @@ exports[`<TextField /> should handle "label" prop 2`] = `
 exports[`<TextField /> should handle "multiline" prop 1`] = `
 <ForwardRef(TextField)
   baseInputProps={
-    Object {
+    {
       "rows": 3,
     }
   }

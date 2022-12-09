@@ -1,4 +1,6 @@
-module.exports = {
+import { Config } from 'jest';
+
+const config: Config = {
   globalSetup: '<rootDir>/.jest/global-setup.js',
   testEnvironment: 'jsdom',
   setupFiles: ['./.jest/setup.js'],
@@ -37,3 +39,5 @@ module.exports = {
     },
   },
 };
+
+export default config;

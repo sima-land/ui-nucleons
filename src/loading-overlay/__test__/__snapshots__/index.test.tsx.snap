@@ -42,12 +42,12 @@ exports[`<LoadingOverlay /> should handle props 1`] = `
 <LoadingOverlay
   className="test-class"
   spinnerProps={
-    Object {
+    {
       "size": "small",
     }
   }
   style={
-    Object {
+    {
       "borderRadius": 12,
     }
   }
@@ -55,7 +55,7 @@ exports[`<LoadingOverlay /> should handle props 1`] = `
   <div
     className="loading-overlay fill test-class"
     style={
-      Object {
+      {
         "borderRadius": 12,
       }
     }

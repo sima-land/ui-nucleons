@@ -13,16 +13,6 @@ describe('Layout', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('should handle "element" prop', () => {
-    const { container } = render(
-      <Layout element='main' className='test-class' style={{ height: 128 }}>
-        Hello, world!
-      </Layout>,
-    );
-
-    expect(container).toMatchSnapshot();
-  });
-
   it('should handle "disabledOn" prop', () => {
     const { container } = render(<Layout disabledOn={['xl', 'xs']}>Hello, world!</Layout>);
 

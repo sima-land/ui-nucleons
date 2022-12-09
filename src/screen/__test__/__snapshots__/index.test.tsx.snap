@@ -4,8 +4,8 @@ exports[`<Screen /> should handle "loading/loadingOverlayProps" props 1`] = `
 <Screen
   loading={true}
   loadingOverlayProps={
-    Object {
-      "spinnerProps": Object {
+    {
+      "spinnerProps": {
         "size": "medium",
       },
     }
@@ -15,7 +15,7 @@ exports[`<Screen /> should handle "loading/loadingOverlayProps" props 1`] = `
     className="root"
     data-testid="screen"
     style={
-      Object {
+      {
         "zIndex": 300,
       }
     }
@@ -30,12 +30,12 @@ exports[`<Screen /> should handle "loading/loadingOverlayProps" props 1`] = `
         <LoadingOverlay
           fill={false}
           spinnerProps={
-            Object {
+            {
               "size": "medium",
             }
           }
           style={
-            Object {
+            {
               "height": "100%",
             }
           }
@@ -43,7 +43,7 @@ exports[`<Screen /> should handle "loading/loadingOverlayProps" props 1`] = `
           <div
             className="loading-overlay"
             style={
-              Object {
+              {
                 "height": "100%",
               }
             }
@@ -94,7 +94,7 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
     className="root"
     data-testid="screen"
     style={
-      Object {
+      {
         "zIndex": 300,
       }
     }
@@ -107,7 +107,7 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
     >
       <TopBar
         buttons={
-          Object {
+          {
             "end": undefined,
             "start": undefined,
           }
@@ -148,7 +148,7 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
         <LoadingOverlay
           fill={false}
           style={
-            Object {
+            {
               "height": "100%",
             }
           }
@@ -156,7 +156,7 @@ exports[`<Screen /> should handle "loadingArea" prop 1`] = `
           <div
             className="loading-overlay"
             style={
-              Object {
+              {
                 "height": "100%",
               }
             }
@@ -216,7 +216,7 @@ exports[`<Screen /> should renders correctly 1`] = `
     className="root"
     data-testid="screen"
     style={
-      Object {
+      {
         "zIndex": 300,
       }
     }
@@ -229,7 +229,7 @@ exports[`<Screen /> should renders correctly 1`] = `
     >
       <TopBar
         buttons={
-          Object {
+          {
             "end": undefined,
             "start": undefined,
           }
@@ -294,15 +294,15 @@ exports[`<Screen /> should renders without close button 1`] = `
     className="root"
     data-testid="screen"
     style={
-      Object {
+      {
         "zIndex": 300,
       }
     }
   >
     <HeaderSlot
       buttons={
-        Object {
-          "end": Object {
+        {
+          "end": {
             "text": "cross replacer",
           },
         }
@@ -311,8 +311,8 @@ exports[`<Screen /> should renders without close button 1`] = `
     >
       <TopBar
         buttons={
-          Object {
-            "end": Object {
+          {
+            "end": {
               "text": "cross replacer",
             },
             "start": undefined,

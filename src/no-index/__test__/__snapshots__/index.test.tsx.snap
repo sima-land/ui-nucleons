@@ -5,7 +5,7 @@ exports[`NoIndex should renders correctly 1`] = `
   <NoIndexMark>
     <span
       dangerouslySetInnerHTML={
-        Object {
+        {
           "__html": "<!--noindex-->",
         }
       }
@@ -20,7 +20,7 @@ exports[`NoIndex should renders correctly 1`] = `
   >
     <span
       dangerouslySetInnerHTML={
-        Object {
+        {
           "__html": "<!--/noindex-->",
         }
       }

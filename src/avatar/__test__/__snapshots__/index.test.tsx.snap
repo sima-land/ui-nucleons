@@ -6,7 +6,7 @@ exports[`<Avatar /> should handle props 1`] = `
   imageUrl="www.images.com"
   size={40}
   style={
-    Object {
+    {
       "clipPath": "url(#fake-id)",
     }
   }
@@ -17,7 +17,7 @@ exports[`<Avatar /> should handle props 1`] = `
     className="root size-40 color__basic-white"
     data-testid="avatar"
     style={
-      Object {
+      {
         "--avatar-color": undefined,
         "--avatar-color-opacity": 1,
         "clipPath": "url(#fake-id)",
@@ -44,7 +44,7 @@ exports[`<Avatar /> should handle props 2`] = `
   monogram="WH"
   size={40}
   style={
-    Object {
+    {
       "clipPath": "url(#fake-id)",
     }
   }
@@ -55,7 +55,7 @@ exports[`<Avatar /> should handle props 2`] = `
     className="root size-40 color__basic-white"
     data-testid="avatar"
     style={
-      Object {
+      {
         "--avatar-color": undefined,
         "--avatar-color-opacity": 1,
         "clipPath": "url(#fake-id)",
@@ -83,7 +83,7 @@ exports[`<Avatar /> should handle props 3`] = `
   monogram="WH"
   size={40}
   style={
-    Object {
+    {
       "clipPath": "url(#fake-id)",
     }
   }
@@ -94,7 +94,7 @@ exports[`<Avatar /> should handle props 3`] = `
     className="root size-40 color__basic-white"
     data-testid="avatar"
     style={
-      Object {
+      {
         "--avatar-color": undefined,
         "--avatar-color-opacity": 1,
         "clipPath": "url(#fake-id)",
@@ -123,7 +123,7 @@ exports[`<Avatar /> should handle wrong size 1`] = `
     className="root size-72 color__basic-gray87"
     data-testid="avatar"
     style={
-      Object {
+      {
         "--avatar-color": "#f5f5f5",
         "--avatar-color-opacity": 1,
       }
@@ -147,7 +147,7 @@ exports[`<Avatar /> should render without image 1`] = `
     className="root size-40 color__basic-gray87"
     data-testid="avatar"
     style={
-      Object {
+      {
         "--avatar-color": "#f5f5f5",
         "--avatar-color-opacity": 1,
       }
@@ -170,7 +170,7 @@ exports[`<Avatar /> should render without image and title 1`] = `
     className="root size-64 color__basic-gray87"
     data-testid="avatar"
     style={
-      Object {
+      {
         "--avatar-color": "#f5f5f5",
         "--avatar-color-opacity": 1,
       }
@@ -209,7 +209,7 @@ exports[`<Avatar /> should renders without props 1`] = `
     className="root size-72 color__basic-gray87"
     data-testid="avatar"
     style={
-      Object {
+      {
         "--avatar-color": "#f5f5f5",
         "--avatar-color-opacity": 1,
       }

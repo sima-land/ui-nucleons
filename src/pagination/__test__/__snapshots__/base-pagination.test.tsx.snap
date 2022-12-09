@@ -5,48 +5,48 @@ exports[`<BasePagination /> should handle "onButtonClick" prop 1`] = `
   current={3}
   onButtonClick={
     [MockFunction] {
-      "calls": Array [
-        Array [
+      "calls": [
+        [
           2,
         ],
-        Array [
+        [
           1,
         ],
-        Array [
+        [
           2,
         ],
-        Array [
+        [
           6,
         ],
-        Array [
+        [
           100,
         ],
-        Array [
+        [
           4,
         ],
       ],
-      "results": Array [
-        Object {
+      "results": [
+        {
           "type": "return",
           "value": undefined,
         },
-        Object {
+        {
           "type": "return",
           "value": undefined,
         },
-        Object {
+        {
           "type": "return",
           "value": undefined,
         },
-        Object {
+        {
           "type": "return",
           "value": undefined,
         },
-        Object {
+        {
           "type": "return",
           "value": undefined,
         },
-        Object {
+        {
           "type": "return",
           "value": undefined,
         },

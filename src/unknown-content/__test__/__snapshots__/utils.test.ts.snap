@@ -12,14 +12,14 @@ exports[`setTableRowLabels should works with properly table 1`] = `
         </thead>
         <tbody>
           <tr>
-            <td data-table-column-title=\\"Заголовок 1\\">Значение А1</td>
-            <td data-table-column-title=\\"Заголовок 2\\">Значение А2</td>
-            <td data-table-column-title=\\"Заголовок 3\\">Значение А3</td>
+            <td data-table-column-title="Заголовок 1">Значение А1</td>
+            <td data-table-column-title="Заголовок 2">Значение А2</td>
+            <td data-table-column-title="Заголовок 3">Значение А3</td>
           </tr>
           <tr>
-            <td data-table-column-title=\\"Заголовок 1\\">Значение B1</td>
-            <td data-table-column-title=\\"Заголовок 2\\">Значение B2</td>
-            <td data-table-column-title=\\"Заголовок 3\\">Значение B3</td>
+            <td data-table-column-title="Заголовок 1">Значение B1</td>
+            <td data-table-column-title="Заголовок 2">Значение B2</td>
+            <td data-table-column-title="Заголовок 3">Значение B3</td>
           </tr>
         </tbody>
       </table>

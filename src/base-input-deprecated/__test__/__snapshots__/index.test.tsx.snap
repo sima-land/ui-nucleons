@@ -40,7 +40,7 @@ exports[`<BaseInput /> should handle "restPlaceholder" prop 2`] = `
 <ForwardRef(BaseInput)
   onChange={[MockFunction]}
   restPlaceholder={
-    Object {
+    {
       "shiftValue": "Hello",
       "value": ", World!",
     }

@@ -4,7 +4,7 @@ exports[`SuperEllipseClipPath should match snapshot 1`] = `
 <svg
   height={0}
   style={
-    Object {
+    {
       "position": "absolute",
     }
   }

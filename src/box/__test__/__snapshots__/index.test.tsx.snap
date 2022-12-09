@@ -3,8 +3,8 @@
 exports[`<Box /> should handle "dangerouslySetInlineStyle" prop 1`] = `
 <Box
   dangerouslySetInlineStyle={
-    Object {
-      "__style": Object {
+    {
+      "__style": {
         "textAlign": "left",
       },
     }
@@ -13,7 +13,7 @@ exports[`<Box /> should handle "dangerouslySetInlineStyle" prop 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "textAlign": "left",
       }
     }

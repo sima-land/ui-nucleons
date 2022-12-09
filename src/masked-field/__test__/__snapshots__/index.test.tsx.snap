@@ -8,7 +8,7 @@ exports[`MaskedField should renders properly 1`] = `
     multiline={false}
     onBlur={[Function]}
     restPlaceholder={
-      Object {
+      {
         "shiftValue": "",
         "value": "__ __ №______",
       }
@@ -37,7 +37,7 @@ exports[`MaskedField should renders properly 1`] = `
               onFocus={[Function]}
               onInput={[Function]}
               restPlaceholder={
-                Object {
+                {
                   "shiftValue": "",
                   "value": "__ __ №______",
                 }

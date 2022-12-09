@@ -3,7 +3,7 @@
 exports[`<NoIndexMark /> should renders correctly with prop "closed" 1`] = `
 <span
   dangerouslySetInnerHTML={
-    Object {
+    {
       "__html": "<!--/noindex-->",
     }
   }
@@ -13,7 +13,7 @@ exports[`<NoIndexMark /> should renders correctly with prop "closed" 1`] = `
 exports[`<NoIndexMark /> should renders correctly without prop 1`] = `
 <span
   dangerouslySetInnerHTML={
-    Object {
+    {
       "__html": "<!--noindex-->",
     }
   }
