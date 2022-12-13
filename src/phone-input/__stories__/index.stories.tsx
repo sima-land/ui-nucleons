@@ -27,7 +27,7 @@ function DemoForm({ initialValue = '' }) {
 }
 
 export default {
-  title: 'desktop/PhoneInput',
+  title: 'deprecated/PhoneInput',
   component: PhoneInput,
   parameters: {
     layout: 'padded',
