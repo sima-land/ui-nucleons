@@ -201,4 +201,12 @@ describe('<PhoneInput />', () => {
     fireEvent.click(getByTestId('phone-input:dropdown-opener'));
     expect(queryAllByTestId('phone-input:dropdown')).toHaveLength(0);
   });
+
+  it('should display value by default when country is unknown', () => {
+    const initialValue = '55566667777';
+
+    const { getByTestId } = render(<PhoneInput value={initialValue} onBlur={jest.fn()} />);
+
+    expect((getByTestId('text-field:field') as HTMLInputElement).value).toBe(initialValue);
+  });
 });

@@ -20,7 +20,7 @@ export interface PhoneInputProps
   /** Сработает при "blur". */
   onBlur?: (e: React.FocusEvent<HTMLInputElement>, s: MaskState & { ready?: boolean }) => void;
 
-  /** Сработает при изменении поля. Не рекомендуется использовать. */
+  /** Сработает при изменении поля "Другое". Не рекомендуется использовать. */
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 
   /** Срабатывает при изменении страны. */
@@ -47,6 +47,7 @@ const formatValue = (value: string, country: Country): string =>
 /**
  * Компонент поля ввода номера телефона.
  * @param props Параметры компонента.
+ * @deprecated Нужно использовать новую реализацию "@sima-land/ui-nucleons/phone-input".
  * @return Элемент.
  */
 export const PhoneInput = ({
@@ -61,8 +62,8 @@ export const PhoneInput = ({
   ...restProps
 }: PhoneInputProps) => {
   // маску определяем автоматически только при старте
-  const [country, setCountry] = useState(defineCountry(value));
-  const [cleanValue, setCleanValue] = useState(formatValue(value, country));
+  const [country, setCountry] = useState(() => defineCountry(value));
+  const [cleanValue, setCleanValue] = useState(() => formatValue(value, country));
   const [withMenu, toggleMenu] = useState<boolean>(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const openerRef = useRef<HTMLDivElement>(null);
@@ -115,8 +116,13 @@ export const PhoneInput = ({
       {country.id === IDS.other ? (
         <TextField
           {...commonFieldProps}
+          value={cleanValue}
           onChange={(e: any) => {
-            e.target.value = e.target.value.replace(/\D/g, '').slice(0, 20);
+            const nextValue = e.target.value.replace(/\D/g, '').slice(0, 20);
+
+            e.target.value = nextValue;
+
+            setCleanValue(nextValue);
             onChange && onChange(e);
           }}
           onBlur={e => {
@@ -152,7 +158,7 @@ export const PhoneInput = ({
             item.id === country.id ? null : (
               <DropdownItem
                 key={index}
-                size='l'
+                size='m'
                 role='menuitem'
                 className={cx('menu-item')}
                 onClick={() => {
@@ -160,10 +166,18 @@ export const PhoneInput = ({
                   setCountry(item);
                   onCountrySelect && onCountrySelect(item);
                 }}
+                startContent={
+                  <img
+                    alt=''
+                    width={24}
+                    height={24}
+                    src={item.imageSrc}
+                    className={cx('country-icon')}
+                  />
+                }
+                endContent={item.code}
               >
-                <img alt='' width={24} height={24} src={item.imageSrc} />
-                <span className={cx('item-name')}>{item.name}</span>
-                <span className={cx('item-code')}>{item.code}</span>
+                {item.name}
               </DropdownItem>
             ),
           )}
