@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useImperativeHandle, useRef } from 'react';
 import { TextButton, TextButtonAsButtonProps } from '../../text-button';
 import { SelectContext } from '../utils';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/up';
@@ -9,33 +9,45 @@ import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/down';
  * @param props Свойства.
  * @return Элемент.
  */
-export function SelectTextButton(props: TextButtonAsButtonProps) {
+export function SelectTextButton({
+  buttonRef: buttonRefProp,
+  children,
+  onKeyDown,
+  onMouseDown,
+  ...props
+}: TextButtonAsButtonProps) {
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const binding = useContext(SelectContext);
   const ArrowSVG = binding.opened ? UpSVG : DownSVG;
 
-  // @todo прокидывать ref в props.buttonRef при необходимости
+  useImperativeHandle<HTMLElement | null, HTMLElement | null>(
+    buttonRefProp,
+    () => buttonRef.current,
+  );
+  useImperativeHandle<HTMLElement | null, HTMLElement | null>(
+    binding.openerRef,
+    () => buttonRef.current,
+  );
 
   return (
     <TextButton
-      {...props}
-      as='button'
       iconGutter={4}
       endIcon={ArrowSVG}
-      {...{
-        onMouseDown: event => {
-          binding.onMouseDown?.(event);
-          props.onMouseDown?.(event);
-        },
-        onKeyDown: event => {
-          binding.onKeyDown?.(event);
-          props.onKeyDown?.(event);
-        },
+      {...props}
+      as='button'
+      onMouseDown={event => {
+        binding.onMouseDown?.(event);
+        onMouseDown?.(event);
+      }}
+      onKeyDown={event => {
+        binding.onKeyDown?.(event);
+        onKeyDown?.(event);
       }}
       disabled={binding.disabled}
-      buttonRef={binding.openerRef as any}
+      buttonRef={buttonRef}
       role='combobox'
     >
-      {binding.value || binding.label}
+      {children ?? (binding.value || binding.label)}
     </TextButton>
   );
 }
