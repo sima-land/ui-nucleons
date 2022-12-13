@@ -181,4 +181,17 @@ describe('Input', () => {
     expect(find('[data-testid="email"] [data-testid="base-input"] input')).toHaveLength(1);
     expect(find('[data-testid="email"] [data-testid="base-input:field"]')).toHaveLength(1);
   });
+
+  it('should handle "focused" prop', () => {
+    const { getByTestId, rerender } = render(<Input />);
+
+    expect(getByTestId('input').classList.contains('focused')).toBe(false);
+    fireEvent.focus(getByTestId('base-input:field'));
+    expect(getByTestId('input').classList.contains('focused')).toBe(true);
+    fireEvent.blur(getByTestId('base-input:field'));
+    expect(getByTestId('input').classList.contains('focused')).toBe(false);
+
+    rerender(<Input focused />);
+    expect(getByTestId('input').classList.contains('focused')).toBe(true);
+  });
 });
