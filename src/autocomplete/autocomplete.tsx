@@ -76,9 +76,10 @@ export function Autocomplete({
     inputRef.current && setCurrentValue(inputRef.current.value);
   }, [value]);
 
+  const onKeyDown = baseInputProps?.onKeyDown;
   const handleKeyDown = useCallback<KeyboardEventHandler<HTMLInputElement>>(
     event => {
-      baseInputProps?.onKeyDown?.(event);
+      onKeyDown?.(event);
 
       switch (event.code) {
         case 'Escape': {
@@ -115,7 +116,7 @@ export function Autocomplete({
         }
       }
     },
-    [menuShown, activeIndex, items, selectItem, baseInputProps?.onKeyDown],
+    [menuShown, activeIndex, items, selectItem, onKeyDown],
   );
 
   return (
@@ -153,6 +154,12 @@ export function Autocomplete({
           setActiveIndex(-1);
           setCurrentValue(e.target.value);
         }}
+        // @todo выяснить надо ли переключать меню при клике и раскомментировать/убрать
+        // blockProps={{
+        //   onMouseDown: () => {
+        //     !disabled && setNeedMenu(a => !a);
+        //   },
+        // }}
         baseInputProps={{
           ...baseInputProps,
           onKeyDown: handleKeyDown,
