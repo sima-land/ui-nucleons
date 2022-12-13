@@ -55,7 +55,8 @@
   &.label-as-placeholder {
     &.size-s {
       .label {
-        height: 0;
+        // @todo из-за overflow:hidden + height:0 скрывается - поменять логику
+        // height: 0;
 
         // размер шрифта 12px увеличиваем до 14px
         transform: scale(calc(7 / 6)) translateY(1px);
@@ -64,7 +65,8 @@
     }
     &.size-m {
       .label {
-        height: 0;
+        // @todo из-за overflow:hidden + height:0 скрывается - поменять логику
+        // height: 0;
 
         // размер шрифта 12px увеличиваем до 16px
         transform: scale(calc(4 / 3)) translateY(1px);
