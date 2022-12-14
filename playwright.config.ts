@@ -35,6 +35,8 @@ const config: PlaywrightTestConfig = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+
+    baseURL: process.env.CI ? 'http://localhost:9009' : 'http://host.docker.internal:9009',
   },
 
   /* Configure projects for major browsers */
