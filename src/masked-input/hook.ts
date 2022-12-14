@@ -17,41 +17,60 @@ export function useInputMask({
   value,
   defaultValue,
 }: UseInputMaskOptions): UseInputMaskResult {
-  // запоминаем опции тк RegExp - объект и при использовании синтаксиса он будет каждый раз новым
+  // запоминаем опции тк RegExp - объект и при использовании литерала он будет каждый раз новым
   const maskOptions = useMemo<ReducerOptions>(
     () => ({
       mask: maskOptionsProp.mask,
       pattern: new RegExp(maskOptionsProp.pattern),
       placeholder: maskOptionsProp.placeholder,
     }),
-    [...Object.values(maskOptionsProp)],
+    [maskOptionsProp.mask, maskOptionsProp.pattern, maskOptionsProp.placeholder],
   );
 
   const input = useRef<HTMLInputElement>(null);
   const [initialValue] = useState(defaultValue);
-  const [store, setStore] = useState(() => createInputMaskStore(maskOptions));
 
-  // состояние нужно для того, чтобы вызывать render при изменении состояния
-  // ВАЖНО: используем именно state, тк reducer может вернуть состояние без изменений
-  const [, setState] = useState(() => store.getState());
+  // ВАЖНО: рефы нужны чтобы не вызывать callback useMemo при изменении значений
+  const valueRef = useRef(value);
+  const initialValueRef = useRef(initialValue);
+  valueRef.current = value;
+  initialValueRef.current = initialValue;
 
   // mask options change: init new store
-  useIsomorphicLayoutEffect(() => {
-    const nextStore = createInputMaskStore(maskOptions);
+  const store = useMemo(() => {
+    const newStore = createInputMaskStore(maskOptions);
 
-    nextStore.dispatch(actions.manualChange({ value: value ?? initialValue ?? '' }));
+    newStore.dispatch(
+      actions.manualChange({
+        value: valueRef.current ?? initialValueRef.current ?? '',
+      }),
+    );
 
-    setStore(nextStore);
-    setState(nextStore.getState());
-
-    return nextStore.subscribe(() => {
-      setState(nextStore.getState());
-
-      if (input.current) {
-        State.applyDiff(nextStore.getState(), input.current);
-      }
-    });
+    return newStore;
   }, [maskOptions]);
+
+  // ВАЖНО: состояние нужно для того, чтобы вызывать render при изменении состояния хранилища
+  // ВАЖНО: используем именно store.getState(), тк reducer может вернуть состояние без изменений
+  const [, setState] = useState(() => store.getState());
+
+  useIsomorphicLayoutEffect(() => {
+    const offList: VoidFunction[] = [
+      store.subscribe(() => {
+        setState(store.getState());
+
+        if (input.current) {
+          State.applyDiff(store.getState(), input.current);
+        }
+      }),
+      on(document, 'selectionchange', () => {
+        if (input.current && input.current === document.activeElement) {
+          store.dispatch(actions.inputSelectionChange({ input: input.current }));
+        }
+      }),
+    ];
+
+    return () => offList.forEach(fn => fn());
+  }, [store]);
 
   // value prop change: update state
   useIsomorphicLayoutEffect(() => {
@@ -61,18 +80,7 @@ export function useInputMask({
     ) {
       store.dispatch(actions.manualChange({ value }));
     }
-  }, [value, store]);
-
-  // document selectionchange: update state
-  useIsomorphicLayoutEffect(() => {
-    const off = on(document, 'selectionchange', () => {
-      if (input.current && input.current === document.activeElement) {
-        store.dispatch(actions.inputSelectionChange({ input: input.current }));
-      }
-    });
-
-    return off;
-  }, [store]);
+  }, [value, store, maskOptions]);
 
   // input change: update state
   const onChange = useCallback<ChangeEventHandler<HTMLInputElement>>(

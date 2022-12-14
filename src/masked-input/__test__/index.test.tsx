@@ -78,4 +78,25 @@ describe('MaskedInput', () => {
     fireEvent.blur(getByTestId('base-input:field'));
     expect(spy).toBeCalledTimes(1);
   });
+
+  it('should handle "baseInputProps.restPlaceholder" prop', () => {
+    const { container, rerender } = render(
+      <MaskedInput mask='____' value='22' onChange={jest.fn()} />,
+    );
+
+    expect(container.querySelector('.rest-placeholder')?.textContent).toBe('22__');
+
+    rerender(
+      <MaskedInput
+        mask='____'
+        value='22'
+        onChange={jest.fn()}
+        baseInputProps={{
+          restPlaceholder: { value: '', shiftValue: '' },
+        }}
+      />,
+    );
+
+    expect(container.querySelector('.rest-placeholder')?.textContent).toBe('');
+  });
 });
