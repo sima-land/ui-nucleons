@@ -41,12 +41,18 @@ function createDomReducer(options: ReducerOptions) {
     } else if (actions.inputSelectionChange.is(action)) {
       result = State.fromTarget(action.payload.input);
     } else if (actions.manualChange.is(action)) {
+      // мы не знаем какое значение передано (clean или masked) поэтому берем из него только подходящие символы
+      const validCleanValue = action.payload.value
+        .split('')
+        .filter(c => c.match(options.pattern))
+        .join('');
+
+      const newMaskedValue = Value.toMasked(options, validCleanValue);
       const firstPlace = options.mask.indexOf(options.placeholder);
-      const maskedValue = Value.toMasked(options, action.payload.value);
 
       result = processState(
         State.of(state.value, Range.of(firstPlace, state.value.length)),
-        State.of(maskedValue, Range.of(maskedValue.length)),
+        State.of(newMaskedValue, Range.of(newMaskedValue.length)),
       );
     }
 

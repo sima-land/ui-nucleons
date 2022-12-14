@@ -110,6 +110,7 @@ export function Input({
   caption,
   blockProps,
   'data-testid': testId = 'input',
+  focused: focusedProp,
   ...restProps
 }: InputProps) {
   const ref = useRef<HTMLInputElement>(null);
@@ -137,7 +138,7 @@ export function Input({
       caption={caption}
       disabled={disabled}
       failed={failed}
-      focused={focused}
+      focused={focusedProp ?? focused}
       label={label}
       labelAsPlaceholder={!focused && !filled}
       labelProps={{ htmlFor: id }}

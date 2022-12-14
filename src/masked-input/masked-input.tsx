@@ -2,7 +2,7 @@ import React, { useCallback, useImperativeHandle } from 'react';
 import { Input } from '../input';
 import { Value } from '@krutoo/input-mask/dist/dom/utils';
 import { useInputMask } from './hook';
-import { MaskedInputProps } from './types';
+import { MaskData, MaskedInputProps } from './types';
 
 /**
  * Поле ввода текста по маске.
@@ -34,23 +34,23 @@ export function MaskedInput({
   );
 
   const getData = useCallback(
-    () => ({
+    (): MaskData => ({
       value: store.getState().value,
       cleanValue: Value.toClean({ mask, placeholder }, store.getState().value),
       completed: store.getState().value.length === mask.length,
     }),
-    [store, mask, pattern, placeholder],
+    [store, mask, placeholder],
   );
 
   return (
     <Input
       {...props}
       baseInputProps={{
-        restPlaceholder: {
+        ...baseInputProps,
+        restPlaceholder: baseInputProps?.restPlaceholder ?? {
           value: mask.slice(store.getState().value.length),
           shiftValue: store.getState().value,
         },
-        ...baseInputProps,
       }}
       inputRef={bind.ref}
       value={bind.value}

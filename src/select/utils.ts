@@ -6,4 +6,7 @@ export const SelectContext = createContext<SelectOpenerBinding>({
   opened: false,
   menuFocused: false,
   openerRef: createRef(),
+  anchorRef: createRef(),
+  onMouseDown: () => void 0,
+  onKeyDown: () => void 0,
 });

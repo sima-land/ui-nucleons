@@ -21,14 +21,14 @@ export interface SelectOpenerBinding {
   value: ReactNode;
   opened: boolean;
   menuFocused: boolean;
-  openerRef: RefObject<HTMLElement>;
-  onMouseDown?: HTMLAttributes<HTMLElement>['onMouseDown'];
-  onKeyDown?: HTMLAttributes<HTMLElement>['onKeyDown'];
+  openerRef: RefObject<HTMLElement | null>;
+  anchorRef: RefObject<HTMLElement | null>;
+  onMouseDown: Required<HTMLAttributes<HTMLElement>>['onMouseDown'];
+  onKeyDown: Required<HTMLAttributes<HTMLElement>>['onKeyDown'];
 }
 
 export interface SelectMenuProps extends DropdownProps {
   menuRef?: Ref<HTMLDivElement | null>;
-  openerRef: RefObject<HTMLElement | null>;
   value?: ReactNode;
   children?: ReactNode;
   loading?: boolean;
@@ -55,8 +55,14 @@ export interface SelectProps {
   /** Сработает при открытии/закрытии меню. */
   onMenuToggle?: (state: { opened: boolean }) => void;
 
-  /** Значение, выводимое в качестве выбранного. При отсутствии будет выведен label. */
-  value?: ReactNode;
+  /** Значение, выводимое в качестве выбранного. При отсутствии будет выведено значение defaultValue. */
+  value?: string;
+
+  /** Значение по умолчанию. При отсутствии будет выведено значение label. */
+  defaultValue?: string;
+
+  /** Получив значение являющееся текущим или пустую строку, должна вернуть ReactNode. */
+  renderValue?: (value: string) => ReactNode;
 
   /** Ярлык. */
   label?: string;

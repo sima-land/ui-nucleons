@@ -1,6 +1,6 @@
 import { RefObject, useCallback, useEffect, useState } from 'react';
 import { useIsomorphicLayoutEffect } from '../hooks';
-import on from '../helpers/on';
+import { on } from '../helpers/on';
 import styles from './expandable-group.module.scss';
 
 export interface ViewState {
@@ -66,7 +66,7 @@ export function useExpandable({
         setHiddenCount(state.lastVisibleIndex !== -1 ? items.length - state.lastVisibleIndex : 0);
       }
     }
-  }, [expanded, gap]);
+  }, [expanded, gap, wrapperRef, containerRef, openerRef]);
 
   // пересчитываем после каждого rerender'а
   useIsomorphicLayoutEffect(calc);

@@ -147,7 +147,7 @@ export function DifferentStates() {
         },
         {
           type: 'toggle',
-          label: 'Загрузка',
+          label: 'Загрузка списка',
           bind: [loading, setLoading],
         },
       ]}
@@ -172,13 +172,13 @@ DifferentStates.storyName = 'Различные состояния';
 export function TestNativeCompare() {
   return (
     <div style={{ display: 'flex', gap: 20, justifyContent: 'center', alignItems: 'center' }}>
-      <Select opener={<Select.FieldBlock size='s' />}>
-        <DropdownItem>Один</DropdownItem>
-        <DropdownItem>Два</DropdownItem>
-        <DropdownItem>Три</DropdownItem>
+      <Select defaultValue='Один' opener={<Select.FieldBlock size='s' />}>
+        <DropdownItem size='s'>Один</DropdownItem>
+        <DropdownItem size='s'>Два</DropdownItem>
+        <DropdownItem size='s'>Три</DropdownItem>
       </Select>
 
-      <select style={{ width: 240 }}>
+      <select style={{ width: 240 }} defaultValue='Один'>
         <option>Один</option>
         <option>Два</option>
         <option>Три</option>
@@ -214,12 +214,17 @@ export function TestInModal() {
 
   return (
     <Modal>
-      <Modal.Header title='Тест' divided />
+      <Modal.Header title='Тест' subtitle='Select внутри Modal' divided />
       <Modal.Body>
         <div style={{ padding: 16 }}>
           <LoremIpsum paragraphCount={10} />
 
-          <Select value={value} onValueChange={setValue} dropdownProps={{ style: { width: 320 } }}>
+          <Select
+            label='Номер'
+            value={value}
+            onValueChange={setValue}
+            dropdownProps={{ style: { width: 320 } }}
+          >
             <DropdownItem>Ноль</DropdownItem>
             <DropdownItem>Один</DropdownItem>
             <DropdownItem>Два</DropdownItem>

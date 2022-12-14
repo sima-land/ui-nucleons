@@ -1,4 +1,4 @@
-import React, { isValidElement, useEffect, useRef, useState } from 'react';
+import React, { isValidElement, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { SelectContext } from './utils';
 import { SelectMenuProps, SelectOpenerBinding, SelectProps } from './types';
 import { useIdentityRef } from '../hooks/identity';
@@ -7,6 +7,7 @@ import { FloatingPortal } from '@floating-ui/react-dom-interactions';
 import { SelectMenu } from './parts/menu';
 import { SelectFieldBlock } from './parts/block';
 import { SelectTextButton } from './parts/button';
+import { useFloatingDropdown } from '../dropdown/utils';
 
 /**
  * Поле выбора из списка.
@@ -21,17 +22,40 @@ export function Select({
   onValueChange,
   onMenuToggle,
   value,
+  defaultValue,
   label,
   opener = <SelectFieldBlock />,
+  renderValue = v => v,
   dropdownProps,
 }: SelectProps) {
-  // @todo добавить defaultValue при необходимости
+  // @todo по аналогии с <select /> надо проверять, есть ли значение в списке переданных
+  const [initialValue] = useState<string>(() => value ?? defaultValue ?? '');
+  const [currentValue, setCurrentValue] = useState(initialValue);
   const [needMenu, setNeedMenu] = useState<boolean>(false);
   const [menuElement, setMenuElement] = useState<HTMLElement | null>(null);
   const [menuFocused, setMenuFocused] = useState<boolean>(false);
   const openerRef = useRef<HTMLElement>(null);
+  const anchorRef = useRef<HTMLElement>(null);
+  const referenceRef = useRef<HTMLElement>(null);
+  const menuRef = useIdentityRef(menuElement);
   const onMenuToggleRef = useIdentityRef(onMenuToggle);
   const menuShown = needMenu && menuElement !== null;
+
+  useImperativeHandle<HTMLElement | null, HTMLElement | null>(
+    referenceRef,
+    // если дополнительно указан якорь - используем его
+    () => anchorRef.current ?? openerRef.current,
+  );
+
+  // ВАЖНО: вызываем useFloatingDropdown() **после** useImperativeHandle(referenceRef)
+  const floating = useFloatingDropdown(menuRef, referenceRef);
+
+  useEffect(() => {
+    if (typeof value !== 'undefined') {
+      // @todo по аналогии с <select /> надо проверять, есть ли значение в списке переданных
+      setCurrentValue(value);
+    }
+  }, [value]);
 
   useEffect(() => {
     if (disabled) {
@@ -48,7 +72,8 @@ export function Select({
   const openerBinding: SelectOpenerBinding = {
     label,
     openerRef,
-    value,
+    anchorRef,
+    value: renderValue(currentValue),
     opened: menuShown,
     failed,
     disabled,
@@ -74,8 +99,11 @@ export function Select({
 
   const menuProps: SelectMenuProps = {
     ...dropdownProps,
+    style: {
+      ...dropdownProps?.style,
+      ...floating.style,
+    },
     menuRef: setMenuElement,
-    openerRef,
     value,
     loading,
     onFocus: () => {
@@ -98,7 +126,10 @@ export function Select({
       }
     },
     onItemSelect: item => {
-      onValueChange?.(DropdownItemUtils.getValue(item));
+      const nextValue = DropdownItemUtils.getValue(item);
+
+      setCurrentValue(nextValue);
+      onValueChange?.(nextValue);
       setNeedMenu(false);
       openerRef.current?.focus();
     },
