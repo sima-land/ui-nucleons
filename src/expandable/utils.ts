@@ -1,6 +1,6 @@
 import { RefObject, useCallback, useEffect, useState } from 'react';
 import { useIsomorphicLayoutEffect } from '../hooks';
-import on from '../helpers/on';
+import { on } from '../helpers/on';
 import styles from './expandable-group.module.scss';
 
 export interface ViewState {
