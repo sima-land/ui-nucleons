@@ -13,7 +13,6 @@ import { Dropdown } from '../../dropdown';
 import { DropdownItem } from '../../dropdown-item';
 import { DropdownItemElement } from '../../dropdown-item/types';
 import { DropdownItemUtils } from '../../dropdown-item/utils';
-import { useFloatingDropdown } from '../../dropdown/utils';
 import { DropdownLoading } from '../../_internal/dropdown-loading';
 import { SelectMenuProps } from '../types';
 import classNames from 'classnames';
@@ -33,17 +32,14 @@ export function SelectMenu({
   loading,
   children,
   menuRef,
-  openerRef,
   value,
   onKeyDown,
   onItemSelect,
-  style,
   ...restProps
 }: SelectMenuProps) {
   const ref = useRef<HTMLDivElement>(null);
   const osComponentRef = useRef<OverlayScrollbarsComponent>(null);
   const [activeIndex, setActiveIndex] = useState<number>(-1);
-  const { style: floatingStyle } = useFloatingDropdown(ref, openerRef);
   const items = Children.toArray(children).filter(DropdownItemUtils.is);
 
   useImperativeHandle(menuRef, () => ref.current);
@@ -85,7 +81,7 @@ export function SelectMenu({
           break;
       }
     },
-    [items, activeIndex, openerRef, onKeyDown],
+    [items, activeIndex, onKeyDown],
   );
 
   const handleItemClick = useCallback(
@@ -108,7 +104,6 @@ export function SelectMenu({
       onKeyDown={handleMenuKeyDown}
       className={classNames(styles.menu, restProps.className)}
       customScrollbarProps={{ osComponentRef }}
-      style={{ ...style, ...floatingStyle }}
     >
       {loading ? (
         <DropdownLoading data-testid='select:loading-area' />

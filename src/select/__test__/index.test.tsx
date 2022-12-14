@@ -413,4 +413,36 @@ describe('Select', () => {
     fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'Tab' });
     expect(document.activeElement).toBe(getByTestId(container, 'field-block:block'));
   });
+
+  it('should handle "defaultValue" prop', () => {
+    const spy = jest.fn();
+
+    const { baseElement, container } = render(
+      <Select defaultValue='Third' onValueChange={spy}>
+        <DropdownItem>First</DropdownItem>
+        <DropdownItem>Second</DropdownItem>
+        <DropdownItem>Third</DropdownItem>
+      </Select>,
+    );
+
+    expect(spy).toBeCalledTimes(0);
+    expect(getByTestId(container, 'field-block:block').textContent).toBe('Third');
+
+    fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
+    fireEvent.click(queryAllByTestId(baseElement, 'dropdown-item')[2]);
+    expect(spy).toBeCalledTimes(1);
+    expect(getByTestId(container, 'field-block:block').textContent).toBe('Third');
+  });
+
+  it('should handle "renderValue" prop', () => {
+    const { container } = render(
+      <Select value='Second' renderValue={value => <b>selected: {value}</b>}>
+        <DropdownItem>First</DropdownItem>
+        <DropdownItem>Second</DropdownItem>
+        <DropdownItem>Third</DropdownItem>
+      </Select>,
+    );
+
+    expect(getByTestId(container, 'field-block:block').textContent).toBe('selected: Second');
+  });
 });
