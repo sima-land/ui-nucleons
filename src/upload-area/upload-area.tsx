@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useCallback, useRef, useState } from 'react';
+import React, { ChangeEventHandler, useCallback, useRef } from 'react';
 import { Link } from '../link';
 import { useFilesDrop } from './utils';
 import { upperFirst } from 'lodash';
@@ -31,7 +31,6 @@ export function UploadArea({
   inputProps,
   'data-testid': testId = 'upload-area',
 }: UploadAreaProps) {
-  const [focused, setFocused] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const secondaryInfo: string = upperFirst(
@@ -78,7 +77,7 @@ export function UploadArea({
   const rootClassName = cx(
     'root',
     size !== 'unset' && `size-${size}`,
-    { active: active || focused, failed, disabled },
+    { active, failed, disabled },
     className,
   );
 
@@ -93,7 +92,6 @@ export function UploadArea({
       role='button'
       onFocus={event => {
         if (!disabled) {
-          setFocused(true);
           rootProps?.onFocus?.(event);
         }
       }}
@@ -111,7 +109,6 @@ export function UploadArea({
         }
       }}
       onBlur={event => {
-        setFocused(false);
         rootProps?.onBlur?.(event);
       }}
     >

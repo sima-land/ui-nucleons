@@ -24,7 +24,8 @@
     cursor: pointer;
     border-color: colors.$basic-blue;
   }
-  &:not(.disabled).active {
+  &:not(.disabled).active,
+  &:not(.disabled):focus-visible {
     border-color: colors.$basic-blue;
     border-style: solid;
   }

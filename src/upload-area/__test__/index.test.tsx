@@ -67,17 +67,27 @@ describe('UploadArea', () => {
   });
 
   it('should handle focus/blur/click/keydown events on root element', () => {
-    const { getByTestId, rerender } = render(<UploadArea />);
+    const blurSpy = jest.fn();
+    const focusSpy = jest.fn();
+    const { getByTestId, rerender } = render(
+      <UploadArea rootProps={{ onFocus: focusSpy, onBlur: blurSpy }} />,
+    );
     const root = getByTestId('upload-area');
     const input = getByTestId('upload-area:input');
     const clickSpy = jest.spyOn(input, 'click');
 
     expect(root.classList.contains('active')).toBe(false);
+    expect(focusSpy).toBeCalledTimes(0);
+    expect(blurSpy).toBeCalledTimes(0);
 
     fireEvent.focus(root);
-    expect(root.classList.contains('active')).toBe(true);
+    expect(root.classList.contains('active')).toBe(false);
+    expect(focusSpy).toBeCalledTimes(1);
+    expect(blurSpy).toBeCalledTimes(0);
 
     fireEvent.blur(root);
+    expect(focusSpy).toBeCalledTimes(1);
+    expect(blurSpy).toBeCalledTimes(1);
     expect(root.classList.contains('active')).toBe(false);
 
     expect(clickSpy).toBeCalledTimes(0);
