@@ -67,7 +67,7 @@ describe('MaskedInput', () => {
     const { getByTestId } = render(<MaskedInput mask='___' inputRef={ref} />);
 
     expect(ref.current instanceof HTMLInputElement).toBe(true);
-    expect(getByTestId('base-input:field')).toBe(ref.current);
+    expect(getByTestId('base-input:field') === ref.current).toBe(true);
   });
 
   it('should handle "onBlur" prop', () => {
@@ -84,8 +84,8 @@ describe('MaskedInput', () => {
       <MaskedInput mask='____' value='22' onChange={jest.fn()} />,
     );
 
-    expect(getByTestId('rest-placeholder-shift')).toBe('22');
-    expect(getByTestId('rest-placeholder')).toBe('__');
+    expect(getByTestId('rest-placeholder-shift').textContent).toBe('22');
+    expect(getByTestId('rest-placeholder').textContent).toBe('__');
 
     rerender(
       <MaskedInput
