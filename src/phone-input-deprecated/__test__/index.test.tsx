@@ -6,7 +6,7 @@ import { TextField } from '../../text-field';
 import { Dropdown } from '../../dropdown';
 import { DropdownItem } from '../../dropdown-item';
 import { MaskedField } from '../../masked-field';
-import { countries } from '../presets';
+import { countries } from '../../phone-input/presets';
 import { fireEvent, render } from '@testing-library/react';
 
 describe('<PhoneInput />', () => {

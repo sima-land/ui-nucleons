@@ -23,7 +23,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('http://localhost:9009/iframe.html?args=&id=common-select--primary');
+  await page.goto('/iframe.html?args=&id=common-select--primary');
 });
 
 test('Opener must be in page', async () => {
@@ -37,12 +37,14 @@ test.describe('Mouse interactions', () => {
     await expect(here.fieldBlock()).toHaveCount(1);
     await expect(here.menu()).toHaveCount(0);
     await expect(here.menuItem()).toHaveCount(0);
+    await expect(here.page).toHaveScreenshot();
 
     await here.fieldBlock().click();
     await expect(here.fieldBlock()).toHaveCount(1);
     await expect(here.menu()).toHaveCount(1);
     await expect(here.menu()).toBeFocused();
     await expect(here.menuItem()).toHaveCount(7);
+    await expect(here.page).toHaveScreenshot();
   });
 
   test('Click by option should close menu and change value in opener', async () => {

@@ -4,7 +4,7 @@ import { TopBar } from '../../top-bar';
 import { BottomBar } from '../../bottom-bar';
 import { CleanGroup, CleanButton } from '../../clean-buttons';
 import { Button } from '../../button';
-import { PhoneInput } from '../../phone-input';
+import { PhoneInput } from '../../phone-input-deprecated';
 import { DropdownItem } from '../../dropdown-item';
 import { CustomScrollbar } from '../../_internal/custom-scrollbar';
 import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';

@@ -23,7 +23,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('http://localhost:9009/iframe.html?args=&id=common-autocomplete--primary');
+  await page.goto('/iframe.html?args=&id=common-autocomplete--primary');
 });
 
 test('Autocomplete must be in page', async () => {
@@ -38,6 +38,7 @@ test.describe('Mouse interactions', () => {
     await expect(here.input()).toHaveCount(1);
     await expect(here.menu()).toHaveCount(0);
     await expect(here.menuItem()).toHaveCount(0);
+    await expect(here.page).toHaveScreenshot();
 
     await here.fieldBlock().click();
     await expect(here.fieldBlock()).toHaveCount(1);
@@ -45,6 +46,7 @@ test.describe('Mouse interactions', () => {
     await expect(here.input()).toBeFocused();
     await expect(here.menu()).toHaveCount(1);
     await expect(here.menuItem()).toHaveCount(5);
+    await expect(here.page).toHaveScreenshot();
   });
 
   test('Suggestion clock should close menu and change input value', async () => {

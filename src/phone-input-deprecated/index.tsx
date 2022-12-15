@@ -6,8 +6,8 @@ import { DropdownItem } from '../dropdown-item';
 import { TextField, TextFieldProps } from '../text-field';
 import { MaskedField, MaskState } from '../masked-field';
 import { useOutsideClick } from '../hooks';
-import { IDS, countriesList, Country } from './presets';
-import { defineCountry } from './utils';
+import { IDS, countriesList, Country } from '../phone-input/presets';
+import { defineCountry } from '../phone-input/utils';
 import classnames from 'classnames/bind';
 import styles from './phone-input.module.scss';
 

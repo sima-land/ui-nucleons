@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Autocomplete } from '..';
 import { Button } from '../../button';
-import { PhoneInput } from '../../phone-input';
+import { PhoneInput } from '../../phone-input-deprecated';
 import { TextField } from '../../text-field';
 
 export default {
