@@ -11,15 +11,14 @@ import turkmenistanPNG from './images/turkmenistan.png';
 import uzbekistanPNG from './images/uzbekistan.png';
 import ukrainePNG from './images/ukraine.png';
 import otherPNG from './images/other.png';
-import { keyBy } from 'lodash';
 
 export interface Country {
-  id: string;
-  name: string;
-  code: string;
-  codeChars: string;
-  mask: string;
-  imageSrc: string;
+  readonly id: string;
+  readonly name: string;
+  readonly code: string;
+  readonly codeChars: string;
+  readonly mask: string;
+  readonly imageSrc: string;
 }
 
 export const IDS = {
@@ -36,7 +35,7 @@ export const IDS = {
   uzbekistan: 'uzbekistan',
   ukraine: 'ukraine',
   other: 'other',
-};
+} as const;
 
 const NAMES = {
   [IDS.russia]: 'Россия',
@@ -52,7 +51,7 @@ const NAMES = {
   [IDS.uzbekistan]: 'Узбекистан',
   [IDS.ukraine]: 'Украина',
   [IDS.other]: 'Другое',
-};
+} as const;
 
 const MASKS = {
   [IDS.russia]: '+7 (___) ___-__-__',
@@ -68,7 +67,7 @@ const MASKS = {
   [IDS.uzbekistan]: '+998-__-___-____',
   [IDS.ukraine]: '+380 (__) ___-__-__',
   [IDS.other]: '_______________',
-};
+} as const;
 
 const IMAGES = {
   [IDS.russia]: russiaPNG,
@@ -84,7 +83,7 @@ const IMAGES = {
   [IDS.uzbekistan]: uzbekistanPNG,
   [IDS.ukraine]: ukrainePNG,
   [IDS.other]: otherPNG,
-};
+} as const;
 
 const CODES = {
   [IDS.russia]: '+7',
@@ -100,7 +99,7 @@ const CODES = {
   [IDS.uzbekistan]: '+998',
   [IDS.ukraine]: '+380',
   [IDS.other]: '',
-};
+} as const;
 
 const ORDER = [
   IDS.russia,
@@ -116,9 +115,9 @@ const ORDER = [
   IDS.uzbekistan,
   IDS.ukraine,
   IDS.other,
-];
+] as const;
 
-export const countriesList: Country[] = ORDER.map(id => ({
+export const countriesList: ReadonlyArray<Country> = ORDER.map(id => ({
   id,
   name: NAMES[id],
   code: CODES[id],
@@ -127,4 +126,7 @@ export const countriesList: Country[] = ORDER.map(id => ({
   imageSrc: IMAGES[id],
 }));
 
-export const countries = keyBy(countriesList, data => data.id);
+export const countries = countriesList.reduce<Readonly<Record<string, Country>>>(
+  (acc, item) => ({ ...acc, [item.id]: item }),
+  {},
+);

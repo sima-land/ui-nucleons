@@ -1,0 +1,22 @@
+@use '../colors';
+
+.opener {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+  padding: 8px;
+  margin: -8px;
+  border-radius: 4px;
+  &:focus-visible {
+    outline: 0;
+    background: colors.$additional-sky;
+  }
+}
+
+.arrow {
+  display: block;
+  fill: colors.$basic-gray38;
+  margin-left: 4px;
+  pointer-events: none; // игнорируем клики т.к. после них элемент стрелки подменяется и считается что он сработал вне элемента родителя
+}

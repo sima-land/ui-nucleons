@@ -80,11 +80,12 @@ describe('MaskedInput', () => {
   });
 
   it('should handle "baseInputProps.restPlaceholder" prop', () => {
-    const { container, rerender } = render(
+    const { rerender, getByTestId, queryAllByTestId } = render(
       <MaskedInput mask='____' value='22' onChange={jest.fn()} />,
     );
 
-    expect(container.querySelector('.rest-placeholder')?.textContent).toBe('22__');
+    expect(getByTestId('rest-placeholder-shift')).toBe('22');
+    expect(getByTestId('rest-placeholder')).toBe('__');
 
     rerender(
       <MaskedInput
@@ -97,6 +98,7 @@ describe('MaskedInput', () => {
       />,
     );
 
-    expect(container.querySelector('.rest-placeholder')?.textContent).toBe('');
+    expect(queryAllByTestId('rest-placeholder-shift')).toHaveLength(0);
+    expect(queryAllByTestId('rest-placeholder')).toHaveLength(0);
   });
 });

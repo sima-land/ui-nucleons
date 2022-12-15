@@ -85,10 +85,14 @@ export function BaseInput({
   return (
     <div style={style} className={cx('reset', 'root', className)} data-testid={testId}>
       {/* ВАЖНО: restPlaceholder может накладываться на placeholder - компонент позволяет это делать т.к. они могут быть связаны */}
-      {!props.multiline && restPlaceholder && (
+      {!props.multiline && restPlaceholder && restPlaceholder.value && (
         <span aria-hidden className={cx('rest-placeholder')}>
-          <span className={cx('shift-part')}>{restPlaceholder.shiftValue}</span>
-          <span className={cx('main-part')}>{restPlaceholder.value}</span>
+          <span data-testid='rest-placeholder-shift' className={cx('shift-part')}>
+            {restPlaceholder.shiftValue}
+          </span>
+          <span data-testid='rest-placeholder' className={cx('main-part')}>
+            {restPlaceholder.value}
+          </span>
         </span>
       )}
       {field}
