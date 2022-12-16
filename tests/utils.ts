@@ -1,6 +1,6 @@
+/* eslint-disable require-jsdoc, jsdoc/require-jsdoc */
 import { test, type Page } from '@playwright/test';
 
-/* eslint-disable require-jsdoc, jsdoc/require-jsdoc */
 export class TestUtils {
   private _page?: Page;
 
