@@ -41,19 +41,21 @@ describe('BaseInput', () => {
   });
 
   it('should render rest placeholder for controlled fields only (when value provided)', () => {
-    const { container, rerender } = render(
+    const { rerender, getByTestId } = render(
       <BaseInput value='hello' onChange={jest.fn()} restPlaceholder=' world' />,
     );
 
-    expect(container.querySelector('.rest-placeholder')?.textContent).toBe('hello world');
+    expect(getByTestId('rest-placeholder-shift').textContent).toBe('hello');
+    expect(getByTestId('rest-placeholder').textContent).toBe(' world');
 
     rerender(<BaseInput value='some text' onChange={jest.fn()} restPlaceholder=' world' />);
 
-    expect(container.querySelector('.rest-placeholder')?.textContent).toBe('some text world');
+    expect(getByTestId('rest-placeholder-shift').textContent).toBe('some text');
+    expect(getByTestId('rest-placeholder').textContent).toBe(' world');
   });
 
   it('should render rest placeholder by definition', () => {
-    const { container } = render(
+    const { getByTestId } = render(
       <BaseInput
         value='foo'
         onChange={jest.fn()}
@@ -64,7 +66,8 @@ describe('BaseInput', () => {
       />,
     );
 
-    expect(container.querySelector('.rest-placeholder')?.textContent).toBe('foo bar');
+    expect(getByTestId('rest-placeholder').textContent).toBe(' bar');
+    expect(getByTestId('rest-placeholder-shift').textContent).toBe('foo');
   });
 
   it('should render input or textarea depends on "multiline" prop', () => {

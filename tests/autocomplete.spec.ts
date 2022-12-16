@@ -1,4 +1,3 @@
-/* eslint-disable require-jsdoc, jsdoc/require-jsdoc */
 import { test, expect } from '@playwright/test';
 import { TestUtils } from './utils';
 

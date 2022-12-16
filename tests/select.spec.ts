@@ -1,4 +1,3 @@
-/* eslint-disable require-jsdoc, jsdoc/require-jsdoc */
 import { test, expect } from '@playwright/test';
 import { TestUtils } from './utils';
 
@@ -77,8 +76,7 @@ test.describe('Keyboard interactions', () => {
     await expect(here.fieldBlock()).toHaveCount(1);
     await expect(here.fieldBlock()).not.toBeFocused();
 
-    page.keyboard.press('Tab');
-
+    await page.keyboard.press('Tab');
     await expect(here.fieldBlock()).toBeFocused();
   });
 
@@ -123,8 +121,8 @@ test.describe('Keyboard interactions', () => {
     await expect(here.menu()).toHaveCount(0);
     await expect(here.menuItem()).toHaveCount(0);
 
-    page.keyboard.press('Tab');
-    page.keyboard.press('Enter');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Enter');
     await expect(here.fieldBlock()).toHaveCount(1);
     await expect(here.fieldValue()).toHaveCount(1);
     await expect(here.fieldValue()).toHaveText('');
