@@ -12,6 +12,8 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.28.0-focal
     steps:
       - uses: actions/checkout@v3
 
