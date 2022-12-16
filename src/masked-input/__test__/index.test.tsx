@@ -67,7 +67,7 @@ describe('MaskedInput', () => {
     const { getByTestId } = render(<MaskedInput mask='___' inputRef={ref} />);
 
     expect(ref.current instanceof HTMLInputElement).toBe(true);
-    expect(getByTestId('base-input:field')).toBe(ref.current);
+    expect(getByTestId('base-input:field') === ref.current).toBe(true);
   });
 
   it('should handle "onBlur" prop', () => {
@@ -80,11 +80,12 @@ describe('MaskedInput', () => {
   });
 
   it('should handle "baseInputProps.restPlaceholder" prop', () => {
-    const { container, rerender } = render(
+    const { rerender, getByTestId, queryAllByTestId } = render(
       <MaskedInput mask='____' value='22' onChange={jest.fn()} />,
     );
 
-    expect(container.querySelector('.rest-placeholder')?.textContent).toBe('22__');
+    expect(getByTestId('rest-placeholder-shift').textContent).toBe('22');
+    expect(getByTestId('rest-placeholder').textContent).toBe('__');
 
     rerender(
       <MaskedInput
@@ -97,6 +98,7 @@ describe('MaskedInput', () => {
       />,
     );
 
-    expect(container.querySelector('.rest-placeholder')?.textContent).toBe('');
+    expect(queryAllByTestId('rest-placeholder-shift')).toHaveLength(0);
+    expect(queryAllByTestId('rest-placeholder')).toHaveLength(0);
   });
 });
