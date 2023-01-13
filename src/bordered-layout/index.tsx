@@ -19,6 +19,7 @@ const cx = classnames.bind(styles);
 
 /**
  * Выводит содержимое по мобильному layout'у с вертикальными полосками.
+ * @deprecated Можно использовать комбинацию Layout, пример есть в Storybook.
  * @param props Свойства компонента.
  * @return Элемент.
  */

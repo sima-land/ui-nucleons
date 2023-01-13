@@ -1,5 +1,6 @@
 import React from 'react';
-import { Layout } from '..';
+import { Layout, Breakpoint } from '..';
+import { InnerBorder } from '../../styling/borders';
 
 export default {
   title: 'common/Layout',
@@ -9,22 +10,14 @@ export default {
   },
 };
 
-const SomeContent = () => (
-  <div style={{ background: 'rgb(207, 232, 252)' }}>
-    <h2>Контент ограниченный layout`ом</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum!</p>
-  </div>
-);
-
 export function Primary() {
   return (
     <>
       <Layout>
-        <h2>Простой пример</h2>
-      </Layout>
-
-      <Layout>
-        <SomeContent />
+        <div style={{ background: 'rgb(207, 232, 252)' }}>
+          <h2>Контент ограниченный layout`ом</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum!</p>
+        </div>
       </Layout>
     </>
   );
@@ -33,6 +26,13 @@ export function Primary() {
 Primary.storyName = 'Простой пример';
 
 export function DisableOnBreakpoint() {
+  const content = (
+    <div style={{ background: 'rgb(207, 232, 252)' }}>
+      <h2>Контент ограниченный layout`ом</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum!</p>
+    </div>
+  );
+
   return (
     <>
       <Layout>
@@ -40,35 +40,39 @@ export function DisableOnBreakpoint() {
         <p>Необходимо изменить ширину окна для эффекта</p>
       </Layout>
 
-      <Layout disabledOn={['mxs']}>
-        <SomeContent />
-      </Layout>
-      <Layout disabledOn={['ms']}>
-        <SomeContent />
-      </Layout>
-      <Layout disabledOn={['mm']}>
-        <SomeContent />
-      </Layout>
-      <Layout disabledOn={['ml']}>
-        <SomeContent />
-      </Layout>
-      <Layout disabledOn={['xs']}>
-        <SomeContent />
-      </Layout>
-      <Layout disabledOn={['s']}>
-        <SomeContent />
-      </Layout>
-      <Layout disabledOn={['m']}>
-        <SomeContent />
-      </Layout>
-      <Layout disabledOn={['l']}>
-        <SomeContent />
-      </Layout>
-      <Layout disabledOn={['xl']}>
-        <SomeContent />
-      </Layout>
+      <Layout disabledOn={['mxs']}>{content}</Layout>
+      <Layout disabledOn={['ms']}>{content}</Layout>
+      <Layout disabledOn={['mm']}>{content}</Layout>
+      <Layout disabledOn={['ml']}>{content}</Layout>
+      <Layout disabledOn={['xs']}>{content}</Layout>
+      <Layout disabledOn={['s']}>{content}</Layout>
+      <Layout disabledOn={['m']}>{content}</Layout>
+      <Layout disabledOn={['l']}>{content}</Layout>
+      <Layout disabledOn={['xl']}>{content}</Layout>
     </>
   );
 }
 
 DisableOnBreakpoint.storyName = "Отключение не определённом breakpoint'е";
+
+export function SmartBorders() {
+  const small: Breakpoint[] = ['mxs', 'ms', 'mm', 'ml'];
+  const large: Breakpoint[] = ['xs', 's', 'm', 'l', 'xl'];
+
+  const content = (
+    <div style={{ margin: '32px 0', padding: '32px 0' }}>
+      <h2 style={{ margin: '0 0 24px 0' }}>Умные полосы</h2>
+      <p>Границы будут прибиты к краям экрана на мобильных разрешениях.</p>
+    </div>
+  );
+
+  return (
+    <Layout disabledOn={small}>
+      <Layout disabledOn={large} className={InnerBorder.y}>
+        {content}
+      </Layout>
+    </Layout>
+  );
+}
+
+SmartBorders.storyName = 'Умные границы';

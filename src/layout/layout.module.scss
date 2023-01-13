@@ -1,42 +1,56 @@
 @use '../breakpoints';
 
 .layout {
-  width: var(--l-width);
-  margin: 0 var(--l-gutter);
   @each $key, $val in breakpoints.$map {
     @include breakpoints.up($key) {
       &.disabled-#{$key} {
         width: auto;
-        margin: 0;
+        max-width: none;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
       }
       &:not(.disabled-#{$key}) {
-        width: var(--l-width);
-        margin: 0 var(--l-gutter);
+        // ВАЖНО: не используем 100vw так как при использовании 100vw не вычитается ширина полосы прокрутки страницы
+        width: 100%;
+        max-width: var(--layout-fixed-width);
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: var(--layout-fluid-gutter);
+        padding-right: var(--layout-fluid-gutter);
       }
     }
   }
   @include breakpoints.up('mxs') {
-    --l-width: calc(100vw - (var(--l-gutter) * 2));
-    --l-gutter: 16px;
+    --layout-fixed-width: initial;
+    --layout-fluid-gutter: 16px;
   }
   @include breakpoints.up('mm') {
-    --l-width: 656px;
-    --l-gutter: auto;
+    --layout-fixed-width: 656px;
+    --layout-fluid-gutter: initial;
   }
   @include breakpoints.up('ml') {
-    --l-width: 672px;
-    --l-gutter: auto;
+    --layout-fixed-width: 672px;
+    --layout-fluid-gutter: initial;
   }
   @include breakpoints.up('xs') {
-    --l-width: calc(100vw - (var(--l-gutter) * 2));
-    --l-gutter: 64px;
+    --layout-fixed-width: initial;
+    --layout-fluid-gutter: 64px;
   }
   @include breakpoints.up('l') {
-    --l-width: 1472px;
-    --l-gutter: auto;
+    --layout-fixed-width: 1472px;
+    --layout-fluid-gutter: initial;
   }
   @include breakpoints.up('xl') {
-    --l-width: 1504px;
-    --l-gutter: auto;
+    --layout-fixed-width: 1504px;
+    --layout-fluid-gutter: initial;
+  }
+
+  // пока что не даём использовать приватные переменные чтобы не раскрывать принцип работы
+  // так как он может измениться
+  *:not(.layout) {
+    --layout-fixed-width: initial;
+    --layout-fluid-gutter: initial;
   }
 }
