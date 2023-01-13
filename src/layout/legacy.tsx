@@ -12,7 +12,7 @@ const cx = classnames.bind(classes);
  * @return Элемент.
  */
 const createLayout = (specificClass: string, displayName: string) => {
-  const Component = forwardRef<HTMLElement, LayoutProps>(
+  const Component = forwardRef<HTMLElement, LayoutProps & { element?: string }>(
     ({ className, element: Element = 'div', disabledOn = [], ...restProps }, ref) => (
       <Element
         {...(restProps as any)}

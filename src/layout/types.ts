@@ -1,9 +1,7 @@
-export type Breakpoint = 'mxs' | 'ms' | 'mm' | 'ml' | 'xs' | 's' | 'm' | 'l' | 'xl';
+import { HTMLAttributes } from 'react';
+import { Breakpoint } from '../types';
 
-export interface LayoutProps extends React.HTMLAttributes<HTMLElement> {
-  /** Тэг. */
-  element?: string;
-
+export interface LayoutProps extends HTMLAttributes<HTMLElement> {
   /** Список точек остановки на которых необходимо отключить ограничение ширины. */
-  disabledOn?: Array<Breakpoint>;
+  disabledOn?: Breakpoint[];
 }
