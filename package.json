@@ -27,8 +27,7 @@
     "prettier:check": "prettier --check \"./src/**/*.{js,jsx,ts,tsx,css,scss}\" --loglevel error"
   },
   "dependencies": {
-    "@floating-ui/react-dom": "^1.0.0",
-    "@floating-ui/react-dom-interactions": "^0.10.3",
+    "@floating-ui/react": "^0.17.0",
     "@krutoo/input-mask": "^0.0.9",
     "@sima-land/ui-quarks": "^3.6.0",
     "body-scroll-lock": "3.1.5",
