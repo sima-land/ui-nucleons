@@ -1,9 +1,35 @@
-// скрывает полосы прокрутки у элемента
+@use './colors';
+
+/**
+ * Скрывает полосы прокрутки у элемента.
+ */
 @mixin hidden-scrollbars {
   scrollbar-width: none; // Firefox
   overflow: -moz-scrollbars-none; // old Firefox
   -ms-overflow-style: none; // IE, old Edge
   &::-webkit-scrollbar {
     display: none; // Chrome, Safari, Opera
+  }
+}
+
+/**
+ * стилизует полосы прокрутки по дизайн-гайдам с ограничениями:
+ * - в браузерах на основе webkit/blink (Chrome, Opera, Safari) полоса прокрутки не накладывается поверх контента
+ * - в браузерах которые поддерживают только стандартизированный способ стилизации (Firefox) определяет только цвет ползунка
+ */
+@mixin semi-stylized-scrollbars($bg-color: #fff) {
+  scrollbar-width: thin;
+  scrollbar-color: colors.$basic-gray12 transparent;
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+  &::-webkit-scrollbar-track {
+    background: $bg-color;
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border: 4px solid $bg-color;
+    border-radius: 12px;
+    background: colors.$basic-gray12;
   }
 }
