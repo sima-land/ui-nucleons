@@ -22,6 +22,7 @@ export interface WithTooltipProps {
 
 /**
  * Компонент, добавляющий к содержимому подсказку.
+ * @deprecated Можно использовать `popup/utils`.
  * @param props Свойства.
  * @return Элемент.
  */

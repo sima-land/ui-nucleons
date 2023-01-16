@@ -17,7 +17,7 @@ const longText = [
   .repeat(2);
 
 export default {
-  title: 'service/Tooltip',
+  title: 'deprecated/Tooltip',
   component: Tooltip,
   parameters: {
     layout: 'padded',
