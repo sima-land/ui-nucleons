@@ -15,6 +15,12 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
 
+      - uses: ./.github/actions/publish-notify
+        with:
+          stage: start
+          tg-bot-token: ${{ secrets.TG_BOT_TOKEN }}
+          tg-chat-id: ${{ secrets.TG_CHAT_ID }}
+
       - name: Install dependencies
         run: npm ci
 
@@ -38,3 +44,10 @@ jobs:
         run: npm publish ./build --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+
+      - uses: ./.github/actions/publish-notify
+        if: always()
+        with:
+          stage: finish
+          tg-bot-token: ${{ secrets.TG_BOT_TOKEN }}
+          tg-chat-id: ${{ secrets.TG_CHAT_ID }}
