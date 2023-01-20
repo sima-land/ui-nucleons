@@ -37,9 +37,9 @@ runs:
         token: ${{ inputs.tg-bot-token }}
         to: ${{ inputs.tg-chat-id }}
         message: |
-            ✅ Опубликована версия ${{ github.ref_name }} пакета ${{ env.package_name }}
+          ✅ Опубликована версия ${{ github.ref_name }} пакета ${{ env.package_name }}
 
-            Описание релиза: ${{ github.event.release.html_url }}
+          Описание релиза: ${{ github.event.release.html_url }}
 
     - name: Publish FAIL message
       if: ${{ failure() && inputs.stage == 'finish' }}
