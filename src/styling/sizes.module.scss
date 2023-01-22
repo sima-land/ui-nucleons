@@ -20,4 +20,9 @@ $directions: 'top', 'right', 'bottom', 'left';
       }
     }
   }
+  @if $index >=0 {
+    .G__#{$index} {
+      gap: $step * $index;
+    }
+  }
 }

@@ -105,6 +105,25 @@ export function MarginsAndPaddings() {
           <div style={{ height: 32 }} />
         </Fragment>
       ))}
+
+      <h2>Gap</h2>
+      <Fragment>
+        <Box display='flex' color='additional-amber' gap={4}>
+          <Box flex='grow' color='basic-blue' padding={6} />
+          <Box flex='grow' color='basic-blue' padding={6} />
+          <Box flex='grow' color='basic-blue' padding={6} />
+        </Box>
+        <div style={{ height: 32 }} />
+      </Fragment>
+      <Fragment>
+        <Box display='flex' color='additional-amber' gap={2} wrap={true}>
+          <Box flex='grow' color='basic-blue' padding={13} />
+          <Box flex='grow' color='basic-blue' padding={13} />
+          <Box flex='grow' color='basic-blue' padding={13} />
+          <Box flex='grow' color='basic-blue' padding={13} />
+        </Box>
+        <div style={{ height: 32 }} />
+      </Fragment>
     </div>
   );
 }

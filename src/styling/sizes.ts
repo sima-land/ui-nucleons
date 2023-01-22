@@ -15,6 +15,13 @@ export const isMargin = (value: any) => Number.isInteger(value) && value >= -8 &
  */
 export const isPadding = (value: any) => Number.isInteger(value) && value >= 0 && value <= 32;
 
+/**
+ * Проверяет, является ли значение шагом дизайн-системы для отступов дочерних элементов.
+ * @param value Значение.
+ * @return Результат.
+ */
+export const isGap = (value: any) => Number.isInteger(value) && value >= 0 && value <= 32;
+
 export const marginTop = ClassGetter(classes, isMargin, 'M-t__');
 export const marginRight = ClassGetter(classes, isMargin, 'M-r__');
 export const marginBottom = ClassGetter(classes, isMargin, 'M-b__');
@@ -24,3 +31,5 @@ export const paddingTop = ClassGetter(classes, isPadding, 'P-t__');
 export const paddingRight = ClassGetter(classes, isPadding, 'P-r__');
 export const paddingBottom = ClassGetter(classes, isPadding, 'P-b__');
 export const paddingLeft = ClassGetter(classes, isPadding, 'P-l__');
+
+export const gap = ClassGetter(classes, isGap, 'G__');

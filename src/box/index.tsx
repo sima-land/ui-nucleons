@@ -81,6 +81,9 @@ export interface BoxProps {
   /** Внутренний отступ по горизонтали. */
   paddingY?: number;
 
+  /** Отступы между дочерними элементами */
+  gap?: number;
+
   /** Формирует значение css-свойства "flex-wrap". */
   wrap?: boolean;
 }
@@ -146,6 +149,9 @@ export const Box = ({
   paddingX,
   paddingY,
 
+  // gap
+  gap,
+
   // color
   color,
 }: BoxProps) => (
@@ -181,6 +187,9 @@ export const Box = ({
         paddingX,
         paddingY,
       }),
+
+      // gap
+      getGapClasses(gap),
     )}
     children={children}
   />
@@ -321,3 +330,15 @@ const getPaddingClasses = ({
 
   return result.filter(Boolean).join(' ');
 };
+
+const getGapClasses = (gap?: number) => {
+  const result = [];
+  const isValid = Spacing.isGap;
+
+  const hasGap = isValid(gap);
+
+  hasGap && result.push(Spacing.gap(gap));
+
+  return result.filter(Boolean).join(' ');
+
+}
