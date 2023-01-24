@@ -3,7 +3,7 @@ import { getScrollParent } from '../helpers/get-scroll-parent';
 import { findOffsetParent } from '../helpers/find-offset-parent';
 import { pick } from 'lodash';
 
-type DOMRectLike = Record<typeof rectKeys[number], number>;
+type DOMRectLike = Record<(typeof rectKeys)[number], number>;
 
 type CanPlaceFn = (holder: HTMLElement, tooltipEl: HTMLElement, area: DOMRectLike) => boolean;
 

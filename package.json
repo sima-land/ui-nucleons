@@ -23,8 +23,8 @@
     "lint:styles": "stylelint 'src/**/*.{css,scss}'",
     "storybook": "BROWSERSLIST_ENV=\"storybook\" npx start-storybook -p 9009 -c .storybook",
     "storybook:build": "BROWSERSLIST_ENV=\"storybook\" npx build-storybook --quiet --loglevel error -o build-storybook",
-    "prettier": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,css,scss}\" --loglevel error",
-    "prettier:check": "prettier --check \"./src/**/*.{js,jsx,ts,tsx,css,scss}\" --loglevel error"
+    "prettier": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,css,scss}\"",
+    "prettier:check": "prettier --check \"./src/**/*.{js,jsx,ts,tsx,css,scss}\""
   },
   "dependencies": {
     "@floating-ui/react": "^0.17.0",
