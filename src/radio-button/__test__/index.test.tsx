@@ -12,8 +12,8 @@ describe('RadioButton', () => {
     );
 
     expect(container).toMatchSnapshot();
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent.click(getByTestId('test-label'));
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 });

@@ -74,9 +74,9 @@ describe('MaskedInput', () => {
     const spy = jest.fn();
     const { getByTestId } = render(<MaskedInput mask='____' onBlur={spy} />);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent.blur(getByTestId('base-input:field'));
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should handle "baseInputProps.restPlaceholder" prop', () => {

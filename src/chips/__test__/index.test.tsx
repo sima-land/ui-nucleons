@@ -31,13 +31,13 @@ describe('Chips', () => {
     expect(container).toMatchSnapshot();
     expect(await findAllByTestId('chips')).toHaveLength(1);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     await act(async () => {
       Simulate.click((await findAllByTestId('chips:item'))[4]);
     });
 
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should handle items with "href" property', async () => {

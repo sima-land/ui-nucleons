@@ -29,11 +29,11 @@ describe('Plate', () => {
     expect(wrapper.find('div[data-testid="plate"]')).toHaveLength(1);
     expect(wrapper.find('div[data-testid="plate"]').getDOMNode()).toBe(ref.current);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     act(() => {
       wrapper.find('div').simulate('click');
     });
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should handle "data-testid" prop', () => {
@@ -62,11 +62,11 @@ describe('Plate', () => {
     expect(wrapper.find('div[data-testid="test-plate"]')).toHaveLength(1);
     expect(wrapper.find('div[data-testid="test-plate"]').getDOMNode()).toBe(ref.current);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     act(() => {
       wrapper.find('div').simulate('click');
     });
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should renders with small rounds', () => {

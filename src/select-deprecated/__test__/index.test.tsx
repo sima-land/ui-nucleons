@@ -250,18 +250,18 @@ describe('Select', () => {
       />,
     );
 
-    expect(selectSpy).toBeCalledTimes(0);
+    expect(selectSpy).toHaveBeenCalledTimes(0);
 
     openMenu(wrapper);
 
-    expect(selectSpy).toBeCalledTimes(0);
+    expect(selectSpy).toHaveBeenCalledTimes(0);
 
     act(() => {
       Simulate.click(wrapper.find('div[role="menuitem"]').at(2).getDOMNode());
     });
     wrapper.update();
 
-    expect(selectSpy).toBeCalledTimes(1);
+    expect(selectSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should handle ReactNode in "endAdornment" prop', () => {

@@ -77,27 +77,27 @@ describe('UploadArea', () => {
     const clickSpy = jest.spyOn(input, 'click');
 
     expect(root.classList.contains('active')).toBe(false);
-    expect(focusSpy).toBeCalledTimes(0);
-    expect(blurSpy).toBeCalledTimes(0);
+    expect(focusSpy).toHaveBeenCalledTimes(0);
+    expect(blurSpy).toHaveBeenCalledTimes(0);
 
     fireEvent.focus(root);
     expect(root.classList.contains('active')).toBe(false);
-    expect(focusSpy).toBeCalledTimes(1);
-    expect(blurSpy).toBeCalledTimes(0);
+    expect(focusSpy).toHaveBeenCalledTimes(1);
+    expect(blurSpy).toHaveBeenCalledTimes(0);
 
     fireEvent.blur(root);
-    expect(focusSpy).toBeCalledTimes(1);
-    expect(blurSpy).toBeCalledTimes(1);
+    expect(focusSpy).toHaveBeenCalledTimes(1);
+    expect(blurSpy).toHaveBeenCalledTimes(1);
     expect(root.classList.contains('active')).toBe(false);
 
-    expect(clickSpy).toBeCalledTimes(0);
+    expect(clickSpy).toHaveBeenCalledTimes(0);
     fireEvent.click(root);
-    expect(clickSpy).toBeCalledTimes(1);
+    expect(clickSpy).toHaveBeenCalledTimes(1);
 
     clickSpy.mockClear();
-    expect(clickSpy).toBeCalledTimes(0);
+    expect(clickSpy).toHaveBeenCalledTimes(0);
     fireEvent.keyDown(root, { code: 'Enter' });
-    expect(clickSpy).toBeCalledTimes(1);
+    expect(clickSpy).toHaveBeenCalledTimes(1);
 
     rerender(<UploadArea disabled />);
     expect(root.classList.contains('active')).toBe(false);
@@ -109,14 +109,14 @@ describe('UploadArea', () => {
     expect(root.classList.contains('active')).toBe(false);
 
     clickSpy.mockClear();
-    expect(clickSpy).toBeCalledTimes(0);
+    expect(clickSpy).toHaveBeenCalledTimes(0);
     fireEvent.click(root);
-    expect(clickSpy).toBeCalledTimes(0);
+    expect(clickSpy).toHaveBeenCalledTimes(0);
 
     clickSpy.mockClear();
-    expect(clickSpy).toBeCalledTimes(0);
+    expect(clickSpy).toHaveBeenCalledTimes(0);
     fireEvent.keyDown(root, { code: 'Enter' });
-    expect(clickSpy).toBeCalledTimes(0);
+    expect(clickSpy).toHaveBeenCalledTimes(0);
   });
 
   it('should handle input change event', () => {
@@ -132,17 +132,17 @@ describe('UploadArea', () => {
     ];
     const event = createEvent.change(input, { target: { files } });
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent(input, event);
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
     expect(spy.mock.calls[0][0]).toHaveLength(3);
 
     rerender(<UploadArea multiple={false} onSelect={spy} />);
 
     spy.mockClear();
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent(input, event);
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
     expect(spy.mock.calls[0][0]).toHaveLength(1);
   });
 
@@ -159,9 +159,9 @@ describe('UploadArea', () => {
     ];
     const event = createEvent.change(input, { target: { files } });
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent(input, event);
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
     expect(spy.mock.calls[0][0]).toHaveLength(2);
   });
 
@@ -173,9 +173,9 @@ describe('UploadArea', () => {
     const input = getByTestId('upload-area:input');
     const event = createEvent.change(input, { target: { files: null } });
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent(input, event);
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
     expect(spy.mock.calls[0][0]).toHaveLength(0);
   });
 
@@ -192,17 +192,17 @@ describe('UploadArea', () => {
     ];
     const event = createEvent.drop(root, { dataTransfer: { files } });
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent(root, event);
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
     expect(spy.mock.calls[0][0]).toHaveLength(3);
 
     rerender(<UploadArea multiple={false} onSelect={spy} />);
 
     spy.mockClear();
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent(root, event);
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
     expect(spy.mock.calls[0][0]).toHaveLength(1);
   });
 });

@@ -174,7 +174,7 @@ describe('Select', () => {
     fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'ArrowUp' });
     fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'ArrowUp' });
     fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'Enter' });
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
     expect(spy.mock.calls[0][0]).toEqual('2');
   });
 
@@ -189,17 +189,17 @@ describe('Select', () => {
       </Select>,
     );
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
 
     fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(3);
 
     fireEvent.click(queryAllByTestId(baseElement, 'dropdown-item')[1]);
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
     expect(spy.mock.calls[0][0]).toEqual('2');
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
@@ -218,13 +218,13 @@ describe('Select', () => {
 
     // open menu
     fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(3);
 
     // click on third option
     fireEvent.click(queryAllByTestId(baseElement, 'dropdown-item')[2]);
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
     expect(spy.mock.calls[0][0]).toEqual('Baz');
   });
 
@@ -246,7 +246,7 @@ describe('Select', () => {
 
     // enter without active options
     fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'Enter' });
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
   });
 
   it('should handle custom opener', () => {
@@ -284,7 +284,7 @@ describe('Select', () => {
 
     // click on third option
     fireEvent.click(queryAllByTestId(baseElement, 'dropdown-item')[2]);
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
     expect(spy.mock.calls[0][0]).toEqual('Baz');
   });
 
@@ -425,12 +425,12 @@ describe('Select', () => {
       </Select>,
     );
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     expect(getByTestId(container, 'field-block:block').textContent).toBe('Third');
 
     fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
     fireEvent.click(queryAllByTestId(baseElement, 'dropdown-item')[2]);
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
     expect(getByTestId(container, 'field-block:block').textContent).toBe('Third');
   });
 

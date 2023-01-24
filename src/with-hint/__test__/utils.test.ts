@@ -87,14 +87,14 @@ describe('onParentScroll', () => {
 
     const off = onParentScroll(target, spy);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     document.dispatchEvent(new Event('scroll'));
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
 
     off();
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
     document.dispatchEvent(new Event('scroll'));
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should listen not document parent scroll', () => {
@@ -110,13 +110,13 @@ describe('onParentScroll', () => {
 
     const off = onParentScroll(target, spy);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     parent.dispatchEvent(new Event('scroll'));
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
 
     off();
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
     parent.dispatchEvent(new Event('scroll'));
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 });

@@ -18,10 +18,10 @@ describe('Tooltip', () => {
 
     const { findByTestId } = render(<Tooltip onClose={spy}>Hello, world!</Tooltip>);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     fireEvent.click(await findByTestId('tooltip:cross'));
 
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 });

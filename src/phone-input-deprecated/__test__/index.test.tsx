@@ -115,8 +115,8 @@ describe('<PhoneInput />', () => {
     const wrapper = mount(<PhoneInput value='0000000' onBlur={blurSpy} onChange={changeSpy} />);
 
     expect(wrapper).toMatchSnapshot();
-    expect(blurSpy).toBeCalledTimes(0);
-    expect(changeSpy).toBeCalledTimes(0);
+    expect(blurSpy).toHaveBeenCalledTimes(0);
+    expect(changeSpy).toHaveBeenCalledTimes(0);
 
     act(() => {
       Simulate.change(wrapper.find('input').getDOMNode(), {
@@ -124,8 +124,8 @@ describe('<PhoneInput />', () => {
       });
     });
 
-    expect(blurSpy).toBeCalledTimes(0);
-    expect(changeSpy).toBeCalledTimes(1);
+    expect(blurSpy).toHaveBeenCalledTimes(0);
+    expect(changeSpy).toHaveBeenCalledTimes(1);
     expect(changeSpy.mock.calls[0][0].target.value).toBe('000111');
 
     act(() => {
@@ -134,8 +134,8 @@ describe('<PhoneInput />', () => {
       });
     });
 
-    expect(blurSpy).toBeCalledTimes(1);
-    expect(changeSpy).toBeCalledTimes(1);
+    expect(blurSpy).toHaveBeenCalledTimes(1);
+    expect(changeSpy).toHaveBeenCalledTimes(1);
     expect(blurSpy.mock.calls[0][1].ready).toBe(true);
     expect(blurSpy.mock.calls[0][1].value).toBe('000111');
     expect(blurSpy.mock.calls[0][1].cleanValue).toBe('000111');
@@ -153,9 +153,9 @@ describe('<PhoneInput />', () => {
     const event = new MouseEvent('click', { bubbles: true });
     jest.spyOn(event, 'preventDefault');
 
-    expect(event.preventDefault).toBeCalledTimes(0);
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
     fireEvent(getByTestId('phone-input:dropdown-opener'), event);
-    expect(event.preventDefault).toBeCalledTimes(1);
+    expect(event.preventDefault).toHaveBeenCalledTimes(1);
   });
 
   it('should handle field block click: inside opener click case', () => {
@@ -164,12 +164,12 @@ describe('<PhoneInput />', () => {
     const event = new MouseEvent('click', { bubbles: true });
     jest.spyOn(event, 'preventDefault');
 
-    expect(event.preventDefault).toBeCalledTimes(0);
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
     fireEvent(
       container.querySelector('[data-testid="phone-input:dropdown-opener"] > img') as any,
       event,
     );
-    expect(event.preventDefault).toBeCalledTimes(1);
+    expect(event.preventDefault).toHaveBeenCalledTimes(1);
   });
 
   it('should handle field block click: block click case', () => {
@@ -184,10 +184,10 @@ describe('<PhoneInput />', () => {
     jest.spyOn(event, 'preventDefault');
 
     expect(queryAllByTestId('phone-input:dropdown')).toHaveLength(1);
-    expect(event.preventDefault).toBeCalledTimes(0);
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
     fireEvent(getByTestId('text-field:block'), event);
     expect(queryAllByTestId('phone-input:dropdown')).toHaveLength(0);
-    expect(event.preventDefault).toBeCalledTimes(0);
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
   });
 
   it('should open and close dropdown by click on opener', () => {

@@ -76,59 +76,59 @@ describe('<Stepper />', () => {
       />,
     );
 
-    expect(focusSpy).toBeCalledTimes(0);
-    expect(changeSpy).toBeCalledTimes(0);
-    expect(blurSpy).toBeCalledTimes(0);
+    expect(focusSpy).toHaveBeenCalledTimes(0);
+    expect(changeSpy).toHaveBeenCalledTimes(0);
+    expect(blurSpy).toHaveBeenCalledTimes(0);
 
     fireEvent.focus(getByTestId('stepper:input'));
 
-    expect(focusSpy).toBeCalledTimes(1);
-    expect(changeSpy).toBeCalledTimes(0);
-    expect(blurSpy).toBeCalledTimes(0);
+    expect(focusSpy).toHaveBeenCalledTimes(1);
+    expect(changeSpy).toHaveBeenCalledTimes(0);
+    expect(blurSpy).toHaveBeenCalledTimes(0);
 
     fireEvent.change(getByTestId('stepper:input'), { target: { value: 'next' } });
 
-    expect(focusSpy).toBeCalledTimes(1);
-    expect(changeSpy).toBeCalledTimes(1);
-    expect(blurSpy).toBeCalledTimes(0);
+    expect(focusSpy).toHaveBeenCalledTimes(1);
+    expect(changeSpy).toHaveBeenCalledTimes(1);
+    expect(blurSpy).toHaveBeenCalledTimes(0);
 
     fireEvent.blur(getByTestId('stepper:input'));
 
-    expect(focusSpy).toBeCalledTimes(1);
-    expect(changeSpy).toBeCalledTimes(1);
-    expect(blurSpy).toBeCalledTimes(1);
+    expect(focusSpy).toHaveBeenCalledTimes(1);
+    expect(changeSpy).toHaveBeenCalledTimes(1);
+    expect(blurSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should handle "onFocus" missing', () => {
     const spy = jest.fn();
 
     const { getByTestId, rerender } = render(<Stepper onFocus={spy} />);
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     fireEvent.focus(getByTestId('stepper:input'));
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
 
     rerender(<Stepper onFocus={undefined} />);
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
 
     fireEvent.focus(getByTestId('stepper:input'));
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should handle "onBlur" missing', () => {
     const spy = jest.fn();
 
     const { getByTestId, rerender } = render(<Stepper onBlur={spy} />);
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     fireEvent.blur(getByTestId('stepper:input'));
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
 
     rerender(<Stepper onBlur={undefined} />);
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
 
     fireEvent.blur(getByTestId('stepper:input'));
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should handle "size" prop', () => {

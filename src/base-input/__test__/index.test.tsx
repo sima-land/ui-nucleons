@@ -32,12 +32,12 @@ describe('BaseInput', () => {
 
   it('should fit textarea height to content height', () => {
     const { getByTestId } = render(<BaseInput multiline defaultValue='Some text' />);
-    expect(fitElementHeight).toBeCalledTimes(1);
+    expect(fitElementHeight).toHaveBeenCalledTimes(1);
 
     fireEvent.input(getByTestId('base-input:field'), {
       target: { value: 'Some other value' },
     });
-    expect(fitElementHeight).toBeCalledTimes(2);
+    expect(fitElementHeight).toHaveBeenCalledTimes(2);
   });
 
   it('should render rest placeholder for controlled fields only (when value provided)', () => {

@@ -54,9 +54,9 @@ describe('Input', () => {
 
     const { getByTestId } = render(<Input blockProps={{ onClick: spy }} />);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent.click(getByTestId('field-block:block'));
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should focus input when mousedown event fired on block', () => {
@@ -69,13 +69,13 @@ describe('Input', () => {
     );
 
     inputRef.current?.addEventListener('focus', focusSpy);
-    expect(mouseDownSpy).toBeCalledTimes(0);
-    expect(focusSpy).toBeCalledTimes(0);
+    expect(mouseDownSpy).toHaveBeenCalledTimes(0);
+    expect(focusSpy).toHaveBeenCalledTimes(0);
 
     fireEvent.mouseDown(getByTestId('field-block:block'));
 
-    expect(mouseDownSpy).toBeCalledTimes(1);
-    expect(focusSpy).toBeCalledTimes(1);
+    expect(mouseDownSpy).toHaveBeenCalledTimes(1);
+    expect(focusSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should not focus input when mousedown event fired on block and prevented', () => {
@@ -88,13 +88,13 @@ describe('Input', () => {
     );
 
     inputRef.current?.addEventListener('focus', focusSpy);
-    expect(mouseDownSpy).toBeCalledTimes(0);
-    expect(focusSpy).toBeCalledTimes(0);
+    expect(mouseDownSpy).toHaveBeenCalledTimes(0);
+    expect(focusSpy).toHaveBeenCalledTimes(0);
 
     fireEvent.mouseDown(getByTestId('field-block:block'));
 
-    expect(mouseDownSpy).toBeCalledTimes(1);
-    expect(focusSpy).toBeCalledTimes(0);
+    expect(mouseDownSpy).toHaveBeenCalledTimes(1);
+    expect(focusSpy).toHaveBeenCalledTimes(0);
   });
 
   it('should properly set "--placeholder-color" variable', () => {
@@ -130,9 +130,9 @@ describe('Input', () => {
     expect(queryAllByTestId('input:clear-button')).toHaveLength(0);
 
     fireEvent.focus(getByTestId('base-input:field'));
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent.click(getByTestId('input:clear-button'), { bubbles: true });
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should render clear icon depends on size', () => {
@@ -153,9 +153,9 @@ describe('Input', () => {
 
     const { getByTestId } = render(<Input onInput={spy} />);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent.input(getByTestId('base-input:field'), { target: { value: 'New value' } });
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should update filled state when "change" event fired on input element', () => {
@@ -163,9 +163,9 @@ describe('Input', () => {
 
     const { getByTestId } = render(<Input onChange={spy} />);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent.change(getByTestId('base-input:field'), { target: { value: 'New value' } });
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should properly set "data-testid" to elements', () => {

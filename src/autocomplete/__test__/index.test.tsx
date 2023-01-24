@@ -158,42 +158,42 @@ describe('Autocomplete', () => {
     expect(helpers.findField()).toHaveLength(1);
     expect(helpers.findMenu()).toHaveLength(0);
     expect(helpers.findMenuItems()).toHaveLength(0);
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     // Enter
     fireEvent.keyDown(helpers.getInput(), { code: 'Enter' });
     expect(helpers.findField()).toHaveLength(1);
     expect(helpers.findMenu()).toHaveLength(1);
     expect(helpers.findMenuItems()).toHaveLength(3);
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
 
     // Enter again (for close)
     fireEvent.keyDown(helpers.getInput(), { code: 'Enter' });
     expect(helpers.findField()).toHaveLength(1);
     expect(helpers.findMenu()).toHaveLength(0);
     expect(helpers.findMenuItems()).toHaveLength(0);
-    expect(spy).toBeCalledTimes(2);
+    expect(spy).toHaveBeenCalledTimes(2);
 
     // Enter again (for open)
     fireEvent.keyDown(helpers.getInput(), { code: 'Enter' });
     expect(helpers.findField()).toHaveLength(1);
     expect(helpers.findMenu()).toHaveLength(1);
     expect(helpers.findMenuItems()).toHaveLength(3);
-    expect(spy).toBeCalledTimes(3);
+    expect(spy).toHaveBeenCalledTimes(3);
 
     // Escape
     fireEvent.keyDown(helpers.getInput(), { code: 'Escape' });
     expect(helpers.findField()).toHaveLength(1);
     expect(helpers.findMenu()).toHaveLength(0);
     expect(helpers.findMenuItems()).toHaveLength(0);
-    expect(spy).toBeCalledTimes(4);
+    expect(spy).toHaveBeenCalledTimes(4);
 
     // Enter again (for open)
     fireEvent.keyDown(helpers.getInput(), { code: 'Enter' });
     expect(helpers.findField()).toHaveLength(1);
     expect(helpers.findMenu()).toHaveLength(1);
     expect(helpers.findMenuItems()).toHaveLength(3);
-    expect(spy).toBeCalledTimes(5);
+    expect(spy).toHaveBeenCalledTimes(5);
 
     // move through the list by arrows: 1, 2, 3, 1, 2, 1, 3, 2
     fireEvent.keyDown(helpers.getInput(), { code: 'ArrowDown' });
@@ -207,35 +207,35 @@ describe('Autocomplete', () => {
     expect(helpers.findField()).toHaveLength(1);
     expect(helpers.findMenu()).toHaveLength(1);
     expect(helpers.findMenuItems()).toHaveLength(3);
-    expect(spy).toBeCalledTimes(13);
+    expect(spy).toHaveBeenCalledTimes(13);
 
     // Enter for select item and close menu
     fireEvent.keyDown(helpers.getInput(), { code: 'Enter' });
     expect(helpers.getInput().value).toBe('Second');
     expect(helpers.findMenu()).toHaveLength(0);
     expect(helpers.findMenuItems()).toHaveLength(0);
-    expect(spy).toBeCalledTimes(14);
+    expect(spy).toHaveBeenCalledTimes(14);
 
     // ArrowDown to open menu
     fireEvent.keyDown(helpers.getInput(), { code: 'ArrowDown' });
     expect(helpers.findField()).toHaveLength(1);
     expect(helpers.findMenu()).toHaveLength(1);
     expect(helpers.findMenuItems()).toHaveLength(1);
-    expect(spy).toBeCalledTimes(15);
+    expect(spy).toHaveBeenCalledTimes(15);
 
     // Escape
     fireEvent.keyDown(helpers.getInput(), { code: 'Escape' });
     expect(helpers.findField()).toHaveLength(1);
     expect(helpers.findMenu()).toHaveLength(0);
     expect(helpers.findMenuItems()).toHaveLength(0);
-    expect(spy).toBeCalledTimes(16);
+    expect(spy).toHaveBeenCalledTimes(16);
 
     // ArrowUp to open menu
     fireEvent.keyDown(helpers.getInput(), { code: 'ArrowUp' });
     expect(helpers.findField()).toHaveLength(1);
     expect(helpers.findMenu()).toHaveLength(1);
     expect(helpers.findMenuItems()).toHaveLength(1);
-    expect(spy).toBeCalledTimes(17);
+    expect(spy).toHaveBeenCalledTimes(17);
   });
 
   it('should handle arrows when all items is disabled', () => {
@@ -272,7 +272,7 @@ describe('Autocomplete', () => {
       </Autocomplete>,
     );
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     expect(helpers.findField()).toHaveLength(1);
     expect(helpers.findMenu()).toHaveLength(0);
     expect(helpers.findMenuItems()).toHaveLength(0);
@@ -280,7 +280,7 @@ describe('Autocomplete', () => {
     const event = createEvent.mouseDown(getByTestId(container, 'field-block:block'));
 
     fireEvent(getByTestId(container, 'field-block:block'), event);
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
     expect(helpers.findField()).toHaveLength(1);
     expect(helpers.findMenu()).toHaveLength(1);
     expect(helpers.findMenuItems()).toHaveLength(3);
@@ -409,10 +409,10 @@ describe('Autocomplete', () => {
 
     helpers.render(<Autocomplete onBlur={spy} />);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent.focus(helpers.getInput());
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent.blur(helpers.getInput());
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 });

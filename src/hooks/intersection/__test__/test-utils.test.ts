@@ -74,8 +74,8 @@ describe('IntersectionMock', () => {
     observer1.observe(element1);
     observer2.observe(element2);
 
-    expect(spy1).toBeCalledTimes(0);
-    expect(spy2).toBeCalledTimes(0);
+    expect(spy1).toHaveBeenCalledTimes(0);
+    expect(spy2).toHaveBeenCalledTimes(0);
 
     mock.changeElementState({
       target: element1,
@@ -83,8 +83,8 @@ describe('IntersectionMock', () => {
       intersectionRatio: 0,
     });
 
-    expect(spy1).toBeCalledTimes(1);
-    expect(spy2).toBeCalledTimes(0);
+    expect(spy1).toHaveBeenCalledTimes(1);
+    expect(spy2).toHaveBeenCalledTimes(0);
 
     mock.restore();
   });

@@ -30,16 +30,16 @@ describe('usePageScrollLock', () => {
       return <div ref={ref}>Hello</div>;
     }
 
-    expect(lockSpy).toBeCalledTimes(0);
-    expect(unlockSpy).toBeCalledTimes(0);
+    expect(lockSpy).toHaveBeenCalledTimes(0);
+    expect(unlockSpy).toHaveBeenCalledTimes(0);
 
     const { unmount } = render(<TestComponent />);
-    expect(lockSpy).toBeCalledTimes(1);
-    expect(unlockSpy).toBeCalledTimes(0);
+    expect(lockSpy).toHaveBeenCalledTimes(1);
+    expect(unlockSpy).toHaveBeenCalledTimes(0);
 
     unmount();
-    expect(lockSpy).toBeCalledTimes(1);
-    expect(unlockSpy).toBeCalledTimes(1);
+    expect(lockSpy).toHaveBeenCalledTimes(1);
+    expect(unlockSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should use default options', () => {
@@ -86,8 +86,8 @@ describe('usePageScrollLock', () => {
       return <div ref={ref}>Hello</div>;
     }
 
-    expect(lockSpy).toBeCalledTimes(0);
-    expect(unlockSpy).toBeCalledTimes(0);
+    expect(lockSpy).toHaveBeenCalledTimes(0);
+    expect(unlockSpy).toHaveBeenCalledTimes(0);
 
     const { unmount } = render(
       <PageScrollProvider adapter={() => adapter}>
@@ -95,11 +95,11 @@ describe('usePageScrollLock', () => {
       </PageScrollProvider>,
     );
 
-    expect(adapter.lock).toBeCalledTimes(1);
-    expect(adapter.unlock).toBeCalledTimes(0);
+    expect(adapter.lock).toHaveBeenCalledTimes(1);
+    expect(adapter.unlock).toHaveBeenCalledTimes(0);
 
     unmount();
-    expect(adapter.lock).toBeCalledTimes(1);
-    expect(adapter.unlock).toBeCalledTimes(1);
+    expect(adapter.lock).toHaveBeenCalledTimes(1);
+    expect(adapter.unlock).toHaveBeenCalledTimes(1);
   });
 });

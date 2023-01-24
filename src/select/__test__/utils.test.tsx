@@ -22,7 +22,7 @@ describe('SelectContext', () => {
     const { getByTestId } = render(<TestComponent />);
 
     // check defaults
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
     expect(typeof spy.mock.calls[0][0].onKeyDown === 'function').toBe(true);
     expect(typeof spy.mock.calls[0][0].onMouseDown === 'function').toBe(true);
 

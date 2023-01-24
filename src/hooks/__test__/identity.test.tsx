@@ -24,12 +24,12 @@ describe('useIdentityRef', () => {
       render(<TestComponent value={123} callback={spy} />, container);
     });
 
-    expect(spy).toBeCalledWith(123);
+    expect(spy).toHaveBeenCalledWith(123);
 
     act(() => {
       render(<TestComponent value={234} callback={spy} />, container);
     });
 
-    expect(spy).toBeCalledWith(234);
+    expect(spy).toHaveBeenCalledWith(234);
   });
 });

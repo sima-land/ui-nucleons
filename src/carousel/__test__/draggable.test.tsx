@@ -400,15 +400,15 @@ describe('<Draggable />', () => {
     const spy = jest.spyOn(stub, 'togglePreventClickNeed');
     stub.isGrabbed = true;
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     const touchEvent = new TouchEvent('touchmove');
     Draggable.prototype.handleMove.call(stub, touchEvent);
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     const mouseEvent = new MouseEvent('mousemove');
     Draggable.prototype.handleMove.call(stub, mouseEvent);
-    expect(spy).toBeCalledTimes(1);
-    expect(spy).toBeCalledWith(true);
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(true);
   });
 });

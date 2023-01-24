@@ -229,7 +229,7 @@ describe('<Carousel />', () => {
 
     Carousel.prototype.componentDidMount.call(fakeInstance);
 
-    expect(fakeInstance.observeResize).toBeCalledTimes(1);
+    expect(fakeInstance.observeResize).toHaveBeenCalledTimes(1);
   });
 
   it('observeResize() should use observer', () => {
@@ -268,22 +268,22 @@ describe('<Carousel />', () => {
     Carousel.prototype.observeResize.call(fakeInstance, FakeObserver);
 
     // проверяем, что выполняется только подписка
-    expect(observeSpy).toBeCalledTimes(1);
-    expect(observeSpy).toBeCalledWith(fakeInstance.rootElementRef.current);
-    expect(unobserveSpy).toBeCalledTimes(0);
-    expect(disconnectSpy).toBeCalledTimes(0);
+    expect(observeSpy).toHaveBeenCalledTimes(1);
+    expect(observeSpy).toHaveBeenCalledWith(fakeInstance.rootElementRef.current);
+    expect(unobserveSpy).toHaveBeenCalledTimes(0);
+    expect(disconnectSpy).toHaveBeenCalledTimes(0);
 
     //
     fakeInstance.offWindowResize();
 
-    expect(observeSpy).toBeCalledTimes(1);
-    expect(unobserveSpy).toBeCalledTimes(0);
-    expect(disconnectSpy).toBeCalledTimes(1);
+    expect(observeSpy).toHaveBeenCalledTimes(1);
+    expect(unobserveSpy).toHaveBeenCalledTimes(0);
+    expect(disconnectSpy).toHaveBeenCalledTimes(1);
 
     // проверяем, что передается нужный callback
-    expect(fakeInstance.handleResize).toBeCalledTimes(0);
+    expect(fakeInstance.handleResize).toHaveBeenCalledTimes(0);
     typeof callback === 'function' && callback();
-    expect(fakeInstance.handleResize).toBeCalledTimes(1);
+    expect(fakeInstance.handleResize).toHaveBeenCalledTimes(1);
   });
 
   it('observeResize() should do nothing when ref is emtpy or class not provided', () => {
@@ -317,15 +317,15 @@ describe('<Carousel />', () => {
 
     Carousel.prototype.observeResize.call(fakeInstance, FakeObserver);
 
-    expect(observeSpy).toBeCalledTimes(0);
-    expect(unobserveSpy).toBeCalledTimes(0);
-    expect(disconnectSpy).toBeCalledTimes(0);
+    expect(observeSpy).toHaveBeenCalledTimes(0);
+    expect(unobserveSpy).toHaveBeenCalledTimes(0);
+    expect(disconnectSpy).toHaveBeenCalledTimes(0);
 
     Carousel.prototype.observeResize.call(fakeInstance, undefined);
 
-    expect(observeSpy).toBeCalledTimes(0);
-    expect(unobserveSpy).toBeCalledTimes(0);
-    expect(disconnectSpy).toBeCalledTimes(0);
+    expect(observeSpy).toHaveBeenCalledTimes(0);
+    expect(unobserveSpy).toHaveBeenCalledTimes(0);
+    expect(disconnectSpy).toHaveBeenCalledTimes(0);
   });
 
   it('handleResize() should correct offset without transition', () => {
@@ -336,16 +336,16 @@ describe('<Carousel />', () => {
       updateItemsVisibility: jest.fn(),
     };
 
-    expect(fakeInstance.toggleDragTransition).toBeCalledTimes(0);
-    expect(fakeInstance.scrollToItem).toBeCalledTimes(0);
-    expect(fakeInstance.updateItemsVisibility).toBeCalledTimes(0);
+    expect(fakeInstance.toggleDragTransition).toHaveBeenCalledTimes(0);
+    expect(fakeInstance.scrollToItem).toHaveBeenCalledTimes(0);
+    expect(fakeInstance.updateItemsVisibility).toHaveBeenCalledTimes(0);
 
     Carousel.prototype.handleResize.call(fakeInstance);
 
-    expect(fakeInstance.toggleDragTransition).toBeCalledTimes(2);
-    expect(fakeInstance.scrollToItem).toBeCalledTimes(1);
-    expect(fakeInstance.scrollToItem).toBeCalledWith({ needTransition: false });
-    expect(fakeInstance.updateItemsVisibility).toBeCalledTimes(1);
+    expect(fakeInstance.toggleDragTransition).toHaveBeenCalledTimes(2);
+    expect(fakeInstance.scrollToItem).toHaveBeenCalledTimes(1);
+    expect(fakeInstance.scrollToItem).toHaveBeenCalledWith({ needTransition: false });
+    expect(fakeInstance.updateItemsVisibility).toHaveBeenCalledTimes(1);
   });
 
   it('should call "offWindowResize" on unmount', () => {
@@ -353,11 +353,11 @@ describe('<Carousel />', () => {
 
     const spy = jest.spyOn(wrapper.instance(), 'offWindowResize');
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     wrapper.unmount();
 
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 });
 

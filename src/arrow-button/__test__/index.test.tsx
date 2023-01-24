@@ -18,11 +18,11 @@ describe('<ArrowButton />', () => {
 
     expect(result.container).toMatchSnapshot();
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     fireEvent.click(await result.findByTestId('arrow-button'));
 
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should handle "data-testid"', function () {
