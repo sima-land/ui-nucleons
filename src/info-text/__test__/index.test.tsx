@@ -30,21 +30,14 @@ describe('InfoText', () => {
     const { getByTestId } = render(<InfoText onIconClick={spy}>Hello</InfoText>);
 
     expect(getByTestId('info-text:icon').tabIndex).toBe(0);
-    expect(getByTestId('info-text:icon').getAttribute('role')).toBe('button');
     expect(getByTestId('info-text:icon').getAttribute('aria-label')).toBe('Подробнее');
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent.click(getByTestId('info-text:icon'));
-    expect(spy).toBeCalledTimes(1);
-    fireEvent.keyDown(getByTestId('info-text:icon'), { code: 'Enter' });
-    expect(spy).toBeCalledTimes(2);
-    fireEvent.keyDown(getByTestId('info-text:icon'), { code: 'Space' });
-    expect(spy).toBeCalledTimes(3);
-    fireEvent.keyDown(getByTestId('info-text:icon'), { code: 'OtherKey' });
-    expect(spy).toBeCalledTimes(3);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should handle "iconRef" prop', () => {
-    const ref = createRef<SVGSVGElement>();
+    const ref = createRef<HTMLButtonElement>();
 
     const { getByTestId } = render(
       <InfoText iconRef={ref} onIconClick={jest.fn()}>
@@ -52,7 +45,7 @@ describe('InfoText', () => {
       </InfoText>,
     );
 
-    expect(ref.current instanceof SVGSVGElement).toBe(true);
+    expect(ref.current instanceof HTMLButtonElement).toBe(true);
     expect(ref.current === (getByTestId('info-text:icon') as Element)).toBe(true);
   });
 });

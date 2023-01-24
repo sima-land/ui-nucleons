@@ -1,15 +1,16 @@
-import React, { Children, CSSProperties, Fragment, ReactNode, Ref, SyntheticEvent } from 'react';
+import React, { Children, CSSProperties, Fragment, MouseEventHandler, ReactNode, Ref } from 'react';
+import { WithTestId } from '../types';
 import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information';
 import classNames from 'classnames/bind';
 import styles from './info-text.module.scss';
 
-export interface InfoTextProps {
+export interface InfoTextProps extends WithTestId {
   children?: ReactNode;
   className?: string;
   style?: CSSProperties;
-  iconRef?: Ref<SVGSVGElement>;
-  onIconClick?: (event: SyntheticEvent<SVGSVGElement>) => void;
-  'data-testid'?: string;
+  iconRef?: Ref<HTMLButtonElement>;
+  iconActive?: boolean;
+  onIconClick?: MouseEventHandler;
 }
 
 const cx = classNames.bind(styles);
@@ -26,6 +27,7 @@ export function InfoText({
   className,
   iconRef,
   onIconClick,
+  iconActive,
   'data-testid': testId = 'info-text',
 }: InfoTextProps) {
   return (
@@ -45,23 +47,18 @@ export function InfoText({
               {last && (
                 <span className={styles.last}>
                   {last}
-                  <InfoSVG
-                    {...(onIconClick && {
-                      role: 'button',
-                      tabIndex: 0,
-                      'aria-label': 'Подробнее',
-                      onKeyDown: event => {
-                        // имитируем поведение кнопки
-                        if (['Enter', 'Space'].includes(event.code)) {
-                          onIconClick?.(event);
-                        }
-                      },
-                    })}
+                  <button
                     ref={iconRef}
-                    className={cx('icon', onIconClick && 'button')}
+                    type='button'
+                    aria-label='Подробнее'
+                    disabled={!onIconClick}
+                    aria-hidden={!onIconClick}
                     onClick={onIconClick}
+                    className={cx('button', { active: iconActive })}
                     data-testid='info-text:icon'
-                  />
+                  >
+                    <InfoSVG className={cx('icon')} />
+                  </button>
                 </span>
               )}
             </Fragment>

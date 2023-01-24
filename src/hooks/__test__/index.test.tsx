@@ -156,7 +156,7 @@ describe('useIsTouchDevice', () => {
 
 describe('useOutsideClick', () => {
   const TestComponent = ({ callback }: { callback: () => void }) => {
-    const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
+    const ref = useRef<HTMLDivElement>(null);
 
     useOutsideClick(ref, callback);
 
@@ -180,6 +180,36 @@ describe('useOutsideClick', () => {
 
     act(() => {
       render(<TestComponent callback={spy} />, container);
+    });
+
+    expect(spy).toHaveBeenCalledTimes(0);
+
+    act(() => {
+      document.documentElement.dispatchEvent(new MouseEvent('click'));
+    });
+
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should handle array of refs', () => {
+    const spy = jest.fn();
+
+    const OtherTestComponent = ({ callback }: { callback: () => void }) => {
+      const refA = useRef<HTMLDivElement>(null);
+      const refB = useRef<HTMLDivElement>(null);
+
+      useOutsideClick([refA, refB], callback);
+
+      return (
+        <>
+          <div ref={refA} />
+          <div ref={refB} />
+        </>
+      );
+    };
+
+    act(() => {
+      render(<OtherTestComponent callback={spy} />, container);
     });
 
     expect(spy).toHaveBeenCalledTimes(0);
