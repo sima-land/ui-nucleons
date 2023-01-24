@@ -63,6 +63,7 @@ export class IntersectionMock {
       throw Error('Already mocked');
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     intersectionMock = this;
     window.IntersectionObserver = FakeIntersectionObserver;
   }
@@ -111,7 +112,7 @@ export class IntersectionMock {
    * @param observer Observer.
    */
   _unregisterObserver(observer: FakeIntersectionObserver) {
-    this._observers.splice(this._observers.indexOf(observer));
+    this._observers.splice(this._observers.indexOf(observer), 1);
   }
 }
 

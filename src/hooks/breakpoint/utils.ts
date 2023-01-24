@@ -52,7 +52,8 @@ export const createRegistry = (): Registry => {
         item.handlers.add(listener);
       } else {
         const newItem: RegistryItem = {
-          mql: matchMedia(BreakpointQuery.toMediaQuery(query)),
+          // ВАЖНО: используем "window.matchMedia" вместо "matchMedia" тк падают ошибки в некоторых браузерах
+          mql: window.matchMedia(BreakpointQuery.toMediaQuery(query)),
           handlers: new Set([listener]),
         };
 

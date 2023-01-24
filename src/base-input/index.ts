@@ -1,4 +1,4 @@
-export {
+export type {
   RestPlaceholderDefinition,
   BaseInputAsInputProps,
   BaseInputAsTextareaProps,
