@@ -18,15 +18,15 @@ describe('DotNav', () => {
 
     expect(wrapper).toMatchSnapshot();
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     act(() => {
       wrapper.find('.item').at(5).simulate('click');
     });
     wrapper.update();
 
-    expect(spy).toBeCalledTimes(1);
-    expect(spy).toBeCalledWith(5);
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(5);
   });
 
   it('should handle "current" change', () => {

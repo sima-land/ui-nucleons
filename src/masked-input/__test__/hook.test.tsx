@@ -56,14 +56,14 @@ describe('useInputMask', () => {
 
     const { getByTestId } = render(<TestComponent defaultValue='8080' />);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent(document, new Event('selectionchange'));
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     getByTestId('test-input').focus();
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     expect(document.activeElement).toBe(getByTestId('test-input'));
     fireEvent(document, createEvent('selectionchange', document));
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should return suitable result for options immediately (without rerender)', () => {
@@ -77,7 +77,7 @@ describe('useInputMask', () => {
       return <input data-testid='test-input' {...bind} />;
     }
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     const { rerender } = render(
       <TestComponent
@@ -89,7 +89,7 @@ describe('useInputMask', () => {
         }}
       />,
     );
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
     expect(spy.mock.calls[0][0].bind.value).toBe('1111');
 
     rerender(
@@ -102,7 +102,7 @@ describe('useInputMask', () => {
         }}
       />,
     );
-    expect(spy).toBeCalledTimes(2);
+    expect(spy).toHaveBeenCalledTimes(2);
     expect(spy.mock.calls[1][0].bind.value).toBe('+998-22-22');
 
     rerender(
@@ -115,7 +115,7 @@ describe('useInputMask', () => {
         }}
       />,
     );
-    expect(spy).toBeCalledTimes(4);
+    expect(spy).toHaveBeenCalledTimes(4);
     expect(spy.mock.calls[2][0].bind.value).toBe('+998-22-22');
     expect(spy.mock.calls[3][0].bind.value).toBe('+998-33-33');
   });

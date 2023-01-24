@@ -55,6 +55,6 @@ describe('useBreakpoint', () => {
           <TestComponent query='invalid_query' />
         </BreakpointProvider>,
       ),
-    ).toThrowError(Error('useBreakpoint: Invalid query, "invalid_query"'));
+    ).toThrow(Error('useBreakpoint: Invalid query, "invalid_query"'));
   });
 });

@@ -36,14 +36,14 @@ describe('WithTooltip', () => {
       </WithTooltip>,
     );
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     fireEvent.click(await findByTestId('opener'));
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     fireEvent.click(await findByTestId('tooltip:cross'));
 
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 });

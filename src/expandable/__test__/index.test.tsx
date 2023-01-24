@@ -38,9 +38,9 @@ describe('Expandable.Group', () => {
       </Expandable.Group>,
     );
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent.click(getByTestId('expandable:opener'));
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should do not call "onExpand" on opener click', () => {
@@ -99,6 +99,6 @@ describe('Expandable.Group', () => {
       </Expandable.Group>,
     );
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
   });
 });

@@ -16,14 +16,14 @@ describe('SelectFieldBlock', () => {
     );
 
     expect(getByTestId(container, 'field-block').classList.contains('focused')).toBe(false);
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     fireEvent.focus(getByTestId(container, 'field-block:block'));
     expect(getByTestId(container, 'field-block').classList.contains('focused')).toBe(true);
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     fireEvent.blur(getByTestId(container, 'field-block:block'));
     expect(getByTestId(container, 'field-block').classList.contains('focused')).toBe(false);
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 });

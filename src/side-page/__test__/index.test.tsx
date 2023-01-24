@@ -55,13 +55,13 @@ describe('SidePage', () => {
       </SidePage>,
     );
 
-    expect(onBack).toBeCalledTimes(0);
+    expect(onBack).toHaveBeenCalledTimes(0);
     Simulate.click(getByTestId('top-bar:back'));
-    expect(onBack).toBeCalledTimes(1);
+    expect(onBack).toHaveBeenCalledTimes(1);
 
-    expect(onClose).toBeCalledTimes(0);
+    expect(onClose).toHaveBeenCalledTimes(0);
     Simulate.click(getByTestId('top-bar:close'));
-    expect(onClose).toBeCalledTimes(1);
+    expect(onClose).toHaveBeenCalledTimes(1);
   });
 
   it('should increment layer by 100', () => {

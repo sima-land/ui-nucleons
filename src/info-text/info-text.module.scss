@@ -1,4 +1,5 @@
 @use '../colors';
+@use '../utils';
 
 .last {
   white-space: nowrap;
@@ -6,15 +7,22 @@
   font-size: inherit;
 }
 
-.icon {
+.button {
+  @include utils.reset-button;
   display: inline-block;
   vertical-align: -0.125em; // не понятно почему, но это значение ставит блок ровно по середине строки
   margin-left: 4px;
-  fill: colors.$basic-gray38;
-  &.button:hover,
-  &.button:focus-visible {
+  color: colors.$basic-gray38;
+  &.active,
+  &:hover,
+  &:focus-visible {
     outline: 0;
-    fill: colors.$basic-gray54;
+    color: colors.$basic-gray54;
     cursor: pointer;
   }
+}
+
+.icon {
+  display: block;
+  fill: currentColor;
 }

@@ -1,4 +1,11 @@
-import React, { useEffect, useState, useLayoutEffect } from 'react';
+import {
+  useEffect,
+  useState,
+  useLayoutEffect,
+  RefObject,
+  MutableRefObject,
+  DependencyList,
+} from 'react';
 import { isTouchDevice } from '../helpers/is-touch-device';
 import { on } from '../helpers/on';
 import { useIdentityRef } from './identity';
@@ -26,7 +33,7 @@ export function useIsTouchDevice() {
  * @param moreDeps Зависимости эффекта (нужны, когда ref заполняется не на этапе render'а).
  */
 export function useInfiniteScroll(
-  ref: React.MutableRefObject<HTMLElement | undefined | null>,
+  ref: MutableRefObject<HTMLElement | undefined | null>,
   {
     onFullScroll,
     threshold = 0,
@@ -34,7 +41,7 @@ export function useInfiniteScroll(
     onFullScroll?: (event: UIEvent) => void;
     threshold?: number;
   },
-  moreDeps?: React.DependencyList,
+  moreDeps?: DependencyList,
 ) {
   const callbackRef = useIdentityRef(onFullScroll);
 
@@ -59,24 +66,34 @@ export function useInfiniteScroll(
  * @param callback Сработает при клике вне элемента.
  */
 export function useOutsideClick(
-  elementRef: React.MutableRefObject<HTMLElement | undefined | null>,
-  callback: (e: MouseEvent) => void,
+  elementRef: RefObject<Element | undefined | null> | RefObject<Element | undefined | null>[],
+  callback: undefined | ((e: MouseEvent) => void),
 ) {
+  const innerRef = useIdentityRef(elementRef);
   const callbackRef = useIdentityRef(callback);
 
-  useEffect(
-    () =>
-      on<MouseEvent>(document.documentElement, 'click', event => {
-        const { current: element } = elementRef;
-        const { current: handler } = callbackRef;
+  useEffect(() => {
+    const off = on<MouseEvent>(document.documentElement, 'click', event => {
+      const arg = innerRef.current;
+      const refs = Array.isArray(arg) ? arg : [arg];
+      let isOutsideClick = true;
 
-        element &&
-          element !== event.target &&
-          !element.contains(event.target as Node) &&
-          handler?.(event);
-      }),
-    [],
-  );
+      for (const { current: element } of refs) {
+        if (
+          element &&
+          event.target instanceof Node &&
+          (element === event.target || element.contains(event.target))
+        ) {
+          isOutsideClick = false;
+          break;
+        }
+      }
+
+      isOutsideClick && callbackRef.current?.(event);
+    });
+
+    return off;
+  }, []);
 }
 
 /**

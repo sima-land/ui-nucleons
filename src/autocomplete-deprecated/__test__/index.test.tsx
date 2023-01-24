@@ -141,12 +141,12 @@ describe('Autocomplete', () => {
     const { container } = render(<Autocomplete value='ffff' items={items} onChange={spy} />);
 
     expect(queryAllByTestId(container, 'autocomplete:menu')).toHaveLength(0);
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     fireEvent.change(getByTestId(container, 'text-field:field'), { target: { value: 'jjjj' } });
 
     expect(queryAllByTestId(container, 'autocomplete:menu')).toHaveLength(0);
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should handle "defaultValue" prop', () => {
@@ -183,11 +183,11 @@ describe('Autocomplete', () => {
     focusOnField(container);
     expect(queryAllByTestId(container, 'autocomplete:menu')).toHaveLength(1);
     expect(queryAllByTestId(container, 'dropdown-item')).toHaveLength(6);
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     fireEvent.click(getAllByTestId(container, 'dropdown-item')[4]);
     expect(queryAllByTestId(container, 'autocomplete:menu')).toHaveLength(0);
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   describe('should handle field "keydown" event', () => {
@@ -199,10 +199,10 @@ describe('Autocomplete', () => {
       );
 
       focusOnField(container);
-      expect(spy).toBeCalledTimes(0);
+      expect(spy).toHaveBeenCalledTimes(0);
 
       fireEvent.keyDown(getByTestId(container, 'text-field:field'), { key: 'ArrowDown' });
-      expect(spy).toBeCalledTimes(1);
+      expect(spy).toHaveBeenCalledTimes(1);
       expect(isCheckedItem(findMenuItems(container)[0])).toBe(true);
       expect(isCheckedItem(findMenuItems(container)[1])).toBe(false);
       expect(isCheckedItem(findMenuItems(container)[2])).toBe(false);
@@ -243,10 +243,10 @@ describe('Autocomplete', () => {
       );
 
       focusOnField(container);
-      expect(spy).toBeCalledTimes(0);
+      expect(spy).toHaveBeenCalledTimes(0);
 
       fireEvent.keyDown(getByTestId(container, 'text-field:field'), { key: 'Enter' });
-      expect(spy).toBeCalledTimes(0);
+      expect(spy).toHaveBeenCalledTimes(0);
     });
 
     it('Enter: with active item', () => {
@@ -258,15 +258,15 @@ describe('Autocomplete', () => {
 
       // focus
       focusOnField(container);
-      expect(spy).toBeCalledTimes(0);
+      expect(spy).toHaveBeenCalledTimes(0);
 
       // mark first as active
       fireEvent.keyDown(getByTestId(container, 'text-field:field'), { key: 'ArrowDown' });
-      expect(spy).toBeCalledTimes(0);
+      expect(spy).toHaveBeenCalledTimes(0);
 
       // press enter
       fireEvent.keyDown(getByTestId(container, 'text-field:field'), { key: 'Enter' });
-      expect(spy).toBeCalledTimes(1);
+      expect(spy).toHaveBeenCalledTimes(1);
     });
 
     it('Enter: no items', () => {
@@ -276,11 +276,11 @@ describe('Autocomplete', () => {
 
       // focus
       focusOnField(container);
-      expect(spy).toBeCalledTimes(0);
+      expect(spy).toHaveBeenCalledTimes(0);
 
       // press enter
       fireEvent.keyDown(getByTestId(container, 'text-field:field'), { key: 'Enter' });
-      expect(spy).toBeCalledTimes(0);
+      expect(spy).toHaveBeenCalledTimes(0);
     });
   });
 
@@ -288,10 +288,10 @@ describe('Autocomplete', () => {
     const spy = jest.fn();
     const { container } = render(<Autocomplete items={undefined} onClick={spy} />);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     fireEvent.click(getByTestId(container, 'text-field:block'));
 
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 });

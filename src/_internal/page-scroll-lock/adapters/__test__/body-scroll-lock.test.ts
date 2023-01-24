@@ -18,14 +18,14 @@ describe('PageScrollLock', () => {
     document.body.append(element);
     const adapter = new PageScrollLock(document.createElement('div'));
 
-    expect(disableBodyScroll).toBeCalledTimes(0);
-    expect(enableBodyScroll).toBeCalledTimes(0);
+    expect(disableBodyScroll).toHaveBeenCalledTimes(0);
+    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
     adapter.lock();
-    expect(disableBodyScroll).toBeCalledTimes(1);
-    expect(enableBodyScroll).toBeCalledTimes(0);
+    expect(disableBodyScroll).toHaveBeenCalledTimes(1);
+    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
     adapter.unlock();
-    expect(disableBodyScroll).toBeCalledTimes(1);
-    expect(enableBodyScroll).toBeCalledTimes(1);
+    expect(disableBodyScroll).toHaveBeenCalledTimes(1);
+    expect(enableBodyScroll).toHaveBeenCalledTimes(1);
 
     const replacement = {
       disableBodyScroll: jest.fn(),
@@ -34,13 +34,13 @@ describe('PageScrollLock', () => {
 
     adapter.replaceLib(replacement);
     adapter.lock();
-    expect(replacement.disableBodyScroll).toBeCalledTimes(1);
-    expect(replacement.enableBodyScroll).toBeCalledTimes(0);
+    expect(replacement.disableBodyScroll).toHaveBeenCalledTimes(1);
+    expect(replacement.enableBodyScroll).toHaveBeenCalledTimes(0);
     adapter.unlock();
-    expect(replacement.disableBodyScroll).toBeCalledTimes(1);
-    expect(replacement.enableBodyScroll).toBeCalledTimes(1);
-    expect(disableBodyScroll).toBeCalledTimes(1);
-    expect(enableBodyScroll).toBeCalledTimes(1);
+    expect(replacement.disableBodyScroll).toHaveBeenCalledTimes(1);
+    expect(replacement.enableBodyScroll).toHaveBeenCalledTimes(1);
+    expect(disableBodyScroll).toHaveBeenCalledTimes(1);
+    expect(enableBodyScroll).toHaveBeenCalledTimes(1);
   });
 });
 

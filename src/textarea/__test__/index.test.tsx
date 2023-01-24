@@ -53,9 +53,9 @@ describe('Textarea', () => {
     const spy = jest.fn();
     const { getByTestId } = render(<Textarea onBlur={spy} />);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent.blur(getByTestId('base-input:field'));
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should focus textarea when mousedown event fired on block', () => {
@@ -68,13 +68,13 @@ describe('Textarea', () => {
     );
 
     textareaRef.current?.addEventListener('focus', focusSpy);
-    expect(mouseDownSpy).toBeCalledTimes(0);
-    expect(focusSpy).toBeCalledTimes(0);
+    expect(mouseDownSpy).toHaveBeenCalledTimes(0);
+    expect(focusSpy).toHaveBeenCalledTimes(0);
 
     fireEvent.mouseDown(getByTestId('field-block:block'));
 
-    expect(mouseDownSpy).toBeCalledTimes(1);
-    expect(focusSpy).toBeCalledTimes(1);
+    expect(mouseDownSpy).toHaveBeenCalledTimes(1);
+    expect(focusSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should not focus input when mousedown event fired on block and prevented', () => {
@@ -87,13 +87,13 @@ describe('Textarea', () => {
     );
 
     textareaRef.current?.addEventListener('focus', focusSpy);
-    expect(mouseDownSpy).toBeCalledTimes(0);
-    expect(focusSpy).toBeCalledTimes(0);
+    expect(mouseDownSpy).toHaveBeenCalledTimes(0);
+    expect(focusSpy).toHaveBeenCalledTimes(0);
 
     fireEvent.mouseDown(getByTestId('field-block:block'));
 
-    expect(mouseDownSpy).toBeCalledTimes(1);
-    expect(focusSpy).toBeCalledTimes(0);
+    expect(mouseDownSpy).toHaveBeenCalledTimes(1);
+    expect(focusSpy).toHaveBeenCalledTimes(0);
   });
 
   it('should properly set "--placeholder-color" variable', () => {
@@ -119,9 +119,9 @@ describe('Textarea', () => {
 
     const { getByTestId } = render(<Textarea onInput={spy} />);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent.input(getByTestId('base-input:field'), { target: { value: 'New value' } });
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should update filled state when "change" event fired on textarea element', () => {
@@ -129,9 +129,9 @@ describe('Textarea', () => {
 
     const { getByTestId } = render(<Textarea onChange={spy} />);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent.change(getByTestId('base-input:field'), { target: { value: 'New value' } });
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should properly set "data-testid" to elements', () => {

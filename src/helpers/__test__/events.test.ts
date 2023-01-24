@@ -64,8 +64,8 @@ describe('triggerInput', () => {
 
     element.addEventListener('input', spy);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     triggerInput(element, 'Some value');
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 });

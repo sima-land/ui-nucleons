@@ -69,7 +69,7 @@ describe('<WithHint />', () => {
 
     expect(wrapper.find('[data-testid="hint"]')).toHaveLength(1);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     // scroll
     act(() => {
@@ -77,7 +77,7 @@ describe('<WithHint />', () => {
     });
     wrapper.update();
 
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should handle scroll of non body parent', () => {
@@ -108,7 +108,7 @@ describe('<WithHint />', () => {
 
     expect(wrapper.find('[data-testid="hint"]')).toHaveLength(1);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     // scroll
     act(() => {
@@ -116,7 +116,7 @@ describe('<WithHint />', () => {
     });
     wrapper.update();
 
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 });
 

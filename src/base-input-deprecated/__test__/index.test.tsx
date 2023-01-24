@@ -65,13 +65,13 @@ describe('<BaseInput />', () => {
 
     const wrapper = mount(<BaseInput onInput={spy} />);
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     act(() => {
       wrapper.find('input').simulate('input');
     });
 
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
 
     wrapper.setProps({ onInput: undefined });
 
@@ -79,7 +79,7 @@ describe('<BaseInput />', () => {
       wrapper.find('input').simulate('input');
     });
 
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should handle "restPlaceholder" prop', () => {

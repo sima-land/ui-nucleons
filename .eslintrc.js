@@ -11,7 +11,6 @@ module.exports = {
     {
       files: ['./**/__stories__/**/*', './**/__stories__/**/*', './**/*.test.*', './**/*.spec.*'],
       rules: {
-        'jest/no-alias-methods': 'off', // @todo временно, убрать
         'require-jsdoc': 'off',
         'jsdoc/require-jsdoc': 'off',
       },

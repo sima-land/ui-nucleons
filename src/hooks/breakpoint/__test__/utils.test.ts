@@ -53,26 +53,26 @@ describe('createRegistry', () => {
     registry.subscribe('ml+', spy2); // same as first
     registry.subscribe('xs-', spy3);
 
-    expect(matchMedia).toBeCalledTimes(2); // for each unique query
+    expect(matchMedia).toHaveBeenCalledTimes(2); // for each unique query
 
     expect((matchMedia as jest.Mock).mock.calls[0][0]).toBe('(min-width: 840px)');
     expect((matchMedia as jest.Mock).mock.calls[1][0]).toBe('(max-width: 1023px)');
 
     listeners['(min-width: 840px)'].forEach(fn => fn({ matches: true } as any));
-    expect(spy1).toBeCalledTimes(1);
-    expect(spy2).toBeCalledTimes(1);
-    expect(spy3).toBeCalledTimes(0);
+    expect(spy1).toHaveBeenCalledTimes(1);
+    expect(spy2).toHaveBeenCalledTimes(1);
+    expect(spy3).toHaveBeenCalledTimes(0);
 
     listeners['(max-width: 1023px)'].forEach(fn => fn({ matches: true } as any));
-    expect(spy1).toBeCalledTimes(1);
-    expect(spy2).toBeCalledTimes(1);
-    expect(spy3).toBeCalledTimes(1);
+    expect(spy1).toHaveBeenCalledTimes(1);
+    expect(spy2).toHaveBeenCalledTimes(1);
+    expect(spy3).toHaveBeenCalledTimes(1);
 
     subscription1.unsubscribe();
 
     listeners['(min-width: 840px)'].forEach(fn => fn({ matches: true } as any));
-    expect(spy1).toBeCalledTimes(1);
-    expect(spy2).toBeCalledTimes(2);
-    expect(spy3).toBeCalledTimes(1);
+    expect(spy1).toHaveBeenCalledTimes(1);
+    expect(spy2).toHaveBeenCalledTimes(2);
+    expect(spy3).toHaveBeenCalledTimes(1);
   });
 });

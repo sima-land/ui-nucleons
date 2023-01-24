@@ -57,13 +57,13 @@ describe('PhoneInput', () => {
     fireEvent.mouseDown(getByTestId(container, 'phone-input:menu-opener'));
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(13);
-    expect(onChange).toBeCalledTimes(0);
+    expect(onChange).toHaveBeenCalledTimes(0);
 
     // select georgia
     fireEvent.click(queryAllByTestId(baseElement, 'dropdown-item')[6]);
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
-    expect(onChange).toBeCalledTimes(1);
+    expect(onChange).toHaveBeenCalledTimes(1);
     expect(onChange.mock.calls[0][1].value).toBe('+995 (');
     expect(onChange.mock.calls[0][1].cleanValue).toBe('995');
   });
@@ -134,11 +134,11 @@ describe('PhoneInput', () => {
     const onChange = jest.fn();
     const { container } = render(<PhoneInput onChange={onChange} />);
 
-    expect(onChange).toBeCalledTimes(0);
+    expect(onChange).toHaveBeenCalledTimes(0);
     fireEvent.focus(getByTestId(container, 'base-input:field'));
     fireEvent.change(getByTestId(container, 'base-input:field'), {
       target: { value: '79992225511' },
     });
-    expect(onChange).toBeCalledTimes(1);
+    expect(onChange).toHaveBeenCalledTimes(1);
   });
 });

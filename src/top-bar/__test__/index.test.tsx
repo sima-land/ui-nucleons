@@ -102,19 +102,19 @@ describe('<TopBar />', () => {
 
     // start
     fireEvent.click(getAllByTestId('top-bar:button')[0]);
-    expect(buttons.start.onClick).toBeCalledTimes(1);
+    expect(buttons.start.onClick).toHaveBeenCalledTimes(1);
 
     // start secondary
     fireEvent.click(getAllByTestId('top-bar:button')[1]);
-    expect(buttons.startSecondary.onClick).toBeCalledTimes(1);
+    expect(buttons.startSecondary.onClick).toHaveBeenCalledTimes(1);
 
     // end
     fireEvent.click(getAllByTestId('top-bar:button')[2]);
-    expect(buttons.endSecondary.onClick).toBeCalledTimes(1);
+    expect(buttons.endSecondary.onClick).toHaveBeenCalledTimes(1);
 
     // end secondary
     fireEvent.click(getAllByTestId('top-bar:button')[3]);
-    expect(buttons.end.onClick).toBeCalledTimes(1);
+    expect(buttons.end.onClick).toHaveBeenCalledTimes(1);
   });
 
   it('should renders with start text button', () => {

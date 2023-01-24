@@ -32,7 +32,7 @@ describe('useKeydown', () => {
 
     expect(() => {
       fireEvent.keyDown(document, { key: 'Escape' });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('callback argument must be an event', () => {
@@ -42,9 +42,9 @@ describe('useKeydown', () => {
 
     const event = createEvent.keyDown(document, { key: 'Escape' });
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     fireEvent(document, event);
-    expect(spy).toBeCalledTimes(1);
-    expect(spy).toBeCalledWith(event);
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(event);
   });
 });

@@ -15,12 +15,12 @@ describe('SelectTextButton', () => {
       </Select>,
     );
 
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
 
     fireEvent.keyDown(getByTestId(container, 'text-button'), { code: 'Enter' });
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should handle children prop', () => {

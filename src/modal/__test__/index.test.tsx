@@ -95,11 +95,11 @@ describe('Modal', () => {
     );
 
     expect(queryAllByTestId('top-bar')).toHaveLength(1);
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     fireEvent.click(getByTestId('top-bar:back'));
 
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should render TopBar with close button', () => {
@@ -112,11 +112,11 @@ describe('Modal', () => {
     );
 
     expect(queryAllByTestId('top-bar')).toHaveLength(1);
-    expect(spy).toBeCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
 
     fireEvent.click(getByTestId('top-bar:close'));
 
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should render close button and custom start button in TopBar', () => {
