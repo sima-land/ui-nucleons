@@ -30,7 +30,7 @@ export const colorKey = Symbol.for('user-avatar:color-key');
  * @return Элемент.
  */
 export const UserAvatar = (props: UserAvatarProps) => {
-  const [color, setColor] = useState<typeof COLORS[number]>();
+  const [color, setColor] = useState<(typeof COLORS)[number]>();
 
   useEffect(() => {
     // запоминаем цвет (пока только один для всех аватаров на странице)

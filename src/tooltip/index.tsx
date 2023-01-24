@@ -21,6 +21,7 @@ const cx = classnames.bind(styles);
 
 /**
  * Компонент подсказки.
+ * @deprecated Можно использовать `popup`.
  * @param props Свойства.
  * @return Элемент.
  */

@@ -12,7 +12,7 @@ import {
 } from './utils';
 
 export default {
-  title: 'desktop/WithTooltip',
+  title: 'deprecated/WithTooltip',
   component: WithTooltip,
   parameters: {
     layout: 'padded',

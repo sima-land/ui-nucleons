@@ -1,0 +1,53 @@
+name: 'Publish notify'
+description: 'Log publish workflow to Telegram'
+author: 'sima-land team'
+
+inputs:
+  stage:
+    required: true
+    description: 'Stage: "start" or "finish"'
+  tg-bot-token:
+    required: true
+    description: 'Telegram bot token'
+  tg-chat-id:
+    required: true
+    description: 'Telegram chat id'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Define package name
+      if: ${{ success() && inputs.stage == 'start' }}
+      shell: bash
+      run: cat package.json | jq '.name' | awk '{print "package_name=" $0}' >> $GITHUB_ENV
+
+    - name: Publish START message
+      if: ${{ success() && inputs.stage == 'start' }}
+      uses: appleboy/telegram-action@master
+      with:
+        token: ${{ inputs.tg-bot-token }}
+        to: ${{ inputs.tg-chat-id }}
+        message: |
+          ▶️ Запущена публикация пакета ${{ env.package_name }}
+
+    - name: Publish DONE message
+      if: ${{ success() && inputs.stage == 'finish' }}
+      uses: appleboy/telegram-action@master
+      with:
+        token: ${{ inputs.tg-bot-token }}
+        to: ${{ inputs.tg-chat-id }}
+        message: |
+          ✅ Опубликована версия ${{ github.ref_name }} пакета ${{ env.package_name }}
+
+          Описание релиза: ${{ github.event.release.html_url }}
+
+    - name: Publish FAIL message
+      if: ${{ failure() && inputs.stage == 'finish' }}
+      uses: appleboy/telegram-action@master
+      with:
+        token: ${{ inputs.tg-bot-token }}
+        to: ${{ inputs.tg-chat-id }}
+        message: |
+          🆘 Не удалось опубликовать пакет ${{ env.package_name }}
+
+          Детали: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}

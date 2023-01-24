@@ -5,7 +5,7 @@ import { DropdownItem } from '../dropdown-item';
 import { DropdownItemElement } from '../dropdown-item/types';
 import { DropdownItemUtils } from '../dropdown-item/utils';
 import { DropdownLoading } from '../_internal/dropdown-loading';
-import { FloatingPortal } from '@floating-ui/react-dom-interactions';
+import { FloatingPortal } from '@floating-ui/react';
 import { Input } from '../input';
 import { useIsomorphicLayoutEffect } from '../hooks';
 import { useFloatingDropdown } from '../dropdown/utils';

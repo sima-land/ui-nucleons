@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react';
-import React from 'react';
+import React, { createRef } from 'react';
 import { InfoText } from '..';
 
 describe('InfoText', () => {
@@ -41,5 +41,18 @@ describe('InfoText', () => {
     expect(spy).toBeCalledTimes(3);
     fireEvent.keyDown(getByTestId('info-text:icon'), { code: 'OtherKey' });
     expect(spy).toBeCalledTimes(3);
+  });
+
+  it('should handle "iconRef" prop', () => {
+    const ref = createRef<SVGSVGElement>();
+
+    const { getByTestId } = render(
+      <InfoText iconRef={ref} onIconClick={jest.fn()}>
+        Hello
+      </InfoText>,
+    );
+
+    expect(ref.current instanceof SVGSVGElement).toBe(true);
+    expect(ref.current === (getByTestId('info-text:icon') as Element)).toBe(true);
   });
 });

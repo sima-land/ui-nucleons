@@ -1,5 +1,5 @@
-import { useFloating, flip, autoUpdate } from '@floating-ui/react-dom';
-import { useImperativeHandle, RefObject, CSSProperties } from 'react';
+import { useFloating, flip, autoUpdate } from '@floating-ui/react';
+import { useImperativeHandle, RefObject, CSSProperties, useEffect } from 'react';
 import { useLayer } from '../helpers/layer';
 
 /**
@@ -14,14 +14,21 @@ export function useFloatingDropdown(
 ): { style: CSSProperties } {
   const layer = useLayer();
 
-  const { reference, floating, x, y, strategy } = useFloating({
+  const { refs, x, y, strategy, update } = useFloating({
     whileElementsMounted: autoUpdate,
     placement: 'bottom-start',
     middleware: [flip()],
   });
 
-  useImperativeHandle<Element | null, Element | null>(floating, () => dropdownRef.current);
-  useImperativeHandle<Element | null, Element | null>(reference, () => referenceRef.current);
+  useImperativeHandle<Element | null, Element | null>(refs.setFloating, () => dropdownRef.current);
+  useImperativeHandle<Element | null, Element | null>(
+    refs.setReference,
+    () => referenceRef.current,
+  );
+
+  // @todo следующая строка здесь временно из-за проблем после обновления "@floating-ui/*"
+  // нужно разобраться и постараться убрать
+  useEffect(update);
 
   const openerWidth: string | undefined = referenceRef.current
     ? `${referenceRef.current.getBoundingClientRect().width}px`

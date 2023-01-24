@@ -245,3 +245,39 @@ export function PageScrollLockDemo({ children }: { children?: ReactNode }) {
     </PageScrollProvider>
   );
 }
+
+/** Прокручивает страницу по вертикали до центра. */
+export function usePageCentered() {
+  useEffect(() => {
+    const body = document.body;
+    const html = document.documentElement;
+
+    const pageHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight,
+    );
+
+    window.scroll({ top: (pageHeight - window.innerHeight) / 2 });
+  }, []);
+}
+
+/**
+ * Тестовая страница с центрирование контента.
+ * @param props Свойства.
+ * @return Элемент.
+ */
+export function LargePage({ children }: { children?: ReactNode }) {
+  const style: CSSProperties = {
+    height: '240vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
+
+  usePageCentered();
+
+  return <div style={style}>{children}</div>;
+}

@@ -3,7 +3,7 @@ import { SelectContext } from './utils';
 import { SelectMenuProps, SelectOpenerBinding, SelectProps } from './types';
 import { useIdentityRef } from '../hooks/identity';
 import { DropdownItemUtils } from '../dropdown-item/utils';
-import { FloatingPortal } from '@floating-ui/react-dom-interactions';
+import { FloatingPortal } from '@floating-ui/react';
 import { SelectMenu } from './parts/menu';
 import { SelectFieldBlock } from './parts/block';
 import { SelectTextButton } from './parts/button';
