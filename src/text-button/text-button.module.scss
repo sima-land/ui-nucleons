@@ -1,6 +1,9 @@
 @use '../colors';
+@use '../utils';
 
 .root {
+  @include utils.reset-button;
+  @include utils.focus-visible;
   display: inline-flex;
   align-items: center;
   font-weight: 600;
