@@ -9,6 +9,7 @@ import {
 } from '@testing-library/react';
 import { PhoneInput } from '..';
 import { MaskData } from '../../masked-input';
+import userEvent from '@testing-library/user-event';
 
 describe('PhoneInput', () => {
   it('render input with opener and russia mask by default', () => {
@@ -68,26 +69,38 @@ describe('PhoneInput', () => {
     expect(onChange.mock.calls[0][1].cleanValue).toBe('995');
   });
 
-  it('field must be looks like focused when opener focused or menu opened', () => {
+  it('field must be looks like focused when opener focused or menu opened', async () => {
+    const user = userEvent.setup();
     const { baseElement, container } = render(<PhoneInput defaultValue='998-22-333-4444' />);
     expect(getByTestId(container, 'phone-input').classList.contains('focused')).toBe(false);
 
-    fireEvent.focus(getByTestId(container, 'base-input:field'));
+    // focus on input by click
+    await user.click(getByTestId(container, 'base-input:field'));
     expect(getByTestId(container, 'phone-input').classList.contains('focused')).toBe(true);
 
-    fireEvent.blur(getByTestId(container, 'base-input:field'));
+    // focus on previous element
+    await user.keyboard('{Shift>}[Tab]{/Shift}');
     expect(getByTestId(container, 'phone-input').classList.contains('focused')).toBe(false);
 
-    fireEvent.focus(getByTestId(container, 'phone-input:menu-opener'));
+    // focus on input
+    await user.keyboard('[Tab]');
+    expect(document.activeElement).toBe(getByTestId(container, 'base-input:field'));
+
+    // focus on menu opener
+    await user.keyboard('[Tab]');
+    expect(document.activeElement).toBe(getByTestId(container, 'phone-input:menu-opener'));
     expect(getByTestId(container, 'phone-input').classList.contains('focused')).toBe(true);
 
-    fireEvent.blur(getByTestId(container, 'phone-input:menu-opener'));
+    // focus on next element after menu opener
+    await user.keyboard('[Tab]');
     expect(getByTestId(container, 'phone-input').classList.contains('focused')).toBe(false);
 
-    fireEvent.mouseDown(getByTestId(container, 'phone-input:menu-opener'));
+    // click on menu opener
+    await user.click(getByTestId(container, 'phone-input:menu-opener'));
     expect(getByTestId(container, 'phone-input').classList.contains('focused')).toBe(true);
     expect(document.activeElement).toBe(getByTestId(baseElement, 'dropdown'));
 
+    // blur on menu
     fireEvent.blur(getByTestId(baseElement, 'dropdown'));
     expect(getByTestId(container, 'phone-input').classList.contains('focused')).toBe(false);
   });

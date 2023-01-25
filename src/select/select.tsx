@@ -3,11 +3,11 @@ import { SelectContext } from './utils';
 import { SelectMenuProps, SelectOpenerBinding, SelectProps } from './types';
 import { useIdentityRef } from '../hooks/identity';
 import { DropdownItemUtils } from '../dropdown-item/utils';
-import { FloatingPortal } from '@floating-ui/react';
+import { FloatingPortal, useFloating } from '@floating-ui/react';
 import { SelectMenu } from './parts/menu';
 import { SelectFieldBlock } from './parts/block';
 import { SelectTextButton } from './parts/button';
-import { useFloatingDropdown } from '../dropdown/utils';
+import { dropdownFloatingConfig, useDropdownFloatingStyle } from '../dropdown/utils';
 
 /**
  * Поле выбора из списка.
@@ -30,25 +30,20 @@ export function Select({
 }: SelectProps) {
   // @todo по аналогии с <select /> надо проверять, есть ли значение в списке переданных
   const [initialValue] = useState<string>(() => value ?? defaultValue ?? '');
-  const [currentValue, setCurrentValue] = useState(initialValue);
+  const [currentValue, setCurrentValue] = useState<string>(initialValue);
   const [needMenu, setNeedMenu] = useState<boolean>(false);
   const [menuElement, setMenuElement] = useState<HTMLElement | null>(null);
   const [menuFocused, setMenuFocused] = useState<boolean>(false);
-  const openerRef = useRef<HTMLElement>(null);
-  const anchorRef = useRef<HTMLElement>(null);
-  const referenceRef = useRef<HTMLElement>(null);
-  const menuRef = useIdentityRef(menuElement);
   const onMenuToggleRef = useIdentityRef(onMenuToggle);
+  const openerRef = useRef<HTMLElement>(null);
   const menuShown = needMenu && menuElement !== null;
 
-  useImperativeHandle<HTMLElement | null, HTMLElement | null>(
-    referenceRef,
-    // если дополнительно указан якорь - используем его
-    () => anchorRef.current ?? openerRef.current,
-  );
+  const { refs, isPositioned, ...floating } = useFloating({
+    open: needMenu,
+    ...dropdownFloatingConfig(),
+  });
 
-  // ВАЖНО: вызываем useFloatingDropdown() **после** useImperativeHandle(referenceRef)
-  const floating = useFloatingDropdown(menuRef, referenceRef);
+  useImperativeHandle(refs.setFloating, () => menuElement as HTMLElement, [menuElement]);
 
   useEffect(() => {
     if (typeof value !== 'undefined') {
@@ -62,17 +57,18 @@ export function Select({
       setNeedMenu(false);
     }
 
-    if (!disabled && menuElement) {
+    if (!disabled && menuElement && isPositioned) {
       menuElement.focus();
     }
 
+    // @todo menuShown в зависимости или useCallback
     onMenuToggleRef.current?.({ opened: menuShown });
-  }, [menuElement, disabled]);
+  }, [disabled, menuElement, isPositioned]);
 
   const openerBinding: SelectOpenerBinding = {
     label,
+    anchorRef: refs.setReference,
     openerRef,
-    anchorRef,
     value: renderValue(currentValue),
     opened: menuShown,
     failed,
@@ -97,11 +93,13 @@ export function Select({
     },
   };
 
+  const floatingStyle = useDropdownFloatingStyle({ refs, ...floating });
+
   const menuProps: SelectMenuProps = {
     ...dropdownProps,
     style: {
       ...dropdownProps?.style,
-      ...floating.style,
+      ...floatingStyle,
     },
     menuRef: setMenuElement,
     value,
@@ -115,12 +113,16 @@ export function Select({
     },
     onKeyDown: event => {
       switch (event.code) {
+        case 'ArrowUp':
+        case 'ArrowDown':
+          event.preventDefault(); // предотвращаем прокрутку страницы
+          break;
         case 'Enter':
         case 'Escape':
           openerRef.current?.focus();
           break;
         case 'Tab':
-          event.preventDefault();
+          event.preventDefault(); // предотвращаем фокус на следующем элементе
           openerRef.current?.focus();
           break;
       }

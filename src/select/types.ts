@@ -1,11 +1,4 @@
-import type {
-  FocusEventHandler,
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
-  Ref,
-  RefObject,
-} from 'react';
+import type { FocusEventHandler, HTMLAttributes, ReactElement, ReactNode, Ref } from 'react';
 import type { DropdownProps } from '../dropdown';
 import type { DropdownItemElement } from '../dropdown-item/types';
 import type { FieldBlockStyle } from '../field-block';
@@ -21,8 +14,8 @@ export interface SelectOpenerBinding {
   value: ReactNode;
   opened: boolean;
   menuFocused: boolean;
-  openerRef: RefObject<HTMLElement | null>;
-  anchorRef: RefObject<HTMLElement | null>;
+  openerRef: Ref<HTMLElement | null>;
+  anchorRef: Ref<HTMLElement | null>;
   onMouseDown: Required<HTMLAttributes<HTMLElement>>['onMouseDown'];
   onKeyDown: Required<HTMLAttributes<HTMLElement>>['onKeyDown'];
 }

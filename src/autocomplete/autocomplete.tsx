@@ -5,10 +5,10 @@ import { DropdownItem } from '../dropdown-item';
 import { DropdownItemElement } from '../dropdown-item/types';
 import { DropdownItemUtils } from '../dropdown-item/utils';
 import { DropdownLoading } from '../_internal/dropdown-loading';
-import { FloatingPortal } from '@floating-ui/react';
+import { FloatingPortal, useFloating } from '@floating-ui/react';
 import { Input } from '../input';
 import { useIsomorphicLayoutEffect } from '../hooks';
-import { useFloatingDropdown } from '../dropdown/utils';
+import { dropdownFloatingConfig, useDropdownFloatingStyle } from '../dropdown/utils';
 import { triggerInput } from '../helpers/events';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/down';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/up';
@@ -46,12 +46,13 @@ export function Autocomplete({
   baseInputProps,
   ...restProps
 }: AutocompleteProps) {
-  const menuRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const openerRef = useRef<HTMLDivElement>(null);
-  const { style: dropdownStyle } = useFloatingDropdown(menuRef, openerRef);
 
   const [needMenu, setNeedMenu] = useState(false);
+
+  const { refs, ...floating } = useFloating({ open: needMenu, ...dropdownFloatingConfig() });
+  const floatingStyle = useDropdownFloatingStyle({ refs, ...floating });
+
   const [activeIndex, setActiveIndex] = useState<number>(-1);
   const [currentValue, setCurrentValue] = useState<string>(() => `${value ?? defaultValue ?? ''}`);
 
@@ -138,7 +139,7 @@ export function Autocomplete({
           value,
         }}
         inputRef={inputRef}
-        blockRef={openerRef}
+        blockRef={refs.setReference}
         onFocus={e => {
           onFocus?.(e);
           setNeedMenu(true);
@@ -172,9 +173,9 @@ export function Autocomplete({
       <FloatingPortal id=''>
         {menuShown && (
           <Dropdown
-            ref={menuRef}
+            ref={refs.setFloating}
             {...dropdownProps}
-            style={{ ...dropdownProps?.style, ...dropdownStyle }}
+            style={{ ...dropdownProps?.style, ...floatingStyle }}
           >
             {!loading &&
               items.length > 0 &&
