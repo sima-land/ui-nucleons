@@ -9,6 +9,7 @@
 
 .button {
   @include utils.reset-button;
+  @include utils.focus-visible;
   display: inline-block;
   vertical-align: -0.125em; // не понятно почему, но это значение ставит блок ровно по середине строки
   margin-left: 4px;
@@ -16,7 +17,6 @@
   &.active,
   &:hover,
   &:focus-visible {
-    outline: 0;
     color: colors.$basic-gray54;
     cursor: pointer;
   }

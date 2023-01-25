@@ -1,7 +1,9 @@
 @use '../colors';
+@use '../utils';
 @import '../styling/shadows.module';
 
 .arrow-button {
+  @include utils.focus-visible;
   display: inline-flex;
   align-items: center;
   justify-content: center;
