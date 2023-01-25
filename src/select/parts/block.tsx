@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useImperativeHandle, useRef, useState } from 'react';
 import { SelectContext } from '../utils';
 import { FieldBlock, FieldBlockProps } from '../../field-block';
 import { COLORS } from '../../colors';
@@ -19,6 +19,10 @@ export function SelectFieldBlock(props: FieldBlockProps) {
 
   // @todo прокидывать ref в props.blockRef при необходимости
 
+  const ref = useRef<HTMLDivElement>(null);
+  useImperativeHandle(binding.anchorRef, () => ref.current as HTMLElement);
+  useImperativeHandle(binding.openerRef, () => ref.current as HTMLElement);
+
   return (
     <FieldBlock
       label={binding.label}
@@ -27,7 +31,7 @@ export function SelectFieldBlock(props: FieldBlockProps) {
       failed={binding.failed}
       disabled={binding.disabled}
       fixedHeight
-      blockRef={binding.openerRef as any}
+      blockRef={ref}
       blockProps={{
         ...props?.blockProps,
         onFocus: event => {

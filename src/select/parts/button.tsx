@@ -20,14 +20,9 @@ export function SelectTextButton({
   const binding = useContext(SelectContext);
   const ArrowSVG = binding.opened ? UpSVG : DownSVG;
 
-  useImperativeHandle<HTMLElement | null, HTMLElement | null>(
-    buttonRefProp,
-    () => buttonRef.current,
-  );
-  useImperativeHandle<HTMLElement | null, HTMLElement | null>(
-    binding.openerRef,
-    () => buttonRef.current,
-  );
+  useImperativeHandle(buttonRefProp, () => buttonRef.current as HTMLButtonElement);
+  useImperativeHandle(binding.anchorRef, () => buttonRef.current as HTMLElement);
+  useImperativeHandle(binding.openerRef, () => buttonRef.current as HTMLElement);
 
   return (
     <TextButton

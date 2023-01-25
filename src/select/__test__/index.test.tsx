@@ -3,6 +3,7 @@ import { fireEvent, render, getByTestId, queryAllByTestId } from '@testing-libra
 import { Select } from '..';
 import { DropdownItem } from '../../dropdown-item';
 import { SelectContext } from '../utils';
+import userEvent from '@testing-library/user-event';
 
 describe('Select', () => {
   it('should handle mouse control on opener - FieldBlock', () => {
@@ -58,7 +59,9 @@ describe('Select', () => {
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
   });
 
-  it('should handle keyboard control on opener - FieldBlock', () => {
+  it('should handle keyboard control on opener - FieldBlock', async () => {
+    const user = userEvent.setup();
+
     const { baseElement, container } = render(
       <Select>
         <DropdownItem value='1'>One</DropdownItem>
@@ -68,32 +71,39 @@ describe('Select', () => {
     );
 
     // initial state
+    expect(document.activeElement).not.toBe(getByTestId(container, 'field-block:block'));
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
 
-    // opener focus
-    fireEvent.focus(getByTestId(container, 'field-block:block'));
+    // opener focus by keyboard
+    await user.keyboard('[Tab]');
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(document.activeElement).toBe(getByTestId(container, 'field-block:block'));
 
     // opener enter keydown
-    fireEvent.keyDown(getByTestId(container, 'field-block:block'), { code: 'Enter' });
+    await user.keyboard('[Enter]');
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(document.activeElement).toBe(getByTestId(baseElement, 'dropdown'));
 
-    // menu blur
-    fireEvent.blur(getByTestId(baseElement, 'dropdown'));
+    // menu blur by escape
+    await user.keyboard('[Escape]');
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(document.activeElement).toBe(getByTestId(container, 'field-block:block'));
 
-    // opener focus + enter keydown
-    fireEvent.focus(getByTestId(container, 'field-block:block'));
-    fireEvent.keyDown(getByTestId(container, 'field-block:block'), { code: 'Enter' });
+    // opener enter keydown
+    await user.keyboard('[Enter]');
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(document.activeElement).toBe(getByTestId(baseElement, 'dropdown'));
 
-    // enter keydown again
-    fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'Enter' });
+    // menu enter keydown
+    await user.keyboard('[Enter]');
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(document.activeElement).toBe(getByTestId(container, 'field-block:block'));
   });
 
-  it('should handle keyboard control on opener - TextButton', () => {
+  it('should handle keyboard control on opener - TextButton', async () => {
+    const user = userEvent.setup();
+
     const { baseElement, container } = render(
       <Select opener={<Select.TextButton />}>
         <DropdownItem value='1'>One</DropdownItem>
@@ -103,29 +113,34 @@ describe('Select', () => {
     );
 
     // initial state
+    expect(document.activeElement).not.toBe(getByTestId(container, 'text-button'));
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
     expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(0);
 
     // opener focus
-    fireEvent.focus(getByTestId(container, 'text-button'));
+    await user.keyboard('[Tab]');
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(document.activeElement).toBe(getByTestId(container, 'text-button'));
 
     // opener enter keydown
-    fireEvent.keyDown(getByTestId(container, 'text-button'), { code: 'Enter' });
+    await user.keyboard('[Enter]');
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(document.activeElement).toBe(getByTestId(baseElement, 'dropdown'));
 
-    // menu blur
-    fireEvent.blur(getByTestId(baseElement, 'dropdown'));
+    // menu escape keydown
+    await user.keyboard('[Escape]');
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(document.activeElement).toBe(getByTestId(container, 'text-button'));
 
-    // opener focus + enter keydown
-    fireEvent.focus(getByTestId(container, 'text-button'));
-    fireEvent.keyDown(getByTestId(container, 'text-button'), { code: 'Enter' });
+    // opener enter keydown
+    await user.keyboard('[Enter]');
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(document.activeElement).toBe(getByTestId(baseElement, 'dropdown'));
 
     // enter keydown again
-    fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'Enter' });
+    await user.keyboard('[Enter]');
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(document.activeElement).toBe(getByTestId(container, 'text-button'));
   });
 
   it('should render loading state', () => {
@@ -395,7 +410,9 @@ describe('Select', () => {
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
   });
 
-  it('should handle Tab keydown on dropdown properly', () => {
+  it('should handle Tab keydown on dropdown properly', async () => {
+    const user = userEvent.setup();
+
     const { baseElement, container } = render(
       <Select>
         <DropdownItem>Foo</DropdownItem>
@@ -404,13 +421,16 @@ describe('Select', () => {
     );
 
     // open menu
-    fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
+    await user.pointer({
+      keys: '[MouseLeft>]',
+      target: getByTestId(container, 'field-block:block'),
+    });
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
-
     expect(document.activeElement).toBe(getByTestId(baseElement, 'dropdown'));
 
     // tab keydown
-    fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'Tab' });
+    await user.keyboard('[Tab]');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
     expect(document.activeElement).toBe(getByTestId(container, 'field-block:block'));
   });
 

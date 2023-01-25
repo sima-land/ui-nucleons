@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Select, SelectProps } from '..';
-import { LoremIpsum, Sandbox } from '../../../.storybook/utils';
+import { LargePage, LoremIpsum, Sandbox } from '../../../.storybook/utils';
 import { CleanGroup, CleanButton } from '../../clean-buttons';
 import { DropdownItem } from '../../dropdown-item';
 import { FieldBlockSize } from '../../field-block';
@@ -251,3 +251,23 @@ export function TestInModal() {
 }
 
 TestInModal.storyName = 'Тест: в модальном окне';
+
+export function TestFocus() {
+  const [value, setValue] = useState<string>('');
+
+  return (
+    <LargePage>
+      <Select label='Номер' value={value} onValueChange={setValue}>
+        <DropdownItem>Ноль</DropdownItem>
+        <DropdownItem>Один</DropdownItem>
+        <DropdownItem>Два</DropdownItem>
+        <DropdownItem disabled>Три</DropdownItem>
+        <DropdownItem>Четыре</DropdownItem>
+        <DropdownItem>Пять</DropdownItem>
+        <DropdownItem>Шесть</DropdownItem>
+      </Select>
+    </LargePage>
+  );
+}
+
+TestFocus.storyName = 'Тест: фокусировка';
