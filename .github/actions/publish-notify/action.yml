@@ -5,7 +5,7 @@ author: 'sima-land team'
 inputs:
   stage:
     required: true
-    description: 'Stage: "start" or "finish"'
+    description: 'Stage: "start", "done" or "fail"'
   tg-bot-token:
     required: true
     description: 'Telegram bot token'
@@ -31,7 +31,7 @@ runs:
           ▶️ Запущена публикация пакета ${{ env.package_name }}
 
     - name: Publish DONE message
-      if: ${{ success() && inputs.stage == 'finish' }}
+      if: ${{ success() && inputs.stage == 'done' }}
       uses: appleboy/telegram-action@master
       with:
         token: ${{ inputs.tg-bot-token }}
@@ -42,7 +42,7 @@ runs:
           Описание релиза: ${{ github.event.release.html_url }}
 
     - name: Publish FAIL message
-      if: ${{ failure() && inputs.stage == 'finish' }}
+      if: ${{ failure() || inputs.stage == 'fail' }}
       uses: appleboy/telegram-action@master
       with:
         token: ${{ inputs.tg-bot-token }}

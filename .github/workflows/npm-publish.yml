@@ -46,8 +46,15 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
 
       - uses: ./.github/actions/publish-notify
-        if: always()
+        if: success()
         with:
-          stage: finish
+          stage: done
+          tg-bot-token: ${{ secrets.TG_BOT_TOKEN }}
+          tg-chat-id: ${{ secrets.TG_CHAT_ID }}
+
+      - uses: ./.github/actions/publish-notify
+        if: failure()
+        with:
+          stage: fail
           tg-bot-token: ${{ secrets.TG_BOT_TOKEN }}
           tg-chat-id: ${{ secrets.TG_CHAT_ID }}

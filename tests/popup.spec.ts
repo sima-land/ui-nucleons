@@ -11,11 +11,11 @@ class Here extends TestUtils {
   }
 
   popupClose() {
-    return this.page.getByTestId('popup:close');
+    return this.popup().getByTestId('popup:close');
   }
 
   inPopupButton() {
-    return this.page.getByTestId('text-button');
+    return this.popup().getByTestId('text-button');
   }
 }
 
