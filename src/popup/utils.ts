@@ -100,6 +100,7 @@ export function useFocusTrap(
         allowOutsideClick: true,
         tabbableOptions: { displayCheck: 'none' },
         onPostDeactivate: afterDeactivateRef.current,
+        fallbackFocus: element,
       });
 
       trap.activate();

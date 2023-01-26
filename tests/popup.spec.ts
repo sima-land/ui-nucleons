@@ -1,0 +1,80 @@
+import { test, expect } from '@playwright/test';
+import { TestUtils } from './utils';
+
+class Here extends TestUtils {
+  opener() {
+    return this.page.getByTestId('info-text:icon');
+  }
+
+  popup() {
+    return this.page.getByTestId('popup');
+  }
+
+  popupClose() {
+    return this.page.getByTestId('popup:close');
+  }
+
+  inPopupButton() {
+    return this.page.getByTestId('text-button');
+  }
+}
+
+const here = new Here().register();
+
+test.beforeEach(async ({ page }) => {
+  await page.goto('/iframe.html?args=&id=common-popup--floating', {
+    // ВАЖНО: похоже это помогает со скриншотами тк стили подгружаются динамически
+    waitUntil: 'networkidle',
+  });
+});
+
+test('Opener must be in page', async () => {
+  await expect(here.opener()).toHaveCount(1);
+  await expect(here.popup()).toHaveCount(0);
+  await expect(here.popupClose()).toHaveCount(0);
+});
+
+test.describe('Mouse interactions', () => {
+  test('should closes by close icon click', async () => {
+    await expect(here.popup()).toHaveCount(0);
+    await expect(here.popupClose()).toHaveCount(0);
+
+    await here.opener().click();
+    await expect(here.popup()).toHaveCount(1);
+    await expect(here.popupClose()).toHaveCount(1);
+    await expect(here.page).toHaveScreenshot();
+
+    await here.popupClose().click();
+    await expect(here.popup()).toHaveCount(0);
+    await expect(here.popupClose()).toHaveCount(0);
+  });
+});
+
+test.describe('Keyboard interactions', () => {
+  test('should create focus trap while opened', async () => {
+    await expect(here.popup()).toHaveCount(0);
+    await expect(here.popupClose()).toHaveCount(0);
+
+    await here.page.keyboard.press('Tab');
+    await expect(here.popup()).toHaveCount(0);
+    await expect(here.popupClose()).toHaveCount(0);
+    await expect(here.opener()).toBeFocused();
+
+    // close button focused by default
+    await here.page.keyboard.press('Enter');
+    await expect(here.popup()).toHaveCount(1);
+    await expect(here.popupClose()).toHaveCount(1);
+    await expect(here.popupClose()).toBeFocused();
+    await expect(here.page).toHaveScreenshot();
+
+    // some button in popup focused
+    await here.page.keyboard.press('Tab');
+    await expect(here.inPopupButton()).toBeFocused();
+    await expect(here.page).toHaveScreenshot();
+
+    // close button focused again
+    await here.page.keyboard.press('Tab');
+    await expect(here.popupClose()).toBeFocused();
+    await expect(here.page).toHaveScreenshot();
+  });
+});

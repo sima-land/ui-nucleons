@@ -60,5 +60,9 @@ module.exports = async ({ config }) => {
     },
   ];
 
-  return { ...config, module: { ...config.module, rules } };
+  return {
+    ...config,
+    entry: config.entry.filter(item => !item.includes('/webpack-hot-middleware/')),
+    module: { ...config.module, rules },
+  };
 };

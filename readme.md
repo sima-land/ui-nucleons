@@ -178,8 +178,7 @@ declare module '*.svg' {
 Локально E2E-тесты должны запускаться через docker, пример:
 
 ```bash
-docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.28.0-focal /bin/bash
-npm install
+docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.29.2-focal /bin/bash
 npx playwright test
 ```
 

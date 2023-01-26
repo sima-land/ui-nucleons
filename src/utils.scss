@@ -77,6 +77,6 @@
  */
 @mixin focus-visible() {
   &:focus-visible {
-    outline: 2px solid colors.$additional-light-blue;
+    outline: 2px solid colors.$basic-blue;
   }
 }
