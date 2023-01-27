@@ -205,7 +205,7 @@ export function LoremIpsum({
  */
 export function PageScrollLockDemo({ children }: { children?: ReactNode }) {
   const adapterNames = ['body-scroll-lock', 'ui-nucleons'] as const;
-  const [adapterName, setAdapterName] = useState<typeof adapterNames[number]>('body-scroll-lock');
+  const [adapterName, setAdapterName] = useState<(typeof adapterNames)[number]>('body-scroll-lock');
 
   let adapter: PageScrollLockAdapterFactory;
 
@@ -271,7 +271,7 @@ export function usePageCentered() {
  */
 export function LargePage({ children }: { children?: ReactNode }) {
   const style: CSSProperties = {
-    height: '240vh',
+    height: '300vh',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

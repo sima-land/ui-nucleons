@@ -68,7 +68,7 @@ export function DifferentState() {
           options: ['s', 'm'],
         },
         {
-          label: 'Ошибка',
+          label: 'Состояние',
           type: 'select',
           bind: [state, setState],
           options: ['default', 'failed', 'disabled', 'disabled+failed'],
