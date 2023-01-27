@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { HintProps } from '../hint';
+import { HintProps } from '../hint-deprecated';
 import { Portal } from '../portal';
 import { PositioningHint } from './positioning-hint';
 import { onParentScroll } from './utils';
@@ -28,6 +28,7 @@ export interface WithHintProps {
 
 /**
  * Компонент вывода "хинта" рядом с заданным элементом.
+ * @deprecated Следует использовать `hint`.
  * @param props Свойства.
  * @return Элемент.
  */

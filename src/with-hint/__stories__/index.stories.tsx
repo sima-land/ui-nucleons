@@ -16,7 +16,7 @@ const styles: Record<'root' | 'modalContent', React.CSSProperties> = {
 };
 
 export default {
-  title: 'desktop/WithHint',
+  title: 'deprecated/WithHint',
   component: WithHint,
   parameters: {
     layout: 'padded',

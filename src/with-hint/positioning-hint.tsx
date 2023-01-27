@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Hint, HintProps } from '../hint';
+import { Hint, HintProps } from '../hint-deprecated';
 import { PlaceAt } from './utils';
 import classnames from 'classnames/bind';
 import styles from './positioning-hint.module.scss';

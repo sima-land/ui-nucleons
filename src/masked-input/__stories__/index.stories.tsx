@@ -45,7 +45,7 @@ export function NoRestPlaceholder() {
       <MaskedInput
         label='Телефон'
         mask='+7 (___) ___-__-__'
-        baseInputProps={{ restPlaceholder: undefined }}
+        baseInputProps={{ restPlaceholder: { value: '' } }}
         value={value}
         onChange={(event, data) => setValue(data.cleanValue)}
       />

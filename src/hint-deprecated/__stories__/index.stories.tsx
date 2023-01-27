@@ -2,7 +2,7 @@ import React from 'react';
 import { Hint } from '..';
 
 export default {
-  title: 'service/Hint',
+  title: 'deprecated/Hint',
   component: Hint,
   parameters: {
     layout: 'padded',

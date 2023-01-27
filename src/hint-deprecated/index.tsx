@@ -12,6 +12,9 @@ export interface HintProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const cx = classnames.bind(styles);
 
+/**
+ * @deprecated Теперь нужно использовать `hint`.
+ */
 export const Hint = forwardRef<HTMLDivElement | null, HintProps>(
   ({ children, className, direction, ...restProps }, ref) => (
     <div {...restProps} ref={ref} className={cx('root', className, direction)} data-testid='hint'>

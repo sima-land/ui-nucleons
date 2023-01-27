@@ -2,7 +2,7 @@ import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 import { WithHint, useTempHint } from '..';
-import { Hint } from '../../hint';
+import { Hint } from '../../hint-deprecated';
 
 describe('<WithHint />', () => {
   it('should renders correctly', () => {

@@ -25,7 +25,7 @@ export function Primary() {
   return (
     <>
       <Button size='s' onClick={() => toggle(true)}>
-        Показать SidePage
+        Показать
       </Button>
 
       <SidePage shown={shown} size='s' withTransitions onClose={() => toggle(false)}>
@@ -80,7 +80,9 @@ export function SizeS() {
 
   return (
     <>
-      <Button onClick={() => toggle(true)}>Показать</Button>
+      <Button size='s' onClick={() => toggle(true)}>
+        Показать
+      </Button>
 
       <SidePage size='s' shown={shown} withTransitions onClose={() => toggle(false)}>
         <SidePage.Header divided title='Условия акции' onClose={() => toggle(false)} />
@@ -129,7 +131,9 @@ export function SizeM() {
 
   return (
     <>
-      <Button onClick={() => toggle(true)}>Показать</Button>
+      <Button size='s' onClick={() => toggle(true)}>
+        Показать
+      </Button>
 
       <SidePage size='m' shown={shown} withTransitions onClose={() => toggle(false)}>
         <SidePage.Header divided title='Оставить отзыв' onClose={() => toggle(false)} />
@@ -211,7 +215,9 @@ export function Transitions() {
 
   return (
     <>
-      <Button onClick={() => setStep(1)}>Показать</Button>
+      <Button size='s' onClick={() => setStep(1)}>
+        Показать
+      </Button>
 
       <Step1
         shown={currentStep === 1}
@@ -245,7 +251,9 @@ export function NoTransitions() {
 
   return (
     <>
-      <Button onClick={() => toggle(true)}>Показать</Button>
+      <Button size='s' onClick={() => toggle(true)}>
+        Показать
+      </Button>
 
       <SidePage size='s' shown={shown} onClose={() => toggle(false)}>
         <SidePage.Header
@@ -266,7 +274,9 @@ export function LazyLoading() {
 
   return (
     <>
-      <Button onClick={() => toggle(true)}>Показать</Button>
+      <Button size='s' onClick={() => toggle(true)}>
+        Показать
+      </Button>
 
       <SidePage size='s' withTransitions shown={shown} onClose={() => toggle(false)}>
         <SidePage.Header divided title='Ленивая загрузка' onClose={() => toggle(false)} />
@@ -324,7 +334,9 @@ export function WithHints() {
 
   return (
     <>
-      <Button onClick={() => toggleSidePage(true)}>Показать</Button>
+      <Button size='s' onClick={() => toggleSidePage(true)}>
+        Показать
+      </Button>
 
       <SidePage size='s' shown={shown} withTransitions onClose={() => toggleSidePage(false)}>
         <SidePage.Header divided title='Проверка хинтов' onClose={() => toggleSidePage(false)} />
@@ -365,7 +377,9 @@ export function WithCleanButtons() {
 
   return (
     <>
-      <Button onClick={() => toggleSidePage(true)}>Показать</Button>
+      <Button size='s' onClick={() => toggleSidePage(true)}>
+        Показать
+      </Button>
 
       <SidePage size='s' shown={shown} withTransitions onClose={() => toggleSidePage(false)}>
         <SidePage.Header divided title='Особый футер' onClose={() => toggleSidePage(false)} />
