@@ -1,0 +1,31 @@
+@use 'sass:math';
+@use '../colors';
+
+.root {
+  border-radius: 4px;
+  background: colors.$basic-gray76;
+  padding: 8px;
+  max-width: 280px;
+  min-width: 36px;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+
+.arrow {
+  position: absolute;
+  width: 1px * math.sqrt((4 * 4) + (4 * 4));
+  height: 1px * math.sqrt((4 * 4) + (4 * 4));
+  transform: rotate(45deg);
+  background: colors.$basic-gray76;
+  top: var(--hint-arrow-top);
+  left: var(--hint-arrow-left);
+  right: var(--hint-arrow-right);
+  bottom: var(--hint-arrow-bottom);
+}
