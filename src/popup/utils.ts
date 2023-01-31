@@ -109,5 +109,5 @@ export function useFocusTrap(
         trap.deactivate({ returnFocus: true });
       };
     }
-  }, [enabled]);
+  }, [ref, enabled]);
 }

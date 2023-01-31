@@ -8,6 +8,7 @@ import styles from './rating.module.scss';
 export type StarSize = 's' | 'm';
 
 export interface RatingProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Размер. */
   size?: StarSize;
 
   /** Значение рейтинга. */

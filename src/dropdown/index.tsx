@@ -10,6 +10,7 @@ interface DropdownStyle extends React.CSSProperties {
 }
 
 export interface DropdownProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'style'> {
+  /** Стили. */
   style?: DropdownStyle;
 
   /** Идентификатор для систем автоматизированного тестирования. */
