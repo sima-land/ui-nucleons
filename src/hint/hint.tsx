@@ -3,7 +3,10 @@ import { Portal } from '../portal';
 import { HintView, HintViewProps } from './hint-view';
 
 export interface HintProps extends HintViewProps {
+  /** Нужно ли показать хинт. */
   open?: boolean;
+
+  /** Ref элемента "стрелки". */
   arrowRef?: Ref<HTMLDivElement>;
 }
 

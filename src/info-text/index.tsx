@@ -5,11 +5,22 @@ import classNames from 'classnames/bind';
 import styles from './info-text.module.scss';
 
 export interface InfoTextProps extends WithTestId {
+  /** Текст. */
   children?: ReactNode;
+
+  /** Класс. */
   className?: string;
+
+  /** Стили. */
   style?: CSSProperties;
+
+  /** Ref элемента иконки. */
   iconRef?: Ref<HTMLButtonElement>;
+
+  /** Нужно ли выводить иконку как "активную". */
   iconActive?: boolean;
+
+  /** Сработает при клике на иконку. */
   onIconClick?: MouseEventHandler;
 }
 
