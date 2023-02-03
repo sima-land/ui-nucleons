@@ -11,7 +11,7 @@ import { Portal } from '../../portal';
 import { Button } from '../../button';
 
 export default {
-  title: 'common/Hint/HintView',
+  title: 'service/HintView',
   component: HintView,
   parameters: {
     layout: 'padded',

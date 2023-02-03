@@ -28,4 +28,5 @@
   left: var(--hint-arrow-left);
   right: var(--hint-arrow-right);
   bottom: var(--hint-arrow-bottom);
+  z-index: -1; // чтобы был скрыт при отсутствии позиционирования
 }

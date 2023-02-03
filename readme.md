@@ -27,13 +27,13 @@ yarn add @sima-land/ui-nucleons
 - добавить необходимые пакеты `@svgr/*`
 - сконфигурировать обработку svg, css, scss файлов
 
-##### Добавление пакетов `@svgr/*`:
+##### Зависимости
 
 ```bash
-npm install --save-dev @svgr/core @svgr/plugin-svgo @svgr/webpack
+npm install --save-dev @svgr/core @svgr/plugin-jsx @svgr/plugin-svgo @svgr/webpack
 ```
 
-##### Конфигурация webpack
+##### Конфигурация
 
 ```js
 // webpack.config.js
@@ -42,7 +42,7 @@ const svgrOptions = require('../../svgr.config'); // опции SVGR (скопи
 module.exports = {
   module: {
     rules: [
-      // обработка svg
+      // svg
       {
         test: /\.svg$/,
         use: [
@@ -53,23 +53,17 @@ module.exports = {
         ],
       },
 
-      // обработка обычных стилей
+      // стилей
       {
         test: /\.(css|scss)$/,
-        exclude: /\.module\.(css|scss)$/,
-        use: ['css-loader', 'sass-loader'],
-      },
-
-      // обработка css-модулей
-      {
-        test: /\.module\.(css|scss)$/,
         use: [
+          // ...здесь style-loader, mini-css-extract-plugin или что-то другое
           {
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: '[name]__[local]__[hash:hex:3]',
-                localIdentHashPrefix: 'some-service',
+                auto: /\.module\.(css|scss)$/,
+                localIdentName: '[name]__[local]--[hash:hex:3]',
               },
             },
           },
@@ -83,21 +77,24 @@ module.exports = {
 
 #### Для работы с Jest необходимо (как вариант):
 
+- добавить необходимые пакеты `@svgr/*`
+- сконфигурировать обработку svg, css, scss файлов
+
 ##### Добавить обработку SVG
 
 - добавить файл "трансформера" вида:
 
 ```js
-const swc = require('@swc/core');
+const babel = require('@babel/core');
+const babelConfig = require('../../babel.config');
 const svgr = require('@svgr/core');
 const svgrConfig = require('../../svgr.config');
 
 module.exports = {
   process(sourceText, sourcePath) {
     const code = svgr.transform.sync(sourceText, svgrConfig, { filePath: sourcePath });
-    const result = swc.transformSync(code);
 
-    return result;
+    return babel.transformSync(code, { filename: sourcePath, ...babelConfig });
   },
 };
 ```
@@ -112,7 +109,7 @@ module.exports = {
 module.exports = {
   transform: {
     // svg заменяем на React-компоненты
-    '\\.svg$': '<rootDir>/jest/transforms/svg.js',
+    '\\.svg$': '<rootDir>/.jest/transforms/svg.js',
 
     // генерируем css-модули
     '\\.module\\.(css|scss)$': 'jest-css-modules-transform',
@@ -121,7 +118,7 @@ module.exports = {
   },
   moduleNameMapper: {
     // обычные стили делаем просто пустыми модулями
-    '(?<!(.+\\.module))(\\.css|\\.scss)$': '<rootDir>/jest/mocks/style.js',
+    '(?<!(.+\\.module))(\\.css|\\.scss)$': '<rootDir>/.jest/mocks/style.js',
   },
 
   // ...
