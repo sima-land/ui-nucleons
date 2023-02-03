@@ -15,6 +15,8 @@ export function Primary() {
     'basic-blue',
     'basic-gray87',
     'basic-gray38',
+    'additional-red',
+    'additional-teal',
     'basic-white',
   ];
 
@@ -25,12 +27,13 @@ export function Primary() {
   const styles: Record<'root' | 'item', CSSProperties> = {
     root: {
       display: 'flex',
+      flexDirection: 'column',
+      gap: 16,
       fontSize: 16,
     },
     item: {
       display: 'flex',
-      flexDirection: 'column',
-      gap: 16,
+      gap: 32,
       padding: 20,
     },
   };

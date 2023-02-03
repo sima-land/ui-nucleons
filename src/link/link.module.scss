@@ -1,4 +1,5 @@
 @use '../colors';
+@use './link-util';
 
 .link,
 .link:link,
@@ -25,29 +26,25 @@
 }
 
 .link:not(.disabled).basic-blue {
-  color: colors.$basic-blue;
-  &:hover {
-    color: colors.$additional-deep-blue;
-  }
+  @include link-util.color('basic-blue');
 }
 
 .link:not(.disabled).basic-gray87 {
-  color: colors.$basic-gray87;
-  &:hover {
-    color: colors.$basic-gray54;
-  }
+  @include link-util.color('basic-gray87');
 }
 
 .link:not(.disabled).basic-gray38 {
-  color: colors.$basic-gray38;
-  &:hover {
-    color: colors.$basic-gray54;
-  }
+  @include link-util.color('basic-gray38');
 }
 
 .link:not(.disabled).basic-white {
-  color: colors.$basic-white;
-  &:hover {
-    color: colors.$basic-gray4;
-  }
+  @include link-util.color('basic-white');
+}
+
+.link:not(.disabled).additional-red {
+  @include link-util.color('additional-red');
+}
+
+.link:not(.disabled).additional-teal {
+  @include link-util.color('additional-teal');
 }

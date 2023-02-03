@@ -1,5 +1,6 @@
 @use '../colors';
 @use '../utils';
+@use '../link/link-util';
 
 .root {
   @include utils.reset-button;
@@ -56,31 +57,27 @@
 }
 
 .root:not(.disabled).color-basic-blue {
-  color: colors.$basic-blue;
-  &:hover {
-    color: colors.$additional-deep-blue;
-  }
+  @include link-util.color('basic-blue');
 }
 
 .root:not(.disabled).color-basic-gray87 {
-  color: colors.$basic-gray87;
-  &:hover {
-    color: colors.$basic-gray54;
-  }
+  @include link-util.color('basic-gray87');
 }
 
 .root:not(.disabled).color-basic-gray38 {
-  color: colors.$basic-gray38;
-  &:hover {
-    color: colors.$basic-gray54;
-  }
+  @include link-util.color('basic-gray38');
 }
 
 .root:not(.disabled).color-basic-white {
-  color: colors.$basic-white;
-  &:hover {
-    color: colors.$basic-gray4;
-  }
+  @include link-util.color('basic-white');
+}
+
+.root:not(.disabled).color-additional-red {
+  @include link-util.color('additional-red');
+}
+
+.root:not(.disabled).color-additional-teal {
+  @include link-util.color('additional-teal');
 }
 
 // иконки

@@ -1,0 +1,37 @@
+@use '../colors';
+
+@mixin color($key) {
+  @if $key == 'basic-blue' {
+    color: colors.$basic-blue;
+    &:hover {
+      color: colors.$additional-deep-blue;
+    }
+  } @else if $key == 'basic-gray87' {
+    color: colors.$basic-gray87;
+    &:hover {
+      color: colors.$basic-gray54;
+    }
+  } @else if $key == 'basic-gray38' {
+    color: colors.$basic-gray38;
+    &:hover {
+      color: colors.$basic-gray54;
+    }
+  } @else if $key == 'basic-white' {
+    color: colors.$basic-white;
+    &:hover {
+      color: colors.$basic-gray4;
+    }
+  } @else if $key == 'additional-red' {
+    color: colors.$additional-red;
+    &:hover {
+      color: colors.$additional-deep-red;
+    }
+  } @else if $key == 'additional-teal' {
+    color: colors.$additional-teal;
+    &:hover {
+      color: colors.$additional-green;
+    }
+  } @else {
+    @warn '[link-color] No such color `#{$key}`.';
+  }
+}
