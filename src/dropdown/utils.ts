@@ -10,6 +10,8 @@ export function dropdownFloatingConfig(): Partial<UseFloatingProps> {
     whileElementsMounted: autoUpdate,
     placement: 'bottom-start',
     middleware: [
+      // @todo в будущем с дизайнерами можем решить использовать autoPlacement
+      // но есть сложности: https://github.com/floating-ui/floating-ui/discussions/2155
       flip({
         padding: 16,
       }),

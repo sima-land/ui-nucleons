@@ -12,7 +12,7 @@ import { LargePage } from '../../../.storybook/utils';
 import { Stepper } from '../../stepper';
 
 export default {
-  title: 'common/Hint/Hint',
+  title: 'common/Hint',
   component: Hint,
   parameters: {
     layout: 'padded',

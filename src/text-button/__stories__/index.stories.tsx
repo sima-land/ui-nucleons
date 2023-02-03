@@ -51,7 +51,14 @@ export function DifferentStates() {
           type: 'select',
           label: 'Цвет',
           bind: [color, setColor],
-          options: ['basic-blue', 'basic-gray87', 'basic-gray38', 'basic-white'],
+          options: [
+            'basic-blue',
+            'basic-gray87',
+            'basic-gray38',
+            'additional-red',
+            'additional-teal',
+            'basic-white',
+          ],
         },
         {
           type: 'select',

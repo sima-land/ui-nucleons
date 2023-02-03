@@ -95,7 +95,7 @@ function ColorView({ name, value }: { name: string; value: string }) {
       <span>{value}</span>
 
       <CopyButton title='SCSS' value={`colors.$${name}`} />
-      <CopyButton title='JS' value={`COLORS.get('$${name}')`} />
+      <CopyButton title='JS' value={`COLORS.get('${name}')`} />
     </div>
   );
 }

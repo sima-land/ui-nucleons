@@ -6,7 +6,12 @@ import styles from './link.module.scss';
 
 export type LinkColor = Extract<
   Token,
-  'basic-blue' | 'basic-gray87' | 'basic-gray38' | 'basic-white'
+  | 'basic-blue'
+  | 'basic-gray87'
+  | 'basic-gray38'
+  | 'basic-white'
+  | 'additional-red'
+  | 'additional-teal'
 >;
 
 export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
