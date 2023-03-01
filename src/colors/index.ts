@@ -1,3 +1,5 @@
+// GENERATED FILE - DO NOT CHANGE IT MANUALLY
+
 const collection = {
   // basic
   'basic-blue': '#1f84db',
@@ -11,7 +13,7 @@ const collection = {
   'basic-gray8': '#ebebeb',
   'basic-gray4': '#f5f5f5',
   'basic-gray2': '#fafafa',
-  'basic-white': '#ffffff',
+  'basic-white': '#fff',
 
   // additional
   'additional-deep-red': '#d50000',

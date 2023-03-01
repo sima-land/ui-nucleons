@@ -14,7 +14,7 @@ const colorsByGroups = {
     gray8: '#ebebeb',
     gray4: '#f5f5f5',
     gray2: '#fafafa',
-    white: '#ffffff',
+    white: '#fff',
   },
   additional: {
     'deep-red': '#d50000',
@@ -58,7 +58,7 @@ async function main() {
   const scriptTemplate = Handlebars.compile(scriptTemplateSource);
 
   const stylePath = new URL('../src/colors.scss', import.meta.url);
-  const scriptPath = new URL('../src/colors.ts', import.meta.url);
+  const scriptPath = new URL('../src/colors/index.ts', import.meta.url);
 
   await writeFile(stylePath, styleTemplate({ colorsByGroups }));
   await writeFile(scriptPath, scriptTemplate({ colorsByGroups }));

@@ -1,5 +1,4 @@
 import React, { ChangeEvent, useState } from 'react';
-import { action } from '@storybook/addon-actions';
 import { Autocomplete, AutocompleteProps } from '..';
 import { DropdownItem } from '../../dropdown-item';
 import { Sandbox } from '../../../.storybook/utils';
@@ -42,7 +41,6 @@ export function FilledOnlyList() {
     placeholder: 'Ваш браузер',
     onChange(e: ChangeEvent<HTMLInputElement>) {
       setValue(e.target.value);
-      action('change')(`value: ${e.target.value}`);
     },
     dropdownProps: { style: { width: 320 } },
   };
@@ -119,7 +117,6 @@ export function TestNativeComparison() {
 
   function onChange(e: ChangeEvent<HTMLInputElement>) {
     setValue(e.target.value);
-    action('change')(`value: ${e.target.value}`);
   }
 
   return (

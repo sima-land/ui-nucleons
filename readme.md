@@ -4,7 +4,7 @@
 
 ## Использование
 
-Установка
+### Установка
 
 ```bash
 # npm
@@ -14,10 +14,11 @@ npm i -S @sima-land/ui-nucleons
 yarn add @sima-land/ui-nucleons
 ```
 
-### Настройка сборки и запуска тестов
+### Настройка среды
 
 Компоненты библиотеки используют:
 
+- импорты изображений (jpg, png..) как url/src
 - импорты стилей
 - импорты стилей как css-модулей (каждый такой файл промаркирован в виде `%filename%.module.scss`)
 - импорты svg-файлов как react-компоненты
@@ -108,19 +109,19 @@ module.exports = {
 ```js
 module.exports = {
   transform: {
-    // svg заменяем на React-компоненты
+    // svg как react-компоненты
     '\\.svg$': '<rootDir>/.jest/transforms/svg.js',
 
-    // генерируем css-модули
+    // обычный css
+    '(?<!(\\.module))\\.(css|scss)$': './transformer/empty.js',
+
+    // css-модули
     '\\.module\\.(css|scss)$': 'jest-css-modules-transform',
-
-    // ...
   },
-  moduleNameMapper: {
-    // обычные стили делаем просто пустыми модулями
-    '(?<!(.+\\.module))(\\.css|\\.scss)$': '<rootDir>/.jest/mocks/style.js',
-  },
-
+  transformIgnorePatterns: [
+    // в пакете содержится css-модули, поэтому игнорируем только скрипты
+    '/node_modules/.+js$',
+  ],
   // ...
 };
 ```

@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import { action } from '@storybook/addon-actions';
 import { Screen, ScreenProps } from '..';
 import { Button } from '../../button';
 import { Box } from '../../box';
@@ -16,10 +15,6 @@ export default {
     layout: 'padded',
   },
 };
-
-const actions = {
-  screenClosed: action('Screen: нажата кнопка закрытия'),
-} as const;
 
 const PageTemplate = ({ onButtonClick }: { onButtonClick: React.MouseEventHandler }) => (
   <MobileLayout>
@@ -98,8 +93,8 @@ export const Primary = () => (
         divided
         title='Довольно большой заголовок'
         subtitle='И не менее большой подзаголовок здесь'
-        onBack={action('Screen: Нажата кнопка возврата')}
-        onClose={actions.screenClosed}
+        onBack={() => alert('Screen: Нажата кнопка возврата')}
+        onClose={() => alert('Screen: нажата кнопка закрытия')}
       />
       <Screen.Body>
         <MobileLayout>
@@ -116,7 +111,7 @@ export const Primary = () => (
         <MobileLayout>
           <Button
             style={{ width: '100%', margin: '12px 0' }}
-            onClick={() => action('Screen: Нажата кнопка в футере')()}
+            onClick={() => alert('Screen: Нажата кнопка в футере')}
           >
             Сделать что-то
           </Button>
@@ -133,8 +128,8 @@ export const Secondary = () => (
         divided
         title='Довольно большой заголовок'
         subtitle='И не менее большой подзаголовок здесь'
-        onBack={action('Screen: Нажата кнопка возврата')}
-        onClose={actions.screenClosed}
+        onBack={() => alert('Screen: Нажата кнопка возврата')}
+        onClose={() => alert('Screen: нажата кнопка закрытия')}
       />
       <Screen.Body>
         <MobileLayout>
@@ -149,7 +144,7 @@ export const Secondary = () => (
         <MobileLayout>
           <Button
             style={{ width: '100%', margin: '12px 0' }}
-            onClick={() => action('Screen: Нажата кнопка в футере')()}
+            onClick={() => alert('Screen: Нажата кнопка в футере')}
           >
             Сделать что-то
           </Button>
@@ -191,7 +186,7 @@ export const FullScrollAfterLoading = () => {
       {state !== 'closed' && (
         <Screen
           loading={state === 'loading'}
-          onFullScroll={() => action('Screen: прокручен до конца')()}
+          onFullScroll={() => alert('Screen: прокручен до конца')}
         >
           <Screen.Header
             divided
@@ -221,7 +216,7 @@ export function TestPageScrollLock() {
   const [opened, toggle] = useState<boolean>(false);
 
   function close() {
-    actions.screenClosed(`scrollTop = ${bodyRef.current?.scrollTop}`);
+    alert('Screen: нажата кнопка закрытия');
     toggle(false);
   }
 
