@@ -10,7 +10,12 @@ $map: (
   xl: 1920px,
 ) !default;
 
-@mixin up($breakpoint) {
+/**
+ * ВАЖНО: здесь должны быть только утилиты позволяющие применить стили ">=" либо "<" начала диапазона (breakpoint range).
+ * Не должно возникать ситуаций в которых нужно применить стили "<=" или ">" начала диапазона.
+ */
+
+@mixin greaterThanOrEqual($breakpoint) {
   @if map-has-key($map, $breakpoint) {
     @media (min-width: map-get($map, $breakpoint)) {
       @content;
@@ -20,12 +25,38 @@ $map: (
   }
 }
 
-@mixin down($breakpoint) {
+@mixin lessThan($breakpoint) {
   @if map-has-key($map, $breakpoint) {
     @media (max-width: (map-get($map, $breakpoint) - 1px)) {
       @content;
     }
   } @else {
     @warn 'No such breakpoint `#{$breakpoint}`. Available values: #{map-keys($map)}.';
+  }
+}
+
+@mixin gte($args...) {
+  @include greaterThanOrEqual($args...) {
+    @content;
+  }
+}
+
+@mixin lt($args...) {
+  @include lessThan($args...) {
+    @content;
+  }
+}
+
+/** @deprecated */
+@mixin up($args...) {
+  @include greaterThanOrEqual($args...) {
+    @content;
+  }
+}
+
+/** @deprecated */
+@mixin down($args...) {
+  @include lessThan($args...) {
+    @content;
   }
 }

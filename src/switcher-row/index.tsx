@@ -53,7 +53,10 @@ export function SwitcherRow({
   const failed = input?.props.failed;
   const disabled = input?.props.disabled;
   const fieldId = input?.props.id;
-  const fieldColumn = input && <div className={cx('col', 'field-col')}>{input}</div>;
+
+  const fieldColumn = input && (
+    <div className={cx('col', 'field-col', { 'toggle-col': toggle })}>{input}</div>
+  );
 
   return (
     <div

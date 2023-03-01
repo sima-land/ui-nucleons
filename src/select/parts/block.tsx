@@ -57,6 +57,7 @@ export function SelectFieldBlock(props: FieldBlockProps) {
       focused={focused || binding.opened}
       labelAsPlaceholder={!binding.value}
       main={binding.value}
+      mainProps={{ className: styles.main }}
     />
   );
 }
