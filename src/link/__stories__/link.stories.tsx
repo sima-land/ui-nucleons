@@ -1,4 +1,3 @@
-import { action } from '@storybook/addon-actions';
 import React, { CSSProperties } from 'react';
 import { Link, LinkProps } from '..';
 
@@ -21,7 +20,7 @@ export function Primary() {
   ];
 
   function onClick() {
-    action('click')(new Date());
+    alert('По ссылке даже кликать можно, вау!');
   }
 
   const styles: Record<'root' | 'item', CSSProperties> = {

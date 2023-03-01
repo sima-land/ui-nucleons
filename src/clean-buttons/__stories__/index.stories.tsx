@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { action } from '@storybook/addon-actions';
 import { CleanGroup, CleanButton } from '..';
 import { CleanButtonSize } from '../types';
 
@@ -12,8 +11,8 @@ export default {
   },
 };
 
-const handleClick = ({ target }: React.MouseEvent) => {
-  action('click')((target as HTMLAnchorElement).textContent);
+const handleClick = ({ currentTarget }: React.MouseEvent<HTMLAnchorElement>) => {
+  alert(currentTarget.textContent);
 };
 
 const DisplayWrapper: React.FC = ({ children }) => (

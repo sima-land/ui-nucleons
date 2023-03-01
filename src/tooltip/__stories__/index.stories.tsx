@@ -1,4 +1,3 @@
-import { action } from '@storybook/addon-actions';
 import React from 'react';
 import { Tooltip } from '..';
 
@@ -25,13 +24,13 @@ export default {
 };
 
 export function Primary() {
-  return <Tooltip onClose={() => action('onClose')()}>{shortText}</Tooltip>;
+  return <Tooltip onClose={() => alert('Якобы закрыли наш тултип')}>{shortText}</Tooltip>;
 }
 
 Primary.storyName = 'Простой пример';
 
 export function LargeContent() {
-  return <Tooltip onClose={() => action('onClose')()}>{longText}</Tooltip>;
+  return <Tooltip onClose={() => alert('Якобы закрыли наш тултип')}>{longText}</Tooltip>;
 }
 
 LargeContent.storyName = 'Много текста';

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { action } from '@storybook/addon-actions';
 import { DotNav, DotNavSize } from '..';
 import { times } from 'lodash';
 
@@ -59,7 +58,7 @@ function DemoBlock({ total = 1, size }: { total: number; size?: DotNavSize }) {
         total={total}
         onSelect={index => {
           setCurrent(index);
-          action('Dot clicked, index')(index);
+          alert('В такую маленькую точку попасть сложно, но вы справились!');
         }}
       />
 

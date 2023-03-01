@@ -1,6 +1,5 @@
 import React from 'react';
 import { ArrowButton, ArrowButtonSize, ArrowDirection } from '..';
-import { action } from '@storybook/addon-actions';
 
 const sizes: ArrowButtonSize[] = ['l', 's'];
 
@@ -26,7 +25,7 @@ export function Primary() {
                 aria-label={direction}
                 size={size}
                 direction={direction}
-                onClick={() => action('onClick')(`${size}, ${direction}`)}
+                onClick={() => alert('Фух, клик по кнопке работает...')}
               />
             </div>
           ))}
@@ -51,7 +50,7 @@ export function Disabled() {
                 aria-label={direction}
                 size={size}
                 direction={direction}
-                onClick={() => action('onClick')(`${size}, ${direction}`)}
+                onClick={() => alert('Фух, клик по кнопке работает...')}
               />
             </div>
           ))}

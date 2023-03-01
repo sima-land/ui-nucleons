@@ -105,13 +105,13 @@ exports[`UserAvatar should renders without props 1`] = `
     >
       <ForwardRef(PersonSVG)
         className="icon"
-        fill="#ffffff"
+        fill="#fff"
         height={24}
         width={24}
       >
         <svg
           className="icon"
-          fill="#ffffff"
+          fill="#fff"
           height={24}
           viewBox="0 0 24 24"
           width={24}

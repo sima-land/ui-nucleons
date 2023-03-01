@@ -1,5 +1,4 @@
-import React, { ChangeEvent } from 'react';
-import { action } from '@storybook/addon-actions';
+import React from 'react';
 import { RadioButton } from '..';
 
 export default {
@@ -11,38 +10,27 @@ export default {
 };
 
 export function Primary() {
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    action('Change')({ checked: event.target.checked });
-  }
-
   return (
     <form style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
       <label>
-        <RadioButton onChange={handleChange} name='number' id='number-one' defaultChecked /> One
+        <RadioButton name='number' id='number-one' defaultChecked /> One
       </label>
 
       <label>
-        <RadioButton onChange={handleChange} name='number' id='number-two' /> Two
+        <RadioButton name='number' id='number-two' /> Two
       </label>
 
       <label>
-        <RadioButton onChange={handleChange} name='number' id='number-three' /> Three
+        <RadioButton name='number' id='number-three' /> Three
       </label>
 
       <label>
-        <RadioButton onChange={handleChange} name='number' id='number-four' disabled /> Four
-        (disabled)
+        <RadioButton name='number' id='number-four' disabled /> Four (disabled)
       </label>
 
       <label>
-        <RadioButton
-          onChange={handleChange}
-          name='number-disabled'
-          id='number-five'
-          disabled
-          defaultChecked
-        />{' '}
-        Five (checked + disabled)
+        <RadioButton name='number-disabled' id='number-five' disabled defaultChecked /> Five
+        (checked + disabled)
       </label>
     </form>
   );
