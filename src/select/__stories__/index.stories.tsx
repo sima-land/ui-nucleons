@@ -271,3 +271,23 @@ export function TestFocus() {
 }
 
 TestFocus.storyName = 'Тест: фокусировка';
+
+export function TestBlockOverflow() {
+  const [value, setValue] = useState<string>('');
+
+  return (
+    <>
+      <Select label='Номер' value={`${value} `.repeat(20).trim()} onValueChange={setValue}>
+        <DropdownItem>Ноль</DropdownItem>
+        <DropdownItem>Один</DropdownItem>
+        <DropdownItem>Два</DropdownItem>
+        <DropdownItem disabled>Три</DropdownItem>
+        <DropdownItem>Четыре</DropdownItem>
+        <DropdownItem>Пять</DropdownItem>
+        <DropdownItem>Шесть</DropdownItem>
+      </Select>
+    </>
+  );
+}
+
+TestBlockOverflow.storyName = 'Тест: переполнение блока';

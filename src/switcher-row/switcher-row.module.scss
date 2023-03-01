@@ -21,6 +21,10 @@
 }
 
 .col + .col {
+  margin-left: 8px;
+}
+
+.toggle-col + .col {
   margin-left: 12px;
 }
 
