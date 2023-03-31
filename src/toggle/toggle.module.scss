@@ -6,11 +6,17 @@
   cursor: pointer;
   user-select: none;
   vertical-align: -2px;
-  overflow: hidden;
 }
 
 .input {
-  display: none;
+  position: absolute;
+  display: block;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
   &:not(:checked) + .switch {
     --toggle-slider-position: 2px;
   }
