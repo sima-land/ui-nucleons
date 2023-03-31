@@ -37,7 +37,7 @@ export function SwitcherRow({
   children,
   className,
   style,
-  textAlign,
+  textAlign = 'left',
   fieldPosition = 'start',
   'data-testid': testId = 'switcher-row',
 }: SwitcherRowProps) {
@@ -54,6 +54,7 @@ export function SwitcherRow({
   const disabled = input?.props.disabled;
   const fieldId = input?.props.id;
 
+  // @todo в Safari position: relative ломает vertical-align
   const fieldColumn = input && (
     <div className={cx('col', 'field-col', { 'toggle-col': toggle })}>{input}</div>
   );
