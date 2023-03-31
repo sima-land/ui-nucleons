@@ -49,6 +49,11 @@ describe('Spinner', () => {
     const { container } = render(<Spinner color={'invalid' as any} />);
     expect(container.querySelector('svg')?.getAttribute('stroke')).toBe(COLORS.get('basic-blue'));
   });
+
+  it('should handle "data-testid" prop', () => {
+    const { queryAllByTestId } = render(<Spinner data-testid='MY_SPINNER' />);
+    expect(queryAllByTestId('MY_SPINNER')).toHaveLength(1);
+  });
 });
 
 describe('SpinnerSVG', () => {
@@ -59,5 +64,10 @@ describe('SpinnerSVG', () => {
     expect(getByTestId('spinner') instanceof SVGSVGElement).toBe(true);
     expect(getByTestId('spinner').getAttribute('stroke')).toBe(COLORS.get('basic-blue'));
     expect(getByTestId('spinner').classList).toContain('size-m');
+  });
+
+  it('should handle "data-testid" prop', () => {
+    const { queryAllByTestId } = render(<SpinnerSVG data-testid='MY_SPINNER222' />);
+    expect(queryAllByTestId('MY_SPINNER222')).toHaveLength(1);
   });
 });
