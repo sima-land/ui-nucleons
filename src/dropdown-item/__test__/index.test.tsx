@@ -105,4 +105,30 @@ describe('DropdownItem', () => {
     expect(queryAllByTestId('dropdown-item')).toHaveLength(0);
     expect(queryAllByTestId('custom-item')).toHaveLength(1);
   });
+
+  it('should handle "dangerouslySetInnerHTML" properly', () => {
+    const { container } = render(
+      <DropdownItem
+        dangerouslySetInnerHTML={{
+          __html: 'Markup is <b>here</b>',
+        }}
+      />,
+    );
+
+    expect(container.textContent).toContain('Markup is here');
+  });
+
+  it('should throw error when "dangerouslySetInnerHTML" and "children" provider', () => {
+    expect(() => {
+      render(
+        // eslint-disable-next-line react/no-danger-with-children
+        <DropdownItem
+          dangerouslySetInnerHTML={{
+            __html: 'Markup is <b>here</b>',
+          }}
+          children={<>Children is here</>}
+        />,
+      );
+    }).toThrow('Can only set one of `children` or `props.dangerouslySetInnerHTML`.');
+  });
 });

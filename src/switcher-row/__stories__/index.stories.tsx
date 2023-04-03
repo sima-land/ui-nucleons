@@ -16,6 +16,18 @@ export default {
 
 export function Primary() {
   return (
+    <SwitcherRow>
+      <Checkbox id='example-checkbox' defaultChecked />
+      <SwitcherRow.Label>Простой пример</SwitcherRow.Label>
+      <SwitcherRow.Comment>Lorem ipsum dolor, sit amet.</SwitcherRow.Comment>
+    </SwitcherRow>
+  );
+}
+
+Primary.storyName = 'Простой пример';
+
+export function WithInfoText() {
+  return (
     <SwitcherRow style={{ maxWidth: '400px' }}>
       <Checkbox id='example-checkbox' defaultChecked />
       <SwitcherRow.Label>
@@ -31,7 +43,7 @@ export function Primary() {
   );
 }
 
-Primary.storyName = 'Простой пример';
+WithInfoText.storyName = 'Вместе с InfoText';
 
 export function WithToggle() {
   return (

@@ -48,6 +48,7 @@ export interface ExpandableGroupProps {
   /** Нужно ли выводить список развернутым. */
   expanded?: boolean;
 
+  /** Ширина открывающего элемента. */
   openerWidth?: number;
 }
 
