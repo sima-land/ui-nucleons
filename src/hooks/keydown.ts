@@ -15,18 +15,11 @@ export function useKeydown(
 
   useEffect(
     () =>
-      on<KeyboardEvent>(
-        document,
-        'keydown',
-        event => {
-          const handler = ref.current;
+      on<KeyboardEvent>(document, 'keydown', event => {
+        const handler = ref.current;
 
-          (event.key === targetKey || event.code === targetKey) && handler?.(event);
-        },
-
-        // ВАЖНО: чтобы изменение DOM не приводило к ложному срабатыванию
-        { capture: true },
-      ),
+        (event.key === targetKey || event.code === targetKey) && handler?.(event);
+      }),
     [targetKey],
   );
 }
