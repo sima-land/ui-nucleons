@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useIdentityRef } from './identity';
-import on from '../helpers/on';
+import { on } from '../helpers/on';
 
 /**
  * Хук, добавляющий обработчик нажатия на клавишу.
@@ -15,11 +15,18 @@ export function useKeydown(
 
   useEffect(
     () =>
-      on<KeyboardEvent>(document, 'keydown', event => {
-        const handler = ref.current;
+      on<KeyboardEvent>(
+        document,
+        'keydown',
+        event => {
+          const handler = ref.current;
 
-        (event.key === targetKey || event.code === targetKey) && handler?.(event);
-      }),
+          (event.key === targetKey || event.code === targetKey) && handler?.(event);
+        },
+
+        // ВАЖНО: чтобы изменение DOM не приводило к ложному срабатыванию
+        { capture: true },
+      ),
     [targetKey],
   );
 }

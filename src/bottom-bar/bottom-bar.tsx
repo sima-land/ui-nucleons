@@ -1,7 +1,7 @@
 import React from 'react';
 import { MediumRounds } from '../styling/shapes';
 import { CleanGroupSizeContext } from '../clean-buttons/utils';
-import { BottomBarProps, BottomBarSize } from './types';
+import { BottomBarProps, type BottomBarSize } from './types';
 import classNames from 'classnames/bind';
 import styles from './bottom-bar.module.scss';
 
