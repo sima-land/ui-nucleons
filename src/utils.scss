@@ -73,10 +73,17 @@
 }
 
 /**
+ * Добавляет стандартную визуальную подсветку состояния focus-visible.
+ */
+@mixin focus-visible-style() {
+  outline: 2px solid colors.$basic-blue;
+}
+
+/**
  * Формирует стандартную визуальную подсветку для состояния focus-visible.
  */
 @mixin focus-visible() {
   &:focus-visible {
-    outline: 2px solid colors.$basic-blue;
+    @include focus-visible-style;
   }
 }

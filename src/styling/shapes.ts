@@ -1,5 +1,6 @@
 import classes from './shapes.module.scss';
 
+/** @deprecated */
 export const SmallRounds = {
   all: classes['rounds-sm__all'],
 
@@ -14,6 +15,7 @@ export const SmallRounds = {
   bottomRight: classes['rounds-sm__b-r'],
 };
 
+/** @deprecated */
 export const MediumRounds = {
   all: classes['rounds-md__all'],
 

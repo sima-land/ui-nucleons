@@ -3,6 +3,7 @@ import classes from './borders.module.scss';
 
 const cx = classnames.bind(classes);
 
+/** @deprecated */
 export const InnerBorder = {
   y: cx('inner-border-y'),
   top: cx('inner-border-top'),

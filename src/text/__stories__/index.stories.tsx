@@ -4,7 +4,7 @@ import { COLORS } from '../../colors';
 import { SIZES, WEIGHTS } from '../../styling/fonts';
 
 export default {
-  title: 'legacy/Text',
+  title: 'deprecated/Text',
   component: Text,
   parameters: {
     layout: 'padded',

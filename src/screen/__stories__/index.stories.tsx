@@ -7,6 +7,7 @@ import { MobileLayout } from '../../layout';
 import { times } from 'lodash';
 import { useLoading } from './utils';
 import { LoremIpsum, PageScrollLockDemo } from '../../../.storybook/utils';
+import styles from './stories.module.scss';
 
 export default {
   title: 'deprecated/Screen',
@@ -267,3 +268,32 @@ export function TestPageScrollLock() {
 }
 
 TestPageScrollLock.storyName = 'Тест: блокировка прокрутки страницы';
+
+export function SecondaryTopBar() {
+  return (
+    <Screen>
+      <Screen.Header title='Дополнительный TopBar' />
+      <Screen.Body>
+        <div>
+          <div className={styles.header}>
+            <input
+              type='text'
+              className={styles.search}
+              onFocus={e => e.preventDefault()}
+              placeholder='Search something...'
+            />
+          </div>
+          {Array(100)
+            .fill(0)
+            .map((zero, index) => (
+              <div className={styles.item} key={index}>
+                Item #{index}
+              </div>
+            ))}
+        </div>
+      </Screen.Body>
+    </Screen>
+  );
+}
+
+SecondaryTopBar.storyName = 'Пример: дополнительный топбар';

@@ -36,6 +36,33 @@ export function Primary() {
 
 Primary.storyName = 'Простой пример';
 
+export function DateField() {
+  const defaultValue = '08.05.1995';
+  const mask = '__.__.____';
+  const placeholder = 'ДД.ММ.ГГГГ';
+  const [value, setValue] = useState(defaultValue);
+  const [rawValue, setRawValue] = useState(defaultValue);
+
+  return (
+    <MaskedInput
+      label='Дата рождения'
+      mask={mask}
+      value={value}
+      onChange={(event, data) => {
+        setRawValue(data.value);
+        setValue(data.cleanValue);
+      }}
+      baseInputProps={{
+        restPlaceholder: {
+          value: placeholder.slice(rawValue.length),
+        },
+      }}
+    />
+  );
+}
+
+DateField.storyName = 'Поле даты';
+
 export function NoRestPlaceholder() {
   const defaultValue = '1112223344';
   const [value, setValue] = useState(defaultValue);
@@ -54,8 +81,6 @@ export function NoRestPlaceholder() {
 }
 
 NoRestPlaceholder.storyName = 'Без rest placeholder';
-
-Primary.storyName = 'Простой пример';
 
 export function TestUncontrolled() {
   const defaultValue = '4443332211';

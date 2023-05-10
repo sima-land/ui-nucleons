@@ -66,7 +66,7 @@ const testPaddingPropsList = [
 ];
 
 export default {
-  title: 'legacy/Box',
+  title: 'deprecated/Box',
   component: Box,
   parameters: {
     layout: 'padded',

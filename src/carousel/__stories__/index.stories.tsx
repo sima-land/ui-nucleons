@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { Carousel } from '..';
 import { demoItems } from './demo-items';
 import classnames from 'classnames/bind';
-import classes from './test-carousel.module.scss';
+import styles from './test-carousel.module.scss';
 import { someImageUrl } from '../../../.storybook/utils';
+import { random } from 'lodash';
 
-const cx = classnames.bind(classes);
+const cx = classnames.bind(styles);
 
 export default {
   title: 'common/Carousel',
@@ -31,7 +32,7 @@ export function Primary() {
           />
         )}
         containerProps={{
-          className: classes['test-carousel'],
+          className: styles['test-carousel'],
         }}
       />
 
@@ -48,7 +49,7 @@ export function Primary() {
           />
         )}
         containerProps={{
-          className: classes['test-carousel'],
+          className: styles['test-carousel'],
         }}
       />
 
@@ -64,7 +65,7 @@ export function Primary() {
           />
         )}
         containerProps={{
-          className: classes['test-carousel'],
+          className: styles['test-carousel'],
         }}
       />
 
@@ -81,7 +82,7 @@ export function Primary() {
           />
         )}
         containerProps={{
-          className: classes['test-carousel'],
+          className: styles['test-carousel'],
         }}
       />
 
@@ -100,7 +101,7 @@ export function Primary() {
           />
         )}
         containerProps={{
-          className: classes['test-carousel'],
+          className: styles['test-carousel'],
         }}
       />
 
@@ -119,7 +120,7 @@ export function Primary() {
           />
         )}
         containerProps={{
-          className: classes['test-carousel'],
+          className: styles['test-carousel'],
         }}
       />
       <h3>Autoplay + infinite + draggable + pause on hover</h3>
@@ -138,7 +139,7 @@ export function Primary() {
           />
         )}
         containerProps={{
-          className: classes['test-carousel'],
+          className: styles['test-carousel'],
         }}
       />
 
@@ -159,7 +160,7 @@ export function Primary() {
           />
         )}
         containerProps={{
-          className: classes['test-carousel'],
+          className: styles['test-carousel'],
         }}
       />
     </>
@@ -245,6 +246,53 @@ export function Vertical() {
 }
 
 Vertical.storyName = 'Вертикальная карусель';
+
+export function Reels() {
+  const count = 8;
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  return (
+    <Carousel
+      step={1}
+      infinite={false}
+      items={Array(count).fill(0)}
+      targetIndex={currentIndex}
+      onChangeTargetIndex={setCurrentIndex}
+      renderItem={(zero, index) => (
+        <Reel play={index === currentIndex} onEnded={() => setCurrentIndex((index + 1) % count)}>
+          {index + 1}
+        </Reel>
+      )}
+    />
+  );
+}
+
+function Reel({
+  play,
+  onEnded,
+  children,
+}: {
+  play?: boolean;
+  onEnded?: () => void;
+  children?: ReactNode;
+}) {
+  const [duration] = useState(() => random(1000, 3000, false));
+
+  useEffect(() => {
+    if (play) {
+      const timerId = setTimeout(() => onEnded?.(), duration);
+      return () => clearTimeout(timerId);
+    }
+  }, [play, duration]);
+
+  return (
+    <div className={cx('reel', { current: play })} style={{ animationDuration: `${duration}ms` }}>
+      {children}
+    </div>
+  );
+}
+
+Reels.storyName = 'Пример: Reels';
 
 export function PreventLinkClickOnDrag() {
   return (

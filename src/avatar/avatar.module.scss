@@ -53,6 +53,9 @@ $textSizes: (
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  // ВАЖНО: чтобы например обертка в виде ссылки не накидывала text-decoration: underline
+  text-decoration: none;
 }
 
 .icon {
