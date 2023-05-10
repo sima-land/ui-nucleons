@@ -1,0 +1,29 @@
+.header {
+  position: sticky;
+  top: 0;
+  height: 64px;
+  padding: 12px;
+  background: #fff;
+}
+
+.search {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  background: #eee;
+  border-radius: 8px;
+  height: 40px;
+  border: 0;
+  margin: 0;
+  font-size: 16px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 12px;
+  &:active {
+    background: #f0f0f0;
+  }
+}

@@ -15,20 +15,30 @@ export default {
 };
 
 export function Primary() {
+  const [opened, toggle] = useState<boolean>(false);
+
   return (
-    <Alert>
-      <TopBar title='Ошибка' />
+    <>
+      <Button size='s' onClick={() => toggle(true)}>
+        Показать Alert
+      </Button>
 
-      <AlertBody style={{ padding: '64px 20px', textAlign: 'center' }}>
-        Да нет тут никакой ошибки на самом деле
-      </AlertBody>
+      {opened && (
+        <Alert>
+          <TopBar title='Ошибка' />
 
-      <BottomBar divided>
-        <CleanGroup>
-          <CleanButton>Ясно</CleanButton>
-        </CleanGroup>
-      </BottomBar>
-    </Alert>
+          <AlertBody style={{ padding: '64px 20px', textAlign: 'center' }}>
+            Да нет тут никакой ошибки на самом деле
+          </AlertBody>
+
+          <BottomBar divided>
+            <CleanGroup>
+              <CleanButton onClick={() => toggle(false)}>Ясно</CleanButton>
+            </CleanGroup>
+          </BottomBar>
+        </Alert>
+      )}
+    </>
   );
 }
 

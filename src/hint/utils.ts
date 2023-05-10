@@ -24,6 +24,8 @@ import {
   UseFloatingReturn,
   useHover,
   useInteractions,
+  UseHoverProps,
+  safePolygon,
 } from '@floating-ui/react';
 import { mapKeys } from 'lodash';
 import { useLayer } from '../helpers/layer';
@@ -177,16 +179,22 @@ export function getArrowFloatingStyle({
 /**
  * Показ всплывающего хинта при наведении.
  * @param floating Результат вызова useFloating.
+ * @param props Пропсы для useHover.
  * @return Опции для открывающего и всплывающего элемента.
  */
-export function useHintOnHover(
+export function useHintOnHover<RT extends ReferenceType = ReferenceType>(
   floating: Pick<
-    UseFloatingReturn,
+    UseFloatingReturn<RT>,
     'context' | 'strategy' | 'placement' | 'x' | 'y' | 'middlewareData'
   >,
+  props?: UseHoverProps<RT>,
 ) {
   const style = useHintFloatingStyle(floating);
-  const hover = useHover(floating.context, { delay: { close: 120 } });
+
+  const hover = useHover(floating.context, {
+    handleClose: safePolygon(),
+    ...props,
+  });
 
   return useInteractions([hover, { floating: { style } }]);
 }

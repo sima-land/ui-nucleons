@@ -6,6 +6,7 @@ import classnames from 'classnames/bind';
  * @param isValidKey Функция проверки ключа для класса.
  * @param [prefix=''] Префикс имени класса.
  * @return Геттер CSS-класса.
+ * @deprecated
  */
 export const ClassGetter = <T = string | number>(
   classes: Record<string, string>,
