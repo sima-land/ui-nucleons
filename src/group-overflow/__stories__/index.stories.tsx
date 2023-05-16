@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { GroupOverflow } from '..';
+import { GroupOverflow, RenderTail } from '..';
 import { Layout } from '../../layout';
 import { Chips } from '../../chips';
 import { on } from '../../helpers/on';
@@ -30,6 +30,34 @@ export function Primary() {
 }
 
 Primary.storyName = 'Простой пример';
+
+export function Limitation() {
+  const items: string[] = [...Array(24).keys()].map(index => `Элемент №${index + 1}`);
+  const max = 5;
+
+  const tail: RenderTail = data => (
+    // вычитаем еще 1 так как вывели второй замыкающий элемент
+    <Chips.Item checked>+{data.hiddenCount + (items.length - max - 1)}</Chips.Item>
+  );
+
+  return (
+    <Layout>
+      <div style={{ padding: '24px 0' }}>
+        <h3>Всего элементов: {items.length}</h3>
+
+        <GroupOverflow tail={tail}>
+          {items.slice(0, max).map((item, index) => (
+            <Chips.Item key={index}>{item}</Chips.Item>
+          ))}
+
+          <Chips.Item checked>+{items.length - max}</Chips.Item>
+        </GroupOverflow>
+      </div>
+    </Layout>
+  );
+}
+
+Limitation.storyName = 'Ограниченное кол-во';
 
 export function WithoutTail() {
   const items: string[] = [...Array(24).keys()].map(index => `Элемент №${index + 1}`);
