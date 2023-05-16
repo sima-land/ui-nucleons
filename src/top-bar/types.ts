@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 export type TopBarSize = 's' | 'm' | 'xl';
 
 export interface TopBarButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -27,10 +29,10 @@ export interface TopBarProps {
   size?: TopBarSize | 'unset';
 
   /** Подзаголовок. */
-  subtitle?: string;
+  subtitle?: ReactNode;
 
   /** Заголовок. */
-  title?: string;
+  title?: ReactNode;
 
   /** Нужна ли разделительная черта снизу. */
   divided?: boolean;

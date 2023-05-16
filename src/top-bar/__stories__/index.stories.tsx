@@ -3,6 +3,7 @@ import { TopBar, TopBarSize } from '..';
 import PlaceholderSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/placeholder';
 import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
 import { Sandbox } from '../../../.storybook/utils';
+import { Link } from '../../link';
 
 export default {
   title: 'common/TopBar',
@@ -32,6 +33,31 @@ export function Primary() {
 Primary.storyName = 'Простой пример';
 
 Primary.parameters = {
+  layout: 'padded',
+  backgrounds: { default: 'custom:gray' },
+};
+
+export function TestCustomTitle() {
+  return (
+    <TopBar
+      title={
+        <>
+          Lorem <Link href='https://www.sima-land.ru'>ipsum dolor</Link> sit <b>amet consectetur</b>{' '}
+          adipisicing elit. Libero, obcaecati.
+        </>
+      }
+      subtitle={
+        <>
+          Lorem ipsum dolor sit <b>amet consectetur</b>, adipisicing elit. Libero, obcaecati.
+        </>
+      }
+    />
+  );
+}
+
+TestCustomTitle.storyName = 'Тест: сложные заголовки';
+
+TestCustomTitle.parameters = {
   layout: 'padded',
   backgrounds: { default: 'custom:gray' },
 };
