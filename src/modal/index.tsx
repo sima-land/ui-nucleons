@@ -31,6 +31,9 @@ export interface ModalProps extends WithPageScrollLock {
   /** Размер окна. */
   size?: ModalSize;
 
+  /** Нужно ли выводить заглушку вместо футера если он не задан. */
+  footerStub?: boolean;
+
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
 }
@@ -48,6 +51,7 @@ export function Modal({
   onClose,
   scrollDisableOptions,
   size = 'm',
+  footerStub = size !== 'fullscreen',
   withScrollDisable = false,
   'data-testid': testId = 'modal',
 }: ModalProps) {
@@ -92,7 +96,7 @@ export function Modal({
 
           {footer}
 
-          {!footer && !fullscreen && <div className={cx('footer-stub')} />}
+          {!footer && footerStub && <div className={cx('footer-stub')} />}
 
           {overlap && (
             <div className={cx('overlap-content')} data-testid='modal:overlap'>
