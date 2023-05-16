@@ -19,7 +19,25 @@ if (typeof window !== 'undefined') {
     };
 
   window.ResizeObserver = class ResizeObserver {
-    observe() {}
+    constructor(callback) {
+      this.callback = callback;
+    }
+    observe(target) {
+      target.addEventListener('test:resize', () => {
+        this.callback(
+          [
+            {
+              target,
+              borderBoxSize: [],
+              contentBoxSize: [],
+              contentRect: null,
+              devicePixelContentBoxSize: [],
+            },
+          ],
+          this,
+        );
+      });
+    }
     unobserve() {}
     disconnect() {}
   };
