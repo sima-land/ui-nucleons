@@ -387,7 +387,7 @@ describe('useTempHintState', () => {
     await user.click(getByTestId('my-opener'));
     expect(queryAllByTestId('my-hint')).toHaveLength(1);
 
-    act(() => void jest.advanceTimersByTime(2500));
+    act(() => void jest.advanceTimersByTime(3500));
     expect(queryAllByTestId('my-hint')).toHaveLength(0);
   });
 
@@ -403,7 +403,7 @@ describe('useTempHintState', () => {
     await user.click(getByTestId('my-opener'));
     expect(queryAllByTestId('my-hint')).toHaveLength(1);
 
-    act(() => void jest.advanceTimersByTime(1900));
+    act(() => void jest.advanceTimersByTime(2900));
     expect(queryAllByTestId('my-hint')).toHaveLength(1);
 
     act(() => void jest.advanceTimersByTime(200));
