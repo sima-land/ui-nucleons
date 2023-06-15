@@ -220,23 +220,30 @@ export function useHintOnClick(
 /**
  * Состояние хинта с автоматическим скрытием по таймауту.
  * @param initialState Начальное состояние.
+ * @param options Опции.
  * @return Результат вызова `useState`.
  */
-export function useTempHintState(initialState: boolean) {
+export function useTempHintState(
+  initialState: boolean,
+  { timeout = 3000 }: { timeout?: number } = {},
+) {
   const [open, setOpen] = useState<boolean>(initialState);
   const timerRef = useRef<number | null>(null);
 
-  const updateTimer = useCallback((value: boolean): void => {
-    // сбрасываем предыдущий таймер если был
-    if (timerRef.current !== null) {
-      window.clearTimeout(timerRef.current);
-    }
+  const updateTimer = useCallback(
+    (value: boolean): void => {
+      // сбрасываем предыдущий таймер если был
+      if (timerRef.current !== null) {
+        window.clearTimeout(timerRef.current);
+      }
 
-    // запускаем новый таймер если надо
-    if (value) {
-      timerRef.current = window.setTimeout(() => setOpen(false), 2000);
-    }
-  }, []);
+      // запускаем новый таймер если надо
+      if (value) {
+        timerRef.current = window.setTimeout(() => setOpen(false), timeout);
+      }
+    },
+    [timeout],
+  );
 
   useEffect(() => {
     updateTimer(open);

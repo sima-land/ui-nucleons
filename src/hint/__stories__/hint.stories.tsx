@@ -10,6 +10,7 @@ import {
 import { Button } from '../../button';
 import { LargePage } from '../../../.storybook/utils';
 import { Stepper } from '../../stepper';
+import { Link } from '../../link';
 
 export default {
   title: 'common/Hint',
@@ -68,6 +69,37 @@ export function OnHover() {
 }
 
 OnHover.storyName = 'При наведении';
+
+export function WithLinkInside() {
+  // состояние
+  const [open, setOpen] = useState<boolean>(false);
+
+  // позиционирование
+  const { refs, ...floating } = useHintFloating({ open, onOpenChange: setOpen });
+
+  // пользовательское взаимодействие
+  const { getReferenceProps, getFloatingProps } = useHintOnClick(floating);
+
+  return (
+    <>
+      <Button size='s' ref={refs.setReference} {...getReferenceProps()}>
+        Кликни
+      </Button>
+
+      <Hint open={open} hintRef={refs.setFloating} arrowRef={refs.setArrow} {...getFloatingProps()}>
+        <span>
+          Скучный текст,{' '}
+          <Link color='basic-white' underline href='https://sima-land.ru' target='_blank'>
+            ссылка
+          </Link>
+          , и всё тут.
+        </span>
+      </Hint>
+    </>
+  );
+}
+
+WithLinkInside.storyName = 'Ссылка внутри';
 
 export function ExampleStepper() {
   // состояние
