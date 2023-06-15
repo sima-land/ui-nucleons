@@ -33,7 +33,11 @@ export function GroupOverflow({
   return (
     <div
       className={classNames(styles.root, className)}
-      style={gap ? ({ ...style, '--group-overflow-gap': `${gap}px` } as CSSProperties) : style}
+      style={
+        typeof gap === 'number'
+          ? ({ ...style, '--group-overflow-gap': `${gap}px` } as CSSProperties)
+          : style
+      }
       {...restProps}
     >
       <div ref={ref} className={styles.items}>

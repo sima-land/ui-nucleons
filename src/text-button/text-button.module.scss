@@ -11,8 +11,8 @@
   white-space: nowrap;
   background: transparent;
   padding: 0;
-  margin: 0;
   border: 0;
+  // ВАЖНО: не надо указывать здесь сброс margin так как его сложно перебить при сборке стилей
 }
 
 .root,

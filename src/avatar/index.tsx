@@ -1,10 +1,10 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
-import classnames from 'classnames/bind';
 import { COLORS, Token } from '../colors';
-import PersonSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/person';
-import classes from './avatar.module.scss';
 import { getMonogram } from './utils';
 import { color as colorClass } from '../styling/colors';
+import PersonSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/person';
+import classnames from 'classnames/bind';
+import styles from './avatar.module.scss';
 
 export interface AvatarProps {
   /** Цвет аватара без картинки. */
@@ -38,8 +38,6 @@ export interface AvatarProps {
   'data-testid'?: string;
 }
 
-const cx = classnames.bind(classes);
-
 type Size = 40 | 48 | 56 | 64 | 72 | 80 | 104;
 
 const SIZES: ReadonlyArray<number> = [40, 48, 56, 64, 72, 80, 104];
@@ -53,6 +51,8 @@ const ICON_SIZES: Readonly<Record<Size, number>> = {
   80: 24,
   104: 24,
 };
+
+const cx = classnames.bind(styles);
 
 /**
  * Компонент аватара.

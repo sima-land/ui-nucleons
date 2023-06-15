@@ -1,6 +1,6 @@
 @use '../colors';
 @use '../utils';
-@import '../styling/shadows.module';
+@use '../shadows';
 
 .arrow-button {
   @include utils.focus-visible;
@@ -25,17 +25,17 @@
   &.size-s {
     width: 32px;
     height: 32px;
-    @extend .shadow-z2;
+    @include shadows.box-shadow('z2');
     &:not(:disabled):hover {
-      @extend .shadow-z3;
+      @include shadows.box-shadow('z3');
     }
   }
   &.size-l {
     width: 56px;
     height: 56px;
-    @extend .shadow-z3;
+    @include shadows.box-shadow('z3');
     &:not(:disabled):hover {
-      @extend .shadow-z4;
+      @include shadows.box-shadow('z4');
     }
   }
 }
