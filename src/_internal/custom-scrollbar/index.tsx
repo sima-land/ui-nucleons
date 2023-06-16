@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode, Ref } from 'react';
+import React, { CSSProperties, ReactNode, Ref, useCallback, useMemo } from 'react';
 import {
   OverlayScrollbarsComponent,
   OverlayScrollbarsComponentProps,
@@ -6,6 +6,7 @@ import {
 import classnames from 'classnames/bind';
 import styles from './custom-scrollbar.module.scss';
 import 'overlayscrollbars/css/OverlayScrollbars.css';
+import { useIdentityRef } from '../../hooks/identity';
 
 type Options = NonNullable<OverlayScrollbarsComponentProps['options']>;
 
@@ -52,6 +53,19 @@ export function CustomScrollbar({
   onFullScroll,
   fullScrollThreshold,
 }: CustomScrollbarProps) {
+  const onFullScrollRef = useIdentityRef(onFullScroll);
+
+  // ВАЖНО: overlayscrollbars не реагирует на замену callback'а onScrollStop на undefined поэтому проверяем сами
+  const handleFullScroll = useCallback(() => {
+    const callback = onFullScrollRef.current;
+    callback?.();
+  }, [onFullScrollRef]);
+
+  const handleScrollStop = useMemo(
+    () => HandleFullScroll(handleFullScroll, fullScrollThreshold),
+    [handleFullScroll],
+  );
+
   return (
     <OverlayScrollbarsComponent
       ref={osComponentRef}
@@ -59,11 +73,7 @@ export function CustomScrollbar({
       className={cx('custom-scrollbar', className, { 'os-host-flexbox': inFlexBox })}
       options={{
         overflowBehavior: overflow,
-        callbacks: onFullScroll
-          ? {
-              onScrollStop: HandleFullScroll(onFullScroll, fullScrollThreshold),
-            }
-          : undefined,
+        callbacks: { onScrollStop: handleScrollStop },
       }}
     >
       {children}
