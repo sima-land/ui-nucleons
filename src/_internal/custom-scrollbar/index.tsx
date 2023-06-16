@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode, Ref, useCallback, useMemo } from 'react';
+import React, { CSSProperties, ReactNode, Ref, UIEvent as ReactUIEvent, useMemo } from 'react';
 import {
   OverlayScrollbarsComponent,
   OverlayScrollbarsComponentProps,
@@ -53,18 +53,7 @@ export function CustomScrollbar({
   onFullScroll,
   fullScrollThreshold,
 }: CustomScrollbarProps) {
-  const onFullScrollRef = useIdentityRef(onFullScroll);
-
-  // ВАЖНО: overlayscrollbars не реагирует на замену callback'а onScrollStop на undefined поэтому проверяем сами
-  const handleFullScroll = useCallback(() => {
-    const callback = onFullScrollRef.current;
-    callback?.();
-  }, [onFullScrollRef]);
-
-  const handleScrollStop = useMemo(
-    () => HandleFullScroll(handleFullScroll, fullScrollThreshold),
-    [handleFullScroll],
-  );
+  const onScrollStop = useFullScroll(onFullScroll, fullScrollThreshold);
 
   return (
     <OverlayScrollbarsComponent
@@ -73,7 +62,7 @@ export function CustomScrollbar({
       className={cx('custom-scrollbar', className, { 'os-host-flexbox': inFlexBox })}
       options={{
         overflowBehavior: overflow,
-        callbacks: { onScrollStop: handleScrollStop },
+        callbacks: { onScrollStop },
       }}
     >
       {children}
@@ -87,14 +76,22 @@ export function CustomScrollbar({
  * @param threshold Запас.
  * @return Обработчик.
  */
-export function HandleFullScroll(callback: () => void, threshold = 16) {
-  return (event: UIEvent | undefined) => {
-    const el = event?.target;
+export function useFullScroll(callback: VoidFunction | undefined, threshold = 16) {
+  const callbackRef = useIdentityRef(callback);
 
-    el instanceof Element &&
-      el.scrollTop >= el.scrollHeight - el.clientHeight - threshold &&
-      callback();
-  };
+  // ВАЖНО: overlayscrollbars не реагирует на замену callback'а onScrollStop на undefined поэтому проверяем сами
+  const handleScrollStop = useMemo(
+    () => (event: UIEvent | ReactUIEvent | undefined) => {
+      const el = event?.target;
+
+      el instanceof Element &&
+        el.scrollTop >= el.scrollHeight - el.clientHeight - threshold &&
+        callbackRef.current?.();
+    },
+    [],
+  );
+
+  return handleScrollStop;
 }
 
 /**

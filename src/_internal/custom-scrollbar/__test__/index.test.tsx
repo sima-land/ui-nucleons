@@ -1,58 +1,65 @@
 import { render } from '@testing-library/react';
-import { mount } from 'enzyme';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import React, { createRef, Ref, useImperativeHandle, useRef } from 'react';
-import { CustomScrollbar, HandleFullScroll, getViewport } from '..';
+import { CustomScrollbar, useFullScroll, getViewport } from '..';
 
-describe('CustomScrollbar', () => {
-  it('should handle onFullScroll/fullScrollThreshold', () => {
+describe('useFullScroll', () => {
+  const TestComponent = ({
+    onFullScroll,
+    fullScrollThreshold,
+  }: {
+    onFullScroll?: VoidFunction;
+    fullScrollThreshold?: number;
+  }) => {
+    const onScroll = useFullScroll(onFullScroll, fullScrollThreshold);
+
+    return (
+      <div data-testid='target' onScroll={onScroll}>
+        Hello
+      </div>
+    );
+  };
+
+  it('should handle callback and threshold', () => {
     const spy = jest.fn();
 
-    const wrapper = mount(<CustomScrollbar onFullScroll={spy} fullScrollThreshold={120} />);
+    const { getByTestId } = render(<TestComponent onFullScroll={spy} fullScrollThreshold={10} />);
 
-    expect(wrapper).toMatchSnapshot();
-  });
-});
+    const target = getByTestId('target');
 
-describe('HandleFullScroll', () => {
-  it('should handle event', () => {
-    const spy = jest.fn();
-    const handler = HandleFullScroll(spy, 10);
+    Object.defineProperties(target, {
+      clientHeight: { value: 100, configurable: true },
+      scrollTop: { value: 0, configurable: true },
+      scrollHeight: { value: 1000, configurable: true },
+    });
+    target.dispatchEvent(new UIEvent('scroll'));
 
     expect(spy).toHaveBeenCalledTimes(0);
 
-    handler({
-      target: {
-        __proto__: Element.prototype,
-        clientHeight: 100,
-        scrollTop: 0,
-        scrollHeight: 1000,
-      },
-    } as any);
-
-    expect(spy).toHaveBeenCalledTimes(0);
-
-    handler({
-      target: {
-        __proto__: Element.prototype,
-        clientHeight: 100,
-        scrollTop: 900,
-        scrollHeight: 1000,
-      },
-    } as any);
+    Object.defineProperties(target, {
+      clientHeight: { value: 100, configurable: true },
+      scrollTop: { value: 900, configurable: true },
+      scrollHeight: { value: 1000, configurable: true },
+    });
+    target.dispatchEvent(new UIEvent('scroll'));
 
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should handle undefined', () => {
-    const spy = jest.fn();
-    const handler = HandleFullScroll(spy);
+    const { getByTestId } = render(
+      <TestComponent onFullScroll={undefined} fullScrollThreshold={undefined} />,
+    );
+    const target = getByTestId('target');
 
-    expect(spy).toHaveBeenCalledTimes(0);
-
-    handler(undefined);
-
-    expect(spy).toHaveBeenCalledTimes(0);
+    Object.defineProperties(target, {
+      clientHeight: { value: 100, configurable: true },
+      scrollTop: { value: 900, configurable: true },
+      scrollHeight: { value: 1000, configurable: true },
+    });
+    expect(() => {
+      target.dispatchEvent(new UIEvent('scroll'));
+    }).not.toThrow();
   });
 });
 
