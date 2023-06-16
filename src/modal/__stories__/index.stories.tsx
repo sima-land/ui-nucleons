@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Modal, ModalProps } from '..';
 import { Button } from '../../button';
 import { CleanGroup, CleanButton } from '../../clean-buttons';
 import { Layout } from '../../layout';
 import { ArrowButton } from '../../arrow-button';
 import { LoremIpsum, PageScrollLockDemo } from '../../../.storybook/utils';
+import { navigationButtons, TopBar } from '../../top-bar';
+import { Tabs } from '../../tabs';
+import { usePageScrollLock } from '../../_internal/page-scroll-lock';
+import styles from './modal-stories.module.scss';
 
 export default {
   title: 'common/Modal',
@@ -289,3 +293,112 @@ export function TestToggle() {
 }
 
 TestToggle.storyName = 'Тест: блокировка прокрутки при переключении окон';
+
+export function TestFullScroll() {
+  const [enabled, setEnabled] = useState(true);
+  const [count, setCount] = useState(0);
+
+  const onFullScroll = () => {
+    setCount(c => c + 1);
+  };
+
+  return (
+    <Modal footerStub={false}>
+      <Modal.Body onFullScroll={enabled ? onFullScroll : undefined}>
+        <div style={{ padding: '40px' }}>
+          <button onClick={() => setEnabled(a => !a)}>{enabled ? 'Выкл' : 'Вкл'}</button>
+          <p>({enabled ? 'Должен срабатывать' : 'Не должен срабатывать'})</p>
+          <p>
+            <b>Кол-во полных прокруток: {count}</b>
+          </p>
+          {Array(100)
+            .fill(0)
+            .map((zero, index) => (
+              <p key={index}>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt similique,
+                quibusdam nostrum quis excepturi deserunt expedita. Cum eveniet ullam placeat.
+              </p>
+            ))}
+        </div>
+      </Modal.Body>
+    </Modal>
+  );
+}
+
+TestFullScroll.storyName = 'Тест: onFullScroll не должен кэшироваться';
+
+export function AdditionalTopBar() {
+  const [open, setOpen] = useState(false);
+
+  useVisualViewportUnit();
+
+  return (
+    <>
+      {[...Array(12).keys()].map(index => (
+        <p key={index}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, quae! Sapiente velit a
+          consequuntur deserunt provident eaque veritatis omnis error.
+        </p>
+      ))}
+
+      <Button onClick={() => setOpen(true)}>Открыть</Button>
+
+      {[...Array(64).keys()].map(index => (
+        <p key={index}>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat aliquam rerum ut harum
+          nam et ad necessitatibus eos quia blanditiis voluptate fuga facilis, molestias repellat
+          dolor esse. Neque velit repellat et non?
+        </p>
+      ))}
+
+      {open && <MyModal onClose={() => setOpen(false)} />}
+    </>
+  );
+}
+
+function MyModal(props: ModalProps) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  usePageScrollLock(ref, { lockEnabled: true });
+
+  return (
+    <Modal size='fullscreen' {...props}>
+      <Modal.Body>
+        <TopBar title='Пункты самовывоза' buttons={navigationButtons({ onClose: props.onClose })} />
+        <Tabs view='clean-underline' stretch>
+          <Tabs.Item name='На карте' />
+          <Tabs.Item name='Списком' selected />
+        </Tabs>
+        <div ref={ref} className={[styles.body, styles.hello].join(' ')} id='body'>
+          {[...Array(64).keys()].map(index => (
+            <div key={index}>Item #{index + 1}</div>
+          ))}
+        </div>
+      </Modal.Body>
+    </Modal>
+  );
+}
+
+function useVisualViewportUnit() {
+  useEffect(() => {
+    const define = (value: number) => {
+      document.documentElement.style.setProperty('--vh', `${value}px`);
+    };
+
+    const update = () => {
+      window.visualViewport && define(window.visualViewport.height / 100);
+    };
+
+    window.visualViewport?.addEventListener('resize', update);
+    window.visualViewport?.addEventListener('scroll', update);
+
+    update();
+
+    return () => {
+      window.visualViewport?.removeEventListener('resize', update);
+      window.visualViewport?.removeEventListener('scroll', update);
+    };
+  }, []);
+}
+
+AdditionalTopBar.storyName = 'Пример: Дополнительная шапка';

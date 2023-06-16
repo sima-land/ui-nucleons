@@ -23,7 +23,9 @@ exports[`Dropdown should handle props 1`] = `
         className="custom-scrollbar inner"
         options={
           {
-            "callbacks": undefined,
+            "callbacks": {
+              "onScrollStop": [Function],
+            },
             "overflowBehavior": {
               "x": "h",
               "y": "s",
@@ -101,7 +103,9 @@ exports[`Dropdown should render without props 1`] = `
         className="custom-scrollbar inner"
         options={
           {
-            "callbacks": undefined,
+            "callbacks": {
+              "onScrollStop": [Function],
+            },
             "overflowBehavior": {
               "x": "h",
               "y": "s",
