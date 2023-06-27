@@ -18,12 +18,6 @@
       }
     ]
   },
-  "include": [
-    "./src/**/*",
-    "./.storybook/utils.ts",
-  ],
-  "exclude": [
-    "build",
-    "node_modules"
-  ]
+  "include": ["./src/**/*", "./.storybook/utils.ts"],
+  "exclude": ["build", "node_modules"]
 }

@@ -1,16 +1,16 @@
-import russiaPNG from './images/russia.png';
-import kazakhstanPNG from './images/kazakhstan.png';
-import armeniaPNG from './images/armenia.png';
-import belarusPNG from './images/belarus.png';
-import kyrgyzstanPNG from './images/kyrgyzstan.png';
-import azerbaijanPNG from './images/azerbaijan.png';
-import georgiaPNG from './images/georgia.png';
-import moldovaPNG from './images/moldova.png';
-import tajikistanPNG from './images/tajikistan.png';
-import turkmenistanPNG from './images/turkmenistan.png';
-import uzbekistanPNG from './images/uzbekistan.png';
-import ukrainePNG from './images/ukraine.png';
-import otherPNG from './images/other.png';
+import russiaSrc from './images/russia.png';
+import kazakhstanSrc from './images/kazakhstan.png';
+import armeniaSrc from './images/armenia.png';
+import belarusSrc from './images/belarus.png';
+import kyrgyzstanSrc from './images/kyrgyzstan.png';
+import azerbaijanSrc from './images/azerbaijan.png';
+import georgiaSrc from './images/georgia.png';
+import moldovaSrc from './images/moldova.png';
+import tajikistanSrc from './images/tajikistan.png';
+import turkmenistanSrc from './images/turkmenistan.png';
+import uzbekistanSrc from './images/uzbekistan.png';
+import ukraineSrc from './images/ukraine.png';
+import otherSrc from './images/other.png';
 
 export interface Country {
   readonly id: string;
@@ -70,20 +70,23 @@ const MASKS = {
 } as const;
 
 const IMAGES = {
-  [IDS.russia]: russiaPNG,
-  [IDS.kazakhstan]: kazakhstanPNG,
-  [IDS.armenia]: armeniaPNG,
-  [IDS.belarus]: belarusPNG,
-  [IDS.kyrgyzstan]: kyrgyzstanPNG,
-  [IDS.azerbaijan]: azerbaijanPNG,
-  [IDS.georgia]: georgiaPNG,
-  [IDS.moldova]: moldovaPNG,
-  [IDS.tajikistan]: tajikistanPNG,
-  [IDS.turkmenistan]: turkmenistanPNG,
-  [IDS.uzbekistan]: uzbekistanPNG,
-  [IDS.ukraine]: ukrainePNG,
-  [IDS.other]: otherPNG,
+  [IDS.russia]: russiaSrc,
+  [IDS.kazakhstan]: kazakhstanSrc,
+  [IDS.armenia]: armeniaSrc,
+  [IDS.belarus]: belarusSrc,
+  [IDS.kyrgyzstan]: kyrgyzstanSrc,
+  [IDS.azerbaijan]: azerbaijanSrc,
+  [IDS.georgia]: georgiaSrc,
+  [IDS.moldova]: moldovaSrc,
+  [IDS.tajikistan]: tajikistanSrc,
+  [IDS.turkmenistan]: turkmenistanSrc,
+  [IDS.uzbekistan]: uzbekistanSrc,
+  [IDS.ukraine]: ukraineSrc,
+  [IDS.other]: otherSrc,
 } as const;
+
+// @todo <Flag country='russia' /> под капотом оптимизация для флагов состоящих только из полос
+// (простые флаги можно сделать на css чтобы не хранить лишние png)
 
 const CODES = {
   [IDS.russia]: '+7',

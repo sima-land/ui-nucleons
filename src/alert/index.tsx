@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, useRef } from 'react';
+import React, { ReactNode, useImperativeHandle, useRef } from 'react';
 import { WithPageScrollLock, usePageScrollLock } from '../_internal/page-scroll-lock';
 import { ModalOverlay } from '../modal-overlay';
 import { Card, CardContent } from '../card';
@@ -12,7 +12,7 @@ import styles from './alert.module.scss';
 
 export interface AlertProps extends WithPageScrollLock {
   /** Основное содержимое. */
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   /** Будет вызвана при закрытии окна нажатием на затемнение. */
   onClose?: VoidFunction;
@@ -51,13 +51,13 @@ export function Alert({
   return (
     <ModalOverlay className={styles.overlay} {...overlayClickBind}>
       <Card shadow='z4' rounds='m' className={cx('alert')} data-testid='alert'>
-        {topBar && <TopBar {...topBar.props} size='s' />}
+        {topBar && <TopBar size='s' {...topBar.props} />}
         {body && (
           <CardContent {...body.props} scrollableRef={scrollableRef}>
             {body}
           </CardContent>
         )}
-        {bottomBar && <BottomBar {...bottomBar.props} size='s' />}
+        {bottomBar && <BottomBar size='s' {...bottomBar.props} />}
       </Card>
     </ModalOverlay>
   );
