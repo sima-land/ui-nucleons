@@ -6,7 +6,7 @@
 
 ### Установка
 
-```bash
+```sh
 # npm
 npm i -S @sima-land/ui-nucleons
 
@@ -30,7 +30,7 @@ yarn add @sima-land/ui-nucleons
 
 ##### Зависимости
 
-```bash
+```sh
 npm install --save-dev @svgr/core @svgr/plugin-jsx @svgr/plugin-svgo @svgr/webpack
 ```
 
@@ -170,14 +170,3 @@ declare module '*.svg' {
 - `helpers/` - общие вспомогательные функции (для использования вне библиотеки)
 - `hooks/` - общие react-хуки (для использования вне библиотеки)
 - `_internal/` - внутренние скрипты для использования только в рамках данной библиотеки
-
-### Тестирование
-
-Локально E2E-тесты должны запускаться через docker, пример:
-
-```bash
-docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.29.2-focal /bin/bash
-npx playwright test
-```
-
-В противном случае скриншотные тесты не будут совпадать из-за разницы окружения запуска.
