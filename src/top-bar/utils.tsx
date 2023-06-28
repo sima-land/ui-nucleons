@@ -1,7 +1,7 @@
 import React, { createContext } from 'react';
 import { TopBarProps } from './types';
-import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
-import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
+import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Cross';
+import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';
 
 export const TopBarButtonGroupContext = createContext<{ stub?: boolean }>({
   stub: false,

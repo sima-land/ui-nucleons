@@ -72,10 +72,11 @@ exports[`Select should render loading state 1`] = `
                   height="16"
                   viewBox="0 0 16 16"
                   width="16"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
                     clip-rule="evenodd"
-                    d="M12.753 9.659a1 1 0 01-1.412.094L8 6.829 4.659 9.753a1 1 0 01-1.317-1.506l4-3.5a1 1 0 011.317 0l4 3.5a1 1 0 01.094 1.412z"
+                    d="M12.753 9.659a1 1 0 0 1-1.412.094L8 6.829 4.659 9.753a1 1 0 0 1-1.317-1.506l4-3.5a1 1 0 0 1 1.317 0l4 3.5a1 1 0 0 1 .094 1.412Z"
                     fill-rule="evenodd"
                   />
                 </svg>
@@ -181,10 +182,11 @@ exports[`Select should render loading state 1`] = `
                   height={16}
                   viewBox="0 0 16 16"
                   width={16}
+                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
                     clipRule="evenodd"
-                    d="M12.753 9.659a1 1 0 01-1.412.094L8 6.829 4.659 9.753a1 1 0 01-1.317-1.506l4-3.5a1 1 0 011.317 0l4 3.5a1 1 0 01.094 1.412z"
+                    d="M12.753 9.659a1 1 0 0 1-1.412.094L8 6.829 4.659 9.753a1 1 0 0 1-1.317-1.506l4-3.5a1 1 0 0 1 1.317 0l4 3.5a1 1 0 0 1 .094 1.412Z"
                     fillRule="evenodd"
                   />
                 </svg>
@@ -413,10 +415,11 @@ exports[`Select should renders correctly 1`] = `
                   height="16"
                   viewBox="0 0 16 16"
                   width="16"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
                     clip-rule="evenodd"
-                    d="M3.247 6.342a1 1 0 011.412-.095L8 9.171l3.341-2.924a1 1 0 011.318 1.506l-4 3.5a1 1 0 01-1.317 0l-4-3.5a1 1 0 01-.095-1.411z"
+                    d="M3.247 6.342a1 1 0 0 1 1.412-.095L8 9.171l3.341-2.924a1 1 0 0 1 1.318 1.506l-4 3.5a1 1 0 0 1-1.317 0l-4-3.5a1 1 0 0 1-.095-1.411Z"
                     fill-rule="evenodd"
                   />
                 </svg>
@@ -522,10 +525,11 @@ exports[`Select should renders correctly 1`] = `
                   height={16}
                   viewBox="0 0 16 16"
                   width={16}
+                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
                     clipRule="evenodd"
-                    d="M3.247 6.342a1 1 0 011.412-.095L8 9.171l3.341-2.924a1 1 0 011.318 1.506l-4 3.5a1 1 0 01-1.317 0l-4-3.5a1 1 0 01-.095-1.411z"
+                    d="M3.247 6.342a1 1 0 0 1 1.412-.095L8 9.171l3.341-2.924a1 1 0 0 1 1.318 1.506l-4 3.5a1 1 0 0 1-1.317 0l-4-3.5a1 1 0 0 1-.095-1.411Z"
                     fillRule="evenodd"
                   />
                 </svg>
@@ -636,10 +640,11 @@ exports[`Select should renders correctly 2`] = `
                   height="16"
                   viewBox="0 0 16 16"
                   width="16"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
                     clip-rule="evenodd"
-                    d="M12.753 9.659a1 1 0 01-1.412.094L8 6.829 4.659 9.753a1 1 0 01-1.317-1.506l4-3.5a1 1 0 011.317 0l4 3.5a1 1 0 01.094 1.412z"
+                    d="M12.753 9.659a1 1 0 0 1-1.412.094L8 6.829 4.659 9.753a1 1 0 0 1-1.317-1.506l4-3.5a1 1 0 0 1 1.317 0l4 3.5a1 1 0 0 1 .094 1.412Z"
                     fill-rule="evenodd"
                   />
                 </svg>
@@ -745,10 +750,11 @@ exports[`Select should renders correctly 2`] = `
                   height={16}
                   viewBox="0 0 16 16"
                   width={16}
+                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
                     clipRule="evenodd"
-                    d="M12.753 9.659a1 1 0 01-1.412.094L8 6.829 4.659 9.753a1 1 0 01-1.317-1.506l4-3.5a1 1 0 011.317 0l4 3.5a1 1 0 01.094 1.412z"
+                    d="M12.753 9.659a1 1 0 0 1-1.412.094L8 6.829 4.659 9.753a1 1 0 0 1-1.317-1.506l4-3.5a1 1 0 0 1 1.317 0l4 3.5a1 1 0 0 1 .094 1.412Z"
                     fillRule="evenodd"
                   />
                 </svg>

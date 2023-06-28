@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Panel, PanelType, LINK_COLOR_BY_TYPE } from '..';
-import InformationSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information';
-import LockSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/lock';
+import InformationSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Information';
+import LockSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Lock';
 import { Link } from '../../link';
 import { Sandbox } from '../../../.storybook/utils';
 

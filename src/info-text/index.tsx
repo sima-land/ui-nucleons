@@ -1,6 +1,6 @@
 import React, { Children, CSSProperties, Fragment, MouseEventHandler, ReactNode, Ref } from 'react';
 import { WithTestId } from '../types';
-import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information';
+import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Information';
 import classNames from 'classnames/bind';
 import styles from './info-text.module.scss';
 

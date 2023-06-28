@@ -10,8 +10,8 @@ import { BaseInput, BaseInputAsInputProps } from '../base-input';
 import { FieldBlock, FieldBlockProps } from '../field-block';
 import { definePlaceholderColor, useFieldMouseDown, useFilledState } from './utils';
 import { triggerInput } from '../helpers/events';
-import Cross16SVG from '@sima-land/ui-quarks/icons/16x16/Filled/cross';
-import Cross24SVG from '@sima-land/ui-quarks/icons/24x24/Filled/cross';
+import Cross16SVG from '@sima-land/ui-quarks/icons/16x16/Filled/Cross';
+import Cross24SVG from '@sima-land/ui-quarks/icons/24x24/Filled/Cross';
 import classNames from 'classnames/bind';
 import styles from './input.module.scss';
 

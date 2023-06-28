@@ -6,8 +6,8 @@ import { Input } from '../../input';
 import { TextButton } from '../../text-button';
 import { useTempHint, WithHint } from '../../with-hint';
 import ClipboardJS from 'clipboard';
-import CopySVG from '@sima-land/ui-quarks/icons/16x16/Stroked/copy';
-import CopyBigSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/copy';
+import CopySVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Copy';
+import CopyBigSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Copy';
 import styles from './colors.module.scss';
 
 export default {

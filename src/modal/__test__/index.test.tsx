@@ -1,6 +1,6 @@
 import React, { createRef, RefObject, useContext, useEffect } from 'react';
 import { Modal, ModalSize } from '..';
-import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
+import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';
 import { render, fireEvent } from '@testing-library/react';
 import { usePageScrollLock } from '../../_internal/page-scroll-lock';
 import { LayerProvider, useLayer } from '../../helpers/layer';

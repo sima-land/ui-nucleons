@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { TopBar, TopBarProps } from '..';
-import ArrowUpSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-up';
-import ArrowRightSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-right';
-import ArrowDownSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-down';
-import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
+import ArrowUpSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowUp';
+import ArrowRightSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowRight';
+import ArrowDownSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowDown';
+import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';
 import { InnerBorder } from '../../styling/borders';
 
 describe('<TopBar />', () => {

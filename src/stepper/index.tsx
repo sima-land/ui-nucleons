@@ -8,8 +8,8 @@ import React, {
   useRef,
   useImperativeHandle,
 } from 'react';
-import PlusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/plus';
-import MinusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/minus';
+import PlusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Plus';
+import MinusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Minus';
 import styles from './stepper.module.scss';
 import classnames from 'classnames/bind';
 

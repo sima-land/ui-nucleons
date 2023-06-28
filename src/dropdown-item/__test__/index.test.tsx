@@ -1,7 +1,7 @@
 import React from 'react';
 import { DropdownItem, DropdownItemSize } from '..';
 import { render } from '@testing-library/react';
-import CrossSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/cross';
+import CrossSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Cross';
 
 describe('DropdownItem', () => {
   it('should works with minimum props', () => {

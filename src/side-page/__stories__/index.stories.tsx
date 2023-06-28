@@ -8,7 +8,7 @@ import { times } from 'lodash';
 import { WithHint } from '../../with-hint';
 import { CleanGroup, CleanButton } from '../../clean-buttons';
 import { LoremIpsum, PageScrollLockDemo } from '../../../.storybook/utils';
-import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information';
+import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Information';
 import imageSrc from './image.png';
 
 export default {

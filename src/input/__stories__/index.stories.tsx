@@ -3,7 +3,7 @@ import { Input, InputProps } from '..';
 import { FieldBlockSize } from '../../field-block';
 import { Sandbox } from '../../../.storybook/utils';
 import { COLORS } from '../../colors';
-import FaceIdSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/face-id';
+import FaceIdSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/FaceId';
 
 export default {
   title: 'common/Input',

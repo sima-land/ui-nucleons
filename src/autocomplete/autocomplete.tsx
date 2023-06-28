@@ -10,8 +10,8 @@ import { Input } from '../input';
 import { useIsomorphicLayoutEffect } from '../hooks';
 import { dropdownFloatingConfig, useDropdownFloatingStyle } from '../dropdown/utils';
 import { triggerInput } from '../helpers/events';
-import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/down';
-import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/up';
+import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Down';
+import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';
 import styles from './autocomplete.module.scss';
 
 /**

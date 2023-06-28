@@ -2,7 +2,7 @@ import React from 'react';
 import { getStars } from './utils';
 import { StarType } from './types';
 import classnames from 'classnames/bind';
-import StarSVG from './star.svg';
+import StarSVG from '@sima-land/ui-quarks/icons/16x16/Filled/Star';
 import styles from './rating.module.scss';
 
 export type StarSize = 's' | 'm';

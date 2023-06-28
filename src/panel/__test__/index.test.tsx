@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Panel } from '..';
-import LockSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/lock';
-import InformationSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/information';
+import LockSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Lock';
+import InformationSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Information';
 
 describe('<Panel />', () => {
   it('should renders without props', () => {
