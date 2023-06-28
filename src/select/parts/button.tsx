@@ -1,4 +1,4 @@
-import React, { useContext, useImperativeHandle, useRef } from 'react';
+import { useContext, useImperativeHandle, useRef } from 'react';
 import { TextButton, TextButtonAsButtonProps } from '../../text-button';
 import { SelectContext } from '../utils';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';

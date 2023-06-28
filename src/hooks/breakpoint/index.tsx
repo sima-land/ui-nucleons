@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 import { useIsomorphicLayoutEffect } from '..';
 import isBrowser from '../../helpers/is-browser';
 import { Registry } from './types';

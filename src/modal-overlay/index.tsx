@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, Ref, useImperativeHandle, useRef } from 'react';
+import { HTMLAttributes, Ref, useImperativeHandle, useRef } from 'react';
 import { useViewportHeightUnit } from '../hooks/styles';
 import { LayerProvider, useLayer } from '../helpers/layer';
 import classNames from 'classnames';

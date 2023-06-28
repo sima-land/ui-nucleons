@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import getDeclination from '../../helpers/get-declination';
 import { useKeydown } from '../keydown';
 

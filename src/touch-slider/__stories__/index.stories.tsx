@@ -1,4 +1,3 @@
-import React from 'react';
 import { times } from 'lodash';
 import { TouchSlider } from '..';
 import { COLORS } from '../../colors';

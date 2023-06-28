@@ -1,4 +1,3 @@
-import React from 'react';
 import { Text, ALIGNS } from '../index';
 import { COLORS } from '../../colors';
 import { SIZES, WEIGHTS } from '../../styling/fonts';

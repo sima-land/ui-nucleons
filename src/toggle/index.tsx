@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { CheckboxInputProps } from '../types';
 import classnames from 'classnames/bind';
 import styles from './toggle.module.scss';

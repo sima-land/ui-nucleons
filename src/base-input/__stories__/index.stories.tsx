@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BaseInput, BaseInputStyle } from '..';
 
 export default {

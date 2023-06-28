@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { TextField } from '..';
 import RightSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Right';
 import { COLORS } from '../../colors';

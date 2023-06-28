@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 import { setTableRowLabels } from './utils';
 import classnames from 'classnames';
 import styles from './unknown-content.module.scss';

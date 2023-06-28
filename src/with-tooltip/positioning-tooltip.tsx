@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useContext } from 'react';
+import { useCallback, useEffect, useRef, useContext } from 'react';
 import { ViewportContext } from '../context/viewport';
 import { debounce } from 'lodash';
 import { getScrollParent } from '../helpers/get-scroll-parent';

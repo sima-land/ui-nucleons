@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode, useCallback, useState } from 'react';
+import { CSSProperties, ReactNode, useCallback, useState } from 'react';
 import {
   Hint,
   useHintOnHover,

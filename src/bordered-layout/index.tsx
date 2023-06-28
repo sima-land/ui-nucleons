@@ -1,4 +1,3 @@
-import React from 'react';
 import classnames from 'classnames/bind';
 import { MobileLayout } from '../layout';
 import { InnerBorder } from '../styling/borders';

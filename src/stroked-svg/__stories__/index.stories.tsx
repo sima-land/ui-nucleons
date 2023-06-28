@@ -1,4 +1,3 @@
-import React from 'react';
 import { StrokedSVG } from '..';
 import FavoriteSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Favorite';
 import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';

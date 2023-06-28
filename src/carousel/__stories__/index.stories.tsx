@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { Carousel } from '..';
 import { demoItems } from './demo-items';
 import classnames from 'classnames/bind';

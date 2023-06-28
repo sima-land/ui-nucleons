@@ -1,4 +1,4 @@
-import React, { isValidElement, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { isValidElement, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { SelectContext } from './utils';
 import { SelectMenuProps, SelectOpenerBinding, SelectProps } from './types';
 import { useIdentityRef } from '../hooks/identity';

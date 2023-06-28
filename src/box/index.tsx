@@ -1,4 +1,3 @@
-import React from 'react';
 import classnames from 'classnames/bind';
 import classes from './box.module.scss';
 import * as Spacing from '../styling/sizes';

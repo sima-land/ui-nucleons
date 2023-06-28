@@ -1,4 +1,4 @@
-import React, { useContext, useImperativeHandle, useRef, useState } from 'react';
+import { useContext, useImperativeHandle, useRef, useState } from 'react';
 import { SelectContext } from '../utils';
 import { FieldBlock, FieldBlockProps } from '../../field-block';
 import { COLORS } from '../../colors';

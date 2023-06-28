@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import { Component, Fragment, createRef } from 'react';
 import { Draggable, Control } from './draggable';
 import { inRange, isEqual, noop, size, stubFalse } from 'lodash';
 import { eq } from 'lodash/fp';
@@ -854,9 +854,7 @@ export class Carousel extends Component<CarouselProps, State> {
     for (let realIndex = 0; realIndex < loopLimit; realIndex++) {
       const index = realIndex % realItemsCount;
 
-      result.push(
-        <React.Fragment key={realIndex}>{renderItem(items[index], realIndex)}</React.Fragment>,
-      );
+      result.push(<Fragment key={realIndex}>{renderItem(items[index], realIndex)}</Fragment>);
     }
 
     return result;

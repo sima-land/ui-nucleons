@@ -1,4 +1,4 @@
-import React, { ReactNode, useImperativeHandle, useRef } from 'react';
+import { ReactNode, useImperativeHandle, useRef } from 'react';
 import { WithPageScrollLock, usePageScrollLock } from '../_internal/page-scroll-lock';
 import { ModalOverlay } from '../modal-overlay';
 import { Card, CardContent } from '../card';

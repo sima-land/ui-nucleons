@@ -1,4 +1,4 @@
-import React, { cloneElement, isValidElement, useContext } from 'react';
+import { cloneElement, isValidElement, useContext } from 'react';
 import { InnerBorder } from '../styling/borders';
 import classnames from 'classnames';
 import styles from './card.module.scss';

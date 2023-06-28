@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { TextField, TextFieldProps } from '../text-field';
 import { InputMask } from '@krutoo/input-mask/dist/dom';
 

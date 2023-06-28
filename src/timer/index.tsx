@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Distance } from './types';
 import { getDistanceToNow, formatDistance } from './utils';
 

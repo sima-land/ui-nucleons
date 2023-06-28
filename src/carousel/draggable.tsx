@@ -1,4 +1,4 @@
-import React, { createRef, Component } from 'react';
+import { createRef, Component } from 'react';
 import Point, { IPoint } from '../helpers/point';
 import DraggableEvent from './helpers/draggable-event';
 import { getTransitionStyle, getTranslateStyle } from '../helpers/styles';

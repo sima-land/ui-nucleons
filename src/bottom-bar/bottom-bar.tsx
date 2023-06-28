@@ -1,4 +1,3 @@
-import React from 'react';
 import { MediumRounds } from '../styling/shapes';
 import { CleanGroupSizeContext } from '../clean-buttons/utils';
 import { BottomBarProps, type BottomBarSize } from './types';

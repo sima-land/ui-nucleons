@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect, useRef, CSSProperties } from 'react';
+import { useState, useReducer, useEffect, useRef, CSSProperties } from 'react';
 import { SidePage, SidePageProps } from '..';
 import { Button } from '../../button';
 import { Panel } from '../../panel';

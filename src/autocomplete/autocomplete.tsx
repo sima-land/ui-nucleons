@@ -1,4 +1,4 @@
-import React, { Children, KeyboardEventHandler, useCallback, useRef, useState } from 'react';
+import { Children, KeyboardEventHandler, useCallback, useRef, useState } from 'react';
 import { AutocompleteProps } from './types';
 import { Dropdown } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';

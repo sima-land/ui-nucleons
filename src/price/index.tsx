@@ -1,4 +1,3 @@
-import React from 'react';
 import { formatPrice } from './utils';
 import classnames from 'classnames/bind';
 import styles from './price.module.scss';

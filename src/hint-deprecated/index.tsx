@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { BoxShadow } from '../styling/shadows';
 import classnames from 'classnames/bind';
 import styles from './hint.module.scss';

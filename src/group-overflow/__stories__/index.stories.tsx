@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GroupOverflow, RenderTail } from '..';
 import { Layout } from '../../layout';
 import { Chips } from '../../chips';

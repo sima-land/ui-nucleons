@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { UserAvatar } from '../user';
 import dogPng from './dog.png';
 import { someImageUrl } from '../../../.storybook/utils';

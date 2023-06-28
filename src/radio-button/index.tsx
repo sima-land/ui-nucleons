@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes } from 'react';
 import { FieldProps, WithTestId } from '../types';
 import classNames from 'classnames/bind';
 import styles from './radio-button.module.scss';

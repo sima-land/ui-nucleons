@@ -1,4 +1,4 @@
-import React, { useCallback, useImperativeHandle } from 'react';
+import { useCallback, useImperativeHandle } from 'react';
 import { Input } from '../input';
 import { Value } from '@krutoo/input-mask/dist/dom/utils';
 import { useInputMask } from './hook';

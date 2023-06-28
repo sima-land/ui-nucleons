@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext } from 'react';
+import { ReactNode, useContext } from 'react';
 import { TopBarButtonProps, TopBarProps, TopBarSize } from './types';
 import { TopBarButtonGroupContext } from './utils';
 import { InnerBorder } from '../styling/borders';

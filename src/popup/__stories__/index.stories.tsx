@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useCallback, useState } from 'react';
+import { MouseEventHandler, useCallback, useState } from 'react';
 import { Popup, PopupView, popupFloatingConfig, usePopupOnClick, useFocusTrap } from '..';
 import { useFloating } from '@floating-ui/react';
 import { LargePage } from '../../../.storybook/utils';

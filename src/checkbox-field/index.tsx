@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { Checkbox } from '../checkbox';
 import { Toggle } from '../toggle';
 import classnames from 'classnames/bind';

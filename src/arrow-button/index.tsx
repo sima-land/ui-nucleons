@@ -1,4 +1,3 @@
-import React from 'react';
 import classnames from 'classnames/bind';
 import classes from './arrow-button.module.scss';
 import UpSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowUp';

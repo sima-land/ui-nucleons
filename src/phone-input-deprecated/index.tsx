@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Down';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';
 import { Dropdown } from '../dropdown';

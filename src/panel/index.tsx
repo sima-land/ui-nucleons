@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import { color, bgColor } from '../styling/colors';
 import type { Token } from '../colors';
 import type { LinkProps } from '../link';

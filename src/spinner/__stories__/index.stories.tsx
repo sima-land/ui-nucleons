@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Spinner, SpinnerSize } from '..';
 import { Sandbox } from '../../../.storybook/utils';
 import { COLORS, Token } from '../../colors';

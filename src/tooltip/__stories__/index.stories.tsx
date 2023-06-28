@@ -1,4 +1,3 @@
-import React from 'react';
 import { Tooltip } from '..';
 
 const shortText = 'Это тестовый тултип.';

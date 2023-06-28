@@ -1,4 +1,3 @@
-import React from 'react';
 import { MobileLayout } from '../layout';
 import { BSL_IGNORE_ATTR } from '../_internal/page-scroll-lock';
 import styles from './touch-slider.module.scss';

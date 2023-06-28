@@ -1,4 +1,3 @@
-import React from 'react';
 import { addDays, addMonths, formatISO } from 'date-fns';
 import { Timer } from '..';
 

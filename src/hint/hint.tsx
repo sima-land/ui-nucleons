@@ -1,4 +1,4 @@
-import React, { Ref } from 'react';
+import { Ref } from 'react';
 import { Portal } from '../portal';
 import { HintView, HintViewProps } from './hint-view';
 

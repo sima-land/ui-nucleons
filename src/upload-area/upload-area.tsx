@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useCallback, useRef } from 'react';
+import { ChangeEventHandler, useCallback, useRef } from 'react';
 import { Link } from '../link';
 import { useFilesDrop } from './utils';
 import { upperFirst } from 'lodash';

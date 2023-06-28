@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import { CSSProperties } from 'react';
 import { Link, LinkProps } from '..';
 
 export default {

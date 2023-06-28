@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { Stepper, StepperProps, StepperSize } from '..';
 import { Sandbox } from '../../../.storybook/utils';
 

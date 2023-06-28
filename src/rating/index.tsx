@@ -1,4 +1,3 @@
-import React from 'react';
 import { getStars } from './utils';
 import { StarType } from './types';
 import classnames from 'classnames/bind';

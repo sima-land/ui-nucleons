@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Modal, ModalProps } from '..';
 import { Button } from '../../button';
 import { CleanGroup, CleanButton } from '../../clean-buttons';
@@ -19,17 +19,17 @@ export default {
 };
 
 function SizeTemplate(props: ModalProps) {
-  const [opened, toggleModal] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
     <>
-      <Button size='s' onClick={() => toggleModal(true)}>
+      <Button size='s' onClick={() => setOpen(true)}>
         Показать Modal
       </Button>
 
-      {opened && (
-        <Modal {...props} withScrollDisable onClose={() => toggleModal(false)}>
-          <Modal.Header divided title='Модальное окно' onClose={() => toggleModal(false)} />
+      {open && (
+        <Modal {...props} withScrollDisable onClose={() => setOpen(false)}>
+          <Modal.Header divided title='Модальное окно' onClose={() => setOpen(false)} />
           <Modal.Body>
             <div style={{ padding: '24px' }}>Содержимое модального окна</div>
           </Modal.Body>
@@ -70,38 +70,50 @@ export function SizeXL() {
 SizeXL.storyName = 'Размер XL';
 
 export function Fullscreen() {
+  const [open, setOpen] = useState<boolean>(false);
+
   return (
     <>
-      <Modal size='fullscreen'>
-        <Modal.Header divided title='Полноэкранное модальное окно' />
-        <Modal.Body>
-          <div
-            style={{
-              height: 'calc(100vh - var(--modal-header-height) - var(--modal-footer-height))',
-              background: '#eee',
-            }}
-          >
-            <Layout>
-              <div style={{ padding: '24px' }}>Содержимое модального окна</div>
+      <Button size='s' onClick={() => setOpen(true)}>
+        Показать Modal
+      </Button>
+
+      {open && (
+        <Modal size='fullscreen'>
+          <Modal.Header
+            title='Полноэкранное модальное окно'
+            onClose={() => setOpen(false)}
+            divided
+          />
+          <Modal.Body>
+            <div
+              style={{
+                height: 'calc(100vh - var(--modal-header-height) - var(--modal-footer-height))',
+                background: '#eee',
+              }}
+            >
+              <Layout>
+                <div style={{ padding: '24px' }}>Содержимое модального окна</div>
+              </Layout>
+            </div>
+          </Modal.Body>
+          <Modal.Footer divided>
+            <Layout
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+                height: '100%',
+              }}
+            >
+              <Button viewType='secondary' style={{ marginRight: 12 }}>
+                Кнопка
+              </Button>
+              <Button viewType='primary'>Кнопка</Button>
             </Layout>
-          </div>
-        </Modal.Body>
-        <Modal.Footer divided>
-          <Layout
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-end',
-              height: '100%',
-            }}
-          >
-            <Button viewType='secondary' style={{ marginRight: 12 }}>
-              Кнопка
-            </Button>
-            <Button viewType='primary'>Кнопка</Button>
-          </Layout>
-        </Modal.Footer>
-      </Modal>
+          </Modal.Footer>
+        </Modal>
+      )}
     </>
   );
 }
@@ -121,71 +133,69 @@ export function WithoutBars() {
 WithoutBars.storyName = 'Без шапки и подвала';
 
 export function WithOverlapContent() {
+  const [open, setOpen] = useState<boolean>(false);
   const [count, setCount] = useState(99);
 
   return (
-    <Modal size='m'>
-      <Modal.Header divided title='Со стрелочками рядом с окном' />
-      <Modal.Body>
-        <div
-          style={{
-            height: 360,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '64px',
-          }}
-        >
-          {count}
-        </div>
-      </Modal.Body>
-      <Modal.Overlap>
-        <ArrowButton
-          style={{
-            position: 'absolute',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            right: 'calc(100% + 24px)',
-          }}
-          direction='left'
-          onClick={() => setCount(count - 1)}
-        />
-        <ArrowButton
-          style={{
-            position: 'absolute',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            left: 'calc(100% + 24px)',
-          }}
-          direction='right'
-          onClick={() => setCount(count + 1)}
-        />
-      </Modal.Overlap>
-    </Modal>
+    <>
+      <Button size='s' onClick={() => setOpen(true)}>
+        Показать Modal
+      </Button>
+
+      {open && (
+        <Modal size='m' onClose={() => setOpen(false)}>
+          <Modal.Header divided title='Со стрелочками рядом с окном' />
+          <Modal.Body>
+            <div
+              style={{
+                height: 360,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '64px',
+              }}
+            >
+              {count}
+            </div>
+          </Modal.Body>
+          <Modal.Overlap>
+            <ArrowButton
+              style={{
+                position: 'absolute',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                right: 'calc(100% + 24px)',
+              }}
+              direction='left'
+              onClick={() => setCount(count - 1)}
+            />
+            <ArrowButton
+              style={{
+                position: 'absolute',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                left: 'calc(100% + 24px)',
+              }}
+              direction='right'
+              onClick={() => setCount(count + 1)}
+            />
+          </Modal.Overlap>
+        </Modal>
+      )}
+    </>
   );
 }
 
 WithOverlapContent.storyName = 'Контент рядом с окном';
 
 export function TestPageScrollLock() {
-  const [opened, toggle] = useState(false);
+  const [open, setOpen] = useState(false);
   const [count, setCount] = useState<number>(5);
 
-  function increaseContent() {
-    setCount(count + 1);
-  }
-
-  function decreaseContent() {
-    setCount(Math.max(1, count - 1));
-  }
-
-  function show() {
-    toggle(true);
-  }
-
-  function hide() {
-    toggle(false);
-  }
+  const increaseContent = () => setCount(count + 1);
+  const decreaseContent = () => setCount(Math.max(1, count - 1));
+  const show = () => setOpen(true);
+  const hide = () => setOpen(false);
 
   return (
     <PageScrollLockDemo>
@@ -193,7 +203,7 @@ export function TestPageScrollLock() {
         Показать Modal
       </Button>
 
-      {opened && (
+      {open && (
         <Modal withScrollDisable onClose={hide}>
           <Modal.Header divided title='Тест: Блокировка прокрутки страницы' onClose={hide} />
 
@@ -369,7 +379,7 @@ function MyModal(props: ModalProps) {
           <Tabs.Item name='На карте' />
           <Tabs.Item name='Списком' selected />
         </Tabs>
-        <div ref={ref} className={[styles.body, styles.hello].join(' ')} id='body'>
+        <div ref={ref} className={styles.body} id='body'>
           {[...Array(64).keys()].map(index => (
             <div key={index}>Item #{index + 1}</div>
           ))}

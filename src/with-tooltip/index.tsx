@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { getScrollParent } from '../helpers/get-scroll-parent';
 import { Portal } from '../portal';
 import { PositioningTooltip } from './positioning-tooltip';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { BasePagination, BasePaginationProps } from './base-pagination';
 
 export interface PaginationProps {

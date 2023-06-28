@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle, useContext } from 'react';
+import { forwardRef, useRef, useImperativeHandle, useContext } from 'react';
 import { get } from 'lodash';
 import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';
 import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Cross';

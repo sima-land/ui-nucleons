@@ -1,4 +1,4 @@
-import React, { ComponentType, ReactNode, SVGAttributes } from 'react';
+import { ComponentType, ReactNode, SVGAttributes } from 'react';
 import classnames from 'classnames/bind';
 import styles from './dropdown-item.module.scss';
 

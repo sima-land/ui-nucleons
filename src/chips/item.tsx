@@ -1,4 +1,3 @@
-import React from 'react';
 import classnames from 'classnames/bind';
 import CrossSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Cross';
 import styles from './chips.module.scss';

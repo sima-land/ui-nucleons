@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Hint, HintProps } from '../hint-deprecated';
 import { PlaceAt } from './utils';
 import classnames from 'classnames/bind';

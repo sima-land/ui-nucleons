@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Select, renderDefaultArrow } from '..';
 import { Link } from '../../link';
 import GoogleSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/Google';

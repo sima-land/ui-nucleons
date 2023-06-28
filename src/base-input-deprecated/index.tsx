@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { useRef, useEffect, useImperativeHandle, forwardRef } from 'react';
 import { fitElementHeight } from '../helpers/fit-element-height';
 import classnames from 'classnames/bind';
 import styles from './base-input.module.scss';

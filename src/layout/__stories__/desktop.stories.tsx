@@ -1,4 +1,3 @@
-import React from 'react';
 import { DesktopLayout } from '..';
 
 export default {

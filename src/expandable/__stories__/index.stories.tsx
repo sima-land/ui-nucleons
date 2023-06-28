@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Expandable, ExpandableGroup } from '..';
 import { Chips } from '../../chips';
 import { Link } from '../../link';

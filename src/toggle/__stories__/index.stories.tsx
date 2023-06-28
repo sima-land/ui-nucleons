@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { TextButton } from '../../text-button';
 import { Toggle } from '../index';
 

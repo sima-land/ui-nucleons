@@ -1,4 +1,4 @@
-import React, { Children, CSSProperties, HTMLAttributes, ReactNode, useRef } from 'react';
+import { Children, CSSProperties, HTMLAttributes, ReactNode, useRef } from 'react';
 import { useItemsHide } from './utils';
 import classNames from 'classnames';
 import styles from './group-overflow.module.scss';

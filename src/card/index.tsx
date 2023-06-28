@@ -1,4 +1,3 @@
-import React from 'react';
 import { Plate, PlateProps } from '../plate';
 import { CardContent, CardFooter, CardHeader } from './slots';
 import { CardContext } from './utils';

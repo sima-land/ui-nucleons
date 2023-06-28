@@ -1,4 +1,4 @@
-import React, { Ref } from 'react';
+import { Ref } from 'react';
 import { LayoutProps } from './types';
 import classNames from 'classnames/bind';
 import styles from './layout.module.scss';

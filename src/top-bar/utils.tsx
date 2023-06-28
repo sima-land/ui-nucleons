@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import { createContext } from 'react';
 import { TopBarProps } from './types';
 import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Cross';
 import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';
