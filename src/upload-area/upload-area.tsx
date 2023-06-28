@@ -4,7 +4,7 @@ import { useFilesDrop } from './utils';
 import { upperFirst } from 'lodash';
 import { getDeclination } from '../helpers/get-declination';
 import { UploadAreaProps } from './types';
-import UploadSVG from './upload.svg';
+import UploadSVG from '@sima-land/ui-quarks/icons/64x64/Stroked/Upload';
 import classnames from 'classnames/bind';
 import styles from './upload-area.module.scss';
 

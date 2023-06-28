@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FieldBlock, FieldBlockProps, FieldBlockSize } from '..';
-import CopySVG from '@sima-land/ui-quarks/icons/16x16/Stroked/copy';
-import LockSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/lock';
+import CopySVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Copy';
+import LockSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Lock';
 import { Sandbox } from '../../../.storybook/utils';
 
 export default {

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Button, ButtonProps, ButtonSize, ButtonViewType } from '..';
-import PlusSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/plus';
-import Placeholder16SVG from '@sima-land/ui-quarks/icons/16x16/Stroked/placeholder';
-import Placeholder24SVG from '@sima-land/ui-quarks/icons/24x24/Stroked/placeholder';
+import PlusSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Plus';
+import Placeholder16SVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Placeholder';
+import Placeholder24SVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Placeholder';
 import { Sandbox } from '../../../.storybook/utils';
 
 export default {

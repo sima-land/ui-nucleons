@@ -18,42 +18,21 @@ yarn add @sima-land/ui-nucleons
 
 Компоненты библиотеки используют:
 
-- импорты изображений (jpg, png..) как url/src
+- импорты изображений (jpg, png...) как url/base64
 - импорты стилей
 - импорты стилей как css-модулей (каждый такой файл промаркирован в виде `%filename%.module.scss`)
-- импорты svg-файлов как react-компоненты
 
 #### Для работы с Webpack необходимо (как вариант):
 
-- добавить необходимые пакеты `@svgr/*`
-- сконфигурировать обработку svg, css, scss файлов
-
-##### Зависимости
-
-```sh
-npm install --save-dev @svgr/core @svgr/plugin-jsx @svgr/plugin-svgo @svgr/webpack
-```
+- сконфигурировать обработку импортов css, scss файлов
 
 ##### Конфигурация
 
 ```js
 // webpack.config.js
-const svgrOptions = require('../../svgr.config'); // опции SVGR (скопировать из данного проекта)
-
 module.exports = {
   module: {
     rules: [
-      // svg
-      {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: '@svgr/webpack',
-            options: svgrOptions,
-          },
-        ],
-      },
-
       // стилей
       {
         test: /\.(css|scss)$/,
@@ -78,29 +57,7 @@ module.exports = {
 
 #### Для работы с Jest необходимо (как вариант):
 
-- добавить необходимые пакеты `@svgr/*`
-- сконфигурировать обработку svg, css, scss файлов
-
-##### Добавить обработку SVG
-
-- добавить файл "трансформера" вида:
-
-```js
-const babel = require('@babel/core');
-const babelConfig = require('../../babel.config');
-const svgr = require('@svgr/core');
-const svgrConfig = require('../../svgr.config');
-
-module.exports = {
-  process(sourceText, sourcePath) {
-    const code = svgr.transform.sync(sourceText, svgrConfig, { filePath: sourcePath });
-
-    return babel.transformSync(code, { filename: sourcePath, ...babelConfig });
-  },
-};
-```
-
-- задействовать его в конфигурации Jest
+- сконфигурировать обработку css, scss файлов
 
 ##### Добавить поддержку стилей
 
@@ -109,9 +66,6 @@ module.exports = {
 ```js
 module.exports = {
   transform: {
-    // svg как react-компоненты
-    '\\.svg$': '<rootDir>/.jest/transforms/svg.js',
-
     // обычный css
     '(?<!(\\.module))\\.(css|scss)$': './transformer/empty.js',
 
@@ -141,12 +95,6 @@ declare module '*.module.css' {
 declare module '*.module.scss' {
   const classes: { [key: string]: string };
   export default classes;
-}
-
-// svg как React-компоненты
-declare module '*.svg' {
-  const content: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
-  export default content;
 }
 ```
 

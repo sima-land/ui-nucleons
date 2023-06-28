@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '..';
 import { render } from '@testing-library/react';
 import SearchSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/search';
-import PlusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/plus';
+import PlusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Plus';
 import { COLORS } from '../../colors';
 
 describe('<Button />', () => {

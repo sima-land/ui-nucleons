@@ -4,7 +4,7 @@ import { act, Simulate } from 'react-dom/test-utils';
 import { Select } from '..';
 import { TextField } from '../../text-field';
 import { render, fireEvent } from '@testing-library/react';
-import GoogleSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/google';
+import GoogleSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/Google';
 
 describe('Select', () => {
   const openMenu = (wrapper: ReactWrapper) => {

@@ -8,9 +8,6 @@ const config: Config = {
   transform: {
     '^.+\\.(t|j)sx?$': 'babel-jest',
 
-    // svg заменяем на React-компоненты
-    '\\.svg$': '<rootDir>/.jest/transforms/svg.js',
-
     // генерируем css-модули
     '\\.module\\.(css|scss)$': 'jest-css-modules-transform',
 
@@ -28,7 +25,7 @@ const config: Config = {
   snapshotSerializers: ['enzyme-to-json/serializer'],
   testPathIgnorePatterns: ['<rootDir>/.yarn-cache/', '<rootDir>/node_modules/'],
   modulePathIgnorePatterns: ['<rootDir>/.yarn-cache/', '<rootDir>/build/'],
-  coveragePathIgnorePatterns: ['\\.css$', '\\.scss$', '\\.svg$', '/.jest/'],
+  coveragePathIgnorePatterns: ['\\.css$', '\\.scss$', '/.jest/'],
   clearMocks: true,
   coverageThreshold: {
     global: {

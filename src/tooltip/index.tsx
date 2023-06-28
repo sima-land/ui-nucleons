@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import CrossSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/cross';
+import CrossSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Cross';
 import classnames from 'classnames/bind';
 import styles from './tooltip.module.scss';
 

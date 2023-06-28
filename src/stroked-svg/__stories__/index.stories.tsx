@@ -1,11 +1,11 @@
 import React from 'react';
 import { StrokedSVG } from '..';
-import FavoriteSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/favorite';
-import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
-import Bag2SVG from '@sima-land/ui-quarks/icons/24x24/Stroked/bag-2';
-import ShareAndroidSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/share-android';
-import ShareIOsSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/share-i-os';
-import QuickView2SVG from '@sima-land/ui-quarks/icons/24x24/Stroked/quick-view-2';
+import FavoriteSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Favorite';
+import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';
+import Bag2SVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Bag2';
+import ShareAndroidSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ShareAndroid';
+import ShareIOsSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ShareIOs';
+import QuickView2SVG from '@sima-land/ui-quarks/icons/24x24/Stroked/QuickView2';
 import { WithHint } from '../../with-hint';
 
 export default {

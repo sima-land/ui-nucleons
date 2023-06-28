@@ -5,8 +5,8 @@ import {
 } from 'overlayscrollbars-react';
 import classnames from 'classnames/bind';
 import styles from './custom-scrollbar.module.scss';
-import 'overlayscrollbars/css/OverlayScrollbars.css';
 import { useIdentityRef } from '../../hooks/identity';
+import 'overlayscrollbars/css/OverlayScrollbars.css';
 
 type Options = NonNullable<OverlayScrollbarsComponentProps['options']>;
 

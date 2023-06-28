@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Select, renderDefaultArrow } from '..';
 import { Link } from '../../link';
-import GoogleSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/google';
-import VkSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/vk';
-import InstagramSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/instagram';
-import TelegramSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/telegram';
-import TwitterSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/twitter';
+import GoogleSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/Google';
+import VkSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/Vk';
+import InstagramSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/Instagram';
+import TelegramSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/Telegram';
+import TwitterSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/Twitter';
 import { COLORS } from '../../colors';
 
 export default {

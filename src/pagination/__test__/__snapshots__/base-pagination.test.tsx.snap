@@ -80,10 +80,11 @@ exports[`<BasePagination /> should handle "onButtonClick" prop 1`] = `
             height={16}
             viewBox="0 0 16 16"
             width={16}
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
               clipRule="evenodd"
-              d="M9.659 3.247a1 1 0 01.094 1.412L6.829 8l2.924 3.341a1 1 0 01-1.506 1.318l-3.5-4a1 1 0 010-1.317l3.5-4a1 1 0 011.412-.095z"
+              d="M9.659 3.247a1 1 0 0 1 .094 1.412L6.829 8l2.924 3.341a1 1 0 0 1-1.506 1.318l-3.5-4a1 1 0 0 1 0-1.317l3.5-4a1 1 0 0 1 1.412-.095Z"
               fillRule="evenodd"
             />
           </svg>
@@ -238,10 +239,11 @@ exports[`<BasePagination /> should handle "onButtonClick" prop 1`] = `
             height={16}
             viewBox="0 0 16 16"
             width={16}
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
               clipRule="evenodd"
-              d="M6.341 12.753a1 1 0 01-.094-1.412L9.171 8 6.247 4.659a1 1 0 011.506-1.317l3.5 4a1 1 0 010 1.317l-3.5 4a1 1 0 01-1.412.094z"
+              d="M6.341 12.753a1 1 0 0 1-.094-1.412L9.171 8 6.247 4.659a1 1 0 0 1 1.506-1.317l3.5 4a1 1 0 0 1 0 1.317l-3.5 4a1 1 0 0 1-1.412.094Z"
               fillRule="evenodd"
             />
           </svg>
@@ -282,10 +284,11 @@ exports[`<BasePagination /> should handle "total" and "current" props 1`] = `
             height={16}
             viewBox="0 0 16 16"
             width={16}
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
               clipRule="evenodd"
-              d="M9.659 3.247a1 1 0 01.094 1.412L6.829 8l2.924 3.341a1 1 0 01-1.506 1.318l-3.5-4a1 1 0 010-1.317l3.5-4a1 1 0 011.412-.095z"
+              d="M9.659 3.247a1 1 0 0 1 .094 1.412L6.829 8l2.924 3.341a1 1 0 0 1-1.506 1.318l-3.5-4a1 1 0 0 1 0-1.317l3.5-4a1 1 0 0 1 1.412-.095Z"
               fillRule="evenodd"
             />
           </svg>
@@ -440,10 +443,11 @@ exports[`<BasePagination /> should handle "total" and "current" props 1`] = `
             height={16}
             viewBox="0 0 16 16"
             width={16}
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
               clipRule="evenodd"
-              d="M6.341 12.753a1 1 0 01-.094-1.412L9.171 8 6.247 4.659a1 1 0 011.506-1.317l3.5 4a1 1 0 010 1.317l-3.5 4a1 1 0 01-1.412.094z"
+              d="M6.341 12.753a1 1 0 0 1-.094-1.412L9.171 8 6.247 4.659a1 1 0 0 1 1.506-1.317l3.5 4a1 1 0 0 1 0 1.317l-3.5 4a1 1 0 0 1-1.412.094Z"
               fillRule="evenodd"
             />
           </svg>
@@ -484,10 +488,11 @@ exports[`<BasePagination /> should render correctly 1`] = `
             height={16}
             viewBox="0 0 16 16"
             width={16}
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
               clipRule="evenodd"
-              d="M9.659 3.247a1 1 0 01.094 1.412L6.829 8l2.924 3.341a1 1 0 01-1.506 1.318l-3.5-4a1 1 0 010-1.317l3.5-4a1 1 0 011.412-.095z"
+              d="M9.659 3.247a1 1 0 0 1 .094 1.412L6.829 8l2.924 3.341a1 1 0 0 1-1.506 1.318l-3.5-4a1 1 0 0 1 0-1.317l3.5-4a1 1 0 0 1 1.412-.095Z"
               fillRule="evenodd"
             />
           </svg>
@@ -642,10 +647,11 @@ exports[`<BasePagination /> should render correctly 1`] = `
             height={16}
             viewBox="0 0 16 16"
             width={16}
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
               clipRule="evenodd"
-              d="M6.341 12.753a1 1 0 01-.094-1.412L9.171 8 6.247 4.659a1 1 0 011.506-1.317l3.5 4a1 1 0 010 1.317l-3.5 4a1 1 0 01-1.412.094z"
+              d="M6.341 12.753a1 1 0 0 1-.094-1.412L9.171 8 6.247 4.659a1 1 0 0 1 1.506-1.317l3.5 4a1 1 0 0 1 0 1.317l-3.5 4a1 1 0 0 1-1.412.094Z"
               fillRule="evenodd"
             />
           </svg>

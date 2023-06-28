@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { FieldBlock } from '..';
-import CopySVG from '@sima-land/ui-quarks/icons/16x16/Stroked/copy';
-import LockSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/lock';
+import CopySVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Copy';
+import LockSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Lock';
 
 describe('FiledBlock', () => {
   it('should renders correctly', () => {

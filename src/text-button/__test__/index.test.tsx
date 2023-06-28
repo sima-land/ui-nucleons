@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import CrossSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/cross';
-import TrashSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/trash';
+import CrossSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Cross';
+import TrashSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Trash';
 import { TextButton } from '..';
 
 describe('TextButton', () => {

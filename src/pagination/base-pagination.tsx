@@ -4,8 +4,8 @@ import { getPageButtons, cx } from './utils';
 import { allPass, always, cond, eq, prop, propEq, T } from 'lodash/fp';
 import { has } from 'lodash';
 import { marginRight, marginLeft } from '../styling/sizes';
-import LeftSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/left';
-import RightSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/right';
+import LeftSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Left';
+import RightSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Right';
 
 interface RenderButtonProps extends PageButtonProps {
   type?: 'prev' | 'next' | 'more';

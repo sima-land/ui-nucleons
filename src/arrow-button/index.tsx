@@ -1,14 +1,14 @@
 import React from 'react';
 import classnames from 'classnames/bind';
 import classes from './arrow-button.module.scss';
-import UpSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-up';
-import RightSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-right';
-import DownSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-down';
-import LeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/arrow-left';
-import UpSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/arrow-up';
-import RightSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/arrow-right';
-import DownSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/arrow-down';
-import LeftSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/arrow-left';
+import UpSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowUp';
+import RightSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowRight';
+import DownSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowDown';
+import LeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';
+import UpSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowUp';
+import RightSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowRight';
+import DownSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowDown';
+import LeftSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowLeft';
 
 export type ArrowButtonSize = 's' | 'l';
 

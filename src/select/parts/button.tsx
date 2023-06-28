@@ -1,8 +1,8 @@
 import React, { useContext, useImperativeHandle, useRef } from 'react';
 import { TextButton, TextButtonAsButtonProps } from '../../text-button';
 import { SelectContext } from '../utils';
-import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/up';
-import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/down';
+import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';
+import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Down';
 
 /**
  * Компонент открывашки в виде текстовой кнопки.

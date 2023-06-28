@@ -7,7 +7,7 @@ import { Button } from '../../button';
 import { PhoneInput } from '../../phone-input-deprecated';
 import { DropdownItem } from '../../dropdown-item';
 import { CustomScrollbar } from '../../_internal/custom-scrollbar';
-import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/cross';
+import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Cross';
 
 export default {
   title: 'common/Card',
