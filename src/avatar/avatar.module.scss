@@ -41,7 +41,7 @@ $textSizes: (
     width: #{$size}px;
     height: #{$size}px;
     .monogram {
-      font-size: #{map-get($textSizes, $size)}px;
+      font-size: #{map.get($textSizes, $size)}px;
     }
   }
 }

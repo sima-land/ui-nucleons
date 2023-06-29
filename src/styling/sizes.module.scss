@@ -6,7 +6,7 @@ $directions: 'top', 'right', 'bottom', 'left';
 @for $index from -8 through 32 {
   @each $direction in $directions {
     // ключи классов попадают в JS - сокращаем до одной буквы для экономии
-    $short: str-slice($direction, 0, 1);
+    $short: string.slice($direction, 0, 1);
 
     // внешние отступы
     .M-#{$short}__#{$index} {

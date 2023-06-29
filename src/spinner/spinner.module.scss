@@ -32,7 +32,7 @@ $durations: (
       width: #{$diameter}px;
       height: #{$diameter}px;
       .circle {
-        animation: dash-#{$sizeKey} map-get($durations, $sizeKey) linear infinite;
+        animation: dash-#{$sizeKey} map.get($durations, $sizeKey) linear infinite;
       }
       @keyframes dash-#{$sizeKey} {
         0% {
