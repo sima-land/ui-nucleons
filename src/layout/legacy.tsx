@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { LayoutProps } from './types';
 import classnames from 'classnames/bind';
 import classes from './legacy.module.scss';

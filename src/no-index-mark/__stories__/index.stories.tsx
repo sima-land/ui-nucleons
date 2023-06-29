@@ -1,4 +1,3 @@
-import React from 'react';
 import { NoIndexMark } from '..';
 
 export default {

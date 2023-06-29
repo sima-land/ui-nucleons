@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { getNoIndex } from '../helpers/get-no-index';
 import classnames from 'classnames/bind';
 import { Token } from '../colors';

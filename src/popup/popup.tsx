@@ -1,4 +1,4 @@
-import React, { useImperativeHandle } from 'react';
+import { useImperativeHandle } from 'react';
 import { PopupView, PopupViewProps } from './popup-view';
 import { useFloating } from '@floating-ui/react';
 import { useOutsideClick } from '../hooks';

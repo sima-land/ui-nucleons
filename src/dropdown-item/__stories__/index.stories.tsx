@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState } from 'react';
+import { CSSProperties, useState } from 'react';
 import { DropdownItem, DropdownItemProps, DropdownItemSize } from '..';
 import PlaceholderSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Placeholder';
 import { Sandbox } from '../../../.storybook/utils';

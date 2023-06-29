@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Dropdown } from '../dropdown';
 import { DropdownItem, DropdownItemProps } from '../dropdown-item';
 import { TextField, TextFieldProps } from '../text-field';

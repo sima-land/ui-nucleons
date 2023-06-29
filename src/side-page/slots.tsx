@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { TopBar, TopBarProps } from '../top-bar';
 import { BottomBar, BottomBarProps } from '../bottom-bar';
 import { navigationButtons } from '../top-bar/utils';

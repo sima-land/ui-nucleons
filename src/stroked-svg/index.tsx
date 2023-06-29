@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { COLORS } from '../colors';
 import classNames from 'classnames';
 import styles from './index.module.scss';

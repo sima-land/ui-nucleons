@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, isValidElement, ReactNode, useContext } from 'react';
+import { Children, cloneElement, isValidElement, ReactNode, useContext } from 'react';
 import { Link, LinkProps } from '../link';
 import { CleanButtonSize } from './types';
 import { CleanGroupSizeContext } from './utils';

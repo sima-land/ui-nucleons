@@ -1,4 +1,3 @@
-import React from 'react';
 import { PageButton, PageButtonProps } from './page-button';
 import { getPageButtons, cx } from './utils';
 import { allPass, always, cond, eq, prop, propEq, T } from 'lodash/fp';

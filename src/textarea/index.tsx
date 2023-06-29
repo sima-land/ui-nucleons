@@ -1,4 +1,4 @@
-import React, { TextareaHTMLAttributes, Ref, useImperativeHandle, useRef, useState } from 'react';
+import { TextareaHTMLAttributes, Ref, useImperativeHandle, useRef, useState } from 'react';
 import { BaseInput, BaseInputAsTextareaProps } from '../base-input';
 import { FieldBlock, FieldBlockProps } from '../field-block';
 import { definePlaceholderColor, useFieldMouseDown, useFilledState } from '../input/utils';

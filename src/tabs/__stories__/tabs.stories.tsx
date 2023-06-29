@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Tabs, TabsProps, TabsItemProps } from '..';
 
 const items: TabsItemProps[] = [

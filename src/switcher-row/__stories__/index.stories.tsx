@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { SwitcherRow } from '..';
 import { Sandbox } from '../../../.storybook/utils';
 import { Checkbox } from '../../checkbox';

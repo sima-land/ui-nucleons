@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, Ref } from 'react';
+import { HTMLAttributes, Ref } from 'react';
 import { WithTestId } from '../types';
 import classnames from 'classnames/bind';
 import styles from './hint-view.module.scss';

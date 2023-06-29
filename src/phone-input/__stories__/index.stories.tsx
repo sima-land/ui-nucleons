@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { PhoneInput } from '..';
 import { TextButton } from '../../text-button';
 

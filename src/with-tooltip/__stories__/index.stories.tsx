@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from '../../link';
 import { WithTooltip } from '..';
 import { Modal } from '../../modal';

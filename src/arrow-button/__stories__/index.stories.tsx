@@ -1,4 +1,3 @@
-import React from 'react';
 import { ArrowButton, ArrowButtonSize, ArrowDirection } from '..';
 
 const sizes: ArrowButtonSize[] = ['l', 's'];

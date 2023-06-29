@@ -1,30 +1,8 @@
-.body.hello {
+.body {
   height: calc((100 * var(--vh, 1vh)) - 64px - 40px);
   overflow-y: auto;
-}
-
-.body.hello {
-  scrollbar-width: auto !important;
-  scrollbar-color: #f00 transparent !important;
-}
-
-.body.hello::-webkit-scrollbar,
-.body.hello::-webkit-scrollbar,
-.body.hello::-webkit-scrollbar-corner,
-.body.hello::-webkit-scrollbar-corner {
-  display: block;
-  width: 10px !important;
-  height: 10px !important;
-  background: #000 !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
-.body.hello::-webkit-scrollbar-thumb {
-  display: block;
-  width: 10px !important;
-  height: 10px !important;
-  background: #f00 !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
 }

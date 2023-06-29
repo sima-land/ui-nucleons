@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Textarea, TextareaProps } from '..';
 import { Sandbox } from '../../../.storybook/utils';
 

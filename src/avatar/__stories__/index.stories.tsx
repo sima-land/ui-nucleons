@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import { Fragment, useState } from 'react';
 import { Avatar } from '..';
 import { random } from 'lodash';
 import dogPng from './dog.png';

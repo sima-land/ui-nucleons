@@ -1,4 +1,3 @@
-import React from 'react';
 import { Spinner, SpinnerProps } from '../spinner';
 import classnames from 'classnames/bind';
 import classes from './loading-overlay.module.scss';

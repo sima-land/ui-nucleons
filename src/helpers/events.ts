@@ -1,4 +1,3 @@
-import React from 'react';
 import { Point } from './point';
 
 export type EventWithPosition<T extends HTMLElement = HTMLElement> =

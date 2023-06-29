@@ -1,4 +1,4 @@
-import React, { CSSProperties, useMemo, useRef, useState } from 'react';
+import { CSSProperties, useMemo, useRef, useState } from 'react';
 import { COLORS } from '../../../colors';
 import { useIntersection } from '..';
 

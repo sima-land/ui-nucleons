@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { BoxShadow } from '../styling/shadows';
 import { SmallRounds, MediumRounds } from '../styling/shapes';
 import classnames from 'classnames';

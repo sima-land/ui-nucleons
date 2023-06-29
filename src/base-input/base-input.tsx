@@ -1,4 +1,4 @@
-import React, { useRef, useImperativeHandle, ReactNode } from 'react';
+import { useRef, useImperativeHandle, ReactNode } from 'react';
 import { fitElementHeight } from '../helpers/fit-element-height';
 import { useIsomorphicLayoutEffect } from '../hooks';
 import { BaseInputProps, RestPlaceholderDefinition } from './types';

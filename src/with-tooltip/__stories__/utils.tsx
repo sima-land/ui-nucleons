@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { WithTooltip } from '..';
 import boundsOf from '../../helpers/bounds-of';
 import on from '../../helpers/on';

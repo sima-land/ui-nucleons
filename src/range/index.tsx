@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import { Component, createRef } from 'react';
 import withPrevent from '../helpers/with-prevent';
 import boundsOf from '../helpers/bounds-of';
 import createContainer, { Container } from '../helpers/create-container';

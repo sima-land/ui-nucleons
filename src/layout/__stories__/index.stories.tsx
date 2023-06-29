@@ -1,4 +1,3 @@
-import React from 'react';
 import { Layout, Breakpoint } from '..';
 import { InnerBorder } from '../../styling/borders';
 

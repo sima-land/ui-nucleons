@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Panel, PanelType, LINK_COLOR_BY_TYPE } from '..';
 import InformationSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Information';
 import LockSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Lock';

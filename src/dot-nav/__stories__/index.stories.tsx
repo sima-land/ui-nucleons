@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { DotNav, DotNavSize } from '..';
 import { times } from 'lodash';
 

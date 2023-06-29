@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dropdown } from '..';
 import { DropdownItem } from '../../dropdown-item';
 import { Spinner } from '../../spinner';

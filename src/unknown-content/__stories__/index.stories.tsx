@@ -1,5 +1,5 @@
 import { times } from 'lodash';
-import React from 'react';
+
 import { UnknownContent } from '..';
 import { someImageUrl } from '../../../.storybook/utils';
 

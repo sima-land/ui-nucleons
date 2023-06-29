@@ -1,4 +1,4 @@
-import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
+import { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
 import { isNil } from 'lodash';
 import { Box } from '../box';
 import { BaseInput, BaseInputProps } from '../base-input-deprecated';

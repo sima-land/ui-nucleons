@@ -1,4 +1,4 @@
-import React, { Children, isValidElement } from 'react';
+import { Children, isValidElement } from 'react';
 import { ChipsItem } from './item';
 import classnames from 'classnames/bind';
 import styles from './chips.module.scss';

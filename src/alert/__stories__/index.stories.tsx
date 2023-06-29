@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState } from 'react';
+import { CSSProperties, useState } from 'react';
 import { Alert, AlertBody } from '..';
 import { TopBar } from '../../top-bar';
 import { BottomBar } from '../../bottom-bar';
@@ -15,16 +15,16 @@ export default {
 };
 
 export function Primary() {
-  const [opened, toggle] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
     <>
-      <Button size='s' onClick={() => toggle(true)}>
+      <Button size='s' onClick={() => setOpen(true)}>
         Показать Alert
       </Button>
 
-      {opened && (
-        <Alert>
+      {open && (
+        <Alert onClose={() => setOpen(false)}>
           <TopBar title='Ошибка' />
 
           <AlertBody style={{ padding: '64px 20px', textAlign: 'center' }}>
@@ -33,7 +33,7 @@ export function Primary() {
 
           <BottomBar divided>
             <CleanGroup>
-              <CleanButton onClick={() => toggle(false)}>Ясно</CleanButton>
+              <CleanButton onClick={() => setOpen(false)}>Ясно</CleanButton>
             </CleanGroup>
           </BottomBar>
         </Alert>
@@ -45,7 +45,7 @@ export function Primary() {
 Primary.storyName = 'Простой пример';
 
 export function TestPageScrollLock() {
-  const [opened, toggle] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const style: CSSProperties = {
     height: '168px',
@@ -58,12 +58,12 @@ export function TestPageScrollLock() {
 
   return (
     <PageScrollLockDemo>
-      <Button size='s' onClick={() => toggle(true)}>
+      <Button size='s' onClick={() => setOpen(true)}>
         Показать Alert
       </Button>
 
-      {opened && (
-        <Alert onClose={() => toggle(false)} withScrollDisable>
+      {open && (
+        <Alert onClose={() => setOpen(false)} withScrollDisable>
           <TopBar divided title='Тест: Блокировка прокрутки страницы' />
 
           <AlertBody style={style}>
@@ -72,7 +72,7 @@ export function TestPageScrollLock() {
 
           <BottomBar divided>
             <CleanGroup>
-              <CleanButton onClick={() => toggle(false)}>Ну ладно</CleanButton>
+              <CleanButton onClick={() => setOpen(false)}>Ну ладно</CleanButton>
             </CleanGroup>
           </BottomBar>
         </Alert>

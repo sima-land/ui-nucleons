@@ -3,7 +3,7 @@
     "target": "es2015",
     "module": "commonjs",
     "allowJs": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "outDir": "./build/",
     "strict": true,
     "esModuleInterop": true,

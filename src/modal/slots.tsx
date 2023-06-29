@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext, useImperativeHandle, useRef } from 'react';
+import { ReactNode, useContext, useImperativeHandle, useRef } from 'react';
 import { TopBar, TopBarProps } from '../top-bar';
 import { navigationButtons } from '../top-bar/utils';
 import { BottomBar, BottomBarProps } from '../bottom-bar';

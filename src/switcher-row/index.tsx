@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import { Checkbox } from '../checkbox';
 import { defineSlots } from '../helpers/define-slots';
 import { RadioButton } from '../radio-button';

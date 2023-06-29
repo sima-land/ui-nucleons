@@ -1,4 +1,4 @@
-import React, { Children, CSSProperties, Fragment, MouseEventHandler, ReactNode, Ref } from 'react';
+import { Children, CSSProperties, Fragment, MouseEventHandler, ReactNode, Ref } from 'react';
 import { WithTestId } from '../types';
 import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Information';
 import classNames from 'classnames/bind';

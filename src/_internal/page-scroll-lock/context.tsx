@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import { createContext, useContext } from 'react';
 import { PageScrollLock } from './adapters/body-scroll-lock';
 import { PageScrollLockContextValue, PageScrollLockProviderProps } from './types';
 

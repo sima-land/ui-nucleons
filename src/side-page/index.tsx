@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode, useRef } from 'react';
+import { CSSProperties, ReactNode, useRef } from 'react';
 import { defineSlots } from '../helpers/define-slots';
 import { WithPageScrollLock, usePageScrollLock } from '../_internal/page-scroll-lock';
 import { SidePageBody, SidePageFooter, SidePageHeader } from './slots';

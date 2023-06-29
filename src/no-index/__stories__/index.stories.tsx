@@ -1,4 +1,3 @@
-import React from 'react';
 import { NoIndex } from '..';
 
 export default {

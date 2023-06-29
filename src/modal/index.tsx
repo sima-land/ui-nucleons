@@ -1,4 +1,3 @@
-import React from 'react';
 import { ModalContext } from './utils';
 import { ModalBody, ModalFooter, ModalHeader, ModalOverlap } from './slots';
 import { ModalOverlay } from '../modal-overlay';

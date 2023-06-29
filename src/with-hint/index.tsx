@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { HintProps } from '../hint-deprecated';
 import { Portal } from '../portal';
 import { PositioningHint } from './positioning-hint';

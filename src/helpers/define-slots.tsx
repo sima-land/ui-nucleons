@@ -1,4 +1,4 @@
-import React, { Children, isValidElement } from 'react';
+import { Children, isValidElement } from 'react';
 
 export type SlotsDict = Record<string, React.ElementType>;
 

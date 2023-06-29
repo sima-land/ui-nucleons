@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useImperativeHandle, useRef, useState } from 'react';
+import { useCallback, useContext, useImperativeHandle, useRef, useState } from 'react';
 import { PhoneInputProps } from './types';
 import { DropdownItem } from '../dropdown-item';
 import { useIsomorphicLayoutEffect } from '../hooks';

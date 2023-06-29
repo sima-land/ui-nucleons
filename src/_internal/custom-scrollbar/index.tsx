@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode, Ref, UIEvent as ReactUIEvent, useMemo } from 'react';
+import { CSSProperties, ReactNode, Ref, UIEvent as ReactUIEvent, useMemo } from 'react';
 import {
   OverlayScrollbarsComponent,
   OverlayScrollbarsComponentProps,

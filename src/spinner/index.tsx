@@ -1,4 +1,3 @@
-import React from 'react';
 import { has } from 'lodash';
 import { COLORS, Token } from '../colors';
 import classnames from 'classnames/bind';

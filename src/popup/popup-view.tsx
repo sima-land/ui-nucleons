@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, Ref } from 'react';
+import { HTMLAttributes, Ref } from 'react';
 import { WithTestId } from '../types';
 import CrossSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Cross';
 import classNames from 'classnames/bind';

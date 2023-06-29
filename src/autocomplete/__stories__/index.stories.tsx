@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { Autocomplete, AutocompleteProps } from '..';
 import { DropdownItem } from '../../dropdown-item';
 import { Sandbox } from '../../../.storybook/utils';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { MaskedInput } from '..';
 import { DropdownItem } from '../../dropdown-item';
 import { Select } from '../../select';

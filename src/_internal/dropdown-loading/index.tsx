@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import { HTMLAttributes } from 'react';
 import { SpinnerSVG } from '../../spinner';
 import styles from './index.module.scss';
 

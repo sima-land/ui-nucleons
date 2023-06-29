@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Screen, ScreenProps } from '..';
 import { Button } from '../../button';
 import { Box } from '../../box';

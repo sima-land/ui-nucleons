@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode, useEffect, useState } from 'react';
+import { CSSProperties, ReactNode, useEffect, useState } from 'react';
 import { upperFirst } from 'lodash';
 import { loremIpsum } from 'lorem-ipsum';
 import {

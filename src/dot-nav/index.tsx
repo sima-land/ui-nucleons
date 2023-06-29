@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { times } from 'lodash';
 import classnames from 'classnames/bind';
 import styles from './dot-nav.module.scss';

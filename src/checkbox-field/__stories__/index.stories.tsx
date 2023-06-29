@@ -1,4 +1,3 @@
-import React from 'react';
 import { CheckboxField, CheckboxFieldProps } from '..';
 
 export default {

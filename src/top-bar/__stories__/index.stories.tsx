@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { TopBar, TopBarSize } from '..';
 import PlaceholderSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Placeholder';
 import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Cross';
