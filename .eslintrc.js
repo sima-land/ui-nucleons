@@ -3,7 +3,6 @@ require('@rushstack/eslint-patch/modern-module-resolution');
 module.exports = {
   extends: [
     require.resolve('@sima-land/linters/eslint'),
-    'plugin:react/jsx-runtime',
     'plugin:storybook/recommended',
     'plugin:storybook/csf',
     'plugin:storybook/csf-strict',

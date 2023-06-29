@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 $sizes: 40, 48, 56, 64, 72, 80, 104;
 
 $textSizes: (
@@ -41,7 +43,7 @@ $textSizes: (
     width: #{$size}px;
     height: #{$size}px;
     .monogram {
-      font-size: #{map-get($textSizes, $size)}px;
+      font-size: #{map.get($textSizes, $size)}px;
     }
   }
 }
