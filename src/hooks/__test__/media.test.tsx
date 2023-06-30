@@ -1,5 +1,5 @@
 import { noop } from 'lodash';
-import React from 'react';
+
 import { render } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { useMedia } from '../media';

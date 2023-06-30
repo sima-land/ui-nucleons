@@ -1,5 +1,5 @@
-import React from 'react';
 import { mount } from 'enzyme';
+import { createRef } from 'react';
 import { render } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { Toggle } from '..';
@@ -44,7 +44,7 @@ describe('<Toggle />', () => {
   });
 
   it('should handle "ref" prop', () => {
-    const ref = React.createRef();
+    const ref = createRef();
     const container = document.createElement('div');
 
     const wrapper = <Toggle ref={ref as any} />;

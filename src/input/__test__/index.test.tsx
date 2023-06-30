@@ -1,4 +1,4 @@
-import React, { createRef, MouseEvent } from 'react';
+import { createRef, MouseEvent } from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { Input } from '..';
 import PlaceholderSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Placeholder';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from 'react-dom';
 import { defineSlots } from '../define-slots';
 

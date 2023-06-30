@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import { createRef } from 'react';
 import { fireEvent, getByTestId, queryAllByTestId, render } from '@testing-library/react';
 import { SelectTextButton } from '../button';
 import { Select } from '../../select';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 import { BasePagination, BUTTON_CONTENTS } from '../base-pagination';

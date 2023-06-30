@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import { SwitcherRow } from '..';
 import { Checkbox } from '../../checkbox';

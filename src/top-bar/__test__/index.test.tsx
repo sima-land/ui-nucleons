@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { TopBar, TopBarProps } from '..';
 import ArrowUpSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowUp';

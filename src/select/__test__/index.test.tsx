@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { fireEvent, render, getByTestId, queryAllByTestId } from '@testing-library/react';
 import { Select } from '..';
 import { DropdownItem } from '../../dropdown-item';

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { render } from '@testing-library/react';
 import { PageScrollProvider, usePageScrollContext } from '../context';
 import { PageScrollLockAdapter } from '../types';

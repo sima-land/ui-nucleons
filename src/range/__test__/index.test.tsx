@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import { createRef } from 'react';
 import { act, fireEvent, render } from '@testing-library/react';
 import { Range } from '..';
 

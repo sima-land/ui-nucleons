@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import { CardContent, CardFooter, CardHeader } from '../slots';
 import { CardContext } from '../utils';

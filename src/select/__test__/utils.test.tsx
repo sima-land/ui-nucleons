@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { SelectOpenerBinding } from '../types';
 import { SelectContext } from '../utils';
 

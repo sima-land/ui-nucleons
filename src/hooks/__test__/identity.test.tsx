@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { render } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { useIdentityRef } from '../identity';

@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { useExactClick } from '../utils';
 

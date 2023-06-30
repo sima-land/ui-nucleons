@@ -1,4 +1,3 @@
-import React from 'react';
 import { createEvent, fireEvent, render } from '@testing-library/react';
 import { UploadArea } from '../upload-area';
 

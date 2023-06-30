@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import { FieldBlock } from '..';
 import CopySVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Copy';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { mount } from 'enzyme';
 import { render } from 'react-dom';
 import { act } from 'react-dom/test-utils';

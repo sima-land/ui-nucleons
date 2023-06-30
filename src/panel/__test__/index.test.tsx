@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import { Panel } from '..';
 import LockSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Lock';

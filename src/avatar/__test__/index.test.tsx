@@ -1,4 +1,3 @@
-import React from 'react';
 import { act, Simulate } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 import { render } from '@testing-library/react';

@@ -1,5 +1,5 @@
 import { mount } from 'enzyme';
-import React from 'react';
+
 import { UserAvatar, colorKey } from '../user';
 import { COLORS } from '../../colors';
 
