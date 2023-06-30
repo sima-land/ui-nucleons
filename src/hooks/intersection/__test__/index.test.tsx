@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useIntersection } from '..';
 import { IntersectionMock } from '../test-utils';
 

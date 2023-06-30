@@ -1,4 +1,4 @@
-import React, { ChangeEvent, createRef } from 'react';
+import { ChangeEvent, createRef } from 'react';
 import {
   createEvent,
   fireEvent,

@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react';
-import React, { createRef } from 'react';
+import { createRef } from 'react';
 import { InfoText } from '..';
 
 describe('InfoText', () => {

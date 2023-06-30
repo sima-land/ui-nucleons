@@ -1,4 +1,4 @@
-import React, { createRef, useState } from 'react';
+import { createRef, useState } from 'react';
 import { act, render } from '@testing-library/react';
 import {
   HintView,

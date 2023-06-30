@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
-import React, { createRef, Ref, useImperativeHandle, useRef } from 'react';
+import { createRef, Ref, useImperativeHandle, useRef } from 'react';
 import { CustomScrollbar, useFullScroll, getViewport } from '..';
 
 describe('useFullScroll', () => {

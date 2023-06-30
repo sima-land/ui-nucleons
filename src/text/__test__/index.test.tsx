@@ -1,4 +1,3 @@
-import React from 'react';
 import { Text, TextProps } from '../index';
 import { mount } from 'enzyme';
 import { COLORS } from '../../colors';

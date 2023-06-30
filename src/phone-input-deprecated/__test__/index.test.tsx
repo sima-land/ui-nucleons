@@ -1,4 +1,3 @@
-import React from 'react';
 import { mount } from 'enzyme';
 import { act, Simulate } from 'react-dom/test-utils';
 import { PhoneInput } from '..';

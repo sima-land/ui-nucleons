@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import { createRef } from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { BaseInput } from '..';
 import { fitElementHeight } from '../../helpers/fit-element-height';

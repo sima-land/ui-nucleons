@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import { createRef } from 'react';
 import { render } from '@testing-library/react';
 import { ModalOverlay } from '..';
 import { LayerProvider, useLayer } from '../../helpers/layer';

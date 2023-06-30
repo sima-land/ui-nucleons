@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button } from '..';
 import { render } from '@testing-library/react';
 import SearchSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Search';

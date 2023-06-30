@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { createEvent, fireEvent, render } from '@testing-library/react';
 import { useInputMask } from '../hook';
 import { UseInputMaskOptions, UseInputMaskResult } from '../types';

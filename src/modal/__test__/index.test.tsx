@@ -1,4 +1,4 @@
-import React, { createRef, RefObject, useContext, useEffect } from 'react';
+import { createRef, RefObject, useContext, useEffect } from 'react';
 import { Modal, ModalSize } from '..';
 import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';
 import { render, fireEvent } from '@testing-library/react';

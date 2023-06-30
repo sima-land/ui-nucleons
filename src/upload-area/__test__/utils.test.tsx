@@ -1,5 +1,5 @@
 import { createEvent, fireEvent, render } from '@testing-library/react';
-import React, { DragEvent } from 'react';
+import { DragEvent } from 'react';
 import { useFilesDrop } from '../utils';
 
 describe('useFilesDrop', () => {

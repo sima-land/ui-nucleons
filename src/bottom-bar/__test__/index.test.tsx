@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import { BottomBar } from '..';
 import { CleanGroup, CleanButton } from '../../clean-buttons';

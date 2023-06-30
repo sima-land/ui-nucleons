@@ -1,4 +1,3 @@
-import React from 'react';
 import { DropdownItem } from '..';
 import { DropdownItemUtils, LoopedIterator } from '../utils';
 

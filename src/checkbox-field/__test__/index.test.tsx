@@ -1,4 +1,3 @@
-import React from 'react';
 import { mount } from 'enzyme';
 import { Checkbox } from '../../checkbox';
 import { CheckboxField } from '..';

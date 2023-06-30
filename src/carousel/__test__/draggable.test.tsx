@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { isFunction } from 'lodash';
 import Draggable from '../draggable';

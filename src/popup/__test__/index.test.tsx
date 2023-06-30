@@ -1,4 +1,4 @@
-import React, { createRef, FocusEvent, Ref, useRef, useState } from 'react';
+import { createRef, FocusEvent, Ref, useRef, useState } from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { PopupView, Popup, usePopupOnClick, useFocusTrap } from '..';
 import { useFloating } from '@floating-ui/react';

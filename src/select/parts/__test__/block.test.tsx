@@ -1,4 +1,3 @@
-import React from 'react';
 import { fireEvent, getByTestId, render } from '@testing-library/react';
 import { Select } from '../..';
 import { SelectFieldBlock } from '../block';

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { render } from 'react-dom';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
