@@ -1,8 +1,9 @@
+import { ReactNode } from 'react';
 import { NoIndexMark } from '../no-index-mark';
 
 export interface NoIndexProps {
   /** Содержимое. */
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 /**
@@ -10,10 +11,12 @@ export interface NoIndexProps {
  * @param props Свойства.
  * @return Элемент.
  */
-export const NoIndex: React.FC<NoIndexProps> = ({ children }) => (
-  <>
-    <NoIndexMark />
-    {children}
-    <NoIndexMark closing />
-  </>
-);
+export function NoIndex({ children }: NoIndexProps) {
+  return (
+    <>
+      <NoIndexMark />
+      {children}
+      <NoIndexMark closing />
+    </>
+  );
+}

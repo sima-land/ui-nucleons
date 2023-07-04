@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { mount } from 'enzyme';
-import { render } from 'react-dom';
-import { act } from 'react-dom/test-utils';
+import { fireEvent, render } from '@testing-library/react';
 import { Portal, PortalProps } from '..';
 
 describe('<Layer />', () => {
@@ -24,48 +22,34 @@ describe('<Layer />', () => {
     );
   };
 
-  it('should render children into created element', () => {
-    const wrapper = mount(<TestComponent children={<h2 className='test-title'>New layer</h2>} />);
+  it('should render children into created element', async () => {
+    const { baseElement } = render(
+      <TestComponent children={<h2 className='test-title'>New layer</h2>} />,
+    );
 
     // mount layer
-    act(() => {
-      wrapper.find('button').simulate('click');
-    });
-    wrapper.update();
-
-    const element = document.body.lastElementChild as HTMLDivElement;
-
-    expect(element.querySelectorAll('h2.test-title')).toHaveLength(1);
+    fireEvent.click(baseElement.querySelector('button') as HTMLElement);
+    expect(baseElement.querySelectorAll('div > h2.test-title')).toHaveLength(1);
 
     // unmount layer
-    act(() => {
-      wrapper.find('button').simulate('click');
-    });
-    wrapper.update();
-
-    expect(document.body.contains(element)).toBe(false);
+    fireEvent.click(baseElement.querySelector('button') as HTMLElement);
+    expect(baseElement.querySelectorAll('div > h2.test-title')).toHaveLength(0);
   });
 
   it('should handle "defineRoot" prop', () => {
-    const container = document.createElement('div');
     const otherContainer = document.createElement('div');
-
-    document.body.append(container, otherContainer);
 
     expect(otherContainer.children).toHaveLength(0);
 
-    act(() => {
-      render(
-        <TestComponent
-          defaultWithPortal
-          children={<h2 className='test-title'>New layer</h2>}
-          portalProps={{
-            defineRoot: () => otherContainer,
-          }}
-        />,
-        container,
-      );
-    });
+    const { container } = render(
+      <TestComponent
+        defaultWithPortal
+        children={<h2 className='test-title'>New layer</h2>}
+        portalProps={{
+          defineRoot: () => otherContainer,
+        }}
+      />,
+    );
 
     expect(otherContainer.children).toHaveLength(1);
 

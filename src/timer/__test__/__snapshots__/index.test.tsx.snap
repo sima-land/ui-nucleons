@@ -1,19 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Timer should pass props 1`] = `
-<Timer
-  date="2030-03-08"
-  format={[Function]}
-  timeout={500}
->
-  Осталось дней: 1
-</Timer>
-`;
-
 exports[`Timer should render properly without props 1`] = `
-<Timer
-  date=""
->
+<div>
   1:02:03:04
-</Timer>
+</div>
 `;

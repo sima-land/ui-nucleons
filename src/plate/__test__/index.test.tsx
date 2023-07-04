@@ -1,38 +1,35 @@
 import { createRef } from 'react';
-import { mount } from 'enzyme';
+import { fireEvent, render } from '@testing-library/react';
 import { Plate } from '..';
-import { act } from 'react-dom/test-utils';
 
 describe('Plate', () => {
   it('should renders without props', () => {
-    const wrapper = mount(<Plate />);
+    const { container } = render(<Plate />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('should handle props', () => {
     const ref = createRef<HTMLInputElement | null>();
     const spy = jest.fn();
 
-    const wrapper = mount(
+    const { container } = render(
       <Plate ref={ref} shadow='z3' rounds='m' className='test-class' onClick={spy}>
         Test
       </Plate>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
 
-    expect(wrapper.find('div')).toHaveLength(1);
-    expect(wrapper.find('div.test-class')).toHaveLength(1);
-    expect(wrapper.find('div.test-class').getDOMNode()).toBe(ref.current);
+    expect(container.querySelectorAll('div')).toHaveLength(1);
+    expect(container.querySelectorAll('div.test-class')).toHaveLength(1);
+    expect(container.querySelector('div.test-class')).toBe(ref.current);
 
-    expect(wrapper.find('div[data-testid="plate"]')).toHaveLength(1);
-    expect(wrapper.find('div[data-testid="plate"]').getDOMNode()).toBe(ref.current);
+    expect(container.querySelectorAll('div[data-testid="plate"]')).toHaveLength(1);
+    expect(container.querySelector('div[data-testid="plate"]')).toBe(ref.current);
 
     expect(spy).toHaveBeenCalledTimes(0);
-    act(() => {
-      wrapper.find('div').simulate('click');
-    });
+    fireEvent.click(container.querySelector('div') as HTMLElement);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -40,7 +37,7 @@ describe('Plate', () => {
     const ref = createRef<HTMLInputElement | null>();
     const spy = jest.fn();
 
-    const wrapper = mount(
+    const { container } = render(
       <Plate
         ref={ref}
         shadow='z3'
@@ -53,25 +50,23 @@ describe('Plate', () => {
       </Plate>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
 
-    expect(wrapper.find('div')).toHaveLength(1);
-    expect(wrapper.find('div.test-class')).toHaveLength(1);
-    expect(wrapper.find('div.test-class').getDOMNode()).toBe(ref.current);
+    expect(container.querySelectorAll('div')).toHaveLength(1);
+    expect(container.querySelectorAll('div.test-class')).toHaveLength(1);
+    expect(container.querySelector('div.test-class')).toBe(ref.current);
 
-    expect(wrapper.find('div[data-testid="test-plate"]')).toHaveLength(1);
-    expect(wrapper.find('div[data-testid="test-plate"]').getDOMNode()).toBe(ref.current);
+    expect(container.querySelectorAll('div[data-testid="test-plate"]')).toHaveLength(1);
+    expect(container.querySelector('div[data-testid="test-plate"]')).toBe(ref.current);
 
     expect(spy).toHaveBeenCalledTimes(0);
-    act(() => {
-      wrapper.find('div').simulate('click');
-    });
+    fireEvent.click(container.querySelector('div') as HTMLElement);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should renders with small rounds', () => {
-    const wrapper = mount(<Plate rounds='s'>Test</Plate>);
+    const { container } = render(<Plate rounds='s'>Test</Plate>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });
