@@ -1,35 +1,35 @@
-import { mount } from 'enzyme';
+import { fireEvent, render } from '@testing-library/react';
 import { Link } from '..';
 
 describe('<Link />', () => {
   it('calls helpers with right params and renders correctly without external', () => {
-    const wrapper = mount(
+    const { container } = render(
       <Link className='testClass' href='/cart/' color='basic-gray38' target='_blank'>
         Test link
       </Link>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('calls helpers and renders correctly with pseudo', () => {
-    const wrapper = mount(
+    const { container } = render(
       <Link pseudo color='basic-gray38'>
         Test link
       </Link>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('calls helpers and renders correctly with external', () => {
-    const wrapper = mount(
+    const { container } = render(
       <Link href='/cabinet/' color='basic-blue'>
         Test link
       </Link>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('should handle "onClick/onMouseEnter/onMouseLeave..." props', () => {
@@ -37,54 +37,64 @@ describe('<Link />', () => {
     const onMouseEnterSpy = jest.fn();
     const onMouseLeaveSpy = jest.fn();
 
-    const wrapper = mount(
+    const { getByTestId } = render(
       <Link onClick={onClickSpy} onMouseEnter={onMouseEnterSpy} onMouseLeave={onMouseLeaveSpy}>
         Test link
       </Link>,
     );
 
-    wrapper.simulate('click');
+    fireEvent.click(getByTestId('anchor'));
     expect(onClickSpy).toHaveBeenCalledTimes(1);
 
-    wrapper.simulate('mouseEnter');
+    fireEvent.mouseEnter(getByTestId('anchor'));
     expect(onMouseEnterSpy).toHaveBeenCalledTimes(1);
 
-    wrapper.simulate('mouseLeave');
+    fireEvent.mouseLeave(getByTestId('anchor'));
     expect(onMouseLeaveSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should render not indexing content properly', () => {
-    const wrapper = mount(
+    const { container } = render(
       <Link href='www.test.com' noIndex>
-        Test link
+        Test <i>link</i>
       </Link>,
     );
 
-    expect(wrapper.find('a').prop('dangerouslySetInnerHTML')).toBeDefined();
-    expect(wrapper.find('a').prop('children')).not.toBeDefined();
+    const [first, last] = [
+      container.querySelector('a')?.childNodes[0],
+      container.querySelector('a')?.childNodes[2],
+    ];
+
+    expect(first instanceof Comment).toBe(true);
+    expect(first?.textContent).toBe('noindex');
+
+    expect(last instanceof Comment).toBe(true);
+    expect(last?.textContent).toBe('/noindex');
   });
 
   it('should render regular (indexing) content properly', () => {
-    const wrapper = mount(<Link href='www.test.com'>Test link</Link>);
+    const { container } = render(<Link href='www.test.com'>Test link</Link>);
 
-    expect(wrapper.text()).toEqual('Test link');
-    expect(wrapper.prop('dangerouslySetInnerHTML')).not.toBeDefined();
-    expect(wrapper.prop('children')).toBeDefined();
+    expect(container.textContent).toEqual('Test link');
+
+    container.querySelector('a')?.childNodes.forEach(node => {
+      expect(node instanceof Comment).toBe(false);
+    });
   });
 
   it('render render pseudo link properly', () => {
-    const wrapper = mount(<Link pseudo>Test link</Link>);
+    const { container } = render(<Link pseudo>Test link</Link>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('render render pseudo link disabled properly', () => {
-    const wrapper = mount(
+    const { container } = render(
       <Link pseudo disabled>
         Test link
       </Link>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

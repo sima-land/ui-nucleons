@@ -1,80 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Link /> calls helpers and renders correctly with external 1`] = `
-<ForwardRef(Link)
-  color="basic-blue"
-  href="/cabinet/"
->
+<div>
   <a
-    className="link basic-blue"
+    class="link basic-blue"
     data-testid="anchor"
     href="/cabinet/"
   >
     Test link
   </a>
-</ForwardRef(Link)>
+</div>
 `;
 
 exports[`<Link /> calls helpers and renders correctly with pseudo 1`] = `
-<ForwardRef(Link)
-  color="basic-gray38"
-  pseudo={true}
->
+<div>
   <a
-    className="link basic-gray38"
+    class="link basic-gray38"
     data-testid="anchor"
     role="button"
-    tabIndex={0}
+    tabindex="0"
   >
     Test link
   </a>
-</ForwardRef(Link)>
+</div>
 `;
 
 exports[`<Link /> calls helpers with right params and renders correctly without external 1`] = `
-<ForwardRef(Link)
-  className="testClass"
-  color="basic-gray38"
-  href="/cart/"
-  target="_blank"
->
+<div>
   <a
-    className="link testClass basic-gray38"
+    class="link testClass basic-gray38"
     data-testid="anchor"
     href="/cart/"
     target="_blank"
   >
     Test link
   </a>
-</ForwardRef(Link)>
+</div>
 `;
 
 exports[`<Link /> render render pseudo link disabled properly 1`] = `
-<ForwardRef(Link)
-  disabled={true}
-  pseudo={true}
->
+<div>
   <a
-    className="link basic-blue disabled"
+    class="link basic-blue disabled"
     data-testid="anchor"
     role="button"
   >
     Test link
   </a>
-</ForwardRef(Link)>
+</div>
 `;
 
 exports[`<Link /> render render pseudo link properly 1`] = `
-<ForwardRef(Link)
-  pseudo={true}
->
+<div>
   <a
-    className="link basic-blue"
+    class="link basic-blue"
     data-testid="anchor"
     role="button"
-    tabIndex={0}
+    tabindex="0"
   >
     Test link
   </a>
-</ForwardRef(Link)>
+</div>
 `;

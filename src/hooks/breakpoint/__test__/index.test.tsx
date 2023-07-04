@@ -1,6 +1,4 @@
-import { mount } from 'enzyme';
-
-import { act } from 'react-dom/test-utils';
+import { act, render } from '@testing-library/react';
 import { BreakpointProvider, useBreakpoint } from '..';
 
 describe('useBreakpoint', () => {
@@ -32,25 +30,24 @@ describe('useBreakpoint', () => {
   });
 
   it('should works properly', () => {
-    const wrapper = mount(
+    const { container } = render(
       <BreakpointProvider>
         <TestComponent query='mm-' />
       </BreakpointProvider>,
     );
 
-    expect(wrapper.text()).toBe('NO');
+    expect(container.textContent).toBe('NO');
 
     act(() => {
       listeners['(max-width: 719px)'].forEach(fn => fn({ matches: true } as any));
     });
-    wrapper.update();
 
-    expect(wrapper.text()).toBe('YES');
+    expect(container.textContent).toBe('YES');
   });
 
   it('should throws error', () => {
     expect(() =>
-      mount(
+      render(
         <BreakpointProvider>
           <TestComponent query='invalid_query' />
         </BreakpointProvider>,
