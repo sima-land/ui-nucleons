@@ -1,18 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Toggle /> should work without props 1`] = `
-<Toggle>
+<div>
   <label
-    className="root"
+    class="root"
   >
     <input
-      className="input"
+      class="input"
       data-testid="toggle"
       type="checkbox"
     />
     <span
-      className="switch"
+      class="switch"
     />
   </label>
-</Toggle>
+</div>
 `;

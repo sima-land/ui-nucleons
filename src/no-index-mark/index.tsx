@@ -3,11 +3,14 @@ export interface NoIndexMarkProps {
   closing?: boolean;
 }
 
+const open = '<!--noindex-->';
+const close = '<!--/noindex-->';
+
 /**
- * Компонент отображает неиндексируемый контент.
+ * Span с комментарием начала или конца неиндексируемого контента.
  * @param props Свойства.
  * @return Элемент.
  */
-export const NoIndexMark = ({ closing }: NoIndexMarkProps) => (
-  <span dangerouslySetInnerHTML={{ __html: `<!--${closing ? '/' : ''}noindex-->` }} />
-);
+export function NoIndexMark({ closing }: NoIndexMarkProps) {
+  return <span dangerouslySetInnerHTML={{ __html: closing ? close : open }} />;
+}
