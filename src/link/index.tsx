@@ -18,7 +18,10 @@ export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement>
   /** Цвет (название токена). */
   color?: LinkColor;
 
-  /** Нужно ли оборачивать содержимое комментариями no-index. */
+  /**
+   * Нужно ли оборачивать содержимое комментариями no-index.
+   * @deprecated
+   */
   noIndex?: boolean;
 
   /** Выводить как псевдо-ссылку. */

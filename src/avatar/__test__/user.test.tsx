@@ -1,7 +1,5 @@
-import { mount } from 'enzyme';
-
 import { UserAvatar, colorKey } from '../user';
-import { COLORS } from '../../colors';
+import { render } from '@testing-library/react';
 
 jest.mock('lodash', () => {
   const original = jest.requireActual('lodash');
@@ -17,29 +15,19 @@ describe('UserAvatar', () => {
     (window as any)[colorKey] = undefined;
   });
 
-  it('should renders without props', () => {
-    const wrapper = mount(<UserAvatar />);
-
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should handle props', () => {
-    const wrapper1 = mount(
-      <UserAvatar size={40} title='Hello World' style={{ clipPath: 'url(#fake-id)' }} />,
+  it('should render all avatars on page with same color', () => {
+    const { getAllByTestId } = render(
+      <>
+        <UserAvatar size={40} />,
+        <UserAvatar size={64} />,
+        <UserAvatar size={72} />,
+      </>,
     );
 
-    expect(wrapper1).toMatchSnapshot();
-    expect((wrapper1.find('.root').prop('style') as any)['--avatar-color']).toEqual(
-      COLORS.get((window as any)[colorKey]),
-    );
+    const getColor = (el: HTMLElement) => el.style.getPropertyValue('--avatar-color');
+    const colors = [...getAllByTestId('avatar')].map(getColor);
+    const unique = new Set(colors);
 
-    const wrapper2 = mount(
-      <UserAvatar size={40} title='Hello World' style={{ clipPath: 'url(#fake-id)' }} />,
-    );
-
-    expect(wrapper2).toMatchSnapshot();
-    expect((wrapper2.find('.root').prop('style') as any)['--avatar-color']).toEqual(
-      COLORS.get((window as any)[colorKey]),
-    );
+    expect(unique.size).toBe(1);
   });
 });

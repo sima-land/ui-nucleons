@@ -1,6 +1,5 @@
 import { useRef } from 'react';
-import { render } from 'react-dom';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import { useIsTouchDevice, useInfiniteScroll, useOutsideClick } from '../index';
 
@@ -14,18 +13,6 @@ jest.mock('../../helpers/is-touch-device', () => {
 });
 
 describe('useInfiniteScroll()', () => {
-  let container: HTMLDivElement | null;
-
-  beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
-  });
-
-  afterEach(() => {
-    container && document.body.removeChild(container);
-    container = null;
-  });
-
   const TestComponent = ({
     withList = true,
     onFullScroll,
@@ -53,11 +40,9 @@ describe('useInfiniteScroll()', () => {
   it('should works properly', () => {
     const spy = jest.fn();
 
-    act(() => {
-      render(<TestComponent onFullScroll={spy} />, container);
-    });
+    const { container } = render(<TestComponent onFullScroll={spy} />);
 
-    const listEl = (container as HTMLDivElement).querySelector('.test-list') as HTMLUListElement;
+    const listEl = container.querySelector('.test-list') as HTMLUListElement;
     expect(spy).toHaveBeenCalledTimes(0);
 
     // with full scroll
@@ -79,9 +64,8 @@ describe('useInfiniteScroll()', () => {
     jest.spyOn(HTMLUListElement.prototype, 'addEventListener');
     (HTMLUListElement.prototype.addEventListener as unknown as jest.Mock).mockClear();
 
-    act(() => {
-      render(<TestComponent withList={false} />, container);
-    });
+    render(<TestComponent withList={false} />);
+
     expect(HTMLUListElement.prototype.addEventListener).toHaveBeenCalledTimes(0);
   });
 
@@ -89,16 +73,13 @@ describe('useInfiniteScroll()', () => {
     jest.spyOn(HTMLUListElement.prototype, 'addEventListener');
     (HTMLUListElement.prototype.addEventListener as unknown as jest.Mock).mockClear();
 
-    act(() => {
-      render(<TestComponent withList />, container);
-    });
+    render(<TestComponent withList />);
+
     expect(HTMLUListElement.prototype.addEventListener).toHaveBeenCalledTimes(1);
   });
 
   it('should works withhout onFullScroll', () => {
-    act(() => {
-      render(<TestComponent withList />, container);
-    });
+    const { container } = render(<TestComponent withList />);
 
     const listEl = (container as HTMLDivElement).querySelector('.test-list') as HTMLUListElement;
 
@@ -108,16 +89,16 @@ describe('useInfiniteScroll()', () => {
   });
 
   it('should unsubscribe on unmount', () => {
-    const wrapper = mount(<TestComponent />);
+    const { container, unmount } = render(<TestComponent />);
 
     let listElement: HTMLUListElement | null = null;
 
     act(() => {
-      listElement = wrapper.find('.test-list').getDOMNode() as HTMLUListElement;
+      listElement = container.querySelector('.test-list') as HTMLUListElement;
       listElement && jest.spyOn(listElement, 'removeEventListener');
     });
 
-    wrapper.unmount();
+    unmount();
 
     expect((listElement as unknown as HTMLUListElement).removeEventListener).toHaveBeenCalledTimes(
       1,
@@ -126,18 +107,6 @@ describe('useInfiniteScroll()', () => {
 });
 
 describe('useIsTouchDevice', () => {
-  let container: HTMLDivElement | null;
-
-  beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
-  });
-
-  afterEach(() => {
-    container && document.body.removeChild(container);
-    container = null;
-  });
-
   const TestComponent = () => {
     const touch = useIsTouchDevice();
 
@@ -145,12 +114,9 @@ describe('useIsTouchDevice', () => {
   };
 
   it('should works with touch', () => {
-    act(() => {
-      render(<TestComponent />, container);
-    });
-    expect(
-      ((container as HTMLDivElement).querySelector('span') as HTMLSpanElement).textContent,
-    ).toBe('Visible on touch');
+    const { container } = render(<TestComponent />);
+
+    expect(container.querySelector('span')?.textContent).toBe('Visible on touch');
   });
 });
 
@@ -163,24 +129,10 @@ describe('useOutsideClick', () => {
     return <div ref={ref} />;
   };
 
-  let container: HTMLDivElement | null;
-
-  beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
-  });
-
-  afterEach(() => {
-    container && document.body.removeChild(container);
-    container = null;
-  });
-
   it('should works', () => {
     const spy = jest.fn();
 
-    act(() => {
-      render(<TestComponent callback={spy} />, container);
-    });
+    render(<TestComponent callback={spy} />);
 
     expect(spy).toHaveBeenCalledTimes(0);
 
@@ -208,9 +160,7 @@ describe('useOutsideClick', () => {
       );
     };
 
-    act(() => {
-      render(<OtherTestComponent callback={spy} />, container);
-    });
+    render(<OtherTestComponent callback={spy} />);
 
     expect(spy).toHaveBeenCalledTimes(0);
 

@@ -59,7 +59,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства компонента.
  * @return Элемент.
  */
-export const Avatar = ({
+export function Avatar({
   size: sizeProp = 72,
   imageUrl,
   bgColor = 'basic-gray4',
@@ -70,8 +70,8 @@ export const Avatar = ({
   className,
   style,
   'data-testid': testId = 'avatar',
-}: AvatarProps) => {
-  const [needImage, toggleImage] = useState(Boolean(imageUrl));
+}: AvatarProps) {
+  const [needImage, toggleImage] = useState(() => Boolean(imageUrl));
 
   useEffect(() => {
     toggleImage(Boolean(imageUrl));
@@ -121,4 +121,4 @@ export const Avatar = ({
       )}
     </div>
   );
-};
+}

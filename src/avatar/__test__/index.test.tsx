@@ -1,81 +1,60 @@
-import { act, Simulate } from 'react-dom/test-utils';
-import { mount } from 'enzyme';
-import { render } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import { Avatar } from '../index';
 
 describe('<Avatar />', () => {
-  it('should renders without props', () => {
-    const wrapper = mount(<Avatar />);
+  it('should handle size and imageUrl', () => {
+    const { container, getByTestId } = render(<Avatar size={40} imageUrl='www.images.com' />);
 
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should handle props', () => {
-    const wrapper = mount(
-      <Avatar
-        size={40}
-        imageUrl='www.images.com'
-        textColor='basic-white'
-        title='Hello World'
-        bgColor='additional-teal'
-        style={{ clipPath: 'url(#fake-id)' }}
-      />,
-    );
-
-    expect(wrapper).toMatchSnapshot();
-
-    wrapper.setProps({ monogram: 'WH' });
-
-    expect(wrapper).toMatchSnapshot();
-
-    wrapper.setProps({ color: '#f0f' });
-
-    expect(wrapper).toMatchSnapshot();
+    expect(getByTestId('avatar').classList.contains('size-40')).toBe(true);
+    expect(container.querySelectorAll('img[src="www.images.com"]')).toHaveLength(1);
   });
 
   it('should render without image', () => {
-    const wrapper = mount(<Avatar size={40} title='Hello World' />);
+    const { container } = render(<Avatar title='Johnson Carl' />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container.querySelectorAll('img')).toHaveLength(0);
+    expect(container.textContent).toBe('CJ');
   });
 
   it('should render without image and title', () => {
-    const wrapper = mount(<Avatar size={64} />);
+    const { container } = render(<Avatar />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container.querySelectorAll('img')).toHaveLength(0);
+    expect(container.textContent).toBe('');
   });
 
   it('should handle wrong size', () => {
-    const wrapper = mount(<Avatar size={49.92} title='Jason' />);
+    const { getByTestId } = render(<Avatar size={49.92} title='Jason' />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(getByTestId('avatar').classList.contains('size-72')).toBe(true);
   });
 
   it('should handle image error', () => {
-    const wrapper = mount(
+    const { container } = render(
       <Avatar size={49.92} title='John Doe' imageUrl='https://www.images.com/random/' />,
     );
 
-    expect(wrapper.find('img')).toHaveLength(1);
+    expect(container.querySelectorAll('img')).toHaveLength(1);
 
     act(() => {
-      Simulate.error(wrapper.find('img').getDOMNode());
+      container.querySelectorAll('img').forEach(el => {
+        fireEvent.error(el);
+      });
     });
-    wrapper.update();
 
-    expect(wrapper.find('img')).toHaveLength(0);
+    expect(container.querySelectorAll('img')).toHaveLength(0);
   });
 
   it('should handle imageUrl change', () => {
-    const wrapper = mount(
-      <Avatar size={49.92} title='John Doe' imageUrl='https://www.images.com/random/' />,
+    const { container, rerender } = render(
+      <Avatar title='John Doe' imageUrl='https://www.images.com/random/' />,
     );
 
-    expect(wrapper.find('img')).toHaveLength(1);
+    expect(container.querySelectorAll('img[src="https://www.images.com/random/"]')).toHaveLength(1);
 
-    wrapper.setProps({ imageUrl: 'https://www.images.com/other/' });
+    rerender(<Avatar title='John Doe' imageUrl='https://www.images.com/other/' />);
 
-    expect(wrapper.find('img')).toHaveLength(1);
+    expect(container.querySelectorAll('img[src="https://www.images.com/other/"]')).toHaveLength(1);
   });
 
   it('should handle "data-testid"', async function () {

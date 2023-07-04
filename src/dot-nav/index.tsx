@@ -26,7 +26,7 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export const DotNav = ({ size = 's', current = 0, total = 1, onSelect }: DotNavProps) => {
+export function DotNav({ size = 's', current = 0, total = 1, onSelect }: DotNavProps) {
   const withShift = total > 4;
 
   const itemSize = 14;
@@ -59,7 +59,7 @@ export const DotNav = ({ size = 's', current = 0, total = 1, onSelect }: DotNavP
       })}
     </div>
   );
-};
+}
 
 /**
  * Определяет необходимое для точек навигации смещение.
@@ -67,7 +67,7 @@ export const DotNav = ({ size = 's', current = 0, total = 1, onSelect }: DotNavP
  * @param total Количество точек.
  * @return Смещение.
  */
-const useShift = (current: number, total: number) => {
+function useShift(current: number, total: number) {
   const shiftRef = useRef(0);
   const prevCurrentRef = useRef(0);
 
@@ -92,4 +92,4 @@ const useShift = (current: number, total: number) => {
   prevCurrentRef.current = current;
 
   return shiftRef.current;
-};
+}
