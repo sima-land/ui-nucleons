@@ -1,0 +1,47 @@
+@use '../colors';
+
+.root {
+  --pagination-item-color: #{colors.$basic-gray87};
+  --pagination-item-background: #fff;
+  --pagination-item-border-color: #{colors.$basic-gray12};
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  color: var(--pagination-item-color);
+  background: var(--pagination-item-background);
+  box-shadow: inset 0 0 0 1px var(--pagination-item-border-color);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  text-decoration: none;
+  font-style: normal;
+  &.checked {
+    cursor: default;
+    --pagination-item-color: #fff;
+    --pagination-item-background: #{colors.$basic-gray87};
+    --pagination-item-border-color: #{colors.$basic-gray87};
+  }
+  &.disabled {
+    --pagination-item-color: #{colors.$basic-gray24};
+    --pagination-item-background: #fff;
+    --pagination-item-border-color: #{colors.$basic-gray12};
+  }
+  &:not(.checked):not(.disabled):hover {
+    cursor: pointer;
+    --pagination-item-background: #{colors.$basic-gray4};
+  }
+  &.rounds-all {
+    border-radius: 4px;
+  }
+  &.rounds-left {
+    border-radius: 4px 0 0 4px;
+  }
+  &.rounds-right {
+    border-radius: 0 4px 4px 0;
+  }
+}
