@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PageButton /> should handle "selected" prop 1`] = `
+<PageButton
+  selected={true}
+>
+  <button
+    className="page-button selected rounds-all"
+    type="button"
+  />
+</PageButton>
+`;
+
+exports[`<PageButton /> should handle "selected" prop 2`] = `
+<PageButton
+  selected={false}
+>
+  <button
+    className="page-button rounds-all"
+    type="button"
+  />
+</PageButton>
+`;
+
+exports[`<PageButton /> should handle regular button props 1`] = `
+<PageButton
+  disabled={true}
+  onClick={[MockFunction]}
+>
+  <button
+    className="page-button rounds-all"
+    disabled={true}
+    onClick={[MockFunction]}
+    type="button"
+  />
+</PageButton>
+`;
+
+exports[`<PageButton /> should render without props 1`] = `
+<PageButton>
+  <button
+    className="page-button rounds-all"
+    type="button"
+  />
+</PageButton>
+`;
