@@ -1,4 +1,4 @@
-import type { AnchorHTMLAttributes, MouseEvent, ReactNode, Ref } from 'react';
+import type { AnchorHTMLAttributes, HTMLAttributes, MouseEvent, ReactNode, Ref } from 'react';
 
 export interface PaginationButton {
   type: 'page' | 'prev' | 'next' | 'more';
@@ -20,10 +20,11 @@ export interface RenderPaginationItem {
   (item: PaginationButton, getProps: GetPaginationItemProps): ReactNode;
 }
 
-export interface PaginationProps {
+export interface PaginationProps extends HTMLAttributes<HTMLDivElement> {
+  rootRef?: Ref<HTMLDivElement>;
   current?: number;
   total?: number;
-  onChange?: (event: MouseEvent<HTMLAnchorElement>, button: PaginationButton) => void;
+  onPageChange?: (event: MouseEvent<HTMLAnchorElement>, button: PaginationButton) => void;
   getItems?: (payload: { current: number; total: number }) => PaginationButton[];
   renderItem?: RenderPaginationItem;
 }
