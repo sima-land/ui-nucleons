@@ -18,7 +18,7 @@ export function Primary() {
       <Pagination
         total={total}
         current={page}
-        onChange={(event, button) => setPage(button.value)}
+        onPageChange={(event, button) => setPage(button.value)}
       />
     </>
   );
@@ -35,7 +35,7 @@ export function NoArrows() {
       <Pagination
         total={total}
         current={page}
-        onChange={(event, button) => setPage(button.value)}
+        onPageChange={(event, button) => setPage(button.value)}
         getItems={payload => getPaginationItems(payload, { arrows: false })}
       />
     </>
@@ -53,7 +53,7 @@ export function NoDisabledArrows() {
       <Pagination
         total={total}
         current={page}
-        onChange={(event, button) => setPage(button.value)}
+        onPageChange={(event, button) => setPage(button.value)}
         getItems={payload => getPaginationItems(payload, { arrows: 'active' })}
       />
     </>
@@ -89,7 +89,7 @@ export function WithLinksForSemantic() {
       <Pagination
         total={total}
         current={page}
-        onChange={(event, button) => {
+        onPageChange={(event, button) => {
           setPage(button.value);
         }}
         renderItem={(item, getProps) => (

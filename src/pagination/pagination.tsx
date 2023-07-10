@@ -20,30 +20,33 @@ const cx = classNames.bind(styles);
  * @return Элемент.
  */
 export function Pagination({
+  rootRef,
   current = 1,
   total = 1,
-  onChange,
+  onPageChange,
   getItems = getPaginationItems,
   renderItem = renderPaginationItem,
+  className,
+  ...restProps
 }: PaginationProps) {
   const items = useMemo(() => getItems({ current, total }), [current, total]);
 
-  const onChangeRef = useRef(onChange);
-  onChangeRef.current = onChange;
+  const onChangeRef = useRef(onPageChange);
+  onChangeRef.current = onPageChange;
 
   const getItemProps = useCallback(
     (
       item: PaginationButton,
       index: number,
-      userProps?: PaginationItemProps,
+      userProps: PaginationItemProps = {},
     ): PaginationItemProps => {
       // eslint-disable-next-line require-jsdoc
-      const handleClick: MouseEventHandler<HTMLAnchorElement> = event => {
+      const onClick: MouseEventHandler<HTMLAnchorElement> = event => {
         if (item.value !== current) {
           onChangeRef.current?.(event, item);
         }
 
-        userProps?.onClick?.(event);
+        userProps.onClick?.(event);
       };
 
       if (item.type === 'page') {
@@ -61,8 +64,8 @@ export function Pagination({
           'aria-label': `Перейти на страницу ${item.value}`,
           children: item.value,
           ...userProps,
-          onClick: handleClick,
-          className: cx('page', userProps?.className),
+          onClick,
+          className: cx('page', userProps.className),
         };
       }
 
@@ -73,8 +76,8 @@ export function Pagination({
           'aria-label': 'Предыдущая страница',
           children: <LeftSVG fill='currentColor' />,
           ...userProps,
-          onClick: handleClick,
-          className: cx('prev', userProps?.className),
+          onClick,
+          className: cx('prev', userProps.className),
         };
       }
 
@@ -83,8 +86,8 @@ export function Pagination({
           'aria-label': `Перейти на страницу ${item.value}`,
           children: '…',
           ...userProps,
-          onClick: handleClick,
-          className: cx('page', userProps?.className),
+          onClick,
+          className: cx('page', userProps.className),
         };
       }
 
@@ -95,8 +98,8 @@ export function Pagination({
           'aria-label': 'Следующая страница',
           children: <RightSVG fill='currentColor' />,
           ...userProps,
-          onClick: handleClick,
-          className: cx('next', userProps?.className),
+          onClick,
+          className: cx('next', userProps.className),
         };
       }
 
@@ -106,7 +109,13 @@ export function Pagination({
   );
 
   return (
-    <div className={cx('root')} role='navigation' aria-label='Навигация по страницам'>
+    <div
+      ref={rootRef}
+      className={cx('root', className)}
+      role='navigation'
+      aria-label='Навигация по страницам'
+      {...restProps}
+    >
       {items.map((item, index) => (
         <Fragment key={index}>
           {renderItem(item, userProps => getItemProps(item, index, userProps))}
