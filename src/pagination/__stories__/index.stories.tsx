@@ -10,7 +10,7 @@ export default {
 };
 
 export function Primary() {
-  const total = 18;
+  const total = 1200;
   const [page, setPage] = useState(1);
 
   return (

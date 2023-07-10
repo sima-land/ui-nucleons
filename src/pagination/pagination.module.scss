@@ -13,3 +13,8 @@
 .page {
   margin-left: -1px;
 }
+
+.large {
+  --pagination-item-font-size: 12px;
+  --pagination-item-line-height: 16px;
+}
