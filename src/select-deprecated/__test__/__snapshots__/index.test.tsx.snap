@@ -94,7 +94,6 @@ exports[`Select should render loading state 1`] = `
       >
         <div
           class="os-viewport os-viewport-native-scrollbars-overlaid"
-          data-bsl-ignore="true"
           style=""
         >
           <div
@@ -315,7 +314,6 @@ exports[`Select should renders correctly 2`] = `
       >
         <div
           class="os-viewport os-viewport-native-scrollbars-overlaid"
-          data-bsl-ignore="true"
           style=""
         >
           <div
