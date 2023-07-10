@@ -42,9 +42,9 @@ describe('Select', () => {
       />,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.getDOMNode()).toMatchSnapshot();
     openMenu(wrapper);
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.getDOMNode()).toMatchSnapshot();
   });
 
   it('should handle TextField block click', () => {
@@ -149,7 +149,7 @@ describe('Select', () => {
     openMenu(wrapper);
     expect(findMenu(wrapper)).toHaveLength(1);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.getDOMNode()).toMatchSnapshot();
   });
 
   it('should handle menu enter key down', () => {
