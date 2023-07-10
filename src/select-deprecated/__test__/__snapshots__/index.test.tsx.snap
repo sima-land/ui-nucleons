@@ -1,981 +1,436 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Select should render loading state 1`] = `
-<Select
-  label="Формат каталога"
-  loading={true}
-  options={
-    [
-      "Прайс-лист XML",
-      "Прайс-лист YML",
-      "Карточки товаров JPG",
-      "Фото товаров JPG + прайс-лист XLS",
-      "Печатный каталог PDF",
-    ]
-  }
-  value="Карточки товаров JPG"
+<div
+  class="root"
 >
   <div
-    className="root"
+    class="root field"
+    data-testid="select:field"
   >
-    <ForwardRef(TextField)
-      baseInputProps={
-        {
-          "style": {
-            "pointerEvents": "none",
-          },
-          "tabIndex": -1,
-        }
-      }
-      blockProps={
-        {
-          "onKeyDown": [Function],
-          "onMouseDown": [Function],
-          "ref": {
-            "current": <div
-              class="reset input-block focused variant-desktop size-l with-label rounds-sm__all"
-              data-testid="text-field:block"
-              tabindex="0"
-            >
-              <div
-                class="main-column"
-              >
-                <label
-                  class="label focused variant-desktop filled"
-                  data-testid="text-field:label"
-                >
-                  Формат каталога
-                </label>
-                <div
-                  class="input-wrapper"
-                >
-                  <div
-                    class="reset root base-input focused variant-desktop size-l"
-                    data-testid="base-input:root"
-                    style="pointer-events: none;"
-                  >
-                    <input
-                      class="field reset"
-                      data-testid="text-field:field"
-                      readonly=""
-                      tabindex="-1"
-                      value="Карточки товаров JPG"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div
-                class="display-flex align-items-center M-l__4"
-              >
-                <svg
-                  fill="#9e9e9e"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clip-rule="evenodd"
-                    d="M12.753 9.659a1 1 0 0 1-1.412.094L8 6.829 4.659 9.753a1 1 0 0 1-1.317-1.506l4-3.5a1 1 0 0 1 1.317 0l4 3.5a1 1 0 0 1 .094 1.412Z"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-              </div>
-            </div>,
-          },
-          "tabIndex": 0,
-        }
-      }
-      className="field"
-      data-testid="select:field"
-      endAdornment={
-        <ForwardRef(UpSVG)
-          fill="#9e9e9e"
-        />
-      }
-      focused={true}
-      label="Формат каталога"
-      multiline={false}
-      onClick={[Function]}
-      readOnly={true}
-      value="Карточки товаров JPG"
-      variant="desktop"
+    <div
+      class="reset input-block focused variant-desktop size-l with-label rounds-sm__all"
+      data-testid="text-field:block"
+      tabindex="0"
     >
       <div
-        className="root field"
-        data-testid="select:field"
+        class="main-column"
       >
+        <label
+          class="label focused variant-desktop filled"
+          data-testid="text-field:label"
+        >
+          Формат каталога
+        </label>
         <div
-          className="reset input-block focused variant-desktop size-l with-label rounds-sm__all"
-          data-testid="text-field:block"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          tabIndex={0}
+          class="input-wrapper"
         >
           <div
-            className="main-column"
+            class="reset root base-input focused variant-desktop size-l"
+            data-testid="base-input:root"
+            style="pointer-events: none;"
           >
-            <label
-              className="label focused variant-desktop filled"
-              data-testid="text-field:label"
-            >
-              Формат каталога
-            </label>
-            <div
-              className="input-wrapper"
-            >
-              <ForwardRef(BaseInput)
-                className="base-input focused variant-desktop size-l"
-                data-testid="text-field:field"
-                multiline={false}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onInput={[Function]}
-                readOnly={true}
-                style={
-                  {
-                    "pointerEvents": "none",
-                  }
-                }
-                tabIndex={-1}
-                value="Карточки товаров JPG"
-              >
-                <div
-                  className="reset root base-input focused variant-desktop size-l"
-                  data-testid="base-input:root"
-                  style={
-                    {
-                      "pointerEvents": "none",
-                    }
-                  }
-                >
-                  <input
-                    className="field reset"
-                    data-testid="text-field:field"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    onInput={[Function]}
-                    readOnly={true}
-                    tabIndex={-1}
-                    value="Карточки товаров JPG"
-                  />
-                </div>
-              </ForwardRef(BaseInput)>
-            </div>
+            <input
+              class="field reset"
+              data-testid="text-field:field"
+              readonly=""
+              tabindex="-1"
+              value="Карточки товаров JPG"
+            />
           </div>
-          <Box
-            alignItems="center"
-            display="flex"
-            marginLeft={4}
-          >
-            <div
-              className="display-flex align-items-center M-l__4"
-            >
-              <ForwardRef(UpSVG)
-                fill="#9e9e9e"
-              >
-                <svg
-                  fill="#9e9e9e"
-                  height={16}
-                  viewBox="0 0 16 16"
-                  width={16}
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clipRule="evenodd"
-                    d="M12.753 9.659a1 1 0 0 1-1.412.094L8 6.829 4.659 9.753a1 1 0 0 1-1.317-1.506l4-3.5a1 1 0 0 1 1.317 0l4 3.5a1 1 0 0 1 .094 1.412Z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-              </ForwardRef(UpSVG)>
-            </div>
-          </Box>
         </div>
       </div>
-    </ForwardRef(TextField)>
-    <ForwardRef(Dropdown)
-      className="menu"
-      data-testid="select:menu"
-      onBlur={[Function]}
-      onKeyDown={[Function]}
-      role="menu"
-      style={
-        {
-          "top": "56px",
-        }
-      }
-      tabIndex={-1}
+      <div
+        class="display-flex align-items-center M-l__4"
+      >
+        <svg
+          fill="#9e9e9e"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M12.753 9.659a1 1 0 0 1-1.412.094L8 6.829 4.659 9.753a1 1 0 0 1-1.317-1.506l4-3.5a1 1 0 0 1 1.317 0l4 3.5a1 1 0 0 1 .094 1.412Z"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div
+    class="root menu shadow-z4 rounds-md__all"
+    data-testid="select:menu"
+    role="menu"
+    style="top: 56px;"
+    tabindex="-1"
+  >
+    <div
+      class="os-host os-host-foreign os-theme-dark os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden custom-scrollbar inner"
     >
       <div
-        className="root menu shadow-z4 rounds-md__all"
-        data-testid="select:menu"
-        onBlur={[Function]}
-        onKeyDown={[Function]}
-        role="menu"
-        style={
-          {
-            "top": "56px",
-          }
-        }
-        tabIndex={-1}
+        class="os-resize-observer-host observed"
       >
-        <CustomScrollbar
-          className="inner"
-          overflow={
-            {
-              "x": "h",
-              "y": "s",
-            }
-          }
+        <div
+          class="os-resize-observer"
+          style="right: 0px;"
+        />
+      </div>
+      <div
+        class="os-size-auto-observer observed"
+        style="height: calc(100% + 1px); float: left;"
+      >
+        <div
+          class="os-resize-observer"
+        />
+      </div>
+      <div
+        class="os-content-glue"
+        style="margin: 0px 0px 0px 0px; width: -1px; height: -1px;"
+      />
+      <div
+        class="os-padding"
+      >
+        <div
+          class="os-viewport os-viewport-native-scrollbars-overlaid"
+          data-bsl-ignore="true"
+          style=""
         >
-          <OverlayScrollbarsComponent
-            className="custom-scrollbar inner"
-            options={
-              {
-                "callbacks": {
-                  "onScrollStop": [Function],
-                },
-                "overflowBehavior": {
-                  "x": "h",
-                  "y": "s",
-                },
-              }
-            }
+          <div
+            class="os-content-arrange"
+          />
+          <div
+            class="os-content"
+            style="padding: 0px 0px 0px 0px; height: 100%; width: 100%;"
           >
             <div
-              className="os-host"
+              class="root"
+              data-testid="select:loading-area"
             >
-              <div
-                className="os-resize-observer-host"
-              />
-              <div
-                className="os-padding"
+              <svg
+                class="spinner size-s"
+                data-testid="spinner"
+                height="20"
+                stroke="#1f84db"
+                viewBox="0 0 20 20"
+                width="20"
               >
-                <div
-                  className="os-viewport"
-                >
-                  <div
-                    className="os-content"
-                  >
-                    <DropdownLoading
-                      data-testid="select:loading-area"
-                    >
-                      <div
-                        className="root"
-                        data-testid="select:loading-area"
-                      >
-                        <SpinnerSVG
-                          size="s"
-                        >
-                          <svg
-                            className="spinner size-s"
-                            data-testid="spinner"
-                            height={20}
-                            stroke="#1f84db"
-                            viewBox="0 0 20 20"
-                            width={20}
-                          >
-                            <circle
-                              className="circle"
-                              cx={10}
-                              cy={10}
-                              r={9}
-                            />
-                          </svg>
-                        </SpinnerSVG>
-                      </div>
-                    </DropdownLoading>
-                  </div>
-                </div>
-              </div>
-              <div
-                className="os-scrollbar os-scrollbar-horizontal "
-              >
-                <div
-                  className="os-scrollbar-track"
-                >
-                  <div
-                    className="os-scrollbar-handle"
-                  />
-                </div>
-              </div>
-              <div
-                className="os-scrollbar os-scrollbar-vertical"
-              >
-                <div
-                  className="os-scrollbar-track"
-                >
-                  <div
-                    className="os-scrollbar-handle"
-                  />
-                </div>
-              </div>
-              <div
-                className="os-scrollbar-corner"
-              />
+                <circle
+                  class="circle"
+                  cx="10"
+                  cy="10"
+                  r="9"
+                />
+              </svg>
             </div>
-          </OverlayScrollbarsComponent>
-        </CustomScrollbar>
+          </div>
+        </div>
       </div>
-    </ForwardRef(Dropdown)>
+      <div
+        class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable"
+      >
+        <div
+          class="os-scrollbar-track os-scrollbar-track-off"
+        >
+          <div
+            class="os-scrollbar-handle"
+            style="transform: translate(0px, 0);"
+          />
+        </div>
+      </div>
+      <div
+        class="os-scrollbar os-scrollbar-vertical os-scrollbar-unusable"
+      >
+        <div
+          class="os-scrollbar-track os-scrollbar-track-off"
+        >
+          <div
+            class="os-scrollbar-handle"
+            style="transform: translate(0, 0px);"
+          />
+        </div>
+      </div>
+      <div
+        class="os-scrollbar-corner"
+      />
+    </div>
   </div>
-</Select>
+</div>
 `;
 
 exports[`Select should renders correctly 1`] = `
-<Select
-  label="Формат каталога"
-  onClick={[MockFunction]}
-  onMenuToggle={
-    [MockFunction] {
-      "calls": [
-        [
-          false,
-        ],
-      ],
-      "results": [
-        {
-          "type": "return",
-          "value": undefined,
-        },
-      ],
-    }
-  }
-  onSelect={[MockFunction]}
-  optionSize="m"
-  options={
-    [
-      "Прайс-лист XML",
-      "Прайс-лист YML",
-      "Карточки товаров JPG",
-      "Фото товаров JPG + прайс-лист XLS",
-      "Печатный каталог PDF",
-    ]
-  }
-  renderOption={[Function]}
-  value="Карточки товаров JPG"
+<div
+  class="root"
 >
   <div
-    className="root"
+    class="root field"
+    data-testid="select:field"
   >
-    <ForwardRef(TextField)
-      baseInputProps={
-        {
-          "style": {
-            "pointerEvents": "none",
-          },
-          "tabIndex": -1,
-        }
-      }
-      blockProps={
-        {
-          "onKeyDown": [Function],
-          "onMouseDown": [Function],
-          "ref": {
-            "current": <div
-              class="reset input-block variant-desktop size-l with-label rounds-sm__all"
-              data-testid="text-field:block"
-              tabindex="0"
-            >
-              <div
-                class="main-column"
-              >
-                <label
-                  class="label variant-desktop filled"
-                  data-testid="text-field:label"
-                >
-                  Формат каталога
-                </label>
-                <div
-                  class="input-wrapper"
-                >
-                  <div
-                    class="reset root base-input variant-desktop size-l"
-                    data-testid="base-input:root"
-                    style="pointer-events: none;"
-                  >
-                    <input
-                      class="field reset"
-                      data-testid="text-field:field"
-                      readonly=""
-                      tabindex="-1"
-                      value="Карточки товаров JPG"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div
-                class="display-flex align-items-center M-l__4"
-              >
-                <svg
-                  fill="#9e9e9e"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clip-rule="evenodd"
-                    d="M3.247 6.342a1 1 0 0 1 1.412-.095L8 9.171l3.341-2.924a1 1 0 0 1 1.318 1.506l-4 3.5a1 1 0 0 1-1.317 0l-4-3.5a1 1 0 0 1-.095-1.411Z"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-              </div>
-            </div>,
-          },
-          "tabIndex": 0,
-        }
-      }
-      className="field"
-      data-testid="select:field"
-      endAdornment={
-        <ForwardRef(DownSVG)
-          fill="#9e9e9e"
-        />
-      }
-      focused={false}
-      label="Формат каталога"
-      multiline={false}
-      onClick={[Function]}
-      readOnly={true}
-      value="Карточки товаров JPG"
-      variant="desktop"
+    <div
+      class="reset input-block variant-desktop size-l with-label rounds-sm__all"
+      data-testid="text-field:block"
+      tabindex="0"
     >
       <div
-        className="root field"
-        data-testid="select:field"
+        class="main-column"
       >
+        <label
+          class="label variant-desktop filled"
+          data-testid="text-field:label"
+        >
+          Формат каталога
+        </label>
         <div
-          className="reset input-block variant-desktop size-l with-label rounds-sm__all"
-          data-testid="text-field:block"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          tabIndex={0}
+          class="input-wrapper"
         >
           <div
-            className="main-column"
+            class="reset root base-input variant-desktop size-l"
+            data-testid="base-input:root"
+            style="pointer-events: none;"
           >
-            <label
-              className="label variant-desktop filled"
-              data-testid="text-field:label"
-            >
-              Формат каталога
-            </label>
-            <div
-              className="input-wrapper"
-            >
-              <ForwardRef(BaseInput)
-                className="base-input variant-desktop size-l"
-                data-testid="text-field:field"
-                multiline={false}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onInput={[Function]}
-                readOnly={true}
-                style={
-                  {
-                    "pointerEvents": "none",
-                  }
-                }
-                tabIndex={-1}
-                value="Карточки товаров JPG"
-              >
-                <div
-                  className="reset root base-input variant-desktop size-l"
-                  data-testid="base-input:root"
-                  style={
-                    {
-                      "pointerEvents": "none",
-                    }
-                  }
-                >
-                  <input
-                    className="field reset"
-                    data-testid="text-field:field"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    onInput={[Function]}
-                    readOnly={true}
-                    tabIndex={-1}
-                    value="Карточки товаров JPG"
-                  />
-                </div>
-              </ForwardRef(BaseInput)>
-            </div>
+            <input
+              class="field reset"
+              data-testid="text-field:field"
+              readonly=""
+              tabindex="-1"
+              value="Карточки товаров JPG"
+            />
           </div>
-          <Box
-            alignItems="center"
-            display="flex"
-            marginLeft={4}
-          >
-            <div
-              className="display-flex align-items-center M-l__4"
-            >
-              <ForwardRef(DownSVG)
-                fill="#9e9e9e"
-              >
-                <svg
-                  fill="#9e9e9e"
-                  height={16}
-                  viewBox="0 0 16 16"
-                  width={16}
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clipRule="evenodd"
-                    d="M3.247 6.342a1 1 0 0 1 1.412-.095L8 9.171l3.341-2.924a1 1 0 0 1 1.318 1.506l-4 3.5a1 1 0 0 1-1.317 0l-4-3.5a1 1 0 0 1-.095-1.411Z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-              </ForwardRef(DownSVG)>
-            </div>
-          </Box>
         </div>
       </div>
-    </ForwardRef(TextField)>
+      <div
+        class="display-flex align-items-center M-l__4"
+      >
+        <svg
+          fill="#9e9e9e"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M3.247 6.342a1 1 0 0 1 1.412-.095L8 9.171l3.341-2.924a1 1 0 0 1 1.318 1.506l-4 3.5a1 1 0 0 1-1.317 0l-4-3.5a1 1 0 0 1-.095-1.411Z"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+    </div>
   </div>
-</Select>
+</div>
 `;
 
 exports[`Select should renders correctly 2`] = `
-<Select
-  label="Формат каталога"
-  onClick={[MockFunction]}
-  onMenuToggle={
-    [MockFunction] {
-      "calls": [
-        [
-          false,
-        ],
-        [
-          true,
-        ],
-      ],
-      "results": [
-        {
-          "type": "return",
-          "value": undefined,
-        },
-        {
-          "type": "return",
-          "value": undefined,
-        },
-      ],
-    }
-  }
-  onSelect={[MockFunction]}
-  optionSize="m"
-  options={
-    [
-      "Прайс-лист XML",
-      "Прайс-лист YML",
-      "Карточки товаров JPG",
-      "Фото товаров JPG + прайс-лист XLS",
-      "Печатный каталог PDF",
-    ]
-  }
-  renderOption={[Function]}
-  value="Карточки товаров JPG"
+<div
+  class="root"
 >
   <div
-    className="root"
+    class="root field"
+    data-testid="select:field"
   >
-    <ForwardRef(TextField)
-      baseInputProps={
-        {
-          "style": {
-            "pointerEvents": "none",
-          },
-          "tabIndex": -1,
-        }
-      }
-      blockProps={
-        {
-          "onKeyDown": [Function],
-          "onMouseDown": [Function],
-          "ref": {
-            "current": <div
-              class="reset input-block focused variant-desktop size-l with-label rounds-sm__all"
-              data-testid="text-field:block"
-              tabindex="0"
-            >
-              <div
-                class="main-column"
-              >
-                <label
-                  class="label focused variant-desktop filled"
-                  data-testid="text-field:label"
-                >
-                  Формат каталога
-                </label>
-                <div
-                  class="input-wrapper"
-                >
-                  <div
-                    class="reset root base-input focused variant-desktop size-l"
-                    data-testid="base-input:root"
-                    style="pointer-events: none;"
-                  >
-                    <input
-                      class="field reset"
-                      data-testid="text-field:field"
-                      readonly=""
-                      tabindex="-1"
-                      value="Карточки товаров JPG"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div
-                class="display-flex align-items-center M-l__4"
-              >
-                <svg
-                  fill="#9e9e9e"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clip-rule="evenodd"
-                    d="M12.753 9.659a1 1 0 0 1-1.412.094L8 6.829 4.659 9.753a1 1 0 0 1-1.317-1.506l4-3.5a1 1 0 0 1 1.317 0l4 3.5a1 1 0 0 1 .094 1.412Z"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-              </div>
-            </div>,
-          },
-          "tabIndex": 0,
-        }
-      }
-      className="field"
-      data-testid="select:field"
-      endAdornment={
-        <ForwardRef(UpSVG)
-          fill="#9e9e9e"
-        />
-      }
-      focused={true}
-      label="Формат каталога"
-      multiline={false}
-      onClick={[Function]}
-      readOnly={true}
-      value="Карточки товаров JPG"
-      variant="desktop"
+    <div
+      class="reset input-block focused variant-desktop size-l with-label rounds-sm__all"
+      data-testid="text-field:block"
+      tabindex="0"
     >
       <div
-        className="root field"
-        data-testid="select:field"
+        class="main-column"
       >
+        <label
+          class="label focused variant-desktop filled"
+          data-testid="text-field:label"
+        >
+          Формат каталога
+        </label>
         <div
-          className="reset input-block focused variant-desktop size-l with-label rounds-sm__all"
-          data-testid="text-field:block"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          tabIndex={0}
+          class="input-wrapper"
         >
           <div
-            className="main-column"
+            class="reset root base-input focused variant-desktop size-l"
+            data-testid="base-input:root"
+            style="pointer-events: none;"
           >
-            <label
-              className="label focused variant-desktop filled"
-              data-testid="text-field:label"
-            >
-              Формат каталога
-            </label>
-            <div
-              className="input-wrapper"
-            >
-              <ForwardRef(BaseInput)
-                className="base-input focused variant-desktop size-l"
-                data-testid="text-field:field"
-                multiline={false}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onInput={[Function]}
-                readOnly={true}
-                style={
-                  {
-                    "pointerEvents": "none",
-                  }
-                }
-                tabIndex={-1}
-                value="Карточки товаров JPG"
-              >
-                <div
-                  className="reset root base-input focused variant-desktop size-l"
-                  data-testid="base-input:root"
-                  style={
-                    {
-                      "pointerEvents": "none",
-                    }
-                  }
-                >
-                  <input
-                    className="field reset"
-                    data-testid="text-field:field"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    onInput={[Function]}
-                    readOnly={true}
-                    tabIndex={-1}
-                    value="Карточки товаров JPG"
-                  />
-                </div>
-              </ForwardRef(BaseInput)>
-            </div>
+            <input
+              class="field reset"
+              data-testid="text-field:field"
+              readonly=""
+              tabindex="-1"
+              value="Карточки товаров JPG"
+            />
           </div>
-          <Box
-            alignItems="center"
-            display="flex"
-            marginLeft={4}
-          >
-            <div
-              className="display-flex align-items-center M-l__4"
-            >
-              <ForwardRef(UpSVG)
-                fill="#9e9e9e"
-              >
-                <svg
-                  fill="#9e9e9e"
-                  height={16}
-                  viewBox="0 0 16 16"
-                  width={16}
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clipRule="evenodd"
-                    d="M12.753 9.659a1 1 0 0 1-1.412.094L8 6.829 4.659 9.753a1 1 0 0 1-1.317-1.506l4-3.5a1 1 0 0 1 1.317 0l4 3.5a1 1 0 0 1 .094 1.412Z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-              </ForwardRef(UpSVG)>
-            </div>
-          </Box>
         </div>
       </div>
-    </ForwardRef(TextField)>
-    <ForwardRef(Dropdown)
-      className="menu"
-      data-testid="select:menu"
-      onBlur={[Function]}
-      onKeyDown={[Function]}
-      role="menu"
-      style={
-        {
-          "top": "56px",
-        }
-      }
-      tabIndex={-1}
+      <div
+        class="display-flex align-items-center M-l__4"
+      >
+        <svg
+          fill="#9e9e9e"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M12.753 9.659a1 1 0 0 1-1.412.094L8 6.829 4.659 9.753a1 1 0 0 1-1.317-1.506l4-3.5a1 1 0 0 1 1.317 0l4 3.5a1 1 0 0 1 .094 1.412Z"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div
+    class="root menu shadow-z4 rounds-md__all"
+    data-testid="select:menu"
+    role="menu"
+    style="top: 56px;"
+    tabindex="-1"
+  >
+    <div
+      class="os-host os-host-foreign os-theme-dark os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden custom-scrollbar inner"
     >
       <div
-        className="root menu shadow-z4 rounds-md__all"
-        data-testid="select:menu"
-        onBlur={[Function]}
-        onKeyDown={[Function]}
-        role="menu"
-        style={
-          {
-            "top": "56px",
-          }
-        }
-        tabIndex={-1}
+        class="os-resize-observer-host observed"
       >
-        <CustomScrollbar
-          className="inner"
-          overflow={
-            {
-              "x": "h",
-              "y": "s",
-            }
-          }
+        <div
+          class="os-resize-observer"
+          style="right: 0px;"
+        />
+      </div>
+      <div
+        class="os-size-auto-observer observed"
+        style="height: calc(100% + 1px); float: left;"
+      >
+        <div
+          class="os-resize-observer"
+        />
+      </div>
+      <div
+        class="os-content-glue"
+        style="margin: 0px 0px 0px 0px; width: -1px; height: -1px;"
+      />
+      <div
+        class="os-padding"
+      >
+        <div
+          class="os-viewport os-viewport-native-scrollbars-overlaid"
+          data-bsl-ignore="true"
+          style=""
         >
-          <OverlayScrollbarsComponent
-            className="custom-scrollbar inner"
-            options={
-              {
-                "callbacks": {
-                  "onScrollStop": [Function],
-                },
-                "overflowBehavior": {
-                  "x": "h",
-                  "y": "s",
-                },
-              }
-            }
+          <div
+            class="os-content-arrange"
+          />
+          <div
+            class="os-content"
+            style="padding: 0px 0px 0px 0px; height: 100%; width: 100%;"
           >
             <div
-              className="os-host"
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
             >
               <div
-                className="os-resize-observer-host"
-              />
-              <div
-                className="os-padding"
+                class="col col-center"
               >
                 <div
-                  className="os-viewport"
+                  class="row-main"
                 >
-                  <div
-                    className="os-content"
-                  >
-                    <DropdownItem
-                      key="0"
-                      onClick={[Function]}
-                      role="menuitem"
-                      size="m"
-                    >
-                      <div
-                        className="root size-m"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        role="menuitem"
-                      >
-                        <div
-                          className="col col-center"
-                        >
-                          <div
-                            className="row-main"
-                          >
-                            ПРАЙС-ЛИСТ XML
-                          </div>
-                        </div>
-                      </div>
-                    </DropdownItem>
-                    <DropdownItem
-                      key="1"
-                      onClick={[Function]}
-                      role="menuitem"
-                      size="m"
-                    >
-                      <div
-                        className="root size-m"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        role="menuitem"
-                      >
-                        <div
-                          className="col col-center"
-                        >
-                          <div
-                            className="row-main"
-                          >
-                            ПРАЙС-ЛИСТ YML
-                          </div>
-                        </div>
-                      </div>
-                    </DropdownItem>
-                    <DropdownItem
-                      key="2"
-                      onClick={[Function]}
-                      role="menuitem"
-                      size="m"
-                    >
-                      <div
-                        className="root size-m"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        role="menuitem"
-                      >
-                        <div
-                          className="col col-center"
-                        >
-                          <div
-                            className="row-main"
-                          >
-                            КАРТОЧКИ ТОВАРОВ JPG
-                          </div>
-                        </div>
-                      </div>
-                    </DropdownItem>
-                    <DropdownItem
-                      key="3"
-                      onClick={[Function]}
-                      role="menuitem"
-                      size="m"
-                    >
-                      <div
-                        className="root size-m"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        role="menuitem"
-                      >
-                        <div
-                          className="col col-center"
-                        >
-                          <div
-                            className="row-main"
-                          >
-                            ФОТО ТОВАРОВ JPG + ПРАЙС-ЛИСТ XLS
-                          </div>
-                        </div>
-                      </div>
-                    </DropdownItem>
-                    <DropdownItem
-                      key="4"
-                      onClick={[Function]}
-                      role="menuitem"
-                      size="m"
-                    >
-                      <div
-                        className="root size-m"
-                        data-testid="dropdown-item"
-                        onClick={[Function]}
-                        role="menuitem"
-                      >
-                        <div
-                          className="col col-center"
-                        >
-                          <div
-                            className="row-main"
-                          >
-                            ПЕЧАТНЫЙ КАТАЛОГ PDF
-                          </div>
-                        </div>
-                      </div>
-                    </DropdownItem>
-                  </div>
+                  ПРАЙС-ЛИСТ XML
                 </div>
               </div>
-              <div
-                className="os-scrollbar os-scrollbar-horizontal "
-              >
-                <div
-                  className="os-scrollbar-track"
-                >
-                  <div
-                    className="os-scrollbar-handle"
-                  />
-                </div>
-              </div>
-              <div
-                className="os-scrollbar os-scrollbar-vertical"
-              >
-                <div
-                  className="os-scrollbar-track"
-                >
-                  <div
-                    className="os-scrollbar-handle"
-                  />
-                </div>
-              </div>
-              <div
-                className="os-scrollbar-corner"
-              />
             </div>
-          </OverlayScrollbarsComponent>
-        </CustomScrollbar>
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              <div
+                class="col col-center"
+              >
+                <div
+                  class="row-main"
+                >
+                  ПРАЙС-ЛИСТ YML
+                </div>
+              </div>
+            </div>
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              <div
+                class="col col-center"
+              >
+                <div
+                  class="row-main"
+                >
+                  КАРТОЧКИ ТОВАРОВ JPG
+                </div>
+              </div>
+            </div>
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              <div
+                class="col col-center"
+              >
+                <div
+                  class="row-main"
+                >
+                  ФОТО ТОВАРОВ JPG + ПРАЙС-ЛИСТ XLS
+                </div>
+              </div>
+            </div>
+            <div
+              class="root size-m"
+              data-testid="dropdown-item"
+              role="menuitem"
+            >
+              <div
+                class="col col-center"
+              >
+                <div
+                  class="row-main"
+                >
+                  ПЕЧАТНЫЙ КАТАЛОГ PDF
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </ForwardRef(Dropdown)>
+      <div
+        class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable"
+      >
+        <div
+          class="os-scrollbar-track os-scrollbar-track-off"
+        >
+          <div
+            class="os-scrollbar-handle"
+            style="transform: translate(0px, 0);"
+          />
+        </div>
+      </div>
+      <div
+        class="os-scrollbar os-scrollbar-vertical os-scrollbar-unusable"
+      >
+        <div
+          class="os-scrollbar-track os-scrollbar-track-off"
+        >
+          <div
+            class="os-scrollbar-handle"
+            style="transform: translate(0, 0px);"
+          />
+        </div>
+      </div>
+      <div
+        class="os-scrollbar-corner"
+      />
+    </div>
   </div>
-</Select>
+</div>
 `;
