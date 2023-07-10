@@ -65,7 +65,7 @@ export function Pagination({
           children: item.value,
           ...userProps,
           onClick,
-          className: cx('page', userProps.className),
+          className: cx('page', userProps.className, item.value > 999 && 'large'),
         };
       }
 
