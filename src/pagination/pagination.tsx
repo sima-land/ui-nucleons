@@ -21,14 +21,17 @@ const cx = classNames.bind(styles);
  */
 export function Pagination({
   rootRef,
-  current = 1,
-  total = 1,
+  current: currentProp = 1,
+  total: totalProp = 1,
   onPageChange,
   getItems = getPaginationItems,
   renderItem = renderPaginationItem,
   className,
   ...restProps
 }: PaginationProps) {
+  // @todo вынести в функцию валидации
+  const total = Math.max(1, totalProp) ?? 1;
+  const current = Math.min(total, currentProp) ?? 1;
   const items = useMemo(() => getItems({ current, total }), [current, total]);
 
   const onChangeRef = useRef(onPageChange);
@@ -53,7 +56,7 @@ export function Pagination({
         let rounds: PaginationItemProps['rounds'];
 
         if (index === 0 || items[index - 1].type === 'prev') {
-          rounds = 'left';
+          rounds = total === 1 ? 'all' : 'left';
         } else if (index === items.length - 1 || items[index + 1].type === 'next') {
           rounds = 'right';
         }
