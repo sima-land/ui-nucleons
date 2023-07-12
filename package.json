@@ -11,7 +11,7 @@
   "scripts": {
     "prepare": "husky install",
     "export:colors": "node .template/build.mjs",
-    "build:before": "rimraf build",
+    "build:before": "rm -rf build",
     "build:main": "tsc --project tsconfig.build.json",
     "build:after": "node dist.mjs",
     "build": "npm run build:before && npm run build:main && npm run build:after",
@@ -88,7 +88,6 @@
     "react": "^17.0.2",
     "react-docgen-typescript": "^2.2.2",
     "react-dom": "^17.0.2",
-    "rimraf": "^3.0.2",
     "sass": "^1.63.6",
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
