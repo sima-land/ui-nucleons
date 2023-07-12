@@ -40,4 +40,15 @@ describe('getScrollParent', () => {
 
     expect(getScrollParent(fakeDiv)).toBe(fakeDiv.parentElement);
   });
+
+  it('should return body when parent is not scrollable', () => {
+    const fakeDiv = {
+      __fakeStyles: { overflowX: '', overflowY: '', overflow: '' },
+      parentElement: {
+        __fakeStyles: { overflowX: '', overflowY: '', overflow: '' },
+      },
+    } as unknown as HTMLElement;
+
+    expect(getScrollParent(fakeDiv)).toBe(document.body);
+  });
 });
