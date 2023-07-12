@@ -25,7 +25,17 @@ const config: Config = {
   snapshotSerializers: ['enzyme-to-json/serializer'],
   testPathIgnorePatterns: ['<rootDir>/.yarn-cache/', '<rootDir>/node_modules/'],
   modulePathIgnorePatterns: ['<rootDir>/.yarn-cache/', '<rootDir>/build/'],
-  coveragePathIgnorePatterns: ['\\.css$', '\\.scss$', '/.jest/'],
+  coveragePathIgnorePatterns: [
+    '\\.css$',
+    '\\.scss$',
+    '/.jest/',
+
+    // deprecated
+    '<rootDir>/src/box',
+    '<rootDir>/src/text',
+    '<rootDir>/src/styling',
+    '<rootDir>/src/.+-deprecated',
+  ],
   clearMocks: true,
   coverageThreshold: {
     global: {
