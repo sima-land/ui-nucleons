@@ -1,6 +1,5 @@
 import { useRef } from 'react';
-import { render } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
+import { act, fireEvent, render } from '@testing-library/react';
 import { useIsTouchDevice, useInfiniteScroll, useOutsideClick } from '../index';
 
 jest.mock('../../helpers/is-touch-device', () => {
@@ -126,7 +125,7 @@ describe('useOutsideClick', () => {
 
     useOutsideClick(ref, callback);
 
-    return <div ref={ref} />;
+    return <div data-testid='target' ref={ref} />;
   };
 
   it('should works', () => {
@@ -168,6 +167,23 @@ describe('useOutsideClick', () => {
       document.documentElement.dispatchEvent(new MouseEvent('click'));
     });
 
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should not call callback', () => {
+    const spy = jest.fn();
+
+    const { getByTestId } = render(
+      <>
+        <span data-testid='sibling'></span>
+        <TestComponent callback={spy} />
+      </>,
+    );
+
+    expect(spy).toHaveBeenCalledTimes(0);
+    fireEvent.click(getByTestId('target'));
+    expect(spy).toHaveBeenCalledTimes(0);
+    fireEvent.click(getByTestId('sibling'));
     expect(spy).toHaveBeenCalledTimes(1);
   });
 });

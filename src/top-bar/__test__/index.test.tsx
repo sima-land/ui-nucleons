@@ -163,4 +163,10 @@ describe('<TopBar />', () => {
     expect(getAllByTestId('top-bar:button')[0].textContent).toBe('World');
     expect(getAllByTestId('top-bar:button')[1].querySelectorAll('svg')).toHaveLength(1);
   });
+
+  it('should render subtitle', () => {
+    const { container } = render(<TopBar title='Hello' subtitle='World' />);
+
+    expect(container.textContent).toBe('HelloWorld');
+  });
 });

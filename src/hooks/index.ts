@@ -12,10 +12,10 @@ import { useIdentityRef } from './identity';
 
 /**
  * При монтировании проверяет, поддерживает ли устройство touch события.
- * @return True - если поддерживает, false - если нет.
+ * @return True - если поддерживает, false - если нет, null - если еще неизвестно (на сервере).
  */
 export function useIsTouchDevice() {
-  const [isTouch, setTouch] = useState<boolean>(false);
+  const [isTouch, setTouch] = useState<boolean | null>(null);
 
   useEffect(() => {
     setTouch(isTouchDevice());
