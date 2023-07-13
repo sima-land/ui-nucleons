@@ -1,11 +1,11 @@
+import { Autocomplete, AutocompleteProps } from '@sima-land/ui-nucleons/autocomplete';
 import { ChangeEvent, useState } from 'react';
-import { Autocomplete, AutocompleteProps } from '..';
-import { DropdownItem } from '../../dropdown-item';
+import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
+import { FieldBlockSize } from '@sima-land/ui-nucleons/field-block';
+import { Modal } from '@sima-land/ui-nucleons/modal';
+import { ModalFooter } from '@sima-land/ui-nucleons/modal/slots';
+import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
 import { Sandbox } from '../../../.storybook/utils';
-import { FieldBlockSize } from '../../field-block';
-import { Modal } from '../../modal';
-import { ModalFooter } from '../../modal/slots';
-import { CleanGroup, CleanButton } from '../../clean-buttons';
 
 export default {
   title: 'common/Autocomplete',

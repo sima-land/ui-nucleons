@@ -1,7 +1,7 @@
+import { WithHint, useTempHint } from '@sima-land/ui-nucleons/with-hint';
 import { useEffect, useState } from 'react';
-import { WithHint, useTempHint } from '..';
-import { Button } from '../../button';
-import { Modal } from '../../modal';
+import { Button } from '@sima-land/ui-nucleons/button';
+import { Modal } from '@sima-land/ui-nucleons/modal';
 
 const styles: Record<'root' | 'modalContent', React.CSSProperties> = {
   root: {

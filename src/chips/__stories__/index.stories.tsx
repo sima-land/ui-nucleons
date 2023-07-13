@@ -1,5 +1,5 @@
+import { Chips } from '@sima-land/ui-nucleons/chips';
 import { useReducer } from 'react';
-import { Chips } from '..';
 
 const ITEMS = [
   'Ручка для пакета',

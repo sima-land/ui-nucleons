@@ -1,4 +1,4 @@
-import { DesktopLayout } from '..';
+import { DesktopLayout } from '@sima-land/ui-nucleons/layout';
 
 export default {
   title: 'deprecated/DesktopLayout',

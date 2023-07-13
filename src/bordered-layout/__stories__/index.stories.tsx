@@ -1,4 +1,4 @@
-import { BorderedLayout, BorderedLayoutProps } from '..';
+import { BorderedLayout, BorderedLayoutProps } from '@sima-land/ui-nucleons/bordered-layout';
 
 export default {
   title: 'deprecated/BorderedLayout',

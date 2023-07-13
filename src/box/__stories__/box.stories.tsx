@@ -1,5 +1,5 @@
+import { Box, BoxProps } from '@sima-land/ui-nucleons/box';
 import { Fragment } from 'react';
-import { Box, BoxProps } from '..';
 
 const testJustifyItems = [
   <Box padding={4} margin={4} key={1} color='additional-red'>

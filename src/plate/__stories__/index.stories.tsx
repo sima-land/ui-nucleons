@@ -1,4 +1,5 @@
-import { Plate } from '..';
+import { Plate } from '@sima-land/ui-nucleons/plate';
+import { CSSProperties } from 'react';
 
 export default {
   title: 'common/Plate',
@@ -8,7 +9,7 @@ export default {
   },
 };
 
-const styles: React.CSSProperties = {
+const styles: CSSProperties = {
   width: 320,
   height: 120,
   padding: 24,

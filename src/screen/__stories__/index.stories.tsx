@@ -1,13 +1,13 @@
+import { Screen, ScreenProps } from '@sima-land/ui-nucleons/screen';
 import { useRef, useState } from 'react';
-import { Screen, ScreenProps } from '..';
-import { Button } from '../../button';
-import { Box } from '../../box';
-import { TouchSlider } from '../../touch-slider';
-import { MobileLayout } from '../../layout';
+import { Button } from '@sima-land/ui-nucleons/button';
+import { Box } from '@sima-land/ui-nucleons/box';
+import { TouchSlider } from '@sima-land/ui-nucleons/touch-slider';
+import { MobileLayout } from '@sima-land/ui-nucleons/layout';
 import { times } from 'lodash';
 import { useLoading } from './utils';
-import { LoremIpsum, PageScrollLockDemo } from '../../../.storybook/utils';
 import styles from './stories.module.scss';
+import { LoremIpsum, PageScrollLockDemo } from '../../../.storybook/utils';
 
 export default {
   title: 'deprecated/Screen',

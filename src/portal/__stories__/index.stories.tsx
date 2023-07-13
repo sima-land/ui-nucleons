@@ -1,6 +1,6 @@
+import { Portal } from '@sima-land/ui-nucleons/portal';
+import { Button } from '@sima-land/ui-nucleons/button';
 import { useState } from 'react';
-import { Button } from '../../button';
-import { Portal } from '..';
 
 const styles: Record<string, React.CSSProperties> = {
   overlay: {

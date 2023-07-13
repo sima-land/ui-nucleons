@@ -1,5 +1,5 @@
+import { Range } from '@sima-land/ui-nucleons/range';
 import { useState } from 'react';
-import { Range } from '..';
 
 export default {
   title: 'common/Range',

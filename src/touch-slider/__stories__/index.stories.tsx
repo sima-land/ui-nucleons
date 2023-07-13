@@ -1,7 +1,7 @@
+import { TouchSlider } from '@sima-land/ui-nucleons/touch-slider';
+import { MobileLayout } from '@sima-land/ui-nucleons/layout';
+import { COLORS } from '@sima-land/ui-nucleons/colors';
 import { times } from 'lodash';
-import { TouchSlider } from '..';
-import { COLORS } from '../../colors';
-import { MobileLayout } from '../../layout';
 
 export default {
   title: 'deprecated/TouchSlider',

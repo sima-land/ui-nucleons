@@ -16,18 +16,21 @@ type OnlyOneRequired<T, K extends keyof T = keyof T> = {
   [key in K]?: Required<Pick<T, key>> & Partial<Record<Exclude<K, key>, undefined>>;
 }[K];
 
+/** @deprecated */
 export type CellProps = CommonCellProps &
   OnlyOneRequired<{
     field: React.ReactElement<Pick<TextFieldProps, 'rounds' | 'caption' | 'classes' | 'className'>>;
     renderField: (props: Pick<TextFieldProps, 'rounds' | 'caption'>) => React.ReactNode;
   }>;
 
+/** @deprecated */
 export interface RowProps {
   isFirst?: boolean;
   isLast?: boolean;
   children: ItOrArray<React.ReactElement<CellProps, typeof Cell>>;
 }
 
+/** @deprecated */
 export interface FieldGridProps {
   /** Содержимое. */
   children: ItOrArray<React.ReactElement<RowProps, typeof Row>>;
@@ -36,6 +39,7 @@ export interface FieldGridProps {
   rootProps?: React.HTMLAttributes<HTMLDivElement>;
 }
 
+/** @deprecated */
 export interface FieldGridComponent extends React.FC<FieldGridProps> {
   Row: typeof Row;
   Cell: typeof Cell;
@@ -84,6 +88,7 @@ export const FieldGrid: FieldGridComponent = ({ children, rootProps }) => {
  * @param props.isFirst Является ли ряд первым (будет задан автоматически).
  * @param props.isLast Является ли ряд последним (будет задан автоматически).
  * @return Элемент.
+ * @deprecated
  */
 const Row: React.FC<RowProps> = ({ isFirst: isFirstRow, isLast: isLastRow, children }) => {
   const cells = Children.toArray(children)
@@ -140,6 +145,7 @@ const Row: React.FC<RowProps> = ({ isFirst: isFirstRow, isLast: isLastRow, child
  * @param props.field Поле.
  * @param props.renderField Должна вернуть поле получив свойства для него.
  * @return Элемент.
+ * @deprecated
  */
 const Cell: React.FC<CellProps> = ({ size, rounds, field, renderField }) => {
   let content: React.ReactNode;

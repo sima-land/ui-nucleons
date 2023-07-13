@@ -1,5 +1,5 @@
+import { Button, ButtonProps, ButtonSize, ButtonViewType } from '@sima-land/ui-nucleons/button';
 import { useState } from 'react';
-import { Button, ButtonProps, ButtonSize, ButtonViewType } from '..';
 import PlusSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Plus';
 import Placeholder16SVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Placeholder';
 import Placeholder24SVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Placeholder';

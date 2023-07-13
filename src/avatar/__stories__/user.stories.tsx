@@ -1,5 +1,5 @@
+import { UserAvatar } from '@sima-land/ui-nucleons/avatar/user';
 import { Fragment } from 'react';
-import { UserAvatar } from '../user';
 import dogPng from './dog.png';
 import { someImageUrl } from '../../../.storybook/utils';
 

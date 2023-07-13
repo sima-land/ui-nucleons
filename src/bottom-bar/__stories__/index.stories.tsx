@@ -1,8 +1,8 @@
+import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
 import { ReactNode } from 'react';
-import { Button } from '../../button';
-import { BottomBar } from '..';
-import { Link } from '../../link';
-import { CleanGroup, CleanButton } from '../../clean-buttons';
+import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
+import { Button } from '@sima-land/ui-nucleons/button';
+import { Link } from '@sima-land/ui-nucleons/link';
 
 export default {
   title: 'common/BottomBar',

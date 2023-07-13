@@ -1,13 +1,13 @@
+import { Modal, ModalProps } from '@sima-land/ui-nucleons/modal';
 import { useEffect, useRef, useState } from 'react';
-import { Modal, ModalProps } from '..';
-import { Button } from '../../button';
-import { CleanGroup, CleanButton } from '../../clean-buttons';
-import { Layout } from '../../layout';
-import { ArrowButton } from '../../arrow-button';
+import { Button } from '@sima-land/ui-nucleons/button';
+import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
+import { Layout } from '@sima-land/ui-nucleons/layout';
+import { ArrowButton } from '@sima-land/ui-nucleons/arrow-button';
+import { navigationButtons, TopBar } from '@sima-land/ui-nucleons/top-bar';
+import { Tabs } from '@sima-land/ui-nucleons/tabs';
+import { usePageScrollLock } from '@sima-land/ui-nucleons/_internal/page-scroll-lock';
 import { LoremIpsum, PageScrollLockDemo } from '../../../.storybook/utils';
-import { navigationButtons, TopBar } from '../../top-bar';
-import { Tabs } from '../../tabs';
-import { usePageScrollLock } from '../../_internal/page-scroll-lock';
 import styles from './modal-stories.module.scss';
 
 export default {

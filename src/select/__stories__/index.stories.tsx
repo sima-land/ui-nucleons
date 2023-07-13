@@ -1,11 +1,11 @@
+import { Select, SelectProps } from '@sima-land/ui-nucleons/select';
 import { useState } from 'react';
-import { Select, SelectProps } from '..';
+import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
+import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
+import { FieldBlockSize } from '@sima-land/ui-nucleons/field-block';
+import { Modal } from '@sima-land/ui-nucleons/modal';
+import { TextButtonSize } from '@sima-land/ui-nucleons/text-button';
 import { LargePage, LoremIpsum, Sandbox } from '../../../.storybook/utils';
-import { CleanGroup, CleanButton } from '../../clean-buttons';
-import { DropdownItem } from '../../dropdown-item';
-import { FieldBlockSize } from '../../field-block';
-import { Modal } from '../../modal';
-import { TextButtonSize } from '../../text-button';
 
 type SelectOpener = 'field-block' | 'text-button';
 

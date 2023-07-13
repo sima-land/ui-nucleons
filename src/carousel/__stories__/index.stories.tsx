@@ -1,10 +1,9 @@
+import { Carousel } from '@sima-land/ui-nucleons/carousel';
 import { ReactNode, useEffect, useState } from 'react';
-import { Carousel } from '..';
-import { demoItems } from './demo-items';
-import classnames from 'classnames/bind';
-import styles from './test-carousel.module.scss';
-import { someImageUrl } from '../../../.storybook/utils';
 import { random } from 'lodash';
+import { someImageUrl } from '../../../.storybook/utils';
+import classnames from 'classnames/bind';
+import styles from './stories.module.scss';
 
 const cx = classnames.bind(styles);
 
@@ -16,151 +15,33 @@ export default {
   },
 };
 
+const photos: string[] = [
+  someImageUrl({ w: 200, h: 200, id: 1 }),
+  someImageUrl({ w: 200, h: 200, id: 2 }),
+  someImageUrl({ w: 200, h: 200, id: 3 }),
+  someImageUrl({ w: 200, h: 200, id: 4 }),
+  someImageUrl({ w: 200, h: 200, id: 5 }),
+  someImageUrl({ w: 200, h: 200, id: 6 }),
+  someImageUrl({ w: 200, h: 200, id: 7 }),
+  someImageUrl({ w: 200, h: 200, id: 8 }),
+  someImageUrl({ w: 200, h: 200, id: 9 }),
+  someImageUrl({ w: 200, h: 200, id: 10 }),
+];
+
 export function Primary() {
   return (
     <>
-      <h3>With controls; draggable; infinite; slide by 3; start from 4</h3>
       <Carousel
-        targetIndex={3}
-        items={demoItems.map((item, index) => ({ ...item, index: index + 1 }))}
+        items={photos}
         renderItem={(item, index) => (
           <div
             key={index}
-            className={cx('test-carousel-item')}
-            style={{ backgroundImage: `url(${item.src})` }}
-            children={item.index}
+            className={cx('gallery-item')}
+            style={{ backgroundImage: `url(${item})` }}
           />
         )}
         containerProps={{
-          className: styles['test-carousel'],
-        }}
-      />
-
-      <h3>With controls; not draggable; infinite; slide by 1</h3>
-      <Carousel
-        step={1}
-        draggable={false}
-        items={demoItems}
-        renderItem={(item, index) => (
-          <div
-            key={index}
-            className={cx('test-carousel-item')}
-            style={{ backgroundImage: `url(${item.src})` }}
-          />
-        )}
-        containerProps={{
-          className: styles['test-carousel'],
-        }}
-      />
-
-      <h3>Without controls; draggable; infinite</h3>
-      <Carousel
-        withControls={false}
-        items={demoItems}
-        renderItem={(item, index) => (
-          <div
-            key={index}
-            className={cx('test-carousel-item')}
-            style={{ backgroundImage: `url(${item.src})` }}
-          />
-        )}
-        containerProps={{
-          className: styles['test-carousel'],
-        }}
-      />
-
-      <h3>With controls; finite</h3>
-      <Carousel
-        infinite={false}
-        items={demoItems}
-        withControls={false}
-        renderItem={(item, index) => (
-          <div
-            key={index}
-            className={cx('test-carousel-item')}
-            style={{ backgroundImage: `url(${item.src})` }}
-          />
-        )}
-        containerProps={{
-          className: styles['test-carousel'],
-        }}
-      />
-
-      <h3>Autoplay + infinite</h3>
-      <Carousel
-        draggable={false}
-        autoplay
-        autoplayTimeout={1000}
-        items={demoItems}
-        withControls={false}
-        renderItem={(item, index) => (
-          <div
-            key={index}
-            className={cx('test-carousel-item')}
-            style={{ backgroundImage: `url(${item.src})` }}
-          />
-        )}
-        containerProps={{
-          className: styles['test-carousel'],
-        }}
-      />
-
-      <h3>Autoplay + infinite + draggable</h3>
-      <Carousel
-        draggable
-        autoplay
-        autoplayTimeout={1000}
-        items={demoItems}
-        withControls={false}
-        renderItem={(item, index) => (
-          <div
-            key={index}
-            className={cx('test-carousel-item')}
-            style={{ backgroundImage: `url(${item.src})` }}
-          />
-        )}
-        containerProps={{
-          className: styles['test-carousel'],
-        }}
-      />
-      <h3>Autoplay + infinite + draggable + pause on hover</h3>
-      <Carousel
-        draggable
-        autoplay
-        autoplayTimeout={1000}
-        autoplayHoverPause
-        items={demoItems}
-        withControls={false}
-        renderItem={(item, index) => (
-          <div
-            key={index}
-            className={cx('test-carousel-item')}
-            style={{ backgroundImage: `url(${item.src})` }}
-          />
-        )}
-        containerProps={{
-          className: styles['test-carousel'],
-        }}
-      />
-
-      <h3>Autoplay + finite + draggable + pause on hover</h3>
-      <Carousel
-        draggable
-        autoplay
-        autoplayTimeout={1000}
-        autoplayHoverPause
-        infinite={false}
-        items={[...demoItems, ...demoItems, ...demoItems]}
-        withControls={false}
-        renderItem={(item, index) => (
-          <div
-            key={index}
-            className={cx('test-carousel-item')}
-            style={{ backgroundImage: `url(${item.src})` }}
-          />
-        )}
-        containerProps={{
-          className: styles['test-carousel'],
+          className: cx('gallery'),
         }}
       />
     </>
@@ -169,83 +50,239 @@ export function Primary() {
 
 Primary.storyName = 'Простой пример';
 
-export function Vertical() {
+export function Horizontal() {
   return (
     <>
-      <h3>With controls; draggable; infinite; slide by 3</h3>
+      <h3 className={cx('title')}>
+        Кнопки; перетаскивание; бесконечность; шаг = 3; по умолчанию на 4 элементе
+      </h3>
       <Carousel
-        vertical
-        items={demoItems}
+        targetIndex={3}
+        items={photos}
         renderItem={(item, index) => (
           <div
             key={index}
-            className={cx('test-carousel-item', 'vertical')}
-            style={{ backgroundImage: `url(${item.src})` }}
+            className={cx('gallery-item')}
+            style={{ backgroundImage: `url(${item})` }}
           />
         )}
         containerProps={{
-          className: cx('test-carousel', 'vertical'),
+          className: cx('gallery'),
         }}
       />
 
-      <h3>With controls; not draggable; infinite; slide by 1</h3>
+      <h3 className={cx('title')}>Кнопки; без перетаскивания; бесконечность; шаг = 1</h3>
       <Carousel
-        vertical
         step={1}
         draggable={false}
-        items={demoItems}
+        items={photos}
         renderItem={(item, index) => (
           <div
             key={index}
-            className={cx('test-carousel-item', 'vertical')}
-            style={{ backgroundImage: `url(${item.src})` }}
+            className={cx('gallery-item')}
+            style={{ backgroundImage: `url(${item})` }}
           />
         )}
         containerProps={{
-          className: cx('test-carousel', 'vertical'),
+          className: cx('gallery'),
         }}
       />
 
-      <h3>Without controls; draggable; infinite; slide by 2</h3>
+      <h3 className={cx('title')}>Без кнопок; перетаскивание; бесконечность</h3>
       <Carousel
-        vertical
-        step={2}
         withControls={false}
-        items={demoItems}
+        items={photos}
         renderItem={(item, index) => (
           <div
             key={index}
-            className={cx('test-carousel-item', 'vertical')}
-            style={{ backgroundImage: `url(${item.src})` }}
+            className={cx('gallery-item')}
+            style={{ backgroundImage: `url(${item})` }}
           />
         )}
         containerProps={{
-          className: cx('test-carousel', 'vertical'),
+          className: cx('gallery'),
         }}
       />
 
-      <h3>With controls; finite</h3>
+      <h3 className={cx('title')}>Без кнопок</h3>
       <Carousel
-        vertical
-        step={2}
         infinite={false}
-        items={demoItems}
+        items={photos}
+        withControls={false}
         renderItem={(item, index) => (
           <div
             key={index}
-            className={cx('test-carousel-item', 'vertical')}
-            style={{ backgroundImage: `url(${item.src})` }}
+            className={cx('gallery-item')}
+            style={{ backgroundImage: `url(${item})` }}
           />
         )}
         containerProps={{
-          className: cx('test-carousel', 'vertical'),
+          className: cx('gallery'),
+        }}
+      />
+
+      <h3 className={cx('title')}>Автопрокрутка; бесконечность</h3>
+      <Carousel
+        draggable={false}
+        autoplay
+        autoplayTimeout={1000}
+        items={photos}
+        withControls={false}
+        renderItem={(item, index) => (
+          <div
+            key={index}
+            className={cx('gallery-item')}
+            style={{ backgroundImage: `url(${item})` }}
+          />
+        )}
+        containerProps={{
+          className: cx('gallery'),
+        }}
+      />
+
+      <h3 className={cx('title')}>Автопрокрутка; бесконечность; перетаскивание</h3>
+      <Carousel
+        draggable
+        autoplay
+        autoplayTimeout={1000}
+        items={photos}
+        withControls={false}
+        renderItem={(item, index) => (
+          <div
+            key={index}
+            className={cx('gallery-item')}
+            style={{ backgroundImage: `url(${item})` }}
+          />
+        )}
+        containerProps={{
+          className: cx('gallery'),
+        }}
+      />
+      <h3 className={cx('title')}>
+        Автопрокрутка; бесконечность; перетаскивание; пауза при наведении
+      </h3>
+      <Carousel
+        draggable
+        autoplay
+        autoplayTimeout={1000}
+        autoplayHoverPause
+        items={photos}
+        withControls={false}
+        renderItem={(item, index) => (
+          <div
+            key={index}
+            className={cx('gallery-item')}
+            style={{ backgroundImage: `url(${item})` }}
+          />
+        )}
+        containerProps={{
+          className: cx('gallery'),
+        }}
+      />
+
+      <h3 className={cx('title')}>Автопрокрутка; перетаскивание; пауза при наведении</h3>
+      <Carousel
+        draggable
+        autoplay
+        autoplayTimeout={1000}
+        autoplayHoverPause
+        infinite={false}
+        items={[...photos, ...photos, ...photos]}
+        withControls={false}
+        renderItem={(item, index) => (
+          <div
+            key={index}
+            className={cx('gallery-item')}
+            style={{ backgroundImage: `url(${item})` }}
+          />
+        )}
+        containerProps={{
+          className: cx('gallery'),
         }}
       />
     </>
   );
 }
 
-Vertical.storyName = 'Вертикальная карусель';
+Horizontal.storyName = 'Горизонтальные карусели';
+
+export function Vertical() {
+  return (
+    <>
+      <h3 className={cx('title')}>Кнопки; перетаскивание; бесконечность; шаг = 3</h3>
+      <Carousel
+        vertical
+        items={photos}
+        renderItem={(item, index) => (
+          <div
+            key={index}
+            className={cx('gallery-item', 'vertical')}
+            style={{ backgroundImage: `url(${item})` }}
+          />
+        )}
+        containerProps={{
+          className: cx('gallery', 'vertical'),
+        }}
+      />
+
+      <h3 className={cx('title')}>Кнопки; без перетаскивания; бесконечность; шаг = 1</h3>
+      <Carousel
+        vertical
+        step={1}
+        draggable={false}
+        items={photos}
+        renderItem={(item, index) => (
+          <div
+            key={index}
+            className={cx('gallery-item', 'vertical')}
+            style={{ backgroundImage: `url(${item})` }}
+          />
+        )}
+        containerProps={{
+          className: cx('gallery', 'vertical'),
+        }}
+      />
+
+      <h3 className={cx('title')}>Без кнопок; перетаскивание; бесконечность; шаг = 2</h3>
+      <Carousel
+        vertical
+        step={2}
+        withControls={false}
+        items={photos}
+        renderItem={(item, index) => (
+          <div
+            key={index}
+            className={cx('gallery-item', 'vertical')}
+            style={{ backgroundImage: `url(${item})` }}
+          />
+        )}
+        containerProps={{
+          className: cx('gallery', 'vertical'),
+        }}
+      />
+
+      <h3 className={cx('title')}>Кнопки</h3>
+      <Carousel
+        vertical
+        step={2}
+        infinite={false}
+        items={photos}
+        renderItem={(item, index) => (
+          <div
+            key={index}
+            className={cx('gallery-item', 'vertical')}
+            style={{ backgroundImage: `url(${item})` }}
+          />
+        )}
+        containerProps={{
+          className: cx('gallery', 'vertical'),
+        }}
+      />
+    </>
+  );
+}
+
+Vertical.storyName = 'Вертикальные карусели';
 
 export function Reels() {
   const count = 8;

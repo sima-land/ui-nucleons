@@ -1,11 +1,11 @@
-import { StrokedSVG } from '..';
-import FavoriteSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Favorite';
-import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';
-import Bag2SVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Bag2';
-import ShareAndroidSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ShareAndroid';
-import ShareIOsSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ShareIOs';
-import QuickView2SVG from '@sima-land/ui-quarks/icons/24x24/Stroked/QuickView2';
+import { StrokedSVG } from '@sima-land/ui-nucleons/stroked-svg';
 import { WithHint } from '../../with-hint';
+import Favorite from '@sima-land/ui-quarks/icons/24x24/Stroked/Favorite';
+import ArrowLeft from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';
+import Bag from '@sima-land/ui-quarks/icons/24x24/Stroked/Bag2';
+import ShareAndroid from '@sima-land/ui-quarks/icons/24x24/Stroked/ShareAndroid';
+import ShareIOs from '@sima-land/ui-quarks/icons/24x24/Stroked/ShareIOs';
+import QuickView2 from '@sima-land/ui-quarks/icons/24x24/Stroked/QuickView2';
 
 export default {
   title: 'service/StrokedSVG',
@@ -16,7 +16,7 @@ export default {
   },
 };
 
-const icons = [FavoriteSVG, ArrowLeftSVG, Bag2SVG, ShareAndroidSVG, ShareIOsSVG, QuickView2SVG];
+const icons = [Favorite, ArrowLeft, Bag, ShareAndroid, ShareIOs, QuickView2];
 
 export function Primary() {
   return (
@@ -36,7 +36,7 @@ export function Hint() {
       <WithHint hint='Добавить в избранное' direction='right'>
         {(ref, toggle) => (
           <StrokedSVG
-            component={FavoriteSVG}
+            component={Favorite}
             ref={ref as any}
             onMouseEnter={() => toggle(true)}
             onMouseLeave={() => toggle(false)}

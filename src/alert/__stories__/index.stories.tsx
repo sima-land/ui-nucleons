@@ -1,9 +1,9 @@
+import { Alert, AlertBody } from '@sima-land/ui-nucleons/alert';
 import { CSSProperties, useState } from 'react';
-import { Alert, AlertBody } from '..';
-import { TopBar } from '../../top-bar';
-import { BottomBar } from '../../bottom-bar';
-import { Button } from '../../button';
-import { CleanGroup, CleanButton } from '../../clean-buttons';
+import { TopBar } from '@sima-land/ui-nucleons/top-bar';
+import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
+import { Button } from '@sima-land/ui-nucleons/button';
+import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
 import { PageScrollLockDemo } from '../../../.storybook/utils';
 
 export default {

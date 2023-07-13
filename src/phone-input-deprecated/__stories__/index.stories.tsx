@@ -1,6 +1,6 @@
+import { PhoneInput } from '@sima-land/ui-nucleons/phone-input-deprecated';
+import { TextButton } from '@sima-land/ui-nucleons/text-button';
 import { useState } from 'react';
-import { PhoneInput } from '..';
-import { TextButton } from '../../text-button';
 
 function DemoForm({ initialValue = '' }) {
   const [value, setValue] = useState(initialValue);

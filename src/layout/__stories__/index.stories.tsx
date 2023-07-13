@@ -1,5 +1,5 @@
-import { Layout, Breakpoint } from '..';
-import { InnerBorder } from '../../styling/borders';
+import { Layout, Breakpoint } from '@sima-land/ui-nucleons/layout';
+import { InnerBorder } from '@sima-land/ui-nucleons/styling/borders';
 
 export default {
   title: 'common/Layout',

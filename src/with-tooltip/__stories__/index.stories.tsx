@@ -1,6 +1,6 @@
-import { Link } from '../../link';
-import { WithTooltip } from '..';
-import { Modal } from '../../modal';
+import { WithTooltip } from '@sima-land/ui-nucleons/with-tooltip';
+import { Link } from '@sima-land/ui-nucleons/link';
+import { Modal } from '@sima-land/ui-nucleons/modal';
 import { times } from 'lodash';
 import {
   LONG_TEXT,

@@ -1,10 +1,10 @@
+import { TextButton, TextButtonSize, TextButtonColor } from '@sima-land/ui-nucleons/text-button';
 import { useState } from 'react';
-import { TextButton, TextButtonSize, TextButtonColor } from '..';
+import { COLORS } from '@sima-land/ui-nucleons/colors';
 import SettingsSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Settings';
 import CrossSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Cross';
 import TrashSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Trash';
 import { Sandbox } from '../../../.storybook/utils';
-import { COLORS } from '../../colors';
 
 export default {
   title: 'common/TextButton',

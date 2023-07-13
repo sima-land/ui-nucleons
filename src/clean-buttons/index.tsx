@@ -5,6 +5,8 @@ import { CleanGroupSizeContext } from './utils';
 import classnames from 'classnames/bind';
 import styles from './clean-buttons.module.scss';
 
+export type { CleanButtonSize };
+
 export interface CleanButtonProps extends LinkProps {
   asLink?: boolean;
 

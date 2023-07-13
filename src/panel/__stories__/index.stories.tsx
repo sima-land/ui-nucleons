@@ -1,8 +1,8 @@
+import { Panel, PanelType, LINK_COLOR_BY_TYPE } from '@sima-land/ui-nucleons/panel';
 import { useState } from 'react';
-import { Panel, PanelType, LINK_COLOR_BY_TYPE } from '..';
-import InformationSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Information';
+import { Link } from '@sima-land/ui-nucleons/link';
+import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Information';
 import LockSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Lock';
-import { Link } from '../../link';
 import { Sandbox } from '../../../.storybook/utils';
 
 export default {
@@ -53,7 +53,7 @@ export function JsxContent() {
       <div style={{ width: 360, display: 'flex', gap: 20, flexDirection: 'column' }}>
         <Panel type={type}>{content}</Panel>
 
-        <Panel type={type} adornmentStart={<InformationSVG />}>
+        <Panel type={type} adornmentStart={<InfoSVG />}>
           {content}
         </Panel>
 
@@ -61,7 +61,7 @@ export function JsxContent() {
           {content}
         </Panel>
 
-        <Panel type={type} adornmentStart={<InformationSVG />} adornmentEnd={<LockSVG />}>
+        <Panel type={type} adornmentStart={<InfoSVG />} adornmentEnd={<LockSVG />}>
           {content}
         </Panel>
       </div>
@@ -92,7 +92,7 @@ export function UnknownContent() {
       ]}
     >
       <div style={{ width: 360, display: 'flex', gap: 20, flexDirection: 'column' }}>
-        <Panel type={type} adornmentStart={<InformationSVG />}>
+        <Panel type={type} adornmentStart={<InfoSVG />}>
           <Panel.UnknownContent markup={markup} />
         </Panel>
       </div>

@@ -1,5 +1,5 @@
+import { Textarea, TextareaProps } from '@sima-land/ui-nucleons/textarea';
 import { useState } from 'react';
-import { Textarea, TextareaProps } from '..';
 import { Sandbox } from '../../../.storybook/utils';
 
 export default {

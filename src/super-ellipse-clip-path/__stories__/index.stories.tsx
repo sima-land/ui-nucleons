@@ -1,5 +1,5 @@
-import { SuperEllipseClipPath } from '..';
-import { COLORS } from '../../colors';
+import { SuperEllipseClipPath } from '@sima-land/ui-nucleons/super-ellipse-clip-path';
+import { COLORS } from '@sima-land/ui-nucleons/colors';
 
 export default {
   title: 'service/SuperEllipseClipPath',

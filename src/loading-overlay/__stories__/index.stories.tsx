@@ -1,5 +1,5 @@
+import { LoadingOverlay } from '@sima-land/ui-nucleons/loading-overlay';
 import { useState } from 'react';
-import { LoadingOverlay } from '..';
 
 export default {
   title: 'deprecated/LoadingOverlay',

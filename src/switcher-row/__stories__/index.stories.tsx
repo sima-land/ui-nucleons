@@ -1,10 +1,10 @@
+import { SwitcherRow } from '@sima-land/ui-nucleons/switcher-row';
 import { useState } from 'react';
-import { SwitcherRow } from '..';
+import { Checkbox } from '@sima-land/ui-nucleons/checkbox';
+import { InfoText } from '@sima-land/ui-nucleons/info-text';
+import { RadioButton } from '@sima-land/ui-nucleons/radio-button';
+import { Toggle } from '@sima-land/ui-nucleons/toggle';
 import { Sandbox } from '../../../.storybook/utils';
-import { Checkbox } from '../../checkbox';
-import { InfoText } from '../../info-text';
-import { RadioButton } from '../../radio-button';
-import { Toggle } from '../../toggle';
 
 export default {
   title: 'common/SwitcherRow',

@@ -1,4 +1,4 @@
-import { CheckboxField, CheckboxFieldProps } from '..';
+import { CheckboxField, CheckboxFieldProps } from '@sima-land/ui-nucleons/checkbox-field';
 
 export default {
   title: 'deprecated/CheckboxField',

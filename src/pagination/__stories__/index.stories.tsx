@@ -1,5 +1,5 @@
+import { Pagination, PaginationItem, getPaginationItems } from '@sima-land/ui-nucleons/pagination';
 import { useState } from 'react';
-import { Pagination, PaginationItem, getPaginationItems } from '..';
 
 export default {
   title: 'common/Pagination',

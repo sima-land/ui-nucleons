@@ -1,4 +1,4 @@
-import { MaskedField } from '..';
+import { MaskedField } from '@sima-land/ui-nucleons/masked-field';
 
 export default {
   title: 'deprecated/MaskedField',

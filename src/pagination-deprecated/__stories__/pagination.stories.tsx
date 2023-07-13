@@ -1,5 +1,5 @@
+import { Pagination } from '@sima-land/ui-nucleons/pagination-deprecated';
 import { useState } from 'react';
-import { Pagination } from '..';
 
 export default {
   title: 'deprecated/Pagination',

@@ -1,4 +1,4 @@
-import { Price } from '..';
+import { Price } from '@sima-land/ui-nucleons/price';
 
 const values = [
   '0',

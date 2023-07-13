@@ -1,6 +1,6 @@
+import { Toggle } from '@sima-land/ui-nucleons/toggle';
+import { TextButton } from '@sima-land/ui-nucleons/text-button';
 import { useState } from 'react';
-import { TextButton } from '../../text-button';
-import { Toggle } from '../index';
 
 export default {
   title: 'common/Toggle',
