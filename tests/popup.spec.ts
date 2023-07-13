@@ -22,10 +22,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('/iframe.html?args=&id=common-popup--floating', {
-    // ВАЖНО: похоже это помогает со скриншотами тк стили подгружаются динамически
-    waitUntil: 'networkidle',
-  });
+  await page.goto('/iframe.html?args=&id=common-popup--floating');
 });
 
 test('Opener must be in page', async () => {
