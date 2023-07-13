@@ -1,15 +1,16 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "target": "es2015",
-    "module": "commonjs",
-    "allowJs": true,
-    "jsx": "react-jsx",
-    "outDir": "./build/",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "paths": {
+      // ВАЖНО: только для storybook
+      "@sima-land/ui-nucleons/*": ["./src/*"]
+    }
   },
-  "include": ["./src/**/*", "./.storybook/utils.ts"],
-  "exclude": ["build", "node_modules"]
+  "include": [
+    "./src",
+
+    // ВАЖНО: только для storybook
+    "./.storybook/utils.tsx"
+  ],
+  "exclude": ["node_modules"]
 }
