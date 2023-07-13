@@ -1,5 +1,5 @@
-import { TextField } from '../../text-field';
-import { FieldGrid } from '..';
+import { FieldGrid } from '@sima-land/ui-nucleons/field-grid';
+import { TextField } from '@sima-land/ui-nucleons/text-field';
 
 const DisplayWrapper: React.FC = ({ children }) => (
   <div style={{ margin: '0 auto', marginTop: 16, background: '#fff', maxWidth: 1024 }}>

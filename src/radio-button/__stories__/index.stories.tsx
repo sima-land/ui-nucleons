@@ -1,4 +1,4 @@
-import { RadioButton } from '..';
+import { RadioButton } from '@sima-land/ui-nucleons/radio-button';
 
 export default {
   title: 'common/RadioButton',

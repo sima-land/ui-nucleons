@@ -1,5 +1,5 @@
+import { Timer } from '@sima-land/ui-nucleons/timer';
 import { addDays, addMonths, formatISO } from 'date-fns';
-import { Timer } from '..';
 
 export default {
   title: 'common/Timer',

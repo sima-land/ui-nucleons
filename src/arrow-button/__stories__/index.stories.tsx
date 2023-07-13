@@ -1,8 +1,5 @@
-import { ArrowButton, ArrowButtonSize, ArrowDirection } from '..';
-
-const sizes: ArrowButtonSize[] = ['l', 's'];
-
-const directions: ArrowDirection[] = ['up', 'right', 'down', 'left'];
+import { ArrowButton, ArrowButtonSize, ArrowDirection } from '@sima-land/ui-nucleons/arrow-button';
+import { CSSProperties } from 'react';
 
 export default {
   title: 'common/ArrowButton',
@@ -13,20 +10,36 @@ export default {
 };
 
 export function Primary() {
+  const onClick = () => alert('Фух, клик по кнопке работает...');
+
+  return (
+    <>
+      <ArrowButton onClick={onClick} />
+    </>
+  );
+}
+
+Primary.storyName = 'Простой пример';
+
+export function Directions() {
+  const sizes: ArrowButtonSize[] = ['s', 'l'];
+  const directions: ArrowDirection[] = ['up', 'right', 'down', 'left'];
+
+  const styles: CSSProperties = {
+    display: 'flex',
+    width: '320px',
+    gap: '32px',
+    marginBottom: '32px',
+  };
+
+  const onClick = () => alert('Фух, клик по кнопке работает...');
+
   return (
     <>
       {sizes.map(size => (
-        <div key={size} style={{ marginBottom: 16 }}>
-          <h3>Size: {size}</h3>
+        <div key={size} style={styles}>
           {directions.map(direction => (
-            <div key={direction} style={{ display: 'inline-block', paddingRight: 32 }}>
-              <ArrowButton
-                aria-label={direction}
-                size={size}
-                direction={direction}
-                onClick={() => alert('Фух, клик по кнопке работает...')}
-              />
-            </div>
+            <ArrowButton key={direction} size={size} direction={direction} onClick={onClick} />
           ))}
         </div>
       ))}
@@ -34,24 +47,33 @@ export function Primary() {
   );
 }
 
-Primary.storyName = 'Простой пример';
+Directions.storyName = 'Направления';
 
 export function Disabled() {
+  const sizes: ArrowButtonSize[] = ['s', 'l'];
+  const directions: ArrowDirection[] = ['up', 'right', 'down', 'left'];
+
+  const styles: CSSProperties = {
+    display: 'flex',
+    width: '320px',
+    gap: '32px',
+    marginBottom: '32px',
+  };
+
+  const onClick = () => alert('Фух, клик по кнопке работает...');
+
   return (
     <>
       {sizes.map(size => (
-        <div key={size} style={{ marginBottom: 16 }}>
-          <h3>Size: {size}</h3>
+        <div key={size} style={styles}>
           {directions.map(direction => (
-            <div key={direction} style={{ display: 'inline-block', paddingRight: 32 }}>
-              <ArrowButton
-                disabled
-                aria-label={direction}
-                size={size}
-                direction={direction}
-                onClick={() => alert('Фух, клик по кнопке работает...')}
-              />
-            </div>
+            <ArrowButton
+              key={direction}
+              disabled
+              size={size}
+              direction={direction}
+              onClick={onClick}
+            />
           ))}
         </div>
       ))}

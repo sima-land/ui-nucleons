@@ -1,4 +1,4 @@
-import Draggable from '../draggable';
+import { Draggable } from '@sima-land/ui-nucleons/carousel/draggable';
 
 export default {
   title: 'service/Draggable',

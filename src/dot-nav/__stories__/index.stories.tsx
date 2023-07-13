@@ -1,5 +1,5 @@
+import { DotNav, DotNavSize } from '@sima-land/ui-nucleons/dot-nav';
 import { useState } from 'react';
-import { DotNav, DotNavSize } from '..';
 import { times } from 'lodash';
 
 const styles: Record<string, React.CSSProperties> = {

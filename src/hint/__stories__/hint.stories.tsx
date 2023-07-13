@@ -6,11 +6,11 @@ import {
   useHintFloating,
   useHintFloatingStyle,
   useTempHintState,
-} from '..';
-import { Button } from '../../button';
-import { LargePage } from '../../../.storybook/utils';
-import { Stepper } from '../../stepper';
-import { Link } from '../../link';
+} from '@sima-land/ui-nucleons/hint';
+import { Button } from '@sima-land/ui-nucleons/button';
+import { LargePage } from '@sima-land/ui-nucleons/../.storybook/utils';
+import { Stepper } from '@sima-land/ui-nucleons/stepper';
+import { Link } from '@sima-land/ui-nucleons/link';
 
 export default {
   title: 'common/Hint',

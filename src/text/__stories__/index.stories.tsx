@@ -1,6 +1,6 @@
-import { Text, ALIGNS } from '../index';
-import { COLORS } from '../../colors';
-import { SIZES, WEIGHTS } from '../../styling/fonts';
+import { Text, ALIGNS } from '@sima-land/ui-nucleons/text';
+import { COLORS } from '@sima-land/ui-nucleons/colors';
+import { SIZES, WEIGHTS } from '@sima-land/ui-nucleons/styling/fonts';
 
 export default {
   title: 'deprecated/Text',

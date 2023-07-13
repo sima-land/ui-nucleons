@@ -1,5 +1,5 @@
+import { Stepper, StepperProps, StepperSize } from '@sima-land/ui-nucleons/stepper';
 import { ChangeEvent, useState } from 'react';
-import { Stepper, StepperProps, StepperSize } from '..';
 import { Sandbox } from '../../../.storybook/utils';
 
 export default {

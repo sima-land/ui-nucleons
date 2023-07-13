@@ -1,5 +1,5 @@
+import { FieldBlock, FieldBlockProps, FieldBlockSize } from '@sima-land/ui-nucleons/field-block';
 import { useState } from 'react';
-import { FieldBlock, FieldBlockProps, FieldBlockSize } from '..';
 import CopySVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Copy';
 import LockSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Lock';
 import { Sandbox } from '../../../.storybook/utils';

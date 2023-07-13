@@ -1,9 +1,9 @@
+import { TopBar, TopBarSize } from '@sima-land/ui-nucleons/top-bar';
 import { useState } from 'react';
-import { TopBar, TopBarSize } from '..';
 import PlaceholderSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Placeholder';
 import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Cross';
+import { Link } from '@sima-land/ui-nucleons/link';
 import { Sandbox } from '../../../.storybook/utils';
-import { Link } from '../../link';
 
 export default {
   title: 'common/TopBar',

@@ -1,5 +1,5 @@
+import { BaseInput } from '@sima-land/ui-nucleons/base-input-deprecated';
 import { CSSProperties, useState } from 'react';
-import { BaseInput } from '..';
 
 export default {
   title: 'deprecated/BaseInput',

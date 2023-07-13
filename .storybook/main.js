@@ -4,7 +4,6 @@ module.exports = {
   },
   stories: ['./index.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
-    '@storybook/addon-actions',
     !process.env.TEST_ENV && '@storybook/addon-storysource',
     !process.env.TEST_ENV && '@storybook/addon-backgrounds',
     {

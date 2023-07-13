@@ -1,8 +1,8 @@
+import { Input, InputProps } from '@sima-land/ui-nucleons/input';
 import { useState } from 'react';
-import { Input, InputProps } from '..';
-import { FieldBlockSize } from '../../field-block';
-import { Sandbox } from '../../../.storybook/utils';
-import { COLORS } from '../../colors';
+import { FieldBlockSize } from '@sima-land/ui-nucleons/field-block';
+import { Sandbox } from '@sima-land/ui-nucleons/../.storybook/utils';
+import { COLORS } from '@sima-land/ui-nucleons/colors';
 import FaceIdSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/FaceId';
 
 export default {

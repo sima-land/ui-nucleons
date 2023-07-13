@@ -1,6 +1,6 @@
-import { Dropdown } from '..';
-import { DropdownItem } from '../../dropdown-item';
-import { Spinner } from '../../spinner';
+import { Dropdown } from '@sima-land/ui-nucleons/dropdown';
+import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
+import { Spinner } from '@sima-land/ui-nucleons/spinner';
 
 export default {
   title: 'common/Dropdown',

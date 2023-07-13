@@ -1,7 +1,6 @@
-import { times } from 'lodash';
-
-import { UnknownContent } from '..';
+import { UnknownContent } from '@sima-land/ui-nucleons/unknown-content';
 import { someImageUrl } from '../../../.storybook/utils';
+import { times } from 'lodash';
 
 export default {
   title: 'common/UnknownContent',

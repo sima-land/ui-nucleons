@@ -1,5 +1,5 @@
+import { BaseInput, BaseInputStyle } from '@sima-land/ui-nucleons/base-input';
 import { useState } from 'react';
-import { BaseInput, BaseInputStyle } from '..';
 
 export default {
   title: 'service/BaseInput',

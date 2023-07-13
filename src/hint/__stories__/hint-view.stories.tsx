@@ -1,14 +1,14 @@
-import { useRef, useState } from 'react';
 import {
   HintView,
   hintFloatingConfig,
   getArrowFloatingStyle,
   useHintOnClick,
   useHintOnHover,
-} from '..';
+} from '@sima-land/ui-nucleons/hint';
+import { useRef, useState } from 'react';
 import { useFloating } from '@floating-ui/react';
-import { Portal } from '../../portal';
-import { Button } from '../../button';
+import { Portal } from '@sima-land/ui-nucleons/portal';
+import { Button } from '@sima-land/ui-nucleons/button';
 
 export default {
   title: 'service/HintView',

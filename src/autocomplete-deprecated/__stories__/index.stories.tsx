@@ -1,8 +1,8 @@
+import { Autocomplete } from '@sima-land/ui-nucleons/autocomplete-deprecated';
 import { useState } from 'react';
-import { Autocomplete } from '..';
-import { Button } from '../../button';
-import { PhoneInput } from '../../phone-input-deprecated';
-import { TextField } from '../../text-field';
+import { Button } from '@sima-land/ui-nucleons/button';
+import { TextField } from '@sima-land/ui-nucleons/text-field';
+import { PhoneInput } from '@sima-land/ui-nucleons/phone-input-deprecated';
 
 export default {
   title: 'deprecated/Autocomplete',

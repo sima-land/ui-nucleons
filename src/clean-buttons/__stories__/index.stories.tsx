@@ -1,6 +1,5 @@
+import { CleanGroup, CleanButton, CleanButtonSize } from '@sima-land/ui-nucleons/clean-buttons';
 import { Fragment } from 'react';
-import { CleanGroup, CleanButton } from '..';
-import { CleanButtonSize } from '../types';
 
 export default {
   title: 'common/CleanGroup',

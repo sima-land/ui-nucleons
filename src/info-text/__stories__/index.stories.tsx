@@ -1,4 +1,4 @@
-import { InfoText } from '..';
+import { InfoText } from '@sima-land/ui-nucleons/info-text';
 
 export default {
   title: 'common/InfoText',

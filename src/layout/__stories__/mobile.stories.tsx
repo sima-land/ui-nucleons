@@ -1,4 +1,4 @@
-import { MobileLayout } from '..';
+import { MobileLayout } from '@sima-land/ui-nucleons/layout';
 
 export default {
   title: 'deprecated/MobileLayout',

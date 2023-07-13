@@ -1,8 +1,8 @@
+import { TextField } from '@sima-land/ui-nucleons/text-field';
 import { useState } from 'react';
-import { TextField } from '..';
+import { COLORS } from '@sima-land/ui-nucleons/colors';
+import { Button } from '@sima-land/ui-nucleons/button';
 import RightSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Right';
-import { COLORS } from '../../colors';
-import { Button } from '../../button';
 
 const baseProps = { style: { width: '100%' } };
 

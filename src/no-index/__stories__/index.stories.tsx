@@ -1,4 +1,4 @@
-import { NoIndex } from '..';
+import { NoIndex } from '@sima-land/ui-nucleons/no-index';
 
 export default {
   title: 'service/NoIndex',

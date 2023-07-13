@@ -1,7 +1,7 @@
+import { Spinner, SpinnerSize } from '@sima-land/ui-nucleons/spinner';
+import { COLORS, Token } from '@sima-land/ui-nucleons/colors';
 import { useState } from 'react';
-import { Spinner, SpinnerSize } from '..';
 import { Sandbox } from '../../../.storybook/utils';
-import { COLORS, Token } from '../../colors';
 
 export default {
   title: 'common/Spinner',

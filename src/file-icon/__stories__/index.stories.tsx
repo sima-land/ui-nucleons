@@ -1,4 +1,4 @@
-import { FileIcon } from '..';
+import { FileIcon } from '@sima-land/ui-nucleons/file-icon';
 
 export default {
   title: 'common/FileIcon',

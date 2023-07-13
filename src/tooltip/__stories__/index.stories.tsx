@@ -1,4 +1,4 @@
-import { Tooltip } from '..';
+import { Tooltip } from '@sima-land/ui-nucleons/tooltip';
 
 const shortText = 'Это тестовый тултип.';
 

@@ -1,5 +1,5 @@
+import { Tabs, TabsProps, TabsItemProps } from '@sima-land/ui-nucleons/tabs';
 import { useState } from 'react';
-import { Tabs, TabsProps, TabsItemProps } from '..';
 
 const items: TabsItemProps[] = [
   { name: 'First' },

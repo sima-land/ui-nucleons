@@ -1,6 +1,6 @@
+import { PhoneInput } from '@sima-land/ui-nucleons/phone-input';
+import { TextButton } from '@sima-land/ui-nucleons/text-button';
 import { useState } from 'react';
-import { PhoneInput } from '..';
-import { TextButton } from '../../text-button';
 
 export default {
   title: 'common/PhoneInput',

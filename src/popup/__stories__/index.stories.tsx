@@ -1,10 +1,16 @@
+import {
+  Popup,
+  PopupView,
+  popupFloatingConfig,
+  usePopupOnClick,
+  useFocusTrap,
+} from '@sima-land/ui-nucleons/popup';
 import { MouseEventHandler, useCallback, useState } from 'react';
-import { Popup, PopupView, popupFloatingConfig, usePopupOnClick, useFocusTrap } from '..';
 import { useFloating } from '@floating-ui/react';
+import { InfoText } from '@sima-land/ui-nucleons/info-text';
+import { TextButton } from '@sima-land/ui-nucleons/text-button';
+import { Portal } from '@sima-land/ui-nucleons/portal';
 import { LargePage } from '../../../.storybook/utils';
-import { InfoText } from '../../info-text';
-import { TextButton } from '../../text-button';
-import { Portal } from '../../portal';
 
 export default {
   title: 'common/Popup',

@@ -1,5 +1,5 @@
+import { Link, LinkProps } from '@sima-land/ui-nucleons/link';
 import { CSSProperties } from 'react';
-import { Link, LinkProps } from '..';
 
 export default {
   title: 'common/Link',

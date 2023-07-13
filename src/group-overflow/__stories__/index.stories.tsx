@@ -1,8 +1,8 @@
+import { GroupOverflow, RenderTail } from '@sima-land/ui-nucleons/group-overflow';
 import { useEffect, useState } from 'react';
-import { GroupOverflow, RenderTail } from '..';
-import { Layout } from '../../layout';
-import { Chips } from '../../chips';
-import { on } from '../../helpers/on';
+import { Layout } from '@sima-land/ui-nucleons/layout';
+import { Chips } from '@sima-land/ui-nucleons/chips';
+import { on } from '@sima-land/ui-nucleons/helpers/on';
 
 export default {
   title: 'common/GroupOverflow',

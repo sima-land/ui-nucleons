@@ -4,6 +4,7 @@ import { Toggle } from '../toggle';
 import classnames from 'classnames/bind';
 import classes from './checkbox-field.module.scss';
 
+/** @deprecated */
 export interface CheckboxFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   /** Содержимое ярлыка. */
   label: string;

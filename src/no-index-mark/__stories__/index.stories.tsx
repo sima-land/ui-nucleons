@@ -1,4 +1,4 @@
-import { NoIndexMark } from '..';
+import { NoIndexMark } from '@sima-land/ui-nucleons/no-index-mark';
 
 export default {
   title: 'service/NoIndexMark',

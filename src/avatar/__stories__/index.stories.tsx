@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react';
-import { Avatar } from '..';
+import { Avatar } from '@sima-land/ui-nucleons/avatar';
 import { random } from 'lodash';
 import dogPng from './dog.png';
 import { someImageUrl } from '../../../.storybook/utils';

@@ -1,12 +1,12 @@
+import { Select, renderDefaultArrow } from '@sima-land/ui-nucleons/select-deprecated';
 import { useState } from 'react';
-import { Select, renderDefaultArrow } from '..';
-import { Link } from '../../link';
+import { Link } from '@sima-land/ui-nucleons/link';
+import { COLORS } from '@sima-land/ui-nucleons/colors';
 import GoogleSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/Google';
 import VkSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/Vk';
 import InstagramSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/Instagram';
 import TelegramSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/Telegram';
 import TwitterSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/Twitter';
-import { COLORS } from '../../colors';
 
 export default {
   title: 'deprecated/Select',

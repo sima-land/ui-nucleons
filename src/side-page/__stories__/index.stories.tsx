@@ -1,15 +1,15 @@
+import { SidePage, SidePageProps } from '@sima-land/ui-nucleons/side-page';
 import { useState, useReducer, useEffect, useRef, CSSProperties } from 'react';
-import { SidePage, SidePageProps } from '..';
-import { Button } from '../../button';
-import { Panel } from '../../panel';
-import { Textarea } from '../../textarea';
-import { UploadArea } from '../../upload-area';
+import { Button } from '@sima-land/ui-nucleons/button';
+import { Panel } from '@sima-land/ui-nucleons/panel';
+import { Textarea } from '@sima-land/ui-nucleons/textarea';
+import { UploadArea } from '@sima-land/ui-nucleons/upload-area';
 import { times } from 'lodash';
-import { WithHint } from '../../with-hint';
-import { CleanGroup, CleanButton } from '../../clean-buttons';
-import { LoremIpsum, PageScrollLockDemo } from '../../../.storybook/utils';
+import { WithHint } from '@sima-land/ui-nucleons/with-hint';
+import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
 import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Information';
-import imageSrc from './image.png';
+import failSrc from './fail.png';
+import { LoremIpsum, PageScrollLockDemo } from '../../../.storybook/utils';
 
 export default {
   title: 'common/SidePage',
@@ -89,7 +89,7 @@ export function SizeS() {
 
         <SidePage.Body>
           <div style={styles.root}>
-            <img src={imageSrc} alt='' style={styles.image} />
+            <img src={failSrc} alt='' style={styles.image} />
             <div style={styles.title}>Не удалось открыть условия акции</div>
             <div style={styles.message}>
               Проверьте ваше подключение к сети и попробуйте обновить страницу

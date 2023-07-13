@@ -1,8 +1,8 @@
+import { MaskedInput } from '@sima-land/ui-nucleons/masked-input';
 import { useState } from 'react';
-import { MaskedInput } from '..';
-import { DropdownItem } from '../../dropdown-item';
-import { Select } from '../../select';
-import { TextButton } from '../../text-button';
+import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
+import { Select } from '@sima-land/ui-nucleons/select';
+import { TextButton } from '@sima-land/ui-nucleons/text-button';
 
 export default {
   title: 'common/MaskedInput',

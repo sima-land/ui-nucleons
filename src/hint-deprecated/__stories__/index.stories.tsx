@@ -1,4 +1,4 @@
-import { Hint } from '..';
+import { Hint } from '@sima-land/ui-nucleons/hint-deprecated';
 
 export default {
   title: 'deprecated/Hint',

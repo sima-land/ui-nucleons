@@ -1,11 +1,10 @@
-import { useEffect, useRef } from 'react';
-import { COLORS } from '..';
-import { Button } from '../../button';
-import { Layout } from '../../layout';
-import { Input } from '../../input';
-import { TextButton } from '../../text-button';
-import { useTempHint, WithHint } from '../../with-hint';
+import { COLORS } from '@sima-land/ui-nucleons/colors';
+import { useEffect, useRef, useState } from 'react';
 import ClipboardJS from 'clipboard';
+import { Button } from '@sima-land/ui-nucleons/button';
+import { Layout } from '@sima-land/ui-nucleons/layout';
+import { Input } from '@sima-land/ui-nucleons/input';
+import { TextButton } from '@sima-land/ui-nucleons/text-button';
 import CopySVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Copy';
 import CopyBigSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Copy';
 import styles from './colors.module.scss';
@@ -49,15 +48,15 @@ export function Usage() {
 function ImportField({ value, label }: { value: string; label: string }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-
-  const [hintBind, toggleHint] = useTempHint();
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (buttonRef.current) {
       const clipboard = new ClipboardJS(buttonRef.current, { text: () => value });
 
       clipboard.on('success', () => {
-        toggleHint(true);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
       });
 
       return () => clipboard.destroy();
@@ -67,21 +66,19 @@ function ImportField({ value, label }: { value: string; label: string }) {
   return (
     <Input
       label={label}
-      value={value}
+      value={copied ? 'Скопировано' : value}
+      disabled={copied}
       inputRef={inputRef}
       readOnly
       adornmentEnd={
-        <WithHint hint='Скопировано' {...hintBind}>
-          {ref => (
-            <TextButton
-              color='basic-gray87'
-              buttonRef={buttonRef}
-              onMouseDown={e => e.preventDefault()}
-            >
-              <CopyBigSVG ref={ref as any} fill='currentColor' />
-            </TextButton>
-          )}
-        </WithHint>
+        <TextButton
+          disabled={copied}
+          color='basic-gray87'
+          buttonRef={buttonRef}
+          onMouseDown={e => e.preventDefault()}
+        >
+          <CopyBigSVG fill='currentColor' />
+        </TextButton>
       }
     />
   );
@@ -102,7 +99,7 @@ function ColorView({ name, value }: { name: string; value: string }) {
 
 function CopyButton({ title, value }: { title: string; value: string }) {
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const [hintBind, toggleHint] = useTempHint();
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (buttonRef.current) {
@@ -111,7 +108,8 @@ function CopyButton({ title, value }: { title: string; value: string }) {
       });
 
       clipboard.on('success', () => {
-        toggleHint(true);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
       });
 
       return () => clipboard.destroy();
@@ -119,15 +117,17 @@ function CopyButton({ title, value }: { title: string; value: string }) {
   }, []);
 
   return (
-    <WithHint hint='Скопировано' {...hintBind}>
-      {ref => (
-        <div ref={ref as any}>
-          <Button ref={buttonRef} size='xs' viewType='secondary' icon={CopySVG}>
-            {title}
-          </Button>
-        </div>
-      )}
-    </WithHint>
+    <div>
+      <Button
+        ref={buttonRef}
+        size='xs'
+        viewType='secondary'
+        icon={!copied ? CopySVG : undefined}
+        disabled={copied}
+      >
+        {copied ? 'Скопировано' : title}
+      </Button>
+    </div>
   );
 }
 

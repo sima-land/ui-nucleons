@@ -1,5 +1,5 @@
+import { UploadArea, UploadAreaProps, UploadAreaSize } from '@sima-land/ui-nucleons/upload-area';
 import { useState } from 'react';
-import { UploadArea, UploadAreaProps, UploadAreaSize } from '..';
 import { Sandbox } from '../../../.storybook/utils';
 
 export default {

@@ -1,6 +1,6 @@
+import { Checkbox } from '@sima-land/ui-nucleons/checkbox';
+import { TextButton } from '@sima-land/ui-nucleons/text-button';
 import { useState } from 'react';
-import { Checkbox } from '..';
-import { TextButton } from '../../text-button';
 
 export default {
   title: 'common/Checkbox',

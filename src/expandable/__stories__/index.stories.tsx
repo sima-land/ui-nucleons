@@ -1,7 +1,7 @@
+import { Expandable, ExpandableGroup } from '@sima-land/ui-nucleons/expandable';
 import { useState } from 'react';
-import { Expandable, ExpandableGroup } from '..';
-import { Chips } from '../../chips';
-import { Link } from '../../link';
+import { Link } from '@sima-land/ui-nucleons/link';
+import { Chips } from '@sima-land/ui-nucleons/chips';
 
 export default {
   title: 'service/Expandable',

@@ -1,12 +1,12 @@
+import { Card, CardContent } from '@sima-land/ui-nucleons/card';
 import { useState } from 'react';
-import { Card, CardContent } from '..';
-import { TopBar } from '../../top-bar';
-import { BottomBar } from '../../bottom-bar';
-import { CleanGroup, CleanButton } from '../../clean-buttons';
-import { Button } from '../../button';
-import { PhoneInput } from '../../phone-input-deprecated';
-import { DropdownItem } from '../../dropdown-item';
-import { CustomScrollbar } from '../../_internal/custom-scrollbar';
+import { TopBar } from '@sima-land/ui-nucleons/top-bar';
+import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
+import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
+import { Button } from '@sima-land/ui-nucleons/button';
+import { PhoneInput } from '@sima-land/ui-nucleons/phone-input-deprecated';
+import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
+import { CustomScrollbar } from '@sima-land/ui-nucleons/_internal/custom-scrollbar';
 import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Cross';
 
 export default {
