@@ -5,7 +5,7 @@ import type {
   PaginationItemProps,
   PaginationProps,
 } from './types';
-import { getPaginationItems } from './utils';
+import { getPaginationItems, validatePaginationState } from './utils';
 import { PaginationItem } from './pagination-item';
 import LeftSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Left';
 import RightSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Right';
@@ -29,9 +29,10 @@ export function Pagination({
   className,
   ...restProps
 }: PaginationProps) {
-  // @todo вынести в функцию валидации
-  const total = Math.max(1, totalProp) ?? 1;
-  const current = Math.min(total, currentProp) ?? 1;
+  const { current, total } = useMemo(
+    () => validatePaginationState({ current: currentProp, total: totalProp }),
+    [currentProp, totalProp],
+  );
   const items = useMemo(() => getItems({ current, total }), [current, total]);
 
   const onChangeRef = useRef(onPageChange);
