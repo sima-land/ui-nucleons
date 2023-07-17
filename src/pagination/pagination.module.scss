@@ -2,15 +2,16 @@
   display: flex;
 }
 
-.prev {
-  margin-right: 9px;
-}
-
-.next {
+.prev + .page,
+.prev + .next {
   margin-left: 8px;
 }
 
-.page {
+.page + .next {
+  margin-left: 8px;
+}
+
+.page + .page {
   margin-left: -1px;
 }
 

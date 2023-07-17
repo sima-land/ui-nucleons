@@ -1,6 +1,24 @@
 import type { PaginationButton } from './types';
 
 /**
+ * Обрабатывает состояние кнопок пагинации.
+ * @param state Состояние.
+ * @return Валидное состояние.
+ */
+export function validatePaginationState({ total, current }: { total?: number; current?: number }): {
+  total: number;
+  current: number;
+} {
+  return {
+    // если total не "конечное число" - меняем на 0 так как непонятно сколько всего страниц
+    total: Number.isFinite(total) ? (total as number) : 0,
+
+    // если current не "конечное число" - указываем 0, так ни одна кнопка не будет активной
+    current: Number.isFinite(current) ? (current as number) : 0,
+  };
+}
+
+/**
  * Формирует список кнопок навигации по страницам по дизайн-гайдам.
  * @param props Свойства.
  * @param config Конфиг.
