@@ -13,7 +13,7 @@ export function validatePaginationState({ total, current }: { total?: number; cu
     // если total не "конечное число" - меняем на 0 так как непонятно сколько всего страниц
     total: Number.isFinite(total) ? (total as number) : 0,
 
-    // если current не "конечно число" - указываем 0, так ни одна кнопка не будет активной
+    // если current не "конечное число" - указываем 0, так ни одна кнопка не будет активной
     current: Number.isFinite(current) ? (current as number) : 0,
   };
 }
