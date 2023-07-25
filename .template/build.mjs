@@ -20,6 +20,7 @@ const colorsByGroups = {
     'deep-red': '#d50000',
     red: '#fb3a2f',
     'light-red': '#feebea',
+    'dark-teal': '#089176',
     teal: '#09ab8b',
     green: '#00c853',
     'light-green': '#64dd17',
@@ -41,6 +42,7 @@ const colorsByGroups = {
     'blue-gray': '#607d8b',
     'deep-blue': '#00599d',
     'dark-blue': '#002b41',
+    'unlit-blue': '#1b75c2',
   },
 };
 
