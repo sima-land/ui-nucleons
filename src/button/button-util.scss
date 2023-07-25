@@ -1,0 +1,46 @@
+@use '../colors';
+
+@mixin size-xs {
+  --button-min-size: 32px;
+  --button-font-size: 14px;
+  --button-line-height: 20px;
+  --button-gutter: 12px;
+}
+
+@mixin size-s {
+  --button-min-size: 40px;
+  --button-font-size: 16px;
+  --button-line-height: 24px;
+  --button-gutter: 20px;
+}
+
+@mixin size-m {
+  --button-min-size: 48px;
+  --button-font-size: 16px;
+  --button-line-height: 24px;
+  --button-gutter: 24px;
+}
+
+@mixin color-primary {
+  --button-color: #fff;
+  --button-background: #{colors.$basic-blue};
+  --button-hover-background: #{colors.$additional-unlit-blue};
+  --button-disabled-color: #{colors.$basic-gray24};
+  --button-disabled-background: #{colors.$basic-gray8};
+}
+
+@mixin color-secondary {
+  --button-color: #{colors.$basic-gray87};
+  --button-background: #{colors.$basic-gray8};
+  --button-hover-background: #{colors.$basic-gray12};
+  --button-disabled-color: #{colors.$basic-gray24};
+  --button-disabled-background: #{colors.$basic-gray8};
+}
+
+@mixin color-success {
+  --button-color: #fff;
+  --button-background: #{colors.$additional-teal};
+  --button-hover-background: #{colors.$additional-dark-teal};
+  --button-disabled-color: #{colors.$basic-gray24};
+  --button-disabled-background: #{colors.$basic-gray8};
+}
