@@ -19,6 +19,12 @@ describe('<Button />', () => {
     expect(getByTestId('button').className).toContain('view-secondary');
   });
 
+  it('should render success button', () => {
+    const { getByTestId } = render(<Button viewType='success'>Отмена</Button>);
+
+    expect(getByTestId('button').className).toContain('view-success');
+  });
+
   it('should render iconic button', () => {
     const { getByTestId, rerender } = render(<Button icon={PlusSVG} />);
 

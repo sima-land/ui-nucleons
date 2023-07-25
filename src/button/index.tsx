@@ -13,7 +13,7 @@ import styles from './button.module.scss';
 
 export type ButtonSize = 'xs' | 's' | 'm';
 
-export type ButtonViewType = 'primary' | 'secondary';
+export type ButtonViewType = 'primary' | 'secondary' | 'success';
 
 export type ButtonAppearance = 'button' | 'link' | 'container';
 

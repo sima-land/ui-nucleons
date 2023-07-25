@@ -52,7 +52,7 @@ export function DifferentStates() {
         {
           type: 'select',
           label: 'Тип действия',
-          options: ['primary', 'secondary'],
+          options: ['primary', 'secondary', 'success'],
           bind: [viewType, setViewType],
         },
         {
@@ -68,7 +68,7 @@ export function DifferentStates() {
 
         <Button {...props}>Действие</Button>
 
-        <Button {...props} icon={IconSVG}>
+        <Button {...props} icon={IconSVG} iconPosition='start'>
           Действие
         </Button>
 

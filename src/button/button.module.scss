@@ -86,7 +86,7 @@
   --button-color: #fff;
   &:hover:not(:disabled) {
     cursor: pointer;
-    --button-background: #1b74c1;
+    --button-background: #{colors.$additional-unlit-blue};
   }
 }
 
@@ -96,6 +96,15 @@
   &:hover:not(:disabled) {
     cursor: pointer;
     --button-background: #{colors.$basic-gray12};
+  }
+}
+
+.view-success {
+  --button-background: #{colors.$additional-teal};
+  --button-color: #fff;
+  &:hover:not(:disabled) {
+    cursor: pointer;
+    --button-background: #{colors.$additional-dark-teal};
   }
 }
 
