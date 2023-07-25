@@ -1,4 +1,5 @@
 @use '../colors';
+@use './button-util';
 
 .root {
   position: relative;
@@ -31,8 +32,8 @@
   &:disabled,
   &.disabled {
     pointer-events: none;
-    color: colors.$basic-gray24;
-    background-color: colors.$basic-gray8;
+    color: var(--button-disabled-color, var(--button-color));
+    background: var(--button-disabled-background, var(--button-background));
   }
   &.loading {
     color: transparent;
@@ -41,28 +42,24 @@
       pointer-events: 0;
     }
   }
+  &:not(:disabled):hover {
+    cursor: pointer;
+    color: var(--button-hover-color, var(--button-color));
+    background: var(--button-hover-background, var(--button-background));
+  }
 }
 
 // sizes
 .size-xs {
-  --button-min-size: 32px;
-  --button-font-size: 14px;
-  --button-line-height: 20px;
-  --button-gutter: 12px;
+  @include button-util.size-xs;
 }
 
 .size-s {
-  --button-min-size: 40px;
-  --button-font-size: 16px;
-  --button-line-height: 24px;
-  --button-gutter: 20px;
+  @include button-util.size-s;
 }
 
 .size-m {
-  --button-min-size: 48px;
-  --button-font-size: 16px;
-  --button-line-height: 24px;
-  --button-gutter: 24px;
+  @include button-util.size-m;
 }
 
 // content
@@ -82,30 +79,15 @@
 
 // view variants
 .view-primary {
-  --button-background: #{colors.$basic-blue};
-  --button-color: #fff;
-  &:hover:not(:disabled) {
-    cursor: pointer;
-    --button-background: #{colors.$additional-unlit-blue};
-  }
+  @include button-util.color-primary;
 }
 
 .view-secondary {
-  --button-background: #{colors.$basic-gray8};
-  --button-color: #{colors.$basic-gray87};
-  &:hover:not(:disabled) {
-    cursor: pointer;
-    --button-background: #{colors.$basic-gray12};
-  }
+  @include button-util.color-secondary;
 }
 
 .view-success {
-  --button-background: #{colors.$additional-teal};
-  --button-color: #fff;
-  &:hover:not(:disabled) {
-    cursor: pointer;
-    --button-background: #{colors.$additional-dark-teal};
-  }
+  @include button-util.color-success;
 }
 
 // icons

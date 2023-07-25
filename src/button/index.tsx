@@ -2,6 +2,7 @@ import {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   ComponentType,
+  CSSProperties,
   forwardRef,
   HTMLAttributes,
   ReactElement,
@@ -13,11 +14,21 @@ import styles from './button.module.scss';
 
 export type ButtonSize = 'xs' | 's' | 'm';
 
-export type ButtonViewType = 'primary' | 'secondary' | 'success';
+export type ButtonViewType = 'primary' | 'secondary' | 'success' | 'unset';
 
 export type ButtonAppearance = 'button' | 'link' | 'container';
 
 export type ButtonIconPosition = 'start' | 'end';
+
+export interface ButtonStyle extends CSSProperties {
+  // ВАЖНО: пока не добавляем сюда остальные переменные которые используются в стилях
+  '--button-color'?: string;
+  '--button-background'?: string;
+  '--button-hover-color'?: string;
+  '--button-hover-background'?: string;
+  '--button-disabled-color'?: string;
+  '--button-disabled-background'?: string;
+}
 
 interface CommonProps<T extends ButtonAppearance = ButtonAppearance> {
   /** Определяет внешний вид кнопки. */
@@ -43,6 +54,9 @@ interface CommonProps<T extends ButtonAppearance = ButtonAppearance> {
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
+
+  /** Стили. */
+  style?: ButtonStyle;
 }
 
 type AsButtonProps = CommonProps &
@@ -84,7 +98,7 @@ export const Button = forwardRef<any, ButtonProps>(function Button(
   const rootClassName = cx(
     'root',
     `size-${size}`,
-    `view-${viewType}`,
+    viewType !== 'unset' && `view-${viewType}`,
     loading && 'loading',
     disabled && 'disabled',
     hasIcon && !hasText && 'icon-only',
@@ -95,7 +109,7 @@ export const Button = forwardRef<any, ButtonProps>(function Button(
 
   const content = (
     <>
-      {/* выводим контент даже в состоянии loading (под спиннером) чтобы ширина не "скакала" */}
+      {/* ВАЖНО: выводим контент даже в состоянии loading (под спиннером) чтобы ширина не "скакала" */}
       {Icon && iconPosition === 'start' && <Icon className={cx('icon')} />}
       {children}
       {Icon && iconPosition === 'end' && <Icon className={cx('icon')} />}

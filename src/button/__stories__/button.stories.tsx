@@ -1,5 +1,11 @@
-import { Button, ButtonProps, ButtonSize, ButtonViewType } from '@sima-land/ui-nucleons/button';
-import { useState } from 'react';
+import {
+  Button,
+  ButtonProps,
+  ButtonSize,
+  ButtonStyle,
+  ButtonViewType,
+} from '@sima-land/ui-nucleons/button';
+import { CSSProperties, useState } from 'react';
 import PlusSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Plus';
 import Placeholder16SVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Placeholder';
 import Placeholder24SVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Placeholder';
@@ -81,3 +87,42 @@ export function DifferentStates() {
 }
 
 DifferentStates.storyName = 'Различные состояния';
+
+export function CustomColors() {
+  const container: CSSProperties = {
+    maxWidth: '480px',
+    display: 'flex',
+    gap: '12px',
+    flexDirection: 'column',
+    justifyContent: 'stretch',
+  };
+  const sber: ButtonStyle = {
+    '--button-color': '#fff',
+    '--button-background': '#107f8c',
+  };
+  const tinkoff: ButtonStyle = {
+    '--button-color': '#000',
+    '--button-background': '#ffdd2d',
+  };
+  const apple: ButtonStyle = {
+    '--button-color': '#fff',
+    '--button-background': '#161616',
+    '--button-hover-background': '#404040',
+  };
+
+  return (
+    <div style={container}>
+      <Button viewType='unset' style={sber}>
+        Войти по СберБизнес ID
+      </Button>
+      <Button viewType='unset' style={tinkoff}>
+        Войти с Tinkoff
+      </Button>
+      <Button viewType='unset' style={apple}>
+        Войти с Apple ID
+      </Button>
+    </div>
+  );
+}
+
+CustomColors.storyName = 'Пользовательские цвета';
