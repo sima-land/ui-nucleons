@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+import { useRef } from 'react';
 import { defineLastVisible, observeWidth, useObserveWidth } from '../utils';
 import { setBoundingClientRect } from './utils';
 
@@ -98,22 +99,28 @@ describe('observeWidth', () => {
 describe('useObserveWidth', () => {
   const spy = jest.fn();
 
-  const TestComponent = () => {
+  const TestComponent = ({ enable }: { enable: boolean }) => {
+    const ref = useRef<HTMLDivElement>(null);
     useObserveWidth(
       {
         get current() {
           spy();
-          return null;
+          return ref.current;
         },
       },
       () => void 0,
     );
 
-    return <div>Hello</div>;
+    return <div ref={enable ? ref : undefined}>Hello</div>;
   };
 
   it('should not observe when ref is empty', () => {
-    render(<TestComponent />);
-    expect(spy).toHaveBeenCalledTimes(0);
+    render(<TestComponent enable={false} />);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should observe when ref is not empty', () => {
+    render(<TestComponent enable />);
+    expect(spy).toHaveBeenCalledTimes(2);
   });
 });
