@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import { Expandable } from '..';
+import { setBoundingClientRect } from './utils';
 
 describe('Expandable.Group', () => {
   it('should hide opener by default when "defaultExpanded" is true', () => {
@@ -100,5 +101,103 @@ describe('Expandable.Group', () => {
     );
 
     expect(spy).toHaveBeenCalledTimes(0);
+  });
+
+  it('should hide elements properly', () => {
+    const { container, getByTestId, getAllByTestId, rerender } = render(
+      <Expandable.Group gap={0} itemHeight={30} lineLimit={1} openerWidth={30}>
+        <Expandable.Item>One</Expandable.Item>
+        <Expandable.Item>Two</Expandable.Item>
+        <Expandable.Item>Three</Expandable.Item>
+        <Expandable.Item>Four</Expandable.Item>
+      </Expandable.Group>,
+    );
+
+    const outer = container.querySelector('.root') as HTMLElement;
+    const [item1, item2, item3, item4] = getAllByTestId('expandable:item');
+    const opener = getByTestId('expandable:opener');
+
+    setBoundingClientRect(outer, { width: 100, height: 30 });
+    setBoundingClientRect(item1, { width: 30, height: 30, x: 0 });
+    setBoundingClientRect(item2, { width: 30, height: 30, x: 30 });
+    setBoundingClientRect(item3, { width: 30, height: 30, x: 60 });
+    setBoundingClientRect(item4, { width: 30, height: 30, x: 0, y: 30 });
+    setBoundingClientRect(opener, { width: 30, height: 30, x: 30, y: 30 });
+
+    rerender(
+      <Expandable.Group gap={0} itemHeight={30} lineLimit={1} openerWidth={30}>
+        <Expandable.Item>One</Expandable.Item>
+        <Expandable.Item>Two</Expandable.Item>
+        <Expandable.Item>Three</Expandable.Item>
+        <Expandable.Item>Four</Expandable.Item>
+      </Expandable.Group>,
+    );
+
+    expect(item1.classList.contains('hidden')).toBe(false);
+    expect(item2.classList.contains('hidden')).toBe(false);
+    expect(item3.classList.contains('hidden')).toBe(true);
+    expect(item4.classList.contains('hidden')).toBe(true);
+  });
+
+  it('should reset state when root element width changes', async () => {
+    const { container, getByTestId, getAllByTestId } = render(
+      <Expandable.Group gap={0} itemHeight={30} lineLimit={1} openerWidth={30}>
+        <Expandable.Item>One</Expandable.Item>
+        <Expandable.Item>Two</Expandable.Item>
+        <Expandable.Item>Three</Expandable.Item>
+        <Expandable.Item>Four</Expandable.Item>
+      </Expandable.Group>,
+    );
+
+    const outer = container.querySelector('.root') as HTMLElement;
+    const [item1, item2, item3, item4] = getAllByTestId('expandable:item');
+    const opener = getByTestId('expandable:opener');
+
+    setBoundingClientRect(outer, { width: 100, height: 30 });
+    setBoundingClientRect(item1, { width: 30, height: 30, x: 0 });
+    setBoundingClientRect(item2, { width: 30, height: 30, x: 30 });
+    setBoundingClientRect(item3, { width: 30, height: 30, x: 60 });
+    setBoundingClientRect(item4, { width: 30, height: 30, x: 0, y: 30 });
+    setBoundingClientRect(opener, { width: 30, height: 30, x: 30, y: 30 });
+
+    await act(async () => {
+      outer.dispatchEvent(new Event('test:resize'));
+      await new Promise(requestAnimationFrame);
+    });
+
+    expect(item1.classList.contains('hidden')).toBe(false);
+    expect(item2.classList.contains('hidden')).toBe(false);
+    expect(item3.classList.contains('hidden')).toBe(true);
+    expect(item4.classList.contains('hidden')).toBe(true);
+  });
+
+  it('should NOT reset expanded state when root element width changes', async () => {
+    const { container, getAllByTestId } = render(
+      <Expandable.Group gap={0} itemHeight={30} lineLimit={1} openerWidth={30} expanded>
+        <Expandable.Item>One</Expandable.Item>
+        <Expandable.Item>Two</Expandable.Item>
+        <Expandable.Item>Three</Expandable.Item>
+        <Expandable.Item>Four</Expandable.Item>
+      </Expandable.Group>,
+    );
+
+    const outer = container.querySelector('.root') as HTMLElement;
+    const [item1, item2, item3, item4] = getAllByTestId('expandable:item');
+
+    setBoundingClientRect(outer, { width: 100, height: 30 });
+    setBoundingClientRect(item1, { width: 30, height: 30, x: 0 });
+    setBoundingClientRect(item2, { width: 30, height: 30, x: 30 });
+    setBoundingClientRect(item3, { width: 30, height: 30, x: 60 });
+    setBoundingClientRect(item4, { width: 30, height: 30, x: 0, y: 30 });
+
+    await act(async () => {
+      outer.dispatchEvent(new Event('test:resize'));
+      await new Promise(requestAnimationFrame);
+    });
+
+    expect(item1.classList.contains('hidden')).toBe(false);
+    expect(item2.classList.contains('hidden')).toBe(false);
+    expect(item3.classList.contains('hidden')).toBe(false);
+    expect(item4.classList.contains('hidden')).toBe(false);
   });
 });

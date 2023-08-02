@@ -5,139 +5,159 @@ import {
   useRef,
   useState,
   ReactNode,
-  MouseEventHandler,
   createContext,
   useContext,
-  CSSProperties,
   useEffect,
+  useCallback,
 } from 'react';
-import { useExpandable } from './utils';
+import { ExpandableGroupProps, ExpandableGroupItemProps, ExpandableGroupInnerStyle } from './types';
+import { useIsomorphicLayoutEffect } from '../hooks';
+import { defineLastVisible, useObserveWidth } from './utils';
 import classnames from 'classnames/bind';
 import styles from './expandable-group.module.scss';
 
 const cx = classnames.bind(styles);
 
-export interface ExpandableGroupProps {
-  /** Расстояние между элементами группы в пикселях. */
-  gap?: number;
+const ItemContext = createContext<{ hidden?: boolean }>({});
 
-  /** Высота каждого элемента группы в пикселях. */
-  itemHeight?: number;
-
-  /** Развернут ли список по умолчанию. */
-  defaultExpanded?: boolean;
-
-  /** Количество строк в свернутом состоянии группы. */
-  lineLimit?: number;
-
-  /** Содержимое. */
-  children?: ReactNode;
-
-  /** Функция, возвращающая содержимое кнопки разворачивания списка. */
-  opener?: (data: { hiddenCount: number }) => ReactNode;
-
-  /** Сработает при разворачивании списка. */
-  onExpand?: () => void;
-
-  /** CSS-класс корневого элемента. */
-  className?: string;
-
-  /** Стили корневого элемента. */
-  style?: CSSProperties;
-
-  /** Нужно ли выводить список развернутым. */
-  expanded?: boolean;
-
-  /** Ширина открывающего элемента. */
-  openerWidth?: number;
+interface State {
+  status: 'initial' | 'some-hidden' | 'all-visible' | 'expanded';
+  lastVisibleIndex: number;
 }
 
-export interface GroupItemProps {
-  children?: ReactNode;
-  onClick?: MouseEventHandler;
-  'data-testid'?: string;
-}
+const initialState: State = {
+  status: 'initial',
+  lastVisibleIndex: -1,
+};
 
-const ItemContext = createContext<{ invisible?: boolean; opener?: boolean }>({});
+const expandedState: State = {
+  status: 'expanded',
+  lastVisibleIndex: -1,
+};
 
 /**
  * Группа элементов с ограничением на число выводимых строк и возможностью показать все.
  * @param props Свойства.
  * @return Элемент.
  */
-export function ExpandableGroup({
+export function ExpandableGroup(props: ExpandableGroupProps) {
+  const time = useRef(1);
+
+  // @todo зациклить если каким-то невероятным образом уйдет за границу number
+  time.current = time.current + 1;
+
+  // ВАЖНО: рендер вызванный родительским компонентом должен приводить к пересчету, поэтому передаем уникальный time
+  return <ExpandableGroupInner {...props} time={time.current} />;
+}
+
+/**
+ * Внутренний компонент, необходимый для корректной обработки повторных render'ов.
+ * @param props Свойства.
+ * @return Элемент.
+ */
+function ExpandableGroupInner({
   gap = 8,
   itemHeight = 32,
   lineLimit = 2,
   defaultExpanded = false,
   children,
-  onExpand,
-  opener = data => <>Ещё {data.hiddenCount}</>,
+  opener: renderOpener = data => <>Ещё {data.hiddenCount}</>,
   className,
   style,
   expanded: expandedProp,
+  onExpand,
   openerWidth = 72,
-}: ExpandableGroupProps) {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLUListElement>(null);
+  time,
+}: ExpandableGroupProps & { time: number }) {
+  const outerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLUListElement>(null);
   const openerRef = useRef<HTMLLIElement>(null);
 
   const [mounted, setMounted] = useState<boolean>(false);
-  const [expanded, setExpanded] = useState<boolean>(defaultExpanded);
-
-  const items = Children.toArray(children).reduce<ReactNode[]>((result, child) => {
-    if (isValidElement(child) && child.type === ExpandableItem) {
-      result.push(child);
-    }
-
-    return result;
-  }, []);
+  const [state, setState] = useState<State>(() => (defaultExpanded ? expandedState : initialState));
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  // даем возможность управлять состоянием с помощью пропса "expanded"
   useEffect(() => {
-    expandedProp !== undefined && setExpanded(expandedProp);
+    if (typeof expandedProp === 'boolean') {
+      setState(expandedProp ? expandedState : initialState);
+    }
   }, [expandedProp]);
 
-  const { hiddenCount } = useExpandable({
-    expanded,
-    wrapperRef,
-    containerRef,
-    openerRef,
-    gap,
+  // если "time" обновился - это сигнал о том что надо пересчитать состояние
+  useEffect(() => {
+    setState(current => (current.status === 'expanded' ? current : initialState));
+  }, [time]);
+
+  // следим за изменением ширины чтобы запустить перерасчет
+  useObserveWidth(outerRef, () => {
+    setState(current => (current.status === 'expanded' ? current : initialState));
   });
 
-  return (
-    <div
-      ref={wrapperRef}
-      className={cx('root', className)}
-      style={
-        {
-          ...style,
-          maxHeight: expanded ? undefined : `${itemHeight * lineLimit + gap * (lineLimit - 1)}px`,
-          '--expandable-item-height': `${itemHeight}px`,
-          '--expandable-opener-width': `${openerWidth}px`,
-          '--expandable-gap': `${gap}px`,
-        } as any
+  // выполняем расчет
+  useIsomorphicLayoutEffect(() => {
+    if (state.status === 'initial') {
+      const outer = outerRef.current;
+      const inner = innerRef.current;
+      const opener = openerRef.current;
+
+      if (outer && inner && opener) {
+        const { lastVisibleIndex } = defineLastVisible({ outer, inner, gap, opener, openerWidth });
+
+        setState({
+          status: lastVisibleIndex !== -1 ? 'some-hidden' : 'all-visible',
+          lastVisibleIndex,
+        });
       }
-    >
-      <ul ref={containerRef} className={styles.inner}>
+    }
+  }, [state, mounted]);
+
+  const rootStyle: ExpandableGroupInnerStyle = {
+    ...style,
+    maxHeight:
+      state.status === 'expanded'
+        ? undefined
+        : `${itemHeight * lineLimit + gap * (lineLimit - 1)}px`,
+    '--expandable-gap': `${gap}px`,
+    '--expandable-item-height': `${itemHeight}px`,
+    '--expandable-opener-width': `${openerWidth}px`,
+  };
+
+  const handleExpand = useCallback(() => {
+    setState(expandedState);
+    onExpand?.();
+  }, [onExpand]);
+
+  const items = Children.toArray(children).reduce<ReactNode[]>((result, child, index) => {
+    if (isValidElement(child) && child.type === ExpandableItem) {
+      result.push(
+        <ItemContext.Provider
+          key={child.key}
+          value={{
+            hidden: state.status === 'some-hidden' && index > state.lastVisibleIndex,
+          }}
+        >
+          {child}
+        </ItemContext.Provider>,
+      );
+    }
+    return result;
+  }, []);
+
+  // ВАЖНО: root нужен для того чтобы формировать ограничение по высоте
+  return (
+    <div ref={outerRef} className={cx('root', className)} style={rootStyle}>
+      <ul ref={innerRef} className={cx('inner')}>
         {items}
 
         {/* ВАЖНО: выводим "открывашку" только после монтирования (для SEO) */}
-        {mounted && !expanded && (
-          <ItemContext.Provider value={{ invisible: hiddenCount === 0, opener: true }}>
-            <ExpandableItem
-              ref={openerRef}
-              onClick={() => {
-                setExpanded(true);
-                onExpand?.();
-              }}
-              data-testid='expandable:opener'
-            >
-              {opener({ hiddenCount })}
+        {mounted && state.status !== 'expanded' && (
+          <ItemContext.Provider value={{ hidden: state.status !== 'some-hidden' }}>
+            <ExpandableItem ref={openerRef} onClick={handleExpand} data-testid='expandable:opener'>
+              {renderOpener({ hiddenCount: items.length - state.lastVisibleIndex - 1 })}
             </ExpandableItem>
           </ItemContext.Provider>
         )}
@@ -146,12 +166,12 @@ export function ExpandableGroup({
   );
 }
 
-const ExpandableItem = forwardRef<HTMLLIElement, GroupItemProps>(
+const ExpandableItem = forwardRef<HTMLLIElement, ExpandableGroupItemProps>(
   ({ children, onClick, 'data-testid': testId = 'expandable:item' }, ref) => {
-    const context = useContext(ItemContext);
+    const { hidden } = useContext(ItemContext);
 
     return (
-      <li ref={ref} className={cx('item', context)} data-testid={testId} onClick={onClick}>
+      <li ref={ref} className={cx('item', { hidden })} data-testid={testId} onClick={onClick}>
         {children}
       </li>
     );

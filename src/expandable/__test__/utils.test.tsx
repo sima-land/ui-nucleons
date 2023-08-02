@@ -1,189 +1,119 @@
-import { useRef } from 'react';
 import { render } from '@testing-library/react';
-import { useExpandable, defineViewState } from '../utils';
+import { defineLastVisible, observeWidth, useObserveWidth } from '../utils';
+import { setBoundingClientRect } from './utils';
 
-function createElement({ x = 0, y = 0, width = 0, height = 0 }: DOMRectInit = {}): HTMLElement {
-  const element = document.createElement('div');
+describe('defineLastVisible', () => {
+  it('should handle empty container', () => {
+    const outer = document.createElement('div');
+    const inner = document.createElement('div');
+    const opener = document.createElement('div');
 
-  const rect: DOMRect = {
-    x,
-    y,
-    width,
-    height,
-    get top() {
-      return y;
-    },
-    get right() {
-      return x + width;
-    },
-    get left() {
-      return x;
-    },
-    get bottom() {
-      return y + height;
-    },
-    toJSON() {
-      return JSON.stringify(rect);
-    },
-  };
+    const { lastVisibleIndex } = defineLastVisible({
+      outer,
+      inner,
+      gap: 10,
+      opener,
+      openerWidth: 100,
+    });
 
-  jest.spyOn(element, 'getBoundingClientRect').mockImplementation(() => rect);
-
-  return element;
-}
-
-describe('useExpandable', () => {
-  it('should do nothing when expanded && container is undefined', () => {
-    function TestComponent() {
-      const wrapperRef = useRef<HTMLElement>(null);
-      const containerRef = useRef<HTMLElement>(null);
-      const openerRef = useRef<HTMLElement>(null);
-
-      useExpandable({
-        gap: 10,
-        expanded: true,
-        wrapperRef,
-        containerRef,
-        openerRef,
-      });
-
-      return <>Hello</>;
-    }
-
-    expect(() => {
-      render(<TestComponent />);
-    }).not.toThrow();
+    expect(lastVisibleIndex).toBe(-1);
   });
 
-  it('should hide items depends on view state', () => {
-    const wrapper = createElement({
-      width: 300,
-      height: 100,
+  it('should handle container with only one element', () => {
+    const outer = document.createElement('div');
+    const inner = document.createElement('div');
+    const item = document.createElement('div');
+    const opener = document.createElement('div');
+
+    inner.append(item);
+    inner.append(opener);
+
+    const { lastVisibleIndex } = defineLastVisible({
+      outer,
+      inner,
+      gap: 10,
+      opener,
+      openerWidth: 100,
     });
 
-    const container = createElement({
-      width: 300,
-      height: 100,
+    expect(lastVisibleIndex).toBe(-1);
+  });
+
+  it('should return index properly when need to hide elements', () => {
+    const outer = document.createElement('div');
+    const inner = document.createElement('div');
+
+    const item1 = document.createElement('div');
+    const item2 = document.createElement('div');
+    const item3 = document.createElement('div');
+    const item4 = document.createElement('div');
+    const opener = document.createElement('div');
+
+    inner.append(item1, item2, item3, item4, opener);
+
+    setBoundingClientRect(outer, { width: 100, height: 30 });
+    setBoundingClientRect(item1, { width: 30, height: 30, x: 0 });
+    setBoundingClientRect(item2, { width: 30, height: 30, x: 30 });
+    setBoundingClientRect(item3, { width: 30, height: 30, x: 60 });
+    setBoundingClientRect(item4, { width: 30, height: 30, x: 0, y: 30 });
+    setBoundingClientRect(opener, { width: 30, height: 30, x: 30, y: 30 });
+
+    const { lastVisibleIndex } = defineLastVisible({
+      outer,
+      inner,
+      gap: 0,
+      opener,
+      openerWidth: 30,
     });
 
-    // строка 1
-    const item1 = createElement({
-      x: 0,
-      y: 0,
-      width: 100,
-      height: 100,
-    });
-    const item2 = createElement({
-      x: 100,
-      y: 0,
-      width: 100,
-      height: 100,
-    });
-    const item3 = createElement({
-      x: 200,
-      y: 0,
-      width: 100,
-      height: 100,
-    });
-
-    // строка 2
-    const item4 = createElement({
-      x: 0,
-      y: 100,
-      width: 100,
-      height: 100,
-    });
-    const opener = createElement({
-      x: 0,
-      y: 200,
-      width: 100,
-      height: 100,
-    });
-
-    container.append(item1, item2, item3, item4, opener);
-
-    function TestComponent() {
-      const wrapperRef = useRef<HTMLElement>(wrapper);
-      const containerRef = useRef<HTMLElement>(container);
-      const openerRef = useRef<HTMLElement>(opener);
-
-      useExpandable({
-        gap: 0,
-        expanded: false,
-        wrapperRef,
-        containerRef,
-        openerRef,
-      });
-
-      return <>World</>;
-    }
-
-    render(<TestComponent />);
-
-    expect(item1.classList.contains('hidden')).toBe(false);
-    expect(item2.classList.contains('hidden')).toBe(false);
-    expect(item3.classList.contains('hidden')).toBe(false);
-    expect(item4.classList.contains('hidden')).toBe(true);
-    expect(opener.classList.contains('hidden')).toBe(false);
+    expect(lastVisibleIndex).toBe(1);
   });
 });
 
-describe('defineViewState', () => {
-  it('one item is hidden', () => {
-    const wrapper = createElement({
-      width: 300,
-      height: 100,
-    });
+describe('observeWidth', () => {
+  it('should works properly', async () => {
+    const element = document.createElement('div');
+    const spy = jest.fn();
 
-    // строка 1
-    const item1 = createElement({
-      x: 0,
-      y: 0,
-      width: 100,
-      height: 100,
-    });
-    const item2 = createElement({
-      x: 100,
-      y: 0,
-      width: 100,
-      height: 100,
-    });
-    const item3 = createElement({
-      x: 200,
-      y: 0,
-      width: 100,
-      height: 100,
-    });
+    setBoundingClientRect(element, { width: 100 });
+    const unobserve = observeWidth(element, spy);
 
-    // строка 2
-    const item4 = createElement({
-      x: 0,
-      y: 100,
-      width: 100,
-      height: 100,
-    });
-    const opener = createElement({
-      x: 0,
-      y: 200,
-      width: 100,
-      height: 100,
-    });
+    expect(typeof unobserve === 'function').toBe(true);
+    expect(spy).toHaveBeenCalledTimes(0);
 
-    wrapper.append(item1, item2, item3, item4, opener);
+    setBoundingClientRect(element, { width: 200 });
+    element.dispatchEvent(new Event('test:resize'));
 
-    const viewState = defineViewState(wrapper, [item1, item2, item3, item4], opener, 0);
+    await new Promise(requestAnimationFrame);
+    expect(spy).toHaveBeenCalledTimes(1);
 
-    expect(viewState.lastVisibleIndex).toBe(3);
+    setBoundingClientRect(element, { width: 200 });
+    element.dispatchEvent(new Event('test:resize'));
+
+    await new Promise(requestAnimationFrame);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
+});
 
-  it('should not compute when last visible is not found', () => {
-    const container = document.createElement('div');
-    const opener = document.createElement('div');
+describe('useObserveWidth', () => {
+  const spy = jest.fn();
 
-    container.append(opener);
+  const TestComponent = () => {
+    useObserveWidth(
+      {
+        get current() {
+          spy();
+          return null;
+        },
+      },
+      () => void 0,
+    );
 
-    const viewState = defineViewState(container, [], opener, 0);
+    return <div>Hello</div>;
+  };
 
-    expect(viewState.lastVisibleIndex).toBe(-1);
+  it('should not observe when ref is empty', () => {
+    render(<TestComponent />);
+    expect(spy).toHaveBeenCalledTimes(0);
   });
 });
