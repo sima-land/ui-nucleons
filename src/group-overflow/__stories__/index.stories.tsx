@@ -5,7 +5,7 @@ import { Chips } from '@sima-land/ui-nucleons/chips';
 import { on } from '@sima-land/ui-nucleons/helpers/on';
 
 export default {
-  title: 'common/GroupOverflow',
+  title: 'service/GroupOverflow',
   component: GroupOverflow,
   parameters: {
     layout: 'fullscreen',
@@ -17,14 +17,12 @@ export function Primary() {
 
   return (
     <Layout>
-      <div style={{ padding: '24px 0' }}>
-        <h3>Всего элементов: {items.length}</h3>
-        <GroupOverflow tail={data => <Chips.Item checked>+{data.hiddenCount}</Chips.Item>}>
-          {items.map((item, index) => (
-            <Chips.Item key={index}>{item}</Chips.Item>
-          ))}
-        </GroupOverflow>
-      </div>
+      <h3>Всего элементов: {items.length}</h3>
+      <GroupOverflow tail={data => <Chips.Item checked>+{data.hiddenCount}</Chips.Item>}>
+        {items.map((item, index) => (
+          <Chips.Item key={index}>{item}</Chips.Item>
+        ))}
+      </GroupOverflow>
     </Layout>
   );
 }
@@ -42,17 +40,15 @@ export function Limitation() {
 
   return (
     <Layout>
-      <div style={{ padding: '24px 0' }}>
-        <h3>Всего элементов: {items.length}</h3>
+      <h3>Всего элементов: {items.length}</h3>
 
-        <GroupOverflow tail={tail}>
-          {items.slice(0, max).map((item, index) => (
-            <Chips.Item key={index}>{item}</Chips.Item>
-          ))}
+      <GroupOverflow tail={tail}>
+        {items.slice(0, max).map((item, index) => (
+          <Chips.Item key={index}>{item}</Chips.Item>
+        ))}
 
-          <Chips.Item checked>+{items.length - max}</Chips.Item>
-        </GroupOverflow>
-      </div>
+        <Chips.Item checked>+{items.length - max}</Chips.Item>
+      </GroupOverflow>
     </Layout>
   );
 }
@@ -64,14 +60,12 @@ export function WithoutTail() {
 
   return (
     <Layout>
-      <div style={{ padding: '24px 0' }}>
-        <h3>Всего элементов: {items.length}</h3>
-        <GroupOverflow>
-          {items.map((item, index) => (
-            <Chips.Item key={index}>{item}</Chips.Item>
-          ))}
-        </GroupOverflow>
-      </div>
+      <h3>Всего элементов: {items.length}</h3>
+      <GroupOverflow>
+        {items.map((item, index) => (
+          <Chips.Item key={index}>{item}</Chips.Item>
+        ))}
+      </GroupOverflow>
     </Layout>
   );
 }
@@ -99,15 +93,13 @@ export function TestCountChange() {
 
   return (
     <Layout>
-      <div style={{ padding: '24px 0' }}>
-        <h3>Всего элементов: {items.length}</h3>
-        <GroupOverflow tail={data => <Chips.Item checked>+{data.hiddenCount}</Chips.Item>}>
-          {items.map((item, index) => (
-            <Chips.Item key={index}>{item}</Chips.Item>
-          ))}
-        </GroupOverflow>
-        <p>Используйте стрелки на клавиатуре чтобы изменить кол-во элементов</p>
-      </div>
+      <h3>Всего элементов: {items.length}</h3>
+      <GroupOverflow tail={data => <Chips.Item checked>+{data.hiddenCount}</Chips.Item>}>
+        {items.map((item, index) => (
+          <Chips.Item key={index}>{item}</Chips.Item>
+        ))}
+      </GroupOverflow>
+      <p>Используйте стрелки на клавиатуре чтобы изменить кол-во элементов</p>
     </Layout>
   );
 }

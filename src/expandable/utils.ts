@@ -1,121 +1,103 @@
-import { RefObject, useCallback, useEffect, useState } from 'react';
-import { useIsomorphicLayoutEffect } from '../hooks';
-import { on } from '../helpers/on';
-import styles from './expandable-group.module.scss';
-
-export interface ViewState {
-  lastVisibleIndex: number;
-}
+import { RefObject, useEffect, useRef } from 'react';
 
 /**
- * Хук состояния группы элементов ограниченных несколькими строками с возможностью показать все.
- * @param options.expanded Развернут ли список.
- * @param options.wrapperRef Реф элемента, формирующего ограничение по высоте.
- * @param options.containerRef Реф элемента, содержащего список.
- * @param options.openerRef Реф элемента "открывашки".
- * @param options.gap Расстояние между элементами списка.
- * @return Рассчитанные данные: кол-во скрытых элементов.
+ * Определяет последний дочерний элемент который должен быть виден чтобы влезла "открывашка".
+ * @param payload Данные.
+ * @return Результат.
+ *
+ * ВАЖНО: lastVisibleIndex: -1 означает что все элементы видны и "открывашка" не нужна.
  */
-export function useExpandable({
-  expanded,
-  wrapperRef,
-  containerRef,
-  openerRef,
+export function defineLastVisible({
+  outer,
+  inner,
   gap,
+  opener,
+  openerWidth,
 }: {
-  expanded: boolean;
-  wrapperRef: RefObject<HTMLElement>;
-  containerRef: RefObject<HTMLElement>;
-  openerRef: RefObject<HTMLElement>;
+  outer: Element;
+  inner: Element;
   gap: number;
+  opener: Element;
+  openerWidth: number;
 }) {
-  const [hiddenCount, setHiddenCount] = useState(0);
+  const items = [...inner.children].filter(el => el !== opener);
 
-  const calc = useCallback(() => {
-    const wrapperEl = wrapperRef.current;
-    const containerEl = containerRef.current;
-    const openerEl = openerRef.current;
-
-    if (expanded) {
-      if (containerEl) {
-        for (const item of containerEl.children) {
-          item.classList.remove(styles.hidden);
-        }
-      }
-    } else {
-      if (wrapperEl && containerEl && openerEl) {
-        const items = [...containerEl.children].filter(child => child !== openerEl);
-
-        // делаем все элементы списка видимыми чтобы правильно считать размеры
-        for (const item of items) {
-          item.classList.remove(styles.hidden);
-        }
-
-        // определяем какие элементы не влезли в ограничение по высоте
-        const state = defineViewState(wrapperEl, items, openerEl, gap);
-
-        if (state.lastVisibleIndex !== -1) {
-          // делаем невидимыми элементы списка которые не влезли
-          for (const [index, item] of items.entries()) {
-            if (item !== openerEl && index >= state.lastVisibleIndex) {
-              item.classList.add(styles.hidden);
-            }
-          }
-        }
-
-        setHiddenCount(state.lastVisibleIndex !== -1 ? items.length - state.lastVisibleIndex : 0);
-      }
-    }
-  }, [expanded, gap, wrapperRef, containerRef, openerRef]);
-
-  // пересчитываем после каждого rerender'а
-  useIsomorphicLayoutEffect(calc);
-
-  // пересчитываем при resize
-  useEffect(() => on(window, 'resize', calc), [calc]);
-
-  return { hiddenCount };
-}
-
-/**
- * Определяет индекс последнего видимого элемента для свернутого списка.
- * @param wrapper Элемент, формирующий ограничение по высоте.
- * @param items Элементы, все кроме "закрывашки".
- * @param opener Элемент "закрывашки".
- * @param gap Расстояние между элементами списка.
- * @return Состояние.
- */
-export function defineViewState(
-  wrapper: HTMLElement,
-  items: Element[],
-  opener: HTMLElement,
-  gap: number,
-): ViewState {
-  const state: ViewState = { lastVisibleIndex: -1 };
-
-  const parentRect = wrapper.getBoundingClientRect();
-
-  const firstHiddenNodeIndex = items.findIndex(child => {
-    const childRect = child.getBoundingClientRect();
-    return childRect.top - parentRect.top >= parentRect.height;
-  });
-
-  if (firstHiddenNodeIndex !== -1) {
-    const lastVisibleIndex = firstHiddenNodeIndex - 1;
-    const lastVisible = items[lastVisibleIndex];
-
-    if (lastVisible) {
-      const rightBound = lastVisible.getBoundingClientRect().right;
-      const rightContainerBound = wrapper.getBoundingClientRect().right;
-
-      // хватает ли кнопке места после последнего видимого дочернего элемента с учетом отступа между элементами
-      const isOpenerFit: boolean = rightContainerBound - rightBound - gap >= opener.clientWidth;
-
-      // если хватает места - ставим кнопку после последнего, иначе - вместо
-      // @todo возможна ситуация когда нужно будет удалить N элементов чтобы влезла кнопка
-      state.lastVisibleIndex = lastVisibleIndex + Number(isOpenerFit);
-    }
+  // если список пуст или состоит из одного элемента - видны все, открывашка не нужна
+  if (items.length <= 1) {
+    return { lastVisibleIndex: -1 };
   }
 
-  return state;
+  const bounds = outer.getBoundingClientRect();
+
+  // индекс последнего элемента который должен быть виден
+  let lastVisibleIndex = items.length - 1;
+
+  while (
+    items[lastVisibleIndex] &&
+    items[lastVisibleIndex].getBoundingClientRect().bottom > bounds.bottom
+  ) {
+    lastVisibleIndex--;
+  }
+
+  const last: Element | undefined = items[items.length - 1];
+
+  // если последний видимый является последним в списке - видны все, открывашка не нужна
+  if (last === items[lastVisibleIndex]) {
+    return { lastVisibleIndex: -1 };
+  }
+
+  while (
+    lastVisibleIndex >= 1 &&
+    items[lastVisibleIndex] &&
+    bounds.right - items[lastVisibleIndex].getBoundingClientRect().right < openerWidth + gap
+  ) {
+    lastVisibleIndex--;
+  }
+
+  // @todo он не должен быть первым на строке
+  return { lastVisibleIndex };
+}
+
+/**
+ * Регистрирует обработчик изменения ширины элемента.
+ * @param element Элемент.
+ * @param callback Callback.
+ * @return Функция отписки.
+ */
+export function observeWidth(element: Element, callback: VoidFunction) {
+  // eslint-disable-next-line require-jsdoc
+  const getWidth = () => element.getBoundingClientRect().width;
+
+  let lastWidth = getWidth();
+
+  const observer = new ResizeObserver(() => {
+    requestAnimationFrame(() => {
+      const actualWidth = getWidth();
+
+      if (lastWidth !== actualWidth) {
+        lastWidth = actualWidth;
+        callback();
+      }
+    });
+  });
+
+  observer.observe(element);
+
+  return () => observer.disconnect();
+}
+
+/**
+ * Хук для регистрации обработчика изменения ширины элемента.
+ * @param ref Ref элемента.
+ * @param callback Callback.
+ */
+export function useObserveWidth(ref: RefObject<Element>, callback: VoidFunction) {
+  const callbackRef = useRef(callback);
+  callbackRef.current = callback;
+
+  useEffect(() => {
+    if (ref.current) {
+      return observeWidth(ref.current, () => callbackRef.current());
+    }
+  }, [ref]);
 }

@@ -28,7 +28,8 @@ const config: Config = {
   coveragePathIgnorePatterns: [
     '\\.css$',
     '\\.scss$',
-    '/.jest/',
+    '/\\.jest/',
+    '__test__',
 
     // deprecated
     '<rootDir>/src/box',

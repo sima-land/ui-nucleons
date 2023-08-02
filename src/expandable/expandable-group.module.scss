@@ -12,15 +12,11 @@
 .item {
   display: block;
   padding: 0;
-  max-width: 100%;
+  max-width: calc(100% - var(--expandable-gap, 0));
   height: var(--expandable-item-height);
   margin: 0 (var(--expandable-gap)) var(--expandable-gap) 0;
   &.hidden {
     display: none;
-  }
-  &.invisible {
-    opacity: 0;
-    pointer-events: none;
   }
   &.opener {
     width: var(--expandable-opener-width);
