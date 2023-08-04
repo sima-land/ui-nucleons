@@ -1,27 +1,12 @@
-import { Fragment, useState } from 'react';
-import { Avatar } from '@sima-land/ui-nucleons/avatar';
-import { random } from 'lodash';
-import dogPng from './dog.png';
+import {
+  Avatar,
+  getNameInitials,
+  getAvatarIconProps,
+  getUserAvatarProps,
+} from '@sima-land/ui-nucleons/avatar';
+import dog from './dog.png';
+import PersonSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Person';
 import { someImageUrl } from '../../../.storybook/utils';
-
-const propsVariants = [
-  {
-    title: 'С картинкой',
-    props: { imageUrl: someImageUrl(200) },
-  },
-  {
-    title: 'С картинкой (PNG)',
-    props: { imageUrl: dogPng },
-  },
-  {
-    title: 'Только инициалы',
-    props: { title: 'Пушкин Александр Сергеевич' },
-  },
-  {
-    title: 'Без данных',
-    props: {},
-  },
-];
 
 export default {
   title: 'common/Avatar',
@@ -31,96 +16,79 @@ export default {
   },
 };
 
-export function Primary() {
+export function WithImage() {
+  const src = someImageUrl({ w: 200 });
+
   return (
     <>
-      {propsVariants.map((variant, index) => (
-        <Fragment key={index}>
-          <h3>{variant.title}</h3>
-          <Avatar key={index} {...variant.props} />
-        </Fragment>
-      ))}
+      <Avatar src={src} />
     </>
   );
 }
 
-Primary.storyName = 'Простой пример';
+WithImage.storyName = 'Картинка';
 
-export function DifferentColors() {
+export function WithPNG() {
   return (
     <>
-      {propsVariants.map((variant, index) => (
-        <Fragment key={index}>
-          <h3>{variant.title}</h3>
-          <Avatar
-            key={index}
-            {...variant.props}
-            bgColor='additional-teal'
-            textColor='basic-white'
-          />
-        </Fragment>
-      ))}
+      <Avatar src={dog} />
     </>
   );
 }
 
-DifferentColors.storyName = 'Различные цвета';
+WithPNG.storyName = 'Картинка PNG';
 
-export function DifferentSizes() {
+export function WithInitials() {
   return (
     <>
-      {propsVariants.map((variant, variantIndex) => (
-        <Fragment key={variantIndex}>
-          <h3>{variant.title}</h3>
-          {[40, 48, 56, 64, 72, 80, 104].map((size, index) => (
-            <Fragment key={index}>
-              <h4>size={size}</h4>
-              <Avatar key={`${index}-${variantIndex}`} {...variant.props} size={size} />
-            </Fragment>
-          ))}
-        </Fragment>
-      ))}
+      <Avatar>{getNameInitials('Александр Пушкин')}</Avatar>
     </>
   );
 }
 
-DifferentSizes.storyName = 'Различные размеры';
+WithInitials.storyName = 'Инициалы';
 
-export function DifferentImages() {
+export function WithIcon() {
   return (
     <>
-      <h3>Рабочие URL</h3>
-      {Array(3)
-        .fill(0)
-        .map((zero, index) => (
-          <Fragment key={index}>
-            <Avatar key={index} imageUrl={someImageUrl({ w: 200, id: index })} />
-            <br />
-          </Fragment>
-        ))}
-
-      <h3>Нерабочий URL</h3>
-      <Avatar imageUrl='https://foo123.bar345/' />
+      <Avatar>
+        <PersonSVG {...getAvatarIconProps()} />
+      </Avatar>
     </>
   );
 }
 
-DifferentImages.storyName = 'Различные изображения';
+WithIcon.storyName = 'Иконка';
 
-export function DeferredImageURLChange() {
-  const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
-
+export function WithCustomColors() {
   return (
     <>
-      <div style={{ marginBottom: 16 }}>
-        <Avatar imageUrl={imageUrl} />
-      </div>
-
-      <button onClick={() => setImageUrl(someImageUrl({ w: 200, h: 200, id: random(10, 20) }))}>
-        Set URL
-      </button>
+      <Avatar style={{ '--avatar-color': '#9b59b6', '--avatar-text-color': '#fff' }}>А</Avatar>
     </>
   );
 }
 
-DeferredImageURLChange.storyName = 'Тест: отложенная загрузка изображения';
+WithCustomColors.storyName = 'Свои цвета';
+
+export function UserAvatar() {
+  return (
+    <>
+      <h4>Имя, фамилия и фото</h4>
+      <Avatar {...getUserAvatarProps({ id: 1, name: 'Лев Толстой', image: someImageUrl(200) })} />
+
+      <h4>Имя, фамилия и битое фото</h4>
+      <Avatar {...getUserAvatarProps({ id: 2, name: 'Лев Толстой', image: '/broken-image.png' })} />
+
+      <h4>Имя и фамилия</h4>
+      <Avatar {...getUserAvatarProps({ id: 3, name: 'Лев Толстой' })} />
+
+      <h4>Только имя</h4>
+      <Avatar {...getUserAvatarProps({ id: 4, name: 'Лев' })} />
+
+      <h4>Без данных</h4>
+      <Avatar {...getUserAvatarProps({ id: 5, name: undefined })} />
+    </>
+  );
+}
+
+UserAvatar.storyName = 'Аватар пользователя';

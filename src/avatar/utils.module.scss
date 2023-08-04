@@ -1,0 +1,10 @@
+.icon {
+  fill: currentColor;
+  width: calc(var(--avatar-size, 72px) / 2);
+  height: calc(var(--avatar-size, 72px) / 2);
+}
+
+.user {
+  --avatar-text-color: #fff;
+  --avatar-color-opacity: 0.48;
+}

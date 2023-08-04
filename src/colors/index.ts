@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT CHANGE IT MANUALLY
 
-const collection = {
+/** Цвета дизайн-системы. */
+export const COLOR = {
   // basic
   'basic-blue': '#1f84db',
   'basic-gray87': '#212121',
@@ -44,5 +45,5 @@ const collection = {
   'additional-unlit-blue': '#1b75c2',
 } as const;
 
-export type Token = keyof typeof collection;
-export const COLORS = new Map(Object.entries(collection)) as Map<Token, string>;
+export type Token = keyof typeof COLOR;
+export const COLORS = new Map(Object.entries(COLOR)) as Map<Token, string>;

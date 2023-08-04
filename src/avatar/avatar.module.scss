@@ -1,16 +1,4 @@
-@use 'sass:map';
-
-$sizes: 40, 48, 56, 64, 72, 80, 104;
-
-$textSizes: (
-  40: 12,
-  48: 16,
-  56: 16,
-  64: 16,
-  72: 16,
-  80: 16,
-  104: 24,
-);
+@use '../colors';
 
 @mixin layer {
   position: absolute;
@@ -29,49 +17,38 @@ $textSizes: (
   flex-shrink: 0;
   border-radius: 50%;
   overflow: hidden;
+  width: var(--avatar-size, 72px);
+  height: var(--avatar-size, 72px);
+  color: var(--avatar-text-color, #{colors.$basic-gray87});
   &::before {
     @include layer;
     content: '';
     display: block;
-    background: var(--avatar-color, none);
+    background: var(--avatar-color, #{colors.$basic-gray4});
     opacity: var(--avatar-color-opacity, 1);
   }
-}
-
-@each $size in $sizes {
-  .size-#{$size} {
-    width: #{$size}px;
-    height: #{$size}px;
-    .monogram {
-      font-size: #{map.get($textSizes, $size)}px;
-    }
+  &.image-overlay::after {
+    @include layer;
+    content: '';
+    pointer-events: none;
+    background: #000;
+    opacity: 0.04;
   }
 }
 
-.monogram {
+.content {
+  font-size: calc(var(--avatar-size, 72px) / 3);
   position: relative;
-  padding: 0 8px;
   font-weight: 600;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 
   // ВАЖНО: чтобы например обертка в виде ссылки не накидывала text-decoration: underline
   text-decoration: none;
-}
-
-.icon {
-  position: relative;
-  fill: currentColor;
 }
 
 .layer {
   @include layer;
   &.image {
     object-fit: cover;
-  }
-  &.image-overlay {
-    background: #000;
-    opacity: 0.04;
   }
 }
