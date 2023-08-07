@@ -70,6 +70,24 @@ export function WithCustomColors() {
 
 WithCustomColors.storyName = 'Свои цвета';
 
+export function WithCustomSize() {
+  return (
+    <div style={{ display: 'flex', gap: '16px' }}>
+      <Avatar style={{ '--avatar-size': '128px' }} src={someImageUrl({ w: 200 })} />
+
+      <Avatar style={{ '--avatar-size': '128px' }} src={dog} />
+
+      <Avatar style={{ '--avatar-size': '128px' }}>А</Avatar>
+
+      <Avatar style={{ '--avatar-size': '128px' }}>
+        <PersonSVG {...getAvatarIconProps()} />
+      </Avatar>
+    </div>
+  );
+}
+
+WithCustomSize.storyName = 'Свой размер';
+
 export function UserAvatar() {
   return (
     <>
