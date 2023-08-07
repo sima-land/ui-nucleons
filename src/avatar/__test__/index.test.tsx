@@ -1,38 +1,29 @@
 import { act, fireEvent, render } from '@testing-library/react';
 import { Avatar } from '../index';
 
-describe('<Avatar />', () => {
+describe('Avatar', () => {
   it('should handle size and imageUrl', () => {
-    const { container, getByTestId } = render(<Avatar size={40} imageUrl='www.images.com' />);
+    const { container } = render(<Avatar src='www.images.com' />);
 
-    expect(getByTestId('avatar').classList.contains('size-40')).toBe(true);
     expect(container.querySelectorAll('img[src="www.images.com"]')).toHaveLength(1);
   });
 
   it('should render without image', () => {
-    const { container } = render(<Avatar title='Johnson Carl' />);
+    const { container } = render(<Avatar>CJ</Avatar>);
 
     expect(container.querySelectorAll('img')).toHaveLength(0);
     expect(container.textContent).toBe('CJ');
   });
 
-  it('should render without image and title', () => {
+  it('should render without image and children', () => {
     const { container } = render(<Avatar />);
 
     expect(container.querySelectorAll('img')).toHaveLength(0);
     expect(container.textContent).toBe('');
   });
 
-  it('should handle wrong size', () => {
-    const { getByTestId } = render(<Avatar size={49.92} title='Jason' />);
-
-    expect(getByTestId('avatar').classList.contains('size-72')).toBe(true);
-  });
-
   it('should handle image error', () => {
-    const { container } = render(
-      <Avatar size={49.92} title='John Doe' imageUrl='https://www.images.com/random/' />,
-    );
+    const { container } = render(<Avatar src='https://www.images.com/random/' />);
 
     expect(container.querySelectorAll('img')).toHaveLength(1);
 
@@ -46,19 +37,17 @@ describe('<Avatar />', () => {
   });
 
   it('should handle imageUrl change', () => {
-    const { container, rerender } = render(
-      <Avatar title='John Doe' imageUrl='https://www.images.com/random/' />,
-    );
+    const { container, rerender } = render(<Avatar src='https://www.images.com/random/' />);
 
     expect(container.querySelectorAll('img[src="https://www.images.com/random/"]')).toHaveLength(1);
 
-    rerender(<Avatar title='John Doe' imageUrl='https://www.images.com/other/' />);
+    rerender(<Avatar src='https://www.images.com/other/' />);
 
     expect(container.querySelectorAll('img[src="https://www.images.com/other/"]')).toHaveLength(1);
   });
 
   it('should handle "data-testid"', async function () {
-    const { queryAllByTestId } = render(<Avatar size={40} data-testid='specific-avatar' />);
+    const { queryAllByTestId } = render(<Avatar data-testid='specific-avatar' />);
 
     expect(queryAllByTestId('avatar')).toHaveLength(0);
     expect(queryAllByTestId('specific-avatar')).toHaveLength(1);

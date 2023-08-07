@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT CHANGE IT MANUALLY
 
-const collection = {
+/** Цвета дизайн-системы. */
+export const COLOR = {
   {{#each colorsByGroups}}
   // {{@key}}
   {{#each this}}
@@ -12,5 +13,5 @@ const collection = {
   {{/each}}
 } as const;
 
-export type Token = keyof typeof collection;
-export const COLORS = new Map(Object.entries(collection)) as Map<Token, string>;
+export type Token = keyof typeof COLOR;
+export const COLORS = new Map(Object.entries(COLOR)) as Map<Token, string>;
