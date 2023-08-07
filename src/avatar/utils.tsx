@@ -1,26 +1,25 @@
 import type { SVGAttributes } from 'react';
 import type { AvatarProps } from './types';
-import { COLOR } from '../colors';
 import PersonSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Person';
 import classNames from 'classnames';
 import styles from './utils.module.scss';
 
 const USER_AVATAR_COLOR_TOKENS: ReadonlyArray<string> = [
-  COLOR['additional-deep-red'],
-  COLOR['additional-red'],
-  COLOR['additional-teal'],
-  COLOR['additional-green'],
-  COLOR['additional-light-green'],
-  COLOR['additional-amber'],
-  COLOR['additional-pink'],
-  COLOR['additional-purple'],
-  COLOR['additional-violet'],
-  COLOR['additional-deep-purple'],
-  COLOR['basic-blue'],
-  COLOR['additional-light-blue'],
-  COLOR['additional-cyan'],
-  COLOR['additional-blue-gray'],
-  COLOR['additional-deep-orange'],
+  '#eb8585',
+  '#fda09b',
+  '#f49bb1',
+  '#ffd785',
+  '#ffbb85',
+  '#89d7c7',
+  '#85e5ac',
+  '#b5ef90',
+  '#93c4ee',
+  '#85caf5',
+  '#85ddea',
+  '#b3c1c7',
+  '#dc9bd5',
+  '#b4a8f0',
+  '#c999e9',
 ];
 
 /**

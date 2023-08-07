@@ -24,7 +24,7 @@ describe('getNameInitials()', () => {
 
 describe('getUserAvatarColor', () => {
   it('should return color based on identity', () => {
-    expect(getUserAvatarColor('12345')).toBe('#d50000');
+    expect(getUserAvatarColor('12345')).toBe('#eb8585');
   });
 });
 
@@ -52,7 +52,7 @@ describe('getUserAvatarProps', () => {
     );
 
     expect(getByTestId('avatar').classList.contains('hello-world')).toBe(true);
-    expect(getByTestId('avatar').style.getPropertyValue('--avatar-color')).toBe('#634bdf');
+    expect(getByTestId('avatar').style.getPropertyValue('--avatar-color')).toBe('#85caf5');
     expect(container.querySelectorAll('img[src="http://img.com/user"]')).toHaveLength(1);
 
     act(() => {
