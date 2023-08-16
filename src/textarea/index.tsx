@@ -68,7 +68,7 @@ export function Textarea({
   placeholder,
   readOnly,
   required,
-  rows = 4,
+  rows = 2,
   value,
 
   // FieldBlock props

@@ -83,18 +83,21 @@ function ExpandableGroupInner({
   // даем возможность управлять состоянием с помощью пропса "expanded"
   useEffect(() => {
     if (typeof expandedProp === 'boolean') {
-      setState(expandedProp ? expandedState : initialState);
+      // ВАЖНО: передаем именно копию состояний чтобы гарантированно вызвать рендер
+      setState(expandedProp ? { ...expandedState } : { ...initialState });
     }
   }, [expandedProp]);
 
   // если "time" обновился - это сигнал о том что надо пересчитать состояние
   useEffect(() => {
-    setState(current => (current.status === 'expanded' ? current : initialState));
+    // ВАЖНО: передаем именно копию состояний чтобы гарантированно вызвать рендер
+    setState(current => (current.status === 'expanded' ? current : { ...initialState }));
   }, [time]);
 
   // следим за изменением ширины чтобы запустить перерасчет
   useObserveWidth(outerRef, () => {
-    setState(current => (current.status === 'expanded' ? current : initialState));
+    // ВАЖНО: передаем именно копию состояний чтобы гарантированно вызвать рендер
+    setState(current => (current.status === 'expanded' ? current : { ...initialState }));
   });
 
   // выполняем расчет
