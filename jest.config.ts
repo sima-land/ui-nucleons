@@ -22,7 +22,6 @@ const config: Config = {
     // из некоторых пакетов мы берем стили так что игнорируем только скрипты
     '/node_modules/.+js$',
   ],
-  snapshotSerializers: ['enzyme-to-json/serializer'],
   testPathIgnorePatterns: ['<rootDir>/.yarn-cache/', '<rootDir>/node_modules/'],
   modulePathIgnorePatterns: ['<rootDir>/.yarn-cache/', '<rootDir>/build/'],
   coveragePathIgnorePatterns: [
