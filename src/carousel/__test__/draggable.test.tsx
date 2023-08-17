@@ -1,414 +1,383 @@
-import { Component } from 'react';
-import { mount, ReactWrapper } from 'enzyme';
-import { isFunction } from 'lodash';
-import Draggable from '../draggable';
-import DraggableEvent from '../helpers/draggable-event';
-import { IPoint } from '../../helpers/point';
+import { render } from '@testing-library/react';
+import { createRef } from 'react';
+import { Point } from '../../helpers/point';
+import { getTransitionStyle } from '../../helpers/styles';
+import { Draggable } from '../draggable';
 
-class StubDraggable extends Component implements Draggable {
-  isGrabbed = false;
-  hasTransition = false;
-  needPreventClick = false;
-  currentOffset: IPoint = { x: 0, y: 0 };
-  clientPosition: IPoint = { x: 0, y: 0 };
-  draggableRef: React.RefObject<HTMLDivElement> = { current: null };
-  offList: Array<VoidFunction> = [];
+describe('Draggable', () => {
+  it('constructor()', () => {
+    const instance = new Draggable({});
 
-  componentDidMount() {
-    return void 0;
-  }
-  componentWillUnmount() {
-    return void 0;
-  }
-  initGlobalListeners() {
-    return void 0;
-  }
-  passControl() {
-    return void 0;
-  }
-  startCapture() {
-    return void 0;
-  }
-  handleMove() {
-    return void 0;
-  }
-  handleMoveEnd() {
-    return void 0;
-  }
-  handleClickCapture() {
-    return void 0;
-  }
-  getClientDelta() {
-    return { dx: 0, dy: 0 };
-  }
-  isTransitionEnabled() {
-    return false;
-  }
-  saveClientPosition() {
-    return void 0;
-  }
-  toggleGrabbed() {
-    return void 0;
-  }
-  toggleTransition() {
-    return void 0;
-  }
-  togglePreventClickNeed() {
-    return void 0;
-  }
-  setOffset() {
-    return void 0;
-  }
-  render() {
-    return <></>;
-  }
-}
-
-/**
- * Возвращает поддельное событие мыши.
- * @param clientX Значение свойства clientX.
- * @param clientY Значение свойства clientY.
- * @param button Значение свойства button.
- * @return Поддельное событие.
- */
-const makeMouseEvent = (clientX = 0, clientY = 0, button = 0): any => ({
-  clientX,
-  clientY,
-  button,
-});
-
-/**
- * Возвращает поддельное touch-событие.
- * @param clientX Значение свойства clientX первого объекта из списка touches.
- * @param clientY Значение свойства clientY первого объекта из списка touches.
- * @return Поддельное событие.
- */
-const makeTouchEvent = (clientX = 0, clientY = 0): any => ({
-  touches: [{ clientX, clientY }],
-});
-
-describe('<Draggable />', () => {
-  const getDraggableEl = (w: ReactWrapper) =>
-    w.find('div.draggable').getDOMNode() as HTMLDivElement;
-
-  let initialGetSelection: any;
-
-  beforeAll(() => {
-    initialGetSelection = window.getSelection;
-    window.getSelection = jest.fn(() => ({
-      removeAllRanges: jest.fn(),
-    })) as any;
+    expect(instance.isGrabbed).toBe(false);
+    expect(instance.hasTransition).toBe(false);
+    expect(instance.needPreventClick).toBe(false);
+    expect(instance.currentOffset).toEqual(Point());
+    expect(instance.clientPosition).toEqual(Point());
+    expect(instance.draggableRef).toEqual(createRef());
+    expect(instance.offList).toEqual([]);
   });
 
-  afterAll(() => {
-    window.getSelection = initialGetSelection;
+  it('componentDidMount()', () => {
+    const instance = new Draggable({});
+
+    jest.spyOn(instance, 'initGlobalListeners');
+    jest.spyOn(instance, 'passControl');
+
+    expect(instance.initGlobalListeners).toHaveBeenCalledTimes(0);
+    expect(instance.passControl).toHaveBeenCalledTimes(0);
+
+    instance.componentDidMount();
+
+    expect(instance.initGlobalListeners).toHaveBeenCalledTimes(1);
+    expect(instance.passControl).toHaveBeenCalledTimes(1);
   });
 
-  it('should render without props', () => {
-    const wrapper = mount(<Draggable />);
-    expect(wrapper.find('.draggable-container')).toHaveLength(1);
+  it('initGlobalListeners()', () => {
+    const instance = new Draggable({});
+
+    expect(instance.offList).toEqual([]);
+    instance.initGlobalListeners();
+    expect(instance.offList).toHaveLength(5);
   });
 
-  it('should call offList on unmount', () => {
-    const testInstance = {
-      offList: [jest.fn(), jest.fn(), jest.fn(), jest.fn(), jest.fn(), jest.fn()],
-    };
-    testInstance.offList.forEach(fn => {
-      expect(fn).toHaveBeenCalledTimes(0);
+  it('passControl()', () => {
+    const spy = jest.fn();
+    const instance = new Draggable({ takeControl: spy });
+
+    expect(spy).toHaveBeenCalledTimes(0);
+    instance.passControl();
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('componentWillUnmount()', () => {
+    const instance = new Draggable({});
+    const spy = jest.fn();
+    instance.offList = [spy];
+
+    expect(spy).toHaveBeenCalledTimes(0);
+    instance.componentWillUnmount();
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('startCapture() should do nothing when active false', () => {
+    const instance = new Draggable({ active: false });
+
+    jest.spyOn(instance, 'toggleGrabbed');
+    expect(instance.toggleGrabbed).toHaveBeenCalledTimes(0);
+    instance.startCapture(new MouseEvent('test'));
+    expect(instance.toggleGrabbed).toHaveBeenCalledTimes(0);
+  });
+
+  it('startCapture() should works when active true', () => {
+    const spy = jest.fn();
+    const instance = new Draggable({ active: true, onDragStart: spy });
+
+    const event = new MouseEvent('test');
+
+    jest.spyOn(event, 'preventDefault');
+    jest.spyOn(instance, 'toggleGrabbed');
+    jest.spyOn(instance, 'saveClientPosition');
+
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
+    expect(instance.toggleGrabbed).toHaveBeenCalledTimes(0);
+    expect(instance.saveClientPosition).toHaveBeenCalledTimes(0);
+
+    instance.startCapture(event);
+    expect(event.preventDefault).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(instance.toggleGrabbed).toHaveBeenCalledTimes(1);
+    expect(instance.saveClientPosition).toHaveBeenCalledTimes(1);
+  });
+
+  it('startCapture() should works when active undefined', () => {
+    const spy = jest.fn();
+    const instance = new Draggable({ active: undefined, onDragStart: spy });
+
+    const event = new MouseEvent('test');
+
+    jest.spyOn(event, 'preventDefault');
+    jest.spyOn(instance, 'toggleGrabbed');
+    jest.spyOn(instance, 'saveClientPosition');
+
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
+    expect(instance.toggleGrabbed).toHaveBeenCalledTimes(0);
+    expect(instance.saveClientPosition).toHaveBeenCalledTimes(0);
+
+    instance.startCapture(event);
+    expect(event.preventDefault).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(instance.toggleGrabbed).toHaveBeenCalledTimes(1);
+    expect(instance.saveClientPosition).toHaveBeenCalledTimes(1);
+  });
+
+  it('startCapture() should works when active for touch events', () => {
+    const spy = jest.fn();
+    const instance = new Draggable({ active: undefined, onDragStart: spy });
+
+    const event = new TouchEvent('test');
+
+    jest.spyOn(event, 'preventDefault');
+    jest.spyOn(instance, 'toggleGrabbed');
+    jest.spyOn(instance, 'saveClientPosition');
+
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
+    expect(instance.toggleGrabbed).toHaveBeenCalledTimes(0);
+    expect(instance.saveClientPosition).toHaveBeenCalledTimes(0);
+
+    instance.startCapture(event);
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(instance.toggleGrabbed).toHaveBeenCalledTimes(1);
+    expect(instance.saveClientPosition).toHaveBeenCalledTimes(1);
+  });
+
+  it('handleMove() should do nothing when isGrabbed false', () => {
+    const instance = new Draggable({});
+
+    jest.spyOn(instance, 'getClientDelta');
+    expect(instance.getClientDelta).toHaveBeenCalledTimes(0);
+    instance.handleMove(new MouseEvent('test'));
+    expect(instance.getClientDelta).toHaveBeenCalledTimes(0);
+  });
+
+  it('handleMove() should works when isGrabbed true', () => {
+    const spy = jest.fn();
+    const instance = new Draggable({ onDragMove: spy });
+
+    instance.toggleGrabbed(true);
+    jest.spyOn(instance, 'getClientDelta');
+    jest.spyOn(instance, 'saveClientPosition');
+
+    expect(spy).toHaveBeenCalledTimes(0);
+    expect(instance.getClientDelta).toHaveBeenCalledTimes(0);
+    expect(instance.saveClientPosition).toHaveBeenCalledTimes(0);
+
+    instance.handleMove(new MouseEvent('test'));
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(instance.getClientDelta).toHaveBeenCalledTimes(1);
+    expect(instance.saveClientPosition).toHaveBeenCalledTimes(1);
+  });
+
+  it('handleMove() should handle preventing of custom event', () => {
+    const instance = new Draggable({ onDragMove: e => e.preventDefault() });
+
+    instance.toggleGrabbed(true);
+    jest.spyOn(instance, 'setOffset');
+    jest.spyOn(instance, 'saveClientPosition');
+
+    expect(instance.setOffset).toHaveBeenCalledTimes(0);
+    expect(instance.saveClientPosition).toHaveBeenCalledTimes(0);
+
+    instance.handleMove(new MouseEvent('test'));
+    expect(instance.setOffset).toHaveBeenCalledTimes(0);
+    expect(instance.saveClientPosition).toHaveBeenCalledTimes(0);
+  });
+
+  it('handleMove() should handle axis prop', () => {
+    const instance = new Draggable({ axis: 'y' });
+
+    instance.toggleGrabbed(true);
+
+    expect(instance.currentOffset.x).toBe(0);
+    expect(instance.currentOffset.y).toBe(0);
+    instance.handleMove(new MouseEvent('test', { clientX: 100, clientY: 200 }));
+    expect(instance.currentOffset.x).toBe(0);
+    expect(instance.currentOffset.y).toBe(200);
+  });
+
+  it('handleMove() should handle axis prop when it is x', () => {
+    const instance = new Draggable({ axis: 'x' });
+
+    instance.toggleGrabbed(true);
+
+    expect(instance.currentOffset.x).toBe(0);
+    expect(instance.currentOffset.y).toBe(0);
+    instance.handleMove(new MouseEvent('test', { clientX: 100, clientY: 200 }));
+    expect(instance.currentOffset.x).toBe(100);
+    expect(instance.currentOffset.y).toBe(0);
+  });
+
+  it('handleMove() should works when isGrabbed true fot touch events', () => {
+    const spy = jest.fn();
+    const instance = new Draggable({ onDragMove: spy });
+
+    const event = new TouchEvent('test');
+    instance.toggleGrabbed(true);
+    jest.spyOn(instance, 'getClientDelta');
+    jest.spyOn(window, 'getSelection');
+    jest.spyOn(event, 'preventDefault');
+
+    expect(window.getSelection).toHaveBeenCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(0);
+    expect(instance.getClientDelta).toHaveBeenCalledTimes(0);
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
+
+    instance.handleMove(event);
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
+    expect(window.getSelection).toHaveBeenCalledTimes(0);
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(instance.getClientDelta).toHaveBeenCalledTimes(1);
+  });
+
+  it('handleMoveEnd() should do not call onDragEnd when isGrabbed false', () => {
+    const spy = jest.fn();
+    const instance = new Draggable({ onDragEnd: spy });
+
+    const event = new MouseEvent('test');
+    jest.spyOn(event, 'preventDefault');
+    instance.toggleGrabbed(false);
+
+    expect(spy).toHaveBeenCalledTimes(0);
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
+    instance.handleMoveEnd(event);
+    expect(spy).toHaveBeenCalledTimes(0);
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
+  });
+
+  it('handleMoveEnd() should do not call onDragEnd when onDragEnd is undefined', () => {
+    const instance = new Draggable({ onDragEnd: undefined });
+
+    const event = new MouseEvent('test');
+    jest.spyOn(event, 'preventDefault');
+    instance.toggleGrabbed(false);
+
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
+    instance.handleMoveEnd(event);
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
+  });
+
+  it('handleMoveEnd() should works when isGrabbed true', () => {
+    const spy = jest.fn();
+    const instance = new Draggable({ onDragEnd: spy });
+
+    const event = new MouseEvent('test');
+    jest.spyOn(event, 'preventDefault');
+    instance.toggleGrabbed(true);
+
+    expect(spy).toHaveBeenCalledTimes(0);
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
+    instance.handleMoveEnd(event);
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(event.preventDefault).toHaveBeenCalledTimes(1);
+  });
+
+  it('handleClickCapture()', () => {
+    const instance = new Draggable({});
+
+    const event = { preventDefault: jest.fn() } as any;
+    jest.spyOn(event, 'preventDefault');
+    instance.togglePreventClickNeed(true);
+    jest.spyOn(instance, 'togglePreventClickNeed');
+
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
+    expect(instance.togglePreventClickNeed).toHaveBeenCalledTimes(0);
+    instance.handleClickCapture(event);
+    expect(event.preventDefault).toHaveBeenCalledTimes(1);
+    expect(instance.togglePreventClickNeed).toHaveBeenCalledTimes(1);
+  });
+
+  it('handleClickCapture() should do nothing when needPreventClick false', () => {
+    const instance = new Draggable({});
+
+    const event = { preventDefault: jest.fn() } as any;
+    jest.spyOn(event, 'preventDefault');
+    instance.togglePreventClickNeed(false);
+    jest.spyOn(instance, 'togglePreventClickNeed');
+
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
+    expect(instance.togglePreventClickNeed).toHaveBeenCalledTimes(0);
+    instance.handleClickCapture(event);
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
+    expect(instance.togglePreventClickNeed).toHaveBeenCalledTimes(0);
+  });
+
+  it('getClientDelta()', () => {
+    const instance = new Draggable({});
+
+    const event = new MouseEvent('test', { clientX: 123, clientY: 456 });
+    expect(instance.getClientDelta(event)).toEqual({
+      dx: -123,
+      dy: -456,
     });
-    Draggable.prototype.componentWillUnmount.call(testInstance);
-    testInstance.offList.forEach(fn => {
-      expect(fn).toHaveBeenCalledTimes(1);
-    });
   });
 
-  it('should call "handleMove" method on window "mousemove" and "touchmove" events', () => {
-    jest.spyOn(Draggable.prototype, 'handleMove');
-    mount(<Draggable />);
-    expect(Draggable.prototype.handleMove).toHaveBeenCalledTimes(0);
-    window.dispatchEvent(new Event('mousemove'));
-    expect(Draggable.prototype.handleMove).toHaveBeenCalledTimes(1);
-    window.dispatchEvent(new Event('touchmove'));
-    expect(Draggable.prototype.handleMove).toHaveBeenCalledTimes(2);
+  it('toggleGrabbed()', () => {
+    const instance = new Draggable({});
+
+    expect(instance.isGrabbed).toBe(false);
+    instance.toggleGrabbed(true);
+    expect(instance.isGrabbed).toBe(true);
   });
 
-  it('should call "onDragStart" prop on container "mousedown/touchstart" only when active', () => {
-    const spy = jest.fn();
-    const wrapper = mount(<Draggable active={false} onDragStart={spy} />);
-    wrapper.find('.draggable-container').simulate('mousedown', makeMouseEvent());
-    wrapper.find('.draggable-container').simulate('touchstart', makeTouchEvent());
-    expect(spy).toHaveBeenCalledTimes(0);
+  it('toggleTransition()', () => {
+    const instance = new Draggable({ transitionDuration: 250 });
 
-    wrapper.setProps({ active: true });
-    wrapper.find('.draggable-container').simulate('mousedown', makeMouseEvent());
-    expect(spy).toHaveBeenCalledTimes(1);
-    wrapper.find('.draggable-container').simulate('touchstart', makeTouchEvent());
-    expect(spy).toHaveBeenCalledTimes(2);
+    const element = document.createElement('div');
+    instance.draggableRef = { current: element };
+    instance.hasTransition = false;
 
-    wrapper.setProps({ active: undefined });
-    wrapper.find('.draggable-container').simulate('mousedown', makeMouseEvent());
-    expect(spy).toHaveBeenCalledTimes(3);
-    wrapper.find('.draggable-container').simulate('touchstart', makeTouchEvent());
-    expect(spy).toHaveBeenCalledTimes(4);
+    expect(element.style.transition).toBe('');
+    instance.toggleTransition(true);
+    expect(instance.hasTransition).toBe(true);
+    expect(element.style.transition).toBe(getTransitionStyle(250, 'transform'));
   });
 
-  it('should call "onDragMove" prop on window "mousemove/touchmove" only after "mousedown" on container', () => {
-    const spy = jest.fn();
-    const wrapper = mount(<Draggable onDragMove={spy} />);
-    expect(spy).toHaveBeenCalledTimes(0);
+  it('toggleTransition() should disable transition', () => {
+    const instance = new Draggable({ transitionDuration: 250 });
 
-    // without capture
-    window.dispatchEvent(new MouseEvent('mousemove'));
-    window.dispatchEvent(new Event('touchmove'));
-    expect(spy).toHaveBeenCalledTimes(0);
+    const element = document.createElement('div');
+    instance.draggableRef = { current: element };
+    instance.hasTransition = true;
+    element.style.transition = getTransitionStyle(250, 'transform');
 
-    // start capture
-    wrapper.find('.draggable-container').simulate('mousedown', makeMouseEvent());
+    instance.toggleTransition(false);
+    expect(instance.hasTransition).toBe(false);
+    expect(element.style.transition).toBe('');
+  });
 
-    // check calls
-    window.dispatchEvent(new MouseEvent('mousemove', makeMouseEvent(12, 23)));
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy.mock.calls[0][0]).toEqual(
-      new DraggableEvent({
-        offset: { x: 0, y: 0 },
-        client: { x: 12, y: 23 },
-      }),
+  it('toggleTransition() should do nothing when draggableRef is empty', () => {
+    const instance = new Draggable({ transitionDuration: 250 });
+
+    instance.draggableRef = { current: null };
+    instance.hasTransition = false;
+
+    instance.toggleTransition(true);
+    expect(instance.hasTransition).toBe(false);
+  });
+
+  it('toggleTransition() should do nothing when hasTransition equals of argument', () => {
+    const instance = new Draggable({ transitionDuration: undefined });
+
+    const element = document.createElement('div');
+    instance.draggableRef = { current: element };
+    instance.hasTransition = false;
+
+    expect(element.style.transition).toBe('');
+    instance.toggleTransition(false);
+    expect(element.style.transition).toBe('');
+    expect(instance.hasTransition).toBe(false);
+  });
+
+  it('isTransitionEnabled()', () => {
+    const instance = new Draggable({});
+
+    instance.hasTransition = true;
+    expect(instance.isTransitionEnabled()).toBe(true);
+    instance.hasTransition = false;
+    expect(instance.isTransitionEnabled()).toBe(false);
+  });
+
+  it('render() should handle undefined props', () => {
+    const instance = new Draggable({ containerProps: undefined, transitionDuration: undefined });
+    instance.hasTransition = true;
+
+    const { container } = render(<>{instance.render()}</>);
+
+    expect(container.querySelector<HTMLDivElement>('.draggable')?.style.transition).toBe(
+      getTransitionStyle(320, 'transform'),
     );
-
-    window.dispatchEvent(new TouchEvent('touchmove', makeTouchEvent(40, 50)));
-    expect(spy).toHaveBeenCalledTimes(2);
-    expect(spy.mock.calls[1][0]).toEqual(
-      new DraggableEvent({
-        offset: { x: 12, y: 23 },
-        client: { x: 40, y: 50 },
-      }),
-    );
-  });
-
-  it('should call "onDragEnd" prop on window "mousemove/touchmove" only after "mousedown" on container', () => {
-    const spy = jest.fn();
-    const containerSelector = '.draggable-container';
-    const wrapper = mount(<Draggable onDragEnd={spy} />);
-
-    window.dispatchEvent(new MouseEvent('mouseup', makeMouseEvent(12, 23)));
-    expect(spy).toHaveBeenCalledTimes(0);
-
-    // start capture
-    wrapper.find(containerSelector).simulate('touchstart', makeTouchEvent());
-    expect(spy).toHaveBeenCalledTimes(0);
-
-    window.dispatchEvent(new MouseEvent('mousemove', makeMouseEvent(10, 20)));
-    window.dispatchEvent(new MouseEvent('mouseup', makeMouseEvent(10, 20)));
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy.mock.calls[0][0]).toEqual(
-      new DraggableEvent({
-        offset: { x: 10, y: 20 },
-        client: { x: 10, y: 20 },
-      }),
-    );
-  });
-
-  it('should handle "containerProps" prop', () => {
-    const wrapper = mount(
-      <Draggable
-        containerProps={{
-          className: 'test-container',
-          style: { width: 300, height: 300 },
-        }}
-      />,
-    );
-    expect(wrapper.find('.draggable-container').prop('className')).toContain('test-container');
-    expect(wrapper.find('.draggable-container').prop('style')).toEqual({
-      width: 300,
-      height: 300,
-    });
-  });
-
-  it('should handle "axis" prop', () => {
-    const wrapper = mount(<Draggable axis='x' />);
-
-    // start capture
-    wrapper.find('.draggable-container').simulate('touchstart', makeTouchEvent());
-
-    // simulate touchmove
-    window.dispatchEvent(new TouchEvent('touchmove', makeTouchEvent(65, 54)));
-
-    expect((wrapper.getDOMNode().querySelector('.draggable') as any).style.transform).toBe(
-      'translate3d(65px, 0px, 0px)',
-    );
-
-    // change axis
-    wrapper.setProps({ axis: 'y' });
-
-    // simulate touchmove
-    window.dispatchEvent(new TouchEvent('touchmove', makeTouchEvent(124, 235)));
-
-    expect((wrapper.getDOMNode().querySelector('.draggable') as any).style.transform).toBe(
-      'translate3d(65px, 181px, 0px)',
-    );
-  });
-
-  it('should passControl to "takeControl" prop', () => {
-    let testControl: any = null;
-
-    const takeControlSpy = jest.fn(control => {
-      testControl = control;
-    });
-
-    const wrapper = mount(<Draggable takeControl={takeControlSpy} transitionDuration={500} />);
-
-    expect(takeControlSpy).toHaveBeenCalledTimes(1);
-    expect(isFunction(takeControlSpy.mock.calls[0][0].isGrabbed)).toBe(true);
-    expect(isFunction(takeControlSpy.mock.calls[0][0].setOffset)).toBe(true);
-    expect(isFunction(takeControlSpy.mock.calls[0][0].toggleTransition)).toBe(true);
-
-    expect((wrapper.getDOMNode().querySelector('.draggable') as any).style.transition).toBe('');
-    testControl.toggleTransition(true);
-    expect((wrapper.getDOMNode().querySelector('.draggable') as any).style.transition).toBe(
-      'transform 500ms ease-out',
-    );
-    testControl.toggleTransition(false);
-    expect((wrapper.getDOMNode().querySelector('.draggable') as any).style.transition).toBe('');
-  });
-
-  it('should toggle transition properly', () => {
-    const wrapper = mount(<Draggable transitionDuration={1200} />);
-
-    (wrapper.instance() as any).toggleTransition(true);
-    expect(getDraggableEl(wrapper).style.transition).toBe('transform 1200ms ease-out');
-    (wrapper.instance() as any).toggleTransition(false);
-    expect(getDraggableEl(wrapper).style.transition).toBe('');
-
-    wrapper.setProps({ transitionDuration: undefined });
-    expect(getDraggableEl(wrapper).style.transition).toBe('');
-    (wrapper.instance() as any).toggleTransition(true);
-    expect(getDraggableEl(wrapper).style.transition).toBe('transform 320ms ease-out');
-
-    wrapper.setProps({ transitionDuration: null });
-    expect(getDraggableEl(wrapper).style.transition).toBe('transform 0ms ease-out');
-    (wrapper.instance() as any).toggleTransition(true);
-    expect(getDraggableEl(wrapper).style.transition).toBe('transform 0ms ease-out');
-  });
-
-  it('should not apply offset if draggable event is prevented', () => {
-    const wrapper = mount(<Draggable />);
-
-    // check initial offset
-    expect(getDraggableEl(wrapper).style.transform).toBe('translate3d(0px, 0px, 0px)');
-
-    // simulate drag (mouse down + move)
-    wrapper.find('.draggable-container').simulate('mousedown', makeMouseEvent(0, 0));
-    window.dispatchEvent(new Event('mousemove', makeMouseEvent(90, 210)));
-
-    expect(getDraggableEl(wrapper).style.transform).toBe('translate3d(0px, 0px, 0px)');
-  });
-
-  it('should prevent click after move', () => {
-    const wrapper = mount(<Draggable />);
-
-    const draggableContainer = wrapper.find('.draggable-container');
-
-    let testClickEvent;
-
-    // simulate click start (without move)
-    draggableContainer.simulate('mousedown', makeMouseEvent(0, 0));
-
-    // check click handle
-    testClickEvent = new Event('click');
-    jest.spyOn(testClickEvent, 'preventDefault');
-    expect(testClickEvent.preventDefault).toHaveBeenCalledTimes(0);
-    (draggableContainer.prop('onClickCapture') as any)(testClickEvent);
-    expect(testClickEvent.preventDefault).toHaveBeenCalledTimes(0);
-
-    // simulate drag (mouse down + move)
-    draggableContainer.simulate('mousedown', makeMouseEvent(0, 0));
-    window.dispatchEvent(new Event('mousemove', makeMouseEvent(10, 20)));
-
-    // check click handle
-    testClickEvent = new Event('click');
-    jest.spyOn(testClickEvent, 'preventDefault');
-    expect(testClickEvent.preventDefault).toHaveBeenCalledTimes(0);
-    (draggableContainer.prop('onClickCapture') as any)(testClickEvent);
-    expect(testClickEvent.preventDefault).toHaveBeenCalledTimes(1);
-  });
-
-  it('handleMove should not apply new offset if custom event was prevented', () => {
-    const spy = jest.fn(draggableEvent => draggableEvent.preventDefault());
-    const wrapper = mount(<Draggable onDragMove={spy} />);
-
-    expect(spy).toHaveBeenCalledTimes(0);
-    (wrapper.instance() as any).startCapture(
-      new MouseEvent('mousedown', { clientX: 10, clientY: 20 }),
-    );
-
-    jest.spyOn(wrapper.instance(), 'saveClientPosition' as any);
-    jest.spyOn(wrapper.instance(), 'setOffset' as any);
-
-    (wrapper.instance() as any).handleMove(
-      new MouseEvent('mousemove', { clientX: 12, clientY: 23 }),
-    );
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect((wrapper.instance() as any).saveClientPosition).toHaveBeenCalledTimes(0);
-    expect((wrapper.instance() as any).setOffset).toHaveBeenCalledTimes(0);
-  });
-
-  it('handleMove should apply new offset if custom event was not prevented', () => {
-    const spy = jest.fn();
-    const wrapper = mount(<Draggable onDragMove={spy} />);
-
-    expect(spy).toHaveBeenCalledTimes(0);
-    (wrapper.instance() as any).startCapture(
-      new MouseEvent('mousedown', { clientX: 10, clientY: 20 }),
-    );
-
-    jest.spyOn(wrapper.instance(), 'saveClientPosition' as any);
-    jest.spyOn(wrapper.instance(), 'setOffset' as any);
-    (wrapper.instance() as any).handleMove(
-      new MouseEvent('mousemove', { clientX: 12, clientY: 23 }),
-    );
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect((wrapper.instance() as any).saveClientPosition).toHaveBeenCalledTimes(1);
-    expect((wrapper.instance() as any).setOffset).toHaveBeenCalledTimes(1);
-  });
-
-  it('should pass object with "isGrabbed" method to "takeControl" prop', () => {
-    const spy = jest.fn();
-
-    const wrapper = mount(<Draggable takeControl={spy} />);
-
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(isFunction(spy.mock.calls[0][0].isGrabbed)).toBe(true);
-
-    (wrapper.instance() as any).toggleGrabbed(true);
-    expect(spy.mock.calls[0][0].isGrabbed()).toBe(true);
-    (wrapper.instance() as any).toggleGrabbed(false);
-    expect(spy.mock.calls[0][0].isGrabbed()).toBe(false);
-  });
-
-  it('isTransitionEnabled() should return value properly', () => {
-    const fake = {
-      hasTransition: false,
-    };
-
-    expect(Draggable.prototype.isTransitionEnabled.call(fake)).toBe(false);
-    fake.hasTransition = true;
-    expect(Draggable.prototype.isTransitionEnabled.call(fake)).toBe(true);
-  });
-
-  it('should not change "prevent need click" state on drag when is not touch', () => {
-    const stub = new StubDraggable({});
-    const spy = jest.spyOn(stub, 'togglePreventClickNeed');
-    stub.isGrabbed = true;
-
-    expect(spy).toHaveBeenCalledTimes(0);
-
-    const touchEvent = new TouchEvent('touchmove');
-    Draggable.prototype.handleMove.call(stub, touchEvent);
-    expect(spy).toHaveBeenCalledTimes(0);
-
-    const mouseEvent = new MouseEvent('mousemove');
-    Draggable.prototype.handleMove.call(stub, mouseEvent);
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith(true);
   });
 });
