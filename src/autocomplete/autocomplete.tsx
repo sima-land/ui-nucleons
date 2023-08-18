@@ -155,12 +155,13 @@ export function Autocomplete({
           setActiveIndex(-1);
           setCurrentValue(e.target.value);
         }}
-        // @todo выяснить надо ли переключать меню при клике и раскомментировать/убрать
-        // blockProps={{
-        //   onMouseDown: () => {
-        //     !disabled && setNeedMenu(a => !a);
-        //   },
-        // }}
+        blockProps={{
+          ...restProps.blockProps,
+          onMouseDown: event => {
+            !disabled && setNeedMenu(a => !a);
+            restProps.blockProps?.onMouseDown?.(event);
+          },
+        }}
         baseInputProps={{
           ...baseInputProps,
           onKeyDown: handleKeyDown,

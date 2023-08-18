@@ -21,8 +21,8 @@ const cx = classNames.bind(styles);
  */
 export function Pagination({
   rootRef,
-  current: currentProp = 1,
-  total: totalProp = 1,
+  current: currentProp,
+  total: totalProp,
   onPageChange,
   getItems = getPaginationItems,
   renderItem = renderPaginationItem,

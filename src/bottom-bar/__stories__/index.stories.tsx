@@ -36,15 +36,6 @@ export function WithButtons() {
   return (
     <>
       <DemoBlock>
-        <BottomBar size='s'>
-          <CleanGroup>
-            <CleanButton>Кнопка</CleanButton>
-            <CleanButton>Ещё кнопка</CleanButton>
-          </CleanGroup>
-        </BottomBar>
-      </DemoBlock>
-
-      <DemoBlock>
         <BottomBar size='s' style={{ padding: '0 16px' }}>
           <Button size='s' style={{ width: 'calc(50% - 6px)', marginRight: '12px' }}>
             Первая
