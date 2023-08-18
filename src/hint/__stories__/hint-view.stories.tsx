@@ -23,7 +23,7 @@ export function Primary() {
     <>
       <HintView style={{ position: 'relative' }}>
         Какой-то короткий текст получился
-        <HintView.Arrow style={{ top: 'calc(100% - 4px)', left: 'calc(50% - 4px)' }} />
+        <HintView.Arrow style={{ top: 'calc(100% - 3px)', left: 'calc(50% - 3px)' }} />
       </HintView>
     </>
   );
