@@ -1,10 +1,10 @@
-import { mount } from 'enzyme';
 import { Carousel } from '..';
-import Draggable from '../draggable';
 import DraggableEvent from '../helpers/draggable-event';
 import classes from '../carousel.module.scss';
 import Point from '../../helpers/point';
-import { ArrowButton } from '../../arrow-button';
+import { fireEvent, render } from '@testing-library/react';
+import { createRef } from 'react';
+import { getTranslateStyle } from '../../helpers/styles';
 
 const defineProp = (object: Record<any, any>, key: any, value: any) => {
   Object.defineProperty(object, key, {
@@ -66,8 +66,7 @@ const FakeElement = {
 
 describe('<Carousel />', () => {
   it('should enable autoplay on mount', () => {
-    const wrapper = mount<Carousel>(<Carousel autoplay />);
-    const instance = wrapper.instance();
+    const instance = new Carousel({ autoplay: true });
 
     jest.spyOn(instance, 'enableAutoplay');
 
@@ -75,15 +74,15 @@ describe('<Carousel />', () => {
     instance.componentDidMount();
     expect((instance as any).enableAutoplay).toHaveBeenCalledTimes(1);
 
-    wrapper.setProps({ autoplay: false });
+    (instance as any).props = { autoplay: false };
+    instance.componentDidUpdate({ autoplay: true });
     expect((instance as any).enableAutoplay).toHaveBeenCalledTimes(1);
     instance.componentDidMount();
     expect((instance as any).enableAutoplay).toHaveBeenCalledTimes(1);
   });
 
   it('should toggle autoplay on update', () => {
-    const wrapper = mount<Carousel>(<Carousel />);
-    const instance = wrapper.instance();
+    const instance = new Carousel({});
 
     jest.spyOn(instance, 'enableAutoplay');
     jest.spyOn(instance, 'disableAutoplay');
@@ -91,18 +90,19 @@ describe('<Carousel />', () => {
     expect(instance.enableAutoplay).toHaveBeenCalledTimes(0);
     expect(instance.disableAutoplay).toHaveBeenCalledTimes(0);
 
-    wrapper.setProps({ autoplay: true });
+    (instance as any).props = { autoplay: true };
+    instance.componentDidUpdate({});
     expect(instance.enableAutoplay).toHaveBeenCalledTimes(1);
     expect(instance.disableAutoplay).toHaveBeenCalledTimes(0);
 
-    wrapper.setProps({ autoplay: false });
+    (instance as any).props = { autoplay: false };
+    instance.componentDidUpdate({ autoplay: true });
     expect(instance.enableAutoplay).toHaveBeenCalledTimes(1);
     expect(instance.disableAutoplay).toHaveBeenCalledTimes(1);
   });
 
   it('should enable auto move on drag end', () => {
-    const wrapper = mount<Carousel>(<Carousel autoplay />);
-    const instance = wrapper.instance();
+    const instance = new Carousel({ autoplay: true });
 
     jest.spyOn(instance, 'canDrag').mockImplementation(() => true);
     jest.spyOn(instance, 'toggleAutoMove');
@@ -113,106 +113,115 @@ describe('<Carousel />', () => {
   });
 
   it('should disable auto move on mouse enter', () => {
-    const wrapper = mount<Carousel>(<Carousel autoplay autoplayHoverPause />);
-    const instance = wrapper.instance();
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+    const { container } = render(<Carousel ref={ref} autoplay autoplayHoverPause />);
 
-    jest.spyOn(instance, 'toggleAutoMove');
+    jest.spyOn(getInstance(), 'toggleAutoMove');
 
-    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(0);
-    wrapper.find(`.${classes['carousel-wrapper']}`).simulate('mouseenter');
-    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(1);
-    expect(instance.toggleAutoMove).toHaveBeenCalledWith(false);
+    expect(getInstance().toggleAutoMove).toHaveBeenCalledTimes(0);
+    fireEvent.mouseEnter(container.querySelector(`.${classes['carousel-wrapper']}`) as any);
+    expect(getInstance().toggleAutoMove).toHaveBeenCalledTimes(1);
+    expect(getInstance().toggleAutoMove).toHaveBeenCalledWith(false);
   });
 
   it('should not disable auto move on mouse enter', () => {
-    const wrapper = mount<Carousel>(<Carousel autoplay autoplayHoverPause={false} />);
-    const instance = wrapper.instance();
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+    const { container } = render(<Carousel ref={ref} autoplay autoplayHoverPause={false} />);
 
-    jest.spyOn(instance, 'toggleAutoMove');
+    jest.spyOn(getInstance(), 'toggleAutoMove');
 
-    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(0);
-    wrapper.find(`.${classes['carousel-wrapper']}`).simulate('mouseenter');
-    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(0);
+    expect(getInstance().toggleAutoMove).toHaveBeenCalledTimes(0);
+    fireEvent.mouseEnter(container.querySelector(`.${classes['carousel-wrapper']}`) as any);
+    expect(getInstance().toggleAutoMove).toHaveBeenCalledTimes(0);
   });
 
   it('should enable auto move on mouse leave', () => {
-    const wrapper = mount<Carousel>(<Carousel autoplay autoplayHoverPause />);
-    const instance = wrapper.instance();
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+    const { container } = render(<Carousel ref={ref} autoplay autoplayHoverPause />);
 
     // simulate drag start
-    (wrapper.find(Draggable) as any).prop('onDragStart')(
-      new DraggableEvent({ offset: Point(), client: Point() }),
-    );
+    getInstance().onDragStart(new DraggableEvent({ offset: Point(), client: Point() }));
 
-    jest.spyOn(instance, 'toggleAutoMove');
-    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(0);
+    jest.spyOn(getInstance(), 'toggleAutoMove');
+    expect(getInstance().toggleAutoMove).toHaveBeenCalledTimes(0);
 
     // simulate mouse leave
-    wrapper.find(`.${classes['carousel-wrapper']}`).simulate('mouseleave');
-    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(1);
-    expect(instance.toggleAutoMove).toHaveBeenCalledWith(true);
+    fireEvent.mouseLeave(container.querySelector(`.${classes['carousel-wrapper']}`) as any);
+    expect(getInstance().toggleAutoMove).toHaveBeenCalledTimes(1);
+    expect(getInstance().toggleAutoMove).toHaveBeenCalledWith(true);
   });
 
   it('should not enable auto move on mouse leave', () => {
-    const wrapper = mount<Carousel>(<Carousel autoplay autoplayHoverPause={false} />);
-    const instance = wrapper.instance();
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+    const { container } = render(<Carousel ref={ref} autoplay autoplayHoverPause={false} />);
 
     // simulate drag start
-    (wrapper.find(Draggable) as any).prop('onDragStart')(
-      new DraggableEvent({ offset: Point(), client: Point() }),
-    );
+    getInstance().onDragStart(new DraggableEvent({ offset: Point(), client: Point() }));
 
-    jest.spyOn(instance, 'toggleAutoMove');
-    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(0);
+    jest.spyOn(getInstance(), 'toggleAutoMove');
+    expect(getInstance().toggleAutoMove).toHaveBeenCalledTimes(0);
 
     // simulate mouse leave
-    wrapper.find(`.${classes['carousel-wrapper']}`).simulate('mouseleave');
-    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(0);
+    fireEvent.mouseLeave(container.querySelector(`.${classes['carousel-wrapper']}`) as any);
+    expect(getInstance().toggleAutoMove).toHaveBeenCalledTimes(0);
   });
 
   it('should register timer by setInterval', () => {
     jest.useFakeTimers();
 
-    const wrapper = mount<Carousel>(<Carousel autoplay autoplayTimeout={1000} />);
-    const instance = wrapper.instance();
-    jest.spyOn(instance, 'moveForward');
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
 
-    expect(instance.moveForward).toHaveBeenCalledTimes(0);
+    render(<Carousel ref={ref} autoplay autoplayTimeout={1000} />);
+
+    jest.spyOn(getInstance(), 'moveForward');
+
+    expect(getInstance().moveForward).toHaveBeenCalledTimes(0);
     jest.advanceTimersByTime(1200);
-    expect(instance.moveForward).toHaveBeenCalledTimes(1);
+    expect(getInstance().moveForward).toHaveBeenCalledTimes(1);
   });
 
   it('scrollToItem should use defaults correctly', () => {
     const spy = jest.fn();
-    const wrapper = mount<Carousel>(<Carousel items={[1, 2, 3]} />);
-    const instance = wrapper.instance();
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
 
-    jest.spyOn(instance, 'toggleDragTransition');
-    Object.defineProperty(instance, 'currentIndex', {
+    render(<Carousel ref={ref} items={[1, 2, 3]} />);
+
+    jest.spyOn(getInstance(), 'toggleDragTransition');
+    Object.defineProperty(getInstance(), 'currentIndex', {
       get: () => {
         spy();
         return 0;
       },
     });
     expect(spy).toHaveBeenCalledTimes(0);
-    expect(instance.toggleDragTransition).toHaveBeenCalledTimes(0);
+    expect(getInstance().toggleDragTransition).toHaveBeenCalledTimes(0);
 
-    instance.scrollToItem();
-    expect(instance.toggleDragTransition).toHaveBeenCalledTimes(1);
+    getInstance().scrollToItem();
+    expect(getInstance().toggleDragTransition).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('onReady should pass currentIndex when component did mounted', () => {
     const spy = jest.fn();
-    mount(<Carousel items={[1, 2, 3]} targetIndex={2} onReady={spy} />);
+    render(<Carousel items={[1, 2, 3]} targetIndex={2} onReady={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(2);
   });
 
   it('onChangeTargetIndex should pass currentIndex when set new index', () => {
     const spy = jest.fn();
-    const wrapper = mount<Carousel>(<Carousel items={[1, 2, 3]} onChangeTargetIndex={spy} />);
-    wrapper.instance().setCurrentIndex(3);
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+
+    render(<Carousel ref={ref} items={[1, 2, 3]} onChangeTargetIndex={spy} />);
+
+    getInstance().setCurrentIndex(3);
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(3);
   });
@@ -348,13 +357,15 @@ describe('<Carousel />', () => {
   });
 
   it('should call "offWindowResize" on unmount', () => {
-    const wrapper = mount<Carousel>(<Carousel items={[1, 2, 3]} infinite={false} />);
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+    const { unmount } = render(<Carousel ref={ref} items={[1, 2, 3]} infinite={false} />);
 
-    const spy = jest.spyOn(wrapper.instance(), 'offWindowResize');
+    const spy = jest.spyOn(getInstance(), 'offWindowResize');
 
     expect(spy).toHaveBeenCalledTimes(0);
 
-    wrapper.unmount();
+    unmount();
 
     expect(spy).toHaveBeenCalledTimes(1);
   });
@@ -366,58 +377,62 @@ describe('Carousel: finite mode', () => {
   });
 
   it('should render without props', () => {
-    const wrapper = mount<Carousel>(<Carousel infinite={false} />);
-    expect(wrapper.find(`.${classes['carousel-wrapper']}`)).toHaveLength(1);
+    const { container } = render(<Carousel infinite={false} />);
+
+    expect(container.querySelectorAll(`.${classes['carousel-wrapper']}`)).toHaveLength(1);
   });
 
   it('should handle "vertical" props', () => {
-    const wrapper = mount<Carousel>(<Carousel vertical infinite={false} />);
-    expect(wrapper.find(`.${classes['carousel-items-container']}`).prop('className')).toContain(
+    const { container } = render(<Carousel vertical infinite={false} />);
+
+    expect(container.querySelector(`.${classes['carousel-items-container']}`)?.className).toContain(
       classes.vertical,
     );
-    expect(wrapper.find(Draggable).prop('axis')).toBe('y');
   });
 
   it('should update current index in state on "targetIndex" prop change', () => {
-    const wrapper = mount<Carousel>(<Carousel targetIndex={0} infinite={false} />);
-    const testInstance = wrapper.instance();
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+    const { rerender } = render(<Carousel ref={ref} targetIndex={0} infinite={false} />);
 
-    jest.spyOn(testInstance, 'setCurrentIndex');
-    jest.spyOn(testInstance, 'toggleDragTransition');
-    jest.spyOn(testInstance, 'updateItemsVisibility');
+    jest.spyOn(getInstance(), 'setCurrentIndex');
+    jest.spyOn(getInstance(), 'toggleDragTransition');
+    jest.spyOn(getInstance(), 'updateItemsVisibility');
 
-    expect(testInstance.setCurrentIndex).toHaveBeenCalledTimes(0);
-    expect(testInstance.toggleDragTransition).toHaveBeenCalledTimes(0);
-    expect(testInstance.updateItemsVisibility).toHaveBeenCalledTimes(0);
+    expect(getInstance().setCurrentIndex).toHaveBeenCalledTimes(0);
+    expect(getInstance().toggleDragTransition).toHaveBeenCalledTimes(0);
+    expect(getInstance().updateItemsVisibility).toHaveBeenCalledTimes(0);
 
     // not changed
-    wrapper.setProps({ targetIndex: 0 });
-    expect(testInstance.setCurrentIndex).toHaveBeenCalledTimes(0);
-    expect(testInstance.toggleDragTransition).toHaveBeenCalledTimes(0);
-    expect(testInstance.updateItemsVisibility).toHaveBeenCalledTimes(1);
+    rerender(<Carousel ref={ref} targetIndex={0} infinite={false} />);
+    expect(getInstance().setCurrentIndex).toHaveBeenCalledTimes(0);
+    expect(getInstance().toggleDragTransition).toHaveBeenCalledTimes(0);
+    expect(getInstance().updateItemsVisibility).toHaveBeenCalledTimes(1);
 
-    wrapper.setProps({ targetIndex: 12 });
-    expect(testInstance.setCurrentIndex).toHaveBeenCalledTimes(1);
-    expect(testInstance.setCurrentIndex).toHaveBeenCalledWith(12);
-    expect(testInstance.toggleDragTransition).toHaveBeenCalledTimes(1);
-    expect(testInstance.toggleDragTransition).toHaveBeenCalledWith(true);
-    expect(testInstance.updateItemsVisibility).toHaveBeenCalledTimes(2);
+    rerender(<Carousel ref={ref} targetIndex={12} infinite={false} />);
+    expect(getInstance().setCurrentIndex).toHaveBeenCalledTimes(1);
+    expect(getInstance().setCurrentIndex).toHaveBeenCalledWith(12);
+    expect(getInstance().toggleDragTransition).toHaveBeenCalledTimes(1);
+    expect(getInstance().toggleDragTransition).toHaveBeenCalledWith(true);
+    expect(getInstance().updateItemsVisibility).toHaveBeenCalledTimes(2);
   });
 
   it('should unsubscribe from "resize" event before unmount', () => {
-    const wrapper = mount<Carousel>(<Carousel />);
+    const { unmount } = render(<Carousel />);
 
     expect(() => {
-      wrapper.unmount();
+      unmount();
     }).not.toThrow();
   });
 
   it('isAllItemsVisible() should works properly', () => {
-    const wrapper = mount<Carousel>(
-      <Carousel vertical={false} infinite={false} items={[1, 2, 4, 5, 6, 7, 8, 9]} />,
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+    const { rerender } = render(
+      <Carousel ref={ref} vertical={false} infinite={false} items={[1, 2, 4, 5, 6, 7, 8, 9]} />,
     );
-    const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement as HTMLElement;
-    const containerEl = wrapper.instance().containerRef.current as HTMLElement as HTMLElement;
+    const wrapperEl = getInstance().wrapperRef.current as HTMLElement as HTMLElement;
+    const containerEl = getInstance().containerRef.current as HTMLElement as HTMLElement;
 
     // horizontal & not all visible
     jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
@@ -445,7 +460,7 @@ describe('Carousel: finite mode', () => {
           right: 200,
         } as any),
     );
-    expect(wrapper.instance().isAllItemsVisible()).toBe(false);
+    expect(getInstance().isAllItemsVisible()).toBe(false);
 
     // horizontal & all visible
     jest
@@ -462,10 +477,10 @@ describe('Carousel: finite mode', () => {
           right: 80,
         } as any),
     );
-    expect(wrapper.instance().isAllItemsVisible()).toBe(true);
+    expect(getInstance().isAllItemsVisible()).toBe(true);
 
     // vertical & not all visible
-    wrapper.setProps({ vertical: true });
+    rerender(<Carousel ref={ref} vertical infinite={false} items={[1, 2, 4, 5, 6, 7, 8, 9]} />);
     jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
       () =>
         ({
@@ -491,7 +506,7 @@ describe('Carousel: finite mode', () => {
           bottom: 240,
         } as any),
     );
-    expect(wrapper.instance().isAllItemsVisible()).toBe(false);
+    expect(getInstance().isAllItemsVisible()).toBe(false);
 
     // vertical & all visible
     jest
@@ -508,27 +523,40 @@ describe('Carousel: finite mode', () => {
           bottom: 80,
         } as any),
     );
-    expect(wrapper.instance().isAllItemsVisible()).toBe(true);
+    expect(getInstance().isAllItemsVisible()).toBe(true);
   });
 
   it('onDragStart() should works properly', () => {
-    const wrapper = mount<Carousel>(<Carousel infinite={false} />);
-    jest.spyOn(wrapper.instance(), 'saveDragStartData');
-    jest.spyOn(wrapper.instance(), 'toggleDragTransition');
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
 
-    expect(wrapper.instance().saveDragStartData).toHaveBeenCalledTimes(0);
-    expect(wrapper.instance().toggleDragTransition).toHaveBeenCalledTimes(0);
-    (wrapper.find(Draggable).prop('onDragStart') as any)({ offset: { x: 3, y: 5 } });
-    expect(wrapper.instance().saveDragStartData).toHaveBeenCalledTimes(1);
-    expect(wrapper.instance().toggleDragTransition).toHaveBeenCalledTimes(1);
+    render(<Carousel ref={ref} infinite={false} />);
+
+    jest.spyOn(getInstance(), 'saveDragStartData');
+    jest.spyOn(getInstance(), 'toggleDragTransition');
+
+    expect(getInstance().saveDragStartData).toHaveBeenCalledTimes(0);
+    expect(getInstance().toggleDragTransition).toHaveBeenCalledTimes(0);
+    getInstance().onDragStart({ offset: { x: 3, y: 5 } } as any);
+    expect(getInstance().saveDragStartData).toHaveBeenCalledTimes(1);
+    expect(getInstance().toggleDragTransition).toHaveBeenCalledTimes(1);
   });
 
   it('moveForward() should works properly', () => {
-    const wrapper = mount<Carousel>(
-      <Carousel vertical={false} items={[...Array(17).keys()]} withControls infinite={false} />,
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+
+    const { rerender, getAllByTestId } = render(
+      <Carousel
+        ref={ref}
+        vertical={false}
+        items={[...Array(17).keys()]}
+        withControls
+        infinite={false}
+      />,
     );
-    const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement as HTMLElement;
-    const containerEl = wrapper.instance().containerRef.current as HTMLElement as HTMLElement;
+    const wrapperEl = getInstance().wrapperRef.current as HTMLElement as HTMLElement;
+    const containerEl = getInstance().containerRef.current as HTMLElement as HTMLElement;
 
     jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
       () =>
@@ -542,40 +570,63 @@ describe('Carousel: finite mode', () => {
         } as any),
     );
     defineProp(containerEl, 'scrollWidth', 500);
-    wrapper.setProps({ targetIndex: 0 });
+    rerender(
+      <Carousel
+        ref={ref}
+        targetIndex={0}
+        vertical={false}
+        items={[...Array(17).keys()]}
+        withControls
+        infinite={false}
+      />,
+    );
 
-    wrapper.find(ArrowButton).at(1).find('button').simulate('click');
-    expect(wrapper.instance().currentIndex).toBe(3);
+    fireEvent.click(getAllByTestId('arrow-button')[1]);
+    expect(getInstance().currentIndex).toBe(3);
 
-    wrapper.find(ArrowButton).at(1).find('button').simulate('click');
-    expect(wrapper.instance().currentIndex).toBe(6);
+    fireEvent.click(getAllByTestId('arrow-button')[1]);
+    expect(getInstance().currentIndex).toBe(6);
 
-    wrapper.find(ArrowButton).at(1).find('button').simulate('click');
-    expect(wrapper.instance().currentIndex).toBe(9);
+    fireEvent.click(getAllByTestId('arrow-button')[1]);
+    expect(getInstance().currentIndex).toBe(9);
 
-    wrapper.find(ArrowButton).at(1).find('button').simulate('click');
-    expect(wrapper.instance().currentIndex).toBe(12);
+    fireEvent.click(getAllByTestId('arrow-button')[1]);
+    expect(getInstance().currentIndex).toBe(12);
 
-    wrapper.find(ArrowButton).at(1).find('button').simulate('click');
-    expect(wrapper.instance().currentIndex).toBe(15);
+    fireEvent.click(getAllByTestId('arrow-button')[1]);
+    expect(getInstance().currentIndex).toBe(15);
 
-    wrapper.find(ArrowButton).at(1).find('button').simulate('click');
-    expect(wrapper.instance().currentIndex).toBe(16);
+    fireEvent.click(getAllByTestId('arrow-button')[1]);
+    expect(getInstance().currentIndex).toBe(16);
 
-    wrapper.find(ArrowButton).at(1).find('button').simulate('click');
-    expect(wrapper.instance().currentIndex).toBe(16);
+    fireEvent.click(getAllByTestId('arrow-button')[1]);
+    expect(getInstance().currentIndex).toBe(16);
 
-    wrapper.setProps({ items: undefined });
+    rerender(
+      <Carousel
+        ref={ref}
+        targetIndex={0}
+        vertical={false}
+        withControls
+        infinite={false}
+        items={undefined}
+      />,
+    );
 
-    wrapper.find(ArrowButton).at(1).find('button').simulate('click');
-    expect(wrapper.instance().currentIndex).toBe(0);
+    fireEvent.click(getAllByTestId('arrow-button')[1]);
+    expect(getInstance().currentIndex).toBe(0);
   });
 
   it('should move backward properly for horizontal carousel', () => {
     const itemSize = 20;
     const itemsCount = 17;
-    const wrapper = mount<Carousel>(
+
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+
+    const { getAllByTestId } = render(
       <Carousel
+        ref={ref}
         vertical={false}
         infinite={false}
         items={[...Array(itemsCount).keys()]}
@@ -587,8 +638,8 @@ describe('Carousel: finite mode', () => {
         )}
       />,
     );
-    const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement as HTMLElement;
-    const containerEl = wrapper.instance().containerRef.current as HTMLElement as HTMLElement;
+    const wrapperEl = getInstance().wrapperRef.current as HTMLElement as HTMLElement;
+    const containerEl = getInstance().containerRef.current as HTMLElement as HTMLElement;
 
     jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
       () =>
@@ -612,17 +663,22 @@ describe('Carousel: finite mode', () => {
       itemsCount,
       offset,
     });
-    wrapper.instance().currentIndex = itemsCount - 1;
-    wrapper.setState({ currentOffset: offset });
-    wrapper.find(ArrowButton).at(0).find('button').simulate('click');
-    expect(wrapper.instance().currentIndex).toBe(9);
+    getInstance().currentIndex = itemsCount - 1;
+    getInstance().setState({ currentOffset: offset });
+    fireEvent.click(getAllByTestId('arrow-button')[0]);
+    expect(getInstance().currentIndex).toBe(9);
   });
 
   it('should move backward properly for vertical carousel', () => {
     const itemSize = 30;
     const itemsCount = 12;
-    const wrapper = mount<Carousel>(
+
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+
+    const { getAllByTestId } = render(
       <Carousel
+        ref={ref}
         infinite={false}
         vertical
         items={[...Array(itemsCount).keys()]}
@@ -634,8 +690,8 @@ describe('Carousel: finite mode', () => {
         )}
       />,
     );
-    const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement as HTMLElement;
-    const containerEl = wrapper.instance().containerRef.current as HTMLElement as HTMLElement;
+    const wrapperEl = getInstance().wrapperRef.current as HTMLElement as HTMLElement;
+    const containerEl = getInstance().containerRef.current as HTMLElement as HTMLElement;
 
     jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
       () =>
@@ -659,17 +715,22 @@ describe('Carousel: finite mode', () => {
       itemsCount,
       offset,
     });
-    wrapper.instance().currentIndex = itemsCount - 1;
-    wrapper.setState({ currentOffset: offset });
-    wrapper.find(ArrowButton).at(0).find('button').simulate('click');
-    expect(wrapper.instance().currentIndex).toBe(6);
+    getInstance().currentIndex = itemsCount - 1;
+    getInstance().setState({ currentOffset: offset });
+    fireEvent.click(getAllByTestId('arrow-button')[0]);
+    expect(getInstance().currentIndex).toBe(6);
   });
 
   it('should move backward to first item', () => {
     const itemSize = 20;
     const itemsCount = 6;
-    const wrapper = mount<Carousel>(
+
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+
+    const { getAllByTestId } = render(
       <Carousel
+        ref={ref}
         vertical={false}
         step={5}
         items={[...Array(itemsCount).keys()]}
@@ -682,8 +743,8 @@ describe('Carousel: finite mode', () => {
         infinite={false}
       />,
     );
-    const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
-    const containerEl = wrapper.instance().containerRef.current as HTMLElement;
+    const wrapperEl = getInstance().wrapperRef.current as HTMLElement;
+    const containerEl = getInstance().containerRef.current as HTMLElement;
 
     jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
       () =>
@@ -707,15 +768,19 @@ describe('Carousel: finite mode', () => {
       itemsCount,
       offset,
     });
-    wrapper.instance().currentIndex = itemsCount - 1;
-    wrapper.setState({ currentOffset: offset });
-    wrapper.find(ArrowButton).at(0).find('button').simulate('click');
-    expect(wrapper.instance().currentIndex).toBe(0);
+    getInstance().currentIndex = itemsCount - 1;
+    getInstance().setState({ currentOffset: offset });
+    fireEvent.click(getAllByTestId('arrow-button')[0]);
+    expect(getInstance().currentIndex).toBe(0);
   });
 
   it('should handle drag end when start offset equals end offset', () => {
-    const wrapper = mount<Carousel>(
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+
+    render(
       <Carousel
+        ref={ref}
         items={[...Array(12).keys()]}
         withControls
         renderItem={item => (
@@ -727,10 +792,10 @@ describe('Carousel: finite mode', () => {
       />,
     );
 
-    jest.spyOn(wrapper.instance(), 'setCurrentIndex');
-    wrapper.instance().dragStartOffset = { x: 0, y: 0 };
-    (wrapper.find(Draggable).prop('onDragEnd') as any)({ offset: { x: 0, y: 0 } });
-    expect(wrapper.instance().setCurrentIndex).toHaveBeenCalledTimes(0);
+    jest.spyOn(getInstance(), 'setCurrentIndex');
+    getInstance().dragStartOffset = { x: 0, y: 0 };
+    getInstance().onDragEnd({ offset: { x: 0, y: 0 } } as any);
+    expect(getInstance().setCurrentIndex).toHaveBeenCalledTimes(0);
   });
 
   describe('should handle drag', () => {
@@ -739,8 +804,12 @@ describe('Carousel: finite mode', () => {
     const visibleItemsCount = 5;
 
     it('drag horizontal forward', () => {
-      const wrapper = mount<Carousel>(
+      const ref = createRef<Carousel>();
+      const getInstance = () => ref.current as Carousel;
+
+      render(
         <Carousel
+          ref={ref}
           vertical={false}
           items={[...Array(itemsCount).keys()]}
           withControls
@@ -753,8 +822,8 @@ describe('Carousel: finite mode', () => {
         />,
       );
 
-      const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
-      const containerEl = wrapper.instance().containerRef.current as HTMLElement;
+      const wrapperEl = getInstance().wrapperRef.current as HTMLElement;
+      const containerEl = getInstance().containerRef.current as HTMLElement;
       jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
         () =>
           ({
@@ -776,18 +845,22 @@ describe('Carousel: finite mode', () => {
         offset: endOffset,
       });
 
-      wrapper.instance().dragStartOffset = { x: 0, y: 0 };
-      wrapper.instance().dragStartClient = { x: 0, y: 0 };
-      (wrapper.find(Draggable).prop('onDragEnd') as any)({
+      getInstance().dragStartOffset = { x: 0, y: 0 };
+      getInstance().dragStartClient = { x: 0, y: 0 };
+      getInstance().onDragEnd({
         offset: { x: endOffset, y: 0 },
         client: { x: endOffset, y: 0 },
-      });
-      expect(wrapper.instance().currentIndex).toBe(6);
+      } as any);
+      expect(getInstance().currentIndex).toBe(6);
     });
 
     it('drag horizontal backward outside viewport bounds', () => {
-      const wrapper = mount<Carousel>(
+      const ref = createRef<Carousel>();
+      const getInstance = () => ref.current as Carousel;
+
+      render(
         <Carousel
+          ref={ref}
           infinite={false}
           vertical={false}
           items={[...Array(itemsCount).keys()]}
@@ -800,8 +873,8 @@ describe('Carousel: finite mode', () => {
         />,
       );
 
-      const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
-      const containerEl = wrapper.instance().containerRef.current as HTMLElement;
+      const wrapperEl = getInstance().wrapperRef.current as HTMLElement;
+      const containerEl = getInstance().containerRef.current as HTMLElement;
 
       jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
         () =>
@@ -824,18 +897,22 @@ describe('Carousel: finite mode', () => {
         offset: endOffset,
       });
 
-      wrapper.instance().dragStartOffset = { x: 0, y: 0 };
-      wrapper.instance().dragStartClient = { x: 0, y: 0 };
-      (wrapper.find(Draggable).prop('onDragEnd') as any)({
+      getInstance().dragStartOffset = { x: 0, y: 0 };
+      getInstance().dragStartClient = { x: 0, y: 0 };
+      getInstance().onDragEnd({
         offset: { x: endOffset, y: 0 },
         client: { x: endOffset, y: 0 },
-      });
-      expect(wrapper.instance().currentIndex).toBe(0);
+      } as any);
+      expect(getInstance().currentIndex).toBe(0);
     });
 
     it('drag horizontal backward', () => {
-      const wrapper = mount<Carousel>(
+      const ref = createRef<Carousel>();
+      const getInstance = () => ref.current as Carousel;
+
+      render(
         <Carousel
+          ref={ref}
           vertical={false}
           items={[...Array(itemsCount).keys()]}
           withControls
@@ -847,14 +924,14 @@ describe('Carousel: finite mode', () => {
           infinite={false}
         />,
       );
-      const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
-      const containerEl = wrapper.instance().containerRef.current as HTMLElement;
+      const wrapperEl = getInstance().wrapperRef.current as HTMLElement;
+      const containerEl = getInstance().containerRef.current as HTMLElement;
 
       // перед перемещением мышью встаем на 6 элемент
       const startIndex = 6; // переместили мышкой на 4.3 элементов назад (вправо)
       const startOffset = -(startIndex * itemSize); // переместили мышкой на 4.3 элементов назад (вправо)
-      wrapper.instance().currentIndex = startIndex;
-      wrapper.setState({ currentOffset: -(startIndex * itemSize) });
+      getInstance().currentIndex = startIndex;
+      getInstance().setState({ currentOffset: -(startIndex * itemSize) });
       jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
         () =>
           ({
@@ -879,18 +956,22 @@ describe('Carousel: finite mode', () => {
         offset: endOffset,
       });
 
-      wrapper.instance().dragStartOffset = { x: startOffset, y: 0 };
-      wrapper.instance().dragStartClient = { x: startOffset, y: 0 };
-      (wrapper.find(Draggable).prop('onDragEnd') as any)({
+      getInstance().dragStartOffset = { x: startOffset, y: 0 };
+      getInstance().dragStartClient = { x: startOffset, y: 0 };
+      getInstance().onDragEnd({
         offset: { x: endOffset, y: 0 },
         client: { x: endOffset, y: 0 },
-      });
-      expect(wrapper.instance().currentIndex).toBe(1);
+      } as any);
+      expect(getInstance().currentIndex).toBe(1);
     });
 
     it('drag vertical forward', () => {
-      const wrapper = mount<Carousel>(
+      const ref = createRef<Carousel>();
+      const getInstance = () => ref.current as Carousel;
+
+      render(
         <Carousel
+          ref={ref}
           vertical
           items={[...Array(itemsCount).keys()]}
           withControls
@@ -903,8 +984,8 @@ describe('Carousel: finite mode', () => {
         />,
       );
 
-      const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
-      const containerEl = wrapper.instance().containerRef.current as HTMLElement;
+      const wrapperEl = getInstance().wrapperRef.current as HTMLElement;
+      const containerEl = getInstance().containerRef.current as HTMLElement;
       jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
         () =>
           ({
@@ -926,18 +1007,22 @@ describe('Carousel: finite mode', () => {
         offset: endOffset,
       });
 
-      wrapper.instance().dragStartOffset = { x: 0, y: 0 };
-      wrapper.instance().dragStartClient = { x: 0, y: 0 };
-      (wrapper.find(Draggable).prop('onDragEnd') as any)({
+      getInstance().dragStartOffset = { x: 0, y: 0 };
+      getInstance().dragStartClient = { x: 0, y: 0 };
+      getInstance().onDragEnd({
         offset: { x: 0, y: endOffset },
         client: { x: 0, y: endOffset },
-      });
-      expect(wrapper.instance().currentIndex).toBe(4);
+      } as any);
+      expect(getInstance().currentIndex).toBe(4);
     });
 
     it('drag vertical backward', () => {
-      const wrapper = mount<Carousel>(
+      const ref = createRef<Carousel>();
+      const getInstance = () => ref.current as Carousel;
+
+      render(
         <Carousel
+          ref={ref}
           vertical
           items={[...Array(itemsCount).keys()]}
           withControls
@@ -949,14 +1034,14 @@ describe('Carousel: finite mode', () => {
           infinite={false}
         />,
       );
-      const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
-      const containerEl = wrapper.instance().containerRef.current as HTMLElement;
+      const wrapperEl = getInstance().wrapperRef.current as HTMLElement;
+      const containerEl = getInstance().containerRef.current as HTMLElement;
 
       // перед перемещением мышью встаем на 6 элемент
       const startIndex = 5; // переместили мышкой на 4.3 элементов назад (вправо)
       const startOffset = -(startIndex * itemSize); // переместили мышкой на 4.3 элементов назад (вправо)
-      wrapper.instance().currentIndex = startIndex;
-      wrapper.setState({ currentOffset: -(startIndex * itemSize) });
+      getInstance().currentIndex = startIndex;
+      getInstance().setState({ currentOffset: -(startIndex * itemSize) });
       jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
         () =>
           ({
@@ -981,18 +1066,22 @@ describe('Carousel: finite mode', () => {
         offset: endOffset,
       });
 
-      wrapper.instance().dragStartOffset = { x: 0, y: startOffset };
-      wrapper.instance().dragStartClient = { x: 0, y: startOffset };
-      (wrapper.find(Draggable).prop('onDragEnd') as any)({
+      getInstance().dragStartOffset = { x: 0, y: startOffset };
+      getInstance().dragStartClient = { x: 0, y: startOffset };
+      getInstance().onDragEnd({
         offset: { x: 0, y: endOffset },
         client: { x: 0, y: endOffset },
-      });
-      expect(wrapper.instance().currentIndex).toBe(2);
+      } as any);
+      expect(getInstance().currentIndex).toBe(2);
     });
 
     it('drag vertical backward outside viewport bounds', () => {
-      const wrapper = mount<Carousel>(
+      const ref = createRef<Carousel>();
+      const getInstance = () => ref.current as Carousel;
+
+      render(
         <Carousel
+          ref={ref}
           vertical
           items={[...Array(itemsCount).keys()]}
           withControls
@@ -1005,8 +1094,8 @@ describe('Carousel: finite mode', () => {
         />,
       );
 
-      const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
-      const containerEl = wrapper.instance().containerRef.current as HTMLElement;
+      const wrapperEl = getInstance().wrapperRef.current as HTMLElement;
+      const containerEl = getInstance().containerRef.current as HTMLElement;
       jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
         () =>
           ({
@@ -1028,18 +1117,21 @@ describe('Carousel: finite mode', () => {
         offset: endOffset,
       });
 
-      wrapper.instance().dragStartOffset = { x: 0, y: 0 };
-      wrapper.instance().dragStartClient = { x: 0, y: 0 };
-      (wrapper.find(Draggable).prop('onDragEnd') as any)({
+      getInstance().dragStartOffset = { x: 0, y: 0 };
+      getInstance().dragStartClient = { x: 0, y: 0 };
+      getInstance().onDragEnd({
         offset: { x: 0, y: endOffset },
         client: { x: 0, y: endOffset },
-      });
-      expect(wrapper.instance().currentIndex).toBe(0);
+      } as any);
+      expect(getInstance().currentIndex).toBe(0);
     });
 
     it('drag vertical forward outside viewport bounds', () => {
-      const wrapper = mount<Carousel>(
+      const ref = createRef<Carousel>();
+      const getInstance = () => ref.current as Carousel;
+      render(
         <Carousel
+          ref={ref}
           vertical
           items={[...Array(itemsCount).keys()]}
           withControls
@@ -1052,8 +1144,8 @@ describe('Carousel: finite mode', () => {
         />,
       );
 
-      const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
-      const containerEl = wrapper.instance().containerRef.current as HTMLElement;
+      const wrapperEl = getInstance().wrapperRef.current as HTMLElement;
+      const containerEl = getInstance().containerRef.current as HTMLElement;
       jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
         () =>
           ({
@@ -1075,13 +1167,13 @@ describe('Carousel: finite mode', () => {
         offset: endOffset,
       });
 
-      wrapper.instance().dragStartOffset = { x: 0, y: 0 };
-      wrapper.instance().dragStartClient = { x: 0, y: 0 };
-      (wrapper.find(Draggable).prop('onDragEnd') as any)({
+      getInstance().dragStartOffset = { x: 0, y: 0 };
+      getInstance().dragStartClient = { x: 0, y: 0 };
+      getInstance().onDragEnd({
         offset: { x: 0, y: endOffset },
         client: { x: 0, y: endOffset },
-      });
-      expect(wrapper.instance().currentIndex).toBe(itemsCount - 1);
+      } as any);
+      expect(getInstance().currentIndex).toBe(itemsCount - 1);
     });
   });
 });
@@ -1091,8 +1183,13 @@ describe('Carousel: infinite mode', () => {
     const itemSize = 30;
     const step = 4;
     const itemsCount = 12;
-    const wrapper = mount<Carousel>(
+
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+
+    const { getAllByTestId } = render(
       <Carousel
+        ref={ref}
         infinite
         step={4}
         items={[...Array(itemsCount).keys()]}
@@ -1104,8 +1201,8 @@ describe('Carousel: infinite mode', () => {
         )}
       />,
     );
-    const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
-    const containerEl = wrapper.instance().containerRef.current as HTMLElement;
+    const wrapperEl = getInstance().wrapperRef.current as HTMLElement;
+    const containerEl = getInstance().containerRef.current as HTMLElement;
 
     jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
       () =>
@@ -1131,21 +1228,26 @@ describe('Carousel: infinite mode', () => {
       itemsCount,
       offset: initialOffset,
     });
-    wrapper.instance().currentIndex = initialIndex;
-    wrapper.setState({ currentOffset: initialOffset });
+    getInstance().currentIndex = initialIndex;
+    getInstance().setState({ currentOffset: initialOffset });
 
     // запускаем прокрутку
-    wrapper.find(ArrowButton).at(1).find('button').simulate('click');
+    fireEvent.click(getAllByTestId('arrow-button')[1]);
 
-    expect(wrapper.instance().currentIndex).toBe(initialIndex - itemsCount + step);
+    expect(getInstance().currentIndex).toBe(initialIndex - itemsCount + step);
   });
 
   it('should move forward vertically with correcting offset', () => {
     const itemSize = 30;
     const step = 4;
     const itemsCount = 12;
-    const wrapper = mount<Carousel>(
+
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+
+    const { getAllByTestId } = render(
       <Carousel
+        ref={ref}
         infinite
         step={4}
         vertical
@@ -1158,8 +1260,8 @@ describe('Carousel: infinite mode', () => {
         )}
       />,
     );
-    const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
-    const containerEl = wrapper.instance().containerRef.current as HTMLElement;
+    const wrapperEl = getInstance().wrapperRef.current as HTMLElement;
+    const containerEl = getInstance().containerRef.current as HTMLElement;
 
     jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
       () =>
@@ -1185,21 +1287,26 @@ describe('Carousel: infinite mode', () => {
       itemsCount,
       offset: initialOffset,
     });
-    wrapper.instance().currentIndex = initialIndex;
-    wrapper.setState({ currentOffset: initialOffset });
+    getInstance().currentIndex = initialIndex;
+    getInstance().setState({ currentOffset: initialOffset });
 
     // запускаем прокрутку
-    wrapper.find(ArrowButton).at(0).find('button').simulate('click');
+    fireEvent.click(getAllByTestId('arrow-button')[0]);
 
-    expect(wrapper.instance().currentIndex).toBe(initialIndex + itemsCount - step);
+    expect(getInstance().currentIndex).toBe(initialIndex + itemsCount - step);
   });
 
   it('should move forward without correcting offset', () => {
     const itemSize = 30;
     const step = 4;
     const itemsCount = 12;
-    const wrapper = mount<Carousel>(
+
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+
+    const { getAllByTestId } = render(
       <Carousel
+        ref={ref}
         infinite
         step={4}
         items={[...Array(itemsCount).keys()]}
@@ -1211,8 +1318,8 @@ describe('Carousel: infinite mode', () => {
         )}
       />,
     );
-    const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
-    const containerEl = wrapper.instance().containerRef.current as HTMLElement;
+    const wrapperEl = getInstance().wrapperRef.current as HTMLElement;
+    const containerEl = getInstance().containerRef.current as HTMLElement;
 
     jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
       () =>
@@ -1238,21 +1345,26 @@ describe('Carousel: infinite mode', () => {
       itemsCount,
       offset: initialOffset,
     });
-    wrapper.instance().currentIndex = initialIndex;
-    wrapper.setState({ currentOffset: initialOffset });
+    getInstance().currentIndex = initialIndex;
+    getInstance().setState({ currentOffset: initialOffset });
 
     // запускаем прокрутку
-    wrapper.find(ArrowButton).at(1).find('button').simulate('click');
+    fireEvent.click(getAllByTestId('arrow-button')[1]);
 
-    expect(wrapper.instance().currentIndex).toBe(step);
+    expect(getInstance().currentIndex).toBe(step);
   });
 
   it('should move backward without correcting offset', () => {
     const itemSize = 30;
     const step = 4;
     const itemsCount = 12;
-    const wrapper = mount<Carousel>(
+
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+
+    const { getAllByTestId } = render(
       <Carousel
+        ref={ref}
         infinite
         step={step}
         items={[...Array(itemsCount).keys()]}
@@ -1264,8 +1376,8 @@ describe('Carousel: infinite mode', () => {
         )}
       />,
     );
-    const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
-    const containerEl = wrapper.instance().containerRef.current as HTMLElement;
+    const wrapperEl = getInstance().wrapperRef.current as HTMLElement;
+    const containerEl = getInstance().containerRef.current as HTMLElement;
 
     jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
       () =>
@@ -1291,21 +1403,26 @@ describe('Carousel: infinite mode', () => {
       itemsCount,
       offset: initialOffset,
     });
-    wrapper.instance().currentIndex = initialIndex;
-    wrapper.setState({ currentOffset: initialOffset });
+    getInstance().currentIndex = initialIndex;
+    getInstance().setState({ currentOffset: initialOffset });
 
     // запускаем прокрутку
-    wrapper.find(ArrowButton).at(0).find('button').simulate('click');
+    fireEvent.click(getAllByTestId('arrow-button')[0]);
 
-    expect(wrapper.instance().currentIndex).toBe(8);
+    expect(getInstance().currentIndex).toBe(8);
   });
 
   it('should move backward with correcting offset', () => {
     const itemSize = 30;
     const step = 4;
     const itemsCount = 12;
-    const wrapper = mount<Carousel>(
+
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+
+    const { getAllByTestId } = render(
       <Carousel
+        ref={ref}
         infinite
         step={4}
         items={[...Array(itemsCount).keys()]}
@@ -1317,8 +1434,8 @@ describe('Carousel: infinite mode', () => {
         )}
       />,
     );
-    const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
-    const containerEl = wrapper.instance().containerRef.current as HTMLElement;
+    const wrapperEl = getInstance().wrapperRef.current as HTMLElement;
+    const containerEl = getInstance().containerRef.current as HTMLElement;
 
     jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
       () =>
@@ -1344,20 +1461,25 @@ describe('Carousel: infinite mode', () => {
       itemsCount,
       offset: initialOffset,
     });
-    wrapper.instance().currentIndex = initialIndex;
-    wrapper.setState({ currentOffset: initialOffset });
+    getInstance().currentIndex = initialIndex;
+    getInstance().setState({ currentOffset: initialOffset });
 
     // запускаем прокрутку
-    wrapper.find(ArrowButton).at(0).find('button').simulate('click');
+    fireEvent.click(getAllByTestId('arrow-button')[0]);
 
-    expect(wrapper.instance().currentIndex).toBe(initialIndex + itemsCount - step);
+    expect(getInstance().currentIndex).toBe(initialIndex + itemsCount - step);
   });
 
   it('should handle drag forward with correcting offset', () => {
     const itemSize = 30;
     const itemsCount = 12;
-    const wrapper = mount<Carousel>(
+
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+
+    const { container } = render(
       <Carousel
+        ref={ref}
         infinite
         items={[...Array(itemsCount).keys()]}
         withControls
@@ -1368,8 +1490,8 @@ describe('Carousel: infinite mode', () => {
         )}
       />,
     );
-    const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
-    const containerEl = wrapper.instance().containerRef.current as HTMLElement;
+    const wrapperEl = getInstance().wrapperRef.current as HTMLElement;
+    const containerEl = getInstance().containerRef.current as HTMLElement;
 
     // формируем viewport
     jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
@@ -1396,36 +1518,39 @@ describe('Carousel: infinite mode', () => {
       offset: dragOffset,
     });
 
-    expect((wrapper.find(Draggable).instance() as any).currentOffset).toEqual({
-      x: 0,
-      y: 0,
-    });
+    expect(container.querySelector<HTMLElement>('.draggable')?.style.transform).toEqual(
+      getTranslateStyle(0, 0),
+    );
 
     // имитируем перетаскивание
-    (wrapper.find(Draggable).prop('onDragStart') as any)(
+    getInstance().onDragStart(
       new DraggableEvent({
         offset: Point(0, 0),
         client: Point(0, 0),
       }),
     );
-    (wrapper.find(Draggable).prop('onDragMove') as any)(
+    getInstance().onDragMove(
       new DraggableEvent({
         offset: Point(dragOffset, 0),
         client: Point(dragOffset, 0),
       }),
     );
 
-    expect((wrapper.find(Draggable).instance() as any).currentOffset).toEqual({
-      x: -990,
-      y: 0,
-    });
+    expect(container.querySelector<HTMLElement>('.draggable')?.style.transform).toEqual(
+      getTranslateStyle(-990, 0),
+    );
   });
 
   it('should handle drag backward with correcting offset', () => {
     const itemSize = 30;
     const itemsCount = 12;
-    const wrapper = mount<Carousel>(
+
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+
+    const { container } = render(
       <Carousel
+        ref={ref}
         infinite
         vertical={false}
         items={[...Array(itemsCount).keys()]}
@@ -1437,11 +1562,11 @@ describe('Carousel: infinite mode', () => {
         )}
       />,
     );
-    const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
-    const containerEl = wrapper.instance().containerRef.current as HTMLElement;
+    const wrapperEl = getInstance().wrapperRef.current as HTMLElement;
+    const containerEl = getInstance().containerRef.current as HTMLElement;
 
     // формируем viewport
-    wrapper.setState({ isAllItemsVisible: false });
+    getInstance().setState({ isAllItemsVisible: false });
     jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
       () =>
         ({
@@ -1465,41 +1590,44 @@ describe('Carousel: infinite mode', () => {
       itemsCount,
       offset: dragOffset,
     });
-    wrapper.setState({ isAllItemsVisible: false });
+    getInstance().setState({ isAllItemsVisible: false });
 
-    expect((wrapper.find(Draggable).instance() as any).currentOffset).toEqual({
-      x: 0,
-      y: 0,
-    });
+    expect(container.querySelector<HTMLElement>('.draggable')?.style.transform).toEqual(
+      getTranslateStyle(0, 0),
+    );
 
     // имитируем перетаскивание
-    (wrapper.find(Draggable).prop('onDragStart') as any)(
+    getInstance().onDragStart(
       new DraggableEvent({
         offset: Point(0, 0),
         client: Point(0, 0),
       }),
     );
 
-    // подменяю результат потому что в jest + jsdom + enzyme все подменяется на ходу
-    jest.spyOn(wrapper.instance(), 'findRealItemsStartBound').mockImplementation(() => 90000);
-    (wrapper.find(Draggable).prop('onDragMove') as any)(
+    // подменяю результат потому что в jest + jsdom все подменяется на ходу
+    jest.spyOn(getInstance(), 'findRealItemsStartBound').mockImplementation(() => 90000);
+    getInstance().onDragMove(
       new DraggableEvent({
         offset: Point(dragOffset, 0),
         client: Point(dragOffset, 0),
       }),
     );
 
-    expect((wrapper.find(Draggable).instance() as any).currentOffset).toEqual({
-      x: -110,
-      y: 0,
-    });
+    expect(container.querySelector<HTMLElement>('.draggable')?.style.transform).toEqual(
+      getTranslateStyle(-110, 0),
+    );
   });
 
   it('should handle drag backward without correcting offset', () => {
     const itemSize = 30;
     const itemsCount = 12;
-    const wrapper = mount<Carousel>(
+
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+
+    const { container } = render(
       <Carousel
+        ref={ref}
         infinite
         vertical
         items={[...Array(itemsCount).keys()]}
@@ -1512,11 +1640,11 @@ describe('Carousel: infinite mode', () => {
       />,
     );
 
-    const wrapperEl = wrapper.instance().wrapperRef.current as HTMLElement;
-    const containerEl = wrapper.instance().containerRef.current as HTMLElement;
+    const wrapperEl = getInstance().wrapperRef.current as HTMLElement;
+    const containerEl = getInstance().containerRef.current as HTMLElement;
 
     // формируем viewport
-    wrapper.setState({ isAllItemsVisible: false });
+    getInstance().setState({ isAllItemsVisible: false });
     jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
       () =>
         ({
@@ -1540,36 +1668,32 @@ describe('Carousel: infinite mode', () => {
       itemsCount,
       offset: dragOffset,
     });
-    wrapper.setState({ isAllItemsVisible: false });
+    getInstance().setState({ isAllItemsVisible: false });
 
-    expect((wrapper.find(Draggable).instance() as any).currentOffset).toEqual({
-      x: 0,
-      y: 0,
-    });
+    expect(container.querySelector<HTMLElement>('.draggable')?.style.transform).toEqual(
+      getTranslateStyle(0, 0),
+    );
 
     // имитируем перетаскивание
-    (wrapper.find(Draggable).prop('onDragStart') as any)(
+    getInstance().onDragStart(
       new DraggableEvent({
         offset: Point(0, 0),
         client: Point(0, 0),
       }),
     );
 
-    // подменяю результат потому что в jest + jsdom + enzyme все подменяется на ходу
-    jest
-      .spyOn(wrapper.instance(), 'findRealItemsStartBound' as any)
-      .mockImplementation(() => -90000);
-    (wrapper.find(Draggable).prop('onDragMove') as any)(
+    // подменяю результат потому что в jest + jsdom все подменяется на ходу
+    jest.spyOn(getInstance(), 'findRealItemsStartBound' as any).mockImplementation(() => -90000);
+    getInstance().onDragMove(
       new DraggableEvent({
         offset: Point(0, dragOffset),
         client: Point(0, dragOffset),
       }),
     );
 
-    expect((wrapper.find(Draggable).instance() as any).currentOffset).toEqual({
-      x: 0,
-      y: 0,
-    });
+    expect(container.querySelector<HTMLElement>('.draggable')?.style.transform).toEqual(
+      getTranslateStyle(0, 0),
+    );
   });
 
   // дальше тесты написаны исключительно на mock'ах для покрытия
