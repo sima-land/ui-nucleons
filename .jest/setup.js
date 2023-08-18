@@ -1,5 +1,3 @@
-import 'raf/polyfill';
-
 Error.stackTraceLimit = 1000;
 
 if (typeof window !== 'undefined') {
