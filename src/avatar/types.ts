@@ -6,6 +6,7 @@ export interface AvatarStyle extends CSSProperties {
   '--avatar-color'?: string;
   '--avatar-color-opacity'?: number | string;
   '--avatar-text-color'?: string;
+  '--avatar-font-size'?: string;
 }
 
 export interface AvatarProps extends WithTestId {

@@ -30,12 +30,7 @@ export function Avatar({
       {/* изображение */}
       {needImage && (
         <>
-          <img
-            src={src}
-            alt=''
-            className={cx('layer', 'image')}
-            onError={() => toggleNeedImage(false)}
-          />
+          <img src={src} alt='' className={cx('image')} onError={() => toggleNeedImage(false)} />
         </>
       )}
 

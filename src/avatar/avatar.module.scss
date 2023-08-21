@@ -36,19 +36,17 @@
   }
 }
 
+.image {
+  @include layer;
+  object-fit: cover;
+}
+
 .content {
-  font-size: calc(var(--avatar-size, 72px) / 3);
+  font-size: var(--avatar-font-size, calc(var(--avatar-size, 72px) / 3));
   position: relative;
   font-weight: 600;
   white-space: nowrap;
 
   // ВАЖНО: чтобы например обертка в виде ссылки не накидывала text-decoration: underline
   text-decoration: none;
-}
-
-.layer {
-  @include layer;
-  &.image {
-    object-fit: cover;
-  }
 }
