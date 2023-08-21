@@ -4,9 +4,9 @@ import {
   getAvatarIconProps,
   getUserAvatarProps,
 } from '@sima-land/ui-nucleons/avatar';
+import person from './person.jpg';
 import dog from './dog.png';
 import PersonSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Person';
-import { someImageUrl } from '../../../.storybook/utils';
 
 export default {
   title: 'common/Avatar',
@@ -17,11 +17,9 @@ export default {
 };
 
 export function WithImage() {
-  const src = someImageUrl({ w: 200 });
-
   return (
     <>
-      <Avatar src={src} />
+      <Avatar src={person} />
     </>
   );
 }
@@ -73,7 +71,7 @@ WithCustomColors.storyName = 'Свои цвета';
 export function WithCustomSize() {
   return (
     <div style={{ display: 'flex', gap: '16px' }}>
-      <Avatar style={{ '--avatar-size': '128px' }} src={someImageUrl({ w: 200 })} />
+      <Avatar style={{ '--avatar-size': '128px' }} src={person} />
 
       <Avatar style={{ '--avatar-size': '128px' }} src={dog} />
 
@@ -92,7 +90,7 @@ export function UserAvatar() {
   return (
     <>
       <h4>Имя, фамилия и фото</h4>
-      <Avatar {...getUserAvatarProps({ id: 1, name: 'Лев Толстой', image: someImageUrl(200) })} />
+      <Avatar {...getUserAvatarProps({ id: 1, name: 'Лев Толстой', image: person })} />
 
       <h4>Имя, фамилия и битое фото</h4>
       <Avatar {...getUserAvatarProps({ id: 2, name: 'Лев Толстой', image: '/broken-image.png' })} />

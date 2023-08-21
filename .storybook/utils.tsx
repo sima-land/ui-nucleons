@@ -19,6 +19,7 @@ type OptionsParam = { w?: number; h?: number; id?: number };
  * На данный момент за основу взят https://loremflickr.com/.
  * @param params Параметры картинки.
  * @return URL.
+ * @deprecated Лучше хранить картинки прямо в исходном коде.
  */
 export function someImageUrl(params: SizeParam | OptionsParam): string {
   let w: number;
