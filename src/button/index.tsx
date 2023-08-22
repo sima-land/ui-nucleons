@@ -154,3 +154,5 @@ export const Button = forwardRef<any, ButtonProps>(function Button(
 
   return result;
 });
+
+// @todo сделать что-то в духе ButtonContent в который можно указывать иконки, подзаголовок и тд
