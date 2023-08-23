@@ -1,18 +1,22 @@
 module.exports = {
-  core: {
-    builder: 'webpack5',
-  },
   stories: ['./index.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+
+  staticDirs: [{ from: './assets', to: '/assets' }],
+
   addons: [
-    !process.env.TEST_ENV && '@storybook/addon-storysource',
+    !process.env.TEST_ENV && {
+      name: '@storybook/addon-storysource',
+      options: {
+        loaderOptions: {
+          injectStoryParameters: false,
+        },
+      },
+    },
     !process.env.TEST_ENV && '@storybook/addon-backgrounds',
     {
       name: '@storybook/addon-docs',
       options: {
         transcludeMarkdown: true,
-        sourceLoaderOptions: {
-          injectStoryParameters: false,
-        },
       },
     },
   ].filter(Boolean),
@@ -28,4 +32,13 @@ module.exports = {
           propFilter: prop => !prop.parent || !/node_modules/.test(prop.parent.fileName),
         },
       },
+
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {},
+  },
+
+  docs: {
+    autodocs: true,
+  },
 };

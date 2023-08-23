@@ -6,7 +6,8 @@ import {
   ButtonViewType,
 } from '@sima-land/ui-nucleons/button';
 import { CSSProperties, useState } from 'react';
-import PlusSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Plus';
+import ShareSVG from '@sima-land/ui-quarks/icons/16x16/Filled/Share';
+import ShareAndroidSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ShareAndroid';
 import Placeholder16SVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Placeholder';
 import Placeholder24SVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Placeholder';
 import { Sandbox } from '../../../.storybook/utils';
@@ -22,14 +23,84 @@ export default {
 export function Primary() {
   return (
     <>
-      <Button size='s' icon={PlusSVG} onClick={() => alert('Спасибо!')}>
-        Нажми на меня
-      </Button>
+      <Button onClick={() => alert('Спасибо!')}>Нажми на меня</Button>
     </>
   );
 }
 
 Primary.storyName = 'Простой пример';
+
+export function DifferentColors() {
+  return (
+    <div style={{ display: 'flex', gap: '12px' }}>
+      <Button viewType='primary'>Primary</Button>
+      <Button viewType='secondary'>Secondary</Button>
+      <Button viewType='success'>Success</Button>
+    </div>
+  );
+}
+
+DifferentColors.storyName = 'Варианты цветов';
+
+export function DifferentSizes() {
+  return (
+    <div style={{ display: 'flex', gap: '12px' }}>
+      <Button size='m'>Просто кнопка</Button>
+      <Button size='s'>Просто кнопка</Button>
+      <Button size='xs'>Просто кнопка</Button>
+    </div>
+  );
+}
+
+DifferentSizes.storyName = 'Варианты размеров';
+
+export function OnlyIcon() {
+  return (
+    <div style={{ display: 'flex', gap: '12px' }}>
+      <Button size='m' icon={ShareAndroidSVG} />
+      <Button size='s' icon={ShareAndroidSVG} />
+      <Button size='xs' icon={ShareSVG} />
+    </div>
+  );
+}
+
+OnlyIcon.storyName = 'Только иконка';
+
+export function IconStart() {
+  return (
+    <div style={{ display: 'flex', gap: '12px' }}>
+      <Button size='m' icon={ShareAndroidSVG} iconPosition='start'>
+        Поделиться
+      </Button>
+      <Button size='s' icon={ShareAndroidSVG} iconPosition='start'>
+        Поделиться
+      </Button>
+      <Button size='xs' icon={ShareSVG} iconPosition='start'>
+        Поделиться
+      </Button>
+    </div>
+  );
+}
+
+IconStart.storyName = 'Иконка в начале';
+
+export function IconEnd() {
+  return (
+    <div style={{ display: 'flex', gap: '12px' }}>
+      <Button size='m' icon={ShareAndroidSVG} iconPosition='end'>
+        Поделиться
+      </Button>
+      <Button size='s' icon={ShareAndroidSVG} iconPosition='end'>
+        Поделиться
+      </Button>
+      <Button size='xs' icon={ShareSVG} iconPosition='end'>
+        Поделиться
+      </Button>
+    </div>
+  );
+}
+
+IconEnd.storyName = 'Иконка в конце';
 
 export function DifferentStates() {
   const [size, setSize] = useState<ButtonSize>('s');

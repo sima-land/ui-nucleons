@@ -36,7 +36,7 @@
 Локально E2E-тесты должны запускаться в Docker-контейнере, пример:
 
 ```sh
-docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.29.2-focal /bin/bash
+docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.37.0-jammy /bin/bash
 npx playwright test
 ```
 
