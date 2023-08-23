@@ -1,6 +1,8 @@
 module.exports = {
   stories: ['./index.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
 
+  staticDirs: [{ from: './assets', to: '/assets' }],
+
   addons: [
     !process.env.TEST_ENV && {
       name: '@storybook/addon-storysource',
