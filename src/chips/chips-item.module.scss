@@ -1,0 +1,67 @@
+@use '../colors';
+
+.root {
+  flex-grow: 0;
+  flex-shrink: 0;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  height: 32px;
+
+  // ВАЖНО: по умолчанию 0 чтобы вне Chips отступов не было
+  margin-right: var(--chips-gutter, 0);
+  margin-bottom: var(--chips-gutter, 0);
+  overflow: hidden;
+  outline: 0;
+  border: 0;
+  padding: 0 12px;
+  background: colors.$basic-gray8;
+  color: colors.$basic-gray87;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  text-decoration: none;
+
+  // ВАЖНО: переопределяем стили монолита
+  &,
+  &:link,
+  &:visited {
+    background: colors.$basic-gray8;
+    color: colors.$basic-gray87;
+  }
+
+  // ВАЖНО: эффект при наведении определяем **после** переопределения стилей монолита
+  &:hover {
+    cursor: pointer;
+  }
+  &:hover,
+  &:active {
+    background: colors.$basic-gray12;
+    color: colors.$basic-gray87;
+  }
+  &.checked {
+    background: colors.$basic-gray76;
+    color: colors.$basic-white;
+    &:hover,
+    &:active {
+      background: colors.$basic-gray66;
+      color: colors.$basic-white;
+    }
+  }
+}
+
+.text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.cross-svg {
+  display: block;
+  fill: currentColor;
+  margin-left: 8px;
+  flex-shrink: 0;
+}

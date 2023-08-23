@@ -1,7 +1,6 @@
 import { act, Simulate } from 'react-dom/test-utils';
 import { render } from '@testing-library/react';
-import { Chips } from '..';
-import type { ChipsItemProps } from '../item';
+import { Chips, ChipsItemProps } from '..';
 
 describe('Chips', () => {
   it('should renders correctly', async () => {

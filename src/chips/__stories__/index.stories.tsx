@@ -1,7 +1,15 @@
-import { Chips } from '@sima-land/ui-nucleons/chips';
+import { Chips, ChipsItem } from '@sima-land/ui-nucleons/chips';
 import { useReducer } from 'react';
 
-const ITEMS = [
+export default {
+  title: 'common/Chips',
+  component: Chips,
+  parameters: {
+    layout: 'padded',
+  },
+};
+
+const items = [
   'Ручка для пакета',
   'Спортивные кружки',
   'Пакеты пищевые',
@@ -13,26 +21,17 @@ const ITEMS = [
   'Зоотовары',
 ] as const;
 
-export default {
-  title: 'common/Chips',
-  component: Chips,
-  parameters: {
-    layout: 'padded',
-  },
-};
-
 export function Primary() {
-  const reducer = (ids: Record<number, boolean>, id: number) => ({ ...ids, [id]: !ids[id] });
-  const [checked, toggle] = useReducer(reducer, { 2: true });
-
   return (
-    <Chips>
-      {ITEMS.map((children, id) => (
-        <Chips.Item key={id} checked={checked[id]} onClick={() => toggle(id)}>
-          {children}
-        </Chips.Item>
-      ))}
-    </Chips>
+    <>
+      <Chips>
+        {items.map((item, index) => (
+          <ChipsItem key={index} checked={index % 2 === 0}>
+            {item}
+          </ChipsItem>
+        ))}
+      </Chips>
+    </>
   );
 }
 
@@ -40,13 +39,15 @@ Primary.storyName = 'Простой пример';
 
 export function Links() {
   return (
-    <Chips>
-      {ITEMS.map((children, index) => (
-        <Chips.Item key={index} href='https://www.sima-land.ru' checked={index % 2 === 0}>
-          {children}
-        </Chips.Item>
-      ))}
-    </Chips>
+    <>
+      <Chips>
+        {items.map((item, index) => (
+          <ChipsItem key={index} href='https://www.sima-land.ru' checked={index % 2 === 0}>
+            {item}
+          </ChipsItem>
+        ))}
+      </Chips>
+    </>
   );
 }
 
@@ -59,10 +60,10 @@ export function WithCross() {
   return (
     <>
       <Chips>
-        {ITEMS.map((children, id) => (
-          <Chips.Item key={id} withCross checked={checked[id]} onClick={() => toggle(id)}>
-            {children}
-          </Chips.Item>
+        {items.map((item, id) => (
+          <ChipsItem key={id} withCross checked={checked[id]} onClick={() => toggle(id)}>
+            {item}
+          </ChipsItem>
         ))}
       </Chips>
     </>
@@ -79,24 +80,24 @@ export function TruncatedText() {
     <div style={{ width: '240px' }}>
       <h3>Базовый вид:</h3>
       <Chips>
-        <Chips.Item>{longText}</Chips.Item>
+        <ChipsItem>{longText}</ChipsItem>
       </Chips>
 
       <h3>С крестиком:</h3>
       <Chips>
-        <Chips.Item withCross>{longText}</Chips.Item>
+        <ChipsItem withCross>{longText}</ChipsItem>
       </Chips>
 
       <h3>Активный:</h3>
       <Chips>
-        <Chips.Item checked>{longText}</Chips.Item>
+        <ChipsItem checked>{longText}</ChipsItem>
       </Chips>
 
       <h3>Активный с крестиком:</h3>
       <Chips>
-        <Chips.Item checked withCross>
+        <ChipsItem checked withCross>
           {longText}
-        </Chips.Item>
+        </ChipsItem>
       </Chips>
     </div>
   );
