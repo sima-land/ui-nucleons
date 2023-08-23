@@ -9,6 +9,7 @@
     "node": ">=16.15.1"
   },
   "scripts": {
+    "showcase": "rspack serve",
     "prepare": "husky install",
     "export:colors": "node .template/build.mjs",
     "build:before": "rm -rf build",
@@ -44,7 +45,8 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
-    "@playwright/test": "^1.27.1",
+    "@playwright/test": "^1.37.1",
+    "@rspack/cli": "^0.2.12",
     "@rushstack/eslint-patch": "^1.1.1",
     "@sima-land/linters": "^3.0.0",
     "@storybook/addon-backgrounds": "^6.5.14",
