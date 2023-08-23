@@ -47,7 +47,7 @@ test.describe('Mouse interactions', () => {
   });
 });
 
-test.describe.only('Keyboard interactions', () => {
+test.describe('Keyboard interactions', () => {
   test('should create focus trap while opened', async () => {
     await expect(here.opener()).toHaveCount(1);
     await expect(here.popup()).toHaveCount(0);
