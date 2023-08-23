@@ -1,11 +1,11 @@
-import { Children, isValidElement } from 'react';
-import { ChipsItem } from './item';
+import { HTMLAttributes, ReactNode } from 'react';
+import { ChipsItem } from './chips-item';
 import classnames from 'classnames/bind';
 import styles from './chips.module.scss';
 
-export interface ChipsProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ChipsProps extends HTMLAttributes<HTMLDivElement> {
   /** Элементы списка. */
-  children: React.ReactNode;
+  children?: ReactNode;
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
@@ -18,15 +18,20 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export const Chips = ({
+export function Chips({
   children,
   className,
   'data-testid': testId = 'chips',
   ...restProps
-}: ChipsProps) => (
-  <div {...restProps} className={cx('list', className)} data-testid={testId}>
-    {Children.toArray(children).filter(c => isValidElement(c) && c.type === ChipsItem)}
-  </div>
-);
+}: ChipsProps) {
+  return (
+    <div {...restProps} className={cx('root', className)} data-testid={testId}>
+      {children}
+    </div>
+  );
+}
 
+/**
+ * @deprecated Следует использовать ChipsItem.
+ */
 Chips.Item = ChipsItem;
