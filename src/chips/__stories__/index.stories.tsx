@@ -1,5 +1,4 @@
 import { Chips, ChipsItem } from '@sima-land/ui-nucleons/chips';
-import { useReducer } from 'react';
 
 export default {
   title: 'common/Chips',
@@ -54,14 +53,11 @@ export function Links() {
 Links.storyName = 'Чипсы-ссылки';
 
 export function WithCross() {
-  const reducer = (ids: Record<number, boolean>, id: number) => ({ ...ids, [id]: !ids[id] });
-  const [checked, toggle] = useReducer(reducer, { 2: true });
-
   return (
     <>
       <Chips>
-        {items.map((item, id) => (
-          <ChipsItem key={id} withCross checked={checked[id]} onClick={() => toggle(id)}>
+        {items.map((item, index) => (
+          <ChipsItem key={index} withCross checked={index % 2 === 0}>
             {item}
           </ChipsItem>
         ))}
