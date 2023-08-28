@@ -1,0 +1,42 @@
+@use '../colors';
+
+.main {
+  fill: var(--file-icon-primary-color, #{colors.$basic-gray24});
+}
+
+// ВАЖНО: далее используем цвет именно как резервное значение чтобы иметь возможность переопределения
+.doc {
+  fill: var(--file-icon-primary-color, #{colors.$additional-electric-blue});
+}
+
+.xls {
+  fill: var(--file-icon-primary-color, #{colors.$additional-light-green});
+}
+
+.pdf {
+  fill: var(--file-icon-primary-color, #{colors.$additional-deep-red});
+}
+
+.jpg {
+  fill: var(--file-icon-primary-color, #{colors.$additional-deep-orange});
+}
+
+.xml {
+  fill: var(--file-icon-primary-color, #{colors.$additional-deep-purple});
+}
+
+.zip {
+  fill: var(--file-icon-primary-color, #{colors.$additional-teal});
+}
+
+.png {
+  fill: var(--file-icon-primary-color, #{colors.$additional-purple});
+}
+
+.mov {
+  fill: var(--file-icon-primary-color, #{colors.$additional-blue-gray});
+}
+
+.mp4 {
+  fill: var(--file-icon-primary-color, #{colors.$additional-blue-gray});
+}

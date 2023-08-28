@@ -1,64 +1,80 @@
-import { COLORS } from '../colors';
+import { CSSProperties, SVGAttributes } from 'react';
+import classNames from 'classnames/bind';
+import styles from './file-icon.module.scss';
 
-const VARIANTS = {
-  doc: { fill: COLORS.get('additional-electric-blue') },
-  xls: { fill: COLORS.get('additional-light-green') },
-  pdf: { fill: COLORS.get('additional-deep-red') },
-  jpg: { fill: COLORS.get('additional-deep-orange') },
-  xml: { fill: COLORS.get('additional-deep-purple') },
-  zip: { fill: COLORS.get('additional-teal') },
-  png: { fill: COLORS.get('additional-purple') },
-  mov: { fill: COLORS.get('additional-blue-gray') },
-  mp4: { fill: COLORS.get('additional-blue-gray') },
-} as const;
+export interface FileIconStyle extends CSSProperties {
+  '--file-icon-primary-color'?: string;
+}
 
-export interface FileIconProps extends Omit<React.SVGAttributes<SVGSVGElement>, 'type'> {
+export interface FileIconProps extends Omit<SVGAttributes<SVGSVGElement>, 'type'> {
   /** Тип файла. */
   type?: string;
+
+  /** Нужно ли выводить название типа. */
+  typeDisplayed?: boolean;
+
+  /** Стили. */
+  style?: FileIconStyle;
 }
+
+const cx = classNames.bind(styles);
+
+const KNOWN_TYPES = new Set(['doc', 'xls', 'pdf', 'jpg', 'xml', 'zip', 'png', 'mov', 'mp4']);
 
 /**
  * Компонент иконки файла.
  * @param props Свойства. Поддерживаются свойства <svg />.
  * @return Элемент.
  */
-export const FileIcon = ({ type, ...svgProps }: FileIconProps) => {
-  const typeProps = (VARIANTS as any)[type as any];
-
-  return type && typeProps ? (
+export function FileIcon({
+  type,
+  typeDisplayed = typeof type === 'string' && KNOWN_TYPES.has(type),
+  ...svgProps
+}: FileIconProps) {
+  return type && typeDisplayed ? (
     <svg width='32' height='32' viewBox='0 0 32 32' {...svgProps}>
+      {/* основная фигура */}
       <path
+        className={cx('main', type.slice(0, 3).toLowerCase())}
         opacity='0.88'
         d='M6 5C6 3.89543 6.89543 3 8 3H20L26 9V27C26 28.1046 25.1046 29 24 29H8C6.89543 29 6 28.1046 6 27V5Z'
-        fill={typeProps.fill}
       />
-      <path opacity='0.32' d='M21 9L26 9L20 3L20 8C20 8.55229 20.4477 9 21 9Z' fill='white' />
+
+      {/* уголок */}
+      <path opacity='0.32' d='M21 9L26 9L20 3L20 8C20 8.55229 20.4477 9 21 9Z' fill='#fff' />
       <path
         opacity='0.24'
         d='M25.1667 9L21 9L26 15L26 9C25.5833 9 25.6269 9 25.1667 9Z'
         fill='black'
       />
+
+      {/* текст */}
       <text x='16' y='23' textAnchor='middle' fontSize='6.5' fontWeight='700' fill='#fff'>
         {type.toUpperCase()}
       </text>
     </svg>
   ) : (
-    <svg width='32' height='32' viewBox='0 0 32 32' fill='none' {...svgProps}>
+    <svg width='32' height='32' viewBox='0 0 32 32' {...svgProps}>
+      {/* основная фигура */}
       <path
+        className={cx('main')}
         opacity='0.88'
         d='M6 5C6 3.89543 6.89543 3 8 3H20L26 9V27C26 28.1046 25.1046 29 24 29H8C6.89543 29 6 28.1046 6 27V5Z'
-        fill='#C2C2C2'
       />
-      <path opacity='0.32' d='M21 9L26 9L20 3L20 8C20 8.55229 20.4477 9 21 9Z' fill='white' />
+
+      {/* уголок */}
+      <path opacity='0.32' d='M21 9L26 9L20 3L20 8C20 8.55229 20.4477 9 21 9Z' fill='#fff' />
       <path
         opacity='0.24'
         d='M25.1667 9L21 9L26 15L26 9C25.5833 9 25.6269 9 25.1667 9Z'
         fill='black'
       />
+
+      {/* заглушка текста */}
       <g opacity='0.8'>
-        <path d='M9 22H23V24H9V22Z' fill='white' />
-        <path d='M9 18H19V20H9V18Z' fill='white' />
+        <path d='M9 22H23V24H9V22Z' fill='#fff' />
+        <path d='M9 18H19V20H9V18Z' fill='#fff' />
       </g>
     </svg>
   );
-};
+}
