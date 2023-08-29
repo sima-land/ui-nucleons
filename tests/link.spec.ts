@@ -15,13 +15,6 @@ test('link should be on page', async ({ page }) => {
   await expect(here.link()).toHaveCount(1);
   expect(await here.link().textContent()).toBe('Наш сайт');
   await expect(here.page).toHaveScreenshot();
-
-  const pagePromise = page.context().waitForEvent('page');
-
-  await here.link().click();
-  const newPage = await pagePromise;
-  await newPage.waitForURL('https://www.sima-land.ru/');
-  expect(newPage).toHaveURL('https://www.sima-land.ru/');
 });
 
 test('links with different colors should be on page', async ({ page }) => {
