@@ -1,7 +1,7 @@
-import { forwardRef } from 'react';
+import { AnchorHTMLAttributes, forwardRef, ReactNode } from 'react';
 import { getNoIndex } from '../helpers/get-no-index';
-import classnames from 'classnames/bind';
 import { Token } from '../colors';
+import classnames from 'classnames/bind';
 import styles from './link.module.scss';
 
 export type LinkColor = Extract<
@@ -14,7 +14,7 @@ export type LinkColor = Extract<
   | 'additional-teal'
 >;
 
-export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   /** Цвет (название токена). */
   color?: LinkColor;
 
@@ -45,7 +45,7 @@ const cx = classnames.bind(styles);
  * @param noIndex Флаг запрета индексации.
  * @return Объект со свойствами, формирующими содержимое.
  */
-const getContentProps = (children: React.ReactNode, noIndex?: boolean) =>
+const getContentProps = (children: ReactNode, noIndex?: boolean) =>
   noIndex ? { dangerouslySetInnerHTML: getNoIndex(children) } : { children };
 
 /**
