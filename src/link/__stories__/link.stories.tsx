@@ -10,6 +10,18 @@ export default {
 };
 
 export function Primary() {
+  return (
+    <>
+      <Link href='https://www.sima-land.ru' target='_blank'>
+        Наш сайт
+      </Link>
+    </>
+  );
+}
+
+Primary.storyName = 'Простой пример';
+
+export function DifferentColors() {
   const colors: Array<Required<LinkProps>['color']> = [
     'basic-blue',
     'basic-gray87',
@@ -19,9 +31,9 @@ export function Primary() {
     'basic-white',
   ];
 
-  function onClick() {
+  const onClick = () => {
     alert('По ссылке даже кликать можно, вау!');
-  }
+  };
 
   const styles: Record<'root' | 'item', CSSProperties> = {
     root: {
@@ -64,4 +76,4 @@ export function Primary() {
   );
 }
 
-Primary.storyName = 'Простой пример';
+DifferentColors.storyName = 'Различные цвета';
