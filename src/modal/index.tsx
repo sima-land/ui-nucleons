@@ -18,7 +18,7 @@ export interface ModalProps extends WithPageScrollLock {
   /** Содержимое компонента. */
   children?: React.ReactNode;
 
-  /** Высота в пикселях. */
+  /** Высота в пикселях. Применяется только когда size !== 'fullscreen'. */
   height?: number;
 
   /** Будет вызвана при нажатии на кнопку "назад" в топ баре. */
@@ -112,3 +112,5 @@ Modal.Header = ModalHeader;
 Modal.Body = ModalBody;
 Modal.Footer = ModalFooter;
 Modal.Overlap = ModalOverlap;
+
+// @todo пересмотреть компонент с учетом возможности задавать любые размеры окна/шапки/подвала и значениями по умолчанию

@@ -27,9 +27,11 @@ test('Alert should be shown on opener click and closed by overlay click', async 
 
   await expect(page).toHaveScreenshot();
 
+  // click on overlay
   await page.mouse.move(10, 10);
   await page.mouse.down();
   await page.mouse.up();
+
   await expect(page.getByTestId('modal-overlay')).toHaveCount(0);
   await expect(here.alert()).toHaveCount(0);
   await expect(here.alert().getByTestId('top-bar')).toHaveCount(0);
