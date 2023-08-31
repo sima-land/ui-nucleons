@@ -22,7 +22,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('Avatar should be in page', async ({ page }) => {
-  await page.goto('/iframe.html?args=&id=common-avatar--with-image&viewMode=story');
+  await page.goto('/iframe.html?id=common-avatar--with-image&viewMode=story');
 
   await expect(here.avatar()).toHaveCount(1);
   await expect(here.avatarImage()).toHaveCount(1);
@@ -33,7 +33,7 @@ test('Avatar should be in page', async ({ page }) => {
 });
 
 test('Avatar with PNG should be in page', async ({ page }) => {
-  await page.goto('/iframe.html?args=&id=common-avatar--with-png&viewMode=story');
+  await page.goto('/iframe.html?id=common-avatar--with-png&viewMode=story');
 
   await expect(here.avatar()).toHaveCount(1);
   await expect(here.avatarImage()).toHaveCount(1);
@@ -44,7 +44,7 @@ test('Avatar with PNG should be in page', async ({ page }) => {
 });
 
 test('Avatar with initial letter should be in page', async ({ page }) => {
-  await page.goto('/iframe.html?args=&id=common-avatar--with-initials&viewMode=story');
+  await page.goto('/iframe.html?id=common-avatar--with-initials&viewMode=story');
 
   await expect(here.avatar()).toHaveCount(1);
   await expect(here.avatarImage()).toHaveCount(0);
@@ -55,7 +55,7 @@ test('Avatar with initial letter should be in page', async ({ page }) => {
 });
 
 test('Avatar with icon should be in page', async ({ page }) => {
-  await page.goto('/iframe.html?args=&id=common-avatar--with-icon&viewMode=story');
+  await page.goto('/iframe.html?id=common-avatar--with-icon&viewMode=story');
 
   await expect(here.avatar()).toHaveCount(1);
   await expect(here.avatarImage()).toHaveCount(0);
@@ -66,7 +66,7 @@ test('Avatar with icon should be in page', async ({ page }) => {
 });
 
 test('Avatar with custom colors should be in page', async ({ page }) => {
-  await page.goto('/iframe.html?args=&id=common-avatar--with-custom-colors&viewMode=story');
+  await page.goto('/iframe.html?id=common-avatar--with-custom-colors&viewMode=story');
 
   await expect(here.avatar()).toHaveCount(1);
   await expect(here.avatarImage()).toHaveCount(0);
@@ -77,7 +77,7 @@ test('Avatar with custom colors should be in page', async ({ page }) => {
 });
 
 test('Avatars with custom sizes should be in page', async ({ page }) => {
-  await page.goto('/iframe.html?args=&id=common-avatar--with-custom-size&viewMode=story');
+  await page.goto('/iframe.html?id=common-avatar--with-custom-size&viewMode=story');
 
   await expect(here.avatar()).toHaveCount(4);
 
