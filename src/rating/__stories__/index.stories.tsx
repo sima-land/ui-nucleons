@@ -14,6 +14,27 @@ export default {
 export function Primary() {
   return (
     <>
+      <Rating value={3.7} />
+    </>
+  );
+}
+
+Primary.storyName = 'Простой пример';
+
+export function DifferentSizes() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      <Rating size='s' value={3.7} />
+      <Rating size='m' value={3.7} />
+    </div>
+  );
+}
+
+DifferentSizes.storyName = 'Различные размеры';
+
+export function TestApproximation() {
+  return (
+    <>
       {[...prettyValues, ...values].map((value, index) => (
         <div key={index} style={{ display: 'flex', marginBottom: 16 }}>
           <div style={{ width: 48 }}>{value}</div>
@@ -24,19 +45,4 @@ export function Primary() {
   );
 }
 
-Primary.storyName = 'Простой пример';
-
-export function MediumSize() {
-  return (
-    <>
-      {[...prettyValues, ...values].map((value, index) => (
-        <div key={index} style={{ display: 'flex', marginBottom: 16 }}>
-          <div style={{ width: 48 }}>{value}</div>
-          <Rating size='m' value={value} />
-        </div>
-      ))}
-    </>
-  );
-}
-
-MediumSize.storyName = 'Размер M';
+TestApproximation.storyName = 'Тест: аппроксимация значений';
