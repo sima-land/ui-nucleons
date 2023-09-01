@@ -10,7 +10,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('Checkbox should works and change state by click', async ({ page }) => {
-  await page.goto('/iframe.html?args=&id=common-checkbox--primary');
+  await page.goto('/iframe.html?id=common-checkbox--primary');
 
   await expect(here.checkbox()).toHaveCount(1);
   expect(await here.checkbox().isChecked()).toBe(true);
@@ -24,7 +24,7 @@ test('Checkbox should works and change state by click', async ({ page }) => {
 });
 
 test('Checkbox should works and change state by separate button click', async ({ page }) => {
-  await page.goto('/iframe.html?args=&id=common-checkbox--test-controlled&viewMode=story');
+  await page.goto('/iframe.html?id=common-checkbox--test-controlled&viewMode=story');
 
   await expect(here.checkbox()).toHaveCount(1);
   expect(await here.checkbox().isChecked()).toBe(false);

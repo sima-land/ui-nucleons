@@ -23,6 +23,8 @@ export function PaginationItem({
 }: PaginationItemProps) {
   return (
     <a
+      aria-disabled={disabled || undefined}
+      aria-current={checked || undefined}
       {...rest}
       ref={rootRef}
       href={disabled ? undefined : href}

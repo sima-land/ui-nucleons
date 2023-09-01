@@ -34,7 +34,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('/iframe.html?args=&id=common-phoneinput--primary');
+  await page.goto('/iframe.html?id=common-phoneinput--primary');
 });
 
 test('Opener must be in page', async () => {
