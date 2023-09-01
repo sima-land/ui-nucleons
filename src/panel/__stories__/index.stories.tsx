@@ -16,8 +16,10 @@ export default {
 const panelTypes: PanelType[] = ['info', 'error', 'success', 'warning'];
 
 export function Primary() {
+  const style = { width: '320px' };
+
   return (
-    <Panel style={{ maxWidth: '400px' }}>
+    <Panel style={style}>
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, unde. Minus aut saepe
       voluptatum et.
     </Panel>
@@ -25,6 +27,87 @@ export function Primary() {
 }
 
 Primary.storyName = 'Простой пример';
+
+export function DifferentColors() {
+  const style = { width: '320px', marginBottom: '12px' };
+
+  return (
+    <>
+      <Panel style={style} type='info'>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, unde. Minus aut saepe
+        voluptatum et.
+      </Panel>
+      <Panel style={style} type='error'>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, unde. Minus aut saepe
+        voluptatum et.
+      </Panel>
+      <Panel style={style} type='success'>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, unde. Minus aut saepe
+        voluptatum et.
+      </Panel>
+      <Panel style={style} type='warning'>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, unde. Minus aut saepe
+        voluptatum et.
+      </Panel>
+    </>
+  );
+}
+
+DifferentColors.storyName = 'Различные цвета';
+
+export function WithStartIcon() {
+  const style = { width: '360px', marginBottom: '12px' };
+
+  return (
+    <>
+      <Panel style={style} type='info' adornmentStart={<InfoSVG />}>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, unde. Minus aut saepe
+        voluptatum et.
+      </Panel>
+      <Panel style={style} type='error' adornmentStart={<InfoSVG />}>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, unde. Minus aut saepe
+        voluptatum et.
+      </Panel>
+      <Panel style={style} type='success' adornmentStart={<InfoSVG />}>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, unde. Minus aut saepe
+        voluptatum et.
+      </Panel>
+      <Panel style={style} type='warning' adornmentStart={<InfoSVG />}>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, unde. Minus aut saepe
+        voluptatum et.
+      </Panel>
+    </>
+  );
+}
+
+WithStartIcon.storyName = 'Иконка в начале';
+
+export function WithEndIcon() {
+  const style = { width: '360px', marginBottom: '12px' };
+
+  return (
+    <>
+      <Panel style={style} type='info' adornmentEnd={<InfoSVG />}>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, unde. Minus aut saepe
+        voluptatum et.
+      </Panel>
+      <Panel style={style} type='error' adornmentEnd={<InfoSVG />}>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, unde. Minus aut saepe
+        voluptatum et.
+      </Panel>
+      <Panel style={style} type='success' adornmentEnd={<InfoSVG />}>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, unde. Minus aut saepe
+        voluptatum et.
+      </Panel>
+      <Panel style={style} type='warning' adornmentEnd={<InfoSVG />}>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, unde. Minus aut saepe
+        voluptatum et.
+      </Panel>
+    </>
+  );
+}
+
+WithEndIcon.storyName = 'Иконка в конце';
 
 export function JsxContent() {
   const [type, setType] = useState<PanelType>(panelTypes[0]);
