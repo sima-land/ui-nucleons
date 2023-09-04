@@ -11,6 +11,7 @@ exports[`SidePage should renders correctly 2`] = `
   >
     <div
       class="side-page size-m"
+      data-testid="side-page"
     >
       <div
         class="root size-unset header no-subtitle"
