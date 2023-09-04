@@ -128,7 +128,7 @@ function SidePageInner({
 
   return (
     <ModalOverlay {...overlayProps}>
-      <div className={cx('side-page', `size-${size}`)}>
+      <div className={cx('side-page', `size-${size}`)} data-testid='side-page'>
         {header}
         <div ref={ref} className={cx('body')}>
           {body}
