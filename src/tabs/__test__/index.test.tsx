@@ -16,4 +16,16 @@ describe('<Tabs />', () => {
     expect(await findAllByTestId('tabs')).toHaveLength(1);
     expect(await findAllByTestId('tab')).toHaveLength(4);
   });
+
+  it('items should handle children', async () => {
+    const { container } = render(
+      <Tabs>
+        <Tabs.Item>One</Tabs.Item>
+        <Tabs.Item>Two</Tabs.Item>
+        <Tabs.Item>Three</Tabs.Item>
+      </Tabs>,
+    );
+
+    expect(container.textContent).toBe('OneTwoThree');
+  });
 });
