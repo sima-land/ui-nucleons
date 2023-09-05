@@ -15,15 +15,15 @@ export function Primary() {
   const number: number = parseInt(value) || 0;
   const limit = 10;
 
-  function onAdd() {
+  const onAdd = () => {
     setValue(`${number + 1}`);
-  }
+  };
 
-  function onSubtract() {
+  const onSubtract = () => {
     setValue(`${number - 1}`);
-  }
+  };
 
-  function onChange(event: ChangeEvent<HTMLInputElement>) {
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const nextValue = event.target.value.replace(/\D/g, '');
 
     if (nextValue === '') {
@@ -31,7 +31,7 @@ export function Primary() {
     } else {
       setValue(`${Math.min(limit, parseInt(nextValue))}`);
     }
-  }
+  };
 
   return (
     <>
@@ -58,15 +58,15 @@ export function DifferentStates() {
   const number: number = parseInt(value) || 0;
   const limit = 15;
 
-  function onAdd() {
+  const onAdd = () => {
     setValue(`${number + 1}`);
-  }
+  };
 
-  function onSubtract() {
+  const onSubtract = () => {
     setValue(`${number - 1}`);
-  }
+  };
 
-  function onChange(event: ChangeEvent<HTMLInputElement>) {
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const nextValue = event.target.value.replace(/\D/g, '');
 
     if (nextValue === '') {
@@ -74,7 +74,7 @@ export function DifferentStates() {
     } else {
       setValue(`${Math.min(limit, parseInt(nextValue))}`);
     }
-  }
+  };
 
   const bindProps: StepperProps = {
     value,
