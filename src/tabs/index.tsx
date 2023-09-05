@@ -1,6 +1,10 @@
-import { Children, isValidElement } from 'react';
+import { CSSProperties, MouseEventHandler, ReactNode } from 'react';
 import classnames from 'classnames/bind';
 import styles from './tabs.module.scss';
+
+export interface TabsStyle extends CSSProperties {
+  '--tabs-gap'?: string;
+}
 
 export interface TabsProps {
   /** Визуальный вариант вкладок. */
@@ -10,13 +14,16 @@ export interface TabsProps {
   stretch?: boolean;
 
   /** Размер отступа между вкладками. */
-  gapSize?: 's' | 'm';
+  gapSize?: 's' | 'm' | 'unset';
 
   /** Внешние классы. */
   className?: string;
 
+  /** Стили. */
+  style?: TabsStyle;
+
   /** Вкладки. */
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
@@ -24,7 +31,7 @@ export interface TabsProps {
 
 export interface TabsItemProps {
   /** Название вкладки. */
-  name: string;
+  name?: string;
 
   /** Выбрана ли вкладка. */
   selected?: boolean;
@@ -32,11 +39,14 @@ export interface TabsItemProps {
   /** Отключена ли вкладка. */
   disabled?: boolean;
 
+  /** Обработчик клика. */
+  onClick?: MouseEventHandler<HTMLLIElement>;
+
+  /** Содержимое. */
+  children?: ReactNode;
+
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
-
-  /** Обработчик клика. */
-  onClick?: React.MouseEventHandler<HTMLLIElement>;
 }
 
 const cx = classnames.bind(styles);
@@ -46,41 +56,52 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-const Tab = ({
+function Tab({
   name,
   selected,
   disabled,
   'data-testid': testId = 'tab',
   onClick,
-}: TabsItemProps) => (
-  <li
-    className={cx('item', { selected, disabled })}
-    data-testid={testId}
-    onClick={disabled ? undefined : onClick}
-  >
-    {String(name)}
-  </li>
-);
+  children,
+}: TabsItemProps) {
+  return (
+    <li
+      className={cx('item', { selected, disabled })}
+      data-testid={testId}
+      onClick={disabled ? undefined : onClick}
+    >
+      {typeof name !== 'undefined' ? String(name) : children}
+    </li>
+  );
+}
 
 /**
  * Компонент строки вкладок.
  * @param props Свойства.
  * @return Элемент.
  */
-export const Tabs = ({
+export function Tabs({
   children,
   view = 'clean',
   stretch = false,
   gapSize = 'm',
   className,
+  style,
   'data-testid': testId = 'tabs',
-}: TabsProps) => (
-  <ul
-    data-testid={testId}
-    className={cx('root', `view-${view}`, `gap-${gapSize}`, { stretch }, className)}
-  >
-    {Children.toArray(children).filter(child => isValidElement(child) && child.type === Tab)}
-  </ul>
-);
+}: TabsProps) {
+  const rootClassName = cx(
+    'root',
+    `view-${view}`,
+    gapSize && gapSize !== 'unset' && `gap-${gapSize}`,
+    { stretch },
+    className,
+  );
+
+  return (
+    <ul data-testid={testId} className={rootClassName} style={style}>
+      {children}
+    </ul>
+  );
+}
 
 Tabs.Item = Tab;
