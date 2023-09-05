@@ -18,32 +18,13 @@ export function Primary() {
   return (
     <SwitcherRow>
       <Checkbox id='example-checkbox' defaultChecked />
-      <SwitcherRow.Label>Простой пример</SwitcherRow.Label>
-      <SwitcherRow.Comment>Lorem ipsum dolor, sit amet.</SwitcherRow.Comment>
+      <SwitcherRow.Label>Получать рассылку на почту</SwitcherRow.Label>
+      <SwitcherRow.Comment>На самом деле никакой рассылки не будет</SwitcherRow.Comment>
     </SwitcherRow>
   );
 }
 
 Primary.storyName = 'Простой пример';
-
-export function WithInfoText() {
-  return (
-    <SwitcherRow style={{ maxWidth: '400px' }}>
-      <Checkbox id='example-checkbox' defaultChecked />
-      <SwitcherRow.Label>
-        <InfoText onIconClick={e => e.preventDefault()}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident repudiandae commodi
-          quos!
-        </InfoText>
-      </SwitcherRow.Label>
-      <SwitcherRow.Comment>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam?
-      </SwitcherRow.Comment>
-    </SwitcherRow>
-  );
-}
-
-WithInfoText.storyName = 'Вместе с InfoText';
 
 export function WithToggle() {
   return (
@@ -86,6 +67,25 @@ export function WithRadioButtons() {
 }
 
 WithRadioButtons.storyName = 'Вместе с RadioButton';
+
+export function WithInfoText() {
+  return (
+    <SwitcherRow style={{ maxWidth: '400px' }}>
+      <Checkbox id='example-checkbox' defaultChecked />
+      <SwitcherRow.Label>
+        <InfoText onIconClick={e => e.preventDefault()}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident repudiandae commodi
+          quos!
+        </InfoText>
+      </SwitcherRow.Label>
+      <SwitcherRow.Comment>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam?
+      </SwitcherRow.Comment>
+    </SwitcherRow>
+  );
+}
+
+WithInfoText.storyName = 'Вместе с InfoText';
 
 export function DifferentStates() {
   const [state, setState] = useState<string>('default');
