@@ -1,8 +1,9 @@
 import { TopBar, TopBarSize } from '@sima-land/ui-nucleons/top-bar';
 import { useState } from 'react';
-import PlaceholderSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Placeholder';
-import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Cross';
 import { Link } from '@sima-land/ui-nucleons/link';
+import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Cross';
+import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';
+import PlaceholderSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Placeholder';
 import { Sandbox } from '../../../.storybook/utils';
 
 export default {
@@ -10,10 +11,35 @@ export default {
   component: TopBar,
   parameters: {
     layout: 'padded',
+    backgrounds: { default: 'custom:gray' },
   },
 };
 
 export function Primary() {
+  return (
+    <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+      <TopBar size='m' title='Это заголовок топбара' />
+    </div>
+  );
+}
+
+Primary.storyName = 'Простой пример';
+
+export function WithSubtitle() {
+  return (
+    <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+      <TopBar size='m' title='Это заголовок топбара' subtitle='А это подзаголовок топбара' />
+    </div>
+  );
+}
+
+WithSubtitle.storyName = 'С подзаголовком';
+
+export function WithTextButtons() {
+  const stub = () => {
+    alert('Ничего не произошло');
+  };
+
   return (
     <div style={{ maxWidth: '720px', margin: '0 auto' }}>
       <TopBar
@@ -21,46 +47,59 @@ export function Primary() {
         title='Это заголовок топбара'
         subtitle='А это подзаголовок топбара'
         buttons={{
-          end: {
-            icon: <CrossSVG />,
-          },
+          start: { text: 'Отмена', onClick: stub },
+          end: { text: 'Применить', onClick: stub },
         }}
       />
     </div>
   );
 }
 
-Primary.storyName = 'Простой пример';
+WithTextButtons.storyName = 'С текстовыми кнопками';
 
-Primary.parameters = {
-  layout: 'padded',
-  backgrounds: { default: 'custom:gray' },
-};
+export function WithIconButtons() {
+  const stub = () => {
+    alert('Ничего не произошло');
+  };
 
-export function TestCustomTitle() {
   return (
-    <TopBar
-      title={
-        <>
-          Lorem <Link href='https://www.sima-land.ru'>ipsum dolor</Link> sit <b>amet consectetur</b>{' '}
-          adipisicing elit. Libero, obcaecati.
-        </>
-      }
-      subtitle={
-        <>
-          Lorem ipsum dolor sit <b>amet consectetur</b>, adipisicing elit. Libero, obcaecati.
-        </>
-      }
-    />
+    <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+      <TopBar
+        size='m'
+        title='Это заголовок топбара'
+        subtitle='А это подзаголовок топбара'
+        buttons={{
+          start: { icon: <ArrowLeftSVG />, onClick: stub },
+          end: { icon: <CrossSVG />, onClick: stub },
+        }}
+      />
+    </div>
   );
 }
 
-TestCustomTitle.storyName = 'Тест: сложные заголовки';
+WithIconButtons.storyName = 'С кнопками-иконками';
 
-TestCustomTitle.parameters = {
-  layout: 'padded',
-  backgrounds: { default: 'custom:gray' },
-};
+export function WithMixedButtons() {
+  const stub = () => {
+    alert('Ничего не произошло');
+  };
+
+  return (
+    <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+      <TopBar
+        size='m'
+        title='Это заголовок топбара'
+        subtitle='А это подзаголовок топбара'
+        buttons={{
+          start: { icon: <ArrowLeftSVG />, onClick: stub },
+          end: { text: 'Завершить', onClick: stub },
+        }}
+      />
+    </div>
+  );
+}
+
+WithMixedButtons.storyName = 'С разными кнопками';
 
 export function DifferentStates() {
   const [size, setSize] = useState<TopBarSize>('m');
@@ -269,3 +308,33 @@ export function DifferentStates() {
 }
 
 DifferentStates.storyName = 'Различные состояния';
+
+DifferentStates.parameters = {
+  layout: 'padded',
+  backgrounds: { default: 'white' },
+};
+
+export function TestCustomTitle() {
+  return (
+    <TopBar
+      title={
+        <>
+          Lorem <Link href='https://www.sima-land.ru'>ipsum dolor</Link> sit <b>amet consectetur</b>{' '}
+          adipisicing elit. Libero, obcaecati.
+        </>
+      }
+      subtitle={
+        <>
+          Lorem ipsum dolor sit <b>amet consectetur</b>, adipisicing elit. Libero, obcaecati.
+        </>
+      }
+    />
+  );
+}
+
+TestCustomTitle.storyName = 'Тест: сложные заголовки';
+
+TestCustomTitle.parameters = {
+  layout: 'padded',
+  backgrounds: { default: 'custom:gray' },
+};
