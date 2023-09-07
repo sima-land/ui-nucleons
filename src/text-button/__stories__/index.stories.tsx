@@ -1,9 +1,8 @@
 import { TextButton, TextButtonSize, TextButtonColor } from '@sima-land/ui-nucleons/text-button';
 import { useState } from 'react';
 import { COLORS } from '@sima-land/ui-nucleons/colors';
-import SettingsSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Settings';
-import CrossSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Cross';
-import TrashSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Trash';
+import ShareSVG from '@sima-land/ui-quarks/icons/16x16/Filled/Share';
+import ShareAndroidSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ShareAndroid';
 import { Sandbox } from '../../../.storybook/utils';
 
 export default {
@@ -15,18 +14,69 @@ export default {
 };
 
 export function Primary() {
-  function onClick() {
+  const onClick = () => {
     alert('Да тут и настраивать нечего...');
-  }
+  };
 
-  return (
-    <TextButton size='m' endIcon={SettingsSVG} onClick={onClick}>
-      Настроить
-    </TextButton>
-  );
+  return <TextButton onClick={onClick}>Настроить</TextButton>;
 }
 
 Primary.storyName = 'Простой пример';
+
+export function DifferentColors() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      <TextButton color='basic-blue'>basic-blue</TextButton>
+      <TextButton color='basic-gray87'>basic-gray87</TextButton>
+      <TextButton color='basic-gray38'>basic-gray38</TextButton>
+      <TextButton color='additional-red'>additional-red</TextButton>
+      <TextButton color='additional-teal'>additional-teal</TextButton>
+    </div>
+  );
+}
+
+DifferentColors.storyName = 'Варианты цветов';
+
+export function DifferentSizes() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      <TextButton size='s'>Просто кнопка</TextButton>
+      <TextButton size='m'>Просто кнопка</TextButton>
+    </div>
+  );
+}
+
+DifferentSizes.storyName = 'Варианты размеров';
+
+export function IconStart() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      <TextButton size='s' startIcon={ShareSVG}>
+        Поделиться
+      </TextButton>
+      <TextButton size='m' startIcon={ShareAndroidSVG}>
+        Поделиться
+      </TextButton>
+    </div>
+  );
+}
+
+IconStart.storyName = 'Иконка в начале';
+
+export function IconEnd() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      <TextButton size='s' endIcon={ShareSVG}>
+        Поделиться
+      </TextButton>
+      <TextButton size='m' endIcon={ShareAndroidSVG}>
+        Поделиться
+      </TextButton>
+    </div>
+  );
+}
+
+IconEnd.storyName = 'Иконка в конце';
 
 export function DifferentStates() {
   const [size, setSize] = useState<TextButtonSize>('m');
@@ -36,7 +86,7 @@ export function DifferentStates() {
   const [iconPos, setIconPos] = useState<string>('end');
   const [underline, setUnderline] = useState<boolean>(false);
 
-  const IconSVG = size === 's' ? CrossSVG : TrashSVG;
+  const IconSVG = size === 's' ? ShareSVG : ShareAndroidSVG;
 
   return (
     <Sandbox
@@ -104,7 +154,7 @@ export function DifferentStates() {
           target: '_blank',
         })}
       >
-        Удалить
+        Поделиться
       </TextButton>
     </Sandbox>
   );
