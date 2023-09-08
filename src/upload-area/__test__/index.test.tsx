@@ -5,52 +5,24 @@ describe('UploadArea', () => {
   it('should renders correctly without props', () => {
     const { container, getByTestId } = render(<UploadArea />);
 
-    expect(container.textContent).toContain('Загрузите файл');
-    expect(container.textContent).toContain('1 файл');
+    expect(container.textContent).toBe('');
     expect((getByTestId('upload-area:input') as HTMLInputElement).multiple).toBe(false);
+  });
+
+  it('should handle title and description', () => {
+    const { container } = render(
+      <UploadArea title='Загрузите фото' description='В любом формате' />,
+    );
+
+    expect(container.textContent).toContain('Загрузите фото');
+    expect(container.textContent).toContain('В любом формате');
   });
 
   it('should renders multiple file input without other props', () => {
     const { container, getByTestId } = render(<UploadArea multiple />);
 
-    expect(container.textContent).toBe('Загрузите файл');
+    expect(container.textContent).toBe('');
     expect((getByTestId('upload-area:input') as HTMLInputElement).multiple).toBe(true);
-  });
-
-  it('should handle "countLimit" prop', () => {
-    const { container, rerender } = render(<UploadArea multiple countLimit={12} />);
-
-    expect(container.textContent).toContain('Загрузите файл');
-    expect(container.textContent).toContain('12 файлов');
-
-    rerender(<UploadArea countLimit={3} />);
-
-    expect(container.textContent).toContain('Загрузите файл');
-    expect(container.textContent).toContain('3 файла');
-  });
-
-  it('should handle "formats" prop', () => {
-    const { container, rerender } = render(<UploadArea formats='JPG, GIF' />);
-
-    expect(container.textContent).toContain('Загрузите файл');
-    expect(container.textContent).toContain('JPG, GIF');
-
-    rerender(<UploadArea formats='JPG, GIF' countLimit={20} />);
-
-    expect(container.textContent).toContain('Загрузите файл');
-    expect(container.textContent).toContain('20 файлов, формат JPG, GIF');
-  });
-
-  it('should handle "sizeLimit" prop', () => {
-    const { container, rerender } = render(<UploadArea sizeLimit='24 Килобайт' />);
-
-    expect(container.textContent).toContain('Загрузите файл');
-    expect(container.textContent).toContain('1 файл, до 24 Килобайт');
-
-    rerender(<UploadArea formats='JPG, GIF' sizeLimit='500 Kb' multiple />);
-
-    expect(container.textContent).toContain('Загрузите файл');
-    expect(container.textContent).toContain('Формат JPG, GIF, до 500 Kb');
   });
 
   it('should handle "disabled" prop', () => {
@@ -145,29 +117,10 @@ describe('UploadArea', () => {
     expect(spy.mock.calls[0][0]).toHaveLength(1);
   });
 
-  it('should handle input change event with count limit', () => {
-    const spy = jest.fn();
-
-    const { getByTestId } = render(<UploadArea multiple countLimit={2} onSelect={spy} />);
-
-    const input = getByTestId('upload-area:input');
-    const files = [
-      new File([''], 'first.png'),
-      new File([''], 'second.png'),
-      new File([''], 'third.png'),
-    ];
-    const event = createEvent.change(input, { target: { files } });
-
-    expect(spy).toHaveBeenCalledTimes(0);
-    fireEvent(input, event);
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy.mock.calls[0][0]).toHaveLength(2);
-  });
-
   it('should handle input change event when files is null', () => {
     const spy = jest.fn();
 
-    const { getByTestId } = render(<UploadArea multiple countLimit={2} onSelect={spy} />);
+    const { getByTestId } = render(<UploadArea multiple onSelect={spy} />);
 
     const input = getByTestId('upload-area:input');
     const event = createEvent.change(input, { target: { files: null } });

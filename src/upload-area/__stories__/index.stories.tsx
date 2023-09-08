@@ -1,4 +1,9 @@
-import { UploadArea, UploadAreaProps, UploadAreaSize } from '@sima-land/ui-nucleons/upload-area';
+import {
+  UploadArea,
+  UploadAreaProps,
+  UploadAreaSize,
+  getFilesDescription,
+} from '@sima-land/ui-nucleons/upload-area';
 import { useState } from 'react';
 import { Sandbox } from '../../../.storybook/utils';
 
@@ -14,11 +19,9 @@ export function Primary() {
   return (
     <>
       <UploadArea
-        sizeLimit='2 Mb'
+        title='Загрузите фото'
+        description='10 файлов, формат JPG, JPEG, PNG, до 2 Mb'
         multiple
-        fileRole='фото'
-        countLimit={10}
-        formats='JPG, JPEG, PNG'
         onSelect={files => {
           alert(`Файлов выбрано: ${files.length}`);
         }}
@@ -34,29 +37,17 @@ export function DifferentState() {
   const [size, setSize] = useState<UploadAreaSize>('m');
   const [state, setState] = useState<string>('default');
 
-  const variants: UploadAreaProps[] = [
-    {
-      fileRole: 'фото',
-      formats: undefined,
-      multiple: undefined,
+  const baseProps: UploadAreaProps = {
+    disabled: state.includes('disabled'),
+    failed: state.includes('failed'),
+    onSelect: files => {
+      alert(`Файлов выбрано: ${files.length}`);
     },
-    {
-      fileRole: 'архив',
-      formats: 'ZIP, RAR, 7z',
-      multiple: undefined,
+    size,
+    style: {
+      width: size === 'm' ? '540px' : undefined,
     },
-    {
-      fileRole: 'скан',
-      formats: 'PDF, JPG, PNG',
-      multiple: true,
-    },
-    {
-      fileRole: 'изображение',
-      formats: 'PDF, JPG, PNG',
-      multiple: true,
-      countLimit: 12,
-    },
-  ];
+  };
 
   return (
     <Sandbox
@@ -74,21 +65,38 @@ export function DifferentState() {
           options: ['default', 'failed', 'disabled', 'disabled+failed'],
         },
       ]}
-      areaStyle={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}
+      areaStyle={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        gap: '16px',
+      }}
     >
-      {variants.map((variant, index) => (
-        <UploadArea
-          key={index}
-          style={{ marginBottom: '16px', width: size === 'm' ? '540px' : undefined }}
-          onSelect={files => {
-            alert(`Файлов выбрано: ${files.length}`);
-          }}
-          size={size}
-          disabled={state.includes('disabled')}
-          failed={state.includes('failed')}
-          {...variant}
-        />
-      ))}
+      <UploadArea
+        {...baseProps}
+        title='Загрузите фото'
+        description={getFilesDescription({ countLimit: 1 })}
+      />
+
+      <UploadArea
+        {...baseProps}
+        title='Загрузите архив'
+        description={getFilesDescription({ countLimit: 1, formats: 'ZIP, RAR, 7z' })}
+      />
+
+      <UploadArea
+        {...baseProps}
+        title='Загрузите скан'
+        description={getFilesDescription({ formats: 'PDF, JPG, PNG' })}
+        multiple
+      />
+
+      <UploadArea
+        {...baseProps}
+        title='Загрузите изображение'
+        description={getFilesDescription({ formats: 'PDF, JPG, PNG', countLimit: 12 })}
+        multiple
+      />
     </Sandbox>
   );
 }

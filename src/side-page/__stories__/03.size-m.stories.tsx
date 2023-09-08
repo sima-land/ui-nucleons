@@ -55,10 +55,9 @@ export function SizeM() {
             <Textarea label='Комментарий' style={{ width: '100%', marginTop: '40px' }} />
 
             <UploadArea
-              fileRole='фото'
+              title='Загрузите фото'
+              description='20 файлов, формат JPG, PNG, GIF'
               style={{ marginTop: '40px' }}
-              countLimit={20}
-              formats='JPG, PNG, GIF'
             />
           </div>
         </SidePage.Body>

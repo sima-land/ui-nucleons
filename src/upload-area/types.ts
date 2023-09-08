@@ -18,8 +18,9 @@ export interface UploadAreaProps {
   /** Стили корневого элемента. */
   style?: CSSProperties;
 
-  /** Ограничение на количество файлов. */
-  countLimit?: number;
+  title?: string;
+
+  description?: string;
 
   /** Состояние с ошибками валидации. */
   failed?: boolean;
@@ -27,20 +28,11 @@ export interface UploadAreaProps {
   /** Отключенное состояния. */
   disabled?: boolean;
 
-  /** Роль файлов. */
-  fileRole?: string;
-
-  /** Форматы файлов, выводятся пользователю. */
-  formats?: string;
-
   /** Ограничение на количество файлов. */
   multiple?: boolean;
 
   /** Сработает при выборе или перетаскивании файлов, получив список файлов и событие. */
   onSelect?: (list: File[], event: DragEvent<HTMLElement> | ChangeEvent<HTMLInputElement>) => void;
-
-  /** Ограничение на размер. */
-  sizeLimit?: string;
 
   /** Свойства корневого элемента. */
   rootProps?: HTMLAttributes<HTMLElement>;
@@ -50,4 +42,15 @@ export interface UploadAreaProps {
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
+}
+
+export interface DescriptionPayload {
+  /** Ограничение на количество файлов. */
+  countLimit?: number;
+
+  /** Ограничение на размер. */
+  sizeLimit?: string;
+
+  /** Форматы файлов, выводятся пользователю. */
+  formats?: string;
 }

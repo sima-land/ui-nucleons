@@ -4,6 +4,7 @@
   --justify-content: flex-start;
   --icon-size: 0;
   --icon-display: none;
+  --icon-gap: 0;
   --min-height: calc(48px + (2 * var(--padding-y)));
 }
 
@@ -13,5 +14,6 @@
   --justify-content: center;
   --icon-size: 64px;
   --icon-display: block;
+  --icon-gap: 24px;
   --min-height: calc(var(--icon-size) + (2 * var(--padding-y)));
 }

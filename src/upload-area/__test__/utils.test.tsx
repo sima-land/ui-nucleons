@@ -1,6 +1,6 @@
 import { createEvent, fireEvent, render } from '@testing-library/react';
 import { DragEvent } from 'react';
-import { useFilesDrop } from '../utils';
+import { useFilesDrop, getFilesDescription } from '../utils';
 
 describe('useFilesDrop', () => {
   function TestComponent({ onDrop }: { onDrop: (event: DragEvent<HTMLDivElement>) => void }) {
@@ -80,5 +80,25 @@ describe('useFilesDrop', () => {
     expect(element.getAttribute('data-active')).toBe('true');
     fireEvent(element, event);
     expect(element.getAttribute('data-active')).toBe('true');
+  });
+});
+
+describe('getFilesDescription', () => {
+  it('should handle "countLimit" prop', () => {
+    expect(getFilesDescription({ countLimit: 1 })).toBe('1 файл');
+  });
+
+  it('should handle "formats" prop', () => {
+    expect(getFilesDescription({ formats: 'JPG, GIF' })).toBe('формат JPG, GIF');
+    expect(getFilesDescription({ formats: 'JPG, GIF', countLimit: 20 })).toBe(
+      '20 файлов, формат JPG, GIF',
+    );
+  });
+
+  it('should handle "sizeLimit" prop', () => {
+    expect(getFilesDescription({ sizeLimit: '24 Килобайт' })).toBe('до 24 Килобайт');
+    expect(getFilesDescription({ formats: 'JPG, GIF', sizeLimit: '500 Kb' })).toBe(
+      'формат JPG, GIF, до 500 Kb',
+    );
   });
 });

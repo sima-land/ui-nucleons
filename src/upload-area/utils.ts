@@ -1,5 +1,7 @@
 import { DragEventHandler, useCallback, useState } from 'react';
 import { useIdentityRef } from '../hooks/identity';
+import { getDeclination } from '../helpers/get-declination';
+import { DescriptionPayload } from './types';
 
 type UseFilesDropResult<T> = {
   active: boolean;
@@ -63,4 +65,29 @@ export function useFilesDrop<T extends HTMLElement = HTMLElement>(
       onDrop,
     },
   };
+}
+
+/**
+ * Возвращает строку с описанием файлов для отправки по дизайн-гайдам.
+ * @param payload Информация о файлах.
+ * @return Строка.
+ */
+export function getFilesDescription({
+  countLimit,
+  sizeLimit,
+  formats,
+}: DescriptionPayload): string {
+  const description: string = [
+    typeof countLimit === 'number' && countLimit > 0
+      ? `${countLimit} ${getDeclination(countLimit, ['файл', 'файла', 'файлов'])}`
+      : null,
+
+    formats ? `формат ${formats}` : null,
+
+    sizeLimit ? `до ${sizeLimit}` : null,
+  ]
+    .filter(Boolean)
+    .join(', ');
+
+  return description;
 }
