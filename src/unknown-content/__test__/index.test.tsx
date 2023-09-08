@@ -1,13 +1,9 @@
-import { render } from 'react-dom';
+import { render } from '@testing-library/react';
 import { UnknownContent } from '..';
 
 describe('UnknownContent', () => {
   it('should handle no content', () => {
-    const container = document.createElement('div');
-
-    document.body.append(container);
-
-    render(<UnknownContent />, container);
+    const { container } = render(<UnknownContent />);
 
     expect(container.querySelector('div')?.innerHTML).toBe('');
   });
@@ -54,21 +50,13 @@ describe('UnknownContent', () => {
       </p>
     `;
 
-    const container = document.createElement('div');
-
-    document.body.append(container);
-
-    render(<UnknownContent markup={markup} />, container);
+    const { container } = render(<UnknownContent markup={markup} />);
 
     expect(container.innerHTML).toMatchSnapshot();
   });
 
   it('should handle "children" prop', () => {
-    const container = document.createElement('div');
-
-    document.body.append(container);
-
-    render(
+    const { container } = render(
       <UnknownContent>
         <h1>Primary title</h1>
 
@@ -78,7 +66,6 @@ describe('UnknownContent', () => {
 
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis, ullam?</p>
       </UnknownContent>,
-      container,
     );
 
     expect(container.innerHTML).toMatchSnapshot();

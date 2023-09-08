@@ -25,16 +25,16 @@ exports[`UnknownContent should renders properly 1`] = `
         </thead>
         <tbody>
           <tr>
-            <td>От 20 000 ₽</td>
-            <td>до 3 %</td>
+            <td data-table-column-title="Сумма товаров">От 20 000 ₽</td>
+            <td data-table-column-title="Скидка от оптовой цены">до 3 %</td>
           </tr>
           <tr>
-            <td>От 50 000 ₽</td>
-            <td>до 5 %</td>
+            <td data-table-column-title="Сумма товаров">От 50 000 ₽</td>
+            <td data-table-column-title="Скидка от оптовой цены">до 5 %</td>
           </tr>
           <tr>
-            <td>От 100 000 ₽</td>
-            <td>до 8 %</td>
+            <td data-table-column-title="Сумма товаров">От 100 000 ₽</td>
+            <td data-table-column-title="Скидка от оптовой цены">до 8 %</td>
           </tr>
         </tbody>
       </table>

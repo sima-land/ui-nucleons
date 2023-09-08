@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
-import { render } from 'react-dom';
-import { act } from 'react-dom/test-utils';
+import { render } from '@testing-library/react';
 import { useIdentityRef } from '../identity';
 
 describe('useIdentityRef', () => {
@@ -15,20 +14,13 @@ describe('useIdentityRef', () => {
   };
 
   it('should works', () => {
-    const container = document.createElement('div');
     const spy = jest.fn();
 
-    document.body.append(container);
-
-    act(() => {
-      render(<TestComponent value={123} callback={spy} />, container);
-    });
+    const { rerender } = render(<TestComponent value={123} callback={spy} />);
 
     expect(spy).toHaveBeenCalledWith(123);
 
-    act(() => {
-      render(<TestComponent value={234} callback={spy} />, container);
-    });
+    rerender(<TestComponent value={234} callback={spy} />);
 
     expect(spy).toHaveBeenCalledWith(234);
   });

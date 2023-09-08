@@ -1,6 +1,5 @@
 import { noop } from 'lodash';
-
-import { render } from 'react-dom';
+import { render } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import { useMedia } from '../media';
 
@@ -37,17 +36,6 @@ describe('useMedia', () => {
     },
   };
 
-  let container: HTMLDivElement;
-
-  beforeEach(() => {
-    container = document.createElement('div');
-    document.body.append(container);
-  });
-
-  afterEach(() => {
-    container.remove();
-  });
-
   beforeAll(() => {
     jest.spyOn(window, 'matchMedia').mockImplementation(q => FakeMatchMedia.create(q) as any);
   });
@@ -58,9 +46,8 @@ describe('useMedia', () => {
   });
 
   it('should handle change event', () => {
-    act(() => {
-      render(<TestComponent />, container);
-    });
+    const { container } = render(<TestComponent />);
+
     expect(container.textContent).toContain('bar');
 
     act(() => {
