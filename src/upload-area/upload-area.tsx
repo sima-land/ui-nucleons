@@ -1,8 +1,6 @@
 import { ChangeEventHandler, useCallback, useRef } from 'react';
 import { Link } from '../link';
 import { useFilesDrop } from './utils';
-import { upperFirst } from 'lodash';
-import { getDeclination } from '../helpers/get-declination';
 import { UploadAreaProps } from './types';
 import UploadSVG from '@sima-land/ui-quarks/icons/64x64/Stroked/Upload';
 import classnames from 'classnames/bind';
@@ -16,48 +14,30 @@ const cx = classnames.bind(styles);
  * @return Элемент.
  */
 export function UploadArea({
+  title,
+  description,
   className,
   style,
   size = 'm',
   multiple,
   disabled,
   failed,
-  formats,
-  fileRole = 'файл',
-  countLimit = multiple ? undefined : 1,
   onSelect,
-  sizeLimit,
   rootProps,
   inputProps,
   'data-testid': testId = 'upload-area',
 }: UploadAreaProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const secondaryInfo: string = upperFirst(
-    [
-      typeof countLimit === 'number' && countLimit > 0
-        ? `${countLimit} ${getDeclination(countLimit, ['файл', 'файла', 'файлов'])}`
-        : null,
-
-      formats ? `формат ${formats}` : null,
-
-      sizeLimit ? `до ${sizeLimit}` : null,
-    ]
-      .filter(Boolean)
-      .join(', '),
-  );
-
   const filterFiles = useCallback(
     (files: FileList | File[]): File[] => {
       const result = [...files];
 
-      multiple
-        ? countLimit && Number.isFinite(countLimit) && result.splice(countLimit)
-        : result.splice(1);
+      multiple ? result : result.splice(1);
 
       return result;
     },
-    [multiple, countLimit],
+    [multiple],
   );
 
   const onInputChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
@@ -114,28 +94,28 @@ export function UploadArea({
     >
       <UploadSVG className={cx('icon')} />
 
-      <div className={cx('info')}>
+      <div className={cx('info', { empty: !title && !description })}>
         <div className={cx('text', 'primary')}>
           <input
             {...inputProps}
             ref={inputRef}
             type='file'
             multiple={multiple}
-            className={cx('input')}
+            className={cx('input', inputProps?.className)}
             onChange={onInputChange}
             onClick={e => {
-              // для того чтобы при клике на корневом элементе не вызывался второй клик
+              // ВАЖНО: для того чтобы при клике на корневом элементе не вызывался второй клик
               e.stopPropagation();
             }}
             data-testid='upload-area:input'
             disabled={disabled}
           />
           <Link pseudo data-testid='upload-area:anchor' disabled={disabled}>
-            Загрузите {fileRole}
+            {title}
           </Link>
         </div>
 
-        {secondaryInfo && <div className={cx('text', 'secondary')}>{secondaryInfo}</div>}
+        {description && <div className={cx('text', 'secondary')}>{description}</div>}
       </div>
     </div>
   );

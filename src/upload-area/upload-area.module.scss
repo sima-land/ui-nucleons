@@ -43,8 +43,11 @@
   height: var(--icon-size);
   display: var(--icon-display);
   flex-shrink: 0;
-  margin-right: 24px;
   fill: colors.$basic-gray24;
+}
+
+.icon + .info:not(.empty) {
+  margin-left: var(--icon-gap);
 }
 
 .info {

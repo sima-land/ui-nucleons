@@ -2,7 +2,7 @@ import { Timer } from '@sima-land/ui-nucleons/timer';
 import { addDays, addMonths, formatISO } from 'date-fns';
 
 export default {
-  title: 'common/Timer',
+  title: 'service/Timer',
   component: Timer,
   parameters: {
     layout: 'padded',
