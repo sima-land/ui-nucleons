@@ -1,12 +1,13 @@
-import { render } from 'react-dom';
+import { render } from '@testing-library/react';
 import { defineSlots } from '../define-slots';
+import { ReactNode } from 'react';
 
 describe('defineSlots', () => {
   const Foo = () => <div>[Foo]</div>;
   const Bar = () => <div>[Bar]</div>;
   const Baz = () => <div>[Baz]</div>;
 
-  const TestComponent: React.FC = ({ children }) => {
+  const TestComponent = ({ children }: { children?: ReactNode }) => {
     const slots = defineSlots(children, {
       foo: Foo,
       bar: Bar,
@@ -22,25 +23,14 @@ describe('defineSlots', () => {
     );
   };
 
-  let container: HTMLDivElement;
-
-  beforeEach(() => {
-    container = document.createElement('div');
-    document.body.append(container);
-  });
-
-  afterEach(() => {
-    container && container.remove();
-  });
-
   it('should handle empty children', () => {
-    render(<TestComponent />, container);
+    const { container } = render(<TestComponent />);
 
     expect(container.textContent).toBe('');
   });
 
   it('should handle all slots', () => {
-    render(
+    const { container } = render(
       <TestComponent>
         <Foo />
         IgnoredText
@@ -48,7 +38,6 @@ describe('defineSlots', () => {
         <Baz />
         <span>IgnoredSpan</span>
       </TestComponent>,
-      container,
     );
 
     expect(container.textContent).toBe('[Foo][Bar][Baz]');

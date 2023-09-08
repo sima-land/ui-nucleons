@@ -1,4 +1,4 @@
-import { createRef, Component } from 'react';
+import { createRef, Component, ReactNode } from 'react';
 import Point, { IPoint } from '../helpers/point';
 import DraggableEvent from './helpers/draggable-event';
 import { getTransitionStyle, getTranslateStyle } from '../helpers/styles';
@@ -32,6 +32,7 @@ export interface DraggableProps {
   takeControl?: (c: Control) => void;
   transitionDuration?: number;
   containerProps?: React.HTMLProps<HTMLDivElement>;
+  children?: ReactNode;
 }
 
 const cx = classnames.bind(classes);

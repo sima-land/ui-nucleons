@@ -1,5 +1,5 @@
 import { CleanGroup, CleanButton, CleanButtonSize } from '@sima-land/ui-nucleons/clean-buttons';
-import { Fragment } from 'react';
+import { Fragment, ReactNode } from 'react';
 
 export default {
   title: 'common/CleanGroup',
@@ -14,9 +14,9 @@ const handleClick = ({ currentTarget }: React.MouseEvent<HTMLAnchorElement>) => 
   alert(currentTarget.textContent);
 };
 
-const DisplayWrapper: React.FC = ({ children }) => (
-  <div style={{ background: '#fff' }}>{children}</div>
-);
+function DisplayWrapper({ children }: { children?: ReactNode }) {
+  return <div style={{ background: '#fff' }}>{children}</div>;
+}
 
 export function Primary() {
   return (

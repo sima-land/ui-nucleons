@@ -3,7 +3,7 @@ import {
   offset,
   shift,
   autoUpdate,
-  UseFloatingProps,
+  UseFloatingOptions,
   UseFloatingReturn,
   useClick,
   useDismiss,
@@ -19,7 +19,7 @@ import { useIdentityRef } from '../hooks/identity';
  * Возвращает конфигурацию для `useFloating` по дизайн-гайдам.
  * @return Конфигурация для `useFloating` по дизайн-гайдам.
  */
-export function popupFloatingConfig(): Partial<UseFloatingProps> {
+export function popupFloatingConfig(): Partial<UseFloatingOptions> {
   return {
     strategy: 'absolute',
     placement: 'right-start',
@@ -52,8 +52,8 @@ export function usePopupFloatingStyle({
 
   return {
     position: strategy,
-    top: y ?? 0,
-    left: x ?? 0,
+    top: y,
+    left: x,
     zIndex: layer + 2,
   };
 }

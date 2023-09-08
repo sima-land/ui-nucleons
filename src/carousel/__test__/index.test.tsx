@@ -2,7 +2,7 @@ import { Carousel } from '..';
 import DraggableEvent from '../helpers/draggable-event';
 import classes from '../carousel.module.scss';
 import Point from '../../helpers/point';
-import { fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import { createRef } from 'react';
 import { getTranslateStyle } from '../../helpers/styles';
 
@@ -664,7 +664,9 @@ describe('Carousel: finite mode', () => {
       offset,
     });
     getInstance().currentIndex = itemsCount - 1;
-    getInstance().setState({ currentOffset: offset });
+    act(() => {
+      getInstance().setState({ currentOffset: offset });
+    });
     fireEvent.click(getAllByTestId('arrow-button')[0]);
     expect(getInstance().currentIndex).toBe(9);
   });
@@ -716,7 +718,9 @@ describe('Carousel: finite mode', () => {
       offset,
     });
     getInstance().currentIndex = itemsCount - 1;
-    getInstance().setState({ currentOffset: offset });
+    act(() => {
+      getInstance().setState({ currentOffset: offset });
+    });
     fireEvent.click(getAllByTestId('arrow-button')[0]);
     expect(getInstance().currentIndex).toBe(6);
   });
@@ -769,7 +773,9 @@ describe('Carousel: finite mode', () => {
       offset,
     });
     getInstance().currentIndex = itemsCount - 1;
-    getInstance().setState({ currentOffset: offset });
+    act(() => {
+      getInstance().setState({ currentOffset: offset });
+    });
     fireEvent.click(getAllByTestId('arrow-button')[0]);
     expect(getInstance().currentIndex).toBe(0);
   });
@@ -1404,7 +1410,9 @@ describe('Carousel: infinite mode', () => {
       offset: initialOffset,
     });
     getInstance().currentIndex = initialIndex;
-    getInstance().setState({ currentOffset: initialOffset });
+    act(() => {
+      getInstance().setState({ currentOffset: initialOffset });
+    });
 
     // запускаем прокрутку
     fireEvent.click(getAllByTestId('arrow-button')[0]);

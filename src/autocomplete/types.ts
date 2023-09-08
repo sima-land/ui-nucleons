@@ -1,10 +1,9 @@
 import type { ReactNode } from 'react';
 import type { DropdownProps } from '../dropdown';
 import type { DropdownItemElement } from '../dropdown-item/types';
-import type { FieldBlockProps } from '../field-block';
 import type { InputProps } from '../input';
 
-export interface AutocompleteProps extends InputProps {
+export interface AutocompleteProps extends Omit<InputProps, 'adornmentEnd'> {
   /** Содержимое. */
   children?: ReactNode;
 
@@ -15,7 +14,7 @@ export interface AutocompleteProps extends InputProps {
   filterOption?: (option: DropdownItemElement, inputValue: string) => boolean;
 
   /** Украшение после основного содержимого. */
-  adornmentEnd?: FieldBlockProps['adornmentEnd'] | ((data: { menuShown: boolean }) => ReactNode);
+  adornmentEnd?: ReactNode | ((data: { menuShown: boolean }) => ReactNode);
 
   /** Свойства выпадающего списка. */
   dropdownProps?: Pick<DropdownProps, 'className' | 'style'>;

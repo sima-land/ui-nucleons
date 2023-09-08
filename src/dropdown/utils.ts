@@ -1,11 +1,11 @@
-import { UseFloatingProps, flip, autoUpdate, shift, UseFloatingReturn } from '@floating-ui/react';
+import { UseFloatingOptions, flip, autoUpdate, shift, UseFloatingReturn } from '@floating-ui/react';
 import { useLayer } from '../helpers/layer';
 
 /**
  * Возвращает конфигурацию для `useFloating` по дизайн-гайдам.
  * @return Конфигурация для `useFloating` по дизайн-гайдам.
  */
-export function dropdownFloatingConfig(): Partial<UseFloatingProps> {
+export function dropdownFloatingConfig(): Partial<UseFloatingOptions> {
   return {
     whileElementsMounted: autoUpdate,
     placement: 'bottom-start',
@@ -41,8 +41,8 @@ export function useDropdownFloatingStyle({
 
   return {
     position: strategy,
-    top: y ?? 0,
-    left: x ?? 0,
+    top: y,
+    left: x,
     minWidth: openerWidth,
     zIndex: layer + 2,
 

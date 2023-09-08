@@ -20,7 +20,7 @@ import {
   useClick,
   useDismiss,
   useFloating,
-  UseFloatingProps,
+  UseFloatingOptions,
   UseFloatingReturn,
   useHover,
   useInteractions,
@@ -37,7 +37,7 @@ interface HintExtendedRefs<RT> extends ExtendedRefs<RT> {
 }
 
 interface UseHintFloatingReturn<RT extends ReferenceType = ReferenceType>
-  extends UseFloatingReturn<RT> {
+  extends Omit<UseFloatingReturn<RT>, 'refs'> {
   refs: HintExtendedRefs<RT>;
 }
 
@@ -50,7 +50,7 @@ export function hintFloatingConfig({
   arrowRef,
 }: {
   arrowRef?: MutableRefObject<HTMLElement | null>;
-} = {}): Partial<UseFloatingProps> {
+} = {}): Partial<UseFloatingOptions> {
   return {
     placement: 'top',
     middleware: [
@@ -79,7 +79,7 @@ export function hintFloatingConfig({
  * @return Результат useFloating.
  */
 export function useHintFloating<RT extends ReferenceType = ReferenceType>(
-  props?: Partial<UseFloatingProps>,
+  props?: Partial<UseFloatingOptions>,
 ): UseHintFloatingReturn<RT> {
   const [arrowEl, setArrowEl] = useState<HTMLElement | null>(null);
   const arrowRef = useIdentityRef(arrowEl);
@@ -110,8 +110,8 @@ export function useHintFloatingStyle(
 
   return {
     position: floating.strategy,
-    top: floating.y ?? 0,
-    left: floating.x ?? 0,
+    top: floating.y,
+    left: floating.x,
     zIndex: layer + 2,
     ...mapKeys(getArrowFloatingStyle(floating), (value, key) => `--hint-arrow-${key}`),
   };

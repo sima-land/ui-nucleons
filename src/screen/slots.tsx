@@ -1,4 +1,4 @@
-import { forwardRef, useRef, useImperativeHandle, useContext } from 'react';
+import { forwardRef, useRef, useImperativeHandle, useContext, ReactNode } from 'react';
 import { get } from 'lodash';
 import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';
 import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Cross';
@@ -106,4 +106,4 @@ export const BodySlot = forwardRef<HTMLDivElement | null, { children?: React.Rea
  * @param props Свойства.
  * @return Элемент.
  */
-export const FooterSlot: React.FC = ({ children }) => <>{children}</>;
+export const FooterSlot = ({ children }: { children?: ReactNode }) => <>{children}</>;
