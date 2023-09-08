@@ -9,7 +9,7 @@ class Here extends TestUtils {
 
 const here = new Here().register();
 
-test.only('hint should be shown by click on button', async ({ page }) => {
+test('hint should be shown by click on button', async ({ page }) => {
   await page.goto('/iframe.html?id=common-hint--on-click');
 
   await expect(here.hint()).toHaveCount(0);
@@ -31,7 +31,7 @@ test.only('hint should be shown by click on button', async ({ page }) => {
   await expect(here.hint()).toHaveCount(0);
 });
 
-test.only('hint should be shown by hover on button', async ({ page }) => {
+test('hint should be shown by hover on button', async ({ page }) => {
   await page.goto('/iframe.html?id=common-hint--on-hover');
 
   await expect(here.hint()).toHaveCount(0);
@@ -57,7 +57,7 @@ test.only('hint should be shown by hover on button', async ({ page }) => {
   await expect(here.hint()).toHaveCount(0);
 });
 
-test.only('hint should be positioned properly', async ({ page }) => {
+test('hint should be positioned properly', async ({ page }) => {
   await page.goto('/iframe.html?id=common-hint--test-click');
 
   await expect(page.getByText('Кликни')).toHaveCount(9);
