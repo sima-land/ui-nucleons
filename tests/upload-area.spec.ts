@@ -15,7 +15,7 @@ class Here extends TestUtils {
 
 const here = new Here().register();
 
-test.only('upload area should be on page', async ({ page }) => {
+test('upload area should be on page', async ({ page }) => {
   await page.goto('/iframe.html?id=common-uploadarea--primary');
 
   await expect(here.uploadArea()).toHaveCount(1);
