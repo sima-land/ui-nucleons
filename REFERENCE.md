@@ -40,6 +40,9 @@
 ```sh
 docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.37.0-jammy /bin/bash
 npx playwright test
+
+# совет: на linux для запуска тестов которе используют host.docker.internal можно добавить:
+# --add-host=host.docker.internal:host-gateway
 ```
 
 В противном случае скриншотные тесты не будут совпадать из-за разницы окружения запуска.

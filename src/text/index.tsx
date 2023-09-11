@@ -68,6 +68,7 @@ export const ALIGNS = new Set<Align>(['left', 'center', 'right', 'justify']);
 
 /**
  * Компонент для стилизации текста.
+ * @deprecated
  * @param props Свойства.
  * @return Элемент.
  */

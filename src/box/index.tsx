@@ -114,6 +114,7 @@ const JUSTIFY_CONTENT = new Set(['start', 'end', 'center', 'between', 'around'])
 /**
  * Компонент блока, реализующего оформление в соответствии с дизайн-системой.
  * @param props Свойства.
+ * @deprecated
  * @return Элемент.
  */
 export const Box = ({

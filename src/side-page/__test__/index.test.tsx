@@ -1,5 +1,4 @@
-import { render } from '@testing-library/react';
-import { Simulate } from 'react-dom/test-utils';
+import { render, fireEvent } from '@testing-library/react';
 import { SidePage } from '..';
 import { LayerProvider, useLayer } from '../../helpers/layer';
 
@@ -55,11 +54,11 @@ describe('SidePage', () => {
     );
 
     expect(onBack).toHaveBeenCalledTimes(0);
-    Simulate.click(getByTestId('top-bar:back'));
+    fireEvent.click(getByTestId('top-bar:back'));
     expect(onBack).toHaveBeenCalledTimes(1);
 
     expect(onClose).toHaveBeenCalledTimes(0);
-    Simulate.click(getByTestId('top-bar:close'));
+    fireEvent.click(getByTestId('top-bar:close'));
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 

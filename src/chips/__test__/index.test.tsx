@@ -1,9 +1,8 @@
-import { act, Simulate } from 'react-dom/test-utils';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { Chips, ChipsItemProps } from '..';
 
 describe('Chips', () => {
-  it('should renders correctly', async () => {
+  it('should renders correctly', () => {
     const spy = jest.fn();
 
     const items: ChipsItemProps[] = [
@@ -18,7 +17,7 @@ describe('Chips', () => {
       { children: 'Зоотовары' },
     ];
 
-    const { container, findAllByTestId } = render(
+    const { container, queryAllByTestId } = render(
       <Chips>
         {items.map((item, index) => (
           <Chips.Item key={index} {...item} onClick={spy} />
@@ -27,18 +26,16 @@ describe('Chips', () => {
     );
 
     expect(container).toMatchSnapshot();
-    expect(await findAllByTestId('chips')).toHaveLength(1);
+    expect(queryAllByTestId('chips')).toHaveLength(1);
 
     expect(spy).toHaveBeenCalledTimes(0);
 
-    await act(async () => {
-      Simulate.click((await findAllByTestId('chips:item'))[4]);
-    });
+    fireEvent.click(queryAllByTestId('chips:item')[4]);
 
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('should handle items with "href" property', async () => {
+  it('should handle items with "href" property', () => {
     const items: ChipsItemProps[] = [
       { children: 'Ручка для пакета' },
       { children: 'Спортивные кружки' },
@@ -76,7 +73,7 @@ describe('Chips', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('should provide able to pass target props to anchor', async () => {
+  it('should provide able to pass target props to anchor', () => {
     const items: ChipsItemProps[] = [
       { href: 'https://www.foo.com', children: 'Foo', target: '_blank' },
       { href: 'https://www.bar.com', children: 'Bar', target: '_parent' },
