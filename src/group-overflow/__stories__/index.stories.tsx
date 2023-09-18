@@ -1,7 +1,7 @@
 import { GroupOverflow, RenderTail } from '@sima-land/ui-nucleons/group-overflow';
 import { useEffect, useState } from 'react';
 import { Layout } from '@sima-land/ui-nucleons/layout';
-import { Chips } from '@sima-land/ui-nucleons/chips';
+import { Chip } from '@sima-land/ui-nucleons/chip';
 import { on } from '@sima-land/ui-nucleons/helpers/on';
 
 export default {
@@ -18,9 +18,9 @@ export function Primary() {
   return (
     <Layout>
       <h3>Всего элементов: {items.length}</h3>
-      <GroupOverflow tail={data => <Chips.Item checked>+{data.hiddenCount}</Chips.Item>}>
+      <GroupOverflow tail={data => <Chip checked>+{data.hiddenCount}</Chip>}>
         {items.map((item, index) => (
-          <Chips.Item key={index}>{item}</Chips.Item>
+          <Chip key={index}>{item}</Chip>
         ))}
       </GroupOverflow>
     </Layout>
@@ -35,7 +35,7 @@ export function Limitation() {
 
   const tail: RenderTail = data => (
     // вычитаем еще 1 так как вывели второй замыкающий элемент
-    <Chips.Item checked>+{data.hiddenCount + (items.length - max - 1)}</Chips.Item>
+    <Chip checked>+{data.hiddenCount + (items.length - max - 1)}</Chip>
   );
 
   return (
@@ -44,10 +44,10 @@ export function Limitation() {
 
       <GroupOverflow tail={tail}>
         {items.slice(0, max).map((item, index) => (
-          <Chips.Item key={index}>{item}</Chips.Item>
+          <Chip key={index}>{item}</Chip>
         ))}
 
-        <Chips.Item checked>+{items.length - max}</Chips.Item>
+        <Chip checked>+{items.length - max}</Chip>
       </GroupOverflow>
     </Layout>
   );
@@ -63,7 +63,7 @@ export function WithoutTail() {
       <h3>Всего элементов: {items.length}</h3>
       <GroupOverflow>
         {items.map((item, index) => (
-          <Chips.Item key={index}>{item}</Chips.Item>
+          <Chip key={index}>{item}</Chip>
         ))}
       </GroupOverflow>
     </Layout>
@@ -94,9 +94,9 @@ export function TestCountChange() {
   return (
     <Layout>
       <h3>Всего элементов: {items.length}</h3>
-      <GroupOverflow tail={data => <Chips.Item checked>+{data.hiddenCount}</Chips.Item>}>
+      <GroupOverflow tail={data => <Chip checked>+{data.hiddenCount}</Chip>}>
         {items.map((item, index) => (
-          <Chips.Item key={index}>{item}</Chips.Item>
+          <Chip key={index}>{item}</Chip>
         ))}
       </GroupOverflow>
       <p>Используйте стрелки на клавиатуре чтобы изменить кол-во элементов</p>
