@@ -19,6 +19,9 @@ export function Chip(props: ChipProps) {
     endAdornment,
     children,
     disabled,
+    padding = 'x',
+    adornmentGutter = 'default',
+    'data-testid': testId = 'chip',
     ...restProps
   } = props;
 
@@ -26,6 +29,8 @@ export function Chip(props: ChipProps) {
     'root',
     shape !== 'unset' && `shape-${shape}`,
     colors !== 'unset' && `colors-${colors}`,
+    padding !== 'unset' && `padding-${padding}`,
+    adornmentGutter !== 'unset' && `adornment-gutter-${adornmentGutter}`,
     checked && 'checked',
     disabled && 'disabled',
     className,
@@ -41,7 +46,7 @@ export function Chip(props: ChipProps) {
   if (restProps.as === 'anchor') {
     // @todo унифицировать поведение для disabled-ссылок в виде функции getDisabledAnchorProps()?
     return (
-      <a className={rootClassName} tabIndex={disabled ? -1 : undefined} {...restProps}>
+      <a className={rootClassName} {...restProps} data-testid={testId}>
         {content}
       </a>
     );
@@ -49,14 +54,14 @@ export function Chip(props: ChipProps) {
 
   if (restProps.as === 'button') {
     return (
-      <button disabled={disabled} className={rootClassName} {...restProps}>
+      <button disabled={disabled} className={rootClassName} {...restProps} data-testid={testId}>
         {content}
       </button>
     );
   }
 
   return (
-    <span className={rootClassName} {...restProps}>
+    <span className={rootClassName} {...restProps} data-testid={testId}>
       {content}
     </span>
   );

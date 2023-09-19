@@ -10,10 +10,6 @@
   display: flex;
   align-items: center;
   height: 32px;
-  overflow: hidden;
-  outline: 0;
-  border: 0;
-  border-radius: 4px;
   box-sizing: border-box;
   font: inherit;
   font-size: 12px;
@@ -23,6 +19,9 @@
   padding: 0 12px;
   background: var(--chip-background);
   color: var(--chip-color);
+  &:focus-visible {
+    @include utils.focus-visible-style;
+  }
 
   // ВАЖНО: переопределяем стили монолита для ссылок
   &,
@@ -58,6 +57,18 @@
   }
 }
 
+.padding-x {
+  padding: 0 12px;
+}
+
+.padding-start {
+  padding: 0 0 0 12px;
+}
+
+.adornment-gutter-default {
+  --chip-adornment-gutter: 8px;
+}
+
 .colors-light {
   @include chip-util.colors-light;
 }
@@ -84,20 +95,23 @@
   height: 100%;
   display: flex;
   align-items: center;
-  padding: 0 0 0 8px;
+  margin-left: var(--chip-adornment-gutter);
 }
 
 .icon-button {
   @include utils.reset-button;
   display: flex;
   align-items: center;
-  background: transparent;
   height: 32px;
-  margin-left: -4px;
-  margin-right: -12px;
+  margin-left: 4px;
   padding-left: 4px;
   padding-right: 12px;
+  background: transparent;
+  border-radius: 4px;
   cursor: pointer;
+  &:focus-visible {
+    @include utils.focus-visible-style;
+  }
   &:not(:hover) {
     color: var(--chip-color);
   }

@@ -1,6 +1,5 @@
 import { CSSProperties } from 'react';
-import { Chip, ChipIconButton } from '@sima-land/ui-nucleons/chip';
-import CrossSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Cross';
+import { Chip, getDeletableChipProps } from '@sima-land/ui-nucleons/chip';
 import InformationSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Information';
 
 export default {
@@ -24,9 +23,18 @@ Primary.storyName = 'Простой пример';
 export function LightTheme() {
   return (
     <div style={{ display: 'flex', gap: '8px', padding: '24px' }}>
-      <Chip>Чипс обычный</Chip>
-      <Chip disabled>Чипс отключенный</Chip>
-      <Chip checked>Чипс выбранный</Chip>
+      <Chip checked={false} disabled={false}>
+        Чипс обычный
+      </Chip>
+
+      <Chip disabled checked={false}>
+        Чипс отключенный
+      </Chip>
+
+      <Chip checked disabled={false}>
+        Чипс выбранный
+      </Chip>
+
       <Chip checked disabled>
         Чипс выбранный отключенный
       </Chip>
@@ -39,7 +47,9 @@ LightTheme.storyName = 'Светлая тема';
 export function DarkTheme() {
   return (
     <div style={{ display: 'flex', gap: '8px', padding: '24px', background: '#212121' }}>
-      <Chip colors='dark'>Чипс обычный</Chip>
+      <Chip colors='dark' disabled={false} checked={false}>
+        Чипс обычный
+      </Chip>
       <Chip colors='dark' disabled>
         Чипс отключенный
       </Chip>
@@ -60,7 +70,9 @@ export function WithEndIcon() {
 
   return (
     <div style={{ display: 'flex', gap: '8px' }}>
-      <Chip endAdornment={icon}>Чипс обычный</Chip>
+      <Chip endAdornment={icon} checked={false}>
+        Чипс обычный
+      </Chip>
 
       <Chip endAdornment={icon} checked>
         Чипс выбранный
@@ -72,17 +84,17 @@ export function WithEndIcon() {
 WithEndIcon.storyName = 'С иконкой в конце';
 
 export function WithEndButton() {
-  const button = (
-    <ChipIconButton onClick={() => alert('Крестик нажат')}>
-      <CrossSVG fill='currentColor' />
-    </ChipIconButton>
-  );
+  const onDelete = () => {
+    alert('Крестик нажат!');
+  };
 
   return (
     <div style={{ display: 'flex', gap: '8px' }}>
-      <Chip endAdornment={button}>Чипс обычный</Chip>
+      <Chip {...getDeletableChipProps({ onDelete })} checked={false}>
+        Чипс обычный
+      </Chip>
 
-      <Chip endAdornment={button} checked>
+      <Chip {...getDeletableChipProps({ onDelete })} checked>
         Чипс выбранный
       </Chip>
     </div>
@@ -95,14 +107,18 @@ export function DifferentShapes() {
   return (
     <>
       <div style={{ display: 'flex', gap: '8px' }}>
-        <Chip shape='square'>Чипс обычный</Chip>
+        <Chip shape='square' checked={false}>
+          Чипс обычный
+        </Chip>
         <Chip shape='square' checked>
           Чипс выбранный
         </Chip>
       </div>
 
       <div style={{ display: 'flex', gap: '8px', marginTop: '16px' }}>
-        <Chip shape='pill'>Чипс обычный</Chip>
+        <Chip shape='pill' checked={false}>
+          Чипс обычный
+        </Chip>
         <Chip shape='pill' checked>
           Чипс выбранный
         </Chip>
@@ -123,7 +139,9 @@ export function TextOverflow() {
 
   return (
     <div style={style}>
-      <Chip>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, totam!</Chip>
+      <Chip endAdornment={null}>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, totam!
+      </Chip>
 
       <Chip endAdornment={<InformationSVG fill='currentColor' />}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, totam!
