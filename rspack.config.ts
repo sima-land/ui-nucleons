@@ -16,7 +16,6 @@ module.exports = async function () {
       story: './.showcase/src/story.tsx',
     },
     output: {
-      chunkFormat: 'commonjs',
       path: path.resolve(__dirname, 'dist'),
     },
     resolve: {
