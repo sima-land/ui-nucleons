@@ -1,0 +1,53 @@
+@use '../colors';
+
+@mixin colors-light {
+  // default
+  --chip-background: #{colors.$basic-gray8};
+  --chip-color: #{colors.$basic-gray87};
+  --chip-hover-background: #{colors.$basic-gray4};
+  --chip-hover-color: #{colors.$basic-gray76};
+
+  // disabled
+  --chip-disabled-background: #{colors.$basic-gray8};
+  --chip-disabled-color: #{colors.$basic-gray38};
+  --chip-disabled-hover-background: #{colors.$basic-gray8};
+  --chip-disabled-hover-color: #{colors.$basic-gray38};
+
+  // checked
+  --chip-checked-background: #{colors.$basic-gray87};
+  --chip-checked-color: #{colors.$basic-white};
+  --chip-checked-hover-background: #{colors.$basic-gray76};
+  --chip-checked-hover-color: #{colors.$basic-gray8};
+
+  // checked + disabled
+  --chip-checked-disabled-background: #{colors.$basic-gray87};
+  --chip-checked-disabled-color: #{colors.$basic-gray38};
+  --chip-checked-disabled-hover-background: #{colors.$basic-gray87};
+  --chip-checked-disabled-hover-color: #{colors.$basic-gray38};
+}
+
+@mixin colors-dark {
+  // default
+  --chip-background: #{colors.$basic-gray76};
+  --chip-color: #{colors.$basic-white};
+  --chip-hover-background: #{colors.$basic-gray66};
+  --chip-hover-color: #{colors.$basic-gray8};
+
+  // disabled
+  --chip-disabled-background: #{colors.$basic-gray76};
+  --chip-disabled-color: #{colors.$basic-gray38};
+  --chip-disabled-hover-background: #{colors.$basic-gray76};
+  --chip-disabled-hover-color: #{colors.$basic-gray38};
+
+  // checked
+  --chip-checked-background: #{colors.$basic-white};
+  --chip-checked-color: #{colors.$basic-gray87};
+  --chip-checked-hover-background: #{colors.$basic-gray4};
+  --chip-checked-hover-color: #{colors.$basic-gray76};
+
+  // checked + disabled
+  --chip-checked-disabled-background: #{colors.$basic-white};
+  --chip-checked-disabled-color: #{colors.$basic-gray38};
+  --chip-checked-disabled-hover-background: #{colors.$basic-white};
+  --chip-checked-disabled-hover-color: #{colors.$basic-gray38};
+}

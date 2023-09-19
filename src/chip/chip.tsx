@@ -1,7 +1,7 @@
+import { ButtonHTMLAttributes } from 'react';
 import { ChipProps } from './types';
 import classnames from 'classnames/bind';
 import styles from './chip.module.scss';
-import { ButtonHTMLAttributes } from 'react';
 
 const cx = classnames.bind(styles);
 
@@ -10,32 +10,55 @@ const cx = classnames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export function Chip({
-  href,
-  children,
-  target,
-  onClick,
-  checked,
-  style,
-  className,
-  endAdornment,
-  shape = 'square',
-}: ChipProps) {
-  const rootClassName = cx('root', checked && 'checked', `shape-${shape}`, className);
+export function Chip(props: ChipProps) {
+  const {
+    checked,
+    shape = 'square',
+    colors = 'light',
+    className,
+    endAdornment,
+    children,
+    disabled,
+    ...restProps
+  } = props;
+
+  const rootClassName = cx(
+    'root',
+    shape !== 'unset' && `shape-${shape}`,
+    colors !== 'unset' && `colors-${colors}`,
+    checked && 'checked',
+    disabled && 'disabled',
+    className,
+  );
+
+  const content = (
+    <>
+      <span className={cx('section-main')}>{children}</span>
+      {endAdornment && <span className={cx('section-end-adornment')}>{endAdornment}</span>}
+    </>
+  );
+
+  if (restProps.as === 'anchor') {
+    // @todo унифицировать поведение для disabled-ссылок в виде функции getDisabledAnchorProps()?
+    return (
+      <a className={rootClassName} tabIndex={disabled ? -1 : undefined} {...restProps}>
+        {content}
+      </a>
+    );
+  }
+
+  if (restProps.as === 'button') {
+    return (
+      <button disabled={disabled} className={rootClassName} {...restProps}>
+        {content}
+      </button>
+    );
+  }
 
   return (
-    <a
-      style={style}
-      href={href}
-      role={href ? undefined : 'button'}
-      className={rootClassName}
-      target={target}
-      onClick={onClick}
-      data-testid='chip'
-    >
-      <span className={cx('main')}>{children}</span>
-      {endAdornment && <span className={cx('end-adornment')}>{endAdornment}</span>}
-    </a>
+    <span className={rootClassName} {...restProps}>
+      {content}
+    </span>
   );
 }
 

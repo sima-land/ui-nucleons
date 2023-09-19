@@ -1,56 +1,23 @@
-import type { CSSProperties, MouseEventHandler, ReactNode } from 'react';
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, HTMLAttributes, ReactNode } from 'react';
 
-export type ChipAppearance = 'container' | 'button' | 'anchor';
+export type ChipAs = 'span' | 'button' | 'anchor';
 
-// interface CommonProps<T extends ButtonAppearance = ButtonAppearance> {
-//   /** Определяет внешний вид кнопки. */
-//   viewType?: ButtonViewType;
-
-//   /** Определяет тип корневого элемента. */
-//   appearance?: T;
-
-//   /** Иконка. */
-//   icon?: ComponentType<SVGAttributes<SVGSVGElement>>;
-
-//   /** Позиция иконки относительно текста. */
-//   iconPosition?: ButtonIconPosition;
-
-//   /** Размер. */
-//   size?: ButtonSize;
-
-//   /** Нужно ли отображать состояние загрузки. */
-//   loading?: boolean;
-
-//   /** Отключенное состояние. */
-//   disabled?: boolean;
-
-//   /** Идентификатор для систем автоматизированного тестирования. */
-//   'data-testid'?: string;
-
-//   /** Стили. */
-//   style?: ButtonStyle;
-// }
-
-// type AsButtonProps = CommonProps &
-//   Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof CommonProps> & { appearance?: 'button' };
-
-// type AsAnchorProps = CommonProps &
-//   Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof CommonProps> & { appearance: 'link' };
-
-// type AsContainerProps = CommonProps &
-//   Omit<HTMLAttributes<HTMLDivElement>, keyof CommonProps> & { appearance: 'container' };
-
-// export type ButtonProps = AsButtonProps | AsAnchorProps | AsContainerProps;
-
-export interface ChipProps {
-  href?: string;
-  children?: ReactNode;
-  withCross?: boolean;
-  target?: string;
-  onClick?: MouseEventHandler<HTMLAnchorElement>;
+interface CommonProps<T extends ChipAs = ChipAs> {
+  as?: T;
   checked?: boolean;
-  shape?: 'square' | 'pill' | 'unset';
-  className?: string;
-  style?: CSSProperties;
   endAdornment?: ReactNode;
+  shape?: 'square' | 'pill' | 'unset';
+  colors?: 'light' | 'dark' | 'unset';
+  disabled?: boolean;
 }
+
+type AsSpanProps = CommonProps &
+  Omit<HTMLAttributes<HTMLDivElement>, keyof CommonProps> & { as?: 'span' };
+
+type AsAnchorProps = CommonProps &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof CommonProps> & { as: 'anchor' };
+
+type AsButtonProps = CommonProps &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof CommonProps> & { as: 'button' };
+
+export type ChipProps = AsSpanProps | AsAnchorProps | AsButtonProps;
