@@ -15,6 +15,7 @@ const cx = classnames.bind(styles);
 
 /**
  * Список "чипсов".
+ * @deprecated Теперь можно использовать Chip из "@sima-land/ui-nucleons/chip".
  * @param props Свойства.
  * @return Элемент.
  */

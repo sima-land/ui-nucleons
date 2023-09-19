@@ -1,7 +1,7 @@
 import { Chips, ChipsItem } from '@sima-land/ui-nucleons/chips';
 
 export default {
-  title: 'common/Chips',
+  title: 'deprecated/Chips',
   component: Chips,
   parameters: {
     layout: 'padded',

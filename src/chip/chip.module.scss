@@ -3,6 +3,7 @@
 @use './chip-util';
 
 .root {
+  @include utils.reset-button;
   flex-grow: 0;
   flex-shrink: 0;
   max-width: 100%;
@@ -105,11 +106,29 @@
   }
 }
 
+.disabled .icon-button {
+  &:not(:hover) {
+    color: var(--chip-disabled-color);
+  }
+  &:hover {
+    color: var(--chip-disabled-hover-color);
+  }
+}
+
 .checked .icon-button {
   &:not(:hover) {
     color: var(--chip-checked-color);
   }
   &:hover {
     color: var(--chip-checked-hover-color);
+  }
+}
+
+.checked.disabled .icon-button {
+  &:not(:hover) {
+    color: var(--chip-checked-disabled-color);
+  }
+  &:hover {
+    color: var(--chip-checked-disabled-hover-color);
   }
 }
