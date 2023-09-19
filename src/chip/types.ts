@@ -1,14 +1,29 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, HTMLAttributes, ReactNode } from 'react';
 
-export type ChipAs = 'span' | 'button' | 'anchor';
+export type ChipAs = 'span' | 'anchor' | 'button';
+
+export type ChipShape = 'square' | 'pill';
+
+export type ChipColors = 'light' | 'dark';
 
 interface CommonProps<T extends ChipAs = ChipAs> {
+  /** Какой элемент использовать в качестве корневого элемента. */
   as?: T;
+
+  /** Выбран ли чип. */
   checked?: boolean;
-  endAdornment?: ReactNode;
-  shape?: 'square' | 'pill' | 'unset';
-  colors?: 'light' | 'dark' | 'unset';
+
+  /** Отключен ли чип. */
   disabled?: boolean;
+
+  /** Иконка в конце. */
+  endAdornment?: ReactNode;
+
+  /** Форма. */
+  shape?: ChipShape | 'unset';
+
+  /** Цвета. */
+  colors?: ChipColors | 'unset';
 }
 
 type AsSpanProps = CommonProps &

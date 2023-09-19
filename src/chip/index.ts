@@ -1,2 +1,2 @@
-export type { ChipProps } from './types';
+export type { ChipProps, ChipAs, ChipShape, ChipColors } from './types';
 export { Chip, ChipIconButton } from './chip';
