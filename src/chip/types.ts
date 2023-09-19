@@ -1,4 +1,11 @@
-import type { AnchorHTMLAttributes, ButtonHTMLAttributes, HTMLAttributes, ReactNode } from 'react';
+import type {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  CSSProperties,
+  HTMLAttributes,
+  ReactNode,
+} from 'react';
+import type { WithTestId } from '../types';
 
 export type ChipAs = 'span' | 'anchor' | 'button';
 
@@ -6,7 +13,31 @@ export type ChipShape = 'square' | 'pill';
 
 export type ChipColors = 'light' | 'dark';
 
-interface CommonProps<T extends ChipAs = ChipAs> {
+export interface ChipStyle extends CSSProperties {
+  '--chip-adornment-gutter'?: string;
+
+  '--chip-background'?: string;
+  '--chip-color'?: string;
+  '--chip-hover-background'?: string;
+  '--chip-hover-color'?: string;
+
+  '--chip-disabled-background'?: string;
+  '--chip-disabled-color'?: string;
+  '--chip-disabled-hover-background'?: string;
+  '--chip-disabled-hover-color'?: string;
+
+  '--chip-checked-background'?: string;
+  '--chip-checked-color'?: string;
+  '--chip-checked-hover-background'?: string;
+  '--chip-checked-hover-color'?: string;
+
+  '--chip-checked-disabled-background'?: string;
+  '--chip-checked-disabled-color'?: string;
+  '--chip-checked-disabled-hover-background'?: string;
+  '--chip-checked-disabled-hover-color'?: string;
+}
+
+interface CommonProps<T extends ChipAs = ChipAs> extends WithTestId {
   /** Какой элемент использовать в качестве корневого элемента. */
   as?: T;
 
@@ -16,7 +47,7 @@ interface CommonProps<T extends ChipAs = ChipAs> {
   /** Отключен ли чип. */
   disabled?: boolean;
 
-  /** Иконка в конце. */
+  /** Украшение в конце. */
   endAdornment?: ReactNode;
 
   /** Форма. */
@@ -24,6 +55,12 @@ interface CommonProps<T extends ChipAs = ChipAs> {
 
   /** Цвета. */
   colors?: ChipColors | 'unset';
+
+  /** Внутренние отступы. */
+  padding?: 'x' | 'start' | 'unset';
+
+  /** Отступ от основного контента до украшений. */
+  adornmentGutter?: 'default' | 'unset';
 }
 
 type AsSpanProps = CommonProps &

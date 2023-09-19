@@ -95,6 +95,8 @@ export function DifferentStates() {
         colors={colors}
         endAdornment={endAdornment}
         style={{ maxWidth: '240px' }}
+        padding={adornment === 'Кнопка' ? 'start' : undefined}
+        adornmentGutter={adornment === 'Кнопка' ? 'unset' : undefined}
         {...(chipsAs === 'anchor' ? { href: 'https://sima-land.ru', target: '_blank' } : {})}
       >
         {content === 'Мало текста' && <>Чипс простой</>}
