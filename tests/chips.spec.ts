@@ -14,7 +14,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('Chips should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-chips--primary');
+  await page.goto('/iframe.html?id=deprecated-chips--primary');
 
   await expect(here.chips()).toHaveCount(1);
   await expect(here.chipsItem()).toHaveCount(9);
@@ -22,7 +22,7 @@ test('Chips should be on page', async ({ page }) => {
 });
 
 test('Chips-links should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-chips--links');
+  await page.goto('/iframe.html?id=deprecated-chips--links');
 
   await expect(here.chips()).toHaveCount(1);
   await expect(here.chipsItem()).toHaveCount(9);
@@ -31,7 +31,7 @@ test('Chips-links should be on page', async ({ page }) => {
 });
 
 test('Chips with cross should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-chips--with-cross');
+  await page.goto('/iframe.html?id=deprecated-chips--with-cross');
 
   await expect(here.chips()).toHaveCount(1);
   await expect(here.chipsItem()).toHaveCount(9);
@@ -39,7 +39,7 @@ test('Chips with cross should be on page', async ({ page }) => {
 });
 
 test('Truncated chips should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-chips--truncated-text');
+  await page.goto('/iframe.html?id=deprecated-chips--truncated-text');
 
   await expect(here.chipsItem()).toHaveCount(4);
   await expect(here.page).toHaveScreenshot();
