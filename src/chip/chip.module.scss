@@ -1,0 +1,115 @@
+@use '../colors';
+@use '../utils';
+@use './chip-util';
+
+.root {
+  flex-grow: 0;
+  flex-shrink: 0;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  overflow: hidden;
+  outline: 0;
+  border: 0;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  text-decoration: none;
+  padding: 0 12px;
+  background: var(--chip-background);
+  color: var(--chip-color);
+
+  // ВАЖНО: переопределяем стили монолита для ссылок
+  &,
+  &:link,
+  &:visited {
+    background: var(--chip-background);
+    color: var(--chip-color);
+  }
+
+  // ВАЖНО: эффект при наведении определяем **после** переопределения стилей монолита
+  &:hover {
+    cursor: pointer;
+    background: var(--chip-hover-background);
+    color: var(--chip-hover-color);
+  }
+  &.disabled {
+    pointer-events: none;
+    user-select: none;
+    background: var(--chip-disabled-background);
+    color: var(--chip-disabled-color);
+  }
+  &.checked {
+    background: var(--chip-checked-background);
+    color: var(--chip-checked-color);
+  }
+  &.checked:hover {
+    background: var(--chip-checked-hover-background);
+    color: var(--chip-checked-hover-color);
+  }
+  &.checked.disabled {
+    background: var(--chip-checked-disabled-background);
+    color: var(--chip-checked-disabled-color);
+  }
+}
+
+.colors-light {
+  @include chip-util.colors-light;
+}
+
+.colors-dark {
+  @include chip-util.colors-dark;
+}
+
+.shape-square {
+  border-radius: 4px;
+}
+
+.shape-pill {
+  border-radius: 999999px;
+}
+
+.section-main {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.section-end-adornment {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 8px;
+}
+
+.icon-button {
+  @include utils.reset-button;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  height: 32px;
+  margin-left: -4px;
+  margin-right: -12px;
+  padding-left: 4px;
+  padding-right: 12px;
+  cursor: pointer;
+  &:not(:hover) {
+    color: var(--chip-color);
+  }
+  &:hover {
+    color: var(--chip-hover-color);
+  }
+}
+
+.checked .icon-button {
+  &:not(:hover) {
+    color: var(--chip-checked-color);
+  }
+  &:hover {
+    color: var(--chip-checked-hover-color);
+  }
+}

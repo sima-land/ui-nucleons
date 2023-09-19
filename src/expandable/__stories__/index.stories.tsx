@@ -1,7 +1,7 @@
 import { Expandable, ExpandableGroup } from '@sima-land/ui-nucleons/expandable';
 import { CSSProperties, useState } from 'react';
 import { Link } from '@sima-land/ui-nucleons/link';
-import { Chips } from '@sima-land/ui-nucleons/chips';
+import { Chip } from '@sima-land/ui-nucleons/chip';
 import { Layout } from '../../layout';
 
 export default {
@@ -34,7 +34,7 @@ export function Primary() {
       <Expandable.Group gap={8} itemHeight={32} opener={data => <Opener {...data} />}>
         {categories.map((item, index) => (
           <Expandable.Item key={index}>
-            <Chips.Item>{item}</Chips.Item>
+            <Chip>{item}</Chip>
           </Expandable.Item>
         ))}
       </Expandable.Group>
@@ -53,7 +53,7 @@ export function AllVisible() {
       <Expandable.Group lineLimit={4} itemHeight={32} gap={8} opener={data => <Opener {...data} />}>
         {categories.map((item, index) => (
           <Expandable.Item key={index}>
-            <Chips.Item>{item}</Chips.Item>
+            <Chip>{item}</Chip>
           </Expandable.Item>
         ))}
       </Expandable.Group>
@@ -86,7 +86,7 @@ export function WithClosing() {
       >
         {categories.map((item, index) => (
           <Expandable.Item key={index}>
-            <Chips.Item>{item}</Chips.Item>
+            <Chip>{item}</Chip>
           </Expandable.Item>
         ))}
         {opened && (
@@ -115,7 +115,7 @@ export function TestDynamicContent() {
       <Expandable.Group lineLimit={2} gap={8} itemHeight={32} opener={data => <Opener {...data} />}>
         {[...categories.slice(0, size)].map((item, index) => (
           <Expandable.Item key={index}>
-            <Chips.Item>{item}</Chips.Item>
+            <Chip>{item}</Chip>
           </Expandable.Item>
         ))}
       </Expandable.Group>
