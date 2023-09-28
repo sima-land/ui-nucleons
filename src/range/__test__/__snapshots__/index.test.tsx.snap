@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Range /> should works without props 1`] = `
+exports[`Range should works without props 1`] = `
 <div>
   <div
     class="range-wrapper-base range-wrapper-styled"

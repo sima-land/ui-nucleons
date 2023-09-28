@@ -2,7 +2,7 @@ import { createRef } from 'react';
 import { createEvent, fireEvent, render } from '@testing-library/react';
 import { Stepper } from '..';
 
-describe('<Stepper />', () => {
+describe('Stepper', () => {
   it('should handle ref prop', () => {
     const ref = createRef<HTMLInputElement>();
     const { getByTestId } = render(<Stepper ref={ref} />);

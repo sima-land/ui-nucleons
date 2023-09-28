@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Rating /> should handle size prop missing 1`] = `
+exports[`Rating should handle size prop missing 1`] = `
 <div>
   <div
     class="root"
@@ -92,7 +92,7 @@ exports[`<Rating /> should handle size prop missing 1`] = `
 </div>
 `;
 
-exports[`<Rating /> should renders correctly 1`] = `
+exports[`Rating should renders correctly 1`] = `
 <div>
   <div
     class="root test-class"

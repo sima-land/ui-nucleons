@@ -1,6 +1,6 @@
 import { createRef, Component, ReactNode } from 'react';
-import Point, { IPoint } from '../helpers/point';
-import DraggableEvent from './helpers/draggable-event';
+import { Point, IPoint } from '../helpers/point';
+import { DraggableEvent } from './helpers/draggable-event';
 import { getTransitionStyle, getTranslateStyle } from '../helpers/styles';
 import {
   isMainMouseButton,
@@ -135,7 +135,8 @@ export class Draggable extends Component<DraggableProps> {
 
       if (!isTouch) {
         event.preventDefault();
-        (window.getSelection() as Selection).removeAllRanges();
+
+        window.getSelection()?.removeAllRanges();
       }
 
       onDragStart &&
@@ -214,6 +215,7 @@ export class Draggable extends Component<DraggableProps> {
   handleClickCapture(event: React.MouseEvent<HTMLDivElement>) {
     if (this.needPreventClick) {
       event.preventDefault();
+
       this.togglePreventClickNeed(false);
     }
   }

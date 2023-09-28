@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { NoIndexMark } from '..';
 
-describe('<NoIndexMark />', () => {
+describe('NoIndexMark', () => {
   it('should renders correctly without prop', () => {
     const { container } = render(<NoIndexMark />);
 

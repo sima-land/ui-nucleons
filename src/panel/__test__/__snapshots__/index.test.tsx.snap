@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Panel /> should handle props 1`] = `
+exports[`Panel should handle props 1`] = `
 <div>
   <div
     class="root type-info bg-color__basic-gray4 color__basic-gray87 test-class"
@@ -51,7 +51,7 @@ exports[`<Panel /> should handle props 1`] = `
 </div>
 `;
 
-exports[`<Panel /> should handle unknown content 1`] = `
+exports[`Panel should handle unknown content 1`] = `
 <div>
   <div
     class="root type-info bg-color__basic-gray4 color__basic-gray87 test-class"
@@ -80,7 +80,7 @@ exports[`<Panel /> should handle unknown content 1`] = `
 </div>
 `;
 
-exports[`<Panel /> should renders without props 1`] = `
+exports[`Panel should renders without props 1`] = `
 <div>
   <div
     class="root type-info bg-color__basic-gray4 color__basic-gray87"

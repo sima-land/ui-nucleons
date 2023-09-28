@@ -2,7 +2,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { createRef } from 'react';
 import { Toggle } from '..';
 
-describe('<Toggle />', () => {
+describe('Toggle', () => {
   it('should work without props', () => {
     const { container } = render(<Toggle />);
 

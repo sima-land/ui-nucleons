@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 
 import { Rating } from '..';
 
-describe('<Rating />', () => {
+describe('Rating', () => {
   it('should renders correctly', () => {
     const { container } = render(<Rating size='m' value={3.4} className='test-class' />);
 

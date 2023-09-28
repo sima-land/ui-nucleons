@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Tabs /> should renders correctly 1`] = `
+exports[`Tabs should renders correctly 1`] = `
 <div>
   <ul
     class="root view-clean gap-m"

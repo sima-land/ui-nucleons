@@ -3,7 +3,7 @@ import { Panel } from '..';
 import LockSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Lock';
 import InformationSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Information';
 
-describe('<Panel />', () => {
+describe('Panel', () => {
   it('should renders without props', () => {
     const { container } = render(<Panel />);
 

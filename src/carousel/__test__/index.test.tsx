@@ -64,7 +64,7 @@ const FakeElement = {
     }),
 };
 
-describe('<Carousel />', () => {
+describe('Carousel', () => {
   it('should enable autoplay on mount', () => {
     const instance = new Carousel({ autoplay: true });
 

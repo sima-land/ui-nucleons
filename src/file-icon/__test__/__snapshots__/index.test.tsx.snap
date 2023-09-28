@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<FileIcon /> should render known file type icons 1`] = `
+exports[`FileIcon should render known file type icons 1`] = `
 <div>
   <svg
     height="32"
@@ -36,7 +36,7 @@ exports[`<FileIcon /> should render known file type icons 1`] = `
 </div>
 `;
 
-exports[`<FileIcon /> should render known file type icons 2`] = `
+exports[`FileIcon should render known file type icons 2`] = `
 <div>
   <svg
     height="32"
@@ -72,7 +72,7 @@ exports[`<FileIcon /> should render known file type icons 2`] = `
 </div>
 `;
 
-exports[`<FileIcon /> should render known file type icons 3`] = `
+exports[`FileIcon should render known file type icons 3`] = `
 <div>
   <svg
     height="32"
@@ -108,7 +108,7 @@ exports[`<FileIcon /> should render known file type icons 3`] = `
 </div>
 `;
 
-exports[`<FileIcon /> should render known file type icons 4`] = `
+exports[`FileIcon should render known file type icons 4`] = `
 <div>
   <svg
     height="32"
@@ -144,7 +144,7 @@ exports[`<FileIcon /> should render known file type icons 4`] = `
 </div>
 `;
 
-exports[`<FileIcon /> should render known file type icons 5`] = `
+exports[`FileIcon should render known file type icons 5`] = `
 <div>
   <svg
     height="32"
@@ -180,7 +180,7 @@ exports[`<FileIcon /> should render known file type icons 5`] = `
 </div>
 `;
 
-exports[`<FileIcon /> should render unknown file type icon 1`] = `
+exports[`FileIcon should render unknown file type icon 1`] = `
 <div>
   <svg
     height="32"

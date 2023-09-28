@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ArrowButton /> should handle props 1`] = `
+exports[`ArrowButton should handle props 1`] = `
 <div>
   <button
     aria-label="Назад"
@@ -30,7 +30,7 @@ exports[`<ArrowButton /> should handle props 1`] = `
 </div>
 `;
 
-exports[`<ArrowButton /> should renders correctly 1`] = `
+exports[`ArrowButton should renders correctly 1`] = `
 <div>
   <button
     aria-label="Вперед"

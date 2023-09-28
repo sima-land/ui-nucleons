@@ -6,3 +6,5 @@
 export function getNoIndex(content: unknown) {
   return content ? { __html: `<!--noindex-->${String(content)}<!--/noindex-->` } : undefined;
 }
+
+// @todo перенести в src/no-index

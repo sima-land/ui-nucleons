@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Link /> calls helpers and renders correctly with external 1`] = `
+exports[`Link calls helpers and renders correctly with external 1`] = `
 <div>
   <a
     class="link basic-blue"
@@ -12,7 +12,7 @@ exports[`<Link /> calls helpers and renders correctly with external 1`] = `
 </div>
 `;
 
-exports[`<Link /> calls helpers and renders correctly with pseudo 1`] = `
+exports[`Link calls helpers and renders correctly with pseudo 1`] = `
 <div>
   <a
     class="link basic-gray38"
@@ -25,7 +25,7 @@ exports[`<Link /> calls helpers and renders correctly with pseudo 1`] = `
 </div>
 `;
 
-exports[`<Link /> calls helpers with right params and renders correctly without external 1`] = `
+exports[`Link calls helpers with right params and renders correctly without external 1`] = `
 <div>
   <a
     class="link testClass basic-gray38"
@@ -38,7 +38,7 @@ exports[`<Link /> calls helpers with right params and renders correctly without 
 </div>
 `;
 
-exports[`<Link /> render render pseudo link disabled properly 1`] = `
+exports[`Link render render pseudo link disabled properly 1`] = `
 <div>
   <a
     class="link basic-blue disabled"
@@ -50,7 +50,7 @@ exports[`<Link /> render render pseudo link disabled properly 1`] = `
 </div>
 `;
 
-exports[`<Link /> render render pseudo link properly 1`] = `
+exports[`Link render render pseudo link properly 1`] = `
 <div>
   <a
     class="link basic-blue"

@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react';
 import { Checkbox } from '..';
 
-describe('<Checkbox />', () => {
+describe('Checkbox', () => {
   it('should render without props', () => {
     const { getByRole, queryAllByRole } = render(<Checkbox />);
 

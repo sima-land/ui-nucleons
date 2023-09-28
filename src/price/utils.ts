@@ -83,3 +83,5 @@ function toString(value: number): string {
 
   return result;
 }
+
+// @todo CurrencyProvider для того чтобы не прокидывать везде currencyGrapheme?

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { Portal, PortalProps } from '..';
 
-describe('<Layer />', () => {
+describe('Layer', () => {
   const TestComponent = ({
     defaultWithPortal = false,
     children,

@@ -1,7 +1,7 @@
 import { render, fireEvent } from '@testing-library/react';
 import { ArrowButton } from '..';
 
-describe('<ArrowButton />', () => {
+describe('ArrowButton', () => {
   it('should renders correctly', () => {
     const { container } = render(<ArrowButton aria-label='Вперед' />);
 
@@ -11,15 +11,15 @@ describe('<ArrowButton />', () => {
   it('should handle props', async function () {
     const spy = jest.fn();
 
-    const result = render(
+    const { container, findByTestId } = render(
       <ArrowButton size='l' direction='left' aria-label='Назад' onClick={spy} />,
     );
 
-    expect(result.container).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
 
     expect(spy).toHaveBeenCalledTimes(0);
 
-    fireEvent.click(await result.findByTestId('arrow-button'));
+    fireEvent.click(await findByTestId('arrow-button'));
 
     expect(spy).toHaveBeenCalledTimes(1);
   });

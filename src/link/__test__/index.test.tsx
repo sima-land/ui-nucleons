@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react';
 import { Link } from '..';
 
-describe('<Link />', () => {
+describe('Link', () => {
   it('calls helpers with right params and renders correctly without external', () => {
     const { container } = render(
       <Link className='testClass' href='/cart/' color='basic-gray38' target='_blank'>

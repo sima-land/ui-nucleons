@@ -3,6 +3,7 @@
  * @param value Число для форматирования.
  * @param separator Разделяющий символ для чисел больше 999.
  * @return Массив строк с целой и дробной отоформатированными частями числа.
+ * @deprecated
  */
 export function formatNumber(value: number | string, separator?: string): string[] {
   const pureSeparator = String(separator) === separator ? separator : ' ';

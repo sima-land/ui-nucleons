@@ -2,7 +2,7 @@ import { createRef } from 'react';
 import { act, fireEvent, render } from '@testing-library/react';
 import { Range } from '..';
 
-describe('<Range />', () => {
+describe('Range', () => {
   it('should works without props', () => {
     const { container } = render(<Range />);
 

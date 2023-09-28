@@ -4,7 +4,7 @@ import SearchSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Search';
 import PlusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Plus';
 import { COLORS } from '../../colors';
 
-describe('<Button />', () => {
+describe('Button', () => {
   it('should renders without props', () => {
     const { container, queryAllByTestId } = render(<Button>Кнопка</Button>);
 

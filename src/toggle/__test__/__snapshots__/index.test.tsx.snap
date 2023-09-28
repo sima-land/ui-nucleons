@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Toggle /> should work without props 1`] = `
+exports[`Toggle should work without props 1`] = `
 <div>
   <label
     class="root"

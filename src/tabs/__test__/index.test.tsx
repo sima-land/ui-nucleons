@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { Tabs } from '..';
 
-describe('<Tabs />', () => {
+describe('Tabs', () => {
   it('should renders correctly', async () => {
     const { container, findAllByTestId } = render(
       <Tabs>

@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { FileIcon } from '..';
 
-describe('<FileIcon />', () => {
+describe('FileIcon', () => {
   const types = ['doc', 'xls', 'pdf', 'jpg', 'xml'];
 
   for (const type of types) {

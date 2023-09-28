@@ -6,7 +6,7 @@ import ArrowDownSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowDown';
 import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';
 import { InnerBorder } from '../../styling/borders';
 
-describe('<TopBar />', () => {
+describe('TopBar', () => {
   it('should render as divided', () => {
     const { getByTestId } = render(<TopBar divided />);
 
