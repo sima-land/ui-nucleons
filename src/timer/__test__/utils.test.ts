@@ -1,31 +1,26 @@
+import { addHours } from 'date-fns';
 import { getDistanceToNow, formatDistance } from '../utils';
-import addMonths from 'date-fns/addMonths';
 import subMonths from 'date-fns/subMonths';
-import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
-
-jest.mock('date-fns/formatDistanceToNowStrict', () => ({
-  __esModule: true,
-  default: jest.fn(() => '2'),
-}));
 
 jest.useFakeTimers();
 
 beforeEach(() => {
   jest.clearAllMocks();
+  jest.clearAllTimers();
+  jest.setSystemTime(new Date('2020-01-01'));
 });
 
 describe('getDistanceToNow', () => {
   it('should return formatted time', () => {
-    const targetDate = addMonths(new Date(), 11);
+    const targetDate = addHours(new Date('2020-01-01'), 11);
     const result = getDistanceToNow(targetDate.toISOString());
 
     expect(result).toEqual({
-      days: 2,
-      hours: 2,
-      minutes: 2,
-      seconds: 2,
+      days: 0,
+      hours: 11,
+      minutes: 660,
+      seconds: 39600,
     });
-    expect(formatDistanceToNowStrict).toHaveBeenCalledTimes(4);
   });
 
   it('should return zero time', () => {

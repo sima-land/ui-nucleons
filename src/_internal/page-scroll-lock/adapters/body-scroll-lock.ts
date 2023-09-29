@@ -12,7 +12,8 @@ export const BSL_IGNORE_ATTR = 'data-bsl-ignore';
 export class PageScrollLock implements PageScrollLockAdapter {
   private element: Element;
   private options?: BodyScrollOptions;
-  private lib: {
+
+  lib: {
     disableBodyScroll: (...args: Parameters<typeof disableBodyScroll>) => void;
     enableBodyScroll: (...args: Parameters<typeof enableBodyScroll>) => void;
   };

@@ -2,20 +2,11 @@ import { createRef, RefObject, useContext, useEffect } from 'react';
 import { Modal, ModalSize } from '..';
 import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';
 import { render, fireEvent } from '@testing-library/react';
-import { usePageScrollLock } from '../../_internal/page-scroll-lock';
 import { LayerProvider, useLayer } from '../../helpers/layer';
 import { ViewportContext } from '../../context/viewport';
 import { ModalContext } from '../utils';
-
-jest.mock('../../_internal/page-scroll-lock', () => {
-  const original = jest.requireActual('../../_internal/page-scroll-lock');
-
-  return {
-    ...original,
-    __esModule: true,
-    usePageScrollLock: jest.fn(original.useBodyScrollLock),
-  };
-});
+import { PageScrollProvider } from '../../_internal/page-scroll-lock';
+import { PageScrollLockAdapter } from '@sima-land/ui-nucleons/_internal/page-scroll-lock/types';
 
 describe('Modal', () => {
   it('should render overlap content', () => {
@@ -66,13 +57,49 @@ describe('Modal', () => {
   });
 
   it('should do NOT disable/enable body scrolling by default', () => {
-    render(
-      <Modal>
-        <Modal.Body>Hello</Modal.Body>
-      </Modal>,
+    const adapter: PageScrollLockAdapter = {
+      lock: jest.fn(),
+      unlock: jest.fn(),
+    };
+
+    const { unmount } = render(
+      <PageScrollProvider adapter={() => adapter}>
+        <Modal>
+          <Modal.Body>Hello</Modal.Body>
+        </Modal>
+      </PageScrollProvider>,
     );
 
-    expect((usePageScrollLock as jest.Mock).mock.calls[0][1].lockEnabled).toBe(false);
+    expect(adapter.lock).toHaveBeenCalledTimes(0);
+    expect(adapter.unlock).toHaveBeenCalledTimes(0);
+
+    unmount();
+
+    expect(adapter.lock).toHaveBeenCalledTimes(0);
+    expect(adapter.unlock).toHaveBeenCalledTimes(0);
+  });
+
+  it('should disable/enable body scrolling when option is provided', () => {
+    const adapter: PageScrollLockAdapter = {
+      lock: jest.fn(),
+      unlock: jest.fn(),
+    };
+
+    const { unmount } = render(
+      <PageScrollProvider adapter={() => adapter}>
+        <Modal withScrollDisable>
+          <Modal.Body>Hello</Modal.Body>
+        </Modal>
+      </PageScrollProvider>,
+    );
+
+    expect(adapter.lock).toHaveBeenCalledTimes(1);
+    expect(adapter.unlock).toHaveBeenCalledTimes(0);
+
+    unmount();
+
+    expect(adapter.lock).toHaveBeenCalledTimes(1);
+    expect(adapter.unlock).toHaveBeenCalledTimes(1);
   });
 
   it('should render different sizes properly', () => {

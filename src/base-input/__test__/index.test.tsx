@@ -1,17 +1,6 @@
 import { createRef } from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { BaseInput } from '..';
-import { fitElementHeight } from '../../helpers/fit-element-height';
-
-jest.mock('../../helpers/fit-element-height', () => {
-  const original = jest.requireActual('../../helpers/fit-element-height');
-
-  return {
-    ...original,
-    __esModule: true,
-    fitElementHeight: jest.fn(),
-  };
-});
 
 describe('BaseInput', () => {
   it('should fill inputRef', () => {
@@ -31,13 +20,14 @@ describe('BaseInput', () => {
   });
 
   it('should fit textarea height to content height', () => {
-    const { getByTestId } = render(<BaseInput multiline defaultValue='Some text' />);
-    expect(fitElementHeight).toHaveBeenCalledTimes(1);
+    const { container, getByTestId } = render(<BaseInput multiline defaultValue='Some text' />);
+    expect(container.querySelector('textarea')?.style.height).toBe('0px');
 
     fireEvent.input(getByTestId('base-input:field'), {
       target: { value: 'Some other value' },
     });
-    expect(fitElementHeight).toHaveBeenCalledTimes(2);
+
+    expect(container.querySelector('textarea')?.style.height).toBe('0px');
   });
 
   it('should render rest placeholder for controlled fields only (when value provided)', () => {

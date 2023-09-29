@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Timer should render properly without props 1`] = `
-<div>
-  1:02:03:04
-</div>
-`;

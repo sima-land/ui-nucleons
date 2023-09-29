@@ -2,15 +2,6 @@ import { useRef } from 'react';
 import { act, fireEvent, render } from '@testing-library/react';
 import { useIsTouchDevice, useInfiniteScroll, useOutsideClick } from '../index';
 
-jest.mock('../../helpers/is-touch-device', () => {
-  const original = jest.requireActual('../../helpers/is-touch-device');
-  return {
-    ...original,
-    __esModule: true,
-    isTouchDevice: jest.fn(() => true),
-  };
-});
-
 describe('useInfiniteScroll()', () => {
   const TestComponent = ({
     withList = true,
@@ -77,7 +68,7 @@ describe('useInfiniteScroll()', () => {
     expect(HTMLUListElement.prototype.addEventListener).toHaveBeenCalledTimes(1);
   });
 
-  it('should works withhout onFullScroll', () => {
+  it('should works without onFullScroll', () => {
     const { container } = render(<TestComponent withList />);
 
     const listEl = (container as HTMLDivElement).querySelector('.test-list') as HTMLUListElement;
@@ -113,6 +104,9 @@ describe('useIsTouchDevice', () => {
   };
 
   it('should works with touch', () => {
+    // simulate touch device
+    window.ontouchstart = undefined;
+
     const { container } = render(<TestComponent />);
 
     expect(container.querySelector('span')?.textContent).toBe('Visible on touch');

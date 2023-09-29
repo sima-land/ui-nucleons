@@ -1,31 +1,26 @@
 import { PageScrollLock, allowTouchMove, BSL_IGNORE_ATTR } from '../body-scroll-lock';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
-jest.mock('body-scroll-lock', () => {
-  const original = jest.requireActual('body-scroll-lock');
-
-  return {
-    ...original,
-    disableBodyScroll: jest.fn(original.disableBodyScroll),
-    enableBodyScroll: jest.fn(original.enableBodyScroll),
-    __esModule: true,
-  };
-});
-
 describe('PageScrollLock', () => {
   it('replaceLib should provide able to replace library', () => {
     const element = document.createElement('div');
     document.body.append(element);
     const adapter = new PageScrollLock(document.createElement('div'));
 
-    expect(disableBodyScroll).toHaveBeenCalledTimes(0);
-    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
+    expect(adapter.lib.disableBodyScroll).toBe(disableBodyScroll);
+    expect(adapter.lib.enableBodyScroll).toBe(enableBodyScroll);
+
+    jest.spyOn(adapter.lib, 'disableBodyScroll');
+    jest.spyOn(adapter.lib, 'enableBodyScroll');
+
+    expect(adapter.lib.disableBodyScroll).toHaveBeenCalledTimes(0);
+    expect(adapter.lib.enableBodyScroll).toHaveBeenCalledTimes(0);
     adapter.lock();
-    expect(disableBodyScroll).toHaveBeenCalledTimes(1);
-    expect(enableBodyScroll).toHaveBeenCalledTimes(0);
+    expect(adapter.lib.disableBodyScroll).toHaveBeenCalledTimes(1);
+    expect(adapter.lib.enableBodyScroll).toHaveBeenCalledTimes(0);
     adapter.unlock();
-    expect(disableBodyScroll).toHaveBeenCalledTimes(1);
-    expect(enableBodyScroll).toHaveBeenCalledTimes(1);
+    expect(adapter.lib.disableBodyScroll).toHaveBeenCalledTimes(1);
+    expect(adapter.lib.enableBodyScroll).toHaveBeenCalledTimes(1);
 
     const replacement = {
       disableBodyScroll: jest.fn(),
@@ -39,8 +34,8 @@ describe('PageScrollLock', () => {
     adapter.unlock();
     expect(replacement.disableBodyScroll).toHaveBeenCalledTimes(1);
     expect(replacement.enableBodyScroll).toHaveBeenCalledTimes(1);
-    expect(disableBodyScroll).toHaveBeenCalledTimes(1);
-    expect(enableBodyScroll).toHaveBeenCalledTimes(1);
+    expect(adapter.lib.disableBodyScroll).toHaveBeenCalledTimes(1);
+    expect(adapter.lib.enableBodyScroll).toHaveBeenCalledTimes(1);
   });
 });
 
