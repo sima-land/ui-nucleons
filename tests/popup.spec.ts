@@ -48,7 +48,7 @@ test.describe('Mouse interactions', () => {
 });
 
 test.describe('Keyboard interactions', () => {
-  test('should create focus trap while opened', async () => {
+  test.only('should create focus trap while opened', async () => {
     await expect(here.opener()).toHaveCount(1);
     await expect(here.popup()).toHaveCount(0);
     await expect(here.popupClose()).toHaveCount(0);
@@ -58,8 +58,15 @@ test.describe('Keyboard interactions', () => {
     await expect(here.popupClose()).toHaveCount(0);
     await expect(here.opener()).toBeFocused();
 
-    // close button focused by default
+    // close button not focused by default
     await here.page.keyboard.press('Enter');
+    await expect(here.popup()).toHaveCount(1);
+    await expect(here.popupClose()).toHaveCount(1);
+    await expect(here.opener()).toBeFocused();
+    await expect(here.page).toHaveScreenshot();
+
+    // close button focused first
+    await here.page.keyboard.press('Tab');
     await expect(here.popup()).toHaveCount(1);
     await expect(here.popupClose()).toHaveCount(1);
     await expect(here.popupClose()).toBeFocused();
