@@ -161,6 +161,9 @@ describe('useFocusTrap', () => {
       <TestComponent afterDeactivate={() => spy.dispatchEvent(new Event('test-event'))} />,
     );
 
+    await findByText('Focused: nothing');
+    await user.keyboard('[Tab]');
+
     await findByText('Focused: name');
     expect(document.activeElement).toBe(getByTestId('name'));
 

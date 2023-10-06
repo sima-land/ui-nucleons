@@ -100,13 +100,18 @@ export function useFocusTrap(
         allowOutsideClick: true,
         tabbableOptions: { displayCheck: 'none' },
         onPostDeactivate: afterDeactivateRef.current,
-        fallbackFocus: element,
+
+        // ВАЖНО: отключаем тк в противном случае в Safari срабатывает :focus-visible
+        initialFocus: false,
       });
 
       trap.activate();
 
       return () => {
-        trap.deactivate({ returnFocus: true });
+        trap.deactivate({
+          // @todo тоже убрать?
+          returnFocus: true,
+        });
       };
     }
   }, [ref, enabled]);
