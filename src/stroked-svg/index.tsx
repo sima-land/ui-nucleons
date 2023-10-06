@@ -1,11 +1,11 @@
-import { forwardRef } from 'react';
+import { ElementType, HTMLAttributes, SVGAttributes, forwardRef } from 'react';
 import { COLORS } from '../colors';
 import classNames from 'classnames';
 import styles from './index.module.scss';
 
-export interface StrokedSVGProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+export interface StrokedSVGProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
   /** Компонент, выводящий svg-элемент. */
-  component: React.ComponentType<React.SVGAttributes<SVGSVGElement>>;
+  component: ElementType<SVGAttributes<SVGSVGElement>>;
 
   /** Цвет внешней обводки. */
   stroke?: string;

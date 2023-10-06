@@ -136,6 +136,11 @@ export class Draggable extends Component<DraggableProps> {
       if (!isTouch) {
         event.preventDefault();
 
+        // ВАЖНО: preventDefault предотвращает расфокусировку активного поля, что порождает баги, форсируем
+        if (document.activeElement instanceof HTMLElement) {
+          document.activeElement.blur();
+        }
+
         window.getSelection()?.removeAllRanges();
       }
 
@@ -215,6 +220,11 @@ export class Draggable extends Component<DraggableProps> {
   handleClickCapture(event: React.MouseEvent<HTMLDivElement>) {
     if (this.needPreventClick) {
       event.preventDefault();
+
+      // ВАЖНО: preventDefault предотвращает расфокусировку активного поля, что порождает баги, форсируем
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
 
       this.togglePreventClickNeed(false);
     }
