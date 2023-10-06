@@ -1,14 +1,13 @@
 import { Component, createRef } from 'react';
-import withPrevent from '../helpers/with-prevent';
-import boundsOf from '../helpers/bounds-of';
-import createContainer, { Container } from '../helpers/create-container';
+import { boundsOf } from '../helpers/bounds-of';
+import { createContainer, Container } from '../helpers/create-container';
 import { getEventClientPos } from '../helpers/events';
-import centerOf from '../helpers/center-of';
-import on from '../helpers/on';
+import { centerOf } from '../helpers/center-of';
+import { on } from '../helpers/on';
 import { getFractionDepth } from '../helpers/get-fraction-depth';
 import { isInteger, clamp } from 'lodash';
 import classnames from 'classnames/bind';
-import classes from './range.module.scss';
+import styles from './range.module.scss';
 
 interface CallbackData {
   startValue: number;
@@ -44,7 +43,7 @@ export interface RangeProps {
   wrapperProps?: React.HTMLAttributes<HTMLDivElement>;
 }
 
-const cx = classnames.bind(classes);
+const cx = classnames.bind(styles);
 
 /**
  * Возвращает долю от диапазона, заданную числом.
@@ -103,7 +102,7 @@ export class Range extends Component<RangeProps> {
 
     this.updateValues = this.updateValues.bind(this);
     this.handleDragEnd = this.handleDragEnd.bind(this);
-    this.handleDragStart = withPrevent(this.handleDragStart.bind(this));
+    this.handleDragStart = this.handleDragStart.bind(this);
   }
 
   /** @inheritdoc */
@@ -150,6 +149,9 @@ export class Range extends Component<RangeProps> {
    * @param event Событие.
    */
   handleDragStart(event: MouseEvent | TouchEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+
     if (!this.props.disabled) {
       this.updateActiveThumb(event);
       this.toggleGrabbed(true);
