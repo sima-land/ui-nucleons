@@ -136,6 +136,11 @@ export class Draggable extends Component<DraggableProps> {
       if (!isTouch) {
         event.preventDefault();
 
+        // ВАЖНО: preventDefault предотвращает расфокусировку активного поля, что порождает баги, форсируем
+        if (document.activeElement instanceof HTMLElement) {
+          document.activeElement.blur();
+        }
+
         window.getSelection()?.removeAllRanges();
       }
 

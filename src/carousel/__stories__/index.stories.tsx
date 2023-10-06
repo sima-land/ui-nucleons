@@ -366,3 +366,26 @@ export function PreventLinkClickOnDrag() {
 }
 
 PreventLinkClickOnDrag.storyName = 'Тест: предотвращение клика при перетаскивании мышью';
+
+export function TestActiveElementBlur() {
+  return (
+    <>
+      <input type='text' style={{ marginBottom: '16px' }} />
+      <Carousel
+        items={photos}
+        renderItem={(item, index) => (
+          <div
+            key={index}
+            className={cx('gallery-item')}
+            style={{ backgroundImage: `url(${item})` }}
+          />
+        )}
+        containerProps={{
+          className: cx('gallery'),
+        }}
+      />
+    </>
+  );
+}
+
+TestActiveElementBlur.storyName = 'Тест: blur активного элемента при перетаскивании';

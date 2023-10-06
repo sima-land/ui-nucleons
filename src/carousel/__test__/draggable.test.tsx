@@ -134,6 +134,47 @@ describe('Draggable', () => {
     expect(instance.saveClientPosition).toHaveBeenCalledTimes(1);
   });
 
+  it('startCapture() should force blur on activeElement', () => {
+    const spy = jest.fn();
+    const instance = new Draggable({ active: undefined, onDragStart: spy });
+
+    const event = new MouseEvent('test');
+    jest.spyOn(event, 'preventDefault');
+
+    const input = document.createElement('input');
+    document.body.append(input);
+    input.focus();
+
+    expect(document.activeElement === input).toBe(true);
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
+    instance.startCapture(event);
+    expect(event.preventDefault).toHaveBeenCalledTimes(1);
+    expect(document.activeElement === input).toBe(false);
+    input.remove();
+  });
+
+  it('startCapture() should NOT force blur on activeElement when is not defined', () => {
+    const spy = jest.fn();
+    const instance = new Draggable({ active: undefined, onDragStart: spy });
+
+    const activeElementDescriptor = Object.getOwnPropertyDescriptor(
+      Document.prototype,
+      'activeElement',
+    );
+
+    Object.defineProperty(document, 'activeElement', { value: null, writable: true });
+
+    const event = new MouseEvent('test');
+    jest.spyOn(event, 'preventDefault');
+
+    expect(document.activeElement).toBe(null);
+    expect(event.preventDefault).toHaveBeenCalledTimes(0);
+    expect(() => instance.startCapture(event)).not.toThrow();
+    expect(event.preventDefault).toHaveBeenCalledTimes(1);
+
+    Object.defineProperty(Document.prototype, 'activeElement', activeElementDescriptor as any);
+  });
+
   it('handleMove() should do nothing when isGrabbed false', () => {
     const instance = new Draggable({});
 
