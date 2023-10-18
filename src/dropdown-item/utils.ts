@@ -1,5 +1,5 @@
 import { isValidElement } from 'react';
-import { DropdownItem } from '.';
+import { DropdownItem } from './dropdown-item';
 import { DropdownItemElement } from './types';
 
 /** Утилиты для работы с DropdownItem. */

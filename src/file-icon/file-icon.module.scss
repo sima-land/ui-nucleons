@@ -9,28 +9,16 @@
   fill: var(--file-icon-primary-color, #{colors.$additional-electric-blue});
 }
 
-.xls {
-  fill: var(--file-icon-primary-color, #{colors.$additional-light-green});
+.docx {
+  fill: var(--file-icon-primary-color, #{colors.$additional-deep-blue});
 }
 
-.pdf {
-  fill: var(--file-icon-primary-color, #{colors.$additional-deep-red});
+.heic {
+  fill: var(--file-icon-primary-color, #{colors.$additional-violet});
 }
 
 .jpg {
   fill: var(--file-icon-primary-color, #{colors.$additional-deep-orange});
-}
-
-.xml {
-  fill: var(--file-icon-primary-color, #{colors.$additional-deep-purple});
-}
-
-.zip {
-  fill: var(--file-icon-primary-color, #{colors.$additional-teal});
-}
-
-.png {
-  fill: var(--file-icon-primary-color, #{colors.$additional-purple});
 }
 
 .mov {
@@ -39,4 +27,36 @@
 
 .mp4 {
   fill: var(--file-icon-primary-color, #{colors.$additional-blue-gray});
+}
+
+.pdf {
+  fill: var(--file-icon-primary-color, #{colors.$additional-deep-red});
+}
+
+.png {
+  fill: var(--file-icon-primary-color, #{colors.$additional-purple});
+}
+
+.rtf {
+  fill: var(--file-icon-primary-color, #{colors.$additional-light-blue});
+}
+
+.txt {
+  fill: var(--file-icon-primary-color, #{colors.$additional-unlit-blue});
+}
+
+.xls {
+  fill: var(--file-icon-primary-color, #{colors.$additional-light-green});
+}
+
+.xlsx {
+  fill: var(--file-icon-primary-color, #{colors.$additional-green});
+}
+
+.xml {
+  fill: var(--file-icon-primary-color, #{colors.$additional-deep-purple});
+}
+
+.zip {
+  fill: var(--file-icon-primary-color, #{colors.$additional-teal});
 }

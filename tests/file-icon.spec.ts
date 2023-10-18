@@ -12,6 +12,6 @@ const here = new Here().register();
 test('file icons should be on page', async ({ page }) => {
   await page.goto('/iframe.html?id=common-fileicon--primary');
 
-  await expect(here.fileIcon()).toHaveCount(7);
+  await expect(here.fileIcon()).toHaveCount(15);
   await expect(here.page).toHaveScreenshot();
 });

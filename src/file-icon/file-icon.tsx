@@ -1,25 +1,25 @@
-import { CSSProperties, SVGAttributes } from 'react';
+import { FileIconProps } from './types';
 import classNames from 'classnames/bind';
 import styles from './file-icon.module.scss';
 
-export interface FileIconStyle extends CSSProperties {
-  '--file-icon-primary-color'?: string;
-}
-
-export interface FileIconProps extends Omit<SVGAttributes<SVGSVGElement>, 'type'> {
-  /** Тип файла. */
-  type?: string;
-
-  /** Нужно ли выводить название типа. */
-  typeDisplayed?: boolean;
-
-  /** Стили. */
-  style?: FileIconStyle;
-}
-
 const cx = classNames.bind(styles);
 
-const KNOWN_TYPES = new Set(['doc', 'xls', 'pdf', 'jpg', 'xml', 'zip', 'png', 'mov', 'mp4']);
+const KNOWN_TYPES = new Set([
+  'doc',
+  'docx',
+  'heic',
+  'jpg',
+  'mov',
+  'mp4',
+  'pdf',
+  'png',
+  'rtf',
+  'txt',
+  'xls',
+  'xlsx',
+  'xml',
+  'zip',
+]);
 
 /**
  * Компонент иконки файла.
@@ -35,7 +35,7 @@ export function FileIcon({
     <svg width='32' height='32' viewBox='0 0 32 32' {...svgProps}>
       {/* основная фигура */}
       <path
-        className={cx('main', type.slice(0, 3).toLowerCase())}
+        className={cx('main', type.toLowerCase())}
         opacity='0.88'
         d='M6 5C6 3.89543 6.89543 3 8 3H20L26 9V27C26 28.1046 25.1046 29 24 29H8C6.89543 29 6 28.1046 6 27V5Z'
       />
