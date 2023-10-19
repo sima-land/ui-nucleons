@@ -1,20 +1,20 @@
-import { forwardRef } from 'react';
+import { CSSProperties, MouseEventHandler, ReactNode, forwardRef } from 'react';
 import CrossSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Cross';
 import classnames from 'classnames/bind';
 import styles from './tooltip.module.scss';
 
 export interface TooltipProps {
   /** Содержимое. */
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   /** CSS-класс корневого элемента. */
   className?: string;
 
   /** Сработает при клике за пределами или на крестик. */
-  onClose?: React.MouseEventHandler<SVGSVGElement>;
+  onClose?: MouseEventHandler<SVGSVGElement>;
 
   /** Стили. */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }
 
 const cx = classnames.bind(styles);

@@ -1,8 +1,8 @@
 import { Portal } from '@sima-land/ui-nucleons/portal';
 import { Button } from '@sima-land/ui-nucleons/button';
-import { useState } from 'react';
+import { CSSProperties, useState } from 'react';
 
-const styles: Record<string, React.CSSProperties> = {
+const styles: Record<string, CSSProperties> = {
   overlay: {
     position: 'fixed',
     top: 0,

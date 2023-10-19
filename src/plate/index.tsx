@@ -1,10 +1,10 @@
-import { forwardRef } from 'react';
+import { HTMLAttributes, forwardRef } from 'react';
 import { BoxShadow } from '../styling/shadows';
 import { SmallRounds, MediumRounds } from '../styling/shapes';
 import classnames from 'classnames';
 import styles from './plate.module.scss';
 
-export interface PlateProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface PlateProps extends HTMLAttributes<HTMLDivElement> {
   /** Тень. */
   shadow?: keyof typeof BoxShadow | null;
 

@@ -7,16 +7,17 @@ import { defineSlots } from '../helpers/define-slots';
 import { useExactClick } from '../modal-overlay/utils';
 import classNames from 'classnames/bind';
 import styles from './modal.module.scss';
+import { CSSProperties, ReactNode } from 'react';
 
 export type ModalSize = 's' | 'm' | 'l' | 'xl' | 'fullscreen';
 
-interface ModalStyle extends React.CSSProperties {
+interface ModalStyle extends CSSProperties {
   '--modal-height'?: string;
 }
 
 export interface ModalProps extends WithPageScrollLock {
   /** Содержимое компонента. */
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   /** Высота в пикселях. Применяется только когда size !== 'fullscreen'. */
   height?: number;

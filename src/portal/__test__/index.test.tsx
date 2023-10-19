@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { Portal, PortalProps } from '..';
 
@@ -9,7 +9,7 @@ describe('Layer', () => {
     portalProps,
   }: {
     defaultWithPortal?: boolean;
-    children?: React.ReactNode;
+    children?: ReactNode;
     portalProps?: PortalProps;
   }) => {
     const [withPortal, togglePortal] = useState(defaultWithPortal);

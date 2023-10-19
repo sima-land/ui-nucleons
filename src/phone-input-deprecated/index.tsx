@@ -1,4 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import {
+  CSSProperties,
+  ChangeEventHandler,
+  useEffect,
+  useRef,
+  useState,
+  FocusEvent as ReactFocusEvent,
+} from 'react';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Down';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';
 import { Dropdown } from '../dropdown';
@@ -11,17 +18,17 @@ import { defineCountry } from '../phone-input/utils';
 import classnames from 'classnames/bind';
 import styles from './phone-input.module.scss';
 
-interface PhoneInputStyle extends React.CSSProperties {
+interface PhoneInputStyle extends CSSProperties {
   '--phone-input-width'?: number | string;
 }
 
 export interface PhoneInputProps
   extends Omit<TextFieldProps, 'onChange' | 'onBlur' | 'value' | 'ref' | 'style' | 'multiline'> {
   /** Сработает при "blur". */
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>, s: MaskState & { ready?: boolean }) => void;
+  onBlur?: (e: ReactFocusEvent<HTMLInputElement>, s: MaskState & { ready?: boolean }) => void;
 
   /** Сработает при изменении поля "Другое". Не рекомендуется использовать. */
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 
   /** Срабатывает при изменении страны. */
   onCountrySelect?: (c: Country) => void;

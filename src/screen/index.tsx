@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { ReactNode, useRef } from 'react';
 import { HeaderSlot, BodySlot, FooterSlot } from './slots';
 import { LayerProvider, useLayer } from '../helpers/layer';
 import { defineSlots } from '../helpers/define-slots';
@@ -9,7 +9,7 @@ import { useViewportHeightUnit } from '../hooks/styles';
 
 export interface ScreenProps extends ScreenInnerProps, WithPageScrollLock {
   /** Содержимое. */
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   /** Определяет область отображаемую как загружающуюся. */
   loadingArea?: 'content' | 'full';

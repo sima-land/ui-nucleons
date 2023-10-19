@@ -9,6 +9,7 @@ import {
   PositioningTest,
   SquareWithTooltip,
 } from './utils';
+import { CSSProperties } from 'react';
 
 export default {
   title: 'deprecated/WithTooltip',
@@ -19,13 +20,13 @@ export default {
 };
 
 export function TestComplexMarkup() {
-  const rootStyle: React.CSSProperties = {
+  const rootStyle: CSSProperties = {
     position: 'relative',
     marginTop: 20,
     height: 1200,
   };
 
-  const innerStyle: React.CSSProperties = {
+  const innerStyle: CSSProperties = {
     position: 'fixed',
     right: '20px',
     top: '20px',

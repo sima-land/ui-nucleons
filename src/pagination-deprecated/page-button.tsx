@@ -1,7 +1,7 @@
+import { ButtonHTMLAttributes, FC } from 'react';
 import { cx } from './utils';
 
-export interface PageButtonProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
+export interface PageButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
   rounded?: 'all' | 'none' | 'left' | 'right';
   className?: string;
   selected?: boolean;
@@ -16,7 +16,7 @@ export interface PageButtonProps
  * @return Элемент.
  * @deprecated
  */
-export const PageButton: React.FC<PageButtonProps> = ({
+export const PageButton: FC<PageButtonProps> = ({
   selected,
   rounded = 'all',
   className,

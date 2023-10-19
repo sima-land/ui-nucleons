@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { Distance } from './types';
 import { getDistanceToNow, formatDistance } from './utils';
 
@@ -7,7 +7,7 @@ export interface TimerProps {
   date: string;
 
   /** Должна отформатировать данные об оставшемся времени для вывода. */
-  format?: (d: Distance) => React.ReactNode;
+  format?: (d: Distance) => ReactNode;
 
   /** Частота обновления таймера в миллисекундах. */
   timeout?: number;

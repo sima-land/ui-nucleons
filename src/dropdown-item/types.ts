@@ -1,8 +1,8 @@
-import type { ReactElement, ComponentType, ReactNode, SVGAttributes } from 'react';
+import type { ReactElement, ComponentType, ReactNode, SVGAttributes, HTMLAttributes } from 'react';
 
 export type DropdownItemSize = 's' | 'm' | 'l' | 'xl';
 
-export interface DropdownItemProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'size'> {
+export interface DropdownItemProps extends Omit<HTMLAttributes<HTMLDivElement>, 'size'> {
   /** Отображать элемент как отмеченный (активный) или нет. */
   checked?: boolean;
 

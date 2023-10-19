@@ -1,11 +1,11 @@
-import { forwardRef } from 'react';
+import { HTMLAttributes, forwardRef } from 'react';
 import { BoxShadow } from '../styling/shadows';
 import classnames from 'classnames/bind';
 import styles from './hint.module.scss';
 
 type Direction = 'top' | 'left' | 'bottom' | 'right';
 
-export interface HintProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface HintProps extends HTMLAttributes<HTMLDivElement> {
   /** С какой стороны появляется хинт. */
   direction: Direction;
 }

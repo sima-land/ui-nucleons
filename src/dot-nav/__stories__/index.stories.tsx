@@ -1,8 +1,8 @@
 import { DotNav, DotNavSize } from '@sima-land/ui-nucleons/dot-nav';
-import { useState } from 'react';
+import { CSSProperties, useState } from 'react';
 import { times } from 'lodash';
 
-const styles: Record<string, React.CSSProperties> = {
+const styles: Record<string, CSSProperties> = {
   wrap: {
     height: 160,
     maxWidth: 480,

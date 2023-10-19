@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useContext } from 'react';
+import { useCallback, useEffect, useRef, useContext, ReactNode, RefObject } from 'react';
 import { ViewportContext } from '../context/viewport';
 import { debounce } from 'lodash';
 import { getScrollParent } from '../helpers/get-scroll-parent';
@@ -10,10 +10,10 @@ import on from '../helpers/on';
 
 export interface PositioningTooltipProps {
   /** Содержимое. */
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   /** Реф с элементом, относительно которого нужно позиционироваться. */
-  openerRef: React.RefObject<HTMLElement | undefined>;
+  openerRef: RefObject<HTMLElement | undefined>;
 
   /** Сработает при клике за пределами или на крестик. */
   onDismiss?: () => void;

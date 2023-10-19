@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { BasePagination, BasePaginationProps } from './base-pagination';
 
 /** @deprecated */
@@ -21,12 +22,7 @@ export interface PaginationProps {
  * @return Элемент.
  * @deprecated
  */
-export const Pagination: React.FC<PaginationProps> = ({
-  total,
-  current,
-  onChange,
-  renderButton,
-}) => (
+export const Pagination: FC<PaginationProps> = ({ total, current, onChange, renderButton }) => (
   <BasePagination
     total={total}
     current={current}

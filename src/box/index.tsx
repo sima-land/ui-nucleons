@@ -3,25 +3,26 @@ import classes from './box.module.scss';
 import * as Spacing from '../styling/sizes';
 import { bgColor } from '../styling/colors';
 import { COLORS, Token } from '../colors';
+import { CSSProperties, ElementType, ReactNode, RefAttributes } from 'react';
 
 type CustomElement = {
   className: string;
-  children?: React.ReactNode;
-  style?: React.CSSProperties;
-} & React.RefAttributes<any>;
+  children?: ReactNode;
+  style?: CSSProperties;
+} & RefAttributes<any>;
 
 export interface BoxProps {
   /** Значение свойства "alignItems". */
   alignItems?: 'start' | 'end' | 'center' | 'baseline' | 'stretch';
 
   /** Содержимое блока. */
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   /** Название цвета из дизайн-системы. */
   color?: Token;
 
   /** Объект для указания inline-стилей. */
-  dangerouslySetInlineStyle?: { __style: React.CSSProperties };
+  dangerouslySetInlineStyle?: { __style: CSSProperties };
 
   /** Значение css-свойства "direction". */
   direction?: 'row' | 'column';
@@ -30,7 +31,7 @@ export interface BoxProps {
   display?: 'block' | 'none' | 'flex' | 'inline' | 'inline-block';
 
   /** Элемент, который будет использован как блок. */
-  element?: string | React.ComponentType<CustomElement>;
+  element?: string | ElementType<CustomElement>;
 
   /** Формирует значение css-свойства "flex". */
   flex?: 'shrink' | 'grow' | 'none';

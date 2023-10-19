@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useRef, useState, KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { Dropdown } from '../dropdown';
 import { DropdownItem, DropdownItemProps } from '../dropdown-item';
 import { TextField, TextFieldProps } from '../text-field';
@@ -30,7 +30,7 @@ export interface AutocompleteProps extends Omit<TextFieldProps, 'ref' | 'value' 
   preset?: 'default' | 'filled-only-list';
 
   /** Выведет содержимое элемента. */
-  renderItem?: (item: any) => React.ReactNode;
+  renderItem?: (item: any) => ReactNode;
 
   /** Значение. */
   value?: string;
@@ -126,7 +126,7 @@ export const Autocomplete = ({
           setActiveIndex(0);
           onChange?.(event);
         }}
-        onKeyDown={(event: React.KeyboardEvent) => {
+        onKeyDown={(event: ReactKeyboardEvent) => {
           const size = items?.length || 0;
 
           let nextIndex: number | undefined;

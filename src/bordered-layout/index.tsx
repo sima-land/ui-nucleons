@@ -2,6 +2,7 @@ import classnames from 'classnames/bind';
 import { MobileLayout } from '../layout';
 import { InnerBorder } from '../styling/borders';
 import styles from './bordered-layout.module.scss';
+import { ReactNode } from 'react';
 
 export interface BorderedLayoutProps {
   /** Флаг добавления рамки сверху. */
@@ -11,7 +12,7 @@ export interface BorderedLayoutProps {
   bottom?: boolean;
 
   /** Содержимое. */
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 const cx = classnames.bind(styles);

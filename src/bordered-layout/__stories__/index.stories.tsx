@@ -9,7 +9,7 @@ export default {
 };
 
 export function Primary() {
-  const Demo: React.FC<BorderedLayoutProps> = ({ children, ...props }) => (
+  const Demo = ({ children, ...props }: BorderedLayoutProps) => (
     <div style={{ margin: '32px 0' }}>
       <BorderedLayout {...props}>
         <div style={{ padding: '16px 0' }}>{children}</div>

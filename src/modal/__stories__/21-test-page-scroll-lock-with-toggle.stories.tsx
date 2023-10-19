@@ -1,5 +1,5 @@
 import { Modal } from '@sima-land/ui-nucleons/modal';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { Button } from '@sima-land/ui-nucleons/button';
 import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
 
@@ -12,7 +12,7 @@ export default {
 };
 
 interface StepProps {
-  setStep: React.Dispatch<React.SetStateAction<number>>;
+  setStep: Dispatch<SetStateAction<number>>;
 }
 
 export function TestPageScrollLockWithToggle() {

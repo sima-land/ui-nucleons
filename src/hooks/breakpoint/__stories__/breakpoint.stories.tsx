@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react';
 import { BreakpointProvider, useBreakpoint } from '..';
 
 export default {
@@ -11,7 +12,7 @@ export default {
 function DemoBlock({ query }: { query: string }) {
   const matches = useBreakpoint(query);
 
-  const styles: React.CSSProperties = {
+  const styles: CSSProperties = {
     height: 100,
     background: matches ? '#00ff0032' : '#ddd',
     display: 'flex',

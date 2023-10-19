@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { CSSProperties, ReactNode, useEffect, useRef, useState } from 'react';
 import { Dropdown } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';
 import { TextField, TextFieldProps } from '../text-field';
@@ -30,12 +30,12 @@ export interface SelectProps extends Omit<TextFieldProps, 'style' | 'endAdornmen
   optionSize?: Size;
 
   /** Вернет содержимое опции. */
-  renderOption?: (option: any) => React.ReactNode;
+  renderOption?: (option: any) => ReactNode;
 
   /** Стили. */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 
-  endAdornment?: TextFieldProps['endAdornment'] | ((opened: boolean) => React.ReactNode);
+  endAdornment?: TextFieldProps['endAdornment'] | ((opened: boolean) => ReactNode);
 }
 
 const cx = classnames.bind(styles);

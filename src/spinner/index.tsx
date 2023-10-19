@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react';
 import { has } from 'lodash';
 import { COLORS, Token } from '../colors';
 import classnames from 'classnames/bind';
@@ -21,7 +22,7 @@ export interface SpinnerProps {
   className?: string;
 
   /** Стили. */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string | null;
