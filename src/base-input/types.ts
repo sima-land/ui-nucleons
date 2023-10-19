@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, Ref, TextareaHTMLAttributes } from 'react';
+import { CSSProperties, InputHTMLAttributes, Ref, TextareaHTMLAttributes } from 'react';
 
 export interface RestPlaceholderDefinition {
   /** Текст placeholder'а. */
@@ -8,7 +8,7 @@ export interface RestPlaceholderDefinition {
   shiftValue?: string;
 }
 
-export interface BaseInputStyle extends React.CSSProperties {
+export interface BaseInputStyle extends CSSProperties {
   '--placeholder-color'?: string;
 }
 

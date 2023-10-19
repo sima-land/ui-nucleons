@@ -19,8 +19,8 @@ export function Layout({
 }: Omit<LayoutProps, 'element'> & { rootRef?: Ref<HTMLDivElement> }) {
   const rootClassName = cx(
     'layout',
+    disabledOn.length > 0 && disabledOn.map(key => `disabled-${key}`),
     className,
-    disabledOn.map(key => `disabled-${key}`),
   );
 
   return (

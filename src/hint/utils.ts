@@ -228,18 +228,18 @@ export function useTempHintState(
   { timeout = 3000 }: { timeout?: number } = {},
 ) {
   const [open, setOpen] = useState<boolean>(initialState);
-  const timerRef = useRef<number | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const updateTimer = useCallback(
     (value: boolean): void => {
       // сбрасываем предыдущий таймер если был
       if (timerRef.current !== null) {
-        window.clearTimeout(timerRef.current);
+        clearTimeout(timerRef.current);
       }
 
       // запускаем новый таймер если надо
       if (value) {
-        timerRef.current = window.setTimeout(() => setOpen(false), timeout);
+        timerRef.current = setTimeout(() => setOpen(false), timeout);
       }
     },
     [timeout],

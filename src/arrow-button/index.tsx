@@ -1,5 +1,4 @@
-import classnames from 'classnames/bind';
-import classes from './arrow-button.module.scss';
+import type { ElementType, SVGAttributes } from 'react';
 import UpSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowUp';
 import RightSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowRight';
 import DownSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowDown';
@@ -8,14 +7,14 @@ import UpSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowUp';
 import RightSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowRight';
 import DownSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowDown';
 import LeftSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowLeft';
+import classNames from 'classnames/bind';
+import styles from './arrow-button.module.scss';
 
 export type ArrowButtonSize = 's' | 'l';
 
 export type ArrowDirection = 'up' | 'right' | 'down' | 'left';
 
-type IconSet = Readonly<
-  Record<ArrowDirection, React.ComponentType<React.SVGAttributes<SVGSVGElement>>>
->;
+type IconSet = Readonly<Record<ArrowDirection, ElementType<SVGAttributes<SVGSVGElement>>>>;
 
 export interface ArrowButtonProps
   extends Omit<JSX.IntrinsicElements['button'], 'size' | 'children'> {
@@ -29,7 +28,7 @@ export interface ArrowButtonProps
   'data-testid'?: string;
 }
 
-const cx = classnames.bind(classes);
+const cx = classNames.bind(styles);
 
 const ICONS: Readonly<Record<ArrowButtonSize, IconSet>> = {
   s: {
