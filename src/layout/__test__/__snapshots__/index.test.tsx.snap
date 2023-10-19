@@ -13,7 +13,7 @@ exports[`Layout should handle "disabledOn" prop 1`] = `
 exports[`Layout should renders correctly 1`] = `
 <div>
   <div
-    class="layout test-class "
+    class="layout test-class"
     style="height: 128px;"
   >
     Hello, world!
