@@ -1,56 +1,87 @@
 @use '../breakpoints';
 
+@mixin layout {
+  // ВАЖНО: не используем 100vw так как при использовании 100vw не вычитается ширина полосы прокрутки страницы
+  width: 100%;
+
+  // центрируем
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// ВАЖНО: не прокидываем никаких кастомных свойств внутрь чтобы ими не воспользовались
 .layout {
-  @each $key, $val in breakpoints.$map {
-    @include breakpoints.up($key) {
-      &.disabled-#{$key} {
-        width: auto;
-        max-width: none;
-        padding-left: 0;
-        padding-right: 0;
-        margin-left: 0;
-        margin-right: 0;
-      }
-      &:not(.disabled-#{$key}) {
-        // ВАЖНО: не используем 100vw так как при использовании 100vw не вычитается ширина полосы прокрутки страницы
-        width: 100%;
-        max-width: var(--layout-fixed-width);
-        margin-left: auto;
-        margin-right: auto;
-        padding-left: var(--layout-fluid-gutter);
-        padding-right: var(--layout-fluid-gutter);
+  @include breakpoints.down('ms') {
+    &:not(.disabled-mxs) {
+      @include layout;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+  @include breakpoints.up('ms') {
+    @include breakpoints.down('mm') {
+      &:not(.disabled-ms) {
+        @include layout;
+        padding-left: 16px;
+        padding-right: 16px;
       }
     }
   }
-  @include breakpoints.up('mxs') {
-    --layout-fixed-width: initial;
-    --layout-fluid-gutter: 16px;
-  }
   @include breakpoints.up('mm') {
-    --layout-fixed-width: 656px;
-    --layout-fluid-gutter: initial;
+    @include breakpoints.down('ml') {
+      &:not(.disabled-mm) {
+        @include layout;
+        max-width: 656px;
+      }
+    }
   }
   @include breakpoints.up('ml') {
-    --layout-fixed-width: 672px;
-    --layout-fluid-gutter: initial;
+    @include breakpoints.down('xs') {
+      &:not(.disabled-ml) {
+        @include layout;
+        max-width: 672px;
+      }
+    }
   }
   @include breakpoints.up('xs') {
-    --layout-fixed-width: initial;
-    --layout-fluid-gutter: 64px;
+    @include breakpoints.down('s') {
+      &:not(.disabled-xs) {
+        @include layout;
+        padding-left: 64px;
+        padding-right: 64px;
+      }
+    }
+  }
+  @include breakpoints.up('s') {
+    @include breakpoints.down('m') {
+      &:not(.disabled-s) {
+        @include layout;
+        padding-left: 64px;
+        padding-right: 64px;
+      }
+    }
+  }
+  @include breakpoints.up('m') {
+    @include breakpoints.down('l') {
+      &:not(.disabled-m) {
+        @include layout;
+        padding-left: 64px;
+        padding-right: 64px;
+      }
+    }
   }
   @include breakpoints.up('l') {
-    --layout-fixed-width: 1472px;
-    --layout-fluid-gutter: initial;
+    @include breakpoints.down('xl') {
+      &:not(.disabled-l) {
+        @include layout;
+        max-width: 1472px;
+      }
+    }
   }
   @include breakpoints.up('xl') {
-    --layout-fixed-width: 1504px;
-    --layout-fluid-gutter: initial;
-  }
-
-  // пока что не даём использовать приватные переменные чтобы не раскрывать принцип работы
-  // так как он может измениться
-  *:not(.layout) {
-    --layout-fixed-width: initial;
-    --layout-fluid-gutter: initial;
+    &:not(.disabled-xl) {
+      @include layout;
+      max-width: 1504px;
+    }
   }
 }

@@ -8,6 +8,7 @@ type DropdownLoadingProps = Omit<HTMLAttributes<HTMLDivElement>, 'className' | '
  * Плашка состояния загрузки для Dropdown.
  * @param props Свойства.
  * @return Элемент.
+ * @todo Перенести в ./dropdown.
  */
 export function DropdownLoading(props: DropdownLoadingProps) {
   return (

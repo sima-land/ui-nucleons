@@ -1,15 +1,15 @@
-import { forwardRef } from 'react';
+import { CSSProperties, HTMLAttributes, forwardRef } from 'react';
 import { BoxShadow } from '../styling/shadows';
 import { MediumRounds } from '../styling/shapes';
 import { CustomScrollbar, CustomScrollbarProps } from '../_internal/custom-scrollbar';
 import classnames from 'classnames/bind';
 import styles from './dropdown.module.scss';
 
-interface DropdownStyle extends React.CSSProperties {
+interface DropdownStyle extends CSSProperties {
   '--dropdown-max-height'?: string;
 }
 
-export interface DropdownProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'style'> {
+export interface DropdownProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style'> {
   /** Стили. */
   style?: DropdownStyle;
 

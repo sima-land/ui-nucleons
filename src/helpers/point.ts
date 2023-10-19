@@ -17,3 +17,5 @@ export function Point(x = 0, y = 0): IPoint {
  * @deprecated Следует использовать именованный экспорт. Экспорт по умолчанию будет удалён в будущем.
  */
 export default Point;
+
+// @todo перенести в math?
