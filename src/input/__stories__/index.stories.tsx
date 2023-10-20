@@ -119,6 +119,7 @@ export function DifferentStates() {
         <Input {...props} label='ФИО' caption='Только label' />
         <Input {...props} placeholder='Email' caption='Только placeholder' />
         <Input {...props} label='Телефон' placeholder='89008007060' caption='Label и placeholder' />
+        <Input {...props} caption='Без label и placeholder' />
       </div>
     </Sandbox>
   );

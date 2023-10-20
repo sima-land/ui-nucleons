@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react';
-import { Pagination, PaginationItem } from '..';
+import { Pagination, PaginationItem, getPaginationItems } from '..';
 
 describe('Pagination', () => {
   it('should handle total and current props missing', () => {
@@ -53,6 +53,28 @@ describe('Pagination', () => {
 
     expect(container.textContent).toBe('1…9989991000…7890');
     expect(container.querySelectorAll('a.large')).toHaveLength(2);
+  });
+
+  it('should handle getItems change', () => {
+    const { rerender, container } = render(
+      <Pagination
+        current={2}
+        total={10}
+        getItems={payload => getPaginationItems(payload, { arrows: true })}
+      />,
+    );
+
+    expect(container.querySelectorAll('[role="button"]')).toHaveLength(9);
+
+    rerender(
+      <Pagination
+        current={2}
+        total={10}
+        getItems={payload => getPaginationItems(payload, { arrows: false })}
+      />,
+    );
+
+    expect(container.querySelectorAll('[role="button"]')).toHaveLength(7);
   });
 
   it('should handle invalid item', () => {
