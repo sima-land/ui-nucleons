@@ -5,6 +5,7 @@ import { has } from 'lodash';
 import { marginRight, marginLeft } from '../styling/sizes';
 import LeftSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Left';
 import RightSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Right';
+import { FC, ReactNode } from 'react';
 
 /** @deprecated */
 interface RenderButtonProps extends PageButtonProps {
@@ -21,7 +22,7 @@ export interface BasePaginationProps {
   current: number;
   onButtonClick?: (n: number) => void;
   isButtonSelected?: (n: string | number) => boolean;
-  renderButton?: (p: RenderButtonProps, i?: number) => React.ReactNode;
+  renderButton?: (p: RenderButtonProps, i?: number) => ReactNode;
   needPrevButton?: (data: { current: number; total: number }) => boolean;
   needNextButton?: (data: { current: number; total: number }) => boolean;
   calculateButtons?: typeof getPageButtons;
@@ -71,7 +72,7 @@ export const BUTTON_CONTENTS = {
  * @return Элемент.
  * @deprecated
  */
-export const BasePagination: React.FC<BasePaginationProps> = ({
+export const BasePagination: FC<BasePaginationProps> = ({
   total,
   current,
   onButtonClick,

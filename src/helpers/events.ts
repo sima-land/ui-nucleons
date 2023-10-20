@@ -1,10 +1,11 @@
+import type { MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent } from 'react';
 import { Point } from './point';
 
 export type EventWithPosition<T extends HTMLElement = HTMLElement> =
   | MouseEvent
   | TouchEvent
-  | React.MouseEvent<T>
-  | React.TouchEvent<T>;
+  | ReactMouseEvent<T>
+  | ReactTouchEvent<T>;
 
 /**
  * Проверяет, является ли событие событием нажатия основной кнопки мыши.
@@ -20,7 +21,7 @@ export function isMainMouseButton(event: any) {
  * @param event Событие.
  * @return Является ли переданное событие touch-событием.
  */
-export function isTouchEvent(event: any): event is TouchEvent | React.TouchEvent {
+export function isTouchEvent(event: any): event is TouchEvent | ReactTouchEvent {
   return Boolean(event?.touches);
 }
 

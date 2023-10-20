@@ -1,4 +1,11 @@
-import { createRef, Component, ReactNode } from 'react';
+import {
+  createRef,
+  Component,
+  ReactNode,
+  HTMLProps,
+  RefObject,
+  MouseEvent as ReactMouseEvent,
+} from 'react';
 import { Point, IPoint } from '../helpers/point';
 import { DraggableEvent } from './helpers/draggable-event';
 import { getTransitionStyle, getTranslateStyle } from '../helpers/styles';
@@ -31,7 +38,7 @@ export interface DraggableProps {
   onDragEnd?: DraggableEventHandler;
   takeControl?: (c: Control) => void;
   transitionDuration?: number;
-  containerProps?: React.HTMLProps<HTMLDivElement>;
+  containerProps?: HTMLProps<HTMLDivElement>;
   children?: ReactNode;
 }
 
@@ -51,7 +58,7 @@ export class Draggable extends Component<DraggableProps> {
   needPreventClick: boolean;
   currentOffset: IPoint;
   clientPosition: IPoint;
-  draggableRef: React.RefObject<HTMLDivElement>;
+  draggableRef: RefObject<HTMLDivElement>;
   offList: Array<VoidFunction>;
 
   /**
@@ -217,7 +224,7 @@ export class Draggable extends Component<DraggableProps> {
    * Предотвращает клик если было произведено смещение мышью.
    * @param event Событие окончания захвата.
    */
-  handleClickCapture(event: React.MouseEvent<HTMLDivElement>) {
+  handleClickCapture(event: ReactMouseEvent<HTMLDivElement>) {
     if (this.needPreventClick) {
       event.preventDefault();
 

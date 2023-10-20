@@ -1,4 +1,11 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+  FocusEvent as ReactFocusEvent,
+} from 'react';
 import { TextField, TextFieldProps } from '../text-field';
 import { InputMask } from '@krutoo/input-mask/dist/dom';
 
@@ -15,7 +22,7 @@ export interface MaskedFieldProps extends Omit<TextFieldProps, 'value' | 'onBlur
   value?: string;
 
   /** Обработчик blur. */
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>, s: MaskState) => void;
+  onBlur?: (e: ReactFocusEvent<HTMLInputElement>, s: MaskState) => void;
 }
 
 const maskCommons = { placeholder: '_', pattern: /\d/ };

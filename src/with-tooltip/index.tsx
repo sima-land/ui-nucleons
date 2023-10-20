@@ -1,20 +1,20 @@
-import { useRef, useState } from 'react';
+import { ReactNode, RefObject, useRef, useState } from 'react';
 import { getScrollParent } from '../helpers/get-scroll-parent';
 import { Portal } from '../portal';
 import { PositioningTooltip } from './positioning-tooltip';
 
 type ChildrenFn = (
-  ref: React.RefObject<HTMLElement>,
+  ref: RefObject<HTMLElement>,
   toggle: (opened: boolean) => void,
   shown: boolean,
-) => React.ReactNode;
+) => ReactNode;
 
 export interface WithTooltipProps {
   /** Сработает при клике вне подсказки или на крестик в ней. */
   onDismiss?: () => void;
 
   /** Содержимое компонента Tooltip. */
-  tooltip?: React.ReactNode;
+  tooltip?: ReactNode;
 
   /** Рендер-проп. */
   children: ChildrenFn;

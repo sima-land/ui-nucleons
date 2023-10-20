@@ -1,4 +1,4 @@
-import { forwardRef, memo } from 'react';
+import { CSSProperties, ElementType, ReactNode, RefAttributes, forwardRef, memo } from 'react';
 import classnames from 'classnames/bind';
 import classes from './text.module.scss';
 import { color as colorClass } from '../styling/colors';
@@ -19,7 +19,7 @@ export interface TextProps {
   align?: Align;
 
   /** Содержимое. */
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   /** Ключ цвета из дизайн системы. */
   color?: Token;
@@ -27,12 +27,12 @@ export interface TextProps {
   /** Элемент, который будет использован как обертка. */
   element?:
     | string
-    | React.ComponentType<
+    | ElementType<
         {
           className: string;
-          style: React.CSSProperties;
-          children?: React.ReactNode;
-        } & React.RefAttributes<any>
+          style: CSSProperties;
+          children?: ReactNode;
+        } & RefAttributes<any>
       >;
 
   /** Межстрочный интервал. */

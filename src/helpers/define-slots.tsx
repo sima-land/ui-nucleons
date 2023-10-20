@@ -1,9 +1,16 @@
-import { Children, isValidElement } from 'react';
+import {
+  Children,
+  ComponentProps,
+  ElementType,
+  ReactElement,
+  ReactNode,
+  isValidElement,
+} from 'react';
 
-export type SlotsDict = Record<string, React.ElementType>;
+export type SlotsDict = Record<string, ElementType>;
 
 export type Slots<M extends SlotsDict> = {
-  [key in keyof M]: React.ReactElement<React.ComponentProps<M[key]>, M[key]> | undefined;
+  [key in keyof M]: ReactElement<ComponentProps<M[key]>, M[key]> | undefined;
 };
 
 /**
@@ -12,10 +19,10 @@ export type Slots<M extends SlotsDict> = {
  * @param type Тип.
  * @return Результат.
  */
-function isComponentOfType<T extends React.ElementType>(
-  value: React.ReactElement,
+function isComponentOfType<T extends ElementType>(
+  value: ReactElement,
   type: T,
-): value is React.ReactElement<any, T> {
+): value is ReactElement<any, T> {
   return value.type === type;
 }
 
@@ -25,7 +32,7 @@ function isComponentOfType<T extends React.ElementType>(
  * @param dict Словарь типов элементов.
  * @return Дочерние элементы разбитые по слотам.
  */
-export function defineSlots<T extends SlotsDict>(children: React.ReactNode, dict: T): Slots<T> {
+export function defineSlots<T extends SlotsDict>(children: ReactNode, dict: T): Slots<T> {
   const allKeys: Array<keyof T> = Object.keys(dict);
 
   const slots: Slots<T> = Children.toArray(children).reduce<Slots<T>>((result, item) => {

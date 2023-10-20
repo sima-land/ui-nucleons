@@ -1,5 +1,5 @@
 import { TextField } from '@sima-land/ui-nucleons/text-field';
-import { useState } from 'react';
+import { CSSProperties, useState } from 'react';
 import { COLORS } from '@sima-land/ui-nucleons/colors';
 import { Button } from '@sima-land/ui-nucleons/button';
 import RightSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Right';
@@ -268,7 +268,7 @@ export const ValuePropChangeMultiline = () => {
 ValuePropChangeMultiline.storyName = 'service: Multiline value prop change';
 
 export const Autofill = () => {
-  const styles: React.CSSProperties = {
+  const styles: CSSProperties = {
     display: 'block',
     width: '240px',
     marginBottom: '16px',

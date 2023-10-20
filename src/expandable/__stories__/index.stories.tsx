@@ -1,5 +1,5 @@
 import { Expandable, ExpandableGroup } from '@sima-land/ui-nucleons/expandable';
-import { CSSProperties, useState } from 'react';
+import { CSSProperties, MouseEventHandler, useState } from 'react';
 import { Link } from '@sima-land/ui-nucleons/link';
 import { Chip } from '@sima-land/ui-nucleons/chip';
 import { Layout } from '../../layout';
@@ -143,7 +143,7 @@ function Opener({ hiddenCount }: { hiddenCount: number }) {
   );
 }
 
-function Closer({ onClick }: { onClick?: React.MouseEventHandler }) {
+function Closer({ onClick }: { onClick?: MouseEventHandler }) {
   const style: CSSProperties = {
     display: 'block',
     padding: '8px 12px',

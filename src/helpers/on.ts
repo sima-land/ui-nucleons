@@ -1,3 +1,5 @@
+import type { SyntheticEvent } from 'react';
+
 /**
  * Выполняет подписку на событие целевого объекта.
  * @param target Целевой объект.
@@ -6,7 +8,7 @@
  * @param options Опции подписки.
  * @return Функция отписки.
  */
-export function on<T extends Event | React.SyntheticEvent>(
+export function on<T extends Event | SyntheticEvent>(
   target: EventTarget,
   eventNames: string,
   callback: (e: T) => void,

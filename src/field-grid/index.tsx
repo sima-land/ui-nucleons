@@ -1,4 +1,4 @@
-import { Children, cloneElement } from 'react';
+import { Children, FC, HTMLAttributes, ReactElement, ReactNode, cloneElement } from 'react';
 import classnames from 'classnames/bind';
 import classes from './field-grid.module.scss';
 import { TextFieldProps } from '../text-field';
@@ -19,28 +19,28 @@ type OnlyOneRequired<T, K extends keyof T = keyof T> = {
 /** @deprecated */
 export type CellProps = CommonCellProps &
   OnlyOneRequired<{
-    field: React.ReactElement<Pick<TextFieldProps, 'rounds' | 'caption' | 'classes' | 'className'>>;
-    renderField: (props: Pick<TextFieldProps, 'rounds' | 'caption'>) => React.ReactNode;
+    field: ReactElement<Pick<TextFieldProps, 'rounds' | 'caption' | 'classes' | 'className'>>;
+    renderField: (props: Pick<TextFieldProps, 'rounds' | 'caption'>) => ReactNode;
   }>;
 
 /** @deprecated */
 export interface RowProps {
   isFirst?: boolean;
   isLast?: boolean;
-  children: ItOrArray<React.ReactElement<CellProps, typeof Cell>>;
+  children: ItOrArray<ReactElement<CellProps, typeof Cell>>;
 }
 
 /** @deprecated */
 export interface FieldGridProps {
   /** Содержимое. */
-  children: ItOrArray<React.ReactElement<RowProps, typeof Row>>;
+  children: ItOrArray<ReactElement<RowProps, typeof Row>>;
 
   /** Свойства корневого элемента. */
-  rootProps?: React.HTMLAttributes<HTMLDivElement>;
+  rootProps?: HTMLAttributes<HTMLDivElement>;
 }
 
 /** @deprecated */
-export interface FieldGridComponent extends React.FC<FieldGridProps> {
+export interface FieldGridComponent extends FC<FieldGridProps> {
   Row: typeof Row;
   Cell: typeof Cell;
 }
@@ -67,7 +67,7 @@ const TypeCheck = {
  * @return Элемент.
  */
 export const FieldGrid: FieldGridComponent = ({ children, rootProps }) => {
-  const rows = Children.toArray(children).filter(TypeCheck.isRow) as React.ReactElement<RowProps>[];
+  const rows = Children.toArray(children).filter(TypeCheck.isRow) as ReactElement<RowProps>[];
 
   return (
     <div {...rootProps} className={cx('container', rootProps?.className)}>
@@ -90,10 +90,10 @@ export const FieldGrid: FieldGridComponent = ({ children, rootProps }) => {
  * @return Элемент.
  * @deprecated
  */
-const Row: React.FC<RowProps> = ({ isFirst: isFirstRow, isLast: isLastRow, children }) => {
+const Row: FC<RowProps> = ({ isFirst: isFirstRow, isLast: isLastRow, children }) => {
   const cells = Children.toArray(children)
     .filter(TypeCheck.isCell)
-    .slice(0, 3) as React.ReactElement<CellProps>[];
+    .slice(0, 3) as ReactElement<CellProps>[];
 
   const cellSize = cellSizeByCount[cells.length];
 
@@ -147,8 +147,8 @@ const Row: React.FC<RowProps> = ({ isFirst: isFirstRow, isLast: isLastRow, child
  * @return Элемент.
  * @deprecated
  */
-const Cell: React.FC<CellProps> = ({ size, rounds, field, renderField }) => {
-  let content: React.ReactNode;
+const Cell: FC<CellProps> = ({ size, rounds, field, renderField }) => {
+  let content: ReactNode;
 
   if (renderField) {
     content = renderField({ rounds, caption: undefined });

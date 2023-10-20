@@ -1,5 +1,5 @@
 import { CleanGroup, CleanButton, CleanButtonSize } from '@sima-land/ui-nucleons/clean-buttons';
-import { Fragment, ReactNode } from 'react';
+import { Fragment, ReactNode, MouseEvent as ReactMouseEvent } from 'react';
 
 export default {
   title: 'common/CleanGroup',
@@ -10,8 +10,8 @@ export default {
   },
 };
 
-const handleClick = ({ currentTarget }: React.MouseEvent<HTMLAnchorElement>) => {
-  alert(currentTarget.textContent);
+const handleClick = (event: ReactMouseEvent<HTMLAnchorElement>) => {
+  alert(event.currentTarget.textContent);
 };
 
 function DisplayWrapper({ children }: { children?: ReactNode }) {

@@ -1,4 +1,12 @@
-import { useRef, useEffect, useImperativeHandle, forwardRef } from 'react';
+import {
+  useRef,
+  useEffect,
+  useImperativeHandle,
+  forwardRef,
+  CSSProperties,
+  TextareaHTMLAttributes,
+  InputHTMLAttributes,
+} from 'react';
 import { fitElementHeight } from '../helpers/fit-element-height';
 import classnames from 'classnames/bind';
 import styles from './base-input.module.scss';
@@ -10,7 +18,7 @@ interface RestPlaceholder {
   shiftValue?: string;
 }
 
-interface BaseInputStyle extends React.CSSProperties {
+interface BaseInputStyle extends CSSProperties {
   '--placeholder-color'?: string;
 }
 
@@ -25,8 +33,8 @@ export interface CustomProps {
 }
 
 export type BaseInputProps = CustomProps &
-  React.TextareaHTMLAttributes<HTMLTextAreaElement> &
-  React.InputHTMLAttributes<HTMLInputElement>;
+  TextareaHTMLAttributes<HTMLTextAreaElement> &
+  InputHTMLAttributes<HTMLInputElement>;
 
 /**
  * Компонент поля ввода.

@@ -1,10 +1,10 @@
-import type { ReactNode } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
 export type TopBarSize = 's' | 'm' | 'xl';
 
-export interface TopBarButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface TopBarButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Иконка. */
-  icon?: React.ReactNode;
+  icon?: ReactNode;
 
   /** Текст. */
   text?: string;

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { MutableRefObject, useRef } from 'react';
 import { act, fireEvent, render } from '@testing-library/react';
 import { useIsTouchDevice, useInfiniteScroll, useOutsideClick } from '../index';
 
@@ -10,7 +10,7 @@ describe('useInfiniteScroll()', () => {
     withList?: boolean;
     onFullScroll?: () => void;
   }) => {
-    const listRef = useRef() as React.MutableRefObject<HTMLUListElement>;
+    const listRef = useRef() as MutableRefObject<HTMLUListElement>;
 
     useInfiniteScroll(listRef, {
       onFullScroll,

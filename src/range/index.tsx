@@ -1,4 +1,4 @@
-import { Component, createRef } from 'react';
+import { Component, HTMLAttributes, RefObject, createRef } from 'react';
 import { boundsOf } from '../helpers/bounds-of';
 import { createContainer, Container } from '../helpers/create-container';
 import { getEventClientPos } from '../helpers/events';
@@ -40,7 +40,7 @@ export interface RangeProps {
   disabled?: boolean;
 
   /** Свойства контейнера. */
-  wrapperProps?: React.HTMLAttributes<HTMLDivElement>;
+  wrapperProps?: HTMLAttributes<HTMLDivElement>;
 }
 
 const cx = classnames.bind(styles);
@@ -66,10 +66,10 @@ const getPercentage = (...args: Parameters<typeof getFraction>) => getFraction(.
  * Поле выбора диапазона с двумя ползунками.
  */
 export class Range extends Component<RangeProps> {
-  containerRef: React.RefObject<HTMLElement | undefined>;
-  rangeRef: React.RefObject<HTMLElement | undefined>;
-  startThumbRef: React.RefObject<HTMLElement | undefined>;
-  finishThumbRef: React.RefObject<HTMLElement | undefined>;
+  containerRef: RefObject<HTMLElement | undefined>;
+  rangeRef: RefObject<HTMLElement | undefined>;
+  startThumbRef: RefObject<HTMLElement | undefined>;
+  finishThumbRef: RefObject<HTMLElement | undefined>;
   start: Container<number>;
   finish: Container<number>;
   activeBounds: [number, number];

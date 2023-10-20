@@ -1,4 +1,4 @@
-import { Component, Fragment, createRef } from 'react';
+import { Component, Fragment, HTMLAttributes, RefObject, createRef } from 'react';
 import { Draggable, Control } from './draggable';
 import { inRange, isEqual, noop, size, stubFalse } from 'lodash';
 import { eq } from 'lodash/fp';
@@ -57,10 +57,10 @@ export interface CarouselProps {
   onChangeTargetIndex?: (newIndex: number) => void;
 
   /** Свойства контейнера. */
-  containerProps?: React.HTMLAttributes<HTMLDivElement>;
+  containerProps?: HTMLAttributes<HTMLDivElement>;
 
   /** Свойства элемента, формирующего viewport карусели. */
-  viewportElementProps?: React.HTMLAttributes<HTMLDivElement>;
+  viewportElementProps?: HTMLAttributes<HTMLDivElement>;
 
   /** Свойства кнопок. */
   controlProps?: ArrowButtonProps;
@@ -97,9 +97,9 @@ export class Carousel extends Component<CarouselProps, State> {
   dragStartClient: IPoint;
   dragStartOffset: IPoint;
   currentIndex: number;
-  containerRef: React.RefObject<HTMLDivElement>;
-  rootElementRef: React.RefObject<HTMLDivElement>;
-  wrapperRef: React.RefObject<HTMLDivElement>;
+  containerRef: RefObject<HTMLDivElement>;
+  rootElementRef: RefObject<HTMLDivElement>;
+  wrapperRef: RefObject<HTMLDivElement>;
   timerId?: number;
   canAutoMove?: boolean;
   mounted?: boolean;

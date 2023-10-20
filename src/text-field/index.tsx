@@ -1,4 +1,14 @@
-import { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
+import {
+  useState,
+  useEffect,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+  InputHTMLAttributes,
+  ReactNode,
+  MouseEventHandler,
+  HTMLProps,
+} from 'react';
 import { isNil } from 'lodash';
 import { Box } from '../box';
 import { BaseInput, BaseInputProps } from '../base-input-deprecated';
@@ -27,7 +37,7 @@ type IgnoredInputProps =
   | 'onSelect';
 
 export interface TextFieldProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, IgnoredInputProps> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, IgnoredInputProps> {
   /** Ярлык. */
   label?: string;
 
@@ -35,13 +45,13 @@ export interface TextFieldProps
   baseInputProps?: BaseInputProps;
 
   /** Подпись снизу. */
-  caption?: React.ReactNode;
+  caption?: ReactNode;
 
   /** CSS-классы. */
   classes?: Classes;
 
   /** Дополнительная верстка после текста. */
-  endAdornment?: React.ReactNode;
+  endAdornment?: ReactNode;
 
   /** Показывать ли поле как ошибочное. */
   failed?: boolean;
@@ -56,7 +66,7 @@ export interface TextFieldProps
   onChange?: BaseInputProps['onChange'];
 
   /** Сработает при клике. */
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 
   /** Сработает при событии "input". */
   onInput?: BaseInputProps['onInput'];
@@ -77,13 +87,13 @@ export interface TextFieldProps
   size?: DesktopSize;
 
   /** Дополнительная верстка до текста. */
-  startAdornment?: React.ReactNode;
+  startAdornment?: ReactNode;
 
   /** Вариант отображения. */
   variant?: Variant;
 
   /** Свойства элемента-блока. */
-  blockProps?: Omit<React.HTMLProps<HTMLDivElement>, 'onClick'>;
+  blockProps?: Omit<HTMLProps<HTMLDivElement>, 'onClick'>;
 
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;

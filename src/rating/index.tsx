@@ -1,3 +1,4 @@
+import { HTMLAttributes } from 'react';
 import { getStars } from './utils';
 import { StarType } from './types';
 import classnames from 'classnames/bind';
@@ -6,7 +7,7 @@ import styles from './rating.module.scss';
 
 export type StarSize = 's' | 'm';
 
-export interface RatingProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface RatingProps extends HTMLAttributes<HTMLDivElement> {
   /** Размер. */
   size?: StarSize;
 

@@ -1,5 +1,5 @@
 import { Screen, ScreenProps } from '@sima-land/ui-nucleons/screen';
-import { useRef, useState } from 'react';
+import { MouseEventHandler, useRef, useState } from 'react';
 import { Button } from '@sima-land/ui-nucleons/button';
 import { Box } from '@sima-land/ui-nucleons/box';
 import { TouchSlider } from '@sima-land/ui-nucleons/touch-slider';
@@ -17,7 +17,7 @@ export default {
   },
 };
 
-const PageTemplate = ({ onButtonClick }: { onButtonClick: React.MouseEventHandler }) => (
+const PageTemplate = ({ onButtonClick }: { onButtonClick: MouseEventHandler }) => (
   <MobileLayout>
     <h1>Фоновая страница</h1>
 

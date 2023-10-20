@@ -66,7 +66,7 @@ export const HeaderSlot = ({
 /**
  * Слот основного контента экрана.
  */
-export const BodySlot = forwardRef<HTMLDivElement | null, { children?: React.ReactNode }>(
+export const BodySlot = forwardRef<HTMLDivElement | null, { children?: ReactNode }>(
   function BodySlot({ children }, outerRef) {
     const {
       loading,

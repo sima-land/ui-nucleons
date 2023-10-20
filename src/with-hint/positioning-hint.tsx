@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 import { Hint, HintProps } from '../hint-deprecated';
 import { PlaceAt } from './utils';
 import classnames from 'classnames/bind';
@@ -8,7 +8,7 @@ import { useLayer } from '../helpers/layer';
 const cx = classnames.bind(styles);
 
 interface Props extends HintProps {
-  openerRef: React.RefObject<Element | undefined | null>;
+  openerRef: RefObject<Element | undefined | null>;
 }
 
 /**

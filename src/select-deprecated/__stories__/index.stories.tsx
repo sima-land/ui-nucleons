@@ -1,5 +1,5 @@
 import { Select, renderDefaultArrow } from '@sima-land/ui-nucleons/select-deprecated';
-import { useState } from 'react';
+import { ElementType, SVGAttributes, useState } from 'react';
 import { Link } from '@sima-land/ui-nucleons/link';
 import { COLORS } from '@sima-land/ui-nucleons/colors';
 import GoogleSVG from '@sima-land/ui-quarks/icons/24x24/Filled/Social/Google';
@@ -155,7 +155,7 @@ export function WithLoading() {
 WithLoading.storyName = 'С загрузкой';
 
 interface SocialOption {
-  Icon: React.ComponentType<React.SVGAttributes<SVGSVGElement>>;
+  Icon: ElementType<SVGAttributes<SVGSVGElement>>;
   name: string;
 }
 

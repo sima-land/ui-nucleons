@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { HTMLAttributes, ReactNode, useEffect, useRef, useState } from 'react';
 import { WithTooltip } from '..';
 import boundsOf from '../../helpers/bounds-of';
 import on from '../../helpers/on';
@@ -30,7 +30,7 @@ export function DismissTest() {
   );
 }
 
-export function LinkWithTooltip({ tooltip = SHORT_TEXT }: { tooltip?: React.ReactNode }) {
+export function LinkWithTooltip({ tooltip = SHORT_TEXT }: { tooltip?: ReactNode }) {
   return (
     <WithTooltip tooltip={tooltip}>
       {(ref, toggle) => (
@@ -67,8 +67,8 @@ export function PositioningTest({
   tooltip,
   containerProps,
 }: {
-  tooltip: React.ReactNode;
-  containerProps?: React.HTMLAttributes<HTMLDivElement>;
+  tooltip: ReactNode;
+  containerProps?: HTMLAttributes<HTMLDivElement>;
 }) {
   const { draggableRef, movedRef } = useDraggable();
 

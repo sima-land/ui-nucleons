@@ -1,9 +1,9 @@
-import { ReactNode, useEffect, useRef } from 'react';
+import { HTMLAttributes, ReactNode, useEffect, useRef } from 'react';
 import { setTableRowLabels } from './utils';
 import classnames from 'classnames';
 import styles from './unknown-content.module.scss';
 
-export interface UnknownContentProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface UnknownContentProps extends HTMLAttributes<HTMLDivElement> {
   /** Строка с html-версткой. */
   markup?: string;
 

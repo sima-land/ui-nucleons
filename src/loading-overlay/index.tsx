@@ -1,6 +1,7 @@
 import { Spinner, SpinnerProps } from '../spinner';
 import classnames from 'classnames/bind';
 import classes from './loading-overlay.module.scss';
+import { CSSProperties } from 'react';
 
 export interface LoadingOverlayProps {
   /** Пользовательский CSS-класс корневого элемента. */
@@ -13,7 +14,7 @@ export interface LoadingOverlayProps {
   spinnerProps?: SpinnerProps;
 
   /** Пользовательские стили. */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }
 
 const cx = classnames.bind(classes);

@@ -1,17 +1,14 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { ReactNode, RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import { HintProps } from '../hint-deprecated';
 import { Portal } from '../portal';
 import { PositioningHint } from './positioning-hint';
 import { onParentScroll } from './utils';
 
-type ChildrenFn = (
-  ref: React.RefObject<Element>,
-  toggle: (opened: boolean) => void,
-) => React.ReactNode;
+type ChildrenFn = (ref: RefObject<Element>, toggle: (opened: boolean) => void) => ReactNode;
 
 export interface WithHintProps {
   /** Содержимое хинта. */
-  hint: React.ReactNode;
+  hint: ReactNode;
 
   /** С какой стороны появляется хинт. */
   direction?: HintProps['direction'];

@@ -1,11 +1,11 @@
-import { forwardRef } from 'react';
+import { InputHTMLAttributes, forwardRef } from 'react';
 import { Checkbox } from '../checkbox';
 import { Toggle } from '../toggle';
 import classnames from 'classnames/bind';
 import classes from './checkbox-field.module.scss';
 
 /** @deprecated */
-export interface CheckboxFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface CheckboxFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   /** Содержимое ярлыка. */
   label: string;
 
