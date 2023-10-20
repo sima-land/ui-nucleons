@@ -33,7 +33,7 @@ export function Pagination({
     () => validatePaginationState({ current: currentProp, total: totalProp }),
     [currentProp, totalProp],
   );
-  const items = useMemo(() => getItems({ current, total }), [current, total]);
+  const items = useMemo(() => getItems({ current, total }), [current, total, getItems]);
 
   const onChangeRef = useRef(onPageChange);
   onChangeRef.current = onPageChange;
