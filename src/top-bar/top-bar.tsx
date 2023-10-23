@@ -26,6 +26,7 @@ export function TopBar({
   subtitle,
   buttons: { start, startSecondary, end, endSecondary } = {},
   className,
+  style,
   'data-testid': testId = 'top-bar',
 }: TopBarProps) {
   const hasStartButtons = start || startSecondary;
@@ -41,7 +42,7 @@ export function TopBar({
   );
 
   return (
-    <div className={rootClasses} data-testid={testId}>
+    <div className={rootClasses} style={style} data-testid={testId}>
       {hasButtons && (
         <div className={cx('side')}>
           {hasStartButtons && (
