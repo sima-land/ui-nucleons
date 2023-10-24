@@ -80,7 +80,7 @@ export function ComboDropdown() {
 
       <Card rounds='m' shadow='z4' style={{ width: 352, maxHeight: 304, minHeight: 112 }}>
         <CardContent>
-          <CustomScrollbar inFlexBox overflow={{ x: 'h', y: 's' }} className='scrollable'>
+          <CustomScrollbar overflow={{ x: 'hidden', y: 'scroll' }} className='scrollable'>
             {[...Array(count).keys()].map(index => (
               <DropdownItem key={index}>Hello #{index + 1}</DropdownItem>
             ))}

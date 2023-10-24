@@ -1,4 +1,4 @@
-import { Children, KeyboardEventHandler, useCallback, useRef, useState } from 'react';
+import { Children, KeyboardEventHandler, useCallback, useEffect, useRef, useState } from 'react';
 import { AutocompleteProps } from './types';
 import { Dropdown } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';
@@ -10,6 +10,7 @@ import { Input } from '../input';
 import { useIsomorphicLayoutEffect } from '../hooks';
 import { dropdownFloatingConfig, useDropdownFloatingStyle } from '../dropdown/utils';
 import { triggerInput } from '../helpers/events';
+import { scrollToChild } from '../helpers/scroll-to-child';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Down';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';
 import styles from './autocomplete.module.scss';
@@ -50,6 +51,7 @@ export function Autocomplete({
 
   const [needMenu, setNeedMenu] = useState(false);
 
+  const scrollRef = useRef<HTMLDivElement>(null);
   const { refs, ...floating } = useFloating({ open: needMenu, ...dropdownFloatingConfig() });
   const floatingStyle = useDropdownFloatingStyle({ refs, ...floating });
 
@@ -120,6 +122,17 @@ export function Autocomplete({
     [menuShown, activeIndex, items, selectItem, onKeyDown],
   );
 
+  // прокрутка до элемента списка
+  useEffect(() => {
+    const itemSelector = `[data-role="option"]`;
+    const menu = scrollRef.current;
+    const item = menu?.querySelectorAll(itemSelector)[activeIndex];
+
+    if (menu && item) {
+      scrollToChild(menu, item);
+    }
+  }, [activeIndex]);
+
   return (
     <>
       <Input
@@ -175,13 +188,15 @@ export function Autocomplete({
         {menuShown && (
           <Dropdown
             ref={refs.setFloating}
-            {...dropdownProps}
+            viewportRef={scrollRef}
             style={{ ...dropdownProps?.style, ...floatingStyle }}
+            className={dropdownProps?.className}
           >
             {!loading &&
               items.length > 0 &&
               items.map((item, index) => (
                 <DropdownItem
+                  data-role='option'
                   key={index}
                   checked={index === activeIndex}
                   {...item.props}

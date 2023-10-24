@@ -1,4 +1,4 @@
-import type { RefObject } from 'react';
+import type { DependencyList, RefObject } from 'react';
 import type { BodyScrollOptions } from 'body-scroll-lock';
 import { useIsomorphicLayoutEffect } from '../../hooks';
 import { usePageScrollContext } from './context';
@@ -16,10 +16,12 @@ const DEFAULTS: HookOptions = {
  * Хук управления блокировкой прокрутки body.
  * @param ref Ref прокручиваемого элемента для которого нужно отключить прокрутку body.
  * @param options Опции.
+ * @param extraDeps Зависимости.
  */
 export function usePageScrollLock(
   ref: RefObject<HTMLElement>,
   options: HookOptions = DEFAULTS,
+  extraDeps?: DependencyList,
 ): void {
   const { adapter } = usePageScrollContext();
 
@@ -33,5 +35,5 @@ export function usePageScrollLock(
 
       return () => pageScroll.unlock();
     }
-  }, [options?.lockEnabled, options?.reserveScrollBarGap]);
+  }, [options?.lockEnabled, options?.reserveScrollBarGap, ...(extraDeps ?? [])]);
 }

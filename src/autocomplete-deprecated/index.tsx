@@ -6,7 +6,7 @@ import { placeDropdown } from '../_internal/utils/dropdown';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Down';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';
 import { DropdownLoading } from '../_internal/dropdown-loading';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+import { scrollToChild } from '../helpers/scroll-to-child';
 import classnames from 'classnames/bind';
 import styles from './autocomplete.module.scss';
 
@@ -60,7 +60,7 @@ export const Autocomplete = ({
   'data-testid': dataTestId,
   ...restProps
 }: AutocompleteProps) => {
-  const osComponentRef = useRef<OverlayScrollbarsComponent>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const fieldRef = useRef<HTMLInputElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -88,17 +88,12 @@ export const Autocomplete = ({
   }, [items]);
 
   useEffect(() => {
-    const menu = menuRef.current;
-    const osInstance = osComponentRef.current?.osInstance();
+    const menu = scrollRef.current;
 
-    if (menu && osInstance && activeIndex !== null) {
-      const child = menu.querySelectorAll('[role="menuitem"]')[activeIndex];
+    if (menu && activeIndex !== null) {
+      const item = menu.querySelectorAll('[role="menuitem"]')[activeIndex];
 
-      child instanceof HTMLElement &&
-        osInstance.scroll({
-          el: child,
-          scroll: { y: 'ifneeded' },
-        });
+      item instanceof HTMLElement && scrollToChild(menu, item);
     }
   }, [activeIndex]);
 
@@ -158,11 +153,11 @@ export const Autocomplete = ({
       {needMenu && (
         <Dropdown
           {...placeDropdown(restProps.size)}
+          viewportRef={scrollRef}
           ref={menuRef}
           data-testid='autocomplete:menu'
           className={cx('menu')}
           role='menu'
-          customScrollbarProps={{ osComponentRef }}
         >
           {loading ? (
             <DropdownLoading data-testid='autocomplete:loading-area' />
