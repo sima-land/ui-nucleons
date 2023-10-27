@@ -150,17 +150,13 @@ export function Autocomplete({
     }
   }, [menuShown]);
 
-  // предотвращение расфокусировки поля при клике на ползунки полос прокрутки
+  // предотвращение расфокусировки поля при клике внутри меню
+  // необходимо чтобы можно было взяться мышкой за полосу прокрутки
   useEffect(() => {
     const menu = refs.floating.current;
-    const handles = menu?.querySelectorAll('.os-scrollbar-handle');
 
-    if (!handles) {
-      return;
-    }
-
-    const offList = [...handles].map(handle =>
-      on(handle, 'mousedown', event => {
+    if (menu) {
+      return on(menu, 'mousedown', event => {
         if (
           document.activeElement &&
           inputRef.current &&
@@ -168,12 +164,8 @@ export function Autocomplete({
         ) {
           event.preventDefault();
         }
-      }),
-    );
-
-    return () => {
-      offList.forEach(fn => fn());
-    };
+      });
+    }
   }, [menuShown]);
 
   return (

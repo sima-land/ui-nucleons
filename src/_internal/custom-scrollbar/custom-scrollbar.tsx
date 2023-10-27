@@ -4,7 +4,7 @@ import {
   OverlayScrollbarsComponentRef,
   useOverlayScrollbars,
 } from 'overlayscrollbars-react';
-import { useIsomorphicLayoutEffect } from '@sima-land/ui-nucleons/hooks';
+import { useIsomorphicLayoutEffect } from '../../hooks';
 import type { CustomScrollbarProps } from './types';
 import classNames from 'classnames/bind';
 
