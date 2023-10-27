@@ -1,15 +1,16 @@
-import { Children, KeyboardEventHandler, useCallback, useRef, useState } from 'react';
+import { Children, KeyboardEventHandler, useCallback, useEffect, useRef, useState } from 'react';
 import { AutocompleteProps } from './types';
-import { Dropdown } from '../dropdown';
+import { Dropdown, DropdownLoading } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';
 import { DropdownItemElement } from '../dropdown-item/types';
 import { DropdownItemUtils } from '../dropdown-item/utils';
-import { DropdownLoading } from '../_internal/dropdown-loading';
 import { FloatingPortal, useFloating } from '@floating-ui/react';
 import { Input } from '../input';
 import { useIsomorphicLayoutEffect } from '../hooks';
 import { dropdownFloatingConfig, useDropdownFloatingStyle } from '../dropdown/utils';
 import { triggerInput } from '../helpers/events';
+import { scrollToChild } from '../helpers/scroll-to-child';
+import { on } from '../helpers/on';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Down';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';
 import styles from './autocomplete.module.scss';
@@ -47,6 +48,7 @@ export function Autocomplete({
   ...restProps
 }: AutocompleteProps) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
 
   const [needMenu, setNeedMenu] = useState(false);
 
@@ -120,6 +122,60 @@ export function Autocomplete({
     [menuShown, activeIndex, items, selectItem, onKeyDown],
   );
 
+  // прокрутка до активного элемента списка
+  useEffect(() => {
+    const itemSelector = `[role="option"]`;
+    const menu = viewportRef.current;
+    const item = menu?.querySelectorAll(itemSelector)[activeIndex];
+
+    if (menu && item instanceof HTMLElement) {
+      scrollToChild(menu, item);
+    }
+  }, [activeIndex]);
+
+  // скрытие меню при прокрутке колесом за пределами меню
+  useEffect(() => {
+    const menu = refs.floating.current;
+
+    if (menu) {
+      return on<WheelEvent>(window, 'wheel', event => {
+        if (
+          event.target instanceof HTMLElement &&
+          menu !== event.target &&
+          !menu.contains(event.target)
+        ) {
+          setNeedMenu(false);
+        }
+      });
+    }
+  }, [menuShown]);
+
+  // предотвращение расфокусировки поля при клике на ползунки полос прокрутки
+  useEffect(() => {
+    const menu = refs.floating.current;
+    const handles = menu?.querySelectorAll('.os-scrollbar-handle');
+
+    if (!handles) {
+      return;
+    }
+
+    const offList = [...handles].map(handle =>
+      on(handle, 'mousedown', event => {
+        if (
+          document.activeElement &&
+          inputRef.current &&
+          document.activeElement === inputRef.current
+        ) {
+          event.preventDefault();
+        }
+      }),
+    );
+
+    return () => {
+      offList.forEach(fn => fn());
+    };
+  }, [menuShown]);
+
   return (
     <>
       <Input
@@ -174,14 +230,16 @@ export function Autocomplete({
       <FloatingPortal id=''>
         {menuShown && (
           <Dropdown
-            ref={refs.setFloating}
-            {...dropdownProps}
+            rootRef={refs.setFloating}
+            viewportRef={viewportRef}
             style={{ ...dropdownProps?.style, ...floatingStyle }}
+            className={dropdownProps?.className}
           >
             {!loading &&
               items.length > 0 &&
               items.map((item, index) => (
                 <DropdownItem
+                  role='option'
                   key={index}
                   checked={index === activeIndex}
                   {...item.props}

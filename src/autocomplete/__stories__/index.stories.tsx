@@ -24,6 +24,9 @@ export function Primary() {
         <DropdownItem>Chrome</DropdownItem>
         <DropdownItem>Opera</DropdownItem>
         <DropdownItem>Safari</DropdownItem>
+        <DropdownItem>Arc</DropdownItem>
+        <DropdownItem>Yandex.Browser</DropdownItem>
+        <DropdownItem>IE</DropdownItem>
       </Autocomplete>
     </>
   );
@@ -144,9 +147,7 @@ export function TestInModal() {
     <Modal>
       <Modal.Header title='Тест' divided />
       <Modal.Body>
-        <div
-          style={{ padding: 16, display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}
-        >
+        <div style={{ padding: 16, display: 'flex', flexDirection: 'column' }}>
           {[...Array(10).keys()].map(index => (
             <p key={index}>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem impedit
@@ -154,7 +155,7 @@ export function TestInModal() {
             </p>
           ))}
 
-          <Autocomplete dropdownProps={{ style: { width: 320 } }}>
+          <Autocomplete dropdownProps={{ style: { width: 320 } }} placeholder='Номер'>
             <DropdownItem>Ноль</DropdownItem>
             <DropdownItem>Один</DropdownItem>
             <DropdownItem>Два</DropdownItem>

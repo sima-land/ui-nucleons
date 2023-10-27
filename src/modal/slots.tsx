@@ -1,12 +1,11 @@
-import { ReactNode, useContext, useImperativeHandle, useRef } from 'react';
+import { ReactNode, useContext, useRef } from 'react';
 import { TopBar, TopBarProps } from '../top-bar';
 import { navigationButtons } from '../top-bar/utils';
 import { BottomBar, BottomBarProps } from '../bottom-bar';
-import { CustomScrollbar, getViewport } from '../_internal/custom-scrollbar';
+import { CustomScrollbar } from '../_internal/custom-scrollbar';
 import { ViewportContext } from '../context/viewport';
 import { ModalContext } from './utils';
 import { usePageScrollLock } from '../_internal/page-scroll-lock';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import classNames from 'classnames/bind';
 import styles from './modal.module.scss';
 
@@ -42,39 +41,18 @@ export function ModalHeader({ className, onBack, onClose, buttons, ...rest }: Mo
  * @param props Свойства.
  * @return Элемент.
  */
-export function ModalBody({
-  children,
-  onFullScroll,
-  fullScrollThreshold,
-}: {
-  children?: ReactNode;
-  fullScrollThreshold?: number;
-  onFullScroll?: () => void;
-}) {
-  const viewportRef = useRef<HTMLElement>(null);
-  const scrollableRef = useRef<HTMLElement>(null);
-  const osComponentRef = useRef<OverlayScrollbarsComponent>(null);
+export function ModalBody({ children }: { children?: ReactNode }) {
+  const viewportRef = useRef<HTMLDivElement>(null);
   const { withScrollDisable, scrollDisableOptions } = useContext(ModalContext);
 
-  useImperativeHandle<HTMLElement | null, HTMLElement | null>(scrollableRef, () =>
-    getViewport(osComponentRef.current),
-  );
-
-  useImperativeHandle<HTMLElement | null, HTMLElement | null>(viewportRef, () =>
-    getViewport(osComponentRef.current),
-  );
-
-  usePageScrollLock(scrollableRef, { lockEnabled: withScrollDisable, ...scrollDisableOptions });
+  usePageScrollLock(viewportRef, { lockEnabled: withScrollDisable, ...scrollDisableOptions });
 
   return (
     <ViewportContext.Provider value={viewportRef}>
       <CustomScrollbar
-        inFlexBox
-        osComponentRef={osComponentRef}
+        viewportRef={viewportRef}
         className={styles.body}
         overflow={{ x: 'hidden', y: 'scroll' }}
-        onFullScroll={onFullScroll}
-        fullScrollThreshold={fullScrollThreshold}
       >
         {children}
       </CustomScrollbar>

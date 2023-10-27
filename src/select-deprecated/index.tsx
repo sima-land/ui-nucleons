@@ -1,5 +1,5 @@
 import { CSSProperties, ReactNode, useEffect, useRef, useState } from 'react';
-import { Dropdown } from '../dropdown';
+import { Dropdown, DropdownLoading } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';
 import { TextField, TextFieldProps } from '../text-field';
 import { placeDropdown } from '../_internal/utils/dropdown';
@@ -8,7 +8,6 @@ import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Down';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';
 import styles from './select.module.scss';
 import { COLORS } from '../colors';
-import { DropdownLoading } from '../_internal/dropdown-loading';
 import { useOutsideClick } from '../hooks';
 
 type Size = 's' | 'm' | 'l' | 'xl';
@@ -123,7 +122,7 @@ export const Select = ({
       {opened && (loading || options.length > 0) && (
         <Dropdown
           {...placeDropdown(size)}
-          ref={menuRef as any}
+          rootRef={menuRef as any}
           data-testid='select:menu'
           role='menu'
           tabIndex={-1}

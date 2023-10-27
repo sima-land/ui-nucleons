@@ -1,14 +1,13 @@
 import { ReactNode, useEffect, useRef, useState, KeyboardEvent as ReactKeyboardEvent } from 'react';
-import { Dropdown } from '../dropdown';
+import { Dropdown, DropdownLoading } from '../dropdown';
 import { DropdownItem, DropdownItemProps } from '../dropdown-item';
 import { TextField, TextFieldProps } from '../text-field';
 import { placeDropdown } from '../_internal/utils/dropdown';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Down';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';
-import { DropdownLoading } from '../_internal/dropdown-loading';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import classnames from 'classnames/bind';
 import styles from './autocomplete.module.scss';
+import { scrollToChild } from '../helpers/scroll-to-child';
 
 export interface AutocompleteProps extends Omit<TextFieldProps, 'ref' | 'value' | 'defaultValue'> {
   /** Значение по умолчанию. */
@@ -60,7 +59,6 @@ export const Autocomplete = ({
   'data-testid': dataTestId,
   ...restProps
 }: AutocompleteProps) => {
-  const osComponentRef = useRef<OverlayScrollbarsComponent>(null);
   const fieldRef = useRef<HTMLInputElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -88,17 +86,15 @@ export const Autocomplete = ({
   }, [items]);
 
   useEffect(() => {
+    if (activeIndex === null) {
+      return;
+    }
+
     const menu = menuRef.current;
-    const osInstance = osComponentRef.current?.osInstance();
+    const item = menu?.querySelectorAll('[role="menuitem"]')[activeIndex];
 
-    if (menu && osInstance && activeIndex !== null) {
-      const child = menu.querySelectorAll('[role="menuitem"]')[activeIndex];
-
-      child instanceof HTMLElement &&
-        osInstance.scroll({
-          el: child,
-          scroll: { y: 'ifneeded' },
-        });
+    if (menu && item instanceof HTMLElement) {
+      scrollToChild(menu, item);
     }
   }, [activeIndex]);
 
@@ -158,11 +154,10 @@ export const Autocomplete = ({
       {needMenu && (
         <Dropdown
           {...placeDropdown(restProps.size)}
-          ref={menuRef}
+          viewportRef={menuRef}
           data-testid='autocomplete:menu'
           className={cx('menu')}
           role='menu'
-          customScrollbarProps={{ osComponentRef }}
         >
           {loading ? (
             <DropdownLoading data-testid='autocomplete:loading-area' />

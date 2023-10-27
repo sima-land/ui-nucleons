@@ -8,20 +8,21 @@ import {
   useRef,
   useState,
 } from 'react';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
-import { Dropdown } from '../../dropdown';
+import { Dropdown, DropdownLoading } from '../../dropdown';
 import { DropdownItem } from '../../dropdown-item';
 import { DropdownItemElement } from '../../dropdown-item/types';
 import { DropdownItemUtils } from '../../dropdown-item/utils';
-import { DropdownLoading } from '../../_internal/dropdown-loading';
 import { SelectMenuProps } from '../types';
-import classNames from 'classnames';
+import { scrollToChild } from '../../helpers/scroll-to-child';
+import classNames from 'classnames/bind';
 import styles from './menu.module.scss';
 
 const MenuItemAttr = {
   name: 'data-select-role',
   value: 'option',
 } as const;
+
+const cx = classNames.bind(styles);
 
 /**
  * Меню выбора для компонента Select.
@@ -38,7 +39,7 @@ export function SelectMenu({
   ...restProps
 }: SelectMenuProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const osComponentRef = useRef<OverlayScrollbarsComponent>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState<number>(-1);
   const items = Children.toArray(children).filter(DropdownItemUtils.is);
 
@@ -46,15 +47,12 @@ export function SelectMenu({
 
   // прокрутка до элемента списка
   useEffect(() => {
-    const menu = ref.current;
     const itemSelector = `[${MenuItemAttr.name}="${MenuItemAttr.value}"]`;
-    const targetItem = menu?.querySelectorAll(itemSelector)[activeIndex];
+    const menu = viewportRef.current;
+    const item = menu?.querySelectorAll(itemSelector)[activeIndex];
 
-    if (targetItem instanceof HTMLElement) {
-      osComponentRef.current?.osInstance()?.scroll({
-        el: targetItem,
-        scroll: { y: 'ifneeded' },
-      });
+    if (menu && item instanceof HTMLElement) {
+      scrollToChild(menu, item);
     }
   }, [activeIndex]);
 
@@ -98,12 +96,12 @@ export function SelectMenu({
   return (
     <Dropdown
       {...restProps}
-      ref={ref}
+      rootRef={ref}
+      viewportRef={viewportRef}
       tabIndex={0}
       role='listbox'
       onKeyDown={handleMenuKeyDown}
-      className={classNames(styles.menu, restProps.className)}
-      customScrollbarProps={{ osComponentRef }}
+      className={cx('menu', restProps.className)}
     >
       {loading ? (
         <DropdownLoading data-testid='select:loading-area' />
