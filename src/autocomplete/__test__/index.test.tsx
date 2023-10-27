@@ -4,9 +4,11 @@ import {
   queryAllByTestId,
   fireEvent,
   createEvent,
+  act,
 } from '@testing-library/react';
 import { DropdownItem } from '../../dropdown-item';
-import { Autocomplete } from '../autocomplete';
+import { Autocomplete } from '..';
+import userEvent from '@testing-library/user-event';
 
 class Helpers {
   private _container?: HTMLElement;
@@ -413,5 +415,93 @@ describe('Autocomplete', () => {
     expect(spy).toHaveBeenCalledTimes(0);
     fireEvent.blur(helpers.getInput());
     expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should hide menu when wheel event fired outside a menu', () => {
+    helpers.render(
+      <Autocomplete>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Autocomplete>,
+    );
+    expect(helpers.findMenu()).toHaveLength(0);
+
+    fireEvent.focus(helpers.getInput());
+    expect(helpers.findMenu()).toHaveLength(1);
+
+    act(() => {
+      const event = new WheelEvent('wheel');
+
+      Object.defineProperty(event, 'target', { value: document.body });
+
+      fireEvent(window, event);
+    });
+    expect(helpers.findMenu()).toHaveLength(0);
+  });
+
+  it('should NOT hide menu when wheel event fired on a menu', () => {
+    helpers.render(
+      <Autocomplete>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Autocomplete>,
+    );
+    expect(helpers.findMenu()).toHaveLength(0);
+
+    fireEvent.focus(helpers.getInput());
+    expect(helpers.findMenu()).toHaveLength(1);
+
+    act(() => {
+      const event = new WheelEvent('wheel');
+
+      Object.defineProperty(event, 'target', { value: helpers.findMenu()[0] });
+
+      fireEvent(window, event);
+    });
+    expect(helpers.findMenu()).toHaveLength(1);
+  });
+
+  it('should call preventDefault on mousedown event when activeElement is field', async () => {
+    helpers.render(
+      <Autocomplete>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Autocomplete>,
+    );
+    expect(helpers.findMenu()).toHaveLength(0);
+
+    await userEvent.click(helpers.getInput());
+    expect(helpers.findMenu()).toHaveLength(1);
+    expect(document.activeElement === helpers.getInput()).toBe(true);
+
+    const event = createEvent.mouseDown(helpers.findMenu()[0]);
+    act(() => {
+      fireEvent(helpers.findMenu()[0], event);
+    });
+    expect(event.defaultPrevented).toBe(true);
+  });
+
+  it('should NOT call preventDefault on mousedown event when activeElement is NOT field', () => {
+    helpers.render(
+      <Autocomplete>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Autocomplete>,
+    );
+    expect(helpers.findMenu()).toHaveLength(0);
+
+    fireEvent.focus(helpers.getInput());
+    expect(helpers.findMenu()).toHaveLength(1);
+    expect(document.activeElement !== helpers.getInput()).toBe(true);
+
+    const event = createEvent.mouseDown(helpers.findMenu()[0]);
+    act(() => {
+      fireEvent(helpers.findMenu()[0], event);
+    });
+    expect(event.defaultPrevented).toBe(false);
   });
 });

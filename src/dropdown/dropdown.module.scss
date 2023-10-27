@@ -1,7 +1,11 @@
+@use '../shadows';
+
 .root {
   background: #fff;
   outline: 0;
   padding: 8px 0;
+  border-radius: 8px;
+  @include shadows.box-shadow('z4');
 
   // задавать можно только максимальную высоту через --dropdown-max-height
   max-height: var(--dropdown-max-height, 304px) !important;

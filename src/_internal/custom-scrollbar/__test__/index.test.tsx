@@ -1,90 +1,43 @@
 import { render } from '@testing-library/react';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
-import { createRef, Ref, useImperativeHandle, useRef } from 'react';
-import { CustomScrollbar, useFullScroll, getViewport } from '..';
+import { CustomScrollbar } from '..';
+import { useOverlayScrollbarsInit } from '../custom-scrollbar';
+import { createRef, useRef } from 'react';
+import { useOverlayScrollbars } from 'overlayscrollbars-react';
 
-describe('useFullScroll', () => {
-  const TestComponent = ({
-    onFullScroll,
-    fullScrollThreshold,
-  }: {
-    onFullScroll?: VoidFunction;
-    fullScrollThreshold?: number;
-  }) => {
-    const onScroll = useFullScroll(onFullScroll, fullScrollThreshold);
+describe('CustomScrollbar', () => {
+  it('should handle "rootRef" prop', () => {
+    const rootRef = createRef<HTMLDivElement>();
 
-    return (
-      <div data-testid='target' onScroll={onScroll}>
-        Hello
-      </div>
+    const { container } = render(
+      <div>
+        <CustomScrollbar rootRef={rootRef}>
+          <div>Hello, world!</div>
+        </CustomScrollbar>
+      </div>,
     );
-  };
 
-  it('should handle callback and threshold', () => {
-    const spy = jest.fn();
-
-    const { getByTestId } = render(<TestComponent onFullScroll={spy} fullScrollThreshold={10} />);
-
-    const target = getByTestId('target');
-
-    Object.defineProperties(target, {
-      clientHeight: { value: 100, configurable: true },
-      scrollTop: { value: 0, configurable: true },
-      scrollHeight: { value: 1000, configurable: true },
-    });
-    target.dispatchEvent(new UIEvent('scroll'));
-
-    expect(spy).toHaveBeenCalledTimes(0);
-
-    Object.defineProperties(target, {
-      clientHeight: { value: 100, configurable: true },
-      scrollTop: { value: 900, configurable: true },
-      scrollHeight: { value: 1000, configurable: true },
-    });
-    target.dispatchEvent(new UIEvent('scroll'));
-
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should handle undefined', () => {
-    const { getByTestId } = render(
-      <TestComponent onFullScroll={undefined} fullScrollThreshold={undefined} />,
-    );
-    const target = getByTestId('target');
-
-    Object.defineProperties(target, {
-      clientHeight: { value: 100, configurable: true },
-      scrollTop: { value: 900, configurable: true },
-      scrollHeight: { value: 1000, configurable: true },
-    });
-    expect(() => {
-      target.dispatchEvent(new UIEvent('scroll'));
-    }).not.toThrow();
+    expect(container.textContent).toContain('Hello, world!');
+    expect(rootRef.current instanceof HTMLDivElement).toBe(true);
   });
 });
 
-describe('getViewport', () => {
-  it('should works', () => {
-    function TestComponent({ viewportRef }: { viewportRef: Ref<HTMLElement | null> }) {
-      const ref = useRef<OverlayScrollbarsComponent>(null);
+describe('useOverlayScrollbarsInit', () => {
+  const TestComponent = () => {
+    const rootRef = useRef<HTMLDivElement>(null);
+    const viewportRef = useRef<HTMLDivElement>(null);
 
-      useImperativeHandle(viewportRef, () => getViewport(ref.current));
+    const [initialize, getInstance] = useOverlayScrollbars({
+      options: { overflow: { x: 'scroll', y: 'scroll' } },
+      defer: false,
+    });
 
-      return (
-        <CustomScrollbar osComponentRef={ref}>
-          <h1>Hello, world!</h1>
-        </CustomScrollbar>
-      );
-    }
+    useOverlayScrollbarsInit(initialize, getInstance, rootRef, viewportRef);
 
-    const viewportRef = createRef<HTMLElement>();
-    render(<TestComponent viewportRef={viewportRef} />);
+    return <div>Hi</div>;
+  };
+  it('should not throw when refs is empty', () => {
+    const { container } = render(<TestComponent />);
 
-    expect(viewportRef.current instanceof HTMLElement).toBe(true);
-  });
-
-  it('should return null', () => {
-    expect(getViewport(null)).toBe(null);
-    expect(getViewport(undefined)).toBe(null);
+    expect(container.textContent).toBe('Hi');
   });
 });

@@ -44,7 +44,7 @@ test.describe('Mouse interactions', () => {
     await expect(here.input()).toHaveCount(1);
     await expect(here.input()).toBeFocused();
     await expect(here.menu()).toHaveCount(1);
-    await expect(here.menuItem()).toHaveCount(5);
+    await expect(here.menuItem()).toHaveCount(8);
     await expect(here.page).toHaveScreenshot();
   });
 
@@ -59,7 +59,7 @@ test.describe('Mouse interactions', () => {
     await expect(here.input()).toHaveCount(1);
     await expect(here.input()).toBeFocused();
     await expect(here.menu()).toHaveCount(1);
-    await expect(here.menuItem()).toHaveCount(5);
+    await expect(here.menuItem()).toHaveCount(8);
 
     await here.menuItem().nth(2).click();
     await expect(here.fieldBlock()).toHaveCount(1);
@@ -83,7 +83,7 @@ test.describe('Keyboard interactions', () => {
     await expect(here.input()).toHaveCount(1);
     await expect(here.input()).toBeFocused();
     await expect(here.menu()).toHaveCount(1);
-    await expect(here.menuItem()).toHaveCount(5);
+    await expect(here.menuItem()).toHaveCount(8);
   });
 
   test('should walk on suggestions list by arrows and select active by enter', async ({ page }) => {
@@ -97,7 +97,7 @@ test.describe('Keyboard interactions', () => {
     await expect(here.input()).toHaveCount(1);
     await expect(here.input()).toBeFocused();
     await expect(here.menu()).toHaveCount(1);
-    await expect(here.menuItem()).toHaveCount(5);
+    await expect(here.menuItem()).toHaveCount(8);
 
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('ArrowDown');

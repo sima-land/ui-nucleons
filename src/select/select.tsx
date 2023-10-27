@@ -8,6 +8,7 @@ import { SelectMenu } from './parts/menu';
 import { SelectFieldBlock } from './parts/block';
 import { SelectTextButton } from './parts/button';
 import { dropdownFloatingConfig, useDropdownFloatingStyle } from '../dropdown/utils';
+import { on } from '../helpers/on';
 
 /**
  * Поле выбора из списка.
@@ -136,6 +137,23 @@ export function Select({
       openerRef.current?.focus();
     },
   };
+
+  // скрытие меню при прокрутке колесом за пределами меню
+  useEffect(() => {
+    const menu = refs.floating.current;
+
+    if (menu) {
+      return on<WheelEvent>(window, 'wheel', event => {
+        if (
+          event.target instanceof HTMLElement &&
+          menu !== event.target &&
+          !menu.contains(event.target)
+        ) {
+          setNeedMenu(false);
+        }
+      });
+    }
+  }, [menuShown]);
 
   return (
     <>
