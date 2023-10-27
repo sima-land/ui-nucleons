@@ -1,7 +1,9 @@
-import { forwardRef, useImperativeHandle, useRef } from 'react';
+import { RefObject, forwardRef, useImperativeHandle, useRef } from 'react';
 import {
   OverlayScrollbarsComponentProps,
   OverlayScrollbarsComponentRef,
+  UseOverlayScrollbarsInitialization,
+  UseOverlayScrollbarsInstance,
   useOverlayScrollbars,
 } from 'overlayscrollbars-react';
 import { useIsomorphicLayoutEffect } from '../../hooks';
@@ -18,6 +20,7 @@ const cx = classNames.bind(styles);
  * Компонент блока с кастомными полосами прокрутки по гайдам.
  * @param props Свойства.
  * @return Элемент.
+ * @todo Переименовать в StyledScrollbars и вынести из _internal?
  */
 export function CustomScrollbar({
   style,
@@ -40,7 +43,8 @@ export function CustomScrollbar({
       style={style}
       className={cx('root', className)}
       options={{
-        overflow,
+        // костыль из-за https://github.com/KingSora/OverlayScrollbars/issues/586
+        ...(overflow && { overflow }),
         scrollbars: {
           theme: cx('theme'),
         },
@@ -55,7 +59,7 @@ export function CustomScrollbar({
  * Аналог OverlayScrollbarsComponent из пакета 'overlayscrollbars-react'.
  * Использует useIsomorphicLayoutEffect вместо useEffect.
  */
-export const OverlayScrollbarsComponent = forwardRef<
+const OverlayScrollbarsComponent = forwardRef<
   OverlayScrollbarsComponentRef,
   OverlayScrollbarsComponentProps
 >((props, ref) => {
@@ -82,6 +86,22 @@ export const OverlayScrollbarsComponent = forwardRef<
     [initialize, getInstance],
   );
 
+  useOverlayScrollbarsInit(initialize, getInstance, rootRef, viewportRef);
+
+  return (
+    <div {...other} ref={rootRef}>
+      <div ref={viewportRef}>{children}</div>
+    </div>
+  );
+});
+
+/** @inheritdoc */
+export function useOverlayScrollbarsInit(
+  initialize: UseOverlayScrollbarsInitialization,
+  getInstance: UseOverlayScrollbarsInstance,
+  rootRef: RefObject<HTMLDivElement>,
+  viewportRef: RefObject<HTMLDivElement>,
+) {
   useIsomorphicLayoutEffect(() => {
     const { current: root } = rootRef;
     const { current: viewport } = viewportRef;
@@ -100,12 +120,4 @@ export const OverlayScrollbarsComponent = forwardRef<
       getInstance()?.destroy();
     };
   }, [initialize, getInstance]);
-
-  return (
-    <div {...other} data-overlayscrollbars-initialize='' ref={rootRef}>
-      <div data-overlayscrollbars-contents='' ref={viewportRef}>
-        {children}
-      </div>
-    </div>
-  );
-});
+}

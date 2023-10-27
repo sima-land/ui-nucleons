@@ -33,6 +33,10 @@
   --os-handle-interactive-area-offset: 0;
 }
 
+.theme :global(.os-scrollbar-handle) {
+  transition: opacity 0.15s, background-color 0.15s, border-color 0.15s;
+}
+
 .theme:global(.os-scrollbar-horizontal) :global(.os-scrollbar-handle) {
   margin-bottom: 4px;
 }

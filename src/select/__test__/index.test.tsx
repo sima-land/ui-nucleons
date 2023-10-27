@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { fireEvent, render, getByTestId, queryAllByTestId } from '@testing-library/react';
+import { fireEvent, render, getByTestId, queryAllByTestId, act } from '@testing-library/react';
 import { Select } from '..';
 import { DropdownItem } from '../../dropdown-item';
 import { SelectContext } from '../utils';
@@ -464,5 +464,51 @@ describe('Select', () => {
     );
 
     expect(getByTestId(container, 'field-block:block').textContent).toBe('selected: Second');
+  });
+
+  it('should hide menu when wheel event fired outside a menu', async () => {
+    const { baseElement } = render(
+      <Select>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Select>,
+    );
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+
+    await userEvent.click(getByTestId(baseElement, 'field-block:block'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+
+    act(() => {
+      const event = new WheelEvent('wheel');
+
+      Object.defineProperty(event, 'target', { value: document.body });
+
+      fireEvent(window, event);
+    });
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+  });
+
+  it('should NOT hide menu when wheel event fired on a menu', async () => {
+    const { baseElement } = render(
+      <Select>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Select>,
+    );
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+
+    await userEvent.click(getByTestId(baseElement, 'field-block:block'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+
+    act(() => {
+      const event = new WheelEvent('wheel');
+
+      Object.defineProperty(event, 'target', { value: getByTestId(baseElement, 'dropdown') });
+
+      fireEvent(window, event);
+    });
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
   });
 });
