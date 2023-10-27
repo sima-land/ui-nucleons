@@ -99,8 +99,8 @@ export function Select({
   const menuProps: SelectMenuProps = {
     ...dropdownProps,
     style: {
-      ...dropdownProps?.style,
       ...floatingStyle,
+      ...dropdownProps?.style,
     },
     menuRef: setMenuElement,
     value,

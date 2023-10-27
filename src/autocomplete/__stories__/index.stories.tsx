@@ -5,7 +5,8 @@ import { FieldBlockSize } from '@sima-land/ui-nucleons/field-block';
 import { Modal } from '@sima-land/ui-nucleons/modal';
 import { ModalFooter } from '@sima-land/ui-nucleons/modal/slots';
 import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
-import { Sandbox } from '../../../.storybook/utils';
+import { LoremIpsum, Sandbox } from '../../../.storybook/utils';
+import { BSL_IGNORE_ATTR } from '@sima-land/ui-nucleons/_internal/page-scroll-lock';
 
 export default {
   title: 'common/Autocomplete',
@@ -144,18 +145,16 @@ TestNativeComparison.storyName = 'Тест: сравнение с нативно
 
 export function TestInModal() {
   return (
-    <Modal>
-      <Modal.Header title='Тест' divided />
+    <Modal withScrollDisable>
+      <Modal.Header title='Тест' subtitle='Autocomplete внутри Modal' divided />
       <Modal.Body>
-        <div style={{ padding: 16, display: 'flex', flexDirection: 'column' }}>
-          {[...Array(10).keys()].map(index => (
-            <p key={index}>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem impedit
-              magnam recusandae, sed nihil autem odit delectus laborum explicabo deserunt!
-            </p>
-          ))}
+        <div style={{ padding: 16 }}>
+          <LoremIpsum paragraphCount={10} />
 
-          <Autocomplete dropdownProps={{ style: { width: 320 } }} placeholder='Номер'>
+          <Autocomplete
+            placeholder='Номер'
+            dropdownProps={{ viewportProps: { [BSL_IGNORE_ATTR as any]: true } }}
+          >
             <DropdownItem>Ноль</DropdownItem>
             <DropdownItem>Один</DropdownItem>
             <DropdownItem>Два</DropdownItem>
@@ -169,12 +168,7 @@ export function TestInModal() {
             <DropdownItem>Десять</DropdownItem>
           </Autocomplete>
 
-          {[...Array(10).keys()].map(index => (
-            <p key={index}>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem impedit
-              magnam recusandae, sed nihil autem odit delectus laborum explicabo deserunt!
-            </p>
-          ))}
+          <LoremIpsum paragraphCount={10} />
         </div>
       </Modal.Body>
       <ModalFooter divided>

@@ -4,6 +4,7 @@ import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
 import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
 import { FieldBlockSize } from '@sima-land/ui-nucleons/field-block';
 import { Modal } from '@sima-land/ui-nucleons/modal';
+import { BSL_IGNORE_ATTR } from '@sima-land/ui-nucleons/_internal/page-scroll-lock';
 import { TextButtonSize } from '@sima-land/ui-nucleons/text-button';
 import { LargePage, LoremIpsum, Sandbox } from '../../../.storybook/utils';
 
@@ -223,7 +224,7 @@ export function TestInModal() {
             label='Номер'
             value={value}
             onValueChange={setValue}
-            dropdownProps={{ style: { width: 320 } }}
+            dropdownProps={{ viewportProps: { [BSL_IGNORE_ATTR as any]: true } }}
           >
             <DropdownItem>Ноль</DropdownItem>
             <DropdownItem>Один</DropdownItem>
@@ -285,6 +286,10 @@ export function TestBlockOverflow() {
         <DropdownItem>Четыре</DropdownItem>
         <DropdownItem>Пять</DropdownItem>
         <DropdownItem>Шесть</DropdownItem>
+        <DropdownItem>Семь</DropdownItem>
+        <DropdownItem>Восемь</DropdownItem>
+        <DropdownItem>Девять</DropdownItem>
+        <DropdownItem>Десять</DropdownItem>
       </Select>
     </>
   );

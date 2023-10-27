@@ -1,6 +1,10 @@
 import { PhoneInput } from '@sima-land/ui-nucleons/phone-input';
 import { TextButton } from '@sima-land/ui-nucleons/text-button';
 import { useState } from 'react';
+import { Modal } from '@sima-land/ui-nucleons/modal';
+import { CleanButton, CleanGroup } from '@sima-land/ui-nucleons/clean-buttons';
+import { BSL_IGNORE_ATTR } from '@sima-land/ui-nucleons/_internal/page-scroll-lock';
+import { LoremIpsum } from '../../../.storybook/utils';
 
 export default {
   title: 'common/PhoneInput',
@@ -158,3 +162,34 @@ export function NativeNumberInputComparison() {
 }
 
 NativeNumberInputComparison.storyName = 'Тест: сравнение с input[type=number]';
+
+export function TestInModal() {
+  const [value, setValue] = useState<string>('');
+
+  return (
+    <Modal>
+      <Modal.Header title='Тест' subtitle='PhoneInput внутри Modal' divided />
+      <Modal.Body>
+        <div style={{ padding: 16 }}>
+          <LoremIpsum paragraphCount={10} />
+
+          <PhoneInput
+            label='Номер'
+            value={value}
+            onChange={event => setValue(event.target.value)}
+            dropdownProps={{ viewportProps: { [BSL_IGNORE_ATTR as any]: true } }}
+          />
+
+          <LoremIpsum paragraphCount={10} />
+        </div>
+      </Modal.Body>
+      <Modal.Footer divided>
+        <CleanGroup>
+          <CleanButton>Ясно</CleanButton>
+        </CleanGroup>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
+TestInModal.storyName = 'Тест: в модальном окне';

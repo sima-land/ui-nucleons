@@ -30,6 +30,7 @@ export function PhoneInput({
   onFocus,
   onCountrySelect,
   'data-testid': testId = 'phone-input',
+  dropdownProps,
   ...props
 }: PhoneInputProps) {
   const firstRenderRef = useRef(true);
@@ -126,6 +127,7 @@ export function PhoneInput({
         const item = countriesList.find(c => c.id === itemValue);
         item && changeCountry(item);
       }}
+      dropdownProps={dropdownProps}
     >
       {countriesList.map((item, index) => (
         <DropdownItem

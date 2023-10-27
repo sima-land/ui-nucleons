@@ -222,10 +222,10 @@ export function Autocomplete({
       <FloatingPortal id=''>
         {menuShown && (
           <Dropdown
+            {...dropdownProps}
             rootRef={refs.setFloating}
             viewportRef={viewportRef}
-            style={{ ...dropdownProps?.style, ...floatingStyle }}
-            className={dropdownProps?.className}
+            style={{ ...floatingStyle, ...dropdownProps?.style }}
           >
             {!loading &&
               items.length > 0 &&

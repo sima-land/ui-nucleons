@@ -36,7 +36,7 @@ export function SelectMenu({
   value,
   onKeyDown,
   onItemSelect,
-  ...restProps
+  ...dropdownProps
 }: SelectMenuProps) {
   const ref = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -95,13 +95,13 @@ export function SelectMenu({
 
   return (
     <Dropdown
-      {...restProps}
+      {...dropdownProps}
       rootRef={ref}
       viewportRef={viewportRef}
       tabIndex={0}
       role='listbox'
       onKeyDown={handleMenuKeyDown}
-      className={cx('menu', restProps.className)}
+      className={cx('menu', dropdownProps.className)}
     >
       {loading ? (
         <DropdownLoading data-testid='select:loading-area' />

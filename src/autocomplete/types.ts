@@ -16,6 +16,6 @@ export interface AutocompleteProps extends Omit<InputProps, 'adornmentEnd'> {
   /** Украшение после основного содержимого. */
   adornmentEnd?: ReactNode | ((data: { menuShown: boolean }) => ReactNode);
 
-  /** Свойства выпадающего списка. */
-  dropdownProps?: Pick<DropdownProps, 'className' | 'style'>;
+  /** Свойства компонента Dropdown. */
+  dropdownProps?: Omit<DropdownProps, 'rootRef' | 'viewportRef'>;
 }

@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode, Ref } from 'react';
+import type { CSSProperties, HTMLAttributes, ReactNode, Ref } from 'react';
 import type { PartialOptions } from 'overlayscrollbars';
 
 export interface CustomScrollbarProps {
@@ -17,6 +17,9 @@ export interface CustomScrollbarProps {
   /** Реф корневого элемента. */
   rootRef?: Ref<HTMLDivElement>;
 
-  /** Реф внутренного элемента с прокруткой. */
+  /** Реф внутреннего элемента с прокруткой. */
   viewportRef?: Ref<HTMLDivElement>;
+
+  /** Свойства внутреннего элемента с прокруткой. */
+  viewportProps?: HTMLAttributes<HTMLDivElement>;
 }
