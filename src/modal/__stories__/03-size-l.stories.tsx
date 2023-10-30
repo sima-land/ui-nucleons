@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import { Modal } from '@sima-land/ui-nucleons/modal';
 import { Button } from '@sima-land/ui-nucleons/button';
-import { CleanButton, CleanGroup } from '@sima-land/ui-nucleons/clean-buttons';
+import { useState } from 'react';
 
 export default {
   title: 'common/Modal',
@@ -14,6 +13,11 @@ export default {
 export function SizeL() {
   const [open, setOpen] = useState<boolean>(false);
 
+  const style = {
+    '--modal-height': '400px',
+    padding: '20px',
+  };
+
   return (
     <>
       <Button size='s' onClick={() => setOpen(true)}>
@@ -21,17 +25,8 @@ export function SizeL() {
       </Button>
 
       {open && (
-        <Modal size='l' height={500} onClose={() => setOpen(false)}>
-          <Modal.Header divided title='Модальное окно' onClose={() => setOpen(false)} />
-          <Modal.Body>
-            <div style={{ padding: '24px' }}>Содержимое модального окна</div>
-          </Modal.Body>
-          <Modal.Footer divided>
-            <CleanGroup>
-              <CleanButton>Кнопка</CleanButton>
-              <CleanButton>Ещё кнопка</CleanButton>
-            </CleanGroup>
-          </Modal.Footer>
+        <Modal size='l' style={style} onClose={() => setOpen(false)}>
+          А вот и модальное окно!
         </Modal>
       )}
     </>

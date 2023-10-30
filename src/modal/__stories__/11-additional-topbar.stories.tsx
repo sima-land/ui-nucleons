@@ -1,4 +1,4 @@
-import { Modal, ModalProps } from '@sima-land/ui-nucleons/modal';
+import { Modal, ModalProps, ModalBody } from '@sima-land/ui-nucleons/modal';
 import { useEffect, useRef, useState } from 'react';
 import { Button } from '@sima-land/ui-nucleons/button';
 import { navigationButtons, TopBar } from '@sima-land/ui-nucleons/top-bar';
@@ -43,7 +43,7 @@ export function AdditionalTopBar() {
   );
 }
 
-AdditionalTopBar.storyName = 'Рецепт: Дополнительная шапка';
+AdditionalTopBar.storyName = 'Дополнительная шапка';
 
 function CustomModal(props: ModalProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -52,7 +52,7 @@ function CustomModal(props: ModalProps) {
 
   return (
     <Modal size='fullscreen' {...props}>
-      <Modal.Body>
+      <ModalBody>
         <TopBar title='Пункты самовывоза' buttons={navigationButtons({ onClose: props.onClose })} />
         <Tabs view='clean-underline' stretch>
           <Tabs.Item name='На карте' />
@@ -63,7 +63,7 @@ function CustomModal(props: ModalProps) {
             <div key={index}>Item #{index + 1}</div>
           ))}
         </div>
-      </Modal.Body>
+      </ModalBody>
     </Modal>
   );
 }

@@ -1,6 +1,6 @@
 import { Modal } from '@sima-land/ui-nucleons/modal';
-import { useState } from 'react';
 import { Button } from '@sima-land/ui-nucleons/button';
+import { useState } from 'react';
 
 export default {
   title: 'common/Modal',
@@ -10,8 +10,13 @@ export default {
   },
 };
 
-export function WithoutBars() {
+export function Primary() {
   const [open, setOpen] = useState<boolean>(false);
+
+  const style = {
+    '--modal-height': '320px',
+    padding: '20px',
+  };
 
   return (
     <>
@@ -20,14 +25,12 @@ export function WithoutBars() {
       </Button>
 
       {open && (
-        <Modal size='s' height={320}>
-          <Modal.Body>
-            <div style={{ padding: 24 }}>Содержимое модального окна</div>
-          </Modal.Body>
+        <Modal style={style} onClose={() => setOpen(false)}>
+          А вот и модальное окно!
         </Modal>
       )}
     </>
   );
 }
 
-WithoutBars.storyName = 'Без шапки и подвала';
+Primary.storyName = 'Простой пример';

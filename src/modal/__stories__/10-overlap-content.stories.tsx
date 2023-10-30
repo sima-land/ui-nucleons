@@ -1,7 +1,7 @@
-import { Modal } from '@sima-land/ui-nucleons/modal';
-import { useState } from 'react';
+import { Modal, ModalBody, ModalOverlap } from '@sima-land/ui-nucleons/modal';
 import { Button } from '@sima-land/ui-nucleons/button';
 import { ArrowButton } from '@sima-land/ui-nucleons/arrow-button';
+import { useState } from 'react';
 
 export default {
   title: 'common/Modal',
@@ -23,8 +23,7 @@ export function WithOverlapContent() {
 
       {open && (
         <Modal size='m' onClose={() => setOpen(false)}>
-          <Modal.Header divided title='Со стрелками рядом с окном' />
-          <Modal.Body>
+          <ModalBody>
             <div
               style={{
                 height: 360,
@@ -36,8 +35,8 @@ export function WithOverlapContent() {
             >
               {count}
             </div>
-          </Modal.Body>
-          <Modal.Overlap>
+          </ModalBody>
+          <ModalOverlap>
             <ArrowButton
               style={{
                 position: 'absolute',
@@ -58,7 +57,7 @@ export function WithOverlapContent() {
               direction='right'
               onClick={() => setCount(count + 1)}
             />
-          </Modal.Overlap>
+          </ModalOverlap>
         </Modal>
       )}
     </>
