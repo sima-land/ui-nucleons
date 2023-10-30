@@ -9,6 +9,7 @@ import { SelectFieldBlock } from './parts/block';
 import { SelectTextButton } from './parts/button';
 import { dropdownFloatingConfig, useDropdownFloatingStyle } from '../dropdown/utils';
 import { on } from '../helpers/on';
+import { Lifecycle } from '../_internal/lifecycle';
 
 /**
  * Поле выбора из списка.
@@ -28,6 +29,8 @@ export function Select({
   opener = <SelectFieldBlock />,
   renderValue = v => v,
   dropdownProps,
+  onMenuOpen,
+  onMenuClose,
 }: SelectProps) {
   // @todo по аналогии с <select /> надо проверять, есть ли значение в списке переданных
   const [initialValue] = useState<string>(() => value ?? defaultValue ?? '');
@@ -162,7 +165,11 @@ export function Select({
       </SelectContext.Provider>
 
       <FloatingPortal id=''>
-        {needMenu && <SelectMenu {...menuProps}>{children}</SelectMenu>}
+        {needMenu && (
+          <Lifecycle onMount={onMenuOpen} onUnmount={onMenuClose}>
+            <SelectMenu {...menuProps}>{children}</SelectMenu>
+          </Lifecycle>
+        )}
       </FloatingPortal>
     </>
   );

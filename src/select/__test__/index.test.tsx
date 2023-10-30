@@ -511,4 +511,30 @@ describe('Select', () => {
     });
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
   });
+
+  it('should handle onMenuOpen/onMenuClose', () => {
+    const openSpy = jest.fn();
+    const closeSpy = jest.fn();
+
+    const { container, baseElement } = render(
+      <Select onMenuOpen={openSpy} onMenuClose={closeSpy}>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Select>,
+    );
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(openSpy).toHaveBeenCalledTimes(0);
+    expect(closeSpy).toHaveBeenCalledTimes(0);
+
+    fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(openSpy).toHaveBeenCalledTimes(1);
+    expect(closeSpy).toHaveBeenCalledTimes(0);
+
+    fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(openSpy).toHaveBeenCalledTimes(1);
+    expect(closeSpy).toHaveBeenCalledTimes(1);
+  });
 });

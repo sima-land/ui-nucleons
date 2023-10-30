@@ -11,6 +11,7 @@ import { dropdownFloatingConfig, useDropdownFloatingStyle } from '../dropdown/ut
 import { triggerInput } from '../helpers/events';
 import { scrollToChild } from '../helpers/scroll-to-child';
 import { on } from '../helpers/on';
+import { Lifecycle } from '../_internal/lifecycle';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Down';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';
 import styles from './autocomplete.module.scss';
@@ -26,6 +27,8 @@ export function Autocomplete({
   loading,
   filterOption = defaultFilterOption,
   dropdownProps,
+  onMenuOpen,
+  onMenuClose,
 
   // rest props:
   autoComplete,
@@ -221,39 +224,41 @@ export function Autocomplete({
 
       <FloatingPortal id=''>
         {menuShown && (
-          <Dropdown
-            {...dropdownProps}
-            rootRef={refs.setFloating}
-            viewportRef={viewportRef}
-            style={{ ...floatingStyle, ...dropdownProps?.style }}
-          >
-            {!loading &&
-              items.length > 0 &&
-              items.map((item, index) => (
-                <DropdownItem
-                  role='option'
-                  key={index}
-                  checked={index === activeIndex}
-                  {...item.props}
-                  onMouseDown={e => {
-                    e.preventDefault();
-                    item.props.onMouseDown?.(e);
-                  }}
-                  onClick={e => {
-                    item.props.onClick?.(e);
-                    !e.defaultPrevented && selectItem(item);
-                  }}
-                />
-              ))}
+          <Lifecycle onMount={onMenuOpen} onUnmount={onMenuClose}>
+            <Dropdown
+              {...dropdownProps}
+              rootRef={refs.setFloating}
+              viewportRef={viewportRef}
+              style={{ ...floatingStyle, ...dropdownProps?.style }}
+            >
+              {!loading &&
+                items.length > 0 &&
+                items.map((item, index) => (
+                  <DropdownItem
+                    role='option'
+                    key={index}
+                    checked={index === activeIndex}
+                    {...item.props}
+                    onMouseDown={e => {
+                      e.preventDefault();
+                      item.props.onMouseDown?.(e);
+                    }}
+                    onClick={e => {
+                      item.props.onClick?.(e);
+                      !e.defaultPrevented && selectItem(item);
+                    }}
+                  />
+                ))}
 
-            {!loading && items.length === 0 && (
-              <DropdownItem size='s' noHover>
-                Не найдено
-              </DropdownItem>
-            )}
+              {!loading && items.length === 0 && (
+                <DropdownItem size='s' noHover>
+                  Не найдено
+                </DropdownItem>
+              )}
 
-            {loading && <DropdownLoading />}
-          </Dropdown>
+              {loading && <DropdownLoading />}
+            </Dropdown>
+          </Lifecycle>
         )}
       </FloatingPortal>
     </>
