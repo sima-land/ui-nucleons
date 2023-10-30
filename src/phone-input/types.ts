@@ -1,8 +1,12 @@
-import { MaskedInputProps } from '../masked-input';
-import { Country } from './presets';
+import type { DropdownProps } from '../dropdown';
+import type { MaskedInputProps } from '../masked-input';
+import type { Country } from './presets';
 
 export interface PhoneInputProps
   extends Omit<MaskedInputProps, 'mask' | 'placeholder' | 'pattern'> {
   /** Сработает при выборе страны из выпадающего списка. */
   onCountrySelect?: (country: Country) => void;
+
+  /** Свойства компонента Dropdown. */
+  dropdownProps?: Omit<DropdownProps, 'rootRef' | 'viewportRef'>;
 }

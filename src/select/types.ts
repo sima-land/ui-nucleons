@@ -63,6 +63,6 @@ export interface SelectProps {
   /** Открывающий элемент. */
   opener?: ReactElement;
 
-  /** Опции Dropdown. */
-  dropdownProps?: Pick<DropdownProps, 'className' | 'style'>;
+  /** Свойства компонента Dropdown. */
+  dropdownProps?: Omit<DropdownProps, 'rootRef' | 'viewportRef'>;
 }

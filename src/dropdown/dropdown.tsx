@@ -13,6 +13,7 @@ const cx = classnames.bind(styles);
 export function Dropdown({
   rootRef,
   viewportRef,
+  viewportProps,
   className,
   children,
   'data-testid': testId = 'dropdown',
@@ -24,6 +25,7 @@ export function Dropdown({
         className={cx('inner')}
         overflow={{ x: 'hidden', y: 'scroll' }}
         viewportRef={viewportRef}
+        viewportProps={viewportProps}
       >
         {children}
       </CustomScrollbar>

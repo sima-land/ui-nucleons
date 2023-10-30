@@ -1,10 +1,11 @@
 import type { CSSProperties, HTMLAttributes, Ref } from 'react';
+import type { WithTestId } from '../types';
 
 export interface DropdownStyle extends CSSProperties {
   '--dropdown-max-height'?: string;
 }
 
-export interface DropdownProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style'> {
+export interface DropdownProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style'>, WithTestId {
   /** Стили. */
   style?: DropdownStyle;
 
@@ -14,8 +15,8 @@ export interface DropdownProps extends Omit<HTMLAttributes<HTMLDivElement>, 'sty
   /** Реф внутреннего элемента с прокруткой. */
   viewportRef?: Ref<HTMLDivElement>;
 
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
+  /** Свойства для элемента с прокруткой. */
+  viewportProps?: HTMLAttributes<HTMLDivElement>;
 }
 
 export type DropdownLoadingProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'>;

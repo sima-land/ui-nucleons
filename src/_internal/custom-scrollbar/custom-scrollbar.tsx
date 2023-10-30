@@ -1,4 +1,4 @@
-import { RefObject, forwardRef, useImperativeHandle, useRef } from 'react';
+import { HTMLAttributes, RefObject, forwardRef, useImperativeHandle, useRef } from 'react';
 import {
   OverlayScrollbarsComponentProps,
   OverlayScrollbarsComponentRef,
@@ -29,6 +29,7 @@ export function CustomScrollbar({
   overflow,
   rootRef,
   viewportRef,
+  viewportProps,
 }: CustomScrollbarProps) {
   const ref = useRef<OverlayScrollbarsComponentRef>(null);
 
@@ -42,6 +43,7 @@ export function CustomScrollbar({
       defer={false}
       style={style}
       className={cx('root', className)}
+      viewportProps={viewportProps}
       options={{
         // костыль из-за https://github.com/KingSora/OverlayScrollbars/issues/586
         ...(overflow && { overflow }),
@@ -61,9 +63,9 @@ export function CustomScrollbar({
  */
 const OverlayScrollbarsComponent = forwardRef<
   OverlayScrollbarsComponentRef,
-  OverlayScrollbarsComponentProps
+  OverlayScrollbarsComponentProps & { viewportProps?: HTMLAttributes<HTMLDivElement> }
 >((props, ref) => {
-  const { options, events, defer, children, ...other } = props;
+  const { options, events, defer, children, viewportProps, ...rootProps } = props;
 
   const rootRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -89,8 +91,10 @@ const OverlayScrollbarsComponent = forwardRef<
   useOverlayScrollbarsInit(initialize, getInstance, rootRef, viewportRef);
 
   return (
-    <div {...other} ref={rootRef}>
-      <div ref={viewportRef}>{children}</div>
+    <div {...rootProps} ref={rootRef}>
+      <div {...viewportProps} ref={viewportRef}>
+        {children}
+      </div>
     </div>
   );
 });
