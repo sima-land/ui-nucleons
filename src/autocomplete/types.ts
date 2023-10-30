@@ -18,4 +18,10 @@ export interface AutocompleteProps extends Omit<InputProps, 'adornmentEnd'> {
 
   /** Свойства компонента Dropdown. */
   dropdownProps?: Omit<DropdownProps, 'rootRef' | 'viewportRef'>;
+
+  /** Сработает при открытии меню. */
+  onMenuOpen?: VoidFunction;
+
+  /** Сработает при закрытии меню. */
+  onMenuClose?: VoidFunction;
 }

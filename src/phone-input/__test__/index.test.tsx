@@ -154,4 +154,26 @@ describe('PhoneInput', () => {
     });
     expect(onChange).toHaveBeenCalledTimes(1);
   });
+
+  it('should handle onMenuOpen/onMenuClose', () => {
+    const openSpy = jest.fn();
+    const closeSpy = jest.fn();
+
+    const { container, baseElement } = render(
+      <PhoneInput onMenuOpen={openSpy} onMenuClose={closeSpy} />,
+    );
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(openSpy).toHaveBeenCalledTimes(0);
+    expect(closeSpy).toHaveBeenCalledTimes(0);
+
+    fireEvent.mouseDown(getByTestId(container, 'phone-input:menu-opener'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(openSpy).toHaveBeenCalledTimes(1);
+    expect(closeSpy).toHaveBeenCalledTimes(0);
+
+    fireEvent.mouseDown(getByTestId(container, 'phone-input:menu-opener'));
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(openSpy).toHaveBeenCalledTimes(1);
+    expect(closeSpy).toHaveBeenCalledTimes(1);
+  });
 });
