@@ -1,4 +1,6 @@
-import { Modal } from '@sima-land/ui-nucleons/modal';
+import { Modal, ModalBody } from '@sima-land/ui-nucleons/modal';
+import { TopBar } from '@sima-land/ui-nucleons/top-bar';
+import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Button } from '@sima-land/ui-nucleons/button';
 import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
@@ -40,50 +42,50 @@ TestPageScrollLockWithToggle.storyName = 'Тест: блокировка про�
 
 function FirstStep({ setStep }: StepProps) {
   return (
-    <Modal size='s' withScrollDisable>
-      <Modal.Header divided title='Первый шаг' />
-      <Modal.Body>
+    <Modal size='s'>
+      <TopBar divided title='Первый шаг' />
+      <ModalBody>
         <div style={{ height: '300px' }}></div>
-      </Modal.Body>
-      <Modal.Footer divided>
+      </ModalBody>
+      <BottomBar divided>
         <CleanGroup>
           <CleanButton onClick={() => setStep(s => s + 1)}>Дальше</CleanButton>
         </CleanGroup>
-      </Modal.Footer>
+      </BottomBar>
     </Modal>
   );
 }
 
 function SecondStep({ setStep }: StepProps) {
   return (
-    <Modal size='m' withScrollDisable>
-      <Modal.Header divided title='Второй шаг' />
-      <Modal.Body>
+    <Modal size='m'>
+      <TopBar divided title='Второй шаг' />
+      <ModalBody>
         <div style={{ height: '300px' }}></div>
-      </Modal.Body>
-      <Modal.Footer divided>
+      </ModalBody>
+      <BottomBar divided>
         <CleanGroup>
           <CleanButton onClick={() => setStep(s => s - 1)}>Назад</CleanButton>
           <CleanButton onClick={() => setStep(s => s + 1)}>Далее</CleanButton>
         </CleanGroup>
-      </Modal.Footer>
+      </BottomBar>
     </Modal>
   );
 }
 
 function ThirdStep({ setStep }: StepProps) {
   return (
-    <Modal size='l' withScrollDisable>
-      <Modal.Header divided title='Третий шаг' />
-      <Modal.Body>
+    <Modal size='l'>
+      <TopBar divided title='Третий шаг' />
+      <ModalBody>
         <div style={{ height: '300px' }}></div>
-      </Modal.Body>
+      </ModalBody>
 
-      <Modal.Footer divided>
+      <BottomBar divided>
         <CleanGroup>
           <CleanButton onClick={() => setStep(-1)}>Готово</CleanButton>
         </CleanGroup>
-      </Modal.Footer>
+      </BottomBar>
     </Modal>
   );
 }

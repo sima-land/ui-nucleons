@@ -14,12 +14,14 @@
   border-radius: var(--modal-border-radius);
   box-shadow: var(--modal-box-shadow);
   flex-shrink: 0;
-  position: relative; // ВАЖНО: для overlap
   margin: auto; // ВАЖНО: для корректной прокрутки во flex-контейнере
-  display: flex;
-  flex-direction: column;
   z-index: 1;
   background-color: #fff;
+
+  // layout самого модального окна, + надо как-то flex-shrink выдать футеру и хедеру
+  position: relative; // ВАЖНО: для overlap
+  display: flex;
+  flex-direction: column;
 }
 
 .size-s {
