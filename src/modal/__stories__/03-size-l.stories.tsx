@@ -10,13 +10,13 @@ export default {
   },
 };
 
+const style = {
+  '--modal-height': '400px',
+  padding: '32px',
+};
+
 export function SizeL() {
   const [open, setOpen] = useState<boolean>(false);
-
-  const style = {
-    '--modal-height': '400px',
-    padding: '20px',
-  };
 
   return (
     <>
@@ -26,7 +26,8 @@ export function SizeL() {
 
       {open && (
         <Modal size='l' style={style} onClose={() => setOpen(false)}>
-          А вот и модальное окно!
+          Модальное окно — окно, которое блокирует работу пользователя с родительским приложением до
+          тех пор, пока пользователь это окно не закроет.{' '}
         </Modal>
       )}
     </>

@@ -1,11 +1,23 @@
-import { createContext } from 'react';
-import { BottomBarProps } from '../bottom-bar';
-import { TopBarProps } from '../top-bar';
-import { WithPageScrollLock } from '../_internal/page-scroll-lock';
+import type { ModalProps, ModalSize } from './types';
+import classNames from 'classnames/bind';
+import styles from './utils.module.scss';
 
-export const ModalContext = createContext<
-  WithPageScrollLock & {
-    topBarSize?: TopBarProps['size'];
-    bottomBarSize?: BottomBarProps['size'];
-  }
->({});
+const cx = classNames.bind(styles);
+
+/**
+ * Вернет свойства Modal для формирования.
+ * @param config Настройки.
+ * @param customProps Пользовательские свойства.
+ * @return Свойства Modal.
+ */
+export function getResponsiveModalProps(
+  config: { size: ModalSize },
+  customProps?: { className?: string },
+): ModalProps {
+  const { size } = config;
+
+  return {
+    size: 'unset',
+    className: cx(`size-${size}`, customProps?.className),
+  };
+}

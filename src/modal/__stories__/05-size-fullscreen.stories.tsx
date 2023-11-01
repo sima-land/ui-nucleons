@@ -10,13 +10,13 @@ export default {
   },
 };
 
+const style = {
+  padding: '40px',
+  fontSize: '20px',
+};
+
 export function SizeFullscreen() {
   const [open, setOpen] = useState<boolean>(false);
-
-  const style = {
-    padding: '40px',
-    fontSize: '20px',
-  };
 
   return (
     <>
@@ -25,14 +25,13 @@ export function SizeFullscreen() {
       </Button>
 
       {open && (
-        <Modal size='fullscreen' style={style}>
-          <div>
-            А вот и модальное окно!
-            <br />
-            <Button size='xs' onClick={() => setOpen(false)}>
-              Закрыть
-            </Button>
-          </div>
+        <Modal size='fullscreen' style={style} flexLayout={false}>
+          Модальное окно — окно, которое блокирует работу пользователя с родительским приложением до
+          тех пор, пока пользователь это окно не закроет.
+          <br />
+          <Button size='xs' onClick={() => setOpen(false)}>
+            Закрыть
+          </Button>
         </Modal>
       )}
     </>

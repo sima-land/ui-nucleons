@@ -9,6 +9,9 @@ export interface BottomBarProps extends Omit<HTMLAttributes<HTMLDivElement>, 'si
   /** Нужна ли разделительная черта сверху. */
   divided?: boolean;
 
+  /** Скругления углов. */
+  rounds?: 's' | 'm' | 'unset';
+
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
 }

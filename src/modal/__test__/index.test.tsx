@@ -1,19 +1,19 @@
 import { createRef, RefObject, useContext, useEffect } from 'react';
-import { Modal, ModalSize } from '..';
+import { Modal, ModalBody, ModalOverlap, ModalSize } from '..';
 import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';
 import { render, fireEvent } from '@testing-library/react';
 import { LayerProvider, useLayer } from '../../helpers/layer';
 import { ViewportContext } from '../../context/viewport';
-import { ModalContext } from '../utils';
 import { PageScrollProvider } from '../../_internal/page-scroll-lock';
 import { PageScrollLockAdapter } from '@sima-land/ui-nucleons/_internal/page-scroll-lock/types';
+import { navigationButtons, TopBar } from '@sima-land/ui-nucleons/top-bar';
 
 describe('Modal', () => {
   it('should render overlap content', () => {
     const { getByTestId } = render(
       <Modal>
-        <Modal.Body>This is modal body</Modal.Body>
-        <Modal.Overlap>Test is modal overlap content</Modal.Overlap>
+        <ModalBody>This is modal body</ModalBody>
+        <ModalOverlap>Test is modal overlap content</ModalOverlap>
       </Modal>,
     );
 
@@ -26,8 +26,8 @@ describe('Modal', () => {
 
     const { getByTestId } = render(
       <Modal onClose={spy}>
-        <Modal.Header title='Test title' onClose={spy} />
-        <Modal.Body>Test modal content</Modal.Body>
+        <TopBar title='Test title' buttons={navigationButtons({ onClose: spy })} />
+        <ModalBody>Test modal content</ModalBody>
       </Modal>,
     );
 
@@ -65,7 +65,7 @@ describe('Modal', () => {
     const { unmount } = render(
       <PageScrollProvider adapter={() => adapter}>
         <Modal>
-          <Modal.Body>Hello</Modal.Body>
+          <ModalBody>Hello</ModalBody>
         </Modal>
       </PageScrollProvider>,
     );
@@ -87,8 +87,8 @@ describe('Modal', () => {
 
     const { unmount } = render(
       <PageScrollProvider adapter={() => adapter}>
-        <Modal withScrollDisable>
-          <Modal.Body>Hello</Modal.Body>
+        <Modal>
+          <ModalBody withScrollDisable>Hello</ModalBody>
         </Modal>
       </PageScrollProvider>,
     );
@@ -117,7 +117,7 @@ describe('Modal', () => {
 
     const { queryAllByTestId, getByTestId } = render(
       <Modal>
-        <Modal.Header onBack={spy} />
+        <TopBar buttons={navigationButtons({ onBack: spy })} />
       </Modal>,
     );
 
@@ -134,7 +134,7 @@ describe('Modal', () => {
 
     const { queryAllByTestId, getByTestId } = render(
       <Modal>
-        <Modal.Header onClose={spy} />
+        <TopBar buttons={navigationButtons({ onClose: spy })} />
       </Modal>,
     );
 
@@ -149,9 +149,9 @@ describe('Modal', () => {
   it('should render close button and custom start button in TopBar', () => {
     const { getAllByTestId } = render(
       <Modal>
-        <Modal.Header
-          onClose={jest.fn()}
+        <TopBar
           buttons={{
+            ...navigationButtons({ onClose: jest.fn() }),
             start: {
               icon: <ArrowLeftSVG data-testid='custom-top-bar-btn' />,
             },
@@ -164,16 +164,10 @@ describe('Modal', () => {
     expect(getAllByTestId('custom-top-bar-btn')).toHaveLength(1);
   });
 
-  it('should handle "height" prop', () => {
-    const { getByTestId } = render(<Modal height={480} />);
-
-    expect(getByTestId('modal').style.getPropertyValue('--modal-height')).toBe('480px');
-  });
-
   it('should handle "data-testid" prop', () => {
     const { container } = render(
       <Modal data-testid='some-modal'>
-        <Modal.Body>Main Content</Modal.Body>
+        <ModalBody>Main Content</ModalBody>
       </Modal>,
     );
 
@@ -190,38 +184,18 @@ describe('Modal', () => {
     const { getByTestId } = render(
       <LayerProvider value={20}>
         <Modal>
-          <Modal.Body>
+          <ModalBody>
             <TestComponent />
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       </LayerProvider>,
     );
 
     expect(getByTestId('test-component').getAttribute('data-layer')).toBe('120');
   });
-
-  it('should render footer with provide BottomBar size', () => {
-    function TestComponent() {
-      const modalContext = useContext(ModalContext);
-      return <div data-testid='test-component' data-footer-size={modalContext.bottomBarSize} />;
-    }
-
-    const { getByTestId } = render(
-      <Modal>
-        <Modal.Body>
-          <h1>Hello!</h1>
-        </Modal.Body>
-        <Modal.Footer>
-          <TestComponent />
-        </Modal.Footer>
-      </Modal>,
-    );
-
-    expect(getByTestId('test-component').getAttribute('data-footer-size')).toBe('unset');
-  });
 });
 
-describe('Modal.Body', () => {
+describe('ModalBody', () => {
   it('should provide viewport data through context', async () => {
     function TestComponent({ viewportRef }: { viewportRef: RefObject<HTMLElement | null> }) {
       const ref = useContext(ViewportContext);
@@ -237,9 +211,9 @@ describe('Modal.Body', () => {
 
     render(
       <Modal>
-        <Modal.Body>
+        <ModalBody>
           <TestComponent viewportRef={viewportRef} />
-        </Modal.Body>
+        </ModalBody>
       </Modal>,
     );
 

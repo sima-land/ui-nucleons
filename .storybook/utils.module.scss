@@ -20,8 +20,13 @@
       gap: 8px;
       align-items: flex-start;
       .field {
+        width: 200px;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 0 8px;
         min-width: 160px;
-        -webkit-appearance: menulist-button; // чтобы в Safari работало свойство "height"
+        -webkit-appearance: menulist-button; // ВАЖНО: чтобы в Safari работало свойство "height"
         height: 32px;
         font-size: 16px;
         text-transform: capitalize;

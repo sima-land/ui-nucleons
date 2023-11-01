@@ -2,11 +2,12 @@ import { Autocomplete, AutocompleteProps } from '@sima-land/ui-nucleons/autocomp
 import { ChangeEvent, useState } from 'react';
 import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
 import { FieldBlockSize } from '@sima-land/ui-nucleons/field-block';
-import { Modal } from '@sima-land/ui-nucleons/modal';
-import { ModalFooter } from '@sima-land/ui-nucleons/modal/slots';
+import { Modal, ModalBody } from '@sima-land/ui-nucleons/modal';
 import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
 import { LoremIpsum, Sandbox } from '../../../.storybook/utils';
 import { BSL_IGNORE_ATTR } from '@sima-land/ui-nucleons/_internal/page-scroll-lock';
+import { TopBar } from '@sima-land/ui-nucleons/top-bar';
+import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
 
 export default {
   title: 'common/Autocomplete',
@@ -145,9 +146,9 @@ TestNativeComparison.storyName = 'Тест: сравнение с нативно
 
 export function TestInModal() {
   return (
-    <Modal withScrollDisable>
-      <Modal.Header title='Тест' subtitle='Autocomplete внутри Modal' divided />
-      <Modal.Body>
+    <Modal>
+      <TopBar title='Тест' subtitle='Autocomplete внутри Modal' divided />
+      <ModalBody withScrollDisable>
         <div style={{ padding: 16 }}>
           <LoremIpsum paragraphCount={10} />
 
@@ -170,12 +171,12 @@ export function TestInModal() {
 
           <LoremIpsum paragraphCount={10} />
         </div>
-      </Modal.Body>
-      <ModalFooter divided>
+      </ModalBody>
+      <BottomBar divided>
         <CleanGroup>
           <CleanButton>Ясно</CleanButton>
         </CleanGroup>
-      </ModalFooter>
+      </BottomBar>
     </Modal>
   );
 }

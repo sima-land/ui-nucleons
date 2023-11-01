@@ -1,5 +1,8 @@
+/* stylelint-disable length-zero-no-unit */
 $map: (
-  mxs: 0,
+  // ВАЖНО: тут именно 0px а не 0 - в Safari нельзя использовать @media (min-width: 0)
+  mxs: 0px,
+
   ms: 480px,
   mm: 720px,
   ml: 840px,
@@ -7,8 +10,9 @@ $map: (
   s: 1280px,
   m: 1440px,
   l: 1600px,
-  xl: 1920px,
+  xl: 1920px
 ) !default;
+/* stylelint-enable length-zero-no-unit */
 
 /**
  * ВАЖНО: здесь должны быть только утилиты позволяющие применить стили ">=" либо "<" начала диапазона (breakpoint range).

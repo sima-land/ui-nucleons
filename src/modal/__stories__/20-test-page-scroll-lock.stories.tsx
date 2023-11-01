@@ -37,7 +37,7 @@ export function TestPageScrollLock() {
             {...navigationButtons({ onClose: hide })}
           />
 
-          <ModalBody>
+          <ModalBody withScrollDisable>
             <div style={{ padding: '24px' }} onClick={increaseContent}>
               <LoremIpsum paragraphCount={count} />
             </div>

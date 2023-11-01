@@ -1,8 +1,8 @@
-import { ReactNode, useContext, useRef } from 'react';
+import { ReactNode, useImperativeHandle, useRef } from 'react';
 import { CustomScrollbar } from '../_internal/custom-scrollbar';
 import { ViewportContext } from '../context/viewport';
-import { ModalContext } from './utils';
 import { usePageScrollLock } from '../_internal/page-scroll-lock';
+import { ModalBodyProps } from './types';
 import classNames from 'classnames/bind';
 import styles from './modal.module.scss';
 
@@ -13,17 +13,30 @@ const cx = classNames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export function ModalBody({ children }: { children?: ReactNode }) {
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const { withScrollDisable, scrollDisableOptions } = useContext(ModalContext);
+export function ModalBody({
+  children,
+  rootRef,
+  viewportRef,
+  className,
+  withScrollDisable,
+  scrollDisableOptions,
+  ...restProps
+}: ModalBodyProps) {
+  const viewportInnerRef = useRef<HTMLDivElement>(null);
 
-  usePageScrollLock(viewportRef, { lockEnabled: withScrollDisable, ...scrollDisableOptions });
+  useImperativeHandle(viewportRef, () => viewportInnerRef.current as HTMLDivElement);
+
+  // ВАЖНО: не смотря на то что есть возможность задать viewportRef оставляем хук здесь
+  // потому что через портал с рефами работать не получится а useState не так удобен
+  usePageScrollLock(viewportInnerRef, { lockEnabled: withScrollDisable, ...scrollDisableOptions });
 
   return (
-    <ViewportContext.Provider value={viewportRef}>
+    <ViewportContext.Provider value={viewportInnerRef}>
       <CustomScrollbar
-        viewportRef={viewportRef}
-        className={cx('body')}
+        {...restProps} // @todo решить что делать с viewportProps
+        rootRef={rootRef}
+        viewportRef={viewportInnerRef}
+        className={cx('body', className)}
         overflow={{ x: 'hidden', y: 'scroll' }}
       >
         {children}
@@ -38,5 +51,13 @@ export function ModalBody({ children }: { children?: ReactNode }) {
  * @return Элемент.
  */
 export function ModalOverlap({ children }: { children?: ReactNode }) {
-  return <>{children}</>;
+  return <div className={cx('overlap')}>{children}</div>;
+}
+
+/**
+ * Заглушка для футера по дизайн-гайдам.
+ * @return Элемент.
+ */
+export function ModalBottomGap() {
+  return <div className={cx('bottom-gap')} />;
 }

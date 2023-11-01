@@ -1,6 +1,7 @@
-import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
+import type { CSSProperties, HTMLAttributes, ReactNode, Ref } from 'react';
 import type { WithTestId } from '../types';
 import type { ModalOverlayProps } from '../modal-overlay';
+import type { WithPageScrollLock } from '../_internal/page-scroll-lock';
 
 export type ModalSize = 's' | 'm' | 'l' | 'xl' | 'fullscreen';
 
@@ -30,4 +31,18 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement>, WithTestId {
 
   /** Свойства компонента ModalOverlay. */
   overlayProps?: ModalOverlayProps;
+
+  /** Нужно ли применять стили для flex-раскладки. */
+  flexLayout?: boolean;
+}
+
+export interface ModalBodyProps extends HTMLAttributes<HTMLDivElement>, WithPageScrollLock {
+  /** Реф корневого элемента. */
+  rootRef?: Ref<HTMLDivElement>;
+
+  /** Реф внутреннего элемента с прокруткой. */
+  viewportRef?: Ref<HTMLDivElement>;
+
+  /** Свойства внутреннего элемента с прокруткой. */
+  viewportProps?: HTMLAttributes<HTMLDivElement>;
 }

@@ -1,4 +1,5 @@
 @use '../shadows';
+@use './modal-util';
 
 .overlay {
   display: flex;
@@ -15,49 +16,34 @@
   box-shadow: var(--modal-box-shadow);
   flex-shrink: 0;
   margin: auto; // ВАЖНО: для корректной прокрутки во flex-контейнере
+  position: relative; // ВАЖНО: для overlap
   z-index: 1;
   background-color: #fff;
+}
 
-  // layout самого модального окна, + надо как-то flex-shrink выдать футеру и хедеру
-  position: relative; // ВАЖНО: для overlap
+.modal-layout {
   display: flex;
   flex-direction: column;
 }
 
 .size-s {
-  --modal-width: 480px;
-  --modal-max-height: 696px;
-  --overlay-padding: 16px;
-  --modal-box-shadow: #{shadows.get-box-shadow('z4')};
+  @include modal-util.size-s;
 }
 
 .size-m {
-  --modal-width: 640px;
-  --modal-max-height: 696px;
-  --modal-overlay-padding: 16px;
-  --modal-box-shadow: #{shadows.get-box-shadow('z4')};
+  @include modal-util.size-m;
 }
 
 .size-l {
-  --modal-width: 768px;
-  --modal-max-height: 696px;
-  --modal-overlay-padding: 16px;
-  --modal-box-shadow: #{shadows.get-box-shadow('z4')};
+  @include modal-util.size-l;
 }
 
 .size-xl {
-  --modal-width: 960px;
-  --modal-max-height: 696px;
-  --modal-overlay-padding: 16px;
-  --modal-box-shadow: #{shadows.get-box-shadow('z4')};
+  @include modal-util.size-xl;
 }
 
 .size-fullscreen {
-  --modal-width: 100%;
-  --modal-height: 100%;
-  --modal-max-height: 100%;
-  --modal-overlay-padding: 0;
-  --modal-box-shadow: none;
+  @include modal-util.size-fullscreen;
 }
 
 .rounds-s {
@@ -72,7 +58,7 @@
   flex-grow: 1;
 }
 
-.overlap-content {
+.overlap {
   position: absolute;
   top: 0;
   left: 0;
@@ -84,7 +70,7 @@
   }
 }
 
-.footer-stub {
+.bottom-gap {
   flex-shrink: 0;
   border-radius: 0 0 8px 8px;
   height: 16px;
