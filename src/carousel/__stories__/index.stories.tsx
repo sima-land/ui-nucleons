@@ -365,7 +365,7 @@ export function PreventLinkClickOnDrag() {
   );
 }
 
-PreventLinkClickOnDrag.storyName = 'Тест: предотвращение клика при перетаскивании мышью';
+PreventLinkClickOnDrag.storyName = 'Тест: Предотвращение клика при перетаскивании мышью';
 
 export function TestActiveElementBlur() {
   return (
@@ -388,4 +388,4 @@ export function TestActiveElementBlur() {
   );
 }
 
-TestActiveElementBlur.storyName = 'Тест: blur активного элемента при перетаскивании';
+TestActiveElementBlur.storyName = 'Тест: Blur активного элемента при перетаскивании';

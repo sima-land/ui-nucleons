@@ -104,4 +104,4 @@ export function TestCountChange() {
   );
 }
 
-TestCountChange.storyName = 'Тест: изменение кол-ва элементов';
+TestCountChange.storyName = 'Тест: Изменение кол-ва элементов';

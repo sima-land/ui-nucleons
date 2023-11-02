@@ -62,13 +62,22 @@ export function DifferentStates() {
           type: 'select',
           label: 'Размер',
           bind: [size, setSize],
-          options: ['s', 'm', 'l', 'xl'],
+          options: [
+            { value: 's', displayName: 'S' },
+            { value: 'm', displayName: 'M' },
+            { value: 'l', displayName: 'L' },
+            { value: 'xl', displayName: 'XL' },
+          ],
         },
         {
           type: 'select',
           label: 'Состояние',
           bind: [state, setState],
-          options: ['default', 'selected', 'disabled'],
+          options: [
+            { value: 'default', displayName: 'По умолчанию' },
+            { value: 'selected', displayName: 'Выбрано' },
+            { value: 'disabled', displayName: 'Отключено' },
+          ],
         },
         {
           type: 'toggle',

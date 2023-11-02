@@ -1,6 +1,6 @@
 import { WithTooltip } from '@sima-land/ui-nucleons/with-tooltip';
 import { Link } from '@sima-land/ui-nucleons/link';
-import { Modal, ModalBody } from '@sima-land/ui-nucleons/modal';
+import { Modal, ModalBody, getResponsiveModalProps } from '@sima-land/ui-nucleons/modal';
 import { TopBar } from '@sima-land/ui-nucleons/top-bar';
 import { times } from 'lodash';
 import {
@@ -64,7 +64,7 @@ export function TestComplexMarkup() {
   );
 }
 
-TestComplexMarkup.storyName = 'Тест: сложная верстка родительских блоков';
+TestComplexMarkup.storyName = 'Тест: Сложная верстка родительских блоков';
 
 export function TestDismiss() {
   function TestBlock() {
@@ -95,19 +95,19 @@ export function TestDismiss() {
   );
 }
 
-TestDismiss.storyName = 'Тест: показ одного тултипа должен скрывать другой тултип';
+TestDismiss.storyName = 'Тест: Показ одного тултипа должен скрывать другой тултип';
 
 export function TestSmallInLargeArea() {
   return <PositioningTest tooltip={SHORT_TEXT} />;
 }
 
-TestSmallInLargeArea.storyName = 'Тест: короткий текст в большой области';
+TestSmallInLargeArea.storyName = 'Тест: Короткий текст в большой области';
 
 export function TestLongInLargeArea() {
   return <PositioningTest tooltip={LONG_TEXT} />;
 }
 
-TestLongInLargeArea.storyName = 'Тест: длинный текст в большой области';
+TestLongInLargeArea.storyName = 'Тест: Длинный текст в большой области';
 
 export function TestScrollableParent() {
   return (
@@ -131,11 +131,11 @@ export function TestScrollableParent() {
   );
 }
 
-TestScrollableParent.storyName = 'Тест: родитель имеет прокрутку';
+TestScrollableParent.storyName = 'Тест: Родитель имеет прокрутку';
 
 export function TestShortInModal() {
   return (
-    <Modal size='s'>
+    <Modal {...getResponsiveModalProps({ size: 's' })}>
       <TopBar divided title='Тултип в модальном окне' subtitle='Без прокрутки' />
       <ModalBody>
         <div
@@ -160,11 +160,11 @@ export function TestShortInModal() {
   );
 }
 
-TestShortInModal.storyName = 'Тест: в модальном окне с коротким текстом';
+TestShortInModal.storyName = 'Тест: В модальном окне с коротким текстом';
 
 export function TestLongInModal() {
   return (
-    <Modal size='s'>
+    <Modal {...getResponsiveModalProps({ size: 's' })}>
       <TopBar divided title='Тултип в модальном окне' subtitle='Без прокрутки' />
       <ModalBody>
         <div
@@ -189,11 +189,11 @@ export function TestLongInModal() {
   );
 }
 
-TestLongInModal.storyName = 'Тест: в модальном окне с длинным текстом';
+TestLongInModal.storyName = 'Тест: В модальном окне с длинным текстом';
 
 export function TestInModalWithScroll() {
   return (
-    <Modal size='s'>
+    <Modal {...getResponsiveModalProps({ size: 's' })}>
       <TopBar divided title='Тултип в модальном окне' subtitle='С прокруткой' />
       <ModalBody>
         <div style={{ height: '400px', padding: '20px' }}>
@@ -214,11 +214,11 @@ export function TestInModalWithScroll() {
   );
 }
 
-TestInModalWithScroll.storyName = 'Тест: в модальном окне с прокруткой';
+TestInModalWithScroll.storyName = 'Тест: В модальном окне с прокруткой';
 
 export function TestInModalWithPortal() {
   return (
-    <Modal size='s'>
+    <Modal {...getResponsiveModalProps({ size: 's' })}>
       <TopBar divided title='Тултип в модальном окне' subtitle='С прокруткой' />
       <ModalBody>
         <div style={{ height: '400px', padding: '20px' }}>
@@ -237,4 +237,4 @@ export function TestInModalWithPortal() {
   );
 }
 
-TestInModalWithPortal.storyName = 'Тест: в модальном окне с портале';
+TestInModalWithPortal.storyName = 'Тест: В модальном окне с порталом';

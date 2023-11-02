@@ -83,4 +83,4 @@ export function WithUpdateProps() {
   );
 }
 
-WithUpdateProps.storyName = 'Тест: обновление передаваемых свойств';
+WithUpdateProps.storyName = 'Тест: Обновление передаваемых свойств';

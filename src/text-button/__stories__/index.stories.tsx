@@ -95,7 +95,10 @@ export function DifferentStates() {
           type: 'select',
           label: 'Размер',
           bind: [size, setSize],
-          options: ['s', 'm'],
+          options: [
+            { value: 's', displayName: 'S' },
+            { value: 'm', displayName: 'M' },
+          ],
         },
         {
           type: 'select',
@@ -112,15 +115,22 @@ export function DifferentStates() {
         },
         {
           type: 'select',
-          label: 'Позиция иконки',
+          label: 'Иконка',
           bind: [iconPos, setIconPos],
-          options: ['start', 'end', 'none'],
+          options: [
+            { value: 'start', displayName: 'В начале' },
+            { value: 'end', displayName: 'В конце' },
+            { value: 'none', displayName: 'Нет' },
+          ],
         },
         {
           type: 'select',
           label: 'Состояние',
           bind: [state, setState],
-          options: ['default', 'disabled'],
+          options: [
+            { value: 'default', displayName: 'По умолчанию' },
+            { value: 'disabled', displayName: 'Отключено' },
+          ],
         },
         {
           type: 'toggle',

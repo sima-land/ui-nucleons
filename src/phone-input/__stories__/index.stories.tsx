@@ -1,12 +1,13 @@
 import { PhoneInput } from '@sima-land/ui-nucleons/phone-input';
 import { TextButton } from '@sima-land/ui-nucleons/text-button';
 import { useState } from 'react';
-import { Modal, ModalBody } from '@sima-land/ui-nucleons/modal';
+import { Modal, ModalBody, getResponsiveModalProps } from '@sima-land/ui-nucleons/modal';
 import { TopBar } from '@sima-land/ui-nucleons/top-bar';
 import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
 import { CleanButton, CleanGroup } from '@sima-land/ui-nucleons/clean-buttons';
 import { BSL_IGNORE_ATTR } from '@sima-land/ui-nucleons/_internal/page-scroll-lock';
 import { LoremIpsum } from '../../../.storybook/utils';
+import { Button } from '@sima-land/ui-nucleons/button';
 
 export default {
   title: 'common/PhoneInput',
@@ -163,35 +164,48 @@ export function NativeNumberInputComparison() {
   );
 }
 
-NativeNumberInputComparison.storyName = 'Тест: сравнение с input[type=number]';
+NativeNumberInputComparison.storyName = 'Тест: Сравнение с input[type=number]';
 
 export function TestInModal() {
+  const [open, setOpen] = useState(false);
   const [value, setValue] = useState<string>('');
 
   return (
-    <Modal>
-      <TopBar title='Тест' subtitle='PhoneInput внутри Modal' divided />
-      <ModalBody>
-        <div style={{ padding: 16 }}>
-          <LoremIpsum paragraphCount={10} />
+    <>
+      <Button size='s' onClick={() => setOpen(true)}>
+        Показать окно
+      </Button>
 
-          <PhoneInput
-            label='Номер'
-            value={value}
-            onChange={event => setValue(event.target.value)}
-            dropdownProps={{ viewportProps: { [BSL_IGNORE_ATTR as any]: true } }}
-          />
+      {open && (
+        <Modal {...getResponsiveModalProps({ size: 'm' })} onClose={() => setOpen(false)}>
+          <TopBar title='Тест' subtitle='PhoneInput внутри Modal' divided />
+          <ModalBody>
+            <div style={{ padding: 16 }}>
+              <LoremIpsum paragraphCount={10} />
 
-          <LoremIpsum paragraphCount={10} />
-        </div>
-      </ModalBody>
-      <BottomBar divided>
-        <CleanGroup>
-          <CleanButton>Ясно</CleanButton>
-        </CleanGroup>
-      </BottomBar>
-    </Modal>
+              <PhoneInput
+                label='Номер'
+                value={value}
+                onChange={event => setValue(event.target.value)}
+                dropdownProps={{
+                  viewportProps: {
+                    [BSL_IGNORE_ATTR as any]: true,
+                  },
+                }}
+              />
+
+              <LoremIpsum paragraphCount={10} />
+            </div>
+          </ModalBody>
+          <BottomBar divided>
+            <CleanGroup>
+              <CleanButton onClick={() => setOpen(false)}>Ясно</CleanButton>
+            </CleanGroup>
+          </BottomBar>
+        </Modal>
+      )}
+    </>
   );
 }
 
-TestInModal.storyName = 'Тест: в модальном окне';
+TestInModal.storyName = 'Тест: В модальном окне';

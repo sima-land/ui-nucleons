@@ -60,14 +60,20 @@ export function DifferentStates() {
         {
           type: 'select',
           label: 'Форма',
-          options: ['square', 'pill'],
+          options: [
+            { value: 'square', displayName: 'Square' },
+            { value: 'pill', displayName: 'Pill' },
+          ],
           bind: [shape, setShape],
         },
         {
           type: 'select',
           label: 'Тема',
           bind: [colors, setColors],
-          options: ['light', 'dark'],
+          options: [
+            { value: 'light', displayName: 'Светлая' },
+            { value: 'dark', displayName: 'Темная' },
+          ],
         },
         {
           type: 'select',

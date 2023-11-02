@@ -56,13 +56,21 @@ export function DifferentState() {
           label: 'Размер',
           type: 'select',
           bind: [size, setSize],
-          options: ['s', 'm'],
+          options: [
+            { value: 's', displayName: 'S' },
+            { value: 'm', displayName: 'M' },
+          ],
         },
         {
           label: 'Состояние',
           type: 'select',
           bind: [state, setState],
-          options: ['default', 'failed', 'disabled', 'disabled+failed'],
+          options: [
+            { value: 'default', displayName: 'По умолчанию' },
+            { value: 'failed', displayName: 'Ошибка' },
+            { value: 'disabled', displayName: 'Отключено' },
+            { value: 'disabled+failed', displayName: 'Отключено + ошибка' },
+          ],
         },
       ]}
       areaStyle={{

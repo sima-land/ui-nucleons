@@ -3,12 +3,13 @@ import { useState } from 'react';
 import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
 import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
 import { FieldBlockSize } from '@sima-land/ui-nucleons/field-block';
-import { Modal, ModalBody } from '@sima-land/ui-nucleons/modal';
+import { Modal, ModalBody, getResponsiveModalProps } from '@sima-land/ui-nucleons/modal';
 import { BSL_IGNORE_ATTR } from '@sima-land/ui-nucleons/_internal/page-scroll-lock';
 import { TextButtonSize } from '@sima-land/ui-nucleons/text-button';
 import { LargePage, LoremIpsum, Sandbox } from '../../../.storybook/utils';
 import { TopBar } from '@sima-land/ui-nucleons/top-bar';
 import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
+import { Button } from '@sima-land/ui-nucleons/button';
 
 type SelectOpener = 'field-block' | 'text-button';
 
@@ -125,28 +126,41 @@ export function DifferentStates() {
         {
           type: 'select',
           label: 'Открывающий элемент',
-          options: ['field-block', 'text-button'],
+          options: [
+            { value: 'field-block', displayName: 'FieldBlock' },
+            { value: 'text-button', displayName: 'TextButton' },
+          ],
           bind: [opener, setOpener],
         },
         {
           type: 'select',
           hidden: opener !== 'field-block',
           label: 'Размер поля',
-          options: ['s', 'm', 'l'],
+          options: [
+            { value: 's', displayName: 'S' },
+            { value: 'm', displayName: 'M' },
+            { value: 'l', displayName: 'L' },
+          ],
           bind: [fieldSize as string, setFieldSize],
         },
         {
           type: 'select',
           hidden: opener !== 'text-button',
           label: 'Размер кнопки',
-          options: ['s', 'm'],
+          options: [
+            { value: 's', displayName: 'S' },
+            { value: 'm', displayName: 'M' },
+          ],
           bind: [buttonSize, setButtonSize],
         },
         {
           type: 'select',
           label: 'Состояние',
           bind: [state, setState],
-          options: ['default', 'disabled'],
+          options: [
+            { value: 'default', displayName: 'По умолчанию' },
+            { value: 'disabled', displayName: 'Отключено' },
+          ],
         },
         {
           type: 'toggle',
@@ -190,7 +204,7 @@ export function TestNativeCompare() {
   );
 }
 
-TestNativeCompare.storyName = 'Тест: сравнение с нативной реализацией';
+TestNativeCompare.storyName = 'Тест: Сравнение с нативной реализацией';
 
 export function TestAllDisabled() {
   return (
@@ -213,47 +227,60 @@ export function TestAllDisabled() {
 TestAllDisabled.storyName = 'Тест: Все опции недоступны';
 
 export function TestInModal() {
+  const [open, setOpen] = useState(false);
   const [value, setValue] = useState<string>('');
 
   return (
-    <Modal>
-      <TopBar title='Тест' subtitle='Select внутри Modal' divided />
-      <ModalBody>
-        <div style={{ padding: 16 }}>
-          <LoremIpsum paragraphCount={10} />
+    <>
+      <Button size='s' onClick={() => setOpen(true)}>
+        Показать окно
+      </Button>
 
-          <Select
-            label='Номер'
-            value={value}
-            onValueChange={setValue}
-            dropdownProps={{ viewportProps: { [BSL_IGNORE_ATTR as any]: true } }}
-          >
-            <DropdownItem>Ноль</DropdownItem>
-            <DropdownItem>Один</DropdownItem>
-            <DropdownItem>Два</DropdownItem>
-            <DropdownItem>Три</DropdownItem>
-            <DropdownItem>Четыре</DropdownItem>
-            <DropdownItem>Пять</DropdownItem>
-            <DropdownItem>Шесть</DropdownItem>
-            <DropdownItem>Семь</DropdownItem>
-            <DropdownItem>Восемь</DropdownItem>
-            <DropdownItem>Девять</DropdownItem>
-            <DropdownItem>Десять</DropdownItem>
-          </Select>
+      {open && (
+        <Modal {...getResponsiveModalProps({ size: 'm' })} onClose={() => setOpen(false)}>
+          <TopBar title='Тест' subtitle='Select внутри Modal' divided />
+          <ModalBody>
+            <div style={{ padding: 16 }}>
+              <LoremIpsum paragraphCount={10} />
 
-          <LoremIpsum paragraphCount={10} />
-        </div>
-      </ModalBody>
-      <BottomBar divided>
-        <CleanGroup>
-          <CleanButton>Ясно</CleanButton>
-        </CleanGroup>
-      </BottomBar>
-    </Modal>
+              <Select
+                label='Номер'
+                value={value}
+                onValueChange={setValue}
+                dropdownProps={{
+                  viewportProps: {
+                    [BSL_IGNORE_ATTR as any]: true,
+                  },
+                }}
+              >
+                <DropdownItem>Ноль</DropdownItem>
+                <DropdownItem>Один</DropdownItem>
+                <DropdownItem>Два</DropdownItem>
+                <DropdownItem>Три</DropdownItem>
+                <DropdownItem>Четыре</DropdownItem>
+                <DropdownItem>Пять</DropdownItem>
+                <DropdownItem>Шесть</DropdownItem>
+                <DropdownItem>Семь</DropdownItem>
+                <DropdownItem>Восемь</DropdownItem>
+                <DropdownItem>Девять</DropdownItem>
+                <DropdownItem>Десять</DropdownItem>
+              </Select>
+
+              <LoremIpsum paragraphCount={10} />
+            </div>
+          </ModalBody>
+          <BottomBar divided>
+            <CleanGroup>
+              <CleanButton onClick={() => setOpen(false)}>Ясно</CleanButton>
+            </CleanGroup>
+          </BottomBar>
+        </Modal>
+      )}
+    </>
   );
 }
 
-TestInModal.storyName = 'Тест: в модальном окне';
+TestInModal.storyName = 'Тест: В модальном окне';
 
 export function TestFocus() {
   const [value, setValue] = useState<string>('');
@@ -273,7 +300,7 @@ export function TestFocus() {
   );
 }
 
-TestFocus.storyName = 'Тест: фокусировка';
+TestFocus.storyName = 'Тест: Фокусировка';
 
 export function TestBlockOverflow() {
   const [value, setValue] = useState<string>('');
@@ -297,4 +324,4 @@ export function TestBlockOverflow() {
   );
 }
 
-TestBlockOverflow.storyName = 'Тест: переполнение блока';
+TestBlockOverflow.storyName = 'Тест: Переполнение блока';

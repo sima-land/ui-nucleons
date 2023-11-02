@@ -2,12 +2,13 @@ import { Autocomplete, AutocompleteProps } from '@sima-land/ui-nucleons/autocomp
 import { ChangeEvent, useState } from 'react';
 import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
 import { FieldBlockSize } from '@sima-land/ui-nucleons/field-block';
-import { Modal, ModalBody } from '@sima-land/ui-nucleons/modal';
+import { Modal, ModalBody, getResponsiveModalProps } from '@sima-land/ui-nucleons/modal';
 import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
 import { LoremIpsum, Sandbox } from '../../../.storybook/utils';
 import { BSL_IGNORE_ATTR } from '@sima-land/ui-nucleons/_internal/page-scroll-lock';
 import { TopBar } from '@sima-land/ui-nucleons/top-bar';
 import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
+import { Button } from '@sima-land/ui-nucleons/button';
 
 export default {
   title: 'common/Autocomplete',
@@ -83,14 +84,22 @@ export function DifferentStates() {
         {
           type: 'select',
           label: 'Размер поля',
-          options: ['s', 'm', 'l'],
+          options: [
+            { value: 's', displayName: 'S' },
+            { value: 'm', displayName: 'M' },
+            { value: 'l', displayName: 'L' },
+          ],
           bind: [size as string, setSize],
         },
         {
           type: 'select',
           label: 'Состояние',
           bind: [state, setState],
-          options: ['default', 'failed', 'disabled'],
+          options: [
+            { value: 'default', displayName: 'По умолчанию' },
+            { value: 'failed', displayName: 'Ошибка' },
+            { value: 'disabled', displayName: 'Отключено' },
+          ],
         },
         {
           type: 'toggle',
@@ -142,43 +151,57 @@ export function TestNativeComparison() {
   );
 }
 
-TestNativeComparison.storyName = 'Тест: сравнение с нативной реализацией';
+TestNativeComparison.storyName = 'Тест: Сравнение с нативной реализацией';
 
 export function TestInModal() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <Modal>
-      <TopBar title='Тест' subtitle='Autocomplete внутри Modal' divided />
-      <ModalBody withScrollDisable>
-        <div style={{ padding: 16 }}>
-          <LoremIpsum paragraphCount={10} />
+    <>
+      <Button size='s' onClick={() => setOpen(true)}>
+        Показать окно
+      </Button>
 
-          <Autocomplete
-            placeholder='Номер'
-            dropdownProps={{ viewportProps: { [BSL_IGNORE_ATTR as any]: true } }}
-          >
-            <DropdownItem>Ноль</DropdownItem>
-            <DropdownItem>Один</DropdownItem>
-            <DropdownItem>Два</DropdownItem>
-            <DropdownItem>Три</DropdownItem>
-            <DropdownItem>Четыре</DropdownItem>
-            <DropdownItem>Пять</DropdownItem>
-            <DropdownItem>Шесть</DropdownItem>
-            <DropdownItem>Семь</DropdownItem>
-            <DropdownItem>Восемь</DropdownItem>
-            <DropdownItem>Девять</DropdownItem>
-            <DropdownItem>Десять</DropdownItem>
-          </Autocomplete>
+      {open && (
+        <Modal {...getResponsiveModalProps({ size: 'm' })} onClose={() => setOpen(false)}>
+          <TopBar title='Тест' subtitle='Autocomplete внутри Modal' divided />
+          <ModalBody withScrollDisable>
+            <div style={{ padding: 16 }}>
+              <LoremIpsum paragraphCount={10} />
 
-          <LoremIpsum paragraphCount={10} />
-        </div>
-      </ModalBody>
-      <BottomBar divided>
-        <CleanGroup>
-          <CleanButton>Ясно</CleanButton>
-        </CleanGroup>
-      </BottomBar>
-    </Modal>
+              <Autocomplete
+                placeholder='Номер'
+                dropdownProps={{
+                  viewportProps: {
+                    [BSL_IGNORE_ATTR as any]: true,
+                  },
+                }}
+              >
+                <DropdownItem>Ноль</DropdownItem>
+                <DropdownItem>Один</DropdownItem>
+                <DropdownItem>Два</DropdownItem>
+                <DropdownItem>Три</DropdownItem>
+                <DropdownItem>Четыре</DropdownItem>
+                <DropdownItem>Пять</DropdownItem>
+                <DropdownItem>Шесть</DropdownItem>
+                <DropdownItem>Семь</DropdownItem>
+                <DropdownItem>Восемь</DropdownItem>
+                <DropdownItem>Девять</DropdownItem>
+                <DropdownItem>Десять</DropdownItem>
+              </Autocomplete>
+
+              <LoremIpsum paragraphCount={10} />
+            </div>
+          </ModalBody>
+          <BottomBar divided>
+            <CleanGroup>
+              <CleanButton onClick={() => setOpen(true)}>Ясно</CleanButton>
+            </CleanGroup>
+          </BottomBar>
+        </Modal>
+      )}
+    </>
   );
 }
 
-TestInModal.storyName = 'Тест: в модальном окне';
+TestInModal.storyName = 'Тест: В модальном окне';

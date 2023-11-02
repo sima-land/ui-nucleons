@@ -39,7 +39,11 @@ export function Primary() {
         {
           type: 'select',
           label: 'Размер',
-          options: ['s', 'm', 'l'],
+          options: [
+            { value: 's', displayName: 'S' },
+            { value: 'm', displayName: 'M' },
+            { value: 'l', displayName: 'L' },
+          ],
           bind: [size, setSize],
         },
         {

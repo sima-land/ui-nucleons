@@ -1,7 +1,7 @@
 import { WithHint, useTempHint } from '@sima-land/ui-nucleons/with-hint';
 import { CSSProperties, useEffect, useState } from 'react';
 import { Button } from '@sima-land/ui-nucleons/button';
-import { Modal, ModalBody } from '@sima-land/ui-nucleons/modal';
+import { Modal, ModalBody, getResponsiveModalProps } from '@sima-land/ui-nucleons/modal';
 import { TopBar } from '@sima-land/ui-nucleons/top-bar';
 
 const styles = {
@@ -112,7 +112,7 @@ export function InScrolledParent() {
       </div>
 
       {modalOpened && (
-        <Modal size='s' onClose={() => toggleModal(false)}>
+        <Modal {...getResponsiveModalProps({ size: 's' })} onClose={() => toggleModal(false)}>
           <TopBar divided title='Тестовое окно' />
           <ModalBody>
             <div style={styles.modalContent}>
@@ -139,7 +139,7 @@ export function InScrolledParent() {
   );
 }
 
-InScrolledParent.storyName = 'Тест: родительский элемент имеет прокрутку';
+InScrolledParent.storyName = 'Тест: Родительский элемент имеет прокрутку';
 
 export function InDocumentWithScroll() {
   const [bind, toggle] = useTempHint();
@@ -165,4 +165,4 @@ export function InDocumentWithScroll() {
   );
 }
 
-InDocumentWithScroll.storyName = 'Тест: страница имеет прокрутку';
+InDocumentWithScroll.storyName = 'Тест: Страница имеет прокрутку';

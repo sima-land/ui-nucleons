@@ -89,7 +89,7 @@ WithInfoText.storyName = 'Вместе с InfoText';
 
 export function DifferentStates() {
   const [state, setState] = useState<string>('default');
-  const [fieldType, setFieldType] = useState<'checkbox' | 'toggle' | 'radio'>('checkbox');
+  const [fieldType, setFieldType] = useState<'Checkbox' | 'Toggle' | 'RadioButton'>('Checkbox');
   const [fieldPosition, setFieldPosition] = useState<'start' | 'end'>('start');
   const [textAlign, setTextAlign] = useState<'left' | 'right'>('left');
   const [fontSize, setFontSize] = useState<'14px' | '16px'>('14px');
@@ -107,29 +107,40 @@ export function DifferentStates() {
           label: 'Состояние',
           type: 'select',
           bind: [state, setState],
-          options: ['default', 'failed', 'disabled', 'failed+disabled'],
+          options: [
+            { value: 'default', displayName: 'По умолчанию' },
+            { value: 'failed', displayName: 'Ошибка' },
+            { value: 'disabled', displayName: 'Отключено' },
+            { value: 'failed+disabled', displayName: 'Ошибка + отключено' },
+          ],
         },
         {
-          label: 'Тип поля',
+          label: 'Поле',
           type: 'select',
           bind: [fieldType, setFieldType],
-          options: ['checkbox', 'toggle', 'radio'],
+          options: ['Checkbox', 'Toggle', 'RadioButton'],
         },
         {
           label: 'Позиция поля',
           type: 'select',
           bind: [fieldPosition, setFieldPosition],
-          options: ['start', 'end'],
+          options: [
+            { value: 'start', displayName: 'Начало' },
+            { value: 'end', displayName: 'Конец' },
+          ],
         },
         {
           label: 'Выравнивание текста',
           type: 'select',
           bind: [textAlign, setTextAlign],
-          options: ['left', 'right'],
+          options: [
+            { value: 'left', displayName: 'По левому краю' },
+            { value: 'right', displayName: 'По правому краю' },
+          ],
         },
         {
           label: 'Размер текста',
-          hidden: fieldType === 'toggle',
+          hidden: fieldType === 'Toggle',
           type: 'select',
           bind: [fontSize, setFontSize],
           options: ['14px', '16px'],
@@ -146,9 +157,9 @@ export function DifferentStates() {
           lineHeight: fontSize === '16px' ? '24px' : '20px',
         }}
       >
-        {fieldType === 'checkbox' && <Checkbox {...fieldProps} />}
-        {fieldType === 'toggle' && <Toggle {...fieldProps} />}
-        {fieldType === 'radio' && <RadioButton {...fieldProps} />}
+        {fieldType === 'Checkbox' && <Checkbox {...fieldProps} />}
+        {fieldType === 'Toggle' && <Toggle {...fieldProps} />}
+        {fieldType === 'RadioButton' && <RadioButton {...fieldProps} />}
         <SwitcherRow.Label>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, eveniet?
         </SwitcherRow.Label>

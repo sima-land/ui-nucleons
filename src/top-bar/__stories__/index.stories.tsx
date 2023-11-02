@@ -112,7 +112,11 @@ export function DifferentStates() {
           type: 'select',
           label: 'Размер',
           bind: [size, setSize],
-          options: ['s', 'm', 'xl'],
+          options: [
+            { value: 's', displayName: 'S' },
+            { value: 'm', displayName: 'M' },
+            { value: 'xl', displayName: 'XL' },
+          ],
         },
       ]}
       areaStyle={{
@@ -356,7 +360,7 @@ export function TestCustomTitle() {
   );
 }
 
-TestCustomTitle.storyName = 'Тест: сложные заголовки';
+TestCustomTitle.storyName = 'Тест: Сложные заголовки';
 
 TestCustomTitle.parameters = {
   layout: 'padded',

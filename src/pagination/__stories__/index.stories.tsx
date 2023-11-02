@@ -136,4 +136,4 @@ export function TestRanges() {
   );
 }
 
-TestRanges.storyName = 'Тест: варианты данных';
+TestRanges.storyName = 'Тест: Варианты данных';

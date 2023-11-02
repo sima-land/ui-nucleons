@@ -41,7 +41,7 @@ export function TestPageScrollLockWithToggle() {
   );
 }
 
-TestPageScrollLockWithToggle.storyName = 'Тест: блокировка прокрутки при переключении окон';
+TestPageScrollLockWithToggle.storyName = 'Тест: Блокировка прокрутки при переключении окон';
 
 function FirstStep({ setStep }: StepProps) {
   return (
