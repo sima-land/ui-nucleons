@@ -32,7 +32,11 @@ export function DifferentStates() {
           type: 'select',
           label: 'Размер',
           bind: [size, setSize],
-          options: ['s', 'm', 'l'],
+          options: [
+            { value: 's', displayName: 'S' },
+            { value: 'm', displayName: 'M' },
+            { value: 'l', displayName: 'L' },
+          ],
         },
         {
           type: 'select',

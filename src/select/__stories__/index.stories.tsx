@@ -126,28 +126,41 @@ export function DifferentStates() {
         {
           type: 'select',
           label: 'Открывающий элемент',
-          options: ['field-block', 'text-button'],
+          options: [
+            { value: 'field-block', displayName: 'FieldBlock' },
+            { value: 'text-button', displayName: 'TextButton' },
+          ],
           bind: [opener, setOpener],
         },
         {
           type: 'select',
           hidden: opener !== 'field-block',
           label: 'Размер поля',
-          options: ['s', 'm', 'l'],
+          options: [
+            { value: 's', displayName: 'S' },
+            { value: 'm', displayName: 'M' },
+            { value: 'l', displayName: 'L' },
+          ],
           bind: [fieldSize as string, setFieldSize],
         },
         {
           type: 'select',
           hidden: opener !== 'text-button',
           label: 'Размер кнопки',
-          options: ['s', 'm'],
+          options: [
+            { value: 's', displayName: 'S' },
+            { value: 'm', displayName: 'M' },
+          ],
           bind: [buttonSize, setButtonSize],
         },
         {
           type: 'select',
           label: 'Состояние',
           bind: [state, setState],
-          options: ['default', 'disabled'],
+          options: [
+            { value: 'default', displayName: 'По умолчанию' },
+            { value: 'disabled', displayName: 'Отключено' },
+          ],
         },
         {
           type: 'toggle',

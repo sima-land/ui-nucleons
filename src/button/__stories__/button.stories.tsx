@@ -123,19 +123,32 @@ export function DifferentStates() {
         {
           type: 'select',
           label: 'Размер',
-          options: ['xs', 's', 'm'],
+          options: [
+            { value: 'xs', displayName: 'XS' },
+            { value: 's', displayName: 'S' },
+            { value: 'm', displayName: 'M' },
+          ],
           bind: [size, setSize],
         },
         {
           type: 'select',
           label: 'Тип действия',
-          options: ['primary', 'secondary', 'success'],
+          options: [
+            { value: 'primary', displayName: 'Primary' },
+            { value: 'secondary', displayName: 'Secondary' },
+            { value: 'success', displayName: 'Success' },
+          ],
           bind: [viewType, setViewType],
         },
         {
           type: 'select',
           label: 'Состояние',
-          options: ['default', 'disabled', 'loading', 'loading+disabled'],
+          options: [
+            { value: 'default', displayName: 'По умолчанию' },
+            { value: 'disabled', displayName: 'Отключено' },
+            { value: 'loading', displayName: 'Загрузка' },
+            { value: 'loading+disabled', displayName: 'Загрузка + отключено' },
+          ],
           bind: [state, setState],
         },
       ]}

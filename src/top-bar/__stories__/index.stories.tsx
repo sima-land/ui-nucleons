@@ -112,7 +112,11 @@ export function DifferentStates() {
           type: 'select',
           label: 'Размер',
           bind: [size, setSize],
-          options: ['s', 'm', 'xl'],
+          options: [
+            { value: 's', displayName: 'S' },
+            { value: 'm', displayName: 'M' },
+            { value: 'xl', displayName: 'XL' },
+          ],
         },
       ]}
       areaStyle={{
