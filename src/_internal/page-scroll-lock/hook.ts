@@ -25,9 +25,10 @@ export function usePageScrollLock(
 
   useIsomorphicLayoutEffect(() => {
     const element = ref.current;
+    const { lockEnabled, ...restOptions } = options;
 
-    if (element && options.lockEnabled) {
-      const pageScroll = adapter(element, options);
+    if (element && lockEnabled) {
+      const pageScroll = adapter(element, restOptions);
 
       pageScroll.lock();
 

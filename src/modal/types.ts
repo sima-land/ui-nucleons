@@ -36,7 +36,10 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement>, WithTestId {
   flexLayout?: boolean;
 }
 
-export interface ModalBodyProps extends HTMLAttributes<HTMLDivElement>, WithPageScrollLock {
+export interface ModalBodyProps
+  extends HTMLAttributes<HTMLDivElement>,
+    WithPageScrollLock,
+    WithTestId {
   /** Реф корневого элемента. */
   rootRef?: Ref<HTMLDivElement>;
 

@@ -14,7 +14,7 @@ const cx = classNames.bind(styles);
 export function Modal({
   flexLayout = true,
   size = 'm',
-  rounds = 'unset',
+  rounds = 'm',
   className,
   children,
   onClose,
@@ -36,13 +36,11 @@ export function Modal({
     overlayProps?.className,
   );
 
+  const modalClassName = cx('modal', flexLayout && 'modal-layout', className);
+
   return (
     <ModalOverlay {...overlayProps} className={overlayClassName} {...overlayClickProps}>
-      <div
-        className={cx('modal', flexLayout && 'modal-layout', className)}
-        data-testid={testId}
-        {...restProps}
-      >
+      <div className={modalClassName} data-testid={testId} {...restProps}>
         {children}
       </div>
     </ModalOverlay>

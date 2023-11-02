@@ -19,6 +19,7 @@ export function getResponsiveModalProps(config: {
 
   return {
     size: 'unset',
+    rounds: 'unset',
     className: cx(`size-${size}`, className),
   };
 }

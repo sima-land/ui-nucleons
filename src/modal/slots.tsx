@@ -15,11 +15,13 @@ const cx = classNames.bind(styles);
  */
 export function ModalBody({
   children,
+  className,
   rootRef,
   viewportRef,
-  className,
+  viewportProps,
   withScrollDisable,
   scrollDisableOptions,
+  'data-testid': testId = 'modal-body',
   ...restProps
 }: ModalBodyProps) {
   const viewportInnerRef = useRef<HTMLDivElement>(null);
@@ -33,9 +35,11 @@ export function ModalBody({
   return (
     <ViewportContext.Provider value={viewportInnerRef}>
       <CustomScrollbar
-        {...restProps} // @todo решить что делать с viewportProps
+        {...restProps}
+        data-testid={testId}
         rootRef={rootRef}
         viewportRef={viewportInnerRef}
+        viewportProps={viewportProps}
         className={cx('body', className)}
         overflow={{ x: 'hidden', y: 'scroll' }}
       >
