@@ -48,7 +48,7 @@ export function TestInputProps() {
   );
 }
 
-TestInputProps.storyName = 'Тест: обработка свойств';
+TestInputProps.storyName = 'Тест: Обработка свойств';
 
 export function TestControlled() {
   const [state, setState] = useState(false);
@@ -70,4 +70,4 @@ export function TestControlled() {
   );
 }
 
-TestControlled.storyName = 'Тест: программное управление';
+TestControlled.storyName = 'Тест: Программное управление';

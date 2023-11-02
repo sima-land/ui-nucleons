@@ -267,7 +267,7 @@ export function TestPageScrollLock() {
   );
 }
 
-TestPageScrollLock.storyName = 'Тест: блокировка прокрутки страницы';
+TestPageScrollLock.storyName = 'Тест: Блокировка прокрутки страницы';
 
 export function SecondaryTopBar() {
   return (

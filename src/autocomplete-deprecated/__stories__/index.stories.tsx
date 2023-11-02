@@ -125,4 +125,4 @@ export function TestChromeAutofill() {
   );
 }
 
-TestChromeAutofill.storyName = 'Тест: предварительно заполнение браузером';
+TestChromeAutofill.storyName = 'Тест: Предварительное заполнение браузером';

@@ -124,7 +124,7 @@ export function TestDynamicContent() {
   );
 }
 
-TestDynamicContent.storyName = 'Тест: изменение содержимого';
+TestDynamicContent.storyName = 'Тест: Изменение содержимого';
 
 function Opener({ hiddenCount }: { hiddenCount: number }) {
   const style: CSSProperties = {

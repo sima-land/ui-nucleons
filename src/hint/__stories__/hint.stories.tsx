@@ -162,14 +162,14 @@ export function TestClick() {
   return <TestPositionTemplate item={<OnClick />} />;
 }
 
-TestClick.storyName = 'Тест: позиционирование при клике';
+TestClick.storyName = 'Тест: Позиционирование при клике';
 TestClick.parameters = { layout: 'fullscreen' };
 
 export function TestHover() {
   return <TestPositionTemplate item={<OnHover />} />;
 }
 
-TestHover.storyName = 'Тест: позиционирование при наведении';
+TestHover.storyName = 'Тест: Позиционирование при наведении';
 TestHover.parameters = { layout: 'fullscreen' };
 
 function TestPositionTemplate({ item }: { item: ReactNode }) {

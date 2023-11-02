@@ -356,7 +356,7 @@ export function TestCustomTitle() {
   );
 }
 
-TestCustomTitle.storyName = 'Тест: сложные заголовки';
+TestCustomTitle.storyName = 'Тест: Сложные заголовки';
 
 TestCustomTitle.parameters = {
   layout: 'padded',

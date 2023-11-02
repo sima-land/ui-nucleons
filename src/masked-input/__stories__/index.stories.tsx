@@ -100,7 +100,7 @@ export function TestUncontrolled() {
   );
 }
 
-TestUncontrolled.storyName = 'Тест: неконтролируемое поле';
+TestUncontrolled.storyName = 'Тест: Неконтролируемое поле';
 
 export function TestMaskChange() {
   const masks: ReadonlyArray<{ name: string; mask: string }> = [
@@ -161,4 +161,4 @@ export function TestMaskChange() {
   );
 }
 
-TestMaskChange.storyName = 'Тест: смена маски';
+TestMaskChange.storyName = 'Тест: Смена маски';

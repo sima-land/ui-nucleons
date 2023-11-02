@@ -45,4 +45,4 @@ export function TestApproximation() {
   );
 }
 
-TestApproximation.storyName = 'Тест: аппроксимация значений';
+TestApproximation.storyName = 'Тест: Аппроксимация значений';
