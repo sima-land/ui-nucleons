@@ -51,6 +51,9 @@ export interface TopBarProps {
   /** Нужна ли разделительная черта снизу. */
   divided?: boolean;
 
+  /** Скругления углов. */
+  rounds?: 's' | 'm' | 'unset';
+
   /** Идентификатор для систем автоматизированного тестирования. */
   'data-testid'?: string;
 }

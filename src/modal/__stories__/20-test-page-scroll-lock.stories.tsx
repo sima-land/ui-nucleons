@@ -1,7 +1,9 @@
-import { Modal } from '@sima-land/ui-nucleons/modal';
+import { Modal, ModalBody, getResponsiveModalProps } from '@sima-land/ui-nucleons/modal';
 import { useState } from 'react';
-import { Button } from '@sima-land/ui-nucleons/button';
+import { TopBar, navigationButtons } from '@sima-land/ui-nucleons/top-bar';
+import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
 import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
+import { Button } from '@sima-land/ui-nucleons/button';
 import { LoremIpsum, PageScrollLockDemo } from '../../../.storybook/utils';
 
 export default {
@@ -28,21 +30,25 @@ export function TestPageScrollLock() {
       </Button>
 
       {open && (
-        <Modal withScrollDisable onClose={hide}>
-          <Modal.Header divided title='Тест: Блокировка прокрутки страницы' onClose={hide} />
+        <Modal {...getResponsiveModalProps({ size: 'm' })} onClose={hide}>
+          <TopBar
+            divided
+            title='Тест: Блокировка прокрутки страницы'
+            {...navigationButtons({ onClose: hide })}
+          />
 
-          <Modal.Body>
+          <ModalBody withScrollDisable>
             <div style={{ padding: '24px' }} onClick={increaseContent}>
               <LoremIpsum paragraphCount={count} />
             </div>
-          </Modal.Body>
+          </ModalBody>
 
-          <Modal.Footer divided>
+          <BottomBar divided>
             <CleanGroup>
               <CleanButton onClick={decreaseContent}>Убрать</CleanButton>
               <CleanButton onClick={increaseContent}>Добавить</CleanButton>
             </CleanGroup>
-          </Modal.Footer>
+          </BottomBar>
         </Modal>
       )}
     </PageScrollLockDemo>

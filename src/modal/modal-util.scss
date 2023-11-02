@@ -1,0 +1,41 @@
+@use '../shadows';
+
+@mixin size-s {
+  --modal-width: 480px;
+  --modal-max-height: 696px;
+  --overlay-padding: 16px;
+  --modal-box-shadow: #{shadows.get-box-shadow('z4')};
+  --modal-border-radius: 8px;
+}
+
+@mixin size-m {
+  --modal-width: 640px;
+  --modal-max-height: 696px;
+  --modal-overlay-padding: 16px;
+  --modal-box-shadow: #{shadows.get-box-shadow('z4')};
+  --modal-border-radius: 8px;
+}
+
+@mixin size-l {
+  --modal-width: 768px;
+  --modal-max-height: 696px;
+  --modal-overlay-padding: 16px;
+  --modal-box-shadow: #{shadows.get-box-shadow('z4')};
+  --modal-border-radius: 8px;
+}
+
+@mixin size-xl {
+  --modal-width: 960px;
+  --modal-max-height: 696px;
+  --modal-overlay-padding: 16px;
+  --modal-box-shadow: #{shadows.get-box-shadow('z4')};
+  --modal-border-radius: 8px;
+}
+
+@mixin size-fullscreen {
+  --modal-width: 100%;
+  --modal-height: 100%;
+  --modal-max-height: 100%;
+  --modal-overlay-padding: 0;
+  --modal-box-shadow: none;
+}

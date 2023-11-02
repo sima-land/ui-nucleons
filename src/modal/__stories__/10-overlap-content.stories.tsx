@@ -1,7 +1,7 @@
-import { Modal } from '@sima-land/ui-nucleons/modal';
-import { useState } from 'react';
+import { Modal, ModalBody, ModalOverlap } from '@sima-land/ui-nucleons/modal';
 import { Button } from '@sima-land/ui-nucleons/button';
 import { ArrowButton } from '@sima-land/ui-nucleons/arrow-button';
+import { CSSProperties, useState } from 'react';
 
 export default {
   title: 'common/Modal',
@@ -9,6 +9,28 @@ export default {
   parameters: {
     layout: 'padded',
   },
+};
+
+const styles = {
+  content: {
+    height: 360,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '64px',
+  } satisfies CSSProperties,
+  decrease: {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    right: 'calc(100% + 24px)',
+  } satisfies CSSProperties,
+  increase: {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    left: 'calc(100% + 24px)',
+  } satisfies CSSProperties,
 };
 
 export function WithOverlapContent() {
@@ -23,42 +45,21 @@ export function WithOverlapContent() {
 
       {open && (
         <Modal size='m' onClose={() => setOpen(false)}>
-          <Modal.Header divided title='Со стрелками рядом с окном' />
-          <Modal.Body>
-            <div
-              style={{
-                height: 360,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '64px',
-              }}
-            >
-              {count}
-            </div>
-          </Modal.Body>
-          <Modal.Overlap>
+          <ModalBody>
+            <div style={styles.content}>{count}</div>
+          </ModalBody>
+          <ModalOverlap>
             <ArrowButton
-              style={{
-                position: 'absolute',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                right: 'calc(100% + 24px)',
-              }}
+              style={styles.decrease}
               direction='left'
               onClick={() => setCount(count - 1)}
             />
             <ArrowButton
-              style={{
-                position: 'absolute',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                left: 'calc(100% + 24px)',
-              }}
+              style={styles.increase}
               direction='right'
               onClick={() => setCount(count + 1)}
             />
-          </Modal.Overlap>
+          </ModalOverlap>
         </Modal>
       )}
     </>

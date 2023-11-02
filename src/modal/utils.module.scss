@@ -1,0 +1,45 @@
+@use '../breakpoints';
+@use './modal-util';
+@use '../top-bar/top-bar-util';
+@use '../bottom-bar/bottom-bar-util';
+
+@include breakpoints.lt('xs') {
+  .size-s,
+  .size-m,
+  .size-l,
+  .size-xl,
+  .size-fullscreen {
+    @include modal-util.size-fullscreen;
+    @include top-bar-util.size-m;
+    @include bottom-bar-util.size-m;
+  }
+}
+
+@include breakpoints.gte('xs') {
+  .size-s {
+    @include modal-util.size-s;
+  }
+  .size-m {
+    @include modal-util.size-m;
+  }
+  .size-l {
+    @include modal-util.size-l;
+  }
+  .size-xl {
+    @include modal-util.size-xl;
+  }
+  .size-fullscreen {
+    @include modal-util.size-fullscreen;
+  }
+  .size-s,
+  .size-m,
+  .size-l,
+  .size-xl {
+    @include top-bar-util.size-m;
+    @include bottom-bar-util.size-m;
+  }
+  .size-fullscreen {
+    @include top-bar-util.size-xl;
+    @include bottom-bar-util.size-l;
+  }
+}

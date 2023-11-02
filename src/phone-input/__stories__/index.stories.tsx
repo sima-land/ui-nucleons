@@ -1,7 +1,9 @@
 import { PhoneInput } from '@sima-land/ui-nucleons/phone-input';
 import { TextButton } from '@sima-land/ui-nucleons/text-button';
 import { useState } from 'react';
-import { Modal } from '@sima-land/ui-nucleons/modal';
+import { Modal, ModalBody } from '@sima-land/ui-nucleons/modal';
+import { TopBar } from '@sima-land/ui-nucleons/top-bar';
+import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
 import { CleanButton, CleanGroup } from '@sima-land/ui-nucleons/clean-buttons';
 import { BSL_IGNORE_ATTR } from '@sima-land/ui-nucleons/_internal/page-scroll-lock';
 import { LoremIpsum } from '../../../.storybook/utils';
@@ -168,8 +170,8 @@ export function TestInModal() {
 
   return (
     <Modal>
-      <Modal.Header title='Тест' subtitle='PhoneInput внутри Modal' divided />
-      <Modal.Body>
+      <TopBar title='Тест' subtitle='PhoneInput внутри Modal' divided />
+      <ModalBody>
         <div style={{ padding: 16 }}>
           <LoremIpsum paragraphCount={10} />
 
@@ -182,12 +184,12 @@ export function TestInModal() {
 
           <LoremIpsum paragraphCount={10} />
         </div>
-      </Modal.Body>
-      <Modal.Footer divided>
+      </ModalBody>
+      <BottomBar divided>
         <CleanGroup>
           <CleanButton>Ясно</CleanButton>
         </CleanGroup>
-      </Modal.Footer>
+      </BottomBar>
     </Modal>
   );
 }

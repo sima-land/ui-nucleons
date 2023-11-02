@@ -1,6 +1,7 @@
 import { WithTooltip } from '@sima-land/ui-nucleons/with-tooltip';
 import { Link } from '@sima-land/ui-nucleons/link';
-import { Modal } from '@sima-land/ui-nucleons/modal';
+import { Modal, ModalBody } from '@sima-land/ui-nucleons/modal';
+import { TopBar } from '@sima-land/ui-nucleons/top-bar';
 import { times } from 'lodash';
 import {
   LONG_TEXT,
@@ -135,8 +136,8 @@ TestScrollableParent.storyName = 'Тест: родитель имеет прок
 export function TestShortInModal() {
   return (
     <Modal size='s'>
-      <Modal.Header divided title='Тултип в модальном окне' subtitle='Без прокрутки' />
-      <Modal.Body>
+      <TopBar divided title='Тултип в модальном окне' subtitle='Без прокрутки' />
+      <ModalBody>
         <div
           style={{
             height: '400px',
@@ -154,7 +155,7 @@ export function TestShortInModal() {
             </div>
           ))}
         </div>
-      </Modal.Body>
+      </ModalBody>
     </Modal>
   );
 }
@@ -164,8 +165,8 @@ TestShortInModal.storyName = 'Тест: в модальном окне с кор
 export function TestLongInModal() {
   return (
     <Modal size='s'>
-      <Modal.Header divided title='Тултип в модальном окне' subtitle='Без прокрутки' />
-      <Modal.Body>
+      <TopBar divided title='Тултип в модальном окне' subtitle='Без прокрутки' />
+      <ModalBody>
         <div
           style={{
             height: '400px',
@@ -183,7 +184,7 @@ export function TestLongInModal() {
             </div>
           ))}
         </div>
-      </Modal.Body>
+      </ModalBody>
     </Modal>
   );
 }
@@ -193,8 +194,8 @@ TestLongInModal.storyName = 'Тест: в модальном окне с дли�
 export function TestInModalWithScroll() {
   return (
     <Modal size='s'>
-      <Modal.Header divided title='Тултип в модальном окне' subtitle='С прокруткой' />
-      <Modal.Body>
+      <TopBar divided title='Тултип в модальном окне' subtitle='С прокруткой' />
+      <ModalBody>
         <div style={{ height: '400px', padding: '20px' }}>
           {Array(5)
             .fill(0)
@@ -208,7 +209,7 @@ export function TestInModalWithScroll() {
               <p key={i}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, unde.</p>
             ))}
         </div>
-      </Modal.Body>
+      </ModalBody>
     </Modal>
   );
 }
@@ -218,8 +219,8 @@ TestInModalWithScroll.storyName = 'Тест: в модальном окне с �
 export function TestInModalWithPortal() {
   return (
     <Modal size='s'>
-      <Modal.Header divided title='Тултип в модальном окне' subtitle='С прокруткой' />
-      <Modal.Body>
+      <TopBar divided title='Тултип в модальном окне' subtitle='С прокруткой' />
+      <ModalBody>
         <div style={{ height: '400px', padding: '20px' }}>
           {times(5).map(i => (
             <p key={i}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, unde.</p>
@@ -231,7 +232,7 @@ export function TestInModalWithPortal() {
             <p key={i}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, unde.</p>
           ))}
         </div>
-      </Modal.Body>
+      </ModalBody>
     </Modal>
   );
 }

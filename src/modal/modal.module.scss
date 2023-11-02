@@ -1,127 +1,64 @@
-@use '../colors';
-@use '../breakpoints';
-@use '../top-bar/top-bar-util';
-@use '../bottom-bar/bottom-bar-util';
-
-$modal-max-height: 696px;
-
-@mixin regular-modal {
-  height: var(--modal-height, auto);
-  max-height: min(#{$modal-max-height}, calc(100vh - 32px));
-  min-height: 232px;
-  border-radius: 8px;
-}
-
-@mixin fullscreen-modal {
-  width: 100%;
-  height: 100%;
-  max-height: 100%;
-}
-
-@mixin medium-header {
-  &.has-header {
-    --modal-header-height: #{top-bar-util.$size-m-height};
-    .header {
-      @include top-bar-util.size-m;
-    }
-  }
-}
-
-@mixin large-header {
-  &.has-header {
-    --modal-header-height: #{top-bar-util.$size-xl-height};
-    .header {
-      @include top-bar-util.size-xl;
-    }
-  }
-}
-
-@mixin medium-footer {
-  &.has-footer {
-    --modal-footer-height: #{bottom-bar-util.$size-m-height};
-    .footer {
-      @include bottom-bar-util.size-m;
-    }
-  }
-}
-
-@mixin large-footer {
-  &.has-footer {
-    --modal-footer-height: #{bottom-bar-util.$size-l-height};
-    .footer {
-      @include bottom-bar-util.size-l;
-    }
-  }
-}
+@use '../shadows';
+@use './modal-util';
 
 .overlay {
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding: var(--modal-overlay-padding);
+  // ВАЖНО: для корректной прокрутки во flex-контейнере не надо использовать тут justify-content: center
 }
 
 .modal {
+  width: var(--modal-width);
+  height: var(--modal-height);
+  max-height: var(--modal-max-height);
+  border-radius: var(--modal-border-radius);
+  box-shadow: var(--modal-box-shadow);
   flex-shrink: 0;
-  position: relative; // для overlap
-  margin: auto; // для корректной прокрутки во flex-контейнере
-  display: flex;
-  flex-direction: column;
+  margin: auto; // ВАЖНО: для корректной прокрутки во flex-контейнере
+  position: relative; // ВАЖНО: для overlap
   z-index: 1;
   background-color: #fff;
-  @include breakpoints.down('xs') {
-    @include fullscreen-modal;
-    @include medium-header;
-    @include medium-footer;
-  }
-  @include breakpoints.up('xs') {
-    &:not(.size-fullscreen) {
-      @include regular-modal;
-      @include medium-header;
-      @include medium-footer;
-      &.size-s {
-        width: 480px;
-      }
-      &.size-m {
-        width: 640px;
-      }
-      &.size-l {
-        width: 768px;
-      }
-      &.size-xl {
-        width: 960px;
-      }
-    }
-    &.size-fullscreen {
-      @include fullscreen-modal;
-      @include large-header;
-      @include large-footer;
-    }
-  }
 }
 
-.header {
-  border-radius: 8px 8px 0 0;
-  flex-shrink: 0;
+.modal-layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.size-s {
+  @include modal-util.size-s;
+}
+
+.size-m {
+  @include modal-util.size-m;
+}
+
+.size-l {
+  @include modal-util.size-l;
+}
+
+.size-xl {
+  @include modal-util.size-xl;
+}
+
+.size-fullscreen {
+  @include modal-util.size-fullscreen;
+}
+
+.rounds-s {
+  --modal-border-radius: 4px;
+}
+
+.rounds-m {
+  --modal-border-radius: 8px;
 }
 
 .body {
   flex-grow: 1;
 }
 
-.footer {
-  flex-shrink: 0;
-  border-radius: 0 0 8px 8px;
-  overflow: hidden;
-}
-
-.footer-stub {
-  flex-shrink: 0;
-  border-radius: 0 0 8px 8px;
-  height: 16px;
-  background: #fff;
-}
-
-.overlap-content {
+.overlap {
   position: absolute;
   top: 0;
   left: 0;
@@ -131,4 +68,11 @@ $modal-max-height: 696px;
   * {
     pointer-events: auto;
   }
+}
+
+.bottom-gap {
+  flex-shrink: 0;
+  border-radius: 0 0 8px 8px;
+  height: 16px;
+  background: #fff;
 }

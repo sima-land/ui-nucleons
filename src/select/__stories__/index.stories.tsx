@@ -3,10 +3,12 @@ import { useState } from 'react';
 import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
 import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
 import { FieldBlockSize } from '@sima-land/ui-nucleons/field-block';
-import { Modal } from '@sima-land/ui-nucleons/modal';
+import { Modal, ModalBody } from '@sima-land/ui-nucleons/modal';
 import { BSL_IGNORE_ATTR } from '@sima-land/ui-nucleons/_internal/page-scroll-lock';
 import { TextButtonSize } from '@sima-land/ui-nucleons/text-button';
 import { LargePage, LoremIpsum, Sandbox } from '../../../.storybook/utils';
+import { TopBar } from '@sima-land/ui-nucleons/top-bar';
+import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
 
 type SelectOpener = 'field-block' | 'text-button';
 
@@ -215,8 +217,8 @@ export function TestInModal() {
 
   return (
     <Modal>
-      <Modal.Header title='Тест' subtitle='Select внутри Modal' divided />
-      <Modal.Body>
+      <TopBar title='Тест' subtitle='Select внутри Modal' divided />
+      <ModalBody>
         <div style={{ padding: 16 }}>
           <LoremIpsum paragraphCount={10} />
 
@@ -241,12 +243,12 @@ export function TestInModal() {
 
           <LoremIpsum paragraphCount={10} />
         </div>
-      </Modal.Body>
-      <Modal.Footer divided>
+      </ModalBody>
+      <BottomBar divided>
         <CleanGroup>
           <CleanButton>Ясно</CleanButton>
         </CleanGroup>
-      </Modal.Footer>
+      </BottomBar>
     </Modal>
   );
 }

@@ -1,57 +1,46 @@
-import { ReactNode, useContext, useRef } from 'react';
-import { TopBar, TopBarProps } from '../top-bar';
-import { navigationButtons } from '../top-bar/utils';
-import { BottomBar, BottomBarProps } from '../bottom-bar';
+import { ReactNode, useImperativeHandle, useRef } from 'react';
 import { CustomScrollbar } from '../_internal/custom-scrollbar';
 import { ViewportContext } from '../context/viewport';
-import { ModalContext } from './utils';
 import { usePageScrollLock } from '../_internal/page-scroll-lock';
+import { ModalBodyProps } from './types';
 import classNames from 'classnames/bind';
 import styles from './modal.module.scss';
 
 const cx = classNames.bind(styles);
-
-export interface ModalHeaderProps extends Omit<TopBarProps, 'size'> {
-  onBack?: () => void;
-  onClose?: () => void;
-}
-
-export type ModalFooterProps = Omit<BottomBarProps, 'size'>;
-
-/**
- * Шапка окна.
- * @param props Свойства.
- * @return Элемент.
- */
-export function ModalHeader({ className, onBack, onClose, buttons, ...rest }: ModalHeaderProps) {
-  const { topBarSize } = useContext(ModalContext);
-
-  return (
-    <TopBar
-      {...rest}
-      size={topBarSize}
-      buttons={navigationButtons({ buttons, onBack, onClose })}
-      className={cx('header', className)}
-    />
-  );
-}
 
 /**
  * Основной контент окна.
  * @param props Свойства.
  * @return Элемент.
  */
-export function ModalBody({ children }: { children?: ReactNode }) {
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const { withScrollDisable, scrollDisableOptions } = useContext(ModalContext);
+export function ModalBody({
+  children,
+  className,
+  rootRef,
+  viewportRef,
+  viewportProps,
+  withScrollDisable,
+  scrollDisableOptions,
+  'data-testid': testId = 'modal-body',
+  ...restProps
+}: ModalBodyProps) {
+  const viewportInnerRef = useRef<HTMLDivElement>(null);
 
-  usePageScrollLock(viewportRef, { lockEnabled: withScrollDisable, ...scrollDisableOptions });
+  useImperativeHandle(viewportRef, () => viewportInnerRef.current as HTMLDivElement);
+
+  // ВАЖНО: не смотря на то что есть возможность задать viewportRef оставляем хук здесь
+  // потому что через портал с рефами работать не получится а useState не так удобен
+  usePageScrollLock(viewportInnerRef, { lockEnabled: withScrollDisable, ...scrollDisableOptions });
 
   return (
-    <ViewportContext.Provider value={viewportRef}>
+    <ViewportContext.Provider value={viewportInnerRef}>
       <CustomScrollbar
-        viewportRef={viewportRef}
-        className={styles.body}
+        {...restProps}
+        data-testid={testId}
+        rootRef={rootRef}
+        viewportRef={viewportInnerRef}
+        viewportProps={viewportProps}
+        className={cx('body', className)}
         overflow={{ x: 'hidden', y: 'scroll' }}
       >
         {children}
@@ -61,21 +50,18 @@ export function ModalBody({ children }: { children?: ReactNode }) {
 }
 
 /**
- * Футер окна.
- * @param props Свойства.
- * @return Элемент.
- */
-export function ModalFooter({ className, ...rest }: ModalFooterProps) {
-  const { bottomBarSize } = useContext(ModalContext);
-
-  return <BottomBar {...rest} size={bottomBarSize} className={cx('footer', className)} />;
-}
-
-/**
  * Контент который будет выводится поверх окна с абсолютным позиционированием.
  * @param props Свойства.
  * @return Элемент.
  */
 export function ModalOverlap({ children }: { children?: ReactNode }) {
-  return <>{children}</>;
+  return <div className={cx('overlap')}>{children}</div>;
+}
+
+/**
+ * Заглушка для футера по дизайн-гайдам.
+ * @return Элемент.
+ */
+export function ModalBottomGap() {
+  return <div className={cx('bottom-gap')} />;
 }

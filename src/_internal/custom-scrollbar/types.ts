@@ -1,7 +1,7 @@
 import type { CSSProperties, HTMLAttributes, ReactNode, Ref } from 'react';
 import type { PartialOptions } from 'overlayscrollbars';
 
-export interface CustomScrollbarProps {
+export interface CustomScrollbarProps extends HTMLAttributes<HTMLDivElement> {
   /** Стили. */
   style?: CSSProperties;
 

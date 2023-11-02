@@ -64,7 +64,6 @@ describe('usePageScrollLock', () => {
       </PageScrollProvider>,
     );
     expect(adapterFactory.mock.calls[0][1]).toEqual({
-      lockEnabled: true,
       reserveScrollBarGap: true,
     });
   });

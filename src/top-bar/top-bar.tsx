@@ -22,6 +22,7 @@ const cx = classnames.bind(styles);
 export function TopBar({
   divided,
   size = 'm',
+  rounds = 'm',
   title,
   subtitle,
   buttons: { start, startSecondary, end, endSecondary } = {},
@@ -38,6 +39,7 @@ export function TopBar({
     `size-${size}`,
     className,
     divided && InnerBorder.bottom,
+    rounds !== 'unset' && `rounds-${rounds}`,
     !subtitle && 'no-subtitle',
   );
 

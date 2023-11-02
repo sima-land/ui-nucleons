@@ -1,5 +1,4 @@
-import { CSSProperties, ReactNode, useEffect, useState } from 'react';
-import { upperFirst } from 'lodash';
+import { CSSProperties, ReactNode, useEffect, useMemo, useState } from 'react';
 import { loremIpsum } from 'lorem-ipsum';
 import {
   PageScrollLockAdapterFactory,
@@ -47,7 +46,7 @@ interface ControlSelect {
   type: 'select';
   hidden?: boolean;
   label: string;
-  options: Array<string>;
+  options: Array<string | { value: string; displayName?: string }>;
   bind: [string, (nextValue: any) => void];
 }
 
@@ -114,8 +113,8 @@ function SandboxSelect({ label, options, bind: [value, onChange] }: ControlSelec
           onChange={e => onChange?.(e.target.value as any)}
         >
           {options.map((option, i) => (
-            <option key={i} value={option}>
-              {upperFirst(option)}
+            <option key={i} value={typeof option === 'string' ? option : option.value}>
+              {typeof option === 'string' ? option : option.displayName ?? option.value}
             </option>
           ))}
         </select>
@@ -160,6 +159,24 @@ function SandboxControlLabel({ htmlFor, children }: { htmlFor: string; children?
 }
 
 /**
+ * Вернет генератор псевдослучайных чисел.
+ * @param seed Зерно.
+ * @return Генератор.
+ */
+const createRandomGenerator = (seed: number) => {
+  let currentSeed = seed;
+
+  return (): number => {
+    const newSeed = (currentSeed * 9301 + 49297) % 233280;
+    const random = newSeed / 233280;
+
+    currentSeed = newSeed;
+
+    return random;
+  };
+};
+
+/**
  * Выводит текст-рыбу.
  * @param props Свойства.
  * @return Элемент.
@@ -171,24 +188,21 @@ export function LoremIpsum({
   paragraphCount?: number;
   sentenceCount?: number;
 }) {
+  const random = createRandomGenerator(1337);
   // eslint-disable-next-line require-jsdoc, jsdoc/require-jsdoc
-  function generate() {
-    return Array(paragraphCount)
+  const generate = () =>
+    Array(paragraphCount)
       .fill(0)
       .map(() =>
         loremIpsum({
           format: 'plain',
           sentenceLowerBound: sentenceCount,
           sentenceUpperBound: sentenceCount,
+          random,
         }),
       );
-  }
 
-  const [content, setContent] = useState<string[]>(generate);
-
-  useEffect(() => {
-    setContent(generate);
-  }, [paragraphCount, sentenceCount]);
+  const content = useMemo(generate, [paragraphCount, sentenceCount]);
 
   return (
     <>

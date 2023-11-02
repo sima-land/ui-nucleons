@@ -1,7 +1,8 @@
 import { WithHint, useTempHint } from '@sima-land/ui-nucleons/with-hint';
 import { CSSProperties, useEffect, useState } from 'react';
 import { Button } from '@sima-land/ui-nucleons/button';
-import { Modal } from '@sima-land/ui-nucleons/modal';
+import { Modal, ModalBody } from '@sima-land/ui-nucleons/modal';
+import { TopBar } from '@sima-land/ui-nucleons/top-bar';
 
 const styles = {
   root: {
@@ -9,6 +10,7 @@ const styles = {
     alignItems: 'center',
     flexDirection: 'column',
   } satisfies CSSProperties,
+
   modalContent: {
     position: 'relative',
     padding: 20,
@@ -110,9 +112,9 @@ export function InScrolledParent() {
       </div>
 
       {modalOpened && (
-        <Modal size='s' height={360} onClose={() => toggleModal(false)}>
-          <Modal.Header divided title='Тестовое окно' />
-          <Modal.Body>
+        <Modal size='s' onClose={() => toggleModal(false)}>
+          <TopBar divided title='Тестовое окно' />
+          <ModalBody>
             <div style={styles.modalContent}>
               {[...Array(32).keys()].map(i => (
                 <p key={i}>Прокрути вниз</p>
@@ -130,7 +132,7 @@ export function InScrolledParent() {
                 <p key={i}>Можешь прокрутить еще</p>
               ))}
             </div>
-          </Modal.Body>
+          </ModalBody>
         </Modal>
       )}
     </>

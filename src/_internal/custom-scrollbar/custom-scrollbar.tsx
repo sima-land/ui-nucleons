@@ -23,13 +23,14 @@ const cx = classNames.bind(styles);
  * @todo Переименовать в StyledScrollbars и вынести из _internal?
  */
 export function CustomScrollbar({
+  children,
   style,
   className,
-  children,
   overflow,
   rootRef,
   viewportRef,
   viewportProps,
+  ...restProps
 }: CustomScrollbarProps) {
   const ref = useRef<OverlayScrollbarsComponentRef>(null);
 
@@ -39,6 +40,7 @@ export function CustomScrollbar({
 
   return (
     <OverlayScrollbarsComponent
+      {...restProps}
       ref={ref}
       defer={false}
       style={style}
@@ -63,7 +65,9 @@ export function CustomScrollbar({
  */
 const OverlayScrollbarsComponent = forwardRef<
   OverlayScrollbarsComponentRef,
-  OverlayScrollbarsComponentProps & { viewportProps?: HTMLAttributes<HTMLDivElement> }
+  Omit<OverlayScrollbarsComponentProps, 'element'> & {
+    viewportProps?: HTMLAttributes<HTMLDivElement>;
+  }
 >((props, ref) => {
   const { options, events, defer, children, viewportProps, ...rootProps } = props;
 

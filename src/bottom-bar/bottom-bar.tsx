@@ -1,4 +1,3 @@
-import { MediumRounds } from '../styling/shapes';
 import { CleanGroupSizeContext } from '../clean-buttons/utils';
 import { BottomBarProps, type BottomBarSize } from './types';
 import classNames from 'classnames/bind';
@@ -28,21 +27,22 @@ export function BottomBar({
   divided,
   children,
   className,
+  rounds = 'm',
   'data-testid': testId = 'bottom-bar',
   ...rest
 }: BottomBarProps) {
-  const rooClassName = cx(
+  const rootClassName = cx(
     'root',
     size !== 'unset' && `size-${size}`,
     { divided },
-    MediumRounds.bottom,
+    rounds !== 'unset' && `rounds-${rounds}`,
     className,
   );
 
   return (
     // чтобы CleanButton автоматически брали размер, соответствующий размеру BottomBar
     <CleanGroupSizeContext.Provider value={size}>
-      <div {...rest} className={rooClassName} data-testid={testId}>
+      <div {...rest} className={rootClassName} data-testid={testId}>
         {children}
       </div>
     </CleanGroupSizeContext.Provider>

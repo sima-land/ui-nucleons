@@ -7,15 +7,29 @@
   justify-content: center;
   background: #fff;
   height: var(--top-bar-height);
-  &.size-s {
-    @include top-bar-util.size-s;
-  }
-  &.size-m {
-    @include top-bar-util.size-m;
-  }
-  &.size-xl {
-    @include top-bar-util.size-xl;
-  }
+  flex-shrink: 0; // ВАЖНО: для использования в Modal
+}
+
+.size-s {
+  @include top-bar-util.size-s;
+}
+
+.size-m {
+  @include top-bar-util.size-m;
+}
+
+.size-xl {
+  @include top-bar-util.size-xl;
+}
+
+.rounds-s {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.rounds-m {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .main {
