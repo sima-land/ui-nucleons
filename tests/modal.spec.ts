@@ -41,10 +41,12 @@ const sizes = [
   },
 ];
 
-for (const { size, url } of sizes) {
+for (const { size } of sizes) {
   test.describe(`Modal size ${size}`, () => {
     test('shows by opener click and hides by cross click', async ({ page }) => {
-      await page.goto(url);
+      await page.goto('iframe.html?args=&id=common-modal--different-states');
+      await page.getByLabel('Размер').selectOption({ value: size });
+      await page.getByLabel('Шапка').selectOption({ value: 'top-bar' });
 
       await expect(here.opener()).toHaveCount(1);
       await expect(here.modal()).toHaveCount(0);
@@ -67,7 +69,9 @@ for (const { size, url } of sizes) {
 
     if (size !== 'fullscreen') {
       test('shows by opener click and hides by overlay click', async ({ page }) => {
-        await page.goto(url);
+        await page.goto('iframe.html?args=&id=common-modal--different-states');
+        await page.getByLabel('Размер').selectOption({ value: size });
+        await page.getByLabel('Шапка').selectOption({ value: 'top-bar' });
 
         await expect(here.opener()).toHaveCount(1);
         await expect(here.modal()).toHaveCount(0);

@@ -159,6 +159,24 @@ function SandboxControlLabel({ htmlFor, children }: { htmlFor: string; children?
 }
 
 /**
+ * Вернет генератор псевдослучайных чисел.
+ * @param seed Зерно.
+ * @return Генератор.
+ */
+const createRandomGenerator = (seed: number) => {
+  let currentSeed = seed;
+
+  return (): number => {
+    const newSeed = (currentSeed * 9301 + 49297) % 233280;
+    const random = newSeed / 233280;
+
+    currentSeed = newSeed;
+
+    return random;
+  };
+};
+
+/**
  * Выводит текст-рыбу.
  * @param props Свойства.
  * @return Элемент.
@@ -170,6 +188,7 @@ export function LoremIpsum({
   paragraphCount?: number;
   sentenceCount?: number;
 }) {
+  const random = createRandomGenerator(1337);
   // eslint-disable-next-line require-jsdoc, jsdoc/require-jsdoc
   const generate = () =>
     Array(paragraphCount)
@@ -179,6 +198,7 @@ export function LoremIpsum({
           format: 'plain',
           sentenceLowerBound: sentenceCount,
           sentenceUpperBound: sentenceCount,
+          random,
         }),
       );
 

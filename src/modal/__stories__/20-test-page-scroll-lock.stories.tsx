@@ -1,4 +1,4 @@
-import { Modal, ModalBody } from '@sima-land/ui-nucleons/modal';
+import { Modal, ModalBody, getResponsiveModalProps } from '@sima-land/ui-nucleons/modal';
 import { useState } from 'react';
 import { TopBar, navigationButtons } from '@sima-land/ui-nucleons/top-bar';
 import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
@@ -30,7 +30,7 @@ export function TestPageScrollLock() {
       </Button>
 
       {open && (
-        <Modal onClose={hide}>
+        <Modal {...getResponsiveModalProps({ size: 'm' })} onClose={hide}>
           <TopBar
             divided
             title='Тест: Блокировка прокрутки страницы'

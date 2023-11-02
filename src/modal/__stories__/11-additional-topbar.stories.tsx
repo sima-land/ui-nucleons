@@ -27,24 +27,9 @@ export function AdditionalTopBar() {
 
   return (
     <>
-      {[...Array(12).keys()].map(index => (
-        <p key={index}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, quae! Sapiente velit a
-          consequuntur deserunt provident eaque veritatis omnis error.
-        </p>
-      ))}
-
       <Button size='s' onClick={() => setOpen(true)}>
         Показать окно
       </Button>
-
-      {[...Array(64).keys()].map(index => (
-        <p key={index}>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat aliquam rerum ut harum
-          nam et ad necessitatibus eos quia blanditiis voluptate fuga facilis, molestias repellat
-          dolor esse. Neque velit repellat et non?
-        </p>
-      ))}
 
       {open && (
         <Modal {...getResponsiveModalProps({ size: 'm' })} onClose={() => setOpen(false)}>

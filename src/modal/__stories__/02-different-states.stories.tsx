@@ -24,7 +24,7 @@ export function DifferentStates() {
   const [open, setOpen] = useState<boolean>(false);
 
   const [size, setSize] = useState<any>('m');
-  const [header, setHeader] = useState<string>('topbar');
+  const [header, setHeader] = useState<string>('top-bar');
   const [footer, setFooter] = useState<string>('buttons');
 
   useKeydown('Escape', () => {
@@ -71,7 +71,7 @@ export function DifferentStates() {
               displayName: 'Нет',
             },
             {
-              value: 'topbar',
+              value: 'top-bar',
               displayName: 'TopBar',
             },
           ],
@@ -107,7 +107,7 @@ export function DifferentStates() {
 
       {open && (
         <Modal {...getResponsiveModalProps({ size })} onClose={() => setOpen(false)}>
-          {header === 'topbar' && (
+          {header === 'top-bar' && (
             <TopBar
               size='unset'
               title='Тестовое окно'
@@ -116,12 +116,12 @@ export function DifferentStates() {
             />
           )}
 
-          <ModalBody style={{ padding: '16px' }}>
+          <ModalBody style={{ padding: '24px' }}>
             <LoremIpsum paragraphCount={32} />
           </ModalBody>
 
           {footer === 'buttons' && (
-            <BottomBar divided size='unset'>
+            <BottomBar size='unset' divided>
               <div style={{ width: '100%', display: 'flex', gap: '12px', padding: '16px' }}>
                 <Button style={{ flexGrow: 1 }} viewType='primary'>
                   Кнопка
@@ -134,7 +134,7 @@ export function DifferentStates() {
           )}
 
           {footer === 'clean-buttons' && (
-            <BottomBar divided size='unset'>
+            <BottomBar size='unset' divided>
               <CleanGroup>
                 <CleanButton>Кнопка</CleanButton>
                 <CleanButton>Кнопка</CleanButton>

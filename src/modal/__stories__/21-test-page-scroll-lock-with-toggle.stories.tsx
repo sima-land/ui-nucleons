@@ -1,4 +1,4 @@
-import { Modal, ModalBody } from '@sima-land/ui-nucleons/modal';
+import { Modal, ModalBody, getResponsiveModalProps } from '@sima-land/ui-nucleons/modal';
 import { TopBar } from '@sima-land/ui-nucleons/top-bar';
 import { Button } from '@sima-land/ui-nucleons/button';
 import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
@@ -45,7 +45,7 @@ TestPageScrollLockWithToggle.storyName = 'Тест: блокировка про�
 
 function FirstStep({ setStep }: StepProps) {
   return (
-    <Modal size='m'>
+    <Modal {...getResponsiveModalProps({ size: 'm' })}>
       <TopBar divided title='Первый шаг' />
       <ModalBody withScrollDisable style={styles.body}>
         Модальное окно — окно, которое блокирует работу пользователя с родительским приложением до
@@ -62,7 +62,7 @@ function FirstStep({ setStep }: StepProps) {
 
 function SecondStep({ setStep }: StepProps) {
   return (
-    <Modal size='m'>
+    <Modal {...getResponsiveModalProps({ size: 'm' })}>
       <TopBar divided title='Второй шаг' />
       <ModalBody withScrollDisable style={styles.body}>
         Модальными преимущественно реализованы диалоговые окна, предназначенные для вывода
@@ -80,7 +80,7 @@ function SecondStep({ setStep }: StepProps) {
 
 function ThirdStep({ setStep }: StepProps) {
   return (
-    <Modal size='m'>
+    <Modal {...getResponsiveModalProps({ size: 'm' })}>
       <TopBar divided title='Третий шаг' />
       <ModalBody withScrollDisable style={styles.body}>
         Также модальные окна часто используются для привлечения внимания пользователя к важному
