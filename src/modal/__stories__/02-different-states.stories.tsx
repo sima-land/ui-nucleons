@@ -22,7 +22,8 @@ export default {
 
 export function DifferentStates() {
   const [open, setOpen] = useState<boolean>(false);
-  const [size, setSize] = useState<string>('m');
+
+  const [size, setSize] = useState<any>('m');
   const [header, setHeader] = useState<string>('topbar');
   const [footer, setFooter] = useState<string>('buttons');
 
@@ -105,7 +106,7 @@ export function DifferentStates() {
       </Button>
 
       {open && (
-        <Modal {...getResponsiveModalProps({ size: size as any })} onClose={() => setOpen(false)}>
+        <Modal {...getResponsiveModalProps({ size })} onClose={() => setOpen(false)}>
           {header === 'topbar' && (
             <TopBar
               size='unset'
@@ -120,17 +121,15 @@ export function DifferentStates() {
           </ModalBody>
 
           {footer === 'buttons' && (
-            <BottomBar
-              divided
-              size='unset'
-              style={{ width: '100%', display: 'flex', gap: '12px', padding: '16px' }}
-            >
-              <Button style={{ flexGrow: 1 }} viewType='primary'>
-                Кнопка
-              </Button>
-              <Button style={{ flexGrow: 1 }} viewType='secondary'>
-                Кнопка
-              </Button>
+            <BottomBar divided size='unset'>
+              <div style={{ width: '100%', display: 'flex', gap: '12px', padding: '16px' }}>
+                <Button style={{ flexGrow: 1 }} viewType='primary'>
+                  Кнопка
+                </Button>
+                <Button style={{ flexGrow: 1 }} viewType='secondary'>
+                  Кнопка
+                </Button>
+              </div>
             </BottomBar>
           )}
 
