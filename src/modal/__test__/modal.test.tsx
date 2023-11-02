@@ -1,5 +1,6 @@
 import { act, fireEvent, render } from '@testing-library/react';
 import { Modal } from '..';
+import { useLayer } from '../../helpers/layer';
 
 describe('Modal', () => {
   it('should handle "children" prop', () => {
@@ -102,5 +103,27 @@ describe('Modal', () => {
     rerender(<Modal />);
     expect(queryAllByTestId('modal')).toHaveLength(1);
     expect(queryAllByTestId('login')).toHaveLength(0);
+  });
+
+  it('should provide layer increase', () => {
+    const TestComponent = () => {
+      const layer = useLayer();
+      return <>Layer value is {layer}</>;
+    };
+
+    const { getByTestId } = render(
+      <>
+        <div data-testid='outside-modal'>
+          <TestComponent />
+        </div>
+
+        <Modal>
+          <TestComponent />
+        </Modal>
+      </>,
+    );
+
+    expect(getByTestId('outside-modal').textContent).toBe('Layer value is 0');
+    expect(getByTestId('modal').textContent).toBe('Layer value is 100');
   });
 });
