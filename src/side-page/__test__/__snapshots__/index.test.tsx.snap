@@ -14,7 +14,7 @@ exports[`SidePage should renders correctly 2`] = `
       data-testid="side-page"
     >
       <div
-        class="root size-unset header no-subtitle"
+        class="root size-unset header rounds-m no-subtitle"
         data-testid="top-bar"
       >
         <div
@@ -35,7 +35,7 @@ exports[`SidePage should renders correctly 2`] = `
         </h1>
       </div>
       <div
-        class="root rounds-md__b footer"
+        class="root rounds-m footer"
         data-testid="bottom-bar"
       >
         <p>
