@@ -1,5 +1,5 @@
-import { Modal, ModalBody } from '@sima-land/ui-nucleons/modal';
-import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
+import { Modal, ModalBody, getResponsiveModalProps } from '@sima-land/ui-nucleons/modal';
+import { BottomBar, BottomBarStyle } from '@sima-land/ui-nucleons/bottom-bar';
 import { Button } from '@sima-land/ui-nucleons/button';
 import { CSSProperties, useState } from 'react';
 
@@ -18,10 +18,11 @@ const styles = {
   } satisfies CSSProperties,
 
   footer: {
+    '--bottom-bar-height': 'auto',
     padding: '12px 16px',
     display: 'flex',
     gap: '12px',
-  } satisfies CSSProperties,
+  } satisfies BottomBarStyle,
 
   item: {
     flexGrow: 1,
@@ -49,7 +50,7 @@ export function FluidBottomBar() {
       </Button>
 
       {open && (
-        <Modal size='m' onClose={() => setOpen(false)}>
+        <Modal {...getResponsiveModalProps({ size: 'm' })} onClose={() => setOpen(false)}>
           <ModalBody style={styles.body}>
             Модальное окно — окно, которое блокирует работу пользователя с родительским приложением
             до тех пор, пока пользователь это окно не закроет.

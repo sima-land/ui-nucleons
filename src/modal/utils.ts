@@ -7,17 +7,18 @@ const cx = classNames.bind(styles);
 /**
  * Вернет свойства Modal для формирования.
  * @param config Настройки.
- * @param customProps Пользовательские свойства.
+ * @param config.size Размер на desktop-разрешениях.
+ * @param config.className Дополнительный класс.
  * @return Свойства Modal.
  */
-export function getResponsiveModalProps(
-  config: { size: ModalSize },
-  customProps?: { className?: string },
-): ModalProps {
-  const { size } = config;
+export function getResponsiveModalProps(config: {
+  size: ModalSize;
+  className?: string;
+}): ModalProps {
+  const { size, className } = config;
 
   return {
     size: 'unset',
-    className: cx(`size-${size}`, customProps?.className),
+    className: cx(`size-${size}`, className),
   };
 }
