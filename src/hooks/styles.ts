@@ -12,9 +12,9 @@ export function useViewportHeightUnit(ref: RefObject<HTMLElement | null>) {
     const offList: VoidFunction[] = [];
 
     // eslint-disable-next-line require-jsdoc, jsdoc/require-jsdoc
-    function setVariable() {
+    const setVariable = () => {
       ref.current && setViewportHeightUnit(ref.current);
-    }
+    };
 
     offList.push(on(window, 'resize', setVariable));
     offList.push(on(window, 'orientationchange', setVariable));
