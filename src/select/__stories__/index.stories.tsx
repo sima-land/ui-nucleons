@@ -226,6 +226,50 @@ export function TestAllDisabled() {
 
 TestAllDisabled.storyName = 'Тест: Все опции недоступны';
 
+export function TestFocus() {
+  const [value, setValue] = useState<string>('');
+
+  return (
+    <LargePage>
+      <Select label='Номер' value={value} onValueChange={setValue}>
+        <DropdownItem>Ноль</DropdownItem>
+        <DropdownItem>Один</DropdownItem>
+        <DropdownItem>Два</DropdownItem>
+        <DropdownItem disabled>Три</DropdownItem>
+        <DropdownItem>Четыре</DropdownItem>
+        <DropdownItem>Пять</DropdownItem>
+        <DropdownItem>Шесть</DropdownItem>
+      </Select>
+    </LargePage>
+  );
+}
+
+TestFocus.storyName = 'Тест: Фокусировка';
+
+export function TestFieldOverflow() {
+  const [value, setValue] = useState<string>('');
+
+  return (
+    <>
+      <Select label='Номер' value={`${value} `.repeat(20).trim()} onValueChange={setValue}>
+        <DropdownItem>Ноль</DropdownItem>
+        <DropdownItem>Один</DropdownItem>
+        <DropdownItem>Два</DropdownItem>
+        <DropdownItem disabled>Три</DropdownItem>
+        <DropdownItem>Четыре</DropdownItem>
+        <DropdownItem>Пять</DropdownItem>
+        <DropdownItem>Шесть</DropdownItem>
+        <DropdownItem>Семь</DropdownItem>
+        <DropdownItem>Восемь</DropdownItem>
+        <DropdownItem>Девять</DropdownItem>
+        <DropdownItem>Десять</DropdownItem>
+      </Select>
+    </>
+  );
+}
+
+TestFieldOverflow.storyName = 'Тест: Переполнение поля';
+
 export function TestInModal() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState<string>('');
@@ -236,10 +280,13 @@ export function TestInModal() {
         Показать окно
       </Button>
 
+      {/* для проверки блокировки прокрутки страницы */}
+      <LoremIpsum paragraphCount={30} sentenceCount={30} />
+
       {open && (
         <Modal {...getResponsiveModalProps({ size: 'm' })} onClose={() => setOpen(false)}>
           <TopBar title='Тест' subtitle='Select внутри Modal' divided />
-          <ModalBody>
+          <ModalBody withScrollDisable>
             <div style={{ padding: 16 }}>
               <LoremIpsum paragraphCount={10} />
 
@@ -281,47 +328,3 @@ export function TestInModal() {
 }
 
 TestInModal.storyName = 'Тест: В модальном окне';
-
-export function TestFocus() {
-  const [value, setValue] = useState<string>('');
-
-  return (
-    <LargePage>
-      <Select label='Номер' value={value} onValueChange={setValue}>
-        <DropdownItem>Ноль</DropdownItem>
-        <DropdownItem>Один</DropdownItem>
-        <DropdownItem>Два</DropdownItem>
-        <DropdownItem disabled>Три</DropdownItem>
-        <DropdownItem>Четыре</DropdownItem>
-        <DropdownItem>Пять</DropdownItem>
-        <DropdownItem>Шесть</DropdownItem>
-      </Select>
-    </LargePage>
-  );
-}
-
-TestFocus.storyName = 'Тест: Фокусировка';
-
-export function TestBlockOverflow() {
-  const [value, setValue] = useState<string>('');
-
-  return (
-    <>
-      <Select label='Номер' value={`${value} `.repeat(20).trim()} onValueChange={setValue}>
-        <DropdownItem>Ноль</DropdownItem>
-        <DropdownItem>Один</DropdownItem>
-        <DropdownItem>Два</DropdownItem>
-        <DropdownItem disabled>Три</DropdownItem>
-        <DropdownItem>Четыре</DropdownItem>
-        <DropdownItem>Пять</DropdownItem>
-        <DropdownItem>Шесть</DropdownItem>
-        <DropdownItem>Семь</DropdownItem>
-        <DropdownItem>Восемь</DropdownItem>
-        <DropdownItem>Девять</DropdownItem>
-        <DropdownItem>Десять</DropdownItem>
-      </Select>
-    </>
-  );
-}
-
-TestBlockOverflow.storyName = 'Тест: Переполнение блока';

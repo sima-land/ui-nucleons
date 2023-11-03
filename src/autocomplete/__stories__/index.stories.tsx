@@ -162,6 +162,9 @@ export function TestInModal() {
         Показать окно
       </Button>
 
+      {/* для проверки блокировки прокрутки страницы */}
+      <LoremIpsum paragraphCount={30} sentenceCount={30} />
+
       {open && (
         <Modal {...getResponsiveModalProps({ size: 'm' })} onClose={() => setOpen(false)}>
           <TopBar title='Тест' subtitle='Autocomplete внутри Modal' divided />
@@ -195,7 +198,7 @@ export function TestInModal() {
           </ModalBody>
           <BottomBar divided>
             <CleanGroup>
-              <CleanButton onClick={() => setOpen(true)}>Ясно</CleanButton>
+              <CleanButton onClick={() => setOpen(false)}>Ясно</CleanButton>
             </CleanGroup>
           </BottomBar>
         </Modal>

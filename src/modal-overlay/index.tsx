@@ -42,7 +42,7 @@ export function ModalOverlay({
         data-testid={testId}
         style={{
           ...style,
-          zIndex: layer, // z-index должен быть на том же элементе что и position: fixed
+          zIndex: layer, // ВАЖНО: z-index должен быть на том же элементе что и position: fixed
         }}
       >
         {children}

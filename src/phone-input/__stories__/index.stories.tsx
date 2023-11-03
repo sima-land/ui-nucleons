@@ -176,10 +176,14 @@ export function TestInModal() {
         Показать окно
       </Button>
 
+      {/* для проверки блокировки прокрутки страницы */}
+      <LoremIpsum paragraphCount={30} sentenceCount={30} />
+
       {open && (
         <Modal {...getResponsiveModalProps({ size: 'm' })} onClose={() => setOpen(false)}>
           <TopBar title='Тест' subtitle='PhoneInput внутри Modal' divided />
-          <ModalBody>
+
+          <ModalBody withScrollDisable>
             <div style={{ padding: 16 }}>
               <LoremIpsum paragraphCount={10} />
 
@@ -197,6 +201,7 @@ export function TestInModal() {
               <LoremIpsum paragraphCount={10} />
             </div>
           </ModalBody>
+
           <BottomBar divided>
             <CleanGroup>
               <CleanButton onClick={() => setOpen(false)}>Ясно</CleanButton>
