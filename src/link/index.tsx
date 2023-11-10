@@ -49,7 +49,7 @@ const getContentProps = (children: ReactNode, noIndex?: boolean) =>
   noIndex ? { dangerouslySetInnerHTML: getNoIndex(children) } : { children };
 
 /**
- * Компонент ссылки.
+ * Ссылка.
  * @param props Свойства компонента. Поддерживаются свойства span/a.
  * @param ref Реф для DOM-элемента ссылки.
  * @return Элемент.

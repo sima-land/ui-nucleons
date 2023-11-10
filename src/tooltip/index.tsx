@@ -20,7 +20,7 @@ export interface TooltipProps {
 const cx = classnames.bind(styles);
 
 /**
- * Компонент подсказки.
+ * Подсказка - блок предназначенный для вывода выпадающей информации.
  * @deprecated Можно использовать `popup`.
  * @param props Свойства.
  * @return Элемент.

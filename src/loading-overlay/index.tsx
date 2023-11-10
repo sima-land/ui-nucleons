@@ -20,7 +20,7 @@ export interface LoadingOverlayProps {
 const cx = classnames.bind(classes);
 
 /**
- * Компонент перекрытия для отображения состояния загрузки.
+ * Перекрытие для отображения состояния загрузки.
  * @deprecated Следует использовать Spinner напрямую.
  * @param props Свойства.
  * @return Элемент.

@@ -8,7 +8,7 @@ export type ToggleProps = CheckboxInputProps;
 const cx = classnames.bind(styles);
 
 /**
- * Компонент стилизованного переключателя (input[type=checkbox]).
+ * Тогл - элемент для управления полем с двумя состояниями - включено и отключено.
  */
 export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
   (

@@ -8,7 +8,7 @@ import styles from './block.module.scss';
 import classNames from 'classnames';
 
 /**
- * Компонент открывашки в виде поля.
+ * "Открывашка" для Select в виде поля.
  * @param props Свойства.
  * @return Элемент.
  */

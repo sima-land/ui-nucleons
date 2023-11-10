@@ -113,7 +113,7 @@ const ALIGN_ITEMS = new Set(['start', 'end', 'center', 'baseline', 'stretch']);
 const JUSTIFY_CONTENT = new Set(['start', 'end', 'center', 'between', 'around']);
 
 /**
- * Компонент блока, реализующего оформление в соответствии с дизайн-системой.
+ * Блок с возможностью быстрой стилизации.
  * @param props Свойства.
  * @deprecated
  * @return Элемент.

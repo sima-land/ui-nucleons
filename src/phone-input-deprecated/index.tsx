@@ -52,7 +52,7 @@ const formatValue = (value: string, country: Country): string =>
   value.replace(/\D/g, '').slice(country.codeChars.length);
 
 /**
- * Компонент поля ввода номера телефона.
+ * Поле ввода номера телефона.
  * @param props Параметры компонента.
  * @deprecated Нужно использовать новую реализацию "@sima-land/ui-nucleons/phone-input".
  * @return Элемент.

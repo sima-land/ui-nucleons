@@ -6,8 +6,8 @@ import { AvatarProps } from '.';
 const cx = classnames.bind(styles);
 
 /**
- * Компонент аватара.
- * @param props Свойства компонента.
+ * Аватар - блок для репрезентации пользователя с помощью картинки, инициалов или иконки-заглушки.
+ * @param props Свойства.
  * @return Элемент.
  */
 export function Avatar({

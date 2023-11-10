@@ -1,5 +1,5 @@
 import { Card, CardContent } from '@sima-land/ui-nucleons/card';
-import { useState } from 'react';
+import { CSSProperties, useState } from 'react';
 import { TopBar } from '@sima-land/ui-nucleons/top-bar';
 import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
 import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
@@ -10,7 +10,7 @@ import { CustomScrollbar } from '@sima-land/ui-nucleons/_internal/custom-scrollb
 import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Cross';
 
 export default {
-  title: 'common/Card',
+  title: 'deprecated/Card',
   component: Card,
   parameters: {
     layout: 'padded',
@@ -62,31 +62,45 @@ Primary.storyName = 'Пример: верстка по макетам';
 export function ComboDropdown() {
   const [count, setCount] = useState(3);
 
+  const styles = {
+    controls: {
+      display: 'flex',
+      gap: '12px',
+      marginBottom: '20px',
+    },
+
+    root: {
+      width: '352px',
+      maxHeight: '320px',
+      minHeight: '112px',
+    } satisfies CSSProperties,
+
+    body: {
+      maxHeight: 'calc(320px - 64px - 16px)',
+      margin: '8px 0',
+    } satisfies CSSProperties,
+  };
+
   return (
     <>
-      {/* указываем так потому что через JSX почему-то OS неправильно воспринимает */}
-      <style>{`
-        .scrollable { max-height: calc(304px - 64px); padding: 8px 0; }
-      `}</style>
-
-      <div style={{ marginBottom: 20, display: 'flex', gap: 10 }}>
-        <Button size='s' onClick={() => setCount(n => n + 1)}>
+      <div style={styles.controls}>
+        <Button size='xs' onClick={() => setCount(n => n + 1)}>
           Добавить
         </Button>
-        <Button size='s' onClick={() => setCount(n => Math.max(n - 1, 0))}>
-          Убрать
+        <Button size='xs' onClick={() => setCount(n => Math.max(n - 1, 0))}>
+          Убавить
         </Button>
       </div>
 
-      <Card rounds='m' shadow='z4' style={{ width: 352, maxHeight: 304, minHeight: 112 }}>
+      <Card rounds='m' shadow='z4' style={styles.root}>
         <CardContent>
-          <CustomScrollbar overflow={{ x: 'hidden', y: 'scroll' }} className='scrollable'>
+          <CustomScrollbar overflow={{ x: 'hidden', y: 'scroll' }} style={styles.body}>
             {[...Array(count).keys()].map(index => (
-              <DropdownItem key={index}>Hello #{index + 1}</DropdownItem>
+              <DropdownItem key={index}>Элемент {index + 1}</DropdownItem>
             ))}
           </CustomScrollbar>
         </CardContent>
-        <BottomBar divided>
+        <BottomBar divided size='s'>
           <CleanGroup>
             <CleanButton>Отправить</CleanButton>
           </CleanGroup>

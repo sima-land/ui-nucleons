@@ -17,7 +17,7 @@ export interface PaginationProps {
 }
 
 /**
- * Компонент списка кнопок навигации по страницам.
+ * Список кнопок навигации по страницам.
  * @param props Свойства.
  * @return Элемент.
  * @deprecated

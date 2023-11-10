@@ -15,7 +15,7 @@ export const TOP_BAR_HEIGHT: Readonly<Record<TopBarSize, number>> = {
 const cx = classnames.bind(styles);
 
 /**
- * Компонент шапки модальных окон/экранов.
+ * Топ-бар - блок для вывода содержимого в верхней части карточек, модальных окон и других сложных элементов.
  * @param props Свойства.
  * @return Элемент.
  */
@@ -89,7 +89,7 @@ export function TopBar({
 }
 
 /**
- * Компонент группы кнопок.
+ * Группа кнопок.
  * @param props Свойства.
  * @return Элемент.
  */
@@ -110,7 +110,7 @@ function TopBarButtonGroup({
 }
 
 /**
- * Компонент кнопки-иконки.
+ * Кнопки для TopBar.
  * @param props Свойства.
  * @return Элемент.
  */

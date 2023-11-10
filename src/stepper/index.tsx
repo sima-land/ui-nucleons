@@ -61,7 +61,7 @@ export interface StepperProps
 const cx = classnames.bind(styles);
 
 /**
- * Stepper - поле ввода количества.
+ * Степпер - поле ввода количества.
  * @param props Свойства.
  * @return Элемент.
  */

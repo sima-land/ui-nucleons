@@ -90,7 +90,7 @@ const isAuto = eq('auto');
 // не по умолчанию так как проблемы с storybook: https://github.com/styleguidist/react-docgen-typescript/issues/334
 
 /**
- * Карусель.
+ * Карусель - блок с возможностью прокрутки содержимого в виде "слайдов" по горизонтали или вертикали.
  */
 export class Carousel extends Component<CarouselProps, State> {
   infinite: boolean;

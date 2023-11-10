@@ -67,7 +67,7 @@ export const defaultHeights: Readonly<Record<Size, LineHeight>> = {
 export const ALIGNS = new Set<Align>(['left', 'center', 'right', 'justify']);
 
 /**
- * Компонент для стилизации текста.
+ * Блок с возможностью быстрой стилизации текста по дизайн-гайдам.
  * @deprecated
  * @param props Свойства.
  * @return Элемент.

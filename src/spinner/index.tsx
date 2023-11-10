@@ -44,7 +44,7 @@ export const DIAMETERS: Record<SpinnerSize | SpinnerLegacySize, number> = {
 const DEFAULT_COLOR: Token = 'basic-blue';
 
 /**
- * Компонент спиннера.
+ * Спиннер - визуальный индикатор загрузки.
  * @param props Свойства.
  * @return Элемент.
  */

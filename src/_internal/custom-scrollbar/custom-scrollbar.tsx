@@ -17,7 +17,7 @@ import styles from './custom-scrollbar.module.scss';
 const cx = classNames.bind(styles);
 
 /**
- * Компонент блока с кастомными полосами прокрутки по гайдам.
+ * Блок с кастомными полосами прокрутки.
  * @param props Свойства.
  * @return Элемент.
  * @todo Переименовать в StyledScrollbars и вынести из _internal?

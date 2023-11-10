@@ -6,7 +6,7 @@ import styles from './chip.module.scss';
 const cx = classnames.bind(styles);
 
 /**
- * Чип.
+ * Чип - компактный элемент для вывода атрибутов или опций.
  * @param props Свойства.
  * @return Элемент.
  */

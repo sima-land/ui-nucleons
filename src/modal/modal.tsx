@@ -7,7 +7,7 @@ import styles from './modal.module.scss';
 const cx = classNames.bind(styles);
 
 /**
- * Компонент модального окна.
+ * Модальное окно - окно, блокирующее работу с основным интерфейсом до тех пор, пока оно не будет закрыт.
  * @param props Свойства.
  * @return Элемент.
  */

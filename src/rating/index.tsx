@@ -21,7 +21,7 @@ export interface RatingProps extends HTMLAttributes<HTMLDivElement> {
 const cx = classnames.bind(styles);
 
 /**
- * Компонент рейтинга.
+ * Звезды рейтинга.
  * @param props Свойства.
  * @return Элемент.
  */

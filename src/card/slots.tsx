@@ -13,7 +13,7 @@ export interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * Компонент слота "шапки" карточки.
+ * Слот "шапки" карточки.
  * @param props Свойства.
  * @deprecated Нужно использовать TopBar.
  * @return Элемент.
@@ -44,7 +44,7 @@ export interface CardContentProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * Компонент слота основного контента карточки.
+ * Слот основного контента карточки.
  * @param props Свойства.
  * @return Элемент.
  */
@@ -68,7 +68,7 @@ export interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * Компонент слота "подвала" карточки.
+ * Слот "подвала" карточки.
  * @param props Свойства.
  * @deprecated Нужно использовать BottomBar.
  * @return Элемент.

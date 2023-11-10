@@ -8,11 +8,8 @@ export interface PageButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonEle
 }
 
 /**
- * Компонент кнопки страницы по умолчанию. Поддерживаются свойства элемента button.
- * @param props Свойства.
- * @param props.selected Выбрана ли кнопка.
- * @param props.className CSS-класс.
- * @param props.rounded С какой стороны делать скругления.
+ * Кнопка страницы.
+ * @param props Свойства. Поддерживаются свойства элемента button.
  * @return Элемент.
  * @deprecated
  */
