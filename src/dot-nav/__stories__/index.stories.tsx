@@ -2,7 +2,7 @@ import { DotNav, DotNavSize } from '@sima-land/ui-nucleons/dot-nav';
 import { CSSProperties, useState } from 'react';
 import { times } from 'lodash';
 
-const styles: Record<string, CSSProperties> = {
+const styles = {
   wrap: {
     height: 160,
     maxWidth: 480,
@@ -13,7 +13,7 @@ const styles: Record<string, CSSProperties> = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-  },
+  } satisfies CSSProperties,
   btnWrap: {
     position: 'absolute',
     top: 0,
@@ -25,7 +25,7 @@ const styles: Record<string, CSSProperties> = {
     justifyContent: 'space-between',
     padding: 32,
     pointerEvents: 'none',
-  },
+  } satisfies CSSProperties,
   btn: {
     border: 0,
     pointerEvents: 'all',
@@ -36,7 +36,7 @@ const styles: Record<string, CSSProperties> = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-  },
+  } satisfies CSSProperties,
 };
 
 export default {

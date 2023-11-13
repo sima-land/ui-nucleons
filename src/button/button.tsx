@@ -1,74 +1,8 @@
-import {
-  AnchorHTMLAttributes,
-  ButtonHTMLAttributes,
-  ComponentType,
-  CSSProperties,
-  forwardRef,
-  HTMLAttributes,
-  ReactElement,
-  SVGAttributes,
-} from 'react';
+import { forwardRef, ReactElement } from 'react';
+import type { ButtonProps } from './types';
 import { SpinnerSVG } from '../spinner';
 import classnames from 'classnames/bind';
 import styles from './button.module.scss';
-
-export type ButtonSize = 'xs' | 's' | 'm';
-
-export type ButtonViewType = 'primary' | 'secondary' | 'success' | 'unset';
-
-export type ButtonAppearance = 'button' | 'link' | 'container';
-
-export type ButtonIconPosition = 'start' | 'end';
-
-export interface ButtonStyle extends CSSProperties {
-  // ВАЖНО: пока не добавляем сюда остальные переменные которые используются в стилях
-  '--button-color'?: string;
-  '--button-background'?: string;
-  '--button-hover-color'?: string;
-  '--button-hover-background'?: string;
-  '--button-disabled-color'?: string;
-  '--button-disabled-background'?: string;
-}
-
-interface CommonProps<T extends ButtonAppearance = ButtonAppearance> {
-  /** Определяет внешний вид кнопки. */
-  viewType?: ButtonViewType;
-
-  /** Определяет тип корневого элемента. */
-  appearance?: T;
-
-  /** Иконка. */
-  icon?: ComponentType<SVGAttributes<SVGSVGElement>>;
-
-  /** Позиция иконки относительно текста. */
-  iconPosition?: ButtonIconPosition;
-
-  /** Размер. */
-  size?: ButtonSize;
-
-  /** Нужно ли отображать состояние загрузки. */
-  loading?: boolean;
-
-  /** Отключенное состояние. */
-  disabled?: boolean;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
-
-  /** Стили. */
-  style?: ButtonStyle;
-}
-
-type AsButtonProps = CommonProps &
-  Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof CommonProps> & { appearance?: 'button' };
-
-type AsAnchorProps = CommonProps &
-  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof CommonProps> & { appearance: 'link' };
-
-type AsContainerProps = CommonProps &
-  Omit<HTMLAttributes<HTMLDivElement>, keyof CommonProps> & { appearance: 'container' };
-
-export type ButtonProps = AsButtonProps | AsAnchorProps | AsContainerProps;
 
 const cx = classnames.bind(styles);
 

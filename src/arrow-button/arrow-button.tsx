@@ -1,4 +1,5 @@
 import type { ElementType, SVGAttributes } from 'react';
+import type { ArrowDirection, ArrowButtonProps } from './types';
 import UpSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowUp';
 import RightSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowRight';
 import DownSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowDown';
@@ -10,40 +11,22 @@ import LeftSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowLeft';
 import classNames from 'classnames/bind';
 import styles from './arrow-button.module.scss';
 
-export type ArrowButtonSize = 's' | 'l';
-
-export type ArrowDirection = 'up' | 'right' | 'down' | 'left';
-
-type IconSet = Readonly<Record<ArrowDirection, ElementType<SVGAttributes<SVGSVGElement>>>>;
-
-export interface ArrowButtonProps
-  extends Omit<JSX.IntrinsicElements['button'], 'size' | 'children'> {
-  /** Размер. */
-  size?: ArrowButtonSize;
-
-  /** Направление (отвечает за иконку). */
-  direction?: ArrowDirection;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
-}
-
 const cx = classNames.bind(styles);
 
-const ICONS: Readonly<Record<ArrowButtonSize, IconSet>> = {
+const ICONS = {
   s: {
     up: UpSmallSVG,
     right: RightSmallSVG,
     down: DownSmallSVG,
     left: LeftSmallSVG,
-  },
+  } satisfies Record<ArrowDirection, ElementType<SVGAttributes<SVGSVGElement>>>,
   l: {
     up: UpSVG,
     right: RightSVG,
     down: DownSVG,
     left: LeftSVG,
-  },
-};
+  } satisfies Record<ArrowDirection, ElementType<SVGAttributes<SVGSVGElement>>>,
+} as const;
 
 /**
  * Кнопка-стрелка - круглая кнопка со стрелкой.
