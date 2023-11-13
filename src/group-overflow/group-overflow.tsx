@@ -1,17 +1,8 @@
-import { Children, CSSProperties, HTMLAttributes, ReactNode, useRef } from 'react';
+import { Children, CSSProperties, useRef } from 'react';
 import { useItemsHide } from './utils';
+import { GroupOverflowProps } from './types';
 import classNames from 'classnames';
 import styles from './group-overflow.module.scss';
-
-export type RenderTail = (data: { hiddenCount: number }) => ReactNode;
-
-export interface GroupOverflowProps extends HTMLAttributes<HTMLDivElement> {
-  /** Расстояние между элементами в пикселях. */
-  gap?: number;
-
-  /** Вернёт "замыкающий" элемент, который будет выведен по аналогии с многоточием для текста. */
-  tail?: RenderTail;
-}
 
 /**
  * Группа со скрытием не влезающих элементов.

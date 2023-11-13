@@ -1,72 +1,13 @@
-import {
-  InputHTMLAttributes,
-  MouseEventHandler,
-  Ref,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from 'react';
-import { BaseInput, BaseInputAsInputProps } from '../base-input';
-import { FieldBlock, FieldBlockProps } from '../field-block';
+import type { InputProps } from './types';
+import { useImperativeHandle, useRef, useState } from 'react';
+import { BaseInput } from '../base-input';
+import { FieldBlock } from '../field-block';
 import { definePlaceholderColor, useFieldMouseDown, useFilledState } from './utils';
 import { triggerInput } from '../helpers/events';
 import Cross16SVG from '@sima-land/ui-quarks/icons/16x16/Filled/Cross';
 import Cross24SVG from '@sima-land/ui-quarks/icons/24x24/Filled/Cross';
 import classNames from 'classnames/bind';
 import styles from './input.module.scss';
-
-type HTMLInputProps = Pick<
-  InputHTMLAttributes<HTMLInputElement>,
-  | 'autoComplete'
-  | 'autoFocus'
-  | 'defaultValue'
-  | 'disabled'
-  | 'id'
-  | 'name'
-  | 'onBlur'
-  | 'onChange'
-  | 'onFocus'
-  | 'onInput'
-  | 'placeholder'
-  | 'readOnly'
-  | 'required'
-  | 'type'
-  | 'value'
->;
-
-export type InputType = Extract<
-  InputHTMLAttributes<HTMLInputElement>['type'],
-  'text' | 'password' | 'search' | 'email' | 'tel' | 'number'
->;
-
-export interface InputProps extends HTMLInputProps, FieldBlockProps {
-  /** Ref элемента input. */
-  inputRef?: Ref<HTMLInputElement>;
-
-  /** Свойства BaseInputProps. */
-  baseInputProps?: BaseInputAsInputProps;
-
-  /** Тип поля. */
-  type?: InputType;
-
-  /** Нужно ли выводить кнопку очистки поля. */
-  clearable?: boolean;
-
-  /** Сработает при очистке поля. */
-  onClear?: MouseEventHandler<SVGSVGElement>;
-
-  /** Значение. */
-  value?: string;
-
-  /** Значение по умолчанию. */
-  defaultValue?: string;
-
-  /** Стили корневого элемента. */
-  style?: Required<FieldBlockProps>['rootProps']['style'];
-
-  /** CSS-класс корневого элемента. */
-  className?: Required<FieldBlockProps>['rootProps']['className'];
-}
 
 const cx = classNames.bind(styles);
 
@@ -109,8 +50,8 @@ export function Input({
   failed,
   caption,
   blockProps,
-  'data-testid': testId = 'input',
   focused: focusedProp,
+  'data-testid': testId = 'input',
   ...restProps
 }: InputProps) {
   const ref = useRef<HTMLInputElement>(null);

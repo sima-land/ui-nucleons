@@ -1,41 +1,8 @@
-import { AnchorHTMLAttributes, forwardRef, ReactNode } from 'react';
+import type { LinkProps } from './types';
+import { forwardRef, ReactNode } from 'react';
 import { getNoIndex } from '../helpers/get-no-index';
-import { Token } from '../colors';
 import classnames from 'classnames/bind';
 import styles from './link.module.scss';
-
-export type LinkColor = Extract<
-  Token,
-  | 'basic-blue'
-  | 'basic-gray87'
-  | 'basic-gray38'
-  | 'basic-white'
-  | 'additional-red'
-  | 'additional-teal'
->;
-
-export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
-  /** Цвет (название токена). */
-  color?: LinkColor;
-
-  /**
-   * Нужно ли оборачивать содержимое комментариями no-index.
-   * @deprecated
-   */
-  noIndex?: boolean;
-
-  /** Выводить как псевдо-ссылку. */
-  pseudo?: boolean;
-
-  /** Отключает ссылку подобно кнопке. */
-  disabled?: boolean;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
-
-  /** Нужно ли подчеркивание. */
-  underline?: boolean;
-}
 
 const cx = classnames.bind(styles);
 

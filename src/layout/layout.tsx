@@ -1,5 +1,4 @@
-import { Ref } from 'react';
-import { LayoutProps } from './types';
+import type { LayoutProps } from './types';
 import classNames from 'classnames/bind';
 import styles from './layout.module.scss';
 
@@ -10,13 +9,7 @@ const cx = classNames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export function Layout({
-  children,
-  className,
-  disabledOn = [],
-  rootRef,
-  ...rest
-}: Omit<LayoutProps, 'element'> & { rootRef?: Ref<HTMLDivElement> }) {
+export function Layout({ children, className, disabledOn = [], rootRef, ...rest }: LayoutProps) {
   const rootClassName = cx(
     'layout',
     disabledOn.length > 0 && disabledOn.map(key => `disabled-${key}`),

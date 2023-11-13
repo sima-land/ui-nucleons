@@ -1,28 +1,8 @@
-import { Children, CSSProperties, Fragment, MouseEventHandler, ReactNode, Ref } from 'react';
-import { WithTestId } from '../types';
+import type { InfoTextProps } from './types';
+import { Children, Fragment } from 'react';
 import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Information';
 import classNames from 'classnames/bind';
 import styles from './info-text.module.scss';
-
-export interface InfoTextProps extends WithTestId {
-  /** Текст. */
-  children?: ReactNode;
-
-  /** Класс. */
-  className?: string;
-
-  /** Стили. */
-  style?: CSSProperties;
-
-  /** Ref элемента иконки. */
-  iconRef?: Ref<HTMLButtonElement>;
-
-  /** Нужно ли выводить иконку как "активную". */
-  iconActive?: boolean;
-
-  /** Сработает при клике на иконку. */
-  onIconClick?: MouseEventHandler;
-}
 
 const cx = classNames.bind(styles);
 

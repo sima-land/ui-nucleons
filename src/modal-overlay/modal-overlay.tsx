@@ -1,16 +1,9 @@
-import { HTMLAttributes, Ref, useImperativeHandle, useRef } from 'react';
+import type { ModalOverlayProps } from './types';
+import { useImperativeHandle, useRef } from 'react';
 import { useViewportHeightUnit } from '../hooks/styles';
 import { LayerProvider, useLayer } from '../helpers/layer';
 import classNames from 'classnames';
 import styles from './modal-overlay.module.scss';
-
-export interface ModalOverlayProps extends HTMLAttributes<HTMLDivElement> {
-  /** Реф корневого элемента. */
-  rootRef?: Ref<HTMLDivElement>;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
-}
 
 /**
  * Полноэкранное затемнение для модальных компонентов (Alert, Modal, SidePage...).
