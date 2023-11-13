@@ -1,25 +1,9 @@
+import type { DotNavProps } from './types';
 import { useRef } from 'react';
-import { times } from 'lodash';
-import classnames from 'classnames/bind';
+import classNames from 'classnames/bind';
 import styles from './dot-nav.module.scss';
 
-export type DotNavSize = 's' | 'l';
-
-export interface DotNavProps {
-  /** Индекс выбранной точки. */
-  current?: number;
-
-  /** Количество точек. */
-  total?: number;
-
-  /** Сработает при выборе точки. */
-  onSelect?: (index: number) => void;
-
-  /** Размер. */
-  size?: DotNavSize;
-}
-
-const cx = classnames.bind(styles);
+const cx = classNames.bind(styles);
 
 /**
  * Точки навигации. Используются в основном рядом с каруселями и слайдерами.
@@ -39,24 +23,26 @@ export function DotNav({ size = 's', current = 0, total = 1, onSelect }: DotNavP
 
   return (
     <div className={cx('root', `size-${size}`)} style={{ width: maxWidth, height: itemSize }}>
-      {times(total).map(index => {
-        const position = index - shift + 1;
+      {Array(total)
+        .fill(0)
+        .map((zero, index) => {
+          const position = index - shift + 1;
 
-        return (
-          <div
-            key={index}
-            style={{
-              left: `${correction + (index - shift) * (itemSize + itemGutter)}px`,
-            }}
-            onClick={() => onSelect?.(index)}
-            className={cx(
-              'item',
-              index === current && 'active',
-              withShift && (position <= 0 || position >= 4) && 'distant',
-            )}
-          />
-        );
-      })}
+          return (
+            <div
+              key={index}
+              style={{
+                left: `${correction + (index - shift) * (itemSize + itemGutter)}px`,
+              }}
+              onClick={() => onSelect?.(index)}
+              className={cx(
+                'item',
+                index === current && 'active',
+                withShift && (position <= 0 || position >= 4) && 'distant',
+              )}
+            />
+          );
+        })}
     </div>
   );
 }

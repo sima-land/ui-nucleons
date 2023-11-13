@@ -169,7 +169,7 @@ function ExpandableGroupInner({
   );
 }
 
-const ExpandableItem = forwardRef<HTMLLIElement, ExpandableGroupItemProps>(
+export const ExpandableItem = forwardRef<HTMLLIElement, ExpandableGroupItemProps>(
   ({ children, onClick, 'data-testid': testId = 'expandable:item' }, ref) => {
     const { hidden } = useContext(ItemContext);
 

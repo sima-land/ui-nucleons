@@ -19,6 +19,6 @@ export interface FieldProps {
 
 /** Свойства компонента поля переключателя (input[type="checkbox"]). */
 export interface CheckboxInputProps
-  extends InputHTMLAttributes<HTMLInputElement>,
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>,
     FieldProps,
     WithTestId {}

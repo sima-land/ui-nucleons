@@ -1,11 +1,9 @@
 import { forwardRef } from 'react';
-import { CheckboxInputProps } from '../types';
-import classnames from 'classnames/bind';
+import { CheckboxProps } from './types';
+import classNames from 'classnames/bind';
 import styles from './checkbox.module.scss';
 
-export type CheckboxProps = CheckboxInputProps;
-
-const cx = classnames.bind(styles);
+const cx = classNames.bind(styles);
 
 /**
  * Чекбокс - элемент для управления параметром с двумя состояниями - включено и отключено.
