@@ -6,6 +6,7 @@ import { ReactNode, useEffect } from 'react';
  * @return Элемент.
  */
 export function Lifecycle({
+  // @todo onMountSync (useLayoutEffect)
   children,
   onMount,
   onUnmount,
