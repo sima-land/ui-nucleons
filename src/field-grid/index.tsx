@@ -82,7 +82,7 @@ export const FieldGrid: FieldGridComponent = ({ children, rootProps }) => {
 };
 
 /**
- * Ряда для сетки полей. Может быть использован только как дочерний для FieldGrid.
+ * Ряд для сетки полей. Может быть использован только как дочерний для FieldGrid.
  * @param props Свойства.
  * @param props.children Содержимое, дочерними элементами могут быть только FieldGrid.Cell.
  * @param props.isFirst Является ли ряд первым (будет задан автоматически).
