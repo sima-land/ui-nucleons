@@ -19,7 +19,7 @@ export function ModalBody({
   rootRef,
   viewportRef,
   viewportProps,
-  withScrollDisable,
+  withScrollDisable = false,
   scrollDisableOptions,
   'data-testid': testId = 'modal-body',
   ...restProps

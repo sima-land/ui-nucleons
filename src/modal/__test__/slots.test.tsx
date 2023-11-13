@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import { ModalBody, ModalOverlap, ModalBottomGap } from '..';
 import { createRef } from 'react';
 import { PageScrollProvider } from '../../_internal/page-scroll-lock';
-import { PageScrollLockAdapter } from '@sima-land/ui-nucleons/_internal/page-scroll-lock/types';
+import { PageScrollLockAdapter } from '../../_internal/page-scroll-lock/types';
 
 describe('ModalBody', () => {
   it('should handle "children" prop', () => {
@@ -71,6 +71,24 @@ describe('ModalBody', () => {
     expect(ref.current instanceof HTMLDivElement).toBe(true);
     expect(spy.mock.calls[0][0] === ref.current).toBe(true);
     expect(spy.mock.calls[0][1]).toEqual({ reserveScrollBarGap: true });
+  });
+
+  it('ModalBody should NOT lock page scroll by default', () => {
+    const adapter: PageScrollLockAdapter = {
+      lock: jest.fn(),
+      unlock: jest.fn(),
+    };
+    const spy = jest.fn<PageScrollLockAdapter, any[]>(() => adapter);
+
+    expect(adapter.lock).toHaveBeenCalledTimes(0);
+
+    render(
+      <PageScrollProvider adapter={spy}>
+        <ModalBody>Hello</ModalBody>
+      </PageScrollProvider>,
+    );
+
+    expect(adapter.lock).toHaveBeenCalledTimes(0);
   });
 });
 

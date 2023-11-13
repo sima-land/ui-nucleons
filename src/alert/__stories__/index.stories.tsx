@@ -17,6 +17,11 @@ export default {
 export function Primary() {
   const [open, setOpen] = useState<boolean>(false);
 
+  const style = {
+    padding: '64px 20px',
+    textAlign: 'center',
+  } satisfies CSSProperties;
+
   return (
     <>
       <Button size='s' onClick={() => setOpen(true)}>
@@ -25,13 +30,13 @@ export function Primary() {
 
       {open && (
         <Alert onClose={() => setOpen(false)}>
-          <TopBar title='Ошибка' />
+          <TopBar size='s' title='Ошибка' />
 
-          <AlertBody style={{ padding: '64px 20px', textAlign: 'center' }}>
-            Да нет тут никакой ошибки на самом деле
+          <AlertBody style={style}>
+            <>Да нет тут никакой ошибки на самом деле</>
           </AlertBody>
 
-          <BottomBar divided>
+          <BottomBar size='s' divided>
             <CleanGroup>
               <CleanButton onClick={() => setOpen(false)}>Ясно</CleanButton>
             </CleanGroup>
@@ -63,10 +68,10 @@ export function TestPageScrollLock() {
       </Button>
 
       {open && (
-        <Alert onClose={() => setOpen(false)} withScrollDisable>
+        <Alert onClose={() => setOpen(false)}>
           <TopBar divided title='Тест: Блокировка прокрутки страницы' />
 
-          <AlertBody style={style}>
+          <AlertBody style={style} withScrollDisable>
             <p>Какой-то текст без особого смысла здесь</p>
           </AlertBody>
 
