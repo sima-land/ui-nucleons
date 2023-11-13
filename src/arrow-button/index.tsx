@@ -46,7 +46,7 @@ const ICONS: Readonly<Record<ArrowButtonSize, IconSet>> = {
 };
 
 /**
- * Компонент круглой кнопки со стрелкой.
+ * Кнопка-стрелка - круглая кнопка со стрелкой.
  * @param props Свойства. Поддерживаются свойства элемента button.
  * @return Элемент.
  */

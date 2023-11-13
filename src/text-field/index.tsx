@@ -136,7 +136,7 @@ const modifiersToClasses = ({
   );
 
 /**
- * Компонент текстового поля.
+ * Текстовое поле.
  * @deprecated На адаптивных страницах следует использовать Input или Textarea.
  * @param props Свойства.
  * @return Элемент.

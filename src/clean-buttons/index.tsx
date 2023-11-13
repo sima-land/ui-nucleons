@@ -25,7 +25,7 @@ export interface CleanGroupProps {
 const cx = classnames.bind(styles);
 
 /**
- * Компонент группы прозрачных кнопок.
+ * Группа прозрачных кнопок.
  * @param props Свойства.
  * @return Элемент.
  */
@@ -47,7 +47,7 @@ export function CleanGroup({ size: sizeFromProps, children }: CleanGroupProps) {
 }
 
 /**
- * Компонент прозрачной кнопки.
+ * Прозрачная кнопка.
  * @param props Свойства.
  * @return Элемент.
  */

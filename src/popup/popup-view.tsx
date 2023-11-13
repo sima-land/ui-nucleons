@@ -15,7 +15,7 @@ export interface PopupViewProps extends HTMLAttributes<HTMLDivElement>, WithTest
 const cx = classNames.bind(styles);
 
 /**
- * Popup.
+ * Попап - блок для вывода информации, всплывающий рядом с целевым элементом.
  * @param props Свойства.
  * @return Элемент.
  */

@@ -73,7 +73,7 @@ export type ButtonProps = AsButtonProps | AsAnchorProps | AsContainerProps;
 const cx = classnames.bind(styles);
 
 /**
- * Компонент кнопки, стилизованной по дизайн-гайдам.
+ * Кнопка - запускает действие.
  * @param props Свойства.
  * @return Элемент.
  */

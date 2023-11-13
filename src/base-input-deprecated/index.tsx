@@ -37,7 +37,7 @@ export type BaseInputProps = CustomProps &
   InputHTMLAttributes<HTMLInputElement>;
 
 /**
- * Компонент поля ввода.
+ * Базовое поле ввода.
  * @deprecated Нужно использовать новую реализацию "@sima-land/ui-nucleons/base-input".
  * @param props Свойства. Поддерживаются свойства элемента input.
  * @return Элемент.

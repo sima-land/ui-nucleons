@@ -59,7 +59,7 @@ const TypeCheck = {
 };
 
 /**
- * Компонент сетки полей.
+ * Сетка полей.
  * @deprecated В макетах больше не используются "склеивания" полей.
  * @param props Свойства.
  * @param props.children Содержимое, дочерними элементами могут быть только FieldGrid.Row.
@@ -82,7 +82,7 @@ export const FieldGrid: FieldGridComponent = ({ children, rootProps }) => {
 };
 
 /**
- * Компонент ряда для сетки полей. Может быть использован только как дочерний для FieldGrid.
+ * Ряд для сетки полей. Может быть использован только как дочерний для FieldGrid.
  * @param props Свойства.
  * @param props.children Содержимое, дочерними элементами могут быть только FieldGrid.Cell.
  * @param props.isFirst Является ли ряд первым (будет задан автоматически).
@@ -138,7 +138,7 @@ const Row: FC<RowProps> = ({ isFirst: isFirstRow, isLast: isLastRow, children })
 };
 
 /**
- * Компонент элемента для сетки полей. Может быть использован только как дочерний для FieldGrid.Row.
+ * Элемент для сетки полей. Может быть использован только как дочерний для FieldGrid.Row.
  * @param props Свойства.
  * @param props.size Размер ячейки по горизонтали (будет задан автоматически).
  * @param props.rounds Скругления для поля (будет задан автоматически).

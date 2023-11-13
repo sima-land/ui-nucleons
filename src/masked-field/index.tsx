@@ -28,7 +28,7 @@ export interface MaskedFieldProps extends Omit<TextFieldProps, 'value' | 'onBlur
 const maskCommons = { placeholder: '_', pattern: /\d/ };
 
 /**
- * Компонент текстового поля (TextField) с маской.
+ * Текстовое поле (TextField) с маской.
  * @deprecated Теперь нужно использовать MaskedInput.
  * @param props Свойства.
  * @param props.mask Маска.

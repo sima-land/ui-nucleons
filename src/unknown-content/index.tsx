@@ -12,7 +12,8 @@ export interface UnknownContentProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * Компонент, стилизующий верстку по гайдам.
+ * Блок, стилизующий содержимое по дизайн-гайдам.
+ * @todo Переименовать в StyledMarkup?
  * @param props Свойства.
  * @return Элемент.
  */

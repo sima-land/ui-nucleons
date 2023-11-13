@@ -50,7 +50,7 @@ const EVENT_NAMES = {
 } as const;
 
 /**
- * Компонент области, которую можно прокручивать перетаскиванием.
+ * Область, которую можно прокручивать перетаскиванием.
  */
 export class Draggable extends Component<DraggableProps> {
   isGrabbed: boolean;

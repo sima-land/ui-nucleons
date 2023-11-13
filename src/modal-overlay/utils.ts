@@ -6,6 +6,7 @@ import { useIdentityRef } from '../hooks/identity';
  * @param onExactClick Сработает при клике.
  * @param options Опции.
  * @return Свойства для целевого элемента.
+ * @todo Экспортировать из точки входа modal-overlay.
  */
 export function useExactClick(
   onExactClick: VoidFunction | undefined,

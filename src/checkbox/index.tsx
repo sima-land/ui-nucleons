@@ -8,7 +8,7 @@ export type CheckboxProps = CheckboxInputProps;
 const cx = classnames.bind(styles);
 
 /**
- * Компонент стилизованного переключателя (input[type=checkbox]).
+ * Чекбокс - элемент для управления параметром с двумя состояниями - включено и отключено.
  */
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (

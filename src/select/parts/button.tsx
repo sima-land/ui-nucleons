@@ -5,7 +5,7 @@ import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Down';
 
 /**
- * Компонент открывашки в виде текстовой кнопки.
+ * "Открывашка" для Select в виде текстовой кнопки.
  * @param props Свойства.
  * @return Элемент.
  */
