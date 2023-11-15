@@ -1,4 +1,4 @@
-import { CleanGroupSizeContext } from '../clean-buttons/utils';
+import { CleanButtonContext } from '../clean-buttons/utils';
 import { BottomBarProps, type BottomBarSize } from './types';
 import classNames from 'classnames/bind';
 import styles from './bottom-bar.module.scss';
@@ -40,11 +40,11 @@ export function BottomBar({
   );
 
   return (
-    // чтобы CleanButton автоматически брали размер, соответствующий размеру BottomBar
-    <CleanGroupSizeContext.Provider value={size}>
+    // ВАЖНО: чтобы CleanButton автоматически брали размер, соответствующий размеру BottomBar
+    <CleanButtonContext.Provider value={{ size }}>
       <div {...rest} className={rootClassName} data-testid={testId}>
         {children}
       </div>
-    </CleanGroupSizeContext.Provider>
+    </CleanButtonContext.Provider>
   );
 }

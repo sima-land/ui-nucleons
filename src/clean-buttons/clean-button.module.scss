@@ -1,20 +1,4 @@
-@use '../colors';
 @use './clean-buttons-util';
-
-.group {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow: hidden;
-  width: 100%;
-  .button {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 0;
-    + .button {
-      border-left: 1px solid colors.$basic-gray12;
-    }
-  }
-}
 
 .button {
   display: flex;
