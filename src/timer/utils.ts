@@ -1,8 +1,8 @@
+import type { TimeDistance } from './types';
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
 import isAfter from 'date-fns/isAfter';
 import isValid from 'date-fns/isValid';
 import parseISO from 'date-fns/parseISO';
-import { Distance } from './types';
 
 const UNITS = ['day', 'hour', 'minute', 'second'] as const;
 
@@ -11,15 +11,18 @@ const UNITS = ['day', 'hour', 'minute', 'second'] as const;
  * @param distance Оставшееся время.
  * @return Отформатированное время.
  */
-export const formatDistance = ({ days, hours, minutes, seconds }: Distance): string =>
-  [days, ...[hours % 24, minutes % 60, seconds % 60].map(s => `${s}`.padStart(2, '0'))].join(':');
+export function formatDistance({ days, hours, minutes, seconds }: TimeDistance): string {
+  return [days, ...[hours % 24, minutes % 60, seconds % 60].map(s => `${s}`.padStart(2, '0'))].join(
+    ':',
+  );
+}
 
 /**
  * Возвращает объект с данными об оставшемся времени от текущего момента.
  * @param dateString Строка с датой в формате ISO.
  * @return Оставшееся время.
  */
-export const getDistanceToNow = (dateString: string): Distance => {
+export function getDistanceToNow(dateString: string): TimeDistance {
   const date = parseISO(dateString);
 
   let result = { days: 0, hours: 0, minutes: 0, seconds: 0 };
@@ -38,4 +41,4 @@ export const getDistanceToNow = (dateString: string): Distance => {
   }
 
   return result;
-};
+}

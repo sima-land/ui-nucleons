@@ -1,24 +1,13 @@
-import { ReactNode, useEffect, useState } from 'react';
-import { Distance } from './types';
+import type { TimerProps } from './types';
+import { useEffect, useState } from 'react';
 import { getDistanceToNow, formatDistance } from './utils';
-
-export interface TimerProps {
-  /** Дата и время события. */
-  date: string;
-
-  /** Должна отформатировать данные об оставшемся времени для вывода. */
-  format?: (d: Distance) => ReactNode;
-
-  /** Частота обновления таймера в миллисекундах. */
-  timeout?: number;
-}
 
 /**
  * Таймер - выводит оставшееся время до заданной временной отметки.
  * @param props Свойства.
  * @return Элемент.
  */
-export const Timer = ({ date, format = formatDistance, timeout = 1000 }: TimerProps) => {
+export function Timer({ date, format = formatDistance, timeout = 1000 }: TimerProps) {
   const [distance, setDistance] = useState(getDistanceToNow(date));
 
   useEffect(() => {
@@ -32,4 +21,4 @@ export const Timer = ({ date, format = formatDistance, timeout = 1000 }: TimerPr
   }, [timeout]);
 
   return <>{format(distance)}</>;
-};
+}

@@ -1,4 +1,5 @@
-import { Component, Fragment, HTMLAttributes, RefObject, createRef } from 'react';
+import type { CarouselControlData, CarouselProps, CarouselState, ElementPredicate } from './types';
+import { Component, Fragment, RefObject, createRef } from 'react';
 import { Draggable, Control } from './draggable';
 import { inRange, isEqual, noop, size, stubFalse } from 'lodash';
 import { eq } from 'lodash/fp';
@@ -10,81 +11,12 @@ import { findChildIndex } from '../helpers/find-child-element';
 import { ArrowButton, ArrowButtonProps } from '../arrow-button';
 import { DraggableEvent } from './helpers/draggable-event';
 import { isBrowser } from '../helpers/is-browser';
-import classnames from 'classnames/bind';
+import classNames from 'classnames/bind';
 import styles from './carousel.module.scss';
-
-export interface CarouselProps {
-  /** Список элементов. */
-  items?: any[];
-
-  /** На сколько элементов прокручивать за раз. */
-  step?: number;
-
-  /** Можно ли перетаскивать мышью. */
-  draggable?: boolean | 'auto';
-
-  /** Активирует бесконечную прокрутку. */
-  infinite?: boolean;
-
-  /** Вертикальный режим. */
-  vertical?: boolean;
-
-  /** Включена ли автоматическая прокрутка. */
-  autoplay?: boolean;
-
-  /** Таймаут автоматической прокрутки. */
-  autoplayTimeout?: number;
-
-  /** Нужно ли останавливать авто-прокрутку при наведении мыши. */
-  autoplayHoverPause?: boolean;
-
-  /** Показывать ли кнопки. */
-  withControls?: boolean;
-
-  /** Индекс элемента к которому нужно прокрутиться. */
-  targetIndex?: number;
-
-  /** Сработает при монтировании. */
-  onReady?: (currentIndex: number) => void;
-
-  /** Вернет содержимое элемента. */
-  renderItem?: typeof Carousel.defaultRenderItem;
-
-  /** Вернет содержимое кнопки. */
-  renderControl?: typeof Carousel.defaultRenderControl;
-
-  /** Сработает при смене индекса текущего элемента. */
-  onChangeTargetIndex?: (newIndex: number) => void;
-
-  /** Свойства контейнера. */
-  containerProps?: HTMLAttributes<HTMLDivElement>;
-
-  /** Свойства элемента, формирующего viewport карусели. */
-  viewportElementProps?: HTMLAttributes<HTMLDivElement>;
-
-  /** Свойства кнопок. */
-  controlProps?: ArrowButtonProps;
-}
-
-interface State {
-  currentOffset: number;
-  isAllItemsVisible: boolean;
-}
-
-interface ControlData {
-  canUse: boolean;
-  onUse: () => void;
-  type: 'forward' | 'backward';
-  vertical?: boolean;
-}
-
-interface ElementPredicate {
-  (sibling: Element): boolean;
-}
 
 const CLONE_FACTOR = 3;
 
-const cx = classnames.bind(styles);
+const cx = classNames.bind(styles);
 const isAuto = eq('auto');
 
 // не по умолчанию так как проблемы с storybook: https://github.com/styleguidist/react-docgen-typescript/issues/334
@@ -92,7 +24,7 @@ const isAuto = eq('auto');
 /**
  * Карусель - блок с возможностью прокрутки содержимого в виде "слайдов" по горизонтали или вертикали.
  */
-export class Carousel extends Component<CarouselProps, State> {
+export class Carousel extends Component<CarouselProps, CarouselState> {
   infinite: boolean;
   dragStartClient: IPoint;
   dragStartOffset: IPoint;
@@ -170,7 +102,7 @@ export class Carousel extends Component<CarouselProps, State> {
    * @return Кнопка управления.
    */
   static defaultRenderControl(
-    { canUse, onUse, type, vertical }: ControlData,
+    { canUse, onUse, type, vertical }: CarouselControlData,
     props: ArrowButtonProps = { size: 's' },
   ) {
     const forward = vertical ? 'down' : 'right';
