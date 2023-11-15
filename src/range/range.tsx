@@ -1,4 +1,5 @@
-import { Component, HTMLAttributes, RefObject, createRef } from 'react';
+import type { RangeProps } from './types';
+import { Component, RefObject, createRef } from 'react';
 import { boundsOf } from '../helpers/bounds-of';
 import { createContainer, Container } from '../helpers/create-container';
 import { getEventClientPos } from '../helpers/events';
@@ -8,40 +9,6 @@ import { getFractionDepth } from '../helpers/get-fraction-depth';
 import { isInteger, clamp } from 'lodash';
 import classnames from 'classnames/bind';
 import styles from './range.module.scss';
-
-interface CallbackData {
-  startValue: number;
-  finishValue: number;
-}
-
-export interface RangeProps {
-  /** Начальная граница. */
-  min?: number;
-
-  /** Конечная граница. */
-  max?: number;
-
-  /** Шаг. */
-  step?: number;
-
-  /** Значение начального ползунка. */
-  startValue?: number;
-
-  /** Значение конечного ползунка. */
-  finishValue?: number;
-
-  /** Сработает при изменении. */
-  onChange?: (data: CallbackData) => void;
-
-  /** Сработает при перетаскивании. */
-  onSlide?: (data: CallbackData) => void;
-
-  /** Отключен ли компонент. */
-  disabled?: boolean;
-
-  /** Свойства контейнера. */
-  wrapperProps?: HTMLAttributes<HTMLDivElement>;
-}
 
 const cx = classnames.bind(styles);
 

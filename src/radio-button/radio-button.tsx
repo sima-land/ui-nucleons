@@ -1,14 +1,8 @@
-import { InputHTMLAttributes } from 'react';
-import { FieldProps, WithTestId } from '../types';
+import type { RadioButtonProps } from './types';
 import classNames from 'classnames/bind';
 import styles from './radio-button.module.scss';
 
 const cx = classNames.bind(styles);
-
-export interface RadioButtonProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>,
-    FieldProps,
-    WithTestId {}
 
 /**
  * Радио-кнопка.

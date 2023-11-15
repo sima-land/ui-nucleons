@@ -1,44 +1,14 @@
-import { CSSProperties } from 'react';
-import { has } from 'lodash';
+import type { SpinnerProps, SpinnerSize } from './types';
 import { COLORS, Token } from '../colors';
-import classnames from 'classnames/bind';
+import classNames from 'classnames/bind';
 import styles from './spinner.module.scss';
 
-/**
- * @deprecated Следует использовать 's' | 'm' | 'l'.
- */
-type SpinnerLegacySize = 'small' | 'medium' | 'large';
+const cx = classNames.bind(styles);
 
-export type SpinnerSize = 's' | 'm' | 'l';
-
-export interface SpinnerProps {
-  /** Размер. */
-  size?: SpinnerSize | SpinnerLegacySize;
-
-  /** Цвет. */
-  color?: Token;
-
-  /** Класс. */
-  className?: string;
-
-  /** Стили. */
-  style?: CSSProperties;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string | null;
-}
-
-const cx = classnames.bind(styles);
-
-export const DIAMETERS: Record<SpinnerSize | SpinnerLegacySize, number> = {
+export const SPINNER_DIAMETER: Record<SpinnerSize, number> = {
   s: 20,
   m: 48,
   l: 80,
-
-  // legacy, @todo удалить со временем:
-  small: 20,
-  medium: 48,
-  large: 80,
 } as const;
 
 const DEFAULT_COLOR: Token = 'basic-blue';
@@ -55,7 +25,7 @@ export function Spinner({
   style,
   'data-testid': testId = 'spinner',
 }: SpinnerProps) {
-  const readySize: SpinnerSize | SpinnerLegacySize = has(DIAMETERS, size) ? size : 'm';
+  const readySize: SpinnerSize = Object.keys(SPINNER_DIAMETER).includes(size) ? size : 'm';
   const readyColor = COLORS.has(color) ? color : DEFAULT_COLOR;
 
   return (
@@ -78,7 +48,7 @@ export function SpinnerSVG({
   style,
   'data-testid': testId = 'spinner',
 }: SpinnerProps) {
-  const diameter = DIAMETERS[size];
+  const diameter = SPINNER_DIAMETER[size];
   const radius = diameter / 2;
 
   return (
