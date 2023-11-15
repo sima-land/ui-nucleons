@@ -1,19 +1,11 @@
-import { HTMLAttributes, forwardRef } from 'react';
+import type { PlateProps } from './types';
+import { forwardRef } from 'react';
 import { BoxShadow } from '../styling/shadows';
 import { SmallRounds, MediumRounds } from '../styling/shapes';
-import classnames from 'classnames';
+import classNames from 'classnames/bind';
 import styles from './plate.module.scss';
 
-export interface PlateProps extends HTMLAttributes<HTMLDivElement> {
-  /** Тень. */
-  shadow?: keyof typeof BoxShadow | null;
-
-  /** Скругление углов. */
-  rounds?: 's' | 'm' | null;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
-}
+const cx = classNames.bind(styles);
 
 /**
  * Plate это просто div с возможностью легко задавать тень и скругления.
@@ -33,8 +25,8 @@ export const Plate = forwardRef<HTMLDivElement | null, PlateProps>(function Plat
   return (
     <div
       ref={ref}
-      className={classnames(
-        styles.root,
+      className={cx(
+        'root',
         className,
         shadow && BoxShadow[shadow],
         rounds === 's' && SmallRounds.all,
