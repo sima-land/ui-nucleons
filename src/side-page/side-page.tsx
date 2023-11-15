@@ -1,49 +1,15 @@
-import { CSSProperties, ReactNode, useRef } from 'react';
+import type { SidePageProps } from './types';
+import { CSSProperties, useRef } from 'react';
 import { defineSlots } from '../helpers/define-slots';
-import { WithPageScrollLock, usePageScrollLock } from '../_internal/page-scroll-lock';
+import { usePageScrollLock } from '../_internal/page-scroll-lock';
 import { SidePageBody, SidePageFooter, SidePageHeader } from './slots';
-import CSSTransition, { CSSTransitionProps } from 'react-transition-group/CSSTransition';
+import CSSTransition from 'react-transition-group/CSSTransition';
 import { ModalOverlay, ModalOverlayProps } from '../modal-overlay';
 import { useExactClick } from '../modal-overlay/utils';
-import classnames from 'classnames/bind';
+import classNames from 'classnames/bind';
 import styles from './side-page.module.scss';
 
-export interface SidePageProps extends WithPageScrollLock {
-  /** Нужно ли показать компонент. */
-  shown?: boolean;
-
-  /** Нужно ли использовать анимации при открытии/закрытии. */
-  withTransitions?: boolean;
-
-  /** Ширина. */
-  size?: 's' | 'm';
-
-  /** Содержимое. */
-  children?: ReactNode;
-
-  /** Сработает при закрытии. */
-  onClose?: () => void;
-
-  /** Обработчик "onEntering" для CSSTransition. */
-  onEntering?: CSSTransitionProps['onEntering'];
-
-  /** Обработчик "onEnter" для CSSTransition. */
-  onEnter?: CSSTransitionProps['onEnter'];
-
-  /** Обработчик "onEntered" для CSSTransition. */
-  onEntered?: CSSTransitionProps['onEntered'];
-
-  /** Обработчик "onExiting" для CSSTransition. */
-  onExiting?: CSSTransitionProps['onExiting'];
-
-  /** Обработчик "onExited" для CSSTransition. */
-  onExited?: CSSTransitionProps['onExited'];
-
-  /** Обработчик "onExit" для CSSTransition. */
-  onExit?: CSSTransitionProps['onExit'];
-}
-
-const cx = classnames.bind(styles);
+const cx = classNames.bind(styles);
 
 const transitionClasses = {
   enter: cx('enter'),

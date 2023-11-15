@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { Spinner, DIAMETERS, SpinnerSVG } from '..';
+import { Spinner, SPINNER_DIAMETER, SpinnerSVG } from '..';
 import { COLORS } from '../../colors';
 
 describe('Spinner', () => {
@@ -13,23 +13,23 @@ describe('Spinner', () => {
     const { container, rerender } = render(<Spinner />);
 
     expect(container.querySelector('svg')?.classList.contains('size-m')).toBe(true);
-    expect(container.querySelector('svg')?.getAttribute('width')).toBe(String(DIAMETERS.m));
+    expect(container.querySelector('svg')?.getAttribute('width')).toBe(String(SPINNER_DIAMETER.m));
 
     rerender(<Spinner size='s' />);
     expect(container.querySelector('svg')?.classList.contains('size-s')).toBe(true);
-    expect(container.querySelector('svg')?.getAttribute('width')).toBe(String(DIAMETERS.s));
+    expect(container.querySelector('svg')?.getAttribute('width')).toBe(String(SPINNER_DIAMETER.s));
 
     rerender(<Spinner size='m' />);
     expect(container.querySelector('svg')?.classList.contains('size-m')).toBe(true);
-    expect(container.querySelector('svg')?.getAttribute('width')).toBe(String(DIAMETERS.m));
+    expect(container.querySelector('svg')?.getAttribute('width')).toBe(String(SPINNER_DIAMETER.m));
 
     rerender(<Spinner size='l' />);
     expect(container.querySelector('svg')?.classList.contains('size-l')).toBe(true);
-    expect(container.querySelector('svg')?.getAttribute('width')).toBe(String(DIAMETERS.l));
+    expect(container.querySelector('svg')?.getAttribute('width')).toBe(String(SPINNER_DIAMETER.l));
 
     rerender(<Spinner size={'invalid' as any} />);
     expect(container.querySelector('svg')?.classList.contains('size-m')).toBe(true);
-    expect(container.querySelector('svg')?.getAttribute('width')).toBe(String(DIAMETERS.m));
+    expect(container.querySelector('svg')?.getAttribute('width')).toBe(String(SPINNER_DIAMETER.m));
   });
 
   it('should render component with different colors', () => {

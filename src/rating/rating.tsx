@@ -1,24 +1,10 @@
-import { HTMLAttributes } from 'react';
+import type { RatingProps, StarSize, StarType } from './types';
 import { getStars } from './utils';
-import { StarType } from './types';
-import classnames from 'classnames/bind';
 import StarSVG from '@sima-land/ui-quarks/icons/16x16/Filled/Star';
+import classNames from 'classnames/bind';
 import styles from './rating.module.scss';
 
-export type StarSize = 's' | 'm';
-
-export interface RatingProps extends HTMLAttributes<HTMLDivElement> {
-  /** Размер. */
-  size?: StarSize;
-
-  /** Значение рейтинга. */
-  value: number;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
-}
-
-const cx = classnames.bind(styles);
+const cx = classNames.bind(styles);
 
 /**
  * Звезды рейтинга.
