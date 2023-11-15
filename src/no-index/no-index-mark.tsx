@@ -1,7 +1,4 @@
-export interface NoIndexMarkProps {
-  /** Флаг закрывающегося тэга. */
-  closing?: boolean;
-}
+import type { NoIndexMarkProps } from './types';
 
 const open = '<!--noindex-->';
 const close = '<!--/noindex-->';

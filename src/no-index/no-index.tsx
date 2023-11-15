@@ -1,10 +1,5 @@
-import { ReactNode } from 'react';
-import { NoIndexMark } from '../no-index-mark';
-
-export interface NoIndexProps {
-  /** Содержимое. */
-  children?: ReactNode;
-}
+import type { NoIndexProps } from './types';
+import { NoIndexMark } from './no-index-mark';
 
 /**
  * Неиндексируемый контент.

@@ -1,34 +1,9 @@
-import { CSSProperties, ReactNode } from 'react';
-import { color, bgColor } from '../styling/colors';
+import type { PanelProps, PanelType } from './types';
 import type { Token } from '../colors';
 import type { LinkProps } from '../link';
+import { color, bgColor } from '../styling/colors';
 import classnames from 'classnames/bind';
 import styles from './panel.module.scss';
-
-export type PanelType = 'info' | 'error' | 'success' | 'warning';
-
-export interface PanelProps {
-  /** Тип панели. Влияет на отображение. */
-  type?: PanelType;
-
-  /** Иконка перед основным контентом. */
-  adornmentStart?: ReactNode;
-
-  /** Иконка после основного контента. */
-  adornmentEnd?: ReactNode;
-
-  /** CSS-класс корневого элемента. */
-  className?: string;
-
-  /** Стили корневого элемента панели. */
-  style?: CSSProperties;
-
-  /** Содержимое. */
-  children?: ReactNode;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
-}
 
 const cx = classnames.bind(styles);
 
@@ -95,8 +70,8 @@ export function Panel({
  * @param props Свойства.
  * @return Элемент.
  */
-function PanelUnknownContent({ markup }: { markup: string }) {
+export function PanelStyledMarkup({ markup }: { markup: string }) {
   return <div className={cx('unknown-content')} dangerouslySetInnerHTML={{ __html: markup }} />;
 }
 
-Panel.UnknownContent = PanelUnknownContent;
+Panel.UnknownContent = PanelStyledMarkup;

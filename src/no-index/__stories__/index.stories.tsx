@@ -1,4 +1,4 @@
-import { NoIndex } from '@sima-land/ui-nucleons/no-index';
+import { NoIndex, NoIndexMark } from '@sima-land/ui-nucleons/no-index';
 
 export default {
   title: 'service/NoIndex',
@@ -12,16 +12,26 @@ export function Primary() {
   return (
     <>
       <NoIndex>
-        &quot;Кто б ни были входящие сюда,
-        <br />
-        Оставьте здесь надежду навсегда!&quot;
-        <br />
-        Написано над адскими вратами
-        <br />
-        Зловещими и черными чертами
+        Данный текст не будет индексироваться Яндексом, поскольку обрамлён специальными
+        HTML-комментариями
       </NoIndex>
     </>
   );
 }
 
 Primary.storyName = 'Простой пример';
+
+export function MarkUsage() {
+  return (
+    <>
+      <NoIndexMark />
+      <div>
+        Данный блок не будет индексироваться Яндексом, поскольку обрамлён специальными
+        HTML-комментариями
+      </div>
+      <NoIndexMark closing />
+    </>
+  );
+}
+
+MarkUsage.storyName = 'Использование составных частей';

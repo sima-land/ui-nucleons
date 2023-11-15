@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { NoIndex } from '..';
+import { NoIndex, NoIndexMark } from '..';
 
 describe('NoIndex', () => {
   it('should renders correctly', () => {
@@ -27,5 +27,17 @@ describe('NoIndex', () => {
     expect(container.childNodes[2].childNodes).toHaveLength(1);
     expect(container.childNodes[2].childNodes[0] instanceof Comment).toBe(true);
     expect(container.childNodes[2].childNodes[0].textContent).toBe('/noindex');
+  });
+});
+
+describe('NoIndexMark', () => {
+  it('should renders correctly without prop', () => {
+    const { container } = render(<NoIndexMark />);
+    expect(container.innerHTML).toEqual('<span><!--noindex--></span>');
+  });
+
+  it('should renders correctly with type is "close"', () => {
+    const { container } = render(<NoIndexMark closing />);
+    expect(container.innerHTML).toEqual('<span><!--/noindex--></span>');
   });
 });

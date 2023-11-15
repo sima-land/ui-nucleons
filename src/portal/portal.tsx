@@ -1,21 +1,14 @@
-import { FC, ReactNode, useRef, useState } from 'react';
+import type { PortalProps } from './types';
+import { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useIsomorphicLayoutEffect } from '../hooks';
-
-export interface PortalProps {
-  /** Вернет элемент, в который нужно вывести содержимое через портал. */
-  defineRoot?: () => HTMLElement;
-
-  /** Содержимое. */
-  children?: ReactNode;
-}
 
 /**
  * Портал - выводит содержимое в портале в произвольную часть DOM.
  * @param props Свойства.
  * @return Элемент.
  */
-export const Portal: FC<PortalProps> = ({ children, defineRoot = () => document.body }) => {
+export function Portal({ children, defineRoot = () => document.body }: PortalProps) {
   const [mounted, setMounted] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>();
 
@@ -33,4 +26,4 @@ export const Portal: FC<PortalProps> = ({ children, defineRoot = () => document.
   }, []);
 
   return mounted && ref.current ? createPortal(children, ref.current) : null;
-};
+}
