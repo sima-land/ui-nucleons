@@ -1,42 +1,10 @@
-import { TextareaHTMLAttributes, Ref, useImperativeHandle, useRef, useState } from 'react';
-import { BaseInput, BaseInputAsTextareaProps } from '../base-input';
-import { FieldBlock, FieldBlockProps } from '../field-block';
+import type { TextareaProps } from './types';
+import { useImperativeHandle, useRef, useState } from 'react';
+import { BaseInput } from '../base-input';
+import { FieldBlock } from '../field-block';
 import { definePlaceholderColor, useFieldMouseDown, useFilledState } from '../input/utils';
 import classNames from 'classnames/bind';
 import styles from './textarea.module.scss';
-
-type HTMLTextareaProps = Pick<
-  TextareaHTMLAttributes<HTMLTextAreaElement>,
-  | 'autoComplete'
-  | 'autoFocus'
-  | 'defaultValue'
-  | 'disabled'
-  | 'id'
-  | 'name'
-  | 'onBlur'
-  | 'onChange'
-  | 'onFocus'
-  | 'onInput'
-  | 'placeholder'
-  | 'readOnly'
-  | 'required'
-  | 'rows'
-  | 'value'
->;
-
-export interface TextareaProps extends HTMLTextareaProps, FieldBlockProps {
-  /** Ref элемента textarea. */
-  textareaRef?: Ref<HTMLTextAreaElement>;
-
-  /** Свойства BaseInputProps. */
-  baseInputProps?: BaseInputAsTextareaProps;
-
-  /** Стили корневого элемента. */
-  style?: Required<FieldBlockProps>['rootProps']['style'];
-
-  /** CSS-класс корневого элемента. */
-  className?: Required<FieldBlockProps>['rootProps']['className'];
-}
 
 const cx = classNames.bind(styles);
 

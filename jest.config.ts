@@ -25,6 +25,7 @@ const config: Config = {
   testPathIgnorePatterns: ['<rootDir>/.yarn-cache/', '<rootDir>/node_modules/'],
   modulePathIgnorePatterns: ['<rootDir>/.yarn-cache/', '<rootDir>/build/'],
   coveragePathIgnorePatterns: [
+    '\\.png$',
     '\\.css$',
     '\\.scss$',
     '/\\.jest/',

@@ -1,15 +1,8 @@
-import { HTMLAttributes, ReactNode, useEffect, useRef } from 'react';
+import type { UnknownContentProps } from './types';
+import { useEffect, useRef } from 'react';
 import { setTableRowLabels } from './utils';
-import classnames from 'classnames';
+import classNames from 'classnames';
 import styles from './unknown-content.module.scss';
-
-export interface UnknownContentProps extends HTMLAttributes<HTMLDivElement> {
-  /** Строка с html-версткой. */
-  markup?: string;
-
-  /** Содержимое. */
-  children?: ReactNode;
-}
 
 /**
  * Блок, стилизующий содержимое по дизайн-гайдам.
@@ -27,7 +20,7 @@ export function UnknownContent({ markup, children, className }: UnknownContentPr
   return (
     <div
       ref={ref}
-      className={classnames(styles.root, className)}
+      className={classNames(styles.root, className)}
       {...(children ? { children } : { dangerouslySetInnerHTML: { __html: markup || '' } })}
     />
   );
