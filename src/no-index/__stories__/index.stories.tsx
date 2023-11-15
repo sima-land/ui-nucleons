@@ -24,12 +24,12 @@ Primary.storyName = 'Простой пример';
 export function MarkUsage() {
   return (
     <>
-      <NoIndexMark type='open' />
+      <NoIndexMark />
       <div>
         Данный блок не будет индексироваться Яндексом, поскольку обрамлён специальными
         HTML-комментариями
       </div>
-      <NoIndexMark type='close' />
+      <NoIndexMark closing />
     </>
   );
 }

@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react';
 
 export interface NoIndexMarkProps {
-  type?: 'open' | 'close';
+  /** Флаг закрывающегося тэга. */
+  closing?: boolean;
 }
 
 export interface NoIndexProps {

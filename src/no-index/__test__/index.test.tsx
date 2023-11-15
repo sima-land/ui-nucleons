@@ -32,15 +32,12 @@ describe('NoIndex', () => {
 
 describe('NoIndexMark', () => {
   it('should renders correctly without prop', () => {
-    const { container, rerender } = render(<NoIndexMark />);
-    expect(container.innerHTML).toEqual('<span><!--noindex--></span>');
-
-    rerender(<NoIndexMark type='open' />);
+    const { container } = render(<NoIndexMark />);
     expect(container.innerHTML).toEqual('<span><!--noindex--></span>');
   });
 
-  it('should renders correctly with prop "closed"', () => {
-    const { container } = render(<NoIndexMark type='close' />);
+  it('should renders correctly with type is "close"', () => {
+    const { container } = render(<NoIndexMark closing />);
     expect(container.innerHTML).toEqual('<span><!--/noindex--></span>');
   });
 });

@@ -1,18 +1,13 @@
 import type { NoIndexMarkProps } from './types';
 
+const open = '<!--noindex-->';
+const close = '<!--/noindex-->';
+
 /**
- * Неиндексируемый контент.
+ * Span с комментарием начала или конца неиндексируемого контента.
  * @param props Свойства.
  * @return Элемент.
  */
-export function NoIndexMark({ type = 'open' }: NoIndexMarkProps) {
-  if (type === 'open') {
-    return <span dangerouslySetInnerHTML={{ __html: '<!--noindex-->' }} />;
-  }
-
-  if (type === 'close') {
-    return <span dangerouslySetInnerHTML={{ __html: '<!--/noindex-->' }} />;
-  }
-
-  return null;
+export function NoIndexMark({ closing }: NoIndexMarkProps) {
+  return <span dangerouslySetInnerHTML={{ __html: closing ? close : open }} />;
 }

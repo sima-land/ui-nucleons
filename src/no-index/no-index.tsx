@@ -9,9 +9,9 @@ import { NoIndexMark } from './no-index-mark';
 export function NoIndex({ children }: NoIndexProps) {
   return (
     <>
-      <NoIndexMark type='open' />
+      <NoIndexMark />
       {children}
-      <NoIndexMark type='close' />
+      <NoIndexMark closing />
     </>
   );
 }
