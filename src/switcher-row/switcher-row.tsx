@@ -1,30 +1,11 @@
-import { CSSProperties, ReactNode } from 'react';
+import type { SwitcherRowProps } from './types';
+import { ReactNode } from 'react';
 import { Checkbox } from '../checkbox';
 import { defineSlots } from '../helpers/define-slots';
 import { RadioButton } from '../radio-button';
 import { Toggle } from '../toggle';
 import classNames from 'classnames/bind';
 import styles from './switcher-row.module.scss';
-
-export interface SwitcherRowProps {
-  /** Содержимое. */
-  children?: ReactNode;
-
-  /** Направление текста. */
-  textAlign?: 'left' | 'right';
-
-  /** Стили корневого элемента. */
-  style?: CSSProperties;
-
-  /** CSS-класс корневого элемента. */
-  className?: string;
-
-  /** Позиция поля. */
-  fieldPosition?: 'start' | 'end';
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
-}
 
 const cx = classNames.bind(styles);
 
@@ -45,8 +26,8 @@ export function SwitcherRow({
     toggle: Toggle,
     checkbox: Checkbox,
     radio: RadioButton,
-    label: SwitcherRowLabel,
-    comment: SwitcherRowComment,
+    label: SwitcherLabel,
+    comment: SwitcherComment,
   });
 
   const input = toggle ?? checkbox ?? radio;
@@ -91,7 +72,7 @@ export function SwitcherRow({
  * @param props Свойства.
  * @return Элемент.
  */
-function SwitcherRowLabel({ children }: { children?: ReactNode }) {
+function SwitcherLabel({ children }: { children?: ReactNode }) {
   return <>{children}</>;
 }
 
@@ -100,9 +81,9 @@ function SwitcherRowLabel({ children }: { children?: ReactNode }) {
  * @param props Свойства.
  * @return Элемент.
  */
-function SwitcherRowComment({ children }: { children?: ReactNode }) {
+function SwitcherComment({ children }: { children?: ReactNode }) {
   return <>{children}</>;
 }
 
-SwitcherRow.Label = SwitcherRowLabel;
-SwitcherRow.Comment = SwitcherRowComment;
+SwitcherRow.Label = SwitcherLabel;
+SwitcherRow.Comment = SwitcherComment;
