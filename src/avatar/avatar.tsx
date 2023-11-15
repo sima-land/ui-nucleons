@@ -1,9 +1,9 @@
+import type { AvatarProps } from './types';
 import { useEffect, useState } from 'react';
-import classnames from 'classnames/bind';
+import classNames from 'classnames/bind';
 import styles from './avatar.module.scss';
-import { AvatarProps } from '.';
 
-const cx = classnames.bind(styles);
+const cx = classNames.bind(styles);
 
 /**
  * Аватар - блок для репрезентации пользователя с помощью картинки, инициалов или иконки-заглушки.

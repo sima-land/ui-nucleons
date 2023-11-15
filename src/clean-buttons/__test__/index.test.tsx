@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { CleanGroup, CleanButton } from '../index';
-import { CleanGroupSizeContext } from '../utils';
+import { CleanButtonContext } from '../utils';
 
 describe('CleanButton', () => {
   it('should handle props', () => {
@@ -29,7 +29,8 @@ describe('CleanGroup', () => {
       </CleanGroup>,
     );
 
-    expect(container.querySelectorAll('button')).toHaveLength(0);
+    expect(container.querySelectorAll('a')).toHaveLength(3);
+    expect(container.querySelectorAll('button')).toHaveLength(1);
     expect(queryAllByTestId('clean-button')).toHaveLength(3);
   });
 
@@ -56,12 +57,12 @@ describe('CleanGroup', () => {
 
   it('should handle size from context', () => {
     const { container } = render(
-      <CleanGroupSizeContext.Provider value='l'>
+      <CleanButtonContext.Provider value={{ size: 'l' }}>
         <CleanGroup>
           <CleanButton>One</CleanButton>
           <CleanButton>Two</CleanButton>
         </CleanGroup>
-      </CleanGroupSizeContext.Provider>,
+      </CleanButtonContext.Provider>,
     );
 
     expect(container.querySelectorAll('.size-l')).toHaveLength(2);
@@ -69,12 +70,12 @@ describe('CleanGroup', () => {
 
   it('property should take precedence over the value from the context', () => {
     const { container } = render(
-      <CleanGroupSizeContext.Provider value='l'>
+      <CleanButtonContext.Provider value={{ size: 'l' }}>
         <CleanGroup size='s'>
           <CleanButton>One</CleanButton>
           <CleanButton>Two</CleanButton>
         </CleanGroup>
-      </CleanGroupSizeContext.Provider>,
+      </CleanButtonContext.Provider>,
     );
 
     expect(container.querySelectorAll('.size-s')).toHaveLength(2);

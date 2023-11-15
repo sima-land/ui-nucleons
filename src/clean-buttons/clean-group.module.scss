@@ -1,0 +1,16 @@
+@use '../colors';
+
+.group {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  width: 100%;
+  .item {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    + .item {
+      border-left: 1px solid colors.$basic-gray12;
+    }
+  }
+}
