@@ -1,8 +1,7 @@
+import type { StepperProps } from './types';
 import {
   useState,
   forwardRef,
-  CSSProperties,
-  InputHTMLAttributes,
   MouseEventHandler,
   useCallback,
   useRef,
@@ -10,55 +9,10 @@ import {
 } from 'react';
 import PlusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Plus';
 import MinusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Minus';
+import classNames from 'classnames/bind';
 import styles from './stepper.module.scss';
-import classnames from 'classnames/bind';
 
-/** Размер Stepper (влияет на высоту и минимальную ширину). */
-export type StepperSize = 's' | 'm';
-
-/** Стили Stepper. */
-export interface StepperStyle extends CSSProperties {
-  /** Ширина. */
-  '--stepper-width'?: string;
-}
-
-export interface StepperProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'style'> {
-  /** Нужно ли выводить кнопку добавления. */
-  canAdd?: boolean;
-
-  /** Нужно ли выводить кнопку вычитания. */
-  canSubtract?: boolean;
-
-  /** Делает кнопку "+" отключенной. */
-  plusDisabled?: boolean;
-
-  /** Делает кнопку "-" отключенной. */
-  minusDisabled?: boolean;
-
-  /** Нужно ли предотвращать blur на поле при нажатии "+/-". */
-  buttonClickBehavior?: 'prevent-input-blur';
-
-  /** Сработает при добавлении. */
-  onAdd?: MouseEventHandler;
-
-  /** Сработает при вычитании. */
-  onSubtract?: MouseEventHandler;
-
-  /** Размер. */
-  size?: StepperSize;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
-
-  /** Стили корневого элемента. */
-  style?: StepperStyle;
-
-  /** Нужно ли показывать состояние ошибки. */
-  failed?: boolean;
-}
-
-const cx = classnames.bind(styles);
+const cx = classNames.bind(styles);
 
 /**
  * Степпер - поле ввода количества.
