@@ -3,9 +3,10 @@ import { Checkbox } from '../checkbox';
 import { Toggle } from '../toggle';
 import classnames from 'classnames/bind';
 import classes from './checkbox-field.module.scss';
+import type { WithTestId } from '../types';
 
 /** @deprecated */
-export interface CheckboxFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface CheckboxFieldProps extends InputHTMLAttributes<HTMLInputElement>, WithTestId {
   /** Содержимое ярлыка. */
   label: string;
 
@@ -20,9 +21,6 @@ export interface CheckboxFieldProps extends InputHTMLAttributes<HTMLInputElement
 
   /** Отображаемое поле. */
   fieldView?: 'checkbox' | 'toggle';
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
 }
 
 const cx = classnames.bind(classes);

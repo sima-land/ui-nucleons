@@ -1,4 +1,5 @@
 import type { CSSProperties, HTMLAttributes } from 'react';
+import type { WithTestId } from '../types';
 
 export type BottomBarSize = 's' | 'm' | 'l';
 
@@ -6,7 +7,7 @@ export interface BottomBarStyle extends CSSProperties {
   '--bottom-bar-height'?: string;
 }
 
-export interface BottomBarProps extends Omit<HTMLAttributes<HTMLDivElement>, 'size'> {
+export interface BottomBarProps extends Omit<HTMLAttributes<HTMLDivElement>, 'size'>, WithTestId {
   /** Размер (высота). */
   size?: BottomBarSize | 'unset';
 
@@ -15,9 +16,6 @@ export interface BottomBarProps extends Omit<HTMLAttributes<HTMLDivElement>, 'si
 
   /** Скругления углов. */
   rounds?: 's' | 'm' | 'unset';
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
 
   /** Стили. */
   style?: BottomBarStyle;

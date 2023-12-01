@@ -1,16 +1,14 @@
 import type { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
+import type { WithTestId } from '../types';
 
 export type TopBarSize = 's' | 'm' | 'xl';
 
-export interface TopBarButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface TopBarButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, WithTestId {
   /** Иконка. */
   icon?: ReactNode;
 
   /** Текст. */
   text?: string;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
 }
 
 export interface TopBarStyle extends CSSProperties {
@@ -24,7 +22,7 @@ export interface TopBarStyle extends CSSProperties {
   '--top-bar-text-align'?: string;
 }
 
-export interface TopBarProps {
+export interface TopBarProps extends WithTestId {
   /** Свойства кнопок. */
   buttons?: {
     start?: TopBarButtonProps;
@@ -53,7 +51,4 @@ export interface TopBarProps {
 
   /** Скругления углов. */
   rounds?: 's' | 'm' | 'unset';
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
 }

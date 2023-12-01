@@ -6,12 +6,13 @@ import type {
   SVGAttributes,
 } from 'react';
 import type { LinkColor } from '../link';
+import type { WithTestId } from '../types';
 
 export type TextButtonSize = 's' | 'm';
 
 export type TextButtonColor = LinkColor;
 
-interface CommonProps {
+interface CommonProps extends WithTestId {
   /** Размер. */
   size?: TextButtonSize;
 
@@ -38,9 +39,6 @@ interface CommonProps {
 
   /** Отступ от иконок. */
   iconGutter?: 4 | 8;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
 }
 
 export type TextButtonAsButtonProps = CommonProps &

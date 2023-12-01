@@ -6,16 +6,14 @@ import { ScreenContext, ScreenInnerProps } from './utils';
 import { WithPageScrollLock } from '../_internal/page-scroll-lock';
 import styles from './screen.module.scss';
 import { useViewportHeightUnit } from '../hooks/styles';
+import type { WithTestId } from '../types';
 
-export interface ScreenProps extends ScreenInnerProps, WithPageScrollLock {
+export interface ScreenProps extends ScreenInnerProps, WithPageScrollLock, WithTestId {
   /** Содержимое. */
   children?: ReactNode;
 
   /** Определяет область отображаемую как загружающуюся. */
   loadingArea?: 'content' | 'full';
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
 }
 
 /**

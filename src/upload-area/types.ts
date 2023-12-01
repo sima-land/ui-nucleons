@@ -5,10 +5,11 @@ import type {
   HTMLAttributes,
   InputHTMLAttributes,
 } from 'react';
+import type { WithTestId } from '../types';
 
 export type UploadAreaSize = 's' | 'm';
 
-export interface UploadAreaProps {
+export interface UploadAreaProps extends WithTestId {
   /** Размер. */
   size?: UploadAreaSize | 'unset';
 
@@ -39,9 +40,6 @@ export interface UploadAreaProps {
 
   /** Свойства элемента input. */
   inputProps?: InputHTMLAttributes<HTMLInputElement>;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
 }
 
 export interface DescriptionPayload {

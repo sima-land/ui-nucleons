@@ -1,5 +1,6 @@
 import type { AnchorHTMLAttributes } from 'react';
 import type { Token } from '../colors';
+import type { WithTestId } from '../types';
 
 export type LinkColor = Extract<
   Token,
@@ -11,7 +12,7 @@ export type LinkColor = Extract<
   | 'additional-teal'
 >;
 
-export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement>, WithTestId {
   /** Цвет (название токена). */
   color?: LinkColor;
 
@@ -26,9 +27,6 @@ export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 
   /** Отключает ссылку подобно кнопке. */
   disabled?: boolean;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
 
   /** Нужно ли подчеркивание. */
   underline?: boolean;

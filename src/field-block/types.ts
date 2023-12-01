@@ -1,4 +1,5 @@
 import type { CSSProperties, HTMLAttributes, LabelHTMLAttributes, ReactNode, Ref } from 'react';
+import type { WithTestId } from '../types';
 
 export type FieldBlockSize = 's' | 'm' | 'l';
 
@@ -13,7 +14,7 @@ type WithStyle<T extends { style?: CSSProperties }> = Omit<T, 'style'> & {
   style?: FieldBlockStyle;
 };
 
-export interface FieldBlockProps {
+export interface FieldBlockProps extends WithTestId {
   /** Отключенное состояние. */
   disabled?: boolean;
 
@@ -64,7 +65,4 @@ export interface FieldBlockProps {
 
   /** Опции основного содержимого. */
   mainProps?: NoChildren<WithStyle<HTMLAttributes<HTMLDivElement>>>;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
 }
