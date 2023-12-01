@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef, useContext, ReactNode, RefObject } from 'react';
 import { ViewportContext } from '../context/viewport';
-import { debounce } from 'lodash';
 import { getScrollParent } from '../helpers/get-scroll-parent';
 import { placeTooltip } from './utils';
 import { Tooltip } from '../tooltip';
@@ -45,7 +44,7 @@ export const PositioningTooltip = ({ openerRef, children, onDismiss }: Positioni
   useEffect(() => {
     const offList: Array<() => void> = [
       on(window, 'scroll', place),
-      on(window, 'resize', debounce(place, 200)),
+      on(window, 'resize', () => requestAnimationFrame(place)),
 
       // у тултипа и открывашки могут быть разные scroll-родители а может быть один,
       // учитываем оба варианта и накидываем обработчик прокрутки

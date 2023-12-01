@@ -1,6 +1,5 @@
 import { Carousel } from '@sima-land/ui-nucleons/carousel';
 import { ReactNode, useEffect, useState } from 'react';
-import { random } from 'lodash';
 import { someImageUrl } from '../../../.storybook/utils';
 import classnames from 'classnames/bind';
 import styles from './stories.module.scss';
@@ -313,7 +312,7 @@ function Reel({
   onEnded?: () => void;
   children?: ReactNode;
 }) {
-  const [duration] = useState(() => random(1000, 3000, false));
+  const [duration] = useState(() => 1000 + 2000 * Math.random());
 
   useEffect(() => {
     if (play) {

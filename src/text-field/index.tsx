@@ -9,7 +9,6 @@ import {
   MouseEventHandler,
   HTMLProps,
 } from 'react';
-import { isNil } from 'lodash';
 import { Box } from '../box';
 import { BaseInput, BaseInputProps } from '../base-input-deprecated';
 import { SmallRounds } from '../styling/shapes';
@@ -110,7 +109,7 @@ export const DEFAULTS = { size: 'l' as keyof typeof HEIGHTS } as const;
  * @param value Значение.
  * @return Будет ли выведено значение.
  */
-const isVisible = (value?: any) => !isNil(value) && `${value}` !== '';
+const isVisible = (value?: any) => !(value === null || value === undefined) && `${value}` !== '';
 
 /**
  * Получив данные визуальных модификаторов, возвращает строку с css-классами.

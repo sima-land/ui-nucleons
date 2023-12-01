@@ -1,6 +1,5 @@
 import classnames from 'classnames/bind';
 import classes from './pagination.module.scss';
-import { range } from 'lodash';
 
 interface IPageButton {
   value: number;
@@ -10,6 +9,17 @@ interface IPageButton {
 type State = { current: number; range: number; total: number };
 
 export const cx = classnames.bind(classes);
+
+/** @inheritdoc */
+const range = (start: number, end: number): number[] => {
+  const result: number[] = [];
+
+  for (let i = start; i < end; i++) {
+    result.push(i);
+  }
+
+  return result;
+};
 
 /**
  * Фабрика объектов с данными о кнопке страницы.

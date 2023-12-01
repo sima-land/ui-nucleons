@@ -65,6 +65,16 @@ const FakeElement = {
 };
 
 describe('Carousel', () => {
+  it('constructor should define stub methods', () => {
+    const instance = new Carousel({});
+
+    expect(instance.offWindowResize()).toBe(undefined);
+    expect(instance.toggleDragTransition(true)).toBe(undefined);
+    expect(instance.setDragOffset(0, 0)).toBe(undefined);
+    expect(instance.isGrabbed()).toBe(false);
+    expect(instance.isTransitionEnabled()).toBe(false);
+  });
+
   it('should enable autoplay on mount', () => {
     const instance = new Carousel({ autoplay: true });
 

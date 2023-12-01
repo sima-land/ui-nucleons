@@ -1,4 +1,3 @@
-import { isFunction } from 'lodash';
 import format from 'date-fns/format';
 import isValid from 'date-fns/isValid';
 import parse from 'date-fns/parse';
@@ -27,9 +26,13 @@ export function createDateFormatter({
     let result = invalidPlaceholder;
 
     if (isValid(date)) {
-      result = format(date, isFunction(formatTo) ? formatTo(new Date(date.getTime())) : formatTo, {
-        locale: ruLocale,
-      });
+      result = format(
+        date,
+        typeof formatTo === 'function' ? formatTo(new Date(date.getTime())) : formatTo,
+        {
+          locale: ruLocale,
+        },
+      );
     }
 
     return result;

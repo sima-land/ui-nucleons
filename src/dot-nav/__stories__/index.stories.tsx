@@ -1,6 +1,5 @@
 import { DotNav, DotNavSize } from '@sima-land/ui-nucleons/dot-nav';
 import { CSSProperties, useState } from 'react';
-import { times } from 'lodash';
 
 const styles = {
   wrap: {
@@ -77,8 +76,9 @@ function DemoBlock({ total = 1, size }: { total: number; size?: DotNavSize }) {
 export function Primary() {
   return (
     <>
-      {times(10)
-        .map(i => i + 1)
+      {Array(10)
+        .fill(0)
+        .map((zero, index) => index + 1)
         .map(index => (
           <DemoBlock key={index} total={index} />
         ))}
@@ -91,8 +91,9 @@ Primary.storyName = 'Простой пример';
 export function LargeSize() {
   return (
     <>
-      {times(10)
-        .map(i => i + 1)
+      {Array(10)
+        .fill(0)
+        .map((zero, index) => index + 1)
         .map(index => (
           <DemoBlock key={index} total={index} size='l' />
         ))}

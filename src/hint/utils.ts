@@ -27,7 +27,6 @@ import {
   UseHoverProps,
   safePolygon,
 } from '@floating-ui/react';
-import { mapKeys } from 'lodash';
 import { useLayer } from '../helpers/layer';
 import { arrowSquareSize } from './hint-view';
 import { useIdentityRef } from '../hooks/identity';
@@ -108,12 +107,19 @@ export function useHintFloatingStyle(
 ): CSSProperties {
   const layer = useLayer();
 
+  const arrowStyle = Object.fromEntries(
+    Object.entries(getArrowFloatingStyle(floating)).map(([key, value]) => [
+      `--hint-arrow-${key}`,
+      value,
+    ]),
+  );
+
   return {
     position: floating.strategy,
     top: floating.y,
     left: floating.x,
     zIndex: layer + 2,
-    ...mapKeys(getArrowFloatingStyle(floating), (value, key) => `--hint-arrow-${key}`),
+    ...arrowStyle,
   };
 }
 
