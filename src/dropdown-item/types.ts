@@ -1,8 +1,11 @@
 import type { ReactElement, ComponentType, ReactNode, SVGAttributes, HTMLAttributes } from 'react';
+import type { WithTestId } from '../types';
 
 export type DropdownItemSize = 's' | 'm' | 'l' | 'xl';
 
-export interface DropdownItemProps extends Omit<HTMLAttributes<HTMLDivElement>, 'size'> {
+export interface DropdownItemProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, 'size'>,
+    WithTestId {
   /** Отображать элемент как отмеченный (активный) или нет. */
   checked?: boolean;
 
@@ -35,9 +38,6 @@ export interface DropdownItemProps extends Omit<HTMLAttributes<HTMLDivElement>, 
 
   /** Контент под основным содержимым. Выводится только при size='xl'. */
   comment?: ReactNode;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
 }
 
 export type DropdownItemElement = ReactElement<DropdownItemProps>;

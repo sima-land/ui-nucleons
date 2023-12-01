@@ -2,13 +2,11 @@ import { HTMLAttributes, ReactNode } from 'react';
 import { ChipsItem } from './chips-item';
 import classnames from 'classnames/bind';
 import styles from './chips.module.scss';
+import type { WithTestId } from '../types';
 
-export interface ChipsProps extends HTMLAttributes<HTMLDivElement> {
+export interface ChipsProps extends HTMLAttributes<HTMLDivElement>, WithTestId {
   /** Элементы списка. */
   children?: ReactNode;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
 }
 
 const cx = classnames.bind(styles);

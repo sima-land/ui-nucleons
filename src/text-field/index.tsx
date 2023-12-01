@@ -15,6 +15,7 @@ import { SmallRounds } from '../styling/shapes';
 import classnames from 'classnames/bind';
 import styles from './text-field.module.scss';
 import { marginTop } from '../styling/sizes';
+import type { WithTestId } from '../types';
 
 type Variant = 'desktop' | 'mobile';
 
@@ -36,7 +37,8 @@ type IgnoredInputProps =
   | 'onSelect';
 
 export interface TextFieldProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, IgnoredInputProps> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, IgnoredInputProps>,
+    WithTestId {
   /** Ярлык. */
   label?: string;
 
@@ -93,9 +95,6 @@ export interface TextFieldProps
 
   /** Свойства элемента-блока. */
   blockProps?: Omit<HTMLProps<HTMLDivElement>, 'onClick'>;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
 }
 
 const cx = classnames.bind(styles);

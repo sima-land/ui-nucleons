@@ -1,4 +1,5 @@
-import { CSSProperties, InputHTMLAttributes, Ref, TextareaHTMLAttributes } from 'react';
+import type { CSSProperties, InputHTMLAttributes, Ref, TextareaHTMLAttributes } from 'react';
+import type { WithTestId } from '../types';
 
 export interface RestPlaceholderDefinition {
   /** Текст placeholder'а. */
@@ -12,7 +13,7 @@ export interface BaseInputStyle extends CSSProperties {
   '--placeholder-color'?: string;
 }
 
-export interface CommonProps {
+export interface CommonProps extends WithTestId {
   /** Остаточный placeholder (выводится после введенного значения). */
   restPlaceholder?: string | RestPlaceholderDefinition;
 
@@ -27,9 +28,6 @@ export interface CommonProps {
 
   /** Ref элемента textarea. Будет заполнен только при multiline=true. */
   textareaRef?: Ref<HTMLTextAreaElement | null>;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
 }
 
 export type BaseInputAsInputProps = CommonProps &

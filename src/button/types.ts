@@ -6,6 +6,7 @@ import type {
   HTMLAttributes,
   SVGAttributes,
 } from 'react';
+import type { WithTestId } from '../types';
 
 export type ButtonSize = 'xs' | 's' | 'm';
 
@@ -25,7 +26,7 @@ export interface ButtonStyle extends CSSProperties {
   '--button-disabled-background'?: string;
 }
 
-interface CommonProps<T extends ButtonAppearance = ButtonAppearance> {
+interface CommonProps<T extends ButtonAppearance = ButtonAppearance> extends WithTestId {
   /** Определяет внешний вид кнопки. */
   viewType?: ButtonViewType;
 
@@ -46,9 +47,6 @@ interface CommonProps<T extends ButtonAppearance = ButtonAppearance> {
 
   /** Отключенное состояние. */
   disabled?: boolean;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
 
   /** Стили. */
   style?: ButtonStyle;

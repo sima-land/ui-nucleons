@@ -1,4 +1,6 @@
-export interface PriceProps {
+import type { WithTestId } from '../types';
+
+export interface PriceProps extends WithTestId {
   /** Класс/стили цены. */
   className?: string;
 
@@ -13,7 +15,4 @@ export interface PriceProps {
 
   /** Цена. */
   value: number | string;
-
-  /** Идентификатор для систем автоматизированного тестирования. */
-  'data-testid'?: string;
 }
