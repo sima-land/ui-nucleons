@@ -2,7 +2,6 @@ import { WithTooltip } from '@sima-land/ui-nucleons/with-tooltip';
 import { Link } from '@sima-land/ui-nucleons/link';
 import { Modal, ModalBody, getResponsiveModalProps } from '@sima-land/ui-nucleons/modal';
 import { TopBar } from '@sima-land/ui-nucleons/top-bar';
-import { times } from 'lodash';
 import {
   LONG_TEXT,
   SHORT_TEXT,
@@ -19,6 +18,11 @@ export default {
     layout: 'padded',
   },
 };
+
+const times = (count: number) =>
+  Array(count)
+    .fill(0)
+    .map((zero, index) => index);
 
 export function TestComplexMarkup() {
   const rootStyle: CSSProperties = {

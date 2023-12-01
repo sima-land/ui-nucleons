@@ -1,5 +1,4 @@
 import { forwardRef, useRef, useImperativeHandle, useContext, ReactNode } from 'react';
-import { get } from 'lodash';
 import ArrowLeftSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';
 import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Cross';
 import { usePageScrollLock } from '../_internal/page-scroll-lock';
@@ -48,7 +47,7 @@ export const HeaderSlot = ({
             'aria-label': 'Вернуться назад',
             'data-testid': 'screen:back',
           }
-        : get(buttons, 'start'),
+        : buttons?.start,
       end: onClose
         ? {
             // ВАЖНО: не подмешиваем свойства из buttons.end
@@ -58,7 +57,7 @@ export const HeaderSlot = ({
             'aria-label': `Закрыть ${title || ''}`.trim(),
             'data-testid': 'screen:close',
           }
-        : get(buttons, 'end'),
+        : buttons?.end,
     }}
   />
 );

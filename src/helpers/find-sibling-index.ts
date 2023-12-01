@@ -1,5 +1,3 @@
-import { isFunction, identity } from 'lodash';
-
 /**
  * Выполняет цикл для поиска родственного элемента по заданным условиям.
  * @param props Свойства.
@@ -17,7 +15,7 @@ export function findSiblingIndex({
   increment = 1,
   defaultResult = -1,
   isSuitable,
-  needBreakLoop = identity,
+  needBreakLoop = a => a,
 }: {
   target: HTMLElement;
   startIndex?: number;
@@ -28,7 +26,7 @@ export function findSiblingIndex({
 }): number {
   let result = defaultResult;
 
-  if (target && target.parentElement && isFunction(isSuitable)) {
+  if (target && target.parentElement && typeof isSuitable === 'function') {
     const { children } = target.parentElement;
 
     for (let i = startIndex; i >= 0 && i < children.length; i += increment) {

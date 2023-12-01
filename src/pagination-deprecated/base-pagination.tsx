@@ -1,7 +1,5 @@
 import { PageButton, PageButtonProps } from './page-button';
 import { getPageButtons, cx } from './utils';
-import { allPass, always, cond, eq, prop, propEq, T } from 'lodash/fp';
-import { has } from 'lodash';
 import { marginRight, marginLeft } from '../styling/sizes';
 import LeftSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Left';
 import RightSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Right';
@@ -76,7 +74,7 @@ export const BasePagination: FC<BasePaginationProps> = ({
   total,
   current,
   onButtonClick,
-  isButtonSelected = eq(current),
+  isButtonSelected = a => a === current,
   renderButton = DEFAULTS.renderButton,
   needPrevButton = DEFAULTS.needPrevButton,
   needNextButton = DEFAULTS.needNextButton,
@@ -105,7 +103,9 @@ export const BasePagination: FC<BasePaginationProps> = ({
             type: content === BUTTON_TYPES.more ? BUTTON_TYPES.more : undefined,
             isFirst: index === 0,
             isLast: index === pageButtons.length - 1,
-            children: has(BUTTON_CONTENTS, content) ? (BUTTON_CONTENTS as any)[content] : content,
+            children: Object.keys(BUTTON_CONTENTS).includes(content as any)
+              ? (BUTTON_CONTENTS as any)[content]
+              : content,
             selected: isButtonSelected(content),
             'aria-label': `Перейти на страницу ${value}`,
             onClick: () => onButtonClick && onButtonClick(value),
@@ -127,17 +127,36 @@ export const BasePagination: FC<BasePaginationProps> = ({
   );
 };
 
-const resolveRounded = cond<any, PageButtonProps['rounded']>([
-  [propEq('type', BUTTON_TYPES.prev), always('all')],
-  [propEq('type', BUTTON_TYPES.next), always('all')],
-  [allPass([prop('isFirst'), prop('isLast')]), always('all')],
-  [prop('isFirst'), always('left')],
-  [prop('isLast'), always('right')],
-  [T, always('none')],
-]);
+/** @inheritdoc */
+function resolveRounded(data: {
+  type?: string;
+  isFirst?: boolean;
+  isLast?: boolean;
+}): PageButtonProps['rounded'] {
+  switch (true) {
+    case data.type === BUTTON_TYPES.prev:
+      return 'all';
+    case data.type === BUTTON_TYPES.next:
+      return 'all';
+    case Boolean(data.isFirst && data.isLast):
+      return 'all';
+    case Boolean(data.isFirst):
+      return 'left';
+    case Boolean(data.isLast):
+      return 'right';
+    default:
+      return 'none';
+  }
+}
 
-const getClassByType = cond<any, string | undefined | null>([
-  [eq(BUTTON_TYPES.prev), always(marginRight(2))],
-  [eq(BUTTON_TYPES.next), always(marginLeft(2))],
-  [T, () => undefined],
-]);
+/** @inheritdoc */
+function getClassByType(type: string | undefined | null) {
+  switch (type) {
+    case BUTTON_TYPES.prev:
+      return marginRight(2);
+    case BUTTON_TYPES.next:
+      return marginLeft(2);
+    default:
+      undefined;
+  }
+}

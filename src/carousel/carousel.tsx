@@ -1,8 +1,6 @@
 import type { CarouselControlData, CarouselProps, CarouselState, ElementPredicate } from './types';
 import { Component, Fragment, RefObject, createRef } from 'react';
 import { Draggable, Control } from './draggable';
-import { inRange, isEqual, noop, size, stubFalse } from 'lodash';
-import { eq } from 'lodash/fp';
 import { boundsOf } from '../helpers/bounds-of';
 import { Point, IPoint } from '../helpers/point';
 import { maxIndexOf } from '../helpers/max-index-of';
@@ -17,9 +15,12 @@ import styles from './carousel.module.scss';
 const CLONE_FACTOR = 3;
 
 const cx = classNames.bind(styles);
-const isAuto = eq('auto');
 
-// не по умолчанию так как проблемы с storybook: https://github.com/styleguidist/react-docgen-typescript/issues/334
+/** @inheritdoc */
+const isAuto = (value: unknown): value is 'auto' => value === 'auto';
+
+/** @inheritdoc */
+const size = (value: { length: number } | undefined | null): number => value?.length ?? 0;
 
 /**
  * Карусель - блок с возможностью прокрутки содержимого в виде "слайдов" по горизонтали или вертикали.
@@ -48,7 +49,7 @@ export class Carousel extends Component<CarouselProps, CarouselState> {
    * @param props Свойства.
    */
   constructor(props: CarouselProps) {
-    const { items, infinite = true, targetIndex = 0 } = props;
+    const { items = [], infinite = true, targetIndex = 0 } = props;
 
     super(props);
 
@@ -56,7 +57,7 @@ export class Carousel extends Component<CarouselProps, CarouselState> {
     this.infinite = Boolean(infinite);
     this.dragStartClient = Point();
     this.dragStartOffset = Point();
-    this.currentIndex = inRange(targetIndex, size(items)) ? targetIndex : 0;
+    this.currentIndex = targetIndex >= 0 && targetIndex < items.length ? targetIndex : 0;
     this.state = {
       currentOffset: 0,
       isAllItemsVisible: false,
@@ -74,6 +75,11 @@ export class Carousel extends Component<CarouselProps, CarouselState> {
     this.onDragEnd = this.onDragEnd.bind(this);
     this.onDragMove = this.onDragMove.bind(this);
     this.onDragStart = this.onDragStart.bind(this);
+
+    /** @inheritdoc */
+    const noop = () => void 0;
+    /** @inheritdoc */
+    const stubFalse = () => false;
 
     // stubs
     this.offWindowResize = noop;
@@ -493,7 +499,7 @@ export class Carousel extends Component<CarouselProps, CarouselState> {
   onDragEnd({ offset: endOffset, client: endClient }: DraggableEvent) {
     const { dragStartOffset: startOffset, dragStartClient: startClient } = this;
 
-    if (this.listElement && !isEqual(startOffset, endOffset)) {
+    if (this.listElement && !(startOffset.x === endOffset.x && startOffset.y === endOffset.y)) {
       const { backward } = this.defineDirection(startClient, endClient);
       const lastIndex = maxIndexOf(this.listElement.children);
       const edgeIndex = backward ? 0 : lastIndex;

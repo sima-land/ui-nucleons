@@ -1,6 +1,5 @@
 import { UnknownContent } from '@sima-land/ui-nucleons/unknown-content';
 import { someImageUrl } from '../../../.storybook/utils';
-import { times } from 'lodash';
 
 export default {
   title: 'common/UnknownContent',
@@ -11,6 +10,10 @@ export default {
 };
 
 export function Primary() {
+  const numbers = Array(15)
+    .fill(0)
+    .map((zero, index) => index);
+
   return (
     <div style={{ margin: '0 auto', maxWidth: '960px' }}>
       <UnknownContent>
@@ -35,7 +38,7 @@ export function Primary() {
         </p>
 
         <ul>
-          {times(15).map(i => (
+          {numbers.map(i => (
             <li key={i}>
               {i % 4 ? (
                 `Пункт списка №${i + 1}`
@@ -51,7 +54,7 @@ export function Primary() {
         </ul>
 
         <ol>
-          {times(15).map(i => (
+          {numbers.map(i => (
             <li key={i}>
               {i % 4 ? (
                 `Пункт списка №${i + 1}`

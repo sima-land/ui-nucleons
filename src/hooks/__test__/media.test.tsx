@@ -1,4 +1,3 @@
-import { noop } from 'lodash';
 import { act, render } from '@testing-library/react';
 import { useMedia } from '../media';
 
@@ -24,7 +23,7 @@ describe('useMedia', () => {
           this.callbacks.push(callback as never);
         },
 
-        removeEventListener: noop,
+        removeEventListener: jest.fn(),
       };
     },
 

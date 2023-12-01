@@ -1,7 +1,6 @@
 import { TouchSlider } from '@sima-land/ui-nucleons/touch-slider';
 import { MobileLayout } from '@sima-land/ui-nucleons/layout';
 import { COLORS } from '@sima-land/ui-nucleons/colors';
-import { times } from 'lodash';
 
 export default {
   title: 'deprecated/TouchSlider',
@@ -32,25 +31,27 @@ export function Primary() {
       </MobileLayout>
 
       <TouchSlider>
-        {times(20).map(index => (
-          <div
-            key={index}
-            style={{
-              width: 200,
-              height: 100,
-              fontSize: 20,
-              background: COLORS.get('additional-pink'),
-              color: '#fff',
-              borderRadius: 8,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginLeft: index > 0 ? 8 : 0,
-            }}
-          >
-            {index + 1}
-          </div>
-        ))}
+        {Array(20)
+          .fill(0)
+          .map((zero, index) => (
+            <div
+              key={index}
+              style={{
+                width: 200,
+                height: 100,
+                fontSize: 20,
+                background: COLORS.get('additional-pink'),
+                color: '#fff',
+                borderRadius: 8,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginLeft: index > 0 ? 8 : 0,
+              }}
+            >
+              {index + 1}
+            </div>
+          ))}
       </TouchSlider>
 
       <MobileLayout>

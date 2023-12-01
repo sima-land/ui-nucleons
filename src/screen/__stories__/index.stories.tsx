@@ -4,7 +4,6 @@ import { Button } from '@sima-land/ui-nucleons/button';
 import { Box } from '@sima-land/ui-nucleons/box';
 import { TouchSlider } from '@sima-land/ui-nucleons/touch-slider';
 import { MobileLayout } from '@sima-land/ui-nucleons/layout';
-import { times } from 'lodash';
 import { useLoading } from './utils';
 import styles from './stories.module.scss';
 import { LoremIpsum, PageScrollLockDemo } from '../../../.storybook/utils';
@@ -16,6 +15,11 @@ export default {
     layout: 'padded',
   },
 };
+
+const times = (count: number) =>
+  Array(count)
+    .fill(0)
+    .map((zero, index) => index);
 
 const PageTemplate = ({ onButtonClick }: { onButtonClick: MouseEventHandler }) => (
   <MobileLayout>

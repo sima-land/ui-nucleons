@@ -1,5 +1,3 @@
-import { curry, prop, assoc, omit } from 'lodash/fp';
-
 type ObjectKey = string | number | symbol;
 
 /**
@@ -10,8 +8,20 @@ type ObjectKey = string | number | symbol;
  * @param source Объект.
  * @return Новый объект.
  */
-export const rename = curry((fromKey: ObjectKey, toKey: ObjectKey, source: any) =>
-  assoc(toKey, prop(fromKey, source), omit([fromKey], source)),
-);
+export function rename(fromKey: ObjectKey, toKey: ObjectKey, source: any): any {
+  const result: any = {};
+
+  if (typeof source === 'object' && source !== null) {
+    Object.entries(source).forEach(([key, value]) => {
+      if (key === fromKey) {
+        result[toKey] = value;
+      } else {
+        result[key] = value;
+      }
+    });
+  }
+
+  return result;
+}
 
 export default rename;

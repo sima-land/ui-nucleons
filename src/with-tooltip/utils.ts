@@ -1,7 +1,6 @@
 import boundsOf from '../helpers/bounds-of';
 import { getScrollParent } from '../helpers/get-scroll-parent';
 import { findOffsetParent } from '../helpers/find-offset-parent';
-import { pick } from 'lodash';
 
 type DOMRectLike = Record<(typeof rectKeys)[number], number>;
 
@@ -139,7 +138,16 @@ export const placeTooltip = (
  * @return Прямоугольник.
  */
 export const getInnerRect = (element: Element): DOMRectLike => {
-  const area: DOMRectLike = pick(boundsOf(element), rectKeys);
+  const bounds = boundsOf(element);
+
+  const area: DOMRectLike = {
+    top: bounds.top,
+    left: bounds.left,
+    bottom: bounds.bottom,
+    right: bounds.right,
+    width: bounds.width,
+    height: bounds.height,
+  };
 
   if (element.scrollWidth > area.width) {
     area.left = area.left - element.scrollLeft;

@@ -6,7 +6,6 @@ import { getEventClientPos } from '../helpers/events';
 import { centerOf } from '../helpers/center-of';
 import { on } from '../helpers/on';
 import { getFractionDepth } from '../helpers/get-fraction-depth';
-import { isInteger, clamp } from 'lodash';
 import classnames from 'classnames/bind';
 import styles from './range.module.scss';
 
@@ -153,9 +152,9 @@ export class Range extends Component<RangeProps> {
    */
   constrainValue(value: number) {
     const { min = 0, max = 1, step = 0.1 } = this.props;
-    let result = clamp(value, min, max);
+    let result = Math.min(Math.max(value, min), max);
     result -= min;
-    if (isInteger(step)) {
+    if (Number.isInteger(step)) {
       result = Math.round(result / step) * step;
     } else {
       const stepFractionDepth = getFractionDepth(step);
