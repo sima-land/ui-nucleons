@@ -11,6 +11,7 @@ const cx = classNames.bind(styles);
  * @return Элемент.
  */
 export function DropdownItem({
+  value,
   size = 'm',
   children,
   className,
@@ -34,6 +35,7 @@ export function DropdownItem({
 
   return (
     <div
+      {...(value !== undefined && { 'data-value': value })}
       {...restProps}
       className={cx(
         'root',

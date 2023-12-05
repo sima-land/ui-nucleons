@@ -1,4 +1,12 @@
-import { Children, KeyboardEventHandler, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  Children,
+  KeyboardEventHandler,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 import { AutocompleteProps } from './types';
 import { Dropdown, DropdownLoading } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';
@@ -8,13 +16,13 @@ import { FloatingPortal, useFloating } from '@floating-ui/react';
 import { Input } from '../input';
 import { useIsomorphicLayoutEffect } from '../hooks';
 import { dropdownFloatingConfig, useDropdownFloatingStyle } from '../dropdown/utils';
-import { triggerInput } from '../helpers/events';
 import { scrollToChild } from '../helpers/scroll-to-child';
 import { on } from '../helpers/on';
 import { Lifecycle } from '../_internal/lifecycle';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Down';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';
 import styles from './autocomplete.module.scss';
+import { NaiveSyntheticEvent } from './utils';
 
 /**
  * Поле ввода с подсказками.
@@ -29,6 +37,11 @@ export function Autocomplete({
   dropdownProps,
   onMenuOpen,
   onMenuClose,
+  optionsStub = (
+    <DropdownItem size='s' noHover>
+      Не найдено
+    </DropdownItem>
+  ),
 
   // rest props:
   autoComplete,
@@ -66,12 +79,44 @@ export function Autocomplete({
       DropdownItemUtils.is(item) && filterOption(item, currentValue),
   );
 
-  const canShowMenu = !disabled && (currentValue.length > 0 || items.length > 0);
-  const menuShown = needMenu && canShowMenu;
+  const hasItems = items.length > 0;
+  const hasItemsStub = Boolean(optionsStub);
+  const hasValue = currentValue.length > 0;
+  const hasMenuContent = hasItems || (hasValue && (loading || hasItemsStub));
+  const menuShown = !disabled && needMenu && hasMenuContent;
+
+  useImperativeHandle(restProps?.inputRef, () => inputRef.current as HTMLInputElement);
+  useImperativeHandle(baseInputProps?.inputRef, () => inputRef.current as HTMLInputElement);
 
   const selectItem = useCallback(
     (item: DropdownItemElement) => {
-      inputRef.current && triggerInput(inputRef.current, DropdownItemUtils.getValue(item));
+      const input = inputRef.current;
+
+      if (!input) {
+        return;
+      }
+
+      const prevValue = input.value;
+      const nextValue = DropdownItemUtils.getValue(item);
+
+      if (prevValue !== nextValue) {
+        input.value = nextValue;
+
+        // ВАЖНО: отправляем события чтобы их можно было получить через baseInputProps.inputRef+addEventListener
+        // ВАЖНО: отправляем события чтобы на них заполнились поля target
+        const nativeEventInput = new Event('input');
+        const nativeEventChange = new Event('change');
+        input.dispatchEvent(nativeEventInput);
+        input.dispatchEvent(nativeEventChange);
+
+        // ВАЖНО: синтетические события отправляем строго после нативных (как это делает React)
+        const syntheticEventInput = new NaiveSyntheticEvent(nativeEventInput, input);
+        const syntheticEventChange = new NaiveSyntheticEvent(nativeEventInput, input);
+        onInput?.(syntheticEventInput);
+        onChange?.(syntheticEventChange, { reason: 'suggestionSelect' });
+      }
+
+      setCurrentValue(input.value);
       setNeedMenu(false);
       setActiveIndex(-1);
     },
@@ -201,7 +246,7 @@ export function Autocomplete({
           setActiveIndex(-1);
         }}
         onChange={e => {
-          onChange?.(e);
+          onChange?.(e, { reason: 'userInput' });
           setNeedMenu(true);
           setActiveIndex(-1);
           setCurrentValue(e.target.value);
@@ -239,22 +284,20 @@ export function Autocomplete({
                     key={index}
                     checked={index === activeIndex}
                     {...item.props}
-                    onMouseDown={e => {
-                      e.preventDefault();
-                      item.props.onMouseDown?.(e);
+                    onMouseDown={event => {
+                      event.preventDefault();
+                      item.props.onMouseDown?.(event);
                     }}
-                    onClick={e => {
-                      item.props.onClick?.(e);
-                      !e.defaultPrevented && selectItem(item);
+                    onClick={event => {
+                      if (!item.props.disabled) {
+                        item.props.onClick?.(event);
+                        !event.defaultPrevented && selectItem(item);
+                      }
                     }}
                   />
                 ))}
 
-              {!loading && items.length === 0 && (
-                <DropdownItem size='s' noHover>
-                  Не найдено
-                </DropdownItem>
-              )}
+              {!loading && items.length === 0 && optionsStub}
 
               {loading && <DropdownLoading />}
             </Dropdown>

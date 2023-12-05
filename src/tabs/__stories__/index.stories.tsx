@@ -1,5 +1,7 @@
-import { Tabs } from '@sima-land/ui-nucleons/tabs';
-import { useState } from 'react';
+import { Carousel } from '@sima-land/ui-nucleons/carousel';
+import { Layout } from '@sima-land/ui-nucleons/layout';
+import { Tab, Tabs } from '@sima-land/ui-nucleons/tabs';
+import { CSSProperties, useState } from 'react';
 
 export default {
   title: 'common/Tabs',
@@ -14,15 +16,15 @@ export function Primary() {
 
   return (
     <Tabs>
-      <Tabs.Item selected={state === 0} onClick={() => setState(0)}>
+      <Tab selected={state === 0} onClick={() => setState(0)}>
         Первая
-      </Tabs.Item>
-      <Tabs.Item selected={state === 1} onClick={() => setState(1)}>
+      </Tab>
+      <Tab selected={state === 1} onClick={() => setState(1)}>
         Вторая
-      </Tabs.Item>
-      <Tabs.Item selected={state === 2} onClick={() => setState(2)}>
+      </Tab>
+      <Tab selected={state === 2} onClick={() => setState(2)}>
         Третья
-      </Tabs.Item>
+      </Tab>
     </Tabs>
   );
 }
@@ -34,15 +36,15 @@ export function SmallGap() {
 
   return (
     <Tabs gapSize='s'>
-      <Tabs.Item selected={state === 0} onClick={() => setState(0)}>
+      <Tab selected={state === 0} onClick={() => setState(0)}>
         Первая
-      </Tabs.Item>
-      <Tabs.Item selected={state === 1} onClick={() => setState(1)}>
+      </Tab>
+      <Tab selected={state === 1} onClick={() => setState(1)}>
         Вторая
-      </Tabs.Item>
-      <Tabs.Item selected={state === 2} onClick={() => setState(2)}>
+      </Tab>
+      <Tab selected={state === 2} onClick={() => setState(2)}>
         Третья
-      </Tabs.Item>
+      </Tab>
     </Tabs>
   );
 }
@@ -54,15 +56,15 @@ export function CustomGap() {
 
   return (
     <Tabs gapSize='unset' style={{ '--tabs-gap': '32px' }}>
-      <Tabs.Item selected={state === 0} onClick={() => setState(0)}>
+      <Tab selected={state === 0} onClick={() => setState(0)}>
         Первая
-      </Tabs.Item>
-      <Tabs.Item selected={state === 1} onClick={() => setState(1)}>
+      </Tab>
+      <Tab selected={state === 1} onClick={() => setState(1)}>
         Вторая
-      </Tabs.Item>
-      <Tabs.Item selected={state === 2} onClick={() => setState(2)}>
+      </Tab>
+      <Tab selected={state === 2} onClick={() => setState(2)}>
         Третья
-      </Tabs.Item>
+      </Tab>
     </Tabs>
   );
 }
@@ -73,18 +75,18 @@ export function DifferentVariants() {
   const [state, setState] = useState(0);
   const content = (
     <>
-      <Tabs.Item selected={state === 0} onClick={() => setState(0)}>
+      <Tab selected={state === 0} onClick={() => setState(0)}>
         Первая
-      </Tabs.Item>
-      <Tabs.Item selected={state === 1} onClick={() => setState(1)}>
+      </Tab>
+      <Tab selected={state === 1} onClick={() => setState(1)}>
         Вторая
-      </Tabs.Item>
-      <Tabs.Item selected={state === 2} onClick={() => setState(2)} disabled>
+      </Tab>
+      <Tab selected={state === 2} onClick={() => setState(2)} disabled>
         Третья
-      </Tabs.Item>
-      <Tabs.Item selected={state === 3} onClick={() => setState(3)}>
+      </Tab>
+      <Tab selected={state === 3} onClick={() => setState(3)}>
         Четвертая
-      </Tabs.Item>
+      </Tab>
     </>
   );
 
@@ -101,20 +103,21 @@ DifferentVariants.storyName = 'Варианты отображения';
 
 export function DifferentVariantsStretch() {
   const [state, setState] = useState(0);
+
   const content = (
     <>
-      <Tabs.Item selected={state === 0} onClick={() => setState(0)}>
+      <Tab selected={state === 0} onClick={() => setState(0)}>
         Первая
-      </Tabs.Item>
-      <Tabs.Item selected={state === 1} onClick={() => setState(1)}>
+      </Tab>
+      <Tab selected={state === 1} onClick={() => setState(1)}>
         Вторая
-      </Tabs.Item>
-      <Tabs.Item selected={state === 2} onClick={() => setState(2)} disabled>
+      </Tab>
+      <Tab selected={state === 2} onClick={() => setState(2)} disabled>
         Третья
-      </Tabs.Item>
-      <Tabs.Item selected={state === 3} onClick={() => setState(3)}>
+      </Tab>
+      <Tab selected={state === 3} onClick={() => setState(3)}>
         Четвертая
-      </Tabs.Item>
+      </Tab>
     </>
   );
 
@@ -134,3 +137,46 @@ export function DifferentVariantsStretch() {
 }
 
 DifferentVariantsStretch.storyName = 'На всю ширину';
+
+export function TabsCarousel() {
+  const [state, setState] = useState(0);
+
+  const items = Array(12)
+    .fill(0)
+    .map((zero, index) => `Вкладка #${index + 1}`);
+
+  const styles = {
+    item: {
+      height: '40px',
+      flexGrow: 0,
+      flexShrink: 0,
+    } satisfies CSSProperties,
+  };
+
+  return (
+    <Layout>
+      <Tabs view='clean-underline'>
+        <Carousel
+          step={1}
+          infinite={false}
+          items={items}
+          renderItem={(item, index) => (
+            <Tab selected={index === state} onClick={() => setState(index)} style={styles.item}>
+              {item}
+            </Tab>
+          )}
+          withControls='auto'
+          renderControl={(data, props) => {
+            if (!data.canUse) {
+              return null;
+            }
+
+            return Carousel.defaultRenderControl(data, props);
+          }}
+        />
+      </Tabs>
+    </Layout>
+  );
+}
+
+TabsCarousel.storyName = 'Карусель вкладок';

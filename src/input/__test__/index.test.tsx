@@ -195,3 +195,6 @@ describe('Input', () => {
     expect(getByTestId('input').classList.contains('focused')).toBe(true);
   });
 });
+
+// @todo тесты пропса inputRef
+// @todo тесты пропса baseInputProps.inputRef

@@ -1,5 +1,5 @@
 import { Autocomplete, AutocompleteProps } from '@sima-land/ui-nucleons/autocomplete';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useCallback, useState } from 'react';
 import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
 import { FieldBlockSize } from '@sima-land/ui-nucleons/field-block';
 import { Modal, ModalBody, getResponsiveModalProps } from '@sima-land/ui-nucleons/modal';
@@ -21,15 +21,15 @@ export default {
 export function Primary() {
   return (
     <>
-      <Autocomplete label='Выберете браузер'>
-        <DropdownItem>Edge</DropdownItem>
-        <DropdownItem>Firefox</DropdownItem>
+      <Autocomplete label='Ваш браузер' caption='Например Chrome'>
         <DropdownItem>Chrome</DropdownItem>
-        <DropdownItem>Opera</DropdownItem>
         <DropdownItem>Safari</DropdownItem>
+        <DropdownItem>Firefox</DropdownItem>
+        <DropdownItem>Edge</DropdownItem>
         <DropdownItem>Arc</DropdownItem>
+        <DropdownItem>Opera</DropdownItem>
         <DropdownItem>Yandex.Browser</DropdownItem>
-        <DropdownItem>IE</DropdownItem>
+        <DropdownItem>Internet Explorer</DropdownItem>
       </Autocomplete>
     </>
   );
@@ -38,28 +38,93 @@ export function Primary() {
 Primary.storyName = 'Простой пример';
 
 export function FilledOnlyList() {
-  const browserNames = ['Edge', 'Firefox', 'Chrome', 'Opera', 'Safari'];
   const [value, setValue] = useState('');
 
-  const props: AutocompleteProps = {
-    value,
-    adornmentEnd: null,
-    placeholder: 'Ваш браузер',
-    onChange(e: ChangeEvent<HTMLInputElement>) {
-      setValue(e.target.value);
-    },
-    dropdownProps: { style: { width: 320 } },
-  };
+  const items = [
+    'Chrome',
+    'Safari',
+    'Firefox',
+    'Edge',
+    'Arc',
+    'Opera',
+    'Yandex.Browser',
+    'Internet Explorer',
+  ];
 
   return (
-    <Autocomplete {...props}>
-      {value.length > 0 &&
-        browserNames.map((item, index) => <DropdownItem key={index}>{item}</DropdownItem>)}
+    <Autocomplete
+      value={value}
+      onChange={event => setValue(event.target.value)}
+      placeholder='Ваш браузер'
+      caption='Например Chrome'
+      adornmentEnd={null}
+    >
+      {value.length > 0
+        ? items.map((item, index) => <DropdownItem key={index}>{item}</DropdownItem>)
+        : null}
     </Autocomplete>
   );
 }
 
 FilledOnlyList.storyName = 'Список только после ввода значения';
+
+interface State {
+  status: 'default' | 'fetch' | 'done' | 'fail';
+  data: Array<{ id: number; name: string }>;
+}
+
+export function ItemsFetch() {
+  const [value, setValue] = useState('');
+  const [{ data, status }, setState] = useState<State>({ data: [], status: 'default' });
+
+  const fetchItems = useCallback(() => {
+    if (status === 'fetch') {
+      return;
+    }
+
+    setState({ data: [], status: 'fetch' });
+
+    Promise.all([
+      fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json()),
+      new Promise(done => setTimeout(done, 500)),
+    ])
+      .then(([items]) => {
+        setState({ data: items, status: 'done' });
+      })
+      .catch(() => {
+        setState({ data: [], status: 'fail' });
+      });
+  }, [status]);
+
+  const isQuery = useCallback((val: string) => val.length >= 3, []);
+
+  return (
+    <Autocomplete
+      value={value}
+      onChange={(event, meta) => {
+        setValue(event.target.value);
+
+        if (meta.reason === 'suggestionSelect') {
+          setState({ data: [], status: 'default' });
+          return;
+        }
+
+        if (isQuery(event.target.value)) {
+          fetchItems();
+        }
+      }}
+      loading={status === 'fetch'}
+      placeholder='Имя пользователя'
+      caption='Например Leanne или Ervin'
+      adornmentEnd={null}
+      optionsStub={isQuery(value) && status !== 'default' ? undefined : null}
+    >
+      {isQuery(value) && data.map(item => <DropdownItem key={item.id}>{item.name}</DropdownItem>)}
+    </Autocomplete>
+  );
+}
+
+ItemsFetch.storyName = 'Загрузка списка';
 
 export function DifferentStates() {
   const [value, setValue] = useState<string>('');
@@ -71,12 +136,26 @@ export function DifferentStates() {
     value,
     size,
     label: 'Номер',
-    loading,
     disabled: state === 'disabled',
     failed: state === 'failed',
     onChange: e => setValue(e.target.value),
     caption: 'Это ни на что не повлияет',
+    loading,
   };
+
+  const items = [
+    { value: 'Ноль' },
+    { value: 'Один', disabled: true },
+    { value: 'Два' },
+    { value: 'Три' },
+    { value: 'Четыре' },
+    { value: 'Пять' },
+    { value: 'Шесть' },
+    { value: 'Семь' },
+    { value: 'Восемь', disabled: true },
+    { value: 'Девять', disabled: true },
+    { value: 'Десять' },
+  ];
 
   return (
     <Sandbox
@@ -110,13 +189,11 @@ export function DifferentStates() {
     >
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Autocomplete {...autocompleteProps}>
-          <DropdownItem disabled>Ноль</DropdownItem>
-          <DropdownItem>Один</DropdownItem>
-          <DropdownItem>Два</DropdownItem>
-          <DropdownItem disabled>Три</DropdownItem>
-          <DropdownItem>Четыре</DropdownItem>
-          <DropdownItem>Пять</DropdownItem>
-          <DropdownItem disabled>Шесть</DropdownItem>
+          {items.map(item => (
+            <DropdownItem key={item.value} disabled={item.disabled} value={item.value}>
+              {item.value}
+            </DropdownItem>
+          ))}
         </Autocomplete>
       </div>
     </Sandbox>

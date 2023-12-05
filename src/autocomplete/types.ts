@@ -1,9 +1,11 @@
-import type { ReactNode } from 'react';
+import type { ChangeEvent, ReactNode } from 'react';
 import type { DropdownProps } from '../dropdown';
 import type { DropdownItemElement } from '../dropdown-item/types';
 import type { InputProps } from '../input';
 
-export interface AutocompleteProps extends Omit<InputProps, 'adornmentEnd'> {
+export type AutocompleteChangeReason = 'userInput' | 'suggestionSelect';
+
+export interface AutocompleteProps extends Omit<InputProps, 'adornmentEnd' | 'onChange'> {
   /** Содержимое. */
   children?: ReactNode;
 
@@ -24,4 +26,12 @@ export interface AutocompleteProps extends Omit<InputProps, 'adornmentEnd'> {
 
   /** Сработает при закрытии меню. */
   onMenuClose?: VoidFunction;
+
+  onChange?: (
+    event: ChangeEvent<HTMLInputElement>,
+    meta: { reason: AutocompleteChangeReason },
+  ) => void;
+
+  /** Заглушка, которая будет выведена если подсказок нет. */
+  optionsStub?: ReactNode;
 }

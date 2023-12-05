@@ -16,6 +16,12 @@ export interface TabProps extends WithTestId {
 
   /** Содержимое. */
   children?: ReactNode;
+
+  /** Класс корневого элемента. */
+  className?: string;
+
+  /** Стили. */
+  style?: CSSProperties;
 }
 
 export interface TabsStyle extends CSSProperties {
@@ -32,7 +38,7 @@ export interface TabsProps extends WithTestId {
   /** Размер отступа между вкладками. */
   gapSize?: 's' | 'm' | 'unset';
 
-  /** Внешние классы. */
+  /** Класс корневого элемента. */
   className?: string;
 
   /** Стили. */

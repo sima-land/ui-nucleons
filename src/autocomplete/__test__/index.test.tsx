@@ -531,3 +531,6 @@ describe('Autocomplete', () => {
     expect(closeSpy).toHaveBeenCalledTimes(1);
   });
 });
+
+// @todo тесты пропса inputRef
+// @todo тесты пропса baseInputProps.inputRef
