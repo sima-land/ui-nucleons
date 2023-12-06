@@ -15,6 +15,12 @@ describe('DropdownItem', () => {
     expect(getByTestId('dropdown-item').classList).toContain('disabled');
   });
 
+  it('should handle "value" prop', () => {
+    const { getByTestId } = render(<DropdownItem value='some-value'>Hello</DropdownItem>);
+
+    expect(getByTestId('dropdown-item').getAttribute('data-value')).toContain('some-value');
+  });
+
   it('should render as checked', () => {
     const { getByTestId } = render(<DropdownItem checked>Hello</DropdownItem>);
 
