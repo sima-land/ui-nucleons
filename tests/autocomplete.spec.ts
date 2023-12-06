@@ -65,7 +65,7 @@ test.describe('Mouse interactions', () => {
     await expect(here.fieldBlock()).toHaveCount(1);
     await expect(here.input()).toHaveCount(1);
     await expect(here.input()).toBeFocused();
-    await expect(here.input()).toHaveValue('Chrome');
+    await expect(here.input()).toHaveValue('Firefox');
     await expect(here.menu()).toHaveCount(0);
     await expect(here.menuItem()).toHaveCount(0);
   });
@@ -107,7 +107,7 @@ test.describe('Keyboard interactions', () => {
     await expect(here.fieldBlock()).toHaveCount(1);
     await expect(here.input()).toHaveCount(1);
     await expect(here.input()).toBeFocused();
-    await expect(here.input()).toHaveValue('Opera');
+    await expect(here.input()).toHaveValue('Edge');
     await expect(here.menu()).toHaveCount(0);
     await expect(here.menuItem()).toHaveCount(0);
   });
