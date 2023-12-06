@@ -9,6 +9,7 @@ import {
 import { DropdownItem } from '../../dropdown-item';
 import { Autocomplete } from '..';
 import userEvent from '@testing-library/user-event';
+import { createRef } from 'react';
 
 class Helpers {
   private _container?: HTMLElement;
@@ -530,7 +531,78 @@ describe('Autocomplete', () => {
     expect(openSpy).toHaveBeenCalledTimes(1);
     expect(closeSpy).toHaveBeenCalledTimes(1);
   });
-});
 
-// @todo тесты пропса inputRef
-// @todo тесты пропса baseInputProps.inputRef
+  it('should handle "inputRef" prop', () => {
+    const ref = createRef<HTMLInputElement>();
+
+    expect(ref.current).toBe(null);
+    render(<Autocomplete inputRef={ref} />);
+    expect(ref.current instanceof HTMLInputElement).toBe(true);
+  });
+
+  it('should handle "baseInputProps.inputRef" prop', () => {
+    const ref = createRef<HTMLInputElement>();
+
+    expect(ref.current).toBe(null);
+    render(<Autocomplete baseInputProps={{ inputRef: ref }} />);
+    expect(ref.current instanceof HTMLInputElement).toBe(true);
+  });
+
+  it('should apply suggestion by click only when it is not disabled', () => {
+    helpers.render(
+      <Autocomplete>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem disabled>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Autocomplete>,
+    );
+
+    expect(helpers.getInput().value).toBe('');
+    expect(helpers.findMenu()).toHaveLength(0);
+    expect(helpers.findMenuItems()).toHaveLength(0);
+
+    fireEvent.focus(helpers.getInput());
+    expect(helpers.getInput().value).toBe('');
+    expect(helpers.findMenu()).toHaveLength(1);
+    expect(helpers.findMenuItems()).toHaveLength(3);
+
+    fireEvent.click(helpers.findMenuItems()[0]);
+    expect(helpers.getInput().value).toBe('Foo');
+    expect(helpers.findMenu()).toHaveLength(0);
+    expect(helpers.findMenuItems()).toHaveLength(0);
+
+    fireEvent.focus(helpers.getInput());
+    fireEvent.input(helpers.getInput(), { target: { value: '' } });
+    expect(helpers.getInput().value).toBe('');
+    expect(helpers.findMenu()).toHaveLength(1);
+    expect(helpers.findMenuItems()).toHaveLength(3);
+
+    fireEvent.click(helpers.findMenuItems()[1]);
+    expect(helpers.getInput().value).toBe('');
+    expect(helpers.findMenu()).toHaveLength(1);
+    expect(helpers.findMenuItems()).toHaveLength(3);
+  });
+
+  it('should just close menu when suggestion with same value as input clicked', () => {
+    helpers.render(
+      <Autocomplete defaultValue='Baz'>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Autocomplete>,
+    );
+
+    expect(helpers.getInput().value).toBe('Baz');
+    expect(helpers.findMenu()).toHaveLength(0);
+    expect(helpers.findMenuItems()).toHaveLength(0);
+
+    fireEvent.focus(helpers.getInput());
+    expect(helpers.getInput().value).toBe('Baz');
+    expect(helpers.findMenu()).toHaveLength(1);
+    expect(helpers.findMenuItems()).toHaveLength(1);
+
+    fireEvent.click(helpers.findMenuItems()[0]);
+    expect(helpers.getInput().value).toBe('Baz');
+    expect(helpers.findMenu()).toHaveLength(0);
+    expect(helpers.findMenuItems()).toHaveLength(0);
+  });
+});

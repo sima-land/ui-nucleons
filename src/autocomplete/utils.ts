@@ -56,3 +56,13 @@ export class NaiveSyntheticEvent<T extends Element = Element> implements Synthet
     return this.defaultPrevented;
   }
 }
+
+/**
+ * Вызывает переданную функцию только если переданное значение не является null или undefined.
+ * @param value Значение.
+ * @param callback Функция.
+ * @return Результат функции или undefined.
+ */
+export function when<A, B>(value: A, callback: (value: NonNullable<A>) => B): B | undefined {
+  return value !== null && value !== undefined ? callback(value) : undefined;
+}

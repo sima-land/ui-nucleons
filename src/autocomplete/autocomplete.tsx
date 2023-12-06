@@ -19,10 +19,10 @@ import { dropdownFloatingConfig, useDropdownFloatingStyle } from '../dropdown/ut
 import { scrollToChild } from '../helpers/scroll-to-child';
 import { on } from '../helpers/on';
 import { Lifecycle } from '../_internal/lifecycle';
+import { NaiveSyntheticEvent, when } from './utils';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Down';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';
 import styles from './autocomplete.module.scss';
-import { NaiveSyntheticEvent } from './utils';
 
 /**
  * Поле ввода с подсказками.
@@ -90,37 +90,33 @@ export function Autocomplete({
 
   const selectItem = useCallback(
     (item: DropdownItemElement) => {
-      const input = inputRef.current;
+      when(inputRef.current, input => {
+        const prevValue = input.value;
+        const nextValue = DropdownItemUtils.getValue(item);
 
-      if (!input) {
-        return;
-      }
+        if (prevValue !== nextValue) {
+          input.value = nextValue;
 
-      const prevValue = input.value;
-      const nextValue = DropdownItemUtils.getValue(item);
+          // ВАЖНО: отправляем события чтобы их можно было получить через baseInputProps.inputRef+addEventListener
+          // ВАЖНО: отправляем события чтобы на них заполнились поля target
+          const nativeEventInput = new Event('input');
+          const nativeEventChange = new Event('change');
+          input.dispatchEvent(nativeEventInput);
+          input.dispatchEvent(nativeEventChange);
 
-      if (prevValue !== nextValue) {
-        input.value = nextValue;
+          // ВАЖНО: синтетические события отправляем строго после нативных (как это делает React)
+          const syntheticEventInput = new NaiveSyntheticEvent(nativeEventInput, input);
+          const syntheticEventChange = new NaiveSyntheticEvent(nativeEventInput, input);
+          onInput?.(syntheticEventInput);
+          onChange?.(syntheticEventChange, { reason: 'suggestionSelect' });
+        }
 
-        // ВАЖНО: отправляем события чтобы их можно было получить через baseInputProps.inputRef+addEventListener
-        // ВАЖНО: отправляем события чтобы на них заполнились поля target
-        const nativeEventInput = new Event('input');
-        const nativeEventChange = new Event('change');
-        input.dispatchEvent(nativeEventInput);
-        input.dispatchEvent(nativeEventChange);
-
-        // ВАЖНО: синтетические события отправляем строго после нативных (как это делает React)
-        const syntheticEventInput = new NaiveSyntheticEvent(nativeEventInput, input);
-        const syntheticEventChange = new NaiveSyntheticEvent(nativeEventInput, input);
-        onInput?.(syntheticEventInput);
-        onChange?.(syntheticEventChange, { reason: 'suggestionSelect' });
-      }
-
-      setCurrentValue(input.value);
-      setNeedMenu(false);
-      setActiveIndex(-1);
+        setCurrentValue(input.value);
+        setNeedMenu(false);
+        setActiveIndex(-1);
+      });
     },
-    [inputRef],
+    [onInput, onChange],
   );
 
   useIsomorphicLayoutEffect(() => {
