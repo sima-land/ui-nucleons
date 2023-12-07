@@ -602,7 +602,9 @@ export class Carousel extends Component<CarouselProps, CarouselState> {
     const realItemsSize = this.getRealItemsSize();
     const viewportSize = this.getViewportSize();
 
-    return Math.round(viewportSize) >= realItemsSize;
+    // ВАЖНО: используем округление в обоих случаях тк часто разница в дробных значениях меньше 0.0001
+    // ВАЖНО: округление именно в меньшую сторону чтобы предотвратить разницу в 1
+    return Math.floor(viewportSize) >= Math.floor(realItemsSize);
   }
 
   /**

@@ -67,6 +67,11 @@ export function Input({
     () => ref.current,
   );
 
+  useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(
+    baseInputProps?.inputRef,
+    () => ref.current,
+  );
+
   return (
     <FieldBlock
       {...restProps}

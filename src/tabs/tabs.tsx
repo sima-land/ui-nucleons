@@ -15,13 +15,16 @@ export function Tab({
   disabled,
   onClick,
   children,
+  className,
+  style,
   'data-testid': testId = 'tab',
 }: TabProps) {
   return (
     <li
-      className={cx('item', { selected, disabled })}
-      data-testid={testId}
+      className={cx('item', { selected, disabled }, className)}
+      style={style}
       onClick={disabled ? undefined : onClick}
+      data-testid={testId}
     >
       {typeof name !== 'undefined' ? String(name) : children}
     </li>

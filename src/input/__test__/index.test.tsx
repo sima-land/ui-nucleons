@@ -49,6 +49,14 @@ describe('Input', () => {
     expect(ref.current instanceof HTMLInputElement).toBe(true);
   });
 
+  it('should handle "baseInputProps.inputRef" prop', () => {
+    const ref = createRef<HTMLInputElement>();
+
+    expect(ref.current).toBe(null);
+    render(<Input baseInputProps={{ inputRef: ref }} />);
+    expect(ref.current instanceof HTMLInputElement).toBe(true);
+  });
+
   it('should handle "buttonProps.onClick" prop', () => {
     const spy = jest.fn();
 

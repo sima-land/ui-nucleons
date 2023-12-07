@@ -39,7 +39,7 @@ export interface CarouselProps {
   autoplayHoverPause?: boolean;
 
   /** Показывать ли кнопки. */
-  withControls?: boolean;
+  withControls?: boolean | 'auto';
 
   /** Индекс элемента к которому нужно прокрутиться. */
   targetIndex?: number;
