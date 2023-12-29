@@ -19,9 +19,10 @@ export function useViewportHeightUnit(ref: RefObject<HTMLElement | null>) {
     offList.push(on(window, 'resize', setVariable));
     offList.push(on(window, 'orientationchange', setVariable));
     visualViewport && offList.push(on(visualViewport, 'resize', setVariable));
+    visualViewport && offList.push(on(visualViewport, 'scroll', setVariable));
 
     setVariable();
 
     return () => offList.forEach(fn => fn());
-  }, []);
+  }, [ref]);
 }

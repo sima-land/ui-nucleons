@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import { usePageScrollLock } from '../hook';
 import { PageScrollLock } from '../adapters/body-scroll-lock';
 import { PageScrollLockAdapter, PageScrollLockAdapterFactory } from '../types';
-import { PageScrollProvider } from '../context';
+import { PageScrollLockProvider } from '../context';
 
 describe('usePageScrollLock', () => {
   const lockSpy = jest.spyOn(PageScrollLock.prototype, 'lock');
@@ -59,9 +59,9 @@ describe('usePageScrollLock', () => {
     );
 
     render(
-      <PageScrollProvider adapter={adapterFactory}>
+      <PageScrollLockProvider adapter={adapterFactory}>
         <TestComponent />
-      </PageScrollProvider>,
+      </PageScrollLockProvider>,
     );
     expect(adapterFactory.mock.calls[0][1]).toEqual({
       reserveScrollBarGap: true,
@@ -89,9 +89,9 @@ describe('usePageScrollLock', () => {
     expect(unlockSpy).toHaveBeenCalledTimes(0);
 
     const { unmount } = render(
-      <PageScrollProvider adapter={() => adapter}>
+      <PageScrollLockProvider adapter={() => adapter}>
         <TestComponent />
-      </PageScrollProvider>,
+      </PageScrollLockProvider>,
     );
 
     expect(adapter.lock).toHaveBeenCalledTimes(1);

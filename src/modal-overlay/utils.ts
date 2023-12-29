@@ -1,4 +1,4 @@
-import { MouseEventHandler, useCallback, useRef } from 'react';
+import { CSSProperties, MouseEventHandler, useCallback, useEffect, useRef, useState } from 'react';
 import { useIdentityRef } from '../hooks/identity';
 
 /**
@@ -42,4 +42,64 @@ export function useExactClick(
   }, []);
 
   return { onMouseUp: handleMouseUp, onMouseDown: handleMouseDown };
+}
+
+/**
+ * Возвращает пропсы со стилям, которые формируют размер и позицию на основе window.visualViewport.
+ * @return Пропсы.
+ */
+export function useVisualViewportPlacement(): { style: CSSProperties } {
+  const [state, setState] = useState<null | {
+    width: number;
+    height: number;
+    offsetTop: number;
+    offsetLeft: number;
+  }>(null);
+
+  useEffect(() => {
+    const { visualViewport } = window;
+
+    if (!visualViewport) {
+      return;
+    }
+
+    /** Сохраняет значения visualViewport в состояние. */
+    const callback = () => {
+      if (visualViewport) {
+        setState({
+          width: visualViewport.width * visualViewport.scale,
+          height: visualViewport.height * visualViewport.scale,
+
+          // @todo проверить на реальном устройстве зум пальцами (iPad с показанной клавиатурой)
+          offsetTop: visualViewport.scale === 1 ? visualViewport.offsetTop : 0,
+          offsetLeft: visualViewport.scale === 1 ? visualViewport.offsetLeft : 0,
+        });
+      }
+    };
+
+    visualViewport.addEventListener('resize', callback);
+    visualViewport.addEventListener('scroll', callback);
+    window.addEventListener('resize', callback);
+    window.addEventListener('orientationchange', callback);
+
+    callback();
+
+    return () => {
+      visualViewport.removeEventListener('resize', callback);
+      visualViewport.removeEventListener('scroll', callback);
+      window.removeEventListener('resize', callback);
+      window.removeEventListener('orientationchange', callback);
+    };
+  }, []);
+
+  return {
+    style: state
+      ? {
+          top: `${state.offsetTop}px`,
+          left: `${state.offsetLeft}px`,
+          width: `${state.width}px`,
+          height: `${state.height}px`,
+        }
+      : {},
+  };
 }

@@ -5,6 +5,7 @@ import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
 import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
 import { Button } from '@sima-land/ui-nucleons/button';
 import { LoremIpsum, PageScrollLockDemo } from '../../../.storybook/utils';
+import { Input } from '@sima-land/ui-nucleons/input';
 
 export default {
   title: 'common/Modal',
@@ -16,7 +17,7 @@ export default {
 
 export function TestPageScrollLock() {
   const [open, setOpen] = useState(false);
-  const [count, setCount] = useState<number>(5);
+  const [count, setCount] = useState(15);
 
   const increaseContent = () => setCount(count + 1);
   const decreaseContent = () => setCount(Math.max(1, count - 1));
@@ -30,15 +31,16 @@ export function TestPageScrollLock() {
       </Button>
 
       {open && (
-        <Modal {...getResponsiveModalProps({ size: 'm' })} onClose={hide}>
+        <Modal onClose={hide} {...getResponsiveModalProps({ size: 'm' })}>
           <TopBar
             divided
             title='Тест: Блокировка прокрутки страницы'
-            {...navigationButtons({ onClose: hide })}
+            buttons={navigationButtons({ onClose: hide })}
           />
 
           <ModalBody withScrollDisable>
-            <div style={{ padding: '24px' }} onClick={increaseContent}>
+            <div style={{ padding: '24px' }}>
+              <Input placeholder='Ваш ответ' style={{ width: '100%' }} />
               <LoremIpsum paragraphCount={count} />
             </div>
           </ModalBody>

@@ -9,7 +9,7 @@ import { disableBodyScroll, enableBodyScroll, BodyScrollOptions } from 'body-scr
 export const BSL_IGNORE_ATTR = 'data-bsl-ignore';
 
 /** Адаптер блокировки прокрутки использующий BSL. */
-export class PageScrollLock implements PageScrollLockAdapter {
+export class PageScrollLockAdapterBSL implements PageScrollLockAdapter {
   private element: Element;
   private options?: BodyScrollOptions;
 
@@ -37,7 +37,7 @@ export class PageScrollLock implements PageScrollLockAdapter {
    * Полезен для использования версии BSL, отличной от той что используется в библиотеке.
    * @param lib Библиотека body-scroll-lock.
    */
-  replaceLib(lib: PageScrollLock['lib']) {
+  replaceLib(lib: PageScrollLockAdapterBSL['lib']) {
     this.lib = lib;
   }
 

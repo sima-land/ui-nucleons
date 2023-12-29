@@ -3,7 +3,7 @@ import type { PageScrollLockAdapter, PageScrollLockOptions } from '../types';
 const MARK_ATTR = 'data-scroll-locked';
 
 /** Адаптер блокировки прокрутки использующий внутреннее решение ui-nucleons. */
-export class PageScrollLock implements PageScrollLockAdapter {
+export class PageScrollLockAdapterNucleons implements PageScrollLockAdapter {
   private options?: PageScrollLockOptions;
   private bodyStyle?: StyleAffect;
 

@@ -2,10 +2,10 @@ import { CSSProperties, ReactNode, useEffect, useMemo, useState } from 'react';
 import { loremIpsum } from 'lorem-ipsum';
 import {
   PageScrollLockAdapterFactory,
-  PageScrollProvider,
+  PageScrollLockContext,
+  PageScrollLockAdapterBSL,
+  PageScrollLockAdapterNucleons,
 } from '../src/_internal/page-scroll-lock';
-import { PageScrollLock as PageScrollLockInternal } from '../src/_internal/page-scroll-lock/adapters/ui-nucleons';
-import { PageScrollLock as PageScrollLockBSL } from '../src/_internal/page-scroll-lock/adapters/body-scroll-lock';
 import { Select } from '../src/select';
 import { DropdownItem } from '../src/dropdown-item';
 import styles from './utils.module.scss';
@@ -226,16 +226,16 @@ export function PageScrollLockDemo({ children }: { children?: ReactNode }) {
 
   switch (adapterName) {
     case 'ui-nucleons':
-      adapter = (_, options) => new PageScrollLockInternal(options);
+      adapter = (_, options) => new PageScrollLockAdapterNucleons(options);
       break;
     case 'body-scroll-lock':
     default:
-      adapter = (element, options) => new PageScrollLockBSL(element, options);
+      adapter = (element, options) => new PageScrollLockAdapterBSL(element, options);
       break;
   }
 
   return (
-    <PageScrollProvider adapter={adapter}>
+    <PageScrollLockContext.Provider value={{ adapter }}>
       <h1>Пример страницы</h1>
 
       <p>Это тестовая страница для проверки блокировки прокрутки с разными реализациями.</p>
@@ -257,7 +257,7 @@ export function PageScrollLockDemo({ children }: { children?: ReactNode }) {
       <div style={{ marginTop: '20px' }}>{children}</div>
 
       <LoremIpsum paragraphCount={50} sentenceCount={50} />
-    </PageScrollProvider>
+    </PageScrollLockContext.Provider>
   );
 }
 
