@@ -4,7 +4,7 @@ import classnames from 'classnames/bind';
  * Фабрика геттеров CSS-классов.
  * @param classes Классы из CSS-модуля.
  * @param isValidKey Функция проверки ключа для класса.
- * @param [prefix=''] Префикс имени класса.
+ * @param [prefix] Префикс имени класса.
  * @return Геттер CSS-класса.
  * @deprecated
  */
