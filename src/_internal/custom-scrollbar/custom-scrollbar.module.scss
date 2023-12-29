@@ -34,7 +34,10 @@
 }
 
 .theme :global(.os-scrollbar-handle) {
-  transition: opacity 0.15s, background-color 0.15s, border-color 0.15s;
+  transition:
+    opacity 0.15s,
+    background-color 0.15s,
+    border-color 0.15s;
 }
 
 .theme:global(.os-scrollbar-horizontal) :global(.os-scrollbar-handle) {

@@ -33,8 +33,7 @@
 }
 
 .main-col {
-  // ВАЖНО: чтобы область нажатия ограничивалась текстом не задаем тут flex-grow: 1
-  cursor: pointer;
+  flex-grow: 1;
 }
 
 .label {
