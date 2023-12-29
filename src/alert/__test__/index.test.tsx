@@ -4,7 +4,7 @@ import { Alert, AlertBody } from '..';
 import { LayerProvider, useLayer } from '../../helpers/layer';
 import { TopBar } from '../../top-bar';
 import { BottomBar } from '../../bottom-bar';
-import { PageScrollProvider } from '../../_internal/page-scroll-lock';
+import { PageScrollLockContext } from '../../_internal/page-scroll-lock';
 import { PageScrollLockAdapter } from '../../_internal/page-scroll-lock/types';
 
 describe('Alert', () => {
@@ -81,7 +81,7 @@ describe('Alert', () => {
     expect(spy).toHaveBeenCalledTimes(0);
 
     render(
-      <PageScrollProvider adapter={spy}>
+      <PageScrollLockContext.Provider value={{ adapter: spy }}>
         <Alert>
           <AlertBody
             rootRef={ref}
@@ -91,7 +91,7 @@ describe('Alert', () => {
             <p>Hello!</p>
           </AlertBody>
         </Alert>
-      </PageScrollProvider>,
+      </PageScrollLockContext.Provider>,
     );
     expect(spy).toHaveBeenCalledTimes(1);
     expect(ref.current instanceof HTMLDivElement).toBe(true);
@@ -109,11 +109,11 @@ describe('Alert', () => {
     expect(adapter.lock).toHaveBeenCalledTimes(0);
 
     render(
-      <PageScrollProvider adapter={spy}>
+      <PageScrollLockContext.Provider value={{ adapter: spy }}>
         <Alert>
           <AlertBody>Hello</AlertBody>
         </Alert>
-      </PageScrollProvider>,
+      </PageScrollLockContext.Provider>,
     );
 
     expect(adapter.lock).toHaveBeenCalledTimes(0);

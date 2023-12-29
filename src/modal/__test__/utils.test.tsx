@@ -12,12 +12,17 @@ describe('getResponsiveModalProps', () => {
   });
 
   it('should handle "className" option', () => {
-    const result = getResponsiveModalProps({ size: 's', className: 'custom-class' });
+    const result = getResponsiveModalProps({
+      size: 's',
+      overlayProps: { className: 'custom-class' },
+    });
 
     expect(result).toEqual({
       size: 'unset',
       rounds: 'unset',
-      className: 'size-s custom-class',
+      overlayProps: {
+        className: 'size-s custom-class',
+      },
     });
   });
 });
