@@ -7,7 +7,9 @@ describe('getResponsiveModalProps', () => {
     expect(result).toEqual({
       size: 'unset',
       rounds: 'unset',
-      className: 'size-xl',
+      overlayProps: {
+        className: 'size-xl',
+      },
     });
   });
 

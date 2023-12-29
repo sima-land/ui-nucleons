@@ -65,16 +65,14 @@ export function useVisualViewportPlacement(): { style: CSSProperties } {
 
     /** Сохраняет значения visualViewport в состояние. */
     const callback = () => {
-      if (visualViewport) {
-        setState({
-          width: visualViewport.width * visualViewport.scale,
-          height: visualViewport.height * visualViewport.scale,
+      setState({
+        width: visualViewport.width * visualViewport.scale,
+        height: visualViewport.height * visualViewport.scale,
 
-          // @todo проверить на реальном устройстве зум пальцами (iPad с показанной клавиатурой)
-          offsetTop: visualViewport.scale === 1 ? visualViewport.offsetTop : 0,
-          offsetLeft: visualViewport.scale === 1 ? visualViewport.offsetLeft : 0,
-        });
-      }
+        // @todo проверить на реальном устройстве зум пальцами (iPad с показанной клавиатурой)
+        offsetTop: visualViewport.scale === 1 ? visualViewport.offsetTop : 0,
+        offsetLeft: visualViewport.scale === 1 ? visualViewport.offsetLeft : 0,
+      });
     };
 
     visualViewport.addEventListener('resize', callback);

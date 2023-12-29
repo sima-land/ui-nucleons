@@ -101,4 +101,24 @@ describe('usePageScrollLock', () => {
     expect(adapter.lock).toHaveBeenCalledTimes(1);
     expect(adapter.unlock).toHaveBeenCalledTimes(1);
   });
+
+  it('should handle empty options', () => {
+    const TestComponent = () => {
+      const ref = useRef<HTMLDivElement>(null);
+      usePageScrollLock(ref, {});
+
+      return <div ref={ref}>Test</div>;
+    };
+
+    expect(lockSpy).toHaveBeenCalledTimes(0);
+    expect(unlockSpy).toHaveBeenCalledTimes(0);
+
+    const { unmount } = render(<TestComponent />);
+    expect(lockSpy).toHaveBeenCalledTimes(1);
+    expect(unlockSpy).toHaveBeenCalledTimes(0);
+
+    unmount();
+    expect(lockSpy).toHaveBeenCalledTimes(1);
+    expect(unlockSpy).toHaveBeenCalledTimes(1);
+  });
 });

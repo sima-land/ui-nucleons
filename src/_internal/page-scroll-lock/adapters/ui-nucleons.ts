@@ -4,8 +4,8 @@ const MARK_ATTR = 'data-scroll-locked';
 
 /** Адаптер блокировки прокрутки использующий внутреннее решение ui-nucleons. */
 export class PageScrollLockAdapterNucleons implements PageScrollLockAdapter {
-  private options?: PageScrollLockOptions;
-  private bodyStyle?: StyleAffect;
+  protected options?: PageScrollLockOptions;
+  protected bodyStyle?: StyleAffect;
 
   /**
    * Конструктор.
@@ -52,7 +52,7 @@ export class PageScrollLockAdapterNucleons implements PageScrollLockAdapter {
    * Определяет заблокирована ли прокрутка.
    * @return True если прокрутка заблокирована.
    */
-  private isLocked(): boolean {
+  protected isLocked(): boolean {
     return document.body.hasAttribute(MARK_ATTR);
   }
 
@@ -60,7 +60,7 @@ export class PageScrollLockAdapterNucleons implements PageScrollLockAdapter {
    * Определяет ширину полосы прокрутки.
    * @return Ширина в пикселях.
    */
-  private getScrollbarWidth(): number {
+  protected getScrollbarWidth(): number {
     // https://javascript.info/task/scrollbar-width
     const div = document.createElement('div');
 
@@ -80,9 +80,9 @@ export class PageScrollLockAdapterNucleons implements PageScrollLockAdapter {
 }
 
 /** Промежуточный слой для установки стилей на элемент с возможностью восстановления состояния. */
-class StyleAffect {
-  private element: HTMLElement;
-  private changes: Map<string, { oldValue: string; oldPriority: string | undefined }>;
+export class StyleAffect {
+  protected element: HTMLElement;
+  protected changes: Map<string, { oldValue: string; oldPriority: string | undefined }>;
 
   /**
    * @param element Целевой элемент.

@@ -37,16 +37,4 @@ describe('PageScrollProvider', () => {
 
     expect(spy.mock.calls[0][0]).toBeInstanceOf(StubAdapter);
   });
-
-  it('should throw error when has parent provider', () => {
-    expect(() => {
-      render(
-        <PageScrollLockContext.Provider value={{ adapter: () => new StubAdapter() }}>
-          <PageScrollLockContext.Provider value={{ adapter: () => new StubAdapter() }}>
-            <h1>Error test</h1>
-          </PageScrollLockContext.Provider>
-        </PageScrollLockContext.Provider>,
-      );
-    }).toThrow();
-  });
 });

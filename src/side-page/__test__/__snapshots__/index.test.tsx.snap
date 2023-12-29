@@ -7,7 +7,7 @@ exports[`SidePage should renders correctly 2`] = `
   <div
     class="root"
     data-testid="modal-overlay"
-    style="--transition-duration: 300ms; z-index: 100; --vh: 7.68px;"
+    style="--transition-duration: 300ms; z-index: 100;"
   >
     <div
       class="side-page size-m"
