@@ -21,7 +21,7 @@ describe('useBreakpoint', () => {
             listeners[query].push(listener);
           },
           removeEventListener: () => void 0,
-        } as any),
+        }) as any,
     );
   });
 

@@ -134,7 +134,10 @@ input.reset {
   width: 100%;
   font-size: 12px;
   line-height: 16px;
-  transition: transform 0.2s ease, font-size 0.2s ease, top 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    font-size 0.2s ease,
+    top 0.2s ease;
   transform-origin: left bottom;
   white-space: nowrap;
   overflow: hidden;

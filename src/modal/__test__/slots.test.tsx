@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { ModalBody, ModalOverlap, ModalBottomGap } from '..';
 import { createRef } from 'react';
-import { PageScrollProvider } from '../../_internal/page-scroll-lock';
+import { PageScrollLockContext } from '../../_internal/page-scroll-lock';
 import { PageScrollLockAdapter } from '../../_internal/page-scroll-lock/types';
 
 describe('ModalBody', () => {
@@ -57,7 +57,7 @@ describe('ModalBody', () => {
     expect(spy).toHaveBeenCalledTimes(0);
 
     render(
-      <PageScrollProvider adapter={spy}>
+      <PageScrollLockContext.Provider value={{ adapter: spy }}>
         <ModalBody
           viewportRef={ref}
           withScrollDisable
@@ -65,7 +65,7 @@ describe('ModalBody', () => {
         >
           <p>Hello!</p>
         </ModalBody>
-      </PageScrollProvider>,
+      </PageScrollLockContext.Provider>,
     );
     expect(spy).toHaveBeenCalledTimes(1);
     expect(ref.current instanceof HTMLDivElement).toBe(true);
@@ -83,9 +83,9 @@ describe('ModalBody', () => {
     expect(adapter.lock).toHaveBeenCalledTimes(0);
 
     render(
-      <PageScrollProvider adapter={spy}>
+      <PageScrollLockContext.Provider value={{ adapter: spy }}>
         <ModalBody>Hello</ModalBody>
-      </PageScrollProvider>,
+      </PageScrollLockContext.Provider>,
     );
 
     expect(adapter.lock).toHaveBeenCalledTimes(0);

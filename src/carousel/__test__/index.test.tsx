@@ -44,7 +44,7 @@ const placeItems = ({
           right: vertical ? itemSize : index * itemSize + itemSize + offset,
           top: !vertical ? 0 : index * itemSize + offset,
           bottom: !vertical ? itemSize : index * itemSize + itemSize + offset,
-        } as any),
+        }) as any,
     );
   });
 };
@@ -454,7 +454,7 @@ describe('Carousel: finite mode', () => {
           height: 20,
           right: 100,
           bottom: 20,
-        } as any),
+        }) as any,
     );
     jest
       .spyOn(containerEl.firstElementChild as HTMLElement, 'getBoundingClientRect')
@@ -462,13 +462,13 @@ describe('Carousel: finite mode', () => {
         () =>
           ({
             left: 0,
-          } as any),
+          }) as any,
       );
     jest.spyOn(containerEl.children[7], 'getBoundingClientRect').mockImplementation(
       () =>
         ({
           right: 200,
-        } as any),
+        }) as any,
     );
     expect(getInstance().isAllItemsVisible()).toBe(false);
 
@@ -479,13 +479,13 @@ describe('Carousel: finite mode', () => {
         () =>
           ({
             left: 0,
-          } as any),
+          }) as any,
       );
     jest.spyOn(containerEl.children[7], 'getBoundingClientRect').mockImplementation(
       () =>
         ({
           right: 80,
-        } as any),
+        }) as any,
     );
     expect(getInstance().isAllItemsVisible()).toBe(true);
 
@@ -500,7 +500,7 @@ describe('Carousel: finite mode', () => {
           height: 200,
           right: 40,
           bottom: 200,
-        } as any),
+        }) as any,
     );
     jest
       .spyOn(containerEl.firstElementChild as HTMLElement, 'getBoundingClientRect')
@@ -508,13 +508,13 @@ describe('Carousel: finite mode', () => {
         () =>
           ({
             top: 0,
-          } as any),
+          }) as any,
       );
     jest.spyOn(containerEl.children[7], 'getBoundingClientRect').mockImplementation(
       () =>
         ({
           bottom: 240,
-        } as any),
+        }) as any,
     );
     expect(getInstance().isAllItemsVisible()).toBe(false);
 
@@ -525,13 +525,13 @@ describe('Carousel: finite mode', () => {
         () =>
           ({
             top: 0,
-          } as any),
+          }) as any,
       );
     jest.spyOn(containerEl.children[7], 'getBoundingClientRect').mockImplementation(
       () =>
         ({
           bottom: 80,
-        } as any),
+        }) as any,
     );
     expect(getInstance().isAllItemsVisible()).toBe(true);
   });
@@ -577,7 +577,7 @@ describe('Carousel: finite mode', () => {
           height: 20,
           right: 100,
           bottom: 20,
-        } as any),
+        }) as any,
     );
     defineProp(containerEl, 'scrollWidth', 500);
     rerender(
@@ -660,7 +660,7 @@ describe('Carousel: finite mode', () => {
           height: 20,
           right: 100,
           bottom: 20,
-        } as any),
+        }) as any,
     );
 
     // смещаем элементы так, чтобы последний элемент был вплотную к правой границе карусели
@@ -714,7 +714,7 @@ describe('Carousel: finite mode', () => {
           height: 20,
           right: 100,
           bottom: 20,
-        } as any),
+        }) as any,
     );
 
     // смещаем элементы так, чтобы последний элемент был вплотную к правой границе карусели
@@ -769,7 +769,7 @@ describe('Carousel: finite mode', () => {
           height: 20,
           right: 100,
           bottom: 20,
-        } as any),
+        }) as any,
     );
 
     // смещаем элементы так, чтобы последний элемент был вплотную к правой границе карусели
@@ -849,7 +849,7 @@ describe('Carousel: finite mode', () => {
             height: itemSize,
             right: visibleItemsCount * itemSize,
             bottom: itemSize,
-          } as any),
+          }) as any,
       );
       const endOffset = -(5.5 * itemSize); // переместили мышкой на 5.5 элементов вперед (влево)
       placeItems({
@@ -901,7 +901,7 @@ describe('Carousel: finite mode', () => {
             height: itemSize,
             right: visibleItemsCount * itemSize,
             bottom: itemSize,
-          } as any),
+          }) as any,
       );
       const endOffset = itemsCount * 2 * itemSize; // переместили мышкой за пределы области галереи
       placeItems({
@@ -957,7 +957,7 @@ describe('Carousel: finite mode', () => {
             height: itemSize,
             right: visibleItemsCount * itemSize,
             bottom: itemSize,
-          } as any),
+          }) as any,
       );
       defineProp(containerEl, 'scrollWidth', itemSize * itemsCount);
 
@@ -1011,7 +1011,7 @@ describe('Carousel: finite mode', () => {
             height: itemSize,
             right: visibleItemsCount * itemSize,
             bottom: itemSize,
-          } as any),
+          }) as any,
       );
       const endOffset = -(3.2 * itemSize); // переместили мышкой на 3.5 элементов вперед (вниз)
       placeItems({
@@ -1067,7 +1067,7 @@ describe('Carousel: finite mode', () => {
             height: visibleItemsCount * itemSize,
             right: itemSize,
             bottom: visibleItemsCount * itemSize,
-          } as any),
+          }) as any,
       );
       defineProp(containerEl, 'scrollHeight', itemSize * itemsCount);
 
@@ -1121,7 +1121,7 @@ describe('Carousel: finite mode', () => {
             height: itemSize,
             right: visibleItemsCount * itemSize,
             bottom: itemSize,
-          } as any),
+          }) as any,
       );
       const endOffset = itemsCount * 2 * itemSize; // переместили мышкой за пределы области галереи
       placeItems({
@@ -1171,7 +1171,7 @@ describe('Carousel: finite mode', () => {
             height: itemSize,
             right: visibleItemsCount * itemSize,
             bottom: itemSize,
-          } as any),
+          }) as any,
       );
       const endOffset = -(itemsCount * 3 * itemSize); // переместили мышкой за пределы области галереи
       placeItems({
@@ -1229,7 +1229,7 @@ describe('Carousel: infinite mode', () => {
           height: 20,
           right: 100,
           bottom: 20,
-        } as any),
+        }) as any,
     );
 
     // смещаем элементы
@@ -1288,7 +1288,7 @@ describe('Carousel: infinite mode', () => {
           height: 20,
           right: 100,
           bottom: 20,
-        } as any),
+        }) as any,
     );
 
     // смещаем элементы
@@ -1346,7 +1346,7 @@ describe('Carousel: infinite mode', () => {
           height: 20,
           right: 100,
           bottom: 20,
-        } as any),
+        }) as any,
     );
 
     // смещаем элементы
@@ -1404,7 +1404,7 @@ describe('Carousel: infinite mode', () => {
           height: 20,
           right: 100,
           bottom: 20,
-        } as any),
+        }) as any,
     );
 
     // смещаем элементы
@@ -1464,7 +1464,7 @@ describe('Carousel: infinite mode', () => {
           height: 20,
           right: 100,
           bottom: 20,
-        } as any),
+        }) as any,
     );
 
     // смещаем элементы
@@ -1521,7 +1521,7 @@ describe('Carousel: infinite mode', () => {
           height: 100,
           right: 20,
           bottom: 100,
-        } as any),
+        }) as any,
     );
 
     // формируем позицию и размеры элементов карусели
@@ -1594,7 +1594,7 @@ describe('Carousel: infinite mode', () => {
           height: 20,
           right: 100,
           bottom: 20,
-        } as any),
+        }) as any,
     );
 
     // формируем позицию и размеры элементов карусели
@@ -1672,7 +1672,7 @@ describe('Carousel: infinite mode', () => {
           height: 100,
           right: 20,
           bottom: 100,
-        } as any),
+        }) as any,
     );
 
     // формируем позицию и размеры элементов карусели

@@ -1,6 +1,6 @@
 import type { ModalOverlayProps } from './types';
 import { useImperativeHandle, useRef } from 'react';
-import { useViewportHeightUnit } from '../hooks/styles';
+import { usePageScrollLock } from '../_internal/page-scroll-lock';
 import { LayerProvider, useLayer } from '../helpers/layer';
 import classNames from 'classnames';
 import styles from './modal-overlay.module.scss';
@@ -15,6 +15,8 @@ export function ModalOverlay({
   children,
   className,
   style,
+  withScrollDisable = false,
+  scrollDisableOptions,
   'data-testid': testId = 'modal-overlay',
   ...restProps
 }: ModalOverlayProps) {
@@ -24,7 +26,8 @@ export function ModalOverlay({
 
   useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(rootRef, () => ref.current);
 
-  useViewportHeightUnit(ref);
+  // ВАЖНО: поскольку у ModalOverlay тоже есть прокрутка - для него тоже надо блокировать прокрутку страницы (в частности на iPad)
+  usePageScrollLock(ref, { lockEnabled: withScrollDisable, ...scrollDisableOptions });
 
   return (
     <LayerProvider value={layer}>

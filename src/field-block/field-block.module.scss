@@ -106,7 +106,9 @@
 .label {
   max-width: 100%;
   transform-origin: 0 0;
-  transition: transform 0.2s ease-in-out, max-width 0.2s ease-in-out;
+  transition:
+    transform 0.2s ease-in-out,
+    max-width 0.2s ease-in-out;
   height: 16px;
   font-size: 12px;
   line-height: 16px;

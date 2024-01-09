@@ -12,7 +12,6 @@ describe('ModalOverlay', () => {
     );
 
     expect(getByTestId('modal-overlay').querySelectorAll('h1')).toHaveLength(1);
-    expect(getByTestId('modal-overlay').style.getPropertyValue('--vh')).toBe('7.68px');
   });
 
   it('should handle "rootRef" prop', () => {

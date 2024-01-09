@@ -39,7 +39,7 @@ describe('createRegistry', () => {
           listeners[query].push(listener);
         },
         removeEventListener: () => void 0,
-      } as any),
+      }) as any,
   );
 
   it('should works', () => {

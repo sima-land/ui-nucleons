@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { render } from '@testing-library/react';
-import { PageScrollProvider, usePageScrollContext } from '../context';
+import { PageScrollLockContext } from '../context';
 import { PageScrollLockAdapter } from '../types';
 
 class StubAdapter implements PageScrollLockAdapter {
@@ -18,7 +18,7 @@ describe('PageScrollProvider', () => {
 
     function TestComponent() {
       const ref = useRef<HTMLDivElement>(null);
-      const { adapter } = usePageScrollContext();
+      const { adapter } = useContext(PageScrollLockContext);
 
       useEffect(() => {
         if (ref.current) {
@@ -30,23 +30,11 @@ describe('PageScrollProvider', () => {
     }
 
     render(
-      <PageScrollProvider adapter={() => new StubAdapter()}>
+      <PageScrollLockContext.Provider value={{ adapter: () => new StubAdapter() }}>
         <TestComponent />
-      </PageScrollProvider>,
+      </PageScrollLockContext.Provider>,
     );
 
     expect(spy.mock.calls[0][0]).toBeInstanceOf(StubAdapter);
-  });
-
-  it('should throw error when has parent provider', () => {
-    expect(() => {
-      render(
-        <PageScrollProvider adapter={() => new StubAdapter()}>
-          <PageScrollProvider adapter={() => new StubAdapter()}>
-            <h1>Error test</h1>
-          </PageScrollProvider>
-        </PageScrollProvider>,
-      );
-    }).toThrow();
   });
 });

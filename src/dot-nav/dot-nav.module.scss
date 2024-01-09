@@ -46,7 +46,9 @@
 
     // используем scale() чтобы плавное изменение размера выглядело нормально
     transform: translate3d(-50%, -50%, 0) scale(calc(var(--dot-size) / 10));
-    transition: transform 0.3s, background 0.3s;
+    transition:
+      transform 0.3s,
+      background 0.3s;
   }
   &.active::after {
     background: colors.$basic-gray38;
