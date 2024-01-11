@@ -27,9 +27,9 @@ export function TextButton({
 }: TextButtonProps) {
   const rooClassName = cx(
     'root',
-    `color-${color}`,
-    `size-${size}`,
-    `icon-gutter-${iconGutter}`,
+    color && color !== 'unset' && `color-${color}`,
+    size && size !== 'unset' && `size-${size}`,
+    typeof iconGutter === 'number' && `icon-gutter-${iconGutter}`,
     underline && 'underline',
     disabled && 'disabled',
     className,
@@ -46,19 +46,26 @@ export function TextButton({
   let result: ReactElement;
 
   switch (restProps.as) {
-    case 'anchor':
+    case 'anchor': {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { as, ...anchorProps } = restProps;
+
       result = (
-        <a {...restProps} ref={anchorRef} className={rooClassName} data-testid={testId}>
+        <a {...anchorProps} ref={anchorRef} className={rooClassName} data-testid={testId}>
           {content}
         </a>
       );
       break;
+    }
 
     case 'button':
-    default:
+    default: {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { as, ...buttonProps } = restProps;
+
       result = (
         <button
-          {...restProps}
+          {...buttonProps}
           ref={buttonRef}
           className={rooClassName}
           disabled={disabled}
@@ -68,6 +75,7 @@ export function TextButton({
         </button>
       );
       break;
+    }
   }
 
   return result;

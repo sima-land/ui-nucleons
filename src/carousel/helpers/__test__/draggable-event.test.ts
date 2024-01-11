@@ -1,4 +1,4 @@
-import DraggableEvent from '../draggable-event';
+import { DraggableEvent } from '../draggable-event';
 
 describe('DraggableEvent', () => {
   it('should handle props', () => {

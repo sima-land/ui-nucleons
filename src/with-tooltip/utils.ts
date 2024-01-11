@@ -1,4 +1,4 @@
-import boundsOf from '../helpers/bounds-of';
+import { boundsOf } from '../helpers/bounds-of';
 import { getScrollParent } from '../helpers/get-scroll-parent';
 import { findOffsetParent } from '../helpers/find-offset-parent';
 

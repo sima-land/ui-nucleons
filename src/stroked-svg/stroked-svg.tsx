@@ -17,11 +17,17 @@ export const StrokedSVG = forwardRef<HTMLDivElement, StrokedSVGProps>(
       stroke = COLORS.get('basic-gray4'),
       strokeWidth = 1,
       className,
+      'data-testid': testId,
       ...restProps
     },
     ref,
   ) => (
-    <div ref={ref} className={classNames(styles.root, className)} {...restProps}>
+    <div
+      ref={ref}
+      className={classNames(styles.root, className)}
+      data-testid={testId}
+      {...restProps}
+    >
       <Tag stroke={stroke} strokeWidth={`${strokeWidth * 2}px`} className={styles.stroke} />
       <Tag fill={fill} className={styles.svg} />
     </div>
