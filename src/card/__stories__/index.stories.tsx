@@ -44,7 +44,7 @@ export function Primary() {
           Марина Михайловская позвонит
           <br />
           на этот номер
-          <PhoneInput style={{ marginTop: 24 }} />
+          <PhoneInput style={{ marginTop: '24px', '--field-width': '100%' }} />
         </CardContent>
 
         <BottomBar divided>
