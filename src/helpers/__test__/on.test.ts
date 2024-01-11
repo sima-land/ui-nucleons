@@ -1,4 +1,4 @@
-import on from '../on';
+import { on } from '../on';
 
 describe('on()', () => {
   it('should add event listener', () => {

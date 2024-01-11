@@ -8,8 +8,3 @@ export function boundsOf<T>(element: T): T extends Element ? DOMRect : null {
     ? DOMRect
     : null;
 }
-
-/**
- * @deprecated Следует использовать именованный экспорт. Экспорт по умолчанию будет удалён в будущем.
- */
-export default boundsOf;

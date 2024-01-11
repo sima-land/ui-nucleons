@@ -36,8 +36,3 @@ export function getDateIntervalData(startDate: string, endDate: string) {
 
   return { date, isInterval };
 }
-
-/**
- * @deprecated Следует использовать именованный экспорт. Экспорт по умолчанию будет удалён в будущем.
- */
-export default getDateIntervalData;

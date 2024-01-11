@@ -29,8 +29,3 @@ export function on<T extends Event | SyntheticEvent>(
       target.removeEventListener(eventName, wrapped, options);
     });
 }
-
-/**
- * @deprecated Следует использовать именованный экспорт. Экспорт по умолчанию будет удалён в будущем.
- */
-export default on;

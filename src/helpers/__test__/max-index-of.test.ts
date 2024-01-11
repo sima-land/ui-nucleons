@@ -1,4 +1,4 @@
-import maxIndexOf from '../max-index-of';
+import { maxIndexOf } from '../max-index-of';
 
 describe('maxIndexOf()', () => {
   it('should works properly', () => {

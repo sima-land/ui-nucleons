@@ -13,8 +13,3 @@ export function getRelativePos(target: Element, parent = target.parentElement) {
     y: targetBounds.top - (parentBounds?.top || 0),
   };
 }
-
-/**
- * @deprecated Следует использовать именованный экспорт. Экспорт по умолчанию будет удалён в будущем.
- */
-export default getRelativePos;

@@ -1,4 +1,4 @@
-import findSiblingIndex from '../find-sibling-index';
+import { findSiblingIndex } from '../find-sibling-index';
 
 describe('findSiblingIndex()', () => {
   afterEach(() => {
