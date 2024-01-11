@@ -1,7 +1,0 @@
-@use '../breakpoints';
-
-.inner {
-  @include breakpoints.down('mm') {
-    padding: 0 var(--l-gutter);
-  }
-}
