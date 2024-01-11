@@ -1,4 +1,4 @@
-import getDateIntervalData from '../get-date-interval-data';
+import { getDateIntervalData } from '../get-date-interval-data';
 
 describe('test getDateIntervalData', () => {
   let result;

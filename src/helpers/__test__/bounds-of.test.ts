@@ -1,4 +1,4 @@
-import boundsOf from '../bounds-of';
+import { boundsOf } from '../bounds-of';
 
 describe('boundsOf()', () => {
   it('should return null', () => {

@@ -1,4 +1,4 @@
-import boundsOf from './bounds-of';
+import { boundsOf } from './bounds-of';
 
 /**
  * Прокручивает родительский элемент по вертикали так, чтобы дочерний был в зоне видимости.
@@ -14,6 +14,4 @@ export function scrollToChild(parent: HTMLElement, child: Element) {
   } else if (childRect.top < parentRect.top) {
     parent.scrollTop -= parentRect.top - childRect.top;
   }
-
-  // @todo доделать для OverlayScrollbars?
 }

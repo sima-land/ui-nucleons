@@ -1,5 +1,5 @@
-import Point from '../point';
-import centerOf from '../center-of';
+import { Point } from '../point';
+import { centerOf } from '../center-of';
 
 describe('centerOf()', () => {
   it('should works properly', () => {

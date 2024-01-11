@@ -1,4 +1,4 @@
-import getDeclination from '../get-declination';
+import { getDeclination } from '../get-declination';
 
 describe('test getDeclination', () => {
   const values = ['отзыв', 'отзыва', 'отзывов'];

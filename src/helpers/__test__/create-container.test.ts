@@ -1,4 +1,4 @@
-import createContainer from '../create-container';
+import { createContainer } from '../create-container';
 
 describe('createContainer', () => {
   it('should return container', () => {

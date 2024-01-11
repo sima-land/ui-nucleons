@@ -1,4 +1,4 @@
-import getRelativePos from '../get-relative-pos';
+import { getRelativePos } from '../get-relative-pos';
 
 describe('getRelativePos()', () => {
   it('should return relative position', () => {

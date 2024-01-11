@@ -1,5 +1,5 @@
 import { getEventClientPos, isMainMouseButton, isTouchEvent, triggerInput } from '../events';
-import Point from '../point';
+import { Point } from '../point';
 
 describe('isTouchEvent', () => {
   it('should works properly', () => {

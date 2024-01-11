@@ -14,8 +14,3 @@ export function getDeclination(number: number, titles: string[]) {
 
   return titles[index];
 }
-
-/**
- * @deprecated Следует использовать именованный экспорт. Экспорт по умолчанию будет удалён в будущем.
- */
-export default getDeclination;

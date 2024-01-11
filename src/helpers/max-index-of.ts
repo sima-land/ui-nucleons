@@ -12,8 +12,3 @@ export function maxIndexOf(list?: ArrayLike<any> | null) {
 
   return maxIndex;
 }
-
-/**
- * @deprecated Следует использовать именованный экспорт. Экспорт по умолчанию будет удалён в будущем.
- */
-export default maxIndexOf;
