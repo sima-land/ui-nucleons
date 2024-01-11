@@ -4,7 +4,7 @@ import { TopBar } from '@sima-land/ui-nucleons/top-bar';
 import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
 import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
 import { Button } from '@sima-land/ui-nucleons/button';
-import { PhoneInput } from '@sima-land/ui-nucleons/phone-input-deprecated';
+import { PhoneInput } from '@sima-land/ui-nucleons/phone-input';
 import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
 import { CustomScrollbar } from '@sima-land/ui-nucleons/_internal/custom-scrollbar';
 import CrossSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Cross';
@@ -44,7 +44,7 @@ export function Primary() {
           Марина Михайловская позвонит
           <br />
           на этот номер
-          <PhoneInput style={{ marginTop: 24, '--phone-input-width': 304 }} />
+          <PhoneInput style={{ marginTop: 24 }} />
         </CardContent>
 
         <BottomBar divided>

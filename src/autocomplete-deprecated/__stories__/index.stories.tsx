@@ -2,7 +2,6 @@ import { Autocomplete } from '@sima-land/ui-nucleons/autocomplete-deprecated';
 import { useState } from 'react';
 import { Button } from '@sima-land/ui-nucleons/button';
 import { TextField } from '@sima-land/ui-nucleons/text-field';
-import { PhoneInput } from '@sima-land/ui-nucleons/phone-input-deprecated';
 
 export default {
   title: 'deprecated/Autocomplete',
@@ -105,8 +104,6 @@ export function TestChromeAutofill() {
       {shown && (
         <>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <PhoneInput />
-
             <Autocomplete
               preset='filled-only-list'
               value={value}
