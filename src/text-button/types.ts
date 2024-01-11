@@ -1,6 +1,7 @@
 import type {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
+  CSSProperties,
   ComponentType,
   Ref,
   SVGAttributes,
@@ -12,12 +13,16 @@ export type TextButtonSize = 's' | 'm';
 
 export type TextButtonColor = LinkColor;
 
+export interface TextButtonStyle extends CSSProperties {
+  '--text-button-icon-gutter'?: string;
+}
+
 interface CommonProps extends WithTestId {
   /** Размер. */
-  size?: TextButtonSize;
+  size?: TextButtonSize | 'unset';
 
   /** Цвет. */
-  color?: TextButtonColor;
+  color?: TextButtonColor | 'unset';
 
   /** Иконка перед текстом. */
   startIcon?: ComponentType<SVGAttributes<SVGSVGElement>>;
@@ -38,7 +43,10 @@ interface CommonProps extends WithTestId {
   disabled?: boolean;
 
   /** Отступ от иконок. */
-  iconGutter?: 4 | 8;
+  iconGutter?: 4 | 8 | 'unset';
+
+  /** Стили. */
+  style?: TextButtonStyle;
 }
 
 export type TextButtonAsButtonProps = CommonProps &

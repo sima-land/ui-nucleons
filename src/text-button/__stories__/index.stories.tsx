@@ -78,6 +78,21 @@ export function IconEnd() {
 
 IconEnd.storyName = 'Иконка в конце';
 
+export function IconOnly() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      <TextButton size='s'>
+        <ShareSVG fill='currentColor' />
+      </TextButton>
+      <TextButton size='m'>
+        <ShareAndroidSVG fill='currentColor' />
+      </TextButton>
+    </div>
+  );
+}
+
+IconOnly.storyName = 'Только иконка';
+
 export function DifferentStates() {
   const [size, setSize] = useState<TextButtonSize>('m');
   const [color, setColor] = useState<TextButtonColor>('basic-blue');

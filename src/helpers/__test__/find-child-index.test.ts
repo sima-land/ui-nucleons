@@ -1,6 +1,6 @@
-import findChildElement from '../find-child-element';
+import { findChildIndex } from '../find-child-index';
 
-describe('findChildElement()', () => {
+describe('findChildIndex()', () => {
   afterEach(() => {
     document.body.innerHTML = '';
   });
@@ -9,7 +9,7 @@ describe('findChildElement()', () => {
     document.body.append(div);
 
     expect(
-      findChildElement({
+      findChildIndex({
         target: div,
         isSuitable: undefined,
       }),
@@ -24,7 +24,7 @@ describe('findChildElement()', () => {
     document.body.append(div, sibling1, sibling2, sibling3, sibling4);
 
     expect(
-      findChildElement({
+      findChildIndex({
         target: document.body,
         isSuitable: sibling => sibling.tagName === 'SECTION',
       }),
@@ -39,7 +39,7 @@ describe('findChildElement()', () => {
     document.body.append(div, sibling1, sibling2, sibling3, sibling4);
 
     expect(
-      findChildElement({
+      findChildIndex({
         target: document.body,
         isSuitable: sibling => sibling.tagName !== 'FOOTER',
         needBreakLoop: passed => !passed,
@@ -55,7 +55,7 @@ describe('findChildElement()', () => {
     document.body.append(div, sibling1, sibling2, sibling3, sibling4);
 
     expect(
-      findChildElement({
+      findChildIndex({
         target: document.body,
         startIndex: 4,
         increment: -1,
@@ -72,7 +72,7 @@ describe('findChildElement()', () => {
     document.body.append(div, sibling1, sibling2, sibling3, sibling4);
 
     expect(
-      findChildElement({
+      findChildIndex({
         target: document.body,
         startIndex: 4,
         increment: -1,

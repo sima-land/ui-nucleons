@@ -1,5 +1,5 @@
 import { getScrollParent } from '../helpers/get-scroll-parent';
-import on from '../helpers/on';
+import { on } from '../helpers/on';
 import { getOriginCorrection } from '../with-tooltip/utils';
 
 const SPACE = 4;

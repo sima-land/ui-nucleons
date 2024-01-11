@@ -1,11 +1,12 @@
 import { StrokedSVG } from '@sima-land/ui-nucleons/stroked-svg';
-import { WithHint } from '../../with-hint';
 import Favorite from '@sima-land/ui-quarks/icons/24x24/Stroked/Favorite';
 import ArrowLeft from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';
 import Bag from '@sima-land/ui-quarks/icons/24x24/Stroked/Bag2';
 import ShareAndroid from '@sima-land/ui-quarks/icons/24x24/Stroked/ShareAndroid';
 import ShareIOs from '@sima-land/ui-quarks/icons/24x24/Stroked/ShareIOs';
 import QuickView2 from '@sima-land/ui-quarks/icons/24x24/Stroked/QuickView2';
+import { useState } from 'react';
+import { Hint, useHintFloating, useHintOnHover } from '@sima-land/ui-nucleons/hint';
 
 export default {
   title: 'service/StrokedSVG',
@@ -20,7 +21,7 @@ const icons = [Favorite, ArrowLeft, Bag, ShareAndroid, ShareIOs, QuickView2];
 
 export function Primary() {
   return (
-    <div style={{ padding: '32px', display: 'flex', justifyContent: 'space-around' }}>
+    <div style={{ display: 'flex', gap: '32px' }}>
       {icons.map((icon, index) => (
         <StrokedSVG key={index} component={icon} />
       ))}
@@ -30,21 +31,25 @@ export function Primary() {
 
 Primary.storyName = 'Простой пример';
 
-export function Hint() {
+export function WithHint() {
+  // состояние
+  const [open, setOpen] = useState<boolean>(false);
+
+  // позиционирование
+  const { refs, ...floating } = useHintFloating({ open, onOpenChange: setOpen });
+
+  // пользовательское взаимодействие
+  const { getReferenceProps, getFloatingProps } = useHintOnHover(floating);
+
   return (
-    <div style={{ padding: '32px' }}>
-      <WithHint hint='Добавить в избранное' direction='right'>
-        {(ref, toggle) => (
-          <StrokedSVG
-            component={Favorite}
-            ref={ref as any}
-            onMouseEnter={() => toggle(true)}
-            onMouseLeave={() => toggle(false)}
-          />
-        )}
-      </WithHint>
-    </div>
+    <>
+      <StrokedSVG {...getReferenceProps()} ref={refs.setReference} component={Favorite} />
+
+      <Hint open={open} hintRef={refs.setFloating} arrowRef={refs.setArrow} {...getFloatingProps()}>
+        Добавить в избранное
+      </Hint>
+    </>
   );
 }
 
-Hint.storyName = 'С хинтом';
+WithHint.storyName = 'С хинтом';

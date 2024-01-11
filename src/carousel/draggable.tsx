@@ -15,9 +15,9 @@ import {
   getEventClientPos,
   EventWithPosition,
 } from '../helpers/events';
+import { on } from '../helpers/on';
 import classnames from 'classnames/bind';
-import classes from './draggable.module.scss';
-import on from '../helpers/on';
+import styles from './draggable.module.scss';
 
 export interface Control {
   isGrabbed: () => boolean;
@@ -42,7 +42,7 @@ export interface DraggableProps {
   children?: ReactNode;
 }
 
-const cx = classnames.bind(classes);
+const cx = classnames.bind(styles);
 
 const EVENT_NAMES = {
   move: ['mousemove', 'touchmove'],
@@ -341,8 +341,3 @@ export class Draggable extends Component<DraggableProps> {
     );
   }
 }
-
-/**
- * @deprecated Следует использовать именованный экспорт. Экспорт по умолчанию будет удалён в будущем.
- */
-export default Draggable;

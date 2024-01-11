@@ -5,7 +5,7 @@ import { boundsOf } from '../helpers/bounds-of';
 import { Point, IPoint } from '../helpers/point';
 import { maxIndexOf } from '../helpers/max-index-of';
 import { getRelativePos } from '../helpers/get-relative-pos';
-import { findChildIndex } from '../helpers/find-child-element';
+import { findChildIndex } from '../helpers/find-child-index';
 import { ArrowButton, ArrowButtonProps } from '../arrow-button';
 import { DraggableEvent } from './helpers/draggable-event';
 import { isBrowser } from '../helpers/is-browser';

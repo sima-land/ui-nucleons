@@ -1,7 +1,7 @@
 import { Carousel } from '..';
-import DraggableEvent from '../helpers/draggable-event';
+import { DraggableEvent } from '../helpers/draggable-event';
 import classes from '../carousel.module.scss';
-import Point from '../../helpers/point';
+import { Point } from '../../helpers/point';
 import { act, fireEvent, render } from '@testing-library/react';
 import { createRef } from 'react';
 import { getTranslateStyle } from '../../helpers/styles';

@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 import { useIsomorphicLayoutEffect } from '..';
-import isBrowser from '../../helpers/is-browser';
+import { isBrowser } from '../../helpers/is-browser';
 import { Registry } from './types';
 import { BreakpointQuery, createRegistry } from './utils';
 

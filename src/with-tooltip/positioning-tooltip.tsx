@@ -5,7 +5,7 @@ import { placeTooltip } from './utils';
 import { Tooltip } from '../tooltip';
 import { useLayer } from '../helpers/layer';
 import { useOutsideClick } from '../hooks';
-import on from '../helpers/on';
+import { on } from '../helpers/on';
 
 export interface PositioningTooltipProps {
   /** Содержимое. */

@@ -1,7 +1,7 @@
 import { HTMLAttributes, ReactNode, useEffect, useRef, useState } from 'react';
 import { WithTooltip } from '..';
-import boundsOf from '../../helpers/bounds-of';
-import on from '../../helpers/on';
+import { boundsOf } from '../../helpers/bounds-of';
+import { on } from '../../helpers/on';
 import { Link } from '../../link';
 
 export const SHORT_TEXT = 'Short tooltip text.';
