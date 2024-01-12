@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react';
-import { Link } from '..';
+import { Link } from '../link';
 
 describe('Link', () => {
   it('calls helpers with right params and renders correctly without external', () => {
@@ -51,25 +51,6 @@ describe('Link', () => {
 
     fireEvent.mouseLeave(getByTestId('anchor'));
     expect(onMouseLeaveSpy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should render not indexing content properly', () => {
-    const { container } = render(
-      <Link href='www.test.com' noIndex>
-        Test <i>link</i>
-      </Link>,
-    );
-
-    const [first, last] = [
-      container.querySelector('a')?.childNodes[0],
-      container.querySelector('a')?.childNodes[2],
-    ];
-
-    expect(first instanceof Comment).toBe(true);
-    expect(first?.textContent).toBe('noindex');
-
-    expect(last instanceof Comment).toBe(true);
-    expect(last?.textContent).toBe('/noindex');
   });
 
   it('should render regular (indexing) content properly', () => {

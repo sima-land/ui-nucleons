@@ -1,4 +1,4 @@
-import { NoIndex, NoIndexMark } from '@sima-land/ui-nucleons/no-index';
+import { NoIndex, NoIndexMark, getNoIndexProps } from '@sima-land/ui-nucleons/no-index';
 
 export default {
   title: 'service/NoIndex',
@@ -35,3 +35,14 @@ export function MarkUsage() {
 }
 
 MarkUsage.storyName = 'Использование составных частей';
+
+export function UtilsUsage() {
+  return (
+    <>
+      <div {...getNoIndexProps('Данный текст не будет индексироваться Яндексом')} />
+      <div>А этот будет =)</div>
+    </>
+  );
+}
+
+UtilsUsage.storyName = 'Использование утилит';
