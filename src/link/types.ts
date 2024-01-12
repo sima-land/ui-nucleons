@@ -16,12 +16,6 @@ export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement>, With
   /** Цвет (название токена). */
   color?: LinkColor;
 
-  /**
-   * Нужно ли оборачивать содержимое комментариями no-index.
-   * @deprecated
-   */
-  noIndex?: boolean;
-
   /** Выводить как псевдо-ссылку. */
   pseudo?: boolean;
 
