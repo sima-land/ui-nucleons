@@ -35,7 +35,6 @@ const config: Config = {
     '<rootDir>/src/box',
     '<rootDir>/src/text',
     '<rootDir>/src/styling',
-    '<rootDir>/src/.+-deprecated',
   ],
   clearMocks: true,
   coverageThreshold: {
