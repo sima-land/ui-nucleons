@@ -9,7 +9,7 @@ import { Button } from '@sima-land/ui-nucleons/button';
 import { TopBar, navigationButtons } from '@sima-land/ui-nucleons/top-bar';
 import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
 import { CleanButton, CleanGroup } from '@sima-land/ui-nucleons/clean-buttons';
-import { useKeydown } from '@sima-land/ui-nucleons/hooks/keydown';
+import { useKeydown } from '@sima-land/ui-nucleons/hooks';
 import { LoremIpsum, Sandbox } from '../../../.storybook/utils';
 
 export default {

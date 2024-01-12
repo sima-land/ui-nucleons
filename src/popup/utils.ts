@@ -13,7 +13,7 @@ import { createFocusTrap } from 'focus-trap';
 import { RefObject } from 'react';
 import { useLayer } from '../helpers/layer';
 import { useIsomorphicLayoutEffect } from '../hooks';
-import { useIdentityRef } from '../hooks/identity';
+import { useIdentityRef } from '../hooks/use-identity-ref';
 
 /**
  * Возвращает конфигурацию для `useFloating` по дизайн-гайдам.

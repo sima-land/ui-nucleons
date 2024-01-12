@@ -3,7 +3,7 @@ import { PopupView, PopupViewProps } from './popup-view';
 import { useFloating } from '@floating-ui/react';
 import { useOutsideClick } from '../hooks';
 import { useFocusTrap, popupFloatingConfig, usePopupFloatingStyle } from './utils';
-import { useIdentityRef } from '../hooks/identity';
+import { useIdentityRef } from '../hooks/use-identity-ref';
 import { Portal } from '../portal';
 
 export interface PopupProps extends Omit<PopupViewProps, 'onClose'> {

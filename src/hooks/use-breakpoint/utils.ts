@@ -41,8 +41,8 @@ export const BreakpointQuery = {
   },
 } as const;
 
-// eslint-disable-next-line require-jsdoc
-export const createRegistry = (): Registry => {
+// eslint-disable-next-line require-jsdoc, jsdoc/require-jsdoc
+export function createRegistry(): Registry {
   const registry: Registry = {
     items: {},
     subscribe: (query, listener) => {
@@ -71,7 +71,7 @@ export const createRegistry = (): Registry => {
   };
 
   return registry;
-};
+}
 
 // eslint-disable-next-line require-jsdoc
 const createSubscription = (item: RegistryItem, listener: ChangeHandler): Subscription => ({

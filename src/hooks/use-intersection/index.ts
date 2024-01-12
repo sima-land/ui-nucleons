@@ -1,5 +1,5 @@
 import { MutableRefObject, useEffect } from 'react';
-import { useIdentityRef } from '../identity';
+import { useIdentityRef } from '../use-identity-ref';
 
 /**
  * Хук, вызывающий callback при пересечении целевого элемента с областью видимости.

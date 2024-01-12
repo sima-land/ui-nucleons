@@ -6,10 +6,10 @@ import { useRef } from 'react';
  * @param value Значение.
  * @return Реф.
  */
-export const useIdentityRef = <T>(value: T) => {
+export function useIdentityRef<T>(value: T) {
   const ref = useRef<T>(value);
 
   ref.current = value;
 
   return ref;
-};
+}

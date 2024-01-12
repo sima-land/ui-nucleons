@@ -1,5 +1,5 @@
 import { CSSProperties, MouseEventHandler, useCallback, useEffect, useRef, useState } from 'react';
-import { useIdentityRef } from '../hooks/identity';
+import { useIdentityRef } from '../hooks/use-identity-ref';
 
 /**
  * Вызывает callback только если клик был начат и закончен на одном и том же элементе.

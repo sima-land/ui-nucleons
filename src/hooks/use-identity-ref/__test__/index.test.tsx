@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { render } from '@testing-library/react';
-import { useIdentityRef } from '../identity';
+import { useIdentityRef } from '..';
 
 describe('useIdentityRef', () => {
   const TestComponent = ({ value, callback }: { value: any; callback: (v: any) => void }) => {

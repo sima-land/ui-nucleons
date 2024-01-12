@@ -1,13 +1,13 @@
-# Утилиты для unit-тестирования
+# useIntersection: утилиты для тестирования
 
 Утилиты для unit-тестирования (Jest) компонентов, использующих хук `useIntersection`
 
 #### Пример компонента
 
 ```jsx
-import { useIntersection } from '@sima-land/ui-nucleons/hooks/intersection';
+import { useIntersection } from '@sima-land/ui-nucleons/hooks';
 
-const TestComponent = () => {
+function TestComponent() {
   const ref = useRef(null);
   const [viewing, setViewing] = useState(false);
 
@@ -20,13 +20,13 @@ const TestComponent = () => {
       {viewing ? 'On screen' : 'Off screen'}
     </div>
   );
-};
+}
 ```
 
 #### Пример тестов
 
 ```jsx
-import { IntersectionMock } from '@sima-land/ui-nucleons/hooks/intersection/test-utils';
+import { IntersectionMock } from '@sima-land/ui-nucleons/hooks/use-intersection/test-utils';
 
 const intersectionMock = new IntersectionMock();
 

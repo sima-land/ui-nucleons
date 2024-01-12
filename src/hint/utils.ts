@@ -29,7 +29,7 @@ import {
 } from '@floating-ui/react';
 import { useLayer } from '../helpers/layer';
 import { arrowSquareSize } from './hint-view';
-import { useIdentityRef } from '../hooks/identity';
+import { useIdentityRef } from '../hooks/use-identity-ref';
 
 interface HintExtendedRefs<RT> extends ExtendedRefs<RT> {
   setArrow: (el: HTMLElement | null) => void;

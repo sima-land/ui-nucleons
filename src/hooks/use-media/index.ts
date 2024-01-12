@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { subscribe } from '../helpers/media-query-list';
+import { subscribe } from '../../helpers/media-query-list';
 
 /**
  * Возвращает состояние по media-запросу.
  * @param query Запрос.
  * @return Состояние (matches).
  */
-export const useMedia = (query: string) => {
+export function useMedia(query: string) {
   const [matches, setMatches] = useState<boolean>(false);
 
   useEffect(() => {
@@ -20,4 +20,4 @@ export const useMedia = (query: string) => {
   }, [query]);
 
   return matches;
-};
+}

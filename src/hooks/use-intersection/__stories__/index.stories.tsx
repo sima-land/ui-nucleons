@@ -1,6 +1,6 @@
+import { useIntersection } from '@sima-land/ui-nucleons/hooks';
 import { CSSProperties, useMemo, useRef, useState } from 'react';
 import { COLORS } from '../../../colors';
-import { useIntersection } from '..';
 
 export default {
   title: 'hooks/useIntersection',

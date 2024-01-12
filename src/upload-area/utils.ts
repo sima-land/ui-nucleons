@@ -1,5 +1,5 @@
 import { DragEventHandler, useCallback, useState } from 'react';
-import { useIdentityRef } from '../hooks/identity';
+import { useIdentityRef } from '../hooks/use-identity-ref';
 import { getDeclination } from '../helpers/get-declination';
 import { DescriptionPayload } from './types';
 
