@@ -6,12 +6,12 @@
 
 .gallery {
   &:not(.vertical) {
-    max-width: 500px;
+    max-width: 800px;
     margin: 0 16px;
   }
   &.vertical {
-    width: 122px;
-    height: 360px;
+    width: 200px;
+    height: 600px;
     margin: 16px;
   }
 }
@@ -20,11 +20,13 @@
   font-size: 16px;
   color: #000;
   flex-shrink: 0;
-  width: 122px;
-  height: 122px;
+  width: 200px;
+  height: 300px;
   border-radius: 6px;
   background: #95a5a6;
-  background-size: contain;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   overflow: hidden;
   &:not(.vertical):not(:first-child) {
     margin-left: 10px;

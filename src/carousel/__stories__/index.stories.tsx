@@ -1,6 +1,15 @@
 import { Carousel } from '@sima-land/ui-nucleons/carousel';
-import { ReactNode, useEffect, useState } from 'react';
-import { someImageUrl } from '../../../.storybook/utils';
+import { CSSProperties, ReactNode, useEffect, useState } from 'react';
+import russiaNature01 from './static/russia-nature-01.jpg';
+import russiaNature02 from './static/russia-nature-02.jpg';
+import russiaNature03 from './static/russia-nature-03.jpg';
+import russiaNature04 from './static/russia-nature-04.jpg';
+import russiaNature05 from './static/russia-nature-05.jpg';
+import russiaNature06 from './static/russia-nature-06.jpg';
+import russiaNature07 from './static/russia-nature-07.jpg';
+import russiaNature08 from './static/russia-nature-08.jpg';
+import russiaNature09 from './static/russia-nature-09.jpg';
+import russiaNature10 from './static/russia-nature-10.jpg';
 import classnames from 'classnames/bind';
 import styles from './stories.module.scss';
 
@@ -15,16 +24,16 @@ export default {
 };
 
 const photos: string[] = [
-  someImageUrl({ w: 200, h: 200, id: 1 }),
-  someImageUrl({ w: 200, h: 200, id: 2 }),
-  someImageUrl({ w: 200, h: 200, id: 3 }),
-  someImageUrl({ w: 200, h: 200, id: 4 }),
-  someImageUrl({ w: 200, h: 200, id: 5 }),
-  someImageUrl({ w: 200, h: 200, id: 6 }),
-  someImageUrl({ w: 200, h: 200, id: 7 }),
-  someImageUrl({ w: 200, h: 200, id: 8 }),
-  someImageUrl({ w: 200, h: 200, id: 9 }),
-  someImageUrl({ w: 200, h: 200, id: 10 }),
+  russiaNature01,
+  russiaNature02,
+  russiaNature03,
+  russiaNature04,
+  russiaNature05,
+  russiaNature06,
+  russiaNature07,
+  russiaNature08,
+  russiaNature09,
+  russiaNature10,
 ];
 
 export function Primary() {
@@ -331,32 +340,42 @@ function Reel({
 Reels.storyName = 'Пример: Reels';
 
 export function PreventLinkClickOnDrag() {
+  const style = {
+    link: {
+      display: 'block',
+      flexShrink: 0,
+      width: 'calc(50% - 8px)',
+      height: '320px',
+      borderRadius: '8px',
+      overflow: 'hidden',
+      background: '#eee',
+    } satisfies CSSProperties,
+
+    image: {
+      display: 'block',
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+    } satisfies CSSProperties,
+  };
+
   return (
     <div style={{ maxWidth: '1024px', margin: '24px auto' }}>
       <Carousel
         containerProps={{ style: { width: '100%' } }}
-        items={[0, 10, 100, 1003, 1024, 1026, 1031, 1044, 1053]}
-        renderItem={(id, index) => (
+        items={photos}
+        renderItem={(photo, index) => (
           <a
             key={index}
             href='https://www.sima-land.ru'
-            style={{
-              display: 'block',
-              flexShrink: 0,
-              width: 'calc(50% - 8px)',
-              height: '320px',
-              marginLeft: index ? '16px' : 0,
-              borderRadius: '8px',
-              overflow: 'hidden',
-              background: '#eee',
-            }}
             target='_blank'
             rel='noreferrer'
+            style={{
+              ...style.link,
+              marginLeft: index ? '16px' : 0,
+            }}
           >
-            <img
-              src={someImageUrl({ w: 320, h: 320, id })}
-              style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }}
-            />
+            <img src={photo} style={style.image} />
           </a>
         )}
       />

@@ -1,5 +1,6 @@
 import { UnknownContent } from '@sima-land/ui-nucleons/unknown-content';
-import { someImageUrl } from '../../../.storybook/utils';
+import kazanCathedral from './static/kazan-cathedral.jpg';
+import moscowStreet from './static/moscow-street.jpg';
 
 export default {
   title: 'common/UnknownContent',
@@ -108,8 +109,8 @@ export function Primary() {
           </tbody>
         </table>
 
-        <img src={someImageUrl({ w: 1200, h: 900, id: 1 })} alt='' />
-        <img src={someImageUrl({ w: 1200, h: 600, id: 2 })} alt='' />
+        <img src={kazanCathedral} alt='' />
+        <img src={moscowStreet} alt='' />
 
         <blockquote>
           <p>
