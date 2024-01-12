@@ -4,8 +4,8 @@ import {
   getAvatarIconProps,
   getUserAvatarProps,
 } from '@sima-land/ui-nucleons/avatar';
-import person from './person.jpg';
-import dog from './dog.png';
+import person from './static/person.jpg';
+import dog from './static/dog.png';
 import PersonSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Person';
 
 export default {

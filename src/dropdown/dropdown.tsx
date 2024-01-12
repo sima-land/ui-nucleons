@@ -6,7 +6,7 @@ import styles from './dropdown.module.scss';
 const cx = classnames.bind(styles);
 
 /**
- * Выпадающий блок. Обычно используется для выводя списков опций выбора.
+ * Выпадающий блок. Обычно используется для вывода списков опций выбора.
  * @param props Свойства.
  * @return Элемент.
  */

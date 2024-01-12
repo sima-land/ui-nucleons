@@ -36,8 +36,8 @@ test('upload area should be on page', async ({ page }) => {
   await page.getByText('Загрузите фото').click();
   const fileChooser = await fileChooserPromise;
   await fileChooser.setFiles([
-    './src/avatar/__stories__/person.jpg',
-    './src/avatar/__stories__/dog.png',
+    './src/avatar/__stories__/static/person.jpg',
+    './src/avatar/__stories__/static/dog.png',
   ]);
 
   expect(alertMessage).toBe('Файлов выбрано: 2');
