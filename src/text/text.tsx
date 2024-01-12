@@ -1,6 +1,5 @@
-import { CSSProperties, ElementType, ReactNode, RefAttributes, forwardRef, memo } from 'react';
-import classnames from 'classnames/bind';
-import classes from './text.module.scss';
+import { forwardRef, memo } from 'react';
+import { Align, TextProps } from './types';
 import { color as colorClass } from '../styling/colors';
 import {
   size as sizeClass,
@@ -8,48 +7,9 @@ import {
   weight as weightClass,
   Size,
   LineHeight,
-  Weight,
 } from '../styling/fonts';
-import { Token } from '../colors';
-
-type Align = 'left' | 'center' | 'right' | 'justify';
-
-export interface TextProps {
-  /** Направление. */
-  align?: Align;
-
-  /** Содержимое. */
-  children?: ReactNode;
-
-  /** Ключ цвета из дизайн системы. */
-  color?: Token;
-
-  /** Элемент, который будет использован как обертка. */
-  element?:
-    | string
-    | ElementType<
-        {
-          className: string;
-          style: CSSProperties;
-          children?: ReactNode;
-        } & RefAttributes<any>
-      >;
-
-  /** Межстрочный интервал. */
-  lineHeight?: LineHeight;
-
-  /** Нужно ли добавить стиль "white-space: nowrap". */
-  nowrap?: boolean;
-
-  /** Размер. */
-  size?: Size;
-
-  /** Нужно ли обрезать текст многоточием в одну строку. */
-  truncate?: boolean | number;
-
-  /** Начертание. */
-  weight?: Weight;
-}
+import classnames from 'classnames/bind';
+import classes from './text.module.scss';
 
 const cx = classnames.bind(classes);
 
