@@ -29,3 +29,6 @@ yarn-error.log*
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+# npm pack default result
+sima-land-ui-nucleons-0.0.0.tgz

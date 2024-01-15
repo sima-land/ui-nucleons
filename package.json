@@ -13,7 +13,7 @@
     "export:colors": "node .template/build.mjs",
     "build:before": "rm -rf build",
     "build:main": "tsc --project tsconfig.build.json",
-    "build:after": "node dist.mjs",
+    "build:after": "node scripts/build-after.mjs && cd build && npm pkg delete scripts.prepare && cd ..",
     "build": "npm run build:before && npm run build:main && npm run build:after",
     "test": "BROWSERSLIST_ENV=\"test\" npx jest",
     "coverage": "jest --clearCache && BROWSERSLIST_ENV=\"test\" npx jest --coverage",

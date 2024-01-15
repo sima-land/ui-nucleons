@@ -12,7 +12,7 @@ async function main() {
 
   // формируем пакет
   await copy(['package.json', 'build']);
-  await copy(['readme.md', 'build']);
+  await copy(['README.md', 'build']);
 }
 
 main();

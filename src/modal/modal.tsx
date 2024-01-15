@@ -14,7 +14,7 @@ const cx = classNames.bind(styles);
 export function Modal({
   flexLayout = true,
   size = 'm',
-  rounds = 'm',
+  rounds = size === 'fullscreen' ? 'unset' : 'm',
   className,
   children,
   onClose,

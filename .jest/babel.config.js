@@ -1,4 +1,3 @@
-// данный конфиг нужен исключительно для Storybook
 module.exports = {
   presets: [
     '@babel/preset-env',
