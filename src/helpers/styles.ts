@@ -4,6 +4,7 @@
  * @param property Имя свойства.
  * @param easing Функция плавности.
  * @return Значение CSS-свойства "transition".
+ * @todo Перенести в carousel/utils.
  */
 export function getTransitionStyle(duration = 0, property = 'all', easing = 'ease-out'): string {
   return `${property} ${Number.isFinite(duration) ? duration : 0}ms ${easing}`;
@@ -18,19 +19,8 @@ export function getTransitionStyle(duration = 0, property = 'all', easing = 'eas
  * @param y Смещение по оси y в пикселях.
  * @param z Смещение по оси z в пикселях.
  * @return Значение CSS-свойства с трансформацией смещения.
+ * @todo Перенести в carousel/utils.
  */
 export function getTranslateStyle(x = 0, y = 0, z = 0): string {
   return `translate3d(${x}px, ${y}px, ${z}px)`;
-}
-
-/**
- * Устанавливает на переданный элемент css-переменную "--vh".
- * Значение переменной является аналогом `1vh` с учетом особенностей viewport'а мобильный устройств.
- * @param element Элемент на котором будет задана css-переменная.
- */
-export function setViewportHeightUnit(element: HTMLElement) {
-  const { visualViewport } = window;
-  const height = visualViewport ? visualViewport.height * visualViewport.scale : window.innerHeight;
-
-  element.style.setProperty('--vh', `${height / 100}px`);
 }

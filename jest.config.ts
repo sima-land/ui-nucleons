@@ -6,7 +6,7 @@ const config: Config = {
   setupFiles: ['./.jest/setup.js'],
   testMatch: ['**/?(*.)+(test).[jt]s?(x)'],
   transform: {
-    '^.+\\.(t|j)sx?$': 'babel-jest',
+    '^.+\\.(t|j)sx?$': ['babel-jest', { configFile: './.jest/babel.config.js' }],
 
     // генерируем css-модули
     '\\.module\\.(css|scss)$': 'jest-css-modules-transform',

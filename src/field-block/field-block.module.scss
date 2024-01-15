@@ -1,6 +1,7 @@
 @use '../colors';
 
 .root {
+  // @todo решить как быть с наследованием text-align (ломается вид если задать родителю text-align: center)
   font-size: 16px;
   line-height: 24px;
   width: var(--field-width, 240px);

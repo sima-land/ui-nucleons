@@ -37,7 +37,6 @@ jobs:
       - name: Build package
         run: |
           npm --no-git-tag-version version ${GITHUB_REF#refs/*/}
-          npm pkg delete scripts.prepare
           npm run build
 
       - name: Publish build
