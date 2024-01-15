@@ -1,7 +1,7 @@
 import { isValidElement, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { SelectContext } from './utils';
 import { SelectMenuProps, SelectOpenerBinding, SelectProps } from './types';
-import { useIdentityRef } from '../hooks/identity';
+import { useIdentityRef } from '../hooks/use-identity-ref';
 import { DropdownItemUtils } from '../dropdown-item/utils';
 import { FloatingPortal, useFloating } from '@floating-ui/react';
 import { SelectMenu } from './parts/menu';

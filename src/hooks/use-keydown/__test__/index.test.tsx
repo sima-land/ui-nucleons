@@ -1,5 +1,5 @@
 import { render, fireEvent, createEvent } from '@testing-library/react';
-import { useKeydown } from '../keydown';
+import { useKeydown } from '..';
 
 describe('useKeydown', () => {
   const TestComponent = ({ spy }: { spy?: () => void }) => {

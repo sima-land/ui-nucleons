@@ -5,7 +5,7 @@ import { CSSProperties, useMemo, useRef, useState } from 'react';
 import { CleanButton, CleanGroup } from '@sima-land/ui-nucleons/clean-buttons';
 import { TopBar } from '@sima-land/ui-nucleons/top-bar';
 import { LoremIpsum } from '../../../.storybook/utils';
-import { useIntersection } from '@sima-land/ui-nucleons/hooks/intersection';
+import { useIntersection } from '@sima-land/ui-nucleons/hooks';
 
 export default {
   title: 'common/Modal',

@@ -1,5 +1,5 @@
+import { useBreakpoint } from '@sima-land/ui-nucleons/hooks';
 import { CSSProperties } from 'react';
-import { BreakpointProvider, useBreakpoint } from '..';
 
 export default {
   title: 'hooks/useBreakpoint',
@@ -32,10 +32,10 @@ function DemoBlock({ query }: { query: string }) {
 
 export function Primary() {
   return (
-    <BreakpointProvider>
+    <>
       <DemoBlock query='xs+' />
       <DemoBlock query='xs-' />
-    </BreakpointProvider>
+    </>
   );
 }
 

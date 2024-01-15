@@ -1,4 +1,4 @@
-import { useKeydown } from '@sima-land/ui-nucleons/hooks/keydown';
+import { useKeydown } from '@sima-land/ui-nucleons/hooks';
 import { getDeclination } from '@sima-land/ui-nucleons/helpers/get-declination';
 import { useState } from 'react';
 

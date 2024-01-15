@@ -1,5 +1,5 @@
 import { act, render } from '@testing-library/react';
-import { useMedia } from '../media';
+import { useMedia } from '..';
 
 describe('useMedia', () => {
   const TestComponent = () => {

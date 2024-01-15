@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { useIdentityRef } from './identity';
-import { on } from '../helpers/on';
+import { useIdentityRef } from '../use-identity-ref';
+import { on } from '../../helpers/on';
 
 /**
  * Хук, добавляющий обработчик нажатия на клавишу.
