@@ -9,6 +9,7 @@ export interface ModalStyle extends CSSProperties {
   '--modal-width'?: string;
   '--modal-height'?: string;
   '--modal-max-height'?: string;
+  '--modal-min-height'?: string;
   '--modal-border-radius'?: string;
   '--modal-overlay-padding'?: string;
 }

@@ -12,6 +12,7 @@
   width: var(--modal-width);
   height: var(--modal-height);
   max-height: var(--modal-max-height);
+  min-height: var(--modal-min-height);
   border-radius: var(--modal-border-radius);
   box-shadow: var(--modal-box-shadow);
   flex-shrink: 0;
