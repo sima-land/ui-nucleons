@@ -14,7 +14,7 @@ export function Primary() {
   const [open, setOpen] = useState<boolean>(false);
 
   const style = {
-    '--modal-height': '320px',
+    height: '320px',
     padding: '20px',
   };
 
@@ -25,9 +25,11 @@ export function Primary() {
       </Button>
 
       {open && (
-        <Modal style={style} onClose={() => setOpen(false)}>
-          Модальное окно — окно, которое блокирует работу пользователя с родительским приложением до
-          тех пор, пока пользователь это окно не закроет.
+        <Modal onClose={() => setOpen(false)}>
+          <div style={style}>
+            Модальное окно — окно, которое блокирует работу пользователя с родительским приложением
+            до тех пор, пока пользователь это окно не закроет.
+          </div>
         </Modal>
       )}
     </>
