@@ -1,5 +1,6 @@
-import { MutableRefObject, useEffect } from 'react';
+import { MutableRefObject, useContext, useEffect } from 'react';
 import { useIdentityRef } from '../use-identity-ref';
+import { IntersectionObserverContext } from '../../context';
 
 /**
  * Хук, вызывающий callback при пересечении целевого элемента с областью видимости.
@@ -14,11 +15,13 @@ export function useIntersection(
 ): void {
   const callbackRef = useIdentityRef(callback);
 
+  const { createIntersectionObserver } = useContext(IntersectionObserverContext);
+
   useEffect(() => {
     const element = ref.current;
 
     if (element) {
-      const observer = new IntersectionObserver(([entry]) => {
+      const observer = createIntersectionObserver(([entry]) => {
         callbackRef.current?.(entry);
       }, options);
 
@@ -26,5 +29,5 @@ export function useIntersection(
 
       return () => observer.disconnect();
     }
-  }, [ref, callbackRef, options]);
+  }, [ref, options, createIntersectionObserver]);
 }
