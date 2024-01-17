@@ -42,7 +42,9 @@ export const BreakpointQuery = {
 } as const;
 
 // eslint-disable-next-line require-jsdoc, jsdoc/require-jsdoc
-export function createRegistry(): Registry {
+export function createRegistry(
+  { matchMedia }: { matchMedia: typeof window.matchMedia } = { matchMedia: window.matchMedia },
+): Registry {
   const registry: Registry = {
     items: {},
     subscribe: (query, listener) => {
@@ -52,8 +54,7 @@ export function createRegistry(): Registry {
         item.handlers.add(listener);
       } else {
         const newItem: RegistryItem = {
-          // ВАЖНО: используем "window.matchMedia" вместо "matchMedia" тк падают ошибки в некоторых браузерах
-          mql: window.matchMedia(BreakpointQuery.toMediaQuery(query)),
+          mql: matchMedia(BreakpointQuery.toMediaQuery(query)),
           handlers: new Set([listener]),
         };
 

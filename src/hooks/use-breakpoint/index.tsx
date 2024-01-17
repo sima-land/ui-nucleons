@@ -3,6 +3,7 @@ import { useIsomorphicLayoutEffect } from '..';
 import { isBrowser } from '../../helpers/is-browser';
 import { Registry } from './types';
 import { BreakpointQuery, createRegistry } from './utils';
+import { MatchMediaContext } from '../../context';
 
 const Context = createContext<Registry | null>(null);
 
@@ -15,8 +16,10 @@ const Context = createContext<Registry | null>(null);
 export function BreakpointProvider({ children }: { children: ReactNode }) {
   const [contextValue, setRegistry] = useState<Registry | null>(null);
 
+  const { matchMedia } = useContext(MatchMediaContext);
+
   useIsomorphicLayoutEffect(() => {
-    isBrowser() && setRegistry(createRegistry());
+    isBrowser() && setRegistry(createRegistry({ matchMedia }));
   }, []);
 
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;
@@ -36,13 +39,15 @@ export function useBreakpoint(query: string): boolean {
   const registryFromContext = useContext(Context);
   const [matches, setMatches] = useState<boolean>(false);
 
+  const { matchMedia } = useContext(MatchMediaContext);
+
   useIsomorphicLayoutEffect(() => {
     let registry: Registry;
 
     if (registryFromContext) {
       registry = registryFromContext;
     } else {
-      registry = createRegistry();
+      registry = createRegistry({ matchMedia });
     }
 
     setRegistry(registryFromContext);

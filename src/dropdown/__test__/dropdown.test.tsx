@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { Dropdown } from '..';
+import { Dropdown } from '../dropdown';
 
 describe('Dropdown', () => {
   it('should render children', () => {
