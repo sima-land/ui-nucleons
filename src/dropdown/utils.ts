@@ -54,6 +54,8 @@ export function useDropdownFloatingStyle({
       setOpenerWidth(opener.getBoundingClientRect().width);
     });
 
+    setOpenerWidth(opener.getBoundingClientRect().width);
+
     observer.observe(opener);
 
     return () => {
@@ -61,18 +63,26 @@ export function useDropdownFloatingStyle({
     };
   }, [refs.reference.current, createResizeObserver]);
 
-  return useMemo(
-    () => ({
+  return useMemo(() => {
+    const base = {
       position: strategy,
       top: y,
       left: x,
-      minWidth: `${openerWidth}`,
       zIndex: layer + 2,
+    };
 
-      // ВАЖНО: для возможности стилизации задаем переменную с шириной
-      // @todo при необходимости добавить высоту и другие размеры
-      '--opener-width': typeof openerWidth === 'number' ? `${openerWidth}` : undefined,
-    }),
-    [strategy, x, y, layer, openerWidth],
-  );
+    if (typeof openerWidth === 'number') {
+      return {
+        ...base,
+
+        minWidth: `${openerWidth}px`,
+
+        // ВАЖНО: для возможности стилизации задаем переменную с шириной
+        // @todo при необходимости добавить высоту и другие размеры или же наоборот отказаться от этой переменной
+        '--opener-width': `${openerWidth}px`,
+      };
+    }
+
+    return base;
+  }, [strategy, x, y, layer, openerWidth]);
 }
