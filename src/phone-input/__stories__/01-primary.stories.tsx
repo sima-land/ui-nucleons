@@ -26,6 +26,7 @@ export function Primary() {
 
           setValue(data.cleanValue);
         }}
+        style={{ '--field-width': '320px' }}
       />
 
       <p data-testid='phone:clean-value'>Значение: {value || '[пусто]'}</p>
