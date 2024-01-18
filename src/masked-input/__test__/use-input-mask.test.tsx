@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { createEvent, fireEvent, render } from '@testing-library/react';
-import { useInputMask } from '../hook';
+import { useInputMask } from '../use-input-mask';
 import { UseInputMaskOptions, UseInputMaskResult } from '../types';
+import userEvent from '@testing-library/user-event';
 
 describe('useInputMask', () => {
   it('should not throw when input ref is empty', () => {
-    function WrongUsage({ value, defaultValue }: { value?: string; defaultValue?: string }) {
+    const WrongUsage = ({ value }: { value: string; defaultValue?: string }) => {
       const { bind } = useInputMask({
         value,
-        defaultValue,
         maskOptions: {
           mask: '****',
           pattern: '\\d',
@@ -19,10 +19,10 @@ describe('useInputMask', () => {
       return (
         <div>
           <p>There is an input without ref</p>
-          <input type='text' data-testid='test-input' onChange={bind.onChange} />
+          <input type='text' data-testid='test-input' {...bind} ref={undefined} />
         </div>
       );
-    }
+    };
 
     const { rerender, getByTestId } = render(<WrongUsage value='111' />);
 
@@ -31,17 +31,16 @@ describe('useInputMask', () => {
     }).not.toThrow();
 
     expect(() => {
-      fireEvent.change(getByTestId('test-input'), { target: { value: '444' } });
+      userEvent.type(getByTestId('test-input'), '444');
     }).not.toThrow();
   });
 
   it('should handle document "selectionchange" properly', () => {
     const spy = jest.fn();
 
-    function TestComponent({ value, defaultValue }: { value?: string; defaultValue?: string }) {
+    const TestComponent = ({ value }: { value: string }) => {
       const { store, bind } = useInputMask({
         value,
-        defaultValue,
         maskOptions: {
           mask: '___',
           pattern: '\\d',
@@ -52,9 +51,9 @@ describe('useInputMask', () => {
       useEffect(() => store.subscribe(spy), [store]);
 
       return <input data-testid='test-input' {...bind} />;
-    }
+    };
 
-    const { getByTestId } = render(<TestComponent defaultValue='8080' />);
+    const { getByTestId } = render(<TestComponent value='8080' />);
 
     expect(spy).toHaveBeenCalledTimes(0);
     fireEvent(document, new Event('selectionchange'));
@@ -115,8 +114,7 @@ describe('useInputMask', () => {
         }}
       />,
     );
-    expect(spy).toHaveBeenCalledTimes(4);
-    expect(spy.mock.calls[2][0].bind.value).toBe('+998-22-22');
-    expect(spy.mock.calls[3][0].bind.value).toBe('+998-33-33');
+    expect(spy).toHaveBeenCalledTimes(3);
+    expect(spy.mock.calls[2][0].bind.value).toBe('+998-33-33');
   });
 });

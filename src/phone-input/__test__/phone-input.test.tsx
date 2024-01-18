@@ -7,7 +7,7 @@ import {
   queryAllByTestId,
   render,
 } from '@testing-library/react';
-import { PhoneInput } from '..';
+import { PhoneInput } from '../phone-input';
 import { MaskData } from '../../masked-input';
 import userEvent from '@testing-library/user-event';
 
@@ -52,6 +52,10 @@ describe('PhoneInput', () => {
 
     const { baseElement, container } = render(
       <PhoneInput defaultValue='998-22-333-4444' onChange={onChange} />,
+    );
+
+    expect(getByTestId<HTMLInputElement>(container, 'base-input:field').value).toBe(
+      '+998-22-333-4444',
     );
 
     // open menu
@@ -175,5 +179,40 @@ describe('PhoneInput', () => {
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
     expect(openSpy).toHaveBeenCalledTimes(1);
     expect(closeSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should handle undefined as value during rerender', () => {
+    const spy = jest.fn();
+
+    const { rerender, container } = render(<PhoneInput value='79990002211' onChange={spy} />);
+
+    expect((getByTestId(container, 'base-input:field') as HTMLInputElement).value).toBe(
+      '+7 (999) 000-22-11',
+    );
+
+    rerender(<PhoneInput value='71002003040' onChange={spy} />);
+
+    expect((getByTestId(container, 'base-input:field') as HTMLInputElement).value).toBe(
+      '+7 (100) 200-30-40',
+    );
+
+    rerender(<PhoneInput value={undefined} onChange={spy} />);
+
+    expect((getByTestId(container, 'base-input:field') as HTMLInputElement).value).toBe('+7 (');
+  });
+
+  it('should call onInput correctly', async () => {
+    const spy = jest.fn();
+    const { container } = render(<PhoneInput value='7' onInput={spy} />);
+
+    const input = getByTestId<HTMLInputElement>(container, 'base-input:field');
+
+    expect(input.value).toBe('+7 (');
+    expect(spy).toHaveBeenCalledTimes(0);
+
+    await userEvent.type(input, '8005553535');
+
+    expect(input.value).toBe('+7 (800) 555-35-35');
+    expect(spy).toHaveBeenCalledTimes(10);
   });
 });
