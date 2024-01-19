@@ -215,4 +215,20 @@ describe('PhoneInput', () => {
     expect(input.value).toBe('+7 (800) 555-35-35');
     expect(spy).toHaveBeenCalledTimes(10);
   });
+
+  it('should handle disabled', async () => {
+    const { container: root, baseElement: base } = render(
+      <PhoneInput value='7' onChange={jest.fn()} disabled />,
+    );
+
+    expect(getByTestId(root, 'base-input:field').hasAttribute('disabled')).toBe(true);
+    expect(getByTestId(root, 'phone-input:menu-opener').getAttribute('aria-disabled')).toBe('true');
+
+    await userEvent.click(getByTestId(root, 'phone-input'));
+    expect(getByTestId(root, 'base-input:field') === document.activeElement).toBe(false);
+
+    await userEvent.click(getByTestId(root, 'phone-input:menu-opener'));
+    expect(queryAllByTestId(base, 'dropdown')).toHaveLength(0);
+    expect(queryAllByTestId(base, 'dropdown-item')).toHaveLength(0);
+  });
 });
