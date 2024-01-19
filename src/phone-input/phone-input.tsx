@@ -181,7 +181,9 @@ function StatelessPhoneInput({
             event.preventDefault();
           }}
           selected={item.id === country.id}
-          startContent={<img alt='' width={24} height={24} src={item.imageSrc} />}
+          startContent={
+            <img alt='' width={24} height={24} src={item.imageSrc} className={cx('item-icon')} />
+          }
           endContent={item.code}
         >
           {item.name}
@@ -233,13 +235,13 @@ function PhoneMaskedInput({
           ref={select.openerRef as any}
           onBlur={() => setOpenerFocused(false)}
           onFocus={() => setOpenerFocused(true)}
+          role='combobox'
           aria-label='Выбор страны'
           aria-disabled={disabled}
           className={cx('opener', { disabled })}
           data-testid='phone-input:menu-opener'
           {...(!disabled && {
             tabIndex: 0,
-            role: 'combobox',
             onKeyDown: select.onKeyDown,
             onMouseDown: select.onMouseDown,
           })}

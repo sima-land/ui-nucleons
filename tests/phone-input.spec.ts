@@ -33,11 +33,9 @@ class Here extends TestUtils {
 
 const here = new Here().register();
 
-test.beforeEach(async ({ page }) => {
+test('Opener must be in page', async ({ page }) => {
   await page.goto('/iframe.html?id=common-phoneinput--primary');
-});
 
-test('Opener must be in page', async () => {
   await expect(here.phoneInput()).toHaveCount(1);
   await expect(here.fieldBlock()).toHaveCount(1);
   await expect(here.menu()).toHaveCount(0);
@@ -46,6 +44,10 @@ test('Opener must be in page', async () => {
 });
 
 test.describe('Mouse interactions', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/iframe.html?id=common-phoneinput--primary');
+  });
+
   test('should handle mouse control', async () => {
     await expect(here.phoneInput()).toHaveCount(1);
     await expect(here.menu()).toHaveCount(0);
@@ -75,6 +77,10 @@ test.describe('Mouse interactions', () => {
 });
 
 test.describe('Keyboard interactions', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/iframe.html?id=common-phoneinput--primary');
+  });
+
   test('should handle keyboard control', async () => {
     await expect(here.phoneInput()).toHaveCount(1);
     await expect(here.menu()).toHaveCount(0);
@@ -112,5 +118,93 @@ test.describe('Keyboard interactions', () => {
     await expect(here.input()).toHaveValue('+996 (');
     await expect(here.restPlaceholder()).toHaveText('___) ___-___');
     await expect(here.page).toHaveScreenshot();
+  });
+});
+
+test.describe.only('Props handling', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/iframe.html?args=&id=common-phoneinput--different-state&viewMode=story');
+  });
+
+  const variants = [
+    {
+      event: 'change',
+      controlled: true,
+    },
+    {
+      event: 'change',
+      controlled: false,
+    },
+    {
+      event: 'input',
+      controlled: true,
+    },
+    {
+      event: 'input',
+      controlled: false,
+    },
+  ];
+
+  for (const { controlled, event } of variants) {
+    test(`Default state with on${event} and ${controlled ? 'value' : 'defaultValue'}`, async () => {
+      await here.page.getByLabel('Состояние').selectOption({ value: 'default' });
+      await here.page.getByLabel('Событие').selectOption({ value: event });
+      await here.page.getByLabel('Контролируемый').setChecked(controlled);
+
+      await expect(here.phoneInput()).toHaveCount(1);
+      await expect(here.menu()).toHaveCount(0);
+      await expect(here.menuItem()).toHaveCount(0);
+      await expect(here.input()).not.toBeFocused();
+      await expect(here.input()).toHaveValue('+7 (800) 555-35-35');
+
+      await here.phoneInput().click();
+      await expect(here.input()).toBeFocused();
+
+      await here.input().fill('');
+      await expect(here.input()).toHaveValue('+7 (');
+
+      await here.input().fill('1002003040');
+      await expect(here.input()).toHaveValue('+7 (100) 200-30-40');
+
+      await here.menuOpener().click();
+      await expect(here.menu()).toHaveCount(1);
+      await expect(here.menuItem()).toHaveCount(13);
+
+      await here.menuItem().nth(6).click();
+      await expect(here.menu()).toHaveCount(0);
+      await expect(here.menuItem()).toHaveCount(0);
+      await expect(here.input()).toHaveValue('+995 (');
+
+      await here.phoneInput().click();
+      await expect(here.input()).toBeFocused();
+
+      await here.input().fill('111222333');
+      await expect(here.input()).toHaveValue('+995 (111) 222-333');
+    });
+  }
+
+  test('Disabled state', async () => {
+    await here.page.getByLabel('Состояние').selectOption({ value: 'disabled' });
+
+    await expect(here.phoneInput()).toHaveCount(1);
+    await expect(here.menu()).toHaveCount(0);
+    await expect(here.menuItem()).toHaveCount(0);
+    await expect(here.input()).toBeDisabled();
+    await expect(here.menuOpener()).toBeDisabled();
+    await expect(here.menuOpener()).toHaveAttribute('role', 'combobox');
+    await expect(here.menuOpener()).toHaveAttribute('aria-label', 'Выбор страны');
+    await expect(here.input()).toHaveValue('+7 (800) 555-35-35');
+    await expect(here.page).toHaveScreenshot();
+
+    await here.menuOpener().click({ force: true });
+    await expect(here.menu()).toHaveCount(0);
+    await expect(here.menuItem()).toHaveCount(0);
+
+    await here.menuOpener().focus();
+    await expect(here.menuOpener()).not.toBeFocused();
+
+    await here.menuOpener().press('Enter');
+    await expect(here.menu()).toHaveCount(0);
+    await expect(here.menuItem()).toHaveCount(0);
   });
 });
