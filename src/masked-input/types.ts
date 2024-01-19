@@ -1,7 +1,7 @@
 import type { Action, Store } from 'redux';
 import type { InputState } from '@krutoo/input-mask/dist/core';
 import type { InputProps } from '../input';
-import type { ChangeEvent, ChangeEventHandler, FocusEvent, RefObject } from 'react';
+import type { ChangeEvent, FocusEvent, FormEvent, FormEventHandler, RefObject } from 'react';
 
 export interface InputMaskReactOptions {
   /** Строковое представление маски. */
@@ -15,7 +15,7 @@ export interface InputMaskReactOptions {
 }
 
 export interface MaskedInputProps
-  extends Omit<InputProps, 'onFocus' | 'onChange' | 'onBlur'>,
+  extends Omit<InputProps, 'onFocus' | 'onChange' | 'onBlur' | 'onInput'>,
     Pick<InputMaskReactOptions, 'mask'>,
     Partial<Omit<InputMaskReactOptions, 'mask'>> {
   /** Сработает при фокусе. Вторым аргументом получит данные поля с маской. */
@@ -23,6 +23,9 @@ export interface MaskedInputProps
 
   /** Сработает при вводе. Вторым аргументом получит данные поля с маской. */
   onChange?: (event: ChangeEvent<HTMLInputElement>, data: MaskData) => void;
+
+  /** Сработает при вводе. Вторым аргументом получит данные поля с маской. */
+  onInput?: (event: FormEvent<HTMLInputElement>, data: MaskData) => void;
 
   /** Сработает при "blur". Вторым аргументом получит данные поля с маской. */
   onBlur?: (event: FocusEvent<HTMLInputElement>, data: MaskData) => void;
@@ -40,9 +43,8 @@ export interface MaskData {
 }
 
 export interface UseInputMaskOptions {
+  value: string;
   maskOptions: InputMaskReactOptions;
-  value?: string;
-  defaultValue?: string;
 }
 
 export interface UseInputMaskResult {
@@ -53,7 +55,7 @@ export interface UseInputMaskResult {
   bind: {
     ref: RefObject<HTMLInputElement>;
     value: string;
-    onChange: ChangeEventHandler<HTMLInputElement>;
+    onInput: FormEventHandler<HTMLInputElement>;
   };
 }
 

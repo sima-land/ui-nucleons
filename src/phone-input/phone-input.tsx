@@ -1,4 +1,4 @@
-import { useCallback, useContext, useImperativeHandle, useRef, useState } from 'react';
+import { useCallback, useContext, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { PhoneInputProps } from './types';
 import { DropdownItem } from '../dropdown-item';
 import { useIsomorphicLayoutEffect } from '../hooks';
@@ -19,31 +19,60 @@ const cx = classNames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export function PhoneInput({
-  value,
-  defaultValue,
+export function PhoneInput({ value, defaultValue, ...props }: PhoneInputProps) {
+  const stateless = useMemo(() => typeof value !== 'undefined', []);
+
+  // ВАЖНО: при defaultValue состояние должно быть именно здесь (на уровень выше хука маски) для корректной работы
+  const [currentValue, setCurrentValue] = useState(() => value ?? defaultValue ?? '');
+
+  if (stateless) {
+    return <StatelessPhoneInput {...props} value={value} />;
+  }
+
+  return (
+    <StatelessPhoneInput
+      {...props}
+      value={currentValue}
+      onChange={(event, data) => {
+        setCurrentValue(data.cleanValue);
+        props.onChange?.(event, data);
+      }}
+    />
+  );
+}
+/**
+ * Поле ввода номера телефона.
+ * @param props Свойства.
+ * @return Элемент.
+ */
+function StatelessPhoneInput({
+  value = '',
   label = 'Телефон',
   inputRef: inputRefProp,
   blockRef: blockRefProp,
   onBlur,
   onChange,
+  onInput,
   onFocus,
   onCountrySelect,
-  'data-testid': testId = 'phone-input',
   dropdownProps,
   onMenuOpen,
   onMenuClose,
+  disabled,
+  'data-testid': testId = 'phone-input',
   ...props
-}: PhoneInputProps) {
-  const firstRenderRef = useRef(true);
-
-  const [initialValue] = useState<string>(value ?? defaultValue ?? '');
-  const [country, setCountry] = useState<Country>(() => defineCountry(initialValue));
-  const [cleanValue, setCleanValue] = useState<string>(() =>
-    PhoneValue.removeCode(initialValue, country),
-  );
-
+}: Omit<PhoneInputProps, 'defaultValue'>) {
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // ВАЖНО: помещаем defaultValue в состояние и никогда не меняем тк нам не нужно следить за его обновлением
+  // plainValue - значение без цифр, входящих в маску, мы оперируем им строго внутри компонента
+  const [country, setCountry] = useState<Country>(() => defineCountry(value));
+  const [plainValue, setPlainValue] = useState<string>(() => PhoneValue.removeCode(value, country));
+
+  useIsomorphicLayoutEffect(() => {
+    setPlainValue(PhoneValue.removeCode(value, country));
+  }, [value]);
+
   useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(
     inputRefProp,
     () => inputRef.current,
@@ -55,40 +84,28 @@ export function PhoneInput({
     () => blockRef.current,
   );
 
-  useIsomorphicLayoutEffect(() => {
-    if (typeof value !== 'undefined') {
-      setCleanValue(PhoneValue.removeCode(value, country));
-    }
-  }, [value]);
-
-  const dispatchCountryChange = useCallback(
-    (input: HTMLInputElement) => {
+  const dispatchCountrySelect = useCallback(
+    (selected: Country, input: HTMLInputElement) => {
       const nativeEvent = new Event('input');
       const syntheticEvent = stubSyntheticEvent(input, nativeEvent);
 
-      // @todo перенести вызов onChange в callback onValueChange если будет необходим preventDefault() и тд
+      onInput?.(syntheticEvent, {
+        value: input.value,
+        cleanValue: PhoneValue.addCode(plainValue, selected),
+        completed: false,
+      });
       onChange?.(syntheticEvent, {
         value: input.value,
-        cleanValue: PhoneValue.addCode('', country),
+        cleanValue: PhoneValue.addCode(plainValue, selected),
         completed: false,
       });
 
-      onCountrySelect?.(country);
+      onCountrySelect?.(selected);
     },
-    [onChange, onCountrySelect, country],
+    [onChange, onInput, onCountrySelect, plainValue],
   );
 
-  useIsomorphicLayoutEffect(() => {
-    if (!firstRenderRef.current) {
-      inputRef.current && dispatchCountryChange(inputRef.current);
-    }
-  }, [country]);
-
-  useIsomorphicLayoutEffect(() => {
-    firstRenderRef.current = false;
-  }, []);
-
-  const processData = useCallback(
+  const getMaskData = useCallback(
     (data: MaskData): MaskData => ({
       ...data,
       completed: data.completed || country.id === IDS.other,
@@ -97,9 +114,19 @@ export function PhoneInput({
     [country],
   );
 
-  const changeCountry = useCallback((selected: Country) => {
+  const isInitialCountryRef = useRef(true);
+
+  useIsomorphicLayoutEffect(() => {
+    if (!isInitialCountryRef.current && inputRef.current) {
+      dispatchCountrySelect(country, inputRef.current);
+    }
+
+    isInitialCountryRef.current = false;
+  }, [country]);
+
+  const selectCountry = useCallback((selected: Country) => {
     setCountry(selected);
-    setCleanValue('');
+    setPlainValue('');
   }, []);
 
   return (
@@ -107,6 +134,7 @@ export function PhoneInput({
       opener={
         <PhoneMaskedInput
           {...props}
+          disabled={disabled}
           data-testid={testId}
           country={country}
           inputRef={inputRef}
@@ -114,24 +142,32 @@ export function PhoneInput({
           label={label}
           mask={country.mask}
           onFocus={(event, data) => {
-            onFocus?.(event, processData(data));
+            onFocus?.(event, getMaskData(data));
           }}
           onChange={(event, data) => {
-            onChange?.(event, processData(data));
+            setPlainValue(data.cleanValue);
+            onChange?.(event, getMaskData(data));
+          }}
+          onInput={(event, data) => {
+            setPlainValue(data.cleanValue);
+            onInput?.(event, getMaskData(data));
           }}
           onBlur={(event, data) => {
-            onBlur?.(event, processData(data));
+            onBlur?.(event, getMaskData(data));
           }}
-          value={cleanValue}
+          value={plainValue}
         />
       }
       onValueChange={itemValue => {
-        const item = countriesList.find(c => c.id === itemValue);
-        item && changeCountry(item);
+        const found = countriesList.find(item => item.id === itemValue);
+
+        // @todo добавить проверку на разницу текущей и выбранной страны и переименовать onCountrySelect в onCountryChange?
+        found && selectCountry(found);
       }}
       dropdownProps={dropdownProps}
       onMenuOpen={onMenuOpen}
       onMenuClose={onMenuClose}
+      disabled={disabled}
     >
       {countriesList.map((item, index) => (
         <DropdownItem
@@ -163,6 +199,7 @@ export function PhoneInput({
 function PhoneMaskedInput({
   country,
   blockRef: blockRefProp,
+  disabled,
   ...props
 }: MaskedInputProps & { country: Country }) {
   const select = useContext(SelectContext);
@@ -190,18 +227,22 @@ function PhoneMaskedInput({
         restPlaceholder: country.id === IDS.other ? '' : undefined,
         ...props.baseInputProps,
       }}
+      disabled={disabled}
       adornmentEnd={
         <div
           ref={select.openerRef as any}
-          tabIndex={0}
-          onFocus={() => setOpenerFocused(true)}
           onBlur={() => setOpenerFocused(false)}
-          role='combobox'
+          onFocus={() => setOpenerFocused(true)}
           aria-label='Выбор страны'
-          className={cx('opener')}
+          aria-disabled={disabled}
+          className={cx('opener', { disabled })}
           data-testid='phone-input:menu-opener'
-          onKeyDown={select.onKeyDown}
-          onMouseDown={select.onMouseDown}
+          {...(!disabled && {
+            tabIndex: 0,
+            role: 'combobox',
+            onKeyDown: select.onKeyDown,
+            onMouseDown: select.onMouseDown,
+          })}
         >
           <img alt='' width={24} height={24} src={country.imageSrc} />
           <ArrowSVG className={styles.arrow} />

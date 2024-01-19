@@ -1,43 +1,58 @@
-import { createRef } from 'react';
+import { createRef, useState } from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { MaskedInput } from '..';
+import userEvent from '@testing-library/user-event';
+import { MaskedInput } from '../masked-input';
 
 describe('MaskedInput', () => {
-  it('should renders Input', () => {
-    const spy = jest.fn();
-    const { queryAllByTestId, getByTestId } = render(
-      <MaskedInput mask='____' placeholder='_' pattern={'\\d'} value='12a3' onChange={spy} />,
-    );
+  it('should renders Input', async () => {
+    const TestComponent = () => {
+      const [value, setValue] = useState('12a3');
+
+      return (
+        <MaskedInput
+          mask='____'
+          placeholder='_'
+          pattern={'\\d'}
+          value={value}
+          onChange={(event, data) => setValue(data.cleanValue)}
+        />
+      );
+    };
+
+    const { queryAllByTestId, getByTestId } = render(<TestComponent />);
 
     expect(queryAllByTestId('input')).toHaveLength(1);
     expect((getByTestId('base-input:field') as HTMLInputElement).value).toBe('123');
 
-    fireEvent.focus(getByTestId('base-input:field'));
-    fireEvent.change(getByTestId('base-input:field'), { target: { value: 'foo456' } });
+    await userEvent.type(getByTestId('base-input:field'), 'foo4_5_6');
     expect((getByTestId('base-input:field') as HTMLInputElement).value).toBe('1234');
   });
 
-  it('should work as uncontrolled', () => {
-    const spy = jest.fn();
-    const { queryAllByTestId, getByTestId } = render(
-      <MaskedInput
-        mask='____'
-        placeholder='_'
-        pattern={'\\d'}
-        defaultValue='12a3'
-        onChange={spy}
-      />,
-    );
+  it('should work as uncontrolled', async () => {
+    const TestComponent = () => {
+      const [value, setValue] = useState('12a3');
+
+      return (
+        <MaskedInput
+          mask='____'
+          placeholder='_'
+          pattern={'\\d'}
+          value={value}
+          onChange={(event, data) => setValue(data.cleanValue)}
+        />
+      );
+    };
+
+    const { queryAllByTestId, getByTestId } = render(<TestComponent />);
 
     expect(queryAllByTestId('input')).toHaveLength(1);
     expect((getByTestId('base-input:field') as HTMLInputElement).value).toBe('123');
 
-    fireEvent.focus(getByTestId('base-input:field'));
-    fireEvent.change(getByTestId('base-input:field'), { target: { value: 'foo456' } });
+    await userEvent.type(getByTestId('base-input:field'), 'foo4_5_6');
     expect((getByTestId('base-input:field') as HTMLInputElement).value).toBe('1234');
   });
 
-  it('should work as uncontrolled without defaultValue', () => {
+  it('should work as uncontrolled without defaultValue', async () => {
     const spy = jest.fn();
     const { queryAllByTestId, getByTestId } = render(
       <MaskedInput mask='____' placeholder='_' pattern={'\\d'} onChange={spy} />,
@@ -46,19 +61,18 @@ describe('MaskedInput', () => {
     expect(queryAllByTestId('input')).toHaveLength(1);
     expect((getByTestId('base-input:field') as HTMLInputElement).value).toBe('');
 
-    fireEvent.focus(getByTestId('base-input:field'));
-    fireEvent.change(getByTestId('base-input:field'), { target: { value: 'foo456' } });
+    await userEvent.type(getByTestId('base-input:field'), 'foo4_5_6');
     expect((getByTestId('base-input:field') as HTMLInputElement).value).toBe('456');
   });
 
-  it('should apply digits only mask by default', () => {
+  it('should apply digits only mask by default', async () => {
     const spy = jest.fn();
     const { queryAllByTestId, getByTestId } = render(<MaskedInput mask='___' onChange={spy} />);
 
     expect(queryAllByTestId('input')).toHaveLength(1);
     expect((getByTestId('base-input:field') as HTMLInputElement).value).toBe('');
 
-    fireEvent.change(getByTestId('base-input:field'), { target: { value: 'AAA3G5__4' } });
+    await userEvent.type(getByTestId('base-input:field'), 'AAA3G5__4');
     expect((getByTestId('base-input:field') as HTMLInputElement).value).toBe('354');
   });
 
@@ -100,5 +114,23 @@ describe('MaskedInput', () => {
 
     expect(queryAllByTestId('rest-placeholder-shift')).toHaveLength(0);
     expect(queryAllByTestId('rest-placeholder')).toHaveLength(0);
+  });
+
+  it('should handle undefined as value during rerender', () => {
+    const spy = jest.fn();
+
+    const { rerender, getByTestId } = render(
+      <MaskedInput mask='_-_-_-_' value='2222' onChange={spy} />,
+    );
+
+    expect((getByTestId('base-input:field') as HTMLInputElement).value).toBe('2-2-2-2');
+
+    rerender(<MaskedInput mask='_-_-_-_' value='3333' onChange={spy} />);
+
+    expect((getByTestId('base-input:field') as HTMLInputElement).value).toBe('3-3-3-3');
+
+    rerender(<MaskedInput mask='_-_-_-_' value={undefined} onChange={spy} />);
+
+    expect((getByTestId('base-input:field') as HTMLInputElement).value).toBe('');
   });
 });

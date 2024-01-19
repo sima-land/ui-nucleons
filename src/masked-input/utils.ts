@@ -27,13 +27,12 @@ export function createInputMaskStore(
 function createDomReducer(options: ReducerOptions) {
   const innerReducer = createReducer(options);
 
-  function processState(a: InputState, b: InputState): InputState {
-    return innerReducer(a, defineChanges(a, b));
-  }
+  const processState = (a: InputState, b: InputState): InputState =>
+    innerReducer(a, defineChanges(a, b));
 
   const initialState: InputState = State.init(options);
 
-  return function reducer(state: InputState = initialState, action: Action): InputState {
+  return (state: InputState = initialState, action: Action): InputState => {
     let result: InputState = state;
 
     if (actions.inputChange.is(action)) {
