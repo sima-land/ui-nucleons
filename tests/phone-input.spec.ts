@@ -121,7 +121,7 @@ test.describe('Keyboard interactions', () => {
   });
 });
 
-test.describe.only('Props handling', () => {
+test.describe('Props handling', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/iframe.html?args=&id=common-phoneinput--different-state&viewMode=story');
   });
