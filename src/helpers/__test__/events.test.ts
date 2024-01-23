@@ -1,3 +1,4 @@
+import { it, expect, describe, jest } from '@jest/globals';
 import { getEventClientPos, isMainMouseButton, isTouchEvent, triggerInput } from '../events';
 import { Point } from '../point';
 

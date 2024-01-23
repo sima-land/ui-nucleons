@@ -1,3 +1,4 @@
+import { it, expect, describe, jest } from '@jest/globals';
 import { IntersectionMock, FakeIntersectionObserver, createFakeEntry } from '../test-utils';
 
 describe('IntersectionMock', () => {

@@ -13,6 +13,8 @@
     "\\.(jpg|jpeg|png|gif|eot|otf|ttf|woff|woff2)$": "<rootDir>/.jest/transforms/media.js"
   },
   "moduleNameMapper": {
+    "^(overlayscrollbars-react)$": "<rootDir>/node_modules/overlayscrollbars-react/overlayscrollbars-react.cjs.js",
+
     // обычные стили делаем просто пустыми модулями
     "(?<!(.+\\.(module|m)))(\\.css|\\.scss)$": "<rootDir>/.jest/mocks/style.js"
   },
@@ -42,5 +44,6 @@
       "lines": 100,
       "statements": 100
     }
-  }
+  },
+  "extensionsToTreatAsEsm": [".ts", ".tsx"]
 }

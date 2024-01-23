@@ -1,3 +1,4 @@
+import { it, expect, describe, jest } from '@jest/globals';
 import { useContext, useEffect, useRef } from 'react';
 import { render } from '@testing-library/react';
 import { PageScrollLockContext } from '../context';

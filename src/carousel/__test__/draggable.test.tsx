@@ -1,3 +1,4 @@
+import { it, expect, describe, jest } from '@jest/globals';
 import { render } from '@testing-library/react';
 import { createRef } from 'react';
 import { Point } from '../../helpers/point';

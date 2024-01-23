@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { ReactNode, useState } from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { Portal, PortalProps } from '..';

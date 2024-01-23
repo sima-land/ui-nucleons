@@ -1,3 +1,4 @@
+import { it, expect, describe, jest } from '@jest/globals';
 import { createRef } from 'react';
 import { act, fireEvent, render } from '@testing-library/react';
 import { Range } from '..';

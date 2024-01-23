@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { createRef } from 'react';
 import { render } from '@testing-library/react';
 import { ModalOverlay } from '..';

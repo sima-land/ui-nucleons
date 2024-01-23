@@ -1,3 +1,4 @@
+import { it, expect, describe, beforeEach, afterEach } from '@jest/globals';
 import { setTableRowLabels } from '../utils';
 
 describe('setTableRowLabels', () => {

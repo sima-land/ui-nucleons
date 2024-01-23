@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { render } from '@testing-library/react';
 import { StrokedSVG } from '..';
 import FavoriteSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Favorite';

@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { act, fireEvent, render } from '@testing-library/react';
 import { Avatar } from '..';
 import {

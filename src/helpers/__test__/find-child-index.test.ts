@@ -1,3 +1,4 @@
+import { it, expect, describe, afterEach } from '@jest/globals';
 import { findChildIndex } from '../find-child-index';
 
 describe('findChildIndex()', () => {

@@ -1,6 +1,7 @@
 /**
  * @jest-environment jsdom
  */
+import { it, expect, describe } from '@jest/globals';
 import { useLayoutEffect } from 'react';
 import { useIsomorphicLayoutEffect } from '..';
 

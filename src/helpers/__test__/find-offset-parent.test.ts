@@ -1,3 +1,4 @@
+import { it, expect, describe, beforeAll, afterAll } from '@jest/globals';
 import { findOffsetParent } from '../find-offset-parent';
 
 type FakeDiv = Omit<HTMLElement, 'offsetParent'> & { offsetParent?: Element };

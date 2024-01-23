@@ -1,3 +1,4 @@
+import { it, expect, describe, beforeEach, jest } from '@jest/globals';
 import { Carousel } from '..';
 import { DraggableEvent } from '../helpers/draggable-event';
 import { Point } from '../../helpers/point';

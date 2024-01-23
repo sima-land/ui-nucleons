@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { getDeclination } from '../get-declination';
 
 describe('test getDeclination', () => {

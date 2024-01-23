@@ -1,3 +1,4 @@
+import { it, expect, describe, jest } from '@jest/globals';
 import { useEffect } from 'react';
 import { render } from '@testing-library/react';
 import { useIdentityRef } from '..';

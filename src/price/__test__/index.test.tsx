@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { Price } from '..';
 import { render } from '@testing-library/react';
 

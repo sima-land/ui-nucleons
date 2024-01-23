@@ -1,3 +1,4 @@
+import { it, expect, describe, beforeAll, afterAll } from '@jest/globals';
 import { getScrollParent } from '../get-scroll-parent';
 
 type FakeStyledElem = HTMLElement & { __fakeStyles: any };

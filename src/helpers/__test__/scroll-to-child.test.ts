@@ -1,3 +1,4 @@
+import { it, expect, describe, jest } from '@jest/globals';
 import { scrollToChild } from '../scroll-to-child';
 
 const makeRectangleMock = jest.fn((left, top, width, height) => ({

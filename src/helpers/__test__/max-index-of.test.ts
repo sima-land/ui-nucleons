@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { maxIndexOf } from '../max-index-of';
 
 describe('maxIndexOf()', () => {

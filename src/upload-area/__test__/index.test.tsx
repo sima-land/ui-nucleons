@@ -1,3 +1,4 @@
+import { it, expect, describe, jest } from '@jest/globals';
 import { createEvent, fireEvent, render } from '@testing-library/react';
 import { UploadArea } from '../upload-area';
 

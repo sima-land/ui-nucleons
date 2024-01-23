@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { Button } from '..';
 import { render } from '@testing-library/react';
 import SearchSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Search';

@@ -1,3 +1,4 @@
+import { it, expect, describe, afterAll, afterEach, jest } from '@jest/globals';
 import { useRef } from 'react';
 import { render } from '@testing-library/react';
 import { usePageScrollLock } from '../hook';

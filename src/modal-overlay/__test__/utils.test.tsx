@@ -1,3 +1,4 @@
+import { it, expect, describe, beforeEach, afterEach, jest } from '@jest/globals';
 import { MouseEventHandler } from 'react';
 import { act, fireEvent, render } from '@testing-library/react';
 import { useExactClick, useVisualViewportPlacement } from '../utils';
