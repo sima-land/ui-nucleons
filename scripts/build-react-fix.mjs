@@ -18,7 +18,7 @@ async function prependFile(path, content) {
 
 const react = `import * as React from 'react';\n`;
 
-glob('./dist/**/*.js')
+await glob('./dist/**/*.js')
   .then(items =>
     Promise.all(
       items.map(item => fs.readFile(item, 'utf-8').then(content => ({ filename: item, content }))),

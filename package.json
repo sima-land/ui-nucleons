@@ -101,6 +101,8 @@
     "README.md"
   ],
   "exports": {
+    "./_internal/custom-scrollbar": "./dist/_internal/custom-scrollbar/index.js",
+    "./_internal/page-scroll-lock": "./dist/_internal/page-scroll-lock/index.js",
     "./alert": "./dist/alert/index.js",
     "./arrow-button": "./dist/arrow-button/index.js",
     "./autocomplete": "./dist/autocomplete/index.js",
