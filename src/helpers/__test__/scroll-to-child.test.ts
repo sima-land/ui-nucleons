@@ -1,7 +1,7 @@
 import { it, expect, describe, jest } from '@jest/globals';
 import { scrollToChild } from '../scroll-to-child';
 
-const makeRectangleMock = jest.fn((left, top, width, height) => ({
+const makeRectangleMock = jest.fn((left: number, top: number, width: number, height: number) => ({
   left,
   top,
   right: left + width,

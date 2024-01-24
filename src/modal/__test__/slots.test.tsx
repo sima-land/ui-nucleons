@@ -3,7 +3,10 @@ import { render } from '@testing-library/react';
 import { ModalBody, ModalOverlap, ModalBottomGap } from '..';
 import { createRef } from 'react';
 import { PageScrollLockContext } from '../../_internal/page-scroll-lock';
-import { PageScrollLockAdapter } from '../../_internal/page-scroll-lock/types';
+import {
+  PageScrollLockAdapter,
+  PageScrollLockAdapterFactory,
+} from '../../_internal/page-scroll-lock/types';
 
 describe('ModalBody', () => {
   it('should handle "children" prop', () => {
@@ -52,7 +55,7 @@ describe('ModalBody', () => {
       lock: jest.fn(),
       unlock: jest.fn(),
     };
-    const spy = jest.fn<PageScrollLockAdapter, any[]>(() => adapter);
+    const spy = jest.fn<PageScrollLockAdapterFactory>(() => adapter);
     const ref = createRef<HTMLDivElement>();
 
     expect(spy).toHaveBeenCalledTimes(0);
@@ -79,7 +82,7 @@ describe('ModalBody', () => {
       lock: jest.fn(),
       unlock: jest.fn(),
     };
-    const spy = jest.fn<PageScrollLockAdapter, any[]>(() => adapter);
+    const spy = jest.fn<PageScrollLockAdapterFactory>(() => adapter);
 
     expect(adapter.lock).toHaveBeenCalledTimes(0);
 

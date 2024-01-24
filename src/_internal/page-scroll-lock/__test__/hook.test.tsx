@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { render } from '@testing-library/react';
 import { usePageScrollLock } from '../hook';
 import { PageScrollLockAdapterBSL } from '../adapters/body-scroll-lock';
-import { PageScrollLockAdapter, PageScrollLockAdapterFactory } from '../types';
+import { PageScrollLockAdapter } from '../types';
 import { PageScrollLockContext } from '../context';
 
 describe('usePageScrollLock', () => {
@@ -52,12 +52,10 @@ describe('usePageScrollLock', () => {
       return <div ref={ref}>Hello</div>;
     }
 
-    const adapterFactory = jest.fn<PageScrollLockAdapter, Parameters<PageScrollLockAdapterFactory>>(
-      () => ({
-        lock: jest.fn(),
-        unlock: jest.fn(),
-      }),
-    );
+    const adapterFactory = jest.fn<(el: Element, options: any) => PageScrollLockAdapter>(() => ({
+      lock: jest.fn(),
+      unlock: jest.fn(),
+    }));
 
     render(
       <PageScrollLockContext.Provider value={{ adapter: adapterFactory }}>

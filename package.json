@@ -49,6 +49,7 @@
     "@babel/preset-typescript": "^7.16.7",
     "@playwright/test": "^1.40.1",
     "@rushstack/eslint-patch": "^1.1.1",
+    "@sima-land/linters": "file:../frontend-linters/sima-land-linters-0.0.0.tgz",
     "@storybook/addon-backgrounds": "^7.6.8",
     "@storybook/addon-docs": "^7.6.8",
     "@storybook/addon-mdx-gfm": "^7.6.8",
@@ -93,6 +94,7 @@
     "webpack": "^5.75.0"
   },
   "peerDependencies": {
+    "@sima-land/ui-quarks": "file:../ui-quarks/sima-land-ui-quarks-0.0.0.tgz",
     "react": "^17.0 || ^18.0",
     "react-dom": "^17.0 || ^18.0"
   },

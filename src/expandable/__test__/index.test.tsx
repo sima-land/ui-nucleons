@@ -82,7 +82,7 @@ describe('Expandable.Group', () => {
   });
 
   it('should ignore invalid children', () => {
-    const spy = jest.fn();
+    const spy = jest.fn<() => void>();
 
     function TestComponent() {
       useEffect(spy, []);
