@@ -4,7 +4,7 @@ import PersonSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Person';
 import classNames from 'classnames';
 import styles from './utils.module.scss';
 
-const USER_AVATAR_COLOR_TOKENS: ReadonlyArray<string> = [
+const USER_AVATAR_COLORS: ReadonlyArray<string> = [
   '#eb8585',
   '#fda09b',
   '#f49bb1',
@@ -64,7 +64,7 @@ export function getUserAvatarColor(identity: string): string {
     total += identity.charCodeAt(i);
   }
 
-  const list = USER_AVATAR_COLOR_TOKENS;
+  const list = USER_AVATAR_COLORS;
   const hash = total % list.length;
 
   return list[hash];
