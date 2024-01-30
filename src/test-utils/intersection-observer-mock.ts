@@ -11,27 +11,7 @@ export class IntersectionObserverMock implements IntersectionObserver {
    * @return Реестр.
    */
   static createRegistry() {
-    const items: IntersectionObserverMock[] = [];
-
-    return {
-      getObserver: (...params: ConstructorParameters<typeof IntersectionObserverMock>) => {
-        const item = new IntersectionObserverMock(...params);
-
-        items.push(item);
-
-        return item;
-      },
-
-      /**
-       * Имитирует изменение состояния наблюдаемого элемента на всех экземплярах в реестре.
-       * @param entry Данные состояния.
-       */
-      simulateEntryChange(
-        entry: Pick<IntersectionObserverEntry, 'intersectionRatio' | 'isIntersecting' | 'target'>,
-      ) {
-        items.forEach(item => item.simulateEntryChange(entry));
-      },
-    };
+    return new IntersectionObserverRegistry();
   }
 
   /**
@@ -157,5 +137,45 @@ export class IntersectionObserverMock implements IntersectionObserver {
         this,
       );
     }
+  }
+}
+
+/**
+ * Реестр экземпляров IntersectionObserverMock.
+ */
+export class IntersectionObserverRegistry {
+  protected readonly items: Set<IntersectionObserverMock>;
+
+  /**
+   * @inheritdoc
+   */
+  constructor() {
+    this.items = new Set();
+
+    this.getObserver = this.getObserver.bind(this);
+    this.simulateEntryChange = this.simulateEntryChange.bind(this);
+  }
+
+  /**
+   * Создает, регистрирует и возвращает новый экземпляр IntersectionObserverMock.
+   * @param params Аргументы IntersectionObserverMock.
+   * @return Экземпляр IntersectionObserverMock.
+   */
+  getObserver(...params: ConstructorParameters<typeof IntersectionObserverMock>) {
+    const item = new IntersectionObserverMock(...params);
+
+    this.items.add(item);
+
+    return item;
+  }
+
+  /**
+   * Имитирует изменение состояния наблюдаемого элемента на всех экземплярах в реестре.
+   * @param entry Данные состояния.
+   */
+  simulateEntryChange(
+    entry: Pick<IntersectionObserverEntry, 'intersectionRatio' | 'isIntersecting' | 'target'>,
+  ) {
+    this.items.forEach(item => item.simulateEntryChange(entry));
   }
 }

@@ -2,6 +2,7 @@ import { useFloating } from '@floating-ui/react';
 import { useDropdownFloatingStyle } from '../utils';
 import { act, render } from '@testing-library/react';
 import { ResizeObserverContext } from '../../context';
+import { ResizeObserverMock } from '../../test-utils';
 
 describe('useDropdownFloatingStyle', () => {
   const TestComponent = () => {
@@ -22,22 +23,10 @@ describe('useDropdownFloatingStyle', () => {
   };
 
   it('should return styles and handle reference element resize', () => {
-    let callback: null | ResizeObserverCallback = null;
-
-    const createResizeObserver = (fn: ResizeObserverCallback) => {
-      callback = fn;
-
-      const observer = {
-        observe: jest.fn(),
-        unobserve: jest.fn(),
-        disconnect: jest.fn(),
-      } as ResizeObserver;
-
-      return observer;
-    };
+    const observers = ResizeObserverMock.createRegistry();
 
     const { getByTestId } = render(
-      <ResizeObserverContext.Provider value={{ createResizeObserver }}>
+      <ResizeObserverContext.Provider value={{ createResizeObserver: observers.getObserver }}>
         <TestComponent />
       </ResizeObserverContext.Provider>,
     );
@@ -59,7 +48,7 @@ describe('useDropdownFloatingStyle', () => {
           left: 0,
         }) as DOMRect;
 
-      callback?.([], {} as any);
+      observers.simulateEntryChange({ target: reference });
     });
 
     expect(getByTestId('floating').style.getPropertyValue('--opener-width')).toBe('320px');
