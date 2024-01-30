@@ -1,5 +1,8 @@
 import { act } from 'react-dom/test-utils';
 
+/**
+ * @deprecated Следует использовать утилиты из @sima-land/ui-nucleons/test-utils.
+ */
 export type IntersectionObserverEntryBase = Omit<
   IntersectionObserverEntry,
   'time' | 'rootBounds' | 'boundingClientRect' | 'intersectionRect'
@@ -11,6 +14,7 @@ let intersectionMock: IntersectionMock | undefined;
  * Возвращает новый объект, частично реализующий IntersectionObserverEntry.
  * @param base Базовая информация.
  * @return Объект.
+ * @deprecated Следует использовать утилиты из @sima-land/ui-nucleons/test-utils.
  */
 export function createFakeEntry(base: IntersectionObserverEntryBase): IntersectionObserverEntry {
   const entry: IntersectionObserverEntry = {
@@ -45,6 +49,7 @@ export function createFakeEntry(base: IntersectionObserverEntryBase): Intersecti
 
 /**
  * Реализует интерфейс для управления состоянием пересечения элемента с область видимости.
+ * @deprecated Следует использовать утилиты из @sima-land/ui-nucleons/test-utils.
  */
 export class IntersectionMock {
   _original: typeof IntersectionObserver;
@@ -118,6 +123,7 @@ export class IntersectionMock {
 
 /**
  * Имитация IntersectionObserver.
+ * @deprecated Следует использовать утилиты из @sima-land/ui-nucleons/test-utils.
  */
 export class FakeIntersectionObserver implements IntersectionObserver {
   readonly root: Element | Document | null;

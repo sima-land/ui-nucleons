@@ -1,19 +1,10 @@
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { useRef, useState } from 'react';
 import { useIntersection } from '..';
-import { IntersectionMock } from '../test-utils';
+import { IntersectionObserverContext } from '../../../context';
+import { IntersectionObserverMock } from '../../../test-utils';
 
 describe('useIntersection', () => {
-  const intersectionMock = new IntersectionMock();
-
-  beforeAll(() => {
-    intersectionMock.apply();
-  });
-
-  afterAll(() => {
-    intersectionMock.restore();
-  });
-
   it('should works', () => {
     const TestComponent = () => {
       const ref = useRef<HTMLDivElement>(null);
@@ -30,19 +21,27 @@ describe('useIntersection', () => {
       );
     };
 
-    const { asFragment, getByTestId } = render(<TestComponent />);
+    const observers = IntersectionObserverMock.createRegistry();
 
-    const target = getByTestId('test-target');
+    const { container, getByTestId } = render(
+      <IntersectionObserverContext.Provider
+        value={{ createIntersectionObserver: observers.getObserver }}
+      >
+        <TestComponent />
+      </IntersectionObserverContext.Provider>,
+    );
 
-    expect(asFragment().textContent).toContain('Off screen');
+    expect(container.textContent).toBe('Off screen');
 
-    intersectionMock.changeElementState({
-      target,
-      isIntersecting: true,
-      intersectionRatio: 0,
+    act(() => {
+      observers.simulateEntryChange({
+        target: getByTestId('test-target'),
+        isIntersecting: true,
+        intersectionRatio: 0,
+      });
     });
 
-    expect(asFragment().textContent).toContain('On screen');
+    expect(container.textContent).toBe('On screen');
   });
 
   it('should works with empty ref', () => {
