@@ -1,4 +1,5 @@
 import { ResizeObserverMock } from '../resize-observer-mock';
+import { describe, it, expect, jest } from '@jest/globals';
 
 describe('ResizeObserverMock', () => {
   it('should throw error when first argument is not a function', () => {

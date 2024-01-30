@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { MatchMediaContext, ResizeObserverContext, IntersectionObserverContext } from '..';
 import { render } from '@testing-library/react';
+import { describe, it, expect, jest } from '@jest/globals';
 
 describe('MatchMediaContext', () => {
   it('should use global browser value by default', () => {
