@@ -43,19 +43,19 @@ export class MatchMediaMock {
 /**
  * Имитация MediaQueryList.
  */
-class MediaQueryListMock extends EventTarget implements MediaQueryList {
+export class MediaQueryListMock extends EventTarget implements MediaQueryList {
+  /**
+   * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaQueryList/media).
+   */
+  readonly media: string;
+
   /**
    * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaQueryList/matches).
    * @inheritdoc
    */
   get matches(): boolean {
-    return privates.get(this)?.matches ?? false;
+    return Boolean(privates.get(this)?.matches);
   }
-
-  /**
-   * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaQueryList/media).
-   */
-  readonly media: string;
 
   /**
    * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaQueryList/change_event).
@@ -66,13 +66,17 @@ class MediaQueryListMock extends EventTarget implements MediaQueryList {
    * @inheritdoc
    */
   constructor(media: string, matches: boolean) {
+    let validMedia = media;
+
+    if (typeof media !== 'string') {
+      validMedia = 'not all';
+    }
+
     super();
-    this.media = media;
+    this.media = validMedia;
     this.onchange = null;
 
-    if (!privates.has(this)) {
-      privates.set(this, { matches });
-    }
+    privates.set(this, { matches });
   }
 
   /**
@@ -159,7 +163,7 @@ class MediaQueryListMock extends EventTarget implements MediaQueryList {
 /**
  * Имитация MediaQueryListEvent.
  */
-class MediaQueryListEventMock extends Event implements MediaQueryListEvent {
+export class MediaQueryListEventMock extends Event implements MediaQueryListEvent {
   /**
    * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaQueryListEvent/matches).
    */

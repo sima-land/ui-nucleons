@@ -31,6 +31,12 @@ describe('createRegistry', () => {
 
   jest.spyOn(matchMediaMock, 'matchMedia');
 
+  it('should works without params', () => {
+    expect(() => {
+      createRegistry();
+    }).not.toThrow();
+  });
+
   it('should works', () => {
     const registry = createRegistry({ matchMedia: matchMediaMock.matchMedia });
 
