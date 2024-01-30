@@ -20,7 +20,7 @@ yarn add @sima-land/ui-nucleons
 
 - импорты изображений (jpg, png...) как url/base64
 - импорты стилей
-- импорты стилей как css-модулей (каждый такой файл промаркирован в виде `%filename%.module.scss`)
+- импорты стилей как css-модулей (каждый такой файл промаркирован в виде `%filename%.m.scss`)
 
 #### Для работы с Webpack
 
@@ -40,7 +40,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: {
-                auto: /\.module\.(css|scss)$/,
+                auto: /\.(module|m)\.(css|scss)$/,
                 localIdentName: '[name]__[local]--[hash:hex:3]',
               },
             },
@@ -73,9 +73,17 @@ declare module '*.module.css' {
   const classes: { [key: string]: string };
   export default classes;
 }
+declare module '*.m.css' {
+  const classes: { [key: string]: string };
+  export default classes;
+}
 
 // css-модули с синтаксисом SCSS
 declare module '*.module.scss' {
+  const classes: { [key: string]: string };
+  export default classes;
+}
+declare module '*.m.scss' {
   const classes: { [key: string]: string };
   export default classes;
 }

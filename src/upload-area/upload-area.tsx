@@ -4,7 +4,7 @@ import { useFilesDrop } from './utils';
 import { UploadAreaProps } from './types';
 import UploadSVG from '@sima-land/ui-quarks/icons/64x64/Stroked/Upload';
 import classnames from 'classnames/bind';
-import styles from './upload-area.module.scss';
+import styles from './upload-area.m.scss';
 
 const cx = classnames.bind(styles);
 

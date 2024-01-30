@@ -1,7 +1,7 @@
 import { MobileLayout } from '../layout';
 import { BSL_IGNORE_ATTR } from '../_internal/page-scroll-lock';
 import { TouchSliderProps } from './types';
-import styles from './touch-slider.module.scss';
+import styles from './touch-slider.m.scss';
 
 /**
  * Блок, прокручиваемый по горизонтали. Реализует отступы MobileLayout.

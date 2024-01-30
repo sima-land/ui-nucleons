@@ -2,7 +2,7 @@ import type { CleanGroupProps } from './types';
 import { useContext } from 'react';
 import { CleanButtonContext } from './utils';
 import classNames from 'classnames/bind';
-import styles from './clean-group.module.scss';
+import styles from './clean-group.m.scss';
 
 const cx = classNames.bind(styles);
 

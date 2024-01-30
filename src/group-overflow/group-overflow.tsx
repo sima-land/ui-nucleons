@@ -2,7 +2,7 @@ import { Children, CSSProperties, useRef } from 'react';
 import { useItemsHide } from './utils';
 import { GroupOverflowProps } from './types';
 import classNames from 'classnames';
-import styles from './group-overflow.module.scss';
+import styles from './group-overflow.m.scss';
 
 /**
  * Группа со скрытием не влезающих элементов.

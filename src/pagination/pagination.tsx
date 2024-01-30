@@ -10,7 +10,7 @@ import { PaginationItem } from './pagination-item';
 import LeftSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Left';
 import RightSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Right';
 import classNames from 'classnames/bind';
-import styles from './pagination.module.scss';
+import styles from './pagination.m.scss';
 
 const cx = classNames.bind(styles);
 

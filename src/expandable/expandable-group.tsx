@@ -14,7 +14,7 @@ import { ExpandableGroupProps, ExpandableGroupItemProps, ExpandableGroupInnerSty
 import { useIsomorphicLayoutEffect } from '../hooks';
 import { defineLastVisible, useObserveWidth } from './utils';
 import classnames from 'classnames/bind';
-import styles from './expandable-group.module.scss';
+import styles from './expandable-group.m.scss';
 
 const cx = classnames.bind(styles);
 

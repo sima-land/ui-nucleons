@@ -1,4 +1,4 @@
-import classes from './shapes.module.scss';
+import classes from './shapes.m.scss';
 
 /** @deprecated */
 export const SmallRounds = {

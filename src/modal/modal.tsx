@@ -2,7 +2,7 @@ import type { ModalProps } from './types';
 import { ModalOverlay } from '../modal-overlay';
 import { useExactClick } from '../modal-overlay/utils';
 import classNames from 'classnames/bind';
-import styles from './modal.module.scss';
+import styles from './modal.m.scss';
 
 const cx = classNames.bind(styles);
 

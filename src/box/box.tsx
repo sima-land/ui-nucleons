@@ -3,7 +3,7 @@ import * as Spacing from '../styling/sizes';
 import { bgColor } from '../styling/colors';
 import { COLORS } from '../colors';
 import classnames from 'classnames/bind';
-import styles from './box.module.scss';
+import styles from './box.m.scss';
 
 const cx = classnames.bind(styles);
 

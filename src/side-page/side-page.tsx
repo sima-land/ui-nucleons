@@ -7,7 +7,7 @@ import CSSTransition from 'react-transition-group/CSSTransition';
 import { ModalOverlay, ModalOverlayProps } from '../modal-overlay';
 import { useExactClick } from '../modal-overlay/utils';
 import classNames from 'classnames/bind';
-import styles from './side-page.module.scss';
+import styles from './side-page.m.scss';
 
 const cx = classNames.bind(styles);
 

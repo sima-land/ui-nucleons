@@ -1,7 +1,7 @@
 import type { PriceProps } from './types';
 import { formatPrice } from './utils';
 import classNames from 'classnames/bind';
-import styles from './price.module.scss';
+import styles from './price.m.scss';
 
 const cx = classNames.bind(styles);
 

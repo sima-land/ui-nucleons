@@ -4,7 +4,7 @@ import { FieldBlock, FieldBlockProps } from '../../field-block';
 import { COLORS } from '../../colors';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Down';
-import styles from './block.module.scss';
+import styles from './block.m.scss';
 import classNames from 'classnames';
 
 /**

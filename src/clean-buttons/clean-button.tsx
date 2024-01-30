@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { Link } from '../link';
 import { CleanButtonContext } from './utils';
 import classNames from 'classnames/bind';
-import styles from './clean-button.module.scss';
+import styles from './clean-button.m.scss';
 
 const cx = classNames.bind(styles);
 

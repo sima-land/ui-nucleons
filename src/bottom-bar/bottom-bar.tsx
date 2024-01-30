@@ -1,7 +1,7 @@
 import { CleanButtonContext } from '../clean-buttons/utils';
 import { BottomBarProps, type BottomBarSize } from './types';
 import classNames from 'classnames/bind';
-import styles from './bottom-bar.module.scss';
+import styles from './bottom-bar.m.scss';
 
 const cx = classNames.bind(styles);
 

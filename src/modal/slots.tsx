@@ -4,7 +4,7 @@ import { ViewportContext } from '../context/viewport';
 import { usePageScrollLock } from '../_internal/page-scroll-lock';
 import { ModalBodyProps } from './types';
 import classNames from 'classnames/bind';
-import styles from './modal.module.scss';
+import styles from './modal.m.scss';
 
 const cx = classNames.bind(styles);
 

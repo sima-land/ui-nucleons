@@ -1,5 +1,5 @@
 import { ClassGetter } from './utils';
-import classes from './fonts.module.scss';
+import classes from './fonts.m.scss';
 
 export type Size = 12 | 14 | 16 | 20 | 24 | 32 | 48 | 64;
 

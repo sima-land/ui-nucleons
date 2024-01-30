@@ -3,7 +3,7 @@ import { TopBar, TopBarProps } from '../top-bar';
 import { BottomBar, BottomBarProps } from '../bottom-bar';
 import { navigationButtons } from '../top-bar/utils';
 import classNames from 'classnames';
-import styles from './side-page.module.scss';
+import styles from './side-page.m.scss';
 
 /**
  * Шапка SidePage.

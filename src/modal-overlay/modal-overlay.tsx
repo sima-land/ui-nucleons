@@ -3,7 +3,7 @@ import { useImperativeHandle, useRef } from 'react';
 import { usePageScrollLock } from '../_internal/page-scroll-lock';
 import { LayerProvider, useLayer } from '../helpers/layer';
 import classNames from 'classnames';
-import styles from './modal-overlay.module.scss';
+import styles from './modal-overlay.m.scss';
 
 /**
  * Полноэкранное затемнение для модальных компонентов (Alert, Modal, SidePage...).

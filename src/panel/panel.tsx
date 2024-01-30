@@ -3,7 +3,7 @@ import type { Token } from '../colors';
 import type { LinkProps } from '../link';
 import { color, bgColor } from '../styling/colors';
 import classnames from 'classnames/bind';
-import styles from './panel.module.scss';
+import styles from './panel.m.scss';
 
 const cx = classnames.bind(styles);
 

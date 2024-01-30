@@ -7,7 +7,7 @@ import { triggerInput } from '../helpers/events';
 import Cross16SVG from '@sima-land/ui-quarks/icons/16x16/Filled/Cross';
 import Cross24SVG from '@sima-land/ui-quarks/icons/24x24/Filled/Cross';
 import classNames from 'classnames/bind';
-import styles from './input.module.scss';
+import styles from './input.m.scss';
 
 const cx = classNames.bind(styles);
 

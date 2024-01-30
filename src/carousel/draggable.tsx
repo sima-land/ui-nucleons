@@ -17,7 +17,7 @@ import {
 } from '../helpers/events';
 import { on } from '../helpers/on';
 import classnames from 'classnames/bind';
-import styles from './draggable.module.scss';
+import styles from './draggable.m.scss';
 
 export interface Control {
   isGrabbed: () => boolean;

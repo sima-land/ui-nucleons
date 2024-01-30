@@ -2,7 +2,7 @@ import { forwardRef, ReactElement } from 'react';
 import type { ButtonProps } from './types';
 import { SpinnerSVG } from '../spinner';
 import classnames from 'classnames/bind';
-import styles from './button.module.scss';
+import styles from './button.m.scss';
 
 const cx = classnames.bind(styles);
 

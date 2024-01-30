@@ -1,4 +1,4 @@
-import classes from './shadows.module.scss';
+import classes from './shadows.m.scss';
 
 /** @deprecated */
 export const BoxShadow = {

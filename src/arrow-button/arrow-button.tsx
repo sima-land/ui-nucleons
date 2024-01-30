@@ -9,7 +9,7 @@ import RightSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowRight';
 import DownSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowDown';
 import LeftSmallSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowLeft';
 import classNames from 'classnames/bind';
-import styles from './arrow-button.module.scss';
+import styles from './arrow-button.m.scss';
 
 const cx = classNames.bind(styles);
 

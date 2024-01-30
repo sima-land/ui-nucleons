@@ -7,7 +7,7 @@ import { Input } from '@sima-land/ui-nucleons/input';
 import { TextButton } from '@sima-land/ui-nucleons/text-button';
 import CopySVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Copy';
 import CopyBigSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Copy';
-import styles from './colors.module.scss';
+import styles from './colors.m.scss';
 
 export default {
   title: 'tokens/Colors',

@@ -4,7 +4,7 @@ import { BaseInput } from '../base-input';
 import { FieldBlock } from '../field-block';
 import { definePlaceholderColor, useFieldMouseDown, useFilledState } from '../input/utils';
 import classNames from 'classnames/bind';
-import styles from './textarea.module.scss';
+import styles from './textarea.m.scss';
 
 const cx = classNames.bind(styles);
 

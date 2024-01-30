@@ -57,7 +57,7 @@ npx playwright test
 Пример кода такого компонента:
 
 ```scss
-// my-component.module.scss
+// my-component.m.scss
 .size-s {
   height: 32px;
 }
@@ -70,7 +70,7 @@ npx playwright test
 ```tsx
 // my-component.tsx
 import classNames from 'classNames/bind';
-import styles from './my-component.module.scss';
+import styles from './my-component.m.scss';
 
 interface MyComponentProps {
   size?: 's' | 'm';
@@ -104,7 +104,7 @@ export function MyComponent({ size, className }: MyComponentProps) {
 1. Задействовать эти миксины при указании соответствующих значений:
 
    ```scss
-   // my-component.module.scss
+   // my-component.m.scss
    @use './my-component-util.scss';
 
    .size-s {
@@ -130,11 +130,13 @@ export function MyComponent({ size, className }: MyComponentProps) {
 Таким образом в проекте, который использует `MyComponent`, можно поступить следующим образом:
 
 ```tsx
+import { MyComponent } from 'my-library/my-component';
+
 <MyComponent size='unset' className='custom'>
 ```
 
 ```scss
-@use '~/my-component/my-component-util';
+@use 'my-library/my-component/my-component-util.scss';
 
 .custom {
   @include my-component-utils.size-s;

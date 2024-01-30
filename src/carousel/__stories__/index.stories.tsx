@@ -11,7 +11,7 @@ import russiaNature08 from './static/russia-nature-08.jpg';
 import russiaNature09 from './static/russia-nature-09.jpg';
 import russiaNature10 from './static/russia-nature-10.jpg';
 import classnames from 'classnames/bind';
-import styles from './stories.module.scss';
+import styles from './stories.m.scss';
 
 const cx = classnames.bind(styles);
 

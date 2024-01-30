@@ -1,7 +1,7 @@
 import { HTMLAttributes, Ref } from 'react';
 import { WithTestId } from '../types';
 import classnames from 'classnames/bind';
-import styles from './hint-view.module.scss';
+import styles from './hint-view.m.scss';
 
 export interface HintViewProps extends HTMLAttributes<HTMLDivElement>, WithTestId {
   /** Ref корневого элемента. */

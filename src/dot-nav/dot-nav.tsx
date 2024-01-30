@@ -1,7 +1,7 @@
 import type { DotNavProps } from './types';
 import { useRef } from 'react';
 import classNames from 'classnames/bind';
-import styles from './dot-nav.module.scss';
+import styles from './dot-nav.m.scss';
 
 const cx = classNames.bind(styles);
 

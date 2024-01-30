@@ -2,7 +2,7 @@ import type { UnknownContentProps } from './types';
 import { useEffect, useRef } from 'react';
 import { setTableRowLabels } from './utils';
 import classNames from 'classnames';
-import styles from './unknown-content.module.scss';
+import styles from './unknown-content.m.scss';
 
 /**
  * Блок, стилизующий содержимое по дизайн-гайдам.

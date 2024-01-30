@@ -1,5 +1,5 @@
 import classnames from 'classnames/bind';
-import classes from './borders.module.scss';
+import classes from './borders.m.scss';
 
 const cx = classnames.bind(classes);
 

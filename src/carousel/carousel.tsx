@@ -10,7 +10,7 @@ import { ArrowButton, ArrowButtonProps } from '../arrow-button';
 import { DraggableEvent } from './helpers/draggable-event';
 import { isBrowser } from '../helpers/is-browser';
 import classNames from 'classnames/bind';
-import styles from './carousel.module.scss';
+import styles from './carousel.m.scss';
 
 const CLONE_FACTOR = 3;
 

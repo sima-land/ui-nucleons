@@ -7,7 +7,7 @@ import { centerOf } from '../helpers/center-of';
 import { on } from '../helpers/on';
 import { getFractionDepth } from '../helpers/get-fraction-depth';
 import classnames from 'classnames/bind';
-import styles from './range.module.scss';
+import styles from './range.m.scss';
 
 const cx = classnames.bind(styles);
 

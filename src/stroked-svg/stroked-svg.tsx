@@ -2,7 +2,7 @@ import type { StrokedSVGProps } from './types';
 import { forwardRef } from 'react';
 import { COLORS } from '../colors';
 import classNames from 'classnames';
-import styles from './stroked-svg.module.scss';
+import styles from './stroked-svg.m.scss';
 
 /**
  * Выводит иконку с внешней обводкой.

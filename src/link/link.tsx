@@ -1,7 +1,7 @@
 import type { LinkProps } from './types';
 import { forwardRef } from 'react';
 import classnames from 'classnames/bind';
-import styles from './link.module.scss';
+import styles from './link.m.scss';
 
 const cx = classnames.bind(styles);
 
