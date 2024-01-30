@@ -1,4 +1,4 @@
-import { createDOMRectReadOnly } from './create-dom-rect-read-only';
+import { DOMRectReadOnlyMock } from './dom-rect-read-only-mock';
 
 const privates = new Map<IntersectionObserverMock, { targets: Set<Element> }>();
 
@@ -129,9 +129,9 @@ export class IntersectionObserverMock implements IntersectionObserver {
 
             // not implemented
             time: Date.now(),
-            boundingClientRect: createDOMRectReadOnly(),
-            intersectionRect: createDOMRectReadOnly(),
-            rootBounds: createDOMRectReadOnly(),
+            boundingClientRect: new DOMRectReadOnlyMock(),
+            intersectionRect: new DOMRectReadOnlyMock(),
+            rootBounds: null,
           },
         ],
         this,

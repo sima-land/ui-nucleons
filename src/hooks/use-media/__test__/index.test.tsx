@@ -1,5 +1,7 @@
 import { act, render } from '@testing-library/react';
 import { useMedia } from '..';
+import { MatchMediaContext } from '../../../context';
+import { MatchMediaMock } from '../../../test-utils';
 
 describe('useMedia', () => {
   const TestComponent = () => {
@@ -8,48 +10,21 @@ describe('useMedia', () => {
     return <>{matches ? 'foo' : 'bar'}</>;
   };
 
-  const matchMedia = window.matchMedia;
-
-  const FakeMatchMedia = {
-    callbacks: [],
-
-    create(arg: any) {
-      matchMedia(arg);
-
-      return {
-        matches: false,
-
-        addEventListener: (eventName: string, callback: () => void) => {
-          this.callbacks.push(callback as never);
-        },
-
-        removeEventListener: jest.fn(),
-      };
-    },
-
-    dispatchChange({ matches }: any) {
-      this.callbacks.forEach(fn => {
-        (fn as any)({ matches, __fake: true });
-      });
-    },
-  };
-
-  beforeAll(() => {
-    jest.spyOn(window, 'matchMedia').mockImplementation(q => FakeMatchMedia.create(q) as any);
-  });
-
-  afterAll(() => {
-    (window.matchMedia as any).mockReset();
-    (window.matchMedia as any).mockClear();
-  });
-
   it('should handle change event', () => {
-    const { container } = render(<TestComponent />);
+    const matchMediaMock = new MatchMediaMock();
 
+    const { container } = render(
+      <MatchMediaContext.Provider value={{ matchMedia: matchMediaMock.matchMedia }}>
+        <TestComponent />
+      </MatchMediaContext.Provider>,
+    );
     expect(container.textContent).toContain('bar');
 
     act(() => {
-      FakeMatchMedia.dispatchChange({ matches: true });
+      matchMediaMock.simulateChange({
+        query: '(min-width: 320px)',
+        matches: true,
+      });
     });
     expect(container.textContent).toContain('foo');
   });

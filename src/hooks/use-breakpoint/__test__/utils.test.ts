@@ -1,3 +1,4 @@
+import { MatchMediaMock } from '../../../test-utils';
 import { BreakpointQuery, createRegistry } from '../utils';
 
 describe('BreakpointQuery', () => {
@@ -26,24 +27,12 @@ describe('BreakpointQuery', () => {
 });
 
 describe('createRegistry', () => {
-  const listeners: Record<string, Array<(e: MediaElementAudioSourceOptions) => void>> = {};
+  const matchMediaMock = new MatchMediaMock();
 
-  jest.spyOn(window, 'matchMedia').mockImplementation(
-    query =>
-      ({
-        addEventListener: (
-          eventName: string,
-          listener: (e: MediaElementAudioSourceOptions) => void,
-        ) => {
-          listeners[query] = listeners[query] || [];
-          listeners[query].push(listener);
-        },
-        removeEventListener: () => void 0,
-      }) as any,
-  );
+  jest.spyOn(matchMediaMock, 'matchMedia');
 
   it('should works', () => {
-    const registry = createRegistry();
+    const registry = createRegistry({ matchMedia: matchMediaMock.matchMedia });
 
     const spy1 = jest.fn();
     const spy2 = jest.fn();
@@ -53,24 +42,33 @@ describe('createRegistry', () => {
     registry.subscribe('ml+', spy2); // same as first
     registry.subscribe('xs-', spy3);
 
-    expect(matchMedia).toHaveBeenCalledTimes(2); // for each unique query
+    expect(matchMediaMock.matchMedia).toHaveBeenCalledTimes(2); // for each unique query
 
-    expect((matchMedia as jest.Mock).mock.calls[0][0]).toBe('(min-width: 840px)');
-    expect((matchMedia as jest.Mock).mock.calls[1][0]).toBe('(max-width: 1023px)');
+    expect((matchMediaMock.matchMedia as jest.Mock).mock.calls[0][0]).toBe('(min-width: 840px)');
+    expect((matchMediaMock.matchMedia as jest.Mock).mock.calls[1][0]).toBe('(max-width: 1023px)');
 
-    listeners['(min-width: 840px)'].forEach(fn => fn({ matches: true } as any));
+    matchMediaMock.simulateChange({
+      query: '(min-width: 840px)',
+      matches: true,
+    });
     expect(spy1).toHaveBeenCalledTimes(1);
     expect(spy2).toHaveBeenCalledTimes(1);
     expect(spy3).toHaveBeenCalledTimes(0);
 
-    listeners['(max-width: 1023px)'].forEach(fn => fn({ matches: true } as any));
+    matchMediaMock.simulateChange({
+      query: '(max-width: 1023px)',
+      matches: true,
+    });
     expect(spy1).toHaveBeenCalledTimes(1);
     expect(spy2).toHaveBeenCalledTimes(1);
     expect(spy3).toHaveBeenCalledTimes(1);
 
     subscription1.unsubscribe();
 
-    listeners['(min-width: 840px)'].forEach(fn => fn({ matches: true } as any));
+    matchMediaMock.simulateChange({
+      query: '(min-width: 840px)',
+      matches: true,
+    });
     expect(spy1).toHaveBeenCalledTimes(1);
     expect(spy2).toHaveBeenCalledTimes(2);
     expect(spy3).toHaveBeenCalledTimes(1);

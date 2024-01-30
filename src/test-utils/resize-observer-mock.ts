@@ -1,4 +1,4 @@
-import { createDOMRectReadOnly } from './create-dom-rect-read-only';
+import { DOMRectReadOnlyMock } from './dom-rect-read-only-mock';
 
 const privates = new Map<ResizeObserverMock, { targets: Set<Element> }>();
 
@@ -83,7 +83,7 @@ export class ResizeObserverMock implements ResizeObserver {
             // not implemented
             borderBoxSize: [],
             contentBoxSize: [],
-            contentRect: createDOMRectReadOnly(),
+            contentRect: new DOMRectReadOnlyMock(),
             devicePixelContentBoxSize: [],
           },
         ],
