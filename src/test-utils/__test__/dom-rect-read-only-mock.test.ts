@@ -1,8 +1,8 @@
-import { createDOMRectReadOnly } from '../create-dom-rect-read-only';
+import { DOMRectReadOnlyMock } from '../dom-rect-read-only-mock';
 
-describe('createDOMRectReadOnly', () => {
+describe('DOMRectReadOnlyMock', () => {
   it('should return rect without arguments', () => {
-    const result = createDOMRectReadOnly();
+    const result = new DOMRectReadOnlyMock();
 
     expect(result).toEqual({
       x: 0,
@@ -29,7 +29,7 @@ describe('createDOMRectReadOnly', () => {
   });
 
   it('should handle params', () => {
-    const result = createDOMRectReadOnly(10, 20, 30, 40);
+    const result = new DOMRectReadOnlyMock(10, 20, 30, 40);
 
     expect(result).toEqual({
       x: 10,

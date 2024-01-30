@@ -1,45 +1,33 @@
 import { act, render } from '@testing-library/react';
 import { BreakpointProvider, useBreakpoint } from '..';
+import { MatchMediaContext } from '../../../context';
+import { MatchMediaMock } from '../../../test-utils';
 
 describe('useBreakpoint', () => {
   const TestComponent = ({ query }: { query: string }) => {
     const matches = useBreakpoint(query);
+
     return <div>{matches ? 'YES' : 'NO'}</div>;
   };
 
-  const listeners: Record<string, Array<(e: MediaElementAudioSourceOptions) => void>> = {};
-
-  beforeEach(() => {
-    jest.spyOn(window, 'matchMedia').mockImplementation(
-      query =>
-        ({
-          addEventListener: (
-            eventName: string,
-            listener: (e: MediaElementAudioSourceOptions) => void,
-          ) => {
-            listeners[query] = listeners[query] || [];
-            listeners[query].push(listener);
-          },
-          removeEventListener: () => void 0,
-        }) as any,
-    );
-  });
-
-  afterEach(() => {
-    (matchMedia as jest.Mock).mockRestore();
-  });
-
   it('should works properly', () => {
+    const matchMediaMock = new MatchMediaMock();
+
     const { container } = render(
-      <BreakpointProvider>
-        <TestComponent query='mm-' />
-      </BreakpointProvider>,
+      <MatchMediaContext.Provider value={{ matchMedia: matchMediaMock.matchMedia }}>
+        <BreakpointProvider>
+          <TestComponent query='mm-' />
+        </BreakpointProvider>
+      </MatchMediaContext.Provider>,
     );
 
     expect(container.textContent).toBe('NO');
 
     act(() => {
-      listeners['(max-width: 719px)'].forEach(fn => fn({ matches: true } as any));
+      matchMediaMock.simulateChange({
+        query: '(max-width: 719px)',
+        matches: true,
+      });
     });
 
     expect(container.textContent).toBe('YES');
