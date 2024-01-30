@@ -129,6 +129,7 @@
     "./helpers": "./dist/helpers/index.js",
     "./hint": "./dist/hint/index.js",
     "./hooks": "./dist/hooks/index.js",
+    "./hooks/use-intersection/test-utils": "./dist/hooks/use-intersection/test-utils.js",
     "./info-text": "./dist/info-text/index.js",
     "./input": "./dist/input/index.js",
     "./layout": "./dist/layout/index.js",
