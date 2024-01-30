@@ -88,6 +88,12 @@ describe('IntersectionMock', () => {
 
     mock.restore();
   });
+
+  it('_unregisterObserver()', () => {
+    const mock = new IntersectionMock();
+
+    expect(() => mock._unregisterObserver(new FakeIntersectionObserver(() => {}))).not.toThrow();
+  });
 });
 
 describe('FakeIntersectionObserver', () => {
@@ -144,5 +150,11 @@ describe('createFakeEntry', () => {
     expect(entry.rootBounds).toBe(null);
     expect(entry.boundingClientRect).toBe(null);
     expect(entry.intersectionRect).toBe(null);
+  });
+
+  it('disconnect()', () => {
+    const fake = new FakeIntersectionObserver(() => {});
+
+    expect(() => fake.disconnect()).not.toThrow();
   });
 });

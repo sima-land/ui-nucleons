@@ -56,6 +56,11 @@ export class IntersectionObserverMock implements IntersectionObserver {
    * @inheritdoc
    */
   constructor(callback: IntersectionObserverCallback, options?: IntersectionObserverInit) {
+    // ВАЖНО: имитируем поведение согласно реализации в браузере
+    if (typeof callback !== 'function') {
+      throw new TypeError('IntersectionObserverMock constructor: Argument 1 is not callable.');
+    }
+
     // root
     this.root = options?.root ?? null;
 
@@ -80,7 +85,13 @@ export class IntersectionObserverMock implements IntersectionObserver {
    * [MDN Reference](https://developer.mozilla.org/docs/Web/API/IntersectionObserver/disconnect).
    * @inheritdoc
    */
-  disconnect(): void {}
+  disconnect(): void {
+    if (!privates.has(this)) {
+      privates.set(this, { targets: new Set() });
+    }
+
+    privates.get(this)?.targets.clear();
+  }
 
   /**
    * [MDN Reference](https://developer.mozilla.org/docs/Web/API/IntersectionObserver/observe).
@@ -99,6 +110,7 @@ export class IntersectionObserverMock implements IntersectionObserver {
    * @inheritdoc
    */
   takeRecords(): IntersectionObserverEntry[] {
+    // not implemented
     return [];
   }
 

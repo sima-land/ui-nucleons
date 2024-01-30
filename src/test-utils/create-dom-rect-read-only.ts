@@ -21,6 +21,8 @@ export function createDOMRectReadOnly(
 
   return {
     ...rect,
-    toJSON: () => JSON.stringify(rect),
+
+    // ВАЖНО: копируем чтобы не было возможности изменить результат
+    toJSON: () => ({ ...rect }),
   };
 }
