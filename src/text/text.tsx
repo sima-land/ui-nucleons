@@ -9,7 +9,7 @@ import {
   LineHeight,
 } from '../styling/fonts';
 import classnames from 'classnames/bind';
-import classes from './text.module.scss';
+import classes from './text.m.scss';
 
 const cx = classnames.bind(classes);
 

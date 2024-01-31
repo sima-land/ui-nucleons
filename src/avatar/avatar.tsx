@@ -1,7 +1,7 @@
 import type { AvatarProps } from './types';
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
-import styles from './avatar.module.scss';
+import styles from './avatar.m.scss';
 
 const cx = classNames.bind(styles);
 

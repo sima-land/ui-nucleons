@@ -22,7 +22,7 @@ import { Lifecycle } from '../_internal/lifecycle';
 import { NaiveSyntheticEvent, when } from './utils';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Down';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';
-import styles from './autocomplete.module.scss';
+import styles from './autocomplete.m.scss';
 
 /**
  * Поле ввода с подсказками.

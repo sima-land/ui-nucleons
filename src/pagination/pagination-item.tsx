@@ -1,6 +1,6 @@
 import { PaginationItemProps } from './types';
 import classNames from 'classnames/bind';
-import styles from './pagination-item.module.scss';
+import styles from './pagination-item.m.scss';
 
 const cx = classNames.bind(styles);
 

@@ -1,7 +1,7 @@
 import type { DropdownLoadingProps } from './types';
 import { SpinnerSVG } from '../spinner';
 import classNames from 'classnames/bind';
-import styles from './dropdown-loading.module.scss';
+import styles from './dropdown-loading.m.scss';
 
 const cx = classNames.bind(styles);
 

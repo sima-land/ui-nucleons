@@ -1,6 +1,6 @@
 import type { LayoutProps } from './types';
 import classNames from 'classnames/bind';
-import styles from './layout.module.scss';
+import styles from './layout.m.scss';
 
 const cx = classNames.bind(styles);
 

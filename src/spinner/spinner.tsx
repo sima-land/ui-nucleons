@@ -1,7 +1,7 @@
 import type { SpinnerProps, SpinnerSize } from './types';
 import { COLORS, Token } from '../colors';
 import classNames from 'classnames/bind';
-import styles from './spinner.module.scss';
+import styles from './spinner.m.scss';
 
 const cx = classNames.bind(styles);
 

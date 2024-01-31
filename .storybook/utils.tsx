@@ -8,7 +8,7 @@ import {
 } from '../src/_internal/page-scroll-lock';
 import { Select } from '../src/select';
 import { DropdownItem } from '../src/dropdown-item';
-import styles from './utils.module.scss';
+import styles from './utils.m.scss';
 
 interface ControlSelect {
   type: 'select';

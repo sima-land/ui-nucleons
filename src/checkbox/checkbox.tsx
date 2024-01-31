@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import { CheckboxProps } from './types';
 import classNames from 'classnames/bind';
-import styles from './checkbox.module.scss';
+import styles from './checkbox.m.scss';
 
 const cx = classNames.bind(styles);
 

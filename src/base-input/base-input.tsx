@@ -4,7 +4,7 @@ import { useIsomorphicLayoutEffect } from '../hooks';
 import { BaseInputProps, RestPlaceholderDefinition } from './types';
 import { omitMultiline } from './utils';
 import classnames from 'classnames/bind';
-import styles from './base-input.module.scss';
+import styles from './base-input.m.scss';
 
 const cx = classnames.bind(styles);
 

@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import { LayoutProps } from './types';
 import classnames from 'classnames/bind';
-import classes from './legacy.module.scss';
+import classes from './legacy.m.scss';
 
 const cx = classnames.bind(classes);
 

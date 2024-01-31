@@ -2,7 +2,7 @@ import type { SVGAttributes } from 'react';
 import type { AvatarProps } from './types';
 import PersonSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Person';
 import classNames from 'classnames';
-import styles from './utils.module.scss';
+import styles from './utils.m.scss';
 
 const USER_AVATAR_COLORS: ReadonlyArray<string> = [
   '#eb8585',

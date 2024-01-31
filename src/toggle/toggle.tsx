@@ -1,7 +1,7 @@
 import type { ToggleProps } from './types';
 import { forwardRef } from 'react';
 import classNames from 'classnames/bind';
-import styles from './toggle.module.scss';
+import styles from './toggle.m.scss';
 
 const cx = classNames.bind(styles);
 

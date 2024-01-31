@@ -1,6 +1,6 @@
 import type { TabProps, TabsProps } from './types';
 import classNames from 'classnames/bind';
-import styles from './tabs.module.scss';
+import styles from './tabs.m.scss';
 
 const cx = classNames.bind(styles);
 

@@ -1,6 +1,6 @@
 import type { ModalProps } from './types';
 import classNames from 'classnames/bind';
-import styles from './utils.module.scss';
+import styles from './utils.m.scss';
 
 const cx = classNames.bind(styles);
 

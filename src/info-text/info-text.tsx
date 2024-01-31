@@ -2,7 +2,7 @@ import type { InfoTextProps } from './types';
 import { Children, Fragment } from 'react';
 import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Information';
 import classNames from 'classnames/bind';
-import styles from './info-text.module.scss';
+import styles from './info-text.m.scss';
 
 const cx = classNames.bind(styles);
 

@@ -2,7 +2,7 @@ import { useImperativeHandle, useRef } from 'react';
 import { usePageScrollLock } from '../_internal/page-scroll-lock';
 import { AlertBodyProps } from './types';
 import classNames from 'classnames/bind';
-import styles from './alert-body.module.scss';
+import styles from './alert-body.m.scss';
 
 const cx = classNames.bind(styles);
 

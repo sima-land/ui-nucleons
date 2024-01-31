@@ -1,7 +1,7 @@
 import type { DropdownProps } from './types';
 import { CustomScrollbar } from '../_internal/custom-scrollbar';
 import classnames from 'classnames/bind';
-import styles from './dropdown.module.scss';
+import styles from './dropdown.m.scss';
 
 const cx = classnames.bind(styles);
 

@@ -3,7 +3,7 @@ import { TopBarButtonProps, TopBarProps, TopBarSize } from './types';
 import { TopBarButtonGroupContext } from './utils';
 import { InnerBorder } from '../styling/borders';
 import classnames from 'classnames/bind';
-import styles from './top-bar.module.scss';
+import styles from './top-bar.m.scss';
 
 // некоторым компонентам нужно знать конкретную высоту
 export const TOP_BAR_HEIGHT: Readonly<Record<TopBarSize, number>> = {

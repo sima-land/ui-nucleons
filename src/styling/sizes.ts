@@ -1,5 +1,5 @@
 import { ClassGetter } from './utils';
-import classes from './sizes.module.scss';
+import classes from './sizes.m.scss';
 
 /**
  * Проверяет, является ли значение шагом дизайн-системы для внешних отступов.

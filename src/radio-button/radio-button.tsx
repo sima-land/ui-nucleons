@@ -1,6 +1,6 @@
 import type { RadioButtonProps } from './types';
 import classNames from 'classnames/bind';
-import styles from './radio-button.module.scss';
+import styles from './radio-button.m.scss';
 
 const cx = classNames.bind(styles);
 

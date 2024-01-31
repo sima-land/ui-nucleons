@@ -1,6 +1,6 @@
 import type { DropdownItemProps } from './types';
 import classNames from 'classnames/bind';
-import styles from './dropdown-item.module.scss';
+import styles from './dropdown-item.m.scss';
 
 const cx = classNames.bind(styles);
 

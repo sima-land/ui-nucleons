@@ -1,6 +1,6 @@
 import type { FieldBlockProps, FieldBlockSize } from './types';
 import classNames from 'classnames/bind';
-import styles from './field-block.module.scss';
+import styles from './field-block.m.scss';
 
 const cx = classNames.bind(styles);
 

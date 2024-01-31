@@ -1,6 +1,5 @@
 import { Carousel } from '..';
 import { DraggableEvent } from '../helpers/draggable-event';
-import classes from '../carousel.module.scss';
 import { Point } from '../../helpers/point';
 import { act, fireEvent, render } from '@testing-library/react';
 import { createRef } from 'react';
@@ -130,7 +129,7 @@ describe('Carousel', () => {
     jest.spyOn(getInstance(), 'toggleAutoMove');
 
     expect(getInstance().toggleAutoMove).toHaveBeenCalledTimes(0);
-    fireEvent.mouseEnter(container.querySelector(`.${classes['carousel-wrapper']}`) as any);
+    fireEvent.mouseEnter(container.querySelector(`.carousel-wrapper`) as any);
     expect(getInstance().toggleAutoMove).toHaveBeenCalledTimes(1);
     expect(getInstance().toggleAutoMove).toHaveBeenCalledWith(false);
   });
@@ -143,7 +142,7 @@ describe('Carousel', () => {
     jest.spyOn(getInstance(), 'toggleAutoMove');
 
     expect(getInstance().toggleAutoMove).toHaveBeenCalledTimes(0);
-    fireEvent.mouseEnter(container.querySelector(`.${classes['carousel-wrapper']}`) as any);
+    fireEvent.mouseEnter(container.querySelector(`.carousel-wrapper`) as any);
     expect(getInstance().toggleAutoMove).toHaveBeenCalledTimes(0);
   });
 
@@ -159,7 +158,7 @@ describe('Carousel', () => {
     expect(getInstance().toggleAutoMove).toHaveBeenCalledTimes(0);
 
     // simulate mouse leave
-    fireEvent.mouseLeave(container.querySelector(`.${classes['carousel-wrapper']}`) as any);
+    fireEvent.mouseLeave(container.querySelector(`.carousel-wrapper`) as any);
     expect(getInstance().toggleAutoMove).toHaveBeenCalledTimes(1);
     expect(getInstance().toggleAutoMove).toHaveBeenCalledWith(true);
   });
@@ -176,7 +175,7 @@ describe('Carousel', () => {
     expect(getInstance().toggleAutoMove).toHaveBeenCalledTimes(0);
 
     // simulate mouse leave
-    fireEvent.mouseLeave(container.querySelector(`.${classes['carousel-wrapper']}`) as any);
+    fireEvent.mouseLeave(container.querySelector(`.carousel-wrapper`) as any);
     expect(getInstance().toggleAutoMove).toHaveBeenCalledTimes(0);
   });
 
@@ -389,15 +388,13 @@ describe('Carousel: finite mode', () => {
   it('should render without props', () => {
     const { container } = render(<Carousel infinite={false} />);
 
-    expect(container.querySelectorAll(`.${classes['carousel-wrapper']}`)).toHaveLength(1);
+    expect(container.querySelectorAll(`.carousel-wrapper`)).toHaveLength(1);
   });
 
   it('should handle "vertical" props', () => {
     const { container } = render(<Carousel vertical infinite={false} />);
 
-    expect(container.querySelector(`.${classes['carousel-items-container']}`)?.className).toContain(
-      classes.vertical,
-    );
+    expect(container.querySelector(`.carousel-items-container`)?.className).toContain('vertical');
   });
 
   it('should update current index in state on "targetIndex" prop change', () => {

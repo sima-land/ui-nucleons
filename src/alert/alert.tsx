@@ -7,7 +7,7 @@ import { useExactClick } from '../modal-overlay/utils';
 import { AlertProps } from './types';
 import { AlertBody } from './alert-body';
 import classnames from 'classnames/bind';
-import styles from './alert.module.scss';
+import styles from './alert.m.scss';
 
 const cx = classnames.bind(styles);
 

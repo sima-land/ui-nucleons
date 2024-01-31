@@ -2,7 +2,7 @@ import type { RatingProps, StarSize, StarType } from './types';
 import { getStars } from './utils';
 import StarSVG from '@sima-land/ui-quarks/icons/16x16/Filled/Star';
 import classNames from 'classnames/bind';
-import styles from './rating.module.scss';
+import styles from './rating.m.scss';
 
 const cx = classNames.bind(styles);
 

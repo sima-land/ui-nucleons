@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 import { BoxShadow } from '../styling/shadows';
 import { SmallRounds, MediumRounds } from '../styling/shapes';
 import classNames from 'classnames/bind';
-import styles from './plate.module.scss';
+import styles from './plate.m.scss';
 
 const cx = classNames.bind(styles);
 

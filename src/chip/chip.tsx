@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes } from 'react';
 import { ChipProps } from './types';
 import classnames from 'classnames/bind';
-import styles from './chip.module.scss';
+import styles from './chip.m.scss';
 
 const cx = classnames.bind(styles);
 

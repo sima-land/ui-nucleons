@@ -12,7 +12,7 @@ import classNames from 'classnames/bind';
 
 // ВАЖНО: сначала стили overlayscrollbars затем местные для правильной специфичности
 import 'overlayscrollbars/overlayscrollbars.css';
-import styles from './custom-scrollbar.module.scss';
+import styles from './custom-scrollbar.m.scss';
 
 const cx = classNames.bind(styles);
 

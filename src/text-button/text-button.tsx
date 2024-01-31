@@ -1,7 +1,7 @@
 import type { TextButtonProps } from './types';
 import type { ReactElement } from 'react';
 import classNames from 'classnames/bind';
-import styles from './text-button.module.scss';
+import styles from './text-button.m.scss';
 
 const cx = classNames.bind(styles);
 

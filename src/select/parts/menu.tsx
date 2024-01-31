@@ -15,7 +15,7 @@ import { DropdownItemUtils } from '../../dropdown-item/utils';
 import { SelectMenuProps } from '../types';
 import { scrollToChild } from '../../helpers/scroll-to-child';
 import classNames from 'classnames/bind';
-import styles from './menu.module.scss';
+import styles from './menu.m.scss';
 
 const MenuItemAttr = {
   name: 'data-select-role',

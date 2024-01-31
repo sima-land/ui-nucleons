@@ -10,7 +10,7 @@ import {
 import PlusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Plus';
 import MinusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Minus';
 import classNames from 'classnames/bind';
-import styles from './stepper.module.scss';
+import styles from './stepper.m.scss';
 
 const cx = classNames.bind(styles);
 
