@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { IDS } from '../presets';
 import { defineCountry, stubSyntheticEvent } from '../utils';
 

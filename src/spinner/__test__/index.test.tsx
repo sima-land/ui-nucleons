@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { render } from '@testing-library/react';
 import { Spinner, SPINNER_DIAMETER, SpinnerSVG } from '..';
 import { COLORS } from '../../colors';

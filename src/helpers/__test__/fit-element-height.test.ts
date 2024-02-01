@@ -1,3 +1,4 @@
+import { it, expect, describe, jest } from '@jest/globals';
 import { fitElementHeight } from '../fit-element-height';
 
 describe('fitElementHeight()', () => {

@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { isTouchDevice } from '../is-touch-device';
 
 describe('isTouchDevice()"', () => {

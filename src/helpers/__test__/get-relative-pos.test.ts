@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { getRelativePos } from '../get-relative-pos';
 
 describe('getRelativePos()', () => {

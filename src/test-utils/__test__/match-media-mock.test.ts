@@ -1,4 +1,5 @@
 import { MatchMediaMock, MediaQueryListMock, MediaQueryListEventMock } from '../match-media-mock';
+import { describe, it, expect, jest } from '@jest/globals';
 
 describe('MatchMediaMock', () => {
   it('should works', () => {

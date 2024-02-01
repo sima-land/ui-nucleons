@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { getFractionDepth } from '../get-fraction-depth';
 
 describe('getFractionDepth()', () => {

@@ -1,4 +1,5 @@
 import { act, render } from '@testing-library/react';
+import { it, expect, describe } from '@jest/globals';
 import { useRef, useState } from 'react';
 import { useIntersection } from '..';
 import { IntersectionObserverContext } from '../../../context';

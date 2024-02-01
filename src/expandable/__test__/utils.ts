@@ -1,4 +1,5 @@
 /* eslint-disable require-jsdoc, jsdoc/require-jsdoc */
+import { jest } from '@jest/globals';
 
 export function setBoundingClientRect(
   element: Element,

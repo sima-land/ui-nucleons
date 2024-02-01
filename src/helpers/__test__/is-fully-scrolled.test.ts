@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { isFullyScrolled } from '../is-fully-scrolled';
 
 describe('isFullyScrolled()', () => {

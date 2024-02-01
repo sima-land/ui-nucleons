@@ -1,4 +1,5 @@
 import { MatchMediaMock } from '../../../test-utils';
+import { it, expect, describe, jest } from '@jest/globals';
 import { BreakpointQuery, createRegistry } from '../utils';
 
 describe('BreakpointQuery', () => {

@@ -78,8 +78,15 @@ export function BaseInput({
   if (typeof props.value !== 'undefined') {
     restPlaceholder =
       typeof restPlaceholderProp === 'string'
-        ? { shiftValue: String(props.value), value: restPlaceholderProp }
-        : { shiftValue: String(props.value), value: '', ...restPlaceholderProp };
+        ? {
+            shiftValue: String(props.value),
+            value: restPlaceholderProp,
+          }
+        : {
+            shiftValue: String(props.value),
+            value: '',
+            ...restPlaceholderProp,
+          };
   }
 
   return (

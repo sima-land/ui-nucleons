@@ -1,4 +1,5 @@
 import { IntersectionObserverMock } from '../intersection-observer-mock';
+import { describe, it, expect, jest } from '@jest/globals';
 
 describe('IntersectionObserverMock', () => {
   it('should throw error when first argument is not a function', () => {

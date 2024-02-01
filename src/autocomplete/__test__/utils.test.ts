@@ -1,3 +1,4 @@
+import { it, expect, describe, jest } from '@jest/globals';
 import { NaiveSyntheticEvent, when } from '../utils';
 
 describe('NaiveSyntheticEvent', () => {

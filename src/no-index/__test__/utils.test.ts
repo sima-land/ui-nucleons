@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { getNoIndexProps } from '../utils';
 
 const cases: Array<{ input: unknown; output: string }> = [

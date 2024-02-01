@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { PageScrollLockAdapterNucleons, StyleAffect } from '../ui-nucleons';
 
 class FakeScrollbarWidth extends PageScrollLockAdapterNucleons {

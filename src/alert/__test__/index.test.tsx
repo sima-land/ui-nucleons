@@ -1,11 +1,11 @@
+import { it, expect, describe, jest } from '@jest/globals';
 import { createRef } from 'react';
 import { render } from '@testing-library/react';
 import { Alert, AlertBody } from '..';
 import { LayerProvider, useLayer } from '../../helpers/layer';
 import { TopBar } from '../../top-bar';
 import { BottomBar } from '../../bottom-bar';
-import { PageScrollLockContext } from '../../_internal/page-scroll-lock';
-import { PageScrollLockAdapter } from '../../_internal/page-scroll-lock/types';
+import { PageScrollLockContext, PageScrollLockAdapter } from '../../_internal/page-scroll-lock';
 
 describe('Alert', () => {
   it('should handle "className" prop', () => {
@@ -75,7 +75,7 @@ describe('Alert', () => {
       lock: jest.fn(),
       unlock: jest.fn(),
     };
-    const spy = jest.fn<PageScrollLockAdapter, any[]>(() => adapter);
+    const spy = jest.fn<(el: Element, options: any) => PageScrollLockAdapter>(() => adapter);
     const ref = createRef<HTMLDivElement>();
 
     expect(spy).toHaveBeenCalledTimes(0);
@@ -104,7 +104,7 @@ describe('Alert', () => {
       lock: jest.fn(),
       unlock: jest.fn(),
     };
-    const spy = jest.fn<PageScrollLockAdapter, any[]>(() => adapter);
+    const spy = jest.fn<() => PageScrollLockAdapter>(() => adapter);
 
     expect(adapter.lock).toHaveBeenCalledTimes(0);
 

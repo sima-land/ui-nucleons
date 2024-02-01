@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { render } from '@testing-library/react';
 import { BottomBar } from '..';
 import { CleanGroup, CleanButton } from '../../clean-buttons';

@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { getTransitionStyle, getTranslateStyle } from '../styles';
 
 describe('getTranslateStyle()', () => {

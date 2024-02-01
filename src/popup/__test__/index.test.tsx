@@ -1,3 +1,4 @@
+import { it, expect, describe, jest } from '@jest/globals';
 import { createRef, FocusEvent, Ref, useRef, useState } from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { PopupView, Popup, usePopupOnClick, useFocusTrap } from '..';

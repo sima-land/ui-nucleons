@@ -1,4 +1,5 @@
 import { DOMRectReadOnlyMock } from '../dom-rect-read-only-mock';
+import { describe, it, expect } from '@jest/globals';
 
 describe('DOMRectReadOnlyMock', () => {
   it('should return rect without arguments', () => {

@@ -1,3 +1,4 @@
+import { it, expect, describe, beforeEach, afterEach, jest } from '@jest/globals';
 import { PageScrollLockAdapterBSL, allowTouchMove, BSL_IGNORE_ATTR } from '../body-scroll-lock';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 

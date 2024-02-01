@@ -1,3 +1,4 @@
+import { it, expect, describe, beforeEach, afterEach, jest } from '@jest/globals';
 import { MouseEventHandler } from 'react';
 import { act, fireEvent, render } from '@testing-library/react';
 import { useExactClick, useVisualViewportPlacement } from '../utils';
@@ -129,7 +130,11 @@ describe('useVisualViewportPlacement', () => {
     (window.visualViewport as any).offsetLeft = 0;
 
     act(() => {
-      (window.visualViewport?.addEventListener as jest.Mock).mock.calls[0][1](new Event('resize'));
+      (
+        window.visualViewport?.addEventListener as unknown as jest.Mock<
+          (eventName: string, fn: (event: Event) => void) => void
+        >
+      ).mock.calls[0][1](new Event('resize'));
     });
     expect(getByTestId('test-target').style.top).toBe('0px');
     expect(getByTestId('test-target').style.left).toBe('0px');

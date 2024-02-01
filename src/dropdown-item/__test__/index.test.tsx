@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { DropdownItem, DropdownItemSize } from '..';
 import { render } from '@testing-library/react';
 import CrossSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Cross';

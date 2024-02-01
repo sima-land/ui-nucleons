@@ -1,3 +1,4 @@
+import { it, expect, describe, jest } from '@jest/globals';
 import { render } from '@testing-library/react';
 import { useRef } from 'react';
 import { defineLastVisible, observeWidth, useObserveWidth } from '../utils';

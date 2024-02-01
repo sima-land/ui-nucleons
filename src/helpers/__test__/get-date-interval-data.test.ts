@@ -1,3 +1,4 @@
+import { it, expect, describe } from '@jest/globals';
 import { getDateIntervalData } from '../get-date-interval-data';
 
 describe('test getDateIntervalData', () => {

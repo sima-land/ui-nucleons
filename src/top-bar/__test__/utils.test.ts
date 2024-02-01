@@ -1,3 +1,4 @@
+import { it, expect, describe, jest } from '@jest/globals';
 import { navigationButtons } from '../utils';
 
 describe('navigationButtons', () => {
