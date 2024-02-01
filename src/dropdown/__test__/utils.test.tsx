@@ -1,4 +1,4 @@
-import { it, expect, describe, jest } from '@jest/globals';
+import { it, expect, describe } from '@jest/globals';
 import { useFloating } from '@floating-ui/react';
 import { useDropdownFloatingStyle } from '../utils';
 import { act, render } from '@testing-library/react';

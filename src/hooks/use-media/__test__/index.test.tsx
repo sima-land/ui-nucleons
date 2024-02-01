@@ -1,4 +1,4 @@
-import { it, expect, describe, beforeAll, afterAll, jest } from '@jest/globals';
+import { it, expect, describe } from '@jest/globals';
 import { act, render } from '@testing-library/react';
 import { useMedia } from '..';
 import { MatchMediaContext } from '../../../context';
