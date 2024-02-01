@@ -1,9 +1,9 @@
-import format from 'date-fns/format';
-import parse from 'date-fns/parse';
-import isEqual from 'date-fns/isEqual';
-import isValid from 'date-fns/isValid';
-import getMonth from 'date-fns/getMonth';
-import ruLocale from 'date-fns/locale/ru';
+import { format } from 'date-fns/format';
+import { parse } from 'date-fns/parse';
+import { isEqual } from 'date-fns/isEqual';
+import { isValid } from 'date-fns/isValid';
+import { getMonth } from 'date-fns/getMonth';
+import { ru as ruLocale } from 'date-fns/locale/ru';
 
 const inputFormat = 'yyyy-MM-dd';
 const formatOptions = { locale: ruLocale };

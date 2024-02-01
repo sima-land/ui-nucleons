@@ -31,7 +31,7 @@
     "@krutoo/input-mask": "^0.0.9",
     "body-scroll-lock": "3.1.5",
     "classnames": "^2.3.2",
-    "date-fns": "^2.28.0",
+    "date-fns": "^3.3.1",
     "focus-trap": "^7.2.0",
     "overlayscrollbars": "^2.4.3",
     "overlayscrollbars-react": "^0.5.3",
