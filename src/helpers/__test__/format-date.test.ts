@@ -1,5 +1,5 @@
 import { formatDate, createDateFormatter } from '../format-date';
-import isValid from 'date-fns/isValid';
+import { isValid } from 'date-fns/isValid';
 
 describe('formatDate()', () => {
   it('returns empty string if have been passed wrong params', () => {

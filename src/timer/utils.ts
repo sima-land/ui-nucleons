@@ -1,8 +1,8 @@
 import type { TimeDistance } from './types';
-import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
-import isAfter from 'date-fns/isAfter';
-import isValid from 'date-fns/isValid';
-import parseISO from 'date-fns/parseISO';
+import { formatDistanceToNowStrict } from 'date-fns/formatDistanceToNowStrict';
+import { isAfter } from 'date-fns/isAfter';
+import { isValid } from 'date-fns/isValid';
+import { parseISO } from 'date-fns/parseISO';
 
 const UNITS = ['day', 'hour', 'minute', 'second'] as const;
 

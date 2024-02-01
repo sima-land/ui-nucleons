@@ -1,7 +1,8 @@
-import format from 'date-fns/format';
-import isValid from 'date-fns/isValid';
-import parse from 'date-fns/parse';
-import ruLocale from 'date-fns/locale/ru';
+import type { ParseOptions } from 'date-fns';
+import { format } from 'date-fns/format';
+import { isValid } from 'date-fns/isValid';
+import { parse } from 'date-fns/parse';
+import { ru as ruLocale } from 'date-fns/locale/ru';
 
 /**
  * Создает функцию форматирования дат.
@@ -51,13 +52,7 @@ export function parseMultiple(
   dateString: string,
   formatString: string | string[],
   referenceDate: Date,
-  options?: {
-    locale?: Locale;
-    weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
-    firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7;
-    useAdditionalWeekYearTokens?: boolean;
-    useAdditionalDayOfYearTokens?: boolean;
-  },
+  options?: ParseOptions,
 ): Date {
   let result;
 
