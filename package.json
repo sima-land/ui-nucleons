@@ -1,5 +1,6 @@
 {
   "name": "@sima-land/ui-nucleons",
+  "type": "commonjs",
   "version": "0.0.0",
   "repository": "ssh://git@github.com:sima-land/ui-nucleons.git",
   "author": "www.sima-land.ru team",
@@ -11,20 +12,21 @@
   "scripts": {
     "prepare": "husky install",
     "export:colors": "node .template/build.mjs",
-    "build:before": "rm -rf build",
-    "build:main": "tsc --project tsconfig.build.json",
-    "build:after": "node scripts/build-after.mjs && cd build && npm pkg delete scripts.prepare && cd ..",
-    "build": "npm run build:before && npm run build:main && npm run build:after",
-    "test": "BROWSERSLIST_ENV=\"test\" npx jest",
-    "coverage": "jest --clearCache && BROWSERSLIST_ENV=\"test\" npx jest --coverage",
+    "build": "npm run build:clean && npm run build:scripts && npm run build:assets && npm run build:package",
+    "build:clean": "rm -rf build",
+    "build:scripts": "tsc --project tsconfig.build.json",
+    "build:assets": "node scripts/build-assets.mjs",
+    "build:package": "cd build && npm pkg delete scripts.prepare && cd ..",
     "type-check": "tsc -p . --noEmit",
     "lint": "npm run lint:scripts && npm run lint:styles",
     "lint:scripts": "eslint --cache src/ --ext .js,.jsx,.ts,.tsx",
     "lint:styles": "stylelint 'src/**/*.{css,scss}'",
-    "storybook": "BROWSERSLIST_ENV=\"storybook\" npx storybook dev -p 9009 -c .storybook",
-    "storybook:build": "BROWSERSLIST_ENV=\"storybook\" npx storybook build --quiet --loglevel error -o build-storybook",
+    "test": "BROWSERSLIST_ENV=\"test\" npx jest",
+    "test:coverage": "jest --clearCache && BROWSERSLIST_ENV=\"test\" npx jest --coverage",
     "prettier": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,css,scss}\"",
-    "prettier:check": "prettier --check \"./src/**/*.{js,jsx,ts,tsx,css,scss}\""
+    "prettier:check": "prettier --check \"./src/**/*.{js,jsx,ts,tsx,css,scss}\"",
+    "storybook": "BROWSERSLIST_ENV=\"storybook\" npx storybook dev -p 9009 -c .storybook",
+    "storybook:build": "BROWSERSLIST_ENV=\"storybook\" npx storybook build --quiet --loglevel error -o build-storybook"
   },
   "dependencies": {
     "@floating-ui/react": "^0.25.4",
