@@ -32,7 +32,7 @@ jobs:
           npm run type-check
 
       - name: Test
-        run: npm run coverage
+        run: npm run test:coverage
 
       - name: Build package
         run: |
