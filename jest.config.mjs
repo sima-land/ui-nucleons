@@ -1,12 +1,11 @@
-import { Config } from 'jest';
-
-const config: Config = {
+/** @type {import('jest').Config} */
+const config = {
   globalSetup: '<rootDir>/.jest/global-setup.js',
   testEnvironment: 'jsdom',
   setupFiles: ['./.jest/setup.js'],
   testMatch: ['**/?(*.)+(test).[jt]s?(x)'],
   transform: {
-    '^.+\\.(t|j)sx?$': ['babel-jest', { configFile: './.jest/babel.config.js' }],
+    '^.+\\.(t|j)sx?$': ['babel-jest', { configFile: './.jest/babel.config.json' }],
 
     // генерируем css-модули
     '\\.(module|m)\\.(css|scss)$': 'jest-css-modules-transform',
