@@ -61,7 +61,28 @@ module.exports = {
 
 #### Для работы с Jest
 
-Необходимо сконфигурировать среду Jest подобно тому как это сделано в данном репозитории (`jest.config.mjs`).
+Необходимо сконфигурировать среду Jest подобно тому как это сделано в данном репозитории:
+
+```js
+export default {
+  // ...прочее
+
+  transform: {
+    // css-модули
+    '\\.(module|m)\\.(css|scss)$': 'jest-css-modules-transform',
+
+    // обычные стили
+    '(?<!(.+\\.(module|m)))(\\.css|\\.scss)$': '<rootDir>/.jest/transforms/empty.js',
+
+    // asset'ы
+    '\\.(apng|avif|gif|jpg|jpeg|png|webp)$': '<rootDir>/.jest/transforms/asset.js',
+  },
+  transformIgnorePatterns: [
+    // из некоторых пакетов мы берем стили так что игнорируем только скрипты
+    '/node_modules/.+js$',
+  ],
+};
+```
 
 #### Декларации типов для TypeScript
 

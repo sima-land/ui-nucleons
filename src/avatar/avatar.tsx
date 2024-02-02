@@ -29,9 +29,7 @@ export function Avatar({
     <span className={rootClassName} style={style} data-testid={testId}>
       {/* изображение */}
       {needImage && (
-        <>
-          <img src={src} alt='' className={cx('image')} onError={() => toggleNeedImage(false)} />
-        </>
+        <img src={src} alt='' className={cx('image')} onError={() => toggleNeedImage(false)} />
       )}
 
       {/* содержимое, например инициалы, иконка, ... */}
