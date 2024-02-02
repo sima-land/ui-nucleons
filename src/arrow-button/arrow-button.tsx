@@ -33,13 +33,13 @@ const ICONS = {
  * @param props Свойства. Поддерживаются свойства элемента button.
  * @return Элемент.
  */
-export const ArrowButton = ({
+export function ArrowButton({
   size = 'l',
   direction = 'right',
   className,
   'data-testid': testId = 'arrow-button',
   ...buttonProps
-}: ArrowButtonProps) => {
+}: ArrowButtonProps) {
   const Icon = ICONS[size][direction];
 
   return (
@@ -52,4 +52,4 @@ export const ArrowButton = ({
       <Icon aria-hidden fill='currentColor' />
     </button>
   );
-};
+}

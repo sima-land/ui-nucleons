@@ -1,21 +1,20 @@
 /** @type {import('jest').Config} */
 const config = {
-  globalSetup: '<rootDir>/.jest/global-setup.js',
   testEnvironment: 'jsdom',
-  setupFiles: ['./.jest/setup.js'],
+  globalSetup: '<rootDir>/.jest/global-setup.js',
+  setupFiles: ['<rootDir>/.jest/setup.js'],
   testMatch: ['**/?(*.)+(test).[jt]s?(x)'],
   transform: {
     '^.+\\.(t|j)sx?$': ['babel-jest', { configFile: './.jest/babel.config.json' }],
 
-    // генерируем css-модули
+    // css-модули
     '\\.(module|m)\\.(css|scss)$': 'jest-css-modules-transform',
 
-    // все что должно заменяться на строку с url
-    '\\.(jpg|jpeg|png|gif|eot|otf|ttf|woff|woff2)$': '<rootDir>/.jest/transforms/media.js',
-  },
-  moduleNameMapper: {
-    // обычные стили делаем просто пустыми модулями
-    '(?<!(.+\\.(module|m)))(\\.css|\\.scss)$': '<rootDir>/.jest/mocks/style.js',
+    // обычные стили
+    '(?<!(.+\\.(module|m)))(\\.css|\\.scss)$': '<rootDir>/.jest/transforms/empty.js',
+
+    // asset'ы
+    '\\.(apng|avif|gif|jpg|jpeg|png|webp)$': '<rootDir>/.jest/transforms/asset.js',
   },
   transformIgnorePatterns: [
     // из некоторых пакетов мы берем стили так что игнорируем только скрипты
