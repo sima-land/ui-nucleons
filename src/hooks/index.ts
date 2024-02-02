@@ -1,4 +1,4 @@
-export { useBreakpoint } from './use-breakpoint';
+export { useBreakpoint, BreakpointProvider } from './use-breakpoint';
 export { useIdentityRef } from './use-identity-ref';
 export { useInfiniteScroll } from './use-infinite-scroll';
 export { useIntersection } from './use-intersection';
