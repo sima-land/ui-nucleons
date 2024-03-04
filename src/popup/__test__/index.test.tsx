@@ -52,23 +52,23 @@ describe('PopupView', () => {
 });
 
 describe('Popup', () => {
-  const TestComponent = ({ popupRef }: { popupRef?: Ref<HTMLDivElement> }) => {
-    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-
-    return (
-      <>
-        <div data-testid='trigger' onClick={e => setAnchorEl(e.currentTarget)}>
-          Hello
-        </div>
-
-        <Popup popupRef={popupRef} showFor={anchorEl} onDismiss={() => setAnchorEl(null)}>
-          World
-        </Popup>
-      </>
-    );
-  };
-
   it('should render popup in portal only when anchor provided', () => {
+    const TestComponent = ({ popupRef }: { popupRef?: Ref<HTMLDivElement> }) => {
+      const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+      return (
+        <>
+          <div data-testid='trigger' onClick={e => setAnchorEl(e.currentTarget)}>
+            Hello
+          </div>
+
+          <Popup popupRef={popupRef} showFor={anchorEl} onDismiss={() => setAnchorEl(null)}>
+            World
+          </Popup>
+        </>
+      );
+    };
+
     const { baseElement, getByTestId } = render(<TestComponent />);
 
     expect(baseElement.textContent).toContain('Hello');
@@ -80,12 +80,52 @@ describe('Popup', () => {
   });
 
   it('should handle "popupRef" prop', () => {
+    const TestComponent = ({ popupRef }: { popupRef?: Ref<HTMLDivElement> }) => {
+      const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+      return (
+        <>
+          <div data-testid='trigger' onClick={e => setAnchorEl(e.currentTarget)}>
+            Hello
+          </div>
+
+          <Popup popupRef={popupRef} showFor={anchorEl} onDismiss={() => setAnchorEl(null)}>
+            World
+          </Popup>
+        </>
+      );
+    };
+
     const ref = createRef<HTMLDivElement>();
     const { getByTestId } = render(<TestComponent popupRef={ref} />);
 
     expect(ref.current).toBe(null);
     fireEvent.click(getByTestId('trigger'));
     expect(ref.current).toBe(getByTestId('popup'));
+  });
+
+  it('should handle "withCloseButton" prop', () => {
+    const TestComponent = () => {
+      const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+      return (
+        <>
+          <div data-testid='trigger' onClick={e => setAnchorEl(e.currentTarget)}>
+            Hello
+          </div>
+
+          <Popup showFor={anchorEl} withCloseButton={false}>
+            World
+          </Popup>
+        </>
+      );
+    };
+
+    const { queryAllByTestId, getByTestId } = render(<TestComponent />);
+    expect(queryAllByTestId('popup:close')).toHaveLength(0);
+
+    fireEvent.click(getByTestId('trigger'));
+    expect(queryAllByTestId('popup:close')).toHaveLength(0);
   });
 });
 

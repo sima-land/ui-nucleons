@@ -1,22 +1,11 @@
 import { useImperativeHandle } from 'react';
-import { PopupView, PopupViewProps } from './popup-view';
+import { PopupView } from './popup-view';
 import { useFloating } from '@floating-ui/react';
 import { useOutsideClick } from '../hooks';
 import { useFocusTrap, popupFloatingConfig, usePopupFloatingStyle } from './utils';
 import { useIdentityRef } from '../hooks/use-identity-ref';
 import { Portal } from '../portal';
-
-export interface PopupProps extends Omit<PopupViewProps, 'onClose'> {
-  /** Элемент для которого нужно показать Popup ил null. */
-  showFor?: Element | null;
-
-  /** Сработает при попытке закрыть Popup. */
-  onDismiss?: () => void;
-}
-
-export interface PopupInnerProps extends PopupProps {
-  showFor: Element;
-}
+import { PopupInnerProps, PopupProps } from './types';
 
 /**
  * Popup, всплывающий когда указан целевой элемент.
@@ -32,8 +21,18 @@ export function Popup({ showFor, ...rest }: PopupProps) {
  * @param props Свойства.
  * @return Элемент.
  */
-function PopupInner({ showFor, popupRef, children, style, onDismiss, ...rest }: PopupInnerProps) {
-  const { refs, ...floating } = useFloating(popupFloatingConfig());
+function PopupInner({
+  showFor,
+  popupRef,
+  children,
+  style,
+  onDismiss,
+  withCloseButton = true,
+  placement,
+  offset,
+  ...rest
+}: PopupInnerProps) {
+  const { refs, ...floating } = useFloating(popupFloatingConfig({ placement, offset }));
   const floatingStyle = usePopupFloatingStyle(floating);
 
   useImperativeHandle(popupRef, () => refs.floating.current as HTMLDivElement);
@@ -55,7 +54,7 @@ function PopupInner({ showFor, popupRef, children, style, onDismiss, ...rest }: 
         ...style,
         ...floatingStyle,
       }}
-      onClose={onDismiss}
+      onClose={withCloseButton ? onDismiss : undefined}
     >
       {children}
     </PopupView>

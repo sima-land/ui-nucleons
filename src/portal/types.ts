@@ -6,4 +6,7 @@ export interface PortalProps {
 
   /** Содержимое. */
   children?: ReactNode;
+
+  /** Сработает после того как контент будет монтирован в DOM. */
+  onMount?: VoidFunction;
 }

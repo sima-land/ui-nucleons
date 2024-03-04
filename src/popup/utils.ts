@@ -17,14 +17,35 @@ import { useIdentityRef } from '../hooks/use-identity-ref';
 
 /**
  * Возвращает конфигурацию для `useFloating` по дизайн-гайдам.
+ * @param options Опции.
  * @return Конфигурация для `useFloating` по дизайн-гайдам.
  */
-export function popupFloatingConfig(): Partial<UseFloatingOptions> {
+export function popupFloatingConfig({
+  placement = 'right-start',
+  offset: offsetValue = 8,
+}: {
+  offset?: number;
+
+  // ВАЖНО: не используем интерфейс из библиотеки floating-ui а копируем его так как это деталь реализации
+  placement?:
+    | 'top'
+    | 'right'
+    | 'bottom'
+    | 'left'
+    | 'right-start'
+    | 'top-start'
+    | 'top-end'
+    | 'right-end'
+    | 'bottom-start'
+    | 'bottom-end'
+    | 'left-start'
+    | 'left-end';
+} = {}): Partial<UseFloatingOptions> {
   return {
     strategy: 'absolute',
-    placement: 'right-start',
+    placement,
     middleware: [
-      offset(8),
+      offset(offsetValue),
       flip({
         padding: 16,
         crossAxis: false,
