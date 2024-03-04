@@ -1,6 +1,7 @@
 import {
   Popup,
   PopupView,
+  PopupStyle,
   popupFloatingConfig,
   usePopupOnClick,
   useFocusTrap,
@@ -95,6 +96,46 @@ export function Floating() {
 }
 
 Floating.storyName = 'Всплытие по клику';
+
+export function Customizing() {
+  const [anchor, setAnchor] = useState<Element | null>(null);
+
+  const styles = {
+    popup: {
+      '--popup-background': '#fff',
+      '--popup-border-radius': '8px',
+      '--popup-padding': '0',
+      '--popup-content-padding': '32px',
+      '--popup-box-shadow': '0 0 4px rgba(0, 0, 0, 0.04), 0 12px 30px rgba(0, 0, 0, 0.1)',
+    } satisfies PopupStyle,
+  };
+
+  return (
+    <LargePage>
+      <InfoText iconActive={Boolean(anchor)} onIconClick={event => setAnchor(event.currentTarget)}>
+        Lorem, ipsum.
+      </InfoText>
+
+      <Popup
+        showFor={anchor}
+        onDismiss={() => setAnchor(null)}
+        placement='bottom'
+        withCloseButton={false}
+        style={styles.popup}
+      >
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse doloremque molestias, ex
+        quasi nostrum architecto sapiente quos saepe perspiciatis deleniti!
+        <p>
+          <TextButton>Ничего не делать</TextButton>
+        </p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis illo vero sint excepturi
+        vitae aliquid dignissimos maiores, iste tempore tenetur ratione.
+      </Popup>
+    </LargePage>
+  );
+}
+
+Customizing.storyName = 'Кастомизация';
 
 export function FloatingUI() {
   const [shown, toggle] = useState<boolean>(false);

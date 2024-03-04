@@ -8,7 +8,7 @@ import { useIsomorphicLayoutEffect } from '../hooks';
  * @param props Свойства.
  * @return Элемент.
  */
-export function Portal({ children, defineRoot = () => document.body }: PortalProps) {
+export function Portal({ children, defineRoot = () => document.body, onMount }: PortalProps) {
   const [mounted, setMounted] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>();
 
@@ -24,6 +24,16 @@ export function Portal({ children, defineRoot = () => document.body }: PortalPro
       ref.current && ref.current.remove();
     };
   }, []);
+
+  const onMountRef = useRef(onMount);
+
+  onMountRef.current = onMount;
+
+  useIsomorphicLayoutEffect(() => {
+    if (mounted) {
+      onMountRef.current?.();
+    }
+  }, [mounted]);
 
   return mounted && ref.current ? createPortal(children, ref.current) : null;
 }

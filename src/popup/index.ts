@@ -1,13 +1,4 @@
-import { Popup, PopupProps } from './popup';
-import { PopupView, PopupViewProps } from './popup-view';
-import { popupFloatingConfig, usePopupFloatingStyle, usePopupOnClick, useFocusTrap } from './utils';
-
-export type { PopupProps, PopupViewProps };
-export {
-  Popup,
-  PopupView,
-  popupFloatingConfig,
-  usePopupFloatingStyle,
-  usePopupOnClick,
-  useFocusTrap,
-};
+export type { PopupProps, PopupViewProps, PopupStyle } from './types';
+export { Popup } from './popup';
+export { PopupView } from './popup-view';
+export { popupFloatingConfig, usePopupFloatingStyle, usePopupOnClick, useFocusTrap } from './utils';

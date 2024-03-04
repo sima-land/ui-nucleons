@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useLayoutEffect, useState } from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { Portal, PortalProps } from '..';
 
@@ -55,5 +55,36 @@ describe('Layer', () => {
 
     container.remove();
     otherContainer.remove();
+  });
+
+  it('should handle "onMount" prop', () => {
+    const spy = jest.fn();
+
+    // ВАЖНО: здесь такой компонент чтобы четко проверить что первый раз вызовется с false, второй - с true
+    const SomeTestComponent = () => {
+      const [mounted, setMounted] = useState(false);
+
+      useLayoutEffect(() => {
+        spy(mounted);
+      }, [mounted]);
+
+      return (
+        <>
+          <div>Hello</div>
+          <Portal onMount={() => setMounted(true)}>World</Portal>
+        </>
+      );
+    };
+
+    expect(spy).toHaveBeenCalledTimes(0);
+
+    const { container, baseElement } = render(<SomeTestComponent />);
+
+    expect(container.textContent).toBe('Hello');
+    expect(baseElement.textContent).toBe('HelloWorld');
+
+    expect(spy).toHaveBeenCalledTimes(2);
+    expect(spy.mock.calls[0][0]).toBe(false);
+    expect(spy.mock.calls[1][0]).toBe(true);
   });
 });
