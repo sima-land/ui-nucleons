@@ -43,6 +43,7 @@ export const COLOR = {
   'additional-deep-blue': '#00599d',
   'additional-dark-blue': '#002b41',
   'additional-unlit-blue': '#1b75c2',
+  'additional-crimson': '#f4446b',
 } as const;
 
 export type Token = keyof typeof COLOR;

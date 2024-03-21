@@ -43,6 +43,7 @@ const colorsByGroups = {
     'deep-blue': '#00599d',
     'dark-blue': '#002b41',
     'unlit-blue': '#1b75c2',
+    crimson: '#f4446b',
   },
 };
 
