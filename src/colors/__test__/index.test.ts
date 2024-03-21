@@ -41,5 +41,6 @@ describe('COLORS', () => {
     expect(COLORS.get('additional-deep-blue')).toBe('#00599d');
     expect(COLORS.get('additional-dark-blue')).toBe('#002b41');
     expect(COLORS.get('additional-unlit-blue')).toBe('#1b75c2');
+    expect(COLORS.get('additional-crimson')).toBe('#f4446b');
   });
 });
