@@ -96,11 +96,11 @@ describe('Textarea', () => {
     expect(focusSpy).toHaveBeenCalledTimes(0);
   });
 
-  it('should properly set "--placeholder-color" variable', () => {
+  it('should properly set "--base-input-placeholder-color" variable', () => {
     const { getByTestId, rerender } = render(<Textarea failed disabled={false} />);
 
     function placeholderColor() {
-      return getByTestId('base-input').style.getPropertyValue('--placeholder-color');
+      return getByTestId('base-input').style.getPropertyValue('--base-input-placeholder-color');
     }
 
     expect(placeholderColor()).toBe(COLORS.get('additional-deep-red'));

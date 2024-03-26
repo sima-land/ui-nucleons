@@ -88,7 +88,7 @@ export function Textarea({
           className={cx('textarea', baseInputProps?.className)}
           style={{
             ...baseInputProps?.style,
-            '--placeholder-color': definePlaceholderColor({ failed, disabled }),
+            '--base-input-placeholder-color': definePlaceholderColor({ failed, disabled }),
           }}
           autoComplete={autoComplete}
           autoFocus={autoFocus}

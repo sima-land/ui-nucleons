@@ -50,7 +50,7 @@ export function RestPlaceholder() {
     width: 200,
     padding: 12,
     border: '1px solid #323232',
-    '--placeholder-color': '#aaa',
+    '--base-input-placeholder-color': '#aaa',
   };
 
   const [value, setValue] = useState<string>('');

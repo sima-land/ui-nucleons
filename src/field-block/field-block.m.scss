@@ -118,6 +118,7 @@
   pointer-events: none;
   white-space: nowrap;
   overflow: hidden;
+  z-index: 1;
 }
 
 .col {
@@ -148,6 +149,7 @@
   max-width: 100%;
   white-space: nowrap;
   color: var(--field-main-text-color, var(--field-primary-text-color));
+  z-index: 0;
 }
 
 .caption {
