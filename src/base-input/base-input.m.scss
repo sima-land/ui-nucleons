@@ -24,8 +24,8 @@
   width: 0;
   flex-grow: 1;
   display: block;
-  background: var(--base-input-background);
-  color: var(--base-input-color);
+  background: var(--base-input-background, inherit);
+  color: var(--base-input-color, inherit);
   font-size: inherit;
   line-height: inherit;
   z-index: 0;

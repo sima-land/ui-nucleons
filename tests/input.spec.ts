@@ -76,3 +76,33 @@ test('working clearable inputs should be on page', async ({ page }) => {
   await expect(here.inputClearButton()).toHaveCount(0);
   await expect(here.page).toHaveScreenshot();
 });
+
+test('filled + disabled state look', async ({ page }) => {
+  await page.goto('/iframe.html?id=common-input--different-states');
+
+  await expect(here.input()).toHaveCount(4);
+  expect(await here.inputField().nth(0).inputValue()).toBe('');
+  expect(await here.inputField().nth(1).inputValue()).toBe('');
+  expect(await here.inputField().nth(2).inputValue()).toBe('');
+  expect(await here.inputField().nth(3).inputValue()).toBe('');
+  await expect(here.page).toHaveScreenshot();
+
+  // fill every input
+  await here.inputField().nth(0).fill('Something');
+  await here.inputField().nth(1).fill('Something');
+  await here.inputField().nth(2).fill('Something');
+  await here.inputField().nth(3).fill('Something');
+  expect(await here.inputField().nth(0).inputValue()).toBe('Something');
+  expect(await here.inputField().nth(1).inputValue()).toBe('Something');
+  expect(await here.inputField().nth(2).inputValue()).toBe('Something');
+  expect(await here.inputField().nth(3).inputValue()).toBe('Something');
+  await expect(here.page).toHaveScreenshot();
+
+  // disable
+  await page.getByLabel('Состояние').selectOption('Отключено');
+  expect(await here.inputField().nth(0).isDisabled()).toBe(true);
+  expect(await here.inputField().nth(1).isDisabled()).toBe(true);
+  expect(await here.inputField().nth(2).isDisabled()).toBe(true);
+  expect(await here.inputField().nth(3).isDisabled()).toBe(true);
+  await expect(here.page).toHaveScreenshot();
+});
