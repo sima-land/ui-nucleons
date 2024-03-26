@@ -1,4 +1,5 @@
 @use '../utils';
+@use '../colors';
 
 .reset {
   border: 0;
@@ -16,21 +17,32 @@
   flex-grow: 1;
   display: flex;
   overflow: hidden;
+  background: var(--base-input-background);
 }
 
 .field {
   width: 0;
   flex-grow: 1;
   display: block;
-  color: inherit;
+  background: var(--base-input-background);
+  color: var(--base-input-color);
   font-size: inherit;
   line-height: inherit;
-  z-index: 1;
+  z-index: 0;
   text-overflow: inherit;
-  background: inherit;
   &::placeholder {
+    color: var(--base-input-placeholder-color);
+    -webkit-text-fill-color: var(--base-input-placeholder-color);
     opacity: 1;
-    color: var(--placeholder-color);
+  }
+  &:disabled {
+    background: var(--base-input-background);
+    color: var(--base-input-color);
+  }
+  &:disabled::placeholder {
+    color: var(--base-input-placeholder-color);
+    -webkit-text-fill-color: var(--base-input-placeholder-color);
+    opacity: 1;
   }
   &::-ms-clear {
     // отключаем системный крестик в IE
@@ -56,11 +68,11 @@
   font-size: inherit;
   line-height: inherit;
   overflow: hidden;
-  z-index: 0;
+  z-index: 1;
   .shift-part {
     color: transparent;
   }
   .main-part {
-    color: var(--placeholder-color);
+    color: var(--base-input-placeholder-color);
   }
 }

@@ -12,6 +12,13 @@
   background: inherit;
   font: inherit;
   line-height: inherit;
+  --base-input-background: var(--field-background);
+  --base-input-color: var(--field-main-text-color, var(--field-primary-text-color));
+  --base-input-placeholder-color: #{colors.$basic-gray38};
+}
+
+.disabled {
+  --base-input-placeholder-color: #{colors.$basic-gray38};
 }
 
 .clear-button {

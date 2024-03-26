@@ -10,7 +10,9 @@ export interface RestPlaceholderDefinition {
 }
 
 export interface BaseInputStyle extends CSSProperties {
-  '--placeholder-color'?: string;
+  '--base-input-background'?: string;
+  '--base-input-color'?: string;
+  '--base-input-placeholder-color'?: string;
 }
 
 export interface CommonProps extends WithTestId {
