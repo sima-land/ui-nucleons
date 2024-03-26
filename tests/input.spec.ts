@@ -77,7 +77,7 @@ test('working clearable inputs should be on page', async ({ page }) => {
   await expect(here.page).toHaveScreenshot();
 });
 
-test.only('filled + disabled state look', async ({ page }) => {
+test('filled + disabled state look', async ({ page }) => {
   await page.goto('/iframe.html?id=common-input--different-states');
 
   await expect(here.input()).toHaveCount(4);
