@@ -10,7 +10,7 @@ import type { WithTestId } from '../types';
 
 export type ButtonSize = 'xs' | 's' | 'm';
 
-export type ButtonViewType = 'primary' | 'secondary' | 'success' | 'unset';
+export type ButtonViewType = 'primary' | 'secondary' | 'success' | 'info' | 'unset';
 
 export type ButtonAppearance = 'button' | 'link' | 'container';
 

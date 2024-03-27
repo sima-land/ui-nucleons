@@ -1,8 +1,9 @@
-import { forwardRef, ReactElement } from 'react';
+import { forwardRef, ReactElement, useMemo } from 'react';
 import type { ButtonProps } from './types';
 import { SpinnerSVG } from '../spinner';
 import classnames from 'classnames/bind';
 import styles from './button.m.scss';
+import { Token } from '../colors';
 
 const cx = classnames.bind(styles);
 
@@ -41,6 +42,27 @@ export const Button = forwardRef<any, ButtonProps>(function Button(
     className,
   );
 
+  const spinnerColor = useMemo<Token | undefined>(() => {
+    if (disabled) {
+      return 'basic-gray38';
+    }
+
+    switch (viewType) {
+      case 'primary': {
+        return 'basic-white';
+      }
+      case 'secondary': {
+        return 'basic-gray38';
+      }
+      case 'success': {
+        return 'basic-white';
+      }
+      case 'info': {
+        return 'additional-deep-blue';
+      }
+    }
+  }, [disabled, viewType]);
+
   const content = (
     <>
       {/* ВАЖНО: выводим контент даже в состоянии loading (под спиннером) чтобы ширина не "скакала" */}
@@ -48,13 +70,7 @@ export const Button = forwardRef<any, ButtonProps>(function Button(
       {children}
       {Icon && iconPosition === 'end' && <Icon className={cx('icon')} />}
 
-      {loading && (
-        <SpinnerSVG
-          size='s'
-          color={disabled || viewType === 'secondary' ? 'basic-gray38' : 'basic-white'}
-          className={cx('spinner')}
-        />
-      )}
+      {loading && <SpinnerSVG size='s' color={spinnerColor} className={cx('spinner')} />}
     </>
   );
 

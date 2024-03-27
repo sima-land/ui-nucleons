@@ -44,8 +44,10 @@
   }
   &:not(:disabled):hover {
     cursor: pointer;
-    color: var(--button-hover-color, var(--button-color));
     background: var(--button-hover-background, var(--button-background));
+  }
+  &:not(:disabled):not(.loading):hover {
+    color: var(--button-hover-color, var(--button-color));
   }
 }
 
@@ -88,6 +90,10 @@
 
 .view-success {
   @include button-util.color-success;
+}
+
+.view-info {
+  @include button-util.color-info;
 }
 
 // icons
