@@ -21,7 +21,7 @@ test('Button should be on page', async ({ page }) => {
 test('Buttons with different colors should be on page', async ({ page }) => {
   await page.goto('/iframe.html?id=common-button--different-colors');
 
-  await expect(here.button()).toHaveCount(3);
+  await expect(here.button()).toHaveCount(4);
   await expect(here.page).toHaveScreenshot();
 });
 
