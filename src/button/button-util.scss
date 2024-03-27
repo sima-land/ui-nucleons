@@ -44,3 +44,12 @@
   --button-disabled-color: #{colors.$basic-gray24};
   --button-disabled-background: #{colors.$basic-gray8};
 }
+
+@mixin color-info {
+  --button-color: #{colors.$additional-deep-blue};
+  --button-background: #{colors.$additional-sky};
+  --button-hover-color: #{colors.$additional-light-blue};
+  --button-hover-background: #{colors.$additional-sky};
+  --button-disabled-color: #{colors.$basic-gray24};
+  --button-disabled-background: #{colors.$basic-gray8};
+}

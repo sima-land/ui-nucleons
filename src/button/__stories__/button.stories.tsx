@@ -36,6 +36,7 @@ export function DifferentColors() {
       <Button viewType='primary'>Primary</Button>
       <Button viewType='secondary'>Secondary</Button>
       <Button viewType='success'>Success</Button>
+      <Button viewType='info'>Info</Button>
     </div>
   );
 }
@@ -137,6 +138,7 @@ export function DifferentStates() {
             { value: 'primary', displayName: 'Primary' },
             { value: 'secondary', displayName: 'Secondary' },
             { value: 'success', displayName: 'Success' },
+            { value: 'info', displayName: 'Info' },
           ],
           bind: [viewType, setViewType],
         },
