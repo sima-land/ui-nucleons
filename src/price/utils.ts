@@ -36,7 +36,7 @@ export function formatInteger(value: number): string {
 
   if (Number.isFinite(value)) {
     // если число меньше 0.0001 - округляем до 0.0001
-    const valid = value === 0 ? 0 : Math.max(value, 0.0001);
+    const valid = value === 0 ? 0 : Math.max(Math.abs(value), 0.0001);
     const integer = toString(valid).replace(/\..*$/g, ''); // все числа до точки
 
     const separated = [];
@@ -50,7 +50,7 @@ export function formatInteger(value: number): string {
     result = separated.join(' ');
   }
 
-  return result;
+  return value < 0 ? `-${result}` : result;
 }
 
 // eslint-disable-next-line require-jsdoc, jsdoc/require-jsdoc
@@ -71,17 +71,18 @@ export function formatFractional(value: number): string {
  */
 function toString(value: number): string {
   let result: string;
+  const absolute = Math.abs(value);
 
-  if (value <= 0.0001) {
+  if (absolute <= 0.0001) {
     // если число меньше 0.0001 - округляем до 0.0001
     result = '0.0001';
-  } else if (value < 0.01) {
-    result = value.toFixed(4);
+  } else if (absolute < 0.01) {
+    result = absolute.toFixed(4);
   } else {
-    result = value.toFixed(2);
+    result = absolute.toFixed(2);
   }
 
-  return result;
+  return value < 0 ? `-${result}` : result;
 }
 
 // @todo CurrencyProvider для того чтобы не прокидывать везде currencyGrapheme?
