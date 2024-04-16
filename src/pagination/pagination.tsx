@@ -7,8 +7,8 @@ import type {
 } from './types';
 import { getPaginationItems, validatePaginationState } from './utils';
 import { PaginationItem } from './pagination-item';
-import LeftSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Left';
-import RightSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Right';
+import LeftSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowExpandLeft';
+import RightSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowExpandRight';
 import classNames from 'classnames/bind';
 import styles from './pagination.m.scss';
 

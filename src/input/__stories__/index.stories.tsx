@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { FieldBlockSize } from '@sima-land/ui-nucleons/field-block';
 import { Sandbox } from '../../../.storybook/utils';
 import CalendarSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Calendar';
-import SearchSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Search';
+import SearchSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Magnifier';
 
 export default {
   title: 'common/Input',

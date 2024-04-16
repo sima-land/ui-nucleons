@@ -7,8 +7,8 @@ import { countriesList, Country, IDS } from './presets';
 import { defineCountry, PhoneValue, stubSyntheticEvent } from './utils';
 import { Select } from '../select';
 import { SelectContext } from '../select/utils';
-import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';
-import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Down';
+import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowExpandUp';
+import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowExpandDown';
 import classNames from 'classnames/bind';
 import styles from './phone-input.m.scss';
 

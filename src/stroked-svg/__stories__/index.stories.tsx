@@ -1,10 +1,10 @@
 import { StrokedSVG } from '@sima-land/ui-nucleons/stroked-svg';
 import Favorite from '@sima-land/ui-quarks/icons/24x24/Stroked/Favorite';
 import ArrowLeft from '@sima-land/ui-quarks/icons/24x24/Stroked/ArrowLeft';
-import Bag from '@sima-land/ui-quarks/icons/24x24/Stroked/Bag2';
+import Bag from '@sima-land/ui-quarks/icons/24x24/Stroked/Bag';
 import ShareAndroid from '@sima-land/ui-quarks/icons/24x24/Stroked/ShareAndroid';
-import ShareIOs from '@sima-land/ui-quarks/icons/24x24/Stroked/ShareIOs';
-import QuickView2 from '@sima-land/ui-quarks/icons/24x24/Stroked/QuickView2';
+import ShareiOsSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ShareiOs';
+import QuickView2 from '@sima-land/ui-quarks/icons/24x24/Stroked/MagnifierPlus';
 import { useState } from 'react';
 import { Hint, useHintFloating, useHintOnHover } from '@sima-land/ui-nucleons/hint';
 
@@ -17,7 +17,7 @@ export default {
   },
 };
 
-const icons = [Favorite, ArrowLeft, Bag, ShareAndroid, ShareIOs, QuickView2];
+const icons = [Favorite, ArrowLeft, Bag, ShareAndroid, ShareiOsSVG, QuickView2];
 
 export function Primary() {
   return (

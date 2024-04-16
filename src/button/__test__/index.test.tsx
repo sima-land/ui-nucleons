@@ -1,6 +1,6 @@
 import { Button } from '..';
 import { render } from '@testing-library/react';
-import SearchSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Search';
+import SearchSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Magnifier';
 import PlusSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Plus';
 import { COLORS } from '../../colors';
 
