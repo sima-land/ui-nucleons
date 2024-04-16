@@ -20,8 +20,8 @@ import { scrollToChild } from '../helpers/scroll-to-child';
 import { on } from '../helpers/on';
 import { Lifecycle } from '../_internal/lifecycle';
 import { NaiveSyntheticEvent, when } from './utils';
-import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Down';
-import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';
+import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowExpandDown';
+import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowExpandUp';
 import styles from './autocomplete.m.scss';
 
 /**

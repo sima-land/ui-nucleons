@@ -93,7 +93,7 @@
     "webpack": "^5.75.0"
   },
   "peerDependencies": {
-    "@sima-land/ui-quarks": "^4.2.0",
+    "@sima-land/ui-quarks": "^5.0.0",
     "react": "^17.0 || ^18.0",
     "react-dom": "^17.0 || ^18.0"
   }

@@ -1,8 +1,8 @@
 import { useContext, useImperativeHandle, useRef } from 'react';
 import { TextButton, TextButtonAsButtonProps } from '../../text-button';
 import { SelectContext } from '../utils';
-import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Up';
-import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Arrows/Down';
+import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowExpandUp';
+import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowExpandDown';
 
 /**
  * "Открывашка" для Select в виде текстовой кнопки.

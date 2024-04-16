@@ -14,14 +14,27 @@ exports[`Panel should handle props 1`] = `
         viewBox="0 0 16 16"
         width="16"
       >
-        <path
-          d="M8 6.5a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0v-4a1 1 0 0 1 1-1ZM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
-        />
-        <path
-          clip-rule="evenodd"
-          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6a6 6 0 1 0 0 12A6 6 0 0 0 8 2Z"
-          fill-rule="evenodd"
-        />
+        <g
+          clip-path="url(#prefix__clip0_879_27)"
+        >
+          <path
+            d="M8 6.5a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0v-4a1 1 0 0 1 1-1ZM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+          />
+          <path
+            clip-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6a6 6 0 1 0 0 12A6 6 0 0 0 8 2Z"
+            fill-rule="evenodd"
+          />
+        </g>
+        <defs>
+          <clippath
+            id="prefix__clip0_879_27"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </clippath>
+        </defs>
       </svg>
     </div>
     <div
