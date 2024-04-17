@@ -1,4 +1,5 @@
 .carousel-wrapper {
+  touch-action: pan-y; // ВАЖНО: чтобы на touch-устройствах прокрутка карусели не вызывала прокрутку контейнера по перпендикулярной оси
   position: relative;
   max-width: 100%;
   max-height: 100%;
