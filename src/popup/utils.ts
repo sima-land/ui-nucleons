@@ -48,7 +48,6 @@ export function popupFloatingConfig({
       offset(offsetValue),
       flip({
         padding: 16,
-        crossAxis: false,
         fallbackAxisSideDirection: 'start',
       }),
       shift({
@@ -116,24 +115,25 @@ export function useFocusTrap(
   useIsomorphicLayoutEffect(() => {
     const element = ref.current;
 
-    if (enabled && element) {
-      const trap = createFocusTrap(element, {
-        allowOutsideClick: true,
-        tabbableOptions: { displayCheck: 'none' },
-        onPostDeactivate: afterDeactivateRef.current,
-
-        // ВАЖНО: отключаем тк в противном случае в Safari срабатывает :focus-visible
-        initialFocus: false,
-      });
-
-      trap.activate();
-
-      return () => {
-        trap.deactivate({
-          // @todo тоже убрать?
-          returnFocus: true,
-        });
-      };
+    if (!enabled || !element) {
+      return;
     }
+
+    const trap = createFocusTrap(element, {
+      allowOutsideClick: true,
+      tabbableOptions: { displayCheck: 'none' },
+      onPostDeactivate: afterDeactivateRef.current,
+
+      // ВАЖНО: отключаем тк в противном случае в Safari срабатывает :focus-visible
+      initialFocus: false,
+    });
+
+    trap.activate();
+
+    return () => {
+      trap.deactivate({
+        returnFocus: true, // @todo тоже убрать?
+      });
+    };
   }, [ref, enabled]);
 }
