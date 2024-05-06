@@ -8,10 +8,10 @@
   @include shadows.box-shadow('z4');
 
   // задавать можно только максимальную высоту через --dropdown-max-height
-  max-height: var(--dropdown-max-height, 304px) !important;
+  max-height: var(--dropdown-max-height, 376px) !important;
   height: auto !important;
 }
 
 .inner {
-  max-height: calc(var(--dropdown-max-height, 304px) - 16px); // вычитаем padding корневого элемента
+  max-height: calc(var(--dropdown-max-height, 376px) - 16px); // вычитаем padding корневого элемента
 }
