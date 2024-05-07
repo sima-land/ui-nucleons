@@ -64,26 +64,38 @@ export function defineLastVisible({
  * @param callback Callback.
  * @return Функция отписки.
  */
-export function observeWidth(element: Element, callback: VoidFunction) {
+export function observeWidth(element: Element, callback: (width: number) => void) {
   // eslint-disable-next-line require-jsdoc
   const getWidth = () => element.getBoundingClientRect().width;
 
   let lastWidth = getWidth();
 
+  // ВАЖНО: поскольку ниже используется requestAnimationFrame проверяем активность через флаг
+  // в противном случае в React setState может быть вызван после размонтирования
+  let enabled = true;
+
+  // @todo использовать контекст
   const observer = new ResizeObserver(() => {
     requestAnimationFrame(() => {
+      if (!enabled) {
+        return;
+      }
+
       const actualWidth = getWidth();
 
       if (lastWidth !== actualWidth) {
         lastWidth = actualWidth;
-        callback();
+        callback(lastWidth);
       }
     });
   });
 
   observer.observe(element);
 
-  return () => observer.disconnect();
+  return () => {
+    enabled = false;
+    observer.disconnect();
+  };
 }
 
 /**
@@ -91,13 +103,15 @@ export function observeWidth(element: Element, callback: VoidFunction) {
  * @param ref Ref элемента.
  * @param callback Callback.
  */
-export function useObserveWidth(ref: RefObject<Element>, callback: VoidFunction) {
+export function useObserveWidth(ref: RefObject<Element | null>, callback: VoidFunction) {
   const callbackRef = useRef(callback);
   callbackRef.current = callback;
 
   useEffect(() => {
-    if (ref.current) {
-      return observeWidth(ref.current, () => callbackRef.current());
+    if (!ref.current) {
+      return;
     }
+
+    return observeWidth(ref.current, () => callbackRef.current());
   }, [ref]);
 }

@@ -94,6 +94,29 @@ describe('observeWidth', () => {
     await new Promise(requestAnimationFrame);
     expect(spy).toHaveBeenCalledTimes(1);
   });
+
+  it('should not call callback if its disabled', async () => {
+    const element = document.createElement('div');
+    const spy = jest.fn();
+
+    setBoundingClientRect(element, { width: 100 });
+    const unobserve = observeWidth(element, spy);
+
+    expect(spy).toHaveBeenCalledTimes(0);
+
+    setBoundingClientRect(element, { width: 200 });
+    element.dispatchEvent(new Event('test:resize'));
+
+    await new Promise(requestAnimationFrame);
+    expect(spy).toHaveBeenCalledTimes(1);
+
+    setBoundingClientRect(element, { width: 200 });
+    element.dispatchEvent(new Event('test:resize'));
+    unobserve();
+
+    await new Promise(requestAnimationFrame);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
 });
 
 describe('useObserveWidth', () => {
