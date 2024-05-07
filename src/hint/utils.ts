@@ -193,7 +193,7 @@ export function useHintOnHover<RT extends ReferenceType = ReferenceType>(
     UseFloatingReturn<RT>,
     'context' | 'strategy' | 'placement' | 'x' | 'y' | 'middlewareData'
   >,
-  props?: UseHoverProps<RT>,
+  props?: UseHoverProps,
 ) {
   const style = useHintFloatingStyle(floating);
 
