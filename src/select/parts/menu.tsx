@@ -8,7 +8,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import { Dropdown, DropdownLoading } from '../../dropdown';
+import { Dropdown, DropdownLoading, useDismissByWheel } from '../../dropdown';
 import { DropdownItem } from '../../dropdown-item';
 import { DropdownItemElement } from '../../dropdown-item/types';
 import { DropdownItemUtils } from '../../dropdown-item/utils';
@@ -36,6 +36,7 @@ export function SelectMenu({
   value,
   onKeyDown,
   onItemSelect,
+  onDismiss,
   ...dropdownProps
 }: SelectMenuProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -55,6 +56,11 @@ export function SelectMenu({
       scrollToChild(menu, item);
     }
   }, [activeIndex]);
+
+  // скрытие меню при прокрутке колесом за пределами меню
+  useDismissByWheel(ref, () => {
+    onDismiss?.();
+  });
 
   const handleMenuKeyDown = useCallback<KeyboardEventHandler<HTMLDivElement>>(
     event => {

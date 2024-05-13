@@ -16,7 +16,15 @@ export interface HintProps extends HintViewProps {
  * @return Элемент.
  */
 export function Hint({ open, ...rest }: HintProps) {
-  return <Portal>{open && <HintInner {...rest} />}</Portal>;
+  if (!open) {
+    return null;
+  }
+
+  return (
+    <Portal>
+      <HintInner {...rest} />
+    </Portal>
+  );
 }
 
 /**

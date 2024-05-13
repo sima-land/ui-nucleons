@@ -10,7 +10,7 @@ export interface DropdownProps extends Omit<HTMLAttributes<HTMLDivElement>, 'sty
   style?: DropdownStyle;
 
   /** Реф корневого элемента. */
-  rootRef?: Ref<HTMLDivElement>;
+  rootRef?: Ref<HTMLDivElement | null>;
 
   /** Реф внутреннего элемента с прокруткой. */
   viewportRef?: Ref<HTMLDivElement>;

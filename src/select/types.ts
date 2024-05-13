@@ -27,6 +27,7 @@ export interface SelectMenuProps extends DropdownProps {
   loading?: boolean;
   onBlur?: FocusEventHandler;
   onItemSelect?: (item: DropdownItemElement) => void;
+  onDismiss?: VoidFunction;
 }
 
 export interface SelectProps {
