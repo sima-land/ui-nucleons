@@ -13,7 +13,7 @@ export function AutocompleteMenu({
 }: DropdownProps & { onDismiss?: VoidFunction }) {
   const ref = useRef<HTMLDivElement>(null);
 
-  useImperativeHandle(rootRef, () => ref.current);
+  useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(rootRef, () => ref.current);
 
   // скрытие меню при прокрутке колесом за пределами меню
   useDismissByWheel(ref, () => {
