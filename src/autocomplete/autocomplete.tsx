@@ -8,18 +8,18 @@ import {
   useState,
 } from 'react';
 import { AutocompleteProps } from './types';
-import { Dropdown, DropdownLoading } from '../dropdown';
+import { AutocompleteMenu } from './menu';
+import { DropdownLoading, dropdownFloatingConfig, useDropdownFloatingStyle } from '../dropdown';
 import { DropdownItem } from '../dropdown-item';
 import { DropdownItemElement } from '../dropdown-item/types';
 import { DropdownItemUtils } from '../dropdown-item/utils';
-import { FloatingPortal, useFloating } from '@floating-ui/react';
+import { useFloating } from '@floating-ui/react';
 import { Input } from '../input';
 import { useIsomorphicLayoutEffect } from '../hooks';
-import { dropdownFloatingConfig, useDropdownFloatingStyle } from '../dropdown/utils';
 import { scrollToChild } from '../helpers/scroll-to-child';
-import { on } from '../helpers/on';
 import { Lifecycle } from '../_internal/lifecycle';
 import { NaiveSyntheticEvent, when } from './utils';
+import { Portal } from '../portal';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowExpandDown';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowExpandUp';
 import styles from './autocomplete.m.scss';
@@ -177,41 +177,6 @@ export function Autocomplete({
     }
   }, [activeIndex]);
 
-  // скрытие меню при прокрутке колесом за пределами меню
-  useEffect(() => {
-    const menu = refs.floating.current;
-
-    if (menu) {
-      return on<WheelEvent>(window, 'wheel', event => {
-        if (
-          event.target instanceof HTMLElement &&
-          menu !== event.target &&
-          !menu.contains(event.target)
-        ) {
-          setNeedMenu(false);
-        }
-      });
-    }
-  }, [menuShown]);
-
-  // предотвращение расфокусировки поля при клике внутри меню
-  // необходимо чтобы можно было взяться мышкой за полосу прокрутки
-  useEffect(() => {
-    const menu = refs.floating.current;
-
-    if (menu) {
-      return on(menu, 'mousedown', event => {
-        if (
-          document.activeElement &&
-          inputRef.current &&
-          document.activeElement === inputRef.current
-        ) {
-          event.preventDefault();
-        }
-      });
-    }
-  }, [menuShown]);
-
   return (
     <>
       <Input
@@ -263,14 +228,26 @@ export function Autocomplete({
         }
       />
 
-      <FloatingPortal id=''>
-        {menuShown && (
+      {menuShown && (
+        <Portal>
           <Lifecycle onMount={onMenuOpen} onUnmount={onMenuClose}>
-            <Dropdown
+            <AutocompleteMenu
               {...dropdownProps}
               rootRef={refs.setFloating}
               viewportRef={viewportRef}
               style={{ ...floatingStyle, ...dropdownProps?.style }}
+              onDismiss={() => setNeedMenu(false)}
+              onMouseDown={event => {
+                // предотвращение расфокусировки поля при клике внутри меню
+                // необходимо чтобы можно было взяться мышкой за полосу прокрутки
+                if (
+                  document.activeElement &&
+                  inputRef.current &&
+                  document.activeElement === inputRef.current
+                ) {
+                  event.preventDefault();
+                }
+              }}
             >
               {!loading &&
                 items.length > 0 &&
@@ -296,10 +273,10 @@ export function Autocomplete({
               {!loading && items.length === 0 && optionsStub}
 
               {loading && <DropdownLoading />}
-            </Dropdown>
+            </AutocompleteMenu>
           </Lifecycle>
-        )}
-      </FloatingPortal>
+        </Portal>
+      )}
     </>
   );
 }

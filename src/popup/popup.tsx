@@ -13,7 +13,15 @@ import { PopupInnerProps, PopupProps } from './types';
  * @return Элемент.
  */
 export function Popup({ showFor, ...rest }: PopupProps) {
-  return <Portal>{showFor && <PopupInner showFor={showFor} {...rest} />}</Portal>;
+  if (!showFor) {
+    return null;
+  }
+
+  return (
+    <Portal>
+      <PopupInner showFor={showFor} {...rest} />
+    </Portal>
+  );
 }
 
 /**

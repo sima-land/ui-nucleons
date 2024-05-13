@@ -1,7 +1,8 @@
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { RefObject, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { UseFloatingOptions, flip, autoUpdate, shift, UseFloatingReturn } from '@floating-ui/react';
 import { useLayer } from '../helpers/layer';
 import { ResizeObserverContext } from '../context';
+import { on } from '../helpers';
 
 /**
  * Возвращает конфигурацию для `useFloating` по дизайн-гайдам.
@@ -85,4 +86,35 @@ export function useDropdownFloatingStyle({
 
     return base;
   }, [strategy, x, y, layer, openerWidth]);
+}
+
+/**
+ * Скрытие меню при прокрутке колесом за пределами меню.
+ * @inheritdoc
+ */
+export function useDismissByWheel<T extends HTMLElement>(
+  ref: RefObject<T | null>,
+  callback: VoidFunction,
+) {
+  const callbackRef = useRef(callback);
+
+  callbackRef.current = callback;
+
+  useEffect(() => {
+    const element = ref.current;
+
+    if (!element) {
+      return;
+    }
+
+    return on<WheelEvent>(window, 'wheel', event => {
+      if (
+        event.target instanceof HTMLElement &&
+        element !== event.target &&
+        !element.contains(event.target)
+      ) {
+        callbackRef.current();
+      }
+    });
+  }, [ref]);
 }

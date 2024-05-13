@@ -1,8 +1,9 @@
 import { useFloating } from '@floating-ui/react';
-import { useDropdownFloatingStyle } from '../utils';
-import { act, render } from '@testing-library/react';
+import { useDropdownFloatingStyle, useDismissByWheel } from '../utils';
+import { act, fireEvent, render } from '@testing-library/react';
 import { ResizeObserverContext } from '../../context';
 import { ResizeObserverMock } from '../../test-utils';
+import { createRef, useRef } from 'react';
 
 describe('useDropdownFloatingStyle', () => {
   const TestComponent = () => {
@@ -52,5 +53,59 @@ describe('useDropdownFloatingStyle', () => {
     });
 
     expect(getByTestId('floating').style.getPropertyValue('--opener-width')).toBe('320px');
+  });
+});
+
+describe('useDismissByWheel', () => {
+  it('should listen wheel event', () => {
+    const spy = jest.fn();
+    const wheelRef = createRef<HTMLDivElement>();
+
+    const TestComponent = ({ onDismiss }: { onDismiss: VoidFunction }) => {
+      const ref = useRef<HTMLDivElement>(null);
+
+      useDismissByWheel(ref, onDismiss);
+
+      return <div ref={ref}></div>;
+    };
+
+    render(
+      <>
+        <div ref={wheelRef}>Wheel target</div>
+        <TestComponent onDismiss={spy} />
+      </>,
+    );
+
+    expect(spy).toHaveBeenCalledTimes(0);
+    act(() => {
+      fireEvent.wheel(wheelRef.current as HTMLElement);
+    });
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should not listen wheel event when ref is empty', () => {
+    const spy = jest.fn();
+    const wheelRef = createRef<HTMLDivElement>();
+
+    const TestComponent = ({ onDismiss }: { onDismiss: VoidFunction }) => {
+      const ref = useRef<HTMLDivElement>(null);
+
+      useDismissByWheel(ref, onDismiss);
+
+      return <div></div>;
+    };
+
+    render(
+      <>
+        <div ref={wheelRef}>Wheel target</div>
+        <TestComponent onDismiss={spy} />
+      </>,
+    );
+
+    expect(spy).toHaveBeenCalledTimes(0);
+    act(() => {
+      fireEvent.wheel(wheelRef.current as HTMLElement);
+    });
+    expect(spy).toHaveBeenCalledTimes(0);
   });
 });

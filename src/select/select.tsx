@@ -3,13 +3,13 @@ import { SelectContext } from './utils';
 import { SelectMenuProps, SelectOpenerBinding, SelectProps } from './types';
 import { useIdentityRef } from '../hooks/use-identity-ref';
 import { DropdownItemUtils } from '../dropdown-item/utils';
-import { FloatingPortal, useFloating } from '@floating-ui/react';
+import { useFloating } from '@floating-ui/react';
 import { SelectMenu } from './parts/menu';
 import { SelectFieldBlock } from './parts/block';
 import { SelectTextButton } from './parts/button';
 import { dropdownFloatingConfig, useDropdownFloatingStyle } from '../dropdown/utils';
-import { on } from '../helpers/on';
 import { Lifecycle } from '../_internal/lifecycle';
+import { Portal } from '../portal';
 
 /**
  * Поле выбора из списка.
@@ -139,24 +139,10 @@ export function Select({
       setNeedMenu(false);
       openerRef.current?.focus();
     },
+    onDismiss: () => {
+      setNeedMenu(false);
+    },
   };
-
-  // скрытие меню при прокрутке колесом за пределами меню
-  useEffect(() => {
-    const menu = refs.floating.current;
-
-    if (menu) {
-      return on<WheelEvent>(window, 'wheel', event => {
-        if (
-          event.target instanceof HTMLElement &&
-          menu !== event.target &&
-          !menu.contains(event.target)
-        ) {
-          setNeedMenu(false);
-        }
-      });
-    }
-  }, [menuShown]);
 
   return (
     <>
@@ -164,13 +150,13 @@ export function Select({
         {isValidElement(opener) && opener}
       </SelectContext.Provider>
 
-      <FloatingPortal id=''>
-        {needMenu && (
+      {needMenu && (
+        <Portal>
           <Lifecycle onMount={onMenuOpen} onUnmount={onMenuClose}>
             <SelectMenu {...menuProps}>{children}</SelectMenu>
           </Lifecycle>
-        )}
-      </FloatingPortal>
+        </Portal>
+      )}
     </>
   );
 }
