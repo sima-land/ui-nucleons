@@ -35,8 +35,8 @@
     "classnames": "^2.3.2",
     "date-fns": "^3.3.1",
     "focus-trap": "^7.2.0",
-    "overlayscrollbars": "^2.4.3",
-    "overlayscrollbars-react": "^0.5.3",
+    "overlayscrollbars": "^2.8.0",
+    "overlayscrollbars-react": "^0.5.6",
     "react-transition-group": "^4.4.2",
     "redux": "^4.2.0"
   },

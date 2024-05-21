@@ -53,6 +53,17 @@ export function CustomScrollbar({
           theme: cx('theme'),
         },
       }}
+      events={{
+        /** @inheritdoc */
+        initialized(instance) {
+          // ВАЖНО: в новой версии на viewport автоматически ставится tabindex
+          // это ломает Select так как у него blur на корневом элементе Dropdown
+          // поэтому принудительно удаляем tabindex с элемента
+          // подсказали тут: https://github.com/KingSora/OverlayScrollbars/discussions/638#discussioncomment-9494642
+          // @todo возможно стоит переделать Select так чтобы фокус был на viewport - тогда этот костыль будет не нужен
+          instance.elements().viewport.removeAttribute('tabindex');
+        },
+      }}
     >
       {children}
     </OverlayScrollbarsComponent>
