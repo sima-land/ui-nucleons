@@ -19,6 +19,22 @@ describe('CustomScrollbar', () => {
     expect(container.textContent).toContain('Hello, world!');
     expect(rootRef.current instanceof HTMLDivElement).toBe(true);
   });
+
+  it('should remove tabIndex from viewport', () => {
+    const viewportRef = createRef<HTMLDivElement>();
+
+    const { container } = render(
+      <div>
+        <CustomScrollbar viewportRef={viewportRef}>
+          <div>Hello, world!</div>
+        </CustomScrollbar>
+      </div>,
+    );
+
+    expect(container.textContent).toContain('Hello, world!');
+    expect(viewportRef.current instanceof HTMLElement).toBe(true);
+    expect(viewportRef.current?.getAttribute('tabindex')).toBe(null);
+  });
 });
 
 describe('useOverlayScrollbarsInit', () => {
