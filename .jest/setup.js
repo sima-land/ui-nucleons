@@ -47,4 +47,8 @@ if (typeof window !== 'undefined') {
     addEventListener: () => {},
     removeEventListener: () => {},
   };
+
+  // ВАЖНО: для того чтобы не было ненужных сообщений в логе тестов (Not implemented: window.computedStyle)
+  const { getComputedStyle } = window;
+  window.getComputedStyle = element => getComputedStyle(element);
 }

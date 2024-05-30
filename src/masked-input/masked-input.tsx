@@ -91,6 +91,8 @@ function StatelessMaskedInput({
         onInput?.(event, getMaskData());
       }}
       onChange={event => {
+        // @todo следующая строка нужна чтобы в testing-library работал fireEvent.change, решить как быть
+        // bind.onInput(event);
         onChange?.(event, getMaskData());
       }}
       onBlur={event => {
