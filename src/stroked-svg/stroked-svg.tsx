@@ -28,7 +28,10 @@ export const StrokedSVG = forwardRef<HTMLDivElement, StrokedSVGProps>(
       data-testid={testId}
       {...restProps}
     >
-      <Tag stroke={stroke} strokeWidth={`${strokeWidth * 2}px`} className={styles.stroke} />
+      {strokeWidth > 0 && (
+        <Tag stroke={stroke} strokeWidth={`${strokeWidth * 2}px`} className={styles.stroke} />
+      )}
+
       <Tag fill={fill} className={styles.svg} />
     </div>
   ),

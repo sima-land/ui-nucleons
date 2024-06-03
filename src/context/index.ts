@@ -1,6 +1,8 @@
 /* eslint-disable require-jsdoc, jsdoc/require-jsdoc */
 import { createContext } from 'react';
 
+// @todo возможно стоит убрать "window." тк наблюдаются проблемы в iOS
+
 export const MatchMediaContext = createContext({
   matchMedia(query: string) {
     // ВАЖНО: доступ к window.matchMedia должен осуществляться именно в момент вызова а не в момент определения контекста
