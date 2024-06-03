@@ -1,0 +1,15 @@
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  padding: 2rem;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}

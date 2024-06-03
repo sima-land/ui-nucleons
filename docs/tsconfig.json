@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "paths": {
+      "#stories": ["./.tmp/entries.js"],
+      "@sima-land/ui-nucleons/*": ["../src/*"]
+    }
+  },
+  "include": [".build/src", "./docs"],
+  "exclude": ["node_modules"]
+}

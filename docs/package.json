@@ -1,0 +1,23 @@
+{
+  "name": "ui-nucleons-docs",
+  "type": "module",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "emit-entrypoint": "node --import=tsimp/import .build/emit-entrypoint.ts",
+    "dev": "rspack dev"
+  },
+  "devDependencies": {
+    "@rspack/cli": "^0.7.0",
+    "@rspack/core": "^0.7.0",
+    "css-loader": "^7.1.2",
+    "fast-glob": "^3.3.2",
+    "sass-embedded": "^1.77.2",
+    "sass-loader": "^14.2.1",
+    "tsimp": "^2.0.11",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "shiki": "^1.6.1"
+  }
+}
