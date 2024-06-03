@@ -1,0 +1,51 @@
+import {
+  HintView,
+  hintFloatingConfig,
+  getArrowFloatingStyle,
+  useHintOnClick,
+} from '@sima-land/ui-nucleons/hint';
+import { useRef, useState } from 'react';
+import { useFloating } from '@floating-ui/react';
+import { Portal } from '@sima-land/ui-nucleons/portal';
+import { Button } from '@sima-land/ui-nucleons/button';
+
+export default {
+  title: 'service/HintView',
+  component: HintView,
+  parameters: {
+    layout: 'padded',
+  },
+};
+
+export function OnClick() {
+  const [open, setOpen] = useState<boolean>(false);
+  const arrowRef = useRef<HTMLDivElement>(null);
+
+  const { refs, ...floating } = useFloating({
+    open,
+    onOpenChange: setOpen,
+    ...hintFloatingConfig({ arrowRef }),
+  });
+
+  const { getReferenceProps, getFloatingProps } = useHintOnClick(floating);
+  const arrowStyle = getArrowFloatingStyle(floating);
+
+  return (
+    <>
+      <Button size='s' ref={refs.setReference} {...getReferenceProps()}>
+        Кликни
+      </Button>
+
+      <Portal>
+        {open && (
+          <HintView hintRef={refs.setFloating} {...getFloatingProps()}>
+            Какой-то короткий текст получился
+            <HintView.Arrow arrowRef={arrowRef} style={arrowStyle} />
+          </HintView>
+        )}
+      </Portal>
+    </>
+  );
+}
+
+OnClick.storyName = 'По клику (floating-ui)';
