@@ -20,7 +20,7 @@ const testJustifyItems = [
   </Box>,
 ];
 
-export function FlexProp() {
+export function DisplayProp() {
   const renderBox = (flex: BoxProps['flex']) => (
     <Box
       margin={4}
@@ -55,4 +55,4 @@ export function FlexProp() {
   );
 }
 
-FlexProp.storyName = 'Свойство "display"';
+DisplayProp.storyName = 'Свойство "display"';

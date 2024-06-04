@@ -1,7 +1,7 @@
 import { Carousel } from '@sima-land/ui-nucleons/carousel';
 import { ReactNode, useEffect, useState } from 'react';
 import classnames from 'classnames/bind';
-import styles from './stories.m.scss';
+import styles from './reels.m.scss';
 
 const cx = classnames.bind(styles);
 

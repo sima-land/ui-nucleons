@@ -9,7 +9,7 @@ export default {
   },
 };
 
-export function WithPNG() {
+export function WithImagePNG() {
   return (
     <>
       <Avatar src={dog} />
@@ -17,4 +17,4 @@ export function WithPNG() {
   );
 }
 
-WithPNG.storyName = 'Картинка PNG';
+WithImagePNG.storyName = 'Картинка PNG';

@@ -10,7 +10,7 @@ export default {
   },
 };
 
-export function AsTextButton() {
+export function AsFieldBlock() {
   const [value, setValue] = useState<string>('');
 
   return (
@@ -19,8 +19,8 @@ export function AsTextButton() {
         label='Номер'
         value={value}
         onValueChange={setValue}
-        opener={<Select.TextButton size='m' />}
-        dropdownProps={{ style: { width: '200px' } }}
+        opener={<Select.FieldBlock size='s' caption='Это ни на что не повлияет' />}
+        dropdownProps={{ style: { width: '320px' } }}
       >
         <DropdownItem>Ноль</DropdownItem>
         <DropdownItem>Один</DropdownItem>
@@ -34,4 +34,4 @@ export function AsTextButton() {
   );
 }
 
-AsTextButton.storyName = 'Кастомизация кнопки';
+AsFieldBlock.storyName = 'Как поле';

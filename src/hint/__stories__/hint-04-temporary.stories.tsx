@@ -15,7 +15,7 @@ export default {
   },
 };
 
-export function ExampleStepper() {
+export function Temporary() {
   // состояние
   const [open, setOpen] = useTempHintState(false);
 
@@ -69,5 +69,5 @@ export function ExampleStepper() {
   );
 }
 
-ExampleStepper.parameters = { layout: 'centered' };
-ExampleStepper.storyName = 'Ограничение по времени';
+Temporary.parameters = { layout: 'centered' };
+Temporary.storyName = 'Ограничение по времени';

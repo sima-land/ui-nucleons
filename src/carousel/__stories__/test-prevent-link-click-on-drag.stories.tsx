@@ -51,7 +51,7 @@ const styles = {
   } satisfies CSSProperties,
 };
 
-export function PreventLinkClickOnDrag() {
+export function TestPreventLinkClickOnDrag() {
   return (
     <div style={{ maxWidth: '1024px', margin: '24px auto' }}>
       <Carousel
@@ -76,4 +76,4 @@ export function PreventLinkClickOnDrag() {
   );
 }
 
-PreventLinkClickOnDrag.storyName = 'Тест: Предотвращение клика при перетаскивании мышью';
+TestPreventLinkClickOnDrag.storyName = 'Тест: Предотвращение клика при перетаскивании мышью';
