@@ -33,7 +33,7 @@ test('Avatar should be in page', async ({ page }) => {
 });
 
 test('Avatar with PNG should be in page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-avatar--with-png&viewMode=story');
+  await page.goto('/iframe.html?id=common-avatar--with-image-png');
 
   await expect(here.avatar()).toHaveCount(1);
   await expect(here.avatarImage()).toHaveCount(1);
