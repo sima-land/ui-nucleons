@@ -1,0 +1,123 @@
+:root {
+  --header-height: 64px;
+  --content-gutter: 2rem;
+  --source-font-size: 14px;
+}
+
+@media (max-width: 960px) {
+  :root {
+    --content-gutter: 1rem;
+    --source-font-size: 12px;
+  }
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  width: 100%;
+  height: var(--header-height);
+  background: #222;
+  color: #f0f0f0;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: block;
+  width: 28px;
+  height: 28px;
+  margin-right: 0.5rem;
+}
+
+.links {
+  margin-left: auto;
+}
+
+.main {
+  display: flex;
+  flex-grow: 1;
+}
+
+.aside {
+  padding: 2rem 0;
+  width: 320px;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: #fff;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: var(--content-gutter);
+  flex-grow: 1;
+  min-height: 100%;
+  overflow: hidden;
+  background: #eee;
+}
+
+.controls {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+  overflow-x: auto;
+  text-wrap: nowrap;
+}
+
+.frame {
+  max-height: calc(100vh - var(--header-height) - (var(--content-gutter) * 2));
+  flex-grow: 1;
+}
+
+.frame.detailed {
+  min-height: 360px;
+  height: calc(60vh - var(--header-height));
+  max-height: calc(75vh - var(--header-height));
+}
+
+.frame + .source {
+  margin-top: var(--content-gutter);
+}
+
+.iframe {
+  display: block;
+  width: 100%;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.source {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.pre {
+  padding: 1.5rem;
+  font-size: var(--source-font-size);
+  line-height: 1.25;
+  overflow: auto;
+  font-family:
+    Menlo,
+    Consolas,
+    Monaco,
+    Liberation Mono,
+    Lucida Console,
+    monospace;
+}
