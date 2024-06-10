@@ -31,6 +31,8 @@
 .title {
   display: flex;
   align-items: center;
+  cursor: pointer;
+  text-wrap: nowrap;
 }
 
 .logo {

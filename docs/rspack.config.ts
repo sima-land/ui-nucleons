@@ -13,8 +13,8 @@ export default async function () {
 
   return {
     entry: {
-      main: './src/internal/main/index.tsx',
       sandbox: './src/internal/sandbox/index.tsx',
+      showcase: './src/internal/showcase/index.tsx',
     },
     output: {
       path: path.resolve(import.meta.dirname, 'dist'),
@@ -32,7 +32,7 @@ export default async function () {
         // для внутреннего использования
         '#found-stories$': path.resolve(import.meta.dirname, entrypoint),
         '#valid-stories$': path.resolve(import.meta.dirname, './src/internal/valid-stories.ts'),
-        '#components': path.resolve(import.meta.dirname, './src/internal/main/components/'),
+        '#components': path.resolve(import.meta.dirname, './src/internal/showcase/components/'),
 
         // для конкретной документации
         '@sima-land/ui-nucleons': path.resolve(import.meta.dirname, '../src/'),
@@ -116,8 +116,8 @@ export default async function () {
       new rspack.CssExtractRspackPlugin(),
       new rspack.HtmlRspackPlugin({
         filename: 'index.html',
-        template: './src/internal/main/index.html',
-        chunks: ['main'],
+        template: './src/internal/showcase/index.html',
+        chunks: ['showcase'],
         scriptLoading: 'module',
         inject: 'body',
       }),

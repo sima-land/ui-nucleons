@@ -53,6 +53,8 @@ export function getMenuItems(stories: StoryModule[]): AnyMenuNode[] {
     story,
   }));
 
+  nodes.sort((a, b) => (a.category && b.category ? a.category.localeCompare(b.category) : 0));
+
   return groupMenuNodes(nodes);
 }
 

@@ -1,9 +1,9 @@
 import { validStories, menuItems } from '#valid-stories';
 import { useEffect, useMemo, useState } from 'react';
 import { codeToHtml } from 'shiki';
-import { MenuItem } from '#components/Menu';
-import { Plate, PlateBody, PlateHeader } from '#components/Plate';
-import { Link } from '#components/Link';
+import { MenuItem } from '../Menu';
+import { Plate, PlateBody, PlateHeader } from '../Plate';
+import { Link } from '../Link';
 import { useMatchMedia } from '@krutoo/utils/react';
 import classNames from 'classnames';
 import styles from './App.m.css';
@@ -156,6 +156,7 @@ export function App() {
 
                 <PlateBody style={{ display: 'flex', flexDirection: 'column' }}>
                   <iframe
+                    // ВАЖНО: key нужен чтобы iframe не вызывал popstate у родительского документа
                     key={story.pathname}
                     className={styles.iframe}
                     src={`/sandbox.html?path=${story.pathname}`}
