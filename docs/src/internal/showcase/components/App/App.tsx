@@ -1,101 +1,20 @@
 import { validStories, menuItems } from '#valid-stories';
-import { useEffect, useMemo, useState } from 'react';
-import { codeToHtml } from 'shiki';
+import { useMemo, useState } from 'react';
 import { MenuItem } from '../Menu';
 import { Plate, PlateBody, PlateHeader } from '../Plate';
 import { Link } from '../Link';
+import { CodeBlock } from '#components/CodeBlock';
 import { useMatchMedia } from '@krutoo/utils/react';
+import { useRouter } from '../../utils/router';
 import classNames from 'classnames';
 import styles from './App.m.css';
-
-function createQueryRouter() {
-  const listeners = new Set<VoidFunction>();
-
-  let currentPathname = '';
-
-  const updatePathname = (pathname: string) => {
-    currentPathname = pathname;
-    listeners.forEach(fn => fn());
-  };
-
-  return {
-    getPathname() {
-      return currentPathname;
-    },
-
-    setPathname(pathname: string) {
-      const url = new URL(window.location.href);
-
-      url.searchParams.delete('path');
-
-      window.history.pushState(
-        { pathname: currentPathname },
-        '',
-        `${url.pathname}${url.search}${
-          pathname ? `${url.search ? '&' : '?'}path=${pathname}` : ''
-        }`,
-      );
-
-      updatePathname(pathname);
-    },
-
-    observe() {
-      const onPopState = () => {
-        // @todo проверить event.target тк iframe на странице тоже вызывает событие на родителе
-        updatePathname(new URL(window.location.href).searchParams.get('path') ?? '');
-      };
-
-      updatePathname(new URL(window.location.href).searchParams.get('path') ?? '');
-
-      window.addEventListener('popstate', onPopState);
-
-      return () => {
-        window.removeEventListener('popstate', onPopState);
-      };
-    },
-
-    subscribe(listener: VoidFunction) {
-      listeners.add(listener);
-
-      return () => {
-        listeners.delete(listener);
-      };
-    },
-  };
-}
-
-function useRouter() {
-  const router = useMemo(createQueryRouter, []);
-  const [pathname, setPathname] = useState('/');
-
-  useEffect(() => {
-    const unobserve = router.observe();
-    const unsubscribe = router.subscribe(() => {
-      setPathname(router.getPathname());
-    });
-
-    setPathname(router.getPathname());
-
-    return () => {
-      unobserve();
-      unsubscribe();
-    };
-  }, [router]);
-
-  const redirect = (path: string) => {
-    router.setPathname(path);
-  };
-
-  return [pathname, redirect] as const;
-}
 
 export function App() {
   const [pathname, setPathname] = useRouter();
   const [needCode, setNeedCode] = useState(false);
   const mobile = useMatchMedia('(max-width: 960px)');
-
-  const story = validStories.find(item => item.pathname === pathname);
-  const sourcesEnabled = story?.metaJson?.parameters.sources !== false;
+  const story = useMemo(() => validStories.find(item => item.pathname === pathname), [pathname]);
+  const sourcesEnabled = useMemo(() => story?.meta?.parameters?.sources !== false, [story]);
 
   return (
     <div className={styles.container}>
@@ -168,33 +87,13 @@ export function App() {
                 </PlateBody>
               </Plate>
 
-              {sourcesEnabled && needCode && (
-                <Plate className={styles.source}>
-                  <PlateHeader>Код</PlateHeader>
-                  <CodeBlock source={story.source} />
-                </Plate>
+              {story && sourcesEnabled && needCode && (
+                <CodeBlock className={styles.source} story={story} />
               )}
             </>
           )}
         </div>
       </div>
-    </div>
-  );
-}
-
-function CodeBlock({ source }: { source: string }) {
-  const [state, setState] = useState('');
-
-  useEffect(() => {
-    codeToHtml(source, {
-      lang: 'tsx',
-      theme: 'github-light',
-    }).then(setState);
-  });
-
-  return (
-    <div className={styles.code}>
-      <div className={styles.pre} dangerouslySetInnerHTML={{ __html: state }} />
     </div>
   );
 }

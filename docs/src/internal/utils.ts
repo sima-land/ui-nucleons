@@ -33,7 +33,13 @@ export const StoryModuleSchema = z.object({
   meta: z.object({
     title: z.string(),
     category: z.string().optional(),
-    parameters: z.any().optional(),
+    parameters: z
+      .object({
+        layout: z.enum(['padded', 'fullscreen']).optional(),
+        backgrounds: z.object({ default: z.string() }).optional(),
+        sources: z.boolean().optional(),
+      })
+      .optional(),
   }),
 
   metaJson: z
@@ -51,6 +57,13 @@ export const StoryModuleSchema = z.object({
 
   pathname: z.string(),
   source: z.string(),
+
+  extraSources: z.array(
+    z.object({
+      title: z.string(),
+      source: z.string(),
+    }),
+  ),
 });
 
 /**

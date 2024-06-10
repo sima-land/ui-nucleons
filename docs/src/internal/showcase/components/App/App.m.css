@@ -109,17 +109,3 @@
   overflow: hidden;
   border-radius: 8px;
 }
-
-.pre {
-  padding: 1.5rem;
-  font-size: var(--source-font-size);
-  line-height: 1.25;
-  overflow: auto;
-  font-family:
-    Menlo,
-    Consolas,
-    Monaco,
-    Liberation Mono,
-    Lucida Console,
-    monospace;
-}

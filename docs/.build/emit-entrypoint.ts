@@ -6,12 +6,11 @@ import { z } from 'zod';
 const MetaJsonSchema = z.object({
   parameters: z
     .object({
-      sources: z.union([
-        z.boolean(),
-        z.object({
+      sources: z
+        .object({
           extraSources: z.array(z.string()),
-        }),
-      ]),
+        })
+        .optional(),
     })
     .optional(),
 });
@@ -52,7 +51,7 @@ export async function emitStoriesEntrypoint(config: EmitStoriesEntrypointConfig)
     .then(filenames => Promise.all(filenames.map(getPageDataFactory(config))))
 
     // формируем содержимое точки входа - импорт всех файлов
-    .then(entries => EntrypointTemplate(entries))
+    .then(entries => EntrypointTemplate(entries, config))
 
     // создаем каталог для точки входа если его нет
     .then(content => fs.mkdir(path.dirname(filename), { recursive: true }).then(() => content))
@@ -85,11 +84,15 @@ function getPageDataFactory(config: EmitStoriesEntrypointConfig) {
   };
 }
 
-function EntrypointTemplate(entries: StoryModuleData[]) {
+function EntrypointTemplate(entries: StoryModuleData[], config: EmitStoriesEntrypointConfig) {
   return `
 ${entries.map(ImportTemplate).join('\n')}
 ${entries.map(ImportSourceTemplate).join('\n')}
 
+${entries
+  .map(e => ImportExtraSourcesTemplate(e, config))
+  .filter(Boolean)
+  .join('\n')}
 ${entries.map(ExtrasTemplate).join('\n')}
 
 export default [\n${entries.map(ListItemTemplate).join('\n')}\n];
@@ -104,13 +107,47 @@ function ImportSourceTemplate(entry: StoryModuleData) {
   return `import ${entry.importIdentifier}Source from '!${entry.importPath}?raw';`;
 }
 
+function ImportExtraSourcesTemplate(entry: StoryModuleData, config: EmitStoriesEntrypointConfig) {
+  if (!entry.metaJson?.parameters?.sources) {
+    return '';
+  }
+
+  return `
+${entry.metaJson.parameters.sources.extraSources
+  .map((item, index) => {
+    const importPath = path.relative(
+      path.dirname(config.filename),
+      path.resolve(path.dirname(entry.filename), item),
+    );
+    return `import ${entry.importIdentifier}ExtraSource${index} from '!${importPath}?raw';`;
+  })
+  .join('\n')}
+`;
+}
+
 function ExtrasTemplate(entry: StoryModuleData) {
+  let extraSources: Array<{ title: string; sourceIdentifier: string }> = [];
+
+  if (
+    typeof entry.metaJson?.parameters?.sources?.extraSources === 'object' &&
+    entry.metaJson?.parameters?.sources?.extraSources !== null
+  ) {
+    extraSources = entry.metaJson.parameters.sources.extraSources.map((item, index) => ({
+      sourceIdentifier: `${entry.importIdentifier}ExtraSource${index}`,
+      title: path.basename(item),
+    }));
+  }
+
   const extras = {
     pathname: entry.pathname,
     metaJson: entry.metaJson,
   };
 
-  return `const ${entry.importIdentifier}Extras = ${JSON.stringify(extras, null, 2)};`;
+  return `const ${entry.importIdentifier}Extras = ${JSON.stringify(extras, null, 2)};
+${entry.importIdentifier}Extras.extraSources = [${extraSources
+    .map(item => `{ title: "${item.title}", source: ${item.sourceIdentifier} }`)
+    .join(', ')}]
+`;
 }
 
 function ListItemTemplate(entry: StoryModuleData) {
