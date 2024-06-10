@@ -7,10 +7,6 @@ import { Sandbox } from '#docs-utils';
 export const meta = {
   category: 'Компоненты/Button',
   title: 'Различные состояния',
-
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function () {

@@ -3,15 +3,12 @@ import { ReactNode, useEffect, useState } from 'react';
 import classnames from 'classnames/bind';
 import styles from './reels.m.scss';
 
-const cx = classnames.bind(styles);
-
 export const meta = {
   category: 'Компоненты/Carousel',
   title: 'Пример: Reels',
-  parameters: {
-    layout: 'padded',
-  },
 };
+
+const cx = classnames.bind(styles);
 
 export default function Reels() {
   const count = 8;

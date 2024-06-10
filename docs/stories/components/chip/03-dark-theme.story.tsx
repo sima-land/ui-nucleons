@@ -3,9 +3,6 @@ import { Chip } from '@sima-land/ui-nucleons/chip';
 export const meta = {
   category: 'Компоненты/Chip',
   title: 'Темная тема',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function DarkTheme() {

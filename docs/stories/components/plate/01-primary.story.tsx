@@ -4,9 +4,6 @@ import { CSSProperties } from 'react';
 export const meta = {
   category: 'Компоненты/Plate',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const styles: CSSProperties = {

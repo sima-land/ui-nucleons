@@ -9,9 +9,6 @@ import InfoSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Information';
 export const meta = {
   category: 'Компоненты/SidePage',
   title: 'Размер M',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function SizeM() {

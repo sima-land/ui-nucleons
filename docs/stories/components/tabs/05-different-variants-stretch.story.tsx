@@ -4,9 +4,6 @@ import { useState } from 'react';
 export const meta = {
   category: 'Компоненты/Tabs',
   title: 'На всю ширину',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function DifferentVariantsStretch() {

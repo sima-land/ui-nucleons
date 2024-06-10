@@ -3,9 +3,6 @@ import { UnknownContent } from '@sima-land/ui-nucleons/unknown-content';
 export const meta = {
   category: 'Компоненты/UnknownContent',
   title: 'HTML-код в качестве содержимого',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Markup() {

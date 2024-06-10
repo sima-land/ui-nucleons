@@ -5,9 +5,6 @@ import InformationSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Information
 export const meta = {
   category: 'Компоненты/Chip',
   title: 'Переполнение',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function TextOverflow() {

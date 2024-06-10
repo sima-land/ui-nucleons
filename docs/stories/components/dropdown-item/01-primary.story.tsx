@@ -5,7 +5,6 @@ export const meta = {
   category: 'Компоненты/DropdownItem',
   title: 'Простой пример',
   parameters: {
-    layout: 'padded',
     backgrounds: {
       default: 'custom:gray',
     },

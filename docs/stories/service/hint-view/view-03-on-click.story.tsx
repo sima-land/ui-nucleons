@@ -12,9 +12,6 @@ import { Button } from '@sima-land/ui-nucleons/button';
 export const meta = {
   category: 'Утилиты/HintView',
   title: 'По клику (floating-ui)',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function OnClick() {

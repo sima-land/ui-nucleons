@@ -6,9 +6,6 @@ import { CSSProperties, useState } from 'react';
 export const meta = {
   category: 'Компоненты/Tabs',
   title: 'Карусель вкладок',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function TabsCarousel() {

@@ -3,9 +3,6 @@ import { getNoIndexProps } from '@sima-land/ui-nucleons/no-index';
 export const meta = {
   category: 'Утилиты/NoIndex',
   title: 'Использование утилит',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function UtilsUsage() {

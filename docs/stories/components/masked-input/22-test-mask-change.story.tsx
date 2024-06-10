@@ -6,9 +6,6 @@ import { Select } from '@sima-land/ui-nucleons/select';
 export const meta = {
   category: 'Компоненты/MaskedInput',
   title: 'Тест: Смена маски',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function TestMaskChange() {

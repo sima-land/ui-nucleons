@@ -3,9 +3,6 @@ import { PopupView } from '@sima-land/ui-nucleons/popup';
 export const meta = {
   category: 'Компоненты/Popup',
   title: 'Много текста',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function LotOfContent() {

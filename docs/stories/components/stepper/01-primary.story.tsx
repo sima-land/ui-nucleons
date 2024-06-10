@@ -4,9 +4,6 @@ import { ChangeEvent, useState } from 'react';
 export const meta = {
   category: 'Компоненты/Stepper',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Primary() {

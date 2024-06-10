@@ -3,9 +3,6 @@ import { Chip, getDeletableChipProps } from '@sima-land/ui-nucleons/chip';
 export const meta = {
   category: 'Компоненты/Chip',
   title: 'С кнопкой в конце',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function WithEndButton() {

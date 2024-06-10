@@ -3,9 +3,6 @@ import { Rating } from '@sima-land/ui-nucleons/rating';
 export const meta = {
   category: 'Компоненты/Rating',
   title: 'Различные размеры',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function DifferentSizes() {

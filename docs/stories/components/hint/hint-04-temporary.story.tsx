@@ -10,9 +10,6 @@ import { Stepper } from '@sima-land/ui-nucleons/stepper';
 export const meta = {
   category: 'Компоненты/Hint',
   title: 'Ограничение по времени',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Temporary() {

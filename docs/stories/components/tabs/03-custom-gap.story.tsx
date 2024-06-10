@@ -4,9 +4,6 @@ import { useState } from 'react';
 export const meta = {
   category: 'Компоненты/Tabs',
   title: 'Свое расстояние между вкладками',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function CustomGap() {

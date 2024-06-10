@@ -12,9 +12,6 @@ import styles from './usage.m.scss';
 export const meta = {
   category: 'Токены/Colors',
   title: 'Использование',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Usage() {

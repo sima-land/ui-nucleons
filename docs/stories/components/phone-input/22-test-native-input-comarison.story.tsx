@@ -5,9 +5,6 @@ import { useState } from 'react';
 export const meta = {
   category: 'Компоненты/PhoneInput',
   title: 'Тест: Сравнение с input',
-  parameters: {
-    layout: 'padded',
-  },
 };
 export default function TestNativeInputComparison() {
   // PhoneInput

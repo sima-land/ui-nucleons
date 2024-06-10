@@ -5,9 +5,6 @@ import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
 export const meta = {
   category: 'Компоненты/Select',
   title: 'Как поле',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function AsFieldBlock() {

@@ -6,9 +6,6 @@ import { Sandbox } from '#docs-utils';
 export const meta = {
   category: 'Компоненты/Panel',
   title: 'HTML-содержимое',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const panelTypes: PanelType[] = ['info', 'error', 'success', 'warning'];

@@ -6,9 +6,6 @@ import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
 export const meta = {
   category: 'Компоненты/SidePage',
   title: 'Прозрачные кнопки в футере',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function WithCleanButtons() {

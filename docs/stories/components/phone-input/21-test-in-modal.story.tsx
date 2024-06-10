@@ -11,9 +11,6 @@ import { Button } from '@sima-land/ui-nucleons/button';
 export const meta = {
   category: 'Компоненты/PhoneInput',
   title: 'Тест: В модальном окне',
-  parameters: {
-    layout: 'padded',
-  },
 };
 export default function TestInModal() {
   const [open, setOpen] = useState(false);

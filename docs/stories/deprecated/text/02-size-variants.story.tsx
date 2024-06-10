@@ -4,9 +4,6 @@ import { SIZES } from '@sima-land/ui-nucleons/styling/fonts';
 export const meta = {
   category: 'Устаревшее/Text',
   title: 'Варианты размеров',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function SizeVariants() {

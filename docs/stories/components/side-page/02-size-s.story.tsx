@@ -6,9 +6,6 @@ import failSrc from './images/fail.png';
 export const meta = {
   category: 'Компоненты/SidePage',
   title: 'Размер S',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function SizeS() {

@@ -5,9 +5,6 @@ import SearchSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Magnifier';
 export const meta = {
   category: 'Компоненты/Input',
   title: 'С иконками',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function WithIcons() {

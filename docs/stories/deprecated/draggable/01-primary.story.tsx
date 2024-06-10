@@ -3,9 +3,6 @@ import { Draggable } from '@sima-land/ui-nucleons/carousel/draggable';
 export const meta = {
   category: 'Утилиты/Draggable',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Primary() {

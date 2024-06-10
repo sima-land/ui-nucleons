@@ -3,9 +3,6 @@ import { Box } from '@sima-land/ui-nucleons/box';
 export const meta = {
   category: 'Устаревшее/Box',
   title: 'flex: Позиционирование контента по главной оси',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const testJustifyItems = [

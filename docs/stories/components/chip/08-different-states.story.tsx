@@ -7,9 +7,6 @@ import { Sandbox } from '#docs-utils';
 export const meta = {
   category: 'Компоненты/Chip',
   title: 'Различные состояния',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function DifferentStates() {

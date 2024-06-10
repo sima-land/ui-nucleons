@@ -6,9 +6,6 @@ import { Link } from '@sima-land/ui-nucleons/link';
 export const meta = {
   category: 'Компоненты/Hint',
   title: 'Ссылка внутри',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function WithLinkInside() {

@@ -7,7 +7,6 @@ export const meta = {
   category: 'Утилиты/StrokedSVG',
   title: 'С хинтом',
   parameters: {
-    layout: 'padded',
     backgrounds: { default: '#ccc' },
   },
 };

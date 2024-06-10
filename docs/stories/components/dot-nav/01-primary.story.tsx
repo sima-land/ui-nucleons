@@ -4,9 +4,6 @@ import { CSSProperties, useState } from 'react';
 export const meta = {
   category: 'Компоненты/DotNav',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const styles = {

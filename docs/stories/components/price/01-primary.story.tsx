@@ -3,9 +3,6 @@ import { Price } from '@sima-land/ui-nucleons/price';
 export const meta = {
   category: 'Компоненты/Price',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const values = [

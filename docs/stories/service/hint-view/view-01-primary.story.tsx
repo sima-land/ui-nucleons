@@ -3,9 +3,6 @@ import { HintView } from '@sima-land/ui-nucleons/hint';
 export const meta = {
   category: 'Утилиты/HintView',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Primary() {

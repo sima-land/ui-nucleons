@@ -5,9 +5,6 @@ import { CSSProperties, useState } from 'react';
 export const meta = {
   category: 'Утилиты/Portal',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const styles = {

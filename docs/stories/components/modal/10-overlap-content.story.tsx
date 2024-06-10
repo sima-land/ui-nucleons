@@ -6,9 +6,6 @@ import { CSSProperties, useState } from 'react';
 export const meta = {
   category: 'Компоненты/Modal',
   title: 'Контент рядом с окном',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const styles = {

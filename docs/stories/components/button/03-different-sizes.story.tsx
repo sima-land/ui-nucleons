@@ -3,10 +3,6 @@ import { Button } from '@sima-land/ui-nucleons/button';
 export const meta = {
   category: 'Компоненты/Button',
   title: 'Варианты размеров',
-
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function () {

@@ -4,9 +4,6 @@ import { useState } from 'react';
 export const meta = {
   category: 'Компоненты/MaskedInput',
   title: 'Без placeholder',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function NoPlaceholder() {

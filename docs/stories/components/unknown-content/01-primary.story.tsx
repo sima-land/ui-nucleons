@@ -5,9 +5,6 @@ import moscowStreet from './images/moscow-street.jpg';
 export const meta = {
   category: 'Компоненты/UnknownContent',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Primary() {

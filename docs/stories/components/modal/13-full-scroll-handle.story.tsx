@@ -10,9 +10,6 @@ import { LoremIpsum } from '#docs-utils';
 export const meta = {
   category: 'Компоненты/Modal',
   title: 'Бесконечная прокрутка',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const styles = {

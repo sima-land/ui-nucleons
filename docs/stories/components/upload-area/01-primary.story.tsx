@@ -3,9 +3,6 @@ import { UploadArea } from '@sima-land/ui-nucleons/upload-area';
 export const meta = {
   category: 'Компоненты/UploadArea',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Primary() {

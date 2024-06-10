@@ -3,9 +3,6 @@ import { Toggle } from '@sima-land/ui-nucleons/toggle';
 export const meta = {
   category: 'Компоненты/Toggle',
   title: 'Тест: Обработка свойств',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function TestInputProps() {

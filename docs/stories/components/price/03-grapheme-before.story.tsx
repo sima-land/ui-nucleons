@@ -3,9 +3,6 @@ import { Price } from '@sima-land/ui-nucleons/price';
 export const meta = {
   category: 'Компоненты/Price',
   title: 'Графема впереди',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const values = [

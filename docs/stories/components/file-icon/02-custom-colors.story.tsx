@@ -3,9 +3,6 @@ import { FileIcon, FileIconStyle } from '@sima-land/ui-nucleons/file-icon';
 export const meta = {
   category: 'Компоненты/FileIcon',
   title: 'Свои цвета',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function CustomColors() {

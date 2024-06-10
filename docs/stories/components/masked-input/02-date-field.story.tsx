@@ -4,9 +4,6 @@ import { useState } from 'react';
 export const meta = {
   category: 'Компоненты/MaskedInput',
   title: 'Поле даты',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function DateField() {

@@ -3,9 +3,6 @@ import { Box, BoxProps } from '@sima-land/ui-nucleons/box';
 export const meta = {
   category: 'Устаревшее/Box',
   title: 'Свойство "display"',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const testJustifyItems = [

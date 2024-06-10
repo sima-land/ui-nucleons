@@ -5,9 +5,6 @@ import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
 export const meta = {
   category: 'Компоненты/Select',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Primary() {

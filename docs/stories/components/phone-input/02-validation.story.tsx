@@ -4,9 +4,6 @@ import { useState } from 'react';
 export const meta = {
   category: 'Компоненты/PhoneInput',
   title: 'Пример: проверка заполнения',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Validation() {

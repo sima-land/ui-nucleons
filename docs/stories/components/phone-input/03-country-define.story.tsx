@@ -3,9 +3,6 @@ import { PhoneInput } from '@sima-land/ui-nucleons/phone-input';
 export const meta = {
   category: 'Компоненты/PhoneInput',
   title: 'Пример: определение маски',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function DefineCountryMask() {

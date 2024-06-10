@@ -3,9 +3,6 @@ import { FileIcon } from '@sima-land/ui-nucleons/file-icon';
 export const meta = {
   category: 'Компоненты/FileIcon',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Primary() {

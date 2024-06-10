@@ -8,9 +8,6 @@ import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
 export const meta = {
   title: 'Простой пример',
   category: 'Компоненты/Alert',
-  // parameters: {
-  //   extraSources: ['./primary.m.scss'],
-  // },
 };
 
 const styles = {

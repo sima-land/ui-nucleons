@@ -4,9 +4,6 @@ import { useState } from 'react';
 export const meta = {
   category: 'Утилиты/BaseInput',
   title: 'Остаточный placeholder',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function RestPlaceholder() {

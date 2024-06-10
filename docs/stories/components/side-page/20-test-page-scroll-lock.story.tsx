@@ -7,9 +7,6 @@ import { LoremIpsum, PageScrollLockDemo } from '#docs-utils';
 export const meta = {
   category: 'Компоненты/SidePage',
   title: 'Тест: Блокировка прокрутки страницы',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function TestPageScrollLock() {

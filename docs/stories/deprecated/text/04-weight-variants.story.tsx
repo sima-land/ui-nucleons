@@ -4,9 +4,6 @@ import { WEIGHTS } from '@sima-land/ui-nucleons/styling/fonts';
 export const meta = {
   category: 'Устаревшее/Text',
   title: 'Варианты начертания',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function WeightVariants() {

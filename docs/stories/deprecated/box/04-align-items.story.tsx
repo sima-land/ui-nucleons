@@ -3,9 +3,6 @@ import { Box, BoxProps } from '@sima-land/ui-nucleons/box';
 export const meta = {
   category: 'Устаревшее/Box',
   title: 'flex: Позиционирование контента перпендикулярно главной оси',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const testAlignItems = [

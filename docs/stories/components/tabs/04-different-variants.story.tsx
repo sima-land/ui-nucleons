@@ -4,9 +4,6 @@ import { useState } from 'react';
 export const meta = {
   category: 'Компоненты/Tabs',
   title: 'Варианты отображения',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function DifferentVariants() {

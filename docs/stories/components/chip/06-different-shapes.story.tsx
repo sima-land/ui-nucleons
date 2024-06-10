@@ -3,9 +3,6 @@ import { Chip } from '@sima-land/ui-nucleons/chip';
 export const meta = {
   category: 'Компоненты/Chip',
   title: 'Варианты формы',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function DifferentShapes() {

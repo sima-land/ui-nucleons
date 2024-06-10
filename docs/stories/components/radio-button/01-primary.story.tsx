@@ -3,9 +3,6 @@ import { RadioButton } from '@sima-land/ui-nucleons/radio-button';
 export const meta = {
   category: 'Компоненты/RadioButton',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Primary() {

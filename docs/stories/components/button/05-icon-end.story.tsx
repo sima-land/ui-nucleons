@@ -5,10 +5,6 @@ import ShareAndroidSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ShareAndro
 export const meta = {
   category: 'Компоненты/Button',
   title: 'Иконка в конце',
-
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function () {

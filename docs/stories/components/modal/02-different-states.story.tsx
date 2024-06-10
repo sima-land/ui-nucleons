@@ -15,9 +15,6 @@ import { LoremIpsum, Sandbox } from '#docs-utils';
 export const meta = {
   category: 'Компоненты/Modal',
   title: 'Различные состояния',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function DifferentStates() {

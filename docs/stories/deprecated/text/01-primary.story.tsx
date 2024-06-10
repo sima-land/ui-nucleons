@@ -3,9 +3,6 @@ import { Text } from '@sima-land/ui-nucleons/text';
 export const meta = {
   category: 'Устаревшее/Text',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Primary() {

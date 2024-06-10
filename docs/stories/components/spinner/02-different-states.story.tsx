@@ -6,9 +6,6 @@ import { Sandbox } from '#docs-utils';
 export const meta = {
   category: 'Компоненты/Spinner',
   title: 'Различные состояния',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function DifferentStates() {

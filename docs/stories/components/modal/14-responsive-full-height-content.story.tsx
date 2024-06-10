@@ -12,9 +12,6 @@ import { useBreakpoint } from '@sima-land/ui-nucleons/hooks';
 export const meta = {
   category: 'Компоненты/Modal',
   title: 'Контент на всю высоту отзывчивого окна',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function ResponsiveFullHeightContent() {

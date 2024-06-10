@@ -3,9 +3,6 @@ import { Checkbox } from '@sima-land/ui-nucleons/checkbox';
 export const meta = {
   category: 'Компоненты/Checkbox',
   title: 'Тест: Обработка свойств',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function () {

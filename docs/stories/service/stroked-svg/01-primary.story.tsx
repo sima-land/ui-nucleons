@@ -10,7 +10,6 @@ export const meta = {
   category: 'Утилиты/StrokedSVG',
   title: 'Простой пример',
   parameters: {
-    layout: 'padded',
     backgrounds: { default: '#ccc' },
   },
 };

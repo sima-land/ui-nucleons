@@ -4,9 +4,6 @@ import { useState } from 'react';
 export const meta = {
   category: 'Компоненты/Pagination',
   title: 'Кнопки-ссылки для семантики',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function WithLinksForSemantic() {

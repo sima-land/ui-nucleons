@@ -13,9 +13,6 @@ interface StepProps {
 export const meta = {
   category: 'Компоненты/Modal',
   title: 'Тест: Блокировка прокрутки при переключении окон',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const styles = {

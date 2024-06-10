@@ -4,9 +4,6 @@ import { CSSProperties } from 'react';
 export const meta = {
   category: 'Компоненты/Link',
   title: 'Различные цвета',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function DifferentColors() {

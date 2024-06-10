@@ -14,9 +14,6 @@ import russiaNature10 from './images/russia-nature-10.jpg';
 export const meta = {
   category: 'Компоненты/Carousel',
   title: 'Тест: Предотвращение клика при перетаскивании мышью',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const photos: string[] = [

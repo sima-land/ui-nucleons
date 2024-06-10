@@ -3,9 +3,6 @@ import { HintView } from '@sima-land/ui-nucleons/hint';
 export const meta = {
   category: 'Утилиты/HintView',
   title: 'Много текста',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function LotOfText() {

@@ -3,9 +3,6 @@ import { BaseInput, BaseInputStyle } from '@sima-land/ui-nucleons/base-input';
 export const meta = {
   category: 'Утилиты/BaseInput',
   title: 'Многострочное поле',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Multiline() {

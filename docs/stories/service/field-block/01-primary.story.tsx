@@ -7,9 +7,6 @@ import { Sandbox } from '#docs-utils';
 export const meta = {
   category: 'Утилиты/FieldBlock',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Primary() {

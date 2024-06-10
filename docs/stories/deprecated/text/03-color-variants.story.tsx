@@ -4,9 +4,6 @@ import { COLORS } from '@sima-land/ui-nucleons/colors';
 export const meta = {
   category: 'Устаревшее/Text',
   title: 'Варианты цветов',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function ColorVariants() {

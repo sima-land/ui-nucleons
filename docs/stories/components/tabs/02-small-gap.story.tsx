@@ -4,9 +4,6 @@ import { useState } from 'react';
 export const meta = {
   category: 'Компоненты/Tabs',
   title: 'Расстояние между вкладками S',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function SmallGap() {

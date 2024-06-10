@@ -4,9 +4,6 @@ import { useState } from 'react';
 export const meta = {
   category: 'Компоненты/Range',
   title: 'Тест: Обновление передаваемых свойств',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function WithUpdateProps() {

@@ -3,9 +3,6 @@ import { Rating } from '@sima-land/ui-nucleons/rating';
 export const meta = {
   category: 'Компоненты/Rating',
   title: 'Тест: Аппроксимация значений',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const prettyValues = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];

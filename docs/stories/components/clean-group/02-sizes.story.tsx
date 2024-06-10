@@ -5,7 +5,6 @@ export const meta = {
   category: 'Компоненты/CleanGroup',
   title: 'Размеры',
   parameters: {
-    layout: 'padded',
     backgrounds: { default: '#ccc' },
   },
 };

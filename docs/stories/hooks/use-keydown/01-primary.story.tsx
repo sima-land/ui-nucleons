@@ -5,9 +5,6 @@ import { useState } from 'react';
 export const meta = {
   category: 'Хуки/useKeydown',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Primary() {

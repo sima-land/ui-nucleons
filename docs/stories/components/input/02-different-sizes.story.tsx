@@ -3,9 +3,6 @@ import { Input } from '@sima-land/ui-nucleons/input';
 export const meta = {
   category: 'Компоненты/Input',
   title: 'Различные размеры',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function DifferentSizes() {

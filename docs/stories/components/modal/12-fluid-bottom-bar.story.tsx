@@ -6,9 +6,6 @@ import { CSSProperties, useState } from 'react';
 export const meta = {
   category: 'Компоненты/Modal',
   title: 'Подвал с подписями',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const styles = {

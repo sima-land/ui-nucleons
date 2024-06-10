@@ -4,9 +4,6 @@ import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
 export const meta = {
   category: 'Компоненты/Select',
   title: 'Тест: Все опции недоступны',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function TestAllDisabled() {

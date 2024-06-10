@@ -5,9 +5,6 @@ import { Button } from '@sima-land/ui-nucleons/button';
 export const meta = {
   category: 'Компоненты/Hint',
   title: 'При наведении',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function OnHover() {

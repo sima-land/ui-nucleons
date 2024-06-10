@@ -4,10 +4,6 @@ import { CSSProperties } from 'react';
 export const meta = {
   category: 'Компоненты/Button',
   title: 'Пользовательские цвета',
-
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const styles = {

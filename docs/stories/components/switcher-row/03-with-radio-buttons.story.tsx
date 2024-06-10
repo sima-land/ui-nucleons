@@ -4,9 +4,6 @@ import { RadioButton } from '@sima-land/ui-nucleons/radio-button';
 export const meta = {
   category: 'Компоненты/SwitcherRow',
   title: 'Вместе с RadioButton',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function WithRadioButtons() {

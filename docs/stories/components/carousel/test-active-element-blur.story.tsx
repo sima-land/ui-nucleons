@@ -12,15 +12,12 @@ import russiaNature10 from './images/russia-nature-10.jpg';
 import classnames from 'classnames/bind';
 import styles from './stories.m.scss';
 
-const cx = classnames.bind(styles);
-
 export const meta = {
   category: 'Компоненты/Carousel',
   title: 'Тест: Blur активного элемента при перетаскивании',
-  parameters: {
-    layout: 'padded',
-  },
 };
+
+const cx = classnames.bind(styles);
 
 const photos: string[] = [
   russiaNature01,

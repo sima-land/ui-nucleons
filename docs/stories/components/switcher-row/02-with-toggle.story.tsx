@@ -4,9 +4,6 @@ import { Toggle } from '@sima-land/ui-nucleons/toggle';
 export const meta = {
   category: 'Компоненты/SwitcherRow',
   title: 'Вместе с Toggle',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function WithToggle() {

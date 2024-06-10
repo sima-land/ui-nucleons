@@ -5,9 +5,6 @@ import { useState } from 'react';
 export const meta = {
   category: 'Компоненты/PhoneInput',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Primary() {

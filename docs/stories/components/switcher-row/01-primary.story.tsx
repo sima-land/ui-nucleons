@@ -4,9 +4,6 @@ import { Checkbox } from '@sima-land/ui-nucleons/checkbox';
 export const meta = {
   category: 'Компоненты/SwitcherRow',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Primary() {

@@ -5,9 +5,6 @@ import { Button } from '@sima-land/ui-nucleons/button';
 export const meta = {
   category: 'Компоненты/SidePage',
   title: 'Без анимаций',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function WithoutTransitions() {

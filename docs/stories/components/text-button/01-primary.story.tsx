@@ -3,9 +3,6 @@ import { TextButton } from '@sima-land/ui-nucleons/text-button';
 export const meta = {
   category: 'Компоненты/TextButton',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Primary() {

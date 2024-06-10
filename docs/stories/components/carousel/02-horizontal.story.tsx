@@ -15,9 +15,6 @@ import styles from './stories.m.scss';
 export const meta = {
   category: 'Компоненты/Carousel',
   title: 'Горизонтальные карусели',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const cx = classnames.bind(styles);

@@ -6,9 +6,6 @@ import { LargePage } from '#docs-utils';
 export const meta = {
   category: 'Компоненты/Select',
   title: 'Тест: Фокусировка',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function TestFocus() {

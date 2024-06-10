@@ -5,7 +5,6 @@ export const meta = {
   category: 'Компоненты/CleanGroup',
   title: 'Простой пример',
   parameters: {
-    layout: 'padded',
     backgrounds: { default: '#ccc' },
   },
 };

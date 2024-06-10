@@ -5,9 +5,6 @@ import { Spinner } from '@sima-land/ui-nucleons/spinner';
 export const meta = {
   category: 'Компоненты/Dropdown',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function () {

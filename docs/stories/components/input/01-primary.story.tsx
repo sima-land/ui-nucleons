@@ -3,9 +3,6 @@ import { Input } from '@sima-land/ui-nucleons/input';
 export const meta = {
   category: 'Компоненты/Input',
   title: 'Простой пример',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Primary() {

@@ -5,9 +5,6 @@ import { useState } from 'react';
 export const meta = {
   category: 'Компоненты/Toggle',
   title: 'Тест: Программное управление',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function TestControlled() {

@@ -4,9 +4,6 @@ import { Fragment } from 'react';
 export const meta = {
   category: 'Устаревшее/Box',
   title: 'Внутренние и внешние отступы',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const testMarginPropsList = [

@@ -14,9 +14,6 @@ import { LargePage } from '#docs-utils';
 export const meta = {
   category: 'Компоненты/Popup',
   title: 'Всплытие по клику с помощью floating-ui',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function RevealByClickFloatingUI() {

@@ -1,4 +1,4 @@
-import { ElementType, useEffect, useMemo, useState } from 'react';
+import { ElementType, useLayoutEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { validStories } from '#valid-stories';
 
@@ -11,21 +11,33 @@ function SandboxApp() {
 
   const story = useMemo(() => validStories.find(item => item.pathname === pathname), [pathname]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setPathname(new URL(window.location.href).searchParams.get('path'));
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (story?.meta?.title) {
       document.title = story.meta.title;
     }
   }, [story]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const backgrounds = getParameter('backgrounds', story?.meta);
 
     if (typeof backgrounds?.default === 'string') {
       document.documentElement.style.setProperty('background', `${backgrounds.default}`);
+    }
+  }, [story]);
+
+  useLayoutEffect(() => {
+    const layout = getParameter('layout', story?.meta) ?? 'padded';
+
+    if (layout === 'padded') {
+      document.body.style.setProperty('padding', '16px');
+    }
+
+    if (layout === 'fullscreen') {
+      document.body.style.setProperty('padding', '0');
     }
   }, [story]);
 

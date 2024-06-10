@@ -4,9 +4,6 @@ import { useState } from 'react';
 export const meta = {
   category: 'Компоненты/MaskedInput',
   title: 'Тест: Неконтролируемое поле',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function TestUncontrolled() {

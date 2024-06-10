@@ -4,9 +4,6 @@ import { useState } from 'react';
 export const meta = {
   category: 'Компоненты/Input',
   title: 'С очисткой',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function Clearable() {

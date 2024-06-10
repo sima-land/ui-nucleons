@@ -5,9 +5,6 @@ import { Button } from '@sima-land/ui-nucleons/button';
 export const meta = {
   category: 'Компоненты/Hint',
   title: 'По клику',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function OnClick() {

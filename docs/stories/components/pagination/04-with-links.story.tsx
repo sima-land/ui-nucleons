@@ -3,9 +3,6 @@ import { Pagination, PaginationItem } from '@sima-land/ui-nucleons/pagination';
 export const meta = {
   category: 'Компоненты/Pagination',
   title: 'Кнопки-ссылки',
-  parameters: {
-    layout: 'padded',
-  },
 };
 export default function WithLinks() {
   const total = 45;

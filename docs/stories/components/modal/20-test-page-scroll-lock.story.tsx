@@ -10,9 +10,6 @@ import { Input } from '@sima-land/ui-nucleons/input';
 export const meta = {
   category: 'Компоненты/Modal',
   title: 'Тест: Блокировка прокрутки страницы',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function TestPageScrollLock() {

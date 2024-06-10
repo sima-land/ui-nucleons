@@ -3,9 +3,6 @@ import { Box } from '@sima-land/ui-nucleons/box';
 export const meta = {
   category: 'Устаревшее/Box',
   title: 'flex: Определение главно оси',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const testJustifyItems = [

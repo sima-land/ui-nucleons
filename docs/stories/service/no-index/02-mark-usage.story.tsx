@@ -3,9 +3,6 @@ import { NoIndexMark } from '@sima-land/ui-nucleons/no-index';
 export const meta = {
   category: 'Утилиты/NoIndex',
   title: 'Использование составных частей',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function MarkUsage() {

@@ -5,9 +5,6 @@ import { Sandbox } from '#docs-utils';
 export const meta = {
   category: 'Компоненты/PhoneInput',
   title: 'Различные состояния',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function DifferentState() {

@@ -5,9 +5,6 @@ import ShareAndroidSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/ShareAndro
 export const meta = {
   category: 'Компоненты/TextButton',
   title: 'Только иконка',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function IconOnly() {

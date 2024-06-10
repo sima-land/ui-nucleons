@@ -4,9 +4,6 @@ import { useState } from 'react';
 export const meta = {
   category: 'Компоненты/Pagination',
   title: 'Тест: Варианты данных',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function TestRanges() {

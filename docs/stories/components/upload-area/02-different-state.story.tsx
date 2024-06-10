@@ -10,9 +10,6 @@ import { Sandbox } from '#docs-utils';
 export const meta = {
   category: 'Компоненты/UploadArea',
   title: 'Различные состояния',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function DifferentState() {

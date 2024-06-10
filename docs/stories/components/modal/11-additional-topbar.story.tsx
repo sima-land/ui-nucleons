@@ -7,9 +7,6 @@ import { CSSProperties, useState } from 'react';
 export const meta = {
   category: 'Компоненты/Modal',
   title: 'Дополнительная шапка',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const styles = {

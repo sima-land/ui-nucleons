@@ -7,9 +7,6 @@ import { LargePage } from '#docs-utils';
 export const meta = {
   category: 'Компоненты/Popup',
   title: 'Кастомизация',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 const styles = {

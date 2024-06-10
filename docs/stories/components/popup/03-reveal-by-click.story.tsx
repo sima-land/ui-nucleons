@@ -7,9 +7,6 @@ import { LargePage } from '#docs-utils';
 export const meta = {
   category: 'Компоненты/Popup',
   title: 'Всплытие по клику',
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default function RevealByClick() {

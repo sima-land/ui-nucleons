@@ -6,7 +6,6 @@ export const meta = {
   category: 'Компоненты/TopBar',
   title: 'С кнопками-иконками',
   parameters: {
-    layout: 'padded',
     backgrounds: { default: '#ccc' },
   },
 };
