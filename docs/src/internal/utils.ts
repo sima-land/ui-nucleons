@@ -36,6 +36,19 @@ export const StoryModuleSchema = z.object({
     parameters: z.any().optional(),
   }),
 
+  metaJson: z
+    .object({
+      parameters: z.object({
+        sources: z.union([
+          z.boolean(),
+          z.object({
+            extraSources: z.array(z.string()),
+          }),
+        ]),
+      }),
+    })
+    .optional(),
+
   pathname: z.string(),
   source: z.string(),
 });

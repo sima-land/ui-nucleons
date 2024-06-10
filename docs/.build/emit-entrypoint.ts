@@ -1,6 +1,22 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import glob from 'fast-glob';
+import { z } from 'zod';
+
+const MetaJsonSchema = z.object({
+  parameters: z
+    .object({
+      sources: z.union([
+        z.boolean(),
+        z.object({
+          extraSources: z.array(z.string()),
+        }),
+      ]),
+    })
+    .optional(),
+});
+
+export type MetaJson = z.infer<typeof MetaJsonSchema>;
 
 export interface EmitStoriesEntrypointConfig {
   filename: string;
@@ -12,9 +28,6 @@ interface StoryModuleData {
   /** путь до файла */
   filename: string;
 
-  /** содержимое файла */
-  source: string;
-
   /** отображаемый путь */
   pathname: string;
 
@@ -23,6 +36,9 @@ interface StoryModuleData {
 
   /** путь для импорта файла в точке входа */
   importPath: string;
+
+  /** JSON-файл meta-данных, соответствующий найденному story-модулю */
+  metaJson?: MetaJson;
 }
 
 export async function emitStoriesEntrypoint(config: EmitStoriesEntrypointConfig) {
@@ -52,15 +68,19 @@ function getPageDataFactory(config: EmitStoriesEntrypointConfig) {
     return {
       filename,
 
-      // содержимое модуля
-      source: await fs.readFile(filename, 'utf-8'),
-
       // данные для импорта модуля
       importIdentifier: `Entry${index}`,
       importPath: path.relative(path.dirname(config.filename), filename),
 
       // прочее (для отображения)
       pathname: `/${path.relative(config.storiesRootDir, filename).replace(/\.tsx$/i, '')}`,
+
+      // данные из JSON-файла, соответствующего найденному story-модулю
+      metaJson: await fs
+        .readFile(filename.replace(/\.[^/.]+$/, '.meta.json'), 'utf-8')
+        .then(JSON.parse)
+        .then(value => MetaJsonSchema.parse(value))
+        .catch(() => undefined),
     };
   };
 }
@@ -87,6 +107,7 @@ function ImportSourceTemplate(entry: StoryModuleData) {
 function ExtrasTemplate(entry: StoryModuleData) {
   const extras = {
     pathname: entry.pathname,
+    metaJson: entry.metaJson,
   };
 
   return `const ${entry.importIdentifier}Extras = ${JSON.stringify(extras, null, 2)};`;

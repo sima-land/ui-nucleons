@@ -95,6 +95,7 @@ export function App() {
   const mobile = useMatchMedia('(max-width: 960px)');
 
   const story = validStories.find(item => item.pathname === pathname);
+  const sourcesEnabled = story?.metaJson?.parameters.sources !== false;
 
   return (
     <div className={styles.container}>
@@ -142,15 +143,18 @@ export function App() {
                     <Link href={`/sandbox.html?path=${story.pathname}`} target='_blank'>
                       В новой вкладке
                     </Link>
-                    <Link
-                      href='#'
-                      onClick={event => {
-                        event.preventDefault();
-                        setNeedCode(a => !a);
-                      }}
-                    >
-                      {needCode ? 'Скрыть код' : 'Показать код'}
-                    </Link>
+
+                    {sourcesEnabled && (
+                      <Link
+                        href='#'
+                        onClick={event => {
+                          event.preventDefault();
+                          setNeedCode(a => !a);
+                        }}
+                      >
+                        {needCode ? 'Скрыть код' : 'Показать код'}
+                      </Link>
+                    )}
                   </div>
                 </PlateHeader>
 
@@ -164,7 +168,7 @@ export function App() {
                 </PlateBody>
               </Plate>
 
-              {needCode && (
+              {sourcesEnabled && needCode && (
                 <Plate className={styles.source}>
                   <PlateHeader>Код</PlateHeader>
                   <CodeBlock source={story.source} />
