@@ -7,8 +7,8 @@ const entrypoint = './.tmp/entries.ts';
 export default async function () {
   await emitStoriesEntrypoint({
     filename: entrypoint,
-    storiesGlob: './docs/**/*.tsx',
-    storiesRootDir: './docs/',
+    storiesGlob: './stories/**/*.story.tsx',
+    storiesRootDir: './stories/',
   });
 
   return {
