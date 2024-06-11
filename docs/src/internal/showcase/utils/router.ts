@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { createContext, useEffect, useMemo, useState } from 'react';
 
 export function createQueryRouter() {
   const listeners = new Set<VoidFunction>();
@@ -74,9 +74,17 @@ export function useRouter() {
     };
   }, [router]);
 
-  const redirect = (path: string) => {
+  const redirect = (path: string): void => {
     router.setPathname(path);
   };
 
   return [pathname, redirect] as const;
 }
+
+export const RouterContext = createContext<{
+  pathname: string;
+  redirect: (pathname: string) => void;
+}>({
+  pathname: '',
+  redirect: () => {},
+});

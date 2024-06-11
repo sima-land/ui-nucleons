@@ -1,7 +1,7 @@
 import { Draggable } from '@sima-land/ui-nucleons/carousel/draggable';
 
 export const meta = {
-  category: 'Утилиты/Draggable',
+  category: 'Устаревшее/Draggable',
   title: 'Простой пример',
 };
 

@@ -11,7 +11,7 @@ export const meta = {
 const cx = classnames.bind(styles);
 
 export default function Reels() {
-  const count = 8;
+  const count = 15;
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (

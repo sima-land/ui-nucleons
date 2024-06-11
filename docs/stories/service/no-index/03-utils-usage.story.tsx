@@ -8,7 +8,7 @@ export const meta = {
 export default function UtilsUsage() {
   return (
     <>
-      <div {...getNoIndexProps('Данный текст не будет индексироваться Яндексом')} />
+      <div {...getNoIndexProps('Этот текст не будет индексироваться Яндексом')} />
       <div>А этот будет =)</div>
     </>
   );
