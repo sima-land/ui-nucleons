@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { codeToHtml } from 'shiki';
-import { StoryModule } from '#utils';
 import { Plate, PlateHeader } from '#components/Plate';
-import styles from './CodeBlock.m.css';
+import { type StoryModule } from '../../../../../.build/schemas';
 import classNames from 'classnames';
+import styles from './CodeBlock.m.css';
 
 export function CodeBlock({ story, className }: { story: StoryModule } & { className?: string }) {
   const [sourceIndex, setSourceIndex] = useState(-1);

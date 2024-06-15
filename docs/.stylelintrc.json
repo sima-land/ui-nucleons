@@ -1,0 +1,8 @@
+{
+  "extends": "@sima-land/linters/stylelint",
+  "ignoreFiles": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+  "rules": {
+    "scss/dollar-variable-colon-space-after": null,
+    "declaration-property-unit-disallowed-list": null
+  }
+}

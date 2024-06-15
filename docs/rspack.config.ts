@@ -2,12 +2,12 @@ import path from 'node:path';
 import rspack from '@rspack/core';
 import { emitStoriesEntrypoint } from './.build/emit-entrypoint.js';
 
-const entrypoint = './.tmp/entries.ts';
+const entrypoint = './.generated/entries.ts';
 
 export default async function () {
   await emitStoriesEntrypoint({
     filename: entrypoint,
-    storiesGlob: './stories/**/*.story.tsx',
+    storiesGlob: './stories/**/*.story.{md,mdx,tsx}',
     storiesRootDir: './stories/',
   });
 
@@ -103,6 +103,14 @@ export default async function () {
           ],
         },
         {
+          test: /\.mdx?$/,
+          use: [
+            {
+              loader: '@mdx-js/loader',
+            },
+          ],
+        },
+        {
           test: /\.(apng|avif|gif|jpg|jpeg|png|webp)$/i,
           type: 'asset',
         },
@@ -142,9 +150,8 @@ export default async function () {
       outputModule: true,
     },
     devServer: {
-      // @todo так почему-то вообще не работает live reload
+      liveReload: true,
       hot: false,
-      // liveReload: true,
     },
   } satisfies rspack.Configuration;
 }

@@ -1,21 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import glob from 'fast-glob';
-import { z } from 'zod';
-
-const MetaJsonSchema = z.object({
-  parameters: z
-    .object({
-      sources: z
-        .object({
-          extraSources: z.array(z.string()),
-        })
-        .optional(),
-    })
-    .optional(),
-});
-
-export type MetaJson = z.infer<typeof MetaJsonSchema>;
+import { StoryMetaSchema, type StoryMeta } from './schemas';
 
 export interface EmitStoriesEntrypointConfig {
   filename: string;
@@ -24,6 +10,8 @@ export interface EmitStoriesEntrypointConfig {
 }
 
 interface StoryModuleData {
+  lang: 'js' | 'mdx';
+
   /** путь до файла */
   filename: string;
 
@@ -37,7 +25,7 @@ interface StoryModuleData {
   importPath: string;
 
   /** JSON-файл meta-данных, соответствующий найденному story-модулю */
-  metaJson?: MetaJson;
+  metaJson?: StoryMeta;
 }
 
 export async function emitStoriesEntrypoint(config: EmitStoriesEntrypointConfig) {
@@ -66,19 +54,23 @@ function getPageDataFactory(config: EmitStoriesEntrypointConfig) {
   return async (filename: string, index: number): Promise<StoryModuleData> => {
     return {
       filename,
+      lang: path.extname(filename).includes('md') ? 'mdx' : 'js',
 
       // данные для импорта модуля
       importIdentifier: `Entry${index}`,
       importPath: path.relative(path.dirname(config.filename), filename),
 
       // прочее (для отображения)
-      pathname: `/${path.relative(config.storiesRootDir, filename).replace(/\.tsx$/i, '')}`,
+      pathname: `/${path
+        .relative(config.storiesRootDir, filename)
+        .replace(/\.[^/.]+$/, '')
+        .replace(/\.story$/, '')}`,
 
       // данные из JSON-файла, соответствующего найденному story-модулю
       metaJson: await fs
         .readFile(filename.replace(/\.[^/.]+$/, '.meta.json'), 'utf-8')
         .then(JSON.parse)
-        .then(value => MetaJsonSchema.parse(value))
+        .then(value => StoryMetaSchema.parse(value))
         .catch(() => undefined),
     };
   };
@@ -108,12 +100,13 @@ function ImportSourceTemplate(entry: StoryModuleData) {
 }
 
 function ImportExtraSourcesTemplate(entry: StoryModuleData, config: EmitStoriesEntrypointConfig) {
-  if (!entry.metaJson?.parameters?.sources) {
-    return '';
-  }
-
-  return `
-${entry.metaJson.parameters.sources.extraSources
+  if (
+    typeof entry.metaJson?.parameters?.sources === 'object' &&
+    entry.metaJson?.parameters?.sources !== null &&
+    entry.metaJson?.parameters?.sources.extraSources.length > 0
+  ) {
+    return `
+${entry.metaJson?.parameters?.sources.extraSources
   .map((item, index) => {
     const importPath = path.relative(
       path.dirname(config.filename),
@@ -123,14 +116,18 @@ ${entry.metaJson.parameters.sources.extraSources
   })
   .join('\n')}
 `;
+  }
+
+  return '';
 }
 
 function ExtrasTemplate(entry: StoryModuleData) {
   let extraSources: Array<{ title: string; sourceIdentifier: string }> = [];
 
   if (
-    typeof entry.metaJson?.parameters?.sources?.extraSources === 'object' &&
-    entry.metaJson?.parameters?.sources?.extraSources !== null
+    typeof entry.metaJson?.parameters?.sources === 'object' &&
+    entry.metaJson?.parameters?.sources !== null &&
+    entry.metaJson?.parameters?.sources.extraSources.length > 0
   ) {
     extraSources = entry.metaJson.parameters.sources.extraSources.map((item, index) => ({
       sourceIdentifier: `${entry.importIdentifier}ExtraSource${index}`,
@@ -139,11 +136,12 @@ function ExtrasTemplate(entry: StoryModuleData) {
   }
 
   const extras = {
+    lang: entry.lang,
     pathname: entry.pathname,
     metaJson: entry.metaJson,
   };
 
-  return `const ${entry.importIdentifier}Extras = ${JSON.stringify(extras, null, 2)};
+  return `const ${entry.importIdentifier}Extras: any = ${JSON.stringify(extras, null, 2)};
 ${entry.importIdentifier}Extras.extraSources = [${extraSources
     .map(item => `{ title: "${item.title}", source: ${item.sourceIdentifier} }`)
     .join(', ')}]
@@ -151,5 +149,11 @@ ${entry.importIdentifier}Extras.extraSources = [${extraSources
 }
 
 function ListItemTemplate(entry: StoryModuleData) {
-  return `{ ...${entry.importIdentifier}, ...${entry.importIdentifier}Extras, source: ${entry.importIdentifier}Source },`;
+  return `
+{
+  ...${entry.importIdentifier},
+  ...${entry.importIdentifier}Extras,
+  source: ${entry.importIdentifier}Source
+},
+`.trim();
 }

@@ -2,14 +2,14 @@
   "compilerOptions": {
     "noEmit": true,
     "allowImportingTsExtensions": true,
-    "target": "ESNext",
-    "module": "ESNext",
+    "target": "ES2022",
+    "module": "ES2022",
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
     "strict": true,
     "paths": {
       // для внутреннего использования
-      "#found-stories": ["./.tmp/entries.ts"],
+      "#found-stories": ["./.generated/entries.ts"],
       "#components/*": ["./src/internal/showcase/components/*"],
       "#valid-stories": ["./src/internal/valid-stories.ts"],
       "#utils": ["./src/internal/utils.ts"],
@@ -20,6 +20,5 @@
     },
     "skipLibCheck": true
   },
-  "include": ["src", "docs", "rspack.config.ts"],
   "exclude": ["node_modules"]
 }

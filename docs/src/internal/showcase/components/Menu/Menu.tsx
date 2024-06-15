@@ -28,7 +28,7 @@ export function MenuItem({
 
   const titleClassName = classNames(
     styles.title,
-    level === 0 && styles.toplevel,
+    level === 0 && data.type === 'group' && styles.toplevel,
     isCurrent?.(data) && styles.current,
   );
 

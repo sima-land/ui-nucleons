@@ -5,12 +5,12 @@ export const meta = {
   category: 'Утилиты/SuperEllipseClipPath',
   title: 'Простой пример',
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
   },
 };
 
-export default function Primary() {
-  const ID = 'some-string-here';
+export default function () {
+  const id = 'some-string-here';
 
   return (
     <>
@@ -19,11 +19,11 @@ export default function Primary() {
           width: 80,
           height: 80,
           background: COLORS.get('additional-pink'),
-          clipPath: `url(#${ID})`,
+          clipPath: `url(#${id})`,
         }}
       />
 
-      <SuperEllipseClipPath id={ID} />
+      <SuperEllipseClipPath id={id} />
     </>
   );
 }

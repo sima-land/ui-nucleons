@@ -15,11 +15,13 @@
 
 .container {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  grid-template-rows: var(--header-height) 1fr;
 }
 
 .header {
+  position: fixed;
   width: 100%;
   height: var(--header-height);
   background: #222;
@@ -28,6 +30,7 @@
   display: flex;
   align-items: center;
   font-weight: bold;
+  z-index: 10;
 }
 
 .title {
@@ -54,15 +57,14 @@
   height: 1.5rem;
 }
 
-.main {
-  display: flex;
-  flex-grow: 1;
-}
-
 .aside {
-  position: relative;
+  grid-row: 2/3;
+  grid-column: 1/2;
+  position: fixed;
+  top: var(--header-height);
+  bottom: 0;
+  flex-shrink: 0;
   width: 320px;
-  min-height: 100%;
   overflow: hidden;
   overflow-y: auto;
   display: flex;
@@ -82,54 +84,24 @@
   overflow-y: auto;
 }
 
-.content {
+.main {
+  grid-row: 2/3;
+  grid-column: 2/3;
   display: flex;
   flex-direction: column;
-  padding: var(--content-gutter);
   flex-grow: 1;
   min-height: 100%;
   overflow: hidden;
-  background: #eee;
 }
 
-.controls {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-left: auto;
-  overflow-x: auto;
-  text-wrap: nowrap;
+@media (max-width: 960px) {
+  .main {
+    grid-column: 1/3;
+  }
 }
 
-.frame {
-  max-height: calc(100vh - var(--header-height) - (var(--content-gutter) * 2));
-  flex-grow: 1;
-}
-
-.frame.detailed {
-  min-height: 360px;
-  height: calc(60vh - var(--header-height));
-  max-height: calc(75vh - var(--header-height));
-}
-
-.frame + .source {
-  margin-top: var(--content-gutter);
-}
-
-.iframe {
-  display: block;
-  width: 100%;
-  margin: 0;
-  flex-grow: 1;
-}
-
-.source {
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.side-page-menu {
+.modal-menu {
+  z-index: 20;
   position: fixed;
   top: 0;
   left: 0;
@@ -140,7 +112,7 @@
   flex-direction: column;
 }
 
-.side-page-menu-header {
+.modal-menu-header {
   padding: 0 var(--header-padding-x);
   height: 64px;
   display: flex;
@@ -149,14 +121,14 @@
   flex-grow: 0;
 }
 
-.side-page-menu-close {
+.modal-menu-close {
   flex-shrink: 0;
   display: block;
   width: 2rem;
   height: 2rem;
 }
 
-.side-page-menu-body {
+.modal-menu-body {
   height: 0;
   flex-grow: 1;
   overflow: hidden;
@@ -164,7 +136,7 @@
   padding: 1rem 0;
 }
 
-.side-page-menu-links {
+.modal-menu-links {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;

@@ -1,9 +1,4 @@
-import { z } from 'zod';
-
-/**
- * Результат экспорта story-модуля, прошедшего валидацию.
- */
-export type StoryModule = z.infer<typeof StoryModuleSchema>;
+import { type StoryModule } from '../../.build/schemas';
 
 export interface MenuNode {
   type: string;
@@ -25,48 +20,6 @@ export interface GroupMenuNode extends MenuNode {
 export type AnyMenuNode = StoryMenuNode | GroupMenuNode;
 
 /**
- * Схема для дальнейшего отсеивания невалидных story-модулей.
- */
-export const StoryModuleSchema = z.object({
-  default: z.function(),
-
-  meta: z.object({
-    title: z.string(),
-    category: z.string().optional(),
-    parameters: z
-      .object({
-        layout: z.enum(['padded', 'fullscreen']).optional(),
-        backgrounds: z.object({ default: z.string() }).optional(),
-        sources: z.boolean().optional(),
-      })
-      .optional(),
-  }),
-
-  metaJson: z
-    .object({
-      parameters: z.object({
-        sources: z.union([
-          z.boolean(),
-          z.object({
-            extraSources: z.array(z.string()),
-          }),
-        ]),
-      }),
-    })
-    .optional(),
-
-  pathname: z.string(),
-  source: z.string(),
-
-  extraSources: z.array(
-    z.object({
-      title: z.string(),
-      source: z.string(),
-    }),
-  ),
-});
-
-/**
  * Получив список story-модулей сформирует меню с группами по значениям в полях category.
  * @inheritdoc
  */
@@ -74,8 +27,8 @@ export function getMenuItems(stories: StoryModule[]): AnyMenuNode[] {
   // создаем узел меню из объекта story
   const nodes = stories.map<StoryMenuNode>(story => ({
     type: 'story',
-    title: story.meta.title,
-    category: story.meta.category,
+    title: story.meta?.title ?? story.metaJson?.title ?? story.pathname,
+    category: story.meta?.category ?? story.metaJson?.category ?? '',
     story,
   }));
 
