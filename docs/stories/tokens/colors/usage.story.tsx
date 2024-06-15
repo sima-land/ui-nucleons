@@ -10,14 +10,14 @@ import CopyBigSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Copy';
 import styles from './usage.m.scss';
 
 export const meta = {
-  category: 'Токены/Colors',
-  title: 'Использование',
+  category: 'Токены',
+  title: 'Colors',
   parameters: {
     sources: false,
   },
 };
 
-export default function Usage() {
+export default function () {
   return (
     <Layout>
       <h2>Токены цветов</h2>

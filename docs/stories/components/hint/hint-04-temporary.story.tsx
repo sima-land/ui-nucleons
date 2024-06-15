@@ -55,9 +55,13 @@ export default function Temporary() {
 
   return (
     <>
-      <div ref={refs.setReference}>
-        <Stepper value={value} onAdd={increase} onSubtract={decrease} onChange={() => void 0} />
-      </div>
+      <Stepper
+        ref={refs.setReference}
+        value={value}
+        onAdd={increase}
+        onSubtract={decrease}
+        onChange={() => void 0}
+      />
 
       <Hint open={open} hintRef={refs.setFloating} arrowRef={refs.setArrow} style={style}>
         {hint}

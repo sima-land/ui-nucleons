@@ -3,6 +3,10 @@
   text-decoration: none;
 }
 
+.menuitem.toplevel + .menuitem.toplevel {
+  margin-top: 0.75rem;
+}
+
 .title {
   display: flex;
   align-items: center;

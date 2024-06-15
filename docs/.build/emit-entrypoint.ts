@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import glob from 'fast-glob';
-import { StoryMetaSchema, type StoryMeta } from './schemas';
+import { StoryMetaSchema, type StoryMeta } from './schemas.js';
 
 export interface EmitStoriesEntrypointConfig {
   filename: string;
