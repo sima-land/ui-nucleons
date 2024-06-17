@@ -3,7 +3,7 @@ name: Deploy Storybook on Github Pages
 on:
   push:
     branches:
-      - master
+      - storybook-replacement
 
 jobs:
   build-and-deploy:
@@ -14,13 +14,22 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install and Build
+      - name: Install main pkg deps
         run: |
           npm ci
-          npm run storybook:build
+
+      - name: Install docs pkg deps
+        run: |
+          npm ci
+        working-directory: docs
+
+      - name: Build docs
+        run: |
+          NODE_ENV=production npm run build
+        working-directory: docs
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          branch: gh-pages
-          folder: build-storybook
+          branch: gh-pages-new
+          folder: docs/dist

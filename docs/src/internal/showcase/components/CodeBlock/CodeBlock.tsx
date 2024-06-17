@@ -1,9 +1,25 @@
 import { useEffect, useState } from 'react';
-import { codeToHtml } from 'shiki';
 import { Plate, PlateHeader } from '#components/Plate';
 import { type StoryModule } from '../../../../../.build/schemas';
 import classNames from 'classnames';
 import styles from './CodeBlock.m.css';
+import { getHighlighterCore } from 'shiki/core';
+import loadWasm from 'shiki/wasm';
+import themeGitHubLight from 'shiki/themes/github-light.mjs';
+
+const highlighter = await getHighlighterCore({
+  langs: [
+    //
+    import('shiki/langs/mdx.mjs'),
+    import('shiki/langs/tsx.mjs'),
+    import('shiki/langs/scss.mjs'),
+  ],
+  themes: [
+    //
+    themeGitHubLight,
+  ],
+  loadWasm,
+});
 
 export function CodeBlock({ story, className }: { story: StoryModule } & { className?: string }) {
   const [sourceIndex, setSourceIndex] = useState(-1);
@@ -57,11 +73,19 @@ export function Code({ lang, source }: { lang?: string; source: string }) {
   const [state, setState] = useState('');
 
   useEffect(() => {
-    codeToHtml(source, {
-      lang: lang ?? 'text',
-      theme: 'github-light',
-    }).then(setState);
-  });
+    try {
+      const html = highlighter.codeToHtml(source, {
+        lang: lang ?? 'text',
+        theme: 'github-light',
+      });
+
+      setState(html);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+      setState('<p>Ошибка</p>');
+    }
+  }, [source]);
 
   return <div className={styles.pre} dangerouslySetInnerHTML={{ __html: state }} />;
 }

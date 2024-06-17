@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "check": "tsc -p . --noEmit",
-    "dev": "npx --node-options='--import=tsimp/import' rspack serve"
+    "dev": "npx --node-options='--import=tsimp/import' rspack serve",
+    "build": "npx --node-options='--import=tsimp/import' rspack"
   },
   "devDependencies": {
     "@mdx-js/loader": "^3.0.1",

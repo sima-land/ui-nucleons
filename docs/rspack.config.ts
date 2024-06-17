@@ -4,6 +4,8 @@ import { emitStoriesEntrypoint } from './.build/emit-entrypoint.js';
 
 const entrypoint = './.generated/entries.ts';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 export default async function () {
   await emitStoriesEntrypoint({
     filename: entrypoint,
@@ -18,9 +20,10 @@ export default async function () {
     },
     output: {
       path: path.resolve(import.meta.dirname, 'dist'),
-      filename: '[name].js',
+      filename: '[name].[contenthash:5].js',
       clean: true,
     },
+    devtool: isProduction ? false : undefined,
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       alias: {
@@ -70,7 +73,7 @@ export default async function () {
               options: {
                 modules: {
                   auto: /\.(module|m)\.css$/i,
-                  localIdentName: '[name]__[local]__[hash:3]',
+                  localIdentName: isProduction ? '[hash:7]' : '[name]__[local]__[hash:3]',
                   exportLocalsConvention: 'as-is',
                   namedExport: false,
                 },
@@ -87,7 +90,7 @@ export default async function () {
               options: {
                 modules: {
                   auto: /\.(module|m)\.scss$/i,
-                  localIdentName: '[name]__[local]__[hash]',
+                  localIdentName: isProduction ? '[hash:7]' : '[name]__[local]__[hash:3]',
                   exportLocalsConvention: 'as-is',
                   namedExport: false,
                 },
@@ -113,6 +116,9 @@ export default async function () {
         {
           test: /\.(apng|avif|gif|jpg|jpeg|png|webp)$/i,
           type: 'asset',
+          generator: {
+            filename: 'static/[contenthash][ext]',
+          },
         },
         {
           resourceQuery: /raw/,
@@ -121,7 +127,9 @@ export default async function () {
       ],
     },
     plugins: [
-      new rspack.CssExtractRspackPlugin(),
+      new rspack.CssExtractRspackPlugin({
+        filename: '[name].[contenthash:5].css',
+      }),
       new rspack.HtmlRspackPlugin({
         filename: 'index.html',
         template: './src/internal/showcase/index.html',
