@@ -23,6 +23,8 @@ export function StoryViewer({ story }: StoryViewerProps) {
     return <StoryMdxViewer story={story} />;
   }
 
+  const storyHref = toLocalURL(`sandbox.html?path=${story.pathname}`);
+
   return (
     <div className={styles.root}>
       <Plate
@@ -31,7 +33,7 @@ export function StoryViewer({ story }: StoryViewerProps) {
       >
         <PlateHeader>
           <div className={styles.controls}>
-            <Link href={toLocalURL(`/sandbox.html?path=${story.pathname}`)} target='_blank'>
+            <Link href={storyHref} target='_blank'>
               В новой вкладке
             </Link>
 
@@ -54,7 +56,7 @@ export function StoryViewer({ story }: StoryViewerProps) {
             // ВАЖНО: key нужен чтобы iframe не вызывал popstate у родительского документа
             key={story.pathname}
             className={styles.iframe}
-            src={toLocalURL(`/sandbox.html?path=${story.pathname}`)}
+            src={storyHref}
           />
         </PlateBody>
       </Plate>
