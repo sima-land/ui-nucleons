@@ -69,7 +69,12 @@ function StoryMdxViewer({ story }: StoryViewerProps) {
   const Component: any = story.default;
 
   return (
-    <div className={styles.mdx}>
+    <div
+      className={classNames(
+        styles.mdx,
+        story.metaJson?.parameters?.layout !== 'fullscreen' && styles.layout,
+      )}
+    >
       <Component />
     </div>
   );

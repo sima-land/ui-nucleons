@@ -1,6 +1,10 @@
 import { createContext, useEffect, useMemo, useState } from 'react';
 
-export function createQueryRouter() {
+export interface RouterConfig {
+  defaultPathname?: string;
+}
+
+export function createQueryRouter({ defaultPathname = '' }: RouterConfig = {}) {
   const listeners = new Set<VoidFunction>();
 
   let currentPathname = '';
@@ -10,7 +14,7 @@ export function createQueryRouter() {
     listeners.forEach(fn => fn());
   };
 
-  return {
+  const router = {
     getPathname() {
       return currentPathname;
     },
@@ -37,7 +41,13 @@ export function createQueryRouter() {
         updatePathname(new URL(window.location.href).searchParams.get('path') ?? '');
       };
 
-      updatePathname(new URL(window.location.href).searchParams.get('path') ?? '');
+      const pathname = new URL(window.location.href).searchParams.get('path') ?? '';
+
+      if (pathname === '') {
+        router.setPathname(defaultPathname);
+      } else {
+        updatePathname(pathname);
+      }
 
       window.addEventListener('popstate', onPopState);
 
@@ -54,14 +64,17 @@ export function createQueryRouter() {
       };
     },
   };
+
+  return router;
 }
 
-export function useRouter() {
-  const router = useMemo(createQueryRouter, []);
-  const [pathname, setPathname] = useState('/');
+export function useRouter({ defaultPathname = '/' }: RouterConfig = {}) {
+  const router = useMemo(() => createQueryRouter({ defaultPathname }), []);
+  const [pathname, setPathname] = useState('');
 
   useEffect(() => {
     const unobserve = router.observe();
+
     const unsubscribe = router.subscribe(() => {
       setPathname(router.getPathname());
     });

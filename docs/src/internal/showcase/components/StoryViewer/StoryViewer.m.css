@@ -53,8 +53,9 @@
   border-radius: 8px;
 }
 
-.mdx {
-  max-width: 1280px;
+.mdx.layout {
+  width: 1280px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding: 2rem;

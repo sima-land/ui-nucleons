@@ -9,9 +9,12 @@ import { IoMdClose } from 'react-icons/io';
 import { StoryViewer } from '#components/StoryViewer';
 import styles from './App.m.css';
 
+// @todo убрать хардкод в конфиг
+const defaultPathname = '/summary';
+
 export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [pathname, setPathname] = useRouter();
+  const [pathname, setPathname] = useRouter({ defaultPathname });
   const mobile = useMatchMedia('(max-width: 960px)');
   const story = useMemo(() => validStories.find(item => item.pathname === pathname), [pathname]);
 
@@ -19,7 +22,7 @@ export function App() {
     <RouterContext.Provider value={{ pathname, redirect: setPathname }}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <div className={styles.title} onClick={() => setPathname('')}>
+          <div className={styles.title} onClick={() => setPathname(defaultPathname)}>
             <img className={styles.logo} src='/public/logo.svg' alt='logo' />
             UI-nucleons
           </div>

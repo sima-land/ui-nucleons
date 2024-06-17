@@ -2,7 +2,6 @@ import { COLORS } from '@sima-land/ui-nucleons/colors';
 import { useEffect, useRef, useState } from 'react';
 import ClipboardJS from 'clipboard';
 import { Button } from '@sima-land/ui-nucleons/button';
-import { Layout } from '@sima-land/ui-nucleons/layout';
 import { Input } from '@sima-land/ui-nucleons/input';
 import { TextButton } from '@sima-land/ui-nucleons/text-button';
 import CopySVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Copy';
@@ -19,7 +18,7 @@ export const meta = {
 
 export default function () {
   return (
-    <Layout>
+    <>
       <h2>Токены цветов</h2>
 
       <p>Библиотека предоставляет утилиты для использования цветов дизайн-системы.</p>
@@ -41,7 +40,7 @@ export default function () {
           ))}
         </div>
       </div>
-    </Layout>
+    </>
   );
 }
 
