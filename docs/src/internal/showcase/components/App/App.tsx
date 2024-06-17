@@ -8,6 +8,7 @@ import { IoMenu } from 'react-icons/io5';
 import { IoMdClose } from 'react-icons/io';
 import { StoryViewer } from '#components/StoryViewer';
 import styles from './App.m.css';
+import { toLocalURL } from '../../utils';
 
 // @todo убрать хардкод в конфиг
 const defaultPathname = '/summary';
@@ -23,7 +24,7 @@ export function App() {
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.title} onClick={() => setPathname(defaultPathname)}>
-            <img className={styles.logo} src='/public/logo.svg' alt='logo' />
+            <img className={styles.logo} src={toLocalURL('public/logo.svg')} alt='logo' />
             UI-nucleons
           </div>
 

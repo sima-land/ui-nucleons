@@ -5,6 +5,7 @@ import { type StoryModule } from '../../../../../.build/schemas';
 import { CodeBlock } from '#components/CodeBlock';
 import classNames from 'classnames';
 import styles from './StoryViewer.m.css';
+import { toLocalURL } from '../../utils';
 
 export interface StoryViewerProps {
   story: StoryModule;
@@ -30,7 +31,7 @@ export function StoryViewer({ story }: StoryViewerProps) {
       >
         <PlateHeader>
           <div className={styles.controls}>
-            <Link href={`/sandbox.html?path=${story.pathname}`} target='_blank'>
+            <Link href={toLocalURL(`/sandbox.html?path=${story.pathname}`)} target='_blank'>
               В новой вкладке
             </Link>
 
@@ -53,7 +54,7 @@ export function StoryViewer({ story }: StoryViewerProps) {
             // ВАЖНО: key нужен чтобы iframe не вызывал popstate у родительского документа
             key={story.pathname}
             className={styles.iframe}
-            src={`/sandbox.html?path=${story.pathname}`}
+            src={toLocalURL(`/sandbox.html?path=${story.pathname}`)}
           />
         </PlateBody>
       </Plate>

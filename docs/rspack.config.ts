@@ -23,6 +23,7 @@ export default async function () {
       filename: '[name].[contenthash:5].js',
       clean: true,
     },
+    mode: isProduction ? 'production' : undefined,
     devtool: isProduction ? false : undefined,
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -129,6 +130,11 @@ export default async function () {
     plugins: [
       new rspack.CssExtractRspackPlugin({
         filename: '[name].[contenthash:5].css',
+      }),
+      new rspack.DefinePlugin({
+        'import.meta.env.BASE_URL': JSON.stringify(
+          isProduction ? 'https://sima-land.github.io/ui-nucleons/' : '/',
+        ),
       }),
       new rspack.HtmlRspackPlugin({
         filename: 'index.html',
