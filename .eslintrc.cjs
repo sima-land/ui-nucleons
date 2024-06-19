@@ -1,12 +1,8 @@
 require('@rushstack/eslint-patch/modern-module-resolution');
 
 module.exports = {
-  extends: [
-    require.resolve('@sima-land/linters/eslint'),
-    'plugin:storybook/recommended',
-    'plugin:storybook/csf',
-    'plugin:storybook/csf-strict',
-  ],
+  root: true,
+  extends: [require.resolve('@sima-land/linters/eslint')],
   overrides: [
     {
       files: ['./**/*.{jsx,tsx}'],
@@ -23,7 +19,6 @@ module.exports = {
         'no-alert': 'off',
         'no-console': 'off',
         'import/no-anonymous-default-export': 'off',
-        'storybook/no-title-property-in-meta': 'off',
       },
     },
 

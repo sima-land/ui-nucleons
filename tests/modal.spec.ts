@@ -21,30 +21,25 @@ const here = new Here().register();
 const sizes = [
   {
     size: 's',
-    url: '/iframe.html?id=common-modal--size-s',
   },
   {
     size: 'm',
-    url: '/iframe.html?id=common-modal--size-m',
   },
   {
     size: 'l',
-    url: '/iframe.html?id=common-modal--size-l',
   },
   {
     size: 'xl',
-    url: '/iframe.html?id=common-modal--size-xl',
   },
   {
     size: 'fullscreen',
-    url: '/iframe.html?id=common-modal--size-fullscreen',
   },
 ];
 
 for (const { size } of sizes) {
   test.describe(`Modal size ${size}`, () => {
     test('shows by opener click and hides by cross click', async ({ page }) => {
-      await page.goto('iframe.html?args=&id=common-modal--different-states');
+      await page.goto('/sandbox.html?path=/components/modal/02-different-states');
       await page.getByLabel('Размер').selectOption({ value: size });
       await page.getByLabel('Шапка').selectOption({ value: 'top-bar' });
 
@@ -69,7 +64,7 @@ for (const { size } of sizes) {
 
     if (size !== 'fullscreen') {
       test('shows by opener click and hides by overlay click', async ({ page }) => {
-        await page.goto('iframe.html?args=&id=common-modal--different-states');
+        await page.goto('/sandbox.html?path=/components/modal/02-different-states');
         await page.getByLabel('Размер').selectOption({ value: size });
         await page.getByLabel('Шапка').selectOption({ value: 'top-bar' });
 

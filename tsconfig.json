@@ -1,16 +1,3 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "paths": {
-      // ВАЖНО: только для storybook
-      "@sima-land/ui-nucleons/*": ["./src/*"]
-    }
-  },
-  "include": [
-    "./src",
-
-    // ВАЖНО: только для storybook
-    "./.storybook/utils.tsx"
-  ],
-  "exclude": ["node_modules"]
+  "extends": "./tsconfig.base.json"
 }

@@ -1,0 +1,44 @@
+.sandbox .controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.sandbox .controls .label {
+  font-size: 14px;
+}
+
+.sandbox .controls .toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.sandbox .controls .toggle .field {
+  margin: 0;
+}
+
+.sandbox .controls .select {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.sandbox .controls .select .field {
+  width: 200px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 8px;
+  min-width: 160px;
+  -webkit-appearance: menulist-button;
+  height: 32px;
+  font-size: 16px;
+}
+
+.sandbox .area {
+  border: 3px dashed #aaa;
+  border-radius: 8px;
+  padding: 24px;
+}

@@ -22,7 +22,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('/iframe.html?id=common-autocomplete--primary');
+  await page.goto('/sandbox.html?path=/components/autocomplete/01-primary');
 });
 
 test('Autocomplete must be in page', async () => {

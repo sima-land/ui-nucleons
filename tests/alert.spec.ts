@@ -10,7 +10,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('Alert should be shown on opener click and closed by overlay click', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-alert--primary');
+  await page.goto('/sandbox.html?path=/components/alert/01-primary');
 
   await expect(page.getByTestId('modal-overlay')).toHaveCount(0);
   await expect(here.alert()).toHaveCount(0);

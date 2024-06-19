@@ -16,7 +16,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('side page should be shown by opener click and closed by cross', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-sidepage--primary');
+  await page.goto('/sandbox.html?path=/components/side-page/01-primary');
 
   await expect(here.sidePage()).toHaveCount(0);
   await expect(here.topBarCloseButton()).toHaveCount(0);
@@ -36,7 +36,7 @@ test('side page should be shown by opener click and closed by cross', async ({ p
 });
 
 test('side page should be shown by opener and closed by overlay click', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-sidepage--primary');
+  await page.goto('/sandbox.html?path=/components/side-page/01-primary');
 
   await expect(here.sidePage()).toHaveCount(0);
   await expect(here.modalOverlay()).toHaveCount(0);

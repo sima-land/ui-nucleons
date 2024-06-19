@@ -25,7 +25,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('switcher row with checkbox should be on page and should works', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-switcherrow--primary');
+  await page.goto('/sandbox.html?path=/components/switcher-row/01-primary');
 
   await expect(here.switcherRow()).toHaveCount(1);
   await expect(here.switcherRowLabel()).toHaveCount(1);
@@ -49,7 +49,7 @@ test('switcher row with checkbox should be on page and should works', async ({ p
 });
 
 test('switcher row with toggle should be on page and should works', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-switcherrow--with-toggle');
+  await page.goto('/sandbox.html?path=/components/switcher-row/02-with-toggle');
 
   await expect(here.switcherRow()).toHaveCount(1);
   await expect(here.switcherRowLabel()).toHaveCount(1);
@@ -73,7 +73,7 @@ test('switcher row with toggle should be on page and should works', async ({ pag
 });
 
 test('switcher row with radio should be on page and should works', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-switcherrow--with-radio-buttons');
+  await page.goto('/sandbox.html?path=/components/switcher-row/03-with-radio-buttons');
 
   await expect(here.switcherRow()).toHaveCount(3);
   await expect(here.switcherRowLabel()).toHaveCount(3);

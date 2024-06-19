@@ -16,7 +16,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('stepper should be on page and should works', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-stepper--primary');
+  await page.goto('/sandbox.html?path=/components/stepper/01-primary');
 
   await expect(here.stepperInput()).toHaveCount(1);
   await expect(here.stepperPlus()).toHaveCount(1);
