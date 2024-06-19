@@ -1,9 +1,9 @@
-name: Deploy Storybook on Github Pages
+name: Deploy docs on Github Pages
 
 on:
   push:
     branches:
-      - storybook-replacement
+      - master
 
 jobs:
   build-and-deploy:
@@ -31,5 +31,5 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          branch: gh-pages-new
+          branch: gh-pages
           folder: docs/dist

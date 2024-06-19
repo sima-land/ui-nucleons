@@ -20,8 +20,14 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install main pkg deps
+        run: |
+          npm ci
+
+      - name: Install docs pkg deps
+        run: |
+          npm ci
+        working-directory: docs
 
       - name: Run tests
         run: npx playwright test
