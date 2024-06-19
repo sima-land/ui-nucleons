@@ -107,9 +107,7 @@ export default async function (env: any) {
               loader: 'sass-loader',
               options: {
                 implementation: 'sass-embedded',
-
-                // Закомментировано по причине: https://github.com/web-infra-dev/rspack/issues/6833#issuecomment-2173578845
-                // api: 'modern-compiler',
+                api: 'modern-compiler',
               },
             },
           ],
