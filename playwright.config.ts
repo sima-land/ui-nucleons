@@ -96,7 +96,8 @@ const config: PlaywrightTestConfig = {
   /* Run your local dev server before starting the tests */
   webServer: process.env.CI
     ? {
-        command: 'TEST_ENV=1 npm run storybook',
+        cwd: './docs',
+        command: 'npm run dev',
         port: 9009,
       }
     : undefined,

@@ -22,7 +22,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('/iframe.html?id=common-popup--reveal-by-click');
+  await page.goto('/sandbox.html?path=/components/popup/03-reveal-by-click');
 });
 
 test('Opener must be in page', async () => {

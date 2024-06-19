@@ -10,21 +10,21 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('panel should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-panel--primary');
+  await page.goto('/sandbox.html?path=/components/panel/01-primary');
 
   await expect(here.panel()).toHaveCount(1);
   await expect(here.page).toHaveScreenshot();
 });
 
 test('panels with different colors should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-panel--different-colors');
+  await page.goto('/sandbox.html?path=/components/panel/02-different-colors');
 
   await expect(here.panel()).toHaveCount(4);
   await expect(here.page).toHaveScreenshot();
 });
 
 test('panels with start icon should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-panel--with-start-icon');
+  await page.goto('/sandbox.html?path=/components/panel/03-with-start-icon');
 
   await expect(here.panel()).toHaveCount(4);
   await expect(here.panel().locator('svg')).toHaveCount(4);
@@ -32,7 +32,7 @@ test('panels with start icon should be on page', async ({ page }) => {
 });
 
 test('panels with end icon should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-panel--with-end-icon');
+  await page.goto('/sandbox.html?path=/components/panel/04-with-end-icon');
 
   await expect(here.panel()).toHaveCount(4);
   await expect(here.panel().locator('svg')).toHaveCount(4);

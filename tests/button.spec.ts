@@ -10,7 +10,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('Button should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-button--primary');
+  await page.goto('/sandbox.html?path=/components/button/01-primary');
 
   await expect(here.button()).toHaveCount(1);
   expect(await here.button().textContent()).toBe('Нажми на меня');
@@ -19,42 +19,42 @@ test('Button should be on page', async ({ page }) => {
 });
 
 test('Buttons with different colors should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-button--different-colors');
+  await page.goto('/sandbox.html?path=/components/button/02-different-colors');
 
   await expect(here.button()).toHaveCount(4);
   await expect(here.page).toHaveScreenshot();
 });
 
 test('Buttons with different sizes should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-button--different-sizes');
+  await page.goto('/sandbox.html?path=/components/button/03-different-sizes');
 
   await expect(here.button()).toHaveCount(3);
   await expect(here.page).toHaveScreenshot();
 });
 
 test('Buttons with only icon should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-button--only-icon');
+  await page.goto('/sandbox.html?path=/components/button/06-only-icon');
 
   await expect(here.button()).toHaveCount(3);
   await expect(here.page).toHaveScreenshot();
 });
 
 test('Buttons with start icon should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-button--icon-start');
+  await page.goto('/sandbox.html?path=/components/button/04-icon-start');
 
   await expect(here.button()).toHaveCount(3);
   await expect(here.page).toHaveScreenshot();
 });
 
 test('Buttons with end icon should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-button--icon-end');
+  await page.goto('/sandbox.html?path=/components/button/05-icon-end');
 
   await expect(here.button()).toHaveCount(3);
   await expect(here.page).toHaveScreenshot();
 });
 
 test('Loading buttons should not show content on hover', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-button--different-states');
+  await page.goto('/sandbox.html?path=/components/button/08-different-states');
 
   await expect(here.button()).toHaveCount(4);
   await expect(here.page).toHaveScreenshot();

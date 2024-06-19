@@ -18,7 +18,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('input should be on page and should works properly', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-input--primary');
+  await page.goto('/sandbox.html?path=/components/input/01-primary');
 
   await expect(here.input()).toHaveCount(1);
   await expect(here.inputField()).toHaveCount(1);
@@ -44,14 +44,14 @@ test('input should be on page and should works properly', async ({ page }) => {
 });
 
 test('inputs with different sizes should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-input--different-sizes');
+  await page.goto('/sandbox.html?path=/components/input/02-different-sizes');
 
   await expect(here.input()).toHaveCount(3);
   await expect(here.page).toHaveScreenshot();
 });
 
 test('inputs with different icons should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-input--with-icons');
+  await page.goto('/sandbox.html?path=/components/input/03-with-icons');
 
   await expect(here.input()).toHaveCount(3);
   await expect(page.locator('svg')).toHaveCount(4);
@@ -59,7 +59,7 @@ test('inputs with different icons should be on page', async ({ page }) => {
 });
 
 test('working clearable inputs should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-input--clearable');
+  await page.goto('/sandbox.html?path=/components/input/04-clearable');
 
   await expect(here.input()).toHaveCount(3);
   expect(await here.inputField().nth(0).inputValue()).toBe('Hello, world!');
@@ -78,7 +78,7 @@ test('working clearable inputs should be on page', async ({ page }) => {
 });
 
 test('filled + disabled state look', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-input--different-states');
+  await page.goto('/sandbox.html?path=/components/input/05-different-states');
 
   await expect(here.input()).toHaveCount(4);
   expect(await here.inputField().nth(0).inputValue()).toBe('');

@@ -10,7 +10,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('hint should be shown by click on button', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-hint--on-click');
+  await page.goto('/sandbox.html?path=/components/hint/hint-01-on-click');
 
   await expect(here.hint()).toHaveCount(0);
   await expect(here.page).toHaveScreenshot();
@@ -32,7 +32,7 @@ test('hint should be shown by click on button', async ({ page }) => {
 });
 
 test('hint should be shown by hover on button', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-hint--on-hover');
+  await page.goto('/sandbox.html?path=/components/hint/hint-02-on-hover');
 
   await expect(here.hint()).toHaveCount(0);
   await expect(here.page).toHaveScreenshot();
@@ -58,7 +58,7 @@ test('hint should be shown by hover on button', async ({ page }) => {
 });
 
 test('hint should be positioned properly', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-hint--test-click');
+  await page.goto('/sandbox.html?path=/components/hint/hint-test-click');
 
   await expect(page.getByText('Кликни')).toHaveCount(9);
   await expect(here.hint()).toHaveCount(0);

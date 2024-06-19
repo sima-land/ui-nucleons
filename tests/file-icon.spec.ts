@@ -10,7 +10,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('file icons should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-fileicon--primary');
+  await page.goto('/sandbox.html?path=/components/file-icon/01-primary');
 
   await expect(here.fileIcon()).toHaveCount(15);
   await expect(here.page).toHaveScreenshot();

@@ -10,7 +10,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('link should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-link--primary');
+  await page.goto('/sandbox.html?path=/components/link/01-primary');
 
   await expect(here.link()).toHaveCount(1);
   expect(await here.link().textContent()).toBe('Наш сайт');
@@ -18,7 +18,7 @@ test('link should be on page', async ({ page }) => {
 });
 
 test('links with different colors should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-link--different-colors');
+  await page.goto('/sandbox.html?path=/components/link/02-different-colors');
 
   await expect(here.link()).toHaveCount(18);
   await expect(here.page).toHaveScreenshot();

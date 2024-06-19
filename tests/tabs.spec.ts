@@ -13,7 +13,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('tabs should be on page and should works', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-tabs--primary');
+  await page.goto('/sandbox.html?path=/components/tabs/01-primary');
 
   await expect(here.tabs()).toHaveCount(1);
   await expect(here.tabsItem()).toHaveCount(3);

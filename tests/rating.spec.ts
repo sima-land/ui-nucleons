@@ -10,7 +10,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('rating stars should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-rating--primary');
+  await page.goto('/sandbox.html?path=/components/rating/01-primary');
 
   await expect(here.rating()).toHaveCount(1);
   expect(await here.rating().getAttribute('data-rating')).toBe('3.7');
@@ -18,7 +18,7 @@ test('rating stars should be on page', async ({ page }) => {
 });
 
 test('rating stars with different sizes should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-rating--different-sizes');
+  await page.goto('/sandbox.html?path=/components/rating/02-different-sizes');
 
   await expect(here.rating()).toHaveCount(2);
   expect(await here.rating().nth(0).getAttribute('data-rating')).toBe('3.7');

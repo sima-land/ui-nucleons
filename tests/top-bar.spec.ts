@@ -10,7 +10,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('top bar should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-topbar--primary');
+  await page.goto('/sandbox.html?path=/components/top-bar/01-primary');
 
   await expect(here.topBar()).toHaveCount(1);
   expect(await here.topBar().textContent()).toBe('Это заголовок топбара');
@@ -18,7 +18,7 @@ test('top bar should be on page', async ({ page }) => {
 });
 
 test('top bar with subtitle should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-topbar--with-subtitle');
+  await page.goto('/sandbox.html?path=/components/top-bar/02-with-subtitle');
 
   await expect(here.topBar()).toHaveCount(1);
   expect(await here.topBar().textContent()).toBe('Это заголовок топбараА это подзаголовок топбара');
@@ -26,7 +26,7 @@ test('top bar with subtitle should be on page', async ({ page }) => {
 });
 
 test('top bar with text buttons should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-topbar--with-text-buttons');
+  await page.goto('/sandbox.html?path=/components/top-bar/03-with-text-buttons');
 
   await expect(here.topBar()).toHaveCount(1);
   expect(await here.topBar().locator('button').nth(0).textContent()).toBe('Отмена');
@@ -35,7 +35,7 @@ test('top bar with text buttons should be on page', async ({ page }) => {
 });
 
 test('top bar with icon buttons should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-topbar--with-icon-buttons');
+  await page.goto('/sandbox.html?path=/components/top-bar/04-with-icon-buttons');
 
   await expect(here.topBar()).toHaveCount(1);
   await expect(page.locator('button svg')).toHaveCount(2);
@@ -43,7 +43,7 @@ test('top bar with icon buttons should be on page', async ({ page }) => {
 });
 
 test('top bar with mixed buttons should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-topbar--with-mixed-buttons');
+  await page.goto('/sandbox.html?path=/components/top-bar/05-with-mixed-buttons');
 
   await expect(here.topBar()).toHaveCount(1);
   await expect(here.topBar().locator('button').locator('svg')).toHaveCount(1);

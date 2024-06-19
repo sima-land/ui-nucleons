@@ -13,7 +13,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('Pagination should be on page and have working arrows', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-pagination--primary');
+  await page.goto('/sandbox.html?path=/components/pagination/01-primary');
 
   await expect(here.pagination()).toHaveCount(1);
   await expect(here.paginationItem()).toHaveCount(9);
@@ -85,7 +85,7 @@ test('Pagination should be on page and have working arrows', async ({ page }) =>
 });
 
 test('Pagination should be on page and have working page buttons', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-pagination--primary');
+  await page.goto('/sandbox.html?path=/components/pagination/01-primary');
 
   await expect(here.pagination()).toHaveCount(1);
   await expect(here.paginationItem()).toHaveCount(9);

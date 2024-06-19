@@ -172,6 +172,9 @@ export default async function (env: any) {
       outputModule: true,
     },
     devServer: {
+      port: 9009,
+      compress: true,
+      allowedHosts: 'all',
       liveReload: true,
       hot: false,
     },

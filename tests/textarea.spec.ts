@@ -18,7 +18,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('textarea should be on page and should works', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-textarea--primary');
+  await page.goto('/sandbox.html?path=/components/textarea/01-primary');
 
   await expect(here.textarea()).toHaveCount(1);
   await expect(here.fieldBlock()).toHaveCount(1);

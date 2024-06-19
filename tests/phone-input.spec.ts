@@ -34,7 +34,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('Opener must be in page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-phoneinput--primary');
+  await page.goto('/sandbox.html?path=/components/phone-input/01-primary');
 
   await expect(here.phoneInput()).toHaveCount(1);
   await expect(here.fieldBlock()).toHaveCount(1);
@@ -45,7 +45,7 @@ test('Opener must be in page', async ({ page }) => {
 
 test.describe('Mouse interactions', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/iframe.html?id=common-phoneinput--primary');
+    await page.goto('/sandbox.html?path=/components/phone-input/01-primary');
   });
 
   test('should handle mouse control', async () => {
@@ -78,7 +78,7 @@ test.describe('Mouse interactions', () => {
 
 test.describe('Keyboard interactions', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/iframe.html?id=common-phoneinput--primary');
+    await page.goto('/sandbox.html?path=/components/phone-input/01-primary');
   });
 
   test('should handle keyboard control', async () => {
@@ -123,7 +123,7 @@ test.describe('Keyboard interactions', () => {
 
 test.describe('Props handling', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=common-phoneinput--different-state&viewMode=story');
+    await page.goto('/sandbox.html?path=/components/phone-input/04-different-states');
   });
 
   const variants = [

@@ -16,7 +16,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('upload area should be on page', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-uploadarea--primary');
+  await page.goto('/sandbox.html?path=/components/upload-area/01-primary');
 
   await expect(here.uploadArea()).toHaveCount(1);
   expect(await here.uploadArea().textContent()).toBe(
@@ -36,8 +36,8 @@ test('upload area should be on page', async ({ page }) => {
   await page.getByText('Загрузите фото').click();
   const fileChooser = await fileChooserPromise;
   await fileChooser.setFiles([
-    './src/avatar/__stories__/static/person.jpg',
-    './src/avatar/__stories__/static/dog.png',
+    './docs/stories/components/avatar/images/person.jpg',
+    './docs/stories/components/avatar/images/dog.png',
   ]);
 
   expect(alertMessage).toBe('Файлов выбрано: 2');

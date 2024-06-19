@@ -10,7 +10,7 @@ class Here extends TestUtils {
 const here = new Here().register();
 
 test('Toggle should works and change state by click', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-toggle--primary');
+  await page.goto('/sandbox.html?path=/components/toggle/01-primary');
 
   await expect(here.toggle()).toHaveCount(1);
   expect(await here.toggle().isChecked()).toBe(true);
@@ -24,7 +24,7 @@ test('Toggle should works and change state by click', async ({ page }) => {
 });
 
 test('Toggle should works and change state by separate button click', async ({ page }) => {
-  await page.goto('/iframe.html?id=common-toggle--test-controlled');
+  await page.goto('/sandbox.html?path=/components/toggle/test-controlled');
 
   await expect(here.toggle()).toHaveCount(1);
   expect(await here.toggle().isChecked()).toBe(false);
