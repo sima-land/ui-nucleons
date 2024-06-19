@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import glob from 'fast-glob';
+import chokidar from 'chokidar';
 import { StoryMetaSchema, type StoryMeta } from './schemas.js';
 
 export interface EmitStoriesEntrypointConfig {
@@ -26,6 +27,34 @@ interface StoryModuleData {
 
   /** JSON-файл meta-данных, соответствующий найденному story-модулю */
   metaJson?: StoryMeta;
+}
+
+export function watchStories(config: EmitStoriesEntrypointConfig) {
+  const emitEntrypoint = async () => {
+    await emitStoriesEntrypoint({
+      filename: config.filename,
+      storiesGlob: './stories/**/*.story.{md,mdx,tsx}',
+      storiesRootDir: './stories/',
+    });
+  };
+
+  const onWatcherEvent = debounce(emitEntrypoint, 1000);
+
+  const watcher = chokidar.watch(config.storiesGlob, {
+    persistent: true,
+  });
+
+  watcher.on('add', onWatcherEvent);
+  watcher.on('unlink', onWatcherEvent);
+}
+
+function debounce(fn: VoidFunction, timeout: number): VoidFunction {
+  let timerId: any;
+
+  return () => {
+    clearTimeout(timerId);
+    timerId = setTimeout(fn, timeout);
+  };
 }
 
 export async function emitStoriesEntrypoint(config: EmitStoriesEntrypointConfig) {

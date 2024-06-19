@@ -1,10 +1,10 @@
 import { type StoryModule, StoryModuleSchema } from '../../.build/schemas';
 import { getMenuItems } from './utils';
-import storiesRaw from '#found-stories';
+import stories from '#found-stories';
 
 const invalid: unknown[] = [];
 
-export const validStories = storiesRaw.reduce<StoryModule[]>((result, item) => {
+export const validStories = stories.reduce<StoryModule[]>((result, item) => {
   const parseResult = StoryModuleSchema.safeParse(item);
 
   if (parseResult.success) {

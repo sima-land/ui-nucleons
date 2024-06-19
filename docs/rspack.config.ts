@@ -1,17 +1,23 @@
 import path from 'node:path';
 import rspack from '@rspack/core';
-import { emitStoriesEntrypoint } from './.build/emit-entrypoint.js';
+import { emitStoriesEntrypoint, watchStories } from './.build/emit-entrypoint.js';
 
-const entrypoint = './.generated/entries.ts';
+export default async function (env: any) {
+  const isProduction = process.env.NODE_ENV === 'production';
 
-const isProduction = process.env.NODE_ENV === 'production';
-
-export default async function () {
-  await emitStoriesEntrypoint({
-    filename: entrypoint,
-    storiesGlob: './stories/**/*.story.{md,mdx,tsx}',
+  const storiesConfig = {
+    filename: './.generated/entries.ts',
+    storiesGlob: './stories/**/*.story.{mdx,tsx}',
     storiesRootDir: './stories/',
-  });
+  };
+
+  // собираем точку входа
+  await emitStoriesEntrypoint(storiesConfig);
+
+  // обновляем точку входа при изменениях в файловой системе
+  if (env?.RSPACK_SERVE) {
+    watchStories(storiesConfig);
+  }
 
   return {
     entry: {
@@ -34,7 +40,7 @@ export default async function () {
         'react-dom': path.resolve('./node_modules/react-dom'),
 
         // для внутреннего использования
-        '#found-stories$': path.resolve(import.meta.dirname, entrypoint),
+        '#found-stories$': path.resolve(import.meta.dirname, storiesConfig.filename),
         '#valid-stories$': path.resolve(import.meta.dirname, './src/internal/valid-stories.ts'),
         '#components': path.resolve(import.meta.dirname, './src/internal/showcase/components/'),
 
@@ -100,8 +106,10 @@ export default async function () {
             {
               loader: 'sass-loader',
               options: {
-                api: 'modern-compiler',
                 implementation: 'sass-embedded',
+
+                // Закомментировано по причине: https://github.com/web-infra-dev/rspack/issues/6833#issuecomment-2173578845
+                // api: 'modern-compiler',
               },
             },
           ],

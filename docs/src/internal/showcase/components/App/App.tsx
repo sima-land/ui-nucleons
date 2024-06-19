@@ -1,14 +1,14 @@
-import { validStories, menuItems } from '#valid-stories';
 import { useContext, useMemo, useState } from 'react';
-import { MenuItem } from '../Menu';
-import { Link } from '../Link';
+import { validStories, menuItems } from '#valid-stories';
+import { Link } from '#components/Link';
+import { MenuItem } from '#components/Menu';
+import { StoryViewer } from '#components/StoryViewer';
 import { useMatchMedia } from '@krutoo/utils/react';
-import { RouterContext, useRouter } from '../../utils/router';
 import { IoMenu } from 'react-icons/io5';
 import { IoMdClose } from 'react-icons/io';
-import { StoryViewer } from '#components/StoryViewer';
-import styles from './App.m.css';
+import { RouterContext, useRouter } from '../../utils/router';
 import { toLocalURL } from '../../utils';
+import styles from './App.m.css';
 
 // @todo убрать хардкод в конфиг
 const defaultPathname = '/summary';

@@ -25,7 +25,7 @@ jobs:
 
       - name: Build docs
         run: |
-          NODE_ENV=production timeout 15s npm run build || ( [[ $? -eq 124 ]] && echo "WARNING: Timeout reached, but that's OK" )
+          NODE_ENV=production npm run build
         working-directory: docs
 
       - name: Deploy

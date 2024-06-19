@@ -1,6 +1,6 @@
-import { AnyMenuNode, StoryMenuNode } from '#utils';
 import { ReactNode, useState } from 'react';
-import { Link } from '../Link';
+import { Link } from '#components/Link';
+import { AnyMenuNode, StoryMenuNode } from '#utils';
 import { FaChevronRight, FaChevronDown } from 'react-icons/fa6';
 import classNames from 'classnames';
 import styles from './Menu.m.css';

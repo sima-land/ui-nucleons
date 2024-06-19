@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Plate, PlateHeader } from '#components/Plate';
 import { type StoryModule } from '../../../../../.build/schemas';
-import classNames from 'classnames';
-import styles from './CodeBlock.m.css';
 import { getHighlighterCore } from 'shiki/core';
 import loadWasm from 'shiki/wasm';
 import themeGitHubLight from 'shiki/themes/github-light.mjs';
+import classNames from 'classnames';
+import styles from './CodeBlock.m.css';
 
 const highlighter = await getHighlighterCore({
   langs: [
