@@ -8,15 +8,7 @@ import CopySVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Copy';
 import CopyBigSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Copy';
 import styles from './usage.m.scss';
 
-export const meta = {
-  category: 'Токены',
-  title: 'Colors',
-  parameters: {
-    sources: false,
-  },
-};
-
-export default function () {
+export function ColorsPicker() {
   return (
     <>
       <h2>Токены цветов</h2>

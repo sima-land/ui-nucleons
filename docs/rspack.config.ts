@@ -1,14 +1,19 @@
 import path from 'node:path';
 import rspack from '@rspack/core';
-import { emitStoriesEntrypoint, watchStories } from './.build/emit-entrypoint.js';
+import {
+  type EmitStoriesEntrypointConfig,
+  emitStoriesEntrypoint,
+  watchStories,
+} from '@krutoo/showcase/build';
 
 export default async function (env: any) {
   const isProduction = process.env.NODE_ENV === 'production';
 
-  const storiesConfig = {
-    filename: './.generated/entries.ts',
+  const storiesConfig: EmitStoriesEntrypointConfig = {
+    filename: './.generated/entries.js',
     storiesGlob: './stories/**/*.story.{mdx,tsx}',
     storiesRootDir: './stories/',
+    rawImport: mod => ({ importPath: `!${mod.importPath}?raw` }),
   };
 
   // собираем точку входа
@@ -21,8 +26,8 @@ export default async function (env: any) {
 
   return {
     entry: {
-      sandbox: './src/internal/sandbox/index.tsx',
-      showcase: './src/internal/showcase/index.tsx',
+      sandbox: './src/sandbox/index.tsx',
+      showcase: './src/showcase/index.tsx',
     },
     output: {
       path: path.resolve(import.meta.dirname, 'dist'),
@@ -34,19 +39,15 @@ export default async function (env: any) {
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       alias: {
+        '#found-stories$': path.resolve(import.meta.dirname, storiesConfig.filename),
+
+        '@sima-land/ui-nucleons': path.resolve(import.meta.dirname, '../src/'),
+        '#docs-utils$': path.resolve(import.meta.dirname, './src/docs-utils.tsx'),
+
         // это нужно чтобы react и react-dom были загружены строго единожды
         // (из-за того что исходный код компонентов лежит в родительском каталоге они могут подключать react / react - dom из своих node_modules)
         react: path.resolve('./node_modules/react'),
         'react-dom': path.resolve('./node_modules/react-dom'),
-
-        // для внутреннего использования
-        '#found-stories$': path.resolve(import.meta.dirname, storiesConfig.filename),
-        '#valid-stories$': path.resolve(import.meta.dirname, './src/internal/valid-stories.ts'),
-        '#components': path.resolve(import.meta.dirname, './src/internal/showcase/components/'),
-
-        // для конкретной документации
-        '@sima-land/ui-nucleons': path.resolve(import.meta.dirname, '../src/'),
-        '#docs-utils$': path.resolve(import.meta.dirname, './src/docs-utils.tsx'),
       },
     },
     module: {
@@ -137,21 +138,16 @@ export default async function (env: any) {
       new rspack.CssExtractRspackPlugin({
         filename: '[name].[contenthash:5].css',
       }),
-      new rspack.DefinePlugin({
-        'import.meta.env.BASE_URL': JSON.stringify(
-          isProduction ? 'https://sima-land.github.io/ui-nucleons/' : '/',
-        ),
-      }),
       new rspack.HtmlRspackPlugin({
         filename: 'index.html',
-        template: './src/internal/showcase/index.html',
+        template: './src/showcase/index.html',
         chunks: ['showcase'],
         scriptLoading: 'module',
         inject: 'body',
       }),
       new rspack.HtmlRspackPlugin({
         filename: 'sandbox.html',
-        template: './src/internal/sandbox/index.html',
+        template: './src/sandbox/index.html',
         chunks: ['sandbox'],
         scriptLoading: 'module',
         inject: 'body',
