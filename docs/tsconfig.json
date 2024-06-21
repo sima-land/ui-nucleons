@@ -8,15 +8,8 @@
     "jsx": "react-jsx",
     "strict": true,
     "paths": {
-      // для внутреннего использования
-      "#found-stories": ["./.generated/entries.ts"],
-      "#components/*": ["./src/internal/showcase/components/*"],
-      "#valid-stories": ["./src/internal/valid-stories.ts"],
-      "#utils": ["./src/internal/utils.ts"],
-
-      // для конкретной документации
-      "@sima-land/ui-nucleons/*": ["../src/*"],
-      "#docs-utils": ["./src/docs-utils.tsx"]
+      "#docs-utils": ["./src/docs-utils.tsx"],
+      "@sima-land/ui-nucleons/*": ["../src/*"]
     },
     "skipLibCheck": true
   },
