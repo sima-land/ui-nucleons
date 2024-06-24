@@ -1,0 +1,49 @@
+@use 'pkg:@sima-land/ui-nucleons/breakpoints.scss';
+
+.container {
+  min-height: 100px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+
+  // breakpoints.lt - "Less than"
+  // breakpoints.gte - "Greater Than or Equal"
+
+  @include breakpoints.lt('ms') {
+    background: hsl(0deg, 100%, 75%);
+  }
+
+  @include breakpoints.gte('ms') {
+    background: hsl(40deg, 100%, 75%);
+  }
+
+  @include breakpoints.gte('mm') {
+    background: hsl(80deg, 100%, 75%);
+  }
+
+  @include breakpoints.gte('ml') {
+    background: hsl(120deg, 100%, 75%);
+  }
+
+  @include breakpoints.gte('xs') {
+    background: hsl(160deg, 100%, 75%);
+  }
+
+  @include breakpoints.gte('s') {
+    background: hsl(200deg, 100%, 75%);
+  }
+
+  @include breakpoints.gte('m') {
+    background: hsl(240deg, 100%, 75%);
+  }
+
+  @include breakpoints.gte('l') {
+    background: hsl(280deg, 100%, 75%);
+  }
+
+  @include breakpoints.gte('xl') {
+    background: hsl(320deg, 100%, 75%);
+  }
+}
