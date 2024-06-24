@@ -1,7 +1,7 @@
 {
   "parameters": {
     "sources": {
-      "extraSources": ["./example.m.scss"]
+      "extraSources": ["./primary.m.scss"]
     }
   }
 }

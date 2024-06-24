@@ -1,0 +1,37 @@
+@use 'pkg:@sima-land/ui-nucleons/shadows.scss';
+
+.container {
+  display: flex;
+  gap: 32px;
+}
+
+.a,
+.b,
+.c,
+.d,
+.e {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.a {
+  @include shadows.box-shadow('z1');
+}
+
+.b {
+  @include shadows.box-shadow('z2');
+}
+
+.c {
+  @include shadows.box-shadow('z2-straight');
+}
+
+.d {
+  @include shadows.box-shadow('z3');
+}
+
+.e {
+  @include shadows.box-shadow('z4');
+}
