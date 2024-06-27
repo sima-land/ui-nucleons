@@ -1,10 +1,10 @@
 import { FormEventHandler, useCallback, useMemo, useRef } from 'react';
 import { useIsomorphicLayoutEffect } from '../hooks';
 import { on } from '../helpers/on';
-import { State, Value } from '@krutoo/input-mask/dist/dom/utils';
 import { UseInputMaskOptions, UseInputMaskResult } from './types';
 import { actions, createInputMaskStore } from './utils';
-import { ReducerOptions } from '@krutoo/input-mask/dist/core';
+import { type ReducerOptions } from '@krutoo/input-mask/dist/core';
+import { State, Value } from '@krutoo/input-mask/dist/dom/utils';
 
 /**
  * Хук для задания маски для поля ввода текста.

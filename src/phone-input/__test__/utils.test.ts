@@ -1,16 +1,36 @@
 import { defaultGetDefaultMask, stubSyntheticEvent } from '../utils';
-import { masks } from '../preset/defaults';
+import { masks as defaults } from '../preset/defaults';
+import { masks as defaultsImportSvg } from '../preset/defaults-import-png';
 
 describe('defaultGetDefaultMask', () => {
-  it('should define countries', () => {
-    [
-      { value: '78005553535', countryId: 'russia' },
-      { value: '76005004030', countryId: 'kazakhstan' },
-      { value: '992124124124', countryId: 'tajikistan' },
-    ].forEach(({ value, countryId }) => {
-      expect(defaultGetDefaultMask({ value, masks })?.id).toBe(countryId);
+  const dataset = [
+    {
+      title: 'defaults',
+      data: defaults,
+    },
+    {
+      title: 'defaults-import-png',
+      data: defaultsImportSvg,
+    },
+  ];
+
+  for (const { title, data } of dataset) {
+    it(`should define countries [${title}]`, () => {
+      [
+        { value: '78005553535', countryId: 'russia' },
+        { value: '76005004030', countryId: 'kazakhstan' },
+        { value: '992124124124', countryId: 'tajikistan' },
+      ].forEach(({ value, countryId }) => {
+        expect(defaultGetDefaultMask({ value, masks: data })?.id).toBe(countryId);
+      });
     });
-  });
+
+    it(`should return exact item of array [${title}]`, () => {
+      const result = defaultGetDefaultMask({ value: '78005553535', masks: data });
+
+      expect(result && data.includes(result)).toBe(true);
+    });
+  }
 });
 
 describe('stubSyntheticEvent', () => {

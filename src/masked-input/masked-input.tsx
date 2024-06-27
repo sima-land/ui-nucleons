@@ -9,30 +9,30 @@ import { MaskData, MaskedInputProps } from './types';
  * @param props Свойства.
  * @return Элемент.
  */
-export function MaskedInput({ value, defaultValue, ...props }: MaskedInputProps) {
+export function MaskedInput({ value, defaultValue, onChange, ...restProps }: MaskedInputProps) {
   const stateless = useMemo(() => typeof value !== 'undefined', []);
 
   // ВАЖНО: при defaultValue состояние должно быть именно здесь (на уровень выше хука маски) для корректной работы
   const [currentValue, setCurrentValue] = useState(() => value ?? defaultValue ?? '');
 
   if (stateless) {
-    return <StatelessMaskedInput {...props} value={value} />;
+    return <StatelessMaskedInput {...restProps} value={value} onChange={onChange} />;
   }
 
   return (
     <StatelessMaskedInput
-      {...props}
+      {...restProps}
       value={currentValue}
       onChange={(event, data) => {
         setCurrentValue(data.cleanValue);
-        props.onChange?.(event, data);
+        onChange?.(event, data);
       }}
     />
   );
 }
 
 /**
- * Поле ввода текста по маске без собственного состояния введенного значения.
+ * Поле ввода текста по маске.
  * Не имеет собственного состояния введенного значения.
  * @param props Свойства.
  * @return Элемент.
@@ -48,12 +48,10 @@ function StatelessMaskedInput({
   onInput,
   onBlur,
   inputRef,
-  ...props
+  ...restProps
 }: Omit<MaskedInputProps, 'defaultValue'>) {
-  const currentValue = useMemo<string>(() => value, [value]);
-
   const { store, bind } = useInputMask({
-    value: currentValue,
+    value,
     maskOptions: { mask, pattern, placeholder },
   });
 
@@ -73,7 +71,7 @@ function StatelessMaskedInput({
 
   return (
     <Input
-      {...props}
+      {...restProps}
       baseInputProps={{
         ...baseInputProps,
         restPlaceholder: baseInputProps?.restPlaceholder ?? {
