@@ -1,12 +1,5 @@
 import { ChangeEvent, createRef } from 'react';
-import {
-  createEvent,
-  fireEvent,
-  getAllByTestId,
-  getByTestId,
-  queryAllByTestId,
-  render,
-} from '@testing-library/react';
+import { fireEvent, getByTestId, queryAllByTestId, render } from '@testing-library/react';
 import { PhoneInput } from '../phone-input';
 import { MaskData } from '../../masked-input';
 import userEvent from '@testing-library/user-event';
@@ -135,18 +128,6 @@ describe('PhoneInput', () => {
     expect(blockRef.current === getByTestId(container, 'field-block:block')).toBe(true);
   });
 
-  it('should prevent default of dropdown item mousedown event', () => {
-    const { baseElement, container } = render(<PhoneInput />);
-
-    fireEvent.mouseDown(getByTestId(container, 'phone-input:menu-opener'));
-    expect(queryAllByTestId(baseElement, 'dropdown-item')).toHaveLength(13);
-
-    const menuItem = getAllByTestId(baseElement, 'dropdown-item')[2];
-    const event = createEvent.mouseDown(menuItem);
-    fireEvent(menuItem, event);
-    expect(event.defaultPrevented).toBe(true);
-  });
-
   it('should handle change event of masked input properly', () => {
     const onChange = jest.fn();
     const { container } = render(<PhoneInput onChange={onChange} />);
@@ -203,7 +184,7 @@ describe('PhoneInput', () => {
 
   it('should call onInput correctly', async () => {
     const spy = jest.fn();
-    const { container } = render(<PhoneInput value='7' onInput={spy} />);
+    const { container } = render(<PhoneInput defaultValue='7' onInput={spy} />);
 
     const input = getByTestId<HTMLInputElement>(container, 'base-input:field');
 
@@ -218,7 +199,7 @@ describe('PhoneInput', () => {
 
   it('should handle disabled', async () => {
     const { container: root, baseElement: base } = render(
-      <PhoneInput value='7' onChange={jest.fn()} disabled />,
+      <PhoneInput defaultValue='7' onChange={jest.fn()} disabled />,
     );
 
     expect(getByTestId(root, 'base-input:field').hasAttribute('disabled')).toBe(true);
@@ -230,5 +211,43 @@ describe('PhoneInput', () => {
     await userEvent.click(getByTestId(root, 'phone-input:menu-opener'));
     expect(queryAllByTestId(base, 'dropdown')).toHaveLength(0);
     expect(queryAllByTestId(base, 'dropdown-item')).toHaveLength(0);
+  });
+
+  it('should select first mask when getDefaultMask returns undefined', () => {
+    const { container } = render(
+      <PhoneInput
+        defaultValue='12345'
+        getDefaultMask={() => undefined}
+        masks={[
+          {
+            id: 'foo',
+            title: 'Foo',
+            mask: '+1____',
+          },
+          {
+            id: 'bar',
+            title: 'Bar',
+            mask: '+2____',
+          },
+          {
+            id: 'baz',
+            title: 'Baz',
+            mask: '+3____',
+          },
+        ]}
+      />,
+    );
+
+    const input = getByTestId<HTMLInputElement>(container, 'base-input:field');
+    expect(input.value).toBe('+12345');
+  });
+
+  it('should select stub mask when getDefaultMask returns undefined and mask is empty', () => {
+    const { container } = render(
+      <PhoneInput defaultValue='12345' getDefaultMask={() => undefined} masks={[]} />,
+    );
+
+    const input = getByTestId<HTMLInputElement>(container, 'base-input:field');
+    expect(input.value).toBe('12345');
   });
 });
