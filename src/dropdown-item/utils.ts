@@ -9,7 +9,7 @@ export class DropdownItemUtils {
    * @param value Значение.
    * @return Является ли переданное значение элементом DropdownItem.
    */
-  static is(value: Parameters<typeof isValidElement>[0]): value is DropdownItemElement {
+  static is(value: unknown): value is DropdownItemElement {
     return isValidElement(value) && value.type === DropdownItem;
   }
 

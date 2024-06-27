@@ -16,13 +16,14 @@ export function defaultGetDefaultMask({
   value: string;
   masks: PhoneInputMask[];
 }): PhoneInputMask | undefined {
+  // ВАЖНО: чтобы эта функция работала с preset/defaults и c preset/defaults-import-png корректно надо возвращать всегда элемент переданного массива
   let result: PhoneInputMask | undefined;
 
   if (value) {
     result = masks.find(item => value.indexOf(item.mask.replace(/\D/g, '')) === 0);
 
     if (result && result.id === russiaMask.id && ['6', '7'].includes(value[1])) {
-      result = kazakhstanMask;
+      result = masks.find(item => item.id === kazakhstanMask.id);
     }
   }
 

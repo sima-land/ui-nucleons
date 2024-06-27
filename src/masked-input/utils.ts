@@ -1,9 +1,9 @@
 /* eslint-disable require-jsdoc, jsdoc/require-jsdoc */
 import {
+  type ReducerOptions,
+  type InputState,
   createReducer,
   defineChanges,
-  InputState,
-  ReducerOptions,
 } from '@krutoo/input-mask/dist/core';
 import { State, Range, Value } from '@krutoo/input-mask/dist/dom/utils';
 import { legacy_createStore as createStore, Store, Action } from 'redux';
@@ -35,24 +35,33 @@ function createDomReducer(options: ReducerOptions) {
   return (state: InputState = initialState, action: Action): InputState => {
     let result: InputState = state;
 
-    if (actions.inputChange.is(action)) {
-      result = processState(state, State.fromTarget(action.payload.input));
-    } else if (actions.inputSelectionChange.is(action)) {
-      result = State.fromTarget(action.payload.input);
-    } else if (actions.manualChange.is(action)) {
-      // мы не знаем какое значение передано (clean или masked) поэтому берем из него только подходящие символы
-      const validCleanValue = action.payload.value
-        .split('')
-        .filter(c => c.match(options.pattern))
-        .join('');
+    switch (true) {
+      case actions.inputChange.is(action): {
+        result = processState(state, State.fromTarget(action.payload.input));
+        break;
+      }
 
-      const newMaskedValue = Value.toMasked(options, validCleanValue);
-      const firstPlace = options.mask.indexOf(options.placeholder);
+      case actions.inputSelectionChange.is(action): {
+        result = State.fromTarget(action.payload.input);
+        break;
+      }
 
-      result = processState(
-        State.of(state.value, Range.of(firstPlace, state.value.length)),
-        State.of(newMaskedValue, Range.of(newMaskedValue.length)),
-      );
+      case actions.manualChange.is(action): {
+        // мы не знаем какое значение передано (clean или masked) поэтому берем из него только подходящие символы
+        const validCleanValue = action.payload.value
+          .split('')
+          .filter(c => c.match(options.pattern))
+          .join('');
+
+        const newMaskedValue = Value.toMasked(options, validCleanValue);
+        const firstPlace = options.mask.indexOf(options.placeholder);
+
+        result = processState(
+          State.of(state.value, Range.of(firstPlace, state.value.length)),
+          State.of(newMaskedValue, Range.of(newMaskedValue.length)),
+        );
+        break;
+      }
     }
 
     return result;
