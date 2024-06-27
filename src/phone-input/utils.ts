@@ -1,23 +1,32 @@
-import { SyntheticEvent } from 'react';
-import { countries, countriesList, Country, IDS } from './presets';
+import { type SyntheticEvent } from 'react';
+import { type PhoneInputMask } from './types';
+import { kazakhstanMask, russiaMask } from './preset/defaults';
 
 /**
  * Определяет страну по номеру телефона.
- * @param value Значение.
- * @return Данные маски страны.
+ * Если Подходит "Россия", будет выполнена доп.проверка и выбран "Казахстан".
+ * Если не найдена подходящая, будет выполнен поиск маски "Россия".
+ * @param params Значение.
+ * @return Маска.
  */
-export function defineCountry(value: string): Country {
-  let result;
+export function defaultGetDefaultMask({
+  value,
+  masks,
+}: {
+  value: string;
+  masks: PhoneInputMask[];
+}): PhoneInputMask | undefined {
+  let result: PhoneInputMask | undefined;
 
   if (value) {
-    result = countriesList.find(({ codeChars }) => value.indexOf(codeChars) === 0);
+    result = masks.find(item => value.indexOf(item.mask.replace(/\D/g, '')) === 0);
 
-    if (result && result.id === IDS.russia && ['6', '7'].includes(value[1])) {
-      result = countries.kazakhstan;
+    if (result && result.id === russiaMask.id && ['6', '7'].includes(value[1])) {
+      result = kazakhstanMask;
     }
   }
 
-  return result || countries.russia;
+  return result ?? masks.find(item => item.id === russiaMask.id);
 }
 
 /**
@@ -27,21 +36,21 @@ export const PhoneValue = {
   /**
    * Получив номер без кода страны и страну вернет номер с кодом.
    * @param value Номер.
-   * @param country Страна.
+   * @param mask Страна.
    * @return Номер.
    */
-  addCode(value: string, country: Country): string {
-    return `${country.codeChars}${value.replace(/\D/g, '')}`;
+  addCode(value: string, mask: PhoneInputMask): string {
+    return `${mask.mask.replace(/\D/g, '')}${value.replace(/\D/g, '')}`;
   },
 
   /**
    * Получив номер с кодом страны и страну вернет номер без кода.
    * @param value Номер.
-   * @param country Страна.
+   * @param mask Страна.
    * @return Номер.
    */
-  removeCode(value: string, country: Country): string {
-    return value.replace(/\D/g, '').slice(country.codeChars.length);
+  removeCode(value: string, mask: PhoneInputMask): string {
+    return value.replace(/\D/g, '').slice(mask.mask.replace(/\D/g, '').length);
   },
 } as const;
 

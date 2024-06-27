@@ -20,7 +20,9 @@ export default function Primary() {
         onChange={(event, data) => {
           setValue(data.cleanValue);
         }}
-        style={{ '--field-width': '320px' }}
+        style={{
+          '--field-width': '320px',
+        }}
       />
 
       <p data-testid='phone:clean-value'>Значение: {value || '[пусто]'}</p>

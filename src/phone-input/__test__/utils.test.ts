@@ -1,14 +1,14 @@
-import { IDS } from '../presets';
-import { defineCountry, stubSyntheticEvent } from '../utils';
+import { defaultGetDefaultMask, stubSyntheticEvent } from '../utils';
+import { masks } from '../preset/defaults';
 
-describe('defineCountry', () => {
+describe('defaultGetDefaultMask', () => {
   it('should define countries', () => {
     [
-      { value: '78005553535', countryId: IDS.russia },
-      { value: '76005004030', countryId: IDS.kazakhstan },
-      { value: '992124124124', countryId: IDS.tajikistan },
+      { value: '78005553535', countryId: 'russia' },
+      { value: '76005004030', countryId: 'kazakhstan' },
+      { value: '992124124124', countryId: 'tajikistan' },
     ].forEach(({ value, countryId }) => {
-      expect(defineCountry(value).id).toBe(countryId);
+      expect(defaultGetDefaultMask({ value, masks })?.id).toBe(countryId);
     });
   });
 });

@@ -32,6 +32,16 @@ export default function DefineCountryMask() {
         <h3>Неизвестный номер - «Другое»</h3>
         <PhoneInput defaultValue='1234567890' />
       </article>
+
+      <article>
+        <h3>Россия</h3>
+        <PhoneInput defaultValue='78005553535' />
+      </article>
+
+      <article>
+        <h3>Казахстан</h3>
+        <PhoneInput defaultValue='76501977200' />
+      </article>
     </>
   );
 }

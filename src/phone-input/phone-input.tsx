@@ -1,14 +1,13 @@
-import { useCallback, useContext, useImperativeHandle, useMemo, useRef, useState } from 'react';
-import { PhoneInputProps } from './types';
-import { DropdownItem } from '../dropdown-item';
-import { useIsomorphicLayoutEffect } from '../hooks';
-import { MaskData, MaskedInput, MaskedInputProps } from '../masked-input';
-import { countriesList, Country, IDS } from './presets';
-import { defineCountry, PhoneValue, stubSyntheticEvent } from './utils';
+import { useState, useCallback, useRef, useContext, useMemo, useImperativeHandle } from 'react';
+import { type PhoneInputProps, type PhoneInputMask } from './types';
+import { type MaskData, type MaskedInputProps, MaskedInput } from '../masked-input';
+import { masks as defaultMasks, stubMask } from './preset/defaults';
+import { PhoneValue, defaultGetDefaultMask, stubSyntheticEvent } from './utils';
 import { Select } from '../select';
+import { DropdownItem } from '../dropdown-item';
 import { SelectContext } from '../select/utils';
-import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowExpandUp';
-import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowExpandDown';
+import { PhoneInputMenuOpener } from './menu-opener';
+import { useIsomorphicLayoutEffect } from '../hooks';
 import classNames from 'classnames/bind';
 import styles from './phone-input.m.scss';
 
@@ -19,174 +18,191 @@ const cx = classNames.bind(styles);
  * @param props Свойства.
  * @return Элемент.
  */
-export function PhoneInput({ value, defaultValue, ...props }: PhoneInputProps) {
-  const stateless = useMemo(() => typeof value !== 'undefined', []);
+export function PhoneInput({
+  value,
+  defaultValue,
+  onInput,
+  onChange,
+  ...restProps
+}: PhoneInputProps) {
+  const initialValueRef = useRef(value);
+  const stateless = useMemo(() => typeof initialValueRef.current !== 'undefined', []);
 
   // ВАЖНО: при defaultValue состояние должно быть именно здесь (на уровень выше хука маски) для корректной работы
-  const [currentValue, setCurrentValue] = useState(() => value ?? defaultValue ?? '');
+  const [currentValue, setCurrentValue] = useState<string>(() => value ?? defaultValue ?? '');
 
   if (stateless) {
-    return <StatelessPhoneInput {...props} value={value} />;
+    return (
+      <StatelessPhoneInput
+        {...restProps}
+        value={value ?? ''}
+        onChange={onChange}
+        onInput={onInput}
+      />
+    );
   }
 
   return (
     <StatelessPhoneInput
-      {...props}
+      {...restProps}
       value={currentValue}
-      onChange={(event, data) => {
-        setCurrentValue(data.cleanValue);
-        props.onChange?.(event, data);
+      onInput={(event, maskData) => {
+        setCurrentValue(maskData.cleanValue);
+        onInput?.(event, maskData);
+      }}
+      onChange={(event, maskData) => {
+        setCurrentValue(maskData.cleanValue);
+        onChange?.(event, maskData);
       }}
     />
   );
 }
+
 /**
  * Поле ввода номера телефона.
+ * Не имеет собственного состояния введенного значения.
  * @param props Свойства.
  * @return Элемент.
  */
 function StatelessPhoneInput({
-  value = '',
+  masks = defaultMasks,
+  getDefaultMask = defaultGetDefaultMask,
+  value,
   label = 'Телефон',
   inputRef: inputRefProp,
-  blockRef: blockRefProp,
-  onBlur,
-  onChange,
   onInput,
+  onChange,
   onFocus,
+  onBlur,
   onCountrySelect,
+  disabled,
   dropdownProps,
   onMenuOpen,
   onMenuClose,
-  disabled,
   'data-testid': testId = 'phone-input',
-  ...props
-}: Omit<PhoneInputProps, 'defaultValue'>) {
+  ...restProps
+}: Omit<PhoneInputProps, 'value' | 'defaultValue'> & { value: string }) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const wasMaskChosenRef = useRef<boolean>(false);
 
-  // ВАЖНО: помещаем defaultValue в состояние и никогда не меняем тк нам не нужно следить за его обновлением
-  // plainValue - значение без цифр, входящих в маску, мы оперируем им строго внутри компонента
-  const [country, setCountry] = useState<Country>(() => defineCountry(value));
-  const [plainValue, setPlainValue] = useState<string>(() => PhoneValue.removeCode(value, country));
+  const [mask, setMask] = useState<PhoneInputMask>(
+    () => getDefaultMask({ value, masks }) ?? masks[0] ?? stubMask,
+  );
+  const [plainValue, setPlainValue] = useState(() => PhoneValue.removeCode(value, mask));
 
-  useIsomorphicLayoutEffect(() => {
-    setPlainValue(PhoneValue.removeCode(value, country));
-  }, [value]);
+  const getPhoneMaskData = useCallback(
+    (maskData: MaskData): MaskData => ({
+      ...maskData,
+      completed: maskData.completed,
+      cleanValue: PhoneValue.addCode(maskData.cleanValue, mask),
+    }),
+    [mask],
+  );
+
+  const handleMaskSelect = useCallback(
+    (nextMask: PhoneInputMask) => {
+      setMask(nextMask);
+      setPlainValue('');
+      wasMaskChosenRef.current = true;
+    },
+    [masks],
+  );
 
   useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(
     inputRefProp,
     () => inputRef.current,
   );
 
-  const blockRef = useRef<HTMLDivElement>(null);
-  useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(
-    blockRefProp,
-    () => blockRef.current,
-  );
-
-  const dispatchCountrySelect = useCallback(
-    (selected: Country, input: HTMLInputElement) => {
-      const nativeEvent = new Event('input');
-      const syntheticEvent = stubSyntheticEvent(input, nativeEvent);
-
-      onInput?.(syntheticEvent, {
-        value: input.value,
-        cleanValue: PhoneValue.addCode(plainValue, selected),
-        completed: false,
-      });
-      onChange?.(syntheticEvent, {
-        value: input.value,
-        cleanValue: PhoneValue.addCode(plainValue, selected),
-        completed: false,
-      });
-
-      onCountrySelect?.(selected);
-    },
-    [onChange, onInput, onCountrySelect, plainValue],
-  );
-
-  const getMaskData = useCallback(
-    (data: MaskData): MaskData => ({
-      ...data,
-      completed: data.completed || country.id === IDS.other,
-      cleanValue: PhoneValue.addCode(data.cleanValue, country),
-    }),
-    [country],
-  );
-
-  const isInitialCountryRef = useRef(true);
-
+  // после каждого рендера синхронизируем value и plainValue
+  // ВАЖНО: это нужно чтобы всегда выводить переданное значение value
   useIsomorphicLayoutEffect(() => {
-    if (!isInitialCountryRef.current && inputRef.current) {
-      dispatchCountrySelect(country, inputRef.current);
+    setPlainValue(PhoneValue.removeCode(value, mask));
+  });
+
+  // если была выбрана маска из меню - вызываем onInput, onChange, onCountrySelect
+  // ВАЖНО: это делается именно в эффекте чтобы в event.target.value, data.value и data.cleanValue были верные значения
+  useIsomorphicLayoutEffect(() => {
+    const input = inputRef.current;
+
+    if (!input || !wasMaskChosenRef.current) {
+      return;
     }
 
-    isInitialCountryRef.current = false;
-  }, [country]);
+    wasMaskChosenRef.current = false;
 
-  const selectCountry = useCallback((selected: Country) => {
-    setCountry(selected);
-    setPlainValue('');
-  }, []);
+    const syntheticEvent = stubSyntheticEvent(input, new Event('input'));
+
+    const maskData: MaskData = {
+      value: input.value,
+      cleanValue: PhoneValue.addCode(plainValue, mask),
+      completed: false,
+    };
+
+    onInput?.(syntheticEvent, maskData);
+    onChange?.(syntheticEvent, maskData);
+    onCountrySelect?.(mask);
+  }, [mask, plainValue, onInput, onChange, onCountrySelect]);
 
   return (
     <Select
       opener={
         <PhoneMaskedInput
-          {...props}
+          {...restProps}
+          inputRef={inputRef}
+          label={label}
           disabled={disabled}
           data-testid={testId}
-          country={country}
-          inputRef={inputRef}
-          blockRef={blockRef}
-          label={label}
-          mask={country.mask}
-          onFocus={(event, data) => {
-            onFocus?.(event, getMaskData(data));
-          }}
-          onChange={(event, data) => {
-            setPlainValue(data.cleanValue);
-            onChange?.(event, getMaskData(data));
-          }}
-          onInput={(event, data) => {
-            setPlainValue(data.cleanValue);
-            onInput?.(event, getMaskData(data));
-          }}
-          onBlur={(event, data) => {
-            onBlur?.(event, getMaskData(data));
-          }}
+          withMenuOpener={masks.length > 1}
+          currentMaskData={mask}
+          mask={mask.mask}
           value={plainValue}
+          baseInputProps={{
+            restPlaceholder: mask.needRestPlaceholder ?? true ? undefined : '',
+            ...restProps.baseInputProps,
+          }}
+          onFocus={(event, maskData) => {
+            onFocus?.(event, getPhoneMaskData(maskData));
+          }}
+          onInput={(event, maskData) => {
+            setPlainValue(maskData.cleanValue);
+            onInput?.(event, getPhoneMaskData(maskData));
+          }}
+          onChange={(event, maskData) => {
+            setPlainValue(maskData.cleanValue);
+            onChange?.(event, getPhoneMaskData(maskData));
+          }}
+          onBlur={(event, maskData) => {
+            onBlur?.(event, getPhoneMaskData(maskData));
+          }}
         />
       }
-      onValueChange={itemValue => {
-        const found = countriesList.find(item => item.id === itemValue);
-
-        // @todo добавить проверку на разницу текущей и выбранной страны и переименовать onCountrySelect в onCountryChange?
-        found && selectCountry(found);
+      onValueChange={maskId => {
+        const foundMask = masks.find(item => item.id === maskId);
+        foundMask && handleMaskSelect(foundMask);
       }}
       dropdownProps={dropdownProps}
       onMenuOpen={onMenuOpen}
       onMenuClose={onMenuClose}
       disabled={disabled}
     >
-      {countriesList.map((item, index) => (
+      {masks.map(item => (
         <DropdownItem
+          key={item.id}
           value={item.id}
-          key={index}
           size='m'
-          role='menuitem'
-          onMouseDown={event => {
-            // ВАЖНО: клик по блоку поля вызывает фокус на поле и preventDefault()
-            // отменяем с помощью другого preventDefault()
-            event.preventDefault();
-          }}
-          selected={item.id === country.id}
+          selected={item.id === mask.id}
           startContent={
-            <img alt='' width={24} height={24} src={item.imageSrc} className={cx('item-icon')} />
+            <img
+              alt=''
+              width={24}
+              height={24}
+              src={item.optionImageSrc}
+              className={cx('option-icon')}
+            />
           }
-          endContent={item.code}
+          endContent={item.optionEndContent}
         >
-          {item.name}
+          {item.title}
         </DropdownItem>
       ))}
     </Select>
@@ -194,17 +210,23 @@ function StatelessPhoneInput({
 }
 
 /**
- * Внутренний компонент, необходим для использования контекста SelectContext.
+ * Блок поля ввода телефона.
+ * Этот компонент необходим для использования контекста SelectContext.
  * @param props Свойства.
  * @return Элемент.
  */
 function PhoneMaskedInput({
-  country,
   blockRef: blockRefProp,
+  withMenuOpener,
+  currentMaskData,
   disabled,
-  ...props
-}: MaskedInputProps & { country: Country }) {
-  const select = useContext(SelectContext);
+  ...restProps
+}: MaskedInputProps & {
+  withMenuOpener: boolean;
+  currentMaskData: PhoneInputMask;
+}) {
+  const { opened, anchorRef, openerRef, onKeyDown, onMouseDown } = useContext(SelectContext);
+
   const blockRef = useRef<HTMLDivElement>(null);
   const [openerFocused, setOpenerFocused] = useState(false);
 
@@ -212,43 +234,36 @@ function PhoneMaskedInput({
     blockRefProp,
     () => blockRef.current,
   );
-  useImperativeHandle<HTMLElement | null, HTMLDivElement | null>(
-    select.anchorRef,
-    () => blockRef.current,
-  );
 
-  const ArrowSVG = select.opened ? UpSVG : DownSVG;
+  useImperativeHandle<HTMLElement | null, HTMLDivElement | null>(anchorRef, () => blockRef.current);
 
   return (
     <MaskedInput
-      {...props}
+      {...restProps}
       // ВАЖНО: undefined нужен для поведения по умолчанию если меню скрыто и кнопка не в фокусе
-      focused={select.opened || openerFocused || undefined}
+      focused={opened || openerFocused || undefined}
       blockRef={blockRef}
-      baseInputProps={{
-        restPlaceholder: country.id === IDS.other ? '' : undefined,
-        ...props.baseInputProps,
-      }}
       disabled={disabled}
       adornmentEnd={
-        <div
-          ref={select.openerRef as any}
-          onBlur={() => setOpenerFocused(false)}
-          onFocus={() => setOpenerFocused(true)}
-          role='combobox'
-          aria-label='Выбор страны'
-          aria-disabled={disabled}
-          className={cx('opener', { disabled })}
-          data-testid='phone-input:menu-opener'
-          {...(!disabled && {
-            tabIndex: 0,
-            onKeyDown: select.onKeyDown,
-            onMouseDown: select.onMouseDown,
-          })}
-        >
-          <img alt='' width={24} height={24} src={country.imageSrc} />
-          <ArrowSVG className={styles.arrow} />
-        </div>
+        withMenuOpener && (
+          <PhoneInputMenuOpener
+            className={cx('opener')}
+            rootRef={openerRef as any}
+            imageSrc={currentMaskData.optionImageSrc}
+            visuallyOpen={opened}
+            visuallyDisabled={disabled}
+            role='combobox'
+            aria-label='Выбор страны'
+            aria-disabled={disabled}
+            onBlur={() => setOpenerFocused(false)}
+            onFocus={() => setOpenerFocused(true)}
+            {...(!disabled && {
+              tabIndex: 0,
+              onKeyDown,
+              onMouseDown,
+            })}
+          />
+        )
       }
     />
   );
