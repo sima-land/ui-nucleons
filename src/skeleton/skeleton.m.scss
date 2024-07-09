@@ -1,0 +1,75 @@
+@use 'sass:color';
+@use 'sass:math';
+@use '../colors';
+
+// точка на единичной окружности над координатой x=0.5
+$intermediate: math.sqrt(math.pow(1, 2) - math.pow(0.5, 2));
+
+.skeleton {
+  position: relative;
+  width: var(--skeleton-width, 320px);
+  height: var(--skeleton-height, 240px);
+  overflow: hidden;
+}
+
+.theme-light {
+  background-color: colors.$basic-gray4;
+}
+
+.theme-dark {
+  background-color: colors.$basic-gray76;
+}
+
+.shining::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: calc(-1 * (var(--skeleton-shine-size, 200px) / 2));
+  left: calc(-1 * (var(--skeleton-shine-size, 200px) / 2));
+  width: var(--skeleton-shine-size, 200px);
+  height: calc(max(250%, 100vh, 320px));
+  transform: translate(-50%, -50%) rotate(30deg);
+  animation-duration: 2000ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-name: skeletonShineMoving;
+}
+
+.shining.theme-light::before {
+  opacity: 0.6;
+  background-image: linear-gradient(
+    90deg,
+    #{color.adjust(#fff, $alpha: -1)},
+    #{color.adjust(#fff, $alpha: -$intermediate)},
+    #{color.adjust(#fff, $alpha: 0)},
+    #{color.adjust(#fff, $alpha: -$intermediate)},
+    #{color.adjust(#fff, $alpha: -1)}
+  );
+}
+
+.shining.theme-dark::before {
+  opacity: 0.3;
+  background-image: linear-gradient(
+    90deg,
+    #{color.adjust(colors.$basic-gray66, $alpha: -1)},
+    #{color.adjust(colors.$basic-gray66, $alpha: -$intermediate)},
+    #{color.adjust(colors.$basic-gray66, $alpha: 0)},
+    #{color.adjust(colors.$basic-gray66, $alpha: -$intermediate)},
+    #{color.adjust(colors.$basic-gray66, $alpha: -1)}
+  );
+}
+
+@keyframes skeletonShineMoving {
+  0% {
+    left: calc(-1 * (var(--skeleton-shine-size, 200px) / 2));
+    top: calc(-1 * (var(--skeleton-shine-size, 200px) / 2));
+  }
+  25% {
+    left: calc(-1 * (var(--skeleton-shine-size, 200px) / 2));
+    top: calc(-1 * (var(--skeleton-shine-size, 200px) / 2));
+  }
+  100% {
+    left: calc(100% + (var(--skeleton-shine-size, 200px) / 2));
+    top: calc(100% + (var(--skeleton-shine-size, 200px) / 2));
+  }
+}
