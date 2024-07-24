@@ -2,10 +2,11 @@
 import {
   type ReducerOptions,
   type InputState,
+  RangeUtil,
   createReducer,
   defineChanges,
-} from '@krutoo/input-mask/dist/core';
-import { State, Range, Value } from '@krutoo/input-mask/dist/dom/utils';
+} from '@krutoo/input-mask/core';
+import { StateUtil, ValueUtil } from '@krutoo/input-mask/dom';
 import { legacy_createStore as createStore, Store, Action } from 'redux';
 import { ActionCreator } from './types';
 
@@ -30,19 +31,19 @@ function createDomReducer(options: ReducerOptions) {
   const processState = (a: InputState, b: InputState): InputState =>
     innerReducer(a, defineChanges(a, b));
 
-  const initialState: InputState = State.init(options);
+  const initialState: InputState = StateUtil.init(options);
 
   return (state: InputState = initialState, action: Action): InputState => {
     let result: InputState = state;
 
     switch (true) {
       case actions.inputChange.is(action): {
-        result = processState(state, State.fromTarget(action.payload.input));
+        result = processState(state, StateUtil.fromTarget(action.payload.input));
         break;
       }
 
       case actions.inputSelectionChange.is(action): {
-        result = State.fromTarget(action.payload.input);
+        result = StateUtil.fromTarget(action.payload.input);
         break;
       }
 
@@ -53,12 +54,12 @@ function createDomReducer(options: ReducerOptions) {
           .filter(c => c.match(options.pattern))
           .join('');
 
-        const newMaskedValue = Value.toMasked(options, validCleanValue);
+        const newMaskedValue = ValueUtil.cleanToMasked(options, validCleanValue);
         const firstPlace = options.mask.indexOf(options.placeholder);
 
         result = processState(
-          State.of(state.value, Range.of(firstPlace, state.value.length)),
-          State.of(newMaskedValue, Range.of(newMaskedValue.length)),
+          StateUtil.of(state.value, RangeUtil.of(firstPlace, state.value.length)),
+          StateUtil.of(newMaskedValue, RangeUtil.of(newMaskedValue.length)),
         );
         break;
       }

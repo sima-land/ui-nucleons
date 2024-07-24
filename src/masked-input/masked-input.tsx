@@ -1,6 +1,6 @@
 import { useCallback, useImperativeHandle, useMemo, useState } from 'react';
 import { Input } from '../input';
-import { Value } from '@krutoo/input-mask/dist/dom/utils';
+import { ValueUtil } from '@krutoo/input-mask/dom';
 import { useInputMask } from './use-input-mask';
 import { MaskData, MaskedInputProps } from './types';
 
@@ -63,7 +63,7 @@ function StatelessMaskedInput({
   const getMaskData = useCallback(
     (): MaskData => ({
       value: store.getState().value,
-      cleanValue: Value.toClean({ mask, placeholder }, store.getState().value),
+      cleanValue: ValueUtil.maskedToClean({ mask, placeholder }, store.getState().value),
       completed: store.getState().value.length === mask.length,
     }),
     [store, mask, placeholder],
