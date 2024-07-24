@@ -1,5 +1,5 @@
 import type { Action, Store } from 'redux';
-import type { InputState } from '@krutoo/input-mask/dist/core';
+import type { InputState } from '@krutoo/input-mask/core';
 import type { InputProps } from '../input';
 import type { ChangeEvent, FocusEvent, FormEvent, FormEventHandler, RefObject } from 'react';
 

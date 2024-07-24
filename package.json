@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.13",
-    "@krutoo/input-mask": "^0.0.9",
+    "@krutoo/input-mask": "^0.1.0",
     "body-scroll-lock": "3.1.5",
     "classnames": "^2.3.2",
     "date-fns": "^3.3.1",
@@ -70,7 +70,7 @@
     "sass": "^1.77.4",
     "stylelint": "^15.9.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.5.3"
   },
   "peerDependencies": {
     "@sima-land/ui-quarks": "^5.0.0",

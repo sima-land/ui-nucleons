@@ -3,8 +3,8 @@ import { useIsomorphicLayoutEffect } from '../hooks';
 import { on } from '../helpers/on';
 import { UseInputMaskOptions, UseInputMaskResult } from './types';
 import { actions, createInputMaskStore } from './utils';
-import { type ReducerOptions } from '@krutoo/input-mask/dist/core';
-import { State, Value } from '@krutoo/input-mask/dist/dom/utils';
+import { type ReducerOptions } from '@krutoo/input-mask/core';
+import { StateUtil, ValueUtil } from '@krutoo/input-mask/dom';
 
 /**
  * Хук для задания маски для поля ввода текста.
@@ -44,7 +44,7 @@ export function useInputMask({
     const offList: VoidFunction[] = [
       store.subscribe(() => {
         if (inputRef.current) {
-          State.applyDiff(store.getState(), inputRef.current);
+          StateUtil.applyDiff(store.getState(), inputRef.current);
         }
       }),
       on(document, 'selectionchange', () => {
@@ -58,7 +58,7 @@ export function useInputMask({
   }, [store, inputRef]);
 
   // each render: update state if value prop and state.value not equals
-  if (value !== Value.toClean(maskOptions, store.getState().value)) {
+  if (value !== ValueUtil.maskedToClean(maskOptions, store.getState().value)) {
     store.dispatch(actions.manualChange({ value }));
   }
 
