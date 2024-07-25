@@ -4,6 +4,9 @@
 
 .root {
   @include utils.reset-button;
+}
+
+.root {
   flex-grow: 0;
   flex-shrink: 0;
   max-width: 100%;
@@ -100,6 +103,9 @@
 
 .icon-button {
   @include utils.reset-button;
+}
+
+.icon-button {
   display: flex;
   align-items: center;
   height: 32px;

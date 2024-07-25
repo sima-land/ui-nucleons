@@ -5,6 +5,9 @@
 .root {
   @include utils.reset-button;
   @include utils.focus-visible;
+}
+
+.root {
   display: inline-flex;
   align-items: center;
   font-weight: 600;
