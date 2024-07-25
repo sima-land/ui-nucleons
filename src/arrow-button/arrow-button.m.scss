@@ -4,6 +4,9 @@
 
 .arrow-button {
   @include utils.focus-visible;
+}
+
+.arrow-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;

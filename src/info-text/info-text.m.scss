@@ -10,6 +10,9 @@
 .button {
   @include utils.reset-button;
   @include utils.focus-visible;
+}
+
+.button {
   display: inline-block;
   vertical-align: -0.125em; // не понятно почему, но это значение ставит блок ровно по середине строки
   margin-left: 4px;
