@@ -41,7 +41,7 @@ export const BreakpointQuery = {
   },
 } as const;
 
-// eslint-disable-next-line require-jsdoc, jsdoc/require-jsdoc
+// eslint-disable-next-line jsdoc/require-jsdoc
 export function createRegistry(
   { matchMedia }: { matchMedia: typeof window.matchMedia } = { matchMedia: window.matchMedia },
 ): Registry {
@@ -74,7 +74,7 @@ export function createRegistry(
   return registry;
 }
 
-// eslint-disable-next-line require-jsdoc
+// eslint-disable-next-line jsdoc/require-jsdoc
 const createSubscription = (item: RegistryItem, listener: ChangeHandler): Subscription => ({
   matches: item.mql.matches,
   unsubscribe: () => item.handlers.delete(listener),

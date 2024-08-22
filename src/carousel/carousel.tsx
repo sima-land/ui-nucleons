@@ -139,7 +139,7 @@ export class Carousel extends Component<CarouselProps, CarouselState> {
     vertical: boolean;
     viewport?: DOMRect | null;
   }): ElementPredicate {
-    // eslint-disable-next-line require-jsdoc
+    // eslint-disable-next-line jsdoc/require-jsdoc
     let checker: ElementPredicate = () => false;
 
     if (viewport) {
@@ -171,7 +171,7 @@ export class Carousel extends Component<CarouselProps, CarouselState> {
     const verticalBoundKey = backward ? 'bottom' : 'top';
     const horizontalBoundKey = backward ? 'right' : 'left';
 
-    // eslint-disable-next-line require-jsdoc
+    // eslint-disable-next-line jsdoc/require-jsdoc
     let checker: ElementPredicate = () => false;
 
     if (viewport) {

@@ -17,15 +17,16 @@ export function on<T extends Event | SyntheticEvent>(
   const eventNamesList = eventNames.split(' ');
 
   // обернуто чтобы прокинуть T
-  // eslint-disable-next-line require-jsdoc
+  // eslint-disable-next-line jsdoc/require-jsdoc
   const wrapped = (e: any) => callback(e as T);
 
   eventNamesList.forEach(eventName => {
     target.addEventListener(eventName, wrapped, options);
   });
 
-  return () =>
-    void eventNamesList.forEach(eventName => {
+  return () => {
+    eventNamesList.forEach(eventName => {
       target.removeEventListener(eventName, wrapped, options);
     });
+  };
 }
