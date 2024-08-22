@@ -140,10 +140,10 @@ export function getArrowFloatingStyle({
 
   const side = placement.split('-')[0] as Side | undefined;
 
-  // eslint-disable-next-line require-jsdoc
+  // eslint-disable-next-line jsdoc/require-jsdoc
   const maybe = (value: number | null | undefined) => (value ? `${value}px` : '');
 
-  // eslint-disable-next-line require-jsdoc
+  // eslint-disable-next-line jsdoc/require-jsdoc
   const arrowShift = () => `${-arrowSquareSize / 2}px`;
 
   let arrowStyle: CSSProperties = {};

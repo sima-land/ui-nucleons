@@ -1,4 +1,4 @@
-/* eslint-disable require-jsdoc, jsdoc/require-jsdoc */
+/* eslint-disable jsdoc/require-jsdoc */
 import { createContext } from 'react';
 
 // @todo возможно стоит убрать "window." тк наблюдаются проблемы в iOS

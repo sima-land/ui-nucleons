@@ -21,7 +21,7 @@ export function useOutsideClick(
       event => {
         const arg = innerRef.current;
         const refs = Array.isArray(arg) ? arg : [arg];
-        let isOutsideClick = true;
+        let isOutside = true;
 
         for (const { current: element } of refs) {
           if (
@@ -29,12 +29,12 @@ export function useOutsideClick(
             event.target instanceof Node &&
             (element === event.target || element.contains(event.target))
           ) {
-            isOutsideClick = false;
+            isOutside = false;
             break;
           }
         }
 
-        isOutsideClick && callbackRef.current?.(event);
+        isOutside && callbackRef.current?.(event);
       },
 
       // ВАЖНО: чтобы изменение DOM не приводило к ложному срабатыванию

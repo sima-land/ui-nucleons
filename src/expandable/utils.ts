@@ -65,7 +65,7 @@ export function defineLastVisible({
  * @return Функция отписки.
  */
 export function observeWidth(element: Element, callback: (width: number) => void) {
-  // eslint-disable-next-line require-jsdoc
+  // eslint-disable-next-line jsdoc/require-jsdoc
   const getWidth = () => element.getBoundingClientRect().width;
 
   let lastWidth = getWidth();

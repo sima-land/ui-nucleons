@@ -92,7 +92,7 @@ export class Draggable extends Component<DraggableProps> {
    * Инициализирует обработчики глобальных событий.
    */
   initGlobalListeners() {
-    // eslint-disable-next-line require-jsdoc
+    // eslint-disable-next-line jsdoc/require-jsdoc
     const listen = (fn: (e: MouseEvent | TouchEvent) => void) => (eventName: string) =>
       on<MouseEvent | TouchEvent>(window, eventName, fn);
 

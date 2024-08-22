@@ -44,7 +44,7 @@ export function Pagination({
       index: number,
       userProps: PaginationItemProps = {},
     ): PaginationItemProps => {
-      // eslint-disable-next-line require-jsdoc
+      // eslint-disable-next-line jsdoc/require-jsdoc
       const onClick: MouseEventHandler<HTMLAnchorElement> = event => {
         if (item.value !== current) {
           onChangeRef.current?.(event, item);

@@ -30,7 +30,7 @@ export function formatPrice(
     .join('');
 }
 
-// eslint-disable-next-line require-jsdoc, jsdoc/require-jsdoc
+// eslint-disable-next-line jsdoc/require-jsdoc
 export function formatInteger(value: number): string {
   let result = '0';
 
@@ -53,7 +53,7 @@ export function formatInteger(value: number): string {
   return value < 0 ? `-${result}` : result;
 }
 
-// eslint-disable-next-line require-jsdoc, jsdoc/require-jsdoc
+// eslint-disable-next-line jsdoc/require-jsdoc
 export function formatFractional(value: number): string {
   let fractional = '';
 

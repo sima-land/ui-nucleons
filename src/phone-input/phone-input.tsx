@@ -157,7 +157,7 @@ function StatelessPhoneInput({
           mask={mask.mask}
           value={plainValue}
           baseInputProps={{
-            restPlaceholder: mask.needRestPlaceholder ?? true ? undefined : '',
+            restPlaceholder: (mask.needRestPlaceholder ?? true) ? undefined : '',
             ...restProps.baseInputProps,
           }}
           onFocus={(event, maskData) => {
