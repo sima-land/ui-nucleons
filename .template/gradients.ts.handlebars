@@ -1,0 +1,10 @@
+// GENERATED FILE - DO NOT CHANGE IT MANUALLY
+
+/** Градиенты дизайн-системы. */
+export const GRADIENT = {
+{{#each gradients}}
+  '{{@key}}': '{{this}}',
+{{/each}}
+} as const;
+
+export const GRADIENTS = new Map(Object.entries(GRADIENT)) as Map<keyof typeof GRADIENT, string>;

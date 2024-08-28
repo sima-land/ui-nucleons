@@ -1,6 +1,6 @@
 // GENERATED FILE - DO NOT CHANGE IT MANUALLY
 
-{{#each colorsByGroups}}
+{{#each colorGroups}}
 // {{@key}}
 {{#each this}}
 ${{@../key}}-{{@key}}: {{this}};
@@ -9,3 +9,15 @@ ${{@../key}}-{{@key}}: {{this}};
 
 {{/unless}}
 {{/each}}
+
+@mixin properties() {
+  {{#each colorGroups}}
+  // {{@key}}
+  {{#each this}}
+  --color-{{@../key}}-{{@key}}: {{this}};
+  {{/each}}
+  {{#unless @last}}
+
+  {{/unless}}
+  {{/each}}
+}
