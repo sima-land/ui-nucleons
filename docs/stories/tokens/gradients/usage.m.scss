@@ -1,0 +1,53 @@
+@use 'pkg:@sima-land/ui-nucleons/colors';
+
+.imports {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+  > * {
+    width: 100%;
+  }
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  container-type: inline-size;
+}
+
+.card {
+  width: calc((100% - 24px) / 3);
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px #ddd;
+  @container (max-width: 960px) {
+    width: calc((100% - 12px) / 2);
+  }
+  @container (max-width: 600px) {
+    width: calc((100%));
+  }
+  .sample {
+    margin: 16px 16px 0;
+    aspect-ratio: 2 / 1;
+    border-radius: 4px;
+  }
+  .info {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    .title {
+      font-weight: bold;
+    }
+  }
+  .controls {
+    padding: 16px;
+    padding-top: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+}
