@@ -15,6 +15,7 @@ export const COLOR = {
   'basic-gray4': '#f5f5f5',
   'basic-gray2': '#fafafa',
   'basic-white': '#fff',
+  'basic-black': '#000',
 
   // additional
   'additional-deep-red': '#d50000',

@@ -1,0 +1,11 @@
+// GENERATED FILE - DO NOT CHANGE IT MANUALLY
+
+{{#each gradients}}
+${{@key}}: {{this}};
+{{/each}}
+
+@mixin properties() {
+  {{#each gradients}}
+  --gradient-{{@key}}: {{this}};
+  {{/each}}
+}
