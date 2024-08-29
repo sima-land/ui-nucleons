@@ -5,7 +5,7 @@ export default [
 
   // тесты
   {
-    files: ['**/*.{test,spec}.*'],
+    files: ['**/*.{test,spec}.*', 'docs/**/*.{ts,tsx}'],
     rules: {
       'jsdoc/require-jsdoc': 'off',
     },
