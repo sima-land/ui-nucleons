@@ -1,12 +1,25 @@
-import { createContext, createRef } from 'react';
-import { SelectOpenerBinding } from './types';
+import type { SelectContextValue } from './types';
+import { createContext } from 'react';
 
-export const SelectContext = createContext<SelectOpenerBinding>({
-  value: '',
-  opened: false,
-  menuFocused: false,
-  openerRef: createRef(),
-  anchorRef: createRef(),
-  onMouseDown: () => void 0,
-  onKeyDown: () => void 0,
-});
+export const SELECT_CONTEXT_DEFAULT_VALUE: SelectContextValue = {
+  selectProps: {},
+
+  currentValue: '',
+  setCurrentValue: () => {},
+
+  menuOpen: false,
+  setMenuOpen: () => {},
+
+  openerElement: null,
+  setOpenerElement: () => {},
+
+  anchorElement: null,
+  setAnchorElement: () => {},
+
+  menuElement: null,
+  setMenuElement: () => {},
+
+  menuFloatingStyle: {},
+};
+
+export const SelectContext = createContext<SelectContextValue>(SELECT_CONTEXT_DEFAULT_VALUE);

@@ -1,9 +1,11 @@
 import { useContext } from 'react';
 import { fireEvent, render, getByTestId, queryAllByTestId, act } from '@testing-library/react';
-import { Select } from '..';
+import { Select } from '../select';
 import { DropdownItem } from '../../dropdown-item';
 import { SelectContext } from '../utils';
 import userEvent from '@testing-library/user-event';
+import { SelectTextButton } from '../parts/text-button';
+import { SelectFieldBlock } from '../parts/field-block';
 
 describe('Select', () => {
   it('should handle mouse control on opener - FieldBlock', () => {
@@ -35,7 +37,7 @@ describe('Select', () => {
 
   it('should handle mouse control on opener - TextButton', () => {
     const { baseElement, container } = render(
-      <Select opener={<Select.TextButton />}>
+      <Select opener={<SelectTextButton />}>
         <DropdownItem value='1'>Foo</DropdownItem>
         <DropdownItem value='2'>Bar</DropdownItem>
       </Select>,
@@ -105,7 +107,7 @@ describe('Select', () => {
     const user = userEvent.setup();
 
     const { baseElement, container } = render(
-      <Select opener={<Select.TextButton />}>
+      <Select opener={<SelectTextButton />}>
         <DropdownItem value='1'>One</DropdownItem>
         <DropdownItem value='2'>Two</DropdownItem>
         <DropdownItem value='3'>Three</DropdownItem>
@@ -268,16 +270,22 @@ describe('Select', () => {
     const spy = jest.fn();
 
     function CustomOpener() {
-      const binding = useContext(SelectContext);
+      const { setOpenerElement, setMenuOpen } = useContext(SelectContext);
 
       return (
         <div
-          ref={binding.openerRef as any}
+          ref={setOpenerElement}
           tabIndex={0}
           role='combobox'
           data-testid='custom-opener'
-          onKeyDown={binding.onKeyDown}
-          onMouseDown={binding.onMouseDown}
+          onKeyDown={event => {
+            if (event.code === 'Enter') {
+              setMenuOpen(true);
+            }
+          }}
+          onMouseDown={() => {
+            setMenuOpen(a => !a);
+          }}
         >
           My Opener
         </div>
@@ -352,7 +360,7 @@ describe('Select', () => {
 
   it('should handle mousedown when its disabled', () => {
     const { baseElement, container, rerender } = render(
-      <Select opener={<Select.FieldBlock />} disabled={false}>
+      <Select opener={<SelectFieldBlock />} disabled={false}>
         <DropdownItem disabled>Foo</DropdownItem>
         <DropdownItem disabled>Bar</DropdownItem>
         <DropdownItem disabled>Baz</DropdownItem>
@@ -367,7 +375,7 @@ describe('Select', () => {
 
     // rerender as disabled
     rerender(
-      <Select opener={<Select.FieldBlock />} disabled>
+      <Select opener={<SelectFieldBlock />} disabled>
         <DropdownItem disabled>Foo</DropdownItem>
         <DropdownItem disabled>Bar</DropdownItem>
         <DropdownItem disabled>Baz</DropdownItem>
@@ -382,7 +390,7 @@ describe('Select', () => {
 
   it('should handle keydown when its disabled', () => {
     const { baseElement, container, rerender } = render(
-      <Select opener={<Select.FieldBlock />} disabled={false}>
+      <Select opener={<SelectFieldBlock />} disabled={false}>
         <DropdownItem disabled>Foo</DropdownItem>
         <DropdownItem disabled>Bar</DropdownItem>
         <DropdownItem disabled>Baz</DropdownItem>
@@ -397,7 +405,7 @@ describe('Select', () => {
 
     // rerender as disabled
     rerender(
-      <Select opener={<Select.FieldBlock />} disabled>
+      <Select opener={<SelectFieldBlock />} disabled>
         <DropdownItem disabled>Foo</DropdownItem>
         <DropdownItem disabled>Bar</DropdownItem>
         <DropdownItem disabled>Baz</DropdownItem>
@@ -449,9 +457,9 @@ describe('Select', () => {
     expect(getByTestId(container, 'field-block:block').textContent).toBe('Third');
 
     fireEvent.mouseDown(getByTestId(container, 'field-block:block'));
-    fireEvent.click(queryAllByTestId(baseElement, 'dropdown-item')[2]);
+    fireEvent.click(queryAllByTestId(baseElement, 'dropdown-item')[0]);
     expect(spy).toHaveBeenCalledTimes(1);
-    expect(getByTestId(container, 'field-block:block').textContent).toBe('Third');
+    expect(getByTestId(container, 'field-block:block').textContent).toBe('First');
   });
 
   it('should handle "renderValue" prop', () => {
@@ -536,5 +544,208 @@ describe('Select', () => {
     expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
     expect(openSpy).toHaveBeenCalledTimes(1);
     expect(closeSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should provide setCurrentValue to context that accept functions', () => {
+    const CustomOpener = () => {
+      const {
+        //
+        setAnchorElement,
+        setOpenerElement,
+        currentValue,
+        setCurrentValue,
+      } = useContext(SelectContext);
+
+      const reset = () => {
+        setCurrentValue(() => '');
+      };
+
+      return (
+        <div ref={setAnchorElement}>
+          <div ref={setOpenerElement}>{currentValue}</div>
+
+          <div data-testid='reset' onClick={reset}>
+            Reset
+          </div>
+        </div>
+      );
+    };
+
+    const { container } = render(
+      <Select opener={<CustomOpener />} defaultValue='Bar'>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Select>,
+    );
+
+    expect(container.textContent).toContain('Bar');
+    fireEvent.click(getByTestId(container, 'reset'));
+    expect(container.textContent).not.toContain('Bar');
+  });
+
+  it('should not call onValueChange when it is not changed actually', async () => {
+    const spy = jest.fn();
+
+    const { container, baseElement } = render(
+      <Select defaultValue='Bar' onValueChange={spy}>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Select>,
+    );
+
+    // initial state
+    expect(container.textContent).toContain('Bar');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(spy).toHaveBeenCalledTimes(0);
+
+    // open menu
+    await userEvent.click(getByTestId(baseElement, 'field-block:block'));
+    expect(container.textContent).toContain('Bar');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(spy).toHaveBeenCalledTimes(0);
+
+    // select first option
+    await userEvent.click(queryAllByTestId(baseElement, 'dropdown-item')[0]!);
+    expect(container.textContent).toContain('Foo');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(spy).toHaveBeenCalledTimes(1);
+
+    // open menu again
+    await userEvent.click(getByTestId(baseElement, 'field-block:block'));
+    expect(container.textContent).toContain('Foo');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(spy).toHaveBeenCalledTimes(1);
+
+    // select first option again
+    await userEvent.click(queryAllByTestId(baseElement, 'dropdown-item')[0]!);
+    expect(container.textContent).toContain('Foo');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should handle non DropdownItem children', async () => {
+    const { container, baseElement } = render(
+      <Select defaultValue='Bar'>
+        <DropdownItem>Foo</DropdownItem>
+        <div>Hello</div>
+        <DropdownItem>Bar</DropdownItem>
+        <div>World</div>
+        <DropdownItem>Baz</DropdownItem>
+      </Select>,
+    );
+
+    // initial state
+    expect(container.textContent).toContain('Bar');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+
+    // open menu
+    await userEvent.click(getByTestId(baseElement, 'field-block:block'));
+    expect(container.textContent).toContain('Bar');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(getByTestId(baseElement, 'dropdown').textContent).toBe('FooHelloBarWorldBaz');
+  });
+
+  it('should handle click by disabled item', async () => {
+    const { container, baseElement } = render(
+      <Select defaultValue='Bar'>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem disabled>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Select>,
+    );
+
+    // initial state
+    expect(container.textContent).toContain('Bar');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+
+    // open menu
+    await userEvent.click(getByTestId(baseElement, 'field-block:block'));
+    expect(container.textContent).toContain('Bar');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+
+    // click by disabled
+    await userEvent.click(queryAllByTestId(baseElement, 'dropdown-item')[1]);
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+    expect(container.textContent).toContain('Bar');
+  });
+
+  it('menu should handle click outside opener/menu and closes', async () => {
+    const { container, baseElement } = render(
+      <Select defaultValue='Bar' dropdownProps={{ tabIndex: undefined }}>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Select>,
+    );
+
+    // initial state
+    expect(container.textContent).toContain('Bar');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+
+    // open menu
+    await userEvent.click(getByTestId(baseElement, 'field-block:block'));
+    expect(container.textContent).toContain('Bar');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+
+    // click outside opener/menu
+    await userEvent.click(document.body);
+    expect(container.textContent).toContain('Bar');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+  });
+
+  it('menu should not closes by focus on element inside menu', async () => {
+    const { container, baseElement } = render(
+      <Select defaultValue='Bar' dropdownProps={{ tabIndex: undefined }}>
+        <div tabIndex={0} data-testid='focusable'>
+          focusable
+        </div>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Select>,
+    );
+
+    // initial state
+    expect(container.textContent).toContain('Bar');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+
+    // open menu
+    await userEvent.click(getByTestId(baseElement, 'field-block:block'));
+    expect(container.textContent).toContain('Bar');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+
+    // focus on element inside menu
+    fireEvent.blur(getByTestId(baseElement, 'dropdown'), {
+      relatedTarget: getByTestId(baseElement, 'focusable'),
+    });
+    expect(container.textContent).toContain('Bar');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+  });
+
+  it('should use children from option as value when value is not defined', async () => {
+    const { container, baseElement } = render(
+      <Select defaultValue='Foo'>
+        <DropdownItem>Foo</DropdownItem>
+        <DropdownItem>Bar</DropdownItem>
+        <DropdownItem>Baz</DropdownItem>
+      </Select>,
+    );
+
+    // initial state
+    expect(container.textContent).toContain('Foo');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+
+    // open menu
+    await userEvent.click(getByTestId(baseElement, 'field-block:block'));
+    expect(container.textContent).toContain('Foo');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+
+    fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'ArrowDown' });
+    fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'ArrowDown' });
+    fireEvent.keyDown(getByTestId(baseElement, 'dropdown'), { code: 'Enter' });
+    expect(container.textContent).toContain('Bar');
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
   });
 });

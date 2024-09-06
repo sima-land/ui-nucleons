@@ -1,165 +1,98 @@
-import { isValidElement, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { SelectContext } from './utils';
-import { SelectMenuProps, SelectOpenerBinding, SelectProps } from './types';
-import { useIdentityRef } from '../hooks/use-identity-ref';
-import { DropdownItemUtils } from '../dropdown-item/utils';
-import { useFloating } from '@floating-ui/react';
+import { SelectContextValue, SelectProps } from './types';
+import { SelectFieldBlock } from './parts/field-block';
 import { SelectMenu } from './parts/menu';
-import { SelectFieldBlock } from './parts/block';
-import { SelectTextButton } from './parts/button';
-import { dropdownFloatingConfig, useDropdownFloatingStyle } from '../dropdown/utils';
-import { Lifecycle } from '../_internal/lifecycle';
-import { Portal } from '../portal';
+import { useFloating } from '@floating-ui/react';
+import { dropdownFloatingConfig, useDropdownFloatingStyle } from '../dropdown';
+import { useIsomorphicLayoutEffect } from '../hooks';
 
 /**
  * Поле выбора из списка.
  * @param props Свойства.
  * @return Элемент.
  */
-export function Select({
-  children,
-  disabled,
-  failed,
-  loading,
-  onValueChange,
-  onMenuToggle,
-  value,
-  defaultValue,
-  label,
-  opener = <SelectFieldBlock />,
-  renderValue = v => v,
-  dropdownProps,
-  onMenuOpen,
-  onMenuClose,
-}: SelectProps) {
+export function Select(props: SelectProps) {
+  const {
+    opener = <SelectFieldBlock />,
+    menu = <SelectMenu />,
+    value,
+    defaultValue,
+    onValueChange,
+  } = props;
+
   // @todo по аналогии с <select /> надо проверять, есть ли значение в списке переданных
-  const [initialValue] = useState<string>(() => value ?? defaultValue ?? '');
-  const [currentValue, setCurrentValue] = useState<string>(initialValue);
-  const [needMenu, setNeedMenu] = useState<boolean>(false);
+  const [currentValue, setCurrentValue] = useState(() => value ?? defaultValue ?? '');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [openerElement, setOpenerElement] = useState<HTMLElement | null>(null);
+  const [anchorElement, setAnchorElement] = useState<HTMLElement | null>(null);
   const [menuElement, setMenuElement] = useState<HTMLElement | null>(null);
-  const [menuFocused, setMenuFocused] = useState<boolean>(false);
-  const onMenuToggleRef = useIdentityRef(onMenuToggle);
-  const openerRef = useRef<HTMLElement>(null);
-  const menuShown = needMenu && menuElement !== null;
 
-  const { refs, isPositioned, ...floating } = useFloating({
-    open: needMenu,
-    ...dropdownFloatingConfig(),
-  });
+  const menuFloating = useFloating({ open: menuOpen, ...dropdownFloatingConfig() });
+  const { setReference, setFloating } = menuFloating.refs;
+  const menuFloatingStyle = useDropdownFloatingStyle(menuFloating);
 
-  useImperativeHandle(refs.setFloating, () => menuElement as HTMLElement, [menuElement]);
-
-  useEffect(() => {
-    if (typeof value !== 'undefined') {
-      // @todo по аналогии с <select /> надо проверять, есть ли значение в списке переданных
+  useIsomorphicLayoutEffect(() => {
+    if (typeof value === 'string') {
       setCurrentValue(value);
     }
   }, [value]);
 
-  useEffect(() => {
-    if (disabled) {
-      setNeedMenu(false);
-    }
+  const contextValue: SelectContextValue = {
+    selectProps: props,
 
-    if (!disabled && menuElement && isPositioned) {
-      menuElement.focus();
-    }
+    currentValue,
+    setCurrentValue: useCallback(
+      valueInit => {
+        let nextValue = valueInit;
 
-    // @todo menuShown в зависимости или useCallback
-    onMenuToggleRef.current?.({ opened: menuShown });
-  }, [disabled, menuElement, isPositioned]);
-
-  const openerBinding: SelectOpenerBinding = {
-    label,
-    anchorRef: refs.setReference,
-    openerRef,
-    value: renderValue(currentValue),
-    opened: menuShown,
-    failed,
-    disabled,
-    menuFocused,
-    onMouseDown: event => {
-      if (!disabled) {
-        !menuElement && event.preventDefault();
-        setNeedMenu(a => !a);
-      }
-    },
-    onKeyDown: e => {
-      if (!disabled) {
-        switch (e.code) {
-          case 'Enter':
-          case 'ArrowUp':
-          case 'ArrowDown':
-            setNeedMenu(true);
-            break;
+        if (typeof nextValue === 'function') {
+          nextValue = nextValue(currentValue);
         }
-      }
-    },
-  };
 
-  const floatingStyle = useDropdownFloatingStyle({ refs, ...floating });
+        if (currentValue !== nextValue) {
+          setCurrentValue(nextValue);
+          onValueChange?.(nextValue);
+        }
+      },
+      [currentValue, onValueChange],
+    ),
 
-  const menuProps: SelectMenuProps = {
-    ...dropdownProps,
-    style: {
-      ...floatingStyle,
-      ...dropdownProps?.style,
-    },
-    menuRef: setMenuElement,
-    value,
-    loading,
-    onFocus: () => {
-      setMenuFocused(true);
-    },
-    onBlur: () => {
-      setNeedMenu(false);
-      setMenuFocused(false);
-    },
-    onKeyDown: event => {
-      switch (event.code) {
-        case 'ArrowUp':
-        case 'ArrowDown':
-          event.preventDefault(); // предотвращаем прокрутку страницы
-          break;
-        case 'Enter':
-        case 'Escape':
-          openerRef.current?.focus();
-          break;
-        case 'Tab':
-          event.preventDefault(); // предотвращаем фокус на следующем элементе
-          openerRef.current?.focus();
-          break;
-      }
-    },
-    onItemSelect: item => {
-      const nextValue = DropdownItemUtils.getValue(item);
+    menuOpen,
+    setMenuOpen,
 
-      setCurrentValue(nextValue);
-      onValueChange?.(nextValue);
-      setNeedMenu(false);
-      openerRef.current?.focus();
-    },
-    onDismiss: () => {
-      setNeedMenu(false);
-    },
+    openerElement,
+    setOpenerElement: useCallback(element => {
+      setOpenerElement(element);
+    }, []),
+
+    anchorElement,
+    setAnchorElement: useCallback(
+      element => {
+        setReference(element);
+        setAnchorElement(element);
+      },
+      [setReference],
+    ),
+
+    menuElement,
+    setMenuElement: useCallback(
+      element => {
+        setFloating(element);
+        setMenuElement(element);
+      },
+      [setFloating],
+    ),
+
+    menuFloatingStyle,
   };
 
   return (
     <>
-      <SelectContext.Provider value={openerBinding}>
-        {isValidElement(opener) && opener}
+      <SelectContext.Provider value={contextValue}>
+        {opener}
+        {menu}
       </SelectContext.Provider>
-
-      {needMenu && (
-        <Portal>
-          <Lifecycle onMount={onMenuOpen} onUnmount={onMenuClose}>
-            <SelectMenu {...menuProps}>{children}</SelectMenu>
-          </Lifecycle>
-        </Portal>
-      )}
     </>
   );
 }
-
-Select.FieldBlock = SelectFieldBlock;
-Select.TextButton = SelectTextButton;

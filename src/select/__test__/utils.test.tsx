@@ -1,35 +1,32 @@
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { useContext } from 'react';
-import { SelectOpenerBinding } from '../types';
-import { SelectContext } from '../utils';
+import { SelectContextValue } from '../types';
+import { SelectContext, SELECT_CONTEXT_DEFAULT_VALUE } from '../utils';
 
 describe('SelectContext', () => {
   it('should contain defaults', () => {
-    const spy = jest.fn((bind: SelectOpenerBinding) => bind);
+    let contextValue: SelectContextValue | null = null;
 
     function TestComponent() {
       const bind = useContext(SelectContext);
 
-      spy(bind);
+      contextValue = bind;
 
-      return (
-        <div data-testid='test-stub' onMouseDown={bind.onMouseDown} onKeyDown={bind.onKeyDown}>
-          Hello
-        </div>
-      );
+      return <div>Hello</div>;
     }
 
-    const { getByTestId } = render(<TestComponent />);
+    render(<TestComponent />);
 
-    // check defaults
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(typeof spy.mock.calls[0][0].onKeyDown === 'function').toBe(true);
-    expect(typeof spy.mock.calls[0][0].onMouseDown === 'function').toBe(true);
+    expect(contextValue === SELECT_CONTEXT_DEFAULT_VALUE).toBe(true);
+  });
 
-    // call default callbacks
+  it('default value should provide stub functions', () => {
     expect(() => {
-      fireEvent.mouseDown(getByTestId('test-stub'));
-      fireEvent.keyDown(getByTestId('test-stub'));
+      SELECT_CONTEXT_DEFAULT_VALUE.setCurrentValue('');
+      SELECT_CONTEXT_DEFAULT_VALUE.setMenuOpen(false);
+      SELECT_CONTEXT_DEFAULT_VALUE.setOpenerElement(null);
+      SELECT_CONTEXT_DEFAULT_VALUE.setAnchorElement(null);
+      SELECT_CONTEXT_DEFAULT_VALUE.setMenuElement(null);
     }).not.toThrow();
   });
 });

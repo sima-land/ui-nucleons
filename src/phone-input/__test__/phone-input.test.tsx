@@ -1,5 +1,11 @@
 import { ChangeEvent, createRef } from 'react';
-import { fireEvent, getByTestId, queryAllByTestId, render } from '@testing-library/react';
+import {
+  createEvent,
+  fireEvent,
+  getByTestId,
+  queryAllByTestId,
+  render,
+} from '@testing-library/react';
 import { PhoneInput } from '../phone-input';
 import { MaskData } from '../../masked-input';
 import userEvent from '@testing-library/user-event';
@@ -249,5 +255,31 @@ describe('PhoneInput', () => {
 
     const input = getByTestId<HTMLInputElement>(container, 'base-input:field');
     expect(input.value).toBe('12345');
+  });
+
+  it('should open menu by menu opener keydown', () => {
+    const { container, baseElement } = render(<PhoneInput defaultValue='78005553535' />);
+    const opener = getByTestId(container, 'phone-input:menu-opener');
+
+    // initial state
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+
+    // enter keydown on opener
+    fireEvent.keyDown(opener, { code: 'Enter' });
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(1);
+  });
+
+  it('should not open menu by menu opener keydown when event is default prevented', () => {
+    const { container, baseElement } = render(<PhoneInput defaultValue='78005553535' />);
+    const opener = getByTestId(container, 'phone-input:menu-opener');
+
+    // initial state
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
+
+    // enter keydown on opener
+    const event = createEvent.keyDown(opener);
+    event.preventDefault();
+    opener.dispatchEvent(event);
+    expect(queryAllByTestId(baseElement, 'dropdown')).toHaveLength(0);
   });
 });
