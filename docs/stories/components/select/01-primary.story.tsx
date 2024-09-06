@@ -20,6 +20,11 @@ export default function Primary() {
         <DropdownItem>Четыре</DropdownItem>
         <DropdownItem>Пять</DropdownItem>
         <DropdownItem>Шесть</DropdownItem>
+        <DropdownItem>Семь</DropdownItem>
+        <DropdownItem>Восемь</DropdownItem>
+        <DropdownItem>Девять</DropdownItem>
+        <DropdownItem>Десять</DropdownItem>
+        <DropdownItem>Одиннадцать</DropdownItem>
       </Select>
     </>
   );

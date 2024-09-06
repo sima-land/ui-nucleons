@@ -1,33 +1,30 @@
-import type { FocusEventHandler, HTMLAttributes, ReactElement, ReactNode, Ref } from 'react';
+import type { CSSProperties, Dispatch, ReactElement, ReactNode, SetStateAction } from 'react';
 import type { DropdownProps } from '../dropdown';
-import type { DropdownItemElement } from '../dropdown-item/types';
 import type { FieldBlockStyle } from '../field-block';
 
 export interface SelectStyle extends FieldBlockStyle {
   '--dropdown-width'?: string | number;
 }
 
-export interface SelectOpenerBinding {
-  label?: string;
-  failed?: boolean;
-  disabled?: boolean;
-  value: ReactNode;
-  opened: boolean;
-  menuFocused: boolean;
-  openerRef: Ref<HTMLElement | null>;
-  anchorRef: Ref<HTMLElement | null>;
-  onMouseDown: Required<HTMLAttributes<HTMLElement>>['onMouseDown'];
-  onKeyDown: Required<HTMLAttributes<HTMLElement>>['onKeyDown'];
-}
+export interface SelectContextValue {
+  selectProps: SelectProps;
 
-export interface SelectMenuProps extends DropdownProps {
-  menuRef?: Ref<HTMLDivElement | null>;
-  value?: ReactNode;
-  children?: ReactNode;
-  loading?: boolean;
-  onBlur?: FocusEventHandler;
-  onItemSelect?: (item: DropdownItemElement) => void;
-  onDismiss?: VoidFunction;
+  currentValue: string;
+  setCurrentValue: Dispatch<SetStateAction<string>>;
+
+  menuOpen: boolean;
+  setMenuOpen: Dispatch<SetStateAction<boolean>>;
+
+  openerElement: HTMLElement | null;
+  setOpenerElement: (element: HTMLElement | null) => void;
+
+  anchorElement: HTMLElement | null;
+  setAnchorElement: (element: HTMLElement | null) => void;
+
+  menuElement: HTMLElement | null;
+  setMenuElement: (element: HTMLElement | null) => void;
+
+  menuFloatingStyle?: CSSProperties;
 }
 
 export interface SelectProps {
@@ -63,6 +60,9 @@ export interface SelectProps {
 
   /** Открывающий элемент. */
   opener?: ReactElement;
+
+  /** Элемент меню. */
+  menu?: ReactElement;
 
   /** Свойства компонента Dropdown. */
   dropdownProps?: Omit<DropdownProps, 'rootRef' | 'viewportRef'>;

@@ -8,6 +8,7 @@ import { DropdownItem } from '../dropdown-item';
 import { SelectContext } from '../select/utils';
 import { PhoneInputMenuOpener } from './menu-opener';
 import { useIsomorphicLayoutEffect } from '../hooks';
+import { mergeRefs } from '../helpers';
 import classNames from 'classnames/bind';
 import styles from './phone-input.m.scss';
 
@@ -216,7 +217,7 @@ function StatelessPhoneInput({
  * @return Элемент.
  */
 function PhoneMaskedInput({
-  blockRef: blockRefProp,
+  blockRef,
   withMenuOpener,
   currentMaskData,
   disabled,
@@ -225,43 +226,56 @@ function PhoneMaskedInput({
   withMenuOpener: boolean;
   currentMaskData: PhoneInputMask;
 }) {
-  const { opened, anchorRef, openerRef, onKeyDown, onMouseDown } = useContext(SelectContext);
+  const { menuOpen, setMenuOpen, setOpenerElement, setAnchorElement } = useContext(SelectContext);
 
-  const blockRef = useRef<HTMLDivElement>(null);
   const [openerFocused, setOpenerFocused] = useState(false);
 
-  useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(
-    blockRefProp,
-    () => blockRef.current,
+  const blockMergedRef = useMemo(
+    () => mergeRefs([blockRef, setAnchorElement]),
+    [blockRef, setAnchorElement],
   );
-
-  useImperativeHandle<HTMLElement | null, HTMLDivElement | null>(anchorRef, () => blockRef.current);
 
   return (
     <MaskedInput
       {...restProps}
       // ВАЖНО: undefined нужен для поведения по умолчанию если меню скрыто и кнопка не в фокусе
-      focused={opened || openerFocused || undefined}
-      blockRef={blockRef}
+      focused={menuOpen || openerFocused || undefined}
+      blockRef={blockMergedRef}
       disabled={disabled}
       adornmentEnd={
         withMenuOpener && (
           <PhoneInputMenuOpener
             className={cx('opener')}
-            rootRef={openerRef as any}
+            rootRef={setOpenerElement}
             imageSrc={currentMaskData.optionImageSrc}
-            visuallyOpen={opened}
+            visuallyOpen={menuOpen}
             visuallyDisabled={disabled}
             role='combobox'
             aria-label='Выбор страны'
             aria-disabled={disabled}
             onBlur={() => setOpenerFocused(false)}
             onFocus={() => setOpenerFocused(true)}
-            {...(!disabled && {
-              tabIndex: 0,
-              onKeyDown,
-              onMouseDown,
-            })}
+            tabIndex={disabled ? undefined : 0}
+            onMouseDown={event => {
+              if (disabled || event.defaultPrevented) {
+                return;
+              }
+
+              setMenuOpen(a => !a);
+            }}
+            onKeyDown={event => {
+              if (disabled || event.defaultPrevented) {
+                return;
+              }
+
+              switch (event.code) {
+                case 'Enter':
+                case 'ArrowUp':
+                case 'ArrowDown':
+                  setMenuOpen(true);
+                  break;
+              }
+            }}
           />
         )
       }

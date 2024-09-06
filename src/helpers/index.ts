@@ -12,3 +12,4 @@ export { isTouchDevice } from './is-touch-device';
 export { on } from './on';
 export { scrollToChild } from './scroll-to-child';
 export { useLayer, LayerProvider } from './layer';
+export { mergeRefs } from './merge-refs';

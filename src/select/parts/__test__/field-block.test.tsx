@@ -1,6 +1,6 @@
 import { fireEvent, getByTestId, render } from '@testing-library/react';
 import { Select } from '../..';
-import { SelectFieldBlock } from '../block';
+import { SelectFieldBlock } from '../field-block';
 import { DropdownItem } from '../../../dropdown-item';
 
 describe('SelectFieldBlock', () => {

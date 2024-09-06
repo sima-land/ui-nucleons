@@ -42,7 +42,7 @@ test.describe('Mouse interactions', () => {
     await expect(here.fieldBlock()).toHaveCount(1);
     await expect(here.menu()).toHaveCount(1);
     await expect(here.menu()).toBeFocused();
-    await expect(here.menuItem()).toHaveCount(7);
+    await expect(here.menuItem()).toHaveCount(12);
     await expect(here.page).toHaveScreenshot();
   });
 
@@ -59,7 +59,7 @@ test.describe('Mouse interactions', () => {
     await expect(here.fieldValue()).toHaveText('');
     await expect(here.menu()).toHaveCount(1);
     await expect(here.menu()).toBeFocused();
-    await expect(here.menuItem()).toHaveCount(7);
+    await expect(here.menuItem()).toHaveCount(12);
 
     await here.menuItem().nth(4).click();
     await expect(here.fieldBlock()).toHaveCount(1);
@@ -90,7 +90,7 @@ test.describe('Keyboard interactions', () => {
       await expect(here.fieldBlock()).toHaveCount(1);
       await expect(here.menu()).toHaveCount(1);
       await expect(here.menu()).toBeFocused();
-      await expect(here.menuItem()).toHaveCount(7);
+      await expect(here.menuItem()).toHaveCount(12);
 
       await page.reload();
     }
@@ -105,7 +105,7 @@ test.describe('Keyboard interactions', () => {
     await expect(here.fieldBlock()).toHaveCount(1);
     await expect(here.menu()).toHaveCount(1);
     await expect(here.menu()).toBeFocused();
-    await expect(here.menuItem()).toHaveCount(7);
+    await expect(here.menuItem()).toHaveCount(12);
 
     await page.keyboard.press('Escape');
     await expect(here.fieldBlock()).toHaveCount(1);
@@ -128,7 +128,7 @@ test.describe('Keyboard interactions', () => {
     await expect(here.fieldValue()).toHaveText('');
     await expect(here.menu()).toHaveCount(1);
     await expect(here.menu()).toBeFocused();
-    await expect(here.menuItem()).toHaveCount(7);
+    await expect(here.menuItem()).toHaveCount(12);
 
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('ArrowDown');

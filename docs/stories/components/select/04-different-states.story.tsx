@@ -1,4 +1,9 @@
-import { Select, SelectProps } from '@sima-land/ui-nucleons/select';
+import {
+  Select,
+  SelectFieldBlock,
+  SelectProps,
+  SelectTextButton,
+} from '@sima-land/ui-nucleons/select';
 import { useState } from 'react';
 import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
 import { FieldBlockSize } from '@sima-land/ui-nucleons/field-block';
@@ -23,9 +28,9 @@ export default function DifferentStates() {
     onValueChange: setValue,
     opener:
       opener === 'field-block' ? (
-        <Select.FieldBlock size={fieldSize} caption='Простой пример' />
+        <SelectFieldBlock size={fieldSize} caption='Простой пример' />
       ) : (
-        <Select.TextButton size={buttonSize} />
+        <SelectTextButton size={buttonSize} />
       ),
     label: 'Номер',
     loading,
@@ -95,6 +100,12 @@ export default function DifferentStates() {
           <DropdownItem>Четыре</DropdownItem>
           <DropdownItem>Пять</DropdownItem>
           <DropdownItem disabled>Шесть</DropdownItem>
+          <DropdownItem>Семь</DropdownItem>
+          <DropdownItem>Восемь</DropdownItem>
+          <DropdownItem disabled>Девять</DropdownItem>
+          <DropdownItem>Десять</DropdownItem>
+          <DropdownItem>Одиннадцать</DropdownItem>
+          <DropdownItem disabled>Двенадцать</DropdownItem>
         </Select>
       </div>
     </Sandbox>
