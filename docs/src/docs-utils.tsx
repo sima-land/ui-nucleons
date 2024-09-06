@@ -6,7 +6,7 @@ import {
   PageScrollLockAdapterBSL,
   PageScrollLockAdapterNucleons,
 } from '@sima-land/ui-nucleons/_internal/page-scroll-lock';
-import { Select } from '@sima-land/ui-nucleons/select';
+import { Select, SelectFieldBlock } from '@sima-land/ui-nucleons/select';
 import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
 import styles from './docs-utils.m.css';
 
@@ -82,7 +82,7 @@ function SandboxSelect({ label, options, bind: [value, onChange] }: ControlSelec
         >
           {options.map((option, i) => (
             <option key={i} value={typeof option === 'string' ? option : option.value}>
-              {typeof option === 'string' ? option : option.displayName ?? option.value}
+              {typeof option === 'string' ? option : (option.displayName ?? option.value)}
             </option>
           ))}
         </select>
@@ -157,7 +157,7 @@ export function LoremIpsum({
   sentenceCount?: number;
 }) {
   const random = createRandomGenerator(1337);
-  // eslint-disable-next-line require-jsdoc, jsdoc/require-jsdoc
+
   const generate = () =>
     Array(paragraphCount)
       .fill(0)
@@ -209,7 +209,7 @@ export function PageScrollLockDemo({ children }: { children?: ReactNode }) {
       <p>Это тестовая страница для проверки блокировки прокрутки с разными реализациями.</p>
 
       <Select
-        opener={<Select.FieldBlock size='l' label='Реализация' />}
+        opener={<SelectFieldBlock size='l' label='Реализация' />}
         value={adapterName}
         onValueChange={value => {
           adapterNames.includes(value as any) && setAdapterName(value as any);

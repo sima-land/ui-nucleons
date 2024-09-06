@@ -1,6 +1,6 @@
-import { Select } from '@sima-land/ui-nucleons/select';
-import { useState } from 'react';
+import { Select, SelectTextButton } from '@sima-land/ui-nucleons/select';
 import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
+import { useState } from 'react';
 
 export const meta = {
   category: 'Компоненты/Select',
@@ -16,7 +16,7 @@ export default function AsTextButton() {
         label='Номер'
         value={value}
         onValueChange={setValue}
-        opener={<Select.TextButton size='m' />}
+        opener={<SelectTextButton size='m' />}
         dropdownProps={{ style: { width: '200px' } }}
       >
         <DropdownItem>Ноль</DropdownItem>

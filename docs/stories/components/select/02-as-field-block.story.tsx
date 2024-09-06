@@ -1,6 +1,6 @@
-import { Select } from '@sima-land/ui-nucleons/select';
-import { useState } from 'react';
+import { Select, SelectFieldBlock } from '@sima-land/ui-nucleons/select';
 import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
+import { useState } from 'react';
 
 export const meta = {
   category: 'Компоненты/Select',
@@ -16,7 +16,7 @@ export default function AsFieldBlock() {
         label='Номер'
         value={value}
         onValueChange={setValue}
-        opener={<Select.FieldBlock size='s' caption='Это ни на что не повлияет' />}
+        opener={<SelectFieldBlock size='s' caption='Это ни на что не повлияет' />}
         dropdownProps={{ style: { width: '320px' } }}
       >
         <DropdownItem>Ноль</DropdownItem>

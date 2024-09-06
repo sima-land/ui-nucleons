@@ -1,7 +1,7 @@
 import { MaskedInput } from '@sima-land/ui-nucleons/masked-input';
 import { useState } from 'react';
 import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
-import { Select } from '@sima-land/ui-nucleons/select';
+import { Select, SelectTextButton } from '@sima-land/ui-nucleons/select';
 
 export const meta = {
   category: 'Компоненты/MaskedInput',
@@ -34,7 +34,7 @@ export default function TestMaskChange() {
   return (
     <>
       <Select
-        opener={<Select.TextButton size='s' />}
+        opener={<SelectTextButton size='s' />}
         value={mask.name}
         onValueChange={maskName => {
           const newMask = masks.find(i => i.name === maskName);
