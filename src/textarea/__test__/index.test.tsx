@@ -147,4 +147,14 @@ describe('Textarea', () => {
     expect(find('[data-testid="message"] [data-testid="base-input"] textarea')).toHaveLength(1);
     expect(find('[data-testid="message"] [data-testid="base-input:field"]')).toHaveLength(1);
   });
+
+  it('should handle "--base-input-placeholder-color" in "baseInputProps.style"', () => {
+    const { getByTestId } = render(
+      <Textarea baseInputProps={{ style: { '--base-input-placeholder-color': 'green' } }} />,
+    );
+
+    expect(getByTestId('base-input').style.getPropertyValue('--base-input-placeholder-color')).toBe(
+      'green',
+    );
+  });
 });
