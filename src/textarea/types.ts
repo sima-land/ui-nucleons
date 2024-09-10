@@ -26,7 +26,7 @@ export interface TextareaProps extends HTMLTextareaProps, FieldBlockProps {
   textareaRef?: Ref<HTMLTextAreaElement>;
 
   /** Свойства BaseInputProps. */
-  baseInputProps?: BaseInputAsTextareaProps;
+  baseInputProps?: Omit<BaseInputAsTextareaProps, 'multiline'>;
 
   /** Стили корневого элемента. */
   style?: Required<FieldBlockProps>['rootProps']['style'];

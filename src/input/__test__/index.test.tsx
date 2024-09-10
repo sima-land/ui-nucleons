@@ -202,4 +202,14 @@ describe('Input', () => {
     rerender(<Input focused />);
     expect(getByTestId('input').classList.contains('focused')).toBe(true);
   });
+
+  it('should handle "--base-input-placeholder-color" in "baseInputProps.style"', () => {
+    const { getByTestId } = render(
+      <Input baseInputProps={{ style: { '--base-input-placeholder-color': 'green' } }} />,
+    );
+
+    expect(getByTestId('base-input').style.getPropertyValue('--base-input-placeholder-color')).toBe(
+      'green',
+    );
+  });
 });

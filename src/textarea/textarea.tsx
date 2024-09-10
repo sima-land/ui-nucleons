@@ -87,8 +87,8 @@ export function Textarea({
           multiline
           className={cx('textarea', baseInputProps?.className)}
           style={{
-            ...baseInputProps?.style,
             '--base-input-placeholder-color': definePlaceholderColor({ failed, disabled }),
+            ...baseInputProps?.style,
           }}
           autoComplete={autoComplete}
           autoFocus={autoFocus}
@@ -101,21 +101,21 @@ export function Textarea({
           required={required}
           rows={rows}
           value={value}
-          onFocus={(event: any) => {
+          onFocus={event => {
             onFocus?.(event);
             updateFilled(event);
             setFocused(true);
           }}
-          onBlur={(event: any) => {
+          onBlur={event => {
             onBlur?.(event);
             updateFilled(event);
             setFocused(false);
           }}
-          onInput={(event: any) => {
+          onInput={event => {
             onInput?.(event);
             updateFilled(event);
           }}
-          onChange={(event: any) => {
+          onChange={event => {
             onChange?.(event);
             updateFilled(event);
           }}

@@ -23,6 +23,7 @@ export default function DifferentState() {
           options: [
             { value: 'default', displayName: 'По умолчанию' },
             { value: 'disabled', displayName: 'Отключено' },
+            { value: 'failed', displayName: 'Ошибка' },
           ],
         },
         {
@@ -39,6 +40,7 @@ export default function DifferentState() {
         value={controlled ? value : undefined}
         defaultValue={!controlled ? defaultValue : undefined}
         disabled={state === 'disabled'}
+        failed={state === 'failed'}
         onChange={(event, data) => {
           setValue(data.cleanValue);
         }}

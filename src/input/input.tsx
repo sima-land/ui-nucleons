@@ -116,8 +116,8 @@ export function Input({
           multiline={false}
           className={cx('input', disabled && 'disabled', baseInputProps?.className)}
           style={{
-            ...baseInputProps?.style,
             '--base-input-placeholder-color': definePlaceholderColor({ failed, disabled }),
+            ...baseInputProps?.style,
           }}
           autoComplete={autoComplete}
           autoFocus={autoFocus}
