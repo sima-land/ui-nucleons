@@ -1,5 +1,11 @@
-import { SidePage } from '@sima-land/ui-nucleons/side-page';
+import {
+  getResponsiveSidePageProps,
+  SidePage,
+  SidePageBody,
+} from '@sima-land/ui-nucleons/side-page';
 import { useState, CSSProperties } from 'react';
+import { navigationButtons, TopBar } from '@sima-land/ui-nucleons/top-bar';
+import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
 import { Button } from '@sima-land/ui-nucleons/button';
 import failSrc from './images/fail.png';
 
@@ -9,7 +15,7 @@ export const meta = {
 };
 
 export default function SizeS() {
-  const [shown, toggle] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const styles = {
     root: {
@@ -41,29 +47,38 @@ export default function SizeS() {
 
   return (
     <>
-      <Button size='s' onClick={() => toggle(true)}>
+      <Button size='s' onClick={() => setOpen(true)}>
         Показать
       </Button>
 
-      <SidePage size='s' shown={shown} withTransitions onClose={() => toggle(false)}>
-        <SidePage.Header divided title='Условия акции' onClose={() => toggle(false)} />
+      {open && (
+        <SidePage {...getResponsiveSidePageProps({ size: 's' })} onClose={() => setOpen(false)}>
+          <TopBar
+            size='unset'
+            divided
+            title='Условия акции'
+            buttons={navigationButtons({
+              onClose: () => setOpen(false),
+            })}
+          />
 
-        <SidePage.Body>
-          <div style={styles.root}>
-            <img src={failSrc} alt='' style={styles.image} />
-            <div style={styles.title}>Не удалось открыть условия акции</div>
-            <div style={styles.message}>
-              Проверьте ваше подключение к сети и попробуйте обновить страницу
+          <SidePageBody>
+            <div style={styles.root}>
+              <img src={failSrc} alt='' style={styles.image} />
+              <div style={styles.title}>Не удалось открыть условия акции</div>
+              <div style={styles.message}>
+                Проверьте ваше подключение к сети и попробуйте обновить страницу
+              </div>
             </div>
-          </div>
-        </SidePage.Body>
+          </SidePageBody>
 
-        <SidePage.Footer divided style={{ padding: '0 20px' }}>
-          <Button style={{ width: '100%' }} onClick={() => toggle(false)}>
-            Обновить
-          </Button>
-        </SidePage.Footer>
-      </SidePage>
+          <BottomBar size='unset' divided style={{ padding: '0 20px' }}>
+            <Button style={{ width: '100%' }} onClick={() => setOpen(false)}>
+              Обновить
+            </Button>
+          </BottomBar>
+        </SidePage>
+      )}
     </>
   );
 }

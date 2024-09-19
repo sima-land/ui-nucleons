@@ -1,43 +1,53 @@
-import { SidePage } from '@sima-land/ui-nucleons/side-page';
+import { SidePage, SidePageBody } from '@sima-land/ui-nucleons/side-page';
 import { useState, CSSProperties } from 'react';
 import { Button } from '@sima-land/ui-nucleons/button';
 import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
+import { navigationButtons, TopBar } from '@sima-land/ui-nucleons/top-bar';
+import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
 
 export const meta = {
   category: 'Компоненты/SidePage',
   title: 'Прозрачные кнопки в футере',
 };
 
-export default function WithCleanButtons() {
-  const [shown, toggleSidePage] = useState<boolean>(false);
+const styles = {
+  root: {
+    padding: '40px',
+    display: 'flex',
+  } satisfies CSSProperties,
+};
 
-  const styles: Record<'root', CSSProperties> = {
-    root: {
-      padding: '40px',
-      display: 'flex',
-    },
-  };
+export default function WithCleanButtons() {
+  const [shown, setSHown] = useState<boolean>(false);
 
   return (
     <>
-      <Button size='s' onClick={() => toggleSidePage(true)}>
+      <Button size='s' onClick={() => setSHown(true)}>
         Показать
       </Button>
 
-      <SidePage size='s' shown={shown} withTransitions onClose={() => toggleSidePage(false)}>
-        <SidePage.Header divided title='Особый футер' onClose={() => toggleSidePage(false)} />
+      {shown && (
+        <SidePage size='s' onClose={() => setSHown(false)}>
+          <TopBar
+            divided
+            title='Особый футер'
+            buttons={navigationButtons({
+              onClose: () => setSHown(false),
+            })}
+          />
 
-        <SidePage.Body>
-          <div style={styles.root}>Пример использования прозрачных кнопок в футере...</div>
-        </SidePage.Body>
+          <SidePageBody style={styles.root}>
+            Пример использования прозрачных кнопок в футере...
+          </SidePageBody>
 
-        <SidePage.Footer divided>
-          <CleanGroup>
-            <CleanButton>Эники</CleanButton>
-            <CleanButton>Бэники</CleanButton>
-          </CleanGroup>
-        </SidePage.Footer>
-      </SidePage>
+          <BottomBar divided>
+            <CleanGroup>
+              <CleanButton>Эники</CleanButton>
+              <CleanButton>Бэники</CleanButton>
+            </CleanGroup>
+          </BottomBar>
+        </SidePage>
+      )}
     </>
   );
 }

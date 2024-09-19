@@ -1,7 +1,5 @@
-@use '../colors';
 @use '../breakpoints';
-@use '../top-bar/top-bar-util';
-@use '../bottom-bar/bottom-bar-util';
+@use './side-page-util';
 @use '../modal-overlay/modal-overlay-util';
 
 .side-page {
@@ -13,77 +11,13 @@
   display: flex;
   flex-direction: column;
   background: #fff;
-  @include breakpoints.down('xs') {
-    width: 100%;
-    .header {
-      @include top-bar-util.size-m;
-    }
-    .footer {
-      @include bottom-bar-util.size-m;
-    }
-  }
-  @include breakpoints.up('xs') {
-    &.size-s {
-      max-width: 488px;
-    }
-    &.size-m {
-      max-width: 968px;
-    }
-    .header {
-      @include top-bar-util.size-xl;
-    }
-    .footer {
-      @include bottom-bar-util.size-l;
-    }
-  }
+  max-width: var(--side-page-max-width, auto);
 }
 
-.header {
-  flex-shrink: 0;
-  width: 100%;
+.size-s {
+  @include side-page-util.size-s;
 }
 
-.body {
-  flex-grow: 1;
-  overflow-y: auto;
-}
-
-.footer {
-  flex-shrink: 0;
-  width: 100%;
-}
-
-// transitions
-.enter {
-  background-color: transparent;
-  .side-page {
-    transform: translateX(100%);
-  }
-}
-
-.enter-active {
-  transition: background-color var(--transition-duration) ease-in-out;
-  background-color: modal-overlay-util.$overlay-color;
-  overflow: hidden;
-  .side-page {
-    transition: transform var(--transition-duration) ease-in-out;
-    transform: translateX(0);
-  }
-}
-
-.exit {
-  background-color: modal-overlay-util.$overlay-color;
-  .side-page {
-    transform: translateX(0);
-  }
-}
-
-.exit-active {
-  transition: background-color var(--transition-duration) ease-in-out;
-  background-color: transparent;
-  overflow: hidden;
-  .side-page {
-    transition: transform var(--transition-duration) ease-in-out;
-    transform: translateX(100%);
-  }
+.size-m {
+  @include side-page-util.size-m;
 }

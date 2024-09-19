@@ -1,22 +1,24 @@
-import { SidePage } from '@sima-land/ui-nucleons/side-page';
+import { SidePage, SidePageBody } from '@sima-land/ui-nucleons/side-page';
 import { useState, CSSProperties } from 'react';
 import { Button } from '@sima-land/ui-nucleons/button';
 import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
 import { LoremIpsum, PageScrollLockDemo } from '#docs-utils';
+import { navigationButtons, TopBar } from '@sima-land/ui-nucleons/top-bar';
+import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
 
 export const meta = {
   category: 'Компоненты/SidePage',
   title: 'Тест: Блокировка прокрутки страницы',
 };
 
-export default function TestPageScrollLock() {
-  const styles: Record<'root', CSSProperties> = {
-    root: {
-      padding: '24px',
-    },
-  };
+const styles = {
+  root: {
+    padding: '24px',
+  } satisfies CSSProperties,
+};
 
-  const [shown, toggle] = useState<boolean>(false);
+export default function TestPageScrollLock() {
+  const [open, setOpen] = useState<boolean>(false);
   const [contentSize, setContentSize] = useState<number>(5);
 
   const increaseContent = () => {
@@ -28,11 +30,11 @@ export default function TestPageScrollLock() {
   };
 
   const show = () => {
-    toggle(true);
+    setOpen(true);
   };
 
   const hide = () => {
-    toggle(false);
+    setOpen(false);
   };
 
   return (
@@ -41,22 +43,26 @@ export default function TestPageScrollLock() {
         Показать SidePage
       </Button>
 
-      <SidePage size='s' shown={shown} onClose={hide} withTransitions withScrollDisable>
-        <SidePage.Header divided title='Тест: Блокировка прокрутки страницы' onClose={hide} />
+      {open && (
+        <SidePage size='s' onClose={hide}>
+          <TopBar
+            divided
+            title='Тест: Блокировка прокрутки страницы'
+            buttons={navigationButtons({ onClose: hide })}
+          />
 
-        <SidePage.Body>
-          <div style={styles.root}>
+          <SidePageBody withScrollDisable style={styles.root}>
             <LoremIpsum paragraphCount={contentSize} />
-          </div>
-        </SidePage.Body>
+          </SidePageBody>
 
-        <SidePage.Footer divided>
-          <CleanGroup>
-            <CleanButton onClick={decreaseContent}>Убрать</CleanButton>
-            <CleanButton onClick={increaseContent}>Добавить</CleanButton>
-          </CleanGroup>
-        </SidePage.Footer>
-      </SidePage>
+          <BottomBar divided>
+            <CleanGroup>
+              <CleanButton onClick={decreaseContent}>Убрать</CleanButton>
+              <CleanButton onClick={increaseContent}>Добавить</CleanButton>
+            </CleanGroup>
+          </BottomBar>
+        </SidePage>
+      )}
     </PageScrollLockDemo>
   );
 }
