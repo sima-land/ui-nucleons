@@ -35,7 +35,7 @@
     "focus-trap": "^7.2.0",
     "overlayscrollbars": "^2.8.0",
     "overlayscrollbars-react": "^0.5.6",
-    "react-transition-group": "^4.4.2",
+    "react-transition-state": "^2.1.2",
     "redux": "^4.2.0"
   },
   "devDependencies": {
@@ -52,7 +52,6 @@
     "@types/overlayscrollbars": "^1.12.1",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
-    "@types/react-transition-group": "^4.4.4",
     "babel-jest": "^27.5.1",
     "copyfiles": "^2.4.1",
     "eslint": "^9.8.0",

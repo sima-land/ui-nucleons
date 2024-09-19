@@ -1,0 +1,67 @@
+@use '../breakpoints';
+@use './side-page-util';
+@use '../top-bar/top-bar-util';
+@use '../bottom-bar/bottom-bar-util';
+@use '../modal-overlay/modal-overlay-util';
+
+@include breakpoints.lt('xs') {
+  .size-s {
+    @include top-bar-util.size-m;
+    @include bottom-bar-util.size-m;
+  }
+  .size-m {
+    @include top-bar-util.size-m;
+    @include bottom-bar-util.size-m;
+  }
+}
+
+@include breakpoints.gte('xs') {
+  .size-s {
+    @include side-page-util.size-s;
+    @include top-bar-util.size-xl;
+    @include bottom-bar-util.size-l;
+  }
+  .size-m {
+    @include side-page-util.size-m;
+    @include top-bar-util.size-xl;
+    @include bottom-bar-util.size-l;
+  }
+}
+
+// transitions
+
+/* stylelint-disable-next-line selector-class-pattern */
+.preEnter {
+  background-color: transparent;
+  .side-page {
+    transform: translateX(100%);
+  }
+}
+
+.entering {
+  transition: background-color var(--side-page-transition-duration, 300ms) ease-in-out;
+  background-color: modal-overlay-util.$overlay-color;
+  overflow: hidden;
+  .side-page {
+    transition: transform var(--side-page-transition-duration, 300ms) ease-in-out;
+    transform: translateX(0);
+  }
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.preExit {
+  background-color: modal-overlay-util.$overlay-color;
+  .side-page {
+    transform: translateX(0);
+  }
+}
+
+.exiting {
+  transition: background-color var(--side-page-transition-duration, 300ms) ease-in-out;
+  background-color: transparent;
+  overflow: hidden;
+  .side-page {
+    transition: transform var(--side-page-transition-duration, 300ms) ease-in-out;
+    transform: translateX(100%);
+  }
+}

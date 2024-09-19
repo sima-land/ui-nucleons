@@ -1,81 +1,94 @@
-import { SidePage, SidePageProps } from '@sima-land/ui-nucleons/side-page';
-import { useReducer } from 'react';
+import { SidePage, SidePageBody, useSidePageTransition } from '@sima-land/ui-nucleons/side-page';
+import { useState } from 'react';
 import { Button } from '@sima-land/ui-nucleons/button';
+import { TopBar } from '@sima-land/ui-nucleons/top-bar';
+import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
 
 export const meta = {
   category: 'Компоненты/SidePage',
   title: 'С анимациями',
 };
 
+interface StepProps {
+  onNext?: VoidFunction;
+  onBack?: VoidFunction;
+  onClose?: VoidFunction;
+}
+
 export default function WithTransitions() {
-  const [[currentStep, previousStep], setStep] = useReducer(
-    ([prev]: number[], next: number) => [next, prev],
-    [0, 0],
-  );
+  const [shown, setShown] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1);
 
-  const close = () => setStep(0);
-  const goNext = () => setStep(currentStep + 1);
-  const goBack = () => setStep(currentStep - 1);
+  const close = () => setShown(false);
+  const goNext = () => setCurrentStep(currentStep + 1);
+  const goBack = () => setCurrentStep(currentStep - 1);
 
-  const withTransitions = previousStep === 0 || currentStep === 0;
+  const { state, sidePageProps } = useSidePageTransition({
+    shown,
+    extraProps: { size: 's', onClose: close },
+  });
 
   return (
     <>
-      <Button size='s' onClick={() => setStep(1)}>
+      <Button
+        size='s'
+        onClick={() => {
+          setShown(true);
+          setCurrentStep(1);
+        }}
+      >
         Показать
       </Button>
 
-      <Step1
-        shown={currentStep === 1}
-        withTransitions={withTransitions}
-        onClose={close}
-        onNext={goNext}
-      />
-
-      <Step2
-        shown={currentStep === 2}
-        withTransitions={withTransitions}
-        onClose={close}
-        onNext={goNext}
-        onBack={goBack}
-      />
-
-      <Step3
-        shown={currentStep === 3}
-        withTransitions={withTransitions}
-        onClose={close}
-        onBack={goBack}
-      />
+      {state.isMounted && (
+        <SidePage {...sidePageProps}>
+          {currentStep === 1 && <Step1 onNext={goNext} onBack={goBack} onClose={close} />}
+          {currentStep === 2 && <Step2 onNext={goNext} onBack={goBack} onClose={close} />}
+          {currentStep === 3 && <Step3 onNext={goNext} onBack={goBack} onClose={close} />}
+        </SidePage>
+      )}
     </>
   );
 }
 
-function Step1(props: SidePageProps & { onNext: () => void }) {
+function Step1({ onNext }: StepProps) {
   return (
-    <SidePage size='s' {...props}>
-      <SidePage.Header divided title='Шаг 1' onClose={props.onClose} />
-      <SidePage.Footer divided style={{ padding: '20px' }}>
-        <Button onClick={props.onNext}>Дальше</Button>
-      </SidePage.Footer>
-    </SidePage>
+    <>
+      <TopBar divided title='Шаг 1' />
+
+      <SidePageBody />
+
+      <BottomBar divided style={{ padding: '20px' }}>
+        <Button onClick={onNext}>Вперёд!</Button>
+      </BottomBar>
+    </>
   );
 }
 
-function Step2(props: SidePageProps & { onBack: () => void; onNext: () => void }) {
+function Step2({ onNext }: StepProps) {
   return (
-    <SidePage size='s' {...props}>
-      <SidePage.Header divided title='Шаг 2' onClose={props.onClose} onBack={props.onBack} />
-      <SidePage.Footer divided style={{ padding: '20px' }}>
-        <Button onClick={props.onNext}>Дальше</Button>
-      </SidePage.Footer>
-    </SidePage>
+    <>
+      <TopBar divided title='Шаг 2' />
+
+      <SidePageBody />
+
+      <BottomBar divided style={{ padding: '20px' }}>
+        <Button onClick={onNext}>Дальше</Button>
+      </BottomBar>
+    </>
   );
 }
 
-function Step3(props: SidePageProps & { onBack: () => void }) {
+function Step3({ onClose }: StepProps) {
   return (
-    <SidePage size='s' {...props}>
-      <SidePage.Header divided title='Шаг 3' onClose={props.onClose} onBack={props.onBack} />
-    </SidePage>
+    <>
+      <TopBar divided title='Шаг 3' />
+
+      <SidePageBody />
+
+      <BottomBar divided style={{ padding: '20px' }}>
+        <Button onClick={onClose}>Закрыть</Button>
+      </BottomBar>
+    </>
   );
 }

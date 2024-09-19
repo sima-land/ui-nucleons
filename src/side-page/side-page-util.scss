@@ -1,0 +1,9 @@
+@use '../shadows';
+
+@mixin size-s {
+  --side-page-max-width: 488px;
+}
+
+@mixin size-m {
+  --side-page-max-width: 968px;
+}

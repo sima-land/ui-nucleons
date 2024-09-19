@@ -1,7 +1,13 @@
-import { SidePage } from '@sima-land/ui-nucleons/side-page';
+import {
+  SidePage,
+  SidePageBody,
+  getResponsiveSidePageProps,
+} from '@sima-land/ui-nucleons/side-page';
 import { useState } from 'react';
 import { Button } from '@sima-land/ui-nucleons/button';
 import { CleanGroup, CleanButton } from '@sima-land/ui-nucleons/clean-buttons';
+import { navigationButtons, TopBar } from '@sima-land/ui-nucleons/top-bar';
+import { BottomBar } from '@sima-land/ui-nucleons/bottom-bar';
 
 export const meta = {
   category: 'Компоненты/SidePage',
@@ -9,29 +15,36 @@ export const meta = {
 };
 
 export default function Primary() {
-  const [shown, toggle] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <>
-      <Button size='s' onClick={() => toggle(true)}>
+      <Button size='s' onClick={() => setOpen(true)}>
         Показать
       </Button>
 
-      <SidePage shown={shown} size='s' withTransitions onClose={() => toggle(false)}>
-        <SidePage.Header divided title='Простой пример' onClose={() => toggle(false)} />
+      {open && (
+        <SidePage {...getResponsiveSidePageProps({ size: 's' })} onClose={() => setOpen(false)}>
+          <TopBar
+            size='unset'
+            divided
+            title='Простой пример'
+            buttons={navigationButtons({
+              onClose: () => setOpen(false),
+            })}
+          />
 
-        <SidePage.Body>
-          <div style={{ padding: '20px' }}>
+          <SidePageBody style={{ padding: '20px' }}>
             SidePage - это аналог модального окна со своей особой стилизацией.
-          </div>
-        </SidePage.Body>
+          </SidePageBody>
 
-        <SidePage.Footer divided>
-          <CleanGroup>
-            <CleanButton onClick={() => toggle(false)}>Закрыть</CleanButton>
-          </CleanGroup>
-        </SidePage.Footer>
-      </SidePage>
+          <BottomBar size='unset' divided>
+            <CleanGroup>
+              <CleanButton onClick={() => setOpen(false)}>Закрыть</CleanButton>
+            </CleanGroup>
+          </BottomBar>
+        </SidePage>
+      )}
     </>
   );
 }
