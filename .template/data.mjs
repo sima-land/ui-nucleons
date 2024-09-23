@@ -55,4 +55,5 @@ export const gradients = {
   sky: 'linear-gradient(135deg, #3777fe 0%, #21e3e4 100%)',
   'polar-light': 'linear-gradient(135deg, #46007c 0%, #008dc9 100%)',
   night: 'linear-gradient(135deg, #0f0f0f 0%, #757575 100%)',
+  blueberry: 'linear-gradient(135deg, #a3a4cd 0%, #30314e 100%)',
 };

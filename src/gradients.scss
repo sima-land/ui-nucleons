@@ -9,6 +9,7 @@ $foliage: linear-gradient(135deg, #09ab8b 0%, #a9e007 100%);
 $sky: linear-gradient(135deg, #3777fe 0%, #21e3e4 100%);
 $polar-light: linear-gradient(135deg, #46007c 0%, #008dc9 100%);
 $night: linear-gradient(135deg, #0f0f0f 0%, #757575 100%);
+$blueberry: linear-gradient(135deg, #a3a4cd 0%, #30314e 100%);
 
 @mixin properties() {
   --gradient-sunrise: linear-gradient(135deg, #bf16af 0%, #ff9b8d 100%);
@@ -20,4 +21,5 @@ $night: linear-gradient(135deg, #0f0f0f 0%, #757575 100%);
   --gradient-sky: linear-gradient(135deg, #3777fe 0%, #21e3e4 100%);
   --gradient-polar-light: linear-gradient(135deg, #46007c 0%, #008dc9 100%);
   --gradient-night: linear-gradient(135deg, #0f0f0f 0%, #757575 100%);
+  --gradient-blueberry: linear-gradient(135deg, #a3a4cd 0%, #30314e 100%);
 }
