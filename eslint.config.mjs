@@ -8,6 +8,7 @@ export default [
     files: ['**/*.{test,spec}.*', 'docs/**/*.{ts,tsx}'],
     rules: {
       'jsdoc/require-jsdoc': 'off',
+      'no-alert': 'off',
     },
   },
 ];
