@@ -13,6 +13,7 @@ function copy(paths, options = {}) {
 await copy(['./src/**/*', 'build'], {
   up: 1,
   exclude: [
+    './src/**/*.md',
     './src/**/*.ts',
     './src/**/*.tsx',
     './src/**/*.js',
