@@ -38,6 +38,12 @@ export function Select(props: SelectProps) {
     }
   }, [value]);
 
+  useIsomorphicLayoutEffect(() => {
+    if (menuOpen && menuFloating.isPositioned) {
+      menuElement?.focus();
+    }
+  }, [menuOpen, menuFloating.isPositioned, menuElement]);
+
   const contextValue: SelectContextValue = {
     selectProps: props,
 

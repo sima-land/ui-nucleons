@@ -104,10 +104,6 @@ function SelectMenuInner({
     [viewportRef, viewportRefProp],
   );
 
-  useEffect(() => {
-    rootRef.current?.focus();
-  }, []);
-
   const [activeItemIndex, setActiveItemIndex] = useState(-1);
 
   const items: ReactElement<DropdownItemProps>[] = [];
