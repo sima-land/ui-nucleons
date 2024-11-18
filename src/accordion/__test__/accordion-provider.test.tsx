@@ -88,7 +88,7 @@ describe('AccordionProvider', () => {
     expect(getByTestId('selected-div').innerHTML).toBe('');
     fireEvent.click(getByTestId('unregister-div'));
     expect(() => {
-        fireEvent.click(getByTestId('unregister-div'));
-    }).toThrow('')
+      fireEvent.click(getByTestId('unregister-div'));
+    }).toThrow('');
   });
 });
