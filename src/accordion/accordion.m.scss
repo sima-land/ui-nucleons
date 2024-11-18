@@ -1,0 +1,86 @@
+@use '../colors.scss';
+
+.root {
+  width: 100%;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  background-color: colors.$basic-gray4;
+  margin-bottom: 20px;
+  --text-color: #{colors.$basic-gray87};
+  --hover-header-color: #{colors.$basic-gray54};
+  --arrow-color: #{colors.$basic-gray87};
+  --border-focus-visible-color: #{colors.$basic-gray24};
+
+  &.theme-dark {
+    --text-color: #{colors.$basic-white};
+    --hover-header-color: #{colors.$basic-gray8};
+    --arrow-color: #{colors.$basic-gray8};
+    --border-focus-visible-color: #{colors.$basic-gray54};
+    background-color: colors.$basic-gray76;
+  }
+}
+
+.expanded {
+  .arrow {
+    transform: rotate(180deg);
+  }
+  .content {
+    padding: 0 16px;
+    margin-bottom: 16px;
+  }
+  .header:focus-visible {
+    border-radius: 8px 8px 0 0;
+  }
+}
+
+.title {
+  margin: 0;
+  color: var(--text-color);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+.arrow {
+  fill: var(--arrow-color);
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  padding: 16px;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  background: none;
+  width: 100%;
+  &:focus-visible {
+    outline: 1px solid var(--border-focus-visible-color);
+    border-radius: 8px;
+  }
+  &:hover {
+    .title {
+      color: var(--hover-header-color);
+    }
+  }
+}
+
+.content {
+  padding: 0 16px;
+  overflow: hidden;
+  height: 0;
+  transition: height 200ms ease;
+  color: var(--text-color);
+}
+
+.description {
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  display: inline-block;
+  color: colors.$basic-gray38;
+}
