@@ -10,7 +10,7 @@ export interface Props {
   /** Заголовок блока аккордеона.  */
   summary: string;
   /** Тема оформления. */
-  theme?: 'light' | 'dark';
+  theme?: 'light' | 'dark' | 'unset';
   /** Описание. */
   description?: string;
   /** Название группы аккордеона. */
