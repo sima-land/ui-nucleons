@@ -67,7 +67,6 @@ export const Accordion = ({
         type='button'
         aria-expanded={expanded}
         aria-controls={`section-${name}`}
-        id={`accordion-${name}`}
         onClick={() => {
           toggle(name, id);
           onToggle?.(!expanded);
@@ -80,13 +79,11 @@ export const Accordion = ({
       </button>
       <div
         className={styles.content}
-        id={`section-${name}`}
         role='region'
         ref={container}
         style={{
           height: expanded ? contentHeight : undefined,
         }}
-        aria-labelledby={`accordion-${name}`}
       >
         {children}
         {description && <span className={styles.description} children={description} />}
