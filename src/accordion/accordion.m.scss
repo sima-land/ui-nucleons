@@ -5,11 +5,13 @@
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  background-color: colors.$basic-gray4;
-  --text-color: #{colors.$basic-gray87};
-  --hover-header-color: #{colors.$basic-gray54};
-  --arrow-color: #{colors.$basic-gray87};
-  --border-focus-visible-color: #{colors.$basic-gray24};
+  &.theme-light {
+    background-color: colors.$basic-gray4;
+    --text-color: #{colors.$basic-gray87};
+    --hover-header-color: #{colors.$basic-gray54};
+    --arrow-color: #{colors.$basic-gray87};
+    --border-focus-visible-color: #{colors.$basic-gray24};
+  }
   &.theme-dark {
     --text-color: #{colors.$basic-white};
     --hover-header-color: #{colors.$basic-gray8};

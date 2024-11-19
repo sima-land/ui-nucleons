@@ -1,2 +1,2 @@
 export { Accordion } from './accordion';
-export { AccordionContext, AccordionProvider } from './accordion-provider';
+export { AccordionProvider } from './accordion-provider';

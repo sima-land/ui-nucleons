@@ -1,4 +1,4 @@
-import { createContext, useCallback, useState } from 'react';
+import { createContext, ReactNode, useCallback, useState } from 'react';
 
 interface Group {
   isOpen: boolean;
@@ -9,14 +9,18 @@ interface ContextProps {
   register: (groupId: string, initialOpen?: boolean) => symbol;
   unregister: (groupId: string, id: symbol) => void;
   toggle: (groupId: string, id: symbol) => void;
-  selected: (groupId: string) => symbol | undefined;
+  selectOpenedId: (groupId: string) => symbol | undefined;
+}
+
+interface Props {
+  children?: ReactNode;
 }
 
 export const AccordionContext = createContext<ContextProps>({
   register: () => Symbol(),
   unregister: () => {},
   toggle: () => {},
-  selected: () => Symbol(),
+  selectOpenedId: () => Symbol(),
 });
 
 /**
@@ -24,7 +28,7 @@ export const AccordionContext = createContext<ContextProps>({
  * @param props Пропсы.
  * @return Элемент.
  */
-export const AccordionProvider = ({ children }: React.PropsWithChildren) => {
+export const AccordionProvider = ({ children }: Props) => {
   const [items, setItems] = useState<Record<string, Group[]>>({});
 
   const register = useCallback(
@@ -64,7 +68,7 @@ export const AccordionProvider = ({ children }: React.PropsWithChildren) => {
     }));
   }, []);
 
-  const selected = useCallback(
+  const selectOpenedId = useCallback(
     (groupId: string) => items[groupId]?.find(item => item.isOpen)?.id,
     [items],
   );
@@ -75,7 +79,7 @@ export const AccordionProvider = ({ children }: React.PropsWithChildren) => {
         register,
         unregister,
         toggle,
-        selected,
+        selectOpenedId,
       }}
     >
       {children}

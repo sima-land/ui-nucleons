@@ -5,7 +5,7 @@ import { fireEvent, render } from '@testing-library/react';
 describe('AccordionProvider', () => {
   const TestComponent = () => {
     const groupId = 'test1';
-    const { register, unregister, toggle, selected } = useContext(AccordionContext);
+    const { register, unregister, toggle, selectOpenedId } = useContext(AccordionContext);
     const [selectedSymbol, select] = useState(Symbol());
 
     return (
@@ -17,12 +17,12 @@ describe('AccordionProvider', () => {
         <div data-testid='register-div' onClick={() => select(register(groupId))} />
         <div data-testid='unregister-div' onClick={() => unregister(groupId, selectedSymbol)} />
         <div data-testid='toggle-div' onClick={() => toggle(groupId, selectedSymbol)} />
-        <div data-testid='selected-div' children={selected(groupId)?.description} />
+        <div data-testid='selected-div' children={selectOpenedId(groupId)?.description} />
       </div>
     );
   };
 
-  it('Должен зарегистрировать блок в стор и разрегистрировать', () => {
+  it('Должен зарегистрировать несколько элементов, но выбранным элементом должен быть только проинициализированный', () => {
     const { getByTestId } = render(
       <AccordionProvider>
         <TestComponent />
