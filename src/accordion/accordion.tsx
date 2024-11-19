@@ -6,28 +6,30 @@ import { AccordionContext } from './accordion-provider';
 
 const cx = classnames.bind(styles);
 
-interface Props {
+export interface Props {
+  /** Заголовок блока аккордеона.  */
   summary: string;
+  /** Тема оформления. */
   theme?: 'light' | 'dark';
+  /** Описание. */
   description?: string;
+  /** Название группы аккордеона. */
   name: string;
+  /** Первоначальное значение состояния открытия. */
   open?: boolean;
+  /** Контент аккордеона при открытии. */
   children?: ReactNode;
+  /** Внешний стиль компонента. */
   className?: string;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, open: boolean) => void;
+  /** Уровень заголовков. */
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  /** Обработчик переключения состояния аккордеона. */
+  onToggle?: (open: boolean) => void;
 }
 
 /**
  * Аккордеон.
  * @param props Пропсы компонента.
- * @param props.name Имя группы аккордеонов.
- * @param props.summary Заголовок блока аккордеона.
- * @param props.description Описание.
- * @param props.theme Тема оформления.
- * @param props.open Значение состояния открытия.
- * @param props.className Внешний стиль компонента.
- * @param props.onClick Обработчик клика по заголовку аккордеона.
- * @param props.children Контент аккордеона при открытии.
  * @return Элемент.
  */
 export const Accordion = ({
@@ -36,13 +38,14 @@ export const Accordion = ({
   description,
   theme = 'light',
   open,
-  onClick,
+  onToggle,
   className,
   children,
+  level = 4,
 }: Props) => {
   const container = useRef<HTMLDivElement>(null);
   const { selectOpenedId, register, unregister, toggle } = useContext(AccordionContext);
-  const [id] = useState<symbol>(register(name, open));
+  const [id] = useState<symbol>(() => register(name, open));
   const expanded = selectOpenedId(name) === id;
   const contentHeight = container.current?.scrollHeight || 0;
 
@@ -65,14 +68,14 @@ export const Accordion = ({
         aria-expanded={expanded}
         aria-controls={`section-${name}`}
         id={`accordion-${name}`}
-        onClick={e => {
+        onClick={() => {
           toggle(name, id);
-          onClick?.(e, !expanded);
+          onToggle?.(!expanded);
         }}
         tabIndex={0}
         className={styles.header}
       >
-        <span role='heading' className={styles.title} children={summary} tabIndex={0} />
+        <span role='heading' aria-level={level} className={styles.title} children={summary} />
         <ArrowExpandDownSVG className={styles.arrow} />
       </button>
       <div

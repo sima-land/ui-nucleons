@@ -18,7 +18,7 @@ describe('Accordion', () => {
 
   (useContext as jest.Mock).mockReturnValue(mockContext);
 
-  it('При размонтировании должен вызываться unregister', () => {
+  it('should call unregister from AccordionContext with unmount component', () => {
     const { unmount } = render(<Accordion name='test-group' summary='Заголовок' />);
     expect(mockContext.unregister).toHaveBeenCalledTimes(0);
     unmount();
@@ -26,21 +26,21 @@ describe('Accordion', () => {
     expect(mockContext.unregister).toHaveBeenCalledWith('test-group', 123);
   });
 
-  it('Должен вызываться toggle и onClick при нажатии на кнопку - заголовок аккордеона', () => {
-    const fakeOnClick = jest.fn();
+  it('should call onToggle from AccordionContext with click on header', () => {
+    const fakeOnToggle = jest.fn();
     const { getByRole } = render(
-      <Accordion theme='dark' name='test-group' summary='Заголовок' onClick={fakeOnClick} />,
+      <Accordion theme='dark' name='test-group' summary='Заголовок' onToggle={fakeOnToggle} />,
     );
     expect(mockContext.toggle).toHaveBeenCalledTimes(0);
-    expect(fakeOnClick).toHaveBeenCalledTimes(0);
+    expect(fakeOnToggle).toHaveBeenCalledTimes(0);
     fireEvent.click(getByRole('button'));
     expect(mockContext.toggle).toHaveBeenCalledTimes(1);
     expect(mockContext.toggle).toHaveBeenCalledWith('test-group', 123);
-    expect(fakeOnClick).toHaveBeenCalledTimes(1);
-    expect(fakeOnClick).toHaveBeenCalledWith(fakeOnClick.mock.calls[0][0], true);
+    expect(fakeOnToggle).toHaveBeenCalledTimes(1);
+    expect(fakeOnToggle).toHaveBeenCalledWith(true);
   });
 
-  it('Для открытых аккордеонов должна быть установлена высота относительно высоты их контента', () => {
+  it('for opened accordion style.height is relative content height', () => {
     const selectOpenedId = jest.fn().mockReturnValue(123);
     const register = jest.fn().mockReturnValue(123);
     (useContext as jest.Mock).mockReturnValue({ ...mockContext, selectOpenedId, register });
