@@ -1,4 +1,4 @@
-import { Accordion, AccordionProvider } from '@sima-land/ui-nucleons/accordion';
+import { Accordion } from '@sima-land/ui-nucleons/accordion';
 import { Select } from '@sima-land/ui-nucleons/select';
 import { DropdownItem } from '@sima-land/ui-nucleons/dropdown-item';
 import { useState } from 'react';
@@ -14,7 +14,7 @@ export const meta = {
 export default function () {
   const [value, setValue] = useState<theme>('light');
   return (
-    <AccordionProvider>
+    <div>
       <div className={styles.select}>
         <Select label='Тема' value={value} onValueChange={newValue => setValue(newValue as theme)}>
           <DropdownItem>light</DropdownItem>
@@ -33,6 +33,6 @@ export default function () {
           </ul>
         </div>
       </Accordion>
-    </AccordionProvider>
+    </div>
   );
 }

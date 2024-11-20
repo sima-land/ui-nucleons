@@ -1,15 +1,14 @@
 import { createContext, ReactNode, useCallback, useState } from 'react';
 
 interface Group {
-  isOpen: boolean;
+  setExpand: (expand: boolean) => void;
   id: symbol;
 }
 
 interface ContextProps {
-  register: (groupId: string, initialOpen?: boolean) => symbol;
+  register: (groupId: string, setExpand: (expand: boolean) => void) => symbol;
   unregister: (groupId: string, id: symbol) => void;
-  toggle: (groupId: string, id: symbol) => void;
-  selectOpenedId: (groupId: string) => symbol | undefined;
+  closeGroup: (groupId: string) => void;
 }
 
 interface Props {
@@ -19,8 +18,7 @@ interface Props {
 export const AccordionContext = createContext<ContextProps>({
   register: () => Symbol(),
   unregister: () => {},
-  toggle: () => {},
-  selectOpenedId: () => Symbol(),
+  closeGroup: () => {},
 });
 
 /**
@@ -32,19 +30,14 @@ export const AccordionProvider = ({ children }: Props) => {
   const [items, setItems] = useState<Record<string, Group[]>>({});
 
   const register = useCallback(
-    (groupId: string, initialOpen = false) => {
+    (groupId: string, setExpand: (expand: boolean) => void) => {
       const item = {
-        isOpen: initialOpen,
+        setExpand,
         id: Symbol(groupId),
       };
       setItems(registeredItems => ({
         ...registeredItems,
-        [groupId]: (registeredItems[groupId] || [])
-        .map(({ isOpen, ...rest }) => ({
-          ...rest,
-          isOpen: initialOpen ? false : isOpen,
-        }))
-        .concat(item)
+        [groupId]: (registeredItems[groupId] || []).concat(item),
       }));
       return item.id;
     },
@@ -59,18 +52,8 @@ export const AccordionProvider = ({ children }: Props) => {
     });
   }, []);
 
-  const toggle = useCallback((groupId: string, id: symbol) => {
-    setItems(registeredItems => ({
-      ...registeredItems,
-      [groupId]: registeredItems[groupId].map(value => ({
-        ...value,
-        isOpen: value.id === id && !value.isOpen,
-      })),
-    }));
-  }, []);
-
-  const selectOpenedId = useCallback(
-    (groupId: string) => items[groupId]?.find(item => item.isOpen)?.id,
+  const closeGroup = useCallback(
+    (groupId: string) => items[groupId]?.forEach(({ setExpand }) => setExpand(false)),
     [items],
   );
 
@@ -79,8 +62,7 @@ export const AccordionProvider = ({ children }: Props) => {
       value={{
         register,
         unregister,
-        toggle,
-        selectOpenedId,
+        closeGroup,
       }}
     >
       {children}

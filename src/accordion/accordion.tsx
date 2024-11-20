@@ -15,7 +15,7 @@ export interface Props {
   /** Описание. */
   description?: string;
   /** Название группы аккордеона. */
-  name: string;
+  name?: string;
   /** Первоначальное значение состояния открытия. */
   open?: boolean;
   /** Контент аккордеона при открытии. */
@@ -34,11 +34,11 @@ export interface Props {
  * @return Элемент.
  */
 export const Accordion = ({
-  name = `test[${Date.now()}:${Math.random().toString(16).slice(2)}]`,
+  name = '',
+  theme = 'light',
+  open = false,
   summary,
   description,
-  theme = 'light',
-  open,
   onToggle,
   className,
   children,
@@ -46,23 +46,28 @@ export const Accordion = ({
 }: Props) => {
   const container = useRef<HTMLDivElement>(null);
   const { createResizeObserver } = useContext(ResizeObserverContext);
-  const { selectOpenedId, register, unregister, toggle } = useContext(AccordionContext);
+  const { register, unregister, closeGroup } = useContext(AccordionContext);
   const [id, setId] = useState<symbol>(Symbol());
-  const expanded = selectOpenedId(name) === id;
-  const [contentHeight, setContentHeight] = useState(container.current?.scrollHeight || 0)
+  const [expanded, setExpand] = useState(open);
+  const [contentHeight, setContentHeight] = useState(container.current?.scrollHeight || 0);
 
   useEffect(() => {
-    setId(register(name, open))
-    return () => unregister(name, id)
+    setId(register(name, setExpand));
+    return () => unregister(name, id);
   }, []);
 
   useEffect(() => {
-    const observer = createResizeObserver(() => {
-      setContentHeight(container.current?.scrollHeight || 0)
-    })
+    open && closeGroup(name);
+    setExpand(open);
+  }, [open]);
+
+  useEffect(() => {
+    const observer = createResizeObserver(() =>
+      setContentHeight(container.current?.scrollHeight || 0),
+    );
     container.current && observer.observe(container.current);
     return () => observer.disconnect();
-  },[container.current, createResizeObserver])
+  }, [container.current, createResizeObserver]);
 
   return (
     <div
@@ -81,7 +86,8 @@ export const Accordion = ({
         aria-expanded={expanded}
         aria-controls={`section-${name}`}
         onClick={() => {
-          toggle(name, id);
+          closeGroup(name);
+          setExpand(!expanded);
           onToggle?.(!expanded);
         }}
         tabIndex={0}
