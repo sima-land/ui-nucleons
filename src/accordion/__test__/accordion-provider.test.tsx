@@ -22,7 +22,7 @@ describe('AccordionProvider', () => {
     );
   };
 
-  it('Должен зарегистрировать несколько элементов, но выбранным элементом должен быть только проинициализированный', () => {
+  it('should register all elements and selected only last initialed', () => {
     const { getByTestId } = render(
       <AccordionProvider>
         <TestComponent />
@@ -39,7 +39,7 @@ describe('AccordionProvider', () => {
     expect(getByTestId('selected-div').innerHTML).toBe('test1');
   });
 
-  it('Должен переключить статус открытия с закрытого на открытый и наоборот', () => {
+  it('should toggle open status', () => {
     const { getByTestId } = render(
       <AccordionProvider>
         <TestComponent />
@@ -54,7 +54,7 @@ describe('AccordionProvider', () => {
     expect(getByTestId('selected-div').innerHTML).toBe('');
   });
 
-  it('Вне провайдера ничего не должно меняться и обрабатываться', () => {
+  it('Nothing should be processed outside the provider', () => {
     const { getByTestId } = render(<TestComponent />);
 
     fireEvent.click(getByTestId('register-div-with-initial'));
@@ -66,7 +66,7 @@ describe('AccordionProvider', () => {
     expect(getByTestId('selected-div').innerHTML).toBe('');
   });
 
-  it('При регистрации должен остаться только 1 открытый элемент в группе', () => {
+  it('with register should open only 1 accordion', () => {
     const { getByTestId } = render(
       <AccordionProvider>
         <TestComponent />
@@ -78,7 +78,7 @@ describe('AccordionProvider', () => {
     expect(getByTestId('selected-div').innerHTML).toBe('test1');
   });
 
-  it('При удалении группы, если группа осталась пуста - она должна быть удалена', () => {
+  it('should delete group if deleting last element', () => {
     const { getByTestId } = render(
       <AccordionProvider>
         <TestComponent />
