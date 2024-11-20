@@ -3,6 +3,7 @@ import styles from './accordion.m.scss';
 import ArrowExpandDownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowExpandDown';
 import classnames from 'classnames/bind';
 import { AccordionContext } from './accordion-provider';
+import { ResizeObserverContext } from '../context';
 
 const cx = classnames.bind(styles);
 
@@ -33,7 +34,7 @@ export interface Props {
  * @return Элемент.
  */
 export const Accordion = ({
-  name,
+  name = `test[${Date.now()}:${Math.random().toString(16).slice(2)}]`,
   summary,
   description,
   theme = 'light',
@@ -44,12 +45,24 @@ export const Accordion = ({
   level = 4,
 }: Props) => {
   const container = useRef<HTMLDivElement>(null);
+  const { createResizeObserver } = useContext(ResizeObserverContext);
   const { selectOpenedId, register, unregister, toggle } = useContext(AccordionContext);
-  const [id] = useState<symbol>(() => register(name, open));
+  const [id, setId] = useState<symbol>(Symbol());
   const expanded = selectOpenedId(name) === id;
-  const contentHeight = container.current?.scrollHeight || 0;
+  const [contentHeight, setContentHeight] = useState(container.current?.scrollHeight || 0)
 
-  useEffect(() => () => unregister(name, id), []);
+  useEffect(() => {
+    setId(register(name, open))
+    return () => unregister(name, id)
+  }, []);
+
+  useEffect(() => {
+    const observer = createResizeObserver(() => {
+      setContentHeight(container.current?.scrollHeight || 0)
+    })
+    container.current && observer.observe(container.current);
+    return () => observer.disconnect();
+  },[container.current, createResizeObserver])
 
   return (
     <div
@@ -82,7 +95,7 @@ export const Accordion = ({
         role='region'
         ref={container}
         style={{
-          height: expanded ? contentHeight : undefined,
+          maxHeight: expanded ? contentHeight : 0,
         }}
       >
         {children}

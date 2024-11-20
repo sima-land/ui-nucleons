@@ -37,14 +37,15 @@ export const AccordionProvider = ({ children }: Props) => {
         isOpen: initialOpen,
         id: Symbol(groupId),
       };
-      items[groupId] = (items[groupId] || [])
+      setItems(registeredItems => ({
+        ...registeredItems,
+        [groupId]: (registeredItems[groupId] || [])
         .map(({ isOpen, ...rest }) => ({
           ...rest,
           isOpen: initialOpen ? false : isOpen,
         }))
-        .concat(item);
-
-      setItems(items);
+        .concat(item)
+      }));
       return item.id;
     },
     [items],

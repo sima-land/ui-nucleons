@@ -13,7 +13,7 @@ export default function () {
       <div className={styles.group}>
         <h3 children='Группа №1' />
         <Accordion
-          name='group1'
+          
           summary='Заголовок аккордеона'
           description='Это небольшое дополнительное описание к контенту аккордеона'
         >
@@ -28,7 +28,7 @@ export default function () {
             </ul>
           </div>
         </Accordion>
-        <Accordion name='group1' summary='Заголовок аккордеона'>
+        <Accordion  summary='Заголовок аккордеона'>
           <span children={LoremIpsum({})} />
         </Accordion>
       </div>
