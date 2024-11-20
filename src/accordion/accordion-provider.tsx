@@ -29,20 +29,17 @@ export const AccordionContext = createContext<ContextProps>({
 export const AccordionProvider = ({ children }: Props) => {
   const [items, setItems] = useState<Record<string, Group[]>>({});
 
-  const register = useCallback(
-    (groupId: string, setExpand: (expand: boolean) => void) => {
-      const item = {
-        setExpand,
-        id: Symbol(groupId),
-      };
-      setItems(registeredItems => ({
-        ...registeredItems,
-        [groupId]: (registeredItems[groupId] || []).concat(item),
-      }));
-      return item.id;
-    },
-    [items],
-  );
+  const register = useCallback((groupId: string, setExpand: (expand: boolean) => void) => {
+    const item = {
+      setExpand,
+      id: Symbol(groupId),
+    };
+    setItems(registeredItems => ({
+      ...registeredItems,
+      [groupId]: (registeredItems[groupId] || []).concat(item),
+    }));
+    return item.id;
+  }, []);
 
   const unregister = useCallback((groupId: string, id: symbol) => {
     setItems(registeredItems => {

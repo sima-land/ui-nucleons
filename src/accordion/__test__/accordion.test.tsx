@@ -20,7 +20,7 @@ describe('Accordion', () => {
     expect(mockContext.unregister).toHaveBeenCalledTimes(0);
     unmount();
     expect(mockContext.unregister).toHaveBeenCalledTimes(1);
-    expect(mockContext.unregister).toHaveBeenCalledWith('test-group', expect.any(Symbol));
+    expect(mockContext.unregister).toHaveBeenCalledWith('test-group', 123);
   });
 
   it('should call expandGroup from AccordionContext with click on header', () => {

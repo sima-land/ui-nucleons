@@ -47,12 +47,11 @@ export const Accordion = ({
   const container = useRef<HTMLDivElement>(null);
   const { createResizeObserver } = useContext(ResizeObserverContext);
   const { register, unregister, closeGroup } = useContext(AccordionContext);
-  const [id, setId] = useState<symbol>(Symbol());
   const [expanded, setExpand] = useState(open);
-  const [contentHeight, setContentHeight] = useState(container.current?.scrollHeight || 0);
+  const [contentHeight, setContentHeight] = useState(0);
 
   useEffect(() => {
-    setId(register(name, setExpand));
+    const id = register(name, setExpand);
     return () => unregister(name, id);
   }, []);
 
@@ -86,6 +85,9 @@ export const Accordion = ({
         aria-expanded={expanded}
         aria-controls={`section-${name}`}
         onClick={() => {
+          /**
+           * Порядовок вызовов и используемых данных важен, так как сначала всё закрываем, а потом открываем конкретный.
+           */
           closeGroup(name);
           setExpand(!expanded);
           onToggle?.(!expanded);
