@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 /* stylelint-disable length-zero-no-unit */
 $map: (
   // ВАЖНО: тут именно 0px а не 0 - в Safari нельзя использовать @media (min-width: 0)
@@ -20,22 +22,22 @@ $map: (
  */
 
 @mixin greaterThanOrEqual($breakpoint) {
-  @if map-has-key($map, $breakpoint) {
-    @media (min-width: map-get($map, $breakpoint)) {
+  @if map.has-key($map, $breakpoint) {
+    @media (min-width: map.get($map, $breakpoint)) {
       @content;
     }
   } @else {
-    @warn 'No such breakpoint `#{$breakpoint}`. Available values: #{map-keys($map)}.';
+    @warn 'No such breakpoint `#{$breakpoint}`. Available values: #{map.keys($map)}.';
   }
 }
 
 @mixin lessThan($breakpoint) {
-  @if map-has-key($map, $breakpoint) {
-    @media (max-width: (map-get($map, $breakpoint) - 1px)) {
+  @if map.has-key($map, $breakpoint) {
+    @media (max-width: (map.get($map, $breakpoint) - 1px)) {
       @content;
     }
   } @else {
-    @warn 'No such breakpoint `#{$breakpoint}`. Available values: #{map-keys($map)}.';
+    @warn 'No such breakpoint `#{$breakpoint}`. Available values: #{map.keys($map)}.';
   }
 }
 
