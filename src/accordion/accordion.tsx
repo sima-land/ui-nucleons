@@ -11,7 +11,7 @@ export interface Props {
   /** Заголовок блока аккордеона.  */
   summary: string;
   /** Тема оформления. */
-  theme?: 'light' | 'dark' | 'unset';
+  theme?: 'light' | 'dark';
   /** Описание. */
   description?: string;
   /** Название группы аккордеона. */
@@ -51,10 +51,10 @@ export const Accordion = ({
   const [contentHeight, setContentHeight] = useState(0);
 
   useEffect(() => {
-    const id = name && register(name, setExpand);
-    return () => {
-      name && id && unregister(name, id);
-    };
+    if (name) {
+      const id = register(name, setExpand);
+      return () => unregister(name, id);
+    }
   }, []);
 
   useEffect(() => {
