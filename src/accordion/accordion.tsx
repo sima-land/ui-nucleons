@@ -34,9 +34,9 @@ export interface Props {
  * @return Элемент.
  */
 export const Accordion = ({
-  name = '',
   theme = 'light',
   open = false,
+  name,
   summary,
   description,
   onToggle,
@@ -51,12 +51,14 @@ export const Accordion = ({
   const [contentHeight, setContentHeight] = useState(0);
 
   useEffect(() => {
-    const id = register(name, setExpand);
-    return () => unregister(name, id);
+    const id = name && register(name, setExpand);
+    return () => {
+      name && id && unregister(name, id);
+    };
   }, []);
 
   useEffect(() => {
-    open && closeGroup(name);
+    open && name && closeGroup(name);
     setExpand(open);
   }, [open]);
 
@@ -88,7 +90,7 @@ export const Accordion = ({
           /**
            * Порядовок вызовов и используемых данных важен, так как сначала всё закрываем, а потом открываем конкретный.
            */
-          closeGroup(name);
+          name && closeGroup(name);
           setExpand(!expanded);
           onToggle?.(!expanded);
         }}
