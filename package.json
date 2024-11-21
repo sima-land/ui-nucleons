@@ -88,6 +88,7 @@
     "./arrow-button": "./arrow-button/index.js",
     "./autocomplete": "./autocomplete/index.js",
     "./avatar": "./avatar/index.js",
+    "./accordion": "./accordion/index.js",
     "./base-input": "./base-input/index.js",
     "./bottom-bar": "./bottom-bar/index.js",
     "./bottom-bar/bottom-bar-util.scss": "./bottom-bar/bottom-bar-util.scss",

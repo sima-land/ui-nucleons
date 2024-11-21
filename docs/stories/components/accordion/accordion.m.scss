@@ -1,0 +1,12 @@
+.select {
+    margin-bottom: 24px;
+}
+
+.group {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 20px;
+    > h3 {
+        margin: 0;
+    }
+}
