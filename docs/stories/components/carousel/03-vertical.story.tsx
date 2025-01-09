@@ -104,6 +104,25 @@ export default function Vertical() {
           className: cx('gallery', 'vertical'),
         }}
       />
+
+      <h3 className={cx('title')}>Без кнопки в конце/начале списка; без перетаскивания; шаг = 1</h3>
+      <Carousel
+        vertical
+        step={1}
+        infinite={false}
+        items={photos}
+        renderControl={(data, props) => data.canUse && Carousel.defaultRenderControl(data, props)}
+        renderItem={(item, index) => (
+          <div
+            key={index}
+            className={cx('gallery-item', 'vertical')}
+            style={{ backgroundImage: `url(${item})` }}
+          />
+        )}
+        containerProps={{
+          className: cx('gallery', 'vertical'),
+        }}
+      />
     </>
   );
 }

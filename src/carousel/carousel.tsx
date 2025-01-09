@@ -768,7 +768,10 @@ export class Carousel extends Component<CarouselProps, CarouselState> {
               {
                 type: 'forward',
                 onUse: this.moveForward,
-                canUse: this.infinite || currentOffset > this.defineMinOffset(),
+                // ВАЖНО: используем округление, т.к из-за разницы в дробных значениях кнопка остается активной, если задана динамическая ширина/высота элементов
+                // ВАЖНО: это скорее всего не покроет все кейсы из-за погрешности при сложении двоичных значений
+                canUse:
+                  this.infinite || Math.floor(currentOffset) > Math.floor(this.defineMinOffset()),
                 vertical,
               },
               controlProps,
