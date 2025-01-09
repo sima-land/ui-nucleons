@@ -87,7 +87,7 @@ export default function Vertical() {
         }}
       />
 
-      <h3 className={cx('title')}>Кнопки</h3>
+      <h3 className={cx('title')}>Кнопки; перетаскивание; шаг = 2</h3>
       <Carousel
         vertical
         step={2}
@@ -110,6 +110,7 @@ export default function Vertical() {
         vertical
         step={1}
         infinite={false}
+        draggable={false}
         items={photos}
         renderControl={(data, props) => data.canUse && Carousel.defaultRenderControl(data, props)}
         renderItem={(item, index) => (
