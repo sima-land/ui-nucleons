@@ -1,6 +1,7 @@
 @use '../colors';
+@use 'sass:meta';
 
-@each $key, $color in module-variables(colors) {
+@each $key, $color in meta.module-variables(colors) {
   .color__#{$key} {
     color: $color;
   }
