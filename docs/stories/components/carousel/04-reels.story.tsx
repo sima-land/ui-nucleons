@@ -21,11 +21,12 @@ export default function Reels() {
       items={Array(count).fill(0)}
       targetIndex={currentIndex}
       onChangeTargetIndex={setCurrentIndex}
-      renderItem={(zero, index) => (
+      renderItem={(_, index) => (
         <Reel play={index === currentIndex} onEnded={() => setCurrentIndex((index + 1) % count)}>
           {index + 1}
         </Reel>
       )}
+      viewportElementProps={{ className: cx('root') }}
     />
   );
 }

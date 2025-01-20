@@ -46,6 +46,10 @@ const styles = {
     height: '100%',
     objectFit: 'cover',
   } satisfies CSSProperties,
+
+  root: {
+    borderRadius: '8px',
+  } satisfies CSSProperties,
 };
 
 export default function TestPreventLinkClickOnDrag() {
@@ -68,6 +72,7 @@ export default function TestPreventLinkClickOnDrag() {
             <img src={photo} style={styles.image} />
           </a>
         )}
+        viewportElementProps={{ style: styles.root }}
       />
     </div>
   );

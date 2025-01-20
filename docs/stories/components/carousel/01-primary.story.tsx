@@ -47,6 +47,7 @@ export default function Primary() {
         containerProps={{
           className: cx('gallery'),
         }}
+        viewportElementProps={{ className: cx('root') }}
       />
     </>
   );

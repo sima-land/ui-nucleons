@@ -48,6 +48,7 @@ export default function TestActiveElementBlur() {
         containerProps={{
           className: cx('gallery'),
         }}
+        viewportElementProps={{ className: cx('root') }}
       />
     </>
   );

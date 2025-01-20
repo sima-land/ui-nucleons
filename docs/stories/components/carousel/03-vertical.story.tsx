@@ -49,6 +49,7 @@ export default function Vertical() {
         containerProps={{
           className: cx('gallery', 'vertical'),
         }}
+        viewportElementProps={{ className: cx('root') }}
       />
 
       <h3 className={cx('title')}>Кнопки; без перетаскивания; бесконечность; шаг = 1</h3>
@@ -67,6 +68,7 @@ export default function Vertical() {
         containerProps={{
           className: cx('gallery', 'vertical'),
         }}
+        viewportElementProps={{ className: cx('root') }}
       />
 
       <h3 className={cx('title')}>Без кнопок; перетаскивание; бесконечность; шаг = 2</h3>
@@ -85,6 +87,7 @@ export default function Vertical() {
         containerProps={{
           className: cx('gallery', 'vertical'),
         }}
+        viewportElementProps={{ className: cx('root') }}
       />
 
       <h3 className={cx('title')}>Кнопки; перетаскивание; шаг = 2</h3>
@@ -103,6 +106,7 @@ export default function Vertical() {
         containerProps={{
           className: cx('gallery', 'vertical'),
         }}
+        viewportElementProps={{ className: cx('root') }}
       />
 
       <h3 className={cx('title')}>Без кнопки в конце/начале списка; без перетаскивания; шаг = 1</h3>
@@ -123,6 +127,7 @@ export default function Vertical() {
         containerProps={{
           className: cx('gallery', 'vertical'),
         }}
+        viewportElementProps={{ className: cx('root') }}
       />
     </>
   );
