@@ -3,8 +3,9 @@
 .root {
   width: 100%;
   border-radius: 8px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: min-content 0fr;
+  transition: grid-template-rows 200ms ease;
   &.theme-light {
     background-color: colors.$basic-gray4;
     --text-color: #{colors.$basic-gray87};
@@ -22,12 +23,14 @@
 }
 
 .expanded {
+  grid-template-rows: min-content 1fr;
   .arrow {
     transform: rotate(180deg);
   }
   .content {
     padding: 0 16px;
     margin-bottom: 16px;
+    opacity: 1;
   }
   .header:focus-visible {
     border-radius: 8px 8px 0 0;
@@ -72,7 +75,7 @@
 .content {
   padding: 0 16px;
   overflow: hidden;
-  transition: max-height 200ms ease;
+  opacity: 0;
   color: var(--text-color);
 }
 

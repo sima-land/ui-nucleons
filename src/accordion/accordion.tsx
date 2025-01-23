@@ -3,7 +3,6 @@ import styles from './accordion.m.scss';
 import ArrowExpandDownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowExpandDown';
 import classnames from 'classnames/bind';
 import { AccordionContext } from './accordion-provider';
-import { ResizeObserverContext } from '../context';
 
 const cx = classnames.bind(styles);
 
@@ -45,10 +44,8 @@ export const Accordion = ({
   level = 4,
 }: Props) => {
   const container = useRef<HTMLDivElement>(null);
-  const { createResizeObserver } = useContext(ResizeObserverContext);
   const { register, unregister, closeGroup } = useContext(AccordionContext);
   const [expanded, setExpand] = useState(open);
-  const [contentHeight, setContentHeight] = useState(0);
 
   useEffect(() => {
     if (name) {
@@ -61,14 +58,6 @@ export const Accordion = ({
     open && name && closeGroup(name);
     setExpand(open);
   }, [open]);
-
-  useEffect(() => {
-    const observer = createResizeObserver(() =>
-      setContentHeight(container.current?.scrollHeight || 0),
-    );
-    container.current && observer.observe(container.current);
-    return () => observer.disconnect();
-  }, [container.current, createResizeObserver]);
 
   return (
     <div
@@ -88,7 +77,7 @@ export const Accordion = ({
         aria-controls={`section-${name}`}
         onClick={() => {
           /**
-           * Порядовок вызовов и используемых данных важен, так как сначала всё закрываем, а потом открываем конкретный.
+           * Порядок вызовов и используемых данных важен, так как сначала всё закрываем, а потом открываем конкретный.
            */
           name && closeGroup(name);
           setExpand(!expanded);
@@ -100,14 +89,7 @@ export const Accordion = ({
         <span role='heading' aria-level={level} className={styles.title} children={summary} />
         <ArrowExpandDownSVG className={styles.arrow} />
       </button>
-      <div
-        className={styles.content}
-        role='region'
-        ref={container}
-        style={{
-          maxHeight: expanded ? contentHeight : 0,
-        }}
-      >
+      <div className={styles.content} role='region' ref={container}>
         {children}
         {description && <span className={styles.description} children={description} />}
       </div>
