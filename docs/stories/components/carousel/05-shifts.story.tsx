@@ -17,7 +17,7 @@ import { useState } from 'react';
 
 export const meta = {
   category: 'Компоненты/Carousel',
-  title: 'Пример: добавление/удаление элементов',
+  title: 'Пример: изменение количества элементов',
 };
 
 const cx = classnames.bind(styles);
