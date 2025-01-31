@@ -1,5 +1,4 @@
 import { Carousel } from '@sima-land/ui-nucleons/carousel';
-import { UploadArea, getFilesDescription } from '@sima-land/ui-nucleons/upload-area';
 import { TextButton } from '@sima-land/ui-nucleons/text-button';
 import russiaNature01 from './images/russia-nature-01.jpg';
 import russiaNature02 from './images/russia-nature-02.jpg';
@@ -22,7 +21,7 @@ export const meta = {
 
 const cx = classnames.bind(styles);
 
-const photos: string[] = [
+const initialPhotos: string[] = [
   russiaNature01,
   russiaNature02,
   russiaNature03,
@@ -30,32 +29,29 @@ const photos: string[] = [
   russiaNature05,
   russiaNature06,
   russiaNature07,
-  russiaNature08,
-  russiaNature09,
-  russiaNature10,
 ];
 
+const photos: string[] = [russiaNature08, russiaNature09, russiaNature10];
+
 export default function Shifts() {
-  const [items, setItems] = useState(photos);
+  const [items, setItems] = useState(initialPhotos);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
     <>
-      <UploadArea
-        title='Загрузите фото'
-        description={getFilesDescription({
-          countLimit: 10,
-          sizeLimit: '2 Mb',
-          formats: 'JPG, PNG, GIF',
-        })}
-        multiple
-        onSelect={files => {
-          const newItems = items.concat(files.map(file => URL.createObjectURL(file)));
-          setItems(newItems);
-          setCurrentIndex(newItems.length - 1);
-        }}
-        className={cx('gallery')}
-      />
+      {Boolean(photos.length) && (
+        <TextButton
+          onClick={() => {
+            const newItems = items.concat(photos[0]);
+            setItems(newItems);
+            setCurrentIndex(newItems.length - 1);
+            photos.shift();
+          }}
+          className={cx('gallery')}
+        >
+          Добавить фото
+        </TextButton>
+      )}
       {Boolean(items.length) && (
         <>
           <h3 className={cx('title')}>Наведи на фото чтобы удалить</h3>
@@ -70,6 +66,7 @@ export default function Shifts() {
                 onDelete={() => {
                   setItems(items.filter(curItem => curItem !== item));
                   setCurrentIndex(index - 1);
+                  photos.push(item);
                 }}
               />
             )}

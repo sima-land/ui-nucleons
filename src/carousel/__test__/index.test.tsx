@@ -424,7 +424,7 @@ describe('Carousel: finite mode', () => {
     expect(getInstance().updateItemsVisibility).toHaveBeenCalledTimes(2);
   });
 
-  it('should update current index in state on "items" prop length change', () => {
+  it('should scroll to target index if "items" prop length changes', () => {
     const ref = createRef<Carousel>();
     const getInstance = () => ref.current as Carousel;
     const { rerender } = render(
