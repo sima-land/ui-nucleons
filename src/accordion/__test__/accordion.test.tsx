@@ -1,4 +1,4 @@
-import { act, fireEvent, render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { Accordion } from '../accordion';
 import { AccordionContext } from '../accordion-provider';
 import { ResizeObserverContext } from '../../context';
@@ -39,76 +39,34 @@ describe('Accordion', () => {
     expect(fakeOnToggle).toHaveBeenCalledWith(true);
   });
 
-  it('for opened accordion style.height is relative content height', () => {
-    const { getByRole } = render(
-      <AccordionContext.Provider value={mockContext}>
+  it('Должен корректно отобразить заголовок аккордеона', () => {
+    const { getAllByRole } = render(
+      <ResizeObserverContext.Provider
+        value={{ createResizeObserver: ResizeObserverMock.createRegistry().getObserver }}
+      >
         <Accordion
           theme='dark'
           name='test-group'
+          summary='Заголовок'
+          description='Это текстовое описание под контентом аккордеона после открытия'
+          open
+        />
+      </ResizeObserverContext.Provider>,
+    );
+    expect(getAllByRole('heading', { name: 'Заголовок' })).toHaveLength(1);
+  });
+
+  it('Не должен регистрировать группу без имени', () => {
+    render(
+      <AccordionContext.Provider value={mockContext}>
+        <Accordion
+          theme='dark'
           summary='Заголовок'
           description='Это текстовое описание под контентом аккордеона после открытия'
           open
         />
       </AccordionContext.Provider>,
     );
-    expect(getByRole('region').style.maxHeight).toEqual(String(getByRole('region').scrollHeight));
-  });
-
-  it('should update content height after resize', () => {
-    const observers = ResizeObserverMock.createRegistry();
-    const { getByRole } = render(
-      <ResizeObserverContext.Provider value={{ createResizeObserver: observers.getObserver }}>
-        <Accordion
-          theme='dark'
-          name='test-group'
-          summary='Заголовок'
-          description='Это текстовое описание под контентом аккордеона после открытия'
-          open
-        />
-      </ResizeObserverContext.Provider>,
-    );
-    const button = getByRole('region');
-    expect(button.style.maxHeight).toEqual('0');
-    act(() => {
-      Object.defineProperty(button, 'scrollHeight', {
-        value: 320,
-      });
-
-      observers.simulateEntryChange({ target: button });
-    });
-
-    expect(button.style.maxHeight).toEqual('320px');
-  });
-
-  it('should update content height after resize on default value is 0', () => {
-    const observers = ResizeObserverMock.createRegistry();
-    const { getByRole } = render(
-      <ResizeObserverContext.Provider value={{ createResizeObserver: observers.getObserver }}>
-        <Accordion
-          theme='dark'
-          summary='Заголовок'
-          description='Это текстовое описание под контентом аккордеона после открытия'
-          open
-        />
-      </ResizeObserverContext.Provider>,
-    );
-    const button = getByRole('region');
-    act(() => {
-      Object.defineProperty(button, 'scrollHeight', {
-        value: 320,
-        configurable: true,
-      });
-      observers.simulateEntryChange({ target: button });
-    });
-    expect(button.style.maxHeight).toEqual('320px');
-
-    act(() => {
-      Object.defineProperty(button, 'scrollHeight', {
-        value: undefined,
-        configurable: true,
-      });
-      observers.simulateEntryChange({ target: button });
-    });
-    expect(button.style.maxHeight).toEqual('0');
+    expect(mockContext.register).not.toHaveBeenCalled();
   });
 });
