@@ -68,7 +68,11 @@ export function hintFloatingConfig({
           padding: 4,
         }),
     ],
-    whileElementsMounted: autoUpdate,
+    whileElementsMounted: (...args) =>
+      autoUpdate(...args, {
+        ancestorScroll: false,
+        layoutShift: false,
+      }),
   };
 }
 
@@ -82,7 +86,6 @@ export function useHintFloating<RT extends ReferenceType = ReferenceType>(
 ): UseHintFloatingReturn<RT> {
   const [arrowEl, setArrowEl] = useState<HTMLElement | null>(null);
   const arrowRef = useIdentityRef(arrowEl);
-
   const floating = useFloating<RT>({
     ...hintFloatingConfig(arrowEl ? { arrowRef } : undefined),
     ...props,

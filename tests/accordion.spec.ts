@@ -21,8 +21,10 @@ test('accordion should be displayed is full size opened', async ({ page }) => {
 
 test('accordions should be opened only 1 for group', async ({ page }) => {
   await page.goto('/sandbox.html?path=/components/accordion/02-multi-group');
-  const accordions = await page.getByText(/Заголовок аккордеона/).all();
-  [accordions[0], accordions[2], accordions[4]].forEach(el => el.click());
-  await page.waitForTimeout(200); // wait css transition
+  await page.getByRole('button').nth(1).click();
+  await page.getByRole('button').nth(3).click();
+  await page.getByRole('button').nth(4).click();
+  await page.waitForTimeout(400); // wait css transition
+  await page.evaluate(() => window.scrollTo(0, 0)); // scroll to top of page
   await expect(page).toHaveScreenshot();
 });
