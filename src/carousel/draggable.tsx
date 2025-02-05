@@ -15,7 +15,7 @@ import {
   getEventClientPos,
   EventWithPosition,
 } from '../helpers/events';
-import { on } from '../helpers/on';
+import { on } from '../helpers';
 import classnames from 'classnames/bind';
 import styles from './draggable.m.scss';
 
@@ -162,6 +162,25 @@ export class Draggable extends Component<DraggableProps> {
   }
 
   /**
+   * Проверяет, находится ли курсор в области родителя draggable.
+   * @param event Событие окончания захвата.
+   * @return Boolean Флаг нахождения курсора в пределах родителя draggable.
+   */
+  isPointInRect(event: MouseEvent | TouchEvent) {
+    const container = this.draggableRef.current?.parentElement;
+    const rect = container?.getBoundingClientRect();
+    const point = getEventClientPos(event);
+
+    return Boolean(
+      rect &&
+        point.x >= rect.left &&
+        point.x <= rect.right &&
+        point.y >= rect.top &&
+        point.y <= rect.bottom,
+    );
+  }
+
+  /**
    * Обновляет смещение и все данные при необходимости.
    * @param event Событие передвижения.
    */
@@ -183,8 +202,7 @@ export class Draggable extends Component<DraggableProps> {
         event.preventDefault();
         window.getSelection()?.removeAllRanges();
 
-        // предотвращаем клик только на НЕ touch-устройствах тк на них срабатывает клик при перетаскивании
-        this.togglePreventClickNeed(true);
+        this.togglePreventClickNeed(this.isPointInRect(event));
       }
 
       onDragMove && onDragMove(customEvent);

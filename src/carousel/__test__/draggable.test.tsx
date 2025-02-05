@@ -175,6 +175,34 @@ describe('Draggable', () => {
     Object.defineProperty(Document.prototype, 'activeElement', activeElementDescriptor as any);
   });
 
+  it('isPointInRect() should return true if the cursor is within the parent', () => {
+    const instance = new Draggable({});
+    const mockParentElement = document.createElement('div');
+    const event = new MouseEvent('test', { clientX: 150, clientY: 150 });
+
+    mockParentElement.getBoundingClientRect = jest.fn().mockReturnValue({
+      left: 100,
+      right: 200,
+      top: 100,
+      bottom: 200,
+    });
+
+    instance.draggableRef = {
+      current: {
+        ...mockParentElement,
+        parentElement: mockParentElement,
+      },
+    };
+
+    expect(instance.isPointInRect(event)).toBeTruthy();
+  });
+
+  it('isPointInRect() should return false if the cursor is not within the parent', () => {
+    const instance = new Draggable({});
+
+    expect(instance.isPointInRect(new MouseEvent('test'))).toBeFalsy();
+  });
+
   it('handleMove() should do nothing when isGrabbed false', () => {
     const instance = new Draggable({});
 
