@@ -202,6 +202,10 @@ export class Draggable extends Component<DraggableProps> {
         event.preventDefault();
         window.getSelection()?.removeAllRanges();
 
+        /*
+        Предотвращаем клик, если курсор в области карусели, иначе нет.
+        Только НЕ touch-устройства т.к. на них срабатывает клик при перетаскивании.
+        */
         this.togglePreventClickNeed(this.isPointInRect(event));
       }
 
