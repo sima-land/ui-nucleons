@@ -19,8 +19,10 @@ export interface UploadAreaProps extends WithTestId {
   /** Стили корневого элемента. */
   style?: CSSProperties;
 
+  /** Заголовок. */
   title?: string;
 
+  /** Описание. */
   description?: string;
 
   /** Состояние с ошибками валидации. */

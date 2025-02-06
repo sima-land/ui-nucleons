@@ -241,10 +241,10 @@ export class Carousel extends Component<CarouselProps, CarouselState> {
    * @param prevProps Предыдущие свойства.
    */
   componentDidUpdate(prevProps: CarouselProps) {
-    const { autoplay, targetIndex } = this.props;
-    const { autoplay: prevAutoplay, targetIndex: prevTargetIndex } = prevProps;
+    const { autoplay, targetIndex, items } = this.props;
+    const { autoplay: prevAutoplay, targetIndex: prevTargetIndex, items: prevItems } = prevProps;
 
-    if (targetIndex !== prevTargetIndex) {
+    if (targetIndex !== prevTargetIndex || items?.length !== prevItems?.length) {
       this.setCurrentIndex(targetIndex || 0);
       this.toggleDragTransition(true);
     }

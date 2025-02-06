@@ -424,6 +424,35 @@ describe('Carousel: finite mode', () => {
     expect(getInstance().updateItemsVisibility).toHaveBeenCalledTimes(2);
   });
 
+  it('should scroll to target index if "items" prop length changes', () => {
+    const ref = createRef<Carousel>();
+    const getInstance = () => ref.current as Carousel;
+    const { rerender } = render(
+      <Carousel ref={ref} items={[1, 2, 3]} targetIndex={0} infinite={false} />,
+    );
+
+    jest.spyOn(getInstance(), 'setCurrentIndex');
+    jest.spyOn(getInstance(), 'toggleDragTransition');
+    jest.spyOn(getInstance(), 'updateItemsVisibility');
+
+    expect(getInstance().setCurrentIndex).toHaveBeenCalledTimes(0);
+    expect(getInstance().toggleDragTransition).toHaveBeenCalledTimes(0);
+    expect(getInstance().updateItemsVisibility).toHaveBeenCalledTimes(0);
+
+    // not changed
+    rerender(<Carousel ref={ref} items={[1, 2, 3]} targetIndex={0} infinite={false} />);
+    expect(getInstance().setCurrentIndex).toHaveBeenCalledTimes(0);
+    expect(getInstance().toggleDragTransition).toHaveBeenCalledTimes(0);
+    expect(getInstance().updateItemsVisibility).toHaveBeenCalledTimes(1);
+
+    rerender(<Carousel ref={ref} items={[1, 2]} targetIndex={0} infinite={false} />);
+    expect(getInstance().setCurrentIndex).toHaveBeenCalledTimes(1);
+    expect(getInstance().setCurrentIndex).toHaveBeenCalledWith(0);
+    expect(getInstance().toggleDragTransition).toHaveBeenCalledTimes(2);
+    expect(getInstance().toggleDragTransition).toHaveBeenCalledWith(true);
+    expect(getInstance().updateItemsVisibility).toHaveBeenCalledTimes(3);
+  });
+
   it('should unsubscribe from "resize" event before unmount', () => {
     const { unmount } = render(<Carousel />);
 

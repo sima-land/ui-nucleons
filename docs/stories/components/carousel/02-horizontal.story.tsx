@@ -51,6 +51,7 @@ export default function Horizontal() {
         containerProps={{
           className: cx('gallery'),
         }}
+        viewportElementProps={{ className: cx('root') }}
       />
 
       <h3 className={cx('title')}>Кнопки; без перетаскивания; бесконечность; шаг = 1</h3>
@@ -68,6 +69,7 @@ export default function Horizontal() {
         containerProps={{
           className: cx('gallery'),
         }}
+        viewportElementProps={{ className: cx('root') }}
       />
 
       <h3 className={cx('title')}>Без кнопок; перетаскивание; бесконечность</h3>
@@ -84,6 +86,7 @@ export default function Horizontal() {
         containerProps={{
           className: cx('gallery'),
         }}
+        viewportElementProps={{ className: cx('root') }}
       />
 
       <h3 className={cx('title')}>Без кнопок</h3>
@@ -101,6 +104,7 @@ export default function Horizontal() {
         containerProps={{
           className: cx('gallery'),
         }}
+        viewportElementProps={{ className: cx('root') }}
       />
 
       <h3 className={cx('title')}>Автопрокрутка; бесконечность</h3>
@@ -120,6 +124,7 @@ export default function Horizontal() {
         containerProps={{
           className: cx('gallery'),
         }}
+        viewportElementProps={{ className: cx('root') }}
       />
 
       <h3 className={cx('title')}>Автопрокрутка; бесконечность; перетаскивание</h3>
@@ -139,6 +144,7 @@ export default function Horizontal() {
         containerProps={{
           className: cx('gallery'),
         }}
+        viewportElementProps={{ className: cx('root') }}
       />
       <h3 className={cx('title')}>
         Автопрокрутка; бесконечность; перетаскивание; пауза при наведении
@@ -160,6 +166,7 @@ export default function Horizontal() {
         containerProps={{
           className: cx('gallery'),
         }}
+        viewportElementProps={{ className: cx('root') }}
       />
 
       <h3 className={cx('title')}>Автопрокрутка; перетаскивание; пауза при наведении</h3>
@@ -181,6 +188,7 @@ export default function Horizontal() {
         containerProps={{
           className: cx('gallery'),
         }}
+        viewportElementProps={{ className: cx('root') }}
       />
     </>
   );
