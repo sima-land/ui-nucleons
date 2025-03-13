@@ -3,7 +3,9 @@ import type { DropdownProps } from '../dropdown';
 import type { DropdownItemElement } from '../dropdown-item/types';
 import type { InputProps } from '../input';
 
-export type AutocompleteChangeReason = 'userInput' | 'suggestionSelect';
+export type AutocompleteChangeMeta =
+  | { reason: 'userInput' }
+  | { reason: 'suggestionSelect'; selectedIndex: number };
 
 export interface AutocompleteProps extends Omit<InputProps, 'adornmentEnd' | 'onChange'> {
   /** Содержимое. */
@@ -27,10 +29,7 @@ export interface AutocompleteProps extends Omit<InputProps, 'adornmentEnd' | 'on
   /** Сработает при закрытии меню. */
   onMenuClose?: VoidFunction;
 
-  onChange?: (
-    event: ChangeEvent<HTMLInputElement>,
-    meta: { reason: AutocompleteChangeReason },
-  ) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>, meta: AutocompleteChangeMeta) => void;
 
   /** Заглушка, которая будет выведена если подсказок нет. */
   optionsStub?: ReactNode;

@@ -89,7 +89,7 @@ export function Autocomplete({
   useImperativeHandle(baseInputProps?.inputRef, () => inputRef.current as HTMLInputElement);
 
   const selectItem = useCallback(
-    (item: DropdownItemElement) => {
+    (item: DropdownItemElement, selectedIndex: number) => {
       when(inputRef.current, input => {
         const prevValue = input.value;
         const nextValue = DropdownItemUtils.getValue(item);
@@ -108,7 +108,7 @@ export function Autocomplete({
           const syntheticEventInput = new NaiveSyntheticEvent(nativeEventInput, input);
           const syntheticEventChange = new NaiveSyntheticEvent(nativeEventInput, input);
           onInput?.(syntheticEventInput);
-          onChange?.(syntheticEventChange, { reason: 'suggestionSelect' });
+          onChange?.(syntheticEventChange, { reason: 'suggestionSelect', selectedIndex });
         }
 
         setCurrentValue(input.value);
@@ -136,7 +136,7 @@ export function Autocomplete({
         case 'Enter': {
           if (menuShown) {
             const item = items[activeIndex];
-            item && selectItem(item);
+            item && selectItem(item, activeIndex);
             setNeedMenu(false);
           } else {
             setNeedMenu(true);
@@ -264,7 +264,7 @@ export function Autocomplete({
                     onClick={event => {
                       if (!item.props.disabled) {
                         item.props.onClick?.(event);
-                        !event.defaultPrevented && selectItem(item);
+                        !event.defaultPrevented && selectItem(item, index);
                       }
                     }}
                   />
