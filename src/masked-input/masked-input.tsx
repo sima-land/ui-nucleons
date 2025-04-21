@@ -1,22 +1,31 @@
-import { useCallback, useImperativeHandle, useMemo, useState } from 'react';
-import { Input } from '../input';
-import { ValueUtil } from '@krutoo/input-mask/dom';
-import { useInputMask } from './use-input-mask';
-import { MaskData, MaskedInputProps } from './types';
+import { useCallback, useImperativeHandle, useMemo, useState } from "react";
+import { Input } from "../input";
+import { ValueUtil } from "@krutoo/input-mask/dom";
+import { useInputMask } from "./use-input-mask";
+import { MaskData, MaskedInputProps } from "./types";
 
 /**
  * Поле ввода текста по маске.
  * @param props Свойства.
  * @return Элемент.
  */
-export function MaskedInput({ value, defaultValue, onChange, ...restProps }: MaskedInputProps) {
-  const stateless = useMemo(() => typeof value !== 'undefined', []);
+export function MaskedInput({
+  value,
+  defaultValue,
+  onChange,
+  ...restProps
+}: MaskedInputProps) {
+  const stateless = useMemo(() => typeof value !== "undefined", []);
 
   // ВАЖНО: при defaultValue состояние должно быть именно здесь (на уровень выше хука маски) для корректной работы
-  const [currentValue, setCurrentValue] = useState(() => value ?? defaultValue ?? '');
+  const [currentValue, setCurrentValue] = useState(
+    () => value ?? defaultValue ?? "",
+  );
 
   if (stateless) {
-    return <StatelessMaskedInput {...restProps} value={value} onChange={onChange} />;
+    return (
+      <StatelessMaskedInput {...restProps} value={value} onChange={onChange} />
+    );
   }
 
   return (
@@ -39,17 +48,18 @@ export function MaskedInput({ value, defaultValue, onChange, ...restProps }: Mas
  */
 function StatelessMaskedInput({
   mask,
-  placeholder = '_',
-  pattern = '\\d',
-  value = '',
+  placeholder = "_",
+  pattern = "\\d",
+  value = "",
   baseInputProps,
   onFocus,
   onChange,
   onInput,
   onBlur,
   inputRef,
+  filledMaskMinLength,
   ...restProps
-}: Omit<MaskedInputProps, 'defaultValue'>) {
+}: Omit<MaskedInputProps, "defaultValue">) {
   const { store, bind } = useInputMask({
     value,
     maskOptions: { mask, pattern, placeholder },
@@ -63,8 +73,16 @@ function StatelessMaskedInput({
   const getMaskData = useCallback(
     (): MaskData => ({
       value: store.getState().value,
-      cleanValue: ValueUtil.maskedToClean({ mask, placeholder }, store.getState().value),
-      completed: store.getState().value.length === mask.length,
+      cleanValue: ValueUtil.maskedToClean(
+        { mask, placeholder },
+        store.getState().value,
+      ),
+      completed:
+        store.getState().value.length === mask.length ||
+        Boolean(
+          filledMaskMinLength &&
+            store.getState().value.length >= filledMaskMinLength,
+        ),
     }),
     [store, mask, placeholder],
   );
@@ -81,19 +99,19 @@ function StatelessMaskedInput({
       }}
       inputRef={bind.ref}
       value={bind.value}
-      onFocus={event => {
+      onFocus={(event) => {
         onFocus?.(event, getMaskData());
       }}
-      onInput={event => {
+      onInput={(event) => {
         bind.onInput(event);
         onInput?.(event, getMaskData());
       }}
-      onChange={event => {
+      onChange={(event) => {
         // @todo следующая строка нужна чтобы в testing-library работал fireEvent.change, решить как быть
         // bind.onInput(event);
         onChange?.(event, getMaskData());
       }}
-      onBlur={event => {
+      onBlur={(event) => {
         onBlur?.(event, getMaskData());
       }}
     />

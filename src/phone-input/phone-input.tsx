@@ -1,16 +1,27 @@
-import { useState, useCallback, useRef, useContext, useMemo, useImperativeHandle } from 'react';
-import { type PhoneInputProps, type PhoneInputMask } from './types';
-import { type MaskData, type MaskedInputProps, MaskedInput } from '../masked-input';
-import { masks as defaultMasks, stubMask } from './preset/defaults';
-import { PhoneValue, defaultGetDefaultMask, stubSyntheticEvent } from './utils';
-import { Select } from '../select';
-import { DropdownItem } from '../dropdown-item';
-import { SelectContext } from '../select/utils';
-import { PhoneInputMenuOpener } from './menu-opener';
-import { useIsomorphicLayoutEffect } from '../hooks';
-import { mergeRefs } from '../helpers';
-import classNames from 'classnames/bind';
-import styles from './phone-input.m.scss';
+import {
+  useState,
+  useCallback,
+  useRef,
+  useContext,
+  useMemo,
+  useImperativeHandle,
+} from "react";
+import { type PhoneInputProps, type PhoneInputMask } from "./types";
+import {
+  type MaskData,
+  type MaskedInputProps,
+  MaskedInput,
+} from "../masked-input";
+import { masks as defaultMasks, stubMask } from "./preset/defaults";
+import { PhoneValue, defaultGetDefaultMask, stubSyntheticEvent } from "./utils";
+import { Select } from "../select";
+import { DropdownItem } from "../dropdown-item";
+import { SelectContext } from "../select/utils";
+import { PhoneInputMenuOpener } from "./menu-opener";
+import { useIsomorphicLayoutEffect } from "../hooks";
+import { mergeRefs } from "../helpers";
+import classNames from "classnames/bind";
+import styles from "./phone-input.m.scss";
 
 const cx = classNames.bind(styles);
 
@@ -27,16 +38,21 @@ export function PhoneInput({
   ...restProps
 }: PhoneInputProps) {
   const initialValueRef = useRef(value);
-  const stateless = useMemo(() => typeof initialValueRef.current !== 'undefined', []);
+  const stateless = useMemo(
+    () => typeof initialValueRef.current !== "undefined",
+    [],
+  );
 
   // ВАЖНО: при defaultValue состояние должно быть именно здесь (на уровень выше хука маски) для корректной работы
-  const [currentValue, setCurrentValue] = useState<string>(() => value ?? defaultValue ?? '');
+  const [currentValue, setCurrentValue] = useState<string>(
+    () => value ?? defaultValue ?? "",
+  );
 
   if (stateless) {
     return (
       <StatelessPhoneInput
         {...restProps}
-        value={value ?? ''}
+        value={value ?? ""}
         onChange={onChange}
         onInput={onInput}
       />
@@ -69,7 +85,7 @@ function StatelessPhoneInput({
   masks = defaultMasks,
   getDefaultMask = defaultGetDefaultMask,
   value,
-  label = 'Телефон',
+  label = "Телефон",
   inputRef: inputRefProp,
   onInput,
   onChange,
@@ -80,16 +96,19 @@ function StatelessPhoneInput({
   dropdownProps,
   onMenuOpen,
   onMenuClose,
-  'data-testid': testId = 'phone-input',
+  "data-testid": testId = "phone-input",
+  filledMaskMinLength,
   ...restProps
-}: Omit<PhoneInputProps, 'value' | 'defaultValue'> & { value: string }) {
+}: Omit<PhoneInputProps, "value" | "defaultValue"> & { value: string }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const wasMaskChosenRef = useRef<boolean>(false);
 
   const [mask, setMask] = useState<PhoneInputMask>(
     () => getDefaultMask({ value, masks }) ?? masks[0] ?? stubMask,
   );
-  const [plainValue, setPlainValue] = useState(() => PhoneValue.removeCode(value, mask));
+  const [plainValue, setPlainValue] = useState(() =>
+    PhoneValue.removeCode(value, mask),
+  );
 
   const getPhoneMaskData = useCallback(
     (maskData: MaskData): MaskData => ({
@@ -103,7 +122,7 @@ function StatelessPhoneInput({
   const handleMaskSelect = useCallback(
     (nextMask: PhoneInputMask) => {
       setMask(nextMask);
-      setPlainValue('');
+      setPlainValue("");
       wasMaskChosenRef.current = true;
     },
     [masks],
@@ -131,7 +150,7 @@ function StatelessPhoneInput({
 
     wasMaskChosenRef.current = false;
 
-    const syntheticEvent = stubSyntheticEvent(input, new Event('input'));
+    const syntheticEvent = stubSyntheticEvent(input, new Event("input"));
 
     const maskData: MaskData = {
       value: input.value,
@@ -156,9 +175,11 @@ function StatelessPhoneInput({
           withMenuOpener={masks.length > 1}
           currentMaskData={mask}
           mask={mask.mask}
+          filledMaskMinLength={filledMaskMinLength ?? mask.filledMaskMinLength}
           value={plainValue}
           baseInputProps={{
-            restPlaceholder: (mask.needRestPlaceholder ?? true) ? undefined : '',
+            restPlaceholder:
+              (mask.needRestPlaceholder ?? true) ? undefined : "",
             ...restProps.baseInputProps,
           }}
           onFocus={(event, maskData) => {
@@ -177,8 +198,8 @@ function StatelessPhoneInput({
           }}
         />
       }
-      onValueChange={maskId => {
-        const foundMask = masks.find(item => item.id === maskId);
+      onValueChange={(maskId) => {
+        const foundMask = masks.find((item) => item.id === maskId);
         foundMask && handleMaskSelect(foundMask);
       }}
       dropdownProps={dropdownProps}
@@ -186,19 +207,19 @@ function StatelessPhoneInput({
       onMenuClose={onMenuClose}
       disabled={disabled}
     >
-      {masks.map(item => (
+      {masks.map((item) => (
         <DropdownItem
           key={item.id}
           value={item.id}
-          size='m'
+          size="m"
           selected={item.id === mask.id}
           startContent={
             <img
-              alt=''
+              alt=""
               width={24}
               height={24}
               src={item.optionImageSrc}
-              className={cx('option-icon')}
+              className={cx("option-icon")}
             />
           }
           endContent={item.optionEndContent}
@@ -226,7 +247,8 @@ function PhoneMaskedInput({
   withMenuOpener: boolean;
   currentMaskData: PhoneInputMask;
 }) {
-  const { menuOpen, setMenuOpen, setOpenerElement, setAnchorElement } = useContext(SelectContext);
+  const { menuOpen, setMenuOpen, setOpenerElement, setAnchorElement } =
+    useContext(SelectContext);
 
   const [openerFocused, setOpenerFocused] = useState(false);
 
@@ -245,33 +267,33 @@ function PhoneMaskedInput({
       adornmentEnd={
         withMenuOpener && (
           <PhoneInputMenuOpener
-            className={cx('opener')}
+            className={cx("opener")}
             rootRef={setOpenerElement}
             imageSrc={currentMaskData.optionImageSrc}
             visuallyOpen={menuOpen}
             visuallyDisabled={disabled}
-            role='combobox'
-            aria-label='Выбор страны'
+            role="combobox"
+            aria-label="Выбор страны"
             aria-disabled={disabled}
             onBlur={() => setOpenerFocused(false)}
             onFocus={() => setOpenerFocused(true)}
             tabIndex={disabled ? undefined : 0}
-            onMouseDown={event => {
+            onMouseDown={(event) => {
               if (disabled || event.defaultPrevented) {
                 return;
               }
 
-              setMenuOpen(a => !a);
+              setMenuOpen((a) => !a);
             }}
-            onKeyDown={event => {
+            onKeyDown={(event) => {
               if (disabled || event.defaultPrevented) {
                 return;
               }
 
               switch (event.code) {
-                case 'Enter':
-                case 'ArrowUp':
-                case 'ArrowDown':
+                case "Enter":
+                case "ArrowUp":
+                case "ArrowDown":
                   setMenuOpen(true);
                   break;
               }
