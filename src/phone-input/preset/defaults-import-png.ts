@@ -104,5 +104,6 @@ export const masks: PhoneInputMask[] = [
     mask: '_______________',
     needRestPlaceholder: false,
     optionImageSrc: other,
+    filledMaskMinLength: 5,
   },
 ];

@@ -25,8 +25,24 @@ export interface PhoneInputProps
   }) => PhoneInputMask | undefined;
 }
 
+export type MaskId =
+  | 'russia'
+  | 'kazakhstan'
+  | 'armenia'
+  | 'belarus'
+  | 'kyrgyzstan'
+  | 'azerbaijan'
+  | 'georgia'
+  | 'moldova'
+  | 'tajikistan'
+  | 'turkmenistan'
+  | 'uzbekistan'
+  | 'ukraine'
+  | 'other';
+
 export interface PhoneInputMask {
-  readonly id: string;
+  /** Идентификатор. */
+  readonly id: MaskId;
 
   /** Название. */
   readonly title: string;
@@ -38,8 +54,11 @@ export interface PhoneInputMask {
   readonly needRestPlaceholder?: boolean;
 
   /** Картинка. */
-  readonly optionImageSrc?: string;
+  readonly optionImageSrc: string;
 
   /** Дополнительный текст. */
   readonly optionEndContent?: string;
+
+  /** Минимальное допустимое количество символов для расчета заполненности маски. */
+  readonly filledMaskMinLength?: number;
 }

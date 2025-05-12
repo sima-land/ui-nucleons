@@ -226,19 +226,22 @@ describe('PhoneInput', () => {
         getDefaultMask={() => undefined}
         masks={[
           {
-            id: 'foo',
+            id: 'armenia',
             title: 'Foo',
             mask: '+1____',
+            optionImageSrc: '',
           },
           {
-            id: 'bar',
+            id: 'azerbaijan',
             title: 'Bar',
             mask: '+2____',
+            optionImageSrc: '',
           },
           {
-            id: 'baz',
+            id: 'belarus',
             title: 'Baz',
             mask: '+3____',
+            optionImageSrc: '',
           },
         ]}
       />,

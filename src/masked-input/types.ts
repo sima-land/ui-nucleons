@@ -29,6 +29,9 @@ export interface MaskedInputProps
 
   /** Сработает при "blur". Вторым аргументом получит данные поля с маской. */
   onBlur?: (event: FocusEvent<HTMLInputElement>, data: MaskData) => void;
+
+  /** Минимальное допустимое количество символов для расчета заполненности маски. */
+  filledMaskMinLength?: number;
 }
 
 export interface MaskData {

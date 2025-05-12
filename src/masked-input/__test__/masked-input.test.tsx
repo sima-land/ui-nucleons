@@ -133,4 +133,31 @@ describe('MaskedInput', () => {
 
     expect((getByTestId('base-input:field') as HTMLInputElement).value).toBe('');
   });
+
+  it('should handle "filledMaskMinLength" prop', () => {
+    const spy = jest.fn();
+    const { getByTestId, rerender } = render(
+      <MaskedInput mask='_______________' filledMaskMinLength={5} value='1234' onBlur={spy} />,
+    );
+
+    fireEvent.blur(getByTestId('base-input:field'));
+
+    expect(spy).toHaveBeenCalledWith(expect.any(Object), {
+      cleanValue: '1234',
+      completed: false,
+      value: '1234',
+    });
+
+    rerender(
+      <MaskedInput mask='_______________' filledMaskMinLength={5} value='12345' onBlur={spy} />,
+    );
+
+    fireEvent.blur(getByTestId('base-input:field'));
+
+    expect(spy).toHaveBeenCalledWith(expect.any(Object), {
+      cleanValue: '12345',
+      completed: true,
+      value: '12345',
+    });
+  });
 });

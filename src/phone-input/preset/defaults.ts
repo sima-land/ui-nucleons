@@ -19,6 +19,7 @@ export const stubMask: PhoneInputMask = {
   mask: '_______________',
   needRestPlaceholder: false,
   optionImageSrc: other,
+  filledMaskMinLength: 5,
 };
 
 export const russiaMask: PhoneInputMask = {

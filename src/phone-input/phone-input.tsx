@@ -81,6 +81,7 @@ function StatelessPhoneInput({
   onMenuOpen,
   onMenuClose,
   'data-testid': testId = 'phone-input',
+  filledMaskMinLength,
   ...restProps
 }: Omit<PhoneInputProps, 'value' | 'defaultValue'> & { value: string }) {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -156,6 +157,7 @@ function StatelessPhoneInput({
           withMenuOpener={masks.length > 1}
           currentMaskData={mask}
           mask={mask.mask}
+          filledMaskMinLength={filledMaskMinLength ?? mask.filledMaskMinLength}
           value={plainValue}
           baseInputProps={{
             restPlaceholder: (mask.needRestPlaceholder ?? true) ? undefined : '',

@@ -160,7 +160,7 @@ test.describe('Props handling', () => {
       await here.phoneInput().click();
       await expect(here.input()).toBeFocused();
 
-      await here.input().fill('');
+      await here.input().clear();
       await expect(here.input()).toHaveValue('+7 (');
 
       await here.input().fill('1002003040');

@@ -48,6 +48,7 @@ function StatelessMaskedInput({
   onInput,
   onBlur,
   inputRef,
+  filledMaskMinLength,
   ...restProps
 }: Omit<MaskedInputProps, 'defaultValue'>) {
   const { store, bind } = useInputMask({
@@ -60,14 +61,17 @@ function StatelessMaskedInput({
     () => bind.ref.current,
   );
 
-  const getMaskData = useCallback(
-    (): MaskData => ({
-      value: store.getState().value,
-      cleanValue: ValueUtil.maskedToClean({ mask, placeholder }, store.getState().value),
-      completed: store.getState().value.length === mask.length,
-    }),
-    [store, mask, placeholder],
-  );
+  const getMaskData = useCallback((): MaskData => {
+    const { value: maskedValue } = store.getState();
+
+    return {
+      value: maskedValue,
+      cleanValue: ValueUtil.maskedToClean({ mask, placeholder }, maskedValue),
+      completed:
+        maskedValue.length === mask.length ||
+        Boolean(filledMaskMinLength && maskedValue.length >= filledMaskMinLength),
+    };
+  }, [store, mask, placeholder, filledMaskMinLength]);
 
   return (
     <Input

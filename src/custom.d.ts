@@ -1,8 +1,10 @@
 declare module '*.jpg' {
-  export default string;
+  const value: string;
+  export default value;
 }
 declare module '*.png' {
-  export default string;
+  const value: string;
+  export default value;
 }
 
 // css-модули
