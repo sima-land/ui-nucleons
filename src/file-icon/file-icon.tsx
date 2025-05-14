@@ -2,7 +2,7 @@ import type { FileIconProps } from './types';
 import cx from 'classnames';
 import styles from './file-icon.m.scss';
 
-const KNOWN_TYPES = [
+export const KNOWN_TYPES = [
   'doc',
   'docx',
   'heic',
