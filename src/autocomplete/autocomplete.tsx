@@ -233,7 +233,7 @@ export function Autocomplete({
           <Lifecycle onMount={onMenuOpen} onUnmount={onMenuClose}>
             <AutocompleteMenu
               {...dropdownProps}
-              className={cx('menu', Boolean(currentValue) && 'selected', dropdownProps?.className)}
+              className={cx('menu', dropdownProps?.className)}
               rootRef={refs.setFloating}
               viewportRef={viewportRef}
               style={{ ...floatingStyle, ...dropdownProps?.style }}
@@ -344,5 +344,5 @@ function defaultFilterOption(item: DropdownItemElement, inputValue: string) {
 function getDefaultAdornmentEnd(data: { menuShown: boolean }) {
   const ArrowSVG = data.menuShown ? UpSVG : DownSVG;
 
-  return <ArrowSVG className={cx('arrow')} data-testid='autocomplete:arrow-up' />;
+  return <ArrowSVG className={styles.arrow} data-testid='autocomplete:arrow-up' />;
 }
