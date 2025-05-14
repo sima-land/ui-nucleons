@@ -1,8 +1,8 @@
-import { FileIconProps } from './types';
+import type { FileIconProps } from './types';
 import cx from 'classnames';
 import styles from './file-icon.m.scss';
 
-export const KNOWN_TYPES = [
+const KNOWN_TYPES = [
   'doc',
   'docx',
   'heic',
@@ -23,20 +23,24 @@ export const KNOWN_TYPES = [
 ] as const;
 
 /**
+ * Проверяет тип файла.
+ * @param type Тип.
+ * @return Признак.
+ */
+const isKnownType = (type?: string): type is (typeof KNOWN_TYPES)[number] =>
+  KNOWN_TYPES.some(knownType => knownType === type);
+
+/**
  * Иконка файла.
  * @param props Свойства. Поддерживаются свойства <svg />.
  * @return Элемент.
  */
-export function FileIcon({
-  type,
-  typeDisplayed = type && KNOWN_TYPES.includes(type),
-  ...svgProps
-}: FileIconProps) {
+export function FileIcon({ type, typeDisplayed = isKnownType(type), ...svgProps }: FileIconProps) {
   return (
     <svg width='32' height='32' viewBox='0 0 32 32' {...svgProps}>
       {/* основная фигура */}
       <path
-        className={cx(styles.main, type && styles[type.toLowerCase()])}
+        className={cx(styles.main, type && styles[type])}
         opacity='0.88'
         d='M6 5C6 3.89543 6.89543 3 8 3H20L26 9V27C26 28.1046 25.1046 29 24 29H8C6.89543 29 6 28.1046 6 27V5Z'
       />
@@ -49,7 +53,7 @@ export function FileIcon({
         fill='black'
       />
 
-      {typeDisplayed && type && KNOWN_TYPES.includes(type) ? (
+      {typeDisplayed && isKnownType(type) ? (
         <>
           {/* текст */}
           {type !== 'unknown' && (
