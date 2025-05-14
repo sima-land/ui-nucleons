@@ -13,7 +13,7 @@ import { DropdownLoading, dropdownFloatingConfig, useDropdownFloatingStyle } fro
 import { DropdownItem } from '../dropdown-item';
 import { DropdownItemElement } from '../dropdown-item/types';
 import { DropdownItemUtils } from '../dropdown-item/utils';
-import { useFloating } from '@floating-ui/react';
+import { useFloating, size, Elements } from '@floating-ui/react';
 import { Input } from '../input';
 import { useIsomorphicLayoutEffect } from '../hooks';
 import { scrollToChild } from '../helpers/scroll-to-child';
@@ -22,7 +22,10 @@ import { NaiveSyntheticEvent, when } from './utils';
 import { Portal } from '../portal';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowExpandDown';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowExpandUp';
+import classNames from 'classnames/bind';
 import styles from './autocomplete.m.scss';
+
+const cx = classNames.bind(styles);
 
 /**
  * Поле ввода с подсказками.
@@ -67,17 +70,15 @@ export function Autocomplete({
   const viewportRef = useRef<HTMLDivElement>(null);
 
   const [needMenu, setNeedMenu] = useState(false);
-
-  const { refs, ...floating } = useFloating({ open: needMenu, ...dropdownFloatingConfig() });
-  const floatingStyle = useDropdownFloatingStyle({ refs, ...floating });
+  const [currentValue, setCurrentValue] = useState<string>(() => `${value ?? defaultValue ?? ''}`);
 
   const [activeIndex, setActiveIndex] = useState<number>(-1);
-  const [currentValue, setCurrentValue] = useState<string>(() => `${value ?? defaultValue ?? ''}`);
 
   const items = Children.toArray(children).filter(
     (item): item is DropdownItemElement =>
       DropdownItemUtils.is(item) && filterOption(item, currentValue),
   );
+  const { floatingStyle, refs } = useFloatingStyle(needMenu, items.length);
 
   const hasItems = items.length > 0;
   const hasItemsStub = Boolean(optionsStub);
@@ -110,7 +111,6 @@ export function Autocomplete({
           onInput?.(syntheticEventInput);
           onChange?.(syntheticEventChange, { reason: 'suggestionSelect', selectedIndex });
         }
-
         setCurrentValue(input.value);
         setNeedMenu(false);
         setActiveIndex(-1);
@@ -233,6 +233,7 @@ export function Autocomplete({
           <Lifecycle onMount={onMenuOpen} onUnmount={onMenuClose}>
             <AutocompleteMenu
               {...dropdownProps}
+              className={cx('menu', Boolean(currentValue) && 'selected', dropdownProps?.className)}
               rootRef={refs.setFloating}
               viewportRef={viewportRef}
               style={{ ...floatingStyle, ...dropdownProps?.style }}
@@ -282,6 +283,50 @@ export function Autocomplete({
 }
 
 /**
+ * Формирует стили и создаёт ref-ы для меню.
+ * @param open Нужно ли выводить меню.
+ * @param itemsCount Количество элементов в выпадающем списке.
+ * @return Объект со стилями и ref-ами необходимыми для выпадающего меню.
+ */
+function useFloatingStyle(open: boolean, itemsCount: number) {
+  const floatingConfig = dropdownFloatingConfig();
+  const { refs, ...floating } = useFloating({
+    open,
+    ...floatingConfig,
+    middleware: [...floatingConfig.middleware, size(getFloatingSizeOptions, [itemsCount])],
+  });
+
+  return { refs, floatingStyle: useDropdownFloatingStyle({ refs, ...floating }) };
+}
+
+/**
+ * Функция для формирования настроек middleware size библиотеки floating-ui.
+ * @return Настройки middleware size библиотеки floating-ui.
+ */
+const getFloatingSizeOptions = () => ({
+  rootBoundary: 'viewport' as const,
+  apply: setDropdownHeight,
+  padding: 16,
+});
+
+/**
+ * Функция для расчёта высоты выпадающего списка и применения вычисленного значения к элементу.
+ * @param input Входящие параметры floating-ui для расчёта.
+ */
+export function setDropdownHeight({
+  availableHeight,
+  elements,
+}: {
+  elements: Elements;
+  availableHeight: number;
+}) {
+  elements.floating.style.height = 'auto';
+  if (elements.floating.scrollHeight >= availableHeight) {
+    elements.floating.style.height = `${availableHeight}px`;
+  }
+}
+
+/**
  * Фильтр вариантов выбора по умолчанию.
  * @param item Вариант из меню.
  * @param inputValue Текущее значение в поле.
@@ -299,5 +344,5 @@ function defaultFilterOption(item: DropdownItemElement, inputValue: string) {
 function getDefaultAdornmentEnd(data: { menuShown: boolean }) {
   const ArrowSVG = data.menuShown ? UpSVG : DownSVG;
 
-  return <ArrowSVG className={styles.arrow} data-testid='autocomplete:arrow-up' />;
+  return <ArrowSVG className={cx('arrow')} data-testid='autocomplete:arrow-up' />;
 }

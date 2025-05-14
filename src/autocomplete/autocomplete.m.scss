@@ -5,3 +5,7 @@
   flex-shrink: 0;
   fill: colors.$basic-gray38;
 }
+
+.menu {
+  --dropdown-inner-max-height: 100%;
+}
