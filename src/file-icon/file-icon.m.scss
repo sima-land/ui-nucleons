@@ -60,3 +60,15 @@
 .zip {
   fill: var(--file-icon-primary-color, #{colors.$additional-teal});
 }
+
+.avi {
+  fill: var(--file-icon-primary-color, #{colors.$additional-cyan});
+}
+
+.mp3 {
+  fill: var(--file-icon-primary-color, #{colors.$additional-crimson});
+}
+
+.unknown {
+  fill: var(--file-icon-primary-color, #{colors.$basic-gray12});
+}

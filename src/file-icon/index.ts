@@ -1,2 +1,2 @@
-export type { FileIconProps, FileIconStyle } from './types';
-export { FileIcon } from './file-icon';
+export type { FileIconProps, FileIconStyle, FileIconType } from './types';
+export { FileIcon, KNOWN_TYPES } from './file-icon';

@@ -22,6 +22,9 @@ export default function Primary() {
       <FileIcon width={48} height={48} type='xlsx' />
       <FileIcon width={48} height={48} type='xml' />
       <FileIcon width={48} height={48} type='zip' />
+      <FileIcon width={48} height={48} type='avi' />
+      <FileIcon width={48} height={48} type='mp3' />
+      <FileIcon width={48} height={48} />
       <FileIcon width={48} height={48} type='unknown' />
     </div>
   );
