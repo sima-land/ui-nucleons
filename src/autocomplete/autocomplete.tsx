@@ -22,10 +22,7 @@ import { NaiveSyntheticEvent, when } from './utils';
 import { Portal } from '../portal';
 import DownSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowExpandDown';
 import UpSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/ArrowExpandUp';
-import classNames from 'classnames/bind';
 import styles from './autocomplete.m.scss';
-
-const cx = classNames.bind(styles);
 
 /**
  * Поле ввода с подсказками.
@@ -233,7 +230,7 @@ export function Autocomplete({
           <Lifecycle onMount={onMenuOpen} onUnmount={onMenuClose}>
             <AutocompleteMenu
               {...dropdownProps}
-              className={cx('menu', dropdownProps?.className)}
+              className={dropdownProps?.className}
               rootRef={refs.setFloating}
               viewportRef={viewportRef}
               style={{ ...floatingStyle, ...dropdownProps?.style }}

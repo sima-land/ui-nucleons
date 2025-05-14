@@ -13,9 +13,6 @@
 }
 
 .inner {
-  // можно задавать внутреннюю высоту контейнера списка через --dropdown-inner-max-height, необходимо для использования в Autocomplete
-  max-height: var(
-    --dropdown-inner-max-height,
-    calc(var(--dropdown-max-height, 376px) - 16px)
-  ); // вычитаем padding корневого элемента
+  height: 100%;
+  max-height: calc(var(--dropdown-max-height, 376px) - 16px); // вычитаем padding корневого элемента
 }
