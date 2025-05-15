@@ -8,8 +8,8 @@ export interface FileIconProps extends Omit<SVGAttributes<SVGSVGElement>, 'type'
   /** Тип файла. */
   type?: string;
 
-  /** Нужно ли выводить название типа. */
-  typeDisplayed?: boolean;
+  /** Нужно ли выводить название или иконку типа. */
+  isTypeVisible?: boolean;
 
   /** Стили. */
   style?: FileIconStyle;

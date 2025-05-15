@@ -11,7 +11,7 @@ describe('FileIcon', () => {
   }
 
   it('should render unknown file type icon', () => {
-    const { container } = render(<FileIcon />);
+    const { container } = render(<FileIcon type='cpp' />);
 
     expect(container).toMatchSnapshot();
   });

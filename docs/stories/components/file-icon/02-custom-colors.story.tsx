@@ -13,8 +13,8 @@ export default function CustomColors() {
   return (
     <div style={{ display: 'flex', gap: '12px' }}>
       <FileIcon style={style} width={48} height={48} type='doc' />
-      <FileIcon style={style} width={48} height={48} type='avi' />
-      <FileIcon style={style} width={48} height={48} type='mp3' typeDisplayed={false} />
+      <FileIcon style={style} width={48} height={48} type='svg' isTypeVisible />
+      <FileIcon style={style} width={48} height={48} />
     </div>
   );
 }
