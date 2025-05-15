@@ -25,7 +25,7 @@ export default function Primary() {
       <FileIcon width={48} height={48} type='xml' />
       <FileIcon width={48} height={48} type='zip' />
       <FileIcon width={48} height={48} type='unknown' />
-      <FileIcon width={48} height={48} type='broken' />
+      <FileIcon width={48} height={48} type={null} />
     </div>
   );
 }

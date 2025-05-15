@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { FileIcon, KNOWN_TYPES } from '..';
+import { FileIcon, KNOWN_TYPES } from '../file-icon';
 
 describe('FileIcon', () => {
   for (const type of KNOWN_TYPES) {
@@ -11,7 +11,13 @@ describe('FileIcon', () => {
   }
 
   it('should render unknown file type icon', () => {
-    const { container } = render(<FileIcon type='cpp' />);
+    const { container } = render(<FileIcon />);
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it('should render broken icon', () => {
+    const { container } = render(<FileIcon type={null} />);
 
     expect(container).toMatchSnapshot();
   });
