@@ -112,3 +112,17 @@ test.describe('Keyboard interactions', () => {
     await expect(here.menuItem()).toHaveCount(0);
   });
 });
+
+test.describe('Viewport interaction', () => {
+  test('dropdown bottom should stick to the bottom of viewport', async ({ page }) => {
+    await here.fieldBlock().click();
+    await page.setViewportSize({ height: 1000, width: 270 });
+    const fullHeight = (await here.menu().boundingBox())?.height || 0;
+    await page.setViewportSize({ height: 376, width: 270 });
+    const stickHeight = (await here.menu().boundingBox())?.height || 0;
+    expect(stickHeight).toBeLessThan(fullHeight);
+    expect(fullHeight).toBe(376);
+    expect(stickHeight).toBe(288);
+  });
+  // TO DO Доработать историю в документации и реализовать проверку на изменение направления вывода dropdown при изменении размеров вьюпорта.
+});
