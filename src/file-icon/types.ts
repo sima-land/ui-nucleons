@@ -6,10 +6,10 @@ export interface FileIconStyle extends CSSProperties {
 
 export interface FileIconProps extends Omit<SVGAttributes<SVGSVGElement>, 'type'> {
   /** Тип файла. */
-  type?: string;
+  type?: string | null;
 
   /** Нужно ли выводить название типа. */
-  typeDisplayed?: boolean;
+  isTypeVisible?: boolean;
 
   /** Стили. */
   style?: FileIconStyle;
