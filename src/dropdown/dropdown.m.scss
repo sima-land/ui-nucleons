@@ -9,9 +9,10 @@
 
   // задавать можно только максимальную высоту через --dropdown-max-height
   max-height: var(--dropdown-max-height, 376px) !important;
-  height: auto !important;
+  height: auto;
 }
 
 .inner {
+  height: 100%;
   max-height: calc(var(--dropdown-max-height, 376px) - 16px); // вычитаем padding корневого элемента
 }
