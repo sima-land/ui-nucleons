@@ -6,7 +6,7 @@
 
 // ВАЖНО: далее используем цвет именно как резервное значение чтобы иметь возможность переопределения
 .avi {
-  fill: var(--file-icon-primary-color, #{colors.$additional-cyan});
+  fill: var(--file-icon-primary-color, #{colors.$additional-blue-gray});
 }
 
 .doc {
@@ -30,7 +30,7 @@
 }
 
 .mp3 {
-  fill: var(--file-icon-primary-color, #{colors.$additional-crimson});
+  fill: var(--file-icon-primary-color, #{colors.$additional-blue-gray});
 }
 
 .mp4 {
