@@ -65,7 +65,7 @@ export function FileIcon({
       <path
         opacity='0.24'
         d='M25.1667 9L21 9L26 15L26 9C25.5833 9 25.6269 9 25.1667 9Z'
-        fill='#000'
+        fill='black'
       />
 
       {type && isTypeVisible ? (
