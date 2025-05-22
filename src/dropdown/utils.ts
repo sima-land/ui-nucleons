@@ -1,5 +1,5 @@
 import { RefObject, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { UseFloatingOptions, flip, autoUpdate, shift, UseFloatingReturn } from '@floating-ui/react';
+import { flip, autoUpdate, shift, UseFloatingReturn } from '@floating-ui/react';
 import { useLayer } from '../helpers/layer';
 import { ResizeObserverContext } from '../context';
 import { on } from '../helpers';
@@ -8,10 +8,10 @@ import { on } from '../helpers';
  * Возвращает конфигурацию для `useFloating` по дизайн-гайдам.
  * @return Конфигурация для `useFloating` по дизайн-гайдам.
  */
-export function dropdownFloatingConfig(): Partial<UseFloatingOptions> {
+export function dropdownFloatingConfig() {
   return {
     whileElementsMounted: autoUpdate,
-    placement: 'bottom-start',
+    placement: 'bottom-start' as const,
     middleware: [
       // @todo в будущем с дизайнерами можем решить использовать autoPlacement
       // но есть сложности: https://github.com/floating-ui/floating-ui/discussions/2155

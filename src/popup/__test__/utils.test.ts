@@ -8,22 +8,28 @@ describe('popupFloatingConfig', () => {
     expect(result.middleware).toEqual([
       {
         name: 'offset',
-        options: 8,
+        options: [8, undefined],
         fn: expect.any(Function),
       },
       {
         name: 'flip',
-        options: {
-          padding: 16,
-          fallbackAxisSideDirection: 'start',
-        },
+        options: [
+          {
+            padding: 16,
+            fallbackAxisSideDirection: 'start',
+          },
+          undefined,
+        ],
         fn: expect.any(Function),
       },
       {
         name: 'shift',
-        options: {
-          padding: 16,
-        },
+        options: [
+          {
+            padding: 16,
+          },
+          undefined,
+        ],
         fn: expect.any(Function),
       },
     ]);
@@ -37,22 +43,28 @@ describe('popupFloatingConfig', () => {
     expect(result.middleware).toEqual([
       {
         name: 'offset',
-        options: 32,
+        options: [32, undefined],
         fn: expect.any(Function),
       },
       {
         name: 'flip',
-        options: {
-          padding: 16,
-          fallbackAxisSideDirection: 'start',
-        },
+        options: [
+          {
+            padding: 16,
+            fallbackAxisSideDirection: 'start',
+          },
+          undefined,
+        ],
         fn: expect.any(Function),
       },
       {
         name: 'shift',
-        options: {
-          padding: 16,
-        },
+        options: [
+          {
+            padding: 16,
+          },
+          undefined,
+        ],
         fn: expect.any(Function),
       },
     ]);

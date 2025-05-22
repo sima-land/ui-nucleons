@@ -27,7 +27,7 @@
     "prettier:check": "prettier --check \"./src/**/*.{js,jsx,ts,tsx,css,scss}\""
   },
   "dependencies": {
-    "@floating-ui/react": "^0.26.13",
+    "@floating-ui/react": "^0.27.8",
     "@krutoo/input-mask": "^0.1.0",
     "body-scroll-lock": "3.1.5",
     "classnames": "^2.3.2",

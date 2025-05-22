@@ -10,6 +10,8 @@ import { DropdownItem } from '../../dropdown-item';
 import { Autocomplete } from '..';
 import userEvent from '@testing-library/user-event';
 import { createRef } from 'react';
+import { setDropdownHeight } from '../autocomplete';
+import { Elements } from '@floating-ui/react';
 
 class Helpers {
   private _container?: HTMLElement;
@@ -604,5 +606,25 @@ describe('Autocomplete', () => {
     expect(helpers.getInput().value).toBe('Baz');
     expect(helpers.findMenu()).toHaveLength(0);
     expect(helpers.findMenuItems()).toHaveLength(0);
+  });
+});
+
+// TODO придумать как тестировать установку высоты dropdown с помощью сценария использования компонента пользователем.
+describe('setDropdownHeight', () => {
+  it(`should set availableHeight if it is less than the float's scrollHeight`, () => {
+    const elements = { floating: { style: {}, scrollHeight: 200 } } as Elements;
+    setDropdownHeight({
+      availableHeight: 100,
+      elements,
+    });
+    expect(elements.floating.style.height).toBe('100px');
+  });
+  it(`should set constant value 'auto' if availableHeight is greater than the float's scrollHeight`, () => {
+    const elements = { floating: { style: {}, scrollHeight: 100 } } as Elements;
+    setDropdownHeight({
+      availableHeight: 200,
+      elements,
+    });
+    expect(elements.floating.style.height).toBe('auto');
   });
 });
