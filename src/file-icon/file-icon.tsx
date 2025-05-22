@@ -29,7 +29,7 @@ export const KNOWN_TYPES = new Set([
  */
 export function FileIcon({
   type = '',
-  isTypeVisible = Boolean(type && KNOWN_TYPES.has(type.toLowerCase())),
+  isTypeVisible = typeof type === 'string' && KNOWN_TYPES.has(type.toLowerCase()),
   ...svgProps
 }: FileIconProps) {
   const placeholder = useMemo(
