@@ -5,6 +5,10 @@
 }
 
 // ВАЖНО: далее используем цвет именно как резервное значение чтобы иметь возможность переопределения
+.avi {
+  fill: var(--file-icon-primary-color, #{colors.$additional-blue-gray});
+}
+
 .doc {
   fill: var(--file-icon-primary-color, #{colors.$additional-electric-blue});
 }
@@ -22,6 +26,10 @@
 }
 
 .mov {
+  fill: var(--file-icon-primary-color, #{colors.$additional-blue-gray});
+}
+
+.mp3 {
   fill: var(--file-icon-primary-color, #{colors.$additional-blue-gray});
 }
 
@@ -59,4 +67,8 @@
 
 .zip {
   fill: var(--file-icon-primary-color, #{colors.$additional-teal});
+}
+
+.broken {
+  fill: var(--file-icon-primary-color, #{colors.$basic-gray12});
 }
