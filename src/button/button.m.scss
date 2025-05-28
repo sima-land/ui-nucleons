@@ -25,6 +25,9 @@
   min-width: var(--button-min-size);
   height: var(--button-min-size);
   --button-icon-gutter: 12px;
+  transition:
+    background 0.2s ease-in-out,
+    transform 0.1s ease-in-out;
   &::-moz-focus-inner {
     border: 0;
   }
@@ -48,6 +51,9 @@
   }
   &:not(:disabled):not(.loading):hover {
     color: var(--button-hover-color, var(--button-color));
+  }
+  &:active {
+    transform: scale(0.96);
   }
 }
 
