@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import { TestUtils } from './utils';
 
 class Here extends TestUtils {
@@ -16,6 +16,9 @@ class Here extends TestUtils {
 
   menuItem() {
     return this.menu().getByTestId('dropdown-item');
+  }
+  checkbox() {
+    return this.page.getByRole('checkbox');
   }
 }
 
@@ -124,5 +127,25 @@ test.describe('Viewport interaction', () => {
     expect(fullHeight).toBe(376);
     expect(stickHeight).toBe(288);
   });
-  // TO DO Доработать историю в документации и реализовать проверку на изменение направления вывода dropdown при изменении размеров вьюпорта.
+});
+
+test.describe('Upward dropdown opening', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/sandbox.html?path=/components/autocomplete/04-different-states');
+  });
+
+  test('dropdown should open upward when not enough space below', async () => {
+    await here.checkbox().nth(1).click();
+
+    await here.fieldBlock().click();
+
+    const inputBox = await here.input().boundingBox();
+    const menuBox = await here.menu().boundingBox();
+    const inputTop = inputBox!.y;
+    const menuTop = menuBox!.y;
+
+    expect(menuTop).toBeLessThan(inputTop);
+
+    await expect(here.page).toHaveScreenshot();
+  });
 });

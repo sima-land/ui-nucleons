@@ -14,6 +14,7 @@ export default function () {
   const [size, setSize] = useState<FieldBlockSize>('l');
   const [state, setState] = useState<'default' | 'failed' | 'disabled'>('default');
   const [loading, setLoading] = useState<boolean>(false);
+  const [droppingUp, setDroppingUp] = useState<boolean>(false);
 
   const autocompleteProps: AutocompleteProps = {
     value,
@@ -68,8 +69,28 @@ export default function () {
           label: 'Загрузка',
           bind: [loading, setLoading],
         },
+        {
+          type: 'toggle',
+          label: 'Открытие меню вверх',
+          bind: [droppingUp, setDroppingUp],
+        },
       ]}
     >
+      {droppingUp && (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            background: '#ccc',
+            borderRadius: '8px',
+            height: '30vh',
+            marginBottom: '10px',
+          }}
+        >
+          Заполнитель контента для создания недостатка места снизу
+        </div>
+      )}
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Autocomplete {...autocompleteProps}>
           {items.map(item => (
