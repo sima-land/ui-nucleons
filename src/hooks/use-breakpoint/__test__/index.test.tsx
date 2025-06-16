@@ -34,6 +34,8 @@ describe('useBreakpoint', () => {
   });
 
   it('should throws error', () => {
+    const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
     expect(() =>
       render(
         <BreakpointProvider>
@@ -41,5 +43,7 @@ describe('useBreakpoint', () => {
         </BreakpointProvider>,
       ),
     ).toThrow(Error('useBreakpoint: Invalid query, "invalid_query"'));
+
+    spy.mockRestore();
   });
 });
