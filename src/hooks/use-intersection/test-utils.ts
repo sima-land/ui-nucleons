@@ -1,4 +1,4 @@
-import { act } from 'react-dom/test-utils';
+import { act } from '@testing-library/react';
 
 /**
  * @deprecated Следует использовать утилиты из @sima-land/ui-nucleons/test-utils.
