@@ -23,10 +23,10 @@ describe('useDropdownFloatingStyle', () => {
     );
   };
 
-  it('should return styles and handle reference element resize', () => {
+  it('should return styles and handle reference element resize', async () => {
     const observers = ResizeObserverMock.createRegistry();
 
-    const { getByTestId } = render(
+    const { getByTestId, findByTestId } = render(
       <ResizeObserverContext.Provider value={{ createResizeObserver: observers.getObserver }}>
         <TestComponent />
       </ResizeObserverContext.Provider>,
@@ -52,7 +52,8 @@ describe('useDropdownFloatingStyle', () => {
       observers.simulateEntryChange({ target: reference });
     });
 
-    expect(getByTestId('floating').style.getPropertyValue('--opener-width')).toBe('320px');
+    const floatingElement = await findByTestId('floating');
+    expect(floatingElement.style.getPropertyValue('--opener-width')).toBe('320px');
   });
 });
 

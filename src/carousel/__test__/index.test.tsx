@@ -75,50 +75,46 @@ describe('Carousel', () => {
   });
 
   it('should enable autoplay on mount', () => {
-    const instance = new Carousel({ autoplay: true });
+    const spy = jest.spyOn(Carousel.prototype, 'enableAutoplay');
 
-    jest.spyOn(instance, 'enableAutoplay');
+    const { rerender } = render(<Carousel autoplay={false} items={[1, 2, 3]} />);
+    expect(spy).toHaveBeenCalledTimes(0);
 
-    expect((instance as any).enableAutoplay).toHaveBeenCalledTimes(0);
-    instance.componentDidMount();
-    expect((instance as any).enableAutoplay).toHaveBeenCalledTimes(1);
-
-    (instance as any).props = { autoplay: false };
-    instance.componentDidUpdate({ autoplay: true });
-    expect((instance as any).enableAutoplay).toHaveBeenCalledTimes(1);
-    instance.componentDidMount();
-    expect((instance as any).enableAutoplay).toHaveBeenCalledTimes(1);
+    rerender(<Carousel autoplay items={[1, 2, 3]} />);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should toggle autoplay on update', () => {
-    const instance = new Carousel({});
+    const enableSpy = jest.spyOn(Carousel.prototype, 'enableAutoplay');
+    const disableSpy = jest.spyOn(Carousel.prototype, 'disableAutoplay');
 
-    jest.spyOn(instance, 'enableAutoplay');
-    jest.spyOn(instance, 'disableAutoplay');
+    const { rerender } = render(<Carousel autoplay={false} items={[1, 2, 3]} />);
+    expect(enableSpy).toHaveBeenCalledTimes(0);
+    expect(disableSpy).toHaveBeenCalledTimes(0);
 
-    expect(instance.enableAutoplay).toHaveBeenCalledTimes(0);
-    expect(instance.disableAutoplay).toHaveBeenCalledTimes(0);
+    rerender(<Carousel autoplay items={[1, 2, 3]} />);
+    expect(enableSpy).toHaveBeenCalledTimes(1);
+    expect(disableSpy).toHaveBeenCalledTimes(0);
 
-    (instance as any).props = { autoplay: true };
-    instance.componentDidUpdate({});
-    expect(instance.enableAutoplay).toHaveBeenCalledTimes(1);
-    expect(instance.disableAutoplay).toHaveBeenCalledTimes(0);
-
-    (instance as any).props = { autoplay: false };
-    instance.componentDidUpdate({ autoplay: true });
-    expect(instance.enableAutoplay).toHaveBeenCalledTimes(1);
-    expect(instance.disableAutoplay).toHaveBeenCalledTimes(1);
+    rerender(<Carousel autoplay={false} items={[1, 2, 3]} />);
+    expect(enableSpy).toHaveBeenCalledTimes(1);
+    expect(disableSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should enable auto move on drag end', () => {
-    const instance = new Carousel({ autoplay: true });
+    const ref = createRef<Carousel>();
+    render(<Carousel ref={ref} autoplay items={[1, 2, 3]} />);
+
+    const instance = ref.current!;
 
     jest.spyOn(instance, 'canDrag').mockImplementation(() => true);
-    jest.spyOn(instance, 'toggleAutoMove');
+    const toggleAutoMoveSpy = jest.spyOn(instance, 'toggleAutoMove');
 
-    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(0);
+    expect(toggleAutoMoveSpy).toHaveBeenCalledTimes(0);
+
     instance.onDragEnd(new DraggableEvent({ offset: Point(), client: Point() }));
-    expect(instance.toggleAutoMove).toHaveBeenCalledTimes(1);
+
+    expect(toggleAutoMoveSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should disable auto move on mouse enter', () => {
@@ -210,8 +206,9 @@ describe('Carousel', () => {
     });
     expect(spy).toHaveBeenCalledTimes(0);
     expect(getInstance().toggleDragTransition).toHaveBeenCalledTimes(0);
-
-    getInstance().scrollToItem();
+    act(() => {
+      getInstance().scrollToItem();
+    });
     expect(getInstance().toggleDragTransition).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledTimes(1);
   });
@@ -271,12 +268,15 @@ describe('Carousel', () => {
       constructor(callbackArg: any) {
         callback = callbackArg;
       }
+
       observe(...args: any[]) {
         observeSpy(...args);
       }
+
       unobserve(...args: any[]) {
         unobserveSpy(...args);
       }
+
       disconnect() {
         disconnectSpy();
       }
@@ -324,9 +324,11 @@ describe('Carousel', () => {
       observe(...args: any[]) {
         observeSpy(...args);
       }
+
       unobserve(...args: any[]) {
         unobserveSpy(...args);
       }
+
       disconnect() {
         disconnectSpy();
       }
@@ -889,10 +891,12 @@ describe('Carousel: finite mode', () => {
 
       getInstance().dragStartOffset = { x: 0, y: 0 };
       getInstance().dragStartClient = { x: 0, y: 0 };
-      getInstance().onDragEnd({
-        offset: { x: endOffset, y: 0 },
-        client: { x: endOffset, y: 0 },
-      } as any);
+      act(() => {
+        getInstance().onDragEnd({
+          offset: { x: endOffset, y: 0 },
+          client: { x: endOffset, y: 0 },
+        } as any);
+      });
       expect(getInstance().currentIndex).toBe(6);
     });
 
@@ -941,10 +945,12 @@ describe('Carousel: finite mode', () => {
 
       getInstance().dragStartOffset = { x: 0, y: 0 };
       getInstance().dragStartClient = { x: 0, y: 0 };
-      getInstance().onDragEnd({
-        offset: { x: endOffset, y: 0 },
-        client: { x: endOffset, y: 0 },
-      } as any);
+      act(() => {
+        getInstance().onDragEnd({
+          offset: { x: endOffset, y: 0 },
+          client: { x: endOffset, y: 0 },
+        } as any);
+      });
       expect(getInstance().currentIndex).toBe(0);
     });
 
@@ -972,8 +978,12 @@ describe('Carousel: finite mode', () => {
       // перед перемещением мышью встаем на 6 элемент
       const startIndex = 6; // переместили мышкой на 4.3 элементов назад (вправо)
       const startOffset = -(startIndex * itemSize); // переместили мышкой на 4.3 элементов назад (вправо)
-      getInstance().currentIndex = startIndex;
-      getInstance().setState({ currentOffset: -(startIndex * itemSize) });
+
+      act(() => {
+        getInstance().currentIndex = startIndex;
+        getInstance().setState({ currentOffset: -(startIndex * itemSize) });
+      });
+
       jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
         () =>
           ({
@@ -997,13 +1007,15 @@ describe('Carousel: finite mode', () => {
         itemsCount,
         offset: endOffset,
       });
-
       getInstance().dragStartOffset = { x: startOffset, y: 0 };
       getInstance().dragStartClient = { x: startOffset, y: 0 };
-      getInstance().onDragEnd({
-        offset: { x: endOffset, y: 0 },
-        client: { x: endOffset, y: 0 },
-      } as any);
+
+      act(() => {
+        getInstance().onDragEnd({
+          offset: { x: endOffset, y: 0 },
+          client: { x: endOffset, y: 0 },
+        } as any);
+      });
       expect(getInstance().currentIndex).toBe(1);
     });
 
@@ -1051,10 +1063,12 @@ describe('Carousel: finite mode', () => {
 
       getInstance().dragStartOffset = { x: 0, y: 0 };
       getInstance().dragStartClient = { x: 0, y: 0 };
-      getInstance().onDragEnd({
-        offset: { x: 0, y: endOffset },
-        client: { x: 0, y: endOffset },
-      } as any);
+      act(() => {
+        getInstance().onDragEnd({
+          offset: { x: 0, y: endOffset },
+          client: { x: 0, y: endOffset },
+        } as any);
+      });
       expect(getInstance().currentIndex).toBe(4);
     });
 
@@ -1082,8 +1096,10 @@ describe('Carousel: finite mode', () => {
       // перед перемещением мышью встаем на 6 элемент
       const startIndex = 5; // переместили мышкой на 4.3 элементов назад (вправо)
       const startOffset = -(startIndex * itemSize); // переместили мышкой на 4.3 элементов назад (вправо)
-      getInstance().currentIndex = startIndex;
-      getInstance().setState({ currentOffset: -(startIndex * itemSize) });
+      act(() => {
+        getInstance().currentIndex = startIndex;
+        getInstance().setState({ currentOffset: -(startIndex * itemSize) });
+      });
       jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
         () =>
           ({
@@ -1110,10 +1126,12 @@ describe('Carousel: finite mode', () => {
 
       getInstance().dragStartOffset = { x: 0, y: startOffset };
       getInstance().dragStartClient = { x: 0, y: startOffset };
-      getInstance().onDragEnd({
-        offset: { x: 0, y: endOffset },
-        client: { x: 0, y: endOffset },
-      } as any);
+      act(() => {
+        getInstance().onDragEnd({
+          offset: { x: 0, y: endOffset },
+          client: { x: 0, y: endOffset },
+        } as any);
+      });
       expect(getInstance().currentIndex).toBe(2);
     });
 
@@ -1161,10 +1179,12 @@ describe('Carousel: finite mode', () => {
 
       getInstance().dragStartOffset = { x: 0, y: 0 };
       getInstance().dragStartClient = { x: 0, y: 0 };
-      getInstance().onDragEnd({
-        offset: { x: 0, y: endOffset },
-        client: { x: 0, y: endOffset },
-      } as any);
+      act(() => {
+        getInstance().onDragEnd({
+          offset: { x: 0, y: endOffset },
+          client: { x: 0, y: endOffset },
+        } as any);
+      });
       expect(getInstance().currentIndex).toBe(0);
     });
 
@@ -1211,10 +1231,12 @@ describe('Carousel: finite mode', () => {
 
       getInstance().dragStartOffset = { x: 0, y: 0 };
       getInstance().dragStartClient = { x: 0, y: 0 };
-      getInstance().onDragEnd({
-        offset: { x: 0, y: endOffset },
-        client: { x: 0, y: endOffset },
-      } as any);
+      act(() => {
+        getInstance().onDragEnd({
+          offset: { x: 0, y: endOffset },
+          client: { x: 0, y: endOffset },
+        } as any);
+      });
       expect(getInstance().currentIndex).toBe(itemsCount - 1);
     });
   });
@@ -1270,9 +1292,10 @@ describe('Carousel: infinite mode', () => {
       itemsCount,
       offset: initialOffset,
     });
-    getInstance().currentIndex = initialIndex;
-    getInstance().setState({ currentOffset: initialOffset });
-
+    act(() => {
+      getInstance().currentIndex = initialIndex;
+      getInstance().setState({ currentOffset: initialOffset });
+    });
     // запускаем прокрутку
     fireEvent.click(getAllByTestId('arrow-button')[1]);
 
@@ -1329,8 +1352,10 @@ describe('Carousel: infinite mode', () => {
       itemsCount,
       offset: initialOffset,
     });
-    getInstance().currentIndex = initialIndex;
-    getInstance().setState({ currentOffset: initialOffset });
+    act(() => {
+      getInstance().currentIndex = initialIndex;
+      getInstance().setState({ currentOffset: initialOffset });
+    });
 
     // запускаем прокрутку
     fireEvent.click(getAllByTestId('arrow-button')[0]);
@@ -1387,8 +1412,10 @@ describe('Carousel: infinite mode', () => {
       itemsCount,
       offset: initialOffset,
     });
-    getInstance().currentIndex = initialIndex;
-    getInstance().setState({ currentOffset: initialOffset });
+    act(() => {
+      getInstance().currentIndex = initialIndex;
+      getInstance().setState({ currentOffset: initialOffset });
+    });
 
     // запускаем прокрутку
     fireEvent.click(getAllByTestId('arrow-button')[1]);
@@ -1505,8 +1532,10 @@ describe('Carousel: infinite mode', () => {
       itemsCount,
       offset: initialOffset,
     });
-    getInstance().currentIndex = initialIndex;
-    getInstance().setState({ currentOffset: initialOffset });
+    act(() => {
+      getInstance().currentIndex = initialIndex;
+      getInstance().setState({ currentOffset: initialOffset });
+    });
 
     // запускаем прокрутку
     fireEvent.click(getAllByTestId('arrow-button')[0]);
@@ -1610,7 +1639,9 @@ describe('Carousel: infinite mode', () => {
     const containerEl = getInstance().containerRef.current as HTMLElement;
 
     // формируем viewport
-    getInstance().setState({ isAllItemsVisible: false });
+    act(() => {
+      getInstance().setState({ isAllItemsVisible: false });
+    });
     jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
       () =>
         ({
@@ -1634,28 +1665,34 @@ describe('Carousel: infinite mode', () => {
       itemsCount,
       offset: dragOffset,
     });
-    getInstance().setState({ isAllItemsVisible: false });
+    act(() => {
+      getInstance().setState({ isAllItemsVisible: false });
+    });
 
     expect(container.querySelector<HTMLElement>('.draggable')?.style.transform).toEqual(
       getTranslateStyle(0, 0),
     );
 
     // имитируем перетаскивание
-    getInstance().onDragStart(
-      new DraggableEvent({
-        offset: Point(0, 0),
-        client: Point(0, 0),
-      }),
-    );
+    act(() => {
+      getInstance().onDragStart(
+        new DraggableEvent({
+          offset: Point(0, 0),
+          client: Point(0, 0),
+        }),
+      );
+    });
 
     // подменяю результат потому что в jest + jsdom все подменяется на ходу
     jest.spyOn(getInstance(), 'findRealItemsStartBound').mockImplementation(() => 90000);
-    getInstance().onDragMove(
-      new DraggableEvent({
-        offset: Point(dragOffset, 0),
-        client: Point(dragOffset, 0),
-      }),
-    );
+    act(() => {
+      getInstance().onDragMove(
+        new DraggableEvent({
+          offset: Point(dragOffset, 0),
+          client: Point(dragOffset, 0),
+        }),
+      );
+    });
 
     expect(container.querySelector<HTMLElement>('.draggable')?.style.transform).toEqual(
       getTranslateStyle(-110, 0),
@@ -1688,7 +1725,9 @@ describe('Carousel: infinite mode', () => {
     const containerEl = getInstance().containerRef.current as HTMLElement;
 
     // формируем viewport
-    getInstance().setState({ isAllItemsVisible: false });
+    act(() => {
+      getInstance().setState({ isAllItemsVisible: false });
+    });
     jest.spyOn(wrapperEl, 'getBoundingClientRect').mockImplementation(
       () =>
         ({
@@ -1712,8 +1751,9 @@ describe('Carousel: infinite mode', () => {
       itemsCount,
       offset: dragOffset,
     });
-    getInstance().setState({ isAllItemsVisible: false });
-
+    act(() => {
+      getInstance().setState({ isAllItemsVisible: false });
+    });
     expect(container.querySelector<HTMLElement>('.draggable')?.style.transform).toEqual(
       getTranslateStyle(0, 0),
     );

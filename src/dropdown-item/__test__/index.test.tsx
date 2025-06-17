@@ -124,6 +124,8 @@ describe('DropdownItem', () => {
   });
 
   it('should throw error when "dangerouslySetInnerHTML" and "children" provider', () => {
+    const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
     expect(() => {
       render(
         // eslint-disable-next-line react/no-danger-with-children
@@ -135,5 +137,7 @@ describe('DropdownItem', () => {
         />,
       );
     }).toThrow('Can only set one of `children` or `props.dangerouslySetInnerHTML`.');
+
+    spy.mockRestore();
   });
 });

@@ -1,4 +1,4 @@
-import { IntersectionMock, FakeIntersectionObserver, createFakeEntry } from '../test-utils';
+import { createFakeEntry, FakeIntersectionObserver, IntersectionMock } from '../test-utils';
 
 describe('IntersectionMock', () => {
   const originalIntersectionObserver = window.IntersectionObserver;
@@ -125,16 +125,22 @@ describe('FakeIntersectionObserver', () => {
   });
 
   it('takeRecords() should return empty array', () => {
+    const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
     const observer = new FakeIntersectionObserver(jest.fn());
     const element = document.createElement('div');
 
     observer.observe(element);
     expect(observer.takeRecords()).toEqual([]);
+
+    spy.mockRestore();
   });
 });
 
 describe('createFakeEntry', () => {
   it('should return object with entry shape', () => {
+    const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
     const target = document.createElement('div');
 
     const entry = createFakeEntry({
@@ -150,6 +156,8 @@ describe('createFakeEntry', () => {
     expect(entry.rootBounds).toBe(null);
     expect(entry.boundingClientRect).toBe(null);
     expect(entry.intersectionRect).toBe(null);
+
+    spy.mockRestore();
   });
 
   it('disconnect()', () => {

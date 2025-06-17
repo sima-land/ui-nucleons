@@ -8,6 +8,7 @@ class FakeScrollbarWidth extends PageScrollLockAdapterNucleons {
 
 describe('PageScrollLockAdapterNucleons', () => {
   it('should works correctly', () => {
+    window.scrollTo = jest.fn();
     const adapter = new PageScrollLockAdapterNucleons();
     expect(document.body.hasAttribute('data-scroll-locked')).toBe(false);
 
