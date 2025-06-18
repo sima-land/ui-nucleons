@@ -6,28 +6,29 @@ export const meta = {
   title: 'Пример: проверка заполнения c ограничением минимального количества символов',
 };
 
+const MIN_LENGTH = 5;
+
 export default function Validation() {
-  const filledMaskMinLength = 5;
   const [value, setValue] = useState('');
   const [failed, setFailed] = useState(false);
 
   return (
     <PhoneInput
-      filledMaskMinLength={filledMaskMinLength}
+      filledMaskMinLength={MIN_LENGTH}
       style={{ width: 320 }}
       value={value}
       onFocus={() => {
         setFailed(false);
       }}
-      onChange={(event, data) => {
+      onChange={(_, data) => {
         setValue(data.cleanValue);
         setFailed(false);
       }}
-      onBlur={(event, data) => {
+      onBlur={(_, data) => {
         !data.completed && setFailed(true);
       }}
       failed={failed}
-      caption={`Минимальное допустимое количество символов: ${filledMaskMinLength}`}
+      caption={`Минимальное допустимое количество символов: ${MIN_LENGTH}`}
     />
   );
 }
