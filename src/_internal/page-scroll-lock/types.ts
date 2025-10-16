@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { BodyScrollOptions } from 'body-scroll-lock';
+import type { BodyScrollOptions } from 'body-scroll-lock-upgrade';
 
 export interface PageScrollLockAdapterFactory {
   (

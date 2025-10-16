@@ -1,5 +1,5 @@
 import { PageScrollLockAdapterBSL, allowTouchMove, BSL_IGNORE_ATTR } from '../body-scroll-lock';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock-upgrade';
 
 describe('PageScrollLock', () => {
   it('replaceLib should provide able to replace library', () => {
@@ -75,5 +75,9 @@ describe('allowTouchMove', () => {
     const target = document.body.querySelector('#test-target') as any;
 
     expect(allowTouchMove(target)).toBe(false);
+  });
+
+  it('should work without element', () => {
+    expect(allowTouchMove(null as any)).toBe(false);
   });
 });
