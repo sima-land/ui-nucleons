@@ -1,5 +1,5 @@
 import { useContext, RefObject } from 'react';
-import type { BodyScrollOptions } from 'body-scroll-lock';
+import type { BodyScrollOptions } from 'body-scroll-lock-upgrade';
 import { useIsomorphicLayoutEffect } from '../../hooks';
 import { PageScrollLockContext } from './context';
 
