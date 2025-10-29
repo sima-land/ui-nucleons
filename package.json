@@ -43,7 +43,7 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
-    "@playwright/test": "^1.46.1",
+    "@playwright/test": "1.46.1",
     "@sima-land/linters": "^5.0.0",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
