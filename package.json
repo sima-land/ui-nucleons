@@ -140,6 +140,7 @@
     "./side-page": "./side-page/index.js",
     "./side-page/side-page-util.scss": "./side-page/side-page-util.scss",
     "./skeleton": "./skeleton/index.js",
+    "./snackbar": "./snackbar/index.js",
     "./spinner": "./spinner/index.js",
     "./stepper": "./stepper/index.js",
     "./stroked-svg": "./stroked-svg/index.js",
