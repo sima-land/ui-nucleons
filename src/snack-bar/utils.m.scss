@@ -1,0 +1,7 @@
+.animated {
+  transition:
+    bottom var(--snackbar-transition-duration, 300ms) ease-out,
+    left var(--snackbar-transition-duration, 300ms) ease-out,
+    opacity var(--snackbar-transition-duration, 300ms) ease-out;
+  bottom: var(--snackbar-position-bottom, -110px);
+}

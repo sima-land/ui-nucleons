@@ -1,0 +1,102 @@
+@use '../colors';
+@use '../breakpoints.scss';
+
+.root {
+  --max-width: 464px;
+  --snackbar-bottom-gap: 12px;
+  background: colors.$basic-gray76;
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  width: fit-content;
+  max-width: var(--max-width);
+  position: fixed;
+  bottom: var(--snackbar-bottom-gap);
+  // частично иммитируем поведение layout
+  margin: 0 auto;
+  @include breakpoints.up('xs') {
+    --snackbar-bottom-gap: 40px;
+  }
+  @include breakpoints.down('ms') {
+    left: var(--snackbar-position-left, 8px);
+    margin-right: 8px;
+  }
+  @include breakpoints.up('ms') {
+    @include breakpoints.down('xs') {
+      left: var(--snackbar-position-left, 50%);
+      margin-left: calc(-1 * (var(--max-width) / 2));
+    }
+  }
+  @include breakpoints.up('xs') {
+    @include breakpoints.down('l') {
+      left: var(--snackbar-position-left, 56px);
+    }
+  }
+  @include breakpoints.up('l') {
+    @include breakpoints.down('xl') {
+      // 1472 - максимальная ширина контейнера Layout на данном разрешении.
+      left: var(--snackbar-position-left, calc(((100% - 1472px) / 2) - 8px));
+    }
+  }
+  @include breakpoints.up('xl') {
+    // 1504 - максимальная ширина контейнера Layout на данном разрешении.
+    left: var(--snackbar-position-left, calc(((100% - 1504px) / 2) - 8px));
+  }
+  .icon:last-child,
+  .button:last-child {
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: -12px;
+  }
+  .button {
+    padding-left: 12px;
+  }
+}
+
+.image + .content,
+.icon + .content {
+  margin-left: 8px;
+}
+
+.content {
+  .title,
+  .subtitle {
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  margin-top: -12px;
+  margin-bottom: -12px;
+}
+
+.image {
+  display: flex;
+  align-items: center;
+  img {
+    height: 40px;
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  margin-top: -12px;
+  margin-bottom: -12px;
+}
+
+.title {
+  color: colors.$basic-white;
+}
+
+.subtitle {
+  color: colors.$basic-gray38;
+}
