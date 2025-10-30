@@ -35,22 +35,16 @@ describe('useSnackBarPositioning', () => {
 
   const TestComponent = () => {
     const [shown, setShown] = useState(false);
-    const showFor = useRef<HTMLButtonElement>(null);
     const { state, snackBarProps } = useSnackBarPositioning({
       shown,
-      props: {
-        showFor,
-        onClose: () => {
-          setShown(false);
-        },
+      onClose: () => {
+        setShown(false);
       },
     });
 
     return (
       <>
-        <button ref={showFor} onClick={() => setShown(true)}>
-          Show!
-        </button>
+        <button onClick={() => setShown(true)}>Show!</button>
 
         <div data-testid='outside-click-trigger'>Outside click!</div>
 
@@ -114,6 +108,7 @@ describe('useSnackBarPositioning', () => {
       const relatedRef = useRef<HTMLDivElement>(null);
       const { state, snackBarProps } = useSnackBarPositioning({
         shown,
+        onClose: jest.fn(),
         relatedRef,
       });
 
@@ -161,6 +156,7 @@ describe('useSnackBarPositioning', () => {
       const relatedRef = useRef<HTMLDivElement>(null);
       const { state, snackBarProps } = useSnackBarPositioning({
         shown,
+        onClose: jest.fn(),
         relatedRef,
       });
 
@@ -350,93 +346,43 @@ describe('useSnackBarPositioning', () => {
     );
   });
 
-  it('shouldn`t close Snackbar on swipe if onClose wasn`t passed', () => {
-    const TestSwipeCloseComponent = () => {
-      const [shown, setShown] = useState(false);
-      const { state, snackBarProps } = useSnackBarPositioning({
-        shown,
-      });
-
-      return (
-        <>
-          <button onClick={() => setShown(true)}>Show!</button>
-
-          {state.isMounted && (
-            <SnackBar {...snackBarProps}>
-              <SnackBarTitle>Title</SnackBarTitle>
-              <SnackBarSubtitle>Subtitle</SnackBarSubtitle>
-              <SnackBarEndIcon icon={<PlaceholderSVG />} />
-            </SnackBar>
-          )}
-        </>
-      );
-    };
-
-    const { container, getByRole } = render(<TestSwipeCloseComponent />);
-
-    expect(getSnackBarStyleProperty(container, '--snackbar-position-bottom')).not.toBeDefined();
-
-    fireEvent.click(getByRole('button', { name: 'Show!' }));
-
-    act(() => {
-      jest.advanceTimersByTime(300);
-    });
-
-    expect(getSnackBarStyleProperty(container, '--snackbar-position-bottom')).toEqual(
-      'calc(0px + var(--snackbar-bottom-gap, 12px))',
-    );
-
-    swipe(findSnackBar(container), { clientX: 0, clientY: 0 }, { clientX: 150, clientY: 0 });
-
-    expect(getSnackBarStyleProperty(container, '--snackbar-position-left')).toEqual('');
-    expect(getSnackBarStyleProperty(container, '--snackbar-position-bottom')).toEqual(
-      'calc(0px + var(--snackbar-bottom-gap, 12px))',
-    );
-  });
-
   it(`should hide Snackbar by changing opacity on show another Snackbar`, () => {
     const TestHideComponent = () => {
       const [firstShown, setFirstShown] = useState(false);
-      const firstOpenerRef = useRef<HTMLButtonElement>(null);
-      const secondOpenerRef = useRef<HTMLButtonElement>(null);
+      const onCloseFirst = () => {
+        setFirstShown(false);
+      };
       const { state: firstState, snackBarProps: firstSnackBarProps } = useSnackBarPositioning({
         shown: firstShown,
+        onClose: onCloseFirst,
         props: {
           className: 'first',
-          showFor: [firstOpenerRef, secondOpenerRef],
-          onClose: () => {
-            setFirstShown(false);
-          },
         },
       });
 
       const [secondShown, setSecondShown] = useState(false);
+      const onCloseSecond = () => {
+        setSecondShown(false);
+      };
       const { state: secondState, snackBarProps: secondSnackBarProps } = useSnackBarPositioning({
         shown: secondShown,
+        onClose: onCloseSecond,
         props: {
           className: 'second',
-          showFor: [firstOpenerRef, secondOpenerRef],
-          onClose: () => {
-            setSecondShown(false);
-          },
         },
       });
 
       return (
         <>
-          <button ref={firstOpenerRef} onClick={() => setFirstShown(true)}>
-            Show first!
-          </button>
-          <button ref={secondOpenerRef} onClick={() => setSecondShown(true)}>
-            Show second!
-          </button>
+          <button onClick={() => setFirstShown(true)}>Show first!</button>
+          <button onClick={() => setSecondShown(true)}>Show second!</button>
           <div data-testid='outside-click-trigger'></div>
 
           {firstState.isMounted && (
             <SnackBar {...firstSnackBarProps}>
               <SnackBarTitle>Title</SnackBarTitle>
               <SnackBarSubtitle>Subtitle</SnackBarSubtitle>
-              <SnackBarEndIcon icon={<PlaceholderSVG />} />
+              <SnackBarEndIcon icon={<PlaceholderSVG />} onClick={onCloseFirst} />
             </SnackBar>
           )}
 
@@ -444,7 +390,11 @@ describe('useSnackBarPositioning', () => {
             <SnackBar {...secondSnackBarProps}>
               <SnackBarTitle>Title</SnackBarTitle>
               <SnackBarSubtitle>Subtitle</SnackBarSubtitle>
-              <SnackBarEndIcon icon={<PlaceholderSVG />} />
+              <SnackBarEndIcon
+                data-testId='second-snackbar-close-button'
+                icon={<PlaceholderSVG />}
+                onClick={onCloseSecond}
+              />
             </SnackBar>
           )}
         </>
@@ -473,10 +423,6 @@ describe('useSnackBarPositioning', () => {
 
     fireEvent.click(getByRole('button', { name: 'Show second!' }));
 
-    act(() => {
-      jest.advanceTimersByTime(5);
-    });
-
     expect(getSnackBarStyleProperty(container, 'opacity', '.first')).toEqual('0');
 
     expect(getSnackBarStyleProperty(container, '--snackbar-position-bottom', '.first')).toEqual(
@@ -491,11 +437,7 @@ describe('useSnackBarPositioning', () => {
       'calc(0px + var(--snackbar-bottom-gap, 12px))',
     );
 
-    fireEvent.click(getByTestId('outside-click-trigger'));
-
-    act(() => {
-      jest.advanceTimersByTime(5);
-    });
+    fireEvent.click(getByTestId('second-snackbar-close-button'));
 
     expect(getSnackBarStyleProperty(container, '--snackbar-position-bottom', '.second')).toEqual(
       '',

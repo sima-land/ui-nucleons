@@ -37,11 +37,13 @@ function Story() {
 
   const { state: firstState, snackBarProps: firstSnackBarProps } = useSnackBarPositioning({
     shown: firstShown,
-    props: { onClose: onFirstClose, onClick: stub, showFor: [firstOpenerRef] },
+    onClose: onFirstClose,
+    props: { onClick: stub },
   });
   const { state: secondState, snackBarProps: secondSnackBarProps } = useSnackBarPositioning({
     shown: secondShown,
-    props: { onClose: onSecondClose, onClick: stub, showFor: [secondOpenerRef] },
+    onClose: onSecondClose,
+    props: { onClick: stub },
   });
   return (
     <>

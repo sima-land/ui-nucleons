@@ -10,12 +10,6 @@
   display: flex;
   width: fit-content;
   max-width: var(--max-width);
-  .content:last-child {
-    margin-right: 4px;
-  }
-  .content:first-child {
-    margin-left: 4px;
-  }
   position: fixed;
   bottom: var(--snackbar-bottom-gap);
   // частично иммитируем поведение layout
@@ -40,10 +34,12 @@
   }
   @include breakpoints.up('l') {
     @include breakpoints.down('xl') {
+      // 1472 - максимальная ширина контейнера Layout на данном разрешении.
       left: var(--snackbar-position-left, calc(((100% - 1472px) / 2) - 8px));
     }
   }
   @include breakpoints.up('xl') {
+    // 1504 - максимальная ширина контейнера Layout на данном разрешении.
     left: var(--snackbar-position-left, calc(((100% - 1504px) / 2) - 8px));
   }
   .icon:last-child,

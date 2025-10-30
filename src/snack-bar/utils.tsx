@@ -22,18 +22,20 @@ const SWIPE_THRESHOLD = 50;
 /**
  * Хук для управления позиционированием (анимированным появлением/исчезанием) SnackBar.
  * @param config Конфиг.
- * @param config.props Свойства SnackBar и свойства состояния (shown).
+ * @param config.props Свойства SnackBar.
  * Неиспользуемые свойства будут выведены в результат без изменений.
  * @return Состояние перехода и Свойства SnackBar.
  */
 export function useSnackBarPositioning({
   shown,
+  onClose,
   relatedRef,
   timeout = 300,
   duration = 4000,
   props,
 }: {
   shown: boolean;
+  onClose: VoidFunction;
   relatedRef?: RefObject<HTMLElement>;
   timeout?: number;
   duration?: number;
@@ -56,11 +58,6 @@ export function useSnackBarPositioning({
 
   let style: CSSPosition = { ...props?.style, ['--snackbar-transition-duration']: `${timeout}ms` };
 
-  const onClose = useCallback(() => {
-    // TODO setTimeout, чтобы сначала успел вычислиться стиль для закрытия при открытии нескольких снекбаров.
-    setTimeout(() => props?.onClose?.());
-  }, [props?.onClose]);
-
   const onPreEnter = useCallback(() => {
     if (!closePrevious || closePrevious !== closeRef.current) {
       closePrevious?.();
@@ -73,7 +70,7 @@ export function useSnackBarPositioning({
       };
     }
     setClose?.({ closePrevious: closeRef.current });
-  }, [closePrevious]);
+  }, [closePrevious, setClose, closeRef]);
 
   if (state.status === 'entering' || state.status === 'entered') {
     style = { ...style, ...getEnteredStyle(relatedRef?.current) };
@@ -82,14 +79,10 @@ export function useSnackBarPositioning({
   if (state.status === 'entered') {
     clearTimeout(timeoutId.current);
     timeoutId.current = setTimeout(onClose, duration);
-  }
-
-  if (state.status === 'exiting') {
+  } else if (state.status === 'exiting') {
     clearTimeout(timeoutId.current);
     style = { ...style, ...hideStyle.current };
-  }
-
-  if (state.status === 'unmounted') {
+  } else if (state.status === 'unmounted') {
     hideStyle.current = {};
   }
 
@@ -104,8 +97,6 @@ export function useSnackBarPositioning({
 
       className: classNames(props?.className, styles.animated),
       style,
-
-      onClose: state.status === 'entered' ? onClose : undefined,
       onMount: state.status === 'preEnter' ? onPreEnter : undefined,
       // ТО DO вынести логику определения свайпа в отдельный хук.
       onTouchStart: useCallback(
@@ -120,23 +111,21 @@ export function useSnackBarPositioning({
       ),
       onTouchEnd: useCallback(
         (event: TouchEvent<HTMLElement>) => {
-          if (props?.onClose && touchStart.current) {
-            event.stopPropagation();
+          event.stopPropagation();
 
-            const direction = getSwipeDirection(touchStart.current, {
-              x: event.changedTouches[0].clientX,
-              y: event.changedTouches[0].clientY,
-            });
+          const direction = getSwipeDirection(touchStart.current, {
+            x: event.changedTouches[0].clientX,
+            y: event.changedTouches[0].clientY,
+          });
 
-            const distance = Math.sqrt(
-              Math.pow(event.changedTouches[0].clientX - touchStart.current.x, 2) +
-                Math.pow(event.changedTouches[0].clientY - touchStart.current.y, 2),
-            );
+          const distance = Math.sqrt(
+            Math.pow(event.changedTouches[0].clientX - touchStart.current.x, 2) +
+              Math.pow(event.changedTouches[0].clientY - touchStart.current.y, 2),
+          );
 
-            if (distance >= SWIPE_THRESHOLD) {
-              hideStyle.current = getSwipeCloseStyle(event.currentTarget, direction);
-              onClose();
-            }
+          if (distance >= SWIPE_THRESHOLD) {
+            hideStyle.current = getSwipeCloseStyle(event.currentTarget, direction);
+            onClose();
           }
         },
         [touchStart, hideStyle],
@@ -177,17 +166,14 @@ function getSwipeCloseStyle(target: HTMLElement, direction: Direction): CSSPosit
   if (direction === 'left') {
     position['--snackbar-position-left'] = '-100%';
     position.width = `${width}px`;
-  }
-  if (direction === 'right') {
+  } else if (direction === 'right') {
     position['--snackbar-position-left'] = `calc(100vw - ${left}px + 100%)`;
     position.width = `${width}px`;
-  }
-  if (direction === 'down') {
-    position['--snackbar-position-bottom'] = undefined;
-  }
-  if (direction === 'up') {
+  } else if (direction === 'up') {
     position['--snackbar-position-bottom'] =
       `calc(100vh - ${position['--snackbar-position-bottom']} + ${height}px)`;
+  } else {
+    position['--snackbar-position-bottom'] = undefined;
   }
 
   return position;

@@ -7,7 +7,7 @@ import {
   useSnackBarPositioning,
 } from '@sima-land/ui-nucleons/snack-bar';
 import PlaceholderSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Placeholder';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export const meta = {
   title: 'Пример использования анимации',
@@ -16,7 +16,6 @@ export const meta = {
 
 export default function () {
   const [shown, setShown] = useState<boolean>(false);
-  const openerRef = useRef<HTMLButtonElement>();
 
   const stub = () => {
     alert('Действие!');
@@ -26,7 +25,8 @@ export default function () {
   };
   const { state, snackBarProps } = useSnackBarPositioning({
     shown,
-    props: { onClose, onClick: stub, showFor: [openerRef] },
+    onClose,
+    props: { onClick: stub },
   });
   return (
     <>
@@ -34,7 +34,6 @@ export default function () {
         onClick={() => {
           setShown(true);
         }}
-        ref={openerRef}
       >
         Показать Snackbar
       </Button>

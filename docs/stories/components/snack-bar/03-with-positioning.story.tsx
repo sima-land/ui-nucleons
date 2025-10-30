@@ -30,7 +30,8 @@ export default function () {
   const { state, snackBarProps } = useSnackBarPositioning({
     shown,
     relatedRef,
-    props: { onClose, onClick: stub, showFor: [openerRef] },
+    onClose,
+    props: { onClick: stub },
   });
   return (
     <>

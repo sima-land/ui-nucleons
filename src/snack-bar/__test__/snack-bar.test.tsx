@@ -77,22 +77,6 @@ describe('SnackBar', () => {
     expect(queryAllByText('Button action')).toHaveLength(1);
     expect(queryAllByText('Text button action')).toHaveLength(0);
   });
-  it('should close on outside click', () => {
-    const onClose = jest.fn();
-    const { getByText } = render(
-      <>
-        <div>Outside trigger</div>
-        <SnackBar onClose={onClose}>
-          <SnackBarTitle>Title</SnackBarTitle>
-          <SnackBarSubtitle>Subtitle</SnackBarSubtitle>
-          <SnackBarEndIcon icon={<PlaceholderSVG />} />
-        </SnackBar>
-      </>,
-    );
-    expect(onClose).not.toHaveBeenCalled();
-    fireEvent.click(getByText('Outside trigger'));
-    expect(onClose).toHaveBeenCalled();
-  });
   it('should handle mount', () => {
     const onMount = jest.fn();
     render(

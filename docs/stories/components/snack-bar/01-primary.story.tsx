@@ -103,7 +103,7 @@ export default function () {
         </Button>
       </div>
       {shown && (
-        <SnackBar onClose={onClose} onClick={stub}>
+        <SnackBar onClick={stub}>
           {items.startIcon && <SnackBarStartIcon icon={<PlaceholderSVG />} />}
           {items.startImage && <SnackBarImage src={baggi} />}
           {items.title && (
