@@ -1,5 +1,5 @@
 import type { PageScrollLockAdapter } from '../types';
-import { disableBodyScroll, enableBodyScroll, BodyScrollOptions } from 'body-scroll-lock';
+import { disableBodyScroll, enableBodyScroll, BodyScrollOptions } from 'body-scroll-lock-upgrade';
 
 /**
  * Имя атрибута, устанавливаемого на элемент, имеющий прокрутку.
@@ -10,7 +10,7 @@ export const BSL_IGNORE_ATTR = 'data-bsl-ignore';
 
 /** Адаптер блокировки прокрутки использующий BSL. */
 export class PageScrollLockAdapterBSL implements PageScrollLockAdapter {
-  private element: Element;
+  private element: HTMLElement;
   private options?: BodyScrollOptions;
 
   lib: {
@@ -23,7 +23,7 @@ export class PageScrollLockAdapterBSL implements PageScrollLockAdapter {
    * @param element Целевой элемент для которого надо сохранить прокрутку.
    * @param options Опции блокировки.
    */
-  constructor(element: Element, options?: BodyScrollOptions) {
+  constructor(element: HTMLElement, options?: BodyScrollOptions) {
     this.element = element;
     this.options = options;
     this.lib = {
@@ -64,7 +64,7 @@ export class PageScrollLockAdapterBSL implements PageScrollLockAdapter {
  * @return Нужно ли позволить перетаскивание элемента.
  */
 export const allowTouchMove: Required<BodyScrollOptions>['allowTouchMove'] = (startEl): boolean => {
-  let el: HTMLElement | Element | null = startEl;
+  let el: HTMLElement | Element | null = startEl instanceof Element ? startEl : null;
 
   while (el && el !== document.body) {
     if (el.getAttribute(BSL_IGNORE_ATTR) !== null) {
