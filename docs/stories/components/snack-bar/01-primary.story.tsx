@@ -8,10 +8,12 @@ import {
 } from '@sima-land/ui-nucleons/snack-bar';
 import baggi from './images/baggi.png';
 import PlaceholderSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Placeholder';
+import CrossSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Cross';
 import { Button } from '@sima-land/ui-nucleons/button';
 import { TextButton } from '@sima-land/ui-nucleons/text-button';
 import { ChangeEvent, useState } from 'react';
 import { Checkbox } from '@sima-land/ui-nucleons/checkbox';
+import { COLORS } from '@sima-land/ui-nucleons/colors';
 
 export const meta = {
   title: 'Пример использования доступных вариантов наполнения',
@@ -124,7 +126,12 @@ export default function () {
             </Button>
           )}
           {items.cleanButton && <TextButton size='s'>Действие</TextButton>}
-          {items.endIcon && <SnackBarEndIcon onClick={onClose} icon={<PlaceholderSVG />} />}
+          {items.endIcon && (
+            <SnackBarEndIcon
+              onClick={onClose}
+              icon={<CrossSVG fill={COLORS.get('basic-gray54')} />}
+            />
+          )}
         </SnackBar>
       )}
     </>
