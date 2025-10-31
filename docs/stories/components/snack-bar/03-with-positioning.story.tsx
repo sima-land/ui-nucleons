@@ -6,9 +6,10 @@ import {
   useSnackBarPositioning,
 } from '@sima-land/ui-nucleons/snack-bar';
 import baggi from './images/baggi.png';
-import PlaceholderSVG from '@sima-land/ui-quarks/icons/24x24/Stroked/Placeholder';
+import CrossSVG from '@sima-land/ui-quarks/icons/16x16/Stroked/Cross';
 import { Button } from '@sima-land/ui-nucleons/button';
 import { useRef, useState } from 'react';
+import { COLORS } from '@sima-land/ui-nucleons/colors';
 
 export const meta = {
   title: 'Пример использования позиционирования относительно другого элемента',
@@ -90,7 +91,10 @@ export default function () {
           <Button size='xs' viewType='secondary'>
             Действие
           </Button>
-          <SnackBarEndIcon onClick={onClose} icon={<PlaceholderSVG />} />
+          <SnackBarEndIcon
+            onClick={onClose}
+            icon={<CrossSVG fill={COLORS.get('basic-gray54')} />}
+          />
         </SnackBar>
       )}
     </>
