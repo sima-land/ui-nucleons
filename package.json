@@ -19,7 +19,7 @@
     "build:package": "cd build && npm pkg delete scripts.prepare && cd ..",
     "type-check": "tsc -p . --noEmit",
     "lint": "npm run lint:scripts && npm run lint:styles",
-    "lint:scripts": "eslint ./src/**/*.{js,jsx,ts,tsx}",
+    "lint:scripts": "eslint './src/**/*.{js,jsx,ts,tsx}'",
     "lint:styles": "stylelint 'src/**/*.{css,scss}'",
     "test": "BROWSERSLIST_ENV=\"test\" npx jest",
     "test:coverage": "jest --clearCache && BROWSERSLIST_ENV=\"test\" npx jest --coverage",

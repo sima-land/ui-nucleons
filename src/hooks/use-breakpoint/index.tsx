@@ -38,8 +38,9 @@ export function useBreakpoint(query: string): boolean {
   const { matchMedia } = useContext(MatchMediaContext);
   const [, setRegistry] = useState<Registry | null>(null);
   const registryFromContext = useContext(Context);
+
   const [matches, setMatches] = useState<boolean>(
-    matchMedia(BreakpointQuery.toMediaQuery(query)).matches,
+    isBrowser() ? matchMedia(BreakpointQuery.toMediaQuery(query)).matches : false,
   );
 
   useIsomorphicLayoutEffect(() => {
