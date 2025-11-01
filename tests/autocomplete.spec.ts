@@ -123,7 +123,7 @@ test.describe('Viewport interaction', () => {
     const fullHeight = (await here.menu().boundingBox())?.height || 0;
     await page.setViewportSize({ height: 376, width: 270 });
     const stickHeight = (await here.menu().boundingBox())?.height || 0;
-    expect(stickHeight).toBeLessThan(fullHeight);
+    expect(stickHeight).toBeLessThanOrEqual(fullHeight);
     expect(fullHeight).toBe(376);
     expect(stickHeight).toBe(288);
   });

@@ -160,10 +160,13 @@ test.describe('Props handling', () => {
       await here.phoneInput().click();
       await expect(here.input()).toBeFocused();
 
-      await here.input().clear();
+      await here.input().selectText();
+      await here.page.keyboard.press('Backspace');
+      await here.page.waitForTimeout(100);
       await expect(here.input()).toHaveValue('+7 (');
 
-      await here.input().fill('1002003040');
+      await here.input().pressSequentially('1002003040', { delay: 10 });
+      await here.page.waitForTimeout(100);
       await expect(here.input()).toHaveValue('+7 (100) 200-30-40');
 
       await here.menuOpener().click();
@@ -178,7 +181,8 @@ test.describe('Props handling', () => {
       await here.phoneInput().click();
       await expect(here.input()).toBeFocused();
 
-      await here.input().fill('111222333');
+      await here.input().pressSequentially('111222333', { delay: 10 });
+      await here.page.waitForTimeout(100);
       await expect(here.input()).toHaveValue('+995 (111) 222-333');
     });
   }
