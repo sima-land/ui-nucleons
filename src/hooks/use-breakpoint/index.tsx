@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 import { useIsomorphicLayoutEffect } from '..';
-import { isBrowser } from '../../helpers/is-browser';
+import { isBrowser } from '../../helpers';
 import { Registry } from './types';
 import { BreakpointQuery, createRegistry } from './utils';
 import { MatchMediaContext } from '../../context';
@@ -35,11 +35,12 @@ export function useBreakpoint(query: string): boolean {
     throw Error(`useBreakpoint: Invalid query, "${query}"`);
   }
 
+  const { matchMedia } = useContext(MatchMediaContext);
   const [, setRegistry] = useState<Registry | null>(null);
   const registryFromContext = useContext(Context);
-  const [matches, setMatches] = useState<boolean>(false);
-
-  const { matchMedia } = useContext(MatchMediaContext);
+  const [matches, setMatches] = useState<boolean>(
+    matchMedia(BreakpointQuery.toMediaQuery(query)).matches,
+  );
 
   useIsomorphicLayoutEffect(() => {
     let registry: Registry;
